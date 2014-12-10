@@ -47,7 +47,7 @@ import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypeExtension;
-import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceInternal;
+import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceImpl;
 import org.eclipse.ocl.pivot.util.Visitor;
 
 /**
@@ -609,7 +609,7 @@ public class CollectionTypeImpl
 			DomainType thisElementType = this.getElementType();
 			DomainType thatElementType = DomainUtil.nonNullEMF(((DomainCollectionType)type).getElementType());
 			DomainType commonElementType = thisElementType.getCommonType(idResolver, thatElementType);
-			if (commonInheritance instanceof CompleteInheritanceInternal) {
+			if (commonInheritance instanceof CompleteInheritanceImpl) {
 				DomainCollectionType commonCollectionType = (DomainCollectionType)commonType;
 				return environment.getCollectionType(commonCollectionType, commonElementType, null, null);
 			}

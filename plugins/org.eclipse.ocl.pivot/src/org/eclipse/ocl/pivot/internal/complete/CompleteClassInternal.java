@@ -24,7 +24,7 @@ public interface CompleteClassInternal extends CompleteClass
 	void dispose();
 	void uninstall();
 	@Override
-	@NonNull CompleteInheritanceInternal getCompleteInheritance();
+	@NonNull CompleteInheritanceImpl getCompleteInheritance();
 	@NonNull CompleteModelInternal getCompleteModel();
 	@NonNull MetaModelManager getMetaModelManager();
 	@Override

@@ -24,13 +24,13 @@ import org.eclipse.ocl.domain.ids.TuplePartId;
 import org.eclipse.ocl.domain.ids.TupleTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.pivot.AnyType;
+import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.InvalidType;
 import org.eclipse.ocl.pivot.PivotConstants;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.VoidType;
-import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironment2;
 import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.junit.After;
@@ -640,8 +640,8 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
      * Tests the oclType() operator for Collections.
      */
     @Test public void test_oclType_Collection() {   	
-    	CompleteEnvironment2 completeEnvironment = metaModelManager.getCompleteEnvironment();
-    	PivotStandardLibrary standardLibrary = completeEnvironment.getStandardLibrary();
+    	CompleteEnvironment completeEnvironment = metaModelManager.getCompleteEnvironment();
+    	DomainStandardLibrary standardLibrary = completeEnvironment.getStandardLibrary();
     	assertQueryEquals(null, 1, "Set{1}->oclType().ownedOperations->select(name = 'flatten')->size()");
     	assertQueryEquals(null, completeEnvironment.getSetType(standardLibrary.getOclVoidType(), null, null), "Set{}->oclType()");
     	assertQueryEquals(null, completeEnvironment.getSetType(standardLibrary.getIntegerType(), null, null), "Set{1}->oclType()");

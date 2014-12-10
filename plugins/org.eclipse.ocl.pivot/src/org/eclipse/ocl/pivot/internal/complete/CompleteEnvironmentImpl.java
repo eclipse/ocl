@@ -46,7 +46,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.impl.CompleteModelImpl;
 import org.eclipse.ocl.pivot.manager.LambdaTypeManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.manager.PivotStandardLibrary2;
+import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.pivot.manager.TupleTypeManager;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
@@ -54,7 +54,7 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 {
 	protected final @NonNull MetaModelManager metaModelManager;
 	protected final @NonNull CompleteModelInternal completeModel;
-	protected final @NonNull PivotStandardLibrary2 standardLibrary;
+	protected final @NonNull PivotStandardLibrary standardLibrary;
 	protected final @NonNull Map<DomainClass, CompleteClassInternal> class2completeClass = new WeakHashMap<DomainClass, CompleteClassInternal>();
 	
 	/**
@@ -74,7 +74,7 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 	public CompleteEnvironmentImpl(@NonNull MetaModelManager metaModelManager) {
 		this.metaModelManager = metaModelManager;
 		this.completeModel = new CompleteModelImpl(this);
-		this.standardLibrary = new PivotStandardLibrary2(completeModel);
+		this.standardLibrary = new PivotStandardLibrary(completeModel);
 	}
 	
 	public void addOrphanClass(@NonNull org.eclipse.ocl.pivot.Class pivotElement) {
@@ -484,7 +484,7 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 	}
 
 	@Override
-	public @NonNull PivotStandardLibrary2 getStandardLibrary() {
+	public @NonNull PivotStandardLibrary getStandardLibrary() {
 		return standardLibrary;
 	}
 

@@ -47,15 +47,15 @@ import org.eclipse.ocl.domain.values.Value;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.library.LibraryConstants;
+import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.SemanticException;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironment2;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.manager.PivotStandardLibrary2;
+import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.xtext.oclinecore.OCLinEcoreStandaloneSetup;
 import org.junit.After;
@@ -527,8 +527,8 @@ public class IteratorsTest4 extends PivotTestSuite
      * body type with the iterator variable (source element) type.
      */
     @Test public void test_closureValidation_typeConformance_154695() {
-        PivotStandardLibrary2 standardLibrary = metaModelManager.getStandardLibrary();
-        CompleteEnvironment2 completeEnvironment = metaModelManager.getCompleteEnvironment();
+        PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+        CompleteEnvironment completeEnvironment = metaModelManager.getCompleteEnvironment();
     	Resource fakeResource = new XMIResourceFactoryImpl().createResource(URI.createURI("fake"));
     	Model fakeRoot = metaModelManager.createModel(null);
     	org.eclipse.ocl.pivot.Package fakePkg = createPackage(fakeRoot, "fake");

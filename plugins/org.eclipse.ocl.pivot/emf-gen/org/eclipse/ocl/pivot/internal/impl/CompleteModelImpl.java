@@ -53,7 +53,7 @@ import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.complete.CompleteClassInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
-import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceInternal;
+import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceImpl;
 import org.eclipse.ocl.pivot.internal.complete.CompletePackageInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteURIs;
 import org.eclipse.ocl.pivot.internal.complete.OrphanCompletePackageInternal;
@@ -62,7 +62,7 @@ import org.eclipse.ocl.pivot.internal.complete.PrimitiveCompletePackageInternal;
 import org.eclipse.ocl.pivot.internal.complete.RootCompletePackages;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.Orphanage;
-import org.eclipse.ocl.pivot.manager.PivotStandardLibrary2;
+import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.pivot.manager.TupleTypeManager;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -667,7 +667,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	}
 
 	@Override
-	public @NonNull PivotStandardLibrary2 getStandardLibrary() {
+	public @NonNull PivotStandardLibrary getStandardLibrary() {
 		return completeEnvironment.getStandardLibrary();
 	}
 	
@@ -735,7 +735,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 					for (TemplateParameterSubstitution superSpecializedTemplateParameterSubstitution : superSpecializedTemplateParameterSubstitutions) {
 						superTemplateArgumentList.add(superSpecializedTemplateParameterSubstitution.getActual());
 					}
-					CompleteInheritanceInternal superCompleteInheritance = superCompleteClass.getCompleteInheritance();
+					CompleteInheritanceImpl superCompleteInheritance = superCompleteClass.getCompleteInheritance();
 					org.eclipse.ocl.pivot.Class specializedSuperType = superCompleteInheritance.getCompleteClass().getPartialClasses().getSpecializedType(superTemplateArgumentList);
 					specializedClass.getSuperClasses().add(specializedSuperType);
 				}

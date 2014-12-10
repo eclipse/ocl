@@ -40,7 +40,7 @@ import org.eclipse.ocl.pivot.RootCompletePackage;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.complete.CompleteClassInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteClasses;
-import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceInternal;
+import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceImpl;
 import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompletePackageInternal;
 import org.eclipse.ocl.pivot.internal.complete.NestedCompletePackages;
@@ -433,7 +433,7 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 	}
 
 	@Override
-	public @NonNull CompleteInheritanceInternal getCompleteInheritance(@NonNull CompleteClassInternal completeClass) {
+	public @NonNull CompleteInheritanceImpl getCompleteInheritance(@NonNull CompleteClassInternal completeClass) {
 		assert this != getCompleteModel().getOrphanCompletePackage();		// OrphanCompletePackage overrides
 		return getPartialPackages().getCompleteInheritance(completeClass);
 	}

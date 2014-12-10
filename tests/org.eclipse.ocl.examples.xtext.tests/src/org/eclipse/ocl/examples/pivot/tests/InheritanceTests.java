@@ -21,7 +21,6 @@ import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.SetType;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
-import org.eclipse.ocl.pivot.manager.PivotStandardLibrary2;
 
 /**
  * Tests for OclAny operations.
@@ -114,7 +113,7 @@ public class InheritanceTests extends PivotSimpleTestSuite
 
 	public void test_Inheritance_IfExp() {
 		MetaModelManager metaModelManager = new MetaModelManager();
-		PivotStandardLibrary2 standardLibrary = metaModelManager.getStandardLibrary();
+		PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
 		try {
 			DomainInheritance oclAnyInheritance = standardLibrary.getInheritance(standardLibrary.getOclAnyType());
 			DomainInheritance ifInheritance = standardLibrary.getInheritance(DomainUtil.nonNullState(standardLibrary.getPivotType("IfExp")));

@@ -33,7 +33,7 @@ import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.complete.CompleteClassInternal;
-import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceInternal;
+import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceImpl;
 import org.eclipse.ocl.pivot.internal.complete.OrphanCompletePackageInternal;
 import org.eclipse.ocl.pivot.manager.Orphanage;
 import org.eclipse.ocl.pivot.util.Visitor;
@@ -138,8 +138,8 @@ public class OrphanCompletePackageImpl extends RootCompletePackageImpl implement
 	}
 
 	@Override
-	public @NonNull CompleteInheritanceInternal getCompleteInheritance(@NonNull CompleteClassInternal completeClass) {
-		return new CompleteInheritanceInternal(completeClass);
+	public @NonNull CompleteInheritanceImpl getCompleteInheritance(@NonNull CompleteClassInternal completeClass) {
+		return new CompleteInheritanceImpl(completeClass);
 	}
 	
 	@Override

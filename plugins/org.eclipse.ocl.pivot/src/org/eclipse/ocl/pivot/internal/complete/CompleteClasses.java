@@ -74,7 +74,7 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 			TemplateParameter formalParameter = templateParameters.get(0);
 			assert formalParameter != null;
 			Type elementType = typeParameters.getElementType();
-			TemplateParameterSubstitution templateParameterSubstitution = CompleteInheritanceInternal.createTemplateParameterSubstitution(formalParameter, elementType);
+			TemplateParameterSubstitution templateParameterSubstitution = CompleteInheritanceImpl.createTemplateParameterSubstitution(formalParameter, elementType);
 			templateBinding.getOwnedTemplateParameterSubstitutions().add(templateParameterSubstitution);
 			specializedType.getOwnedTemplateBindings().add(templateBinding);
 			getCompleteModel().resolveSuperClasses(specializedType, unspecializedType);

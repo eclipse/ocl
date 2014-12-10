@@ -80,7 +80,7 @@ import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableDeclaration;
 import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.manager.PivotStandardLibrary2;
+import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.pivot.manager.TemplateParameterSubstitutionHelper;
 import org.eclipse.ocl.pivot.manager.TemplateParameterSubstitutionVisitor;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
@@ -192,7 +192,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	}
 	
 	protected final @NonNull MetaModelManager metaModelManager;
-	protected final @NonNull PivotStandardLibrary2 standardLibrary;
+	protected final @NonNull PivotStandardLibrary standardLibrary;
 	
 	/**
 	 * curretRoot identifies the current InfixExpCS/PrefixExpCS tree enabling the initial visit to the containment root to

@@ -20,7 +20,7 @@ public interface CompletePackageInternal extends CompletePackage
 {
 	@Override
 	@NonNull CompleteClassInternal getCompleteClass(@NonNull DomainClass pivotType);
-	@NonNull CompleteInheritanceInternal getCompleteInheritance(@NonNull CompleteClassInternal completeClass);
+	@NonNull CompleteInheritanceImpl getCompleteInheritance(@NonNull CompleteClassInternal completeClass);
 	@Override
 	@NonNull CompleteModelInternal getCompleteModel();
 	void dispose();

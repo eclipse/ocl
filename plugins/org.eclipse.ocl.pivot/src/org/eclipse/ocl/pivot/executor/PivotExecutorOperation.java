@@ -16,13 +16,13 @@ import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.library.executor.ExecutorOperation;
 import org.eclipse.ocl.pivot.Operation;
-import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceInternal;
+import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceImpl;
 
 public class PivotExecutorOperation extends ExecutorOperation
 {
 	protected final @NonNull Operation pivotOperation;
 	
-	public PivotExecutorOperation(@NonNull CompleteInheritanceInternal inheritance, int operationIndex, @NonNull Operation pivotOperation) {
+	public PivotExecutorOperation(@NonNull CompleteInheritanceImpl inheritance, int operationIndex, @NonNull Operation pivotOperation) {
 		super(DomainUtil.nonNullModel(pivotOperation.getName()), DomainParameterTypes.EMPTY_LIST, inheritance, operationIndex, DomainTypeParameters.EMPTY_LIST, pivotOperation.getImplementation());
 		this.pivotOperation = pivotOperation;		
 	}

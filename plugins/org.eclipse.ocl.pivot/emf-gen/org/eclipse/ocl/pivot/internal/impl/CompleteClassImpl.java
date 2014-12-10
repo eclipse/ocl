@@ -42,7 +42,7 @@ import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.State;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.complete.CompleteClassInternal;
-import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceInternal;
+import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceImpl;
 import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompletePackageInternal;
 import org.eclipse.ocl.pivot.internal.complete.PartialClasses;
@@ -427,7 +427,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	}
 
 	@Override
-	public final @NonNull CompleteInheritanceInternal getCompleteInheritance() {
+	public final @NonNull CompleteInheritanceImpl getCompleteInheritance() {
 		return partialClasses.getCompleteInheritance();
 	}
 
@@ -511,7 +511,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 		{
 			@Override
 			public CompleteClass apply(DomainFragment input) {
-				return ((CompleteInheritanceInternal)input.getBaseInheritance()).getCompleteClass();		// FIXME cast
+				return ((CompleteInheritanceImpl)input.getBaseInheritance()).getCompleteClass();		// FIXME cast
 			}
 		});
 	}

@@ -38,10 +38,10 @@ import com.google.common.base.Function;
 /**
  * An AbstractTypeServer provides the co-ordinated operation, property and superclass lookup caches for one or more merged types.
  */
-public class CompleteInheritanceInternal extends ReflectiveInheritance implements CompleteInheritance
+public class CompleteInheritanceImpl extends ReflectiveInheritance implements CompleteInheritance
 {
 	@SuppressWarnings("null")
-	public static final @NonNull List<CompleteInheritanceInternal> EMPTY_LIST = Collections.<CompleteInheritanceInternal>emptyList();
+	public static final @NonNull List<CompleteInheritanceImpl> EMPTY_LIST = Collections.<CompleteInheritanceImpl>emptyList();
 
 	public static final class BestOperation implements Function<List<DomainOperation>, DomainOperation> {
 
@@ -62,7 +62,7 @@ public class CompleteInheritanceInternal extends ReflectiveInheritance implement
 
 	protected final @NonNull CompleteClassInternal completeClass;
 
-	public CompleteInheritanceInternal(@NonNull CompleteClassInternal completeClass) {
+	public CompleteInheritanceImpl(@NonNull CompleteClassInternal completeClass) {
 		super(DomainUtil.nonNullModel(completeClass.getName()), computeFlags(completeClass.getPivotClass()));
 		this.completeClass = completeClass;
 		org.eclipse.ocl.pivot.Class pivotClass = completeClass.getPivotClass();

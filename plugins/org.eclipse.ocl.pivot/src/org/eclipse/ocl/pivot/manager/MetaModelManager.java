@@ -128,7 +128,7 @@ import org.eclipse.ocl.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.complete.CompleteClassInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentImpl;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
-import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceInternal;
+import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceImpl;
 import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.internal.impl.PackageImpl;
 import org.eclipse.ocl.pivot.library.ConstrainedOperation;
@@ -277,7 +277,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		packageRegistry.put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
 	}
 	
-	private final @NonNull PivotStandardLibrary2 standardLibrary;
+	private final @NonNull PivotStandardLibrary standardLibrary;
 	private final @NonNull CompleteEnvironmentInternal completeEnvironment;
 
 	/**
@@ -1238,7 +1238,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		org.eclipse.ocl.pivot.Class type1 = getType(type);
 		org.eclipse.ocl.pivot.Class unspecializedType = (org.eclipse.ocl.pivot.Class) type1.getUnspecializedElement();
 		org.eclipse.ocl.pivot.Class theType = unspecializedType != null ? unspecializedType : type1;
-		CompleteInheritanceInternal completeInheritance = getCompleteClass(theType).getCompleteInheritance();
+		CompleteInheritanceImpl completeInheritance = getCompleteClass(theType).getCompleteInheritance();
 		return completeInheritance;
 	}
 	
@@ -1866,7 +1866,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return (ASResource)asResource;
 	}
 	
-	public @NonNull PivotStandardLibrary2 getStandardLibrary() {
+	public @NonNull PivotStandardLibrary getStandardLibrary() {
 		return standardLibrary;
 	}
 	
@@ -1907,8 +1907,8 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		if (dType instanceof Type) {
 			return getPrimaryType(dType);
 		}
-		if (dType instanceof CompleteInheritanceInternal) {
-			return ((CompleteInheritanceInternal)dType).getCompleteClass().getPivotClass();
+		if (dType instanceof CompleteInheritanceImpl) {
+			return ((CompleteInheritanceImpl)dType).getCompleteClass().getPivotClass();
 		}
 		DomainPackage dPackage = ((DomainClass)dType).getOwningPackage();	// FIXME cast
 		if (dPackage != null) {

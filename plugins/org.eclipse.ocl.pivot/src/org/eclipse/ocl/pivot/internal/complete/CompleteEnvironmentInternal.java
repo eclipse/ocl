@@ -19,12 +19,13 @@ import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.pivot.CollectionType;
+import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.manager.PivotStandardLibrary2;
+import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.pivot.manager.TupleTypeManager;
 
-public interface CompleteEnvironmentInternal extends CompleteEnvironment2
+public interface CompleteEnvironmentInternal extends CompleteEnvironment
 {
 	boolean conformsTo(@NonNull Type firstType, @NonNull TemplateParameterSubstitutions firstSubstitutions,
 			@NonNull Type secondType, @NonNull TemplateParameterSubstitutions secondSubstitutions);
@@ -38,7 +39,9 @@ public interface CompleteEnvironmentInternal extends CompleteEnvironment2
 	@Override
 	@NonNull CompleteModelInternal getCompleteModel();
 	@NonNull MetaModelManager getMetaModelManager();
+//	@Override
+//	@NonNull PivotStandardLibrary getStandardLibrary();
 	@Override
-	@NonNull PivotStandardLibrary2 getStandardLibrary();
+	@NonNull PivotStandardLibrary getStandardLibrary();
 	@NonNull TupleTypeManager getTupleManager();
 }

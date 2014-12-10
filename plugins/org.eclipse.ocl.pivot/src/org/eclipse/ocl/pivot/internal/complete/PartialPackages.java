@@ -50,7 +50,7 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 	/**
 	 * Lazily created map of nested class-name to its inheritance.
 	 */
-	protected final @NonNull Map<String, CompleteInheritanceInternal> name2inheritance = new HashMap<String, CompleteInheritanceInternal>();
+	protected final @NonNull Map<String, CompleteInheritanceImpl> name2inheritance = new HashMap<String, CompleteInheritanceImpl>();
 
 	public PartialPackages(@NonNull CompletePackageImpl owner) {
 		super(org.eclipse.ocl.pivot.Package.class, owner, PivotPackage.COMPLETE_PACKAGE__PARTIAL_PACKAGES);
@@ -155,11 +155,11 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 		getCompletePackage().didRemoveClass(partialClass);
 	}
 
-	public @NonNull CompleteInheritanceInternal getCompleteInheritance(@NonNull CompleteClassInternal completeClass) {
+	public @NonNull CompleteInheritanceImpl getCompleteInheritance(@NonNull CompleteClassInternal completeClass) {
 		String name = completeClass.getName();
-		CompleteInheritanceInternal completeInheritance = name2inheritance.get(name);
+		CompleteInheritanceImpl completeInheritance = name2inheritance.get(name);
 		if (completeInheritance == null) {
-			completeInheritance = new CompleteInheritanceInternal(completeClass);
+			completeInheritance = new CompleteInheritanceImpl(completeClass);
 			name2inheritance.put(name, completeInheritance);
 		}
 		return completeInheritance;
