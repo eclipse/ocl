@@ -17,7 +17,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
@@ -198,12 +197,11 @@ public class RegionImpl extends NamespaceImpl implements Region
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("cast")
 	public void setStateMachine(StateMachine newStateMachine)
 	{
 		if (newStateMachine != eInternalContainer() || (eContainerFeatureID() != PivotPackage.REGION__STATE_MACHINE && newStateMachine != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newStateMachine))
+			if (EcoreUtil.isAncestor(this, newStateMachine))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
@@ -246,12 +244,11 @@ public class RegionImpl extends NamespaceImpl implements Region
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("cast")
 	public void setState(State newState)
 	{
 		if (newState != eInternalContainer() || (eContainerFeatureID() != PivotPackage.REGION__STATE && newState != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newState))
+			if (EcoreUtil.isAncestor(this, newState))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
@@ -273,7 +270,7 @@ public class RegionImpl extends NamespaceImpl implements Region
 	@Override
 	public Region getExtendedRegion()
 	{
-		if (extendedRegion != null && ((EObject)extendedRegion).eIsProxy())
+		if (extendedRegion != null && extendedRegion.eIsProxy())
 		{
 			InternalEObject oldExtendedRegion = (InternalEObject)extendedRegion;
 			extendedRegion = (Region)eResolveProxy(oldExtendedRegion);

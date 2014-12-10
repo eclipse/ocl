@@ -51,7 +51,6 @@ import org.eclipse.ocl.pivot.util.Visitor;
  *
  * @generated
  */
-@SuppressWarnings("cast")
 public class EnumerationLiteralImpl
 		extends InstanceSpecificationImpl
 		implements EnumerationLiteral {
@@ -125,7 +124,7 @@ public class EnumerationLiteralImpl
 	public void setEnumeration(Enumeration newEnumeration) {
 		if (newEnumeration != eInternalContainer() || (eContainerFeatureID() != PivotPackage.ENUMERATION_LITERAL__ENUMERATION && newEnumeration != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newEnumeration))
+			if (EcoreUtil.isAncestor(this, newEnumeration))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)

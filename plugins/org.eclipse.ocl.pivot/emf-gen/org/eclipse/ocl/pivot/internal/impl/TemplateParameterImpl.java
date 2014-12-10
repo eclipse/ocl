@@ -63,7 +63,6 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
  *
  * @generated
  */
-@SuppressWarnings("cast")
 public class TemplateParameterImpl
 		extends TypeImpl
 		implements TemplateParameter {
@@ -140,7 +139,7 @@ public class TemplateParameterImpl
 	@Override
 	public Type getLowerBound()
 	{
-		if (lowerBound != null && ((EObject)lowerBound).eIsProxy())
+		if (lowerBound != null && lowerBound.eIsProxy())
 		{
 			InternalEObject oldLowerBound = (InternalEObject)lowerBound;
 			lowerBound = (Type)eResolveProxy(oldLowerBound);
@@ -208,7 +207,7 @@ public class TemplateParameterImpl
 	public void setOwningTemplateSignature(TemplateSignature newOwningTemplateSignature) {
 		if (newOwningTemplateSignature != eInternalContainer() || (eContainerFeatureID() != PivotPackage.TEMPLATE_PARAMETER__OWNING_TEMPLATE_SIGNATURE && newOwningTemplateSignature != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newOwningTemplateSignature))
+			if (EcoreUtil.isAncestor(this, newOwningTemplateSignature))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
@@ -230,7 +229,7 @@ public class TemplateParameterImpl
 	@Override
 	public Type getUpperBound()
 	{
-		if (upperBound != null && ((EObject)upperBound).eIsProxy())
+		if (upperBound != null && upperBound.eIsProxy())
 		{
 			InternalEObject oldUpperBound = (InternalEObject)upperBound;
 			upperBound = (Type)eResolveProxy(oldUpperBound);

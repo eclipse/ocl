@@ -15,7 +15,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -96,12 +95,11 @@ public class TriggerImpl extends NamedElementImpl implements Trigger
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("cast")
 	public void setState(State newState)
 	{
 		if (newState != eInternalContainer() || (eContainerFeatureID() != PivotPackage.TRIGGER__STATE && newState != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newState))
+			if (EcoreUtil.isAncestor(this, newState))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
@@ -144,12 +142,11 @@ public class TriggerImpl extends NamedElementImpl implements Trigger
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("cast")
 	public void setTransition(Transition newTransition)
 	{
 		if (newTransition != eInternalContainer() || (eContainerFeatureID() != PivotPackage.TRIGGER__TRANSITION && newTransition != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newTransition))
+			if (EcoreUtil.isAncestor(this, newTransition))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)

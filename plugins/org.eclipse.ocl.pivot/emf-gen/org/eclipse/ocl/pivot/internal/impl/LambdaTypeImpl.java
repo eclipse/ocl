@@ -16,7 +16,6 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
@@ -119,7 +118,7 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 	@Override
 	public Type getContextType()
 	{
-		if (contextType != null && ((EObject)contextType).eIsProxy())
+		if (contextType != null && contextType.eIsProxy())
 		{
 			InternalEObject oldContextType = (InternalEObject)contextType;
 			contextType = (Type)eResolveProxy(oldContextType);
@@ -180,7 +179,7 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 	@Override
 	public Type getResultType()
 	{
-		if (resultType != null && ((EObject)resultType).eIsProxy())
+		if (resultType != null && resultType.eIsProxy())
 		{
 			InternalEObject oldResultType = (InternalEObject)resultType;
 			resultType = (Type)eResolveProxy(oldResultType);

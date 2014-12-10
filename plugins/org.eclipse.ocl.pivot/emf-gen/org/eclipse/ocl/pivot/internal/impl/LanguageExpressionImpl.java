@@ -15,7 +15,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -161,12 +160,11 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("cast")
 	public void setOwningConstraint(Constraint newOwningConstraint)
 	{
 		if (newOwningConstraint != eInternalContainer() || (eContainerFeatureID() != PivotPackage.LANGUAGE_EXPRESSION__OWNING_CONSTRAINT && newOwningConstraint != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newOwningConstraint))
+			if (EcoreUtil.isAncestor(this, newOwningConstraint))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)

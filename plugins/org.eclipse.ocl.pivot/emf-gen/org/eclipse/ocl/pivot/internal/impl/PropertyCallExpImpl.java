@@ -20,7 +20,6 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectValidator;
@@ -106,7 +105,7 @@ public class PropertyCallExpImpl
 	 */
 	@Override
 	public Property getReferredProperty() {
-		if (referredProperty != null && ((EObject)referredProperty).eIsProxy())
+		if (referredProperty != null && referredProperty.eIsProxy())
 		{
 			InternalEObject oldReferredProperty = (InternalEObject)referredProperty;
 			referredProperty = (Property)eResolveProxy(oldReferredProperty);
@@ -434,7 +433,7 @@ public class PropertyCallExpImpl
 //			resultType = ((DomainMetaclass)resultType).getInstanceType();
 //		}
 		templateSpecialization.installEquivalence(resultType, referredProperty.getType());
-		return templateSpecialization.getSpecialisation(referencedType);
+		return referencedType != null ? templateSpecialization.getSpecialisation(referencedType) : null;
 	}
 
 	/**

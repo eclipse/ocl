@@ -15,7 +15,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -96,12 +95,11 @@ public class NestedCompletePackageImpl extends CompletePackageImpl implements Ne
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("cast")
 	public void setOwningCompletePackage(CompletePackage newOwningCompletePackage)
 	{
 		if (newOwningCompletePackage != eInternalContainer() || (eContainerFeatureID() != PivotPackage.NESTED_COMPLETE_PACKAGE__OWNING_COMPLETE_PACKAGE && newOwningCompletePackage != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newOwningCompletePackage))
+			if (EcoreUtil.isAncestor(this, newOwningCompletePackage))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)

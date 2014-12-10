@@ -17,7 +17,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
@@ -271,7 +270,7 @@ public class StateImpl
 	{
 		if (newContainer != eInternalContainer() || (eContainerFeatureID() != PivotPackage.STATE__CONTAINER && newContainer != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newContainer))
+			if (EcoreUtil.isAncestor(this, newContainer))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
@@ -367,7 +366,7 @@ public class StateImpl
 	@Override
 	public StateMachine getSubmachine()
 	{
-		if (submachine != null && ((EObject)submachine).eIsProxy())
+		if (submachine != null && submachine.eIsProxy())
 		{
 			InternalEObject oldSubmachine = (InternalEObject)submachine;
 			submachine = (StateMachine)eResolveProxy(oldSubmachine);
@@ -452,7 +451,7 @@ public class StateImpl
 	@Override
 	public State getRedefinedState()
 	{
-		if (redefinedState != null && ((EObject)redefinedState).eIsProxy())
+		if (redefinedState != null && redefinedState.eIsProxy())
 		{
 			InternalEObject oldRedefinedState = (InternalEObject)redefinedState;
 			redefinedState = (State)eResolveProxy(oldRedefinedState);

@@ -15,7 +15,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -48,7 +47,6 @@ import org.eclipse.ocl.pivot.util.Visitor;
  *
  * @generated
  */
-@SuppressWarnings("cast")
 public class TemplateParameterSubstitutionImpl
 		extends ElementImpl
 		implements TemplateParameterSubstitution {
@@ -109,7 +107,7 @@ public class TemplateParameterSubstitutionImpl
 	 */
 	@Override
 	public Type getActual() {
-		if (actual != null && ((EObject)actual).eIsProxy())
+		if (actual != null && actual.eIsProxy())
 		{
 			InternalEObject oldActual = (InternalEObject)actual;
 			actual = (Type)eResolveProxy(oldActual);
@@ -151,7 +149,7 @@ public class TemplateParameterSubstitutionImpl
 	 */
 	@Override
 	public TemplateParameter getFormal() {
-		if (formal != null && ((EObject)formal).eIsProxy())
+		if (formal != null && formal.eIsProxy())
 		{
 			InternalEObject oldFormal = (InternalEObject)formal;
 			formal = (TemplateParameter)eResolveProxy(oldFormal);
@@ -267,7 +265,7 @@ public class TemplateParameterSubstitutionImpl
 	public void setOwningTemplateBinding(TemplateBinding newOwningTemplateBinding) {
 		if (newOwningTemplateBinding != eInternalContainer() || (eContainerFeatureID() != PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNING_TEMPLATE_BINDING && newOwningTemplateBinding != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newOwningTemplateBinding))
+			if (EcoreUtil.isAncestor(this, newOwningTemplateBinding))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)

@@ -15,7 +15,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -55,7 +54,6 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
  *
  * @generated
  */
-@SuppressWarnings("cast")
 public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 {
 	/**
@@ -132,7 +130,7 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 	@Override
 	public Stereotype getStereotype()
 	{
-		if (stereotype != null && ((EObject)stereotype).eIsProxy())
+		if (stereotype != null && stereotype.eIsProxy())
 		{
 			InternalEObject oldStereotype = (InternalEObject)stereotype;
 			stereotype = (Stereotype)eResolveProxy(oldStereotype);
@@ -202,7 +200,7 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 	{
 		if (newBase != eInternalContainer() || (eContainerFeatureID() != PivotPackage.ELEMENT_EXTENSION__BASE && newBase != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newBase))
+			if (EcoreUtil.isAncestor(this, newBase))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)

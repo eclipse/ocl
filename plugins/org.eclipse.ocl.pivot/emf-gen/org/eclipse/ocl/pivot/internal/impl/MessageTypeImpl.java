@@ -14,7 +14,6 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
@@ -98,7 +97,7 @@ public class MessageTypeImpl
 	 */
 	@Override
 	public Signal getReferredSignal() {
-		if (referredSignal != null && ((EObject)referredSignal).eIsProxy())
+		if (referredSignal != null && referredSignal.eIsProxy())
 		{
 			InternalEObject oldReferredSignal = (InternalEObject)referredSignal;
 			referredSignal = (Signal)eResolveProxy(oldReferredSignal);
@@ -140,7 +139,7 @@ public class MessageTypeImpl
 	 */
 	@Override
 	public Operation getReferredOperation() {
-		if (referredOperation != null && ((EObject)referredOperation).eIsProxy())
+		if (referredOperation != null && referredOperation.eIsProxy())
 		{
 			InternalEObject oldReferredOperation = (InternalEObject)referredOperation;
 			referredOperation = (Operation)eResolveProxy(oldReferredOperation);

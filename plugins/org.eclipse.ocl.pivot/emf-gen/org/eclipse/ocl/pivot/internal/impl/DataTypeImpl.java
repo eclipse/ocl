@@ -14,7 +14,6 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
@@ -138,7 +137,7 @@ public class DataTypeImpl
 	@Override
 	public org.eclipse.ocl.pivot.Class getBehavioralClass()
 	{
-		if (behavioralClass != null && ((EObject)behavioralClass).eIsProxy())
+		if (behavioralClass != null && behavioralClass.eIsProxy())
 		{
 			InternalEObject oldBehavioralClass = (InternalEObject)behavioralClass;
 			behavioralClass = (org.eclipse.ocl.pivot.Class)eResolveProxy(oldBehavioralClass);

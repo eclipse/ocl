@@ -15,7 +15,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.util.Visitable;
-import org.eclipse.ocl.pivot.utilities.PivotObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,11 +37,10 @@ import org.eclipse.ocl.pivot.utilities.PivotObject;
  * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getElement()
- * @extends PivotObject
  * @generated
  */
 public interface Element
-		extends PivotObject, Visitable, org.eclipse.ocl.domain.elements.DomainElement {
+		extends EObject, Visitable, org.eclipse.ocl.domain.elements.DomainElement {
 
 	/**
 	 * Returns the value of the '<em><b>Comment</b></em>' reference list.

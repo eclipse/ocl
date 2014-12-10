@@ -17,7 +17,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
@@ -136,12 +135,11 @@ public class ConnectionPointReferenceImpl extends VertexImpl implements Connecti
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("cast")
 	public void setState(State newState)
 	{
 		if (newState != eInternalContainer() || (eContainerFeatureID() != PivotPackage.CONNECTION_POINT_REFERENCE__STATE && newState != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newState))
+			if (EcoreUtil.isAncestor(this, newState))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)

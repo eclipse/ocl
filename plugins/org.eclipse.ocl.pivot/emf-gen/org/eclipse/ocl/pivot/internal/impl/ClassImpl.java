@@ -525,12 +525,11 @@ public class ClassImpl
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("cast")
 	public void setOwningPackage(org.eclipse.ocl.pivot.Package newOwningPackage)
 	{
 		if (newOwningPackage != eInternalContainer() || (eContainerFeatureID() != PivotPackage.CLASS__OWNING_PACKAGE && newOwningPackage != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newOwningPackage))
+			if (EcoreUtil.isAncestor(this, newOwningPackage))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)

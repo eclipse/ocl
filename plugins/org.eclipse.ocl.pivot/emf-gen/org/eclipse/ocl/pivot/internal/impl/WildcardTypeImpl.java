@@ -14,7 +14,6 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
@@ -99,7 +98,7 @@ public class WildcardTypeImpl extends ClassImpl implements WildcardType
 	@Override
 	public Type getLowerBound()
 	{
-		if (lowerBound != null && ((EObject)lowerBound).eIsProxy())
+		if (lowerBound != null && lowerBound.eIsProxy())
 		{
 			InternalEObject oldLowerBound = (InternalEObject)lowerBound;
 			lowerBound = (Type)eResolveProxy(oldLowerBound);
@@ -144,7 +143,7 @@ public class WildcardTypeImpl extends ClassImpl implements WildcardType
 	@Override
 	public Type getUpperBound()
 	{
-		if (upperBound != null && ((EObject)upperBound).eIsProxy())
+		if (upperBound != null && upperBound.eIsProxy())
 		{
 			InternalEObject oldUpperBound = (InternalEObject)upperBound;
 			upperBound = (Type)eResolveProxy(oldUpperBound);

@@ -16,7 +16,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
@@ -104,7 +103,7 @@ public class VariableExpImpl
 	 */
 	@Override
 	public VariableDeclaration getReferredVariable() {
-		if (referredVariable != null && ((EObject)referredVariable).eIsProxy())
+		if (referredVariable != null && referredVariable.eIsProxy())
 		{
 			InternalEObject oldReferredVariable = (InternalEObject)referredVariable;
 			referredVariable = (VariableDeclaration)eResolveProxy(oldReferredVariable);

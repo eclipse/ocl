@@ -17,7 +17,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
@@ -50,7 +49,6 @@ import org.eclipse.ocl.pivot.util.Visitor;
  *
  * @generated
  */
-@SuppressWarnings("cast")
 public class TemplateSignatureImpl
 		extends ElementImpl
 		implements TemplateSignature {
@@ -130,7 +128,7 @@ public class TemplateSignatureImpl
 	public void setOwningTemplateableElement(TemplateableElement newOwningTemplateableElement) {
 		if (newOwningTemplateableElement != eInternalContainer() || (eContainerFeatureID() != PivotPackage.TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT && newOwningTemplateableElement != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newOwningTemplateableElement))
+			if (EcoreUtil.isAncestor(this, newOwningTemplateableElement))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)

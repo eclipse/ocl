@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.ocl.domain.elements.Labelable;
 
-public abstract class PivotObjectImpl extends EObjectImpl implements PivotObject, Adapter.Internal, Labelable
+public abstract class PivotObjectImpl extends EObjectImpl implements Adapter.Internal, Labelable
 {
 	private EObject target;
 
@@ -52,7 +52,7 @@ public abstract class PivotObjectImpl extends EObjectImpl implements PivotObject
 
 	@Override
 	public boolean isAdapterForType(Object type) {
-		return type == PivotObject.class;
+		return type == PivotObjectImpl.class;
 	}
 	
 	@Override

@@ -400,7 +400,7 @@ public class PropertyImpl
 	@Override
 	public AssociationClass getAssociationClass()
 	{
-		if (associationClass != null && ((EObject)associationClass).eIsProxy())
+		if (associationClass != null && associationClass.eIsProxy())
 		{
 			InternalEObject oldAssociationClass = (InternalEObject)associationClass;
 			associationClass = (AssociationClass)eResolveProxy(oldAssociationClass);
@@ -561,7 +561,7 @@ public class PropertyImpl
 	 */
 	@Override
 	public Property getOpposite() {
-		if (opposite != null && ((EObject)opposite).eIsProxy())
+		if (opposite != null && opposite.eIsProxy())
 		{
 			InternalEObject oldOpposite = (InternalEObject)opposite;
 			opposite = (Property)eResolveProxy(oldOpposite);
@@ -849,7 +849,7 @@ public class PropertyImpl
 	@Override
 	public Property getReferredProperty()
 	{
-		if (referredProperty != null && ((EObject)referredProperty).eIsProxy())
+		if (referredProperty != null && referredProperty.eIsProxy())
 		{
 			InternalEObject oldReferredProperty = (InternalEObject)referredProperty;
 			referredProperty = (Property)eResolveProxy(oldReferredProperty);
@@ -1698,7 +1698,7 @@ public class PropertyImpl
 	{
 		if (newOwningClass != eInternalContainer() || (eContainerFeatureID() != PivotPackage.PROPERTY__OWNING_CLASS && newOwningClass != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newOwningClass))
+			if (EcoreUtil.isAncestor(this, newOwningClass))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)

@@ -23,7 +23,6 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -438,7 +437,7 @@ public class OperationImpl
 	 */
 	@Override
 	public Precedence getPrecedence() {
-		if (precedence != null && ((EObject)precedence).eIsProxy())
+		if (precedence != null && precedence.eIsProxy())
 		{
 			InternalEObject oldPrecedence = (InternalEObject)precedence;
 			precedence = (Precedence)eResolveProxy(oldPrecedence);
@@ -678,7 +677,7 @@ public class OperationImpl
 	{
 		if (newOwningClass != eInternalContainer() || (eContainerFeatureID() != PivotPackage.OPERATION__OWNING_CLASS && newOwningClass != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newOwningClass))
+			if (EcoreUtil.isAncestor(this, newOwningClass))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)

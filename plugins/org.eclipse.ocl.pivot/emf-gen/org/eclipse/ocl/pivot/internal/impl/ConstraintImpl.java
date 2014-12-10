@@ -227,12 +227,11 @@ public class ConstraintImpl
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("cast")
 	public void setTransition(Transition newTransition)
 	{
 		if (newTransition != eInternalContainer() || (eContainerFeatureID() != PivotPackage.CONSTRAINT__TRANSITION && newTransition != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newTransition))
+			if (EcoreUtil.isAncestor(this, newTransition))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
@@ -300,12 +299,11 @@ public class ConstraintImpl
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("cast")
 	public void setOwningState(State newOwningState)
 	{
 		if (newOwningState != eInternalContainer() || (eContainerFeatureID() != PivotPackage.CONSTRAINT__OWNING_STATE && newOwningState != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newOwningState))
+			if (EcoreUtil.isAncestor(this, newOwningState))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
@@ -352,7 +350,7 @@ public class ConstraintImpl
 	{
 		if (newPostContext != eInternalContainer() || (eContainerFeatureID() != PivotPackage.CONSTRAINT__POST_CONTEXT && newPostContext != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newPostContext))
+			if (EcoreUtil.isAncestor(this, newPostContext))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
@@ -399,7 +397,7 @@ public class ConstraintImpl
 	{
 		if (newPreContext != eInternalContainer() || (eContainerFeatureID() != PivotPackage.CONSTRAINT__PRE_CONTEXT && newPreContext != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newPreContext))
+			if (EcoreUtil.isAncestor(this, newPreContext))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)

@@ -23,7 +23,6 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -144,7 +143,7 @@ public class OperationCallExpImpl
 	 */
 	@Override
 	public Operation getReferredOperation() {
-		if (referredOperation != null && ((EObject)referredOperation).eIsProxy())
+		if (referredOperation != null && referredOperation.eIsProxy())
 		{
 			InternalEObject oldReferredOperation = (InternalEObject)referredOperation;
 			referredOperation = (Operation)eResolveProxy(oldReferredOperation);

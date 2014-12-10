@@ -17,7 +17,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
@@ -119,12 +118,11 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("cast")
 	public void setContainer(Region newContainer)
 	{
 		if (newContainer != eInternalContainer() || (eContainerFeatureID() != PivotPackage.VERTEX__CONTAINER && newContainer != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newContainer))
+			if (EcoreUtil.isAncestor(this, newContainer))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)

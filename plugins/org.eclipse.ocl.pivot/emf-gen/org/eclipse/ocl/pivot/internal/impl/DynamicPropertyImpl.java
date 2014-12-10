@@ -14,7 +14,6 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
@@ -101,7 +100,7 @@ public class DynamicPropertyImpl extends ElementImpl implements DynamicProperty
 	@Override
 	public Property getReferredProperty()
 	{
-		if (referredProperty != null && ((EObject)referredProperty).eIsProxy())
+		if (referredProperty != null && referredProperty.eIsProxy())
 		{
 			InternalEObject oldReferredProperty = (InternalEObject)referredProperty;
 			referredProperty = (Property)eResolveProxy(oldReferredProperty);

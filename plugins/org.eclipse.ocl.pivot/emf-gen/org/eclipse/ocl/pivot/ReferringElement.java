@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot;
 
-import org.eclipse.ocl.pivot.utilities.PivotObject;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,10 +19,9 @@ import org.eclipse.ocl.pivot.utilities.PivotObject;
  *
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getReferringElement()
- * @extends PivotObject
  * @generated
  */
-public interface ReferringElement extends PivotObject
+public interface ReferringElement extends EObject
 {
 	/**
 	 * <!-- begin-user-doc -->

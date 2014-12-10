@@ -15,7 +15,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -152,12 +151,11 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("cast")
 	public void setStereotype(Stereotype newStereotype)
 	{
 		if (newStereotype != eInternalContainer() || (eContainerFeatureID() != PivotPackage.TYPE_EXTENSION__STEREOTYPE && newStereotype != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newStereotype))
+			if (EcoreUtil.isAncestor(this, newStereotype))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
@@ -179,7 +177,7 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	@Override
 	public Type getType()
 	{
-		if (type != null && ((EObject)type).eIsProxy())
+		if (type != null && type.eIsProxy())
 		{
 			InternalEObject oldType = (InternalEObject)type;
 			type = (Type)eResolveProxy(oldType);

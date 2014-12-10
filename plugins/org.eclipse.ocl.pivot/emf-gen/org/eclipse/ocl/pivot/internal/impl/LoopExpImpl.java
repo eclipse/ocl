@@ -24,7 +24,6 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -201,7 +200,7 @@ public abstract class LoopExpImpl
 	@Override
 	public Iteration getReferredIteration()
 	{
-		if (referredIteration != null && ((EObject)referredIteration).eIsProxy())
+		if (referredIteration != null && referredIteration.eIsProxy())
 		{
 			InternalEObject oldReferredIteration = (InternalEObject)referredIteration;
 			referredIteration = (Iteration)eResolveProxy(oldReferredIteration);

@@ -20,7 +20,6 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectValidator;
@@ -96,7 +95,7 @@ public class EnumLiteralExpImpl
 	 */
 	@Override
 	public EnumerationLiteral getReferredEnumLiteral() {
-		if (referredEnumLiteral != null && ((EObject)referredEnumLiteral).eIsProxy())
+		if (referredEnumLiteral != null && referredEnumLiteral.eIsProxy())
 		{
 			InternalEObject oldReferredEnumLiteral = (InternalEObject)referredEnumLiteral;
 			referredEnumLiteral = (EnumerationLiteral)eResolveProxy(oldReferredEnumLiteral);

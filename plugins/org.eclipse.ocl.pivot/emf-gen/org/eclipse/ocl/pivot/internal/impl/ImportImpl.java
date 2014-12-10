@@ -14,7 +14,6 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
@@ -79,7 +78,7 @@ public class ImportImpl extends NamedElementImpl implements Import
 	@Override
 	public Namespace getImportedNamespace()
 	{
-		if (importedNamespace != null && ((EObject)importedNamespace).eIsProxy())
+		if (importedNamespace != null && importedNamespace.eIsProxy())
 		{
 			InternalEObject oldImportedNamespace = (InternalEObject)importedNamespace;
 			importedNamespace = (Namespace)eResolveProxy(oldImportedNamespace);

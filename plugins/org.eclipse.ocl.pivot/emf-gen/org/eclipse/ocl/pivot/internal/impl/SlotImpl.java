@@ -17,7 +17,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -98,7 +97,7 @@ public class SlotImpl extends ElementImpl implements Slot
 	@Override
 	public Property getDefiningProperty()
 	{
-		if (definingProperty != null && ((EObject)definingProperty).eIsProxy())
+		if (definingProperty != null && definingProperty.eIsProxy())
 		{
 			InternalEObject oldDefiningProperty = (InternalEObject)definingProperty;
 			definingProperty = (Property)eResolveProxy(oldDefiningProperty);
@@ -164,12 +163,11 @@ public class SlotImpl extends ElementImpl implements Slot
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("cast")
 	public void setOwningInstance(InstanceSpecification newOwningInstance)
 	{
 		if (newOwningInstance != eInternalContainer() || (eContainerFeatureID() != PivotPackage.SLOT__OWNING_INSTANCE && newOwningInstance != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newOwningInstance))
+			if (EcoreUtil.isAncestor(this, newOwningInstance))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)

@@ -10,11 +10,11 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.util;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.utilities.PivotObject;
 
-public interface Pivotable extends PivotObject
+public interface Pivotable extends EObject
 {
 	@Nullable Element getPivot();
 	void resetPivot();

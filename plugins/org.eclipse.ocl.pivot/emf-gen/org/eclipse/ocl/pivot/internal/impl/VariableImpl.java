@@ -21,7 +21,6 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectValidator;
@@ -182,7 +181,7 @@ public class VariableImpl
 	 */
 	@Override
 	public Parameter getRepresentedParameter() {
-		if (representedParameter != null && ((EObject)representedParameter).eIsProxy())
+		if (representedParameter != null && representedParameter.eIsProxy())
 		{
 			InternalEObject oldRepresentedParameter = (InternalEObject)representedParameter;
 			representedParameter = (Parameter)eResolveProxy(oldRepresentedParameter);

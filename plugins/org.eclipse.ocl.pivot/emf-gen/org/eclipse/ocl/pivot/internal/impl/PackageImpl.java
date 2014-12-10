@@ -60,7 +60,6 @@ import org.eclipse.ocl.pivot.util.Visitor;
  *
  * @generated
  */
-@SuppressWarnings("cast")
 public class PackageImpl
 		extends NamespaceImpl
 		implements org.eclipse.ocl.pivot.Package {
@@ -298,7 +297,7 @@ public class PackageImpl
 			org.eclipse.ocl.pivot.Package newOwningPackage) {
 		if (newOwningPackage != eInternalContainer() || (eContainerFeatureID() != PivotPackage.PACKAGE__OWNING_PACKAGE && newOwningPackage != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newOwningPackage))
+			if (EcoreUtil.isAncestor(this, newOwningPackage))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
