@@ -37,7 +37,6 @@ import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainParameterTypes;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.IdManager;
@@ -1554,7 +1553,7 @@ public class OperationImpl
 	public @NonNull DomainParameterTypes getParameterTypes() {
 		List<Parameter> ownedParameter = getOwnedParameter();
 		int iMax = ownedParameter.size();
-		DomainType[] types = new DomainType[iMax];
+		Type[] types = new Type[iMax];
 		for (int i = 0; i < iMax; i++) {
 			types[i] = ownedParameter.get(i).getType();
 		}

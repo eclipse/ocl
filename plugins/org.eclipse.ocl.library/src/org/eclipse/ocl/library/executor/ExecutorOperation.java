@@ -17,7 +17,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainOperation;
-import org.eclipse.ocl.domain.elements.DomainParameter;
 import org.eclipse.ocl.domain.elements.DomainParameterTypes;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
@@ -29,6 +28,7 @@ import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.library.oclany.OclAnyUnsupportedOperation;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.LanguageExpression;
+import org.eclipse.ocl.pivot.Parameter;
 
 public class ExecutorOperation implements DomainOperation
 {
@@ -79,7 +79,7 @@ public class ExecutorOperation implements DomainOperation
 	}
 	
 	@Override
-	public @NonNull List<? extends DomainParameter> getOwnedParameter() {
+	public @NonNull List<Parameter> getOwnedParameter() {
 		return getParameterTypes().getParameters();
 	}
 

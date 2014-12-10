@@ -16,7 +16,7 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.ParametersId;
-import org.eclipse.ocl.domain.ids.TypeId;
+import org.eclipse.ocl.pivot.Parameter;
 
 /**
  * DomainParameterTypesIterable provides a hashable list of operation
@@ -24,44 +24,12 @@ import org.eclipse.ocl.domain.ids.TypeId;
  */
 public class DomainParameterTypes
 {
-	public static final class DomainParameterImpl implements DomainParameter
-	{
-		protected final @NonNull String name;
-		protected final @NonNull DomainType type;
-		protected final boolean typeof;
-		
-		public DomainParameterImpl(@NonNull String name, @NonNull DomainType type, boolean typeof) {
-			this.name = name;
-			this.type = type;
-			this.typeof = typeof;
-		}
-		@Override
-		public @NonNull String getName() {
-			return name;
-		}
-
-		@Override
-		public @NonNull DomainType getType() {
-			return type;
-		}
-		
-		@Override
-		public @NonNull TypeId getTypeId() {
-			return type.getTypeId();
-		}
-		
-		@Override
-		public boolean isTypeof() {
-			return typeof;
-		}
-	}
-
 	public static final @NonNull DomainParameterTypes EMPTY_LIST = new DomainParameterTypes();
 	
 	private final @NonNull ParametersId parametersId;
 	private final @NonNull DomainType[] parameterTypes;
 	private final int hashCode;
-	private /*@LazyNonNull*/ List<DomainParameter> parameters = null;
+	private /*@LazyNonNull*/ List<Parameter> parameters = null;
 	
 	public DomainParameterTypes(@NonNull DomainType... parameterTypes) {
 		this.parametersId = IdManager.getParametersId(parameterTypes);
@@ -104,13 +72,13 @@ public class DomainParameterTypes
 		return parametersId;
 	}
 	
-	public @NonNull List<? extends DomainParameter> getParameters() {
-		List<DomainParameter> parameters2 = parameters;
+	public @NonNull List<Parameter> getParameters() {
+		List<Parameter> parameters2 = parameters;
 		if (parameters2 == null) {
-			parameters = parameters2 = new ArrayList<DomainParameter>();
+			parameters = parameters2 = new ArrayList<Parameter>();
 			for (int i = 0; i < parameterTypes.length; i++) {
 				@SuppressWarnings("null")@NonNull DomainType type = parameterTypes[i];
-				parameters2.add(new DomainParameterImpl("_" + i, type, false));
+				parameters2.add(new AbstractExecutorParameter("_" + i, type, false));
 			}
 		}
 		return parameters2;

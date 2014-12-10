@@ -8,7 +8,7 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.library.executor;
+package org.eclipse.ocl.domain.elements;
 
 import java.util.List;
 import java.util.Map;
@@ -17,9 +17,6 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.PropertyId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.LibraryFeature;
@@ -28,14 +25,13 @@ import org.eclipse.ocl.pivot.AssociationClass;
 import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Property;
-import org.eclipse.ocl.pivot.Type;
 
 public abstract class AbstractExecutorProperty extends AbstractExecutorTypedElement implements Property
 {
 	protected final int propertyIndex;
-	protected ExecutorProperty opposite;
+	protected Property opposite;
 
-	public AbstractExecutorProperty(@NonNull String name, @NonNull DomainInheritance executorType, int propertyIndex) {
+	public AbstractExecutorProperty(@NonNull String name, @NonNull DomainType executorType, int propertyIndex) {
 		super(name, executorType);
 		this.propertyIndex = propertyIndex;
 		this.opposite = null;
@@ -48,16 +44,12 @@ public abstract class AbstractExecutorProperty extends AbstractExecutorTypedElem
 
 	@Override
 	public @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
-		return executorType;
+		return executorType.getInheritance(standardLibrary);
 	}
 
 	@Override
 	public @NonNull Property getOpposite() {
 		return DomainUtil.nonNullState(opposite);
-	}
-
-	public @NonNull Type getType() {
-		return (Type) executorType.getType();
 	}
 
 	@Override
@@ -66,7 +58,7 @@ public abstract class AbstractExecutorProperty extends AbstractExecutorTypedElem
 		return type2.getTypeId();
 	}
 
-	void initOpposite(@NonNull ExecutorProperty opposite) {
+	void initOpposite(@NonNull Property opposite) {
 		this.opposite = opposite;
 	}
 

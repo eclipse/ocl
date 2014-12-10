@@ -15,7 +15,6 @@ package org.eclipse.ocl.pivot;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Parameter</b></em>'.
- * @implements org.eclipse.ocl.domain.elements.DomainParameter
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -33,8 +32,7 @@ package org.eclipse.ocl.pivot;
  * @see org.eclipse.ocl.pivot.PivotPackage#getParameter()
  * @generated
  */
-public interface Parameter
-		extends VariableDeclaration, org.eclipse.ocl.domain.elements.DomainParameter {
+public interface Parameter extends VariableDeclaration {
 
 	/**
 	 * Returns the value of the '<em><b>Is Typeof</b></em>' attribute.
@@ -50,7 +48,6 @@ public interface Parameter
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getParameter_IsTypeof()
 	 * @generated
 	 */
-	@Override
 	boolean isTypeof();
 
 	/**

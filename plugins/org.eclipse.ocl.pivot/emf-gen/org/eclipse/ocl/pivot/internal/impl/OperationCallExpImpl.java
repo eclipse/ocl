@@ -32,7 +32,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainOperation;
-import org.eclipse.ocl.domain.elements.DomainParameter;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
@@ -52,6 +51,7 @@ import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
+import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.ReferringElement;
@@ -500,7 +500,7 @@ public class OperationCallExpImpl
 		    if (operation == null) {
 		        throw new InvalidValueException("Null source for \'pivot::Operation::ownedParameter\'");
 		    }
-		    final @NonNull /*@Thrown*/ List<? extends DomainParameter> parameters = operation.getOwnedParameter();
+		    final @NonNull /*@Thrown*/ List<Parameter> parameters = operation.getOwnedParameter();
 		    final @Nullable /*@Thrown*/ DomainClass selfType_1 = operation.getOwningClass();
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -542,7 +542,7 @@ public class OperationCallExpImpl
 		        try {
 		            final @Nullable /*@Thrown*/ OCLExpression argument_1 = (OCLExpression)OrderedCollectionAtOperation.INSTANCE.evaluate(BOXED_argument, i);
 		            final @NonNull /*@Thrown*/ OrderedSetValue BOXED_parameters = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Parameter, parameters);
-		            final @Nullable /*@Thrown*/ DomainParameter parameter = (DomainParameter)OrderedCollectionAtOperation.INSTANCE.evaluate(BOXED_parameters, i);
+		            final @Nullable /*@Thrown*/ Parameter parameter = (Parameter)OrderedCollectionAtOperation.INSTANCE.evaluate(BOXED_parameters, i);
 		            if (parameter == null) {
 		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		            }
@@ -626,7 +626,7 @@ public class OperationCallExpImpl
 		    if (referredOperation == null) {
 		        throw new InvalidValueException("Null source for \'pivot::Operation::ownedParameter\'");
 		    }
-		    final @NonNull /*@Thrown*/ List<? extends DomainParameter> ownedParameter = referredOperation.getOwnedParameter();
+		    final @NonNull /*@Thrown*/ List<Parameter> ownedParameter = referredOperation.getOwnedParameter();
 		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedParameter = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Parameter, ownedParameter);
 		    final @NonNull /*@Thrown*/ IntegerValue size_0 = CollectionSizeOperation.INSTANCE.evaluate(BOXED_ownedParameter);
 		    final /*@Thrown*/ boolean eq = size.equals(size_0);

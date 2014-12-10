@@ -18,7 +18,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainPackage;
-import org.eclipse.ocl.domain.elements.DomainParameter;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.ClassId;
@@ -62,6 +61,7 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Package;
+import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Variable;
@@ -848,12 +848,12 @@ public class AutoPivotLookupVisitor
      */
     @Override
     public @Nullable /*@NonInvalid*/ Environment visitOperation(final @NonNull /*@NonInvalid*/ Operation element_9) {
-        final @NonNull /*@Thrown*/ List<? extends DomainParameter> ownedParameter = element_9.getOwnedParameter();
+        final @NonNull /*@Thrown*/ List<Parameter> ownedParameter = element_9.getOwnedParameter();
         final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedParameter = idResolver.createOrderedSetOfAll(ORD_CLSSid_Parameter, ownedParameter);
         final /*@Thrown*/ boolean includes = CollectionIncludesOperation.INSTANCE.evaluate(BOXED_ownedParameter, child).booleanValue();
         @Nullable /*@Thrown*/ Environment symbol_1;
         if (includes) {
-            final @Nullable /*@Thrown*/ Environment parentEnv = this.parentEnv((Element)element_9);
+            final @Nullable /*@Thrown*/ Environment parentEnv = this.parentEnv(element_9);
             symbol_1 = parentEnv;
         }
         else {
@@ -864,7 +864,7 @@ public class AutoPivotLookupVisitor
                 symbol_0 = inner;
             }
             else {
-                final @Nullable /*@Thrown*/ Environment parentEnv_0 = this.parentEnv((Element)element_9);
+                final @Nullable /*@Thrown*/ Environment parentEnv_0 = this.parentEnv(element_9);
                 symbol_0 = parentEnv_0;
             }
             symbol_1 = symbol_0;

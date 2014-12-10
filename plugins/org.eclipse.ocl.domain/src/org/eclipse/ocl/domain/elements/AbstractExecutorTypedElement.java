@@ -8,14 +8,13 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.library.executor;
+package org.eclipse.ocl.domain.elements;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Element;
@@ -28,9 +27,9 @@ import org.eclipse.ocl.pivot.util.Visitor;
 
 public abstract class AbstractExecutorTypedElement extends AbstractExecutorObject implements TypedElement
 {
-	protected final @NonNull DomainInheritance executorType;
+	protected final @NonNull DomainType executorType;
 
-	public AbstractExecutorTypedElement(@NonNull String name, @NonNull DomainInheritance executorType) {
+	public AbstractExecutorTypedElement(@NonNull String name, @NonNull DomainType executorType) {
 		super(name);
 		this.executorType = executorType;
 	}
@@ -81,15 +80,13 @@ public abstract class AbstractExecutorTypedElement extends AbstractExecutorObjec
 	}
 
 	@Override
-		public Type getType() {
-	//		return executorType;
-			throw new UnsupportedOperationException();
-		}
+	public Type getType() {
+		return (Type) executorType;
+	}
 
 	@Override
-	@NonNull
-	public TypeId getTypeId() {
-		throw new UnsupportedOperationException();
+	public @NonNull TypeId getTypeId() {
+		return executorType.getTypeId();
 	}
 
 	@Override

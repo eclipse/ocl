@@ -18,6 +18,7 @@ import org.eclipse.ocl.domain.ids.OperationId;
 import org.eclipse.ocl.domain.ids.ParametersId;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.LanguageExpression;
+import org.eclipse.ocl.pivot.Parameter;
 
 public interface DomainOperation extends DomainFeature
 {
@@ -53,5 +54,5 @@ public interface DomainOperation extends DomainFeature
 	@NonNull DomainTypeParameters getTypeParameters();
 
 	@NonNull OperationId getOperationId();
-	@NonNull List<? extends DomainParameter> getOwnedParameter();
+	@NonNull List<Parameter> getOwnedParameter();
 }

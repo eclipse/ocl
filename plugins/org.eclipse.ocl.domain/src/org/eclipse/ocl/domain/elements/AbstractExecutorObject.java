@@ -8,7 +8,7 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.library.executor;
+package org.eclipse.ocl.domain.elements;
 
 import java.lang.reflect.InvocationTargetException;
 

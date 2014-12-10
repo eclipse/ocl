@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
+import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.LibraryProperty;
@@ -27,7 +27,7 @@ public class EcoreExecutorProperty extends ExecutorProperty implements LibraryPr
 	
 	protected final @NonNull EStructuralFeature eFeature;
 	
-	public EcoreExecutorProperty(/*@NonNull*/ EStructuralFeature eFeature, @NonNull DomainInheritance executorType, int propertyIndex) {
+	public EcoreExecutorProperty(/*@NonNull*/ EStructuralFeature eFeature, @NonNull DomainType executorType, int propertyIndex) {
 		super(DomainUtil.nonNullModel(eFeature.getName()), executorType, propertyIndex);
 		this.eFeature = eFeature;
 	}

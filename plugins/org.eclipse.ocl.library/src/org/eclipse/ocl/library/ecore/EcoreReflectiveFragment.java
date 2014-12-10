@@ -64,7 +64,7 @@ public class EcoreReflectiveFragment extends ReflectiveFragment
 		List<EStructuralFeature> eStructuralFeatures = ((EClass) eClassifier).getEStructuralFeatures();
 		for (int i = 0; i < eStructuralFeatures.size(); i++) {
 			@SuppressWarnings("null")@NonNull EStructuralFeature eFeature = eStructuralFeatures.get(i);
-			EcoreExecutorProperty propertyAndImplementation = new EcoreExecutorProperty(eFeature, getDerivedInheritance(), i);
+			EcoreExecutorProperty propertyAndImplementation = new EcoreExecutorProperty(eFeature, (EcoreReflectiveType)getDerivedInheritance(), i);
 			map.put(propertyAndImplementation, propertyAndImplementation);
 		}
 		return map;
