@@ -15,9 +15,9 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainCallExp;
-import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
+import org.eclipse.ocl.pivot.OCLExpression;
 
 /**
  * AbstractSimpleTernaryOperation defines the default implementation of a ternary operation redirecting the
@@ -27,9 +27,9 @@ public abstract class AbstractSimpleTernaryOperation extends AbstractUntypedTern
 {
 	@Override
 	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue) {
-		List<? extends DomainExpression> arguments = callExp.getArgument();
-		DomainExpression argument0 = arguments.get(0);
-		DomainExpression argument1 = arguments.get(1);
+		List<? extends OCLExpression> arguments = callExp.getArgument();
+		OCLExpression argument0 = arguments.get(0);
+		OCLExpression argument1 = arguments.get(1);
 		assert argument0 != null;
 		assert argument1 != null;
 		Object firstArgument = evaluator.evaluate(argument0);

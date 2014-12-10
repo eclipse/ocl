@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainParameter;
 import org.eclipse.ocl.domain.elements.DomainType;
@@ -505,7 +504,7 @@ public class OperationCallExpImpl
 		    final @Nullable /*@Thrown*/ DomainClass selfType_1 = operation.getOwningClass();
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		    final @NonNull /*@Thrown*/ List<? extends DomainExpression> argument = this.getArgument();
+		    final @NonNull /*@Thrown*/ List<OCLExpression> argument = this.getArgument();
 		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_argument = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_OCLExpression, argument);
 		    final @NonNull /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(BOXED_argument);
 		    final @NonNull /*@Thrown*/ IntegerRange RNG = ValuesUtil.createRange(PivotTables.INT_1, size);
@@ -541,7 +540,7 @@ public class OperationCallExpImpl
 		         */
 		        @NonNull /*@Caught*/ Object CAUGHT_conformsTo;
 		        try {
-		            final @Nullable /*@Thrown*/ DomainExpression argument_1 = (DomainExpression)OrderedCollectionAtOperation.INSTANCE.evaluate(BOXED_argument, i);
+		            final @Nullable /*@Thrown*/ OCLExpression argument_1 = (OCLExpression)OrderedCollectionAtOperation.INSTANCE.evaluate(BOXED_argument, i);
 		            final @NonNull /*@Thrown*/ OrderedSetValue BOXED_parameters = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Parameter, parameters);
 		            final @Nullable /*@Thrown*/ DomainParameter parameter = (DomainParameter)OrderedCollectionAtOperation.INSTANCE.evaluate(BOXED_parameters, i);
 		            if (parameter == null) {
@@ -620,7 +619,7 @@ public class OperationCallExpImpl
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		@NonNull /*@Caught*/ Object CAUGHT_eq;
 		try {
-		    final @NonNull /*@Thrown*/ List<? extends DomainExpression> argument = this.getArgument();
+		    final @NonNull /*@Thrown*/ List<OCLExpression> argument = this.getArgument();
 		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_argument = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_OCLExpression, argument);
 		    final @NonNull /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(BOXED_argument);
 		    final @Nullable /*@Thrown*/ DomainOperation referredOperation = this.getReferredOperation();

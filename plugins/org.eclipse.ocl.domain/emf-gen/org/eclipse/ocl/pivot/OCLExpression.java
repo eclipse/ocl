@@ -15,7 +15,6 @@ package org.eclipse.ocl.pivot;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Ocl Expression</b></em>'.
- * @extends org.eclipse.ocl.domain.elements.DomainExpression
  * <!-- end-user-doc -->
  *
  * <p>
@@ -28,8 +27,7 @@ package org.eclipse.ocl.pivot;
  * @see org.eclipse.ocl.pivot.PivotPackage#getOCLExpression()
  * @generated
  */
-public interface OCLExpression
-		extends TypedElement, org.eclipse.ocl.domain.elements.DomainExpression {
+public interface OCLExpression extends TypedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Type Value</b></em>' reference.

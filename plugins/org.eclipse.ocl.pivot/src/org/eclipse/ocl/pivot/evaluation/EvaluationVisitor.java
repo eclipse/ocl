@@ -14,7 +14,6 @@ package org.eclipse.ocl.pivot.evaluation;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.evaluation.DomainModelManager;
@@ -37,9 +36,7 @@ public interface EvaluationVisitor extends Visitor<Object>, DomainEvaluator
 	@NonNull EvaluationVisitor createNestedEvaluator();
 
 	@Override
-	@Nullable Object evaluate(@NonNull DomainExpression body);
-
-//	@Nullable Object evaluate(@NonNull ExpressionInOCL expressionInOCL);
+	@Nullable Object evaluate(@NonNull OCLExpression body);
 	
 	/**
      * Obtains the environment that provides the metamodel semantics for the

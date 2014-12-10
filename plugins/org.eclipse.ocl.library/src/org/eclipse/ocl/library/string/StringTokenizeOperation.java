@@ -17,7 +17,6 @@ import java.util.StringTokenizer;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainCallExp;
-import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
@@ -28,6 +27,7 @@ import org.eclipse.ocl.domain.library.LibraryUnaryOperation;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.values.SequenceValue;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
+import org.eclipse.ocl.pivot.OCLExpression;
 
 /**
  * StringTokenizeOperation realises the String::tokenize() library operations.
@@ -42,18 +42,18 @@ public class StringTokenizeOperation extends AbstractOperation implements Librar
 		String delims = DELIMS;
 		boolean returnDelims = false;
 		TypeId typeId = callExp.getTypeId();
-		List<? extends DomainExpression> arguments = callExp.getArgument();
+		List<? extends OCLExpression> arguments = callExp.getArgument();
 		if (arguments.size() > 0) {
 			if (arguments.size() > 1) {
 				if (arguments.size() > 2) {
 					throw new InvalidValueException(EvaluatorMessages.InvalidArgument, arguments.get(2));
 				}
-				DomainExpression argument1 = arguments.get(1);
+				OCLExpression argument1 = arguments.get(1);
 				assert argument1 != null;
 				Object secondArgument = evaluator.evaluate(argument1);
 				returnDelims = asBoolean(secondArgument);
 			}
-			DomainExpression argument0 = arguments.get(0);
+			OCLExpression argument0 = arguments.get(0);
 			assert argument0 != null;
 			Object firstArgument = evaluator.evaluate(argument0);
 			delims = asString(firstArgument);

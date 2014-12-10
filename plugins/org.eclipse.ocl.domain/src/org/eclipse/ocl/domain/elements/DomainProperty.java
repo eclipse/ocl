@@ -12,10 +12,11 @@ package org.eclipse.ocl.domain.elements;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.LanguageExpression;
 
 public interface DomainProperty extends DomainFeature
 {
-	DomainExpression getDefaultExpression();
+	LanguageExpression getDefaultExpression();
 
 	/**
 	 * Return the Inheritance dispatch table for the owning type, or null for an orphan property owned by an Annotation.

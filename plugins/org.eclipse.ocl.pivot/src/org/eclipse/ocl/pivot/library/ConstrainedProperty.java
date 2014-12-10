@@ -19,6 +19,7 @@ import org.eclipse.ocl.domain.library.AbstractProperty;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
+import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Variable;
@@ -71,7 +72,9 @@ public class ConstrainedProperty extends AbstractProperty
 			nestedEvaluationEnvironment.add(contextVariable, sourceValue);
 		}
 		try {
-			return nestedVisitor.evaluate(expression2);
+			OCLExpression bodyExpression = expression2.getBodyExpression();
+			assert bodyExpression != null;
+			return nestedVisitor.evaluate(bodyExpression);
 		}
 		finally {
 			nestedVisitor.dispose();

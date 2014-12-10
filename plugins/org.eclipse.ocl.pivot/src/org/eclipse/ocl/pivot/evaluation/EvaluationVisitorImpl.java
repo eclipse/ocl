@@ -25,7 +25,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
-import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainType;
@@ -153,17 +152,11 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	}
 
 	@Override
-	public @Nullable Object evaluate(@NonNull DomainExpression body) {
+	public @Nullable Object evaluate(@NonNull OCLExpression body) {
 		Object value = ((Element) body).accept(undecoratedVisitor);
 		assert ValuesUtil.isBoxed(value);	// Make sure Integer/Real are boxed, invalid is an exception, null is null
 		return value;
 	}
-
-//	public @Nullable Object evaluate(@NonNull ExpressionInOCL expressionInOCL) {
-//		Object value = expressionInOCL.accept(undecoratedVisitor);
-//		assert ValuesUtil.isBoxed(value);	// Make sure Integer/Real are boxed, invalid is an exception, null is null
-//		return value;
-//	}
 
 	protected Object evaluatePropertyCallExp(@NonNull NavigationCallExp propertyCallExp, @NonNull Property referredProperty) {
 		OCLExpression source = propertyCallExp.getSource();

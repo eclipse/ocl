@@ -16,18 +16,18 @@ import java.util.regex.Pattern;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.debug.OCLDebugPlugin;
-import org.eclipse.ocl.examples.debug.vm.VMVirtualMachine;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
-import org.eclipse.ocl.examples.debug.vm.utils.VMInterruptedExecutionException;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
-import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainLogger;
 import org.eclipse.ocl.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.domain.types.IdResolver;
+import org.eclipse.ocl.examples.debug.OCLDebugPlugin;
+import org.eclipse.ocl.examples.debug.vm.VMVirtualMachine;
+import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
+import org.eclipse.ocl.examples.debug.vm.utils.VMInterruptedExecutionException;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
@@ -198,14 +198,9 @@ public abstract class OCLVMEvaluationVisitor extends AbstractWrappingVisitor<Obj
 	}
 
 	@Override
-	public @Nullable Object evaluate(@NonNull DomainExpression body) {
+	public @Nullable Object evaluate(@NonNull OCLExpression body) {
 		return delegate.evaluate(body);
 	}
-
-//	@Override
-//	public @Nullable Object evaluate(@NonNull ExpressionInOCL expressionInOCL) {
-//		return delegate.evaluate(expressionInOCL);
-//	}
 
 	@Override
 	public @NonNull DomainEnvironment getCompleteEnvironment() {

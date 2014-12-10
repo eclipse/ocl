@@ -20,7 +20,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainEnumeration;
-import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.elements.DomainNamedElement;
 import org.eclipse.ocl.domain.elements.DomainNamespace;
 import org.eclipse.ocl.domain.elements.DomainOperation;
@@ -43,10 +42,8 @@ import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
 import org.eclipse.ocl.examples.codegen.java.JavaStream.SubStream;
 import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Namespace;
-import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.Property;
@@ -74,17 +71,11 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 	 * FIXME Avoid two-level AS interfaces
 	 */
 	protected static @NonNull Class<?> reClass(@NonNull Class<?> javaClass) {
-		if (javaClass == ExpressionInOCL.class) {
-			javaClass = DomainExpression.class;
-		}
-		else if (javaClass == NamedElement.class) {
+		if (javaClass == NamedElement.class) {
 			javaClass = DomainNamedElement.class;
 		}
 		else if (javaClass == Namespace.class) {
 			javaClass = DomainNamespace.class;
-		}
-		else if (javaClass == OCLExpression.class) {
-			javaClass = DomainExpression.class;
 		}
 		else if (javaClass == Operation.class) {
 			javaClass = DomainOperation.class;

@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainType;
@@ -327,7 +326,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    try {
 		        final @NonNull /*@NonInvalid*/ DomainClass TYP_pivot_c_c_CollectionType_0 = idResolver.getClass(PivotTables.CLSSid_CollectionType, null);
 		        final @Nullable /*@Thrown*/ DomainType type = this.getType();
-		        final @Nullable /*@Thrown*/ DomainExpression source = this.getSource();
+		        final @Nullable /*@Thrown*/ OCLExpression source = this.getSource();
 		        if (source == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
@@ -442,7 +441,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    }
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
-		        final @Nullable /*@Thrown*/ DomainExpression body = this.getBody();
+		        final @Nullable /*@Thrown*/ OCLExpression body = this.getBody();
 		        if (body == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
@@ -673,7 +672,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		        @NonNull /*@Caught*/ Object CAUGHT_self_72;
 		        try {
 		            final @NonNull /*@NonInvalid*/ DomainClass TYP_pivot_c_c_SequenceType_0 = idResolver.getClass(PivotTables.CLSSid_SequenceType, null);
-		            final @Nullable /*@Thrown*/ DomainExpression source = this.getSource();
+		            final @Nullable /*@Thrown*/ OCLExpression source = this.getSource();
 		            if (source == null) {
 		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		            }
@@ -687,7 +686,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		        @NonNull /*@Caught*/ Object CAUGHT_b;
 		        try {
 		            final @NonNull /*@NonInvalid*/ DomainClass TYP_pivot_c_c_OrderedSetType_0 = idResolver.getClass(PivotTables.CLSSid_OrderedSetType, null);
-		            final @Nullable /*@Thrown*/ DomainExpression source_0 = this.getSource();
+		            final @Nullable /*@Thrown*/ OCLExpression source_0 = this.getSource();
 		            if (source_0 == null) {
 		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		            }
@@ -878,7 +877,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		            throw new InvalidValueException("Null source for \'pivot::CollectionType::elementType\'");
 		        }
 		        final @Nullable /*@Thrown*/ DomainType elementType = oclAsType.getElementType();
-		        final @Nullable /*@Thrown*/ DomainExpression body = this.getBody();
+		        final @Nullable /*@Thrown*/ OCLExpression body = this.getBody();
 		        if (body == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
@@ -1001,12 +1000,12 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
 		        final @NonNull /*@NonInvalid*/ DomainClass TYP_pivot_c_c_CollectionType_1 = idResolver.getClass(PivotTables.CLSSid_CollectionType, null);
-		        final @Nullable /*@Thrown*/ DomainExpression body_1 = this.getBody();
+		        final @Nullable /*@Thrown*/ OCLExpression body_1 = this.getBody();
 		        if (body_1 == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
 		        final @Nullable /*@Thrown*/ DomainType type_2 = body_1.getType();
-		        final @Nullable /*@Thrown*/ DomainExpression source = this.getSource();
+		        final @Nullable /*@Thrown*/ OCLExpression source = this.getSource();
 		        if (source == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
@@ -1146,7 +1145,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		            throw new InvalidValueException("Null source for \'pivot::CollectionType::elementType\'");
 		        }
 		        final @Nullable /*@Thrown*/ DomainType elementType = oclAsType.getElementType();
-		        final @Nullable /*@Thrown*/ DomainExpression source = this.getSource();
+		        final @Nullable /*@Thrown*/ OCLExpression source = this.getSource();
 		        if (source == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
@@ -1383,7 +1382,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		        @NonNull /*@Caught*/ Object CAUGHT_self_72;
 		        try {
 		            final @NonNull /*@NonInvalid*/ DomainClass TYP_pivot_c_c_SequenceType_0 = idResolver.getClass(PivotTables.CLSSid_SequenceType, null);
-		            final @Nullable /*@Thrown*/ DomainExpression source = this.getSource();
+		            final @Nullable /*@Thrown*/ OCLExpression source = this.getSource();
 		            if (source == null) {
 		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		            }
@@ -1397,7 +1396,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		        @NonNull /*@Caught*/ Object CAUGHT_b;
 		        try {
 		            final @NonNull /*@NonInvalid*/ DomainClass TYP_pivot_c_c_OrderedSetType_0 = idResolver.getClass(PivotTables.CLSSid_OrderedSetType, null);
-		            final @Nullable /*@Thrown*/ DomainExpression source_0 = this.getSource();
+		            final @Nullable /*@Thrown*/ OCLExpression source_0 = this.getSource();
 		            if (source_0 == null) {
 		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		            }
@@ -1798,7 +1797,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
 		        final @Nullable /*@Thrown*/ DomainType type = this.getType();
-		        final @Nullable /*@Thrown*/ DomainExpression body = this.getBody();
+		        final @Nullable /*@Thrown*/ OCLExpression body = this.getBody();
 		        if (body == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
@@ -2020,7 +2019,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
 		        final @NonNull /*@NonInvalid*/ DomainClass TYP_Boolean_0 = idResolver.getClass(TypeId.BOOLEAN, null);
-		        final @Nullable /*@Thrown*/ DomainExpression body = this.getBody();
+		        final @Nullable /*@Thrown*/ OCLExpression body = this.getBody();
 		        if (body == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
@@ -2242,7 +2241,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
 		        final @NonNull /*@NonInvalid*/ DomainClass TYP_Boolean_0 = idResolver.getClass(TypeId.BOOLEAN, null);
-		        final @Nullable /*@Thrown*/ DomainExpression body = this.getBody();
+		        final @Nullable /*@Thrown*/ OCLExpression body = this.getBody();
 		        if (body == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
@@ -2791,7 +2790,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
 		        final @NonNull /*@NonInvalid*/ DomainClass TYP_Boolean_0 = idResolver.getClass(TypeId.BOOLEAN, null);
-		        final @Nullable /*@Thrown*/ DomainExpression body = this.getBody();
+		        final @Nullable /*@Thrown*/ OCLExpression body = this.getBody();
 		        if (body == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
@@ -3154,7 +3153,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    @NonNull /*@Caught*/ Object CAUGHT_b_0;
 		    try {
 		        final @Nullable /*@Thrown*/ DomainType type = this.getType();
-		        final @Nullable /*@Thrown*/ DomainExpression source = this.getSource();
+		        final @Nullable /*@Thrown*/ OCLExpression source = this.getSource();
 		        if (source == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
@@ -3566,7 +3565,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		        @NonNull /*@Caught*/ Object CAUGHT_self_72;
 		        try {
 		            final @NonNull /*@NonInvalid*/ DomainClass TYP_pivot_c_c_SequenceType_0 = idResolver.getClass(PivotTables.CLSSid_SequenceType, null);
-		            final @Nullable /*@Thrown*/ DomainExpression source = this.getSource();
+		            final @Nullable /*@Thrown*/ OCLExpression source = this.getSource();
 		            if (source == null) {
 		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		            }
@@ -3580,7 +3579,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		        @NonNull /*@Caught*/ Object CAUGHT_b;
 		        try {
 		            final @NonNull /*@NonInvalid*/ DomainClass TYP_pivot_c_c_BagType_0 = idResolver.getClass(PivotTables.CLSSid_BagType, null);
-		            final @Nullable /*@Thrown*/ DomainExpression source_0 = this.getSource();
+		            final @Nullable /*@Thrown*/ OCLExpression source_0 = this.getSource();
 		            if (source_0 == null) {
 		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		            }
@@ -3771,7 +3770,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		            throw new InvalidValueException("Null source for \'pivot::CollectionType::elementType\'");
 		        }
 		        final @Nullable /*@Thrown*/ DomainType elementType = oclAsType.getElementType();
-		        final @Nullable /*@Thrown*/ DomainExpression body = this.getBody();
+		        final @Nullable /*@Thrown*/ OCLExpression body = this.getBody();
 		        if (body == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
@@ -3905,7 +3904,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		        @NonNull /*@Caught*/ Object CAUGHT_conformsTo;
 		        try {
 		            final @NonNull /*@NonInvalid*/ DomainClass TYP_pivot_c_c_CollectionType_0 = idResolver.getClass(PivotTables.CLSSid_CollectionType, null);
-		            final @Nullable /*@Thrown*/ DomainExpression source = this.getSource();
+		            final @Nullable /*@Thrown*/ OCLExpression source = this.getSource();
 		            if (source == null) {
 		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		            }

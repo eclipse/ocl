@@ -14,11 +14,11 @@ import java.util.Iterator;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluationEnvironment;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.values.CollectionValue;
+import org.eclipse.ocl.pivot.OCLExpression;
 
 public abstract class EvaluatorIterationManager extends AbstractIterationManager
 {
@@ -85,11 +85,11 @@ public abstract class EvaluatorIterationManager extends AbstractIterationManager
 	}
 
 	protected final @NonNull CollectionValue collectionValue;
-	protected final @NonNull DomainExpression body;
+	protected final @NonNull OCLExpression body;
 	protected final @Nullable DomainTypedElement accumulatorVariable;
 	private @Nullable Object accumulatorValue;
 
-	public EvaluatorIterationManager(@NonNull DomainEvaluator evaluator, @NonNull DomainExpression body, @NonNull CollectionValue collectionValue,
+	public EvaluatorIterationManager(@NonNull DomainEvaluator evaluator, @NonNull OCLExpression body, @NonNull CollectionValue collectionValue,
 			@Nullable DomainTypedElement accumulatorVariable, @Nullable Object accumulatorValue) {
 		super(evaluator);
 		this.collectionValue = collectionValue;

@@ -16,7 +16,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
@@ -246,11 +245,5 @@ public abstract class OCLExpressionImpl
 	public <R> R accept(@NonNull Visitor<R> visitor) {
 		return visitor.visitOCLExpression(this);
 	}
-
-	@Override
-	public DomainExpression getBodyExpression() {
-		return this;
-	}
-
 } //OCLExpressionImpl
 

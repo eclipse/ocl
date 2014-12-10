@@ -18,7 +18,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
-import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainLogger;
 import org.eclipse.ocl.domain.ids.TypeId;
@@ -39,6 +38,7 @@ import org.eclipse.ocl.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.pivot.LetExp;
 import org.eclipse.ocl.pivot.MessageExp;
 import org.eclipse.ocl.pivot.NullLiteralExp;
+import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.pivot.PropertyCallExp;
@@ -82,12 +82,8 @@ public class TracingEvaluationVisitor extends EvaluationVisitorDecorator {
 	}
 
 	@Override
-	public @Nullable Object evaluate(@NonNull DomainExpression body) {
+	public @Nullable Object evaluate(@NonNull OCLExpression body) {
 		return delegate.evaluate(body);
-	}
-
-	public @Nullable Object evaluate(@NonNull ExpressionInOCL expressionInOCL) {
-		return delegate.evaluate(expressionInOCL);
 	}
 
 	@Override

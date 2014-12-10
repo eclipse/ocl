@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
@@ -233,7 +232,7 @@ public class VariableImpl
 		try {
 		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		    try {
-		        final @Nullable /*@Thrown*/ DomainExpression initExpression = this.getInitExpression();
+		        final @Nullable /*@Thrown*/ OCLExpression initExpression = this.getInitExpression();
 		        final /*@Thrown*/ boolean self_71 = initExpression != null;
 		        CAUGHT_self_71 = self_71;
 		    }
@@ -243,7 +242,7 @@ public class VariableImpl
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
-		        final @Nullable /*@Thrown*/ DomainExpression initExpression_0 = this.getInitExpression();
+		        final @Nullable /*@Thrown*/ OCLExpression initExpression_0 = this.getInitExpression();
 		        if (initExpression_0 == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }

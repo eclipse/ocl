@@ -34,7 +34,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainParameterTypes;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
@@ -55,8 +54,10 @@ import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Namespace;
+import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.PivotPackage;
@@ -723,11 +724,11 @@ public class OperationImpl
 		        try {
 		            final @NonNull /*@NonInvalid*/ DomainClass TYP_pivot_c_c_ExpressionInOCL_0 = idResolver.getClass(PivotTables.CLSSid_ExpressionInOCL, null);
 		            final @Nullable /*@Thrown*/ LanguageExpression bodyExpression_0 = this.getBodyExpression();
-		            final @Nullable /*@Thrown*/ DomainExpression oclAsType = (DomainExpression)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, bodyExpression_0, TYP_pivot_c_c_ExpressionInOCL_0);
+		            final @Nullable /*@Thrown*/ ExpressionInOCL oclAsType = (ExpressionInOCL)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, bodyExpression_0, TYP_pivot_c_c_ExpressionInOCL_0);
 		            if (oclAsType == null) {
 		                throw new InvalidValueException("Null source for \'pivot::ExpressionInOCL::bodyExpression\'");
 		            }
-		            final @Nullable /*@Thrown*/ DomainExpression bodyExpression_1 = oclAsType.getBodyExpression();
+		            final @Nullable /*@Thrown*/ OCLExpression bodyExpression_1 = oclAsType.getBodyExpression();
 		            final /*@Thrown*/ boolean b = bodyExpression_1 != null;
 		            CAUGHT_b = b;
 		        }

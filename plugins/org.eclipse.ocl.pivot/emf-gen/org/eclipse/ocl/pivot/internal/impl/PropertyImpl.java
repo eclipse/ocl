@@ -33,7 +33,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainProperty;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
@@ -55,7 +54,9 @@ import org.eclipse.ocl.pivot.AssociationClass;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
+import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.Property;
@@ -1041,11 +1042,11 @@ public class PropertyImpl
 		        try {
 		            final @NonNull /*@NonInvalid*/ DomainClass TYP_pivot_c_c_ExpressionInOCL_0 = idResolver.getClass(PivotTables.CLSSid_ExpressionInOCL, null);
 		            final @Nullable /*@Thrown*/ LanguageExpression defaultExpression_0 = this.getDefaultExpression();
-		            final @Nullable /*@Thrown*/ DomainExpression oclAsType = (DomainExpression)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, defaultExpression_0, TYP_pivot_c_c_ExpressionInOCL_0);
+		            final @Nullable /*@Thrown*/ ExpressionInOCL oclAsType = (ExpressionInOCL)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, defaultExpression_0, TYP_pivot_c_c_ExpressionInOCL_0);
 		            if (oclAsType == null) {
 		                throw new InvalidValueException("Null source for \'pivot::ExpressionInOCL::bodyExpression\'");
 		            }
-		            final @Nullable /*@Thrown*/ DomainExpression bodyExpression = oclAsType.getBodyExpression();
+		            final @Nullable /*@Thrown*/ OCLExpression bodyExpression = oclAsType.getBodyExpression();
 		            final /*@Thrown*/ boolean b = bodyExpression != null;
 		            CAUGHT_b = b;
 		        }

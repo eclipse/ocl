@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.elements.DomainProperty;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
@@ -527,7 +526,7 @@ public class PropertyCallExpImpl
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
-		        final @Nullable /*@Thrown*/ DomainExpression source = this.getSource();
+		        final @Nullable /*@Thrown*/ OCLExpression source = this.getSource();
 		        if (source == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }

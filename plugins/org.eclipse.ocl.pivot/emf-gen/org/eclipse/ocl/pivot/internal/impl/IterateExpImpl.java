@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
@@ -510,7 +509,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		@NonNull /*@Caught*/ Object CAUGHT_conformsTo;
 		try {
-		    final @Nullable /*@Thrown*/ DomainExpression body = this.getBody();
+		    final @Nullable /*@Thrown*/ OCLExpression body = this.getBody();
 		    if (body == null) {
 		        throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		    }
@@ -556,7 +555,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 		    if (result == null) {
 		        throw new InvalidValueException("Null source for \'pivot::Variable::initExpression\'");
 		    }
-		    final @Nullable /*@Thrown*/ DomainExpression initExpression = result.getInitExpression();
+		    final @Nullable /*@Thrown*/ OCLExpression initExpression = result.getInitExpression();
 		    final @NonNull /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, PivotTables.SET_CLSSid_OCLExpression, initExpression);
 		    final @NonNull /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet);
 		    final /*@Thrown*/ boolean eq = size.equals(PivotTables.INT_1);

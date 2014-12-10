@@ -12,17 +12,17 @@ package org.eclipse.ocl.domain.library;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.values.CollectionValue;
+import org.eclipse.ocl.pivot.OCLExpression;
 
 public class EvaluatorMultipleIterationManager extends EvaluatorIterationManager
 {
 	protected final ValueIterator[] iterators;
 	protected boolean hasCurrent;
 	
-	public EvaluatorMultipleIterationManager(@NonNull DomainEvaluator invokingEvaluator, @NonNull DomainExpression body, @NonNull CollectionValue collectionValue,
+	public EvaluatorMultipleIterationManager(@NonNull DomainEvaluator invokingEvaluator, @NonNull OCLExpression body, @NonNull CollectionValue collectionValue,
 			@Nullable DomainTypedElement accumulator, @Nullable Object accumulatorValue, DomainTypedElement... referredIterators) {
 		super(invokingEvaluator.createNestedEvaluator(), body, collectionValue, accumulator, accumulatorValue);
 		int iMax = referredIterators.length;

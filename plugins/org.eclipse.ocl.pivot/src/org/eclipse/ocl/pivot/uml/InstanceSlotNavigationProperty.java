@@ -23,6 +23,7 @@ import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitorImpl;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
@@ -79,7 +80,9 @@ public class InstanceSlotNavigationProperty extends AbstractProperty
 									throw new InvalidValueException("Missing spec for " + specification);
 								}
 								ExpressionInOCL query = metaModelManager.getQueryOrThrow(specification);
-								Object umlValue = evaluator.evaluate(query);
+								OCLExpression bodyExpression = query.getBodyExpression();
+								assert bodyExpression != null;
+								Object umlValue = evaluator.evaluate(bodyExpression);
 								return metaModelManager.getIdResolver().boxedValueOf(umlValue);
 							} catch (ParserException e) {
 								throw new InvalidValueException(e, "Parse fail for " + valueSpecification);

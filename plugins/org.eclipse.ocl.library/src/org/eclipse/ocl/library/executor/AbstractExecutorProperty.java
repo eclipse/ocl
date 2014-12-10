@@ -13,13 +13,13 @@ package org.eclipse.ocl.library.executor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainProperty;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.LanguageExpression;
 
 public abstract class AbstractExecutorProperty implements DomainProperty
 {
@@ -36,7 +36,7 @@ public abstract class AbstractExecutorProperty implements DomainProperty
 	}
 
 	@Override
-	public DomainExpression getDefaultExpression() {
+	public LanguageExpression getDefaultExpression() {
 		throw new UnsupportedOperationException(); 			// FIXME
 	}
 

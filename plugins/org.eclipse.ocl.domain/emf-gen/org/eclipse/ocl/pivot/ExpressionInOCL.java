@@ -17,7 +17,6 @@ import org.eclipse.jdt.annotation.NonNull;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Expression In Ocl</b></em>'.
- * @extends org.eclipse.ocl.domain.elements.DomainExpression
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -37,8 +36,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * @see org.eclipse.ocl.pivot.PivotPackage#getExpressionInOCL()
  * @generated
  */
-public interface ExpressionInOCL
-		extends LanguageExpression, org.eclipse.ocl.domain.elements.DomainExpression {
+public interface ExpressionInOCL extends LanguageExpression {
 
 	/**
 	 * Returns the value of the '<em><b>Body Expression</b></em>' containment reference.
@@ -53,7 +51,6 @@ public interface ExpressionInOCL
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getExpressionInOCL_BodyExpression()
 	 * @generated
 	 */
-	@Override
 	OCLExpression getBodyExpression();
 
 	/**

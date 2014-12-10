@@ -16,11 +16,11 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainCallExp;
-import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.library.AbstractOperation;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
@@ -41,10 +41,10 @@ public class ConstrainedOperation extends AbstractOperation
 	
 	@Override
 	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue) {
-		List<? extends DomainExpression> arguments = callExp.getArgument();
+		List<? extends OCLExpression> arguments = callExp.getArgument();
 		Object[] argumentValues = new Object[arguments.size()];
 		for (int i = 0; i < arguments.size(); i++) {
-			DomainExpression argument = arguments.get(i);
+			OCLExpression argument = arguments.get(i);
 			assert argument != null;
 			argumentValues[i] = evaluator.evaluate(argument);
 		}
@@ -71,7 +71,9 @@ public class ConstrainedOperation extends AbstractOperation
 			}
 		}
 		try {
-			return nestedVisitor.evaluate(expressionInOCL);
+			OCLExpression bodyExpression = expressionInOCL.getBodyExpression();
+			assert bodyExpression != null;
+			return nestedVisitor.evaluate(bodyExpression);
 		}
 		finally {
 			nestedVisitor.dispose();

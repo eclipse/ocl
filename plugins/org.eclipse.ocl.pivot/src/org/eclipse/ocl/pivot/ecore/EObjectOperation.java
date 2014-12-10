@@ -16,13 +16,13 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainCallExp;
-import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluationEnvironment;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.library.AbstractOperation;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Variable;
@@ -58,10 +58,10 @@ public class EObjectOperation extends AbstractOperation
 			}
 		}
 		ExpressionInOCL query = specification;
-		List<? extends DomainExpression> arguments = callExp.getArgument();
+		List<? extends OCLExpression> arguments = callExp.getArgument();
 		Object[] argumentValues = new Object[arguments.size()];
 		for (int i = 0; i < arguments.size(); i++) {
-			DomainExpression argument = arguments.get(i);
+			OCLExpression argument = arguments.get(i);
 			assert argument != null;
 			argumentValues[i] = evaluator.evaluate(argument);
 		}

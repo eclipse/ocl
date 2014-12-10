@@ -15,9 +15,9 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainCallExp;
-import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
+import org.eclipse.ocl.pivot.OCLExpression;
 
 /**
  * AbstractBinaryOperation defines the default implementation of a binary operation redirecting the
@@ -27,8 +27,8 @@ public abstract class AbstractBinaryOperation extends AbstractOperation implemen
 {
 	@Override
 	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue) {
-		List<? extends DomainExpression> arguments = callExp.getArgument();
-		DomainExpression argument0 = arguments.get(0);
+		List<? extends OCLExpression> arguments = callExp.getArgument();
+		OCLExpression argument0 = arguments.get(0);
 		assert argument0 != null;
 		Object firstArgument = evaluator.evaluate(argument0);
 		return evaluate(evaluator, callExp.getTypeId(), sourceValue, firstArgument);

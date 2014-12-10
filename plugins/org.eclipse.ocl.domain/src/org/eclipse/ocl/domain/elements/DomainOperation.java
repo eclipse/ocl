@@ -17,6 +17,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.ids.OperationId;
 import org.eclipse.ocl.domain.ids.ParametersId;
 import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.LanguageExpression;
 
 public interface DomainOperation extends DomainFeature
 {
@@ -25,7 +26,7 @@ public interface DomainOperation extends DomainFeature
 	 */
 	int getIndex();
 
-	DomainExpression getBodyExpression();
+	LanguageExpression getBodyExpression();
 
 	/**
 	 * Return the Inheritance dispatch table for the owning type, or null for am orphan property owned by an Annotation.

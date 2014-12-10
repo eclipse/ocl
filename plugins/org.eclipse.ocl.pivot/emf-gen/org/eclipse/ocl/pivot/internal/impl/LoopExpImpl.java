@@ -32,7 +32,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
@@ -253,7 +252,7 @@ public abstract class LoopExpImpl
 		@NonNull /*@Caught*/ Object CAUGHT_oclIsKindOf;
 		try {
 		    final @NonNull /*@NonInvalid*/ DomainClass TYP_pivot_c_c_CollectionType_0 = idResolver.getClass(PivotTables.CLSSid_CollectionType, null);
-		    final @Nullable /*@Thrown*/ DomainExpression source = this.getSource();
+		    final @Nullable /*@Thrown*/ OCLExpression source = this.getSource();
 		    if (source == null) {
 		        throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		    }
@@ -316,7 +315,7 @@ public abstract class LoopExpImpl
 		            if (_1 == null) {
 		                throw new InvalidValueException("Null source for \'pivot::Variable::initExpression\'");
 		            }
-		            final @Nullable /*@Thrown*/ DomainExpression initExpression = _1.getInitExpression();
+		            final @Nullable /*@Thrown*/ OCLExpression initExpression = _1.getInitExpression();
 		            final @NonNull /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, PivotTables.SET_CLSSid_OCLExpression, initExpression);
 		            final /*@Thrown*/ boolean isEmpty = CollectionIsEmptyOperation.INSTANCE.evaluate(oclAsSet).booleanValue();
 		            CAUGHT_isEmpty = isEmpty;
@@ -611,7 +610,7 @@ public abstract class LoopExpImpl
 
 	@Override
 	@SuppressWarnings({"null", "unchecked"})
-	public @NonNull List<? extends DomainExpression> getArgument() {
+	public @NonNull List<? extends OCLExpression> getArgument() {
 		return Collections.EMPTY_LIST;
 	}
 } //LoopExpImpl

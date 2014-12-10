@@ -13,9 +13,10 @@ package org.eclipse.ocl.domain.elements;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.OCLExpression;
 
-public interface DomainCallExp extends DomainExpression
+public interface DomainCallExp extends OCLExpression
 {
-	@NonNull List<? extends DomainExpression> getArgument();
-	DomainExpression getSource();
+	@NonNull List<? extends OCLExpression> getArgument();
+	OCLExpression getSource();
 }

@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainParameter;
@@ -61,12 +60,12 @@ import org.eclipse.ocl.pivot.IteratorExp;
 import org.eclipse.ocl.pivot.LetExp;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Variable;
-import org.eclipse.ocl.pivot.lookup.Environment;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 
@@ -749,7 +748,7 @@ public class AutoPivotLookupVisitor
      */
     @Override
     public @Nullable /*@NonInvalid*/ Environment visitLetExp(final @NonNull /*@NonInvalid*/ LetExp element_6) {
-        final @Nullable /*@Thrown*/ DomainExpression in = element_6.getIn();
+        final @Nullable /*@Thrown*/ OCLExpression in = element_6.getIn();
         final /*@Thrown*/ boolean eq = (child != null) ? child.equals(in) : (in == null);
         @Nullable /*@Thrown*/ Environment symbol_1;
         if (eq) {

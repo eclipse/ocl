@@ -15,12 +15,12 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainCallExp;
-import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.AbstractSimpleBinaryOperation;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
+import org.eclipse.ocl.pivot.OCLExpression;
 
 /**
  * ImpliesOperation realises the implies() library operation.
@@ -34,8 +34,8 @@ public class BooleanImpliesOperation extends AbstractSimpleBinaryOperation
 		if (sourceValue == Boolean.FALSE) {
 			return TRUE_VALUE;
 		}
-		List<? extends DomainExpression> arguments = callExp.getArgument();
-		DomainExpression argument0 = arguments.get(0);
+		List<? extends OCLExpression> arguments = callExp.getArgument();
+		OCLExpression argument0 = arguments.get(0);
 		assert argument0 != null;
 		Object firstArgument;
 		try {

@@ -15,7 +15,6 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainParameter;
@@ -29,6 +28,7 @@ import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.library.oclany.OclAnyUnsupportedOperation;
 import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.LanguageExpression;
 
 public class ExecutorOperation implements DomainOperation
 {
@@ -54,7 +54,7 @@ public class ExecutorOperation implements DomainOperation
 	}
 
 	@Override
-	public DomainExpression getBodyExpression() {
+	public LanguageExpression getBodyExpression() {
 		throw new UnsupportedOperationException(); 			// FIXME
 	}
 

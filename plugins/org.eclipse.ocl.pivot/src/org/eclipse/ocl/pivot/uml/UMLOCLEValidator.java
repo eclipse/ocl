@@ -30,10 +30,10 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
-import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.PivotConstants;
@@ -300,10 +300,10 @@ public class UMLOCLEValidator implements EValidator
 								HashSet<org.eclipse.ocl.pivot.Constraint> allConstraints = new HashSet<org.eclipse.ocl.pivot.Constraint>();
 								gatherTypes(allClassifiers, allConstraints, stereotype);
 								for (org.eclipse.ocl.pivot.Constraint constraint : allConstraints) {
-									DomainExpression specification = constraint.getSpecification();
-									if (specification instanceof org.eclipse.ocl.pivot.ExpressionInOCL) {
+									LanguageExpression specification = constraint.getSpecification();
+									if (specification != null) {
 										try {
-											ExpressionInOCL query = metaModelManager.getQueryOrThrow((org.eclipse.ocl.pivot.ExpressionInOCL)specification);
+											ExpressionInOCL query = metaModelManager.getQueryOrThrow(specification);
 											EvaluationVisitor evaluationVisitor = ocl.createEvaluationVisitor(umlStereotypeApplication, query);
 											ConstraintEvaluator<Boolean> constraintEvaluator;
 											if (diagnostics != null) {

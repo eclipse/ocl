@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
@@ -347,7 +346,7 @@ public abstract class NavigationCallExpImpl
 
 	@Override
 	@SuppressWarnings({"null", "unchecked"})
-	public @NonNull List<? extends DomainExpression> getArgument() {
+	public @NonNull List<? extends OCLExpression> getArgument() {
 		return Collections.EMPTY_LIST;
 	}
 } //NavigationCallExpImpl

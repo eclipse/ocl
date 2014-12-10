@@ -20,12 +20,12 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainCallExp;
-import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.AbstractOperation;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
+import org.eclipse.ocl.pivot.OCLExpression;
 
 /**
  * An EInvokeOperation supports evaluation of an operation call by using eInvoke on the underlying eObject.
@@ -45,17 +45,17 @@ public class EInvokeOperation extends AbstractOperation
 	@Override
 	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue) {
 		TypeId typeId = callExp.getTypeId();
-		List<? extends DomainExpression> arguments = callExp.getArgument();
+		List<? extends OCLExpression> arguments = callExp.getArgument();
 		if (arguments.size() == 0) {
 			return evaluate(evaluator, typeId, sourceValue);
 		}
-		DomainExpression argument0 = arguments.get(0);
+		OCLExpression argument0 = arguments.get(0);
 		assert argument0 != null;
 		Object firstArgument = evaluator.evaluate(argument0);
 		if (arguments.size() == 1) {
 			return evaluate(evaluator, typeId, sourceValue, firstArgument);
 		}
-		DomainExpression argument1 = arguments.get(1);
+		OCLExpression argument1 = arguments.get(1);
 		assert argument1 != null;
 		Object secondArgument = evaluator.evaluate(argument1);
 		if (arguments.size() == 2) {
@@ -65,7 +65,7 @@ public class EInvokeOperation extends AbstractOperation
 		argumentValues[0] = firstArgument;
 		argumentValues[1] = secondArgument;
 		for (int i = 2; i < arguments.size(); i++) {
-			DomainExpression argument = arguments.get(i);
+			OCLExpression argument = arguments.get(i);
 			assert argument != null;
 			argumentValues[i] = evaluator.evaluate(argument);
 		}

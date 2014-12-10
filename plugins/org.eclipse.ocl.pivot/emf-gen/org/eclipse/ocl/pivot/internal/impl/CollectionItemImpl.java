@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainExpression;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
@@ -152,7 +151,7 @@ public class CollectionItemImpl
 		@NonNull /*@Caught*/ Object CAUGHT_eq;
 		try {
 		    final @Nullable /*@Thrown*/ DomainType type = this.getType();
-		    final @Nullable /*@Thrown*/ DomainExpression item = this.getItem();
+		    final @Nullable /*@Thrown*/ OCLExpression item = this.getItem();
 		    if (item == null) {
 		        throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		    }

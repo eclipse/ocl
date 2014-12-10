@@ -14,7 +14,6 @@ package org.eclipse.ocl.pivot;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Language Expression</b></em>'.
- * @extends org.eclipse.ocl.domain.elements.DomainExpression
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -33,7 +32,7 @@ package org.eclipse.ocl.pivot;
  * @see org.eclipse.ocl.pivot.PivotPackage#getLanguageExpression()
  * @generated
  */
-public interface LanguageExpression extends ValueSpecification, org.eclipse.ocl.domain.elements.DomainExpression
+public interface LanguageExpression extends ValueSpecification
 {
 	/**
 	 * Returns the value of the '<em><b>Body</b></em>' attribute.
