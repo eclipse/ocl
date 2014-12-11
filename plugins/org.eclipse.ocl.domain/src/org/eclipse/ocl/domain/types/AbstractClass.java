@@ -74,7 +74,7 @@ public abstract class AbstractClass extends AbstractType implements DomainClass	
 	}
 
 	@Override
-	public @NonNull List<? extends DomainClass> getSuperClasses() {
+	public @NonNull List<org.eclipse.ocl.pivot.Class> getSuperClasses() {
 		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
 	}
 

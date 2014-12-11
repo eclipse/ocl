@@ -20,10 +20,10 @@ import org.eclipse.ocl.domain.ids.PackageId;
 public interface DomainPackage extends DomainNamespace
 {
 	@Nullable EPackage getEPackage();
-	/*@NonNull*/ List<? extends DomainPackage>  getOwnedPackages();
-	/*@Nullable*/ DomainPackage getOwningPackage();
+	@NonNull List<org.eclipse.ocl.pivot.Package>  getOwnedPackages();
+	/*@Nullable*/ org.eclipse.ocl.pivot.Package getOwningPackage();
 	/*@Nullable*/ String getNsPrefix();
 	/*@Nullable*/ String getURI();
-	/*@NonNull*/ List<? extends DomainClass> getOwnedClasses();
+	/*@NonNull*/ List<org.eclipse.ocl.pivot.Class> getOwnedClasses();
 	@NonNull PackageId getPackageId();
 }

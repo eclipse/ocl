@@ -14,17 +14,16 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.domain.elements.AbstractExecutorClass;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.ids.OperationId;
 import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.types.AbstractInheritance;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.utilities.ArrayIterable;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
@@ -33,13 +32,15 @@ import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.TemplateParameter;
 
 /**
  * An ExecutorType defines a Type using a compact representation suitable for efficient
  * execution and static construction.
  */
-public abstract class ExecutorType extends AbstractInheritance implements DomainClass, ExecutorTypeArgument
+public abstract class ExecutorType extends AbstractExecutorClass implements DomainClass, ExecutorTypeArgument
 {
 	/**
 	 * Depth ordered inheritance fragments. OclAny at depth 0, OclSelf at depth size-1.
@@ -74,7 +75,7 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 	}
 	
 	@Override
-	public @NonNull DomainClass flattenedType() {
+	public @NonNull org.eclipse.ocl.pivot.Class flattenedType() {
 		return this;
 	}
 	
@@ -170,8 +171,8 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 	}
 	
 	@Override
-	public @NonNull DomainPackage getOwningPackage() {
-		return evaluationPackage;
+	public @NonNull org.eclipse.ocl.pivot.Package getOwningPackage() {
+		return (Package) evaluationPackage;
 	}
 
 	@Override
@@ -189,7 +190,7 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 	}
 
 	@Override
-	public @NonNull List<? extends DomainClass> getSuperClasses() {
+	public @NonNull List<org.eclipse.ocl.pivot.Class> getSuperClasses() {
 		return getSelfFragment().getSuperClasses();
 	}
 	
@@ -223,7 +224,7 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 	}
 
 	@Override
-	public @NonNull DomainClass isClass() {
+	public @NonNull org.eclipse.ocl.pivot.Class isClass() {
 		return this;
 	}
 
@@ -243,7 +244,7 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 	}
 
 	@Override
-	public @Nullable DomainTemplateParameter isTemplateParameter() {
+	public @Nullable TemplateParameter isTemplateParameter() {
 		return null;
 	}
 

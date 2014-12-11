@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
@@ -29,6 +28,7 @@ import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.domain.ids.OperationId;
 import org.eclipse.ocl.domain.values.CollectionTypeParameters;
+import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.CompleteClass;
@@ -491,13 +491,13 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 
 	@Override
 	@SuppressWarnings("null")
-	public @NonNull Iterable<? extends DomainClass> getProperSuperClasses() {
+	public @NonNull Iterable<org.eclipse.ocl.pivot.Class> getProperSuperClasses() {
 		DomainInheritance inheritance = getCompleteInheritance();
-		return Iterables.transform(inheritance.getAllProperSuperFragments(), new Function<DomainFragment, DomainClass>()
+		return Iterables.transform(inheritance.getAllProperSuperFragments(), new Function<DomainFragment, org.eclipse.ocl.pivot.Class>()
 		{
 			@Override
-			public DomainClass apply(DomainFragment input) {
-				return input.getBaseInheritance().getType();
+			public org.eclipse.ocl.pivot.Class apply(DomainFragment input) {
+				return (Class) input.getBaseInheritance().getType();
 			}
 		});
 	}

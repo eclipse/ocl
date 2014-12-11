@@ -17,7 +17,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
@@ -32,7 +31,7 @@ public class EcoreExecutorPackage extends ExecutorPackage
 	protected final EPackage ePackage;
 	private ExecutorStandardLibrary standardLibrary = null;
 	private ExecutorType[] types = null;
-	private @Nullable List<EcoreExecutorPackage> packages = null;
+	private @Nullable List<org.eclipse.ocl.pivot.Package> packages = null;
 
 	public EcoreExecutorPackage(/*@NonNull*/ EPackage ePackage) {
 		super(DomainUtil.nonNullEMF(ePackage.getName()), ePackage.getNsPrefix(), ePackage.getNsURI(), IdManager.getPackageId(ePackage));
@@ -50,13 +49,13 @@ public class EcoreExecutorPackage extends ExecutorPackage
 	}
 
 	@Override
-	public List<? extends DomainPackage> getOwnedPackages() {
-		List<EcoreExecutorPackage> packages2 = packages;
+	public @NonNull List<org.eclipse.ocl.pivot.Package> getOwnedPackages() {
+		List<org.eclipse.ocl.pivot.Package> packages2 = packages;
 		if (packages2 == null) {
 			synchronized (this) {
 				packages2 = packages;
 				if (packages2 == null) {
-					packages2 = packages = new ArrayList<EcoreExecutorPackage>();
+					packages2 = packages = new ArrayList<org.eclipse.ocl.pivot.Package>();
 					for (EPackage eSubPackage : ePackage.getESubpackages()) {
 						assert eSubPackage != null;
 						EcoreExecutorPackage subPackage = standardLibrary.getPackage(eSubPackage);
@@ -71,7 +70,7 @@ public class EcoreExecutorPackage extends ExecutorPackage
 	}
 
 	@Override
-	public DomainPackage getOwningPackage() {
+	public org.eclipse.ocl.pivot.Package getOwningPackage() {
 		EPackage eSuperPackage = ePackage.getESuperPackage();
 		if (eSuperPackage == null) {
 			return null;
@@ -81,9 +80,9 @@ public class EcoreExecutorPackage extends ExecutorPackage
 
 	@SuppressWarnings("null")
 	@Override
-	public @NonNull List<ExecutorType> getOwnedClasses() {
+	public @NonNull List<org.eclipse.ocl.pivot.Class> getOwnedClasses() {
 		if (types != null) {
-			return Lists.<ExecutorType>newArrayList(types);
+			return Lists.<org.eclipse.ocl.pivot.Class>newArrayList(types);
 		}
 		else {
 			return Collections.emptyList();
@@ -92,9 +91,9 @@ public class EcoreExecutorPackage extends ExecutorPackage
 
 	@Override
 	public ExecutorType getType(String typeName) {
-		for (ExecutorType type: getOwnedClasses()) {
+		for (org.eclipse.ocl.pivot.Class type: getOwnedClasses()) {
 			if (type.getName().equals(typeName)) {
-				return type;
+				return (ExecutorType) type;
 			}
 		}
 		return null;

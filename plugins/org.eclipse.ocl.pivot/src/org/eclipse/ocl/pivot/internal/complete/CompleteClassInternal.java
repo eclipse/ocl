@@ -11,7 +11,6 @@
 package org.eclipse.ocl.pivot.internal.complete;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.pivot.CompleteClass;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 
@@ -31,5 +30,5 @@ public interface CompleteClassInternal extends CompleteClass
 	CompletePackageInternal getOwningCompletePackage();
 	@Override
 	@NonNull PartialClasses getPartialClasses();
-	@NonNull Iterable<? extends DomainClass> getProperSuperClasses();
+	@NonNull Iterable<org.eclipse.ocl.pivot.Class> getProperSuperClasses();
 } // CompleteClass

@@ -15,21 +15,20 @@ import java.util.List;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.domain.elements.AbstractExecutorPackage;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.ids.ElementId;
 import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.pivot.Constraint;
 
-public abstract class ExecutorPackage implements DomainPackage
+public abstract class ExecutorPackage extends AbstractExecutorPackage
 {
-	protected final @NonNull String name;
 	protected final @Nullable String nsPrefix;
 	protected final @Nullable String nsURI;
 	protected final @NonNull PackageId packageId;
 
 	protected ExecutorPackage(@NonNull String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId) {
-		this.name = name;
+		super(name);
 		this.nsPrefix = nsPrefix;
 		this.nsURI = nsURI;
 		this.packageId = packageId;
@@ -45,11 +44,6 @@ public abstract class ExecutorPackage implements DomainPackage
 	}
 
 	@Override
-	public final @NonNull String getName() {
-		return name;
-	}
-
-	@Override
 	public final @Nullable String getNsPrefix() {
 		return nsPrefix;
 	}
@@ -60,12 +54,12 @@ public abstract class ExecutorPackage implements DomainPackage
 	}
 
 	@Override
-	public @NonNull List<? extends Constraint> getOwnedRule() {
+	public @NonNull List<Constraint> getOwnedRule() {
 		throw new UnsupportedOperationException();			// FIXME
 	}
 	
 	@Override
-	public abstract @NonNull List<? extends DomainClass> getOwnedClasses();
+	public abstract @NonNull List<org.eclipse.ocl.pivot.Class> getOwnedClasses();
 
 	@Override
 	public @NonNull PackageId getPackageId() {

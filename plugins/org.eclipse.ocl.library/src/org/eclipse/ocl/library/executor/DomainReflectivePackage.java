@@ -42,17 +42,17 @@ public class DomainReflectivePackage extends ReflectivePackage
 	}
 
 	@Override
-	protected @NonNull List<? extends DomainClass> getDomainClasses() {
+	protected @NonNull List<org.eclipse.ocl.pivot.Class> getDomainClasses() {
 		return DomainUtil.nonNullPivot(domainPackage.getOwnedClasses());
 	}
 
 	@Override
-	public List<? extends DomainPackage> getOwnedPackages() {
+	public @NonNull List<org.eclipse.ocl.pivot.Package> getOwnedPackages() {
 		return domainPackage.getOwnedPackages();			// FIXME Is this recursive??
 	}
 
 	@Override
-	public DomainPackage getOwningPackage() {
+	public org.eclipse.ocl.pivot.Package getOwningPackage() {
 		return domainPackage.getOwningPackage();			// FIXME Is this recursive??
 	}
 

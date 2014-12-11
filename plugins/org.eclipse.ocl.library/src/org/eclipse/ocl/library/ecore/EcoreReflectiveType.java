@@ -22,7 +22,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.domain.elements.DomainType;
@@ -138,12 +137,12 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 	}
 	
 	@Override
-	public @NonNull DomainPackage getOwningPackage() {
+	public @NonNull org.eclipse.ocl.pivot.Package getOwningPackage() {
 		return evaluationPackage;
 	}
 
 	@Override
-	public @NonNull List<? extends DomainClass> getSuperClasses() {
+	public @NonNull List<org.eclipse.ocl.pivot.Class> getSuperClasses() {
 		throw new UnsupportedOperationException();		// FIXME
 	}
 

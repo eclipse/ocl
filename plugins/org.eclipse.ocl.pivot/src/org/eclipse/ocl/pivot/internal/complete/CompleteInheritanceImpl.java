@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.internal.complete;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -101,20 +102,28 @@ public class CompleteInheritanceImpl extends ReflectiveInheritance implements Co
 		return completeClass.getProperty(propertyName);
 	}
 
+	@Override
 	public @NonNull String getMetaTypeName() {
 		return completeClass.getPivotClass().getMetaTypeName();
 	}
 
-	public @NonNull List<? extends Property> getOwnedProperties() {
+	@Override
+	public @NonNull List<Property> getOwnedProperties() {
 		return DomainUtil.nonNullEMF(completeClass.getPivotClass().getOwnedProperties());			// FIXME Use local cache
 	}
 	
-	public @NonNull List<? extends Operation> getOwnedOperations() {
+	@Override
+	public @NonNull List<Operation> getOwnedOperations() {
 		return DomainUtil.nonNullEMF(completeClass.getPivotClass().getOwnedOperations());			// FIXME Use local cache
 	}
 
-	public @NonNull Iterable<? extends DomainClass> getSuperClasses() {
-		return completeClass.getProperSuperClasses();
+	@Override
+	public @NonNull List<org.eclipse.ocl.pivot.Class> getSuperClasses() {
+		List<org.eclipse.ocl.pivot.Class> superClasses = new ArrayList<org.eclipse.ocl.pivot.Class>();
+		for (org.eclipse.ocl.pivot.Class superClass : completeClass.getProperSuperClasses()) {
+			superClasses.add(superClass);
+		}
+		return superClasses;
 	}
 	
 	@Override
@@ -122,10 +131,12 @@ public class CompleteInheritanceImpl extends ReflectiveInheritance implements Co
 		return getCompleteClass().getPivotClass();
 	}
 
+	@Override
 	public final @NonNull TypeId getTypeId() {
 		return completeClass.getPivotClass().getTypeId();
 	}
 
+	@Override
 	public @NonNull DomainTypeParameters getTypeParameters() {
 		return DomainTypeParameters.EMPTY_LIST;
 	}

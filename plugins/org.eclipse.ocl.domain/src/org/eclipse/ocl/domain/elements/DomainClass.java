@@ -43,7 +43,7 @@ public interface DomainClass extends DomainType
 	
 	DomainPackage getOwningPackage();
 
-	@NonNull List<? extends DomainClass> getSuperClasses();
+	@NonNull List<org.eclipse.ocl.pivot.Class> getSuperClasses();
 
 	/**
 	 * Return the ordered list of type parameters of this type.

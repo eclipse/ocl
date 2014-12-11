@@ -46,7 +46,7 @@ public abstract class ReflectivePackage extends ExecutorPackage
 
 	protected abstract @NonNull DomainInheritance createInheritance(@NonNull DomainClass domainClass);
 
-	protected abstract @NonNull List<? extends DomainClass> getDomainClasses();
+	protected abstract @NonNull List<org.eclipse.ocl.pivot.Class> getDomainClasses();
 
 	public @NonNull DomainInheritance getInheritance(@NonNull DomainClass domainClass) {
 		Map<DomainClass, DomainInheritance> class2inheritance2 = class2inheritance;
@@ -57,7 +57,7 @@ public abstract class ReflectivePackage extends ExecutorPackage
 	}
 
 	@Override
-	public @NonNull List<? extends DomainClass> getOwnedClasses() {
+	public @NonNull List<org.eclipse.ocl.pivot.Class> getOwnedClasses() {
 /*		Map<DomainClass, DomainInheritance> types2 = class2inheritance;
 		if (types2 == null) {
 			types2 = computeClasses();

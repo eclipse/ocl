@@ -11,6 +11,7 @@
 package org.eclipse.ocl.library.ecore;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,12 +28,13 @@ import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.library.executor.ExecutorPackage;
 
+@SuppressWarnings("unused")
 public class EcoreReflectivePackage extends ExecutorPackage
 {
 	protected final @NonNull EcoreIdResolver idResolver;
 //	protected final @NonNull ExecutorStandardLibrary standardLibrary;
 	protected final EPackage ePackage;
-	protected @Nullable Map<EClassifier, EcoreReflectiveType> types = null;
+	protected @Nullable Map<EClassifier, org.eclipse.ocl.pivot.Class> types = null;
 	protected @Nullable Map<String, EcoreReflectivePackage> nestedPackages = null;
 	
 	public EcoreReflectivePackage(@NonNull EPackage ePackage, @NonNull EcoreIdResolver idResolver, @NonNull PackageId packageId) {
@@ -42,11 +44,11 @@ public class EcoreReflectivePackage extends ExecutorPackage
 		this.ePackage = ePackage;
 	}
 	
-	protected synchronized @NonNull Map<EClassifier, EcoreReflectiveType> computeClasses() {
-		Map<EClassifier, EcoreReflectiveType> types2 = types = new HashMap<EClassifier, EcoreReflectiveType>();
+	protected synchronized @NonNull Map<EClassifier, org.eclipse.ocl.pivot.Class> computeClasses() {
+		Map<EClassifier, org.eclipse.ocl.pivot.Class> types2 = types = new HashMap<EClassifier, org.eclipse.ocl.pivot.Class>();
 		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
 			if (eClassifier != null) {
-				EcoreReflectiveType executorType;
+				org.eclipse.ocl.pivot.Class executorType;
 				if (eClassifier instanceof EEnum) {
 					executorType = new EcoreReflectiveEnumeration(this, 0, (EEnum)eClassifier);
 				}
@@ -74,7 +76,7 @@ public class EcoreReflectivePackage extends ExecutorPackage
 	}
 
 	@Override
-	public List<? extends DomainPackage> getOwnedPackages() {
+	public @NonNull List<org.eclipse.ocl.pivot.Package> getOwnedPackages() {
 		Map<String, EcoreReflectivePackage> nestedPackages2 = nestedPackages;
 		if (nestedPackages2 == null) {
 			nestedPackages = nestedPackages2 = new HashMap<String, EcoreReflectivePackage>();
@@ -86,29 +88,29 @@ public class EcoreReflectivePackage extends ExecutorPackage
 				}
 			}
 		}
-		return new ArrayList<DomainPackage>(nestedPackages2.values());
+		return new ArrayList<org.eclipse.ocl.pivot.Package>(nestedPackages2.values());
 	}
 
 	@Override
-	public DomainPackage getOwningPackage() {
+	public org.eclipse.ocl.pivot.Package getOwningPackage() {
 		throw new UnsupportedOperationException();		// FIXME
 	}
 
 	@Override
-	public @NonNull List<EcoreReflectiveType> getOwnedClasses() {
-		Map<EClassifier, EcoreReflectiveType> types2 = types;
+	public @NonNull List<org.eclipse.ocl.pivot.Class> getOwnedClasses() {
+		Map<EClassifier, org.eclipse.ocl.pivot.Class> types2 = types;
 		if (types2 == null) {
 			types2 = computeClasses();
 		}
-		List<EcoreReflectiveType> values2 = new ArrayList<EcoreReflectiveType>(types2.values());
+		List<org.eclipse.ocl.pivot.Class> values2 = new ArrayList<org.eclipse.ocl.pivot.Class>(types2.values());
 		return values2;
 	}
 
 	@Override
 	public EcoreReflectiveType getType(String typeName) {
-		for (EcoreReflectiveType type: getOwnedClasses()) {
+		for (org.eclipse.ocl.pivot.Class type: getOwnedClasses()) {
 			if (type.getName().equals(typeName)) {
-				return type;
+				return (EcoreReflectiveType) type;
 			}
 		}
 		return null;

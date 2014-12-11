@@ -19,20 +19,20 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.domain.elements.AbstractExecutorClass;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.types.AbstractFragment;
-import org.eclipse.ocl.domain.types.AbstractInheritance;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 
 /**
  * A ReflectiveType defines a Type using a compact representation suitable for efficient
  * execution. The representation is derived reflectively from a less efficient representation.
  */
-public abstract class ReflectiveInheritance extends AbstractInheritance
+public abstract class ReflectiveInheritance extends AbstractExecutorClass
 {	
 	protected static int computeFlags(@NonNull DomainClass domainClass) {
 		int flags = 0;
@@ -90,10 +90,12 @@ public abstract class ReflectiveInheritance extends AbstractInheritance
 
 	protected abstract AbstractFragment createFragment(@NonNull DomainInheritance baseInheritance);
 
+	@Override
 	public @NonNull EObject createInstance() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public @Nullable Object createInstance( @NonNull String value) {
 		throw new UnsupportedOperationException();
 	}

@@ -15,11 +15,12 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.values.OCLValue;
 import org.eclipse.ocl.pivot.CallExp;
+import org.eclipse.ocl.pivot.Class;
+import org.eclipse.ocl.pivot.TemplateParameter;
 
 public abstract class AbstractReflectiveInheritanceType extends ReflectiveInheritance implements DomainClass
 {
@@ -37,7 +38,7 @@ public abstract class AbstractReflectiveInheritanceType extends ReflectiveInheri
 	}
 	
 	@Override
-	public @NonNull DomainClass flattenedType() {
+	public @NonNull org.eclipse.ocl.pivot.Class flattenedType() {
 		return this;
 	}
 
@@ -52,8 +53,8 @@ public abstract class AbstractReflectiveInheritanceType extends ReflectiveInheri
 	}
 
 	@Override
-	public @NonNull DomainClass isClass() {
-		return getType();
+	public @NonNull org.eclipse.ocl.pivot.Class isClass() {
+		return (Class) getType();
 	}
 
 	@Override
@@ -67,7 +68,7 @@ public abstract class AbstractReflectiveInheritanceType extends ReflectiveInheri
 	}
 
 	@Override
-	public @Nullable DomainTemplateParameter isTemplateParameter() {
+	public @Nullable TemplateParameter isTemplateParameter() {
 		return null;
 	}
 

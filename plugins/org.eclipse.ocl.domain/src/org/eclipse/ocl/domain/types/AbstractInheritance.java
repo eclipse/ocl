@@ -12,6 +12,7 @@ package org.eclipse.ocl.domain.types;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.domain.elements.AbstractExecutorObject;
 import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
@@ -24,7 +25,7 @@ import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.utilities.IndexableIterable;
 import org.eclipse.ocl.pivot.Operation;
 
-public abstract class AbstractInheritance implements DomainInheritance
+public abstract class AbstractInheritance extends AbstractExecutorObject implements DomainInheritance
 {
 	public static class FragmentIterable implements IndexableIterable<DomainFragment>
 	{
@@ -111,13 +112,12 @@ public abstract class AbstractInheritance implements DomainInheritance
 	 */
 	public static void initStatics() {}
 	
-	protected final @NonNull String name;
 	protected final int flags;
 //	protected @Nullable Map<String, DomainOperation> operationMap = null;
 //	protected @Nullable Map<String, DomainProperty> propertyMap = null;
 	
 	public AbstractInheritance(@NonNull String name, int flags) {
-		this.name = name;
+		super(name);
 		this.flags = flags;
 	}
 
@@ -183,11 +183,6 @@ public abstract class AbstractInheritance implements DomainInheritance
 			}
 		}
 		return null;
-	}
-
-	@Override
-	public final String getName() {
-		return name;
 	}
 
 	public final boolean isInvalid() {
