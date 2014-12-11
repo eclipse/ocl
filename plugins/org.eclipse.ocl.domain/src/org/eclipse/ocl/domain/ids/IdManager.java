@@ -28,7 +28,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.DomainConstants;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainLambdaType;
 import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
@@ -49,6 +48,7 @@ import org.eclipse.ocl.domain.ids.impl.WeakHashMapOfListOfWeakReference4;
 import org.eclipse.ocl.domain.ids.impl.WeakHashMapOfWeakReference;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Enumeration;
+import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -251,7 +251,7 @@ public final class IdManager
     /**
      * Return the typeId for aLambdaType.
       */
-	public static @NonNull LambdaTypeId getLambdaTypeId(@NonNull DomainLambdaType lambdaType) {
+	public static @NonNull LambdaTypeId getLambdaTypeId(@NonNull LambdaType lambdaType) {
 		String name = DomainUtil.getSafeName(lambdaType);
 		return getLambdaTypeId(name, lambdaType.getParametersId());
 	}

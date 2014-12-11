@@ -1607,7 +1607,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 				return null;
 			}
 		}
-		return (org.eclipse.ocl.pivot.Class) DomainUtil.getNamedElement(asMetamodel.getOwnedClasses(), className);		// FIXME bad cast
+		return DomainUtil.getNamedElement(asMetamodel.getOwnedClasses(), className);
 	}	
 
 	@SuppressWarnings("null")

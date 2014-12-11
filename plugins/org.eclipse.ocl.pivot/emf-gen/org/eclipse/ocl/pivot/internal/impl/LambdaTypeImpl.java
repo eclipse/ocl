@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainLambdaType;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.IdManager;
@@ -554,10 +553,10 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 		if (this == type) {
 			return true;
 		}
-		if (!(type instanceof DomainLambdaType)) {
+		if (!(type instanceof LambdaType)) {
 			return false;
 		}
-		return standardLibrary.conformsToLambdaType(this, (DomainLambdaType)type);
+		return standardLibrary.conformsToLambdaType(this, (LambdaType)type);
 	}
 	
 	private ParametersId parametersId = null;

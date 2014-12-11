@@ -32,7 +32,6 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.DomainConstants;
-import org.eclipse.ocl.domain.elements.DomainLambdaType;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.elements.Labelable;
@@ -41,6 +40,7 @@ import org.eclipse.ocl.domain.values.Unlimited;
 import org.eclipse.ocl.examples.common.utils.ClassUtils;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.pivot.Iteration;
+import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.osgi.util.NLS;
 
@@ -407,7 +407,7 @@ public class DomainUtil
 		}
 	}
 
-	public static @NonNull DomainType[] getLambdaParameterTypes(@NonNull DomainLambdaType lambdaType) {
+	public static @NonNull DomainType[] getLambdaParameterTypes(@NonNull LambdaType lambdaType) {
 		int iParameter = 0;
 		List<? extends DomainType> ownedParameters = lambdaType.getParameterTypes();
 		DomainType[] parameterTypes = new DomainType[ownedParameters.size() + 2];

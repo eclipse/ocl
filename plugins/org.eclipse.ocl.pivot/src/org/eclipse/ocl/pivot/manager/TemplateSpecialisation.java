@@ -19,11 +19,11 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
-import org.eclipse.ocl.domain.elements.DomainLambdaType;
 import org.eclipse.ocl.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.domain.elements.DomainTupleType;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateSignature;
 
@@ -66,8 +66,8 @@ public class TemplateSpecialisation
 			}
 			return false;
 		}
-		if (referencedType instanceof DomainLambdaType) {
-			DomainLambdaType lambdaType = (DomainLambdaType)referencedType;
+		if (referencedType instanceof LambdaType) {
+			LambdaType lambdaType = (LambdaType)referencedType;
 			DomainType contextType = lambdaType.getContextType();
 			if (needsSpecialisation(contextType)) {
 				return true;
@@ -125,7 +125,7 @@ public class TemplateSpecialisation
 //			DomainTupleType tupleType = (DomainTupleType)referencedType;
 			throw new UnsupportedOperationException();
 		}
-		if (referencedType instanceof DomainLambdaType) {
+		if (referencedType instanceof LambdaType) {
 //			DomainLambdaType lambdaType = (DomainLambdaType)referencedType;
 			throw new UnsupportedOperationException();
 		}
@@ -178,10 +178,10 @@ public class TemplateSpecialisation
 			}
 			return;
 		}
-		if (referencedType instanceof DomainLambdaType) {
-			if (resolvedType instanceof DomainLambdaType) {
-				DomainLambdaType referencedLambdaType = (DomainLambdaType)referencedType;
-				DomainLambdaType resolvedLambdaType = (DomainLambdaType)resolvedType;
+		if (referencedType instanceof LambdaType) {
+			if (resolvedType instanceof LambdaType) {
+				LambdaType referencedLambdaType = (LambdaType)referencedType;
+				LambdaType resolvedLambdaType = (LambdaType)resolvedType;
 				installEquivalence(resolvedLambdaType.getContextType(), referencedLambdaType.getContextType());
 				installEquivalence(resolvedLambdaType.getResultType(), referencedLambdaType.getResultType());
 				List<? extends DomainType> resolvedParameterTypes = resolvedLambdaType.getParameterTypes();

@@ -13,7 +13,6 @@ package org.eclipse.ocl.examples.codegen.java;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainLambdaType;
 import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.ClassId;
@@ -41,6 +40,7 @@ import org.eclipse.ocl.domain.values.TupleValue;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.codegen.generator.GenModelHelper;
 import org.eclipse.ocl.examples.codegen.java.types.JavaTypeId;
+import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
@@ -80,7 +80,7 @@ public abstract class AbstractId2JavaClassVisitor implements IdVisitor<Class<?>>
 
 	@Override
 	public @NonNull Class<?> visitLambdaTypeId(@NonNull LambdaTypeId id) {
-		return DomainLambdaType.class;
+		return LambdaType.class;
 	}
 
 	@Override
