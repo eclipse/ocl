@@ -32,7 +32,6 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.DomainConstants;
-import org.eclipse.ocl.domain.elements.DomainIteration;
 import org.eclipse.ocl.domain.elements.DomainLambdaType;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypedElement;
@@ -41,6 +40,7 @@ import org.eclipse.ocl.domain.elements.Nameable;
 import org.eclipse.ocl.domain.values.Unlimited;
 import org.eclipse.ocl.examples.common.utils.ClassUtils;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
+import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.osgi.util.NLS;
 
@@ -445,8 +445,8 @@ public class DomainUtil
 		DomainType[] parameterTypes;
 		int iParameter = 0;
 		List<? extends DomainTypedElement> ownedParameters = anOperation.getOwnedParameter();
-		if (anOperation instanceof DomainIteration) {
-			DomainIteration anIteration = (DomainIteration)anOperation;
+		if (anOperation instanceof Iteration) {
+			Iteration anIteration = (Iteration)anOperation;
 			List<? extends DomainTypedElement> ownedIterators = anIteration.getOwnedIterator();
 			List<? extends DomainTypedElement> ownedAccumulators = anIteration.getOwnedAccumulator();
 			parameterTypes = new DomainType[ownedIterators.size() + ownedAccumulators.size() + ownedParameters.size()];

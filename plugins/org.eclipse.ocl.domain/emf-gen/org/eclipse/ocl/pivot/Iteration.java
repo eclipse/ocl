@@ -17,7 +17,6 @@ import org.eclipse.jdt.annotation.NonNull;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Iteration</b></em>'.
- * @extends org.eclipse.ocl.domain.elements.DomainIteration
  * <!-- end-user-doc -->
  *
  * <p>
@@ -31,7 +30,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * @see org.eclipse.ocl.pivot.PivotPackage#getIteration()
  * @generated
  */
-public interface Iteration extends Operation, org.eclipse.ocl.domain.elements.DomainIteration
+public interface Iteration extends Operation
 {
 	/**
 	 * Returns the value of the '<em><b>Owned Iterator</b></em>' containment reference list.
@@ -46,7 +45,6 @@ public interface Iteration extends Operation, org.eclipse.ocl.domain.elements.Do
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getIteration_OwnedIterator()
 	 * @generated
 	 */
-	@Override
 	@NonNull List<Parameter> getOwnedIterator();
 
 	/**
@@ -62,7 +60,6 @@ public interface Iteration extends Operation, org.eclipse.ocl.domain.elements.Do
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getIteration_OwnedAccumulator()
 	 * @generated
 	 */
-	@Override
 	@NonNull List<Parameter> getOwnedAccumulator();
 
 } // Iteration
