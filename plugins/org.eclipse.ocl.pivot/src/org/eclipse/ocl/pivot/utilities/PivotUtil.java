@@ -38,7 +38,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainElement;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.domain.library.LibraryFeature;
@@ -1206,8 +1205,8 @@ public class PivotUtil extends DomainUtil
 	 * Return a URI based on the nsURI of the immediate parent package.
 	 */
 	public static String getNsURI(@NonNull DomainElement element) {
-		if (element instanceof DomainPackage) {
-			String nsURI = ((DomainPackage)element).getURI();
+		if (element instanceof org.eclipse.ocl.pivot.Package) {
+			String nsURI = ((org.eclipse.ocl.pivot.Package)element).getURI();
 			if (nsURI != null) {
 				return nsURI;
 			}

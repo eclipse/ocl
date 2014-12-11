@@ -16,7 +16,6 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.values.CollectionTypeParameters;
@@ -44,7 +43,7 @@ public interface CompleteModelInternal extends CompleteModel
 	@Override
 	@NonNull CompleteClassInternal getCompleteClass(@NonNull DomainType partialClass);
 	@Override
-	@NonNull CompletePackageInternal getCompletePackage(@NonNull DomainPackage partialPackage);
+	@NonNull CompletePackageInternal getCompletePackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage);
 	@Override
 	@Nullable CompletePackage getCompletePackageByURI(@NonNull String packageURI);
 	@NonNull CompleteURIs getCompleteURIs();

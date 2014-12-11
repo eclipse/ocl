@@ -14,7 +14,6 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.ids.ClassId;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.IdManager;
@@ -406,7 +405,7 @@ public class AutoBaseCSContainmentVisitor
             if (_1 == null) {
                 throw new InvalidValueException("Null source for \'null\'");
             }
-            final @Nullable /*@Thrown*/ DomainPackage ast = (DomainPackage)_1.getPivot();
+            final @Nullable /*@Thrown*/ org.eclipse.ocl.pivot.Package ast = (org.eclipse.ocl.pivot.Package)_1.getPivot();
             //
             accumulator.add(ast);
         }

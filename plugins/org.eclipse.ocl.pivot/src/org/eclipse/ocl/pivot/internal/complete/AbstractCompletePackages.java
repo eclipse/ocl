@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.internal.impl.NamedElementImpl;
@@ -59,7 +58,7 @@ public abstract class AbstractCompletePackages<Tinternal extends CompletePackage
 		didAdd(castCompletePackage);
 	}
 
-	public abstract @NonNull T createCompletePackage(@NonNull DomainPackage partialPackage);
+	public abstract @NonNull T createCompletePackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage);
 
 	protected void didAdd(@NonNull Tinternal completePackage) {
 		String name = completePackage.getName();
@@ -128,7 +127,7 @@ public abstract class AbstractCompletePackages<Tinternal extends CompletePackage
 
 	protected abstract CompleteModelInternal getCompleteModel();
 
-	public @NonNull Tinternal getCompletePackage(@NonNull DomainPackage pivotPackage) {
+	public @NonNull Tinternal getCompletePackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage) {
 		Tinternal completePackage = null;
 		if (pivotPackage instanceof CompletePackageInternal) {
 			((CompletePackage)pivotPackage).assertSamePackage(pivotPackage);
@@ -137,10 +136,10 @@ public abstract class AbstractCompletePackages<Tinternal extends CompletePackage
 		else {
 			completePackage = (Tinternal)getCompleteModel().getCompleteURIs().getCompletePackage(pivotPackage);
 			if (completePackage == null) {
-				DomainPackage pivotPackageParent = pivotPackage.getOwningPackage();
+				org.eclipse.ocl.pivot.Package pivotPackageParent = pivotPackage.getOwningPackage();
 				if (pivotPackageParent == null) {
 					completePackage = getOwnedCompletePackage(pivotPackage);
-					completePackage.getPartialPackages().add((org.eclipse.ocl.pivot.Package)pivotPackage);		// FIXME cast
+					completePackage.getPartialPackages().add(pivotPackage);
 //					completePackage.addTrackedPackage(pivotPackage);
 					completePackage.assertSamePackage(pivotPackage);
 				}
@@ -167,7 +166,7 @@ public abstract class AbstractCompletePackages<Tinternal extends CompletePackage
 		return name2completePackage.get(name);
 	}
 	
-	protected abstract @NonNull Tinternal getOwnedCompletePackage(@NonNull DomainPackage pivotPackage);
+	protected abstract @NonNull Tinternal getOwnedCompletePackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage);
 
 	protected abstract @NonNull Iterable<org.eclipse.ocl.pivot.Package> getPartialPackages();
 

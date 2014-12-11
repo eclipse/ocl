@@ -20,7 +20,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
@@ -345,7 +344,7 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 			return orphanCompletePackage.getCompleteClass((CollectionType)pivotType);
 		}
 		else if (pivotType instanceof DomainClass) {
-			DomainPackage pivotPackage = ((DomainClass)pivotType).getOwningPackage();
+			org.eclipse.ocl.pivot.Package pivotPackage = ((DomainClass)pivotType).getOwningPackage();
 			if (pivotPackage == null) {
 				throw new IllegalStateException("type has no package");
 			}
@@ -383,14 +382,14 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 	}
 
 	@Override
-	public DomainPackage getNestedPackage(@NonNull DomainPackage domainPackage, @NonNull String name) {
+	public org.eclipse.ocl.pivot.Package getNestedPackage(@NonNull org.eclipse.ocl.pivot.Package domainPackage, @NonNull String name) {
 		CompletePackage completePackage = metaModelManager.getCompletePackage(domainPackage);
 		CompletePackage memberPackage = completePackage.getOwnedCompletePackage(name);
 		return memberPackage != null ? memberPackage.getPivotPackage() : null;
 	}
 
 	@Override
-	public org.eclipse.ocl.pivot.Class getNestedType(@NonNull DomainPackage domainPackage, @NonNull String name) {
+	public org.eclipse.ocl.pivot.Class getNestedType(@NonNull org.eclipse.ocl.pivot.Package domainPackage, @NonNull String name) {
 		CompletePackage completePackage = metaModelManager.getCompletePackage(domainPackage);
 		return completePackage.getMemberType(name);
 	}

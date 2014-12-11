@@ -41,7 +41,7 @@ public interface DomainClass extends DomainType
 
 	@NonNull List<Property> getOwnedProperties();
 	
-	DomainPackage getOwningPackage();
+	org.eclipse.ocl.pivot.Package getOwningPackage();
 
 	@NonNull List<org.eclipse.ocl.pivot.Class> getSuperClasses();
 

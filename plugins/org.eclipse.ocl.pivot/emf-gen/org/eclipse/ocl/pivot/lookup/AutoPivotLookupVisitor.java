@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.ClassId;
@@ -786,7 +785,7 @@ public class AutoPivotLookupVisitor
      */
     @Override
     public @Nullable /*@NonInvalid*/ Environment visitLibrary(final @NonNull /*@NonInvalid*/ Library element_7) {
-        final @Nullable /*@Thrown*/ List<? extends DomainPackage> ownedPackages = element_7.getOwnedPackages();
+        final @Nullable /*@Thrown*/ List<? extends org.eclipse.ocl.pivot.Package> ownedPackages = element_7.getOwnedPackages();
         assert ownedPackages != null;
         final @NonNull /*@Thrown*/ Environment addElements = context.addElements(ownedPackages);
         final @Nullable /*@Thrown*/ List<? extends DomainClass> ownedClasses = element_7.getOwnedClasses();
@@ -823,7 +822,7 @@ public class AutoPivotLookupVisitor
         }
         final @NonNull /*@Thrown*/ List<Import> imports = element_8.getImports();
         final @NonNull /*@Thrown*/ Environment addElements = parentEnv.addElements(imports);
-        final @Nullable /*@Thrown*/ List<? extends DomainPackage> ownedPackages = element_8.getOwnedPackages();
+        final @Nullable /*@Thrown*/ List<? extends org.eclipse.ocl.pivot.Package> ownedPackages = element_8.getOwnedPackages();
         assert ownedPackages != null;
         final @NonNull /*@Thrown*/ Environment addElements_0 = addElements.addElements(ownedPackages);
         return addElements_0;
@@ -886,7 +885,7 @@ public class AutoPivotLookupVisitor
      */
     @Override
     public @Nullable /*@NonInvalid*/ Environment visitPackage(final @NonNull /*@NonInvalid*/ Package element_10) {
-        final @Nullable /*@Thrown*/ List<? extends DomainPackage> ownedPackages = element_10.getOwnedPackages();
+        final @Nullable /*@Thrown*/ List<? extends org.eclipse.ocl.pivot.Package> ownedPackages = element_10.getOwnedPackages();
         assert ownedPackages != null;
         final @NonNull /*@Thrown*/ Environment addElements = context.addElements(ownedPackages);
         final @Nullable /*@Thrown*/ List<? extends DomainClass> ownedClasses = element_10.getOwnedClasses();

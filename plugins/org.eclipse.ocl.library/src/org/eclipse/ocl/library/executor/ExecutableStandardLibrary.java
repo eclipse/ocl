@@ -20,7 +20,6 @@ import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.TemplateParameterId;
 import org.eclipse.ocl.domain.ids.TupleTypeId;
@@ -117,12 +116,12 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 	}
 
 	@Override
-	public @Nullable DomainPackage getNestedPackage(@NonNull DomainPackage parentPackage, @NonNull String name) {
+	public @Nullable org.eclipse.ocl.pivot.Package getNestedPackage(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name) {
 		return DomainUtil.getNamedElement(parentPackage.getOwnedPackages(), name);
 	}
 
 	@Override
-	public @Nullable DomainClass getNestedType(@NonNull DomainPackage parentPackage, @NonNull String name) {
+	public @Nullable DomainClass getNestedType(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name) {
 		return DomainUtil.getNamedElement(parentPackage.getOwnedClasses(), name);
 	}
 

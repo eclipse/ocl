@@ -19,7 +19,6 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.DataType;
@@ -160,11 +159,11 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 				AliasAnalysis adapter = resource != null ? AliasAnalysis.getAdapter(resource) : null;
 				if (adapter != null) {
 					for (@SuppressWarnings("null")@NonNull CompletePackage aliased : adapter.getAliases()) {
-						DomainPackage primary = aliased.getPivotPackage();
-						if (primary instanceof Namespace) {
-							String alias = adapter.getAlias((Namespace) primary, null);
+						org.eclipse.ocl.pivot.Package primary = aliased.getPivotPackage();
+						if (primary != null) {
+							String alias = adapter.getAlias(primary, null);
 							if (alias != null) {
-								prettyPrintOptions.addAliases((Namespace) primary, alias);
+								prettyPrintOptions.addAliases(primary, alias);
 							}
 						}
 					}

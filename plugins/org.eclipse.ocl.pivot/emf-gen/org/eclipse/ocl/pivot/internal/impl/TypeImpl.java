@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
@@ -447,7 +446,7 @@ public abstract class TypeImpl
 		throw new UnsupportedOperationException();		// FIXME
 	}
 
-	public DomainPackage getPackage() {
+	public org.eclipse.ocl.pivot.Package getPackage() {
 		throw new UnsupportedOperationException();		// FIXME
 	}
 

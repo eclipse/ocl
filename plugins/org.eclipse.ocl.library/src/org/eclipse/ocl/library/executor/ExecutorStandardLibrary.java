@@ -23,7 +23,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.library.ecore.EcoreExecutorPackage;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
@@ -32,7 +31,7 @@ import org.eclipse.ocl.pivot.Operation;
 public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 {
 	private @NonNull Map<String, WeakReference<EcoreExecutorPackage>> ePackageMap = new WeakHashMap<String, WeakReference<EcoreExecutorPackage>>();
-	private Map<DomainPackage, WeakReference<DomainReflectivePackage>> domainPackageMap = null;
+	private Map<org.eclipse.ocl.pivot.Package, WeakReference<DomainReflectivePackage>> domainPackageMap = null;
 	private /*@LazyNonNull*/ Map<EcoreExecutorPackage, List<EcoreExecutorPackage>> extensions = null;
 	private /*@LazyNonNull*/ DomainClass classType = null;
 	private /*@LazyNonNull*/ DomainClass enumerationType = null;
@@ -130,8 +129,8 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 				return containerType.getInheritance(this);
 			}
 		}
-		DomainPackage domainPackage = domainClass.getOwningPackage();
-		Map<DomainPackage, WeakReference<DomainReflectivePackage>> domainPackageMap2;
+		org.eclipse.ocl.pivot.Package domainPackage = domainClass.getOwningPackage();
+		Map<org.eclipse.ocl.pivot.Package, WeakReference<DomainReflectivePackage>> domainPackageMap2;
 		synchronized (this) {
 			String nsURI = domainPackage.getURI();
 			EcoreExecutorPackage ecoreExecutorPackage = nsURI != null ? weakGet(ePackageMap, nsURI) : null;
@@ -155,7 +154,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 			}
 			domainPackageMap2 = domainPackageMap;
 			if (domainPackageMap2 == null) {
-				domainPackageMap2 = domainPackageMap = new WeakHashMap<DomainPackage, WeakReference<DomainReflectivePackage>>();
+				domainPackageMap2 = domainPackageMap = new WeakHashMap<org.eclipse.ocl.pivot.Package, WeakReference<DomainReflectivePackage>>();
 			}
 		}
 		synchronized (domainPackageMap2) {
@@ -169,7 +168,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 	}
 
 	@Override
-	public @Nullable DomainClass getNestedType(@NonNull DomainPackage parentPackage, @NonNull String name) {
+	public @Nullable DomainClass getNestedType(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name) {
 		DomainClass nestedType = super.getNestedType(parentPackage, name);
 		if (nestedType != null) {
 			return nestedType;
@@ -190,7 +189,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 	}
 
 	@Override
-	public DomainPackage getNsURIPackage(@NonNull String nsURI) {
+	public org.eclipse.ocl.pivot.Package getNsURIPackage(@NonNull String nsURI) {
 		WeakReference<EcoreExecutorPackage> weakReference = ePackageMap.get(nsURI);
 		if (weakReference == null) {
 			return null;

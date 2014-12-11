@@ -22,7 +22,6 @@ import org.eclipse.ocl.domain.compatibility.UML_4_2.UMLUtil;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.ids.EnumerationLiteralId;
 import org.eclipse.ocl.domain.ids.NsURIPackageId;
 import org.eclipse.ocl.domain.ids.RootPackageId;
@@ -100,9 +99,9 @@ public class PivotIdResolver extends AbstractIdResolver
 	}
 
 	@Override
-	public @NonNull DomainPackage visitRootPackageId(@NonNull RootPackageId id) {
+	public @NonNull org.eclipse.ocl.pivot.Package visitRootPackageId(@NonNull RootPackageId id) {
 		String completeURIorName = id.getName();
-		DomainPackage rootPackage = standardLibrary.getRootPackage(completeURIorName);
+		org.eclipse.ocl.pivot.Package rootPackage = standardLibrary.getRootPackage(completeURIorName);
 		if (rootPackage == null) {
 			Orphanage orphanage = metaModelManager.getCompleteModel().getOrphanage();
 			rootPackage = DomainUtil.getNamedElement(orphanage.getOwnedPackages(), completeURIorName);
@@ -171,7 +170,7 @@ public class PivotIdResolver extends AbstractIdResolver
 			// ?? getPivotOf to discover the pivoted type name, then getPivotType for the pivoted name
 			String typeName = eClassifier.getName();
 			if (typeName != null) {
-				DomainPackage asMetamodel = metaModelManager.getASMetamodel();
+				org.eclipse.ocl.pivot.Package asMetamodel = metaModelManager.getASMetamodel();
 				if (asMetamodel != null) {
 					CompletePackage completePackage = metaModelManager.getCompletePackage(asMetamodel);
 					org.eclipse.ocl.pivot.Class pivotType = completePackage.getMemberType(typeName);
@@ -206,7 +205,7 @@ public class PivotIdResolver extends AbstractIdResolver
 		if (ePackage == PivotPackage.eINSTANCE){
 			String typeName = eClassifier.getName();
 			if (typeName != null) {
-				DomainPackage asMetamodel = metaModelManager.getASMetamodel();
+				org.eclipse.ocl.pivot.Package asMetamodel = metaModelManager.getASMetamodel();
 				if (asMetamodel != null) {
 					CompletePackage completePackage = metaModelManager.getCompletePackage(asMetamodel);
 					org.eclipse.ocl.pivot.Class pivotType = completePackage.getMemberType(typeName);
@@ -251,12 +250,12 @@ public class PivotIdResolver extends AbstractIdResolver
 	}
 
 	@Override
-	public @NonNull DomainPackage visitNsURIPackageId(@NonNull NsURIPackageId id) {
+	public @NonNull org.eclipse.ocl.pivot.Package visitNsURIPackageId(@NonNull NsURIPackageId id) {
 		String nsURI = id.getNsURI();
-		DomainPackage nsURIPackage = standardLibrary.getNsURIPackage(nsURI);
+		org.eclipse.ocl.pivot.Package nsURIPackage = standardLibrary.getNsURIPackage(nsURI);
 		if (nsURIPackage == null) {
 			metaModelManager.setAutoLoadASMetamodel(true);
-			DomainPackage asMetamodel = metaModelManager.getASMetamodel();
+			org.eclipse.ocl.pivot.Package asMetamodel = metaModelManager.getASMetamodel();
 			if ((asMetamodel != null) && PivotPackage.eNS_URI.equals(nsURI)) {
 				return asMetamodel;
 			}

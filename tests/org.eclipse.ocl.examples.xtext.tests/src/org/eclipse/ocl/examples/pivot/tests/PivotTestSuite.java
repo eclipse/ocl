@@ -47,7 +47,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.common.CodeGenHelper;
 import org.eclipse.ocl.examples.codegen.dynamic.JavaGenModelCodeGenHelper;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
@@ -1179,16 +1178,17 @@ public abstract class PivotTestSuite extends PivotTestCase
 	}
 
 	protected @Nullable Object evaluate(@NonNull OCLHelper aHelper, @Nullable Object context, @NonNull String expression) throws Exception {
-		org.eclipse.ocl.pivot.Class classContext = /*context instanceof ElementExtension ? ((ElementExtension)context).getStereotype() :*/ metaModelManager.getType(idResolver.getStaticTypeOf(context));
+		MetaModelManager metaModelManager2 = metaModelManager;
+		org.eclipse.ocl.pivot.Class classContext = /*context instanceof ElementExtension ? ((ElementExtension)context).getStereotype() :*/ metaModelManager2.getType(idResolver.getStaticTypeOf(context));
 		aHelper.setContext(classContext);
 //		ExpressionInOCL query = aHelper.createQuery(expression);
-		ParserContext parserContext = new ClassContext(metaModelManager, null, classContext, (context instanceof Type) && !(context instanceof ElementExtension) ? (Type)context : null);
+		ParserContext parserContext = new ClassContext(metaModelManager2, null, classContext, (context instanceof Type) && !(context instanceof ElementExtension) ? (Type)context : null);
 		ExpressionInOCL query = parserContext.parse(classContext, expression);
 		assertNoValidationErrors(expression, query);
         try {
         	return evaluate(query, context);
 		} finally {
-			metaModelManager.getASResourceSet().getResources().remove(query.eResource());
+			metaModelManager2.getASResourceSet().getResources().remove(query.eResource());
 		}
     }
 
@@ -1341,7 +1341,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		return getStandardLibrary().getIntegerType();
 	}
 
-	protected @NonNull DomainPackage getUMLMetamodel() {
+	protected @NonNull org.eclipse.ocl.pivot.Package getUMLMetamodel() {
 		return DomainUtil.nonNullState(metaModelManager.getASMetamodel());
 	}
 	

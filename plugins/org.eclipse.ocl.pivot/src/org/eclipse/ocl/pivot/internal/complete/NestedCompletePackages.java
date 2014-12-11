@@ -11,7 +11,6 @@
 package org.eclipse.ocl.pivot.internal.complete;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.pivot.NestedCompletePackage;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
@@ -28,7 +27,7 @@ public class NestedCompletePackages extends AbstractCompletePackages<NestedCompl
 	}
 
 	@Override
-	public @NonNull NestedCompletePackageInternal createCompletePackage(@NonNull DomainPackage partialPackage) {
+	public @NonNull NestedCompletePackageInternal createCompletePackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
 		NestedCompletePackageInternal completePackage = (NestedCompletePackageInternal) PivotFactory.eINSTANCE.createNestedCompletePackage();
 		completePackage.init(partialPackage.getName(), partialPackage.getNsPrefix(), partialPackage.getURI(), partialPackage.getPackageId());
 		return completePackage;
@@ -55,12 +54,12 @@ public class NestedCompletePackages extends AbstractCompletePackages<NestedCompl
 	}
 
 	@Override
-	public @NonNull NestedCompletePackageInternal getOwnedCompletePackage(@NonNull DomainPackage partialPackage) {
+	public @NonNull NestedCompletePackageInternal getOwnedCompletePackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
 		String name = partialPackage.getName();
 		NestedCompletePackageInternal completePackage = super.getOwnedCompletePackage(name);
 		if (completePackage == null) {
-			completePackage = createCompletePackage(partialPackage);			
-			completePackage.getPartialPackages().add((org.eclipse.ocl.pivot.Package)partialPackage);		// FIXME cast
+			completePackage = createCompletePackage(partialPackage);
+			completePackage.getPartialPackages().add(partialPackage);
 			add(completePackage);
 		}
 		return completePackage;

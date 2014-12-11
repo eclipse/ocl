@@ -18,7 +18,6 @@ import org.eclipse.ocl.domain.elements.AbstractExecutorClass;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
@@ -32,7 +31,6 @@ import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Operation;
-import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateParameter;
 
@@ -55,7 +53,7 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Doma
 	 */
 	private int[] indexes = null;
 	
-	protected final @NonNull DomainPackage evaluationPackage;
+	protected final @NonNull org.eclipse.ocl.pivot.Package evaluationPackage;
 	private final @NonNull DomainTypeParameters typeParameters;
 	private /*@LazyNonNull*/ DomainProperties allProperties;
 	
@@ -172,7 +170,7 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Doma
 	
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Package getOwningPackage() {
-		return (Package) evaluationPackage;
+		return evaluationPackage;
 	}
 
 	@Override

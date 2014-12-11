@@ -35,7 +35,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainParameterTypes;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.Nameable;
@@ -645,7 +644,7 @@ public class OCLinEcoreTablesUtils
 	
 	protected @NonNull Set<? extends org.eclipse.ocl.pivot.Class> getActiveTypes(@NonNull org.eclipse.ocl.pivot.Package pPackage) {
 		Package oclstdlibPackage = standardLibrary.getBooleanType().getOwningPackage();
-		DomainPackage pivotMetaModel = metaModelManager.getASMetamodel();
+		org.eclipse.ocl.pivot.Package pivotMetaModel = metaModelManager.getASMetamodel();
 		Type elementType = metaModelManager.getPivotType("Element");
 		if (oclstdlibPackage == pPackage) {
 			VoidType oclVoidType = metaModelManager.getStandardLibrary().getOclVoidType();
@@ -667,7 +666,7 @@ public class OCLinEcoreTablesUtils
 				Type myType = null;
 				CompleteClass completeClass = metaModelManager.getCompleteClass(type);
 				for (org.eclipse.ocl.pivot.Class partialClass : completeClass.getPartialClasses()) {
-					DomainPackage partialPackage = partialClass.getOwningPackage();
+					org.eclipse.ocl.pivot.Package partialPackage = partialClass.getOwningPackage();
 					if (partialPackage == oclstdlibPackage) {
 						if ((elementType != null) && !completeClass.conformsTo(elementType)) {
 //							System.out.println("Prune " + type.getName());
@@ -736,7 +735,7 @@ public class OCLinEcoreTablesUtils
 	
 	protected @Nullable org.eclipse.ocl.pivot.Package getExtendedPackage(@NonNull org.eclipse.ocl.pivot.Package pPackage) {
 		Package oclstdlibPackage = standardLibrary.getBooleanType().getOwningPackage();
-		DomainPackage pivotMetaModel = metaModelManager.getASMetamodel();
+		org.eclipse.ocl.pivot.Package pivotMetaModel = metaModelManager.getASMetamodel();
 		if (oclstdlibPackage == pPackage) {
 			return null;
 		}
@@ -753,13 +752,13 @@ public class OCLinEcoreTablesUtils
 	}
 	
 	protected @Nullable GenPackage getGenPackage(@NonNull DomainClass type) {
-		DomainPackage pPackage = type.getOwningPackage();
+		org.eclipse.ocl.pivot.Package pPackage = type.getOwningPackage();
 		assert pPackage != null;
 		Package oclstdlibPackage = standardLibrary.getBooleanType().getOwningPackage();
 		org.eclipse.ocl.pivot.Class elementType = metaModelManager.getPivotType("Element");
 		if ((elementType != null) && (oclstdlibPackage != null)) {
 			VoidType oclVoidType = metaModelManager.getStandardLibrary().getOclVoidType();
-			DomainPackage pivotMetaModel = elementType.getOwningPackage();
+			org.eclipse.ocl.pivot.Package pivotMetaModel = elementType.getOwningPackage();
 			assert pivotMetaModel != null;
 			if (oclstdlibPackage == pPackage) {
 				CompleteClass completeClass = metaModelManager.getCompleteClass(type);
@@ -773,7 +772,7 @@ public class OCLinEcoreTablesUtils
 			else if (pivotMetaModel == pPackage) {
 				CompleteClass completeClass = metaModelManager.getCompleteClass(type);
 				for (org.eclipse.ocl.pivot.Class partialClass : completeClass.getPartialClasses()) {
-					DomainPackage partialPackage = partialClass.getOwningPackage();
+					org.eclipse.ocl.pivot.Package partialPackage = partialClass.getOwningPackage();
 					if (partialPackage == oclstdlibPackage) {
 						if (!isElementType(completeClass, elementType, oclVoidType)) {
 							return getGenPackage(oclstdlibPackage);
@@ -786,7 +785,7 @@ public class OCLinEcoreTablesUtils
 		return getGenPackage(pPackage);
 	}
 	
-	protected @Nullable GenPackage getGenPackage(@NonNull DomainPackage asPackage) {
+	protected @Nullable GenPackage getGenPackage(@NonNull org.eclipse.ocl.pivot.Package asPackage) {
 		EPackage firstEPackage = genPackage.getEcorePackage();
 		if (firstEPackage.getName().equals(asPackage.getName())) {
 			return genPackage;
@@ -802,7 +801,7 @@ public class OCLinEcoreTablesUtils
 		Resource genModelResource = genPackage.eResource();
 		ResourceSet genModelResourceSet = genModelResource.getResourceSet();
 		assert genModelResourceSet != null;
-		DomainPackage metaModelPackage = metaModelManager.getASMetamodel();
+		org.eclipse.ocl.pivot.Package metaModelPackage = metaModelManager.getASMetamodel();
 		org.eclipse.ocl.pivot.Package libraryPackage = metaModelManager.getLibraries().get(0);
 		if (asPackage == libraryPackage) {
 			GenPackage libraryGenPackage = getLibraryGenPackage(usedGenPackages);
@@ -957,7 +956,7 @@ public class OCLinEcoreTablesUtils
 		org.eclipse.ocl.pivot.Package thisPackage = getPivotPackage(genPackage);
 		if (thisPackage != null) {
 			PrimitiveType booleanType = standardLibrary.getBooleanType();
-			DomainPackage libraryPackage = booleanType.getOwningPackage();
+			org.eclipse.ocl.pivot.Package libraryPackage = booleanType.getOwningPackage();
 			if (libraryPackage != null) {
 				GenPackage gPackage = getGenPackage(libraryPackage);
 				if (gPackage != null) {
@@ -967,7 +966,7 @@ public class OCLinEcoreTablesUtils
 		}
 /*		TypeServer typeServer = metaModelManager.getTypeServer(booleanType);
 		for (DomainType type : typeServer.getPartialTypes()) {
-			DomainPackage asPackage = type.getPackage();
+			org.eclipse.ocl.pivot.Package asPackage = type.getPackage();
 			if ((asPackage != null) && (asPackage != thisPackage)) {
 				GenPackage gPackage = getGenPackage(genPackage, asPackage);
 				if (gPackage != null) {

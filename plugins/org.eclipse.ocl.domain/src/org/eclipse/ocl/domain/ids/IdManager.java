@@ -28,7 +28,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.DomainConstants;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.ids.impl.BindingsIdImpl;
@@ -183,7 +182,7 @@ public final class IdManager
 	public static @NonNull ClassId getClassId(@NonNull DomainClass aType) {
 		String name = aType.getName();
 		assert name != null;
-		DomainPackage parentPackage = aType.getOwningPackage();
+		org.eclipse.ocl.pivot.Package parentPackage = aType.getOwningPackage();
 		if (parentPackage != null) {
 			DomainTypeParameters typeParameters = aType.getTypeParameters();
 			PackageId packageId = parentPackage.getPackageId();
@@ -207,7 +206,7 @@ public final class IdManager
 	public static @NonNull DataTypeId getDataTypeId(@NonNull DomainClass aType) {
 		String name = aType.getName();
 		assert name != null;
-		DomainPackage parentPackage = aType.getOwningPackage();
+		org.eclipse.ocl.pivot.Package parentPackage = aType.getOwningPackage();
 		if (parentPackage != null) {
 			DomainTypeParameters typeParameters = aType.getTypeParameters();
 			PackageId packageId = parentPackage.getPackageId();
@@ -224,7 +223,7 @@ public final class IdManager
 	public static @NonNull EnumerationId getEnumerationId(@NonNull Enumeration anEnumeration) {
 		String name = anEnumeration.getName();
 		assert name != null;
-		DomainPackage parentPackage = anEnumeration.getOwningPackage();
+		org.eclipse.ocl.pivot.Package parentPackage = anEnumeration.getOwningPackage();
 		assert parentPackage != null;
 		return parentPackage.getPackageId().getEnumerationId(name);
 	}
@@ -354,14 +353,14 @@ public final class IdManager
     /**
      * Return the typeId for aPackage.
      */
-	public static @NonNull PackageId getPackageId(@NonNull DomainPackage aPackage) {
+	public static @NonNull PackageId getPackageId(@NonNull org.eclipse.ocl.pivot.Package aPackage) {
 		String nsURI = aPackage.getURI();
 		if (nsURI != null) {
 			return getNsURIPackageId(nsURI, aPackage.getNsPrefix(), aPackage.getEPackage());
 		}
 		String name = aPackage.getName();
 		assert name != null;
-		DomainPackage parentPackage = aPackage.getOwningPackage();
+		org.eclipse.ocl.pivot.Package parentPackage = aPackage.getOwningPackage();
 		if (parentPackage != null) {
 			return parentPackage.getPackageId().getNestedPackageId(name);
 		}

@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.domain.values.IntegerValue;
@@ -93,9 +92,9 @@ public class OrphanCompletePackageImpl extends RootCompletePackageImpl implement
 	}
 
 	@Override
-	public void assertSamePackage(@Nullable DomainPackage domainPackage) {
+	public void assertSamePackage(@Nullable org.eclipse.ocl.pivot.Package domainPackage) {
 		assert domainPackage != null;
-		DomainPackage parentPackage = domainPackage.getOwningPackage();
+		org.eclipse.ocl.pivot.Package parentPackage = domainPackage.getOwningPackage();
 		assert parentPackage == null;
 		assert Orphanage.isTypeOrphanage(domainPackage);
 	}

@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.evaluation.DomainModelManager;
@@ -107,12 +106,12 @@ public class EcoreExecutorManager extends ExecutorManager
 					roots = resource.getContents();
 				}
 			}
-			DomainPackage root = standardLibrary.getOclAnyType().getOwningPackage();
-			if (root instanceof EObject) {
+			org.eclipse.ocl.pivot.Package root = standardLibrary.getOclAnyType().getOwningPackage();
+			if (root != null) {
 				if (roots == null) {
 					roots = new ArrayList<EObject>();
 				}
-				roots.add((EObject) root);
+				roots.add(root);
 			}
 			if (roots == null) {
 				roots = Collections.singletonList(rootContainer);

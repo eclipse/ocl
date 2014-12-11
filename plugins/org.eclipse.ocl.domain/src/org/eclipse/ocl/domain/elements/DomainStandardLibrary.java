@@ -101,7 +101,7 @@ public interface DomainStandardLibrary
      */
 	DomainType getMetaType(@NonNull DomainType type);
 
-    DomainPackage getNsURIPackage(@NonNull String nsURI);
+    org.eclipse.ocl.pivot.Package getNsURIPackage(@NonNull String nsURI);
 
 	/**
      * Obtains the single instance of the AnyType metatype, named
@@ -207,7 +207,7 @@ public interface DomainStandardLibrary
      */
 	@NonNull DomainClass getRealType();
 
-	DomainPackage getRootPackage(@NonNull String name);
+	org.eclipse.ocl.pivot.Package getRootPackage(@NonNull String name);
 	
     /**
      * Obtains the generic instance of the SequenceType metatype, named

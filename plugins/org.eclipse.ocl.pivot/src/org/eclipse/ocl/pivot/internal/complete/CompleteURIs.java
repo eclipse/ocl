@@ -18,7 +18,6 @@ import java.util.Set;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.DomainConstants;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.pivot.CompletePackage;
@@ -141,7 +140,7 @@ public class CompleteURIs
 		packageURIs.add(packageURI);
 	}
 
-	public @Nullable CompletePackageInternal getCompletePackage(@NonNull DomainPackage pivotPackage) {
+	public @Nullable CompletePackageInternal getCompletePackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage) {
 		String packageURI = pivotPackage.getURI();
 		if (packageURI == null) {
 			return null;

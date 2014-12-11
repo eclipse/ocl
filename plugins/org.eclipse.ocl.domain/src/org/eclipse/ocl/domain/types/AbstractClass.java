@@ -18,7 +18,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.values.Value;
@@ -69,7 +68,7 @@ public abstract class AbstractClass extends AbstractType implements DomainClass	
 	}
 
 	@Override
-	public DomainPackage getOwningPackage() {
+	public org.eclipse.ocl.pivot.Package getOwningPackage() {
 		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
 	}
 

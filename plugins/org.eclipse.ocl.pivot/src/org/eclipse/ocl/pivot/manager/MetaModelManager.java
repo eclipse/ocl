@@ -51,7 +51,6 @@ import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainNamespace;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.domain.ids.IdManager;
@@ -293,7 +292,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 	 */
 	private ImplementationManager implementationManager = null;			// Lazily created
 
-	protected DomainPackage asMetamodel = null;
+	protected org.eclipse.ocl.pivot.Package asMetamodel = null;
 
 	private boolean libraryLoadInProgress = false;
 
@@ -802,7 +801,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 			if (superType != null) {
 				for (DomainClass partialSuperType : superType.getPartialClasses()) {
 					if (partialSuperType instanceof org.eclipse.ocl.pivot.Class) {
-						DomainPackage partialPackage = partialSuperType.getOwningPackage();
+						org.eclipse.ocl.pivot.Package partialPackage = partialSuperType.getOwningPackage();
 						if (!(partialPackage instanceof PackageImpl) || !((PackageImpl)partialPackage).isIgnoreInvariants()) {
 							knownInvariants.addAll(((org.eclipse.ocl.pivot.Class)partialSuperType).getOwnedInvariants());
 						}
@@ -824,7 +823,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 	}
 
 /*	@Override
-	public @NonNull Iterable<DomainPackage> getAllPackages() {
+	public @NonNull Iterable<org.eclipse.ocl.pivot.Package> getAllPackages() {
 		if (!libraryLoadInProgress && (asMetamodel == null))  {
 			getASMetamodel();
 		}
@@ -882,7 +881,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return filter;
 	}
 	
-	public @Nullable DomainPackage getASMetamodel() {
+	public @Nullable org.eclipse.ocl.pivot.Package getASMetamodel() {
 		if ((asMetamodel == null) && autoLoadASMetamodel) {
 			org.eclipse.ocl.pivot.Package stdlibPackage = null;
 			standardLibrary.getOclAnyType();				// Load a default library if necessary.
@@ -993,7 +992,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return completeModel;
 	}
 	
-	public @NonNull CompletePackage getCompletePackage(@NonNull DomainPackage asPackage) {
+	public @NonNull CompletePackage getCompletePackage(@NonNull org.eclipse.ocl.pivot.Package asPackage) {
 		if (!libraryLoadInProgress && asMetamodel == null) {
 			getASMetamodel();
 		}
@@ -1289,7 +1288,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return new CompleteTypeOperationsIterable(getAllTypes(type), selectStatic);
 	}
 
-	public @NonNull Iterable<? extends CompletePackage> getMemberPackages(@NonNull DomainPackage pkg) {
+	public @NonNull Iterable<? extends CompletePackage> getMemberPackages(@NonNull org.eclipse.ocl.pivot.Package pkg) {
 		return getCompletePackage(pkg).getOwnedCompletePackages();
 	}
 
@@ -1341,7 +1340,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return standardLibrary.getClassType();
 	}
 
-	public @NonNull PackageId getMetapackageId(@NonNull DomainPackage dPackage) {
+	public @NonNull PackageId getMetapackageId(@NonNull org.eclipse.ocl.pivot.Package dPackage) {
 		if (dPackage instanceof PivotObjectImpl) {
 			EObject eTarget = ((PivotObjectImpl)dPackage).getETarget();
 			if (eTarget != null) {
@@ -1559,7 +1558,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return null;
 	}
 
-	public @NonNull Iterable<? extends DomainPackage> getPartialPackages(@NonNull DomainPackage pkg, boolean loadASMetamodelFirst) {
+	public @NonNull Iterable<? extends org.eclipse.ocl.pivot.Package> getPartialPackages(@NonNull org.eclipse.ocl.pivot.Package pkg, boolean loadASMetamodelFirst) {
 		if (!libraryLoadInProgress && loadASMetamodelFirst && (asMetamodel == null)) {
 			getASMetamodel();
 		}
@@ -1639,8 +1638,8 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		if (element instanceof Operation) {
 			return (T) getPrimaryOperation((Operation)element);
 		}
-		else if (element instanceof DomainPackage) {
-			return (T) getPrimaryPackage((DomainPackage)element);
+		else if (element instanceof org.eclipse.ocl.pivot.Package) {
+			return (T) getPrimaryPackage((org.eclipse.ocl.pivot.Package)element);
 		}
 		else if (element instanceof Property) {
 			return (T) getPrimaryProperty((Property)element);
@@ -1688,7 +1687,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 	/**
 	 * Lookup a primary sub-package.
 	 *
-	public @Nullable PackageServer getPrimaryPackage(@NonNull DomainPackage parentPackage, @NonNull String subPackageName) {
+	public @Nullable PackageServer getPrimaryPackage(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String subPackageName) {
 		PackageTracker packageTracker = packageManager.findPackageTracker(parentPackage);
 		if (packageTracker != null) {
 			return packageTracker.getPackageServer().getMemberPackage(subPackageName);
@@ -1698,7 +1697,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		}
 	} */
 
-	public @NonNull DomainPackage getPrimaryPackage(@NonNull DomainPackage aPackage) {
+	public @NonNull org.eclipse.ocl.pivot.Package getPrimaryPackage(@NonNull org.eclipse.ocl.pivot.Package aPackage) {
 		return DomainUtil.nonNullState(getCompletePackage(aPackage).getPivotPackage());
 	}
 
@@ -1886,7 +1885,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		}
 		CompleteClass completeClass = completeModel.getCompleteClass(dType);
 		return DomainUtil.nonNullState(completeClass.getPivotClass());
-/*		DomainPackage dPackage = dType.getOwningPackage();	// FIXME cast
+/*		org.eclipse.ocl.pivot.Package dPackage = dType.getOwningPackage();	// FIXME cast
 		if (dPackage != null) {
 			CompletePackage completePackage = getCompletePackage(dPackage);
 			org.eclipse.ocl.pivot.Class primaryType = completePackage.getMemberType(dType.getName());
@@ -1904,7 +1903,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		if (dType instanceof CompleteInheritanceImpl) {
 			return ((CompleteInheritanceImpl)dType).getCompleteClass().getPivotClass();
 		}
-		DomainPackage dPackage = ((DomainClass)dType).getOwningPackage();	// FIXME cast
+		org.eclipse.ocl.pivot.Package dPackage = ((DomainClass)dType).getOwningPackage();	// FIXME cast
 		if (dPackage != null) {
 			CompletePackage completePackage = getCompletePackage(dPackage);
 			org.eclipse.ocl.pivot.Class primaryType = completePackage.getMemberType(dType.getName());
@@ -1983,7 +1982,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 
 	public void installRoot(@NonNull Model pivotModel) {
 		completeModel.getPartialModels().add(pivotModel);
-		for (DomainPackage asPackage : pivotModel.getOwnedPackages()) {
+		for (org.eclipse.ocl.pivot.Package asPackage : pivotModel.getOwnedPackages()) {
 			if ((asPackage instanceof Library) && !asLibraries.contains(asPackage)) {
 				Library asLibrary = (Library)asPackage;
 				String uri = asLibrary.getURI();
@@ -2084,7 +2083,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 	 * @param asLibrary
 	 */
 	protected void loadASMetamodel(@NonNull org.eclipse.ocl.pivot.Package asLibrary) {
-		for (DomainPackage libPackage : getPartialPackages(asLibrary, false)) {
+		for (org.eclipse.ocl.pivot.Package libPackage : getPartialPackages(asLibrary, false)) {
 			if (DomainUtil.getNamedElement(libPackage.getOwnedClasses(), PivotPackage.Literals.ELEMENT.getName()) != null) {
 				setASMetamodel(libPackage);	// Custom meta-model
 				return;
@@ -2315,7 +2314,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		}
 	}
 
-	public void setASMetamodel(DomainPackage asPackage) {
+	public void setASMetamodel(org.eclipse.ocl.pivot.Package asPackage) {
 		asMetamodel = asPackage;
 		String uri = asMetamodel.getURI();
 		if (uri != null) {

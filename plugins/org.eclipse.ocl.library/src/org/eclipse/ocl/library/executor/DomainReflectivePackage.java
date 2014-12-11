@@ -14,7 +14,6 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
@@ -28,9 +27,9 @@ import org.eclipse.ocl.domain.utilities.DomainUtil;
 public class DomainReflectivePackage extends ReflectivePackage
 {
 	protected final @NonNull DomainStandardLibrary standardLibrary;
-	protected final @NonNull DomainPackage domainPackage;
+	protected final @NonNull org.eclipse.ocl.pivot.Package domainPackage;
 
-	public DomainReflectivePackage(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainPackage domainPackage) {
+	public DomainReflectivePackage(@NonNull DomainStandardLibrary standardLibrary, @NonNull org.eclipse.ocl.pivot.Package domainPackage) {
 		super(DomainUtil.nonNullPivot(domainPackage.getName()), domainPackage.getNsPrefix(), domainPackage.getURI(), domainPackage.getPackageId());
 		this.standardLibrary = standardLibrary;
 		this.domainPackage = domainPackage;

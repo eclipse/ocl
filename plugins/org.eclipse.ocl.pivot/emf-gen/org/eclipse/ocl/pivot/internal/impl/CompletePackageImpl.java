@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
@@ -344,7 +343,7 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 	}
 
 	@Override
-	public void assertSamePackage(DomainPackage pivotPackage) {
+	public void assertSamePackage(org.eclipse.ocl.pivot.Package pivotPackage) {
 		assert pivotPackage != null;
 		String typeBasedNsURI = pivotPackage.getURI();
 		String serverBasedNsURI = getURI();

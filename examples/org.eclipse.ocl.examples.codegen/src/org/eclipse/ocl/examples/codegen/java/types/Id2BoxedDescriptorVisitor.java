@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.ClassId;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
@@ -263,12 +262,12 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 
 	@Override
 	public @NonNull BoxedDescriptor visitNestedPackageId(@NonNull NestedPackageId id) {
-		return new SimpleValueDescriptor(id, DomainPackage.class);
+		return new SimpleValueDescriptor(id, org.eclipse.ocl.pivot.Package.class);
 	}
 
 	@Override
 	public @NonNull BoxedDescriptor visitNsURIPackageId(@NonNull NsURIPackageId id) {
-		return new SimpleValueDescriptor(id, DomainPackage.class);
+		return new SimpleValueDescriptor(id, org.eclipse.ocl.pivot.Package.class);
 	}
 
 	@Override
@@ -339,7 +338,7 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 
 	@Override
 	public @NonNull BoxedDescriptor visitRootPackageId(@NonNull RootPackageId id) {
-		return new SimpleValueDescriptor(id, DomainPackage.class);
+		return new SimpleValueDescriptor(id, org.eclipse.ocl.pivot.Package.class);
 	}
 
 	@Override

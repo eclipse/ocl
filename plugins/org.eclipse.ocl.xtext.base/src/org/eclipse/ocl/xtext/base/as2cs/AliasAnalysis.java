@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainNamedElement;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Element;
@@ -190,8 +189,8 @@ public class AliasAnalysis extends AdapterImpl
 					if (eObject instanceof CompletePackage) {
 						;
 					}
-					else if (eObject instanceof DomainPackage) {
-						domainNamedElement = metaModelManager.getCompletePackage((DomainPackage)eObject);
+					else if (eObject instanceof org.eclipse.ocl.pivot.Package) {
+						domainNamedElement = metaModelManager.getCompletePackage((org.eclipse.ocl.pivot.Package)eObject);
 					}
 					else {
 //						domainNamedElement = metaModelManager.getPrimaryElement((NamedElement)eObject);
@@ -248,8 +247,8 @@ public class AliasAnalysis extends AdapterImpl
 		if (eObject2 instanceof Pivotable) {
 			eObject2 = ((Pivotable)eObject2).getPivot();
 		}
-		if (eObject2 instanceof DomainPackage) {
-			CompletePackage completePackage = metaModelManager.getCompletePackage((DomainPackage)eObject2);
+		if (eObject2 instanceof org.eclipse.ocl.pivot.Package) {
+			CompletePackage completePackage = metaModelManager.getCompletePackage((org.eclipse.ocl.pivot.Package)eObject2);
 			String alias = allAliases.get(completePackage);
 			if (alias != null) {
 				return alias;

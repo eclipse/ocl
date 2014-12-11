@@ -21,7 +21,6 @@ import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainCompletePackage;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.PrimitiveTypeId;
@@ -112,7 +111,7 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 	}
 
 	@Override
-	public @Nullable DomainPackage getNsURIPackage(@NonNull String nsURI) {
+	public @Nullable org.eclipse.ocl.pivot.Package getNsURIPackage(@NonNull String nsURI) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -154,7 +153,7 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 	}
 
 	@Override
-	public DomainPackage getRootPackage(@NonNull String name) {
+	public org.eclipse.ocl.pivot.Package getRootPackage(@NonNull String name) {
 		throw new UnsupportedOperationException();
 	}
 	

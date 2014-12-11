@@ -17,7 +17,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.library.LibraryConstants;
@@ -39,7 +38,7 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 
 	protected final @NonNull MetaModelManager metaModelManager;
 	private Map<DomainType, org.eclipse.ocl.pivot.Class> typeMap = null;
-	private Map<DomainPackage, org.eclipse.ocl.pivot.Package> packageMap = null;
+	private Map<org.eclipse.ocl.pivot.Package, org.eclipse.ocl.pivot.Package> packageMap = null;
 	
 //	public PivotExecutorStandardLibrary(MetaModelManager metaModelManager, String stdlibURI) {
 //		this.metaModelManager = metaModelManager;
@@ -59,7 +58,7 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 //		return new PivotEcoreExecutorManager(contextObject, contextMap, this, getMetaModelManager());
 //	}
 
-	protected @NonNull org.eclipse.ocl.pivot.Package createPackage(@NonNull DomainPackage domainPackage) {
+	protected @NonNull org.eclipse.ocl.pivot.Package createPackage(@NonNull org.eclipse.ocl.pivot.Package domainPackage) {
 		org.eclipse.ocl.pivot.Package pivotPackage = PivotFactory.eINSTANCE.createPackage();
 		pivotPackage.setName(domainPackage.getName());
 		pivotPackage.setURI(domainPackage.getURI());
@@ -124,10 +123,10 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 			}
 		}
 		if (packageMap == null) {
-			packageMap = new HashMap<DomainPackage, org.eclipse.ocl.pivot.Package>();
+			packageMap = new HashMap<org.eclipse.ocl.pivot.Package, org.eclipse.ocl.pivot.Package>();
 		}		
-		DomainPackage domainPackage = ((DomainClass)typeType).getOwningPackage();
-		DomainPackage pivotPackage = packageMap.get(domainPackage);
+		org.eclipse.ocl.pivot.Package domainPackage = ((DomainClass)typeType).getOwningPackage();
+		org.eclipse.ocl.pivot.Package pivotPackage = packageMap.get(domainPackage);
 		if (pivotPackage == null) {
 			String nsURI = domainPackage.getURI();
 			if (nsURI != null) {

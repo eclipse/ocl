@@ -27,7 +27,6 @@ import org.eclipse.emf.codegen.util.CodeGenUtil;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainParameterTypes;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.ids.IdManager;
@@ -1029,12 +1028,10 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s1.append(" *************************************************************************\n");
 		s1.append(" * This code is 100% auto-generated\n");
 		s1.append(" * from:\n");
-		for (DomainPackage dPackage : metaModelManager.getPartialPackages(pPackage, false)) {
-			if (dPackage instanceof EObject) {
-				EObject eRoot = ((EObject)dPackage).eContainer();
-				if (eRoot instanceof Model) {
-					s1.append(" *   " + ((Model)eRoot).getExternalURI() + "\n");
-				}
+		for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Package dPackage : metaModelManager.getPartialPackages(pPackage, false)) {
+			EObject eRoot = ((EObject)dPackage).eContainer();
+			if (eRoot instanceof Model) {
+				s1.append(" *   " + ((Model)eRoot).getExternalURI() + "\n");
 			}
 		}
 		s1.append(" * using:\n");

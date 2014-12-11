@@ -34,7 +34,6 @@ import org.eclipse.ocl.domain.DomainConstants;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.NsURIPackageId;
@@ -66,12 +65,12 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 	/**
 	 * Mapping from package URI to corresponding Pivot Package. (used to resolve NsURIPackageId).
 	 */
-	private Map<String, DomainPackage> nsURI2package = new HashMap<String, DomainPackage>();
+	private Map<String, org.eclipse.ocl.pivot.Package> nsURI2package = new HashMap<String, org.eclipse.ocl.pivot.Package>();
 
 	/**
 	 * Mapping from root package name to corresponding Pivot Package. (used to resolve RootPackageId).
 	 */
-	private Map<String, DomainPackage> roots2package = new HashMap<String, DomainPackage>();
+	private Map<String, org.eclipse.ocl.pivot.Package> roots2package = new HashMap<String, org.eclipse.ocl.pivot.Package>();
 	private boolean directRootsProcessed = false;
 	private boolean crossReferencedRootsProcessed = false;
 	private @NonNull Map<EClassifier, WeakReference<DomainInheritance>> typeMap = new WeakHashMap<EClassifier, WeakReference<DomainInheritance>>();
@@ -81,7 +80,7 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 		this.directRoots = roots;
 	}
 
-	private void addPackage(@NonNull DomainPackage userPackage) {
+	private void addPackage(@NonNull org.eclipse.ocl.pivot.Package userPackage) {
 		String nsURI = userPackage.getURI();
 		if (nsURI != null) {
 			nsURI2package.put(nsURI, userPackage);
@@ -113,8 +112,8 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 		addPackages(userPackage.getOwnedPackages());
 	}
 
-	private void addPackages(/*@NonNull*/ Iterable<? extends DomainPackage> userPackages) {
-		for (DomainPackage userPackage : userPackages) {
+	private void addPackages(/*@NonNull*/ Iterable<? extends org.eclipse.ocl.pivot.Package> userPackages) {
+		for (org.eclipse.ocl.pivot.Package userPackage : userPackages) {
 			assert userPackage != null;
 			addPackage(userPackage);
 		}
@@ -204,8 +203,8 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 					if (root instanceof Model) {
 						addPackages(((Model)root).getOwnedPackages());
 					}
-					else if (root instanceof DomainPackage) {					// Perhaps this is only needed for a lazy JUnit test
-						addPackage((DomainPackage)root);
+					else if (root instanceof org.eclipse.ocl.pivot.Package) {					// Perhaps this is only needed for a lazy JUnit test
+						addPackage((org.eclipse.ocl.pivot.Package)root);
 					}
 				}
 				return false;
@@ -223,8 +222,8 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 			if (eObject instanceof Model) {
 				addPackages(((Model)eObject).getOwnedPackages());
 			}
-//			else if (eObject instanceof DomainPackage) {							// Perhaps this is only needed for a lazy JUnit test
-//				addPackage((DomainPackage)eObject);
+//			else if (eObject instanceof org.eclipse.ocl.pivot.Package) {							// Perhaps this is only needed for a lazy JUnit test
+//				addPackage((org.eclipse.ocl.pivot.Package)eObject);
 //			}
 			ePackages.add(eObject.eClass().getEPackage());
 		}
@@ -232,7 +231,7 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 			String nsURI = ePackage.getNsURI();
 			if (nsURI2package.get(nsURI) == null) {
 				PackageId packageId = IdManager.getPackageId(ePackage);
-				DomainPackage domainPackage = new EcoreReflectivePackage(ePackage, this, packageId);
+				org.eclipse.ocl.pivot.Package domainPackage = new EcoreReflectivePackage(ePackage, this, packageId);
 				nsURI2package.put(nsURI, domainPackage);
 				if (packageId instanceof RootPackageId) {
 					roots2package.put(((RootPackageId)packageId).getName(), domainPackage);
@@ -247,13 +246,13 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 	}
 
 	@Override
-	public synchronized @NonNull DomainPackage visitNsURIPackageId(@NonNull NsURIPackageId id) {
+	public synchronized @NonNull org.eclipse.ocl.pivot.Package visitNsURIPackageId(@NonNull NsURIPackageId id) {
 		String nsURI = id.getNsURI();
-		DomainPackage knownPackage = nsURI2package.get(nsURI);
+		org.eclipse.ocl.pivot.Package knownPackage = nsURI2package.get(nsURI);
 		if (knownPackage != null) {
 			return knownPackage;
 		}
-		DomainPackage libraryPackage = standardLibrary.getNsURIPackage(nsURI);
+		org.eclipse.ocl.pivot.Package libraryPackage = standardLibrary.getNsURIPackage(nsURI);
 		if (libraryPackage != null) {
 			nsURI2package.put(nsURI, libraryPackage);
 			return libraryPackage;
@@ -288,16 +287,16 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 	}
 
 	@Override
-	public @NonNull DomainPackage visitRootPackageId(@NonNull RootPackageId id) {
+	public @NonNull org.eclipse.ocl.pivot.Package visitRootPackageId(@NonNull RootPackageId id) {
 		if (id == IdManager.METAMODEL) {
 			return DomainUtil.nonNullState(getStandardLibrary().getOclAnyType().getOwningPackage());
 		}
 		String name = id.getName();
-		DomainPackage knownPackage = roots2package.get(name);
+		org.eclipse.ocl.pivot.Package knownPackage = roots2package.get(name);
 		if (knownPackage != null) {
 			return knownPackage;
 		}
-//		DomainPackage libraryPackage = standardLibrary.getNsURIPackage(nsURI);
+//		org.eclipse.ocl.pivot.Package libraryPackage = standardLibrary.getNsURIPackage(nsURI);
 //		if (libraryPackage != null) {
 //			nsURI2package.put(nsURI, libraryPackage);
 //			return libraryPackage;

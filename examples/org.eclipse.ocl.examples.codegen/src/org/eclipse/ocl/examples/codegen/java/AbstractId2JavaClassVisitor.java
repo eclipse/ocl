@@ -13,7 +13,6 @@ package org.eclipse.ocl.examples.codegen.java;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.ClassId;
 import org.eclipse.ocl.domain.ids.ElementId;
@@ -85,12 +84,12 @@ public abstract class AbstractId2JavaClassVisitor implements IdVisitor<Class<?>>
 
 	@Override
 	public @NonNull Class<?> visitNestedPackageId(@NonNull NestedPackageId id) {
-		return DomainPackage.class;
+		return org.eclipse.ocl.pivot.Package.class;
 	}
 
 	@Override
 	public @NonNull Class<?> visitNsURIPackageId(@NonNull NsURIPackageId id) {
-		return DomainPackage.class;
+		return org.eclipse.ocl.pivot.Package.class;
 	}
 
 	@Override
@@ -136,7 +135,7 @@ public abstract class AbstractId2JavaClassVisitor implements IdVisitor<Class<?>>
 
 	@Override
 	public @NonNull Class<?> visitRootPackageId(@NonNull RootPackageId id) {
-		return DomainPackage.class;
+		return org.eclipse.ocl.pivot.Package.class;
 	}
 
 	@Override

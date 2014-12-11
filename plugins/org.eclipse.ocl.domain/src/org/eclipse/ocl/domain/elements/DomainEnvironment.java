@@ -32,9 +32,9 @@ public interface DomainEnvironment
 	 */
 	@NonNull DomainCollectionType getCollectionType(@NonNull DomainClass containerType, @NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
 
-	DomainPackage getNestedPackage(@NonNull DomainPackage parentPackage, @NonNull String name);
+	org.eclipse.ocl.pivot.Package getNestedPackage(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name);
 	
-    DomainType getNestedType(@NonNull DomainPackage parentPackage, @NonNull String name);
+    DomainType getNestedType(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name);
 
 	/**
 	 * Return the instance of the OrderedSet metatype whose elements are of elementType.

@@ -24,7 +24,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
@@ -449,9 +448,9 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 //		
 //	}
 
-/*	void addedNestedPrimaryPackage(@NonNull DomainPackage pivotPackage) {
+/*	void addedNestedPrimaryPackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage) {
 		String packageURI = PivotUtil.getNsURI(pivotPackage);
-		DomainPackage primaryPackage = null;
+		org.eclipse.ocl.pivot.Package primaryPackage = null;
 		if (packageURI != null) {
 			CompletePackage completePackage = getCompletePackageByURI(packageURI);
 			primaryPackage = completePackage != null ? completePackage.getPivotPackage() : null;
@@ -537,7 +536,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	}
 
 	@Override
-	public @NonNull CompletePackageInternal getCompletePackage(@NonNull DomainPackage asPackage) {
+	public @NonNull CompletePackageInternal getCompletePackage(@NonNull org.eclipse.ocl.pivot.Package asPackage) {
 		return ownedCompletePackages.getCompletePackage(asPackage);
 	}
 

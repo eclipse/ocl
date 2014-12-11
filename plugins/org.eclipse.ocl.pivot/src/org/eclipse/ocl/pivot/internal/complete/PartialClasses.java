@@ -32,7 +32,6 @@ import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
@@ -897,7 +896,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 			RootCompletePackage rootCompletePackage = getCompleteClass().getOwningCompletePackage().getRootCompletePackage();
 			PackageId metapackageId = rootCompletePackage.getMetapackageId();
 			MetaModelManager metaModelManager = getMetaModelManager();
-			DomainPackage metapackage = metaModelManager.getIdResolver().getPackage(metapackageId);
+			org.eclipse.ocl.pivot.Package metapackage = metaModelManager.getIdResolver().getPackage(metapackageId);
 			CompletePackage metaCompletePackage = metaModelManager.getCompletePackage(metapackage);
 			DomainType metatype = metaCompletePackage.getType(metatypeName);
 			if (metatype != null) {

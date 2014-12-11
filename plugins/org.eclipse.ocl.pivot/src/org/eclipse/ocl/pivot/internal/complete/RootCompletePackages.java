@@ -13,7 +13,6 @@ package org.eclipse.ocl.pivot.internal.complete;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.PivotFactory;
@@ -33,13 +32,13 @@ public class RootCompletePackages extends AbstractCompletePackages<RootCompleteP
 	}
 
 	@Override
-	public @NonNull RootCompletePackageInternal createCompletePackage(@NonNull DomainPackage partialPackage) {
+	public @NonNull RootCompletePackageInternal createCompletePackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
 		RootCompletePackageInternal completePackage = (RootCompletePackageInternal) PivotFactory.eINSTANCE.createParentCompletePackage();
 		completePackage.init(partialPackage.getName(), partialPackage.getNsPrefix(), partialPackage.getURI(), partialPackage.getPackageId());
 		return completePackage;
 	}
 	
-	protected @NonNull RootCompletePackageInternal createRootCompletePackage(@NonNull DomainPackage pivotPackage) {
+	protected @NonNull RootCompletePackageInternal createRootCompletePackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage) {
 		String name = pivotPackage.getName();
 //		if (name == null) {
 //			throw new IllegalStateException("Unnamed package");
@@ -89,7 +88,7 @@ public class RootCompletePackages extends AbstractCompletePackages<RootCompleteP
 	}
 
 	@Override
-	public @NonNull RootCompletePackageInternal getOwnedCompletePackage(@NonNull DomainPackage pivotPackage) {
+	public @NonNull RootCompletePackageInternal getOwnedCompletePackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage) {
 		//
 		//	Try to find package by packageURI
 		//
@@ -104,12 +103,10 @@ public class RootCompletePackages extends AbstractCompletePackages<RootCompleteP
 		String name = pivotPackage.getName();
 		if (name == null) {
 			String message = null;
-			if (pivotPackage instanceof EObject) {
-				for (EObject eObject = (EObject) pivotPackage; eObject != null; eObject = eObject.eContainer()) {
-					if (eObject instanceof Model) {
-						message = "Unnamed package for '" + packageURI + "' in '" + ((Model)eObject).getExternalURI() + "'";
-						break;
-					}
+			for (EObject eObject = pivotPackage; eObject != null; eObject = eObject.eContainer()) {
+				if (eObject instanceof Model) {
+					message = "Unnamed package for '" + packageURI + "' in '" + ((Model)eObject).getExternalURI() + "'";
+					break;
 				}
 			}
 			if (message == null) {

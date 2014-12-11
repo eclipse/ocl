@@ -15,7 +15,6 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.scoping.EnvironmentView;
@@ -48,11 +47,9 @@ public class PackageAttribution extends AbstractAttribution
 			@NonNull org.eclipse.ocl.pivot.Package targetPackage) {
 		org.eclipse.ocl.pivot.Package primaryPackage = metaModelManager.getPrimaryElement(targetPackage);
 		if (allPackages.add(primaryPackage)) {
-			for (@SuppressWarnings("null")@NonNull DomainPackage partialPackage : metaModelManager.getPartialPackages(primaryPackage, false)) {
-				if (partialPackage instanceof org.eclipse.ocl.pivot.Package) {
-					for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Package importedPackage : ((org.eclipse.ocl.pivot.Package)partialPackage).getImportedPackage()) {
-						gatherAllPackages(metaModelManager, allPackages, importedPackage);
-					}
+			for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Package partialPackage : metaModelManager.getPartialPackages(primaryPackage, false)) {
+				for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Package importedPackage : partialPackage.getImportedPackage()) {
+					gatherAllPackages(metaModelManager, allPackages, importedPackage);
 				}
 			}
 		}

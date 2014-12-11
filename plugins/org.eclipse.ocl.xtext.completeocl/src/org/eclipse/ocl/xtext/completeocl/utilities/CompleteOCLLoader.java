@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Type;
@@ -130,7 +129,7 @@ public abstract class CompleteOCLLoader
 		for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
 			if (eObject instanceof org.eclipse.ocl.pivot.Package) {
-				DomainPackage aPackage = metaModelManager.getPrimaryPackage((org.eclipse.ocl.pivot.Package)eObject);
+				org.eclipse.ocl.pivot.Package aPackage = metaModelManager.getPrimaryPackage((org.eclipse.ocl.pivot.Package)eObject);
 				if (aPackage instanceof PivotObjectImpl) {
 					EObject mmPackage = ((PivotObjectImpl)aPackage).getETarget();
 					if (mmPackage instanceof EPackage) {

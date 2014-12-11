@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainType;
 
 /**
@@ -117,7 +116,7 @@ public interface CompletePackage extends NamedElement, org.eclipse.ocl.domain.el
 
 	int getIndex(org.eclipse.ocl.pivot.Package p1);
 
-	void assertSamePackage(DomainPackage pivotPackage);
+	void assertSamePackage(org.eclipse.ocl.pivot.Package pivotPackage);
 
 	@Override
 	EPackage getEPackage();

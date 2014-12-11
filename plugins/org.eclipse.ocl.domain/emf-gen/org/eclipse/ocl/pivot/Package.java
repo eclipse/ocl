@@ -12,12 +12,14 @@ package org.eclipse.ocl.pivot;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.domain.ids.PackageId;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Package</b></em>'.
- * @extends org.eclipse.ocl.domain.elements.DomainPackage
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -41,8 +43,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * @see org.eclipse.ocl.pivot.PivotPackage#getPackage()
  * @generated
  */
-public interface Package
-		extends Namespace, org.eclipse.ocl.domain.elements.DomainPackage {
+public interface Package extends Namespace {
 
 	/**
 	 * Returns the value of the '<em><b>Owned Packages</b></em>' containment reference list.
@@ -58,7 +59,6 @@ public interface Package
 	 * @see org.eclipse.ocl.pivot.Package#getOwningPackage
 	 * @generated
 	 */
-	@Override
 	@NonNull List<Package> getOwnedPackages();
 
 	/**
@@ -74,7 +74,6 @@ public interface Package
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getPackage_NsPrefix()
 	 * @generated
 	 */
-	@Override
 	String getNsPrefix();
 
 	/**
@@ -100,7 +99,6 @@ public interface Package
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getPackage_URI()
 	 * @generated
 	 */
-	@Override
 	String getURI();
 
 	/**
@@ -158,7 +156,6 @@ public interface Package
 	 * @see org.eclipse.ocl.pivot.Class#getOwningPackage
 	 * @generated
 	 */
-	@Override
 	@NonNull List<org.eclipse.ocl.pivot.Class> getOwnedClasses();
 
 	/**
@@ -192,7 +189,6 @@ public interface Package
 	 * @see org.eclipse.ocl.pivot.Package#getOwnedPackages
 	 * @generated
 	 */
-	@Override
 	Package getOwningPackage();
 
 	/**
@@ -205,4 +201,6 @@ public interface Package
 	 */
 	void setOwningPackage(Package value);
 
+	@Nullable EPackage getEPackage();
+	@NonNull PackageId getPackageId();
 } // Package

@@ -40,7 +40,6 @@ import org.eclipse.ocl.domain.elements.DomainCompletePackage;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypedElement;
@@ -672,10 +671,10 @@ public abstract class AbstractIdResolver implements IdResolver
 		throw new IllegalStateException("No " + operationId); //$NON-NLS-1$
 	}
 
-	public @NonNull DomainPackage getPackage(@NonNull PackageId packageId) {
+	public @NonNull org.eclipse.ocl.pivot.Package getPackage(@NonNull PackageId packageId) {
 		DomainElement element = packageId.accept(this);
-		if (element instanceof DomainPackage) {
-			return (DomainPackage) element;
+		if (element instanceof org.eclipse.ocl.pivot.Package) {
+			return (org.eclipse.ocl.pivot.Package) element;
 		}
 		throw new IllegalStateException("No " + packageId); //$NON-NLS-1$
 	}
@@ -1007,7 +1006,7 @@ public abstract class AbstractIdResolver implements IdResolver
 
 	@Override
 	public @NonNull DomainType visitClassId(@NonNull ClassId id) {
-		DomainPackage parentPackage = (DomainPackage) id.getParent().accept(this);
+		org.eclipse.ocl.pivot.Package parentPackage = (org.eclipse.ocl.pivot.Package) id.getParent().accept(this);
 		assert parentPackage != null;
 		DomainType nestedType = environment.getNestedType(parentPackage, id.getName());
 		if (nestedType == null) {
@@ -1034,7 +1033,7 @@ public abstract class AbstractIdResolver implements IdResolver
 
 	@Override
 	public @NonNull DomainType visitDataTypeId(@NonNull DataTypeId id) {
-		DomainPackage parentPackage = (DomainPackage) id.getParent().accept(this);
+		org.eclipse.ocl.pivot.Package parentPackage = (org.eclipse.ocl.pivot.Package) id.getParent().accept(this);
 		assert parentPackage != null;
 		DomainType nestedType = environment.getNestedType(parentPackage, id.getName());
 		if (nestedType == null) {
@@ -1048,7 +1047,7 @@ public abstract class AbstractIdResolver implements IdResolver
 	
 	@Override
 	public @NonNull Enumeration visitEnumerationId(@NonNull EnumerationId id) {
-		DomainPackage parentPackage = (DomainPackage) id.getParent().accept(this);
+		org.eclipse.ocl.pivot.Package parentPackage = (org.eclipse.ocl.pivot.Package) id.getParent().accept(this);
 		assert parentPackage != null;
 		DomainType nestedType = environment.getNestedType(parentPackage, id.getName());
 		if (nestedType == null) {
@@ -1085,10 +1084,10 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	@Override
-	public @NonNull DomainPackage visitNestedPackageId(@NonNull NestedPackageId packageId) {
-		DomainPackage parentPackage = (DomainPackage) packageId.getParent().accept(this);
+	public @NonNull org.eclipse.ocl.pivot.Package visitNestedPackageId(@NonNull NestedPackageId packageId) {
+		org.eclipse.ocl.pivot.Package parentPackage = (org.eclipse.ocl.pivot.Package) packageId.getParent().accept(this);
 		assert parentPackage != null;
-		DomainPackage nestedPackage = environment.getNestedPackage(parentPackage, packageId.getName());
+		org.eclipse.ocl.pivot.Package nestedPackage = environment.getNestedPackage(parentPackage, packageId.getName());
 		if (nestedPackage == null) {
 			throw new UnsupportedOperationException();
 		}
@@ -1096,8 +1095,8 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	@Override
-	public @NonNull DomainPackage visitNsURIPackageId(@NonNull NsURIPackageId id) {
-		DomainPackage nsURIPackage = standardLibrary.getNsURIPackage(id.getNsURI());
+	public @NonNull org.eclipse.ocl.pivot.Package visitNsURIPackageId(@NonNull NsURIPackageId id) {
+		org.eclipse.ocl.pivot.Package nsURIPackage = standardLibrary.getNsURIPackage(id.getNsURI());
 		if (nsURIPackage == null) {
 			throw new UnsupportedOperationException();
 		}
@@ -1147,9 +1146,9 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	@Override
-	public @NonNull DomainPackage visitRootPackageId(@NonNull RootPackageId id) {
+	public @NonNull org.eclipse.ocl.pivot.Package visitRootPackageId(@NonNull RootPackageId id) {
 		String completeURIorName = id.getName();
-		DomainPackage rootPackage = standardLibrary.getRootPackage(completeURIorName);
+		org.eclipse.ocl.pivot.Package rootPackage = standardLibrary.getRootPackage(completeURIorName);
 		if (rootPackage == null) {
 			throw new UnsupportedOperationException();
 		}

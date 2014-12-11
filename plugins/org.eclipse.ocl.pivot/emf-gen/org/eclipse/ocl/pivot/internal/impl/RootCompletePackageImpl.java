@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainCompletePackage;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.CompleteClass;
 import org.eclipse.ocl.pivot.CompleteModel;
@@ -352,9 +351,9 @@ public abstract class RootCompletePackageImpl extends CompletePackageImpl implem
 	}
 
 	@Override
-	public void assertSamePackage(@Nullable DomainPackage domainPackage) {
+	public void assertSamePackage(@Nullable org.eclipse.ocl.pivot.Package domainPackage) {
 		assert domainPackage != null;
-		DomainPackage parentPackage = domainPackage.getOwningPackage();
+		org.eclipse.ocl.pivot.Package parentPackage = domainPackage.getOwningPackage();
 		assert parentPackage == null;
 		String typeBasedNsURI = domainPackage.getURI();
 		String serverBasedNsURI = getURI();

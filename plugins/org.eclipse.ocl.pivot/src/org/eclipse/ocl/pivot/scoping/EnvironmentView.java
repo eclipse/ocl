@@ -30,7 +30,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainCompletePackage;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainNamedElement;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.domain.elements.Nameable;
 import org.eclipse.ocl.pivot.CompleteClass;
@@ -541,8 +540,8 @@ public class EnvironmentView
 		if (element instanceof CompletePackage) {
 			element = ((CompletePackage)element).getPivotPackage();
 		}
-		else if (element instanceof DomainPackage) {
-//			element = metaModelManager.getCompletePackage((DomainPackage) element).getPivotPackage();
+		else if (element instanceof org.eclipse.ocl.pivot.Package) {
+//			element = metaModelManager.getCompletePackage((org.eclipse.ocl.pivot.Package) element).getPivotPackage();
 		}
 //		else if (element instanceof org.eclipse.ocl.pivot.Package) {
 //			element = ((PackageServer) element).getPrimaryPackage();		// FIXME lose casts

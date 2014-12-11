@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.Unlimited;
 import org.eclipse.ocl.pivot.CollectionType;
@@ -366,8 +365,8 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 				if (eObject instanceof Namespace) {
 					safeScope = (Namespace) eObject;
 				}
-				if (eObject instanceof DomainPackage) {
-					CompletePackage completePackage = metaModelManager.getCompletePackage((DomainPackage)eObject);
+				if (eObject instanceof org.eclipse.ocl.pivot.Package) {
+					CompletePackage completePackage = metaModelManager.getCompletePackage((org.eclipse.ocl.pivot.Package)eObject);
 					org.eclipse.ocl.pivot.Class memberType = completePackage.getMemberType(name);
 					if (memberType == primaryElement) {
 						if ((eObject != scope) && (eObject != PivotUtil.getContainingPackage(scope))) {

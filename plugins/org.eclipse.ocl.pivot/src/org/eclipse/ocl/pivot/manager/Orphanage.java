@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.PivotConstants;
 import org.eclipse.ocl.pivot.internal.impl.PackageImpl;
@@ -411,7 +410,7 @@ public class Orphanage extends PackageImpl
 	/**
 	 * Return true if asPackage is an orphanage for synthesized types.
 	 */
-	public static boolean isTypeOrphanage(@Nullable DomainPackage asPackage) {
+	public static boolean isTypeOrphanage(@Nullable org.eclipse.ocl.pivot.Package asPackage) {
 		if (asPackage == null) {
 			return false;
 		}

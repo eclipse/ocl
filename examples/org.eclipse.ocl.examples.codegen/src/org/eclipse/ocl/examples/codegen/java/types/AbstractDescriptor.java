@@ -21,7 +21,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainNamedElement;
 import org.eclipse.ocl.domain.elements.DomainNamespace;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.ElementId;
 import org.eclipse.ocl.domain.ids.IdManager;
@@ -70,9 +69,6 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 		}
 		else if (javaClass == Namespace.class) {
 			javaClass = DomainNamespace.class;
-		}
-		else if (javaClass == org.eclipse.ocl.pivot.Package.class) {
-			javaClass = DomainPackage.class;
 		}
 		else if (javaClass == org.eclipse.ocl.pivot.Class.class) {
 			javaClass = DomainClass.class;

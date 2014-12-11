@@ -33,7 +33,6 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
-import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.utilities.ProjectMap;
 import org.eclipse.ocl.domain.utilities.StandaloneProjectMap;
@@ -1127,7 +1126,7 @@ public class LoadTests extends XtextTestCase
 		assertEquals("ClassB", pivotType2.getName());
 		assertEquals("DataType", pivotType2.eClass().getName());
 //		
-		List<DomainPackage> allPackages = new ArrayList<DomainPackage>();
+		List<org.eclipse.ocl.pivot.Package> allPackages = new ArrayList<org.eclipse.ocl.pivot.Package>();
 //		for (org.eclipse.ocl.pivot.Package aPackage : metaModelManager2.getAllPackages()) {
 		for (CompletePackage completePackage : metaModelManager2.getStandardLibrary().getAllCompletePackages()) {
 			org.eclipse.ocl.pivot.Package aPackage = completePackage.getPivotPackage();
@@ -1214,7 +1213,7 @@ public class LoadTests extends XtextTestCase
 		assertEquals(pivotPropertyYYY0, pivotPropertyYYY1.getOpposite());
 		
 //		
-		List<DomainPackage> allPackages = new ArrayList<DomainPackage>();
+		List<org.eclipse.ocl.pivot.Package> allPackages = new ArrayList<org.eclipse.ocl.pivot.Package>();
 //		for (org.eclipse.ocl.pivot.Package aPackage : metaModelManager2.getAllPackages()) {
 		for (CompletePackage completePackage : metaModelManager2.getStandardLibrary().getAllCompletePackages()) {
 			org.eclipse.ocl.pivot.Package aPackage = completePackage.getPivotPackage();
