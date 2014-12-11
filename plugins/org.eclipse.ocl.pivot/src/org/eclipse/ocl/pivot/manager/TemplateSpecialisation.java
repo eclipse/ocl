@@ -20,12 +20,12 @@ import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainTemplateParameter;
-import org.eclipse.ocl.domain.elements.DomainTupleType;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateSignature;
+import org.eclipse.ocl.pivot.TupleType;
 
 /**
  * A TemplateSpecialisation supports resolution of template parameter within an element referenced from an OCL expression.
@@ -56,8 +56,8 @@ public class TemplateSpecialisation
 			DomainType elementType = ((DomainCollectionType)referencedType).getElementType();
 			return needsSpecialisation(elementType);
 		}
-		if (referencedType instanceof DomainTupleType) {
-			DomainTupleType tupleType = (DomainTupleType)referencedType;
+		if (referencedType instanceof TupleType) {
+			TupleType tupleType = (TupleType)referencedType;
 			for (Property tuplePart : tupleType.getOwnedProperties()) {
 				DomainType tuplePartType = tuplePart.getType();
 				if (needsSpecialisation(tuplePartType)) {
@@ -121,7 +121,7 @@ public class TemplateSpecialisation
 			DomainClass containerType = DomainUtil.nonNullState(collectionType.getContainerType());
 			return environment.getCollectionType(containerType, elementType, collectionType.getLowerValue(), collectionType.getUpperValue());
 		}
-		if (referencedType instanceof DomainTupleType) {
+		if (referencedType instanceof TupleType) {
 //			DomainTupleType tupleType = (DomainTupleType)referencedType;
 			throw new UnsupportedOperationException();
 		}
@@ -162,10 +162,10 @@ public class TemplateSpecialisation
 			}
 			return;
 		}
-		if (referencedType instanceof DomainTupleType) {
-			if (resolvedType instanceof DomainTupleType) {
-				DomainTupleType referencedTupleType = (DomainTupleType)referencedType;
-				DomainTupleType resolvedTupleType = (DomainTupleType)resolvedType;
+		if (referencedType instanceof TupleType) {
+			if (resolvedType instanceof TupleType) {
+				TupleType referencedTupleType = (TupleType)referencedType;
+				TupleType resolvedTupleType = (TupleType)resolvedType;
 				Iterable<? extends Property> referencedTupleParts = referencedTupleType.getOwnedProperties();
 				for (Property resolvedTuplePart : resolvedTupleType.getOwnedProperties()) {
 					Property referencedTuplePart = DomainUtil.getNamedElement(referencedTupleParts, resolvedTuplePart.getName());

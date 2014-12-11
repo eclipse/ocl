@@ -21,7 +21,6 @@ import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainPackage;
-import org.eclipse.ocl.domain.elements.DomainTupleType;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.TemplateParameterId;
 import org.eclipse.ocl.domain.ids.TupleTypeId;
@@ -35,6 +34,7 @@ import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.impl.CollectionTypeParametersImpl;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
+import org.eclipse.ocl.pivot.TupleType;
 
 public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary implements DomainEnvironment
 {
@@ -46,7 +46,7 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 	/**
 	 * Shared cache of the lazily created lazily deleted tuples. 
 	 */
-	private @NonNull Map<TupleTypeId, WeakReference<DomainTupleType>> tupleTypeMap = new WeakHashMap<TupleTypeId, WeakReference<DomainTupleType>>();
+	private @NonNull Map<TupleTypeId, WeakReference<TupleType>> tupleTypeMap = new WeakHashMap<TupleTypeId, WeakReference<TupleType>>();
 	
 //	public abstract @NonNull DomainEvaluator createEvaluator(@NonNull EObject contextObject, @Nullable Map<Object, Object> contextMap);
 
@@ -266,16 +266,16 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 		throw new UnsupportedOperationException();
 	}
 
-	public synchronized @NonNull DomainTupleType getTupleType(@NonNull TupleTypeId typeId) {
-		WeakReference<DomainTupleType> ref = tupleTypeMap.get(typeId);
+	public synchronized @NonNull TupleType getTupleType(@NonNull TupleTypeId typeId) {
+		WeakReference<TupleType> ref = tupleTypeMap.get(typeId);
 		if (ref != null) {
-			DomainTupleType domainTupleType = ref.get();
+			TupleType domainTupleType = ref.get();
 			if (domainTupleType != null) {
 				return domainTupleType;
 			}
 		}
-		DomainTupleType domainTupleType = new AbstractTupleType(this, typeId);
-		tupleTypeMap.put(typeId, new WeakReference<DomainTupleType>(domainTupleType));
+		TupleType domainTupleType = new AbstractTupleType(typeId);
+		tupleTypeMap.put(typeId, new WeakReference<TupleType>(domainTupleType));
 		return domainTupleType;
 	}
 

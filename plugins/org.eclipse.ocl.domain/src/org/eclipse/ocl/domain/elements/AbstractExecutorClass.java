@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Behavior;
+import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
@@ -173,6 +174,26 @@ public class AbstractExecutorClass extends AbstractExecutorType implements org.e
 	@Override
 	@NonNull
 	public List<Property> getOwnedProperties() {
+		throw new UnsupportedOperationException();
+	}
+
+//	@Override
+	public boolean isSerializable() {
+		throw new UnsupportedOperationException();
+	}
+
+//	@Override
+	public void setIsSerializable(boolean value) {
+		throw new UnsupportedOperationException();
+	}
+
+//	@Override
+	public Class getBehavioralClass() {
+		throw new UnsupportedOperationException();
+	}
+
+//	@Override
+	public void setBehavioralClass(Class value) {
 		throw new UnsupportedOperationException();
 	}
 }

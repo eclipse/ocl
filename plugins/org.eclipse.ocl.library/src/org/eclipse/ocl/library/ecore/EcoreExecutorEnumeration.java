@@ -19,7 +19,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.ids.EnumerationId;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.osgi.util.NLS;
@@ -75,25 +74,5 @@ public class EcoreExecutorEnumeration extends EcoreExecutorType implements Enume
 		assert this.literals == null;
 		this.literals = Lists.<EnumerationLiteral>newArrayList(literals);
 		return this;
-	}
-
-	@Override
-	public boolean isSerializable() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public void setIsSerializable(boolean value) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public Class getBehavioralClass() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public void setBehavioralClass(Class value) {
-		throw new UnsupportedOperationException();
 	}
 }

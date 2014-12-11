@@ -42,7 +42,6 @@ import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainTupleType;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.ids.ClassId;
@@ -91,6 +90,7 @@ import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.TupleType;
 
 public abstract class AbstractIdResolver implements IdResolver
 {
@@ -837,7 +837,7 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	@Override
-	public abstract @NonNull DomainTupleType getTupleType(@NonNull TupleTypeId typeId);
+	public abstract @NonNull TupleType getTupleType(@NonNull TupleTypeId typeId);
 
 	@Override
 	public @NonNull DomainType getType(@NonNull TypeId typeId, @Nullable Object context) {

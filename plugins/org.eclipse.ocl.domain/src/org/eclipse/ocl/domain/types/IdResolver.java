@@ -23,7 +23,6 @@ import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainTupleType;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
@@ -40,6 +39,7 @@ import org.eclipse.ocl.domain.values.SequenceValue;
 import org.eclipse.ocl.domain.values.SetValue;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.TupleType;
 
 /**
  * IdResolver supports discovery/creation of rich Pivot-based objects from limited
@@ -107,7 +107,7 @@ public interface IdResolver extends IdVisitor<DomainElement>
 
 	@NonNull DomainTypedElement getTuplePart(@NonNull String name, @NonNull TypeId typeId);
 
-	@NonNull DomainTupleType getTupleType(@NonNull TupleTypeId typeId);
+	@NonNull TupleType getTupleType(@NonNull TupleTypeId typeId);
 
 	@NonNull DomainClass getType(@NonNull EClassifier eClassifier);
 

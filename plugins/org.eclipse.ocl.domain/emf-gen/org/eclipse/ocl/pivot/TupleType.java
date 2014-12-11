@@ -10,18 +10,25 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot;
 
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.domain.ids.TupleTypeId;
+
 
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Tuple Type</b></em>'.
- * @extends org.eclipse.ocl.domain.elements.DomainTupleType
  * <!-- end-user-doc -->
  *
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getTupleType()
  * @generated
  */
-public interface TupleType
-		extends DataType, org.eclipse.ocl.domain.elements.DomainTupleType {
+public interface TupleType extends DataType {
+	/**
+	 * Return a unique StandardLibrary-independent identifier for this type.
+	 */
+	@NonNull TupleTypeId getTupleTypeId();
+	@Override
+	@NonNull TupleTypeId getTypeId();
 } // TupleType

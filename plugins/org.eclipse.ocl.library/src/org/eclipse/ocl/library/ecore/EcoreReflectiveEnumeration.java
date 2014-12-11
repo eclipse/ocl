@@ -21,7 +21,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.domain.ids.EnumerationId;
-import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 
@@ -61,25 +60,5 @@ public class EcoreReflectiveEnumeration extends EcoreReflectiveType implements E
 			}
 		}
 		return literals2;
-	}
-
-	@Override
-	public boolean isSerializable() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public void setIsSerializable(boolean value) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public Class getBehavioralClass() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public void setBehavioralClass(Class value) {
-		throw new UnsupportedOperationException();
 	}
 }

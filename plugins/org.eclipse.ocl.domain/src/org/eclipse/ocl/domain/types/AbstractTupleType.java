@@ -11,22 +11,22 @@
 package org.eclipse.ocl.domain.types;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.domain.elements.AbstractExecutorClass;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainTupleType;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.TupleTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.TupleType;
 
-public class AbstractTupleType extends AbstractClass implements DomainTupleType
+public class AbstractTupleType extends AbstractExecutorClass implements TupleType
 {
 	protected final @NonNull TupleTypeId typeId;
 
-	public AbstractTupleType(@NonNull DomainEnvironment environment, @NonNull TupleTypeId typeId) {
-		super(environment, TypeId.TUPLE_NAME);
+	public AbstractTupleType(@NonNull TupleTypeId typeId) {
+		super(TypeId.TUPLE_NAME, 0);
 		this.typeId = typeId;
 	}
 
@@ -35,10 +35,10 @@ public class AbstractTupleType extends AbstractClass implements DomainTupleType
 		if (this == type) {
 			return true;
 		}
-		if (!(type instanceof DomainTupleType)) {
+		if (!(type instanceof TupleType)) {
 			return false;
 		}
-		return standardLibrary.conformsToTupleType(this, (DomainTupleType)type);
+		return standardLibrary.conformsToTupleType(this, (TupleType)type);
 	}
 
 	@Override
@@ -64,10 +64,10 @@ public class AbstractTupleType extends AbstractClass implements DomainTupleType
 		if (this == type) {
 			return true;
 		}
-		if (!(type instanceof DomainTupleType)) {
+		if (!(type instanceof TupleType)) {
 			return false;
 		}
-		return standardLibrary.isEqualToTupleType(this, (DomainTupleType)type);
+		return standardLibrary.isEqualToTupleType(this, (TupleType)type);
 	}
 	
 	@Override

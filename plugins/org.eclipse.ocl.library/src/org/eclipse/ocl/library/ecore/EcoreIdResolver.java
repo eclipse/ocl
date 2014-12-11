@@ -36,7 +36,6 @@ import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainModel;
 import org.eclipse.ocl.domain.elements.DomainPackage;
-import org.eclipse.ocl.domain.elements.DomainTupleType;
 import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.NsURIPackageId;
@@ -50,6 +49,7 @@ import org.eclipse.ocl.library.executor.AbstractIdResolver;
 import org.eclipse.ocl.library.executor.ExecutableStandardLibrary;
 import org.eclipse.ocl.library.executor.ExecutorPackage;
 import org.eclipse.ocl.library.executor.ExecutorStandardLibrary;
+import org.eclipse.ocl.pivot.TupleType;
 
 /**
  * EcoreIdResolver provides a package discovery capability so that package identifiers can be resolved.
@@ -156,11 +156,11 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 	}
 
 	@Override
-	public synchronized @NonNull DomainTupleType getTupleType(@NonNull TupleTypeId typeId) {
+	public synchronized @NonNull TupleType getTupleType(@NonNull TupleTypeId typeId) {
 		return ((ExecutableStandardLibrary)standardLibrary).getTupleType(typeId);
 	}
 	
-	public @NonNull DomainTupleType getTupleType(DomainTypedElement ... parts) {
+	public @NonNull TupleType getTupleType(DomainTypedElement ... parts) {
 		int iSize = parts.length;
 		List<TuplePartId> partsList = new ArrayList<TuplePartId>(iSize);
 		for (int i = 0; i < iSize; i++) {
