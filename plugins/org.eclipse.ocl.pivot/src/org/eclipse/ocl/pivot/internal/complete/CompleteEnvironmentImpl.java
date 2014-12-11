@@ -21,7 +21,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainPackage;
-import org.eclipse.ocl.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
@@ -320,8 +319,8 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 	
 	@Override
 	public @NonNull CompleteClassInternal getCompleteClass(@NonNull DomainType pivotType) {
-		for (int recursions = 0; pivotType instanceof DomainTemplateParameter; recursions++) {
-			DomainType lowerBound = ((DomainTemplateParameter)pivotType).getLowerBound();
+		for (int recursions = 0; pivotType instanceof TemplateParameter; recursions++) {
+			DomainType lowerBound = ((TemplateParameter)pivotType).getLowerBound();
 			pivotType = lowerBound != null ? lowerBound : getStandardLibrary().getOclAnyType();
 			if (recursions > 100) {
 				pivotType = getStandardLibrary().getOclAnyType();

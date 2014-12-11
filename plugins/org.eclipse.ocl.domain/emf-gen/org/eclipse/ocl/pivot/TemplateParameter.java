@@ -12,10 +12,12 @@ package org.eclipse.ocl.pivot;
 
 import java.util.List;
 
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.domain.ids.TemplateParameterId;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Template Parameter</b></em>'.
- * @extends org.eclipse.ocl.domain.elements.DomainTemplateParameter
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -35,8 +37,7 @@ import java.util.List;
  * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateParameter()
  * @generated
  */
-public interface TemplateParameter
-		extends Type, org.eclipse.ocl.domain.elements.DomainTemplateParameter {
+public interface TemplateParameter extends Type {
 
 	/**
 	 * Returns the value of the '<em><b>Constraining Class</b></em>' reference list.
@@ -64,7 +65,6 @@ public interface TemplateParameter
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateParameter_LowerBound()
 	 * @generated
 	 */
-	@Override
 	Type getLowerBound();
 
 	/**
@@ -126,5 +126,7 @@ public interface TemplateParameter
 	 * @generated
 	 */
 	void setUpperBound(Type value);
+
+	@NonNull TemplateParameterId getTemplateParameterId();
 
 } // TemplateParameter

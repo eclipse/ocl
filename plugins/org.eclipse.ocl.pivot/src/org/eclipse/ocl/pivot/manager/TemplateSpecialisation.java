@@ -19,11 +19,11 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
-import org.eclipse.ocl.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TupleType;
 
@@ -48,7 +48,7 @@ public class TemplateSpecialisation
 		if (referencedType == null) {
 			return true;
 		}
-		DomainTemplateParameter templateParameter = referencedType.isTemplateParameter();
+		TemplateParameter templateParameter = referencedType.isTemplateParameter();
 		if (templateParameter != null) {
 			return true;
 		}
@@ -94,7 +94,7 @@ public class TemplateSpecialisation
 
 	protected final @NonNull DomainEnvironment environment;
 //	protected final @NonNull DomainStandardLibrary standardLibrary;
-	protected /*@LazyNonNull*/ Map<DomainTemplateParameter, DomainType> bindings = null;
+	protected /*@LazyNonNull*/ Map<TemplateParameter, DomainType> bindings = null;
 
 	public TemplateSpecialisation(@NonNull DomainEnvironment environment) {
 		this.environment = environment;
@@ -107,7 +107,7 @@ public class TemplateSpecialisation
 	 */
 	private @Nullable DomainType getResolution(@Nullable DomainType referencedType) {
 		if (referencedType != null) {
-			DomainTemplateParameter templateParameter = referencedType.isTemplateParameter();
+			TemplateParameter templateParameter = referencedType.isTemplateParameter();
 			if (templateParameter != null) {
 				return bindings != null ? bindings.get(templateParameter) : null;
 			}
@@ -144,10 +144,10 @@ public class TemplateSpecialisation
 		if (referencedType == null) {
 			return;
 		}
-		DomainTemplateParameter templateParameter = referencedType.isTemplateParameter();
+		TemplateParameter templateParameter = referencedType.isTemplateParameter();
 		if (templateParameter != null) {
 			if (bindings == null) {
-				bindings = new HashMap<DomainTemplateParameter, DomainType>();
+				bindings = new HashMap<TemplateParameter, DomainType>();
 			}
 			if (bindings.put(templateParameter, resolvedType) != null) {
 				bindings.put(templateParameter, null);

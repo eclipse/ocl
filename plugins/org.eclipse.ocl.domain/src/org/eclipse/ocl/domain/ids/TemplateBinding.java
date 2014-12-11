@@ -11,10 +11,10 @@
 package org.eclipse.ocl.domain.ids;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainTemplateParameter;
+import org.eclipse.ocl.pivot.TemplateParameter;
 
 public interface TemplateBinding extends TypeId
 {
-	@NonNull DomainTemplateParameter getTemplateParameter();
+	@NonNull TemplateParameter getTemplateParameter();
 	void install(@NonNull TemplateParameterId templateParameterId);
 }

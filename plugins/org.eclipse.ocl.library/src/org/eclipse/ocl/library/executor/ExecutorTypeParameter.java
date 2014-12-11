@@ -10,23 +10,26 @@
  *******************************************************************************/
 package org.eclipse.ocl.library.executor;
 
+import java.util.List;
+
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainEnvironment;
+import org.eclipse.ocl.domain.elements.AbstractExecutorType;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.TemplateParameterId;
-import org.eclipse.ocl.domain.types.AbstractType;
 import org.eclipse.ocl.domain.types.IdResolver;
+import org.eclipse.ocl.pivot.Class;
+import org.eclipse.ocl.pivot.TemplateParameter;
+import org.eclipse.ocl.pivot.TemplateSignature;
+import org.eclipse.ocl.pivot.Type;
 
-public class ExecutorTypeParameter extends AbstractType implements ExecutorTypeArgument, DomainTemplateParameter
+public class ExecutorTypeParameter extends AbstractExecutorType implements ExecutorTypeArgument, TemplateParameter
 {
 	private final @NonNull TemplateParameterId typeid;
 
-	public ExecutorTypeParameter(@NonNull TemplateParameterId typeid, @NonNull DomainEnvironment environment, @NonNull String name) {
-		super(environment, name);
+	public ExecutorTypeParameter(@NonNull TemplateParameterId typeid, @NonNull String name) {
+		super(name, 0);
 		this.typeid = typeid;
 	}
 
@@ -41,7 +44,7 @@ public class ExecutorTypeParameter extends AbstractType implements ExecutorTypeA
 	}
 
 	@Override
-	public @Nullable DomainType getLowerBound() {
+	public @Nullable Type getLowerBound() {
 		return null;
 	}
 	
@@ -56,7 +59,7 @@ public class ExecutorTypeParameter extends AbstractType implements ExecutorTypeA
 	}
 	
 	@Override
-	public @Nullable DomainClass isClass() {
+	public @Nullable org.eclipse.ocl.pivot.Class isClass() {
 		return null;
 	}
 
@@ -66,7 +69,37 @@ public class ExecutorTypeParameter extends AbstractType implements ExecutorTypeA
 	}
 
 	@Override
-	public @NonNull DomainTemplateParameter isTemplateParameter() {
+	public @NonNull TemplateParameter isTemplateParameter() {
 		return this;
+	}
+
+	@Override
+	public List<Class> getConstrainingClass() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setLowerBound(Type value) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public TemplateSignature getOwningTemplateSignature() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setOwningTemplateSignature(TemplateSignature value) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Type getUpperBound() {
+		return null;
+	}
+
+	@Override
+	public void setUpperBound(Type value) {
+		throw new UnsupportedOperationException();
 	}
 }

@@ -13,6 +13,7 @@ package org.eclipse.ocl.domain.elements;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.TemplateParameter;
 
 /**
  * DomainTypeParameters provides a hashable list of type
@@ -25,7 +26,7 @@ public class DomainTypeParameters
 	private final @NonNull DomainType[] typeParameters;
 	private final int hashCode;
 
-	public DomainTypeParameters(@NonNull DomainTemplateParameter... typeParameters) {
+	public DomainTypeParameters(@NonNull TemplateParameter... typeParameters) {
 		this.typeParameters = new DomainType[typeParameters.length];
 		int hash = 0;
 		for (int i = 0; i < typeParameters.length; i++) {

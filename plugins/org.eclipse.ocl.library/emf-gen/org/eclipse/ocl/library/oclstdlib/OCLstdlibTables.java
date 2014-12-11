@@ -61,51 +61,51 @@ public class OCLstdlibTables
 	 *	The type parameters for templated types and operations.
 	 */
 	public static class TypeParameters {
-		public static final @NonNull ExecutorTypeParameter _Bag_T = new ExecutorTypeParameter(TypeId.T_1, LIBRARY, "T");
-		public static final @NonNull ExecutorTypeParameter __Bag__collect_V = new ExecutorTypeParameter(TypeId.T_2, LIBRARY, "V");
-		public static final @NonNull ExecutorTypeParameter __Bag__collectNested_V = new ExecutorTypeParameter(TypeId.T_2, LIBRARY, "V");
-		public static final @NonNull ExecutorTypeParameter __Bag__flatten_T2 = new ExecutorTypeParameter(TypeId.T_2, LIBRARY, "T2");
-		public static final @NonNull ExecutorTypeParameter __Bag__selectByKind_TT = new ExecutorTypeParameter(TypeId.T_2, LIBRARY, "TT");
-		public static final @NonNull ExecutorTypeParameter __Bag__selectByType_TT = new ExecutorTypeParameter(TypeId.T_2, LIBRARY, "TT");
+		public static final @NonNull ExecutorTypeParameter _Bag_T = new ExecutorTypeParameter(TypeId.T_1, "T");
+		public static final @NonNull ExecutorTypeParameter __Bag__collect_V = new ExecutorTypeParameter(TypeId.T_2, "V");
+		public static final @NonNull ExecutorTypeParameter __Bag__collectNested_V = new ExecutorTypeParameter(TypeId.T_2, "V");
+		public static final @NonNull ExecutorTypeParameter __Bag__flatten_T2 = new ExecutorTypeParameter(TypeId.T_2, "T2");
+		public static final @NonNull ExecutorTypeParameter __Bag__selectByKind_TT = new ExecutorTypeParameter(TypeId.T_2, "TT");
+		public static final @NonNull ExecutorTypeParameter __Bag__selectByType_TT = new ExecutorTypeParameter(TypeId.T_2, "TT");
 
-		public static final @NonNull ExecutorTypeParameter _Collection_T = new ExecutorTypeParameter(TypeId.T_1, LIBRARY, "T");
-		public static final @NonNull ExecutorTypeParameter __Collection__collect_V = new ExecutorTypeParameter(TypeId.T_2, LIBRARY, "V");
-		public static final @NonNull ExecutorTypeParameter __Collection__collectNested_V = new ExecutorTypeParameter(TypeId.T_2, LIBRARY, "V");
-		public static final @NonNull ExecutorTypeParameter __Collection__excludesAll_T2 = new ExecutorTypeParameter(TypeId.T_2, LIBRARY, "T2");
-		public static final @NonNull ExecutorTypeParameter __Collection__flatten_T2 = new ExecutorTypeParameter(TypeId.T_2, LIBRARY, "T2");
-		public static final @NonNull ExecutorTypeParameter __Collection__includesAll_T2 = new ExecutorTypeParameter(TypeId.T_2, LIBRARY, "T2");
-		public static final @NonNull ExecutorTypeParameter __Collection__iterate_Tacc = new ExecutorTypeParameter(TypeId.T_2, LIBRARY, "Tacc");
-		public static final @NonNull ExecutorTypeParameter __Collection__product_T2 = new ExecutorTypeParameter(TypeId.T_2, LIBRARY, "T2");
-		public static final @NonNull ExecutorTypeParameter __Collection__selectByKind_TT = new ExecutorTypeParameter(TypeId.T_2, LIBRARY, "TT");
-		public static final @NonNull ExecutorTypeParameter __Collection__selectByType_TT = new ExecutorTypeParameter(TypeId.T_2, LIBRARY, "TT");
-		public static final @NonNull ExecutorTypeParameter __OclAny__oclAsType_TT = new ExecutorTypeParameter(TypeId.T_1, LIBRARY, "TT");
-		public static final @NonNull ExecutorTypeParameter __OclInvalid__oclAsType_TT = new ExecutorTypeParameter(TypeId.T_1, LIBRARY, "TT");
+		public static final @NonNull ExecutorTypeParameter _Collection_T = new ExecutorTypeParameter(TypeId.T_1, "T");
+		public static final @NonNull ExecutorTypeParameter __Collection__collect_V = new ExecutorTypeParameter(TypeId.T_2, "V");
+		public static final @NonNull ExecutorTypeParameter __Collection__collectNested_V = new ExecutorTypeParameter(TypeId.T_2, "V");
+		public static final @NonNull ExecutorTypeParameter __Collection__excludesAll_T2 = new ExecutorTypeParameter(TypeId.T_2, "T2");
+		public static final @NonNull ExecutorTypeParameter __Collection__flatten_T2 = new ExecutorTypeParameter(TypeId.T_2, "T2");
+		public static final @NonNull ExecutorTypeParameter __Collection__includesAll_T2 = new ExecutorTypeParameter(TypeId.T_2, "T2");
+		public static final @NonNull ExecutorTypeParameter __Collection__iterate_Tacc = new ExecutorTypeParameter(TypeId.T_2, "Tacc");
+		public static final @NonNull ExecutorTypeParameter __Collection__product_T2 = new ExecutorTypeParameter(TypeId.T_2, "T2");
+		public static final @NonNull ExecutorTypeParameter __Collection__selectByKind_TT = new ExecutorTypeParameter(TypeId.T_2, "TT");
+		public static final @NonNull ExecutorTypeParameter __Collection__selectByType_TT = new ExecutorTypeParameter(TypeId.T_2, "TT");
+		public static final @NonNull ExecutorTypeParameter __OclAny__oclAsType_TT = new ExecutorTypeParameter(TypeId.T_1, "TT");
+		public static final @NonNull ExecutorTypeParameter __OclInvalid__oclAsType_TT = new ExecutorTypeParameter(TypeId.T_1, "TT");
 
-		public static final @NonNull ExecutorTypeParameter _OrderedCollection_T = new ExecutorTypeParameter(TypeId.T_1, LIBRARY, "T");
+		public static final @NonNull ExecutorTypeParameter _OrderedCollection_T = new ExecutorTypeParameter(TypeId.T_1, "T");
 
-		public static final @NonNull ExecutorTypeParameter _OrderedSet_T = new ExecutorTypeParameter(TypeId.T_1, LIBRARY, "T");
-		public static final @NonNull ExecutorTypeParameter __OrderedSet__collect_V = new ExecutorTypeParameter(TypeId.T_2, LIBRARY, "V");
-		public static final @NonNull ExecutorTypeParameter __OrderedSet__collectNested_V = new ExecutorTypeParameter(TypeId.T_2, LIBRARY, "V");
-		public static final @NonNull ExecutorTypeParameter __OrderedSet__flatten_T2 = new ExecutorTypeParameter(TypeId.T_2, LIBRARY, "T2");
-		public static final @NonNull ExecutorTypeParameter __OrderedSet__selectByKind_TT = new ExecutorTypeParameter(TypeId.T_2, LIBRARY, "TT");
-		public static final @NonNull ExecutorTypeParameter __OrderedSet__selectByType_TT = new ExecutorTypeParameter(TypeId.T_2, LIBRARY, "TT");
+		public static final @NonNull ExecutorTypeParameter _OrderedSet_T = new ExecutorTypeParameter(TypeId.T_1, "T");
+		public static final @NonNull ExecutorTypeParameter __OrderedSet__collect_V = new ExecutorTypeParameter(TypeId.T_2, "V");
+		public static final @NonNull ExecutorTypeParameter __OrderedSet__collectNested_V = new ExecutorTypeParameter(TypeId.T_2, "V");
+		public static final @NonNull ExecutorTypeParameter __OrderedSet__flatten_T2 = new ExecutorTypeParameter(TypeId.T_2, "T2");
+		public static final @NonNull ExecutorTypeParameter __OrderedSet__selectByKind_TT = new ExecutorTypeParameter(TypeId.T_2, "TT");
+		public static final @NonNull ExecutorTypeParameter __OrderedSet__selectByType_TT = new ExecutorTypeParameter(TypeId.T_2, "TT");
 
-		public static final @NonNull ExecutorTypeParameter _Sequence_T = new ExecutorTypeParameter(TypeId.T_1, LIBRARY, "T");
-		public static final @NonNull ExecutorTypeParameter __Sequence__collect_V = new ExecutorTypeParameter(TypeId.T_2, LIBRARY, "V");
-		public static final @NonNull ExecutorTypeParameter __Sequence__collectNested_V = new ExecutorTypeParameter(TypeId.T_2, LIBRARY, "V");
-		public static final @NonNull ExecutorTypeParameter __Sequence__flatten_T2 = new ExecutorTypeParameter(TypeId.T_2, LIBRARY, "T2");
-		public static final @NonNull ExecutorTypeParameter __Sequence__selectByKind_TT = new ExecutorTypeParameter(TypeId.T_2, LIBRARY, "TT");
-		public static final @NonNull ExecutorTypeParameter __Sequence__selectByType_TT = new ExecutorTypeParameter(TypeId.T_2, LIBRARY, "TT");
+		public static final @NonNull ExecutorTypeParameter _Sequence_T = new ExecutorTypeParameter(TypeId.T_1, "T");
+		public static final @NonNull ExecutorTypeParameter __Sequence__collect_V = new ExecutorTypeParameter(TypeId.T_2, "V");
+		public static final @NonNull ExecutorTypeParameter __Sequence__collectNested_V = new ExecutorTypeParameter(TypeId.T_2, "V");
+		public static final @NonNull ExecutorTypeParameter __Sequence__flatten_T2 = new ExecutorTypeParameter(TypeId.T_2, "T2");
+		public static final @NonNull ExecutorTypeParameter __Sequence__selectByKind_TT = new ExecutorTypeParameter(TypeId.T_2, "TT");
+		public static final @NonNull ExecutorTypeParameter __Sequence__selectByType_TT = new ExecutorTypeParameter(TypeId.T_2, "TT");
 
-		public static final @NonNull ExecutorTypeParameter _Set_T = new ExecutorTypeParameter(TypeId.T_1, LIBRARY, "T");
-		public static final @NonNull ExecutorTypeParameter __Set__collect_V = new ExecutorTypeParameter(TypeId.T_2, LIBRARY, "V");
-		public static final @NonNull ExecutorTypeParameter __Set__collectNested_V = new ExecutorTypeParameter(TypeId.T_2, LIBRARY, "V");
-		public static final @NonNull ExecutorTypeParameter __Set__flatten_T2 = new ExecutorTypeParameter(TypeId.T_2, LIBRARY, "T2");
-		public static final @NonNull ExecutorTypeParameter __Set__selectByKind_TT = new ExecutorTypeParameter(TypeId.T_2, LIBRARY, "TT");
-		public static final @NonNull ExecutorTypeParameter __Set__selectByType_TT = new ExecutorTypeParameter(TypeId.T_2, LIBRARY, "TT");
+		public static final @NonNull ExecutorTypeParameter _Set_T = new ExecutorTypeParameter(TypeId.T_1, "T");
+		public static final @NonNull ExecutorTypeParameter __Set__collect_V = new ExecutorTypeParameter(TypeId.T_2, "V");
+		public static final @NonNull ExecutorTypeParameter __Set__collectNested_V = new ExecutorTypeParameter(TypeId.T_2, "V");
+		public static final @NonNull ExecutorTypeParameter __Set__flatten_T2 = new ExecutorTypeParameter(TypeId.T_2, "T2");
+		public static final @NonNull ExecutorTypeParameter __Set__selectByKind_TT = new ExecutorTypeParameter(TypeId.T_2, "TT");
+		public static final @NonNull ExecutorTypeParameter __Set__selectByType_TT = new ExecutorTypeParameter(TypeId.T_2, "TT");
 
-		public static final @NonNull ExecutorTypeParameter _UniqueCollection_T = new ExecutorTypeParameter(TypeId.T_1, LIBRARY, "T");
-		public static final @NonNull ExecutorTypeParameter __UnlimitedNatural__oclAsType_TT = new ExecutorTypeParameter(TypeId.T_1, LIBRARY, "TT");
+		public static final @NonNull ExecutorTypeParameter _UniqueCollection_T = new ExecutorTypeParameter(TypeId.T_1, "T");
+		public static final @NonNull ExecutorTypeParameter __UnlimitedNatural__oclAsType_TT = new ExecutorTypeParameter(TypeId.T_1, "TT");
 	}
 
 	/**

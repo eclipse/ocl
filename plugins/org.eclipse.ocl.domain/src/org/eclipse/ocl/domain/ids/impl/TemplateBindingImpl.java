@@ -12,7 +12,6 @@ package org.eclipse.ocl.domain.ids.impl;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.domain.ids.BindingsId;
 import org.eclipse.ocl.domain.ids.ElementId;
 import org.eclipse.ocl.domain.ids.IdVisitor;
@@ -20,14 +19,15 @@ import org.eclipse.ocl.domain.ids.TemplateBinding;
 import org.eclipse.ocl.domain.ids.TemplateParameterId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.TemplateParameter;
 
 
 public class TemplateBindingImpl extends AbstractTypeId implements TemplateBinding
 {
-	private DomainTemplateParameter templateParameter;
+	private TemplateParameter templateParameter;
 	private TemplateParameterId templateParameterId;
 	
-	public TemplateBindingImpl(@NonNull DomainTemplateParameter templateParameter) {
+	public TemplateBindingImpl(@NonNull TemplateParameter templateParameter) {
 		this.templateParameter = templateParameter;
 	}
 
@@ -44,7 +44,7 @@ public class TemplateBindingImpl extends AbstractTypeId implements TemplateBindi
 	}
 
 	@Override
-	public @NonNull DomainTemplateParameter getTemplateParameter() {
+	public @NonNull TemplateParameter getTemplateParameter() {
 		return DomainUtil.nonNullState(templateParameter);
 	}
 

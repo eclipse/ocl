@@ -11,22 +11,22 @@
 package org.eclipse.ocl.library.executor;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.domain.elements.AbstractExecutorClass;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.LibraryFeature;
-import org.eclipse.ocl.domain.types.AbstractClass;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.pivot.Operation;
 
-public class ExecutorLambdaType extends AbstractClass implements ExecutorTypeArgument
+public class ExecutorLambdaType extends AbstractExecutorClass implements ExecutorTypeArgument
 {
 	protected final @NonNull TypeId typeId;
 
 	public ExecutorLambdaType(@NonNull DomainEnvironment environment, @NonNull String name, @NonNull ExecutorTypeArgument... typeArguments) {
-		super(environment, name);
+		super(name, 0);
 		typeId = IdManager.getLambdaTypeId(name, IdManager.getParametersId(typeArguments));
 	}
 

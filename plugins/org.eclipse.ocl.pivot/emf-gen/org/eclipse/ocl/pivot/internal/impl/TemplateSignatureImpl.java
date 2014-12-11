@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Element;
@@ -340,7 +339,7 @@ public class TemplateSignatureImpl
 		}
 		List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
 		int iMax = templateParameters.size();
-		DomainTemplateParameter[] typeParameters = new DomainTemplateParameter[iMax];
+		TemplateParameter[] typeParameters = new TemplateParameter[iMax];
 		for (int i = 0; i < iMax; i++) {
 			typeParameters[i] = templateParameters.get(i);
 		}

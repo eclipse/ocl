@@ -20,12 +20,12 @@ import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.values.Value;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.TemplateParameter;
 
 public abstract class AbstractClass extends AbstractType implements DomainClass	// FIXME rename as perhaps DerivativeType
 {
@@ -94,7 +94,7 @@ public abstract class AbstractClass extends AbstractType implements DomainClass	
 	}
 
 	@Override
-	public @Nullable DomainTemplateParameter isTemplateParameter() {
+	public @Nullable TemplateParameter isTemplateParameter() {
 		return null;
 	}
 

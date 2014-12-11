@@ -19,17 +19,17 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.domain.ids.EnumerationId;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
+import org.eclipse.ocl.pivot.TemplateParameter;
 
 public class EcoreReflectiveEnumeration extends EcoreReflectiveType implements Enumeration
 {
 	private /*@LazyNonNull*/ List<EnumerationLiteral> literals = null;
 	private /*@LazyNonNull*/ Map<String, EnumerationLiteral> name2literal = null;
 
-	public EcoreReflectiveEnumeration(@NonNull EcoreReflectivePackage evaluationPackage, int flags, @NonNull EEnum eEnum, @NonNull DomainTemplateParameter... typeParameters) {
+	public EcoreReflectiveEnumeration(@NonNull EcoreReflectivePackage evaluationPackage, int flags, @NonNull EEnum eEnum, @NonNull TemplateParameter... typeParameters) {
 		super(evaluationPackage, flags, eEnum, typeParameters);
 	}
 

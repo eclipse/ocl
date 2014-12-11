@@ -23,7 +23,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.ids.OperationId;
@@ -36,6 +35,7 @@ import org.eclipse.ocl.library.executor.DomainProperties;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.TemplateParameter;
 
 public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 {
@@ -46,7 +46,7 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 	protected final @NonNull DomainTypeParameters typeParameters;
 	private /*@LazyNonNull*/ DomainProperties allProperties;
 	
-	public EcoreReflectiveType(@NonNull EcoreReflectivePackage evaluationPackage, int flags, @NonNull EClassifier eClassifier, @NonNull DomainTemplateParameter... typeParameters) {
+	public EcoreReflectiveType(@NonNull EcoreReflectivePackage evaluationPackage, int flags, @NonNull EClassifier eClassifier, @NonNull TemplateParameter... typeParameters) {
 		super(DomainUtil.nonNullEMF(eClassifier.getName()), flags);
 		this.evaluationPackage = evaluationPackage;
 		this.eClassifier = eClassifier;

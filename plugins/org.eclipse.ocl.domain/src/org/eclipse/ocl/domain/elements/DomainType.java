@@ -16,6 +16,7 @@ import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.values.OCLValue;
 import org.eclipse.ocl.pivot.CallExp;
+import org.eclipse.ocl.pivot.TemplateParameter;
 
 public interface DomainType extends DomainNamespace, OCLValue
 {
@@ -76,5 +77,5 @@ public interface DomainType extends DomainNamespace, OCLValue
 	/*@NonNull*/ DomainType specializeIn(@NonNull CallExp expr, /*@NonNull*/ DomainType selfType);
 
 	@Nullable DomainClass isClass();
-	@Nullable DomainTemplateParameter isTemplateParameter();
+	@Nullable TemplateParameter isTemplateParameter();
 }

@@ -37,7 +37,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainParameterTypes;
-import org.eclipse.ocl.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.Nameable;
 import org.eclipse.ocl.domain.ids.BuiltInTypeId;
@@ -1025,9 +1024,9 @@ public class OCLinEcoreTablesUtils
 		return name2;
 	}
 	private void getTemplateBindingsName(@NonNull StringBuilder s, @NonNull DomainType element) {
-		DomainTemplateParameter templateParameter = element.isTemplateParameter();
+		TemplateParameter templateParameter = element.isTemplateParameter();
 		if (templateParameter != null) {
-			TemplateableElement template = ((TemplateParameter)templateParameter).getOwningTemplateSignature().getOwningTemplateableElement();		// FIXME cast
+			TemplateableElement template = templateParameter.getOwningTemplateSignature().getOwningTemplateableElement();
 			if (template instanceof Operation) {
 				s.append(AbstractGenModelHelper.encodeName(DomainUtil.nonNullModel(((Operation) template).getOwningClass())));
 				s.append("_");
