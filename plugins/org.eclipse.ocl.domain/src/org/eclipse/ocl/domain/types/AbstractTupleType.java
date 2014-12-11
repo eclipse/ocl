@@ -13,13 +13,13 @@ package org.eclipse.ocl.domain.types;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainTupleType;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.TupleTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.LibraryFeature;
+import org.eclipse.ocl.pivot.Operation;
 
 public class AbstractTupleType extends AbstractClass implements DomainTupleType
 {
@@ -71,12 +71,12 @@ public class AbstractTupleType extends AbstractClass implements DomainTupleType
 	}
 	
 	@Override
-	public @NonNull DomainOperation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
+	public @NonNull Operation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
 		return standardLibrary.getOclTupleType().lookupActualOperation(standardLibrary, apparentOperation);
 	}
 
 	@Override
-	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
+	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
 		return standardLibrary.getOclTupleType().lookupImplementation(standardLibrary, apparentOperation);
 	}
 

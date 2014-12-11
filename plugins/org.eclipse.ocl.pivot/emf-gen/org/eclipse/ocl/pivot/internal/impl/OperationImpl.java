@@ -66,7 +66,6 @@ import org.eclipse.ocl.pivot.TemplateBinding;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.ValueSpecification;
 import org.eclipse.ocl.pivot.util.PivotValidator;
 import org.eclipse.ocl.pivot.util.Visitor;
@@ -805,7 +804,7 @@ public class OperationImpl
 		    @NonNull /*@Caught*/ Object CAUGHT_b_0;
 		    try {
 		        final @Nullable /*@Thrown*/ LanguageExpression bodyExpression_2 = this.getBodyExpression();
-		        final /*@Thrown*/ boolean b_0 = ((TypedElement)this).CompatibleBody((ValueSpecification)bodyExpression_2);
+		        final /*@Thrown*/ boolean b_0 = this.CompatibleBody((ValueSpecification)bodyExpression_2);
 		        CAUGHT_b_0 = b_0;
 		    }
 		    catch (Exception e) {

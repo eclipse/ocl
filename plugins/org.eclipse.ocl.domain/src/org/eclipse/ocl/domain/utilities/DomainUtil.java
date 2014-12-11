@@ -34,7 +34,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.DomainConstants;
 import org.eclipse.ocl.domain.elements.DomainIteration;
 import org.eclipse.ocl.domain.elements.DomainLambdaType;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.elements.Labelable;
@@ -42,6 +41,7 @@ import org.eclipse.ocl.domain.elements.Nameable;
 import org.eclipse.ocl.domain.values.Unlimited;
 import org.eclipse.ocl.examples.common.utils.ClassUtils;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
+import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.osgi.util.NLS;
 
 public class DomainUtil
@@ -441,7 +441,7 @@ public class DomainUtil
 		return null;				
 	}
 
-	public static @NonNull DomainType[] getOperationParameterTypes(@NonNull DomainOperation anOperation) {
+	public static @NonNull DomainType[] getOperationParameterTypes(@NonNull Operation anOperation) {
 		DomainType[] parameterTypes;
 		int iParameter = 0;
 		List<? extends DomainTypedElement> ownedParameters = anOperation.getOwnedParameter();

@@ -21,7 +21,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.evaluation.DomainIterationManager;
@@ -37,6 +36,7 @@ import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.domain.values.impl.ValueImpl;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.library.LibraryConstants;
+import org.eclipse.ocl.pivot.Operation;
 
 /**
  * SelectIteration realizes the Collection::sortedBy() library iteration.
@@ -152,7 +152,7 @@ public class SortedByIteration extends AbstractIteration
 		DomainStandardLibrary standardLibrary = evaluator.getStandardLibrary();
 		DomainInheritance comparableType = standardLibrary.getOclComparableType().getInheritance(standardLibrary);
 		DomainInheritance selfType = standardLibrary.getOclSelfType().getInheritance(standardLibrary);
-		DomainOperation staticOperation = comparableType.lookupLocalOperation(standardLibrary, LibraryConstants.COMPARE_TO, selfType);
+		Operation staticOperation = comparableType.lookupLocalOperation(standardLibrary, LibraryConstants.COMPARE_TO, selfType);
 		if (staticOperation != null) {
 			DomainClass bodyType = evaluator.getIdResolver().getClass(bodyTypeId, null);
 			LibraryFeature implementation = bodyType.lookupImplementation(standardLibrary, staticOperation);

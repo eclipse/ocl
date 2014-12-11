@@ -20,7 +20,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
@@ -417,24 +416,24 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			Type asLowerBound = asTemplateParameter.getLowerBound();
 			asType = asLowerBound != null ? asLowerBound : standardLibrary.getOclAnyType();
 		}
-		Iterable<? extends DomainOperation> nonStaticOperations = metaModelManager.getAllOperations(asType, FeatureFilter.SELECT_NON_STATIC, name);
+		Iterable<? extends Operation> nonStaticOperations = metaModelManager.getAllOperations(asType, FeatureFilter.SELECT_NON_STATIC, name);
 		List<NamedElement> invocations = getInvocationsInternal(null, nonStaticOperations, iteratorCount, expressionCount);
 		if (asType instanceof ElementExtension) {				// FIXME review me
 			Type asStereotype = ((ElementExtension)asType).getStereotype();
 			if (asStereotype != null) {
-				Iterable<? extends DomainOperation> stereotypeOperations = metaModelManager.getAllOperations(asStereotype, FeatureFilter.SELECT_NON_STATIC, name);
+				Iterable<? extends Operation> stereotypeOperations = metaModelManager.getAllOperations(asStereotype, FeatureFilter.SELECT_NON_STATIC, name);
 				invocations = getInvocationsInternal(invocations, stereotypeOperations, iteratorCount, expressionCount);
 			}
 		}
 		if (asTypeValue != null) {
-			Iterable<? extends DomainOperation> staticOperations = metaModelManager.getAllOperations(asTypeValue, FeatureFilter.SELECT_STATIC, name);
+			Iterable<? extends Operation> staticOperations = metaModelManager.getAllOperations(asTypeValue, FeatureFilter.SELECT_STATIC, name);
 			invocations = getInvocationsInternal(invocations, staticOperations, iteratorCount, expressionCount);
 		}
 		return invocations != null ? new UnresolvedInvocations(asType, invocations) : null;
 	}
 	protected @Nullable List<NamedElement> getInvocationsInternal(@Nullable List<NamedElement> invocations,
-			@NonNull Iterable<? extends DomainOperation> allOperations, int iteratorCount, int expressionCount) {
-		for (DomainOperation operation : allOperations) {
+			@NonNull Iterable<? extends Operation> allOperations, int iteratorCount, int expressionCount) {
+		for (Operation operation : allOperations) {
 			Operation asOperation = null;
 			if (operation instanceof Iteration) {
 				Iteration candidateIteration = (Iteration) operation;
@@ -443,8 +442,8 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 					asOperation = candidateIteration;
 				}
 			}
-			else if (operation instanceof Operation){
-				Operation candidateOperation = (Operation) operation;
+			else {
+				Operation candidateOperation = operation;
 				int operationsSize = candidateOperation.getOwnedParameter().size();
 				if (expressionCount == operationsSize) {
 					asOperation = candidateOperation;

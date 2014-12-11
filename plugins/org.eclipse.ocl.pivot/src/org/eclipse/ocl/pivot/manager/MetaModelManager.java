@@ -51,7 +51,6 @@ import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainNamespace;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
@@ -814,12 +813,12 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return knownInvariants;
 	}
 	
-	public @NonNull Iterable<? extends DomainOperation> getAllOperations(@NonNull DomainType type, @Nullable FeatureFilter featureFilter) {
+	public @NonNull Iterable<Operation> getAllOperations(@NonNull DomainType type, @Nullable FeatureFilter featureFilter) {
 		CompleteClass completeClass = completeModel.getCompleteClass(type);
 		return completeClass.getOperations(featureFilter);
 	}
 	
-	public @NonNull Iterable<? extends DomainOperation> getAllOperations(@NonNull DomainType type, @Nullable FeatureFilter featureFilter, @NonNull String name) {
+	public @NonNull Iterable<Operation> getAllOperations(@NonNull DomainType type, @Nullable FeatureFilter featureFilter, @NonNull String name) {
 		CompleteClass completeClass = completeModel.getCompleteClass(type);
 		return completeClass.getOperations(featureFilter, name);
 	}
@@ -903,16 +902,14 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 
 	public @Nullable ExpressionInOCL getBodyExpression(@NonNull Operation operation) {
 		ExpressionInOCL bodyExpression = null;
-		for (DomainOperation domainOperation : getOperationOverloads(operation)) {
-			if (domainOperation instanceof Operation) {
-				LanguageExpression anExpression = ((Operation)domainOperation).getBodyExpression();
-				if (anExpression != null) {
-					if (bodyExpression != null) {
-						throw new IllegalStateException("Multiple bodies for " + operation);
-					}
-					else {
-						bodyExpression = getQueryOrError(anExpression);
-					}
+		for (@SuppressWarnings("null")@NonNull Operation domainOperation : getOperationOverloads(operation)) {
+			LanguageExpression anExpression = domainOperation.getBodyExpression();
+			if (anExpression != null) {
+				if (bodyExpression != null) {
+					throw new IllegalStateException("Multiple bodies for " + operation);
+				}
+				else {
+					bodyExpression = getQueryOrError(anExpression);
 				}
 			}
 		}
@@ -1005,16 +1002,14 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 
 	public @Nullable ExpressionInOCL getDefaultExpression(@NonNull Property property) {
 		ExpressionInOCL defaultExpression = null;
-		for (Property domainProperty : getAllProperties(property)) {
-			if (domainProperty instanceof Property) {
-				LanguageExpression anExpression = ((Property)domainProperty).getDefaultExpression();
-				if (anExpression != null) {
-					if (defaultExpression != null) {
-						throw new IllegalStateException("Multiple derivations for " + property);
-					}
-					else {
-						defaultExpression = getQueryOrError(anExpression);
-					}
+		for (@SuppressWarnings("null")@NonNull Property domainProperty : getAllProperties(property)) {
+			LanguageExpression anExpression = domainProperty.getDefaultExpression();
+			if (anExpression != null) {
+				if (defaultExpression != null) {
+					throw new IllegalStateException("Multiple derivations for " + property);
+				}
+				else {
+					defaultExpression = getQueryOrError(anExpression);
 				}
 			}
 		}
@@ -1429,17 +1424,17 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return pivotType != null ? getInheritance(pivotType).getType() : null;
 	}
 
-	public @NonNull Iterable<? extends DomainOperation> getOperationOverloads(@NonNull DomainOperation pivotOperation) {
+	public @NonNull Iterable<? extends Operation> getOperationOverloads(@NonNull Operation pivotOperation) {
 		DomainInheritance pivotClass = pivotOperation.getInheritance(standardLibrary);
 		if (pivotClass == null) {
 			throw new IllegalStateException("Missing owning type");
 		}
 		CompleteClass completeClass = completeModel.getCompleteClass(pivotClass.getType());
-		Iterable<? extends DomainOperation> operationOverloads = completeClass.getOperationOverloads(pivotOperation);
+		Iterable<? extends Operation> operationOverloads = completeClass.getOperationOverloads(pivotOperation);
 		if (operationOverloads != null) {
 			return operationOverloads;
 		}
-		@SuppressWarnings("null") @NonNull List<DomainOperation> singletonList = Collections.singletonList(pivotOperation);
+		@SuppressWarnings("null") @NonNull List<Operation> singletonList = Collections.singletonList(pivotOperation);
 		return singletonList;
 	}
 
@@ -1641,8 +1636,8 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 
 	@SuppressWarnings("unchecked")
 	public @NonNull <T extends EObject> T getPrimaryElement(@NonNull T element) {
-		if (element instanceof DomainOperation) {
-			return (T) getPrimaryOperation((DomainOperation)element);
+		if (element instanceof Operation) {
+			return (T) getPrimaryOperation((Operation)element);
 		}
 		else if (element instanceof DomainPackage) {
 			return (T) getPrimaryPackage((DomainPackage)element);
@@ -1656,11 +1651,11 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return element;
 	}
 
-	public @NonNull DomainOperation getPrimaryOperation(@NonNull DomainOperation pivotOperation) {
+	public @NonNull Operation getPrimaryOperation(@NonNull Operation pivotOperation) {
 		DomainInheritance pivotClass = pivotOperation.getInheritance(standardLibrary);
 		if (pivotClass != null) {					// Null for an EAnnotation element
 			CompleteClass completeClass = completeModel.getCompleteClass(pivotClass.getType());
-			DomainOperation operation = completeClass.getOperation(pivotOperation);
+			Operation operation = completeClass.getOperation(pivotOperation);
 			if (operation != null) {
 				return operation;
 			}
@@ -2303,8 +2298,8 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 //		logger.warn("Cannot convert to pivot for package with URI '" + uri + "'");
 	}
 
-	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainOperation dynamicOperation) throws SecurityException, IllegalArgumentException, ClassNotFoundException, NoSuchFieldException, IllegalAccessException {
-		return getImplementation((Operation) dynamicOperation);
+	public @NonNull LibraryFeature lookupImplementation(@NonNull Operation dynamicOperation) throws SecurityException, IllegalArgumentException, ClassNotFoundException, NoSuchFieldException, IllegalAccessException {
+		return getImplementation(dynamicOperation);
 	}
 
 	@Override

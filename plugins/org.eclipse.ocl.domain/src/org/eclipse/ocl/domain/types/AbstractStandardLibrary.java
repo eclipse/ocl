@@ -23,7 +23,6 @@ import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainEnumeration;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainLambdaType;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainTupleType;
@@ -32,6 +31,7 @@ import org.eclipse.ocl.domain.ids.PrimitiveTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
+import org.eclipse.ocl.pivot.Operation;
 
 public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 {
@@ -117,7 +117,7 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 	}
 
 	@Override
-	public @Nullable DomainElement getOperationTemplateParameter(@NonNull DomainOperation anOperation, int index) {
+	public @Nullable DomainElement getOperationTemplateParameter(@NonNull Operation anOperation, int index) {
 		return anOperation.getTypeParameters().get(index);
 	}
 

@@ -17,10 +17,10 @@ import java.util.Map;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.domain.types.AbstractFragment;
 import org.eclipse.ocl.library.oclany.OclAnyUnsupportedOperation;
+import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 
 /**
@@ -29,8 +29,8 @@ import org.eclipse.ocl.pivot.Property;
  */
 public abstract class ReflectiveFragment extends AbstractFragment
 {
-	protected Map<DomainOperation, LibraryFeature> operationMap = null;
-	protected Map<DomainOperation, DomainOperation> apparentOperation2actualOperation = null;
+	protected Map<Operation, LibraryFeature> operationMap = null;
+	protected Map<Operation, Operation> apparentOperation2actualOperation = null;
 	protected Map<Property, LibraryFeature> propertyMap = null;
 
 	public ReflectiveFragment(@NonNull DomainInheritance derivedInheritance, @NonNull DomainInheritance baseInheritance) {
@@ -38,11 +38,11 @@ public abstract class ReflectiveFragment extends AbstractFragment
 	}
 
 	@Override
-	public @NonNull LibraryFeature getImplementation(@NonNull DomainOperation apparentOperation) {
+	public @NonNull LibraryFeature getImplementation(@NonNull Operation apparentOperation) {
 		if (operationMap == null) {
 			synchronized (this) {
 				if (operationMap == null) {
-					operationMap = new HashMap<DomainOperation, LibraryFeature>();		// Optimize to reuse single super map if no local ops
+					operationMap = new HashMap<Operation, LibraryFeature>();		// Optimize to reuse single super map if no local ops
 				}
 			}
 		}
@@ -55,7 +55,7 @@ public abstract class ReflectiveFragment extends AbstractFragment
 			if (libraryFeature != null) {
 				return libraryFeature;
 			}
-			DomainOperation localOperation = getLocalOperation(apparentOperation);
+			Operation localOperation = getLocalOperation(apparentOperation);
 			if (localOperation == null) {
 				if (derivedInheritance == baseInheritance) {
 					localOperation = apparentOperation;
@@ -65,7 +65,7 @@ public abstract class ReflectiveFragment extends AbstractFragment
 				libraryFeature = localOperation.getImplementation();
 			}
 			else {										// Non-trivial, search up the inheritance tree for an inherited operation
-				DomainOperation bestOverload = null;
+				Operation bestOverload = null;
 				DomainInheritance bestInheritance = null;
 				int bestDepth = -1;
 				int minDepth = baseInheritance.getDepth();
@@ -75,7 +75,7 @@ public abstract class ReflectiveFragment extends AbstractFragment
 						DomainInheritance superInheritance = derivedSuperFragment.getBaseInheritance();
 						DomainFragment superFragment = superInheritance.getFragment(baseInheritance);
 						if (superFragment != null) {
-							DomainOperation overload = superFragment.getLocalOperation(apparentOperation);
+							Operation overload = superFragment.getLocalOperation(apparentOperation);
 							if (overload != null) {
 								if (bestInheritance == null) {				// First candidate
 									bestDepth = depth;
@@ -113,8 +113,8 @@ public abstract class ReflectiveFragment extends AbstractFragment
 
 	@Override
 	@SuppressWarnings("null")
-	public @NonNull Iterable<? extends DomainOperation> getLocalOperations() {
-		return operationMap != null ? operationMap.keySet() : Collections.<DomainOperation>emptyList();
+	public @NonNull Iterable<? extends Operation> getLocalOperations() {
+		return operationMap != null ? operationMap.keySet() : Collections.<Operation>emptyList();
 	}
 	
 	@Override

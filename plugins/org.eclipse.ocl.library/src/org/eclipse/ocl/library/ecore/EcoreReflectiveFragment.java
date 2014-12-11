@@ -21,9 +21,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.library.executor.ReflectiveFragment;
+import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 
 public class EcoreReflectiveFragment extends ReflectiveFragment
@@ -55,7 +55,7 @@ public class EcoreReflectiveFragment extends ReflectiveFragment
 	}
 
 	@Override
-	public @Nullable DomainOperation getLocalOperation(@NonNull DomainOperation baseOperation) {
+	public @Nullable Operation getLocalOperation(@NonNull Operation baseOperation) {
 		throw new UnsupportedOperationException();		// FIXME
 	}
 

@@ -22,7 +22,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainTemplateParameter;
@@ -36,6 +35,7 @@ import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.library.executor.AbstractReflectiveInheritanceType;
 import org.eclipse.ocl.library.executor.DomainProperties;
 import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 
 public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
@@ -148,7 +148,7 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 	}
 
 	@Override
-	public @Nullable DomainOperation getMemberOperation(@NonNull OperationId operationId) {
+	public @Nullable Operation getMemberOperation(@NonNull OperationId operationId) {
 		throw new UnsupportedOperationException();					// FIXME
 	}
 
@@ -167,7 +167,7 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 	}
 
 	@Override
-	public @NonNull List<? extends Constraint> getOwnedInvariants() {
+	public @NonNull List<Constraint> getOwnedInvariants() {
 		throw new UnsupportedOperationException();			// FIXME
 	}
 
@@ -177,12 +177,12 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 	}
 
 	@Override
-	public @NonNull List<? extends DomainOperation> getOwnedOperations() {
+	public @NonNull List<Operation> getOwnedOperations() {
 		throw new UnsupportedOperationException();		// FIXME
 	}
 
 	@Override
-	public @NonNull List<? extends Constraint> getOwnedRule() {
+	public @NonNull List<Constraint> getOwnedRule() {
 		throw new UnsupportedOperationException();			// FIXME
 	}
 

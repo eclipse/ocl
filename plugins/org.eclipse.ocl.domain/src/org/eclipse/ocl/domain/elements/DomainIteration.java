@@ -13,8 +13,9 @@ package org.eclipse.ocl.domain.elements;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.Operation;
 
-public interface DomainIteration extends DomainOperation
+public interface DomainIteration extends Operation
 {
 	@NonNull List<? extends DomainTypedElement> getOwnedIterator();
 	@NonNull List<? extends DomainTypedElement> getOwnedAccumulator();

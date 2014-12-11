@@ -30,7 +30,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainCompletePackage;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainNamedElement;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.domain.elements.Nameable;
@@ -309,14 +308,14 @@ public class EnvironmentView
 			CompleteClass completeClass = metaModelManager.getCompleteClass(type);
 			String name2 = name;
 			if (name2 != null) {
-				for (DomainOperation operation : completeClass.getOperations(featureFilter, name2)) {
+				for (Operation operation : completeClass.getOperations(featureFilter, name2)) {
 					if ((operation != null) /*&& (operation.isStatic() == selectStatic)*/) {
 						addElement(name2, operation);
 					}
 				}
 			}
 			else {
-				for (DomainOperation operation : completeClass.getOperations(featureFilter)) {
+				for (Operation operation : completeClass.getOperations(featureFilter)) {
 					if ((operation != null) /*&& (operation.isStatic() == selectStatic)*/) {
 						addNamedElement(operation);
 					}
@@ -536,7 +535,7 @@ public class EnvironmentView
 			}
 		}
 		if ((name != null) && !name.equals(elementName)) {
-			assert !(element instanceof Property) &&  !(element instanceof DomainOperation);
+			assert !(element instanceof Property) &&  !(element instanceof Operation);
 			return;
 		}
 		if (element instanceof CompletePackage) {

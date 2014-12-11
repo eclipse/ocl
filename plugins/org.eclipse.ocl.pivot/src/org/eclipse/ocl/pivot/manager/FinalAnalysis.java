@@ -22,7 +22,6 @@ import java.util.Set;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.ids.ParametersId;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.pivot.CompleteClass;
@@ -35,7 +34,7 @@ public class FinalAnalysis
 	protected final @NonNull CompleteModelInternal completeModel;
 	protected final @NonNull MetaModelManager metaModelManager;
 	private final @NonNull Map<CompleteClass, Set<CompleteClass>> superCompleteClass2subCompleteClasses = new HashMap<CompleteClass, Set<CompleteClass>>();
-	private final @NonNull Map<DomainOperation, Set<DomainOperation>> operation2overrides = new HashMap<DomainOperation, Set<DomainOperation>>();
+	private final @NonNull Map<Operation, Set<Operation>> operation2overrides = new HashMap<Operation, Set<Operation>>();
 
 	public FinalAnalysis(@NonNull CompleteModelInternal completeModel) {
 		this.completeModel = completeModel;
@@ -54,19 +53,19 @@ public class FinalAnalysis
 		}
 		for (CompleteClass superCompleteClass : superCompleteClass2subCompleteClasses.keySet()) {
 			Set<CompleteClass> subCompleteClasses = superCompleteClass2subCompleteClasses.get(superCompleteClass);
-			for (DomainOperation domainOperation : superCompleteClass.getOperations(null)) {
+			for (Operation domainOperation : superCompleteClass.getOperations(null)) {
 				String opName = domainOperation.getName();
 				ParametersId parametersId = domainOperation.getParametersId();
-				LibraryFeature domainImplementation = metaModelManager.getImplementation((Operation)domainOperation);
-				Set<DomainOperation> overrides = null;
+				LibraryFeature domainImplementation = metaModelManager.getImplementation(domainOperation);
+				Set<Operation> overrides = null;
 				for (CompleteClass subCompleteClass : subCompleteClasses) {
 					if (subCompleteClass != superCompleteClass) {
-						for (DomainOperation subOperation : subCompleteClass.getOperations(null)) {
+						for (Operation subOperation : subCompleteClass.getOperations(null)) {
 							if (opName.equals(subOperation.getName()) && parametersId.equals(subOperation.getParametersId())) {
-								LibraryFeature subImplementation = metaModelManager.getImplementation((Operation)subOperation);
+								LibraryFeature subImplementation = metaModelManager.getImplementation(subOperation);
 								if (domainImplementation != subImplementation) {
 									if (overrides == null) {
-										overrides = new HashSet<DomainOperation>();
+										overrides = new HashSet<Operation>();
 										overrides.add(domainOperation);
 									}
 									overrides.add(subOperation);
@@ -88,19 +87,19 @@ public class FinalAnalysis
 		return subCompleteClasses.size() <= 1;
 	}
 	
-	public boolean isFinal(@NonNull DomainOperation operation) {
-		Set<DomainOperation> overrides = operation2overrides.get(operation);
+	public boolean isFinal(@NonNull Operation operation) {
+		Set<Operation> overrides = operation2overrides.get(operation);
 		return overrides == null;
 	}
 	
-	public @Nullable DomainOperation isFinal(@NonNull DomainOperation operation, @NonNull CompleteClass completeClass) {
-		Set<DomainOperation> overrides = operation2overrides.get(operation);
+	public @Nullable Operation isFinal(@NonNull Operation operation, @NonNull CompleteClass completeClass) {
+		Set<Operation> overrides = operation2overrides.get(operation);
 		if (overrides == null) {
 			return operation;
 		}
-		DomainOperation candidate = null;
+		Operation candidate = null;
 		PivotStandardLibrary standardLibrary = completeModel.getStandardLibrary();
-		for (DomainOperation override : overrides) {
+		for (Operation override : overrides) {
 			DomainInheritance overrideInheritance = override.getInheritance(standardLibrary);
 			if ((overrideInheritance != null) && overrideInheritance.getType().conformsTo(standardLibrary, completeClass.getPivotClass())) {
 				if (candidate != null) {

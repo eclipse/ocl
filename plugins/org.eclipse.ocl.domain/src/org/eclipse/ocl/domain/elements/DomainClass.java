@@ -17,6 +17,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 
 public interface DomainClass extends DomainType
@@ -34,9 +35,9 @@ public interface DomainClass extends DomainType
 	 */
 	@Nullable Object createInstance( @NonNull String value);
 
-	@NonNull List<? extends Constraint> getOwnedInvariants();
+	@NonNull List<Constraint> getOwnedInvariants();
 
-	@NonNull List<? extends DomainOperation> getOwnedOperations();
+	@NonNull List<Operation> getOwnedOperations();
 
 	@NonNull List<Property> getOwnedProperties();
 	
@@ -63,6 +64,6 @@ public interface DomainClass extends DomainType
 	 * Return the dynamic (overloaded) implementation of the staticOperation applicable to the types managed
 	 * by the given Standard Library.
 	 */
-	@NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation);
-	@NonNull DomainOperation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation);
+	@NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation);
+	@NonNull Operation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation);
 }

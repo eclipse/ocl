@@ -13,6 +13,7 @@ package org.eclipse.ocl.domain.elements;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.ids.PrimitiveTypeId;
+import org.eclipse.ocl.pivot.Operation;
 
 /**
  * A representation of the OCL Standard Library, which is the set of singleton
@@ -123,7 +124,7 @@ public interface DomainStandardLibrary
      */
 	@NonNull DomainClass getOclElementType();
 
-	@NonNull DomainOperation getOclInvalidOperation();
+	@NonNull Operation getOclInvalidOperation();
 	
     /**
      * Obtains the single instance of the InvalidType metatype, named
@@ -175,7 +176,7 @@ public interface DomainStandardLibrary
      */
 	@NonNull DomainClass getOclVoidType();
 	
-    DomainElement getOperationTemplateParameter(@NonNull DomainOperation anOperation, int index);
+    DomainElement getOperationTemplateParameter(@NonNull Operation anOperation, int index);
 
 	/**
      * Obtains the generic instance of the OrderedCollection metatype, named

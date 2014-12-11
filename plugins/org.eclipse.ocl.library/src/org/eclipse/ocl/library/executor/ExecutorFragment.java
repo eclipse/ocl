@@ -16,10 +16,10 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.domain.types.AbstractFragment;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 
 import com.google.common.collect.Lists;
@@ -41,7 +41,7 @@ public class ExecutorFragment extends AbstractFragment
 	}
 	
 	@Override
-	public @NonNull LibraryFeature getImplementation(@NonNull DomainOperation staticOperation) {
+	public @NonNull LibraryFeature getImplementation(@NonNull Operation staticOperation) {
 		int index = staticOperation.getIndex();
 		if (index >= 0) {
 			return DomainUtil.nonNullState(operations[index].implementation);
@@ -52,7 +52,7 @@ public class ExecutorFragment extends AbstractFragment
 	}
 
 	@Override
-	public @Nullable DomainOperation getLocalOperation(@NonNull DomainOperation staticOperation) {
+	public @Nullable Operation getLocalOperation(@NonNull Operation staticOperation) {
 		int index = staticOperation.getIndex();
 		if (index >= 0) {
 			return operations[index];
@@ -64,9 +64,9 @@ public class ExecutorFragment extends AbstractFragment
 
 	@Override
 	@SuppressWarnings("null")
-	public @NonNull List<? extends DomainOperation> getLocalOperations() {
+	public @NonNull List<Operation> getLocalOperations() {
 		assert operations != null;
-		return Lists.newArrayList(operations);
+		return Lists.<Operation>newArrayList(operations);
 	}
 	
 	@Override

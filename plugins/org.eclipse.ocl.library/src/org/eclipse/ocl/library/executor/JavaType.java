@@ -15,7 +15,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.TypeId;
@@ -23,6 +22,7 @@ import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.domain.types.AbstractClass;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.Operation;
 
 /**
  * JavaType supports the usage of Java Class to define the type of an object.
@@ -124,14 +124,14 @@ public class JavaType extends AbstractClass
 	}
 
 	@Override
-	public @NonNull DomainOperation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
+	public @NonNull Operation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
 		DomainInheritance inheritance = getInheritance(standardLibrary);
 		return inheritance.lookupActualOperation(standardLibrary, apparentOperation);
 	}
 
 	@Override
 	@NonNull
-	public LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
+	public LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
 		DomainInheritance inheritance = standardLibrary.getInheritance(standardLibrary.getOclAnyType());
 		return inheritance.lookupImplementation(standardLibrary, apparentOperation);
 	}

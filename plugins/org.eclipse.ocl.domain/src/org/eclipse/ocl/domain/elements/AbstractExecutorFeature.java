@@ -11,58 +11,48 @@
 package org.eclipse.ocl.domain.elements;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.pivot.Parameter;
-import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.TypedElement;
-import org.eclipse.ocl.pivot.ValueSpecification;
+import org.eclipse.ocl.domain.library.LibraryFeature;
+import org.eclipse.ocl.pivot.Class;
+import org.eclipse.ocl.pivot.Feature;
 
-public class AbstractExecutorTypedElement extends AbstractExecutorObject implements TypedElement
+public class AbstractExecutorFeature extends AbstractExecutorTypedElement implements Feature
 {
-	protected final @NonNull DomainType executorType;
-
-	public AbstractExecutorTypedElement(@NonNull String name, @NonNull DomainType executorType) {
-		super(name);
-		this.executorType = executorType;
+	public AbstractExecutorFeature(@NonNull String name, @NonNull DomainType executorType) {
+		super(name, executorType);
 	}
 
 	@Override
-	public boolean CompatibleBody(ValueSpecification bodySpecification) {
+	public LibraryFeature getImplementation() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public Type getType() {
-		return (Type) executorType;
-	}
-
-	@Override
-	public @NonNull TypeId getTypeId() {
-		return executorType.getTypeId();
-	}
-
-	@Override
-	public boolean isMany() {
+	public String getImplementationClass() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public boolean isRequired() {
+	public Class getOwningClass() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public Parameter makeParameter() {
+	public boolean isStatic() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void setIsRequired(boolean value) {
+	public void setImplementation(LibraryFeature value) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void setType(Type value) {
+	public void setImplementationClass(String value) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setIsStatic(boolean value) {
 		throw new UnsupportedOperationException();
 	}
 }

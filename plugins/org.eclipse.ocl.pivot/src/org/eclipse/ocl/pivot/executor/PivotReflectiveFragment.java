@@ -14,7 +14,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.ids.ParametersId;
 import org.eclipse.ocl.library.executor.ReflectiveFragment;
 import org.eclipse.ocl.pivot.Operation;
@@ -27,15 +26,15 @@ public class PivotReflectiveFragment extends ReflectiveFragment
 	}
 
 	@Override
-	public @Nullable DomainOperation getLocalOperation(@NonNull DomainOperation baseOperation) {
+	public @Nullable Operation getLocalOperation(@NonNull Operation baseOperation) {
 		CompleteInheritanceImpl completeInheritance = (CompleteInheritanceImpl) derivedInheritance;
 		String baseOperationName = baseOperation.getName();
 		ParametersId baseParametersId = baseOperation.getParametersId();
-		DomainOperation bestOperation = null;
+		Operation bestOperation = null;
 		for (DomainClass partialClass : completeInheritance.getCompleteClass().getPartialClasses()) {
-			for (DomainOperation localOperation : partialClass.getOwnedOperations()) {
+			for (Operation localOperation : partialClass.getOwnedOperations()) {
 				if (localOperation.getName().equals(baseOperationName) && (localOperation.getParametersId() == baseParametersId)) {
-					if ((localOperation instanceof Operation) && (((Operation)localOperation).getETarget() != null)) {
+					if (localOperation.getETarget() != null) {
 						return localOperation;
 					}					
 					if (bestOperation == null) {

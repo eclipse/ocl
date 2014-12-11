@@ -15,7 +15,6 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.codegen.analyzer.AnalysisVisitor;
 import org.eclipse.ocl.examples.codegen.analyzer.NameManager;
 import org.eclipse.ocl.pivot.Operation;
@@ -100,7 +99,7 @@ public abstract class AbstractCodeGenerator implements CodeGenerator
 	}
 
 	@Override
-	public @Nullable DomainOperation isFinal(@NonNull Operation anOperation, @NonNull org.eclipse.ocl.pivot.Class staticType) {
+	public @Nullable Operation isFinal(@NonNull Operation anOperation, @NonNull org.eclipse.ocl.pivot.Class staticType) {
 		FinalAnalysis finalAnalysis = metaModelManager.getFinalAnalysis();
 		return finalAnalysis.isFinal(anOperation, metaModelManager.getCompleteClass(staticType));
 	}

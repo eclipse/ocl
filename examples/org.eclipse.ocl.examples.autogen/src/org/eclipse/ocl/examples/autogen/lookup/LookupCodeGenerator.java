@@ -189,15 +189,15 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		org.eclipse.ocl.pivot.Class asElementType = DomainUtil.nonNullState(DomainUtil.getNamedElement(asPackage.getOwnedClasses(), PivotPackage.Literals.ELEMENT.getName()));
 		CompleteClass asElementCompleteClass = metaModelManager.getCompleteClass(asElementType);
 		OperationId envOperationId = asElementType.getTypeId().getOperationId(0, LookupClassContext.ENV_NAME, IdManager.getParametersId(asElementType.getTypeId()));
-		this.asElementEnvOperation = DomainUtil.nonNullState((Operation)asElementCompleteClass.getOperation(envOperationId));
+		this.asElementEnvOperation = DomainUtil.nonNullState(asElementCompleteClass.getOperation(envOperationId));
 		OperationId parentEnvOperationId = asElementType.getTypeId().getOperationId(0, LookupClassContext.PARENT_ENV_NAME, emptyParametersId);
-		this.asElementParentEnvOperation = DomainUtil.nonNullState((Operation)asElementCompleteClass.getOperation(parentEnvOperationId));
+		this.asElementParentEnvOperation = DomainUtil.nonNullState(asElementCompleteClass.getOperation(parentEnvOperationId));
 		this.asEnvironmentType = DomainUtil.nonNullState(asElementParentEnvOperation.getType());
 		CompleteClass asEnvironmentCompleteClass = metaModelManager.getCompleteClass(asEnvironmentType);
 		OperationId nestedEnvOperationId = asElementType.getTypeId().getOperationId(0, LookupClassContext.NESTED_ENV_NAME, emptyParametersId);
-		this.asEnvironmentNestedEnvOperation = DomainUtil.nonNullState((Operation)asEnvironmentCompleteClass.getOperation(nestedEnvOperationId));
+		this.asEnvironmentNestedEnvOperation = DomainUtil.nonNullState(asEnvironmentCompleteClass.getOperation(nestedEnvOperationId));
 		OperationId hasFinalResultOperationId = asElementType.getTypeId().getOperationId(0, LookupClassContext.HAS_FINAL_RESULT_NAME, emptyParametersId);
-		this.asEnvironmentHasFinalResultOperation = DomainUtil.nonNullState((Operation)asEnvironmentCompleteClass.getOperation(hasFinalResultOperationId));
+		this.asEnvironmentHasFinalResultOperation = DomainUtil.nonNullState(asEnvironmentCompleteClass.getOperation(hasFinalResultOperationId));
 		//
 		//	Create new AS elements
 		//
@@ -468,7 +468,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		for (Map.Entry<EObject, Collection<EStructuralFeature.Setting>> entry : EcoreUtil.CrossReferencer.find(allContents).entrySet()) {
 			EObject crossReference = entry.getKey();
 			if (crossReference instanceof Operation) {
-				Operation asOperation = (Operation) metaModelManager.getPrimaryOperation((Operation)crossReference);
+				Operation asOperation = metaModelManager.getPrimaryOperation((Operation)crossReference);
 				if (asOperation == asElementEnvOperation) {
 					for (EStructuralFeature.Setting setting : entry.getValue()) {
 						EObject eObject = setting.getEObject();

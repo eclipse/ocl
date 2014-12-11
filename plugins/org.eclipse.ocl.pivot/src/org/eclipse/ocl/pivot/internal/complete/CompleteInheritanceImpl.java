@@ -17,7 +17,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.ids.OperationId;
 import org.eclipse.ocl.domain.ids.TypeId;
@@ -26,6 +25,7 @@ import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.library.executor.ReflectiveInheritance;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.DataType;
+import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateParameter;
@@ -43,10 +43,10 @@ public class CompleteInheritanceImpl extends ReflectiveInheritance implements Co
 	@SuppressWarnings("null")
 	public static final @NonNull List<CompleteInheritanceImpl> EMPTY_LIST = Collections.<CompleteInheritanceImpl>emptyList();
 
-	public static final class BestOperation implements Function<List<DomainOperation>, DomainOperation> {
+	public static final class BestOperation implements Function<List<Operation>, Operation> {
 
 		@Override
-		public DomainOperation apply(List<DomainOperation> operations) {
+		public Operation apply(List<Operation> operations) {
 			return operations.get(0);
 		}
 	}
@@ -83,7 +83,7 @@ public class CompleteInheritanceImpl extends ReflectiveInheritance implements Co
 		return isOclAny() ? EMPTY_LIST : completeClass.getPartialClasses().getInitialSuperInheritances();
 	}
 	
-	public @NonNull List<? extends DomainOperation> getLocalOperations() {
+	public @NonNull List<? extends Operation> getLocalOperations() {
 		return DomainUtil.nonNullEMF(completeClass.getPivotClass().getOwnedOperations());			// FIXME Use local cache
 	}
 
@@ -92,7 +92,7 @@ public class CompleteInheritanceImpl extends ReflectiveInheritance implements Co
 	}
 
 	@Override
-	public @Nullable DomainOperation getMemberOperation(@NonNull OperationId operationId) {
+	public @Nullable Operation getMemberOperation(@NonNull OperationId operationId) {
 		return completeClass.getOperation(operationId);
 	}
 
@@ -109,7 +109,7 @@ public class CompleteInheritanceImpl extends ReflectiveInheritance implements Co
 		return DomainUtil.nonNullEMF(completeClass.getPivotClass().getOwnedProperties());			// FIXME Use local cache
 	}
 	
-	public @NonNull List<? extends DomainOperation> getOwnedOperations() {
+	public @NonNull List<? extends Operation> getOwnedOperations() {
 		return DomainUtil.nonNullEMF(completeClass.getPivotClass().getOwnedOperations());			// FIXME Use local cache
 	}
 

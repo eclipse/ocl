@@ -11,22 +11,28 @@
 package org.eclipse.ocl.domain.elements;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.Comment;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.ElementExtension;
+import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.util.Visitor;
 
-public abstract class AbstractExecutorObject implements ENamedElement
+public class AbstractExecutorObject implements NamedElement
 {
 	protected final @NonNull String name;
 
@@ -130,22 +136,57 @@ public abstract class AbstractExecutorObject implements ENamedElement
 	}
 
 	@Override
-	public EAnnotation getEAnnotation(String source) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public EList<EAnnotation> getEAnnotations() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
 	public String getName() {
 		return name;
 	}
 
 	@Override
 	public void setName(String value) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public List<Comment> getComment() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	@NonNull
+	public List<Comment> getOwnedComment() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	@NonNull
+	public List<ElementExtension> getExtension() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	@NonNull
+	public List<Element> getOwnedAnnotation() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	@NonNull
+	public List<Element> allOwnedElements() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Element getValue(Type stereotype, String propertyName) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public EObject getETarget() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	@Nullable
+	public <R> R accept(@NonNull Visitor<R> visitor) {
 		throw new UnsupportedOperationException();
 	}
 }

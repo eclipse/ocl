@@ -23,11 +23,11 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.library.ecore.EcoreExecutorPackage;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
+import org.eclipse.ocl.pivot.Operation;
 
 public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 {
@@ -199,7 +199,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 	}
 
 	@Override
-	public @NonNull DomainOperation getOclInvalidOperation() {
+	public @NonNull Operation getOclInvalidOperation() {
 		throw new UnsupportedOperationException();
 	}
 

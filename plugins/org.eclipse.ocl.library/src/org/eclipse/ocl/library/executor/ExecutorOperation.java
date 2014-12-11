@@ -14,9 +14,8 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
+import org.eclipse.ocl.domain.elements.AbstractExecutorOperation;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainParameterTypes;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
@@ -30,19 +29,16 @@ import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Parameter;
 
-public class ExecutorOperation implements DomainOperation
+public class ExecutorOperation extends AbstractExecutorOperation
 {
-	protected final @NonNull String name;
 	protected final @NonNull DomainParameterTypes parameterTypes;
-	protected final @NonNull DomainInheritance inheritance;
 	protected final int index;
 	protected final @NonNull LibraryFeature implementation;
 	protected final @NonNull DomainTypeParameters typeParameters;
 	
-	public ExecutorOperation(@NonNull String name, @NonNull DomainParameterTypes parameterTypes, @NonNull DomainInheritance inheritance, int index, @NonNull DomainTypeParameters typeParameters, @Nullable LibraryFeature implementation) {
-		this.name = name;
+	public ExecutorOperation(@NonNull String name, @NonNull DomainParameterTypes parameterTypes, @NonNull DomainType type, int index, @NonNull DomainTypeParameters typeParameters, @Nullable LibraryFeature implementation) {
+		super(name, type);
 		this.parameterTypes = parameterTypes;
-		this.inheritance = inheritance;
 		this.index = index;
 		this.implementation = implementation != null ? implementation : OclAnyUnsupportedOperation.INSTANCE;		// FIXME
 		this.typeParameters = typeParameters;
@@ -65,7 +61,7 @@ public class ExecutorOperation implements DomainOperation
 
 	@Override
 	public final @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
-		return inheritance;
+		return (DomainInheritance) executorType;
 	}
 
 	@Override
@@ -83,14 +79,15 @@ public class ExecutorOperation implements DomainOperation
 		return getParameterTypes().getParameters();
 	}
 
-	public @NonNull List<? extends Constraint> getOwnedRule() {
+	@Override
+	public @NonNull List<Constraint> getOwnedRule() {
 		throw new UnsupportedOperationException();			// FIXME
 	}
 
-	@Override
-	public @NonNull DomainClass getOwningClass() {
-		throw new UnsupportedOperationException();			// FIXME
-	}
+//	@Override
+//	public @NonNull DomainClass getOwningClass() {
+//		throw new UnsupportedOperationException();			// FIXME
+//	}
 
 	@Override
 	public @NonNull ParametersId getParametersId() {
@@ -104,22 +101,22 @@ public class ExecutorOperation implements DomainOperation
 
 	
 	@Override
-	public @NonNull List<? extends Constraint> getPostcondition() {
+	public @NonNull List<Constraint> getPostcondition() {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException(); // WIP FIXME
 	}
 
 	@Override
-	public @NonNull List<? extends Constraint> getPrecondition() {
+	public @NonNull List<Constraint> getPrecondition() {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException(); // WIP FIXME
 	}
 
-	@Override
-	public @NonNull DomainType getType() {
-//		return executorType;
-		throw new UnsupportedOperationException(); // WIP FIXME
-	}
+//	@Override
+//	public @NonNull DomainType getType() {
+////		return executorType;
+//		throw new UnsupportedOperationException(); // WIP FIXME
+//	}
 
 	@Override
 	public @NonNull TypeId getTypeId() {
@@ -139,6 +136,6 @@ public class ExecutorOperation implements DomainOperation
 
 	@Override
 	public String toString() {
-		return inheritance.toString() + "::" + name; //$NON-NLS-1$
+		return executorType.toString() + "::" + name; //$NON-NLS-1$
 	}
 }

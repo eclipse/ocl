@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
@@ -496,7 +495,7 @@ public class OperationCallExpImpl
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_forAll;
 		try {
-		    final @Nullable /*@Thrown*/ DomainOperation operation = this.getReferredOperation();
+		    final @Nullable /*@Thrown*/ Operation operation = this.getReferredOperation();
 		    if (operation == null) {
 		        throw new InvalidValueException("Null source for \'pivot::Operation::ownedParameter\'");
 		    }
@@ -622,7 +621,7 @@ public class OperationCallExpImpl
 		    final @NonNull /*@Thrown*/ List<OCLExpression> argument = this.getArgument();
 		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_argument = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_OCLExpression, argument);
 		    final @NonNull /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(BOXED_argument);
-		    final @Nullable /*@Thrown*/ DomainOperation referredOperation = this.getReferredOperation();
+		    final @Nullable /*@Thrown*/ Operation referredOperation = this.getReferredOperation();
 		    if (referredOperation == null) {
 		        throw new InvalidValueException("Null source for \'pivot::Operation::ownedParameter\'");
 		    }

@@ -13,7 +13,6 @@ package org.eclipse.ocl.library.oclany;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
@@ -22,6 +21,7 @@ import org.eclipse.ocl.domain.library.LibraryBinaryOperation;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.library.LibraryConstants;
+import org.eclipse.ocl.pivot.Operation;
 
 /**
  * OclComparableComparisonOperation provides the abstract support for a comparison operation.
@@ -36,7 +36,7 @@ public abstract class OclComparableComparisonOperation extends AbstractUntypedBi
 		DomainInheritance commonType = leftType.getCommonInheritance(rightType);
 		DomainInheritance comparableType = standardLibrary.getOclComparableType().getInheritance(standardLibrary);
 		DomainInheritance selfType = standardLibrary.getOclSelfType().getInheritance(standardLibrary);
-		DomainOperation staticOperation = comparableType.lookupLocalOperation(standardLibrary, LibraryConstants.COMPARE_TO, selfType);
+		Operation staticOperation = comparableType.lookupLocalOperation(standardLibrary, LibraryConstants.COMPARE_TO, selfType);
 		int intComparison;
 		LibraryBinaryOperation implementation = null;
 		try {

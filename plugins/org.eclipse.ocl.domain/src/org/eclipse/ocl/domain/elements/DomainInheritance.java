@@ -15,6 +15,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.ids.OperationId;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.domain.utilities.IndexableIterable;
+import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 
 /**
@@ -52,7 +53,7 @@ public interface DomainInheritance extends Nameable
 	/*@Nullable*/ DomainFragment getFragment(int fragmentNumber);
 	int getIndex(int fragmentNumber);
 	int getIndexes();
-	@Nullable DomainOperation getMemberOperation(@NonNull OperationId id);
+	@Nullable Operation getMemberOperation(@NonNull OperationId id);
 	@Nullable Property getMemberProperty(@NonNull String name);
 
 	@NonNull DomainFragment getSelfFragment();
@@ -69,11 +70,11 @@ public interface DomainInheritance extends Nameable
 	boolean isSuperInheritanceOf(@NonNull DomainInheritance inheritance);
 	boolean isUndefined();
 
-	@NonNull DomainOperation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation);
+	@NonNull Operation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation);
 	/**
 	 * Return the dynamic (overloaded) implementation of the staticOperation applicable to the types managed
 	 * by the given Standard Library.
 	 */
-	@NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation);
-	@Nullable DomainOperation lookupLocalOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull String operationName, DomainInheritance... argumentTypes);
+	@NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation);
+	@Nullable Operation lookupLocalOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull String operationName, DomainInheritance... argumentTypes);
 }

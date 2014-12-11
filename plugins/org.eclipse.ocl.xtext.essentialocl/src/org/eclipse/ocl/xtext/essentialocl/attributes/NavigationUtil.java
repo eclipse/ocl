@@ -15,11 +15,11 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Iteration;
+import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.xtext.basecs.PathElementCS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
@@ -82,7 +82,7 @@ public class NavigationUtil
 		}
 		String name = csPathElement.toString();
 		assert name != null;
-		for (DomainOperation operation : metaModelManager.getAllOperations(type, FeatureFilter.SELECT_NON_STATIC, name)) {
+		for (Operation operation : metaModelManager.getAllOperations(type, FeatureFilter.SELECT_NON_STATIC, name)) {
 			return operation instanceof Iteration;		// mixed overload are not allowed
 		}
 		return false;

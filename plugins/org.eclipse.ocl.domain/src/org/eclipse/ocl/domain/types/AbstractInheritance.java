@@ -14,7 +14,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.ParametersId;
@@ -23,6 +22,7 @@ import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.domain.library.UnsupportedOperation;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.utilities.IndexableIterable;
+import org.eclipse.ocl.pivot.Operation;
 
 public abstract class AbstractInheritance implements DomainInheritance
 {
@@ -229,7 +229,7 @@ public abstract class AbstractInheritance implements DomainInheritance
 	}
 
 	@Override
-	public @NonNull DomainOperation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
+	public @NonNull Operation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
 		getDepth();
 		DomainInheritance apparentInheritance = apparentOperation.getInheritance(standardLibrary);
 		int apparentDepth = DomainUtil.nonNullModel(apparentInheritance).getDepth();
@@ -238,7 +238,7 @@ public abstract class AbstractInheritance implements DomainInheritance
 			for (int i = getIndex(apparentDepth); i < iMax; i++) {
 				DomainFragment fragment = getFragment(i);
 				if (fragment.getBaseInheritance() == apparentInheritance) {
-					DomainOperation actualOperation = fragment.getActualOperation(apparentOperation);
+					Operation actualOperation = fragment.getActualOperation(apparentOperation);
 					return actualOperation;
 				}
 			}
@@ -247,7 +247,7 @@ public abstract class AbstractInheritance implements DomainInheritance
 	}
 
 	@Override
-	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
+	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
 		getDepth();
 		DomainInheritance apparentInheritance = apparentOperation.getInheritance(standardLibrary);
 		int apparentDepth = DomainUtil.nonNullModel(apparentInheritance).getDepth();
@@ -268,8 +268,8 @@ public abstract class AbstractInheritance implements DomainInheritance
 	}
 
 	@Override
-	public @Nullable DomainOperation lookupLocalOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull String operationName, DomainInheritance... argumentTypes) {
-		for (DomainOperation localOperation : getType().getOwnedOperations()) {
+	public @Nullable Operation lookupLocalOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull String operationName, DomainInheritance... argumentTypes) {
+		for (Operation localOperation : getType().getOwnedOperations()) {
 			if (localOperation.getName().equals(operationName)) {
 				ParametersId firstParametersId = localOperation.getParametersId();
 				int iMax = firstParametersId.size();

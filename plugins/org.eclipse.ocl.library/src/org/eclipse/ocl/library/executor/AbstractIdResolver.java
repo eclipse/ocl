@@ -42,7 +42,6 @@ import org.eclipse.ocl.domain.elements.DomainEnumeration;
 import org.eclipse.ocl.domain.elements.DomainEnumerationLiteral;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainTupleType;
@@ -90,6 +89,7 @@ import org.eclipse.ocl.domain.values.impl.BagImpl;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.domain.values.impl.OrderedSetImpl;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 
 public abstract class AbstractIdResolver implements IdResolver
@@ -664,10 +664,10 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	@Override
-	public @NonNull DomainOperation getOperation(@NonNull OperationId operationId) {
+	public @NonNull Operation getOperation(@NonNull OperationId operationId) {
 		DomainElement element = operationId.accept(this);
-		if (element instanceof DomainOperation) {
-			return (DomainOperation) element;
+		if (element instanceof Operation) {
+			return (Operation) element;
 		}
 		throw new IllegalStateException("No " + operationId); //$NON-NLS-1$
 	}
@@ -1110,13 +1110,13 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	@Override
-	public @NonNull DomainOperation visitOperationId(@NonNull OperationId id) {
+	public @NonNull Operation visitOperationId(@NonNull OperationId id) {
 		DomainClass domainType = (DomainClass) id.getParent().accept(this);
 		if (domainType == null) {
 			throw new UnsupportedOperationException();
 		}
 		DomainInheritance inheritance = standardLibrary.getInheritance(domainType);
-		DomainOperation memberOperation = inheritance.getMemberOperation(id);
+		Operation memberOperation = inheritance.getMemberOperation(id);
 		if (memberOperation == null) {
 			throw new UnsupportedOperationException();
 		}

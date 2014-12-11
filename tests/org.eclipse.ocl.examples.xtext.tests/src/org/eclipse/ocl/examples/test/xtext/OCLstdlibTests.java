@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.domain.utilities.ProjectMap;
@@ -39,6 +38,7 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Feature;
 import org.eclipse.ocl.pivot.Library;
+import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
@@ -242,7 +242,7 @@ public class OCLstdlibTests extends XtextTestCase
 		Resource asResource = doLoadASResourceFromString(metaModelManager, "string.oclstdlib", testFile);
 		MetaModelManager metaModelManager = MetaModelManager.getAdapter(asResource.getResourceSet());
 		AnyType oclAnyType = metaModelManager.getStandardLibrary().getOclAnyType();
-		Iterable<? extends DomainOperation> ownedOperations = metaModelManager.getAllOperations(oclAnyType, FeatureFilter.SELECT_NON_STATIC);
+		Iterable<Operation> ownedOperations = metaModelManager.getAllOperations(oclAnyType, FeatureFilter.SELECT_NON_STATIC);
 		assertEquals(2, Iterables.size(ownedOperations));		// one from OclAny::=
 		metaModelManager.dispose();
 	}

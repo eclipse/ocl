@@ -14,7 +14,6 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.domain.ids.OperationId;
@@ -90,18 +89,18 @@ public interface CompleteClass extends NamedElement
 	@NonNull org.eclipse.ocl.pivot.Class getBehavioralClass();
 	@NonNull CompleteInheritance getCompleteInheritance();
 
-	@Nullable DomainOperation getOperation(@NonNull OperationId operationId);
-	@Nullable DomainOperation getOperation(@NonNull DomainOperation operationId);
-	@Nullable Iterable<DomainOperation> getOperationOverloads(@NonNull DomainOperation pivotOperation);
-	@NonNull Iterable<? extends DomainOperation> getOperations(final @Nullable FeatureFilter featureFilter);
-	@NonNull Iterable<? extends DomainOperation> getOperations(final @Nullable FeatureFilter featureFilter, @Nullable String name);
+	@Nullable Operation getOperation(@NonNull OperationId operationId);
+	@Nullable Operation getOperation(@NonNull Operation operationId);
+	@Nullable Iterable<Operation> getOperationOverloads(@NonNull Operation pivotOperation);
+	@NonNull Iterable<Operation> getOperations(final @Nullable FeatureFilter featureFilter);
+	@NonNull Iterable<Operation> getOperations(final @Nullable FeatureFilter featureFilter, @Nullable String name);
 	@NonNull Iterable<CompleteClass> getProperSuperCompleteClasses();
 	@Nullable Iterable<Property> getProperties(@NonNull Property pivotProperty);
 	@Nullable Iterable<Property> getProperties(@Nullable String propertyName);
-	@NonNull Iterable<? extends Property> getProperties(final @Nullable FeatureFilter featureFilter);
-	@NonNull Iterable<? extends Property> getProperties(final @Nullable FeatureFilter featureFilter, @Nullable String name);
+	@NonNull Iterable<Property> getProperties(final @Nullable FeatureFilter featureFilter);
+	@NonNull Iterable<Property> getProperties(final @Nullable FeatureFilter featureFilter, @Nullable String name);
 	@Nullable Property getProperty(@Nullable String propertyName);
-	@NonNull Iterable<? extends State>  getStates();
-	@NonNull Iterable<? extends State>  getStates(@Nullable String name);
+	@NonNull Iterable<State>  getStates();
+	@NonNull Iterable<State>  getStates(@Nullable String name);
 	@NonNull Iterable<CompleteClass> getSuperCompleteClasses();
 } // CompleteClass

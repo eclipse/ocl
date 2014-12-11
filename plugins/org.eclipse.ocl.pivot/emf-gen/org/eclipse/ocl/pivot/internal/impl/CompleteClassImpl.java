@@ -24,7 +24,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
@@ -37,6 +36,7 @@ import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
+import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.State;
@@ -435,7 +435,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 		return getOwningCompletePackage().getCompleteModel();
 	}
 	
-	public @NonNull Iterable<DomainOperation> getMemberOperations() {
+	public @NonNull Iterable<Operation> getMemberOperations() {
 		return partialClasses.getOperations();
 	}
 
@@ -445,27 +445,27 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	}
 
 	@Override
-	public @Nullable DomainOperation getOperation(@NonNull OperationId operationId) {
+	public @Nullable Operation getOperation(@NonNull OperationId operationId) {
 		return partialClasses.getOperation(operationId);
 	}
 
 	@Override
-	public @Nullable DomainOperation getOperation(@NonNull DomainOperation operationId) {
+	public @Nullable Operation getOperation(@NonNull Operation operationId) {
 		return partialClasses.getOperation(operationId);
 	}
 
 	@Override
-	public @Nullable Iterable<DomainOperation> getOperationOverloads(@NonNull DomainOperation pivotOperation) {
+	public @Nullable Iterable<Operation> getOperationOverloads(@NonNull Operation pivotOperation) {
 		return partialClasses.getOperationOverloads(pivotOperation);
 	}
 
 	@Override
-	public @NonNull Iterable<? extends DomainOperation> getOperations(final @Nullable FeatureFilter featureFilter) {
+	public @NonNull Iterable<Operation> getOperations(final @Nullable FeatureFilter featureFilter) {
 		return partialClasses.getOperations(featureFilter);
 	}
 
 	@Override
-	public @NonNull Iterable<? extends DomainOperation> getOperations(final @Nullable FeatureFilter featureFilter, @Nullable String name) {
+	public @NonNull Iterable<Operation> getOperations(final @Nullable FeatureFilter featureFilter, @Nullable String name) {
 		return partialClasses.getOperationOverloads(featureFilter, name);
 	}
 
@@ -521,12 +521,12 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	}
 
 	@Override
-	public @NonNull Iterable<? extends Property> getProperties(final @Nullable FeatureFilter featureFilter) {
+	public @NonNull Iterable<Property> getProperties(final @Nullable FeatureFilter featureFilter) {
 		return partialClasses.getProperties(featureFilter);
 	}
 
 	@Override
-	public @NonNull Iterable<? extends Property> getProperties(final @Nullable FeatureFilter featureFilter, @Nullable String name) {
+	public @NonNull Iterable<Property> getProperties(final @Nullable FeatureFilter featureFilter, @Nullable String name) {
 		return partialClasses.getProperties(featureFilter, name);
 	}
 
@@ -545,12 +545,12 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	}
 
 	@Override
-	public @NonNull Iterable<? extends State> getStates() {
+	public @NonNull Iterable<State> getStates() {
 		return partialClasses.getStates();
 	}
 
 	@Override
-	public @NonNull Iterable<? extends State> getStates(@Nullable String name) {
+	public @NonNull Iterable<State> getStates(@Nullable String name) {
 		return partialClasses.getStates(name);
 	}
 	

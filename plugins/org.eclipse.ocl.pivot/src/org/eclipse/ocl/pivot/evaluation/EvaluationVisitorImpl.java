@@ -27,7 +27,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.evaluation.DomainIterationManager;
@@ -184,7 +183,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		return this;
 	}
 
-	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainClass dynamicType, @NonNull DomainOperation staticOperation) {
+	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainClass dynamicType, @NonNull Operation staticOperation) {
 		DomainInheritance inheritance = metaModelManager.getInheritance(dynamicType);
 		return inheritance.getType().lookupImplementation(standardLibrary, staticOperation);
 	}
@@ -706,7 +705,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			//
 			List<OCLExpression> arguments = operationCallExp.getArgument();
 			Object onlyArgument = arguments.get(0).accept(undecoratedVisitor);
-			DomainOperation actualOperation;
+			Operation actualOperation;
 			if (apparentOperation.isStatic()) {
 				actualOperation = apparentOperation;
 			}
@@ -719,7 +718,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 				}
 				actualOperation = actualSourceType.lookupActualOperation(standardLibrary, apparentOperation);
 			}
-			LibraryBinaryOperation implementation = (LibraryBinaryOperation) metaModelManager.getImplementation((Operation)actualOperation);	// FIXME cast
+			LibraryBinaryOperation implementation = (LibraryBinaryOperation) metaModelManager.getImplementation(actualOperation);
 			try {
 				Object result = implementation.evaluate(evaluator, operationCallExp.getTypeId(), sourceValue, onlyArgument);
 				assert !(result instanceof NullValue);
@@ -736,7 +735,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			//
 			//	Resolve and dispatch regular operation
 			//
-			DomainOperation actualOperation;
+			Operation actualOperation;
 			if (apparentOperation.isStatic()) {
 				actualOperation = apparentOperation;
 			}
@@ -745,7 +744,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 				DomainClass actualSourceType = idResolver.getStaticTypeOf(sourceValue);
 				actualOperation = actualSourceType.lookupActualOperation(standardLibrary, apparentOperation);
 			}
-			LibraryOperation implementation = (LibraryOperation) metaModelManager.getImplementation((Operation)actualOperation);
+			LibraryOperation implementation = (LibraryOperation) metaModelManager.getImplementation(actualOperation);
 			try {
 				Object result = implementation.dispatch(evaluator, operationCallExp, sourceValue);
 				assert !(result instanceof NullValue);

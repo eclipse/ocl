@@ -13,6 +13,7 @@ package org.eclipse.ocl.domain.elements;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.library.LibraryFeature;
+import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 
 /**
@@ -38,24 +39,24 @@ public interface DomainFragment
 	/**
 	 * Return the actualOperation that has the same signature as apparentOperation.
 	 */
-	@NonNull DomainOperation getActualOperation(@NonNull DomainOperation apparentOperation);
+	@NonNull Operation getActualOperation(@NonNull Operation apparentOperation);
 	
 	/**
 	 * Return the implementation of the actualOperation within this fragment that has the same signature as apparentOperation.
 	 * If there is no local overload, returns an inherited operation if unambiguous or OclAnyUnsupportedOperation.AMBIGUOUS
 	 * if ambiguous.
 	 */
-	@NonNull LibraryFeature getImplementation(@NonNull DomainOperation apparentOperation);
+	@NonNull LibraryFeature getImplementation(@NonNull Operation apparentOperation);
 	
 	/**
 	 * Return the operation within this fragment that has the same signature as apparentOperation. Returns null if none.
 	 */
-	@Nullable DomainOperation getLocalOperation(@NonNull DomainOperation apparentOperation);
+	@Nullable Operation getLocalOperation(@NonNull Operation apparentOperation);
 	
 	/**
 	 * Return the operations within this fragment in operation index order.
 	 */
-	@NonNull Iterable<? extends DomainOperation> getLocalOperations();
+	@NonNull Iterable<? extends Operation> getLocalOperations();
 	
 	/**
 	 * Return the properties within this fragment in property index order.

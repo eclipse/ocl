@@ -15,11 +15,17 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.domain.elements.DomainInheritance;
+import org.eclipse.ocl.domain.elements.DomainParameterTypes;
+import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.domain.elements.DomainTypeParameters;
+import org.eclipse.ocl.domain.ids.OperationId;
+import org.eclipse.ocl.domain.ids.ParametersId;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Operation</b></em>'.
- * @extends org.eclipse.ocl.domain.elements.DomainOperation
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -47,8 +53,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * @see org.eclipse.ocl.pivot.PivotPackage#getOperation()
  * @generated
  */
-public interface Operation
-		extends Feature, Namespace, TemplateableElement, org.eclipse.ocl.domain.elements.DomainOperation {
+public interface Operation extends Feature, Namespace, TemplateableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Raised Exception</b></em>' reference list.
@@ -78,7 +83,6 @@ public interface Operation
 	 * @see org.eclipse.ocl.pivot.Parameter#getOperation
 	 * @generated
 	 */
-	@Override
 	@NonNull List<Parameter> getOwnedParameter();
 
 	/**
@@ -136,7 +140,6 @@ public interface Operation
 	 * @see org.eclipse.ocl.pivot.Constraint#getPreContext
 	 * @generated
 	 */
-	@Override
 	@NonNull List<Constraint> getPrecondition();
 
 	/**
@@ -154,7 +157,6 @@ public interface Operation
 	 * @see org.eclipse.ocl.pivot.Constraint#getPostContext
 	 * @generated
 	 */
-	@Override
 	@NonNull List<Constraint> getPostcondition();
 
 	/**
@@ -170,7 +172,6 @@ public interface Operation
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getOperation_BodyExpression()
 	 * @generated
 	 */
-	@Override
 	LanguageExpression getBodyExpression();
 
 	/**
@@ -315,4 +316,31 @@ public interface Operation
 	 * @generated
 	 */
 	boolean validateUniquePostconditionName(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * Return the index of this operation in the operation dispatch table.
+	 */
+	int getIndex();
+
+	/**
+	 * Return the Inheritance dispatch table for the owning type, or null for am orphan property owned by an Annotation.
+	 */
+	@Nullable DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary);
+
+	@NonNull OperationId getOperationId();
+	
+	/**
+	 * Return the unique identity of the ordered list of parameters of this operation.
+	 */
+	@NonNull ParametersId getParametersId();
+	
+	/**
+	 * Return the ordered list of parameters of this operation.
+	 */
+	@NonNull DomainParameterTypes getParameterTypes();
+
+	/**
+	 * Return the ordered list of type parameters of this operation.
+	 */
+	@NonNull DomainTypeParameters getTypeParameters();
 } // Operation

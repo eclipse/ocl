@@ -22,7 +22,6 @@ import org.eclipse.ocl.domain.DomainConstants;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.types.AbstractStandardLibrary;
@@ -388,10 +387,8 @@ public class PivotStandardLibrary extends AbstractStandardLibrary	// FIXME Abstr
 	}
 
 	@Override
-	public @Nullable DomainElement getOperationTemplateParameter(@NonNull DomainOperation anOperation, int index) {
-		if (anOperation instanceof Operation) {
-			anOperation = PivotUtil.getUnspecializedTemplateableElement((Operation)anOperation);
-		}
+	public @Nullable DomainElement getOperationTemplateParameter(@NonNull Operation anOperation, int index) {
+		anOperation = PivotUtil.getUnspecializedTemplateableElement(anOperation);
 		return anOperation.getTypeParameters().get(index);
 	}
 

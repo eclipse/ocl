@@ -30,7 +30,6 @@ import org.eclipse.ocl.domain.DomainConstants;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainEnumeration;
 import org.eclipse.ocl.domain.elements.DomainLambdaType;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
@@ -50,6 +49,7 @@ import org.eclipse.ocl.domain.ids.impl.WeakHashMapOfListOfWeakReference3;
 import org.eclipse.ocl.domain.ids.impl.WeakHashMapOfListOfWeakReference4;
 import org.eclipse.ocl.domain.ids.impl.WeakHashMapOfWeakReference;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -318,7 +318,7 @@ public final class IdManager
     /**
      * Return the OperationId for anOperation.
       */
-	public static @NonNull OperationId getOperationId(@NonNull DomainOperation anOperation) {
+	public static @NonNull OperationId getOperationId(@NonNull Operation anOperation) {
 		String name = DomainUtil.getSafeName(anOperation);
 		DomainClass parentType = anOperation.getOwningClass();
 		TypeId parentTypeId = parentType.getTypeId();

@@ -25,7 +25,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
@@ -49,6 +48,7 @@ import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.IteratorExp;
 import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.ReferringElement;
@@ -147,7 +147,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 			org.eclipse.ocl.pivot.Class oclComparableType = standardLibrary.getOclComparableType();
 			DomainInheritance comparableInheritance = oclComparableType.getInheritance(standardLibrary);
 			DomainInheritance selfType = standardLibrary.getOclSelfType().getInheritance(standardLibrary);
-			DomainOperation staticOperation = comparableInheritance.lookupLocalOperation(standardLibrary, LibraryConstants.COMPARE_TO, selfType);
+			Operation staticOperation = comparableInheritance.lookupLocalOperation(standardLibrary, LibraryConstants.COMPARE_TO, selfType);
 			if (staticOperation == null) {
 				if (diagnostics == null) {
 					return false;

@@ -17,7 +17,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
@@ -25,6 +24,7 @@ import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.Operation;
 
 public class AbstractCollectionType extends AbstractSpecializedType implements DomainCollectionType
 {
@@ -109,7 +109,7 @@ public class AbstractCollectionType extends AbstractSpecializedType implements D
 //	}
 
 	@Override
-	public @NonNull List<? extends DomainOperation> getOwnedOperations() {
+	public @NonNull List<Operation> getOwnedOperations() {
 		return containerType.getOwnedOperations();
 	}
 

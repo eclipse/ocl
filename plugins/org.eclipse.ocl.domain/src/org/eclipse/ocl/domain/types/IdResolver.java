@@ -22,7 +22,6 @@ import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainTupleType;
 import org.eclipse.ocl.domain.elements.DomainType;
@@ -39,6 +38,7 @@ import org.eclipse.ocl.domain.values.CollectionValue;
 import org.eclipse.ocl.domain.values.OrderedSetValue;
 import org.eclipse.ocl.domain.values.SequenceValue;
 import org.eclipse.ocl.domain.values.SetValue;
+import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 
 /**
@@ -93,7 +93,7 @@ public interface IdResolver extends IdVisitor<DomainElement>
 	
 	@NonNull DomainClass getJavaType(@NonNull Class<?> javaClass);
 
-	@NonNull DomainOperation getOperation(@NonNull OperationId operationId);
+	@NonNull Operation getOperation(@NonNull OperationId operationId);
 
 	@NonNull Property getProperty(@NonNull PropertyId propertyId);
 

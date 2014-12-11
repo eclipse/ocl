@@ -11,21 +11,16 @@
 package org.eclipse.ocl.domain.elements;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.Feature;
 
 public interface FeatureFilter
 {
-	boolean accept(@NonNull DomainFeature asFeature);
-	boolean accept(@NonNull Property asFeature);
+	boolean accept(@NonNull Feature asFeature);
 	
 	public static final @NonNull FeatureFilter SELECT_NON_STATIC = new FeatureFilter()
 	{
 		@Override
-		public boolean accept(@NonNull DomainFeature asFeature) {
-			return !asFeature.isStatic();
-		}
-		@Override
-		public boolean accept(@NonNull Property asFeature) {
+		public boolean accept(@NonNull Feature asFeature) {
 			return !asFeature.isStatic();
 		}
 	};
@@ -33,11 +28,7 @@ public interface FeatureFilter
 	public static final @NonNull FeatureFilter SELECT_STATIC = new FeatureFilter()
 	{
 		@Override
-		public boolean accept(@NonNull DomainFeature asFeature) {
-			return asFeature.isStatic();
-		}
-		@Override
-		public boolean accept(@NonNull Property asFeature) {
+		public boolean accept(@NonNull Feature asFeature) {
 			return asFeature.isStatic();
 		}
 	};

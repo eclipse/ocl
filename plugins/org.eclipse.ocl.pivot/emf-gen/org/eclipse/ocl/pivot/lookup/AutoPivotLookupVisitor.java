@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
@@ -289,7 +288,7 @@ public class AutoPivotLookupVisitor
             if (_1_2 == null) {
                 throw new InvalidValueException("Null source for \'pivot::Class::ownedOperations\'");
             }
-            final @NonNull /*@Thrown*/ List<? extends DomainOperation> ownedOperations = _1_2.getOwnedOperations();
+            final @NonNull /*@Thrown*/ List<? extends Operation> ownedOperations = _1_2.getOwnedOperations();
             final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedOperations = idResolver.createOrderedSetOfAll(ORD_CLSSid_Operation, ownedOperations);
             //
             for (Object value : BOXED_ownedOperations.flatten().getElements()) {
@@ -304,7 +303,7 @@ public class AutoPivotLookupVisitor
                 select_0 = accumulator_2;
                 break;
             }
-            @Nullable /*@NonInvalid*/ DomainOperation _1_3 = (DomainOperation)ITERATOR__1_3.next();
+            @Nullable /*@NonInvalid*/ Operation _1_3 = (Operation)ITERATOR__1_3.next();
             /**
              * _'null' : Boolean[?]
              */
@@ -461,7 +460,7 @@ public class AutoPivotLookupVisitor
         final List<? extends Property> UNBOXED_select = select.asEcoreObjects(idResolver, Property.class);
         assert UNBOXED_select != null;
         final @NonNull /*@Thrown*/ Environment addElements_0 = addElements.addElements(UNBOXED_select);
-        final @NonNull /*@Thrown*/ List<? extends DomainOperation> ownedOperations = element_2.getOwnedOperations();
+        final @NonNull /*@Thrown*/ List<? extends Operation> ownedOperations = element_2.getOwnedOperations();
         final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedOperations = idResolver.createOrderedSetOfAll(ORD_CLSSid_Operation, ownedOperations);
         @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator_0 = ValuesUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Operation);
         @Nullable Iterator<?> ITERATOR__1_0 = BOXED_ownedOperations.iterator();
@@ -471,7 +470,7 @@ public class AutoPivotLookupVisitor
                 select_0 = accumulator_0;
                 break;
             }
-            @Nullable /*@NonInvalid*/ DomainOperation _1_0 = (DomainOperation)ITERATOR__1_0.next();
+            @Nullable /*@NonInvalid*/ Operation _1_0 = (Operation)ITERATOR__1_0.next();
             /**
              * _'null' : Boolean[?]
              */

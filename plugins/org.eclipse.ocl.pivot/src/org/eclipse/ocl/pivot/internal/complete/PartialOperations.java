@@ -23,7 +23,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.domain.ids.ParametersId;
 import org.eclipse.ocl.pivot.Operation;
@@ -37,11 +36,11 @@ import com.google.common.collect.Iterators;
 public class PartialOperations //extends HashMap<ParametersId, List<DomainOperation>>
 {
 //	private static final long serialVersionUID = 1L;
-	public static final @NonNull Function<PartialOperations, Iterable<Iterable<DomainOperation>>> partialOperations2allOperations =
-			new Function<PartialOperations, Iterable<Iterable<DomainOperation>>>() {
+	public static final @NonNull Function<PartialOperations, Iterable<Iterable<Operation>>> partialOperations2allOperations =
+			new Function<PartialOperations, Iterable<Iterable<Operation>>>() {
 
 		@Override
-		public Iterable<Iterable<DomainOperation>> apply(PartialOperations partialOperations) {
+		public Iterable<Iterable<Operation>> apply(PartialOperations partialOperations) {
 			return partialOperations.getOperationsInternal(null);
 		}
 	};
@@ -50,7 +49,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 	 * An OverloadsList is a non-empty list of Operations sharing the same name and parameter types.
 	 * It can be sorted into most-derived first order.
 	 */
-	private static class OverloadsList extends ArrayList<DomainOperation> implements Comparator<Integer>
+	private static class OverloadsList extends ArrayList<Operation> implements Comparator<Integer>
 	{
 		private static final long serialVersionUID = 1L;
 
@@ -73,7 +72,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 			keys = new Integer[size];
 			metrics = new Integer[size];
 			Integer index = 0;
-			for (DomainOperation operation : this) {
+			for (Operation operation : this) {
 				keys[index] = index;
 				int metric = 0;
 				if (operation != null) {
@@ -87,7 +86,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 				index++;
 			}
 			Arrays.sort(keys, this);
-			List<DomainOperation> savedOperations = new ArrayList<DomainOperation>(this);
+			List<Operation> savedOperations = new ArrayList<Operation>(this);
 			clear();
 			for (int i = 0; i < size; i++) {
 				add(savedOperations.get(keys[i]));
@@ -101,7 +100,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 	 * Overloads maintains the distinct OverloadsLists for static and non-static operations
 	 * that share the same name and parameter types.
 	 */
-	private class Overloads implements Iterable<DomainOperation>
+	private class Overloads implements Iterable<Operation>
 	{
 		private @Nullable OverloadsList staticOperations = null;
 		private @Nullable OverloadsList nonStaticOperations = null;
@@ -128,7 +127,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 			}
 		}
 
-		public @NonNull DomainOperation getBest() {
+		public @NonNull Operation getBest() {
 			OverloadsList list = nonStaticOperations != null ? nonStaticOperations : staticOperations;
 			assert list != null;
 			if ((list.size() > 1) && !sorted) {
@@ -142,13 +141,13 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 				}
 				sorted = true;
 			}
-			DomainOperation bestOperation = list.get(0);
+			Operation bestOperation = list.get(0);
 			assert bestOperation != null;
 			return bestOperation;
 		}
 
 		@Override
-		public Iterator<DomainOperation> iterator() {
+		public Iterator<Operation> iterator() {
 			OverloadsList staticOperations2 = staticOperations;
 			OverloadsList nonStaticOperations2 = nonStaticOperations;
 			if (staticOperations2 != null) {
@@ -251,15 +250,15 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 		return map.isEmpty();
 	}
 
-	public @Nullable DomainOperation getOperation(@NonNull ParametersId parametersId, @Nullable FeatureFilter featureFilter) {
+	public @Nullable Operation getOperation(@NonNull ParametersId parametersId, @Nullable FeatureFilter featureFilter) {
 		Object partials = map.get(parametersId);
 		if (partials instanceof Overloads) {
 			Overloads overloads = (Overloads)partials;
-			DomainOperation bestOperation = overloads.getBest();
+			Operation bestOperation = overloads.getBest();
 			if (featureFilter == null) {
 				return bestOperation;
 			}
-			for (DomainOperation operation : overloads) {
+			for (Operation operation : overloads) {
 				if ((operation != null) && featureFilter.accept(operation)) {
 					return operation;
 				}
@@ -267,7 +266,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 			return null;
 		}
 		else if (partials != null) {			// Must be an Operation
-			DomainOperation operation = (DomainOperation) partials;
+			Operation operation = (Operation) partials;
 			return (featureFilter == null) || featureFilter.accept(operation) ? operation : null;
 		}
 		else {
@@ -276,7 +275,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 	}
 
 	@SuppressWarnings("null")
-	public @NonNull Iterable<DomainOperation> getOperationOverloads(@NonNull ParametersId parametersId, final @Nullable FeatureFilter featureFilter) {
+	public @NonNull Iterable<Operation> getOperationOverloads(@NonNull ParametersId parametersId, final @Nullable FeatureFilter featureFilter) {
 		Object partials = map.get(parametersId);
 		if (partials instanceof Overloads) {
 			Overloads overloads = (Overloads)partials;
@@ -284,29 +283,29 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 			if (featureFilter == null) {
 				return overloads;
 			}
-			return Iterables.filter(overloads, new Predicate<DomainOperation>()
+			return Iterables.filter(overloads, new Predicate<Operation>()
 				{
 					@Override
-					public boolean apply(DomainOperation input) {
+					public boolean apply(Operation input) {
 						return featureFilter.accept(input);
 					}
 				});
 		}
 		else if (partials != null) {			// Must be an Operation
-			DomainOperation operation = (DomainOperation) partials;
+			Operation operation = (Operation) partials;
 			if ((featureFilter == null) || featureFilter.accept(operation)) {
-				return Collections.singletonList((DomainOperation)partials);
+				return Collections.singletonList((Operation)partials);
 			}
 		}
 		return Collections.emptyList();
 	}
 
 	@SuppressWarnings("null")
-	public @NonNull Iterable<DomainOperation> getOperationOverloads(final @Nullable FeatureFilter featureFilter) {
-		Iterable<DomainOperation> unfilteredOverloads = Iterables.concat(Iterables.transform(map.keySet(), new Function<ParametersId, Iterable<DomainOperation>>()
+	public @NonNull Iterable<Operation> getOperationOverloads(final @Nullable FeatureFilter featureFilter) {
+		Iterable<Operation> unfilteredOverloads = Iterables.concat(Iterables.transform(map.keySet(), new Function<ParametersId, Iterable<Operation>>()
 		{
 			@Override
-			public Iterable<DomainOperation> apply(ParametersId parametersId) {
+			public Iterable<Operation> apply(ParametersId parametersId) {
 				assert parametersId != null;
 				return getOperationOverloads(parametersId, featureFilter);
 			}
@@ -314,35 +313,35 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 		if (featureFilter == null) {
 			return unfilteredOverloads;
 		}
-		return Iterables.filter(unfilteredOverloads, new Predicate<DomainOperation>()
+		return Iterables.filter(unfilteredOverloads, new Predicate<Operation>()
 		{
 			@Override
-			public boolean apply(DomainOperation input) {
+			public boolean apply(Operation input) {
 				return featureFilter.accept(input);
 			}
 		});
 	}
 
 	@SuppressWarnings("null")
-	public @NonNull Iterable<? extends DomainOperation> getOperations(final @Nullable FeatureFilter featureFilter) {
+	public @NonNull Iterable<? extends Operation> getOperations(final @Nullable FeatureFilter featureFilter) {
 //		if (featureFilter == FeatureFilter.SELECT_NON_STATIC) {
 //			return 
 //		}
-		return Iterables.transform(map.keySet(), new Function<ParametersId, DomainOperation>()
+		return Iterables.transform(map.keySet(), new Function<ParametersId, Operation>()
 		{
 			@Override
-			public DomainOperation apply(ParametersId parametersId) {
+			public Operation apply(ParametersId parametersId) {
 				return getOperation(parametersId, featureFilter);
 			}
 		});
 	}
 
 	@SuppressWarnings("null")
-	private @NonNull Iterable<Iterable<DomainOperation>> getOperationsInternal(final @Nullable FeatureFilter featureFilter) {
-		return Iterables.transform(map.keySet(), new Function<ParametersId, Iterable<DomainOperation>>()
+	private @NonNull Iterable<Iterable<Operation>> getOperationsInternal(final @Nullable FeatureFilter featureFilter) {
+		return Iterables.transform(map.keySet(), new Function<ParametersId, Iterable<Operation>>()
 		{
 			@Override
-			public Iterable<DomainOperation> apply(ParametersId parametersId) {
+			public Iterable<Operation> apply(ParametersId parametersId) {
 				assert parametersId != null;
 				return getOperationOverloads(parametersId, featureFilter);
 			}

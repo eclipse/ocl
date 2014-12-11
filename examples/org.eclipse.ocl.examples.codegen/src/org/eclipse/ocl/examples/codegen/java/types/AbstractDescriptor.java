@@ -22,7 +22,6 @@ import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainEnumeration;
 import org.eclipse.ocl.domain.elements.DomainNamedElement;
 import org.eclipse.ocl.domain.elements.DomainNamespace;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.ElementId;
@@ -42,7 +41,6 @@ import org.eclipse.ocl.examples.codegen.java.JavaStream.SubStream;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Namespace;
-import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.VoidType;
@@ -72,9 +70,6 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 		}
 		else if (javaClass == Namespace.class) {
 			javaClass = DomainNamespace.class;
-		}
-		else if (javaClass == Operation.class) {
-			javaClass = DomainOperation.class;
 		}
 		else if (javaClass == org.eclipse.ocl.pivot.Package.class) {
 			javaClass = DomainPackage.class;

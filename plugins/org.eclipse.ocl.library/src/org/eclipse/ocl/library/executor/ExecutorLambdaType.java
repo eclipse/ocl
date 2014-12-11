@@ -12,7 +12,6 @@ package org.eclipse.ocl.library.executor;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.IdManager;
@@ -20,6 +19,7 @@ import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.domain.types.AbstractClass;
 import org.eclipse.ocl.domain.types.IdResolver;
+import org.eclipse.ocl.pivot.Operation;
 
 public class ExecutorLambdaType extends AbstractClass implements ExecutorTypeArgument
 {
@@ -46,12 +46,12 @@ public class ExecutorLambdaType extends AbstractClass implements ExecutorTypeArg
 	}
 
 	@Override
-	public @NonNull DomainOperation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
+	public @NonNull Operation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 
 	@Override
-	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainOperation apparentOperation) {
+	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 

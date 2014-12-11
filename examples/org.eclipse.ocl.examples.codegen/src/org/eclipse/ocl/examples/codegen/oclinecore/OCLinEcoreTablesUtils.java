@@ -922,15 +922,13 @@ public class OCLinEcoreTablesUtils
 	protected @NonNull LinkedHashSet<Property> getProperties(@NonNull org.eclipse.ocl.pivot.Class type) {
 		Set<String> names = new HashSet<String>();
 		LinkedHashSet<Property> properties = new LinkedHashSet<Property>();
-		for (Property property : metaModelManager.getMemberProperties(type, true)) {
-			if (property != null) {
-				names.add(property.getName());
-				properties.add((Property) metaModelManager.getPrimaryProperty(property));
-			}
+		for (@SuppressWarnings("null")@NonNull Property property : metaModelManager.getMemberProperties(type, true)) {
+			names.add(property.getName());
+			properties.add(metaModelManager.getPrimaryProperty(property));
 		}
-		for (Property property : metaModelManager.getMemberProperties(type, false)) {
-			if ((property != null) && !names.contains(property.getName())) {
-				properties.add((Property) metaModelManager.getPrimaryProperty(property));
+		for (@SuppressWarnings("null")@NonNull Property property : metaModelManager.getMemberProperties(type, false)) {
+			if (!names.contains(property.getName())) {
+				properties.add(metaModelManager.getPrimaryProperty(property));
 			}
 		}
 		return properties;

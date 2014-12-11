@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2011, 2013 E.D.Willink and others.
+ * Copyright (c) 2014 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,15 +18,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.ids.PropertyId;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.AssociationClass;
 import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Property;
 
-public abstract class AbstractExecutorProperty extends AbstractExecutorTypedElement implements Property
+public abstract class AbstractExecutorProperty extends AbstractExecutorFeature implements Property
 {
 	protected final int propertyIndex;
 	protected Property opposite;
@@ -52,12 +50,6 @@ public abstract class AbstractExecutorProperty extends AbstractExecutorTypedElem
 		return DomainUtil.nonNullState(opposite);
 	}
 
-	@Override
-	public @NonNull TypeId getTypeId() {
-		DomainType type2 = getType();
-		return type2.getTypeId();
-	}
-
 	void initOpposite(@NonNull Property opposite) {
 		this.opposite = opposite;
 	}
@@ -65,11 +57,6 @@ public abstract class AbstractExecutorProperty extends AbstractExecutorTypedElem
 	@Override
 	public void initValue(@NonNull EObject objectValue, @Nullable Object propertyValue) {
 		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public boolean isStatic() {
-		return false;								// WIP FIXME
 	}
 
 	@Override
@@ -83,17 +70,7 @@ public abstract class AbstractExecutorProperty extends AbstractExecutorTypedElem
 	}
 
 	@Override
-	public String getImplementationClass() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
 	public List<Property> getKeys() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public Class getOwningClass() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -189,16 +166,6 @@ public abstract class AbstractExecutorProperty extends AbstractExecutorTypedElem
 	}
 
 	@Override
-	public void setImplementation(LibraryFeature value) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public void setImplementationClass(String value) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
 	public void setIsComposite(boolean value) {
 		throw new UnsupportedOperationException();
 	}
@@ -220,11 +187,6 @@ public abstract class AbstractExecutorProperty extends AbstractExecutorTypedElem
 
 	@Override
 	public void setIsResolveProxies(boolean value) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public void setIsStatic(boolean value) {
 		throw new UnsupportedOperationException();
 	}
 

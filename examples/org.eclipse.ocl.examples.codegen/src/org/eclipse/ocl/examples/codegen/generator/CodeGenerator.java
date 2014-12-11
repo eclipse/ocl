@@ -12,7 +12,6 @@ package org.eclipse.ocl.examples.codegen.generator;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.ids.ElementId;
 import org.eclipse.ocl.examples.codegen.analyzer.AnalysisVisitor;
 import org.eclipse.ocl.examples.codegen.analyzer.BoxingAnalyzer;
@@ -54,7 +53,7 @@ public interface CodeGenerator
 	@NonNull ReferencesVisitor createReferencesVisitor();
 	@NonNull TypeDescriptor getTypeDescriptor(@NonNull CGValuedElement cgElement);
 	@NonNull UnboxedDescriptor getUnboxedDescriptor(@NonNull ElementId elementId);
-	@Nullable DomainOperation isFinal(@NonNull Operation anOperation, @NonNull org.eclipse.ocl.pivot.Class staticType);
+	@Nullable Operation isFinal(@NonNull Operation anOperation, @NonNull org.eclipse.ocl.pivot.Class staticType);
 
 	/**
 	 * Return true if asOperationCallExp may return a nonNull value,

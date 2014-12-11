@@ -83,14 +83,17 @@ public class CollectionTypeParametersImpl<T extends DomainType> implements Colle
 		return true;
 	}
 
+	@Override
 	public @NonNull T getElementType() {
 		return elementType;
 	}
 
+	@Override
 	public @NonNull IntegerValue getLower() {
 		return lower;
 	}
 
+	@Override
 	public @NonNull UnlimitedNaturalValue getUpper() {
 		return upper;
 	}

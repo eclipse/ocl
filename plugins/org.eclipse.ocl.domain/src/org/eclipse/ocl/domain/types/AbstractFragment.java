@@ -13,9 +13,9 @@ package org.eclipse.ocl.domain.types;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainOperation;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
+import org.eclipse.ocl.pivot.Operation;
 
 public abstract class AbstractFragment implements DomainFragment
 {
@@ -31,15 +31,15 @@ public abstract class AbstractFragment implements DomainFragment
 	 * Return the actualOperation that has the same signature as apparentOperation.
 	 */
 	@Override
-	public @NonNull DomainOperation getActualOperation(@NonNull DomainOperation apparentOperation) {
-		DomainOperation localOperation = getLocalOperation(apparentOperation);
+	public @NonNull Operation getActualOperation(@NonNull Operation apparentOperation) {
+		Operation localOperation = getLocalOperation(apparentOperation);
 		if (localOperation == null) {
 			if (derivedInheritance == baseInheritance) {
 				localOperation = apparentOperation;
 			}
 		}
 		if (localOperation == null) {				// Non-trivial, search up the inheritance tree for an inherited operation
-			DomainOperation bestOverload = null;
+			Operation bestOverload = null;
 			DomainInheritance bestInheritance = null;
 			int bestDepth = -1;
 			int minDepth = baseInheritance.getDepth();
@@ -49,7 +49,7 @@ public abstract class AbstractFragment implements DomainFragment
 					DomainInheritance superInheritance = derivedSuperFragment.getBaseInheritance();
 					DomainFragment superFragment = superInheritance.getFragment(baseInheritance);
 					if (superFragment != null) {
-						DomainOperation overload = superFragment.getLocalOperation(apparentOperation);
+						Operation overload = superFragment.getLocalOperation(apparentOperation);
 						if (overload != null) {
 							if (bestInheritance == null) {				// First candidate
 								bestDepth = depth;
