@@ -17,7 +17,6 @@ import org.eclipse.jdt.annotation.NonNull;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Model</b></em>'.
- * @extends org.eclipse.ocl.domain.elements.DomainModel
  * <!-- end-user-doc -->
  *
  * <p>
@@ -32,7 +31,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * @see org.eclipse.ocl.pivot.PivotPackage#getModel()
  * @generated
  */
-public interface Model extends Namespace, org.eclipse.ocl.domain.elements.DomainModel
+public interface Model extends Namespace
 {
 
 	/**
@@ -48,7 +47,6 @@ public interface Model extends Namespace, org.eclipse.ocl.domain.elements.Domain
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getModel_OwnedPackages()
 	 * @generated
 	 */
-	@Override
 	@NonNull List<org.eclipse.ocl.pivot.Package> getOwnedPackages();
 
 	/**

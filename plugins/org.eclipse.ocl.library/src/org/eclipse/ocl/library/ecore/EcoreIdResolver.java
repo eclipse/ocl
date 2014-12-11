@@ -34,7 +34,6 @@ import org.eclipse.ocl.domain.DomainConstants;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainModel;
 import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.ids.IdManager;
@@ -49,6 +48,7 @@ import org.eclipse.ocl.library.executor.AbstractIdResolver;
 import org.eclipse.ocl.library.executor.ExecutableStandardLibrary;
 import org.eclipse.ocl.library.executor.ExecutorPackage;
 import org.eclipse.ocl.library.executor.ExecutorStandardLibrary;
+import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.TupleType;
 
 /**
@@ -201,8 +201,8 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 			protected boolean crossReference(EObject eObject, EReference eReference, EObject crossReferencedEObject) {
 				EObject root = EcoreUtil.getRootContainer(crossReferencedEObject);
 				if (moreRoots.add(root) && !directRoots.contains(root)) {
-					if (root instanceof DomainModel) {
-						addPackages(((DomainModel)root).getOwnedPackages());
+					if (root instanceof Model) {
+						addPackages(((Model)root).getOwnedPackages());
 					}
 					else if (root instanceof DomainPackage) {					// Perhaps this is only needed for a lazy JUnit test
 						addPackage((DomainPackage)root);
@@ -220,8 +220,8 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 		directRootsProcessed = true;
 		Set<EPackage> ePackages = new HashSet<EPackage>();
 		for (EObject eObject : directRoots) {
-			if (eObject instanceof DomainModel) {
-				addPackages(((DomainModel)eObject).getOwnedPackages());
+			if (eObject instanceof Model) {
+				addPackages(((Model)eObject).getOwnedPackages());
 			}
 //			else if (eObject instanceof DomainPackage) {							// Perhaps this is only needed for a lazy JUnit test
 //				addPackage((DomainPackage)eObject);
