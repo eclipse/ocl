@@ -11,35 +11,30 @@
 package org.eclipse.ocl.library.executor;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.domain.elements.AbstractExecutorEnumerationLiteral;
 import org.eclipse.ocl.domain.elements.DomainEnumeration;
-import org.eclipse.ocl.domain.elements.DomainEnumerationLiteral;
 import org.eclipse.ocl.domain.ids.EnumerationLiteralId;
+import org.eclipse.ocl.pivot.Enumeration;
 
-public abstract class ExecutorEnumerationLiteral implements DomainEnumerationLiteral
+public abstract class ExecutorEnumerationLiteral extends AbstractExecutorEnumerationLiteral
 {
-	protected final @NonNull String name;
 	protected final @NonNull DomainEnumeration enumeration;
 	protected final int ordinal;
 	
 	public ExecutorEnumerationLiteral(@NonNull String name, @NonNull DomainEnumeration enumeration, int ordinal) {
-		this.name = name;
+		super(name);
 		this.enumeration = enumeration;
 		this.ordinal = ordinal;
 	}
 
 	@Override
-	public @NonNull DomainEnumeration getEnumeration() {
-		return enumeration;
+	public @NonNull Enumeration getEnumeration() {
+		return (Enumeration) enumeration;
 	}
 
 	@Override
 	public @NonNull EnumerationLiteralId getEnumerationLiteralId() {
 		return enumeration.getEnumerationId().getEnumerationLiteralId(name);
-	}
-
-	@Override
-	public @NonNull String getName() {
-		return name;
 	}
 	
 	@Override

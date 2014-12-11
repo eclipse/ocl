@@ -10,12 +10,15 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot;
 
+import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.domain.ids.EnumerationLiteralId;
+
 
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Enumeration Literal</b></em>'.
- * @implements org.eclipse.ocl.domain.elements.DomainEnumerationLiteral
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -33,8 +36,7 @@ package org.eclipse.ocl.pivot;
  * @see org.eclipse.ocl.pivot.PivotPackage#getEnumerationLiteral()
  * @generated
  */
-public interface EnumerationLiteral
-		extends InstanceSpecification, org.eclipse.ocl.domain.elements.DomainEnumerationLiteral {
+public interface EnumerationLiteral extends InstanceSpecification {
 
 	/**
 	 * Returns the value of the '<em><b>Enumeration</b></em>' container reference.
@@ -50,7 +52,6 @@ public interface EnumerationLiteral
 	 * @see org.eclipse.ocl.pivot.Enumeration#getOwnedLiteral
 	 * @generated
 	 */
-	@Override
 	Enumeration getEnumeration();
 
 	/**
@@ -89,4 +90,6 @@ public interface EnumerationLiteral
 	 */
 	void setValue(Number value);
 
+	@NonNull EnumerationLiteralId getEnumerationLiteralId();
+	@NonNull Enumerator getEnumerator();
 } // EnumerationLiteral

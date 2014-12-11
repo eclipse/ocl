@@ -28,7 +28,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainElement;
-import org.eclipse.ocl.domain.elements.DomainEnumerationLiteral;
 import org.eclipse.ocl.domain.elements.DomainParameterTypes;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
@@ -85,6 +84,7 @@ import org.eclipse.ocl.domain.values.impl.SparseSequenceValueImpl;
 import org.eclipse.ocl.domain.values.impl.TupleValueImpl;
 import org.eclipse.ocl.domain.values.impl.UnlimitedValueImpl;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
+import org.eclipse.ocl.pivot.EnumerationLiteral;
 
 /**
  */
@@ -710,7 +710,7 @@ public abstract class ValuesUtil
 		if (object instanceof NullValue) {
 			return false;
 		}
-		if (object instanceof DomainEnumerationLiteral) {
+		if (object instanceof EnumerationLiteral) {
 			return false;
 		}
 		if (object instanceof EEnumLiteral) {

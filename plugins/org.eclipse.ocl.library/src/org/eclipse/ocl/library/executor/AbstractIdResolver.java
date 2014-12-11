@@ -39,7 +39,6 @@ import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCompletePackage;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainEnumeration;
-import org.eclipse.ocl.domain.elements.DomainEnumerationLiteral;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainPackage;
@@ -89,6 +88,7 @@ import org.eclipse.ocl.domain.values.impl.BagImpl;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.domain.values.impl.OrderedSetImpl;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 
@@ -307,8 +307,8 @@ public abstract class AbstractIdResolver implements IdResolver
 		else if (unboxedValue instanceof DomainType) {
 			return unboxedValue;
 		}
-		else if (unboxedValue instanceof DomainEnumerationLiteral) {
-			return ((DomainEnumerationLiteral) unboxedValue).getEnumerationLiteralId();
+		else if (unboxedValue instanceof EnumerationLiteral) {
+			return ((EnumerationLiteral) unboxedValue).getEnumerationLiteralId();
 		}
 		else if (unboxedValue instanceof EEnumLiteral) {
 			return IdManager.getEnumerationLiteralId((EEnumLiteral) unboxedValue);
@@ -376,7 +376,7 @@ public abstract class AbstractIdResolver implements IdResolver
 					for (DomainCompletePackage dPackage : standardLibrary.getAllCompletePackages()) {
 						for (DomainClass dType : dPackage.getAllClasses()) {
 							if (dType instanceof DomainEnumeration) {
-								for (DomainEnumerationLiteral dEnumerationLiteral : ((DomainEnumeration) dType).getEnumerationLiterals()) {
+								for (EnumerationLiteral dEnumerationLiteral : ((DomainEnumeration) dType).getEnumerationLiterals()) {
 									Enumerator enumerator = dEnumerationLiteral.getEnumerator();
 									EnumerationLiteralId enumerationLiteralId = dEnumerationLiteral.getEnumerationLiteralId();
 									enumerator2enumerationLiteralId.put(enumerator, enumerationLiteralId);
@@ -744,7 +744,7 @@ public abstract class AbstractIdResolver implements IdResolver
 			}
 		}
 		else if (value instanceof EnumerationLiteralId) {
-			DomainEnumerationLiteral enumLiteral = (DomainEnumerationLiteral) ((EnumerationLiteralId)value).accept(this);
+			EnumerationLiteral enumLiteral = (EnumerationLiteral) ((EnumerationLiteralId)value).accept(this);
 			assert enumLiteral != null;
 			DomainEnumeration enumeration = enumLiteral.getEnumeration();
 			assert enumeration != null;
@@ -971,7 +971,7 @@ public abstract class AbstractIdResolver implements IdResolver
 			synchronized (enumerationLiteral2enumerator) {
 				enumerator = enumerationLiteral2enumerator.get(enumerationLiteralId);
 				if (enumerator == null) {
-					DomainEnumerationLiteral enumerationLiteral = (DomainEnumerationLiteral) enumerationLiteralId.accept(this);
+					EnumerationLiteral enumerationLiteral = (EnumerationLiteral) enumerationLiteralId.accept(this);
 					if (enumerationLiteral != null) {
 						enumerator = enumerationLiteral.getEnumerator();
 						enumerationLiteral2enumerator.put(enumerationLiteralId, enumerator);
@@ -1062,12 +1062,12 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	@Override
-	public @NonNull DomainEnumerationLiteral visitEnumerationLiteralId(@NonNull EnumerationLiteralId id) {
+	public @NonNull EnumerationLiteral visitEnumerationLiteralId(@NonNull EnumerationLiteralId id) {
 		DomainElement parent = id.getParentId().accept(this);
 		if (!(parent instanceof DomainEnumeration)) {
 			throw new UnsupportedOperationException();
 		}
-		DomainEnumerationLiteral enumerationLiteral = ((DomainEnumeration)parent).getEnumerationLiteral(id.getName());
+		EnumerationLiteral enumerationLiteral = ((DomainEnumeration)parent).getEnumerationLiteral(id.getName());
 		if (enumerationLiteral == null) {
 			throw new UnsupportedOperationException();
 		}

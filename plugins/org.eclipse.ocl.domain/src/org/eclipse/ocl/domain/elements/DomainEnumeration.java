@@ -13,10 +13,11 @@ package org.eclipse.ocl.domain.elements;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.ids.EnumerationId;
+import org.eclipse.ocl.pivot.EnumerationLiteral;
 
 public interface DomainEnumeration extends DomainClass
 {
 	@NonNull EnumerationId getEnumerationId();
-	@Nullable DomainEnumerationLiteral getEnumerationLiteral(@NonNull String name);
-	@NonNull Iterable<? extends DomainEnumerationLiteral> getEnumerationLiterals();
+	@Nullable EnumerationLiteral getEnumerationLiteral(@NonNull String name);
+	@NonNull Iterable<EnumerationLiteral> getEnumerationLiterals();
 }

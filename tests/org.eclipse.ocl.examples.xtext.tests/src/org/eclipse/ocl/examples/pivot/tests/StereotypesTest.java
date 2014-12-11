@@ -22,13 +22,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainEnumerationLiteral;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.utilities.ProjectMap;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.Enumeration;
+import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Profile;
@@ -291,7 +291,7 @@ public class StereotypesTest extends PivotTestSuite
      * Tests M2 parsing and M1 evaluation using enumeration.
      */
     public void test_uml_enums_412685() throws Exception {
-    	DomainEnumerationLiteral asBold = mmm.asFace.getEnumerationLiteral("BOLD");
+    	EnumerationLiteral asBold = mmm.asFace.getEnumerationLiteral("BOLD");
     	org.eclipse.uml2.uml.EnumerationLiteral umlBold = mmm.umlFace.getOwnedLiteral("BOLD");
 //
 		assertQueryEquals(mm.asGermanClass, asBold, "InternationalizedProfile::Face::BOLD");

@@ -22,7 +22,6 @@ import org.eclipse.ocl.domain.compatibility.UML_4_2.UMLUtil;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainEnumerationLiteral;
 import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.ids.EnumerationLiteralId;
 import org.eclipse.ocl.domain.ids.NsURIPackageId;
@@ -241,9 +240,9 @@ public class PivotIdResolver extends AbstractIdResolver
 	 * @since 3.5
 	 */
 	public @NonNull Object unboxedValueOfUML(@NonNull EnumerationLiteralId enumerationLiteralId) {		// FIXME BUG 448470 UML EnumerationLiterals should consistently unboxed
-		DomainEnumerationLiteral enumerationLiteral = (DomainEnumerationLiteral) enumerationLiteralId.accept(this);
-		if (enumerationLiteral instanceof EnumerationLiteral) {
-			EObject eTarget = ((EnumerationLiteral)enumerationLiteral).getETarget();
+		EnumerationLiteral enumerationLiteral = (EnumerationLiteral) enumerationLiteralId.accept(this);
+		if (enumerationLiteral != null) {
+			EObject eTarget = enumerationLiteral.getETarget();
 			if (eTarget != null) {
 				return eTarget;
 			}
