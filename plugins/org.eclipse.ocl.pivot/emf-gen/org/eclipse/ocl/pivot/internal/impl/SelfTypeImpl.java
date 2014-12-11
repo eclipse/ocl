@@ -16,9 +16,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainCallExp;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.TypeId;
@@ -118,17 +116,17 @@ public class SelfTypeImpl extends ClassImpl implements SelfType
 	public Type specializeIn(final /*@NonNull*/ OCLExpression expr, final Type selfType)
 	{
 		assert expr != null;
-		return (Type) specializeIn((DomainCallExp)expr, (DomainType)selfType);
+		return (Type) specializeIn((CallExp)expr, (DomainType)selfType);
 	}
 
 	@Override
-	public DomainType specializeIn(@NonNull DomainCallExp expr, DomainType selfType) {
+	public DomainType specializeIn(@NonNull CallExp expr, DomainType selfType) {
 		if (selfType instanceof org.eclipse.ocl.pivot.Class) {
 			TemplateSignature templateSignature = ((TemplateableElement)selfType).getOwnedTemplateSignature();
 			if (templateSignature != null) {
-				MetaModelManager metaModelManager = PivotUtil.findMetaModelManager((EObject) expr);
+				MetaModelManager metaModelManager = PivotUtil.findMetaModelManager(expr);
 				if (metaModelManager != null) {
-					return metaModelManager.specializeType((Type)selfType, (CallExp) expr, (Type)selfType, null); // FIXME is this a no-op
+					return metaModelManager.specializeType((Type)selfType, expr, (Type)selfType, null); // FIXME is this a no-op
 				}
 				else {
 					return null;

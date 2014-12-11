@@ -16,7 +16,6 @@ import java.util.StringTokenizer;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainCallExp;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
@@ -28,6 +27,7 @@ import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.values.SequenceValue;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.OperationCallExp;
 
 /**
  * StringTokenizeOperation realises the String::tokenize() library operations.
@@ -38,7 +38,7 @@ public class StringTokenizeOperation extends AbstractOperation implements Librar
 	private static final @NonNull String DELIMS = " \t\n\r\f"; //$NON-NLS-1$
 
 	@Override
-	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue) {
+	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
 		String delims = DELIMS;
 		boolean returnDelims = false;
 		TypeId typeId = callExp.getTypeId();

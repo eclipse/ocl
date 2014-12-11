@@ -68,12 +68,19 @@ public interface Type
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	Type specializeIn(OCLExpression expr, Type selfType);
+//	Type specializeIn(/*@NonNull*/ CallExp expr, Type selfType);
 
 	@Override
 	@Nullable org.eclipse.ocl.pivot.Class isClass();
 
 	@Override
 	@Nullable TemplateParameter isTemplateParameter();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	Type specializeIn(OCLExpression expr, Type selfType);
 
 } // Type

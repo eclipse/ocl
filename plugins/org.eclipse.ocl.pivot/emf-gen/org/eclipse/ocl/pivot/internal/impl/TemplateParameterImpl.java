@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainCallExp;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
@@ -572,13 +571,11 @@ public class TemplateParameterImpl
 	}
 
 	@Override
-	public DomainType specializeIn(@NonNull DomainCallExp expr, DomainType selfType) {
-		if (expr instanceof CallExp) {
-			Resource eResource = ((EObject) expr).eResource();
-			if ((eResource != null) && (selfType instanceof Type)) {
-				MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(eResource);
-				return metaModelManager.specializeType(this, (CallExp) expr, (Type)selfType, null);
-			}
+	public DomainType specializeIn(@NonNull CallExp expr, DomainType selfType) {
+		Resource eResource = ((EObject) expr).eResource();
+		if ((eResource != null) && (selfType instanceof Type)) {
+			MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(eResource);
+			return metaModelManager.specializeType(this, expr, (Type)selfType, null);
 		}
 		return null;
 	}

@@ -14,10 +14,10 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainCallExp;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.OperationCallExp;
 
 /**
  * AbstractBinaryOperation defines the default implementation of a binary operation redirecting the
@@ -26,7 +26,7 @@ import org.eclipse.ocl.pivot.OCLExpression;
 public abstract class AbstractBinaryOperation extends AbstractOperation implements LibraryBinaryOperation
 {
 	@Override
-	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue) {
+	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
 		List<? extends OCLExpression> arguments = callExp.getArgument();
 		OCLExpression argument0 = arguments.get(0);
 		assert argument0 != null;

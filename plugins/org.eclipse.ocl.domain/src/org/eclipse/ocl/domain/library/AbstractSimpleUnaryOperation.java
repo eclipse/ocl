@@ -12,9 +12,9 @@ package org.eclipse.ocl.domain.library;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainCallExp;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
+import org.eclipse.ocl.pivot.OperationCallExp;
 
 /**
  * AbstractSimpleUnaryOperation defines the default implementation of a unary operation redirecting the
@@ -23,7 +23,7 @@ import org.eclipse.ocl.domain.ids.TypeId;
 public abstract class AbstractSimpleUnaryOperation extends AbstractUntypedUnaryOperation implements LibrarySimpleUnaryOperation
 {
 	@Override
-	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue) {
+	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
 		return evaluate(sourceValue);
 	}
 

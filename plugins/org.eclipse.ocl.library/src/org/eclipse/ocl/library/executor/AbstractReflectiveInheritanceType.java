@@ -12,7 +12,6 @@ package org.eclipse.ocl.library.executor;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainCallExp;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
@@ -20,6 +19,7 @@ import org.eclipse.ocl.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.values.OCLValue;
+import org.eclipse.ocl.pivot.CallExp;
 
 public abstract class AbstractReflectiveInheritanceType extends ReflectiveInheritance implements DomainClass
 {
@@ -87,7 +87,7 @@ public abstract class AbstractReflectiveInheritanceType extends ReflectiveInheri
 	}
 
 	@Override
-	public DomainType specializeIn(@NonNull DomainCallExp expr, DomainType selfType) {
+	public DomainType specializeIn(@NonNull CallExp expr, DomainType selfType) {
 		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
 	}
 }

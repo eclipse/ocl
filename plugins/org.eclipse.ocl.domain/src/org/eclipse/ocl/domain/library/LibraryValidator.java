@@ -13,8 +13,8 @@ package org.eclipse.ocl.domain.library;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainCallExp;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.pivot.CallExp;
 
 /**
  * The LibraryValidator defines the behaviour of library-feature-specific validators. An
@@ -24,5 +24,5 @@ import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
  */
 public interface LibraryValidator
 {
-	@Nullable Diagnostic validate(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainCallExp callExp);
+	@Nullable Diagnostic validate(@NonNull DomainStandardLibrary standardLibrary, @NonNull CallExp callExp);
 }

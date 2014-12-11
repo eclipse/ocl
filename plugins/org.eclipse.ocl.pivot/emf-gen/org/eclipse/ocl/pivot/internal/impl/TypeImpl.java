@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainCallExp;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainPackage;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
@@ -34,6 +33,7 @@ import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.OCLValue;
+import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
@@ -58,7 +58,6 @@ import org.eclipse.ocl.pivot.util.Visitor;
  *
  * @generated
  */
-@SuppressWarnings("cast")
 public abstract class TypeImpl
 		extends NamedElementImpl
 		implements Type {
@@ -435,11 +434,11 @@ public abstract class TypeImpl
 	}
 
 	@Override
-	public Type specializeIn(final /*@NonNull*/ OCLExpression expr, final /*@NonNull*/ Type selfType)
+	public Type specializeIn(OCLExpression expr, Type selfType)
 	{
 		assert expr != null;
 		assert selfType != null;
-		return (Type) specializeIn(DomainUtil.nonNullState((DomainCallExp)expr), (DomainType)selfType);
+		return (Type) specializeIn(DomainUtil.nonNullState((CallExp)expr), (DomainType)selfType);
 	}
 
 	@Override

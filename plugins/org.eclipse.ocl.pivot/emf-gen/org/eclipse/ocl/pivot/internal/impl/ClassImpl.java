@@ -23,7 +23,6 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -34,7 +33,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainCallExp;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
@@ -1298,18 +1296,17 @@ public class ClassImpl
 	}
 
 	@Override
-	public DomainType specializeIn(@NonNull DomainCallExp expr, DomainType selfType) {
-		if ((expr instanceof CallExp) && (selfType instanceof Type)) {
+	public DomainType specializeIn(@NonNull CallExp callExpr, DomainType selfType) {
+		if (selfType instanceof Type) {
 			TemplateSignature templateSignature = getOwnedTemplateSignature();
-			CallExp callExpr = (CallExp)expr;
 			Type selfType2 = (Type)selfType;
 			if (templateSignature != null) {
-				MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(DomainUtil.nonNullState(((EObject) expr).eResource()));
+				MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(DomainUtil.nonNullState(callExpr.eResource()));
 				return metaModelManager.specializeType(this, callExpr, selfType2, null);
 			}
 			List<TemplateBinding> templateBindings = getOwnedTemplateBindings();
 			if ((templateBindings != null) && !templateBindings.isEmpty()) {
-				MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(DomainUtil.nonNullState(((EObject) expr).eResource()));
+				MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(DomainUtil.nonNullState(callExpr.eResource()));
 				return metaModelManager.specializeType(this, callExpr, selfType2, null);
 			}
 		}

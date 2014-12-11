@@ -15,6 +15,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.values.OCLValue;
+import org.eclipse.ocl.pivot.CallExp;
 
 public interface DomainType extends DomainNamespace, OCLValue
 {
@@ -72,7 +73,7 @@ public interface DomainType extends DomainNamespace, OCLValue
 	 */
 	boolean isInvalid();
 
-	/*@NonNull*/ DomainType specializeIn(@NonNull DomainCallExp expr, /*@NonNull*/ DomainType selfType);
+	/*@NonNull*/ DomainType specializeIn(@NonNull CallExp expr, /*@NonNull*/ DomainType selfType);
 
 	@Nullable DomainClass isClass();
 	@Nullable DomainTemplateParameter isTemplateParameter();

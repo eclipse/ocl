@@ -14,7 +14,6 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainCallExp;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
@@ -31,6 +30,7 @@ import org.eclipse.ocl.domain.utilities.ArrayIterable;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.OCLValue;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
+import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
@@ -268,7 +268,7 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 	}
 
 	@Override
-	public DomainType specializeIn(@NonNull DomainCallExp expr, DomainType selfType) {
+	public DomainType specializeIn(@NonNull CallExp expr, DomainType selfType) {
 		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
 	}
 	

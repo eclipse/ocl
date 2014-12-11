@@ -13,7 +13,6 @@ package org.eclipse.ocl.pivot;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Call Exp</b></em>'.
- * @extends org.eclipse.ocl.domain.elements.DomainCallExp
  * <!-- end-user-doc -->
  *
  * <p>
@@ -27,8 +26,7 @@ package org.eclipse.ocl.pivot;
  * @see org.eclipse.ocl.pivot.PivotPackage#getCallExp()
  * @generated
  */
-public interface CallExp
-		extends OCLExpression, org.eclipse.ocl.domain.elements.DomainCallExp {
+public interface CallExp extends OCLExpression {
 
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' containment reference.
@@ -43,7 +41,6 @@ public interface CallExp
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getCallExp_Source()
 	 * @generated
 	 */
-	@Override
 	OCLExpression getSource();
 
 	/**
