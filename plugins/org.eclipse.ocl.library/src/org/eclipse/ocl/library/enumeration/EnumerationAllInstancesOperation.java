@@ -15,13 +15,13 @@ import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainEnumeration;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.AbstractUnaryOperation;
 import org.eclipse.ocl.domain.values.SetValue;
+import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 
 /**
@@ -35,8 +35,8 @@ public class EnumerationAllInstancesOperation extends AbstractUnaryOperation
 	public @NonNull SetValue evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceVal) {
 		DomainType sourceType = asType(sourceVal);
 		Set<Object> results = new HashSet<Object>();
-		if (sourceType instanceof DomainEnumeration) {
-			for (EnumerationLiteral instance : ((DomainEnumeration)sourceType).getEnumerationLiterals()) {
+		if (sourceType instanceof Enumeration) {
+			for (EnumerationLiteral instance : ((Enumeration)sourceType).getOwnedLiteral()) {
 				if (instance != null) {
 					results.add(instance.getEnumerationLiteralId());
 				}

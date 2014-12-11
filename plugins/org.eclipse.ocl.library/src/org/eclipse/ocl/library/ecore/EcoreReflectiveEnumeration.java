@@ -10,21 +10,24 @@
  *******************************************************************************/
 package org.eclipse.ocl.library.ecore;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainEnumeration;
 import org.eclipse.ocl.domain.elements.DomainTemplateParameter;
 import org.eclipse.ocl.domain.ids.EnumerationId;
+import org.eclipse.ocl.pivot.Class;
+import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 
-public class EcoreReflectiveEnumeration extends EcoreReflectiveType implements DomainEnumeration
+public class EcoreReflectiveEnumeration extends EcoreReflectiveType implements Enumeration
 {
+	private /*@LazyNonNull*/ List<EnumerationLiteral> literals = null;
 	private /*@LazyNonNull*/ Map<String, EnumerationLiteral> name2literal = null;
 
 	public EcoreReflectiveEnumeration(@NonNull EcoreReflectivePackage evaluationPackage, int flags, @NonNull EEnum eEnum, @NonNull DomainTemplateParameter... typeParameters) {
@@ -33,10 +36,14 @@ public class EcoreReflectiveEnumeration extends EcoreReflectiveType implements D
 
 	@Override
 	public @Nullable EnumerationLiteral getEnumerationLiteral(@NonNull String name) {
-		if (name2literal == null) {
-			name2literal = initLiterals();
+		Map<String, EnumerationLiteral> name2literal2 = name2literal;
+		if (name2literal2 == null) {
+			name2literal = name2literal2 = new HashMap<String, EnumerationLiteral>();
+			for (EnumerationLiteral enumerationLiteral : getOwnedLiteral()) {
+				name2literal2.put(enumerationLiteral.getName(), enumerationLiteral);
+			}
 		}
-		return name2literal.get(name);
+		return name2literal2.get(name);
 	}
 	
 	@Override
@@ -45,20 +52,34 @@ public class EcoreReflectiveEnumeration extends EcoreReflectiveType implements D
 	}
 
 	@Override
-	public @NonNull Iterable<EnumerationLiteral> getEnumerationLiterals() {
-		if (name2literal == null) {
-			name2literal = initLiterals();
+	public @NonNull List<EnumerationLiteral> getOwnedLiteral() {
+		List<EnumerationLiteral> literals2 = literals;
+		if (literals2 == null) {
+			literals = literals2 = new ArrayList<EnumerationLiteral>();
+			for (EEnumLiteral eEnumLiteral : ((EEnum) eClassifier).getELiterals()) {
+				literals2.add(new EcoreExecutorEnumerationLiteral(eEnumLiteral, this, eEnumLiteral.getValue()));
+			}
 		}
-		@SuppressWarnings("null")@NonNull Collection<EnumerationLiteral> values = name2literal.values();
-		return values;
+		return literals2;
 	}
 
-	protected @NonNull Map<String, EnumerationLiteral> initLiterals() {
-		Map<String, EnumerationLiteral> name2literal = new HashMap<String, EnumerationLiteral>();
-		for (EEnumLiteral eEnumLiteral : ((EEnum) eClassifier).getELiterals()) {
-			EnumerationLiteral enumerationLiteral = new EcoreExecutorEnumerationLiteral(eEnumLiteral, this, eEnumLiteral.getValue());
-			name2literal.put(eEnumLiteral.getName(), enumerationLiteral);
-		}
-		return name2literal;
+	@Override
+	public boolean isSerializable() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setIsSerializable(boolean value) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Class getBehavioralClass() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setBehavioralClass(Class value) {
+		throw new UnsupportedOperationException();
 	}
 }

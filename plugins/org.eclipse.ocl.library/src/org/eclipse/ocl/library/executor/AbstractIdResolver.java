@@ -38,7 +38,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCompletePackage;
 import org.eclipse.ocl.domain.elements.DomainElement;
-import org.eclipse.ocl.domain.elements.DomainEnumeration;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainPackage;
@@ -88,6 +87,7 @@ import org.eclipse.ocl.domain.values.impl.BagImpl;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.domain.values.impl.OrderedSetImpl;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
@@ -375,8 +375,8 @@ public abstract class AbstractIdResolver implements IdResolver
 					enumerator2enumerationLiteralId = enumerator2enumerationLiteralId2 = new HashMap<Enumerator, EnumerationLiteralId>();
 					for (DomainCompletePackage dPackage : standardLibrary.getAllCompletePackages()) {
 						for (DomainClass dType : dPackage.getAllClasses()) {
-							if (dType instanceof DomainEnumeration) {
-								for (EnumerationLiteral dEnumerationLiteral : ((DomainEnumeration) dType).getEnumerationLiterals()) {
+							if (dType instanceof Enumeration) {
+								for (EnumerationLiteral dEnumerationLiteral : ((Enumeration) dType).getOwnedLiteral()) {
 									Enumerator enumerator = dEnumerationLiteral.getEnumerator();
 									EnumerationLiteralId enumerationLiteralId = dEnumerationLiteral.getEnumerationLiteralId();
 									enumerator2enumerationLiteralId.put(enumerator, enumerationLiteralId);
@@ -746,7 +746,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		else if (value instanceof EnumerationLiteralId) {
 			EnumerationLiteral enumLiteral = (EnumerationLiteral) ((EnumerationLiteralId)value).accept(this);
 			assert enumLiteral != null;
-			DomainEnumeration enumeration = enumLiteral.getEnumeration();
+			Enumeration enumeration = enumLiteral.getEnumeration();
 			assert enumeration != null;
 			return enumeration;
 		}
@@ -1047,7 +1047,7 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 	
 	@Override
-	public @NonNull DomainEnumeration visitEnumerationId(@NonNull EnumerationId id) {
+	public @NonNull Enumeration visitEnumerationId(@NonNull EnumerationId id) {
 		DomainPackage parentPackage = (DomainPackage) id.getParent().accept(this);
 		assert parentPackage != null;
 		DomainType nestedType = environment.getNestedType(parentPackage, id.getName());
@@ -1055,19 +1055,19 @@ public abstract class AbstractIdResolver implements IdResolver
 			nestedType = environment.getNestedType(parentPackage, id.getName());
 			throw new UnsupportedOperationException();
 		}
-		if (!(nestedType instanceof DomainEnumeration)) {
+		if (!(nestedType instanceof Enumeration)) {
 			throw new UnsupportedOperationException();
 		}
-		return (DomainEnumeration) nestedType;
+		return (Enumeration) nestedType;
 	}
 
 	@Override
 	public @NonNull EnumerationLiteral visitEnumerationLiteralId(@NonNull EnumerationLiteralId id) {
 		DomainElement parent = id.getParentId().accept(this);
-		if (!(parent instanceof DomainEnumeration)) {
+		if (!(parent instanceof Enumeration)) {
 			throw new UnsupportedOperationException();
 		}
-		EnumerationLiteral enumerationLiteral = ((DomainEnumeration)parent).getEnumerationLiteral(id.getName());
+		EnumerationLiteral enumerationLiteral = ((Enumeration)parent).getEnumerationLiteral(id.getName());
 		if (enumerationLiteral == null) {
 			throw new UnsupportedOperationException();
 		}

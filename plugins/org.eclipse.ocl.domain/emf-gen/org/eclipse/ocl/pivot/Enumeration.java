@@ -13,11 +13,12 @@ package org.eclipse.ocl.pivot;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.domain.ids.EnumerationId;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Enumeration</b></em>'.
- * @implements org.eclipse.ocl.domain.elements.DomainEnumeration
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -34,8 +35,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * @see org.eclipse.ocl.pivot.PivotPackage#getEnumeration()
  * @generated
  */
-public interface Enumeration
-		extends DataType, org.eclipse.ocl.domain.elements.DomainEnumeration {
+public interface Enumeration extends DataType {
 
 	/**
 	 * Returns the value of the '<em><b>Owned Literal</b></em>' containment reference list.
@@ -53,4 +53,6 @@ public interface Enumeration
 	 */
 	@NonNull List<EnumerationLiteral> getOwnedLiteral();
 
+	@NonNull EnumerationId getEnumerationId();
+	@Nullable EnumerationLiteral getEnumerationLiteral(@NonNull String name);
 } // Enumeration

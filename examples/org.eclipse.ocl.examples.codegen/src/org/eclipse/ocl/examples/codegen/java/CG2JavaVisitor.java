@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainEnumeration;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.evaluation.DomainIterationManager;
 import org.eclipse.ocl.domain.ids.ClassId;
@@ -123,6 +122,7 @@ import org.eclipse.ocl.library.executor.ExecutorDoubleIterationManager;
 import org.eclipse.ocl.library.executor.ExecutorSingleIterationManager;
 import org.eclipse.ocl.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.LoopExp;
 import org.eclipse.ocl.pivot.Operation;
@@ -574,7 +574,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		if (type == null) {
 			return false;
 		}
-		if (type instanceof DomainEnumeration) {
+		if (type instanceof Enumeration) {
 			return false;
 		}
 		MetaModelManager metaModelManager = getMetaModelManager();
@@ -588,7 +588,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 			return false;
 		}
 		Type type = ((TypedElement)ast).getType();
-		return type instanceof DomainEnumeration;
+		return type instanceof Enumeration;
 	}
 	
 	@Override

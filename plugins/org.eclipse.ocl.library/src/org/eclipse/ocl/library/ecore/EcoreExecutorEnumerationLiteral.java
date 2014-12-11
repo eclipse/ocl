@@ -13,15 +13,15 @@ package org.eclipse.ocl.library.ecore;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainEnumeration;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.library.executor.ExecutorEnumerationLiteral;
+import org.eclipse.ocl.pivot.Enumeration;
 
 public class EcoreExecutorEnumerationLiteral extends ExecutorEnumerationLiteral
 {
 	protected final EEnumLiteral eEnumLiteral;
 	
-	public EcoreExecutorEnumerationLiteral(/*@NonNull*/ EEnumLiteral eEnumLiteral, @NonNull DomainEnumeration enumeration, int ordinal) {
+	public EcoreExecutorEnumerationLiteral(/*@NonNull*/ EEnumLiteral eEnumLiteral, @NonNull Enumeration enumeration, int ordinal) {
 		super(DomainUtil.nonNullEMF(eEnumLiteral.getName()), enumeration, ordinal);
 		this.eEnumLiteral = eEnumLiteral;
 	}

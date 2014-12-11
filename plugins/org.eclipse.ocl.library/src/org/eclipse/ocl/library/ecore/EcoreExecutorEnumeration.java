@@ -10,21 +10,25 @@
  *******************************************************************************/
 package org.eclipse.ocl.library.ecore;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainEnumeration;
 import org.eclipse.ocl.domain.ids.EnumerationId;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.domain.utilities.ArrayIterable;
+import org.eclipse.ocl.pivot.Class;
+import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.osgi.util.NLS;
 
-public class EcoreExecutorEnumeration extends EcoreExecutorType implements DomainEnumeration
+import com.google.common.collect.Lists;
+
+public class EcoreExecutorEnumeration extends EcoreExecutorType implements Enumeration
 {
-	private EcoreExecutorEnumerationLiteral[] literals = null;
+	private List<EnumerationLiteral> literals = null;
 
 	/**
 	 * Construct an executable type descriptor for a known EClassifier.
@@ -47,8 +51,8 @@ public class EcoreExecutorEnumeration extends EcoreExecutorType implements Domai
 	}
 
 	@Override
-	public @Nullable EcoreExecutorEnumerationLiteral getEnumerationLiteral(@NonNull String name) {
-		for (EcoreExecutorEnumerationLiteral enumerationLiteral : literals) {
+	public @Nullable EnumerationLiteral getEnumerationLiteral(@NonNull String name) {
+		for (EnumerationLiteral enumerationLiteral : literals) {
 			if (name.equals(enumerationLiteral.getName())) {
 				return enumerationLiteral;
 			}
@@ -62,13 +66,34 @@ public class EcoreExecutorEnumeration extends EcoreExecutorType implements Domai
 	}
 
 	@Override
-	public @NonNull Iterable<EnumerationLiteral> getEnumerationLiterals() {
-		return new ArrayIterable<EnumerationLiteral>(literals);
+	public @NonNull List<EnumerationLiteral> getOwnedLiteral() {
+		assert literals != null;
+		return literals;
 	}
 	
 	public EcoreExecutorEnumeration initLiterals(EcoreExecutorEnumerationLiteral[] literals) {
 		assert this.literals == null;
-		this.literals = literals;
+		this.literals = Lists.<EnumerationLiteral>newArrayList(literals);
 		return this;
+	}
+
+	@Override
+	public boolean isSerializable() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setIsSerializable(boolean value) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Class getBehavioralClass() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setBehavioralClass(Class value) {
+		throw new UnsupportedOperationException();
 	}
 }

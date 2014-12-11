@@ -13,6 +13,7 @@ package org.eclipse.ocl.domain.elements;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.ids.PrimitiveTypeId;
+import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.Operation;
 
 /**
@@ -65,7 +66,7 @@ public interface DomainStandardLibrary
 	/**
 	 * Return the enumeration for a given enumerator.
 	 */
-	DomainEnumeration getEnumeration(@NonNull Enumerator enumerator);
+	Enumeration getEnumeration(@NonNull Enumerator enumerator);
 	
     /**
      * Obtains the single instance of the EnumerationType metatype, named

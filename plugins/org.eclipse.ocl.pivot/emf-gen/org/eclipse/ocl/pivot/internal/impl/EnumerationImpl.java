@@ -23,7 +23,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.ids.EnumerationId;
 import org.eclipse.ocl.domain.ids.IdManager;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Behavior;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Constraint;
@@ -496,7 +495,7 @@ public class EnumerationImpl
 
 	@Override
 	public @Nullable EnumerationLiteral getEnumerationLiteral(@NonNull String name) {
-		for (EnumerationLiteral enumerationLiteral : getEnumerationLiterals()) {
+		for (EnumerationLiteral enumerationLiteral : getOwnedLiteral()) {
 			if (name.equals(enumerationLiteral.getName())) {
 				return enumerationLiteral;
 			}
@@ -504,8 +503,8 @@ public class EnumerationImpl
 		return null;
 	}
 
-	@Override
-	public @NonNull List<EnumerationLiteral> getEnumerationLiterals() {
-		return DomainUtil.nonNullEMF(getOwnedLiteral());
-	}
+//	@Override
+//	public @NonNull List<EnumerationLiteral> getEnumerationLiterals() {
+//		return DomainUtil.nonNullEMF(getOwnedLiteral());
+//	}
 } //EnumerationImpl

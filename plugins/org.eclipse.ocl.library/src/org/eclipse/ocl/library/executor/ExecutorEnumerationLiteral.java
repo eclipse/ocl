@@ -12,16 +12,15 @@ package org.eclipse.ocl.library.executor;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.AbstractExecutorEnumerationLiteral;
-import org.eclipse.ocl.domain.elements.DomainEnumeration;
 import org.eclipse.ocl.domain.ids.EnumerationLiteralId;
 import org.eclipse.ocl.pivot.Enumeration;
 
 public abstract class ExecutorEnumerationLiteral extends AbstractExecutorEnumerationLiteral
 {
-	protected final @NonNull DomainEnumeration enumeration;
+	protected final @NonNull Enumeration enumeration;
 	protected final int ordinal;
 	
-	public ExecutorEnumerationLiteral(@NonNull String name, @NonNull DomainEnumeration enumeration, int ordinal) {
+	public ExecutorEnumerationLiteral(@NonNull String name, @NonNull Enumeration enumeration, int ordinal) {
 		super(name);
 		this.enumeration = enumeration;
 		this.ordinal = ordinal;
@@ -29,7 +28,7 @@ public abstract class ExecutorEnumerationLiteral extends AbstractExecutorEnumera
 
 	@Override
 	public @NonNull Enumeration getEnumeration() {
-		return (Enumeration) enumeration;
+		return enumeration;
 	}
 
 	@Override

@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainEnumeration;
 import org.eclipse.ocl.domain.elements.DomainNamedElement;
 import org.eclipse.ocl.domain.elements.DomainNamespace;
 import org.eclipse.ocl.domain.elements.DomainPackage;
@@ -39,6 +38,7 @@ import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
 import org.eclipse.ocl.examples.codegen.java.JavaStream.SubStream;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.Type;
@@ -316,7 +316,7 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 			return false;
 		}
 		Type type = PivotUtil.getType(asType);
-		if (type instanceof DomainEnumeration) {
+		if (type instanceof Enumeration) {
 			return false;
 		}
 		Type oclTypeType = metaModelManager.getStandardLibrary().getOclTypeType();

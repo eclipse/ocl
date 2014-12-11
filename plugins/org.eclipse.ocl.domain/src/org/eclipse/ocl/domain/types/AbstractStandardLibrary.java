@@ -20,7 +20,6 @@ import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainCompletePackage;
 import org.eclipse.ocl.domain.elements.DomainElement;
-import org.eclipse.ocl.domain.elements.DomainEnumeration;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainLambdaType;
 import org.eclipse.ocl.domain.elements.DomainPackage;
@@ -31,6 +30,7 @@ import org.eclipse.ocl.domain.ids.PrimitiveTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
+import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.Operation;
 
 public abstract class AbstractStandardLibrary implements DomainStandardLibrary
@@ -102,7 +102,7 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 	}
 
 	@Override
-	public DomainEnumeration getEnumeration(@NonNull Enumerator enumerator) {
+	public Enumeration getEnumeration(@NonNull Enumerator enumerator) {
 		throw new UnsupportedOperationException();
 	}
 
