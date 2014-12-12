@@ -275,6 +275,11 @@ public interface Class
 	 * @param value string initial value
 	 */
 	@Nullable Object createInstance( @NonNull String value);
+	
+	/**
+	 * Return the name of the meta-type of this type.
+	 */
+	@NonNull String getMetaTypeName();
 
 	/**
 	 * Return the ordered list of type parameters of this type.

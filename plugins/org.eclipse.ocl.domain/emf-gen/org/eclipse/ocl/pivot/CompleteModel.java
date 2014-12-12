@@ -14,7 +14,6 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.values.TemplateParameterSubstitutions;
 
 /**
@@ -109,7 +108,7 @@ public interface CompleteModel extends NamedElement
 			@NonNull Type secondType, @NonNull TemplateParameterSubstitutions secondSubstitutions);
 	@NonNull Iterable<? extends CompletePackage> getAllCompletePackages();
 //	@NonNull <T extends CollectionType> T getCollectionType(@NonNull T containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
-	@NonNull CompleteClass getCompleteClass(@NonNull DomainType partialClass);
+	@NonNull CompleteClass getCompleteClass(@NonNull Type partialClass);
 	@NonNull CompleteEnvironment getCompleteEnvironment();
 	@NonNull CompletePackage getCompletePackage(@NonNull org.eclipse.ocl.pivot.Package asPackage);
 	@Nullable CompletePackage getCompletePackageByURI(@NonNull String packageURI);

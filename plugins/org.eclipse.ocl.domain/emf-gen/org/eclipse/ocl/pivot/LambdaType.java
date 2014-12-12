@@ -13,7 +13,6 @@ package org.eclipse.ocl.pivot;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.ParametersId;
 
 /**
@@ -101,5 +100,5 @@ public interface LambdaType extends DataType
 	void setResultType(Type value);
 
 	@NonNull ParametersId getParametersId();
-	@NonNull List<? extends DomainType> getParameterTypes();
+	@NonNull List<? extends Type> getParameterTypes();
 } // LambdaType

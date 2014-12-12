@@ -15,7 +15,6 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.values.CollectionTypeParameters;
 import org.eclipse.ocl.domain.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.pivot.CollectionType;
@@ -40,7 +39,7 @@ public interface CompleteModelInternal extends CompleteModel
 	@Nullable CollectionType findCollectionType(@NonNull CompleteClassInternal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters);
 	@NonNull CollectionType getCollectionType(@NonNull CompleteClassInternal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters);
 	@Override
-	@NonNull CompleteClassInternal getCompleteClass(@NonNull DomainType partialClass);
+	@NonNull CompleteClassInternal getCompleteClass(@NonNull Type partialClass);
 	@Override
 	@NonNull CompletePackageInternal getCompletePackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage);
 	@Override

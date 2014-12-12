@@ -16,7 +16,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
@@ -28,6 +27,7 @@ import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Stereotype;
+import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitorImpl;
 import org.eclipse.ocl.pivot.uml.UMLElementExtension;
 
@@ -45,7 +45,7 @@ public class ExtensionProperty extends AbstractProperty
 	
 	@Override
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
-		DomainType staticType = property.getType();
+		Type staticType = property.getType();
 		if (staticType == null) {
 			return null;
 		}

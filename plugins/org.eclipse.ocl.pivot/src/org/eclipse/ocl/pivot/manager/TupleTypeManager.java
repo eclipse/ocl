@@ -20,7 +20,6 @@ import java.util.Map;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainElement;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.TemplateParameterId;
 import org.eclipse.ocl.domain.ids.TuplePartId;
@@ -186,7 +185,7 @@ public class TupleTypeManager
 					TuplePartId[] partIds = tupleTypeId.getPartIds();
 					List<Property> ownedAttributes = tupleType.getOwnedProperties();
 					for (TuplePartId partId : partIds) {
-						DomainType partType = idResolver.getType(partId.getTypeId(), tupleType);
+						Type partType = idResolver.getType(partId.getTypeId(), tupleType);
 						Type partType2 = metaModelManager.getType(partType);
 						ownedAttributes.add(new TuplePartImpl(partId, partType2));
 					}
@@ -203,7 +202,7 @@ public class TupleTypeManager
 			@Nullable TemplateParameterSubstitutions usageBindings) {
 		Map<String, Type> partMap = new HashMap<String, Type>();
 		for (TypedElement part : parts) {
-			DomainType type1 = part.getType();
+			Type type1 = part.getType();
 			if (type1 != null) {
 				Type type2 = metaModelManager.getType(type1);
 				Type type3 = allCompleteClasses.getSpecializedType(type2, usageBindings);

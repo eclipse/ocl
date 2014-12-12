@@ -15,7 +15,6 @@ import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
@@ -23,6 +22,7 @@ import org.eclipse.ocl.domain.library.AbstractUnaryOperation;
 import org.eclipse.ocl.domain.values.SetValue;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
+import org.eclipse.ocl.pivot.Type;
 
 /**
  * EnumerationAllInstancesOperation realises the Enumeration::allInstances() library operation.
@@ -33,7 +33,7 @@ public class EnumerationAllInstancesOperation extends AbstractUnaryOperation
 
 	@Override
 	public @NonNull SetValue evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceVal) {
-		DomainType sourceType = asType(sourceVal);
+		Type sourceType = asType(sourceVal);
 		Set<Object> results = new HashSet<Object>();
 		if (sourceType instanceof Enumeration) {
 			for (EnumerationLiteral instance : ((Enumeration)sourceType).getOwnedLiteral()) {

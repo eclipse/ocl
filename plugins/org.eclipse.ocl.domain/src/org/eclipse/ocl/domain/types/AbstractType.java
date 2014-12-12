@@ -10,19 +10,13 @@
  *******************************************************************************/
 package org.eclipse.ocl.domain.types;
 
-import java.util.List;
-
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.values.OCLValue;
-import org.eclipse.ocl.pivot.CallExp;
-import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.Type;
 
-public abstract class AbstractType implements DomainType	// FIXME rename as perhaps DerivativeType
+public abstract class AbstractType implements Type	// FIXME rename as perhaps DerivativeType
 {
 	protected final @NonNull DomainEnvironment environment;
 	protected final @NonNull DomainStandardLibrary standardLibrary;
@@ -36,7 +30,7 @@ public abstract class AbstractType implements DomainType	// FIXME rename as perh
 	}
 	
 	@Override
-	public @NonNull DomainType flattenedType() {
+	public @NonNull Type flattenedType() {
 		return this;
 	}
 
@@ -51,60 +45,60 @@ public abstract class AbstractType implements DomainType	// FIXME rename as perh
 //		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
 //	}
 
-	@Override
-	public @NonNull String getMetaTypeName() {
-		return getTypeId().getMetaTypeName();
-	}
+//	@Override
+//	public @NonNull String getMetaTypeName() {
+//		return getTypeId().getMetaTypeName();
+//	}
 	
 	@Override
 	public final String getName() {
 		return name;
 	}
 
-	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getNormalizedType(@NonNull DomainStandardLibrary standardLibrary) {
-		throw new UnsupportedOperationException();			// FIXME
-	}
+//	@Override
+//	public @NonNull org.eclipse.ocl.pivot.Class getNormalizedType(@NonNull DomainStandardLibrary standardLibrary) {
+//		throw new UnsupportedOperationException();			// FIXME
+//	}
 
-	@Override
-	public @NonNull List<? extends Constraint> getOwnedRule() {
-		throw new UnsupportedOperationException();			// FIXME
-	}
+//	@Override
+//	public @NonNull List<? extends Constraint> getOwnedRule() {
+//		throw new UnsupportedOperationException();			// FIXME
+//	}
 	
 	public final DomainStandardLibrary getStandardLibrary() {
 		return standardLibrary;
 	}
 
 	@Override
-	public boolean isEqualToUnspecializedType(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
+	public boolean isEqualToUnspecializedType(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
 		if (this == type) {
 			return true;
 		}
 		return false;
 	}
 
-	@Override
-	public boolean isInvalid() {
-		return false;
-	}
+//	@Override
+//	public boolean isInvalid() {
+//		return false;
+//	}
 
-	@Override
-	public boolean oclEquals(@NonNull OCLValue thatValue) {
-		if (!(thatValue instanceof DomainType)) {
-			return false;
-		}
-		TypeId thisTypeId = getTypeId();
-		TypeId thatTypeId = ((DomainType)thatValue).getTypeId();
-		return thisTypeId.equals(thatTypeId);
-	}
+//	@Override
+//	public boolean oclEquals(@NonNull OCLValue thatValue) {
+//		if (!(thatValue instanceof Type)) {
+//			return false;
+//		}
+//		TypeId thisTypeId = getTypeId();
+//		TypeId thatTypeId = ((Type)thatValue).getTypeId();
+//		return thisTypeId.equals(thatTypeId);
+//	}
 
-	@Override
-	public int oclHashCode() {
-		return getTypeId().hashCode();
-	}
+//	@Override
+//	public int oclHashCode() {
+//		return getTypeId().hashCode();
+//	}
 
-	@Override
-	public DomainType specializeIn(@NonNull CallExp expr, DomainType selfType) {
-		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
-	}
+//	@Override
+//	public Type specializeIn(@NonNull CallExp expr, Type selfType) {
+//		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
+//	}
 }

@@ -11,9 +11,9 @@
 package org.eclipse.ocl.domain.values;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainType;
+import org.eclipse.ocl.pivot.Type;
 
-public interface CollectionTypeParameters<T extends DomainType> extends Iterable<Object>
+public interface CollectionTypeParameters<T extends Type> extends Iterable<Object>
 {
 	@NonNull T getElementType();
 

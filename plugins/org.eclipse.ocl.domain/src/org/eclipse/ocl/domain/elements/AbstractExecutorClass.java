@@ -39,6 +39,11 @@ public class AbstractExecutorClass extends AbstractExecutorType implements org.e
 	}
 
 	@Override
+	public @NonNull String getMetaTypeName() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
 	public List<TemplateBinding> getOwnedTemplateBindings() {
 		throw new UnsupportedOperationException();
 	}

@@ -23,13 +23,14 @@ import org.eclipse.ocl.pivot.AssociationClass;
 import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.Type;
 
 public abstract class AbstractExecutorProperty extends AbstractExecutorFeature implements Property
 {
 	protected final int propertyIndex;
 	protected Property opposite;
 
-	public AbstractExecutorProperty(@NonNull String name, @NonNull DomainType executorType, int propertyIndex) {
+	public AbstractExecutorProperty(@NonNull String name, @NonNull Type executorType, int propertyIndex) {
 		super(name, executorType);
 		this.propertyIndex = propertyIndex;
 		this.opposite = null;
@@ -42,7 +43,7 @@ public abstract class AbstractExecutorProperty extends AbstractExecutorFeature i
 
 	@Override
 	public @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
-		return executorType.getInheritance(standardLibrary);
+		return type.getInheritance(standardLibrary);
 	}
 
 	@Override
@@ -228,6 +229,6 @@ public abstract class AbstractExecutorProperty extends AbstractExecutorFeature i
 	
 	@Override
 	public String toString() {
-		return String.valueOf(executorType) + "::" + String.valueOf(name); //$NON-NLS-1$
+		return String.valueOf(type) + "::" + String.valueOf(name); //$NON-NLS-1$
 	}
 }

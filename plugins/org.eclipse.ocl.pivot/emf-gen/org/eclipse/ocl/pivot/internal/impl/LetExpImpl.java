@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
@@ -210,12 +209,12 @@ public class LetExpImpl
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_eq;
 		try {
-		    final @Nullable /*@Thrown*/ DomainType type = this.getType();
+		    final @Nullable /*@Thrown*/ Type type = this.getType();
 		    final @Nullable /*@Thrown*/ OCLExpression in = this.getIn();
 		    if (in == null) {
 		        throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		    }
-		    final @Nullable /*@Thrown*/ DomainType type_0 = in.getType();
+		    final @Nullable /*@Thrown*/ Type type_0 = in.getType();
 		    final /*@Thrown*/ boolean eq = (type != null) && (type_0 != null) ? (type.getTypeId() == type_0.getTypeId()) : ValuesUtil.throwBooleanInvalidValueException("null equal input");
 		    ;
 		    CAUGHT_eq = eq;

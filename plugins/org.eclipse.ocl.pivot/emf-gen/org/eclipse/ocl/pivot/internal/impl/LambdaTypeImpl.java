@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.ParametersId;
 import org.eclipse.ocl.domain.ids.TypeId;
@@ -549,7 +548,7 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 	}
 	
 	@Override
-	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
+	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
 		if (this == type) {
 			return true;
 		}
@@ -583,7 +582,7 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 	}
 
 	@Override
-	public @NonNull List<? extends DomainType> getParameterTypes() {
+	public @NonNull List<? extends Type> getParameterTypes() {
 		return getParameterType();
 	}
 } //LambdaTypeImpl

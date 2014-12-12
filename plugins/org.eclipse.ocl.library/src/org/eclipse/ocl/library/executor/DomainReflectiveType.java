@@ -17,7 +17,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.ids.OperationId;
 import org.eclipse.ocl.domain.ids.TypeId;
@@ -27,6 +26,7 @@ import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.Type;
 
 public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 {
@@ -46,7 +46,7 @@ public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 	}
 	
 	@Override
-	public @NonNull DomainType getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
+	public @NonNull Type getCommonType(@NonNull IdResolver idResolver, @NonNull Type type) {
 		if (this == type) {
 			return this.getType();
 		}

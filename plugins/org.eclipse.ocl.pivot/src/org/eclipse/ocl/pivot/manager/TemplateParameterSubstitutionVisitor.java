@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainElement;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.TemplateParameterId;
 import org.eclipse.ocl.domain.ids.TuplePartId;
@@ -134,7 +133,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	protected void analyzeFeature(@Nullable Feature formalFeature, @Nullable TypedElement actualElement) {
 		if ((formalFeature != null) && (actualElement != null)) {
 			Type formalType = formalFeature.getOwningClass();
-			DomainType actualType = actualElement.getType();
+			Type actualType = actualElement.getType();
 			analyzeType(formalType, actualType);
 		}
 	}
@@ -174,7 +173,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		}
 	}
 
-	protected void analyzeTypes(@NonNull List<? extends Type> formalElements, @NonNull List<? extends DomainType> actualElements) {
+	protected void analyzeTypes(@NonNull List<? extends Type> formalElements, @NonNull List<? extends Type> actualElements) {
 		int iMax = Math.min(formalElements.size(), actualElements.size());
 		for (int i = 0; i < iMax; i++) {
 			analyzeType(formalElements.get(i), actualElements.get(i));
@@ -224,7 +223,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		else {
 			Map<String, Type> partMap = new HashMap<String, Type>();
 			for (TypedElement part : type.getOwnedProperties()) {
-				DomainType type1 = part.getType();
+				Type type1 = part.getType();
 				if (type1 != null) {
 					Type type2 = metaModelManager.getType(type1);
 					Type type3 = specializeType(type2);
@@ -251,7 +250,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		Type oldType = context.get(index);
 		if (oldType != null) {
 			IdResolver idResolver = metaModelManager.getIdResolver();
-			DomainType commonType = oldType.getCommonType(idResolver, actualType);
+			Type commonType = oldType.getCommonType(idResolver, actualType);
 			Type bestType = metaModelManager.getType(commonType);
 			if (bestType != oldType) {
 				context.put(index, bestType);

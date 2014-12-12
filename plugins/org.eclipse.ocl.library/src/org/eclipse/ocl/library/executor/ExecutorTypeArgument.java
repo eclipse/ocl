@@ -10,8 +10,9 @@
  *******************************************************************************/
 package org.eclipse.ocl.library.executor;
 
-import org.eclipse.ocl.domain.elements.DomainType;
+import org.eclipse.ocl.pivot.Type;
 
-public interface ExecutorTypeArgument extends DomainType
+
+public interface ExecutorTypeArgument extends Type
 {
 }

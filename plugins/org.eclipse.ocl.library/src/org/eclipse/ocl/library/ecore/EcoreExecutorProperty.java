@@ -14,20 +14,20 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.LibraryProperty;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.library.executor.ExecutorProperty;
+import org.eclipse.ocl.pivot.Type;
 
 public class EcoreExecutorProperty extends ExecutorProperty implements LibraryProperty
 {			// FIXME Eliminate spurious ExecutorProperty rather than AbstractExecutorProperty once API has evolved publicly
 	
 	protected final @NonNull EStructuralFeature eFeature;
 	
-	public EcoreExecutorProperty(/*@NonNull*/ EStructuralFeature eFeature, @NonNull DomainType executorType, int propertyIndex) {
+	public EcoreExecutorProperty(/*@NonNull*/ EStructuralFeature eFeature, @NonNull Type executorType, int propertyIndex) {
 		super(DomainUtil.nonNullModel(eFeature.getName()), executorType, propertyIndex);
 		this.eFeature = eFeature;
 	}

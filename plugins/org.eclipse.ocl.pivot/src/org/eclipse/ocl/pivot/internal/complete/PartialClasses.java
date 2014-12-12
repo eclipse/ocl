@@ -31,7 +31,6 @@ import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.domain.ids.OperationId;
@@ -668,7 +667,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 		return partials.get();
 	}
 
-	public synchronized @NonNull org.eclipse.ocl.pivot.Class getSpecializedType(@NonNull List<? extends DomainType> templateArguments) {
+	public synchronized @NonNull org.eclipse.ocl.pivot.Class getSpecializedType(@NonNull List<? extends Type> templateArguments) {
 		return getSpecializedType(new DomainTypeParameters(templateArguments));
 	}
 
@@ -873,7 +872,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 			MetaModelManager metaModelManager = getMetaModelManager();
 			org.eclipse.ocl.pivot.Package metapackage = metaModelManager.getIdResolver().getPackage(metapackageId);
 			CompletePackage metaCompletePackage = metaModelManager.getCompletePackage(metapackage);
-			DomainType metatype = metaCompletePackage.getType(metatypeName);
+			Type metatype = metaCompletePackage.getType(metatypeName);
 			if (metatype != null) {
 				CompleteClass metaCompleteClass = getCompleteModel().getCompleteClass(metatype);
 				for (@SuppressWarnings("null")@NonNull Property property : metaCompleteClass.getProperties(FeatureFilter.SELECT_STATIC)) {

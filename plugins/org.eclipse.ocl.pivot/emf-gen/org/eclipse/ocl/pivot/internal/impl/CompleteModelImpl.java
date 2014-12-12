@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.CollectionTypeParameters;
 import org.eclipse.ocl.domain.values.IntegerValue;
@@ -525,7 +524,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	}
 	
 	@Override
-	public @NonNull CompleteClassInternal getCompleteClass(@NonNull DomainType pivotType) {
+	public @NonNull CompleteClassInternal getCompleteClass(@NonNull Type pivotType) {
 		return completeEnvironment.getCompleteClass(pivotType);
 	}
 

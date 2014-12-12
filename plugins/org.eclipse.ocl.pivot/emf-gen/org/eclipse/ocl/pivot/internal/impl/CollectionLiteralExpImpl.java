@@ -30,7 +30,6 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.EnumerationLiteralId;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
@@ -248,7 +247,7 @@ public class CollectionLiteralExpImpl
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
 		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pivot_c_c_SetType_0 = idResolver.getClass(PivotTables.CLSSid_SetType, null);
-		        final @Nullable /*@Thrown*/ DomainType type = this.getType();
+		        final @Nullable /*@Thrown*/ Type type = this.getType();
 		        final /*@Thrown*/ boolean b = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_SetType_0).booleanValue();
 		        CAUGHT_b = b;
 		    }
@@ -359,7 +358,7 @@ public class CollectionLiteralExpImpl
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
 		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pivot_c_c_OrderedSetType_0 = idResolver.getClass(PivotTables.CLSSid_OrderedSetType, null);
-		        final @Nullable /*@Thrown*/ DomainType type = this.getType();
+		        final @Nullable /*@Thrown*/ Type type = this.getType();
 		        final /*@Thrown*/ boolean b = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_OrderedSetType_0).booleanValue();
 		        CAUGHT_b = b;
 		    }
@@ -469,7 +468,7 @@ public class CollectionLiteralExpImpl
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
 		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pivot_c_c_SequenceType_0 = idResolver.getClass(PivotTables.CLSSid_SequenceType, null);
-		        final @Nullable /*@Thrown*/ DomainType type = this.getType();
+		        final @Nullable /*@Thrown*/ Type type = this.getType();
 		        final /*@Thrown*/ boolean b = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_SequenceType_0).booleanValue();
 		        CAUGHT_b = b;
 		    }
@@ -579,7 +578,7 @@ public class CollectionLiteralExpImpl
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
 		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pivot_c_c_BagType_0 = idResolver.getClass(PivotTables.CLSSid_BagType, null);
-		        final @Nullable /*@Thrown*/ DomainType type = this.getType();
+		        final @Nullable /*@Thrown*/ Type type = this.getType();
 		        final /*@Thrown*/ boolean b = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_BagType_0).booleanValue();
 		        CAUGHT_b = b;
 		    }

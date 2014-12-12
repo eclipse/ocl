@@ -20,6 +20,7 @@ import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.TupleType;
+import org.eclipse.ocl.pivot.Type;
 
 /**
  * A representation of the OCL Standard Library, which is the set of singleton
@@ -68,7 +69,7 @@ public interface DomainStandardLibrary
      */
 	@NonNull org.eclipse.ocl.pivot.Class getCollectionType();
 
-	@NonNull DomainCollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
+	@NonNull DomainCollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
 
 	/**
 	 * Return the enumeration for a given enumerator.
@@ -99,12 +100,12 @@ public interface DomainStandardLibrary
 	/**
 	 * Return the instance of the Metaclass metatype whose class is classType.
 	 */
-	@NonNull org.eclipse.ocl.pivot.Class getMetaclass(@NonNull DomainType classType);
+	@NonNull org.eclipse.ocl.pivot.Class getMetaclass(@NonNull Type classType);
 
     /**
      * Returns the meta-type of a given type.
      */
-	DomainType getMetaType(@NonNull DomainType type);
+	Type getMetaType(@NonNull Type type);
 
     org.eclipse.ocl.pivot.Package getNsURIPackage(@NonNull String nsURI);
 
@@ -174,7 +175,7 @@ public interface DomainStandardLibrary
      */
 	@NonNull org.eclipse.ocl.pivot.Class getOclTupleType();
 	
-	DomainType getOclType(@NonNull String typeName);
+	Type getOclType(@NonNull String typeName);
 	
     /**
      * Obtains the single instance of the VoidType metatype, named
@@ -202,7 +203,7 @@ public interface DomainStandardLibrary
      */
 	@NonNull org.eclipse.ocl.pivot.Class getOrderedSetType();
 	
-    DomainType getPrimitiveType(@NonNull PrimitiveTypeId id);
+    Type getPrimitiveType(@NonNull PrimitiveTypeId id);
 
 	/**
      * Obtains the instance of the PrimitiveType metatype, named

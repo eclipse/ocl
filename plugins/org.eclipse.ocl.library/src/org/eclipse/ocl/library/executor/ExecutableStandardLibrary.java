@@ -19,7 +19,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.TemplateParameterId;
 import org.eclipse.ocl.domain.ids.TupleTypeId;
 import org.eclipse.ocl.domain.types.AbstractCollectionType;
@@ -33,13 +32,14 @@ import org.eclipse.ocl.domain.values.impl.CollectionTypeParametersImpl;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.TupleType;
+import org.eclipse.ocl.pivot.Type;
 
 public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary implements DomainEnvironment
 {
 	/**
 	 * Shared cache of the lazily created lazily deleted specializations of each type. 
 	 */
-	private @NonNull Map<DomainType, Map<CollectionTypeParameters<DomainType>, WeakReference<AbstractCollectionType>>> specializations = new WeakHashMap<DomainType, Map<CollectionTypeParameters<DomainType>, WeakReference<AbstractCollectionType>>>();
+	private @NonNull Map<Type, Map<CollectionTypeParameters<Type>, WeakReference<AbstractCollectionType>>> specializations = new WeakHashMap<Type, Map<CollectionTypeParameters<Type>, WeakReference<AbstractCollectionType>>>();
 	
 	/**
 	 * Shared cache of the lazily created lazily deleted tuples. 
@@ -60,7 +60,7 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 	}
 
 	@Override
-	public @NonNull DomainCollectionType getBagType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+	public @NonNull DomainCollectionType getBagType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return getCollectionType(getBagType(), elementType, lower, upper);
 	}
 
@@ -76,7 +76,7 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 
 //	@Override
 	@Override
-	public synchronized @NonNull DomainCollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class genericType, @NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+	public synchronized @NonNull DomainCollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class genericType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		IntegerValue lower2 = lower;
 		UnlimitedNaturalValue upper2 = upper;
 		if (lower2 == null) {
@@ -85,11 +85,11 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 		if (upper2 == null) {
 			upper2 = ValuesUtil.UNLIMITED_VALUE;
 		}
-		CollectionTypeParameters<DomainType> typeParameters = new CollectionTypeParametersImpl<DomainType>(elementType, lower2, upper2);
+		CollectionTypeParameters<Type> typeParameters = new CollectionTypeParametersImpl<Type>(elementType, lower2, upper2);
 		AbstractCollectionType specializedType = null;
-		Map<CollectionTypeParameters<DomainType>, WeakReference<AbstractCollectionType>> map = specializations.get(genericType);
+		Map<CollectionTypeParameters<Type>, WeakReference<AbstractCollectionType>> map = specializations.get(genericType);
 		if (map == null) {
-			map = new WeakHashMap<CollectionTypeParameters<DomainType>, WeakReference<AbstractCollectionType>>();
+			map = new WeakHashMap<CollectionTypeParameters<Type>, WeakReference<AbstractCollectionType>>();
 			specializations.put(genericType, map);
 		}
 		else {
@@ -109,7 +109,7 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 
 	// FIXME cf MetaModelManager
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getMetaclass(@NonNull DomainType classType) {
+	public @NonNull org.eclipse.ocl.pivot.Class getMetaclass(@NonNull Type classType) {
 //		return OCLstdlibTables.Types._OclType;
 		return getClassType();
 	}
@@ -180,7 +180,7 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 	}
 
 	@Override
-	public @NonNull DomainCollectionType getOrderedSetType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+	public @NonNull DomainCollectionType getOrderedSetType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return getCollectionType(getOrderedSetType(), elementType, lower, upper);
 	}
 
@@ -195,7 +195,7 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 	}
 
 	@Override
-	public @NonNull DomainCollectionType getSequenceType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+	public @NonNull DomainCollectionType getSequenceType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return getCollectionType(getSequenceType(), elementType, lower, upper);
 	}
 
@@ -205,7 +205,7 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 	}
 
 	@Override
-	public @NonNull DomainCollectionType getSetType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+	public @NonNull DomainCollectionType getSetType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return getCollectionType(getSetType(), elementType, lower, upper);
 	}
 

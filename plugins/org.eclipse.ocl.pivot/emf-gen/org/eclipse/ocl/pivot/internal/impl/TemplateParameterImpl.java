@@ -28,7 +28,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.TemplateParameterId;
 import org.eclipse.ocl.pivot.CallExp;
@@ -500,7 +499,7 @@ public class TemplateParameterImpl
 	}
 	
 	@Override
-	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
+	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
 		DomainInheritance thisInheritance = standardLibrary.getOclAnyType().getInheritance(standardLibrary);
 		DomainInheritance thatInheritance = type.getInheritance(standardLibrary);
 		return thisInheritance.isSubInheritanceOf(thatInheritance);
@@ -570,11 +569,11 @@ public class TemplateParameterImpl
 	}
 
 	@Override
-	public DomainType specializeIn(@NonNull CallExp expr, DomainType selfType) {
+	public Type specializeIn(@NonNull CallExp expr, @Nullable Type selfType) {
 		Resource eResource = ((EObject) expr).eResource();
-		if ((eResource != null) && (selfType instanceof Type)) {
+		if ((eResource != null) && (selfType != null)) {
 			MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(eResource);
-			return metaModelManager.specializeType(this, expr, (Type)selfType, null);
+			return metaModelManager.specializeType(this, expr, selfType, null);
 		}
 		return null;
 	}

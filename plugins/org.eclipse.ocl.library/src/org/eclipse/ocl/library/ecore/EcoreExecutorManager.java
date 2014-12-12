@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.domain.types.IdResolver;
@@ -32,6 +31,7 @@ import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.library.executor.ExecutorManager;
 import org.eclipse.ocl.library.executor.ExecutorStandardLibrary;
 import org.eclipse.ocl.library.executor.LazyModelManager;
+import org.eclipse.ocl.pivot.Type;
 
 /**
  * An EcoreExecutorManager instance provides the bridge between a conventional EMF execution context
@@ -128,7 +128,7 @@ public class EcoreExecutorManager extends ExecutorManager
 	}
 
 	@Override
-	public @NonNull DomainType getDynamicTypeOf(@Nullable Object value) {
+	public @NonNull Type getDynamicTypeOf(@Nullable Object value) {
 		IdResolver idResolver2 = idResolver;
 		if (idResolver2 == null) {
 			idResolver = idResolver2 = createIdResolver();
@@ -147,9 +147,9 @@ public class EcoreExecutorManager extends ExecutorManager
 						modelManager2 = new LazyModelManager((EObject)contextObject)
 						{
 							@Override
-							protected boolean isInstance(@NonNull DomainType type, @NonNull EObject element) {
+							protected boolean isInstance(@NonNull Type type, @NonNull EObject element) {
 								EClass eClass = DomainUtil.nonNullEMF(element.eClass());
-								DomainType elementType = idResolver.getInheritance(eClass).getType();
+								Type elementType = idResolver.getInheritance(eClass).getType();
 								return elementType.conformsTo(standardLibrary, type);
 							}
 							

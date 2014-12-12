@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.domain.ids.PropertyId;
@@ -28,6 +27,7 @@ import org.eclipse.ocl.domain.library.AbstractProperty;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.Type;
 
 /**
  * @since 3.5
@@ -45,7 +45,7 @@ public class UnboxedOppositeNavigationProperty extends AbstractProperty
 		IdResolver idResolver = evaluator.getIdResolver();
 		Property oppositeProperty = idResolver.getProperty(oppositePropertyId);		
 		DomainModelManager modelManager = evaluator.getModelManager();
-		DomainType thatType = DomainUtil.nonNullModel(oppositeProperty.getType());
+		Type thatType = DomainUtil.nonNullModel(oppositeProperty.getType());
 		if (thatType instanceof DomainCollectionType) {
 			thatType = ((DomainCollectionType)thatType).getElementType();
 		}

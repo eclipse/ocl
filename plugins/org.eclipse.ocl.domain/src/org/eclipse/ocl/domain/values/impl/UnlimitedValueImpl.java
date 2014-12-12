@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.types.IdResolver;
@@ -27,6 +26,7 @@ import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.UnlimitedValue;
 import org.eclipse.ocl.domain.values.ValuesPackage;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.Type;
 
 /**
  * @generated NOT
@@ -117,7 +117,7 @@ public class UnlimitedValueImpl extends NumberValueImpl implements UnlimitedValu
 		throw new InvalidValueException(EvaluatorMessages.InvalidReal, null, null, this);
 	}
 
-	public @NonNull DomainType getType(@NonNull DomainStandardLibrary standardLibrary) {
+	public @NonNull Type getType(@NonNull DomainStandardLibrary standardLibrary) {
 		return standardLibrary.getUnlimitedNaturalType();
 	}
 

@@ -13,11 +13,11 @@ package org.eclipse.ocl.library.collection;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.AbstractProperty;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.Type;
 
 /**
  * CollectionElementTypeProperty realizes the Collection::elementType library property.
@@ -27,7 +27,7 @@ public class CollectionElementTypeProperty extends AbstractProperty
 	public static final @NonNull CollectionElementTypeProperty INSTANCE = new CollectionElementTypeProperty();
 
 	@Override
-	public @NonNull DomainType evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
+	public @NonNull Type evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		DomainCollectionType sourceType = asCollectionType(sourceValue);
 		return DomainUtil.nonNullModel(sourceType.getElementType());
 	}

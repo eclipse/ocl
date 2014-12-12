@@ -15,7 +15,6 @@ import java.math.BigInteger;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.ClassId;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.DataTypeId;
@@ -349,7 +348,7 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 
 	@Override
 	public @NonNull BoxedDescriptor visitTemplateableTypeId(@NonNull TemplateableTypeId id) {
-		return new SimpleValueDescriptor(id, DomainType.class);
+		return new SimpleValueDescriptor(id, Type.class);
 	}
 
 	@Override

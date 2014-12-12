@@ -22,7 +22,6 @@ import org.eclipse.ocl.domain.utilities.IndexableIterable;
 import org.eclipse.ocl.domain.values.OCLValue;
 import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.Class;
-import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
@@ -38,14 +37,14 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 
 	@Override
 	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary,
-			@NonNull DomainType thatType) {
+			@NonNull Type thatType) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	@NonNull
-	public DomainType getCommonType(@NonNull IdResolver idResolver,
-			@NonNull DomainType thatType) {
+	public Type getCommonType(@NonNull IdResolver idResolver,
+			@NonNull Type thatType) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -57,14 +56,7 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 	}
 
 	@Override
-	@NonNull
-	public String getMetaTypeName() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	@NonNull
-	public org.eclipse.ocl.pivot.Class getNormalizedType(
+	public @NonNull org.eclipse.ocl.pivot.Class getNormalizedType(
 			@NonNull DomainStandardLibrary standardLibrary) {
 		throw new UnsupportedOperationException();
 	}
@@ -77,25 +69,19 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 
 	@Override
 	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary,
-			@NonNull DomainType thatType) {
+			@NonNull Type thatType) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public boolean isEqualToUnspecializedType(
 			@NonNull DomainStandardLibrary standardLibrary,
-			@NonNull DomainType type) {
+			@NonNull Type type) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public DomainType specializeIn(@NonNull CallExp expr, DomainType selfType) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	@NonNull
-	public List<? extends Constraint> getOwnedRule() {
+	public Type specializeIn(@NonNull CallExp expr, @Nullable Type selfType) {
 		throw new UnsupportedOperationException();
 	}
 

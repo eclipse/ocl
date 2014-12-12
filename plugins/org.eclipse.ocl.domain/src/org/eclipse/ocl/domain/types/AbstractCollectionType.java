@@ -16,23 +16,23 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Type;
 
 public class AbstractCollectionType extends AbstractSpecializedType implements DomainCollectionType
 {
-	protected final @NonNull DomainType elementType;
+	protected final @NonNull Type elementType;
 	protected final @NonNull IntegerValue lower;
 	protected final @NonNull UnlimitedNaturalValue upper;
 	protected final @NonNull CollectionTypeId typeId;
 	
 	public AbstractCollectionType(@NonNull String name,
-			@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+			@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		super(name, containerType);
 		this.elementType = elementType;
 		this.lower = lower != null ? lower : ValuesUtil.ZERO_VALUE;
@@ -41,7 +41,7 @@ public class AbstractCollectionType extends AbstractSpecializedType implements D
 	}
 
 	@Override
-	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
+	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
 		if (this == type) {
 			return true;
 		}
@@ -52,7 +52,7 @@ public class AbstractCollectionType extends AbstractSpecializedType implements D
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
+	public @NonNull org.eclipse.ocl.pivot.Class getCommonType(@NonNull IdResolver idResolver, @NonNull Type type) {
 		DomainStandardLibrary standardLibrary = idResolver.getStandardLibrary();
 		if (!(type instanceof AbstractCollectionType)) {
 			return standardLibrary.getOclAnyType();
@@ -60,7 +60,7 @@ public class AbstractCollectionType extends AbstractSpecializedType implements D
 		AbstractCollectionType thatClass = (AbstractCollectionType) type;
 		// FIXME kind
 		org.eclipse.ocl.pivot.Class commonContainerClass = containerType;		// FIXME WIP
-		DomainType commonElementClass = elementType.getCommonType(idResolver, thatClass.getElementType());
+		Type commonElementClass = elementType.getCommonType(idResolver, thatClass.getElementType());
 		if ((commonContainerClass == containerType) && (commonElementClass == elementType)) {
 			return this;
 		}
@@ -93,7 +93,7 @@ public class AbstractCollectionType extends AbstractSpecializedType implements D
 	}
 
 	@Override
-	public @NonNull DomainType getElementType() {
+	public @NonNull Type getElementType() {
 		return elementType;
 	}
 
@@ -123,7 +123,7 @@ public class AbstractCollectionType extends AbstractSpecializedType implements D
 	}
 
 	@Override
-	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
+	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
 		if (this == type) {
 			return true;
 		}

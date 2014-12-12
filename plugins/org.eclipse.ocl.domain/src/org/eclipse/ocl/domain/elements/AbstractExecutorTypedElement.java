@@ -19,11 +19,11 @@ import org.eclipse.ocl.pivot.ValueSpecification;
 
 public class AbstractExecutorTypedElement extends AbstractExecutorObject implements TypedElement
 {
-	protected final @NonNull DomainType executorType;
+	protected final @NonNull Type type;
 
-	public AbstractExecutorTypedElement(@NonNull String name, @NonNull DomainType executorType) {
+	public AbstractExecutorTypedElement(@NonNull String name, @NonNull Type executorType) {
 		super(name);
-		this.executorType = executorType;
+		this.type = executorType;
 	}
 
 	@Override
@@ -33,12 +33,12 @@ public class AbstractExecutorTypedElement extends AbstractExecutorObject impleme
 
 	@Override
 	public Type getType() {
-		return (Type) executorType;
+		return type;
 	}
 
 	@Override
 	public @NonNull TypeId getTypeId() {
-		return executorType.getTypeId();
+		return type.getTypeId();
 	}
 
 	@Override
@@ -68,6 +68,6 @@ public class AbstractExecutorTypedElement extends AbstractExecutorObject impleme
 
 	@Override
 	public String toString() {
-		return String.valueOf(name) + " : " + String.valueOf(executorType); //$NON-NLS-1$
+		return String.valueOf(name) + " : " + String.valueOf(type); //$NON-NLS-1$
 	}
 }

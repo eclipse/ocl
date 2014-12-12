@@ -35,7 +35,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainParameterTypes;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.Nameable;
 import org.eclipse.ocl.domain.ids.BuiltInTypeId;
 import org.eclipse.ocl.domain.ids.LambdaTypeId;
@@ -429,7 +428,7 @@ public class OCLinEcoreTablesUtils
 				String prefix = getQualifiedTablesClassName(containerType);
 				if (prefix.length() <= 0) {
 					s.append("(");
-					s.appendClassReference(DomainType.class);
+					s.appendClassReference(Type.class);
 					s.append(")null/*containerType._package.name/");
 				}
 				else {
@@ -447,7 +446,7 @@ public class OCLinEcoreTablesUtils
 				String prefix = getQualifiedTablesClassName(containerType);
 				if (prefix.length() <= 0) {
 					s.append("(");
-					s.appendClassReference(DomainType.class);
+					s.appendClassReference(Type.class);
 					s.append(")null/*containerOperation.owningType._package.name/");
 				}
 				else {
@@ -1011,7 +1010,7 @@ public class OCLinEcoreTablesUtils
 					if (i > 0) {
 						s.append("___");
 					}
-					DomainType element = templateBindings.get(i);
+					Type element = templateBindings.get(i);
 					getTemplateBindingsName(s, element);
 				}
 			}
@@ -1021,7 +1020,7 @@ public class OCLinEcoreTablesUtils
 		}
 		return name2;
 	}
-	private void getTemplateBindingsName(@NonNull StringBuilder s, @NonNull DomainType element) {
+	private void getTemplateBindingsName(@NonNull StringBuilder s, @NonNull Type element) {
 		TemplateParameter templateParameter = element.isTemplateParameter();
 		if (templateParameter != null) {
 			TemplateableElement template = templateParameter.getOwningTemplateSignature().getOwningTemplateableElement();

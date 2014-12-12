@@ -16,12 +16,12 @@ import org.eclipse.ocl.domain.elements.AbstractExecutorClass;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Type;
 
 /**
  * JavaType supports the usage of Java Class to define the type of an object.
@@ -36,12 +36,12 @@ public class JavaType extends AbstractExecutorClass
 	}
 
 	@Override
-	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType thatType) {
+	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type thatType) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
+	public @NonNull org.eclipse.ocl.pivot.Class getCommonType(@NonNull IdResolver idResolver, @NonNull Type type) {
 		if (this == type) {
 			return this;
 		}
@@ -118,7 +118,7 @@ public class JavaType extends AbstractExecutorClass
 	}
 
 	@Override
-	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType thatType) {
+	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type thatType) {
 		return this == thatType;
 	}
 

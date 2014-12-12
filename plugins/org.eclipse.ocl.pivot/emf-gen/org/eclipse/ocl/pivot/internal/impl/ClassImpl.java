@@ -35,7 +35,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.IdManager;
@@ -1087,7 +1086,7 @@ public class ClassImpl
 	}
 	
 	@Override
-	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
+	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
 		if (this == type) {
 			return true;
 		}
@@ -1097,7 +1096,7 @@ public class ClassImpl
 	}
 
 	@Override
-	public @NonNull DomainType getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
+	public @NonNull Type getCommonType(@NonNull IdResolver idResolver, @NonNull Type type) {
 		if (type == this) {
 			return this;
 		}
@@ -1110,6 +1109,11 @@ public class ClassImpl
 	@Override
 	public @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
 		return standardLibrary.getInheritance(this);
+	}
+
+	@Override
+	public @NonNull String getMetaTypeName() {
+		return DomainUtil.nonNullState(eClass().getName());
 	}
 
 	@Override
@@ -1258,6 +1262,16 @@ public class ClassImpl
 	}
 
 	@Override
+	public boolean isOrdered() {
+		return false;
+	}
+
+	@Override
+	public boolean isUnique() {
+		return false;
+	}
+
+	@Override
 	public @Nullable TemplateParameter isTemplateParameter() {
 		return null;
 	}
@@ -1295,18 +1309,17 @@ public class ClassImpl
 	}
 
 	@Override
-	public DomainType specializeIn(@NonNull CallExp callExpr, DomainType selfType) {
-		if (selfType instanceof Type) {
+	public Type specializeIn(@NonNull CallExp callExpr, @Nullable Type selfType) {
+		if (selfType != null) {
 			TemplateSignature templateSignature = getOwnedTemplateSignature();
-			Type selfType2 = (Type)selfType;
 			if (templateSignature != null) {
 				MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(DomainUtil.nonNullState(callExpr.eResource()));
-				return metaModelManager.specializeType(this, callExpr, selfType2, null);
+				return metaModelManager.specializeType(this, callExpr, selfType, null);
 			}
 			List<TemplateBinding> templateBindings = getOwnedTemplateBindings();
 			if ((templateBindings != null) && !templateBindings.isEmpty()) {
 				MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(DomainUtil.nonNullState(callExpr.eResource()));
-				return metaModelManager.specializeType(this, callExpr, selfType2, null);
+				return metaModelManager.specializeType(this, callExpr, selfType, null);
 			}
 		}
 		return this;

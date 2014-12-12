@@ -13,9 +13,9 @@ package org.eclipse.ocl.library.oclany;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.library.AbstractUntypedBinaryOperation;
+import org.eclipse.ocl.pivot.Type;
 
 /**
  * OclAnyOclIsKindOfOperation realises the OclAny::oclIsKindOf() library operation.
@@ -27,8 +27,8 @@ public class OclAnyOclIsKindOfOperation extends AbstractUntypedBinaryOperation
 	@Override
 	public @NonNull Boolean evaluate(@NonNull DomainEvaluator evaluator, @Nullable Object sourceVal, @Nullable Object argVal) {
 		DomainStandardLibrary standardLibrary = evaluator.getStandardLibrary();
-		DomainType sourceType = evaluator.getIdResolver().getDynamicTypeOf(sourceVal);
-		DomainType argType = asType(argVal);
+		Type sourceType = evaluator.getIdResolver().getDynamicTypeOf(sourceVal);
+		Type argType = asType(argVal);
 		boolean result = sourceType.conformsTo(standardLibrary, argType);	// FIXME this fails because ExecutableStandardLibrary.getMetaclass is bad
 		return result;
 	}

@@ -13,7 +13,6 @@ package org.eclipse.ocl.pivot;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
-import org.eclipse.ocl.domain.elements.DomainType;
 
 
 /**
@@ -64,14 +63,14 @@ public interface PropertyCallExp
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	DomainType getSpecializedReferredPropertyOwningType();
+	Type getSpecializedReferredPropertyOwningType();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	DomainType getSpecializedReferredPropertyType();
+	Type getSpecializedReferredPropertyType();
 
 	/**
 	 * <!-- begin-user-doc -->

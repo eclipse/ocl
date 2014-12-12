@@ -19,7 +19,7 @@ public final class AbstractExecutorParameter extends AbstractExecutorTypedElemen
 {
 	protected final boolean typeof;
 	
-	public AbstractExecutorParameter(@NonNull String name, @NonNull DomainType type, boolean typeof) {
+	public AbstractExecutorParameter(@NonNull String name, @NonNull Type type, boolean typeof) {
 		super(name, type);
 		this.typeof = typeof;
 	}

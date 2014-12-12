@@ -12,7 +12,6 @@ package org.eclipse.ocl.library.iterator;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.evaluation.DomainIterationManager;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
@@ -20,6 +19,7 @@ import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.AbstractIteration;
 import org.eclipse.ocl.domain.values.CollectionValue;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
+import org.eclipse.ocl.pivot.Type;
 
 /**
  * ClosureIteration realizes the Collection::closure() library iteration.
@@ -59,7 +59,7 @@ public class ClosureIteration extends AbstractIteration
 		}
 		else {
 			DomainEvaluator evaluator = iterationManager.getEvaluator();
-			DomainType elementType = evaluator.getStaticTypeOf(bodyVal);
+			Type elementType = evaluator.getStaticTypeOf(bodyVal);
 			CollectionTypeId sequenceId = TypeId.SEQUENCE.getSpecializedId(elementType.getTypeId());
 			collectionValue = evaluator.getIdResolver().createSequenceOfEach(sequenceId, bodyVal);
 		}

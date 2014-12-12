@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.vm.evaluator.VMModelManager;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.PivotPackage;
@@ -68,7 +67,7 @@ public class OCLVMModelManager extends VMModelManager
 	 * @return <code>true</code> if this element is an instance of the given
 	 * class; <code>false</code> otherwise
 	 */
-	protected boolean isInstance(@NonNull DomainType requiredType, @NonNull EObject eObject) {
+	protected boolean isInstance(@NonNull Type requiredType, @NonNull EObject eObject) {
 		EClass eClass = eObject.eClass();
 		EPackage ePackage = eClass.getEPackage();
 		Type objectType = null;

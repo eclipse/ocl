@@ -22,7 +22,6 @@ import org.eclipse.ocl.domain.DomainConstants;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.types.AbstractStandardLibrary;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
@@ -192,7 +191,7 @@ public class PivotStandardLibrary extends AbstractStandardLibrary	// FIXME Abstr
 
 	@Override
 	public @NonNull DomainCollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType,
-			@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+			@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return metaModelManager.getCompleteEnvironment().getCollectionType(containerType, elementType, lower, upper);
 	}
 
@@ -238,12 +237,12 @@ public class PivotStandardLibrary extends AbstractStandardLibrary	// FIXME Abstr
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getMetaclass(@NonNull DomainType classType) {
+	public @NonNull org.eclipse.ocl.pivot.Class getMetaclass(@NonNull Type classType) {
 		return metaModelManager.getMetaclass(classType);
 	}
 
 	@Override
-	public DomainType getMetaType(@NonNull DomainType instanceType) {
+	public Type getMetaType(@NonNull Type instanceType) {
 		if (instanceType instanceof PrimitiveType) {
 			return getPivotType(TypeId.PRIMITIVE_TYPE_NAME);
 		}
@@ -373,7 +372,7 @@ public class PivotStandardLibrary extends AbstractStandardLibrary	// FIXME Abstr
 	}
 
 	@Override
-	public DomainType getOclType(@NonNull String typeName) {
+	public Type getOclType(@NonNull String typeName) {
 		return metaModelManager.getOclType(typeName);
 	}
 

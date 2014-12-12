@@ -22,7 +22,6 @@ import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.EnumerationLiteralId;
 import org.eclipse.ocl.domain.ids.IdVisitor;
@@ -38,6 +37,7 @@ import org.eclipse.ocl.domain.values.SetValue;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TupleType;
+import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 
 /**
@@ -78,13 +78,13 @@ public interface IdResolver extends IdVisitor<DomainElement>
 
 	@NonNull org.eclipse.ocl.pivot.Class getClass(@NonNull TypeId typeId, @Nullable Object context);
 
-	@NonNull DomainType getCollectionType(@NonNull CollectionTypeId typeId);
+	@NonNull Type getCollectionType(@NonNull CollectionTypeId typeId);
 
-	@NonNull DomainType getDynamicTypeOf(@Nullable Object value);
+	@NonNull Type getDynamicTypeOf(@Nullable Object value);
 
-	@Nullable DomainType getDynamicTypeOf(@NonNull Object... values);
+	@Nullable Type getDynamicTypeOf(@NonNull Object... values);
 
-	@Nullable DomainType getDynamicTypeOf(@NonNull Iterable<?> values);
+	@Nullable Type getDynamicTypeOf(@NonNull Iterable<?> values);
 
 	@NonNull DomainEnvironment getEnvironment();
 
@@ -110,7 +110,7 @@ public interface IdResolver extends IdVisitor<DomainElement>
 
 	@NonNull org.eclipse.ocl.pivot.Class getType(@NonNull EClassifier eClassifier);
 
-	@NonNull DomainType getType(@NonNull TypeId typeId, @Nullable Object context);
+	@NonNull Type getType(@NonNull TypeId typeId, @Nullable Object context);
 
 	boolean oclEquals(@Nullable Object thisValue, @Nullable Object thatValue);
 

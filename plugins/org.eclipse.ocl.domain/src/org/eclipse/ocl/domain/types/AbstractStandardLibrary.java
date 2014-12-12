@@ -21,7 +21,6 @@ import org.eclipse.ocl.domain.elements.DomainCompletePackage;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.PrimitiveTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.values.IntegerValue;
@@ -30,6 +29,7 @@ import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.TupleType;
+import org.eclipse.ocl.pivot.Type;
 
 public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 {
@@ -38,8 +38,8 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 
 	@Override
 	public boolean conformsToCollectionType(@NonNull DomainCollectionType firstCollectionType, @NonNull DomainCollectionType secondCollectionType) {
-		DomainType firstContainerType = firstCollectionType.getContainerType();
-		DomainType secondContainerType = secondCollectionType.getContainerType();
+		Type firstContainerType = firstCollectionType.getContainerType();
+		Type secondContainerType = secondCollectionType.getContainerType();
 		if (firstContainerType != secondContainerType) {
 			if ((firstContainerType == null) || (secondContainerType == null)) {
 				return false;
@@ -50,8 +50,8 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 				return false;
 			}
 		}
-		DomainType firstElementType = firstCollectionType.getElementType();
-		DomainType secondElementType = secondCollectionType.getElementType();
+		Type firstElementType = firstCollectionType.getElementType();
+		Type secondElementType = secondCollectionType.getElementType();
 		if (firstElementType != secondElementType) {
 			if ((firstElementType == null) || (secondElementType == null)) {
 				return false;
@@ -105,7 +105,7 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 	}
 
 	@Override
-	public DomainType getMetaType(@NonNull DomainType instanceType) {
+	public Type getMetaType(@NonNull Type instanceType) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -120,7 +120,7 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 	}
 
 	@Override
-	public @Nullable DomainType getPrimitiveType(@NonNull PrimitiveTypeId typeId) {
+	public @Nullable Type getPrimitiveType(@NonNull PrimitiveTypeId typeId) {
 		if (typeId == TypeId.BOOLEAN) {
 			return getBooleanType();
 		}
@@ -158,8 +158,8 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 	
 	@Override
 	public boolean isEqualToCollectionType(@NonNull DomainCollectionType firstCollectionType, @NonNull DomainCollectionType secondCollectionType) {
-		DomainType firstContainerType = firstCollectionType.getContainerType();
-		DomainType secondContainerType = secondCollectionType.getContainerType();
+		Type firstContainerType = firstCollectionType.getContainerType();
+		Type secondContainerType = secondCollectionType.getContainerType();
 		if (firstContainerType != secondContainerType) {
 			if ((firstContainerType == null) || (secondContainerType == null)) {
 				return false;
@@ -168,8 +168,8 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 				return false;
 			}
 		}
-		DomainType firstElementType = firstCollectionType.getElementType();
-		DomainType secondElementType = secondCollectionType.getElementType();
+		Type firstElementType = firstCollectionType.getElementType();
+		Type secondElementType = secondCollectionType.getElementType();
 		if (firstElementType != secondElementType) {
 			if ((firstElementType == null) || (secondElementType == null)) {
 				return false;

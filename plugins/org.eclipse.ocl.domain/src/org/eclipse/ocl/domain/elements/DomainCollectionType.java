@@ -14,11 +14,12 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
+import org.eclipse.ocl.pivot.Type;
 
 public interface DomainCollectionType extends org.eclipse.ocl.pivot.Class
 {
 	/*@NonNull*/ org.eclipse.ocl.pivot.Class getContainerType();		
-	/*@NonNull*/ DomainType getElementType();
+	/*@NonNull*/ Type getElementType();
 	@NonNull IntegerValue getLowerValue();		
 	@Override
 	@NonNull CollectionTypeId getTypeId();

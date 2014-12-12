@@ -12,9 +12,9 @@ package org.eclipse.ocl.library.oclany;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.library.AbstractUntypedBinaryOperation;
+import org.eclipse.ocl.pivot.Type;
 
 /**
  * OclAnyOclIsTypeOfOperation realises the OclAny::oclIsTypeOf() library operation.
@@ -25,8 +25,8 @@ public class OclAnyOclIsTypeOfOperation extends AbstractUntypedBinaryOperation
 
 	@Override
 	public @NonNull Boolean evaluate(@NonNull DomainEvaluator evaluator, @Nullable Object sourceVal, @Nullable Object argVal) {
-		DomainType sourceType = evaluator.getIdResolver().getDynamicTypeOf(sourceVal);
-		DomainType argType = asType(argVal);
+		Type sourceType = evaluator.getIdResolver().getDynamicTypeOf(sourceVal);
+		Type argType = asType(argVal);
 		boolean result = sourceType.isEqualTo(evaluator.getStandardLibrary(), argType);
 		return result;
 	}

@@ -13,12 +13,12 @@ package org.eclipse.ocl.domain.types;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.AbstractExecutorClass;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.TupleTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.TupleType;
+import org.eclipse.ocl.pivot.Type;
 
 public class AbstractTupleType extends AbstractExecutorClass implements TupleType
 {
@@ -30,7 +30,7 @@ public class AbstractTupleType extends AbstractExecutorClass implements TupleTyp
 	}
 
 	@Override
-	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
+	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
 		if (this == type) {
 			return true;
 		}
@@ -41,7 +41,7 @@ public class AbstractTupleType extends AbstractExecutorClass implements TupleTyp
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
+	public @NonNull org.eclipse.ocl.pivot.Class getCommonType(@NonNull IdResolver idResolver, @NonNull Type type) {
 		if (type != this) {
 			return idResolver.getStandardLibrary().getOclAnyType();
 		}
@@ -59,7 +59,7 @@ public class AbstractTupleType extends AbstractExecutorClass implements TupleTyp
 	}
 
 	@Override
-	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
+	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
 		if (this == type) {
 			return true;
 		}

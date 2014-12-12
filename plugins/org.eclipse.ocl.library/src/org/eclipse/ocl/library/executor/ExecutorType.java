@@ -18,7 +18,6 @@ import org.eclipse.ocl.domain.elements.AbstractExecutorClass;
 import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.ids.OperationId;
 import org.eclipse.ocl.domain.ids.TypeId;
@@ -32,6 +31,7 @@ import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateParameter;
+import org.eclipse.ocl.pivot.Type;
 
 /**
  * An ExecutorType defines a Type using a compact representation suitable for efficient
@@ -63,7 +63,7 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	}
 
 	@Override
-	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
+	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
 		DomainInheritance thatInheritance = type.getInheritance(standardLibrary);
 		if (this == thatInheritance) {
 			return true;
@@ -88,7 +88,7 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	}
 	
 	@Override
-	public @NonNull DomainType getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
+	public @NonNull Type getCommonType(@NonNull IdResolver idResolver, @NonNull Type type) {
 		if (this == type) {
 			return this.getType();
 		}
@@ -226,12 +226,12 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	}
 
 	@Override
-	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
+	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
 		return this == type;
 	}
 
 	@Override
-	public boolean isEqualToUnspecializedType(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
+	public boolean isEqualToUnspecializedType(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
 		return this == type;
 	}
 
@@ -252,11 +252,11 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 
 	@Override
 	public boolean oclEquals(@NonNull OCLValue thatValue) {
-		if (!(thatValue instanceof DomainType)) {
+		if (!(thatValue instanceof Type)) {
 			return false;
 		}
 		TypeId thisTypeId = getTypeId();
-		TypeId thatTypeId = ((DomainType)thatValue).getTypeId();
+		TypeId thatTypeId = ((Type)thatValue).getTypeId();
 		return thisTypeId.equals(thatTypeId);
 	}
 
@@ -266,7 +266,7 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	}
 
 	@Override
-	public DomainType specializeIn(@NonNull CallExp expr, DomainType selfType) {
+	public Type specializeIn(@NonNull CallExp expr, @Nullable Type selfType) {
 		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
 	}
 	

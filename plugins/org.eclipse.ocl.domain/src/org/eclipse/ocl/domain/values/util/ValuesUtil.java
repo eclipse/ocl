@@ -28,7 +28,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainParameterTypes;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
@@ -84,6 +83,7 @@ import org.eclipse.ocl.domain.values.impl.TupleValueImpl;
 import org.eclipse.ocl.domain.values.impl.UnlimitedValueImpl;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
+import org.eclipse.ocl.pivot.Type;
 
 /**
  */
@@ -279,9 +279,9 @@ public abstract class ValuesUtil
 		}
 	}
 
-	public static @NonNull DomainType asType(@Nullable Object value) {
-		if (value instanceof DomainType) {
-			return (DomainType)value;
+	public static @NonNull Type asType(@Nullable Object value) {
+		if (value instanceof Type) {
+			return (Type)value;
 		}
 		else {
 			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, "Type", getTypeName(value));

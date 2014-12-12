@@ -14,10 +14,11 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.Feature;
+import org.eclipse.ocl.pivot.Type;
 
 public class AbstractExecutorFeature extends AbstractExecutorTypedElement implements Feature
 {
-	public AbstractExecutorFeature(@NonNull String name, @NonNull DomainType executorType) {
+	public AbstractExecutorFeature(@NonNull String name, @NonNull Type executorType) {
 		super(name, executorType);
 	}
 

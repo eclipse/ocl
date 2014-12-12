@@ -17,8 +17,8 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorType;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGText;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTypeId;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTypedElement;
+import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.TypeId;
 
 /**
@@ -59,7 +59,7 @@ public class CGTypedElementModelSpec extends ModelSpec
 		return "return (" + classRef(TypeId.class) + ") getTypeId().getElementId();		// FIXME Why irregular?";
 	}};
 	public static final @NonNull Ati ATI_TYPE = new Ati() { @Override public @NonNull String generate() {
-		return "return ast instanceof " + classRef(DomainType.class) + " ? ((" + classRef(DomainType.class) + ") ast).getTypeId() : null;";
+		return "return ast instanceof " + classRef(Type.class) + " ? ((" + classRef(Type.class) + ") ast).getTypeId() : null;";
 	}};
 	public static final @NonNull Ati ATI_T_ID = new Ati() { @Override public @NonNull String generate() {
 		return "return (" + classRef(TypeId.class) + ")elementId;";

@@ -12,7 +12,6 @@ package org.eclipse.ocl.domain.ids.impl;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.ClassId;
 import org.eclipse.ocl.domain.ids.DataTypeId;
 import org.eclipse.ocl.domain.ids.IdManager;
@@ -20,12 +19,13 @@ import org.eclipse.ocl.domain.ids.IdVisitor;
 import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.domain.ids.UnspecifiedId;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.Type;
 
 public class UnspecifiedIdImpl extends AbstractTypeId implements UnspecifiedId, ClassId, DataTypeId
 {
-	protected final @NonNull DomainType type;
+	protected final @NonNull Type type;
 	
-	public UnspecifiedIdImpl(@NonNull IdManager idManager, @NonNull DomainType type) {
+	public UnspecifiedIdImpl(@NonNull IdManager idManager, @NonNull Type type) {
 		this.type = type;
 	}
 

@@ -12,10 +12,10 @@ package org.eclipse.ocl.library.ecore;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.BuiltInTypeId;
 import org.eclipse.ocl.library.executor.ExecutorPackage;
 import org.eclipse.ocl.library.executor.ExecutorTypeParameter;
+import org.eclipse.ocl.pivot.Type;
 
 public class EcoreExecutorInvalidType extends EcoreExecutorType
 {
@@ -24,7 +24,7 @@ public class EcoreExecutorInvalidType extends EcoreExecutorType
 	}
 
 	@Override
-	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
+	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
 		return true;
 	}
 }

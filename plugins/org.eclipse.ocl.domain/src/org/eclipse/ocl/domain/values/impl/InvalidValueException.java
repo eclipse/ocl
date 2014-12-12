@@ -18,7 +18,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.OclInvalidTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.types.IdResolver;
@@ -35,6 +34,7 @@ import org.eclipse.ocl.domain.values.SequenceValue;
 import org.eclipse.ocl.domain.values.SetValue;
 import org.eclipse.ocl.domain.values.UniqueCollectionValue;
 import org.eclipse.ocl.domain.values.ValuesPackage;
+import org.eclipse.ocl.pivot.Type;
 
 /**
  * An InvalidValueException wraps an InvalidValue and is used to return the InvalidValue
@@ -158,7 +158,7 @@ public class InvalidValueException extends UndefinedValueImpl implements Invalid
 		return obj instanceof InvalidValueException;
 	}
 
-	public @NonNull DomainType getType(@NonNull DomainStandardLibrary standardLibrary) {
+	public @NonNull Type getType(@NonNull DomainStandardLibrary standardLibrary) {
 		return standardLibrary.getOclInvalidType();
 	}
 

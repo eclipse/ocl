@@ -26,7 +26,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.types.IdResolver;
@@ -34,7 +33,6 @@ import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.OCLValue;
 import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.Comment;
-import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.OCLExpression;
@@ -371,7 +369,7 @@ public abstract class TypeImpl
 	}
 
 	@Override
-	public @NonNull DomainType getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
+	public @NonNull Type getCommonType(@NonNull IdResolver idResolver, @NonNull Type type) {
 		if (type == this) {
 			return this;
 		}
@@ -382,48 +380,35 @@ public abstract class TypeImpl
 	}
 
 	@Override
-	public @NonNull String getMetaTypeName() {
-		return DomainUtil.nonNullState(eClass().getName());
-	}
-
-	@Override
-	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
+	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
 		if (this == type) {
 			return true;
 		}
-		DomainType thisType = this.getNormalizedType(standardLibrary);
-		DomainType thatType = type.getNormalizedType(standardLibrary);
+		Type thisType = this.getNormalizedType(standardLibrary);
+		Type thatType = type.getNormalizedType(standardLibrary);
 		return thisType == thatType;
 	}
 
 	@Override
-	public boolean isEqualToUnspecializedType(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
+	public boolean isEqualToUnspecializedType(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
 		if (this == type) {
 			return true;
 		}
 		return false;
 	}
 
-	@Override
-	public boolean isInvalid() {
-		return false;
-	}
-
-	public boolean isOrdered() {
-		return false;
-	}
-
-	public boolean isUnique() {
-		return false;
-	}
+//	@Override
+//	public boolean isInvalid() {
+//		return false;
+//	}
 
 	@Override
 	public boolean oclEquals(@NonNull OCLValue thatValue) {
-		if (!(thatValue instanceof DomainType)) {
+		if (!(thatValue instanceof Type)) {
 			return false;
 		}
 		TypeId thisTypeId = getTypeId();
-		TypeId thatTypeId = ((DomainType)thatValue).getTypeId();
+		TypeId thatTypeId = ((Type)thatValue).getTypeId();
 		return thisTypeId.equals(thatTypeId);
 	}
 
@@ -437,14 +422,14 @@ public abstract class TypeImpl
 	{
 		assert expr != null;
 		assert selfType != null;
-		return (Type) specializeIn(DomainUtil.nonNullState((CallExp)expr), (DomainType)selfType);
+		return specializeIn(DomainUtil.nonNullState((CallExp)expr), selfType);
 	}
 
-	@Override
-	@NonNull
-	public List<? extends Constraint> getOwnedRule() {
-		throw new UnsupportedOperationException();		// FIXME
-	}
+//	@Override
+//	@NonNull
+//	public List<? extends Constraint> getOwnedRule() {
+//		throw new UnsupportedOperationException();		// FIXME
+//	}
 
 	public org.eclipse.ocl.pivot.Package getPackage() {
 		throw new UnsupportedOperationException();		// FIXME

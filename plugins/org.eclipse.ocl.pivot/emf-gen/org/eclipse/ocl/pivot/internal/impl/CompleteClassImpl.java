@@ -24,7 +24,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.domain.ids.OperationId;
 import org.eclipse.ocl.domain.values.CollectionTypeParameters;
@@ -356,7 +355,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	}
 
 	@Override
-	public boolean conformsTo(@NonNull DomainType elementType) {
+	public boolean conformsTo(@NonNull Type elementType) {
 		DomainStandardLibrary standardLibrary = getStandardLibrary();
 		DomainInheritance thisInheritance = getCompleteInheritance();
 		DomainInheritance thatInheritance = elementType.getInheritance(standardLibrary);

@@ -39,13 +39,13 @@ import org.eclipse.ocl.examples.debug.vm.request.VMVariableRequest;
 import org.eclipse.ocl.examples.debug.vm.response.VMResponse;
 import org.eclipse.ocl.examples.debug.vm.response.VMVariableResponse;
 import org.eclipse.ocl.examples.debug.vm.utils.VMRuntimeException;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.CollectionValue;
 import org.eclipse.ocl.domain.values.Value;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VoidType;
@@ -159,7 +159,7 @@ public class VariableFinder
 					catch (Throwable e) {
 						value = e;
 					}
-					DomainType declaredType = oclExpression.getType();
+					Type declaredType = oclExpression.getType();
 					setValueAndType(var, value, declaredType, evalEnv);
 					result.add(var);
 				}
@@ -177,7 +177,7 @@ public class VariableFinder
 				catch (Throwable e) {
 					value = e;
 				}
-				DomainType declaredType = variable.getType();
+				Type declaredType = variable.getType();
 				setValueAndType(var, value, declaredType, evalEnv);
 				result.add(var);
 			}
@@ -258,7 +258,7 @@ public class VariableFinder
 		return eClass;
 	}
 
-	public static void setValueAndType(@NonNull VMVariableData variable, @Nullable Object value, @Nullable DomainType optDeclaredType, @NonNull EvaluationEnvironment evalEnv) {
+	public static void setValueAndType(@NonNull VMVariableData variable, @Nullable Object value, @Nullable Type optDeclaredType, @NonNull EvaluationEnvironment evalEnv) {
 		String declaredTypeName = (optDeclaredType != null) ? optDeclaredType.toString() : null;
 		setValueAndType(variable, value, declaredTypeName, evalEnv);
 	}

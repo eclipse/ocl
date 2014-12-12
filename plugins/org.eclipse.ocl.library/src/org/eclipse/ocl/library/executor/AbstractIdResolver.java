@@ -40,7 +40,6 @@ import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.ClassId;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.DataTypeId;
@@ -88,6 +87,7 @@ import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TupleType;
+import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 
 public abstract class AbstractIdResolver implements IdResolver
@@ -227,7 +227,7 @@ public abstract class AbstractIdResolver implements IdResolver
 	 * required part definitions to construct a tuple type in the lightweight execution environment. This cache may remain
 	 * unused when using the full pivot environment.
 	 */
-	private Map<String, Map<DomainType, WeakReference<TypedElement>>> tupleParts = null;		// Lazily created
+	private Map<String, Map<Type, WeakReference<TypedElement>>> tupleParts = null;		// Lazily created
 	
 	public AbstractIdResolver(@NonNull DomainEnvironment environment) {
 		this.environment = environment;
@@ -268,7 +268,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		else if (unboxedValue.getClass().isArray()) {
 			try {
 				Object[] unboxedValues = (Object[])unboxedValue;
-				DomainType dynamicType = getDynamicTypeOf(unboxedValues);
+				Type dynamicType = getDynamicTypeOf(unboxedValues);
 				if (dynamicType == null) {
 					dynamicType = standardLibrary.getOclInvalidType();
 				}
@@ -280,7 +280,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		}
 		else if (unboxedValue instanceof Iterable<?>) {
 			Iterable<?> unboxedValues = (Iterable<?>)unboxedValue;
-			DomainType dynamicType = getDynamicTypeOf(unboxedValues);
+			Type dynamicType = getDynamicTypeOf(unboxedValues);
 			if (dynamicType == null) {
 				dynamicType = standardLibrary.getOclInvalidType();
 			}
@@ -302,7 +302,7 @@ public abstract class AbstractIdResolver implements IdResolver
 /*		else if (unboxedValue instanceof EEnumLiteral) {
 			return ValuesUtil.createEnumerationLiteralValue((EEnumLiteral)unboxedValue);
 		} */
-		else if (unboxedValue instanceof DomainType) {
+		else if (unboxedValue instanceof Type) {
 			return unboxedValue;
 		}
 		else if (unboxedValue instanceof EnumerationLiteral) {
@@ -562,7 +562,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		}
 		else {
 			TypeId elementTypeId = typeId.getElementTypeId();
-			DomainType elementType = getType(elementTypeId, null);
+			Type elementType = getType(elementTypeId, null);
 			if (generalizedId == TypeId.BAG) {
 				return environment.getBagType(elementType, lower, upper);
 			}
@@ -588,7 +588,7 @@ public abstract class AbstractIdResolver implements IdResolver
 	public @NonNull org.eclipse.ocl.pivot.Class getDynamicTypeOf(@Nullable Object value) {
 		if (value instanceof CollectionValue) {
 			CollectionValue collectionValue = (CollectionValue) value;
-			DomainType elementType = getDynamicTypeOf(collectionValue.iterable());
+			Type elementType = getDynamicTypeOf(collectionValue.iterable());
 			if (elementType == null) {
 				elementType = getType(collectionValue.getTypeId().getElementTypeId(), null);
 			}
@@ -605,8 +605,8 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 	
 	@Override
-	public @Nullable DomainType getDynamicTypeOf(@NonNull Object... values) {
-		DomainType elementType = null;
+	public @Nullable Type getDynamicTypeOf(@NonNull Object... values) {
+		Type elementType = null;
 		for (Object value : values) {
 			org.eclipse.ocl.pivot.Class valueType = getDynamicTypeOf(value);
 			if (elementType == null) {
@@ -623,8 +623,8 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 	
 	@Override
-	public @Nullable DomainType getDynamicTypeOf(@NonNull Iterable<?> values) {
-		DomainType elementType = null;
+	public @Nullable Type getDynamicTypeOf(@NonNull Iterable<?> values) {
+		Type elementType = null;
 		for (Object value : values) {
 			org.eclipse.ocl.pivot.Class valueType = getDynamicTypeOf(value);
 			if (elementType == null) {
@@ -694,10 +694,10 @@ public abstract class AbstractIdResolver implements IdResolver
 
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value) {
-		if (value instanceof DomainType) {
+		if (value instanceof Type) {
 			org.eclipse.ocl.pivot.Class type = key2type.get(value);
 			if (type == null) {
-				type = standardLibrary.getMetaclass((DomainType) value);
+				type = standardLibrary.getMetaclass((Type) value);
 				assert type != null;
 				key2type.put(value, type);
 			}
@@ -765,7 +765,7 @@ public abstract class AbstractIdResolver implements IdResolver
 			if ((assessedTypeKeys == null) ? (anotherTypeId != bestTypeId) : !assessedTypeKeys.contains(anotherTypeId)) {
 				org.eclipse.ocl.pivot.Class anotherType = key2type.get(anotherTypeId);
 				assert anotherType != null;
-				DomainType commonType = bestType.getCommonType(this, anotherType);
+				Type commonType = bestType.getCommonType(this, anotherType);
 				if ((commonType != bestType) && (commonType instanceof org.eclipse.ocl.pivot.Class)) {
 					if (assessedTypeKeys == null) {
 						assessedTypeKeys = new ArrayList<Object>();
@@ -796,7 +796,7 @@ public abstract class AbstractIdResolver implements IdResolver
 			if ((assessedTypeKeys == null) ? (anotherTypeKey != bestTypeKey) : !assessedTypeKeys.contains(anotherTypeKey)) {
 				org.eclipse.ocl.pivot.Class anotherType = key2type.get(anotherTypeKey);
 				assert anotherType != null;
-				DomainType commonType = bestType.getCommonType(this, anotherType);
+				Type commonType = bestType.getCommonType(this, anotherType);
 				if (commonType != bestType) {
 					if (assessedTypeKeys == null) {
 						assessedTypeKeys = new ArrayList<Object>();
@@ -817,13 +817,13 @@ public abstract class AbstractIdResolver implements IdResolver
 		return getTuplePart(name, getType(typeId, null));
 	}
 
-	public synchronized @NonNull TypedElement getTuplePart(@NonNull String name, @NonNull DomainType type) {
+	public synchronized @NonNull TypedElement getTuplePart(@NonNull String name, @NonNull Type type) {
 		if (tupleParts == null) {
-			tupleParts = new WeakHashMap<String, Map<DomainType, WeakReference<TypedElement>>>();
+			tupleParts = new WeakHashMap<String, Map<Type, WeakReference<TypedElement>>>();
 		}
-		Map<DomainType, WeakReference<TypedElement>> typeMap = tupleParts.get(name);
+		Map<Type, WeakReference<TypedElement>> typeMap = tupleParts.get(name);
 		if (typeMap == null) {
-			typeMap = new WeakHashMap<DomainType, WeakReference<TypedElement>>();
+			typeMap = new WeakHashMap<Type, WeakReference<TypedElement>>();
 			tupleParts.put(name, typeMap);
 		}
 		TypedElement tupleProperty = weakGet(typeMap, type);
@@ -838,10 +838,10 @@ public abstract class AbstractIdResolver implements IdResolver
 	public abstract @NonNull TupleType getTupleType(@NonNull TupleTypeId typeId);
 
 	@Override
-	public @NonNull DomainType getType(@NonNull TypeId typeId, @Nullable Object context) {
+	public @NonNull Type getType(@NonNull TypeId typeId, @Nullable Object context) {
 		DomainElement type = typeId.accept(this);
 		assert type != null;
-		return (DomainType)type;
+		return (Type)type;
 	}
 
 	private @NonNull Object getTypeKeyOf(@Nullable Object value) {
@@ -1004,10 +1004,10 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	@Override
-	public @NonNull DomainType visitClassId(@NonNull ClassId id) {
+	public @NonNull Type visitClassId(@NonNull ClassId id) {
 		org.eclipse.ocl.pivot.Package parentPackage = (org.eclipse.ocl.pivot.Package) id.getParent().accept(this);
 		assert parentPackage != null;
-		DomainType nestedType = environment.getNestedType(parentPackage, id.getName());
+		Type nestedType = environment.getNestedType(parentPackage, id.getName());
 		if (nestedType == null) {
 			nestedType = environment.getNestedType(parentPackage, id.getName());
 			throw new UnsupportedOperationException();
@@ -1015,8 +1015,8 @@ public abstract class AbstractIdResolver implements IdResolver
 		return nestedType;
 	}
 	
-	public @NonNull DomainType visitCollectedId(@NonNull CollectionTypeId id) {
-		DomainType elementType = (DomainType) id.getElementTypeId().accept(this);
+	public @NonNull Type visitCollectedId(@NonNull CollectionTypeId id) {
+		Type elementType = (Type) id.getElementTypeId().accept(this);
 		if (elementType == null) {
 			throw new UnsupportedOperationException();
 		}
@@ -1026,15 +1026,15 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	@Override
-	public @NonNull DomainType visitCollectionTypeId(@NonNull CollectionTypeId id) {
+	public @NonNull Type visitCollectionTypeId(@NonNull CollectionTypeId id) {
 		return getCollectionType(id);
 	}
 
 	@Override
-	public @NonNull DomainType visitDataTypeId(@NonNull DataTypeId id) {
+	public @NonNull Type visitDataTypeId(@NonNull DataTypeId id) {
 		org.eclipse.ocl.pivot.Package parentPackage = (org.eclipse.ocl.pivot.Package) id.getParent().accept(this);
 		assert parentPackage != null;
-		DomainType nestedType = environment.getNestedType(parentPackage, id.getName());
+		Type nestedType = environment.getNestedType(parentPackage, id.getName());
 		if (nestedType == null) {
 			nestedType = environment.getNestedType(parentPackage, id.getName());
 			if (nestedType == null) {
@@ -1048,7 +1048,7 @@ public abstract class AbstractIdResolver implements IdResolver
 	public @NonNull Enumeration visitEnumerationId(@NonNull EnumerationId id) {
 		org.eclipse.ocl.pivot.Package parentPackage = (org.eclipse.ocl.pivot.Package) id.getParent().accept(this);
 		assert parentPackage != null;
-		DomainType nestedType = environment.getNestedType(parentPackage, id.getName());
+		Type nestedType = environment.getNestedType(parentPackage, id.getName());
 		if (nestedType == null) {
 			nestedType = environment.getNestedType(parentPackage, id.getName());
 			throw new UnsupportedOperationException();
@@ -1073,12 +1073,12 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	@Override
-	public @NonNull DomainType visitInvalidId(@NonNull OclInvalidTypeId id) {
+	public @NonNull Type visitInvalidId(@NonNull OclInvalidTypeId id) {
 		return standardLibrary.getOclInvalidType();
 	}
 
 	@Override
-	public @NonNull DomainType visitLambdaTypeId(@NonNull LambdaTypeId id) {
+	public @NonNull Type visitLambdaTypeId(@NonNull LambdaTypeId id) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -1103,7 +1103,7 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	@Override
-	public @NonNull DomainType visitNullId(@NonNull OclVoidTypeId id) {
+	public @NonNull Type visitNullId(@NonNull OclVoidTypeId id) {
 		return standardLibrary.getOclVoidType();
 	}
 
@@ -1122,8 +1122,8 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	@Override
-	public @NonNull DomainType visitPrimitiveTypeId(@NonNull PrimitiveTypeId id) {
-		DomainType primitiveType = standardLibrary.getPrimitiveType(id);
+	public @NonNull Type visitPrimitiveTypeId(@NonNull PrimitiveTypeId id) {
+		Type primitiveType = standardLibrary.getPrimitiveType(id);
 		if (primitiveType == null) {
 			throw new UnsupportedOperationException();
 		}
@@ -1165,7 +1165,7 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	@Override
-	public @NonNull DomainType visitTemplateableTypeId(@NonNull TemplateableTypeId id) {
+	public @NonNull Type visitTemplateableTypeId(@NonNull TemplateableTypeId id) {
 		return getType(id, null);
 	}
 
@@ -1175,13 +1175,13 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	@Override
-	public @NonNull DomainType visitTupleTypeId(@NonNull TupleTypeId id) {
+	public @NonNull Type visitTupleTypeId(@NonNull TupleTypeId id) {
 		return getTupleType(id);
 	}
 
 	@Override
-	public @NonNull DomainType visitUnspecifiedId(@NonNull UnspecifiedId id) {
-		return (DomainType) id.getSpecifier();
+	public @NonNull Type visitUnspecifiedId(@NonNull UnspecifiedId id) {
+		return (Type) id.getSpecifier();
 	}
 
 	/**

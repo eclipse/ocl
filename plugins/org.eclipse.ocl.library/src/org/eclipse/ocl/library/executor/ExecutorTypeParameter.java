@@ -16,7 +16,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.AbstractExecutorType;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.TemplateParameterId;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.pivot.Class;
@@ -34,12 +33,12 @@ public class ExecutorTypeParameter extends AbstractExecutorType implements Execu
 	}
 
 	@Override
-	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
+	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 
 	@Override
-	public @NonNull DomainType getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
+	public @NonNull Type getCommonType(@NonNull IdResolver idResolver, @NonNull Type type) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 
@@ -64,7 +63,7 @@ public class ExecutorTypeParameter extends AbstractExecutorType implements Execu
 	}
 
 	@Override
-	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
+	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 

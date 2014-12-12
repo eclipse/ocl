@@ -14,6 +14,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
+import org.eclipse.ocl.pivot.Type;
 
 /**
  * A representation of the OCL Standard Library, which is the set of singleton
@@ -25,30 +26,30 @@ public interface DomainEnvironment
 	/**
 	 * Return the instance of the Bag metatype whose elements are of elementType.
 	 */
-	@NonNull DomainCollectionType getBagType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
+	@NonNull DomainCollectionType getBagType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
 	
 	/**
 	 * Return the specialized collection type for the containerType for elementType.
 	 */
-	@NonNull DomainCollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
+	@NonNull DomainCollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
 
 	org.eclipse.ocl.pivot.Package getNestedPackage(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name);
 	
-    DomainType getNestedType(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name);
+    Type getNestedType(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name);
 
 	/**
 	 * Return the instance of the OrderedSet metatype whose elements are of elementType.
 	 */
-	@NonNull DomainCollectionType getOrderedSetType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
+	@NonNull DomainCollectionType getOrderedSetType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
 
 	/**
 	 * Return the instance of the Sequence metatype whose elements are of elementType.
 	 */
-	@NonNull DomainCollectionType getSequenceType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
+	@NonNull DomainCollectionType getSequenceType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
 
 	@NonNull DomainStandardLibrary getStandardLibrary();
 	/**
 	 * Return the instance of the Set metatype whose elements are of elementType.
 	 */
-	@NonNull DomainCollectionType getSetType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
+	@NonNull DomainCollectionType getSetType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
 }

@@ -12,11 +12,11 @@ package org.eclipse.ocl.library.executor;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.AbstractExecutorProperty;
-import org.eclipse.ocl.domain.elements.DomainType;
+import org.eclipse.ocl.pivot.Type;
 
 public abstract class ExecutorProperty extends AbstractExecutorProperty		 // FIXME Make abstract merging AbstractExecutorProperty, eliminating 'implementation'
 {
-	protected ExecutorProperty(@NonNull String name, @NonNull DomainType executorType, int propertyIndex) {
+	protected ExecutorProperty(@NonNull String name, @NonNull Type executorType, int propertyIndex) {
 		super(name, executorType, propertyIndex);
 	}
 }

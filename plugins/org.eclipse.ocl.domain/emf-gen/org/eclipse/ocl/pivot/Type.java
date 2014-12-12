@@ -12,12 +12,17 @@ package org.eclipse.ocl.pivot;
 
 import java.util.List;
 
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.domain.elements.DomainInheritance;
+import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.domain.ids.TypeId;
+import org.eclipse.ocl.domain.types.IdResolver;
+import org.eclipse.ocl.domain.values.OCLValue;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Type</b></em>'.
- * @extends org.eclipse.ocl.domain.elements.DomainType
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -35,8 +40,7 @@ import org.eclipse.jdt.annotation.Nullable;
  * @see org.eclipse.ocl.pivot.PivotPackage#getType()
  * @generated
  */
-public interface Type
-		extends NamedElement, org.eclipse.ocl.domain.elements.DomainType {
+public interface Type extends NamedElement, OCLValue {
 
 	/**
 	 * Returns the value of the '<em><b>Extended Bys</b></em>' reference list.
@@ -60,20 +64,10 @@ public interface Type
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	Type flattenedType();
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-//	Type specializeIn(/*@NonNull*/ CallExp expr, Type selfType);
-
-	@Override
 	@Nullable org.eclipse.ocl.pivot.Class isClass();
 
-	@Override
 	@Nullable TemplateParameter isTemplateParameter();
 
 	/**
@@ -82,5 +76,42 @@ public interface Type
 	 * @generated
 	 */
 	Type specializeIn(OCLExpression expr, Type selfType);
+	
+	/**
+	 * Return true if this type conform to thatType within standardLibrary.
+	 */
+	boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type thatType);
+	
+	/**
+	 * Return the most derived type common to this type and thatType within standardLibrary.
+	 */
+	@NonNull Type getCommonType(@NonNull IdResolver idResolver, @NonNull Type thatType);
 
+	/**
+	 * Return the inheritance description for this type within standardLibrary.
+	 */
+	@NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary);
+	
+	/**
+	 * Return the unique executable form of this type within standardLibrary.
+	 */
+	@NonNull org.eclipse.ocl.pivot.Class getNormalizedType(@NonNull DomainStandardLibrary standardLibrary);
+
+	/**
+	 * Return a unique StandardLibrary-independent identifier for this type.
+	 */
+	@NonNull TypeId getTypeId();
+	
+	/**
+	 * Return true if this is the same type as thatType within standardLibrary.
+	 */
+	boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type thatType);
+	boolean isEqualToUnspecializedType(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type);
+	
+	/**
+	 * Return true if this is an invalid type (with an associated error message).
+	 */
+//	boolean isInvalid();
+
+	/*@NonNull*/ Type specializeIn(@NonNull CallExp expr, @Nullable Type selfType);
 } // Type

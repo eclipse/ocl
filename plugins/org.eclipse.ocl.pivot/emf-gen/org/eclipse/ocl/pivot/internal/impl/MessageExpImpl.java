@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.types.IdResolver;
@@ -358,7 +357,7 @@ public class MessageExpImpl
 		        if (target == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
-		        final @Nullable /*@Thrown*/ DomainType type = target.getType();
+		        final @Nullable /*@Thrown*/ Type type = target.getType();
 		        final /*@Thrown*/ boolean self_71 = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_CollectionType_0).booleanValue();
 		        CAUGHT_self_71 = self_71;
 		    }

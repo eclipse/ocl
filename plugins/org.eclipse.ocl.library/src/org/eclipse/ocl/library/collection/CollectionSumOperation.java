@@ -13,13 +13,13 @@ package org.eclipse.ocl.library.collection;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.AbstractUnaryOperation;
 import org.eclipse.ocl.domain.values.CollectionValue;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.library.numeric.NumericPlusOperation;
+import org.eclipse.ocl.pivot.Type;
 
 /**
  * CollectionSumOperation realises the Collection::sum() library operation.
@@ -34,7 +34,7 @@ public class CollectionSumOperation extends AbstractUnaryOperation
 		// FIXME Bug 301351 Look for user-defined zero
 //			resultType.getZero();
 		DomainStandardLibrary standardLibrary = evaluator.getStandardLibrary();
-		DomainType returnType = evaluator.getIdResolver().getType(returnTypeId, null);
+		Type returnType = evaluator.getIdResolver().getType(returnTypeId, null);
 		Object result;
 		if (returnType.conformsTo(standardLibrary, standardLibrary.getIntegerType())) {
 			result = ValuesUtil.integerValueOf(0);

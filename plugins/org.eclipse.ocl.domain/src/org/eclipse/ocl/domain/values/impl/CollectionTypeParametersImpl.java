@@ -14,13 +14,13 @@ import java.util.NoSuchElementException;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.values.CollectionTypeParameters;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.Type;
 
-public class CollectionTypeParametersImpl<T extends DomainType> implements CollectionTypeParameters<T>
+public class CollectionTypeParametersImpl<T extends Type> implements CollectionTypeParameters<T>
 {
 	protected class Iterator implements java.util.Iterator<Object>
 	{

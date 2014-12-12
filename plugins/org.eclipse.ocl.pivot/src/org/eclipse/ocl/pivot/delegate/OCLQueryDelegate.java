@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainException;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
@@ -33,6 +32,7 @@ import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Query;
 import org.eclipse.ocl.pivot.SemanticException;
+import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.context.EInvocationContext;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
@@ -109,7 +109,7 @@ public class OCLQueryDelegate implements QueryDelegate
 			IdResolver idResolver = metaModelManager.getIdResolver();
 			Object targetValue = idResolver.boxedValueOf(target);
 			org.eclipse.ocl.pivot.Class targetType = idResolver.getStaticTypeOf(targetValue);
-			DomainType requiredType = nonNullSpecification.getContextVariable().getType();
+			Type requiredType = nonNullSpecification.getContextVariable().getType();
 			if ((requiredType == null) || !targetType.conformsTo(metaModelManager.getStandardLibrary(), requiredType)) {
 				String message = DomainUtil.bind(OCLMessages.WrongContextClassifier_ERROR_, targetType, requiredType);
 				throw new OCLDelegateException(new SemanticException(message));

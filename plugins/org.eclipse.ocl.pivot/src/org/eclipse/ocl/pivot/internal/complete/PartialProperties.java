@@ -19,8 +19,8 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.scoping.EnvironmentView.Disambiguator;
@@ -95,12 +95,12 @@ public class PartialProperties implements Iterable<Property>
 			return resolution;
 		}
 		List<Property> values = new ArrayList<Property>(partials);
-		Map<DomainType, Property> primaryProperties = new HashMap<DomainType, Property>();
+		Map<Type, Property> primaryProperties = new HashMap<Type, Property>();
 		for (Property property : values) {
 			if (property != null) {
 				org.eclipse.ocl.pivot.Class owningType = property.getOwningClass();
 				if (owningType != null) {
-					DomainType domainType = metaModelManager.getPrimaryType(owningType);
+					Type domainType = metaModelManager.getPrimaryType(owningType);
 					if (!primaryProperties.containsKey(domainType)) {
 						primaryProperties.put(domainType, property);	// FIXME something more deterministic than first
 					}

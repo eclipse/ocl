@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.types.IdResolver;
@@ -172,8 +171,8 @@ public abstract class TypedElementImpl
 		 * bodySpecification.type.conformsTo(self.type)
 		 */
 		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
-		final @Nullable /*@Thrown*/ DomainType type = bodySpecification.getType();
-		final @Nullable /*@Thrown*/ DomainType type_0 = this.getType();
+		final @Nullable /*@Thrown*/ Type type = bodySpecification.getType();
+		final @Nullable /*@Thrown*/ Type type_0 = this.getType();
 		final /*@Thrown*/ boolean conformsTo = OclTypeConformsToOperation.INSTANCE.evaluate(evaluator, type, type_0).booleanValue();
 		return conformsTo;
 	}

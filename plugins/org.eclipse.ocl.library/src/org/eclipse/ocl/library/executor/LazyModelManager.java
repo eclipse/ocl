@@ -21,8 +21,8 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainModelManager;
+import org.eclipse.ocl.pivot.Type;
 import org.omg.CORBA.Environment;
 
 /**
@@ -52,7 +52,7 @@ import org.omg.CORBA.Environment;
  */
 public abstract class LazyModelManager implements DomainModelManager {
 
-	private final Map<DomainType, Set<EObject>> modelManager = new HashMap<DomainType, Set<EObject>>();
+	private final Map<Type, Set<EObject>> modelManager = new HashMap<Type, Set<EObject>>();
 	private final Collection<EObject> roots;
 	
 	/**
@@ -109,7 +109,7 @@ public abstract class LazyModelManager implements DomainModelManager {
      * @return <code>true</code> if this element is an instance of the given
      *    class; <code>false</code> otherwise
      */
-	protected abstract boolean isInstance(@NonNull DomainType type, @NonNull EObject element);
+	protected abstract boolean isInstance(@NonNull Type type, @NonNull EObject element);
 	
 	@Override
     public String toString() {

@@ -15,7 +15,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainType;
 
 /**
  * <!-- begin-user-doc -->
@@ -120,7 +119,7 @@ public interface CompletePackage extends NamedElement, org.eclipse.ocl.domain.el
 	@Override
 	EPackage getEPackage();
 
-	DomainType getType(String metatypeName);
+	Type getType(String metatypeName);
 
 	@Nullable CompletePackage getOwnedCompletePackage(@Nullable String name);
 

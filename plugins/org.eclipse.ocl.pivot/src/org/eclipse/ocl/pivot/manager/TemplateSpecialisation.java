@@ -18,13 +18,13 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TupleType;
+import org.eclipse.ocl.pivot.Type;
 
 /**
  * A TemplateSpecialisation supports resolution of template parameter within an element referenced from an OCL expression.
@@ -42,7 +42,7 @@ public class TemplateSpecialisation
 	/**
 	 * Return true if a referencedType needs specialisation to resolve a template parameter.
 	 */
-	public static boolean needsSpecialisation(@Nullable DomainType referencedType)
+	public static boolean needsSpecialisation(@Nullable Type referencedType)
 	{
 		if (referencedType == null) {
 			return true;
@@ -52,13 +52,13 @@ public class TemplateSpecialisation
 			return true;
 		}
 		if (referencedType instanceof DomainCollectionType) {
-			DomainType elementType = ((DomainCollectionType)referencedType).getElementType();
+			Type elementType = ((DomainCollectionType)referencedType).getElementType();
 			return needsSpecialisation(elementType);
 		}
 		if (referencedType instanceof TupleType) {
 			TupleType tupleType = (TupleType)referencedType;
 			for (Property tuplePart : tupleType.getOwnedProperties()) {
-				DomainType tuplePartType = tuplePart.getType();
+				Type tuplePartType = tuplePart.getType();
 				if (needsSpecialisation(tuplePartType)) {
 					return true;
 				}
@@ -67,15 +67,15 @@ public class TemplateSpecialisation
 		}
 		if (referencedType instanceof LambdaType) {
 			LambdaType lambdaType = (LambdaType)referencedType;
-			DomainType contextType = lambdaType.getContextType();
+			Type contextType = lambdaType.getContextType();
 			if (needsSpecialisation(contextType)) {
 				return true;
 			}
-			DomainType resultType = lambdaType.getResultType();
+			Type resultType = lambdaType.getResultType();
 			if (needsSpecialisation(resultType)) {
 				return true;
 			}
-			for (DomainType parameterType : lambdaType.getParameterTypes()) {
+			for (Type parameterType : lambdaType.getParameterTypes()) {
 				if (needsSpecialisation(parameterType)) {
 					return true;
 				}
@@ -93,7 +93,7 @@ public class TemplateSpecialisation
 
 	protected final @NonNull DomainEnvironment environment;
 //	protected final @NonNull DomainStandardLibrary standardLibrary;
-	protected /*@LazyNonNull*/ Map<TemplateParameter, DomainType> bindings = null;
+	protected /*@LazyNonNull*/ Map<TemplateParameter, Type> bindings = null;
 
 	public TemplateSpecialisation(@NonNull DomainEnvironment environment) {
 		this.environment = environment;
@@ -104,7 +104,7 @@ public class TemplateSpecialisation
 	 * Return the specialisation of referencedType if distinct from referencedType.
 	 * Returns null if specialisation not available or not distinct from referencedType.
 	 */
-	private @Nullable DomainType getResolution(@Nullable DomainType referencedType) {
+	private @Nullable Type getResolution(@Nullable Type referencedType) {
 		if (referencedType != null) {
 			TemplateParameter templateParameter = referencedType.isTemplateParameter();
 			if (templateParameter != null) {
@@ -113,7 +113,7 @@ public class TemplateSpecialisation
 		}
 		if (referencedType instanceof DomainCollectionType) {
 			DomainCollectionType collectionType = (DomainCollectionType)referencedType;
-			DomainType elementType = getResolution(collectionType.getElementType());
+			Type elementType = getResolution(collectionType.getElementType());
 			if (elementType == null) {
 				elementType = environment.getStandardLibrary().getOclAnyType();
 			}
@@ -131,12 +131,12 @@ public class TemplateSpecialisation
 		return null;
 	}
 
-	public org.eclipse.ocl.pivot.Class getSpecialisation(@NonNull DomainType referredType) {
-		DomainType specialisation = getResolution(referredType);
+	public org.eclipse.ocl.pivot.Class getSpecialisation(@NonNull Type referredType) {
+		Type specialisation = getResolution(referredType);
 		return (org.eclipse.ocl.pivot.Class) (specialisation != null ? specialisation : referredType);	// FIXME cast
 	}
 	
-	public void installEquivalence(@Nullable DomainType resolvedType, @Nullable DomainType referencedType) {
+	public void installEquivalence(@Nullable Type resolvedType, @Nullable Type referencedType) {
 		if (resolvedType == null) {
 			return;
 		}
@@ -146,7 +146,7 @@ public class TemplateSpecialisation
 		TemplateParameter templateParameter = referencedType.isTemplateParameter();
 		if (templateParameter != null) {
 			if (bindings == null) {
-				bindings = new HashMap<TemplateParameter, DomainType>();
+				bindings = new HashMap<TemplateParameter, Type>();
 			}
 			if (bindings.put(templateParameter, resolvedType) != null) {
 				bindings.put(templateParameter, null);
@@ -155,8 +155,8 @@ public class TemplateSpecialisation
 		}
 		if (referencedType instanceof DomainCollectionType) {
 			if (resolvedType instanceof DomainCollectionType) {
-				DomainType resolvedElementType = ((DomainCollectionType)resolvedType).getElementType();
-				DomainType referencedElementType = ((DomainCollectionType)referencedType).getElementType();
+				Type resolvedElementType = ((DomainCollectionType)resolvedType).getElementType();
+				Type referencedElementType = ((DomainCollectionType)referencedType).getElementType();
 				installEquivalence(resolvedElementType, referencedElementType);
 			}
 			return;
@@ -169,8 +169,8 @@ public class TemplateSpecialisation
 				for (Property resolvedTuplePart : resolvedTupleType.getOwnedProperties()) {
 					Property referencedTuplePart = DomainUtil.getNamedElement(referencedTupleParts, resolvedTuplePart.getName());
 					if (referencedTuplePart != null) {
-						DomainType resolvedTuplePartType = resolvedTuplePart.getType();
-						DomainType referencedTuplePartType = referencedTuplePart.getType();
+						Type resolvedTuplePartType = resolvedTuplePart.getType();
+						Type referencedTuplePartType = referencedTuplePart.getType();
 						installEquivalence(resolvedTuplePartType, referencedTuplePartType);
 					}
 				}
@@ -183,11 +183,11 @@ public class TemplateSpecialisation
 				LambdaType resolvedLambdaType = (LambdaType)resolvedType;
 				installEquivalence(resolvedLambdaType.getContextType(), referencedLambdaType.getContextType());
 				installEquivalence(resolvedLambdaType.getResultType(), referencedLambdaType.getResultType());
-				List<? extends DomainType> resolvedParameterTypes = resolvedLambdaType.getParameterTypes();
-				List<? extends DomainType> referencedParameterTypes = referencedLambdaType.getParameterTypes();
+				List<? extends Type> resolvedParameterTypes = resolvedLambdaType.getParameterTypes();
+				List<? extends Type> referencedParameterTypes = referencedLambdaType.getParameterTypes();
 				for (int i = 0; i < Math.min(resolvedParameterTypes.size(), referencedParameterTypes.size()); i++) {
-					DomainType resolvedParameterType = resolvedParameterTypes.get(i);
-					DomainType referencedParameterType = referencedParameterTypes.get(i);
+					Type resolvedParameterType = resolvedParameterTypes.get(i);
+					Type referencedParameterType = referencedParameterTypes.get(i);
 					installEquivalence(resolvedParameterType, referencedParameterType);
 				}
 			}

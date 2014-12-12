@@ -15,7 +15,6 @@ import java.util.Set;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainElement;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
@@ -23,6 +22,7 @@ import org.eclipse.ocl.domain.library.AbstractProperty;
 import org.eclipse.ocl.domain.values.OrderedSetValue;
 import org.eclipse.ocl.domain.values.impl.OrderedSetImpl;
 import org.eclipse.ocl.pivot.Enumeration;
+import org.eclipse.ocl.pivot.Type;
 
 /**
  * EnumerationOwnedLiteralProperty realizes the Enumeration::ownedLiteral() library property.
@@ -33,7 +33,7 @@ public class EnumerationOwnedLiteralProperty extends AbstractProperty
 
 	@Override
 	public @NonNull OrderedSetValue evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
-		DomainType sourceType = asType(sourceValue);
+		Type sourceType = asType(sourceValue);
 		Set<Object> results = new OrderedSetImpl<Object>();
 		for (DomainElement instance : ((Enumeration)sourceType).getOwnedLiteral()) {
 			if (instance != null) {

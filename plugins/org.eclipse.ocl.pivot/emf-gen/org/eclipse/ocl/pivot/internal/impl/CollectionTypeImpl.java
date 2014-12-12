@@ -21,7 +21,6 @@ import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.TypeId;
@@ -578,7 +577,7 @@ public class CollectionTypeImpl
 	}
 	
 	@Override
-	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
+	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
 		if (this == type) {
 			return true;
 		}
@@ -597,7 +596,7 @@ public class CollectionTypeImpl
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
+	public @NonNull org.eclipse.ocl.pivot.Class getCommonType(@NonNull IdResolver idResolver, @NonNull Type type) {
 		DomainEnvironment environment = idResolver.getEnvironment();
 		DomainStandardLibrary standardLibrary = environment.getStandardLibrary();
 		DomainInheritance thisInheritance = this.getInheritance(standardLibrary);
@@ -605,9 +604,9 @@ public class CollectionTypeImpl
 		DomainInheritance commonInheritance = thisInheritance.getCommonInheritance(thatInheritance);
 		org.eclipse.ocl.pivot.Class commonType = commonInheritance.getType();
 		if (type instanceof DomainCollectionType) {
-			DomainType thisElementType = this.getElementType();
-			DomainType thatElementType = DomainUtil.nonNullEMF(((DomainCollectionType)type).getElementType());
-			DomainType commonElementType = thisElementType.getCommonType(idResolver, thatElementType);
+			Type thisElementType = this.getElementType();
+			Type thatElementType = DomainUtil.nonNullEMF(((DomainCollectionType)type).getElementType());
+			Type commonElementType = thisElementType.getCommonType(idResolver, thatElementType);
 			if (commonInheritance instanceof CompleteInheritanceImpl) {
 				DomainCollectionType commonCollectionType = (DomainCollectionType)commonType;
 				return environment.getCollectionType(commonCollectionType, commonElementType, null, null);
@@ -648,7 +647,7 @@ public class CollectionTypeImpl
 	}
 
 	@Override
-	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
+	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
 		if (this == type) {
 			return true;
 		}

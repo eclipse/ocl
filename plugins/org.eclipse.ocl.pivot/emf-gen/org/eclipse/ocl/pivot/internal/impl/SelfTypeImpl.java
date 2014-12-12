@@ -17,8 +17,8 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.OCLExpression;
@@ -105,7 +105,7 @@ public class SelfTypeImpl extends ClassImpl implements SelfType
 	}
 
 	@Override
-	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
+	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
 		if (this == type) {
 			return true;
 		}
@@ -116,17 +116,17 @@ public class SelfTypeImpl extends ClassImpl implements SelfType
 	public Type specializeIn(final /*@NonNull*/ OCLExpression expr, final Type selfType)
 	{
 		assert expr != null;
-		return (Type) specializeIn((CallExp)expr, (DomainType)selfType);
+		return specializeIn((CallExp)expr, selfType);
 	}
 
 	@Override
-	public DomainType specializeIn(@NonNull CallExp expr, DomainType selfType) {
+	public Type specializeIn(@NonNull CallExp expr, @Nullable Type selfType) {
 		if (selfType instanceof org.eclipse.ocl.pivot.Class) {
 			TemplateSignature templateSignature = ((TemplateableElement)selfType).getOwnedTemplateSignature();
 			if (templateSignature != null) {
 				MetaModelManager metaModelManager = PivotUtil.findMetaModelManager(expr);
 				if (metaModelManager != null) {
-					return metaModelManager.specializeType((Type)selfType, expr, (Type)selfType, null); // FIXME is this a no-op
+					return metaModelManager.specializeType(selfType, expr, selfType, null); // FIXME is this a no-op
 				}
 				else {
 					return null;

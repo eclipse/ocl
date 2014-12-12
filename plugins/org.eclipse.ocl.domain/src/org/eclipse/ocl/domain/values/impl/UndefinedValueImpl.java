@@ -21,7 +21,6 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainException;
 import org.eclipse.ocl.domain.ids.OclVoidTypeId;
 import org.eclipse.ocl.domain.ids.TuplePartId;
@@ -47,6 +46,7 @@ import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.UnlimitedValue;
 import org.eclipse.ocl.domain.values.Value;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.Type;
 
 /**
  * @generated NOT
@@ -344,7 +344,7 @@ public abstract class UndefinedValueImpl extends DomainException implements Null
 		return toInvalidValue();
 	}
 
-	public DomainType getElement() {
+	public Type getElement() {
 		return null;
 	}
     
@@ -353,7 +353,7 @@ public abstract class UndefinedValueImpl extends DomainException implements Null
 		throw new InvalidValueException("bad getElements()");
 	}
 
-	public @NonNull DomainType getInstanceType() {
+	public @NonNull Type getInstanceType() {
 		throw new InvalidValueException("undefined value has no instance type");
 	}
 	

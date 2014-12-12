@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.TemplateParameter;
+import org.eclipse.ocl.pivot.Type;
 
 /**
  * DomainTypeParameters provides a hashable list of type
@@ -23,25 +24,25 @@ public class DomainTypeParameters
 {
 	public static final @NonNull DomainTypeParameters EMPTY_LIST = new DomainTypeParameters();
 	
-	private final @NonNull DomainType[] typeParameters;
+	private final @NonNull Type[] typeParameters;
 	private final int hashCode;
 
 	public DomainTypeParameters(@NonNull TemplateParameter... typeParameters) {
-		this.typeParameters = new DomainType[typeParameters.length];
+		this.typeParameters = new Type[typeParameters.length];
 		int hash = 0;
 		for (int i = 0; i < typeParameters.length; i++) {
-			DomainType parameter = typeParameters[i];
+			Type parameter = typeParameters[i];
 			hash = 111 * hash + parameter.hashCode();
 			this.typeParameters[i] = parameter;
 		}
 		hashCode = hash;
 	}
 	
-	public DomainTypeParameters(@NonNull List<? extends DomainType> parameters) {
-		typeParameters = new DomainType[parameters.size()];
+	public DomainTypeParameters(@NonNull List<? extends Type> parameters) {
+		typeParameters = new Type[parameters.size()];
 		int hash = 0;
 		for (int i = 0; i < typeParameters.length; i++) {
-			DomainType parameter = parameters.get(i);
+			Type parameter = parameters.get(i);
 			hash = 111 * hash + parameter.hashCode();
 			this.typeParameters[i] = parameter;
 		}
@@ -62,8 +63,8 @@ public class DomainTypeParameters
 			return false;
 		}
 		for (int i = 0; i < iMax; i++) {
-			DomainType thisParameter = this.typeParameters[i];
-			DomainType thatParameter = that.typeParameters[i];
+			Type thisParameter = this.typeParameters[i];
+			Type thatParameter = that.typeParameters[i];
 			if (thisParameter != null) {
 				if (thatParameter != null) {
 					if (!thisParameter.equals(thatParameter)) {
@@ -86,7 +87,7 @@ public class DomainTypeParameters
 	}
 
 	@SuppressWarnings("null")
-	public @NonNull DomainType get(int i) {
+	public @NonNull Type get(int i) {
 		return typeParameters[i];
 	}		
 

@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
@@ -280,7 +279,7 @@ public class IfExpImpl
 		    if (condition == null) {
 		        throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		    }
-		    final @Nullable /*@Thrown*/ DomainType type = condition.getType();
+		    final @Nullable /*@Thrown*/ Type type = condition.getType();
 		    final /*@Thrown*/ boolean eq = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : ValuesUtil.throwBooleanInvalidValueException("null equal input");
 		    ;
 		    CAUGHT_eq = eq;

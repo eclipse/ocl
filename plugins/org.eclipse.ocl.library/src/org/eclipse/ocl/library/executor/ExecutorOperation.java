@@ -18,7 +18,6 @@ import org.eclipse.ocl.domain.elements.AbstractExecutorOperation;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainParameterTypes;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.ids.OperationId;
 import org.eclipse.ocl.domain.ids.ParametersId;
@@ -28,6 +27,7 @@ import org.eclipse.ocl.library.oclany.OclAnyUnsupportedOperation;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.Type;
 
 public class ExecutorOperation extends AbstractExecutorOperation
 {
@@ -36,7 +36,7 @@ public class ExecutorOperation extends AbstractExecutorOperation
 	protected final @NonNull LibraryFeature implementation;
 	protected final @NonNull DomainTypeParameters typeParameters;
 	
-	public ExecutorOperation(@NonNull String name, @NonNull DomainParameterTypes parameterTypes, @NonNull DomainType type, int index, @NonNull DomainTypeParameters typeParameters, @Nullable LibraryFeature implementation) {
+	public ExecutorOperation(@NonNull String name, @NonNull DomainParameterTypes parameterTypes, @NonNull Type type, int index, @NonNull DomainTypeParameters typeParameters, @Nullable LibraryFeature implementation) {
 		super(name, type);
 		this.parameterTypes = parameterTypes;
 		this.index = index;
@@ -61,7 +61,7 @@ public class ExecutorOperation extends AbstractExecutorOperation
 
 	@Override
 	public final @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
-		return (DomainInheritance) executorType;
+		return (DomainInheritance) type;
 	}
 
 	@Override
@@ -120,7 +120,7 @@ public class ExecutorOperation extends AbstractExecutorOperation
 
 	@Override
 	public @NonNull TypeId getTypeId() {
-		DomainType type2 = getType();
+		Type type2 = getType();
 		return type2.getTypeId();
 	}
 
@@ -136,6 +136,6 @@ public class ExecutorOperation extends AbstractExecutorOperation
 
 	@Override
 	public String toString() {
-		return executorType.toString() + "::" + name; //$NON-NLS-1$
+		return type.toString() + "::" + name; //$NON-NLS-1$
 	}
 }

@@ -12,9 +12,9 @@ package org.eclipse.ocl.library.oclany;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.library.AbstractSimpleBinaryOperation;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
+import org.eclipse.ocl.pivot.Type;
 
 /**
  * OclAnyEqualOperation realises the OCLAny::=() library operation and
@@ -39,8 +39,8 @@ public class OclAnyEqualOperation extends AbstractSimpleBinaryOperation
 		if (left == null) {
 			return right == null;
 		}
-		else if ((left instanceof DomainType) && (right instanceof DomainType)){
-			boolean result = ((DomainType) left).getTypeId().equals(((DomainType) right).getTypeId());		// FIXME is this a sound/efficient tradeoff for not boxing?
+		else if ((left instanceof Type) && (right instanceof Type)){
+			boolean result = ((Type) left).getTypeId().equals(((Type) right).getTypeId());		// FIXME is this a sound/efficient tradeoff for not boxing?
 			return result;
 		}
 		else {

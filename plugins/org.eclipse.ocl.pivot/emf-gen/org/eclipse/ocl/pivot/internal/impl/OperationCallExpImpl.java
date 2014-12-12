@@ -30,7 +30,6 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.types.IdResolver;
@@ -544,12 +543,12 @@ public class OperationCallExpImpl
 		            if (parameter == null) {
 		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		            }
-		            final @Nullable /*@Thrown*/ DomainType parameterType = parameter.getType();
+		            final @Nullable /*@Thrown*/ Type parameterType = parameter.getType();
 		            final @Nullable /*@Thrown*/ Boolean isTypeof = parameter.isTypeof();
 		            if (isTypeof == null) {
 		                throw new InvalidValueException("Null if condition");
 		            }
-		            @NonNull /*@Thrown*/ DomainType requiredType;
+		            @NonNull /*@Thrown*/ Type requiredType;
 		            if (isTypeof) {
 		                final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Class_0 = idResolver.getClass(PivotTables.CLSSid_Class, null);
 		                requiredType = TYP_Class_0;
@@ -558,13 +557,13 @@ public class OperationCallExpImpl
 		                if (parameterType == null) {
 		                    throw new InvalidValueException("Null source for \'pivot::Type::specializeIn(pivot::OCLExpression,pivot::Type) : pivot::Type\'");
 		                }
-		                final @NonNull /*@Thrown*/ DomainType specializeIn = parameterType.specializeIn(this, (Type)selfType_1);
+		                final @NonNull /*@Thrown*/ Type specializeIn = parameterType.specializeIn(this, selfType_1);
 		                requiredType = specializeIn;
 		            }
 		            if (argument_1 == null) {
 		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		            }
-		            final @Nullable /*@Thrown*/ DomainType type = argument_1.getType();
+		            final @Nullable /*@Thrown*/ Type type = argument_1.getType();
 		            final /*@Thrown*/ boolean conformsTo = OclTypeConformsToOperation.INSTANCE.evaluate(evaluator, type, requiredType).booleanValue();
 		            CAUGHT_conformsTo = conformsTo;
 		        }

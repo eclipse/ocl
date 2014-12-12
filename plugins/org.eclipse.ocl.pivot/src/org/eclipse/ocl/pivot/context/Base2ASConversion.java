@@ -22,7 +22,7 @@ import org.eclipse.ocl.pivot.Type;
 
 public interface Base2ASConversion
 {
-	void setContextVariable(@NonNull ExpressionInOCL pivotSpecification, @NonNull String selfVariableName, @NonNull Type contextType, @Nullable Type contextInstance);
+	void setContextVariable(@NonNull ExpressionInOCL pivotSpecification, @NonNull String selfVariableName, @Nullable Type contextType, @Nullable Type contextInstance);
 	void setClassifierContext(@NonNull ExpressionInOCL pivotSpecification, @NonNull Type contextType);
 	void setParameterVariables(@NonNull ExpressionInOCL pivotSpecification, @NonNull List<Parameter> parameters);
 	void setParameterVariables(@NonNull ExpressionInOCL pivotSpecification, @NonNull Map<String, Type> parameters);

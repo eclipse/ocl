@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
@@ -324,17 +323,17 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
 		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pivot_c_c_CollectionType_0 = idResolver.getClass(PivotTables.CLSSid_CollectionType, null);
-		        final @Nullable /*@Thrown*/ DomainType type = this.getType();
+		        final @Nullable /*@Thrown*/ Type type = this.getType();
 		        final @Nullable /*@Thrown*/ OCLExpression source = this.getSource();
 		        if (source == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
-		        final @Nullable /*@Thrown*/ DomainType type_0 = source.getType();
+		        final @Nullable /*@Thrown*/ Type type_0 = source.getType();
 		        final @Nullable /*@Thrown*/ CollectionType oclAsType = (CollectionType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, type_0, TYP_pivot_c_c_CollectionType_0);
 		        if (oclAsType == null) {
 		            throw new InvalidValueException("Null source for \'pivot::CollectionType::elementType\'");
 		        }
-		        final @Nullable /*@Thrown*/ DomainType elementType = oclAsType.getElementType();
+		        final @Nullable /*@Thrown*/ Type elementType = oclAsType.getElementType();
 		        final /*@Thrown*/ boolean b = (type != null) && (elementType != null) ? (type.getTypeId() == elementType.getTypeId()) : ValuesUtil.throwBooleanInvalidValueException("null equal input");
 		        ;
 		        CAUGHT_b = b;
@@ -444,7 +443,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		        if (body == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
-		        final @Nullable /*@Thrown*/ DomainType type = body.getType();
+		        final @Nullable /*@Thrown*/ Type type = body.getType();
 		        final /*@Thrown*/ boolean b = PivotTables.STR_Boolean.equals(type);
 		        CAUGHT_b = b;
 		    }
@@ -667,7 +666,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		    @NonNull /*@Caught*/ Object CAUGHT_b_0;
 		    try {
-		        final @Nullable /*@Thrown*/ DomainType type_2 = this.getType();
+		        final @Nullable /*@Thrown*/ Type type_2 = this.getType();
 		        @NonNull /*@Caught*/ Object CAUGHT_self_72;
 		        try {
 		            final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pivot_c_c_SequenceType_0 = idResolver.getClass(PivotTables.CLSSid_SequenceType, null);
@@ -675,7 +674,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		            if (source == null) {
 		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		            }
-		            final @Nullable /*@Thrown*/ DomainType type = source.getType();
+		            final @Nullable /*@Thrown*/ Type type = source.getType();
 		            final /*@Thrown*/ boolean self_72 = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_SequenceType_0).booleanValue();
 		            CAUGHT_self_72 = self_72;
 		        }
@@ -689,7 +688,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		            if (source_0 == null) {
 		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		            }
-		            final @Nullable /*@Thrown*/ DomainType type_0 = source_0.getType();
+		            final @Nullable /*@Thrown*/ Type type_0 = source_0.getType();
 		            final /*@Thrown*/ boolean b = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type_0, TYP_pivot_c_c_OrderedSetType_0).booleanValue();
 		            CAUGHT_b = b;
 		        }
@@ -870,21 +869,21 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
 		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pivot_c_c_CollectionType_0 = idResolver.getClass(PivotTables.CLSSid_CollectionType, null);
-		        final @Nullable /*@Thrown*/ DomainType type = this.getType();
+		        final @Nullable /*@Thrown*/ Type type = this.getType();
 		        final @Nullable /*@Thrown*/ CollectionType oclAsType = (CollectionType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_CollectionType_0);
 		        if (oclAsType == null) {
 		            throw new InvalidValueException("Null source for \'pivot::CollectionType::elementType\'");
 		        }
-		        final @Nullable /*@Thrown*/ DomainType elementType = oclAsType.getElementType();
+		        final @Nullable /*@Thrown*/ Type elementType = oclAsType.getElementType();
 		        final @Nullable /*@Thrown*/ OCLExpression body = this.getBody();
 		        if (body == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
-		        final @Nullable /*@Thrown*/ DomainType type_0 = body.getType();
+		        final @Nullable /*@Thrown*/ Type type_0 = body.getType();
 		        if (type_0 == null) {
 		            throw new InvalidValueException("Null source for \'pivot::Type::flattenedType() : pivot::Type\'");
 		        }
-		        final @NonNull /*@Thrown*/ DomainType flattenedType = type_0.flattenedType();
+		        final @NonNull /*@Thrown*/ Type flattenedType = type_0.flattenedType();
 		        final /*@Thrown*/ boolean b = (elementType != null) ? (elementType.getTypeId() == flattenedType.getTypeId()) : ValuesUtil.throwBooleanInvalidValueException("null equal input");
 		        ;
 		        CAUGHT_b = b;
@@ -1003,25 +1002,25 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		        if (body_1 == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
-		        final @Nullable /*@Thrown*/ DomainType type_2 = body_1.getType();
+		        final @Nullable /*@Thrown*/ Type type_2 = body_1.getType();
 		        final @Nullable /*@Thrown*/ OCLExpression source = this.getSource();
 		        if (source == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
-		        final @Nullable /*@Thrown*/ DomainType type = source.getType();
+		        final @Nullable /*@Thrown*/ Type type = source.getType();
 		        final @Nullable /*@Thrown*/ CollectionType oclAsType = (CollectionType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_CollectionType_1);
 		        if (oclAsType == null) {
 		            throw new InvalidValueException("Null source for \'pivot::CollectionType::elementType\'");
 		        }
-		        final @Nullable /*@Thrown*/ DomainType elementType = oclAsType.getElementType();
+		        final @Nullable /*@Thrown*/ Type elementType = oclAsType.getElementType();
 		        final /*@Thrown*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type_2, TYP_pivot_c_c_CollectionType_1).booleanValue();
-		        @Nullable /*@Thrown*/ DomainType symbol_0;
+		        @Nullable /*@Thrown*/ Type symbol_0;
 		        if (oclIsKindOf) {
 		            final @Nullable /*@Thrown*/ CollectionType oclAsType_0 = (CollectionType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, type_2, TYP_pivot_c_c_CollectionType_1);
 		            if (oclAsType_0 == null) {
 		                throw new InvalidValueException("Null source for \'pivot::CollectionType::elementType\'");
 		            }
-		            final @Nullable /*@Thrown*/ DomainType elementType_0 = oclAsType_0.getElementType();
+		            final @Nullable /*@Thrown*/ Type elementType_0 = oclAsType_0.getElementType();
 		            symbol_0 = elementType_0;
 		        }
 		        else {
@@ -1138,22 +1137,22 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
 		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pivot_c_c_CollectionType_1 = idResolver.getClass(PivotTables.CLSSid_CollectionType, null);
-		        final @Nullable /*@Thrown*/ DomainType type = this.getType();
+		        final @Nullable /*@Thrown*/ Type type = this.getType();
 		        final @Nullable /*@Thrown*/ CollectionType oclAsType = (CollectionType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_CollectionType_1);
 		        if (oclAsType == null) {
 		            throw new InvalidValueException("Null source for \'pivot::CollectionType::elementType\'");
 		        }
-		        final @Nullable /*@Thrown*/ DomainType elementType = oclAsType.getElementType();
+		        final @Nullable /*@Thrown*/ Type elementType = oclAsType.getElementType();
 		        final @Nullable /*@Thrown*/ OCLExpression source = this.getSource();
 		        if (source == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
-		        final @Nullable /*@Thrown*/ DomainType type_0 = source.getType();
+		        final @Nullable /*@Thrown*/ Type type_0 = source.getType();
 		        final @Nullable /*@Thrown*/ CollectionType oclAsType_0 = (CollectionType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, type_0, TYP_pivot_c_c_CollectionType_1);
 		        if (oclAsType_0 == null) {
 		            throw new InvalidValueException("Null source for \'pivot::CollectionType::elementType\'");
 		        }
-		        final @Nullable /*@Thrown*/ DomainType elementType_0 = oclAsType_0.getElementType();
+		        final @Nullable /*@Thrown*/ Type elementType_0 = oclAsType_0.getElementType();
 		        final /*@Thrown*/ boolean b = (elementType != null) && (elementType_0 != null) ? (elementType.getTypeId() == elementType_0.getTypeId()) : ValuesUtil.throwBooleanInvalidValueException("null equal input");
 		        ;
 		        CAUGHT_b = b;
@@ -1377,7 +1376,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		    @NonNull /*@Caught*/ Object CAUGHT_b_0;
 		    try {
-		        final @Nullable /*@Thrown*/ DomainType type_2 = this.getType();
+		        final @Nullable /*@Thrown*/ Type type_2 = this.getType();
 		        @NonNull /*@Caught*/ Object CAUGHT_self_72;
 		        try {
 		            final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pivot_c_c_SequenceType_0 = idResolver.getClass(PivotTables.CLSSid_SequenceType, null);
@@ -1385,7 +1384,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		            if (source == null) {
 		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		            }
-		            final @Nullable /*@Thrown*/ DomainType type = source.getType();
+		            final @Nullable /*@Thrown*/ Type type = source.getType();
 		            final /*@Thrown*/ boolean self_72 = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_SequenceType_0).booleanValue();
 		            CAUGHT_self_72 = self_72;
 		        }
@@ -1399,7 +1398,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		            if (source_0 == null) {
 		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		            }
-		            final @Nullable /*@Thrown*/ DomainType type_0 = source_0.getType();
+		            final @Nullable /*@Thrown*/ Type type_0 = source_0.getType();
 		            final /*@Thrown*/ boolean b = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type_0, TYP_pivot_c_c_OrderedSetType_0).booleanValue();
 		            CAUGHT_b = b;
 		        }
@@ -1689,7 +1688,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
 		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pivot_c_c_BagType_0 = idResolver.getClass(PivotTables.CLSSid_BagType, null);
-		        final @Nullable /*@Thrown*/ DomainType type = this.getType();
+		        final @Nullable /*@Thrown*/ Type type = this.getType();
 		        final /*@Thrown*/ boolean b = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_BagType_0).booleanValue();
 		        CAUGHT_b = b;
 		    }
@@ -1795,12 +1794,12 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    }
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
-		        final @Nullable /*@Thrown*/ DomainType type = this.getType();
+		        final @Nullable /*@Thrown*/ Type type = this.getType();
 		        final @Nullable /*@Thrown*/ OCLExpression body = this.getBody();
 		        if (body == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
-		        final @Nullable /*@Thrown*/ DomainType type_0 = body.getType();
+		        final @Nullable /*@Thrown*/ Type type_0 = body.getType();
 		        final /*@Thrown*/ boolean b = (type != null) && (type_0 != null) ? (type.getTypeId() == type_0.getTypeId()) : ValuesUtil.throwBooleanInvalidValueException("null equal input");
 		        ;
 		        CAUGHT_b = b;
@@ -1909,7 +1908,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
 		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Boolean_0 = idResolver.getClass(TypeId.BOOLEAN, null);
-		        final @Nullable /*@Thrown*/ DomainType type = this.getType();
+		        final @Nullable /*@Thrown*/ Type type = this.getType();
 		        final /*@Thrown*/ boolean b = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : ValuesUtil.throwBooleanInvalidValueException("null equal input");
 		        ;
 		        CAUGHT_b = b;
@@ -2022,7 +2021,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		        if (body == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
-		        final @Nullable /*@Thrown*/ DomainType type = body.getType();
+		        final @Nullable /*@Thrown*/ Type type = body.getType();
 		        final /*@Thrown*/ boolean b = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : ValuesUtil.throwBooleanInvalidValueException("null equal input");
 		        ;
 		        CAUGHT_b = b;
@@ -2131,7 +2130,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
 		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Boolean_0 = idResolver.getClass(TypeId.BOOLEAN, null);
-		        final @Nullable /*@Thrown*/ DomainType type = this.getType();
+		        final @Nullable /*@Thrown*/ Type type = this.getType();
 		        final /*@Thrown*/ boolean b = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : ValuesUtil.throwBooleanInvalidValueException("null equal input");
 		        ;
 		        CAUGHT_b = b;
@@ -2244,7 +2243,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		        if (body == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
-		        final @Nullable /*@Thrown*/ DomainType type = body.getType();
+		        final @Nullable /*@Thrown*/ Type type = body.getType();
 		        final /*@Thrown*/ boolean b = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : ValuesUtil.throwBooleanInvalidValueException("null equal input");
 		        ;
 		        CAUGHT_b = b;
@@ -2462,7 +2461,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
 		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Boolean_0 = idResolver.getClass(TypeId.BOOLEAN, null);
-		        final @Nullable /*@Thrown*/ DomainType type = this.getType();
+		        final @Nullable /*@Thrown*/ Type type = this.getType();
 		        final /*@Thrown*/ boolean b = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : ValuesUtil.throwBooleanInvalidValueException("null equal input");
 		        ;
 		        CAUGHT_b = b;
@@ -2680,7 +2679,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
 		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Boolean_0 = idResolver.getClass(TypeId.BOOLEAN, null);
-		        final @Nullable /*@Thrown*/ DomainType type = this.getType();
+		        final @Nullable /*@Thrown*/ Type type = this.getType();
 		        final /*@Thrown*/ boolean b = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : ValuesUtil.throwBooleanInvalidValueException("null equal input");
 		        ;
 		        CAUGHT_b = b;
@@ -2793,7 +2792,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		        if (body == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
-		        final @Nullable /*@Thrown*/ DomainType type = body.getType();
+		        final @Nullable /*@Thrown*/ Type type = body.getType();
 		        final /*@Thrown*/ boolean b = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : ValuesUtil.throwBooleanInvalidValueException("null equal input");
 		        ;
 		        CAUGHT_b = b;
@@ -3151,12 +3150,12 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    }
 		    @NonNull /*@Caught*/ Object CAUGHT_b_0;
 		    try {
-		        final @Nullable /*@Thrown*/ DomainType type = this.getType();
+		        final @Nullable /*@Thrown*/ Type type = this.getType();
 		        final @Nullable /*@Thrown*/ OCLExpression source = this.getSource();
 		        if (source == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
-		        final @Nullable /*@Thrown*/ DomainType type_0 = source.getType();
+		        final @Nullable /*@Thrown*/ Type type_0 = source.getType();
 		        final /*@Thrown*/ boolean b_0 = (type != null) && (type_0 != null) ? (type.getTypeId() == type_0.getTypeId()) : ValuesUtil.throwBooleanInvalidValueException("null equal input");
 		        ;
 		        CAUGHT_b_0 = b_0;
@@ -3336,7 +3335,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    @NonNull /*@Caught*/ Object CAUGHT_b_0;
 		    try {
 		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Boolean_0 = idResolver.getClass(TypeId.BOOLEAN, null);
-		        final @Nullable /*@Thrown*/ DomainType type = this.getType();
+		        final @Nullable /*@Thrown*/ Type type = this.getType();
 		        final /*@Thrown*/ boolean b_0 = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : ValuesUtil.throwBooleanInvalidValueException("null equal input");
 		        ;
 		        CAUGHT_b_0 = b_0;
@@ -3560,7 +3559,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		    @NonNull /*@Caught*/ Object CAUGHT_b_0;
 		    try {
-		        final @Nullable /*@Thrown*/ DomainType type_2 = this.getType();
+		        final @Nullable /*@Thrown*/ Type type_2 = this.getType();
 		        @NonNull /*@Caught*/ Object CAUGHT_self_72;
 		        try {
 		            final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pivot_c_c_SequenceType_0 = idResolver.getClass(PivotTables.CLSSid_SequenceType, null);
@@ -3568,7 +3567,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		            if (source == null) {
 		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		            }
-		            final @Nullable /*@Thrown*/ DomainType type = source.getType();
+		            final @Nullable /*@Thrown*/ Type type = source.getType();
 		            final /*@Thrown*/ boolean self_72 = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_SequenceType_0).booleanValue();
 		            CAUGHT_self_72 = self_72;
 		        }
@@ -3582,7 +3581,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		            if (source_0 == null) {
 		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		            }
-		            final @Nullable /*@Thrown*/ DomainType type_0 = source_0.getType();
+		            final @Nullable /*@Thrown*/ Type type_0 = source_0.getType();
 		            final /*@Thrown*/ boolean b = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type_0, TYP_pivot_c_c_BagType_0).booleanValue();
 		            CAUGHT_b = b;
 		        }
@@ -3763,22 +3762,22 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
 		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pivot_c_c_CollectionType_1 = idResolver.getClass(PivotTables.CLSSid_CollectionType, null);
-		        final @Nullable /*@Thrown*/ DomainType type = this.getType();
+		        final @Nullable /*@Thrown*/ Type type = this.getType();
 		        final @Nullable /*@Thrown*/ CollectionType oclAsType = (CollectionType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_CollectionType_1);
 		        if (oclAsType == null) {
 		            throw new InvalidValueException("Null source for \'pivot::CollectionType::elementType\'");
 		        }
-		        final @Nullable /*@Thrown*/ DomainType elementType = oclAsType.getElementType();
+		        final @Nullable /*@Thrown*/ Type elementType = oclAsType.getElementType();
 		        final @Nullable /*@Thrown*/ OCLExpression body = this.getBody();
 		        if (body == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
-		        final @Nullable /*@Thrown*/ DomainType type_0 = body.getType();
+		        final @Nullable /*@Thrown*/ Type type_0 = body.getType();
 		        final @Nullable /*@Thrown*/ CollectionType oclAsType_0 = (CollectionType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, type_0, TYP_pivot_c_c_CollectionType_1);
 		        if (oclAsType_0 == null) {
 		            throw new InvalidValueException("Null source for \'pivot::CollectionType::elementType\'");
 		        }
-		        final @Nullable /*@Thrown*/ DomainType elementType_0 = oclAsType_0.getElementType();
+		        final @Nullable /*@Thrown*/ Type elementType_0 = oclAsType_0.getElementType();
 		        final /*@Thrown*/ boolean b = (elementType != null) && (elementType_0 != null) ? (elementType.getTypeId() == elementType_0.getTypeId()) : ValuesUtil.throwBooleanInvalidValueException("null equal input");
 		        ;
 		        CAUGHT_b = b;
@@ -3907,16 +3906,16 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		            if (source == null) {
 		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		            }
-		            final @Nullable /*@Thrown*/ DomainType type = source.getType();
+		            final @Nullable /*@Thrown*/ Type type = source.getType();
 		            final @Nullable /*@Thrown*/ CollectionType oclAsType = (CollectionType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_CollectionType_0);
 		            if (oclAsType == null) {
 		                throw new InvalidValueException("Null source for \'pivot::CollectionType::elementType\'");
 		            }
-		            final @Nullable /*@Thrown*/ DomainType elementType = oclAsType.getElementType();
+		            final @Nullable /*@Thrown*/ Type elementType = oclAsType.getElementType();
 		            if (_1 == null) {
 		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		            }
-		            final @Nullable /*@Thrown*/ DomainType type_0 = _1.getType();
+		            final @Nullable /*@Thrown*/ Type type_0 = _1.getType();
 		            final /*@Thrown*/ boolean conformsTo = OclTypeConformsToOperation.INSTANCE.evaluate(evaluator, elementType, type_0).booleanValue();
 		            CAUGHT_conformsTo = conformsTo;
 		        }

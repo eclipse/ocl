@@ -12,16 +12,16 @@ package org.eclipse.ocl.domain.types;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.AbstractExecutorTypedElement;
-import org.eclipse.ocl.domain.elements.DomainType;
+import org.eclipse.ocl.pivot.Type;
 
 public class AbstractTuplePart extends AbstractExecutorTypedElement
 {
-	public AbstractTuplePart(@NonNull DomainType type, @NonNull String name) {
+	public AbstractTuplePart(@NonNull Type type, @NonNull String name) {
 		super(name, type);
 	}
 
 	@Override
 	public String toString() {
-		return String.valueOf(name) + " : " + String.valueOf(executorType); //$NON-NLS-1$
+		return String.valueOf(name) + " : " + String.valueOf(type); //$NON-NLS-1$
 	}
 }

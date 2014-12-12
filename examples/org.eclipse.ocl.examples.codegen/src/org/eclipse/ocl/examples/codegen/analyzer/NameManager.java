@@ -19,7 +19,6 @@ import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.Nameable;
 import org.eclipse.ocl.domain.ids.ClassId;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
@@ -779,12 +778,12 @@ public class NameManager
 			String stringSymbol = ((StringLiteralExp)anObject).getStringSymbol();
 			return stringSymbol != null ? getStringNameHint(stringSymbol) : null;
 		}
-		else if (anObject instanceof DomainType) {
-			return getTypeNameHint((DomainType)anObject);
+		else if (anObject instanceof Type) {
+			return getTypeNameHint((Type)anObject);
 		}
 		else if (anObject instanceof CGTypeId) {
 			Element type = ((CGTypeId)anObject).getAst();
-			return (type instanceof DomainType) ? getTypeNameHint((DomainType) type) : null;
+			return (type instanceof Type) ? getTypeNameHint((Type) type) : null;
 		}
 		else if (anObject instanceof TypeExp) {
 			Type referredType = ((TypeExp)anObject).getType();
@@ -847,7 +846,7 @@ public class NameManager
 		return STRING_NAME_HINT_PREFIX + getValidJavaIdentifier(string, STRING_NAME_HINT_PREFIX.length() > 0, aString);
 	}
 
-	protected String getTypeNameHint(@NonNull DomainType aType) {
+	protected String getTypeNameHint(@NonNull Type aType) {
 		if (aType instanceof CollectionType) {
 			if (aType instanceof OrderedSetType) {
 				return ORDERED_SET_NAME_HINT_PREFIX;

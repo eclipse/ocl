@@ -50,7 +50,6 @@ import org.eclipse.ocl.domain.compatibility.EMF_2_9;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainNamespace;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.PackageId;
@@ -809,12 +808,12 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return knownInvariants;
 	}
 	
-	public @NonNull Iterable<Operation> getAllOperations(@NonNull DomainType type, @Nullable FeatureFilter featureFilter) {
+	public @NonNull Iterable<Operation> getAllOperations(@NonNull Type type, @Nullable FeatureFilter featureFilter) {
 		CompleteClass completeClass = completeModel.getCompleteClass(type);
 		return completeClass.getOperations(featureFilter);
 	}
 	
-	public @NonNull Iterable<Operation> getAllOperations(@NonNull DomainType type, @Nullable FeatureFilter featureFilter, @NonNull String name) {
+	public @NonNull Iterable<Operation> getAllOperations(@NonNull Type type, @Nullable FeatureFilter featureFilter, @NonNull String name) {
 		CompleteClass completeClass = completeModel.getCompleteClass(type);
 		return completeClass.getOperations(featureFilter, name);
 	}
@@ -827,12 +826,12 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return packageManager.getAllPackages();
 	} */
 	
-	public @NonNull Iterable<? extends Property> getAllProperties(@NonNull DomainType type, @Nullable FeatureFilter featureFilter) {
+	public @NonNull Iterable<? extends Property> getAllProperties(@NonNull Type type, @Nullable FeatureFilter featureFilter) {
 		CompleteClass completeClass = completeModel.getCompleteClass(type);
 		return completeClass.getProperties(featureFilter);
 	}
 	
-	public @NonNull Iterable<? extends Property> getAllProperties(@NonNull DomainType type, @Nullable FeatureFilter featureFilter, @NonNull String name) {
+	public @NonNull Iterable<? extends Property> getAllProperties(@NonNull Type type, @Nullable FeatureFilter featureFilter, @NonNull String name) {
 		CompleteClass completeClass = completeModel.getCompleteClass(type);
 		return completeClass.getProperties(featureFilter, name);
 	}
@@ -851,7 +850,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return singletonList;
 	}
 	
-	public @NonNull Iterable<CompleteClass> getAllSuperCompleteClasses(@NonNull DomainType type) {
+	public @NonNull Iterable<CompleteClass> getAllSuperCompleteClasses(@NonNull Type type) {
 		CompleteClass completeClass = completeModel.getCompleteClass(type);
 		return completeClass.getSuperCompleteClasses();
 	}
@@ -974,7 +973,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return getType(commonInheritance.getType()); 
 	}
 
-	public @NonNull CompleteClassInternal getCompleteClass(@NonNull DomainType pivotType) {
+	public @NonNull CompleteClassInternal getCompleteClass(@NonNull Type pivotType) {
 		if (!libraryLoadInProgress && (asMetamodel == null) && !(pivotType instanceof CollectionType) && !(pivotType instanceof VoidType) && !(pivotType instanceof InvalidType)) {
 			getASMetamodel();
 		}
@@ -1309,7 +1308,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return new CompleteClassPropertiesIterable(getAllTypes(type), selectStatic);
 	}
 
-	public @NonNull org.eclipse.ocl.pivot.Class getMetaclass(@NonNull DomainType domainInstanceType) {
+	public @NonNull org.eclipse.ocl.pivot.Class getMetaclass(@NonNull Type domainInstanceType) {
 		org.eclipse.ocl.pivot.Class metaType = null;
 		if (domainInstanceType instanceof DomainCollectionType) {
 			DomainCollectionType collectionType = (DomainCollectionType)domainInstanceType;
@@ -1365,7 +1364,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 //		}
 		Resource asResource = asType.eResource();
 		if (DomainUtil.isRegistered(asResource)) {
-			for (DomainType domainType : getPartialClasses(asType)) {
+			for (Type domainType : getPartialClasses(asType)) {
 				if ((domainType != asType) && (domainType instanceof org.eclipse.ocl.pivot.Class)) {
 					org.eclipse.ocl.pivot.Class asPartialType = (org.eclipse.ocl.pivot.Class)domainType;
 					if (!DomainUtil.isRegistered(asPartialType.eResource())) {
@@ -1396,7 +1395,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 			else {
 				throw new UnsupportedOperationException("No cloned type");
 			}
-			for (DomainType domainType : getPartialClasses(asType)) {
+			for (Type domainType : getPartialClasses(asType)) {
 				if ((domainType != asType) && (domainType instanceof org.eclipse.ocl.pivot.Class)) {
 					org.eclipse.ocl.pivot.Class asPartialType = (org.eclipse.ocl.pivot.Class)domainType;
 					if (!DomainUtil.isRegistered(asPartialType.eResource())) {
@@ -1415,7 +1414,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return asType;
 	}
 
-	public @Nullable DomainType getOclType(@NonNull String typeName) {
+	public @Nullable Type getOclType(@NonNull String typeName) {
 		org.eclipse.ocl.pivot.Class pivotType = getPivotType(typeName);
 		return pivotType != null ? getInheritance(pivotType).getType() : null;
 	}
@@ -1563,7 +1562,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return completePackage.getPartialPackages();
 	}
 
-	public @NonNull Iterable<org.eclipse.ocl.pivot.Class> getPartialClasses(@NonNull DomainType pivotType) {
+	public @NonNull Iterable<org.eclipse.ocl.pivot.Class> getPartialClasses(@NonNull Type pivotType) {
 		CompleteClass completeClass = completeModel.getCompleteClass(pivotType);
 		return completeClass.getPartialClasses();
 	}
@@ -1642,7 +1641,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 			return (T) getPrimaryProperty((Property)element);
 		}
 		else if (element instanceof Type) {
-			return (T) getPrimaryType((DomainType)element);
+			return (T) getPrimaryType((Type)element);
 		} 
 		return element;
 	}
@@ -1743,9 +1742,9 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 //		}
 	}
 
-	public @NonNull Type getPrimaryType(@NonNull DomainType type) {
+	public @NonNull Type getPrimaryType(@NonNull Type type) {
 		if (/*(type instanceof Type) &&*/ !isTypeServeable(type)) {
-			return (Type) type;			// FIXME bad cast
+			return type;			// FIXME bad cast
 		}
 		return getCompleteClass(type).getPivotClass();
 //		TypeTracker typeTracker = packageManager.findTypeTracker(pivotType);
@@ -1893,11 +1892,9 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		throw new UnsupportedOperationException();		// FIXME */
 	}
 
-	public @NonNull Type getType(@NonNull DomainType dType) {				// FIXME simplify eliminate
-		if (dType instanceof Type) {
-			return getPrimaryType(dType);
-		}
-		if (dType instanceof CompleteInheritanceImpl) {
+	public @NonNull Type getType(@NonNull Type dType) {				// FIXME simplify eliminate
+		return getPrimaryType(dType);
+/*		if (dType instanceof CompleteInheritanceImpl) {
 			return ((CompleteInheritanceImpl)dType).getCompleteClass().getPivotClass();
 		}
 		org.eclipse.ocl.pivot.Package dPackage = ((org.eclipse.ocl.pivot.Class)dType).getOwningPackage();	// FIXME cast
@@ -1908,7 +1905,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 				return primaryType;
 			}
 		}
-		throw new UnsupportedOperationException();		// FIXME
+		throw new UnsupportedOperationException();		// FIXME */
 	}
 
 	/**
@@ -2033,27 +2030,23 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return false;
 	}
 
-	public boolean isTypeServeable(@NonNull DomainType type) {
-		if (!(type instanceof Type)) {
-			return false;			
-		}
-		Type pivotType = (Type)type;
+	public boolean isTypeServeable(@NonNull Type type) {
 //		if (pivotType .getUnspecializedElement() != null) {
 //			return false;
 //		}
-		if (pivotType.isTemplateParameter() != null) {
+		if (type.isTemplateParameter() != null) {
 			return false;
 		}
 //		if (pivotType instanceof UnspecifiedType) {
 //			return false;
 //		}
-		if (pivotType instanceof LambdaType) {
+		if (type instanceof LambdaType) {
 			return false;
 		}
 //		if (pivotType instanceof TupleType) {
 //			return false;
 //		}
-		if (pivotType.eContainer() instanceof TemplateParameterSubstitution) {
+		if (type.eContainer() instanceof TemplateParameterSubstitution) {
 			return false;
 		}
 		return true;

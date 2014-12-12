@@ -499,7 +499,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 				if (i > 0) {
 					s.append(", ");
 				}
-				Type type = PivotUtil.getType((Type)types.get(i));
+				Type type = PivotUtil.getType(types.get(i));
 				type.accept(declareParameterTypeVisitor);				
 			}
 			s.append(");\n");

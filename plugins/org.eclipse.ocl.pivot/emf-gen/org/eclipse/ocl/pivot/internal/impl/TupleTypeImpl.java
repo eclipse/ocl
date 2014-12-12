@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.TuplePartId;
 import org.eclipse.ocl.domain.ids.TupleTypeId;
@@ -26,6 +25,7 @@ import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TupleType;
+import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.util.Visitor;
 
@@ -95,7 +95,7 @@ public class TupleTypeImpl
 
 	@Override
 	public @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
-		DomainType tupleType = standardLibrary.getOclTupleType();
+		Type tupleType = standardLibrary.getOclTupleType();
 		return tupleType.getInheritance(standardLibrary);
 	}
 

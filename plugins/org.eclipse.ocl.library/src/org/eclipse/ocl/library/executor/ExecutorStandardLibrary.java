@@ -22,10 +22,10 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.library.ecore.EcoreExecutorPackage;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Type;
 
 public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 {
@@ -123,7 +123,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 			return containerType.getInheritance(this);
 		} */
 		if (domainClass instanceof DomainCollectionType) {
-			DomainType containerType = ((DomainCollectionType)domainClass).getContainerType();
+			Type containerType = ((DomainCollectionType)domainClass).getContainerType();
 			if ((containerType != null) && (containerType != domainClass)) {
 				return containerType.getInheritance(this);
 			}

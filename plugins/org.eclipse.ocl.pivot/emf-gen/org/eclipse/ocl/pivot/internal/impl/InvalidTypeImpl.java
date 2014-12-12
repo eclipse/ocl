@@ -13,10 +13,10 @@ package org.eclipse.ocl.pivot.internal.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.pivot.InvalidType;
 import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.util.Visitor;
 
 /**
@@ -62,7 +62,7 @@ public class InvalidTypeImpl
 	}
 
 	@Override
-	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull DomainType type) {
+	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
 		return true;
 	}
 } //InvalidTypeImpl

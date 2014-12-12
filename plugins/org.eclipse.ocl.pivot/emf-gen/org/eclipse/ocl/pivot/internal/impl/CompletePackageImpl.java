@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Comment;
@@ -544,7 +543,7 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 	}
 
 	@Override
-	public DomainType getType(String metatypeName) {
+	public Type getType(String metatypeName) {
 		CompleteClass completeClass = getOwnedCompleteClass(metatypeName);
 		return completeClass != null ? completeClass.getPivotClass() : null;
 	}

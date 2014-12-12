@@ -26,7 +26,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.evaluation.DomainIterationManager;
 import org.eclipse.ocl.domain.evaluation.DomainModelManager;
@@ -818,7 +817,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 */
 	@Override
     public Object visitTupleLiteralExp(@NonNull TupleLiteralExp tl) {
-		DomainType type = DomainUtil.nonNullModel(tl.getType());
+		Type type = DomainUtil.nonNullModel(tl.getType());
 		Map<TuplePartId, Object> propertyValues = new HashMap<TuplePartId, Object>();		
 		for (TupleLiteralPart part : tl.getPart()) {
 			// Set the tuple field with the value of the init expression

@@ -13,7 +13,6 @@ package org.eclipse.ocl.examples.codegen.java;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.ClassId;
 import org.eclipse.ocl.domain.ids.ElementId;
 import org.eclipse.ocl.domain.ids.IdVisitor;
@@ -150,7 +149,7 @@ public abstract class AbstractId2JavaClassVisitor implements IdVisitor<Class<?>>
 
 	@Override
 	public @NonNull Class<?> visitTemplateableTypeId(@NonNull TemplateableTypeId id) {
-		return DomainType.class;
+		return Type.class;
 	}
 
 	@Override

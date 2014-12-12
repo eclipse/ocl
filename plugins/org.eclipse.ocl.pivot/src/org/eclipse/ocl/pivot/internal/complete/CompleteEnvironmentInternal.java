@@ -12,7 +12,6 @@ package org.eclipse.ocl.pivot.internal.complete;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.values.CollectionTypeParameters;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.TemplateParameterSubstitutions;
@@ -34,7 +33,7 @@ public interface CompleteEnvironmentInternal extends CompleteEnvironment
 	@Nullable CollectionType findCollectionType(@NonNull CompleteClassInternal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters);
 	@NonNull CollectionType getCollectionType(@NonNull CompleteClassInternal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters);
 	@NonNull <T extends CollectionType> T getCollectionType(@NonNull T containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
-	@NonNull CompleteClassInternal getCompleteClass(@NonNull DomainType pivotType);
+	@NonNull CompleteClassInternal getCompleteClass(@NonNull Type pivotType);
 	@Override
 	@NonNull CompleteModelInternal getCompleteModel();
 	@NonNull MetaModelManager getMetaModelManager();

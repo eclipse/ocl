@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.library.LibraryConstants;
 import org.eclipse.ocl.library.ecore.EcoreExecutorPackage;
@@ -36,7 +35,7 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 //	public static final PivotExecutorStandardLibrary INSTANCE = new PivotExecutorStandardLibrary(new MetaModelManager(), OCLstdlib.STDLIB_URI);
 
 	protected final @NonNull MetaModelManager metaModelManager;
-	private Map<DomainType, org.eclipse.ocl.pivot.Class> typeMap = null;
+	private Map<Type, org.eclipse.ocl.pivot.Class> typeMap = null;
 	private Map<org.eclipse.ocl.pivot.Package, org.eclipse.ocl.pivot.Package> packageMap = null;
 	
 //	public PivotExecutorStandardLibrary(MetaModelManager metaModelManager, String stdlibURI) {
@@ -102,18 +101,18 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 	}
 
 	@Override
-	public DomainType getOclType(@NonNull String typeName) {
+	public Type getOclType(@NonNull String typeName) {
 		return PivotTables.PACKAGE.getType(typeName).getType();
 	}
 	
 	@SuppressWarnings("null")
-	protected org.eclipse.ocl.pivot.Class getType(DomainType typeType) {
+	protected org.eclipse.ocl.pivot.Class getType(Type typeType) {
 		if (typeType instanceof DomainCollectionType) {
 			DomainCollectionType domainCollectionType = (DomainCollectionType)typeType;
 			return metaModelManager.getCompleteEnvironment().getCollectionType(domainCollectionType.getContainerType(), domainCollectionType.getElementType(), null, null);
 		}
 		if (typeMap == null) {
-			typeMap = new HashMap<DomainType, org.eclipse.ocl.pivot.Class>();
+			typeMap = new HashMap<Type, org.eclipse.ocl.pivot.Class>();
 		}
 		else {			
 			org.eclipse.ocl.pivot.Class type = typeMap.get(typeType);
@@ -139,7 +138,7 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 		return completePackage.getMemberType(typeType.getName());
 	}
 
-	public @NonNull DomainType getType(@NonNull EClassifier eClassifier) {
+	public @NonNull Type getType(@NonNull EClassifier eClassifier) {
 		Ecore2AS ecore2as = Ecore2AS.getAdapter(DomainUtil.nonNullEMF(eClassifier.eResource()), metaModelManager);
 		Type pivotType = ecore2as.getCreated(Type.class, eClassifier);
 		return DomainUtil.nonNullState(pivotType);

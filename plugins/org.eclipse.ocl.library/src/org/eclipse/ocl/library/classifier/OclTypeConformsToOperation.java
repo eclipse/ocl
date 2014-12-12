@@ -13,9 +13,9 @@ package org.eclipse.ocl.library.classifier;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.library.AbstractUntypedBinaryOperation;
+import org.eclipse.ocl.pivot.Type;
 
 /**
  * OclTypeConformsToOperation realises the OclType::conformsTo(OclType) library operation.
@@ -27,8 +27,8 @@ public class OclTypeConformsToOperation extends AbstractUntypedBinaryOperation
 	@Override
 	public @NonNull Boolean evaluate(@NonNull DomainEvaluator evaluator, @Nullable Object sourceVal, @Nullable Object argVal) {
 		DomainStandardLibrary standardLibrary = evaluator.getStandardLibrary();
-		DomainType thisType = asType(sourceVal);
-		DomainType thatType = asType(argVal);
+		Type thisType = asType(sourceVal);
+		Type thatType = asType(argVal);
 		boolean result = thisType.conformsTo(standardLibrary, thatType);
 		return result;
 	}

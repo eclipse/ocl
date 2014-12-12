@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.library.executor.LazyModelManager;
 import org.eclipse.ocl.pivot.ParserException;
@@ -45,7 +44,7 @@ public class PivotModelManager extends LazyModelManager
 	 * @since 3.5
 	 */
 	@Override
-	protected boolean isInstance(@NonNull DomainType requiredType, @NonNull EObject eObject) {
+	protected boolean isInstance(@NonNull Type requiredType, @NonNull EObject eObject) {
 		EClass eClass = eObject.eClass();
 		EPackage ePackage = eClass.getEPackage();
 		Type objectType = null;

@@ -19,7 +19,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.pivot.CompleteClass;
@@ -123,7 +122,7 @@ public abstract class AbstractOperationMatcher
 		}
 		int referenceConversions = 0;
 		int candidateConversions = 0;
-		DomainType comparedSourceType = sourceType;
+		Type comparedSourceType = sourceType;
 //		if (comparedSourceType instanceof DomainMetaclass) {
 //			comparedSourceType = ((DomainMetaclass)comparedSourceType).getInstanceType();
 //		}

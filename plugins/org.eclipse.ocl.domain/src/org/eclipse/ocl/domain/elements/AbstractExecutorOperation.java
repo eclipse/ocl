@@ -31,7 +31,7 @@ import org.eclipse.ocl.pivot.Type;
 
 public class AbstractExecutorOperation extends AbstractExecutorFeature implements Operation
 {
-	public AbstractExecutorOperation(@NonNull String name, @NonNull DomainType executorType) {
+	public AbstractExecutorOperation(@NonNull String name, @NonNull Type executorType) {
 		super(name, executorType);
 	}
 

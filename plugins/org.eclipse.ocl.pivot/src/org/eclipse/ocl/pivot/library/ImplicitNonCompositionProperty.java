@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.domain.ids.TypeId;
@@ -28,6 +27,7 @@ import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.pivot.PivotConstants;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.Type;
 
 /**
  * The static instance of ImplicitNonCompositionProperty supports evaluation of
@@ -45,7 +45,7 @@ public class ImplicitNonCompositionProperty extends AbstractProperty
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		DomainModelManager modelManager = evaluator.getModelManager();
 		Property thatProperty = property.getOpposite();
-		DomainType thatType = DomainUtil.nonNullModel(property.getType());
+		Type thatType = DomainUtil.nonNullModel(property.getType());
 		boolean isMany = thatType instanceof DomainCollectionType;
 		if (isMany) {
 			thatType = ((DomainCollectionType)thatType).getElementType();

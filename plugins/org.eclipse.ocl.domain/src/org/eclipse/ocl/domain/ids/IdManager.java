@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.DomainConstants;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.ids.impl.BindingsIdImpl;
 import org.eclipse.ocl.domain.ids.impl.GeneralizedCollectionTypeIdImpl;
@@ -48,6 +47,7 @@ import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Type;
 import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -144,7 +144,7 @@ public final class IdManager
 			}
 		};
 
-	public static @NonNull BindingsId getBindingsId(@NonNull DomainType... types) {
+	public static @NonNull BindingsId getBindingsId(@NonNull Type... types) {
 		ElementId[] elementIds = new ElementId[types.length];
 		for (int i = 0; i < types.length; i++) {
 			elementIds[i] = types[i].getTypeId();
@@ -320,7 +320,7 @@ public final class IdManager
 		String name = DomainUtil.getSafeName(anOperation);
 		org.eclipse.ocl.pivot.Class parentType = anOperation.getOwningClass();
 		TypeId parentTypeId = parentType.getTypeId();
-		DomainType[] parameterTypes = DomainUtil.getOperationParameterTypes(anOperation);
+		Type[] parameterTypes = DomainUtil.getOperationParameterTypes(anOperation);
 		DomainTypeParameters typeParameters = anOperation.getTypeParameters();
 		ParametersId parametersId = getParametersId(parameterTypes);
 		return parentTypeId.getOperationId(typeParameters.parametersSize(), name, parametersId);
@@ -396,11 +396,11 @@ public final class IdManager
 		return getNsURIPackageId(name, aPackage.getNsPrefix(), null);
 	}
 	
-	public static @NonNull ParametersId getParametersId(@NonNull DomainType[] parameterTypes) {
+	public static @NonNull ParametersId getParametersId(@NonNull Type[] parameterTypes) {
 		int iSize = parameterTypes.length;
 		TypeId[] typeIds = new TypeId[iSize];
 		for (int i = 0; i < iSize; i++) {
-			DomainType parameterType = parameterTypes[i];
+			Type parameterType = parameterTypes[i];
 			typeIds[i] = parameterType != null ? parameterType.getTypeId() : TypeId.OCL_INVALID;		// Never happens NPE guard
 		}
 		return getParametersId(typeIds);
@@ -561,7 +561,7 @@ public final class IdManager
     /**
      * Return the typeId for aType.
       */
-	public static @NonNull UnspecifiedIdImpl getUnspecifiedTypeId(@NonNull DomainType aType) {
+	public static @NonNull UnspecifiedIdImpl getUnspecifiedTypeId(@NonNull Type aType) {
 		UnspecifiedIdImpl newId = new UnspecifiedIdImpl(PRIVATE_INSTANCE, aType);
 //		System.out.println("Create " + newId.getClass().getSimpleName() + " " + newId + " => @" + Integer.toHexString(newId.hashCode()));
 		return newId;

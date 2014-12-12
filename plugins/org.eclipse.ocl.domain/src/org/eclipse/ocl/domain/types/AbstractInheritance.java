@@ -16,7 +16,6 @@ import org.eclipse.ocl.domain.elements.AbstractExecutorObject;
 import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.ParametersId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.LibraryFeature;
@@ -24,6 +23,7 @@ import org.eclipse.ocl.domain.library.UnsupportedOperation;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.utilities.IndexableIterable;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Type;
 
 public abstract class AbstractInheritance extends AbstractExecutorObject implements DomainInheritance
 {
@@ -272,7 +272,7 @@ public abstract class AbstractInheritance extends AbstractExecutorObject impleme
 					int i = 0;
 					for (; i < iMax; i++) {
 						TypeId firstParameterId = firstParametersId.get(i);
-						@NonNull DomainType secondParameterType = argumentTypes[i].getType();
+						@NonNull Type secondParameterType = argumentTypes[i].getType();
 						if (firstParameterId != secondParameterType.getTypeId()) {
 							break;
 						}

@@ -19,7 +19,6 @@ import java.util.WeakHashMap;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.CollectionTypeParameters;
 import org.eclipse.ocl.domain.values.IntegerValue;
@@ -277,10 +276,6 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 	}
 
 	@Override
-	public @NonNull CollectionType getBagType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
-		return getBagType(metaModelManager.getType(elementType), lower, upper);
-	}
-
 	public @NonNull CollectionType getBagType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return getCollectionType(standardLibrary.getBagType(), elementType, lower, upper);
 	}
@@ -291,7 +286,7 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 	}
 	
 	@Override
-	public @NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+	public @NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return getCollectionType((CollectionType)metaModelManager.getType(containerType), metaModelManager.getType(elementType), lower, upper);
 	}
 
@@ -316,9 +311,9 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 	}
 	
 	@Override
-	public @NonNull CompleteClassInternal getCompleteClass(@NonNull DomainType pivotType) {
+	public @NonNull CompleteClassInternal getCompleteClass(@NonNull Type pivotType) {
 		for (int recursions = 0; pivotType instanceof TemplateParameter; recursions++) {
-			DomainType lowerBound = ((TemplateParameter)pivotType).getLowerBound();
+			Type lowerBound = ((TemplateParameter)pivotType).getLowerBound();
 			pivotType = lowerBound != null ? lowerBound : getStandardLibrary().getOclAnyType();
 			if (recursions > 100) {
 				pivotType = getStandardLibrary().getOclAnyType();
@@ -394,26 +389,13 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 	}
 
 	@Override
-	public @NonNull CollectionType getOrderedSetType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
-		return getOrderedSetType(metaModelManager.getType(elementType), lower, upper);
-	}
-
 	public @NonNull CollectionType getOrderedSetType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return getCollectionType(standardLibrary.getOrderedSetType(), elementType, lower, upper);
 	}
 
 	@Override
-	public @NonNull CollectionType getSequenceType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
-		return getSequenceType(metaModelManager.getType(elementType), lower, upper);
-	}
-
 	public @NonNull CollectionType getSequenceType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return getCollectionType(standardLibrary.getSequenceType(), elementType, lower, upper);
-	}
-
-	@Override
-	public @NonNull CollectionType getSetType(@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
-		return getSetType(metaModelManager.getType(elementType), lower, upper);
 	}
 
 	@Override

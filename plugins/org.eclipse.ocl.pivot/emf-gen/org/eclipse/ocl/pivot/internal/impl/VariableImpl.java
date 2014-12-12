@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
@@ -246,8 +245,8 @@ public class VariableImpl
 		        if (initExpression_0 == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
-		        final @Nullable /*@Thrown*/ DomainType type = initExpression_0.getType();
-		        final @Nullable /*@Thrown*/ DomainType type_0 = this.getType();
+		        final @Nullable /*@Thrown*/ Type type = initExpression_0.getType();
+		        final @Nullable /*@Thrown*/ Type type_0 = this.getType();
 		        final /*@Thrown*/ boolean b = OclTypeConformsToOperation.INSTANCE.evaluate(evaluator, type, type_0).booleanValue();
 		        CAUGHT_b = b;
 		    }

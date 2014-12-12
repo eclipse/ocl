@@ -17,6 +17,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.ParametersId;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.Type;
 
 /**
  * DomainParameterTypesIterable provides a hashable list of operation
@@ -27,11 +28,11 @@ public class DomainParameterTypes
 	public static final @NonNull DomainParameterTypes EMPTY_LIST = new DomainParameterTypes();
 	
 	private final @NonNull ParametersId parametersId;
-	private final @NonNull DomainType[] parameterTypes;
+	private final @NonNull Type[] parameterTypes;
 	private final int hashCode;
 	private /*@LazyNonNull*/ List<Parameter> parameters = null;
 	
-	public DomainParameterTypes(@NonNull DomainType... parameterTypes) {
+	public DomainParameterTypes(@NonNull Type... parameterTypes) {
 		this.parametersId = IdManager.getParametersId(parameterTypes);
 		this.parameterTypes = parameterTypes;
 		hashCode = parametersId.hashCode() + 0x999;
@@ -46,7 +47,7 @@ public class DomainParameterTypes
 		if (hashCode() != that.hashCode()) {
 			return false;
 		}
-		DomainType[] thoseParameters = that.parameterTypes;
+		Type[] thoseParameters = that.parameterTypes;
 		if (parameterTypes.length != thoseParameters.length) {
 			return false;
 		}
@@ -58,13 +59,13 @@ public class DomainParameterTypes
 		return true;
 	}
 
-	public @NonNull DomainType get(int index) {
-		DomainType parameterType = parameterTypes[index];
+	public @NonNull Type get(int index) {
+		Type parameterType = parameterTypes[index];
 		assert parameterType != null;
 		return parameterType;
 	}
 
-	public @NonNull DomainType[] get() {
+	public @NonNull Type[] get() {
 		return parameterTypes;
 	}
 
@@ -77,7 +78,7 @@ public class DomainParameterTypes
 		if (parameters2 == null) {
 			parameters = parameters2 = new ArrayList<Parameter>();
 			for (int i = 0; i < parameterTypes.length; i++) {
-				@SuppressWarnings("null")@NonNull DomainType type = parameterTypes[i];
+				@SuppressWarnings("null")@NonNull Type type = parameterTypes[i];
 				parameters2.add(new AbstractExecutorParameter("_" + i, type, false));
 			}
 		}

@@ -48,7 +48,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.common.CodeGenHelper;
 import org.eclipse.ocl.examples.codegen.dynamic.JavaGenModelCodeGenHelper;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.LibraryUnaryOperation;
@@ -211,7 +210,6 @@ public abstract class PivotTestSuite extends PivotTestCase
 	 * with a diagnostic of severity containing a message that is the result of messageTemplate
 	 * resolved by bindings.
 	 */
-    @SuppressWarnings("null")
 	protected void assertBadInvariant(@NonNull Class<?> exception, int severity,
     		@NonNull String expression, /*@NonNull*/ String messageTemplate, Object... bindings) {
 		BaseResource resource = null;
@@ -1333,11 +1331,11 @@ public abstract class PivotTestSuite extends PivotTestCase
 		return "test_package";
 	}
 	
-	protected @NonNull DomainType getUMLBoolean() {
+	protected @NonNull Type getUMLBoolean() {
 		return getStandardLibrary().getBooleanType();
 	}
 	
-	protected @NonNull DomainType getUMLInteger() {
+	protected @NonNull Type getUMLInteger() {
 		return getStandardLibrary().getIntegerType();
 	}
 
@@ -1345,11 +1343,11 @@ public abstract class PivotTestSuite extends PivotTestCase
 		return DomainUtil.nonNullState(metaModelManager.getASMetamodel());
 	}
 	
-	protected @NonNull DomainType getUMLString() {
+	protected @NonNull Type getUMLString() {
 		return getStandardLibrary().getStringType();
 	}
 	
-	protected @NonNull DomainType getUMLUnlimitedNatural() {
+	protected @NonNull Type getUMLUnlimitedNatural() {
 		return getStandardLibrary().getUnlimitedNaturalType();
 	}
 

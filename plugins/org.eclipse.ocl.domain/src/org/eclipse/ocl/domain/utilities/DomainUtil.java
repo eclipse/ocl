@@ -32,7 +32,6 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.DomainConstants;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.Labelable;
 import org.eclipse.ocl.domain.elements.Nameable;
 import org.eclipse.ocl.domain.values.Unlimited;
@@ -41,6 +40,7 @@ import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.osgi.util.NLS;
 
@@ -407,13 +407,13 @@ public class DomainUtil
 		}
 	}
 
-	public static @NonNull DomainType[] getLambdaParameterTypes(@NonNull LambdaType lambdaType) {
+	public static @NonNull Type[] getLambdaParameterTypes(@NonNull LambdaType lambdaType) {
 		int iParameter = 0;
-		List<? extends DomainType> ownedParameters = lambdaType.getParameterTypes();
-		DomainType[] parameterTypes = new DomainType[ownedParameters.size() + 2];
+		List<? extends Type> ownedParameters = lambdaType.getParameterTypes();
+		Type[] parameterTypes = new Type[ownedParameters.size() + 2];
 		parameterTypes[iParameter++] = lambdaType.getContextType();
 		parameterTypes[iParameter++] = lambdaType.getResultType();
-		for (DomainType parameterType : ownedParameters) {
+		for (Type parameterType : ownedParameters) {
 			parameterTypes[iParameter++] = parameterType;
 		}
 		return parameterTypes;
@@ -441,15 +441,15 @@ public class DomainUtil
 		return null;				
 	}
 
-	public static @NonNull DomainType[] getOperationParameterTypes(@NonNull Operation anOperation) {
-		DomainType[] parameterTypes;
+	public static @NonNull Type[] getOperationParameterTypes(@NonNull Operation anOperation) {
+		Type[] parameterTypes;
 		int iParameter = 0;
 		List<? extends TypedElement> ownedParameters = anOperation.getOwnedParameter();
 		if (anOperation instanceof Iteration) {
 			Iteration anIteration = (Iteration)anOperation;
 			List<? extends TypedElement> ownedIterators = anIteration.getOwnedIterator();
 			List<? extends TypedElement> ownedAccumulators = anIteration.getOwnedAccumulator();
-			parameterTypes = new DomainType[ownedIterators.size() + ownedAccumulators.size() + ownedParameters.size()];
+			parameterTypes = new Type[ownedIterators.size() + ownedAccumulators.size() + ownedParameters.size()];
 			for (TypedElement ownedIterator : ownedIterators) {
 				parameterTypes[iParameter++] = ownedIterator.getType();
 			}
@@ -458,7 +458,7 @@ public class DomainUtil
 			}
 		}
 		else {
-			parameterTypes = new DomainType[ownedParameters.size()];
+			parameterTypes = new Type[ownedParameters.size()];
 		}
 		for (TypedElement ownedParameter : ownedParameters) {
 			parameterTypes[iParameter++] = ownedParameter.getType();

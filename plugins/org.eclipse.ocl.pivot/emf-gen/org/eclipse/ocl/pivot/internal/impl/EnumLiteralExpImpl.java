@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
@@ -143,7 +142,7 @@ public class EnumLiteralExpImpl
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_eq;
 		try {
-		    final @Nullable /*@Thrown*/ DomainType type = this.getType();
+		    final @Nullable /*@Thrown*/ Type type = this.getType();
 		    final @Nullable /*@Thrown*/ EnumerationLiteral referredEnumLiteral = this.getReferredEnumLiteral();
 		    if (referredEnumLiteral == null) {
 		        throw new InvalidValueException("Null source for \'pivot::EnumerationLiteral::enumeration\'");
