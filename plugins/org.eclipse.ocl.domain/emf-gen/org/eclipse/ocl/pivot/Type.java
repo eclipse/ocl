@@ -17,11 +17,11 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.types.IdResolver;
-import org.eclipse.ocl.domain.values.OCLValue;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Type</b></em>'.
+ * @extends org.eclipse.ocl.domain.values.OCLValue
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -39,7 +39,7 @@ import org.eclipse.ocl.domain.values.OCLValue;
  * @see org.eclipse.ocl.pivot.PivotPackage#getType()
  * @generated
  */
-public interface Type extends NamedElement, OCLValue {
+public interface Type extends NamedElement, org.eclipse.ocl.domain.values.OCLValue {
 
 	/**
 	 * Returns the value of the '<em><b>Extended Bys</b></em>' reference list.

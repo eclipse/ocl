@@ -19,7 +19,6 @@ import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Collection Type</b></em>'.
- * @extends org.eclipse.ocl.domain.elements.DomainCollectionType
  * <!-- end-user-doc -->
  *
  * <p>
@@ -34,8 +33,7 @@ import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
  * @see org.eclipse.ocl.pivot.PivotPackage#getCollectionType()
  * @generated
  */
-public interface CollectionType
-		extends DataType, org.eclipse.ocl.pivot.Class {
+public interface CollectionType extends DataType {
 
 	/**
 	 * Returns the value of the '<em><b>Element Type</b></em>' reference.

@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.EnumerationLiteralId;
@@ -32,6 +31,7 @@ import org.eclipse.ocl.domain.values.CollectionValue;
 import org.eclipse.ocl.domain.values.OrderedSetValue;
 import org.eclipse.ocl.domain.values.SequenceValue;
 import org.eclipse.ocl.domain.values.SetValue;
+import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Operation;
@@ -86,7 +86,7 @@ public interface IdResolver extends IdVisitor<Element>
 
 	@Nullable Type getDynamicTypeOf(@NonNull Iterable<?> values);
 
-	@NonNull DomainEnvironment getEnvironment();
+	@NonNull CompleteEnvironment getEnvironment();
 
 	@NonNull CompleteInheritance getInheritance(@NonNull EClassifier eClassifier);
 	

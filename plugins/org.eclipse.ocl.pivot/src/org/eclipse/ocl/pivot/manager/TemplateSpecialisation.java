@@ -16,9 +16,9 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.CollectionType;
+import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateParameter;
@@ -91,11 +91,11 @@ public class TemplateSpecialisation
 		return false;
 	}
 
-	protected final @NonNull DomainEnvironment environment;
+	protected final @NonNull CompleteEnvironment environment;
 //	protected final @NonNull DomainStandardLibrary standardLibrary;
 	protected /*@LazyNonNull*/ Map<TemplateParameter, Type> bindings = null;
 
-	public TemplateSpecialisation(@NonNull DomainEnvironment environment) {
+	public TemplateSpecialisation(@NonNull CompleteEnvironment environment) {
 		this.environment = environment;
 //		this.standardLibrary = environment.getStandardLibrary();
 	}

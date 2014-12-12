@@ -15,13 +15,13 @@ import java.util.regex.Pattern;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluationEnvironment;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.evaluation.DomainLogger;
 import org.eclipse.ocl.domain.values.CollectionValue;
 import org.eclipse.ocl.domain.values.Value;
+import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
@@ -34,7 +34,7 @@ public abstract class ExecutorManager implements DomainEvaluator
 	// this is the same as HashMap's default load factor
 	private static final float DEFAULT_REGEX_CACHE_LOAD_FACTOR = 0.75f;
 
-	protected final @NonNull DomainEnvironment environment;
+	protected final @NonNull CompleteEnvironment environment;
 	protected final @NonNull DomainStandardLibrary standardLibrary;
 
     /**
@@ -48,7 +48,7 @@ public abstract class ExecutorManager implements DomainEvaluator
 	 */
 	private /*@LazyNonNull*/ Map<String, Pattern> regexPatterns = null;
 	
-	public ExecutorManager(@NonNull DomainEnvironment environment) {
+	public ExecutorManager(@NonNull CompleteEnvironment environment) {
 		this.environment = environment;
 		this.standardLibrary = environment.getStandardLibrary();
 	}
@@ -99,7 +99,7 @@ public abstract class ExecutorManager implements DomainEvaluator
 	}
 
 	@Override
-	public @NonNull DomainEnvironment getCompleteEnvironment() {
+	public @NonNull CompleteEnvironment getCompleteEnvironment() {
 		return environment;
 	}
 

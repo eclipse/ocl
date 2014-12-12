@@ -15,22 +15,48 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 
-public interface CompleteEnvironment extends DomainEnvironment
+public interface CompleteEnvironment
 {
-	@Override
+	/**
+	 * Return the instance of the Bag metatype whose elements are of elementType.
+	 */
+	@NonNull CollectionType getBagType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
+	
+	/**
+	 * Return the specialized collection type for the containerType for elementType.
+	 */
 	@NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
+
+	org.eclipse.ocl.pivot.Package getNestedPackage(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name);
+	
+    Type getNestedType(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name);
+
+	/**
+	 * Return the instance of the OrderedSet metatype whose elements are of elementType.
+	 */
+	@NonNull CollectionType getOrderedSetType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
+
+	/**
+	 * Return the instance of the Sequence metatype whose elements are of elementType.
+	 */
+	@NonNull CollectionType getSequenceType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
+
+	@NonNull DomainStandardLibrary getStandardLibrary();
+	/**
+	 * Return the instance of the Set metatype whose elements are of elementType.
+	 */
+	@NonNull CollectionType getSetType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
+
+	
 	@NonNull CompleteModel getCompleteModel();
 	@NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType,
 			@Nullable TemplateParameterSubstitutions bindings);
 	@NonNull Type getSpecializedType(@NonNull Type type, @Nullable TemplateParameterSubstitutions substitutions);
-	@Override
-	@NonNull DomainStandardLibrary getStandardLibrary();
 	@NonNull TupleType getTupleType(@NonNull String typeName, @NonNull Collection<? extends TypedElement> parts,
 			@Nullable TemplateParameterSubstitutions bindings);
 }

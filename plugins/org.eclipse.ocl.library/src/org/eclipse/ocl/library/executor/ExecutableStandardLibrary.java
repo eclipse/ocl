@@ -11,12 +11,13 @@
 package org.eclipse.ocl.library.executor;
 
 import java.lang.ref.WeakReference;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.WeakHashMap;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.ids.TemplateParameterId;
 import org.eclipse.ocl.domain.ids.TupleTypeId;
 import org.eclipse.ocl.domain.types.AbstractCollectionType;
@@ -25,16 +26,21 @@ import org.eclipse.ocl.domain.types.AbstractTupleType;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.CollectionTypeParameters;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.impl.CollectionTypeParametersImpl;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.CollectionType;
+import org.eclipse.ocl.pivot.CompleteEnvironment;
+import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.TypedElement;
 
-public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary implements DomainEnvironment
+public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary implements CompleteEnvironment
 {
 	/**
 	 * Shared cache of the lazily created lazily deleted specializations of each type. 
@@ -285,5 +291,32 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getUnlimitedNaturalType() {
 		return OCLstdlibTables.Types._UnlimitedNatural;
+	}
+
+	@Override
+	public @NonNull CompleteModel getCompleteModel() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public @NonNull LambdaType getLambdaType(@NonNull String typeName,
+			@NonNull Type contextType,
+			@NonNull List<? extends Type> parameterTypes,
+			@NonNull Type resultType,
+			@Nullable TemplateParameterSubstitutions bindings) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public @NonNull Type getSpecializedType(@NonNull Type type,
+			@Nullable TemplateParameterSubstitutions substitutions) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public @NonNull TupleType getTupleType(@NonNull String typeName,
+			@NonNull Collection<? extends TypedElement> parts,
+			@Nullable TemplateParameterSubstitutions bindings) {
+		throw new UnsupportedOperationException();
 	}
 }

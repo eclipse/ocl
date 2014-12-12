@@ -12,7 +12,6 @@ package org.eclipse.ocl.library.executor;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.AbstractExecutorClass;
-import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.TypeId;
@@ -25,7 +24,7 @@ public class ExecutorLambdaType extends AbstractExecutorClass implements Executo
 {
 	protected final @NonNull TypeId typeId;
 
-	public ExecutorLambdaType(@NonNull DomainEnvironment environment, @NonNull String name, @NonNull ExecutorTypeArgument... typeArguments) {
+	public ExecutorLambdaType(@NonNull String name, @NonNull ExecutorTypeArgument... typeArguments) {
 		super(name, 0);
 		typeId = IdManager.getLambdaTypeId(name, IdManager.getParametersId(typeArguments));
 	}

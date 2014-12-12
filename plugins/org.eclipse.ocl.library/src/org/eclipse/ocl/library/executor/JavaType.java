@@ -13,7 +13,6 @@ package org.eclipse.ocl.library.executor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.AbstractExecutorClass;
-import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.LibraryFeature;
@@ -30,7 +29,7 @@ public class JavaType extends AbstractExecutorClass
 {
 	protected final @NonNull Class<?> javaClass;
 	
-	public JavaType(@NonNull DomainEnvironment environment, @NonNull Class<?> javaClass) {
+	public JavaType(@NonNull Class<?> javaClass) {
 		super(DomainUtil.nonNullState(javaClass.getName()), 0);
 		this.javaClass = javaClass;
 	}

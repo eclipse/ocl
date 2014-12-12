@@ -14,13 +14,13 @@ package org.eclipse.ocl.examples.debug.evaluator;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainLogger;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.debug.OCLDebugPlugin;
+import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.evaluation.AbstractEvaluationVisitorDecorator;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
@@ -66,7 +66,7 @@ public abstract class OCLVMEvaluationVisitorDecorator extends AbstractEvaluation
 	/**
      * Delegates to my decorated visitor.
      */
-	public @NonNull DomainEnvironment getCompleteEnvironment() {
+	public @NonNull CompleteEnvironment getCompleteEnvironment() {
 		return delegate.getCompleteEnvironment();
 	}
 

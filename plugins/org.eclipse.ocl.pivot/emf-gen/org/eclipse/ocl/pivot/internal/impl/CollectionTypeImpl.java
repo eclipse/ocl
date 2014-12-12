@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.IdManager;
@@ -31,6 +30,7 @@ import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.Behavior;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Comment;
+import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
@@ -596,7 +596,7 @@ public class CollectionTypeImpl
 
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getCommonType(@NonNull IdResolver idResolver, @NonNull Type type) {
-		DomainEnvironment environment = idResolver.getEnvironment();
+		CompleteEnvironment environment = idResolver.getEnvironment();
 		DomainStandardLibrary standardLibrary = environment.getStandardLibrary();
 		CompleteInheritance thisInheritance = this.getInheritance(standardLibrary);
 		CompleteInheritance thatInheritance = type.getInheritance(standardLibrary);

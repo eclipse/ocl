@@ -19,7 +19,6 @@ import org.eclipse.jdt.annotation.Nullable;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Complete Package</b></em>'.
- * @extends org.eclipse.ocl.domain.elements.DomainCompletePackage
  * <!-- end-user-doc -->
  *
  * <p>

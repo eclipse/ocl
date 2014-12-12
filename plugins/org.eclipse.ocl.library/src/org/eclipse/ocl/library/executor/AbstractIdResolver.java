@@ -35,7 +35,6 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.ClassId;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
@@ -79,6 +78,7 @@ import org.eclipse.ocl.domain.values.impl.BagImpl;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.domain.values.impl.OrderedSetImpl;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Element;
@@ -216,7 +216,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		}
 	}
 
-	protected final @NonNull DomainEnvironment environment;
+	protected final @NonNull CompleteEnvironment environment;
 	protected final @NonNull DomainStandardLibrary standardLibrary;
 	private final @NonNull Map<Object, org.eclipse.ocl.pivot.Class> key2type = new HashMap<Object, org.eclipse.ocl.pivot.Class>();	// Concurrent puts are duplicates
 	private /*@LazyNonNull*/ Map<EnumerationLiteralId, Enumerator> enumerationLiteral2enumerator = null;	// Concurrent puts are duplicates
@@ -229,7 +229,7 @@ public abstract class AbstractIdResolver implements IdResolver
 	 */
 	private Map<String, Map<Type, WeakReference<TypedElement>>> tupleParts = null;		// Lazily created
 	
-	public AbstractIdResolver(@NonNull DomainEnvironment environment) {
+	public AbstractIdResolver(@NonNull CompleteEnvironment environment) {
 		this.environment = environment;
 		this.standardLibrary = environment.getStandardLibrary();
 	}
@@ -638,7 +638,7 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	@Override
-	public @NonNull DomainEnvironment getEnvironment() {
+	public @NonNull CompleteEnvironment getEnvironment() {
 		return environment;
 	}
 
@@ -655,7 +655,7 @@ public abstract class AbstractIdResolver implements IdResolver
 			type = standardLibrary.getStringType();
 		}
 		else { */
-			type = new JavaType(environment, javaClass);
+			type = new JavaType(javaClass);
 //		}
 		key2type.put(javaClass, type);
 		return type;
