@@ -19,7 +19,6 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
@@ -99,7 +98,7 @@ public class PartialProperties implements Iterable<Property>
 		Map<DomainType, Property> primaryProperties = new HashMap<DomainType, Property>();
 		for (Property property : values) {
 			if (property != null) {
-				DomainClass owningType = property.getOwningClass();
+				org.eclipse.ocl.pivot.Class owningType = property.getOwningClass();
 				if (owningType != null) {
 					DomainType domainType = metaModelManager.getPrimaryType(owningType);
 					if (!primaryProperties.containsKey(domainType)) {

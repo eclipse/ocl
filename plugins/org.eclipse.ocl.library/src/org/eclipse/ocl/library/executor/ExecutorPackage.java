@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.AbstractExecutorPackage;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.ids.ElementId;
 import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.pivot.Constraint;
@@ -67,8 +66,8 @@ public abstract class ExecutorPackage extends AbstractExecutorPackage
 	}
 
 
-	public DomainClass getType(String typeName) {
-		for (DomainClass type: getOwnedClasses()) {
+	public org.eclipse.ocl.pivot.Class getType(String typeName) {
+		for (org.eclipse.ocl.pivot.Class type: getOwnedClasses()) {
 			if (type.getName().equals(typeName)) {
 				return type;
 			}

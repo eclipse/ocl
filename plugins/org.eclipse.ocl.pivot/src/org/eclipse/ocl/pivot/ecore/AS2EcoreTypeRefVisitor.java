@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibPackage;
 import org.eclipse.ocl.pivot.AnyType;
 import org.eclipse.ocl.pivot.CollectionType;
@@ -107,7 +106,7 @@ public class AS2EcoreTypeRefVisitor
 				return eClassifier;
 			}
 			if (metaModelManager.isTypeServeable(pivotType)) {
-				for (DomainClass type : metaModelManager.getPartialClasses(pivotType)) {
+				for (org.eclipse.ocl.pivot.Class type : metaModelManager.getPartialClasses(pivotType)) {
 					if (type instanceof PivotObjectImpl) {
 						EObject eTarget = ((PivotObjectImpl)type).getETarget();
 						if (eTarget != null) {
@@ -165,7 +164,7 @@ public class AS2EcoreTypeRefVisitor
 			return eClassifier;
 		}
 		CompleteClass completeClass = metaModelManager.getCompleteClass(pivotType);
-		for (DomainClass aType : completeClass.getPartialClasses()) {
+		for (org.eclipse.ocl.pivot.Class aType : completeClass.getPartialClasses()) {
 			if (!(aType instanceof PrimitiveType)) {
 				eClassifier = context.getCreated(EDataType.class, pivotType);
 				if (eClassifier != null) {

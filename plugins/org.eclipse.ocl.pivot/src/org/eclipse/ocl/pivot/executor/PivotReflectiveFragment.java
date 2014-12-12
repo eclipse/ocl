@@ -12,7 +12,6 @@ package org.eclipse.ocl.pivot.executor;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.ids.ParametersId;
 import org.eclipse.ocl.library.executor.ReflectiveFragment;
@@ -31,7 +30,7 @@ public class PivotReflectiveFragment extends ReflectiveFragment
 		String baseOperationName = baseOperation.getName();
 		ParametersId baseParametersId = baseOperation.getParametersId();
 		Operation bestOperation = null;
-		for (DomainClass partialClass : completeInheritance.getCompleteClass().getPartialClasses()) {
+		for (org.eclipse.ocl.pivot.Class partialClass : completeInheritance.getCompleteClass().getPartialClasses()) {
 			for (Operation localOperation : partialClass.getOwnedOperations()) {
 				if (localOperation.getName().equals(baseOperationName) && (localOperation.getParametersId() == baseParametersId)) {
 					if (localOperation.getETarget() != null) {

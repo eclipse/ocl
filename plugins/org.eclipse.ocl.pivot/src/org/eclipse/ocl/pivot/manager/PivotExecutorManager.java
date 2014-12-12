@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.evaluation.DomainModelManager;
@@ -87,17 +86,17 @@ public class PivotExecutorManager extends ExecutorManager
 	}
 
 	@Override
-	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value) {
+	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value) {
 		return idResolver.getStaticTypeOf(value);
 	}
 
 	@Override
-	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value, @NonNull Object... values) {
+	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Object... values) {
 		return idResolver.getStaticTypeOf(value, values);
 	}
 
 	@Override
-	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
+	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
 		return idResolver.getStaticTypeOf(value, values);
 	}
 }

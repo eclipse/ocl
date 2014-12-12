@@ -12,14 +12,13 @@ package org.eclipse.ocl.pivot.internal.complete;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.pivot.CompletePackage;
 
 public interface CompletePackageInternal extends CompletePackage
 {
 	@Override
-	@NonNull CompleteClassInternal getCompleteClass(@NonNull DomainClass pivotType);
+	@NonNull CompleteClassInternal getCompleteClass(@NonNull org.eclipse.ocl.pivot.Class pivotType);
 	@NonNull CompleteInheritanceImpl getCompleteInheritance(@NonNull CompleteClassInternal completeClass);
 	@Override
 	@NonNull CompleteModelInternal getCompleteModel();

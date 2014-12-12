@@ -15,7 +15,6 @@ import java.math.BigInteger;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.ClassId;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
@@ -79,7 +78,7 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 	}
 
 	protected EClassifier getEClassifier(@NonNull Type type) {
-		for (DomainClass dType : metaModelManager.getPartialClasses(type)) {
+		for (org.eclipse.ocl.pivot.Class dType : metaModelManager.getPartialClasses(type)) {
 			if (dType instanceof org.eclipse.ocl.pivot.Class) {
 				org.eclipse.ocl.pivot.Class pType = (org.eclipse.ocl.pivot.Class) dType;
 				EClassifier eClass = (EClassifier) pType.getETarget();

@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.IdManager;
@@ -500,7 +499,7 @@ public class DataTypeImpl
 
 	@Override
 	public @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
-		DomainClass behavioralType = getBehavioralClass();
+		org.eclipse.ocl.pivot.Class behavioralType = getBehavioralClass();
 		return standardLibrary.getInheritance(behavioralType != null ? behavioralType : this);
 	}
 } //DataTypeImpl

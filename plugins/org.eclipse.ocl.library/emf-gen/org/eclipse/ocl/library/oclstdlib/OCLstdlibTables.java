@@ -289,15 +289,15 @@ public class OCLstdlibTables
 		public static final @NonNull DomainParameterTypes _Bag_selectByKind_TT = new DomainParameterTypes(OCLstdlibTables.TypeParameters.__Bag__selectByKind_TT);
 		public static final @NonNull DomainParameterTypes _Bag_selectByType_TT = new DomainParameterTypes(OCLstdlibTables.TypeParameters.__Bag__selectByType_TT);
 		public static final @NonNull DomainParameterTypes _Boolean = new DomainParameterTypes(OCLstdlibTables.Types._Boolean);
-		public static final @NonNull DomainParameterTypes _Collection = new DomainParameterTypes(new ExecutorSpecializedType(LIBRARY, "Collection", OCLstdlibTables.TypeParameters._Collection_T));
+		public static final @NonNull DomainParameterTypes _Collection = new DomainParameterTypes(new ExecutorSpecializedType("Collection", OCLstdlibTables.TypeParameters._Collection_T));
 		public static final @NonNull DomainParameterTypes _Collection_T = new DomainParameterTypes(OCLstdlibTables.TypeParameters._Collection_T);
-		public static final @NonNull DomainParameterTypes _Collection__Bag_T__ = new DomainParameterTypes(new ExecutorSpecializedType(LIBRARY, "Collection", OCLstdlibTables.TypeParameters._Bag_T));
-		public static final @NonNull DomainParameterTypes _Collection__Collection_excludesAll_T2__ = new DomainParameterTypes(new ExecutorSpecializedType(LIBRARY, "Collection", OCLstdlibTables.TypeParameters.__Collection__excludesAll_T2));
-		public static final @NonNull DomainParameterTypes _Collection__Collection_includesAll_T2__ = new DomainParameterTypes(new ExecutorSpecializedType(LIBRARY, "Collection", OCLstdlibTables.TypeParameters.__Collection__includesAll_T2));
-		public static final @NonNull DomainParameterTypes _Collection__Collection_product_T2__ = new DomainParameterTypes(new ExecutorSpecializedType(LIBRARY, "Collection", OCLstdlibTables.TypeParameters.__Collection__product_T2));
-		public static final @NonNull DomainParameterTypes _Collection__OclAny__ = new DomainParameterTypes(new ExecutorSpecializedType(LIBRARY, "Collection", OCLstdlibTables.Types._OclAny));
-		public static final @NonNull DomainParameterTypes _Collection__Set_T__ = new DomainParameterTypes(new ExecutorSpecializedType(LIBRARY, "Collection", OCLstdlibTables.TypeParameters._Set_T));
-		public static final @NonNull DomainParameterTypes _Collection__UniqueCollection_T__ = new DomainParameterTypes(new ExecutorSpecializedType(LIBRARY, "Collection", OCLstdlibTables.TypeParameters._UniqueCollection_T));
+		public static final @NonNull DomainParameterTypes _Collection__Bag_T__ = new DomainParameterTypes(new ExecutorSpecializedType("Collection", OCLstdlibTables.TypeParameters._Bag_T));
+		public static final @NonNull DomainParameterTypes _Collection__Collection_excludesAll_T2__ = new DomainParameterTypes(new ExecutorSpecializedType("Collection", OCLstdlibTables.TypeParameters.__Collection__excludesAll_T2));
+		public static final @NonNull DomainParameterTypes _Collection__Collection_includesAll_T2__ = new DomainParameterTypes(new ExecutorSpecializedType("Collection", OCLstdlibTables.TypeParameters.__Collection__includesAll_T2));
+		public static final @NonNull DomainParameterTypes _Collection__Collection_product_T2__ = new DomainParameterTypes(new ExecutorSpecializedType("Collection", OCLstdlibTables.TypeParameters.__Collection__product_T2));
+		public static final @NonNull DomainParameterTypes _Collection__OclAny__ = new DomainParameterTypes(new ExecutorSpecializedType("Collection", OCLstdlibTables.Types._OclAny));
+		public static final @NonNull DomainParameterTypes _Collection__Set_T__ = new DomainParameterTypes(new ExecutorSpecializedType("Collection", OCLstdlibTables.TypeParameters._Set_T));
+		public static final @NonNull DomainParameterTypes _Collection__UniqueCollection_T__ = new DomainParameterTypes(new ExecutorSpecializedType("Collection", OCLstdlibTables.TypeParameters._UniqueCollection_T));
 		public static final @NonNull DomainParameterTypes _Collection_selectByKind_TT = new DomainParameterTypes(OCLstdlibTables.TypeParameters.__Collection__selectByKind_TT);
 		public static final @NonNull DomainParameterTypes _Collection_selectByType_TT = new DomainParameterTypes(OCLstdlibTables.TypeParameters.__Collection__selectByType_TT);
 		public static final @NonNull DomainParameterTypes _Integer = new DomainParameterTypes(OCLstdlibTables.Types._Integer);
@@ -308,7 +308,7 @@ public class OCLstdlibTables
 		public static final @NonNull DomainParameterTypes _Lambda_Bag_T_Bag_collect_V = new DomainParameterTypes(OCLstdlibTables.TypeParameters.__Bag__collect_V);
 		public static final @NonNull DomainParameterTypes _Lambda_Bag_T_Boolean = new DomainParameterTypes(OCLstdlibTables.Types._Boolean);
 		public static final @NonNull DomainParameterTypes _Lambda_Bag_T_OclAny = new DomainParameterTypes(OCLstdlibTables.Types._OclAny);
-		public static final @NonNull DomainParameterTypes _Lambda_Bag_T_Set__Bag_T__ = new DomainParameterTypes(new ExecutorSpecializedType(LIBRARY, "Set", OCLstdlibTables.TypeParameters._Bag_T));
+		public static final @NonNull DomainParameterTypes _Lambda_Bag_T_Set__Bag_T__ = new DomainParameterTypes(new ExecutorSpecializedType("Set", OCLstdlibTables.TypeParameters._Bag_T));
 		public static final @NonNull DomainParameterTypes _Lambda_Collection_T_Boolean = new DomainParameterTypes(OCLstdlibTables.Types._Boolean);
 		public static final @NonNull DomainParameterTypes _Lambda_Collection_T_Collection_collectNested_V = new DomainParameterTypes(OCLstdlibTables.TypeParameters.__Collection__collectNested_V);
 		public static final @NonNull DomainParameterTypes _Lambda_Collection_T_Collection_collect_V = new DomainParameterTypes(OCLstdlibTables.TypeParameters.__Collection__collect_V);
@@ -316,17 +316,17 @@ public class OCLstdlibTables
 		public static final @NonNull DomainParameterTypes _Lambda_Collection_T_OclAny = new DomainParameterTypes(OCLstdlibTables.Types._OclAny);
 		public static final @NonNull DomainParameterTypes _Lambda_OrderedSet_T_Boolean = new DomainParameterTypes(OCLstdlibTables.Types._Boolean);
 		public static final @NonNull DomainParameterTypes _Lambda_OrderedSet_T_OclAny = new DomainParameterTypes(OCLstdlibTables.Types._OclAny);
-		public static final @NonNull DomainParameterTypes _Lambda_OrderedSet_T_OrderedSet = new DomainParameterTypes(new ExecutorSpecializedType(LIBRARY, "OrderedSet", OCLstdlibTables.TypeParameters._OrderedSet_T));
+		public static final @NonNull DomainParameterTypes _Lambda_OrderedSet_T_OrderedSet = new DomainParameterTypes(new ExecutorSpecializedType("OrderedSet", OCLstdlibTables.TypeParameters._OrderedSet_T));
 		public static final @NonNull DomainParameterTypes _Lambda_OrderedSet_T_OrderedSet_collectNested_V = new DomainParameterTypes(OCLstdlibTables.TypeParameters.__OrderedSet__collectNested_V);
 		public static final @NonNull DomainParameterTypes _Lambda_OrderedSet_T_OrderedSet_collect_V = new DomainParameterTypes(OCLstdlibTables.TypeParameters.__OrderedSet__collect_V);
 		public static final @NonNull DomainParameterTypes _Lambda_Sequence_T_Boolean = new DomainParameterTypes(OCLstdlibTables.Types._Boolean);
 		public static final @NonNull DomainParameterTypes _Lambda_Sequence_T_OclAny = new DomainParameterTypes(OCLstdlibTables.Types._OclAny);
-		public static final @NonNull DomainParameterTypes _Lambda_Sequence_T_OrderedSet__Sequence_T__ = new DomainParameterTypes(new ExecutorSpecializedType(LIBRARY, "OrderedSet", OCLstdlibTables.TypeParameters._Sequence_T));
+		public static final @NonNull DomainParameterTypes _Lambda_Sequence_T_OrderedSet__Sequence_T__ = new DomainParameterTypes(new ExecutorSpecializedType("OrderedSet", OCLstdlibTables.TypeParameters._Sequence_T));
 		public static final @NonNull DomainParameterTypes _Lambda_Sequence_T_Sequence_collectNested_V = new DomainParameterTypes(OCLstdlibTables.TypeParameters.__Sequence__collectNested_V);
 		public static final @NonNull DomainParameterTypes _Lambda_Sequence_T_Sequence_collect_V = new DomainParameterTypes(OCLstdlibTables.TypeParameters.__Sequence__collect_V);
 		public static final @NonNull DomainParameterTypes _Lambda_Set_T_Boolean = new DomainParameterTypes(OCLstdlibTables.Types._Boolean);
 		public static final @NonNull DomainParameterTypes _Lambda_Set_T_OclAny = new DomainParameterTypes(OCLstdlibTables.Types._OclAny);
-		public static final @NonNull DomainParameterTypes _Lambda_Set_T_Set = new DomainParameterTypes(new ExecutorSpecializedType(LIBRARY, "Set", OCLstdlibTables.TypeParameters._Set_T));
+		public static final @NonNull DomainParameterTypes _Lambda_Set_T_Set = new DomainParameterTypes(new ExecutorSpecializedType("Set", OCLstdlibTables.TypeParameters._Set_T));
 		public static final @NonNull DomainParameterTypes _Lambda_Set_T_Set_collectNested_V = new DomainParameterTypes(OCLstdlibTables.TypeParameters.__Set__collectNested_V);
 		public static final @NonNull DomainParameterTypes _Lambda_Set_T_Set_collect_V = new DomainParameterTypes(OCLstdlibTables.TypeParameters.__Set__collect_V);
 		public static final @NonNull DomainParameterTypes _Lambda_UniqueCollection_T_OclAny = new DomainParameterTypes(OCLstdlibTables.Types._OclAny);
@@ -336,8 +336,8 @@ public class OCLstdlibTables
 		public static final @NonNull DomainParameterTypes _OclSelf = new DomainParameterTypes(OCLstdlibTables.Types._OclSelf);
 		public static final @NonNull DomainParameterTypes _OclState = new DomainParameterTypes(OCLstdlibTables.Types._OclState);
 		public static final @NonNull DomainParameterTypes _OclType = new DomainParameterTypes(OCLstdlibTables.Types._OclType);
-		public static final @NonNull DomainParameterTypes _OrderedCollection__OrderedSet_T__ = new DomainParameterTypes(new ExecutorSpecializedType(LIBRARY, "OrderedCollection", OCLstdlibTables.TypeParameters._OrderedSet_T));
-		public static final @NonNull DomainParameterTypes _OrderedCollection__Sequence_T__ = new DomainParameterTypes(new ExecutorSpecializedType(LIBRARY, "OrderedCollection", OCLstdlibTables.TypeParameters._Sequence_T));
+		public static final @NonNull DomainParameterTypes _OrderedCollection__OrderedSet_T__ = new DomainParameterTypes(new ExecutorSpecializedType("OrderedCollection", OCLstdlibTables.TypeParameters._OrderedSet_T));
+		public static final @NonNull DomainParameterTypes _OrderedCollection__Sequence_T__ = new DomainParameterTypes(new ExecutorSpecializedType("OrderedCollection", OCLstdlibTables.TypeParameters._Sequence_T));
 		public static final @NonNull DomainParameterTypes _OrderedSet_T = new DomainParameterTypes(OCLstdlibTables.TypeParameters._OrderedSet_T);
 		public static final @NonNull DomainParameterTypes _OrderedSet_selectByKind_TT = new DomainParameterTypes(OCLstdlibTables.TypeParameters.__OrderedSet__selectByKind_TT);
 		public static final @NonNull DomainParameterTypes _OrderedSet_selectByType_TT = new DomainParameterTypes(OCLstdlibTables.TypeParameters.__OrderedSet__selectByType_TT);
@@ -350,9 +350,9 @@ public class OCLstdlibTables
 		public static final @NonNull DomainParameterTypes _String = new DomainParameterTypes(OCLstdlibTables.Types._String);
 		public static final @NonNull DomainParameterTypes _String___Boolean = new DomainParameterTypes(OCLstdlibTables.Types._String, OCLstdlibTables.Types._Boolean);
 		public static final @NonNull DomainParameterTypes _String___String = new DomainParameterTypes(OCLstdlibTables.Types._String, OCLstdlibTables.Types._String);
-		public static final @NonNull DomainParameterTypes _UniqueCollection = new DomainParameterTypes(new ExecutorSpecializedType(LIBRARY, "UniqueCollection", OCLstdlibTables.TypeParameters._UniqueCollection_T));
-		public static final @NonNull DomainParameterTypes _UniqueCollection__Collection_T__ = new DomainParameterTypes(new ExecutorSpecializedType(LIBRARY, "UniqueCollection", OCLstdlibTables.TypeParameters._Collection_T));
-		public static final @NonNull DomainParameterTypes _UniqueCollection__OclAny__ = new DomainParameterTypes(new ExecutorSpecializedType(LIBRARY, "UniqueCollection", OCLstdlibTables.Types._OclAny));
+		public static final @NonNull DomainParameterTypes _UniqueCollection = new DomainParameterTypes(new ExecutorSpecializedType("UniqueCollection", OCLstdlibTables.TypeParameters._UniqueCollection_T));
+		public static final @NonNull DomainParameterTypes _UniqueCollection__Collection_T__ = new DomainParameterTypes(new ExecutorSpecializedType("UniqueCollection", OCLstdlibTables.TypeParameters._Collection_T));
+		public static final @NonNull DomainParameterTypes _UniqueCollection__OclAny__ = new DomainParameterTypes(new ExecutorSpecializedType("UniqueCollection", OCLstdlibTables.Types._OclAny));
 		public static final @NonNull DomainParameterTypes _UnlimitedNatural_oclAsType_TT = new DomainParameterTypes(OCLstdlibTables.TypeParameters.__UnlimitedNatural__oclAsType_TT);
 	}
 

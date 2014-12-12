@@ -20,7 +20,6 @@ import java.util.WeakHashMap;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainType;
@@ -33,8 +32,8 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 	private @NonNull Map<String, WeakReference<EcoreExecutorPackage>> ePackageMap = new WeakHashMap<String, WeakReference<EcoreExecutorPackage>>();
 	private Map<org.eclipse.ocl.pivot.Package, WeakReference<DomainReflectivePackage>> domainPackageMap = null;
 	private /*@LazyNonNull*/ Map<EcoreExecutorPackage, List<EcoreExecutorPackage>> extensions = null;
-	private /*@LazyNonNull*/ DomainClass classType = null;
-	private /*@LazyNonNull*/ DomainClass enumerationType = null;
+	private /*@LazyNonNull*/ org.eclipse.ocl.pivot.Class classType = null;
+	private /*@LazyNonNull*/ org.eclipse.ocl.pivot.Class enumerationType = null;
 	
 	public ExecutorStandardLibrary(EcoreExecutorPackage... execPackages) {
 		OCLstdlibTables.PACKAGE.getClass();
@@ -69,7 +68,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 	}
 
 	@Override
-	public @NonNull DomainClass getClassType() {
+	public @NonNull org.eclipse.ocl.pivot.Class getClassType() {
 		Map<EcoreExecutorPackage, List<EcoreExecutorPackage>> extensions2 = extensions;
 		if (extensions2 == null) {
 			throw new IllegalStateException("No extension package registered to define Class type"); //$NON-NLS-1$
@@ -79,7 +78,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 		}
 		for (EcoreExecutorPackage basePackage : extensions2.keySet()) {
 			for (EcoreExecutorPackage extensionPackage : extensions2.get(basePackage)) {
-				for (DomainClass type : extensionPackage.getOwnedClasses()) {
+				for (org.eclipse.ocl.pivot.Class type : extensionPackage.getOwnedClasses()) {
 					if ("Class".equals(type.getName())) { //$NON-NLS-1$
 						classType = type;
 						return type;
@@ -91,7 +90,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 	}
 
 	@Override
-	public @NonNull DomainClass getEnumerationType() {
+	public @NonNull org.eclipse.ocl.pivot.Class getEnumerationType() {
 		Map<EcoreExecutorPackage, List<EcoreExecutorPackage>> extensions2 = extensions;
 		if (extensions2 == null) {
 			throw new IllegalStateException("No extension package registered to define Enumeration type"); //$NON-NLS-1$
@@ -101,7 +100,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 		}
 		for (EcoreExecutorPackage basePackage : extensions2.keySet()) {
 			for (EcoreExecutorPackage extensionPackage : extensions2.get(basePackage)) {
-				for (DomainClass type : extensionPackage.getOwnedClasses()) {
+				for (org.eclipse.ocl.pivot.Class type : extensionPackage.getOwnedClasses()) {
 					if ("Enumeration".equals(type.getName())) { //$NON-NLS-1$
 						enumerationType = type;
 						return type;
@@ -113,13 +112,13 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 	}
 
 	@Override
-	public @NonNull DomainInheritance getInheritance(@NonNull DomainClass domainClass) {
+	public @NonNull DomainInheritance getInheritance(@NonNull org.eclipse.ocl.pivot.Class domainClass) {
 		if (domainClass instanceof DomainInheritance) {
 			return (DomainInheritance) domainClass;
 		}
 /*		if (type instanceof DomainMetaclass) {
 			DomainType instanceType = DomainUtil.nonNullPivot(((DomainMetaclass)type).getInstanceType());
-			DomainClass metaclass = getMetaclass(instanceType);
+			org.eclipse.ocl.pivot.Class metaclass = getMetaclass(instanceType);
 			DomainType containerType = metaclass;//.getContainerType();
 			return containerType.getInheritance(this);
 		} */
@@ -168,8 +167,8 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 	}
 
 	@Override
-	public @Nullable DomainClass getNestedType(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name) {
-		DomainClass nestedType = super.getNestedType(parentPackage, name);
+	public @Nullable org.eclipse.ocl.pivot.Class getNestedType(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name) {
+		org.eclipse.ocl.pivot.Class nestedType = super.getNestedType(parentPackage, name);
 		if (nestedType != null) {
 			return nestedType;
 		}

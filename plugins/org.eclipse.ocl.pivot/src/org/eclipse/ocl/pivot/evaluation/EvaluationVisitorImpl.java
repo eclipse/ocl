@@ -24,7 +24,6 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainType;
@@ -183,7 +182,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		return this;
 	}
 
-	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainClass dynamicType, @NonNull Operation staticOperation) {
+	public @NonNull LibraryFeature lookupImplementation(@NonNull org.eclipse.ocl.pivot.Class dynamicType, @NonNull Operation staticOperation) {
 		DomainInheritance inheritance = metaModelManager.getInheritance(dynamicType);
 		return inheritance.getType().lookupImplementation(standardLibrary, staticOperation);
 	}
@@ -487,7 +486,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		OCLExpression source = iterateExp.getSource();
 		Object acceptedValue = source.accept(undecoratedVisitor);
 		CollectionValue sourceValue = ValuesUtil.asCollectionValue(acceptedValue);
-		DomainClass dynamicSourceType = metaModelManager.getIdResolver().getClass(sourceValue.getTypeId(), null);
+		org.eclipse.ocl.pivot.Class dynamicSourceType = metaModelManager.getIdResolver().getClass(sourceValue.getTypeId(), null);
 		LibraryIteration implementation = (LibraryIteration) dynamicSourceType.lookupImplementation(standardLibrary, staticIteration);
 /*		Operation dynamicIteration = metaModelManager.getDynamicOperation((org.eclipse.ocl.pivot.Type) dynamicSourceType, staticIteration);
  		if (dynamicIteration == null) {
@@ -562,7 +561,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 //		} catch (InvalidValueException e) {
 //			return evaluationEnvironment.throwInvalidEvaluation(e);
 //		}
-		DomainClass dynamicSourceType = metaModelManager.getIdResolver().getClass(sourceValue.getTypeId(), null);
+		org.eclipse.ocl.pivot.Class dynamicSourceType = metaModelManager.getIdResolver().getClass(sourceValue.getTypeId(), null);
 		LibraryIteration implementation = (LibraryIteration) dynamicSourceType.lookupImplementation(standardLibrary, staticIteration);
 /*		Operation dynamicIteration = metaModelManager.getDynamicOperation((org.eclipse.ocl.pivot.Type) dynamicSourceType, staticIteration);
  		if (dynamicIteration == null) {
@@ -711,10 +710,10 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			}
 			else {
 		 		PivotIdResolver idResolver = metaModelManager.getIdResolver();
-				DomainClass actualSourceType = idResolver.getStaticTypeOf(sourceValue);
+				org.eclipse.ocl.pivot.Class actualSourceType = idResolver.getStaticTypeOf(sourceValue);
 				if (onlyArgument != null) {
-					DomainClass actualArgType = idResolver.getStaticTypeOf(onlyArgument);
-					actualSourceType = (DomainClass)actualSourceType.getCommonType(idResolver, actualArgType);
+					org.eclipse.ocl.pivot.Class actualArgType = idResolver.getStaticTypeOf(onlyArgument);
+					actualSourceType = (org.eclipse.ocl.pivot.Class)actualSourceType.getCommonType(idResolver, actualArgType);
 				}
 				actualOperation = actualSourceType.lookupActualOperation(standardLibrary, apparentOperation);
 			}
@@ -741,7 +740,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			}
 			else {
 		 		PivotIdResolver idResolver = metaModelManager.getIdResolver();
-				DomainClass actualSourceType = idResolver.getStaticTypeOf(sourceValue);
+				org.eclipse.ocl.pivot.Class actualSourceType = idResolver.getStaticTypeOf(sourceValue);
 				actualOperation = actualSourceType.lookupActualOperation(standardLibrary, apparentOperation);
 			}
 			LibraryOperation implementation = (LibraryOperation) metaModelManager.getImplementation(actualOperation);

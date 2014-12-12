@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
@@ -416,7 +415,7 @@ public class PropertyCallExpImpl
 	 * @generated NOT
 	 */
 	@Override
-	public DomainClass getSpecializedReferredPropertyOwningType()
+	public org.eclipse.ocl.pivot.Class getSpecializedReferredPropertyOwningType()
 	{
 		Property referredProperty = getReferredProperty();
 		org.eclipse.ocl.pivot.Class referencedType = referredProperty.getOwningClass();
@@ -439,7 +438,7 @@ public class PropertyCallExpImpl
 	 * @generated NOT
 	 */
 	@Override
-	public DomainClass getSpecializedReferredPropertyType()
+	public org.eclipse.ocl.pivot.Class getSpecializedReferredPropertyType()
 	{
 		Property referredProperty = getReferredProperty();
 		Type referencedType = referredProperty.getType();
@@ -463,7 +462,7 @@ public class PropertyCallExpImpl
 			return behavioralType != null ? behavioralType : (DataType)specializedType;
 		}
 		else {
-			return (DomainClass)specializedType;		// FIXME cast
+			return (org.eclipse.ocl.pivot.Class)specializedType;		// FIXME cast
 		}
 	}
 
@@ -529,7 +528,7 @@ public class PropertyCallExpImpl
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
 		        final @Nullable /*@Thrown*/ DomainType type = source.getType();
-		        final @NonNull /*@Thrown*/ DomainClass getSpecializedReferredPropertyOwningType = this.getSpecializedReferredPropertyOwningType();
+		        final @NonNull /*@Thrown*/ org.eclipse.ocl.pivot.Class getSpecializedReferredPropertyOwningType = this.getSpecializedReferredPropertyOwningType();
 		        final /*@Thrown*/ boolean b = OclTypeConformsToOperation.INSTANCE.evaluate(evaluator, type, getSpecializedReferredPropertyOwningType).booleanValue();
 		        CAUGHT_b = b;
 		    }
@@ -632,7 +631,7 @@ public class PropertyCallExpImpl
 		@NonNull /*@Caught*/ Object CAUGHT_eq;
 		try {
 		    final @Nullable /*@Thrown*/ DomainType type = this.getType();
-		    final @NonNull /*@Thrown*/ DomainClass getSpecializedReferredPropertyType = this.getSpecializedReferredPropertyType();
+		    final @NonNull /*@Thrown*/ org.eclipse.ocl.pivot.Class getSpecializedReferredPropertyType = this.getSpecializedReferredPropertyType();
 		    final /*@Thrown*/ boolean eq = (type != null) ? (type.getTypeId() == getSpecializedReferredPropertyType.getTypeId()) : ValuesUtil.throwBooleanInvalidValueException("null equal input");
 		    ;
 		    CAUGHT_eq = eq;

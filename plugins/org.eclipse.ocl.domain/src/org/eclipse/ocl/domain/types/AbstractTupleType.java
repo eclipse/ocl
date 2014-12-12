@@ -12,7 +12,6 @@ package org.eclipse.ocl.domain.types;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.AbstractExecutorClass;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.TupleTypeId;
@@ -42,7 +41,7 @@ public class AbstractTupleType extends AbstractExecutorClass implements TupleTyp
 	}
 
 	@Override
-	public @NonNull DomainClass getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
+	public @NonNull org.eclipse.ocl.pivot.Class getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
 		if (type != this) {
 			return idResolver.getStandardLibrary().getOclAnyType();
 		}

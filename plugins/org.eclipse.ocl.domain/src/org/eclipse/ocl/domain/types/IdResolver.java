@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
@@ -77,7 +76,7 @@ public interface IdResolver extends IdVisitor<DomainElement>
 
 	void dispose();
 
-	@NonNull DomainClass getClass(@NonNull TypeId typeId, @Nullable Object context);
+	@NonNull org.eclipse.ocl.pivot.Class getClass(@NonNull TypeId typeId, @Nullable Object context);
 
 	@NonNull DomainType getCollectionType(@NonNull CollectionTypeId typeId);
 
@@ -91,7 +90,7 @@ public interface IdResolver extends IdVisitor<DomainElement>
 
 	@NonNull DomainInheritance getInheritance(@NonNull EClassifier eClassifier);
 	
-	@NonNull DomainClass getJavaType(@NonNull Class<?> javaClass);
+	@NonNull org.eclipse.ocl.pivot.Class getJavaType(@NonNull Class<?> javaClass);
 
 	@NonNull Operation getOperation(@NonNull OperationId operationId);
 
@@ -99,17 +98,17 @@ public interface IdResolver extends IdVisitor<DomainElement>
 
 	@NonNull DomainStandardLibrary getStandardLibrary();
 
-	@NonNull DomainClass getStaticTypeOf(@Nullable Object value);
+	@NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value);
 
-	@NonNull DomainClass getStaticTypeOf(@Nullable Object value, Object... values);
+	@NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, Object... values);
 
-	@NonNull DomainClass getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values);
+	@NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values);
 
 	@NonNull DomainTypedElement getTuplePart(@NonNull String name, @NonNull TypeId typeId);
 
 	@NonNull TupleType getTupleType(@NonNull TupleTypeId typeId);
 
-	@NonNull DomainClass getType(@NonNull EClassifier eClassifier);
+	@NonNull org.eclipse.ocl.pivot.Class getType(@NonNull EClassifier eClassifier);
 
 	@NonNull DomainType getType(@NonNull TypeId typeId, @Nullable Object context);
 

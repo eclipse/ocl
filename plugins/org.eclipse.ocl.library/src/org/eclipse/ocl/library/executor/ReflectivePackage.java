@@ -16,7 +16,6 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.PackageId;
@@ -27,15 +26,15 @@ import org.eclipse.ocl.domain.utilities.DomainUtil;
  */
 public abstract class ReflectivePackage extends ExecutorPackage
 {
-	protected @Nullable Map<DomainClass, DomainInheritance> class2inheritance = null;
+	protected @Nullable Map<org.eclipse.ocl.pivot.Class, DomainInheritance> class2inheritance = null;
 
 	public ReflectivePackage(@NonNull String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId) {
 		super(name, nsPrefix, nsURI, packageId);
 	}
 	
-	protected synchronized @NonNull Map<DomainClass, DomainInheritance> computeClasses() {
-		Map<DomainClass, DomainInheritance> class2inheritance2 = class2inheritance = new HashMap<DomainClass, DomainInheritance>();
-		for (DomainClass domainClass : getDomainClasses()) {
+	protected synchronized @NonNull Map<org.eclipse.ocl.pivot.Class, DomainInheritance> computeClasses() {
+		Map<org.eclipse.ocl.pivot.Class, DomainInheritance> class2inheritance2 = class2inheritance = new HashMap<org.eclipse.ocl.pivot.Class, DomainInheritance>();
+		for (org.eclipse.ocl.pivot.Class domainClass : getDomainClasses()) {
 			if (domainClass != null) {
 				DomainInheritance executorType = createInheritance(domainClass);
 				class2inheritance2.put(domainClass, executorType);
@@ -44,12 +43,12 @@ public abstract class ReflectivePackage extends ExecutorPackage
 		return class2inheritance2;
 	}
 
-	protected abstract @NonNull DomainInheritance createInheritance(@NonNull DomainClass domainClass);
+	protected abstract @NonNull DomainInheritance createInheritance(@NonNull org.eclipse.ocl.pivot.Class domainClass);
 
 	protected abstract @NonNull List<org.eclipse.ocl.pivot.Class> getDomainClasses();
 
-	public @NonNull DomainInheritance getInheritance(@NonNull DomainClass domainClass) {
-		Map<DomainClass, DomainInheritance> class2inheritance2 = class2inheritance;
+	public @NonNull DomainInheritance getInheritance(@NonNull org.eclipse.ocl.pivot.Class domainClass) {
+		Map<org.eclipse.ocl.pivot.Class, DomainInheritance> class2inheritance2 = class2inheritance;
 		if (class2inheritance2 == null) {
 			class2inheritance2 = computeClasses();
 		}
@@ -58,7 +57,7 @@ public abstract class ReflectivePackage extends ExecutorPackage
 
 	@Override
 	public @NonNull List<org.eclipse.ocl.pivot.Class> getOwnedClasses() {
-/*		Map<DomainClass, DomainInheritance> types2 = class2inheritance;
+/*		Map<org.eclipse.ocl.pivot.Class, DomainInheritance> types2 = class2inheritance;
 		if (types2 == null) {
 			types2 = computeClasses();
 		}

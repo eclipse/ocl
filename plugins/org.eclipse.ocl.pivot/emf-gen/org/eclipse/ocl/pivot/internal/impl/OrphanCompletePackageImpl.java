@@ -18,7 +18,6 @@ import java.util.WeakHashMap;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.domain.values.IntegerValue;
@@ -120,7 +119,7 @@ public class OrphanCompletePackageImpl extends RootCompletePackageImpl implement
 	}
 
 	@Override
-	public @NonNull CompleteClassInternal getCompleteClass(@NonNull DomainClass type) {
+	public @NonNull CompleteClassInternal getCompleteClass(@NonNull org.eclipse.ocl.pivot.Class type) {
 		WeakReference<OrphanCompleteClassImpl> ref = class2orphanCompleteClass.get(type);
 		if (ref != null) {
 			OrphanCompleteClassImpl orphanCompleteClass = ref.get();

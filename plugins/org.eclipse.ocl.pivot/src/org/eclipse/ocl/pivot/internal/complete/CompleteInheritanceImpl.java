@@ -16,7 +16,6 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.ids.OperationId;
@@ -127,7 +126,7 @@ public class CompleteInheritanceImpl extends ReflectiveInheritance implements Co
 	}
 	
 	@Override
-	public @NonNull DomainClass getType() {
+	public @NonNull org.eclipse.ocl.pivot.Class getType() {
 		return getCompleteClass().getPivotClass();
 	}
 

@@ -39,7 +39,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
 import org.eclipse.ocl.examples.emf.validation.validity.ResultConstrainingNode;
@@ -89,7 +88,7 @@ public class DelegateUIConstraintLocator extends DelegateConstraintLocator imple
 		 */
 		protected @NonNull URI createDocument(IProgressMonitor monitor) throws IOException, CoreException {
 			PivotIdResolver idResolver = metaModelManager.getIdResolver();
-			DomainClass staticType = idResolver.getStaticTypeOf(contextObject);
+			org.eclipse.ocl.pivot.Class staticType = idResolver.getStaticTypeOf(contextObject);
 			org.eclipse.ocl.pivot.Class contextType = metaModelManager.getType(staticType);
 //			if (contextType instanceof Metaclass) {
 //				contextType = (org.eclipse.ocl.pivot.Class)((Metaclass<?>)contextType).getInstanceType();	// FIXME cast

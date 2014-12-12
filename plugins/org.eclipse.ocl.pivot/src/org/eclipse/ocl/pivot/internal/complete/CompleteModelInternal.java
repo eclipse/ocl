@@ -15,7 +15,6 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.values.CollectionTypeParameters;
@@ -34,10 +33,10 @@ import org.eclipse.ocl.pivot.manager.TupleTypeManager;
 
 public interface CompleteModelInternal extends CompleteModel
 {
-	void didAddClass(@NonNull DomainClass partialClass, @NonNull CompleteClassInternal completeClass);
+	void didAddClass(@NonNull org.eclipse.ocl.pivot.Class partialClass, @NonNull CompleteClassInternal completeClass);
 	void didAddCompletePackage(@NonNull CompletePackageInternal completePackage);
 	void didRemoveCompletePackage(@NonNull CompletePackageInternal completePackage);
-	void didRemoveClass(@NonNull DomainClass partialClass);
+	void didRemoveClass(@NonNull org.eclipse.ocl.pivot.Class partialClass);
 	@Nullable CollectionType findCollectionType(@NonNull CompleteClassInternal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters);
 	@NonNull CollectionType getCollectionType(@NonNull CompleteClassInternal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters);
 	@Override

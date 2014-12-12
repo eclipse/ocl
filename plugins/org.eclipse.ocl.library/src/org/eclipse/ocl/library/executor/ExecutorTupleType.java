@@ -13,23 +13,22 @@ package org.eclipse.ocl.library.executor;
 import java.util.Collection;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainEnvironment;
+import org.eclipse.ocl.domain.elements.AbstractExecutorClass;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.TuplePartId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.LibraryFeature;
-import org.eclipse.ocl.domain.types.AbstractClass;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.pivot.Operation;
 
-public class ExecutorTupleType extends AbstractClass implements ExecutorTypeArgument
+public class ExecutorTupleType extends AbstractExecutorClass implements ExecutorTypeArgument
 {
 	protected final @NonNull TypeId typeId;
 
-	public ExecutorTupleType(@NonNull DomainEnvironment environment, @NonNull String name, @NonNull Collection<? extends TuplePartId> parts) {
-		super(environment, name);
+	public ExecutorTupleType(@NonNull String name, @NonNull Collection<? extends TuplePartId> parts) {
+		super(name, 0);
 		typeId = IdManager.getTupleTypeId(name, parts);
 	}
 

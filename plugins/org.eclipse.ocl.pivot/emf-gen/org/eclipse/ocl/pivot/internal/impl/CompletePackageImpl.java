@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
@@ -416,18 +415,18 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 
 	@Override
 	@SuppressWarnings("null")
-	public @NonNull Iterable<? extends DomainClass> getAllClasses() {
-		return Iterables.transform(getOwnedCompleteClasses(), new Function<CompleteClass, DomainClass>()
+	public @NonNull Iterable<? extends org.eclipse.ocl.pivot.Class> getAllClasses() {
+		return Iterables.transform(getOwnedCompleteClasses(), new Function<CompleteClass, org.eclipse.ocl.pivot.Class>()
 			{
 				@Override
-				public DomainClass apply(CompleteClass input) {
+				public org.eclipse.ocl.pivot.Class apply(CompleteClass input) {
 					return input.getPivotClass();
 				}
 			});
 	}
 
 	@Override
-	public @NonNull CompleteClassInternal getCompleteClass(@NonNull DomainClass pivotType) {
+	public @NonNull CompleteClassInternal getCompleteClass(@NonNull org.eclipse.ocl.pivot.Class pivotType) {
 		return DomainUtil.nonNullState(getOwnedCompleteClass(pivotType.getName()));
 	}
 

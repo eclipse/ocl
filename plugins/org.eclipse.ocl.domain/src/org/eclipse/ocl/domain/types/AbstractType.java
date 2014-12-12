@@ -13,7 +13,6 @@ package org.eclipse.ocl.domain.types;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
@@ -63,7 +62,7 @@ public abstract class AbstractType implements DomainType	// FIXME rename as perh
 	}
 
 	@Override
-	public @NonNull DomainClass getNormalizedType(@NonNull DomainStandardLibrary standardLibrary) {
+	public @NonNull org.eclipse.ocl.pivot.Class getNormalizedType(@NonNull DomainStandardLibrary standardLibrary) {
 		throw new UnsupportedOperationException();			// FIXME
 	}
 

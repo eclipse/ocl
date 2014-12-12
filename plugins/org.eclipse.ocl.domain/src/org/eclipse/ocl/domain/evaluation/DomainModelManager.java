@@ -15,7 +15,6 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainClass;
 
 /**
  * DomainModelManager provides the models to be used during evaluation. In particular
@@ -28,10 +27,10 @@ public interface DomainModelManager
 	{
 		@Override
 		@SuppressWarnings("null")
-		public @NonNull Set<EObject> get(@NonNull DomainClass type) {
+		public @NonNull Set<EObject> get(@NonNull org.eclipse.ocl.pivot.Class type) {
 			return Collections.emptySet();
 		}
 	};
 
-	@NonNull Set<EObject> get(@NonNull DomainClass type);
+	@NonNull Set<EObject> get(@NonNull org.eclipse.ocl.pivot.Class type);
 }

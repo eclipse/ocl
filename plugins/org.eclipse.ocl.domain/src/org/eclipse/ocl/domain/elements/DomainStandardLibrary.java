@@ -12,7 +12,10 @@ package org.eclipse.ocl.domain.elements;
 
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.ids.PrimitiveTypeId;
+import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Operation;
@@ -39,7 +42,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>Bag(T)</tt> type (an instance of BagType)
      */
-	@NonNull DomainClass getBagType();
+	@NonNull org.eclipse.ocl.pivot.Class getBagType();
 	
     /**
      * Obtains the instance of the PrimitiveType metatype, named
@@ -47,15 +50,15 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>Boolean</tt> type (an instance of PrimitiveType)
      */
-	@NonNull DomainClass getBooleanType();
+	@NonNull org.eclipse.ocl.pivot.Class getBooleanType();
 	
     /**
-     * Obtains the single instance of the DomainClass metatype, named
+     * Obtains the single instance of the org.eclipse.ocl.pivot.Class metatype, named
      * <tt>Class</tt>.
      * 
      * @return the <tt>Class</tt> type (an instance of Class)
      */
-	@NonNull DomainClass getClassType();
+	@NonNull org.eclipse.ocl.pivot.Class getClassType();
 	
     /**
      * Obtains the generic instance of the CollectionType metatype, named
@@ -63,7 +66,9 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>Collection(T)</tt> type (an instance of CollectionType)
      */
-	@NonNull DomainClass getCollectionType();
+	@NonNull org.eclipse.ocl.pivot.Class getCollectionType();
+
+	@NonNull DomainCollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
 
 	/**
 	 * Return the enumeration for a given enumerator.
@@ -76,12 +81,12 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>Enumeration</tt> type (an instance of Enumeration)
      */
-	@NonNull DomainClass getEnumerationType();
+	@NonNull org.eclipse.ocl.pivot.Class getEnumerationType();
 
 	/**
 	 * Return the Inheritance dispatch table for a given type.
 	 */
-	@NonNull DomainInheritance getInheritance(@NonNull DomainClass type);
+	@NonNull DomainInheritance getInheritance(@NonNull org.eclipse.ocl.pivot.Class type);
 	
     /**
      * Obtains the instance of the PrimitiveType metatype, named
@@ -89,12 +94,12 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>Integer</tt> type (an instance of PrimitiveType)
      */
-	@NonNull DomainClass getIntegerType();
+	@NonNull org.eclipse.ocl.pivot.Class getIntegerType();
 
 	/**
 	 * Return the instance of the Metaclass metatype whose class is classType.
 	 */
-	@NonNull DomainClass getMetaclass(@NonNull DomainType classType);
+	@NonNull org.eclipse.ocl.pivot.Class getMetaclass(@NonNull DomainType classType);
 
     /**
      * Returns the meta-type of a given type.
@@ -109,7 +114,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>OclAny</tt> type (an instance of AnyType)
      */
-	@NonNull DomainClass getOclAnyType();
+	@NonNull org.eclipse.ocl.pivot.Class getOclAnyType();
 	
     /**
      * Obtains the single instance of the OclComparable metatype, named
@@ -117,7 +122,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>OclAny</tt> type (an instance of Class)
      */
-	@NonNull DomainClass getOclComparableType();
+	@NonNull org.eclipse.ocl.pivot.Class getOclComparableType();
 
     /**
      * Obtains the single instance of the Class metatype, named
@@ -125,7 +130,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>OclElement</tt> type (an instance of Class)
      */
-	@NonNull DomainClass getOclElementType();
+	@NonNull org.eclipse.ocl.pivot.Class getOclElementType();
 
 	@NonNull Operation getOclInvalidOperation();
 	
@@ -135,7 +140,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>OclInvalid</tt> type (an instance of InvalidType)
      */
-	@NonNull DomainClass getOclInvalidType();
+	@NonNull org.eclipse.ocl.pivot.Class getOclInvalidType();
 	
     /**
      * Obtains the generic instance of the MessageType metatype, named
@@ -143,7 +148,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>OclMessage</tt> type (an instance of MessageType)
      */
-	@NonNull DomainClass getOclMessageType();
+	@NonNull org.eclipse.ocl.pivot.Class getOclMessageType();
 
     /**
      * Obtains the single instance of the OclSelf pseudo-metatype, named
@@ -151,7 +156,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>OclSelf</tt> type (an instance of SelfType)
      */
-	@NonNull DomainClass getOclSelfType();
+	@NonNull org.eclipse.ocl.pivot.Class getOclSelfType();
 	
     /**
      * Obtains the single instance of the OclSummable metatype, named
@@ -159,7 +164,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>OclAny</tt> type (an instance of Class)
      */
-	@NonNull DomainClass getOclSummableType();
+	@NonNull org.eclipse.ocl.pivot.Class getOclSummableType();
 	
     /**
      * Obtains the single instance of the OclTupleType metatype, named
@@ -167,7 +172,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>OclTuple</tt> type (an instance of Class)
      */
-	@NonNull DomainClass getOclTupleType();
+	@NonNull org.eclipse.ocl.pivot.Class getOclTupleType();
 	
 	DomainType getOclType(@NonNull String typeName);
 	
@@ -177,7 +182,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>OclVoid</tt> type (an instance of VoidType)
      */
-	@NonNull DomainClass getOclVoidType();
+	@NonNull org.eclipse.ocl.pivot.Class getOclVoidType();
 	
     DomainElement getOperationTemplateParameter(@NonNull Operation anOperation, int index);
 
@@ -187,7 +192,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>OrderedCollection(T)</tt> type (an instance of CollectionType)
      */
-	@NonNull DomainClass getOrderedCollectionType();
+	@NonNull org.eclipse.ocl.pivot.Class getOrderedCollectionType();
 
 	/**
      * Obtains the generic instance of the OrderedSetType metatype, named
@@ -195,7 +200,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>OrderedSet(T)</tt> type (an instance of OrderedSetType)
      */
-	@NonNull DomainClass getOrderedSetType();
+	@NonNull org.eclipse.ocl.pivot.Class getOrderedSetType();
 	
     DomainType getPrimitiveType(@NonNull PrimitiveTypeId id);
 
@@ -205,7 +210,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>Real</tt> type (an instance of PrimitiveType)
      */
-	@NonNull DomainClass getRealType();
+	@NonNull org.eclipse.ocl.pivot.Class getRealType();
 
 	org.eclipse.ocl.pivot.Package getRootPackage(@NonNull String name);
 	
@@ -215,7 +220,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>Sequence(T)</tt> type (an instance of SequenceType)
      */
-	@NonNull DomainClass getSequenceType();
+	@NonNull org.eclipse.ocl.pivot.Class getSequenceType();
 	
     /**
      * Obtains the generic instance of the SetType metatype, named
@@ -223,7 +228,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>Set(T)</tt> type (an instance of SetType)
      */
-	@NonNull DomainClass getSetType();
+	@NonNull org.eclipse.ocl.pivot.Class getSetType();
 
     /**
      * Obtains the instance of the PrimitiveType metatype, named
@@ -231,7 +236,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>String</tt> type (an instance of PrimitiveType)
      */
-	@NonNull DomainClass getStringType();
+	@NonNull org.eclipse.ocl.pivot.Class getStringType();
 
 	/**
      * Obtains the generic instance of the UniqueCollection metatype, named
@@ -239,7 +244,7 @@ public interface DomainStandardLibrary
      * 
      * @return the <tt>Set(T)</tt> type (an instance of CollectionType)
      */
-	@NonNull DomainClass getUniqueCollectionType();
+	@NonNull org.eclipse.ocl.pivot.Class getUniqueCollectionType();
    
     /**
      * Obtains the instance of the PrimitiveType metatype,
@@ -248,7 +253,7 @@ public interface DomainStandardLibrary
      * @return the <tt>UnlimitedNatural</tt> type (an instance of
      *     PrimitiveType)
      */
-	@NonNull DomainClass getUnlimitedNaturalType();
+	@NonNull org.eclipse.ocl.pivot.Class getUnlimitedNaturalType();
 	
 	boolean isEqualToCollectionType(@NonNull DomainCollectionType firstCollectionType, @NonNull DomainCollectionType secondCollectionType);
 

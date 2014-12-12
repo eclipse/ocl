@@ -18,7 +18,7 @@ import org.eclipse.jdt.annotation.Nullable;
 
 public interface DomainCompletePackage extends DomainNamedElement
 {
-	@NonNull Iterable<? extends DomainClass> getAllClasses();
+	@NonNull Iterable<? extends org.eclipse.ocl.pivot.Class> getAllClasses();
 	@Nullable EPackage getEPackage();
 	/*@NonNull*/ List<? extends DomainCompletePackage>  getOwnedCompletePackages();
 	/*@Nullable*/ DomainCompletePackage getOwningCompletePackage();

@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.AbstractExecutorClass;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
@@ -34,7 +33,7 @@ import org.eclipse.ocl.domain.utilities.DomainUtil;
  */
 public abstract class ReflectiveInheritance extends AbstractExecutorClass
 {	
-	protected static int computeFlags(@NonNull DomainClass domainClass) {
+	protected static int computeFlags(@NonNull org.eclipse.ocl.pivot.Class domainClass) {
 		int flags = 0;
 		if (domainClass instanceof DomainCollectionType) {
 			DomainCollectionType collectionType = (DomainCollectionType)domainClass;

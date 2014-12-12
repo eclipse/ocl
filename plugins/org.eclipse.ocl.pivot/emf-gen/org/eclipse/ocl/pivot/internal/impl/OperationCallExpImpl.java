@@ -30,7 +30,6 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
@@ -500,7 +499,7 @@ public class OperationCallExpImpl
 		        throw new InvalidValueException("Null source for \'pivot::Operation::ownedParameter\'");
 		    }
 		    final @NonNull /*@Thrown*/ List<Parameter> parameters = operation.getOwnedParameter();
-		    final @Nullable /*@Thrown*/ DomainClass selfType_1 = operation.getOwningClass();
+		    final @Nullable /*@Thrown*/ org.eclipse.ocl.pivot.Class selfType_1 = operation.getOwningClass();
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		    final @NonNull /*@Thrown*/ List<OCLExpression> argument = this.getArgument();
@@ -552,7 +551,7 @@ public class OperationCallExpImpl
 		            }
 		            @NonNull /*@Thrown*/ DomainType requiredType;
 		            if (isTypeof) {
-		                final @NonNull /*@NonInvalid*/ DomainClass TYP_Class_0 = idResolver.getClass(PivotTables.CLSSid_Class, null);
+		                final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Class_0 = idResolver.getClass(PivotTables.CLSSid_Class, null);
 		                requiredType = TYP_Class_0;
 		            }
 		            else {

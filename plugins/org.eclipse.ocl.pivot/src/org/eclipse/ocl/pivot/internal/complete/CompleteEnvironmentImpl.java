@@ -18,7 +18,6 @@ import java.util.WeakHashMap;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypedElement;
@@ -53,7 +52,7 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 	protected final @NonNull MetaModelManager metaModelManager;
 	protected final @NonNull CompleteModelInternal completeModel;
 	protected final @NonNull PivotStandardLibrary standardLibrary;
-	protected final @NonNull Map<DomainClass, CompleteClassInternal> class2completeClass = new WeakHashMap<DomainClass, CompleteClassInternal>();
+	protected final @NonNull Map<org.eclipse.ocl.pivot.Class, CompleteClassInternal> class2completeClass = new WeakHashMap<org.eclipse.ocl.pivot.Class, CompleteClassInternal>();
 	
 	/**
 	 * The known lambda types.
@@ -248,14 +247,14 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 	}
 
 	@Override
-	public void didAddClass(@NonNull DomainClass partialClass, @NonNull CompleteClassInternal completeClass) {
+	public void didAddClass(@NonNull org.eclipse.ocl.pivot.Class partialClass, @NonNull CompleteClassInternal completeClass) {
 //		assert partialClass.getUnspecializedElement() == null;
 		CompleteClass oldCompleteClass = class2completeClass.put(partialClass, completeClass);
 		assert (oldCompleteClass == null) ||(oldCompleteClass == completeClass);
 	}
 	
 	@Override
-	public void didRemoveClass(@NonNull DomainClass pivotType) {
+	public void didRemoveClass(@NonNull org.eclipse.ocl.pivot.Class pivotType) {
 		class2completeClass.remove(pivotType);
 	}
 
@@ -292,7 +291,7 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 	}
 	
 	@Override
-	public @NonNull CollectionType getCollectionType(@NonNull DomainClass containerType, @NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+	public @NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return getCollectionType((CollectionType)metaModelManager.getType(containerType), metaModelManager.getType(elementType), lower, upper);
 	}
 
@@ -343,13 +342,13 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 			OrphanCompletePackageInternal orphanCompletePackage = completeModel.getOrphanCompletePackage();
 			return orphanCompletePackage.getCompleteClass((CollectionType)pivotType);
 		}
-		else if (pivotType instanceof DomainClass) {
-			org.eclipse.ocl.pivot.Package pivotPackage = ((DomainClass)pivotType).getOwningPackage();
+		else if (pivotType instanceof org.eclipse.ocl.pivot.Class) {
+			org.eclipse.ocl.pivot.Package pivotPackage = ((org.eclipse.ocl.pivot.Class)pivotType).getOwningPackage();
 			if (pivotPackage == null) {
 				throw new IllegalStateException("type has no package");
 			}
 			CompletePackageInternal completePackage = completeModel.getCompletePackage(pivotPackage);
-			return completePackage.getCompleteClass((DomainClass) pivotType);
+			return completePackage.getCompleteClass((org.eclipse.ocl.pivot.Class) pivotType);
 		}
 		else {
 			throw new UnsupportedOperationException("TemplateType");

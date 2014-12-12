@@ -15,7 +15,6 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.AbstractExecutorClass;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
@@ -38,7 +37,7 @@ import org.eclipse.ocl.pivot.TemplateParameter;
  * An ExecutorType defines a Type using a compact representation suitable for efficient
  * execution and static construction.
  */
-public abstract class ExecutorType extends AbstractExecutorClass implements DomainClass, ExecutorTypeArgument
+public abstract class ExecutorType extends AbstractExecutorClass implements ExecutorTypeArgument
 {
 	/**
 	 * Depth ordered inheritance fragments. OclAny at depth 0, OclSelf at depth size-1.
@@ -149,7 +148,7 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Doma
 	}
 
 	@Override
-	public @NonNull DomainClass getNormalizedType(@NonNull DomainStandardLibrary standardLibrary) {
+	public @NonNull org.eclipse.ocl.pivot.Class getNormalizedType(@NonNull DomainStandardLibrary standardLibrary) {
 		return this;
 	}
 
@@ -198,7 +197,7 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Doma
 	}
 
 	@Override
-	public @NonNull DomainClass getType() {
+	public @NonNull org.eclipse.ocl.pivot.Class getType() {
 		return this;
 	}
 

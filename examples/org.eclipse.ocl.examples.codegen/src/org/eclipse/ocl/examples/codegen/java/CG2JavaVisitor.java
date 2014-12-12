@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.evaluation.DomainIterationManager;
 import org.eclipse.ocl.domain.ids.ClassId;
@@ -215,7 +214,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		js.append("final "); 
 		js.appendIsRequired(true);
 		js.append(" ");
-		js.appendClassReference(DomainClass.class);		// FIXME lookup type
+		js.appendClassReference(org.eclipse.ocl.pivot.Class.class);		// FIXME lookup type
 		js.append(" " + staticTypeName + " = ");
 //		js.appendReferenceTo(evaluatorParameter);
 		js.append(JavaConstants.EVALUATOR_NAME);

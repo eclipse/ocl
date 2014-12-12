@@ -19,7 +19,6 @@ import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainLogger;
@@ -205,17 +204,17 @@ public abstract class AbstractEvaluationVisitor
 	}
 
 	@Override
-	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value) {
+	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value) {
 		return metaModelManager.getIdResolver().getStaticTypeOf(value);
 	}
 
 	@Override
-	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value, @NonNull Object... values) {
+	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Object... values) {
 		return metaModelManager.getIdResolver().getStaticTypeOf(value, values);
 	}
  
 	@Override
-	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
+	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
 		return metaModelManager.getIdResolver().getStaticTypeOf(value, values);
 	}
  

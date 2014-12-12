@@ -59,7 +59,6 @@ import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.validation.DomainSubstitutionLabelProvider;
@@ -1281,7 +1280,7 @@ public class DelegatesTest extends PivotTestSuite
 		return null;
 	}
 
-	protected DomainClass getType(EObject eObject) {
+	protected org.eclipse.ocl.pivot.Class getType(EObject eObject) {
 		return metaModelManager.getIdResolver().getStaticTypeOf(eObject);
 	}
 

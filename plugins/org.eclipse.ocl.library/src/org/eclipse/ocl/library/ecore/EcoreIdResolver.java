@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.ExternalCrossReferencer;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.DomainConstants;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainTypedElement;
@@ -93,7 +92,7 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 				}
 			}
 			else {
-				for (DomainClass asType : userPackage.getOwnedClasses()) {
+				for (org.eclipse.ocl.pivot.Class asType : userPackage.getOwnedClasses()) {
 					if ("Boolean".equals(asType.getName())) {			// FIXME Check PrimitiveType //$NON-NLS-1$
 						if (roots2package.get(DomainConstants.METAMODEL_NAME) == null) {
 							roots2package.put(DomainConstants.METAMODEL_NAME, userPackage);
@@ -139,7 +138,7 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 				}
 			}
 			if (execPackage != null) {
-				DomainClass domainType = execPackage.getType(eClassifier.getName());	
+				org.eclipse.ocl.pivot.Class domainType = execPackage.getType(eClassifier.getName());	
 				if (domainType != null) {
 					type = standardLibrary.getInheritance(domainType);
 					typeMap.put(eClassifier, new WeakReference<DomainInheritance>(type));
@@ -171,7 +170,7 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 	}
 
 	@Override
-	public @NonNull DomainClass getType(@NonNull EClassifier eClassifier) {
+	public @NonNull org.eclipse.ocl.pivot.Class getType(@NonNull EClassifier eClassifier) {
 		return getInheritance(eClassifier).getType();
 	}
 

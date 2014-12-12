@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainParameterTypes;
@@ -145,9 +144,9 @@ public abstract class ValuesUtil
 		}
 	}
 
-	public static @NonNull DomainClass asClass(@Nullable Object value) {
-		if (value instanceof DomainClass) {
-			return (DomainClass)value;
+	public static @NonNull org.eclipse.ocl.pivot.Class asClass(@Nullable Object value) {
+		if (value instanceof org.eclipse.ocl.pivot.Class) {
+			return (org.eclipse.ocl.pivot.Class)value;
 		}
 		else {
 			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, "Class", getTypeName(value));

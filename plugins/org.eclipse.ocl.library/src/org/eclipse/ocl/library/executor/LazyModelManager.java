@@ -21,7 +21,6 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainModelManager;
 import org.omg.CORBA.Environment;
@@ -78,7 +77,7 @@ public abstract class LazyModelManager implements DomainModelManager {
 	 * @param type a class in the model
 	 */
 	@Override
-	public @NonNull Set<EObject> get(@NonNull DomainClass type) {
+	public @NonNull Set<EObject> get(@NonNull org.eclipse.ocl.pivot.Class type) {
 		// TODO: Optimize by parsing ahead of time to find all EClasses that we will query
 		Set<EObject> result = modelManager.get(type);		
 		if (result == null) {

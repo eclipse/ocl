@@ -51,7 +51,7 @@ public interface DomainType extends DomainNamespace, OCLValue
 	/**
 	 * Return the unique executable form of this type within standardLibrary.
 	 */
-	@NonNull DomainClass getNormalizedType(@NonNull DomainStandardLibrary standardLibrary);
+	@NonNull org.eclipse.ocl.pivot.Class getNormalizedType(@NonNull DomainStandardLibrary standardLibrary);
 	
 	/**
 	 * Return the package containing this type.
@@ -76,6 +76,6 @@ public interface DomainType extends DomainNamespace, OCLValue
 
 	/*@NonNull*/ DomainType specializeIn(@NonNull CallExp expr, /*@NonNull*/ DomainType selfType);
 
-	@Nullable DomainClass isClass();
+	@Nullable org.eclipse.ocl.pivot.Class isClass();
 	@Nullable TemplateParameter isTemplateParameter();
 }

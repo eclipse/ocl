@@ -15,7 +15,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
@@ -26,7 +25,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateParameter;
 
-public abstract class AbstractClass extends AbstractType implements DomainClass	// FIXME rename as perhaps DerivativeType
+public abstract class AbstractClass extends AbstractType implements org.eclipse.ocl.pivot.Class	// FIXME rename as perhaps DerivativeType
 {
 	public AbstractClass(@NonNull DomainEnvironment environment, @NonNull String name) {
 		super(environment, name);
@@ -43,7 +42,7 @@ public abstract class AbstractClass extends AbstractType implements DomainClass	
 	}
 	
 	@Override
-	public @NonNull DomainClass flattenedType() {
+	public @NonNull org.eclipse.ocl.pivot.Class flattenedType() {
 		return this;
 	}
 
@@ -73,6 +72,11 @@ public abstract class AbstractClass extends AbstractType implements DomainClass	
 	}
 
 	@Override
+	public @NonNull List<Constraint> getOwnedRule() {
+		throw new UnsupportedOperationException();			// FIXME
+	}
+
+	@Override
 	public @NonNull List<org.eclipse.ocl.pivot.Class> getSuperClasses() {
 		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
 	}
@@ -83,7 +87,7 @@ public abstract class AbstractClass extends AbstractType implements DomainClass	
 	}
 	
 	@Override
-	public @NonNull DomainClass isClass() {
+	public @NonNull org.eclipse.ocl.pivot.Class isClass() {
 		return this;
 	}
 

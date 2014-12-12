@@ -12,17 +12,15 @@ package org.eclipse.ocl.library.executor;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.values.OCLValue;
 import org.eclipse.ocl.pivot.CallExp;
-import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.TemplateParameter;
 
-public abstract class AbstractReflectiveInheritanceType extends ReflectiveInheritance implements DomainClass
+public abstract class AbstractReflectiveInheritanceType extends ReflectiveInheritance implements org.eclipse.ocl.pivot.Class
 {
 	public AbstractReflectiveInheritanceType(@NonNull String name, int flags) {
 		super(name, flags);
@@ -48,13 +46,13 @@ public abstract class AbstractReflectiveInheritanceType extends ReflectiveInheri
 	}
 
 	@Override
-	public @NonNull DomainClass getNormalizedType(@NonNull DomainStandardLibrary standardLibrary) {
+	public @NonNull org.eclipse.ocl.pivot.Class getNormalizedType(@NonNull DomainStandardLibrary standardLibrary) {
 		return getType();
 	}
 
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class isClass() {
-		return (Class) getType();
+		return getType();
 	}
 
 	@Override

@@ -64,7 +64,7 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 
 	@Override
 	@NonNull
-	public DomainClass getNormalizedType(
+	public org.eclipse.ocl.pivot.Class getNormalizedType(
 			@NonNull DomainStandardLibrary standardLibrary) {
 		throw new UnsupportedOperationException();
 	}
@@ -173,7 +173,7 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 
 	@Override
 	@NonNull
-	public DomainClass getType() {
+	public org.eclipse.ocl.pivot.Class getType() {
 		throw new UnsupportedOperationException();
 	}
 

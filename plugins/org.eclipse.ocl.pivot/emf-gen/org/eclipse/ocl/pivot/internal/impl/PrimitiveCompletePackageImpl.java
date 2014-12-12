@@ -12,7 +12,6 @@ package org.eclipse.ocl.pivot.internal.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.pivot.PivotConstants;
@@ -58,7 +57,7 @@ public class PrimitiveCompletePackageImpl extends RootCompletePackageImpl implem
 	}
 
 	@Override
-	public @NonNull CompleteClassInternal getCompleteClass(final @NonNull DomainClass primitiveType) {
+	public @NonNull CompleteClassInternal getCompleteClass(final @NonNull org.eclipse.ocl.pivot.Class primitiveType) {
 		String name = primitiveType.getName();
 		CompleteClassInternal completeClass = getOwnedCompleteClass(name);
 		if (completeClass == null) {

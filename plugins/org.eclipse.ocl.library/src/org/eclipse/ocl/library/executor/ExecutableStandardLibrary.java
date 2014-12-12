@@ -16,7 +16,6 @@ import java.util.WeakHashMap;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
@@ -56,7 +55,7 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 //	}
 
 	@Override
-	public @NonNull DomainClass getBagType() {
+	public @NonNull org.eclipse.ocl.pivot.Class getBagType() {
 		return OCLstdlibTables.Types._Bag;
 	}
 
@@ -66,18 +65,18 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 	}
 
 	@Override
-	public @NonNull DomainClass getBooleanType() {
+	public @NonNull org.eclipse.ocl.pivot.Class getBooleanType() {
 		return OCLstdlibTables.Types._Boolean;
 	}
 
 	@Override
-	public @NonNull DomainClass getCollectionType() {
+	public @NonNull org.eclipse.ocl.pivot.Class getCollectionType() {
 		return OCLstdlibTables.Types._Collection;
 	}
 
 //	@Override
 	@Override
-	public synchronized @NonNull DomainCollectionType getCollectionType(@NonNull DomainClass genericType, @NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+	public synchronized @NonNull DomainCollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class genericType, @NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		IntegerValue lower2 = lower;
 		UnlimitedNaturalValue upper2 = upper;
 		if (lower2 == null) {
@@ -97,20 +96,20 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 			specializedType = weakGet(map, typeParameters);
 		}
 		if (specializedType == null) {
-			specializedType = new AbstractCollectionType(this, DomainUtil.nonNullModel(genericType.getName()), genericType, elementType, lower, upper);
+			specializedType = new AbstractCollectionType(DomainUtil.nonNullModel(genericType.getName()), genericType, elementType, lower, upper);
 			map.put(typeParameters, new WeakReference<AbstractCollectionType>(specializedType));
 		}
 		return specializedType;
 	}
 
 	@Override
-	public @NonNull DomainClass getIntegerType() {
+	public @NonNull org.eclipse.ocl.pivot.Class getIntegerType() {
 		return OCLstdlibTables.Types._Integer;
 	}
 
 	// FIXME cf MetaModelManager
 	@Override
-	public @NonNull DomainClass getMetaclass(@NonNull DomainType classType) {
+	public @NonNull org.eclipse.ocl.pivot.Class getMetaclass(@NonNull DomainType classType) {
 //		return OCLstdlibTables.Types._OclType;
 		return getClassType();
 	}
@@ -121,62 +120,62 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 	}
 
 	@Override
-	public @Nullable DomainClass getNestedType(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name) {
+	public @Nullable org.eclipse.ocl.pivot.Class getNestedType(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name) {
 		return DomainUtil.getNamedElement(parentPackage.getOwnedClasses(), name);
 	}
 
 	@Override
-	public @NonNull DomainClass getOclAnyType() {
+	public @NonNull org.eclipse.ocl.pivot.Class getOclAnyType() {
 		return OCLstdlibTables.Types._OclAny;
 	}
 
 	@Override
-	public @NonNull DomainClass getOclComparableType() {
+	public @NonNull org.eclipse.ocl.pivot.Class getOclComparableType() {
 		return OCLstdlibTables.Types._OclComparable;
 	}
 
 	@Override
-	public @NonNull DomainClass getOclElementType() {
+	public @NonNull org.eclipse.ocl.pivot.Class getOclElementType() {
 		return OCLstdlibTables.Types._OclElement;
 	}
 
 	@Override
-	public @NonNull DomainClass getOclInvalidType() {
+	public @NonNull org.eclipse.ocl.pivot.Class getOclInvalidType() {
 		return OCLstdlibTables.Types._OclInvalid;
 	}
 
 	@Override
-	public @NonNull DomainClass getOclMessageType() {
+	public @NonNull org.eclipse.ocl.pivot.Class getOclMessageType() {
 		return OCLstdlibTables.Types._OclMessage;
 	}
 
 	@Override
-	public @NonNull DomainClass getOclSelfType() {
+	public @NonNull org.eclipse.ocl.pivot.Class getOclSelfType() {
 		return OCLstdlibTables.Types._OclSelf;
 	}
 
 	@Override
-	public @NonNull DomainClass getOclSummableType() {
+	public @NonNull org.eclipse.ocl.pivot.Class getOclSummableType() {
 		return OCLstdlibTables.Types._OclSummable;
 	}
 
 	@Override
-	public @NonNull DomainClass getOclTupleType() {
+	public @NonNull org.eclipse.ocl.pivot.Class getOclTupleType() {
 		return OCLstdlibTables.Types._OclTuple;
 	}
 
 	@Override
-	public @NonNull DomainClass getOclVoidType() {
+	public @NonNull org.eclipse.ocl.pivot.Class getOclVoidType() {
 		return OCLstdlibTables.Types._OclVoid;
 	}
 
 	@Override
-	public @NonNull DomainClass getOrderedCollectionType() {
+	public @NonNull org.eclipse.ocl.pivot.Class getOrderedCollectionType() {
 		return OCLstdlibTables.Types._OrderedCollection;
 	}
 
 	@Override
-	public @NonNull DomainClass getOrderedSetType() {
+	public @NonNull org.eclipse.ocl.pivot.Class getOrderedSetType() {
 		return OCLstdlibTables.Types._OrderedSet;
 	}
 
@@ -186,12 +185,12 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 	}
 
 	@Override
-	public @NonNull DomainClass getRealType() {
+	public @NonNull org.eclipse.ocl.pivot.Class getRealType() {
 		return OCLstdlibTables.Types._Real;
 	}
 
 	@Override
-	public @NonNull DomainClass getSequenceType() {
+	public @NonNull org.eclipse.ocl.pivot.Class getSequenceType() {
 		return OCLstdlibTables.Types._Sequence;
 	}
 
@@ -201,7 +200,7 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 	}
 
 	@Override
-	public @NonNull DomainClass getSetType() {
+	public @NonNull org.eclipse.ocl.pivot.Class getSetType() {
 		return OCLstdlibTables.Types._Set;
 	}
 
@@ -217,7 +216,7 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 	}
 
 	@Override
-	public @NonNull DomainClass getStringType() {
+	public @NonNull org.eclipse.ocl.pivot.Class getStringType() {
 		return OCLstdlibTables.Types._String;
 	}
 
@@ -279,12 +278,12 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 	}
 
 	@Override
-	public @NonNull DomainClass getUniqueCollectionType() {
+	public @NonNull org.eclipse.ocl.pivot.Class getUniqueCollectionType() {
 		return OCLstdlibTables.Types._UniqueCollection;
 	}
 
 	@Override
-	public @NonNull DomainClass getUnlimitedNaturalType() {
+	public @NonNull org.eclipse.ocl.pivot.Class getUnlimitedNaturalType() {
 		return OCLstdlibTables.Types._UnlimitedNatural;
 	}
 }

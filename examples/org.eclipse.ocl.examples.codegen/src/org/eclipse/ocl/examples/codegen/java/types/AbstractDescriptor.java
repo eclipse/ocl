@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainNamedElement;
 import org.eclipse.ocl.domain.elements.DomainNamespace;
 import org.eclipse.ocl.domain.elements.DomainType;
@@ -69,9 +68,6 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 		}
 		else if (javaClass == Namespace.class) {
 			javaClass = DomainNamespace.class;
-		}
-		else if (javaClass == org.eclipse.ocl.pivot.Class.class) {
-			javaClass = DomainClass.class;
 		}
 		else if (javaClass == Type.class) {
 			javaClass = DomainType.class;

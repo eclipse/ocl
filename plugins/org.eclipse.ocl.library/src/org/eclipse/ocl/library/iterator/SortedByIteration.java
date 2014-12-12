@@ -19,7 +19,6 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
@@ -154,7 +153,7 @@ public class SortedByIteration extends AbstractIteration
 		DomainInheritance selfType = standardLibrary.getOclSelfType().getInheritance(standardLibrary);
 		Operation staticOperation = comparableType.lookupLocalOperation(standardLibrary, LibraryConstants.COMPARE_TO, selfType);
 		if (staticOperation != null) {
-			DomainClass bodyType = evaluator.getIdResolver().getClass(bodyTypeId, null);
+			org.eclipse.ocl.pivot.Class bodyType = evaluator.getIdResolver().getClass(bodyTypeId, null);
 			LibraryFeature implementation = bodyType.lookupImplementation(standardLibrary, staticOperation);
 			return new SortingValue(evaluator, (CollectionTypeId)accumulatorTypeId, (LibraryBinaryOperation) implementation);
 		}

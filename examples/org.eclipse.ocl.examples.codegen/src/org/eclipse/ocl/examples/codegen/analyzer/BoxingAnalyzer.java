@@ -15,7 +15,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.ids.ElementId;
 import org.eclipse.ocl.domain.ids.OperationId;
 import org.eclipse.ocl.domain.library.LibraryIteration;
@@ -100,7 +99,7 @@ public class BoxingAnalyzer extends AbstractExtendingCGModelVisitor<Object, Code
 		if (memberOperation == null) {
 			return false;
 		}
-		DomainClass owningType = memberOperation.getOwningClass();
+		org.eclipse.ocl.pivot.Class owningType = memberOperation.getOwningClass();
 		if (owningType == null) {
 			return false;
 		}

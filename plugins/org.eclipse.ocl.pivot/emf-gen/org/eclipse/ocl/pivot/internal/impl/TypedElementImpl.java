@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
@@ -193,7 +192,7 @@ public abstract class TypedElementImpl
 		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		final @NonNull /*@NonInvalid*/ Property CTORid_name = idResolver.getProperty(PivotTables.PROPid_name);
-		final @NonNull /*@NonInvalid*/ DomainClass TYP_pivot_c_c_Parameter_0 = idResolver.getClass(PivotTables.CLSSid_Parameter, null);
+		final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pivot_c_c_Parameter_0 = idResolver.getClass(PivotTables.CLSSid_Parameter, null);
 		final @NonNull /*@Thrown*/ Parameter symbol_0 = (Parameter)TYP_pivot_c_c_Parameter_0.createInstance();
 		CTORid_name.initValue(symbol_0, PivotTables.STR_name);
 		return symbol_0;

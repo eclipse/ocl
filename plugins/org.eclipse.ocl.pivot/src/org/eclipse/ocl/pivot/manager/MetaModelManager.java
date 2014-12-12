@@ -47,7 +47,6 @@ import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.domain.DomainConstants;
 import org.eclipse.ocl.domain.compatibility.EMF_2_9;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainNamespace;
@@ -799,7 +798,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		Set<Constraint> knownInvariants = new HashSet<Constraint>();
 		for (CompleteClass superType : getAllSuperCompleteClasses(pivotType)) {
 			if (superType != null) {
-				for (DomainClass partialSuperType : superType.getPartialClasses()) {
+				for (org.eclipse.ocl.pivot.Class partialSuperType : superType.getPartialClasses()) {
 					if (partialSuperType instanceof org.eclipse.ocl.pivot.Class) {
 						org.eclipse.ocl.pivot.Package partialPackage = partialSuperType.getOwningPackage();
 						if (!(partialPackage instanceof PackageImpl) || !((PackageImpl)partialPackage).isIgnoreInvariants()) {
@@ -1227,7 +1226,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return precedenceManager.getInfixPrecedence(operatorName);
 	}
 
-	public @NonNull DomainInheritance getInheritance(@NonNull DomainClass type) {
+	public @NonNull DomainInheritance getInheritance(@NonNull org.eclipse.ocl.pivot.Class type) {
 		org.eclipse.ocl.pivot.Class type1 = getType(type);
 		org.eclipse.ocl.pivot.Class unspecializedType = (org.eclipse.ocl.pivot.Class) type1.getUnspecializedElement();
 		org.eclipse.ocl.pivot.Class theType = unspecializedType != null ? unspecializedType : type1;
@@ -1566,7 +1565,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return completePackage.getPartialPackages();
 	}
 
-	public @NonNull Iterable<? extends DomainClass> getPartialClasses(@NonNull DomainType pivotType) {
+	public @NonNull Iterable<org.eclipse.ocl.pivot.Class> getPartialClasses(@NonNull DomainType pivotType) {
 		CompleteClass completeClass = completeModel.getCompleteClass(pivotType);
 		return completeClass.getPartialClasses();
 	}
@@ -1732,7 +1731,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return pivotProperty;
 	}
 
-	public @NonNull org.eclipse.ocl.pivot.Class getPrimaryType(@NonNull DomainClass type) {
+	public @NonNull org.eclipse.ocl.pivot.Class getPrimaryType(@NonNull org.eclipse.ocl.pivot.Class type) {
 		if (/*(type instanceof Type) &&*/ !isTypeServeable(type)) {
 			return (org.eclipse.ocl.pivot.Class) type;			// FIXME bad cast
 		}
@@ -1879,7 +1878,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return asResourceSet;
 	}
 
-	public @NonNull org.eclipse.ocl.pivot.Class getType(@NonNull DomainClass dType) {				// FIXME simplify eliminate
+	public @NonNull org.eclipse.ocl.pivot.Class getType(@NonNull org.eclipse.ocl.pivot.Class dType) {				// FIXME simplify eliminate
 		if (dType instanceof Type) {
 			return getPrimaryType(dType);
 		}
@@ -1903,7 +1902,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		if (dType instanceof CompleteInheritanceImpl) {
 			return ((CompleteInheritanceImpl)dType).getCompleteClass().getPivotClass();
 		}
-		org.eclipse.ocl.pivot.Package dPackage = ((DomainClass)dType).getOwningPackage();	// FIXME cast
+		org.eclipse.ocl.pivot.Package dPackage = ((org.eclipse.ocl.pivot.Class)dType).getOwningPackage();	// FIXME cast
 		if (dPackage != null) {
 			CompletePackage completePackage = getCompletePackage(dPackage);
 			org.eclipse.ocl.pivot.Class primaryType = completePackage.getMemberType(dType.getName());

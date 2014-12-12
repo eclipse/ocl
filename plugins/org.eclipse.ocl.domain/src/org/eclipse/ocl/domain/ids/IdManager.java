@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.DomainConstants;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.ids.impl.BindingsIdImpl;
@@ -179,7 +178,7 @@ public final class IdManager
     /**
      * Return the classId for aType.
       */
-	public static @NonNull ClassId getClassId(@NonNull DomainClass aType) {
+	public static @NonNull ClassId getClassId(@NonNull org.eclipse.ocl.pivot.Class aType) {
 		String name = aType.getName();
 		assert name != null;
 		org.eclipse.ocl.pivot.Package parentPackage = aType.getOwningPackage();
@@ -203,7 +202,7 @@ public final class IdManager
     /**
      * Return the dataTypeId for aType.
       */
-	public static @NonNull DataTypeId getDataTypeId(@NonNull DomainClass aType) {
+	public static @NonNull DataTypeId getDataTypeId(@NonNull org.eclipse.ocl.pivot.Class aType) {
 		String name = aType.getName();
 		assert name != null;
 		org.eclipse.ocl.pivot.Package parentPackage = aType.getOwningPackage();
@@ -319,7 +318,7 @@ public final class IdManager
       */
 	public static @NonNull OperationId getOperationId(@NonNull Operation anOperation) {
 		String name = DomainUtil.getSafeName(anOperation);
-		DomainClass parentType = anOperation.getOwningClass();
+		org.eclipse.ocl.pivot.Class parentType = anOperation.getOwningClass();
 		TypeId parentTypeId = parentType.getTypeId();
 		DomainType[] parameterTypes = DomainUtil.getOperationParameterTypes(anOperation);
 		DomainTypeParameters typeParameters = anOperation.getTypeParameters();

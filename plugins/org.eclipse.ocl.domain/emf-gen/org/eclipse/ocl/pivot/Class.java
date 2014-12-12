@@ -11,16 +11,20 @@
 package org.eclipse.ocl.pivot;
 
 import java.util.List;
-
 import java.util.Map;
+
 import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.domain.elements.DomainTypeParameters;
+import org.eclipse.ocl.domain.library.LibraryFeature;
 
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Class</b></em>'.
- * @extends org.eclipse.ocl.domain.elements.DomainClass
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -47,7 +51,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * @generated
  */
 public interface Class
-		extends Type, Namespace, TemplateableElement, org.eclipse.ocl.domain.elements.DomainClass {
+		extends Type, Namespace, TemplateableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Instance Class Name</b></em>' attribute.
@@ -152,7 +156,6 @@ public interface Class
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getClass_OwnedInvariants()
 	 * @generated
 	 */
-	@Override
 	@NonNull List<Constraint> getOwnedInvariants();
 
 	/**
@@ -169,7 +172,6 @@ public interface Class
 	 * @see org.eclipse.ocl.pivot.Operation#getOwningClass
 	 * @generated
 	 */
-	@Override
 	@NonNull List<Operation> getOwnedOperations();
 
 	/**
@@ -186,7 +188,6 @@ public interface Class
 	 * @see org.eclipse.ocl.pivot.Package#getOwnedClasses
 	 * @generated
 	 */
-	@Override
 	org.eclipse.ocl.pivot.Package getOwningPackage();
 
 	/**
@@ -211,7 +212,6 @@ public interface Class
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getClass_SuperClasses()
 	 * @generated
 	 */
-	@Override
 	@NonNull List<Class> getSuperClasses();
 
 	/**
@@ -261,7 +261,41 @@ public interface Class
 	 * @see org.eclipse.ocl.pivot.Property#getOwningClass
 	 * @generated
 	 */
-	@Override
 	@NonNull List<Property> getOwnedProperties();
+
+	/**
+	 * Return a new instance of this type from valueFactory. Properties may be initialised using
+	 * {@link Property#initValue(Object, Object) } provided no side-effect free
+	 * OCL functionality is permitted to use the ObjectValue until initialisation has completed.
+	 */
+	@NonNull EObject createInstance();
+
+	/**
+	 * Return a new instance of this data type from valueFactory.
+	 * @param value string initial value
+	 */
+	@Nullable Object createInstance( @NonNull String value);
+
+	/**
+	 * Return the ordered list of type parameters of this type.
+	 */
+	@NonNull DomainTypeParameters getTypeParameters();
+	
+	/**
+	 * Return true if this type is a Collection type and has ordered elements.
+	 */
+	boolean isOrdered();
+	
+	/**
+	 * Return true if this type is a Collection type and has unique elements.
+	 */
+	boolean isUnique();
+	
+	/**
+	 * Return the dynamic (overloaded) implementation of the staticOperation applicable to the types managed
+	 * by the given Standard Library.
+	 */
+	@NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation);
+	@NonNull Operation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation);
 
 } // Class

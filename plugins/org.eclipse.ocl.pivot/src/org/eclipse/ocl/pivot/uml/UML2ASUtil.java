@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 
@@ -77,7 +76,7 @@ public class UML2ASUtil
 	/**
 	 * Return the metaType of umlElement using the UML meta namespace identifiable from stereotype applications.
 	 */
-	public static @Nullable DomainClass getMetaType(@NonNull MetaModelManager metaModelManager, @NonNull org.eclipse.uml2.uml.Element umlElement) {
+	public static @Nullable org.eclipse.ocl.pivot.Class getMetaType(@NonNull MetaModelManager metaModelManager, @NonNull org.eclipse.uml2.uml.Element umlElement) {
 		EClass umlEClass = umlElement.eClass();
 		for (org.eclipse.uml2.uml.Stereotype umlStereotype : umlElement.getApplicableStereotypes()) {
 			for (org.eclipse.uml2.uml.Class umlMetaclass : umlStereotype.getAllExtendedMetaclasses()) {

@@ -16,7 +16,6 @@ import java.util.Map;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainCompletePackage;
 import org.eclipse.ocl.domain.elements.DomainElement;
@@ -91,7 +90,7 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 
 	public void dispose() {}
 
-	public @NonNull Iterable<? extends DomainClass> getAllClasses() {
+	public @NonNull Iterable<? extends org.eclipse.ocl.pivot.Class> getAllClasses() {
 		throw new UnsupportedOperationException();
 	}
 

@@ -19,13 +19,15 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.DomainConstants;
-import org.eclipse.ocl.domain.elements.DomainClass;
+import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.types.AbstractStandardLibrary;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.library.LibraryConstants;
 import org.eclipse.ocl.library.oclany.OclAnyUnsupportedOperation;
 import org.eclipse.ocl.pivot.AnyType;
@@ -188,6 +190,12 @@ public class PivotStandardLibrary extends AbstractStandardLibrary	// FIXME Abstr
 		return collectionType2;
 	}
 
+	@Override
+	public @NonNull DomainCollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType,
+			@NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+		return metaModelManager.getCompleteEnvironment().getCollectionType(containerType, elementType, lower, upper);
+	}
+
 	public @NonNull CompleteModelInternal getCompleteModel() {
 		return completeModel;
 	}
@@ -207,7 +215,7 @@ public class PivotStandardLibrary extends AbstractStandardLibrary	// FIXME Abstr
 
 	@Override
 	@NonNull
-	public DomainInheritance getInheritance(@NonNull DomainClass type) {
+	public DomainInheritance getInheritance(@NonNull org.eclipse.ocl.pivot.Class type) {
 		return metaModelManager.getInheritance(type);
 	}
 
@@ -230,7 +238,7 @@ public class PivotStandardLibrary extends AbstractStandardLibrary	// FIXME Abstr
 	}
 
 	@Override
-	public @NonNull DomainClass getMetaclass(@NonNull DomainType classType) {
+	public @NonNull org.eclipse.ocl.pivot.Class getMetaclass(@NonNull DomainType classType) {
 		return metaModelManager.getMetaclass(classType);
 	}
 

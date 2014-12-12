@@ -13,7 +13,6 @@ package org.eclipse.ocl.library.executor;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
@@ -36,7 +35,7 @@ public class DomainReflectivePackage extends ReflectivePackage
 	}
 
 	@Override
-	protected @NonNull ReflectiveInheritance createInheritance(@NonNull DomainClass domainClass) {
+	protected @NonNull ReflectiveInheritance createInheritance(@NonNull org.eclipse.ocl.pivot.Class domainClass) {
 		return new DomainReflectiveType(this, domainClass);
 	}
 

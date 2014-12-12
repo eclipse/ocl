@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainNamedElement;
 import org.eclipse.ocl.domain.library.AbstractBinaryOperation;
 import org.eclipse.ocl.domain.library.AbstractOperation;
@@ -345,16 +344,14 @@ public class AbstractGenModelHelper implements GenModelHelper
 				}
 			}
 		}
-		for (DomainClass partialType : metaModelManager.getPartialClasses(type)) {
-			if (partialType instanceof org.eclipse.ocl.pivot.Class) {
-				genPackage = getGenPackage((org.eclipse.ocl.pivot.Class)partialType);
-				if (genPackage != null) {
-					String name = partialType.getName();
-					for (GenClassifier genClassifier : genPackage.getGenClassifiers()) {
-						String clsName = genClassifier.getEcoreClassifier().getName();
-						if (name.equals(clsName)) {
-							return genClassifier;
-						}
+		for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Class partialType : metaModelManager.getPartialClasses(type)) {
+			genPackage = getGenPackage(partialType);
+			if (genPackage != null) {
+				String name = partialType.getName();
+				for (GenClassifier genClassifier : genPackage.getGenClassifiers()) {
+					String clsName = genClassifier.getEcoreClassifier().getName();
+					if (name.equals(clsName)) {
+						return genClassifier;
 					}
 				}
 			}

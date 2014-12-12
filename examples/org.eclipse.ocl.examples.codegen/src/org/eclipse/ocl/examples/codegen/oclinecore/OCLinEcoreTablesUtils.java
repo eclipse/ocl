@@ -34,7 +34,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainParameterTypes;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.Nameable;
@@ -660,7 +659,7 @@ public class OCLinEcoreTablesUtils
 		}
 		else if (pivotMetaModel == pPackage) {
 			Set<org.eclipse.ocl.pivot.Class> types = new HashSet<org.eclipse.ocl.pivot.Class>();
-			for (DomainClass type : pivotMetaModel.getOwnedClasses()) {
+			for (org.eclipse.ocl.pivot.Class type : pivotMetaModel.getOwnedClasses()) {
 				assert type != null;
 				boolean pruned = false;
 				Type myType = null;
@@ -751,7 +750,7 @@ public class OCLinEcoreTablesUtils
 		return genPackage;
 	}
 	
-	protected @Nullable GenPackage getGenPackage(@NonNull DomainClass type) {
+	protected @Nullable GenPackage getGenPackage(@NonNull org.eclipse.ocl.pivot.Class type) {
 		org.eclipse.ocl.pivot.Package pPackage = type.getOwningPackage();
 		assert pPackage != null;
 		Package oclstdlibPackage = standardLibrary.getBooleanType().getOwningPackage();

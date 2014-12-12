@@ -15,7 +15,6 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
@@ -32,10 +31,10 @@ import org.eclipse.ocl.pivot.Property;
 public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 {
 	protected final @NonNull DomainReflectivePackage evaluationPackage;
-	protected final @NonNull DomainClass domainClass;
+	protected final @NonNull org.eclipse.ocl.pivot.Class domainClass;
 	private /*@LazyNonNull*/ DomainProperties allProperties;
 
-	public DomainReflectiveType(@NonNull DomainReflectivePackage evaluationPackage, @NonNull DomainClass domainClass) {
+	public DomainReflectiveType(@NonNull DomainReflectivePackage evaluationPackage, @NonNull org.eclipse.ocl.pivot.Class domainClass) {
 		super(DomainUtil.nonNullModel(domainClass.getName()), computeFlags(domainClass));
 		this.evaluationPackage = evaluationPackage;
 		this.domainClass = domainClass;
@@ -59,8 +58,8 @@ public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 
 	@Override
 	public @NonNull Iterable<? extends DomainInheritance> getInitialSuperInheritances() {
-		Iterable<? extends DomainClass> superClasses = domainClass.getSuperClasses();
-		final Iterator<? extends DomainClass> iterator = superClasses.iterator();
+		Iterable<? extends org.eclipse.ocl.pivot.Class> superClasses = domainClass.getSuperClasses();
+		final Iterator<? extends org.eclipse.ocl.pivot.Class> iterator = superClasses.iterator();
 		return new Iterable<DomainInheritance>()
 		{
 			@Override
@@ -77,7 +76,7 @@ public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 
 					@Override
 					public DomainInheritance next() {
-						DomainClass next = null;
+						org.eclipse.ocl.pivot.Class next = null;
 						if (!gotOne) {
 							gotOne = true;
 							if (!iterator.hasNext()) {
@@ -149,7 +148,7 @@ public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 	}
 
 	@Override
-	public @NonNull DomainClass getType() {
+	public @NonNull org.eclipse.ocl.pivot.Class getType() {
 		return domainClass;
 	}
 

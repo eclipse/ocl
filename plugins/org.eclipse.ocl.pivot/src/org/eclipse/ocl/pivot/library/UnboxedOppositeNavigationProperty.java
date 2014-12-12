@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
@@ -51,8 +50,8 @@ public class UnboxedOppositeNavigationProperty extends AbstractProperty
 			thatType = ((DomainCollectionType)thatType).getElementType();
 		}
 		List<Object> results = new ArrayList<Object>();
-		if (thatType instanceof DomainClass) {
-			for (EObject eObject : modelManager.get((DomainClass)thatType)) {	// FIXME Use a cache
+		if (thatType instanceof org.eclipse.ocl.pivot.Class) {
+			for (EObject eObject : modelManager.get((org.eclipse.ocl.pivot.Class)thatType)) {	// FIXME Use a cache
 				EClass eClass = eObject.eClass();
 				EStructuralFeature eFeature = eClass.getEStructuralFeature(oppositeProperty.getName());
 				Object eGet = eObject.eGet(eFeature);

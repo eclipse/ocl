@@ -15,7 +15,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.ClassId;
@@ -172,7 +171,7 @@ public class AutoPivotLookupVisitor
         final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
         final @NonNull /*@NonInvalid*/ DomainStandardLibrary standardLibrary = idResolver.getStandardLibrary();
         final @NonNull /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, SET_CLSSid_Class, element);
-        final @NonNull DomainClass TYPE_superClasses_1 = evaluator.getStaticTypeOf(oclAsSet);
+        final @NonNull org.eclipse.ocl.pivot.Class TYPE_superClasses_1 = evaluator.getStaticTypeOf(oclAsSet);
         final @NonNull LibraryIteration IMPL_superClasses_1 = (LibraryIteration)TYPE_superClasses_1.lookupImplementation(standardLibrary, OCLstdlibTables.Operations._Set__closure);
         final @NonNull Object ACC_superClasses_1 = IMPL_superClasses_1.createAccumulatorValue(evaluator, SET_CLSSid_Class, SET_CLSSid_Class);
         /**
@@ -185,11 +184,11 @@ public class AutoPivotLookupVisitor
              */
             @Override
             public @Nullable Object evaluate(final @NonNull DomainEvaluator evaluator, final @NonNull TypeId typeId, final @Nullable Object oclAsSet, final @Nullable /*@NonInvalid*/ Object _1) {
-                final @Nullable /*@NonInvalid*/ DomainClass symbol_0 = (DomainClass)_1;
+                final @Nullable /*@NonInvalid*/ org.eclipse.ocl.pivot.Class symbol_0 = (org.eclipse.ocl.pivot.Class)_1;
                 if (symbol_0 == null) {
                     throw new InvalidValueException("Null source for \'pivot::Class::superClasses\'");
                 }
-                final @NonNull /*@Thrown*/ List<? extends DomainClass> superClasses_0 = symbol_0.getSuperClasses();
+                final @NonNull /*@Thrown*/ List<? extends org.eclipse.ocl.pivot.Class> superClasses_0 = symbol_0.getSuperClasses();
                 final @NonNull /*@Thrown*/ SetValue BOXED_superClasses_0 = idResolver.createSetOfAll(SET_CLSSid_Class, superClasses_0);
                 return BOXED_superClasses_0;
             }
@@ -204,7 +203,7 @@ public class AutoPivotLookupVisitor
                 collect = accumulator;
                 break;
             }
-            @Nullable /*@NonInvalid*/ DomainClass _1_0 = (DomainClass)ITERATOR__1_0.next();
+            @Nullable /*@NonInvalid*/ org.eclipse.ocl.pivot.Class _1_0 = (org.eclipse.ocl.pivot.Class)ITERATOR__1_0.next();
             /**
              * ownedProperties
              */
@@ -280,7 +279,7 @@ public class AutoPivotLookupVisitor
                 collect_0 = accumulator_1;
                 break;
             }
-            @Nullable /*@NonInvalid*/ DomainClass _1_2 = (DomainClass)ITERATOR__1_2.next();
+            @Nullable /*@NonInvalid*/ org.eclipse.ocl.pivot.Class _1_2 = (org.eclipse.ocl.pivot.Class)ITERATOR__1_2.next();
             /**
              * ownedOperations
              */
@@ -788,7 +787,7 @@ public class AutoPivotLookupVisitor
         final @Nullable /*@Thrown*/ List<? extends org.eclipse.ocl.pivot.Package> ownedPackages = element_7.getOwnedPackages();
         assert ownedPackages != null;
         final @NonNull /*@Thrown*/ Environment addElements = context.addElements(ownedPackages);
-        final @Nullable /*@Thrown*/ List<? extends DomainClass> ownedClasses = element_7.getOwnedClasses();
+        final @Nullable /*@Thrown*/ List<? extends org.eclipse.ocl.pivot.Class> ownedClasses = element_7.getOwnedClasses();
         assert ownedClasses != null;
         final @NonNull /*@Thrown*/ Environment addElements_0 = addElements.addElements(ownedClasses);
         final @Nullable /*@Thrown*/ List<Precedence> ownedPrecedence = element_7.getOwnedPrecedence();
@@ -888,7 +887,7 @@ public class AutoPivotLookupVisitor
         final @Nullable /*@Thrown*/ List<? extends org.eclipse.ocl.pivot.Package> ownedPackages = element_10.getOwnedPackages();
         assert ownedPackages != null;
         final @NonNull /*@Thrown*/ Environment addElements = context.addElements(ownedPackages);
-        final @Nullable /*@Thrown*/ List<? extends DomainClass> ownedClasses = element_10.getOwnedClasses();
+        final @Nullable /*@Thrown*/ List<? extends org.eclipse.ocl.pivot.Class> ownedClasses = element_10.getOwnedClasses();
         assert ownedClasses != null;
         final @NonNull /*@Thrown*/ Environment inner = addElements.addElements(ownedClasses);
         final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();

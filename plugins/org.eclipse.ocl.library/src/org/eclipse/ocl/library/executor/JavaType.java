@@ -12,14 +12,13 @@ package org.eclipse.ocl.library.executor;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
+import org.eclipse.ocl.domain.elements.AbstractExecutorClass;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.LibraryFeature;
-import org.eclipse.ocl.domain.types.AbstractClass;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Operation;
@@ -27,12 +26,12 @@ import org.eclipse.ocl.pivot.Operation;
 /**
  * JavaType supports the usage of Java Class to define the type of an object.
  */
-public class JavaType extends AbstractClass
+public class JavaType extends AbstractExecutorClass
 {
 	protected final @NonNull Class<?> javaClass;
 	
 	public JavaType(@NonNull DomainEnvironment environment, @NonNull Class<?> javaClass) {
-		super(environment, DomainUtil.nonNullState(javaClass.getName()));
+		super(DomainUtil.nonNullState(javaClass.getName()), 0);
 		this.javaClass = javaClass;
 	}
 
@@ -42,7 +41,7 @@ public class JavaType extends AbstractClass
 	}
 
 	@Override
-	public @NonNull DomainClass getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
+	public @NonNull org.eclipse.ocl.pivot.Class getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
 		if (this == type) {
 			return this;
 		}

@@ -374,7 +374,7 @@ public class CG2JavaPreVisitor extends AbstractExtendingCGModelVisitor<Object, J
 		if (cgTypeId != null) {
 			cgTypeId.accept(this);
 		}
-		cgExecutorType.setTypeId(analyzer.getTypeId(JavaConstants.DOMAIN_TYPE_TYPE_ID));		// FIXME
+		cgExecutorType.setTypeId(analyzer.getTypeId(JavaConstants.CLASS_TYPE_ID));		// FIXME
 		return super.visitCGExecutorType(cgExecutorType);
 	}
 

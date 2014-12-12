@@ -14,9 +14,7 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
-import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
@@ -33,9 +31,9 @@ public class AbstractCollectionType extends AbstractSpecializedType implements D
 	protected final @NonNull UnlimitedNaturalValue upper;
 	protected final @NonNull CollectionTypeId typeId;
 	
-	public AbstractCollectionType(@NonNull DomainEnvironment environment, @NonNull String name,
-			@NonNull DomainClass containerType, @NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
-		super(environment, name, containerType);
+	public AbstractCollectionType(@NonNull String name,
+			@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull DomainType elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+		super(name, containerType);
 		this.elementType = elementType;
 		this.lower = lower != null ? lower : ValuesUtil.ZERO_VALUE;
 		this.upper = upper != null ? upper : ValuesUtil.UNLIMITED_VALUE;
@@ -54,13 +52,14 @@ public class AbstractCollectionType extends AbstractSpecializedType implements D
 	}
 
 	@Override
-	public @NonNull DomainClass getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
+	public @NonNull org.eclipse.ocl.pivot.Class getCommonType(@NonNull IdResolver idResolver, @NonNull DomainType type) {
+		DomainStandardLibrary standardLibrary = idResolver.getStandardLibrary();
 		if (!(type instanceof AbstractCollectionType)) {
 			return standardLibrary.getOclAnyType();
 		}
 		AbstractCollectionType thatClass = (AbstractCollectionType) type;
 		// FIXME kind
-		DomainClass commonContainerClass = containerType;		// FIXME WIP
+		org.eclipse.ocl.pivot.Class commonContainerClass = containerType;		// FIXME WIP
 		DomainType commonElementClass = elementType.getCommonType(idResolver, thatClass.getElementType());
 		if ((commonContainerClass == containerType) && (commonElementClass == elementType)) {
 			return this;
@@ -71,25 +70,25 @@ public class AbstractCollectionType extends AbstractSpecializedType implements D
 		else {
 			if (commonContainerClass.isOrdered()) {
 				if (commonContainerClass.isUnique()) {
-					return environment.getOrderedSetType(commonElementClass, null, null);
+					return standardLibrary.getCollectionType(standardLibrary.getOrderedSetType(), commonElementClass, null, null);
 				}
 				else {
-					return environment.getSequenceType(commonElementClass, null, null);
+					return standardLibrary.getCollectionType(standardLibrary.getSequenceType(), commonElementClass, null, null);
 				}
 			}
 			else {
 				if (commonContainerClass.isUnique()) {
-					return environment.getSetType(commonElementClass, null, null);
+					return standardLibrary.getCollectionType(standardLibrary.getSetType(), commonElementClass, null, null);
 				}
 				else {
-					return environment.getBagType(commonElementClass, null, null);
+					return standardLibrary.getCollectionType(standardLibrary.getBagType(), commonElementClass, null, null);
 				}
 			}
 		}
 	}
 
 	@Override
-	public DomainClass getContainerType() {
+	public org.eclipse.ocl.pivot.Class getContainerType() {
 		return containerType;
 	}
 

@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
@@ -117,7 +116,7 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 							gotOne = true;
 							if (!iterator.hasNext()) {
 								DomainStandardLibrary standardLibrary = evaluationPackage.getStandardLibrary();
-								DomainClass oclAnyType = standardLibrary.getOclAnyType();
+								org.eclipse.ocl.pivot.Class oclAnyType = standardLibrary.getOclAnyType();
 								return standardLibrary.getInheritance(oclAnyType);
 							}
 						}
@@ -186,7 +185,7 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 	}
 
 	@Override
-	public @NonNull DomainClass getType() {
+	public @NonNull org.eclipse.ocl.pivot.Class getType() {
 		return this;
 	}
 

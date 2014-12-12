@@ -11,7 +11,6 @@
 package org.eclipse.ocl.examples.codegen.java;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
@@ -47,8 +46,8 @@ public class JavaConstants
 	public static final @NonNull String TYPE_ID_NAME = "typeId";
 	
 
+	public static final @NonNull TypeId CLASS_TYPE_ID = getJavaTypeId(org.eclipse.ocl.pivot.Class.class);
 	public static final @NonNull TypeId PROPERTY_TYPE_ID = getJavaTypeId(Property.class);
-	public static final @NonNull TypeId DOMAIN_TYPE_TYPE_ID = getJavaTypeId(DomainClass.class);
 	public static final @NonNull TypeId EVALUATOR_TYPE_ID = getJavaTypeId(DomainEvaluator.class);
 	public static final @NonNull TypeId ID_RESOLVER_TYPE_ID = getJavaTypeId(IdResolver.class);
 //	public static final @NonNull TypeId SELF_TYPE_ID = getJavaTypeId(Object.class);

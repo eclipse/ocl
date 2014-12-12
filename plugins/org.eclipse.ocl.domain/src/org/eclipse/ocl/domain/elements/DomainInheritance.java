@@ -63,7 +63,7 @@ public interface DomainInheritance extends Nameable
 	 */
 	@NonNull IndexableIterable<DomainFragment> getSuperFragments(int depth);
 
-	@NonNull DomainClass getType();
+	@NonNull org.eclipse.ocl.pivot.Class getType();
 
 	boolean isOclAny();
 	boolean isSubInheritanceOf(@NonNull DomainInheritance inheritance);

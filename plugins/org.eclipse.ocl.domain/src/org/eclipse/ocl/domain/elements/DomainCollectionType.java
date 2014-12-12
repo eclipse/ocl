@@ -15,16 +15,12 @@ import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 
-public interface DomainCollectionType extends DomainClass
+public interface DomainCollectionType extends org.eclipse.ocl.pivot.Class
 {
-	/*@NonNull*/ DomainClass getContainerType();		
+	/*@NonNull*/ org.eclipse.ocl.pivot.Class getContainerType();		
 	/*@NonNull*/ DomainType getElementType();
 	@NonNull IntegerValue getLowerValue();		
 	@Override
 	@NonNull CollectionTypeId getTypeId();
 	@NonNull UnlimitedNaturalValue getUpperValue();
-	@Override
-	boolean isOrdered();
-	@Override
-	boolean isUnique();
 }

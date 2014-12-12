@@ -11,22 +11,21 @@
 package org.eclipse.ocl.domain.types;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainClass;
-import org.eclipse.ocl.domain.elements.DomainEnvironment;
+import org.eclipse.ocl.domain.elements.AbstractExecutorClass;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.pivot.Operation;
 
-public abstract class AbstractSpecializedType extends AbstractClass
+public abstract class AbstractSpecializedType extends AbstractExecutorClass
 {
-	protected final @NonNull DomainClass containerType;
+	protected final @NonNull org.eclipse.ocl.pivot.Class containerType;
 	
-	public AbstractSpecializedType(@NonNull DomainEnvironment environment, @NonNull String name, @NonNull DomainClass containerType) {
-		super(environment, name);
+	public AbstractSpecializedType(@NonNull String name, @NonNull org.eclipse.ocl.pivot.Class containerType) {
+		super(name, 0);
 		this.containerType = containerType;
 	}
 
-	public DomainClass getContainerType() {
+	public org.eclipse.ocl.pivot.Class getContainerType() {
 		return containerType;
 	}
 

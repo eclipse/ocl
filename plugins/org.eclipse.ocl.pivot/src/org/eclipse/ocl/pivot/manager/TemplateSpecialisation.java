@@ -16,7 +16,6 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainType;
@@ -118,7 +117,7 @@ public class TemplateSpecialisation
 			if (elementType == null) {
 				elementType = environment.getStandardLibrary().getOclAnyType();
 			}
-			DomainClass containerType = DomainUtil.nonNullState(collectionType.getContainerType());
+			org.eclipse.ocl.pivot.Class containerType = DomainUtil.nonNullState(collectionType.getContainerType());
 			return environment.getCollectionType(containerType, elementType, collectionType.getLowerValue(), collectionType.getUpperValue());
 		}
 		if (referencedType instanceof TupleType) {
@@ -132,9 +131,9 @@ public class TemplateSpecialisation
 		return null;
 	}
 
-	public DomainClass getSpecialisation(@NonNull DomainType referredType) {
+	public org.eclipse.ocl.pivot.Class getSpecialisation(@NonNull DomainType referredType) {
 		DomainType specialisation = getResolution(referredType);
-		return (DomainClass) (specialisation != null ? specialisation : referredType);	// FIXME cast
+		return (org.eclipse.ocl.pivot.Class) (specialisation != null ? specialisation : referredType);	// FIXME cast
 	}
 	
 	public void installEquivalence(@Nullable DomainType resolvedType, @Nullable DomainType referencedType) {

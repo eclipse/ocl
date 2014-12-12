@@ -35,7 +35,6 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCompletePackage;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
@@ -219,7 +218,7 @@ public abstract class AbstractIdResolver implements IdResolver
 
 	protected final @NonNull DomainEnvironment environment;
 	protected final @NonNull DomainStandardLibrary standardLibrary;
-	private final @NonNull Map<Object, DomainClass> key2type = new HashMap<Object, DomainClass>();	// Concurrent puts are duplicates
+	private final @NonNull Map<Object, org.eclipse.ocl.pivot.Class> key2type = new HashMap<Object, org.eclipse.ocl.pivot.Class>();	// Concurrent puts are duplicates
 	private /*@LazyNonNull*/ Map<EnumerationLiteralId, Enumerator> enumerationLiteral2enumerator = null;	// Concurrent puts are duplicates
 	private /*@LazyNonNull*/ Map<Enumerator, EnumerationLiteralId> enumerator2enumerationLiteralId = null;	// Concurrent puts are duplicates
 
@@ -373,7 +372,7 @@ public abstract class AbstractIdResolver implements IdResolver
 				if (enumerator2enumerationLiteralId2 == null) {
 					enumerator2enumerationLiteralId = enumerator2enumerationLiteralId2 = new HashMap<Enumerator, EnumerationLiteralId>();
 					for (DomainCompletePackage dPackage : standardLibrary.getAllCompletePackages()) {
-						for (DomainClass dType : dPackage.getAllClasses()) {
+						for (org.eclipse.ocl.pivot.Class dType : dPackage.getAllClasses()) {
 							if (dType instanceof Enumeration) {
 								for (EnumerationLiteral dEnumerationLiteral : ((Enumeration) dType).getOwnedLiteral()) {
 									Enumerator enumerator = dEnumerationLiteral.getEnumerator();
@@ -525,18 +524,18 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	@Override
-	public @NonNull DomainClass getClass(@NonNull TypeId typeId, @Nullable Object context) {
+	public @NonNull org.eclipse.ocl.pivot.Class getClass(@NonNull TypeId typeId, @Nullable Object context) {
 		DomainElement type = typeId.accept(this);
 		assert type != null;
-		return (DomainClass)type;
+		return (org.eclipse.ocl.pivot.Class)type;
 	}
 
 	@Override
-	public @NonNull DomainClass getCollectionType(@NonNull CollectionTypeId typeId) {
+	public @NonNull org.eclipse.ocl.pivot.Class getCollectionType(@NonNull CollectionTypeId typeId) {
 		return getCollectionType(typeId, null, null);
 	}
 
-	public @NonNull DomainClass getCollectionType(@NonNull CollectionTypeId typeId, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+	public @NonNull org.eclipse.ocl.pivot.Class getCollectionType(@NonNull CollectionTypeId typeId, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		CollectionTypeId generalizedId = typeId.getGeneralizedId();
 		if ((typeId == generalizedId) && (lower == null) && (upper == null)) {
 			if (generalizedId == TypeId.BAG) {
@@ -586,7 +585,7 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 	
 	@Override
-	public @NonNull DomainClass getDynamicTypeOf(@Nullable Object value) {
+	public @NonNull org.eclipse.ocl.pivot.Class getDynamicTypeOf(@Nullable Object value) {
 		if (value instanceof CollectionValue) {
 			CollectionValue collectionValue = (CollectionValue) value;
 			DomainType elementType = getDynamicTypeOf(collectionValue.iterable());
@@ -609,7 +608,7 @@ public abstract class AbstractIdResolver implements IdResolver
 	public @Nullable DomainType getDynamicTypeOf(@NonNull Object... values) {
 		DomainType elementType = null;
 		for (Object value : values) {
-			DomainClass valueType = getDynamicTypeOf(value);
+			org.eclipse.ocl.pivot.Class valueType = getDynamicTypeOf(value);
 			if (elementType == null) {
 				elementType = valueType;
 			}
@@ -627,7 +626,7 @@ public abstract class AbstractIdResolver implements IdResolver
 	public @Nullable DomainType getDynamicTypeOf(@NonNull Iterable<?> values) {
 		DomainType elementType = null;
 		for (Object value : values) {
-			DomainClass valueType = getDynamicTypeOf(value);
+			org.eclipse.ocl.pivot.Class valueType = getDynamicTypeOf(value);
 			if (elementType == null) {
 				elementType = valueType;
 			}
@@ -644,8 +643,8 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	@Override
-	public synchronized @NonNull DomainClass getJavaType(@NonNull Class<?> javaClass) {
-		DomainClass type = key2type.get(javaClass);
+	public synchronized @NonNull org.eclipse.ocl.pivot.Class getJavaType(@NonNull Class<?> javaClass) {
+		org.eclipse.ocl.pivot.Class type = key2type.get(javaClass);
 		if (type != null) {
 			return type;
 		}
@@ -694,9 +693,9 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	@Override
-	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value) {
+	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value) {
 		if (value instanceof DomainType) {
-			DomainClass type = key2type.get(value);
+			org.eclipse.ocl.pivot.Class type = key2type.get(value);
 			if (type == null) {
 				type = standardLibrary.getMetaclass((DomainType) value);
 				assert type != null;
@@ -707,7 +706,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		else if (value instanceof EObject) {
 			EClass eClass = ((EObject)value).eClass();
 			assert eClass != null;
-			DomainClass type = key2type.get(eClass);
+			org.eclipse.ocl.pivot.Class type = key2type.get(eClass);
 			if (type == null) {
 				type = getInheritance(eClass).getType();
 				assert type != null;
@@ -717,9 +716,9 @@ public abstract class AbstractIdResolver implements IdResolver
 		}
 		else if (value instanceof Value) {
 			TypeId typeId = ((Value)value).getTypeId();			
-			DomainClass type = key2type.get(typeId);
+			org.eclipse.ocl.pivot.Class type = key2type.get(typeId);
 			if (type == null) {
-				type = (DomainClass) typeId.accept(this);
+				type = (org.eclipse.ocl.pivot.Class) typeId.accept(this);
 				assert type != null;
 				key2type.put(typeId, type);
 			}
@@ -755,19 +754,19 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	@Override
-	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value, Object... values) {
+	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, Object... values) {
 		Object bestTypeId = getTypeKeyOf(value);
-		DomainClass bestType = key2type.get(bestTypeId);
+		org.eclipse.ocl.pivot.Class bestType = key2type.get(bestTypeId);
 		assert bestType != null;
 		Collection<Object> assessedTypeKeys = null;
 		int count = 0;
 		for (Object anotherValue : values) {
 			Object anotherTypeId = getTypeKeyOf(anotherValue);
 			if ((assessedTypeKeys == null) ? (anotherTypeId != bestTypeId) : !assessedTypeKeys.contains(anotherTypeId)) {
-				DomainClass anotherType = key2type.get(anotherTypeId);
+				org.eclipse.ocl.pivot.Class anotherType = key2type.get(anotherTypeId);
 				assert anotherType != null;
 				DomainType commonType = bestType.getCommonType(this, anotherType);
-				if ((commonType != bestType) && (commonType instanceof DomainClass)) {
+				if ((commonType != bestType) && (commonType instanceof org.eclipse.ocl.pivot.Class)) {
 					if (assessedTypeKeys == null) {
 						assessedTypeKeys = new ArrayList<Object>();
 						assessedTypeKeys.add(bestTypeId);
@@ -776,7 +775,7 @@ public abstract class AbstractIdResolver implements IdResolver
 						assessedTypeKeys = new HashSet<Object>(assessedTypeKeys);
 					}
 					assessedTypeKeys.add(anotherTypeId);
-					bestType = (DomainClass)commonType;
+					bestType = (org.eclipse.ocl.pivot.Class)commonType;
 					bestTypeId = anotherTypeId;
 				}
 			}
@@ -785,9 +784,9 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	@Override
-	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
+	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
 		Object bestTypeKey = getTypeKeyOf(value);
-		DomainClass bestType = key2type.get(bestTypeKey);
+		org.eclipse.ocl.pivot.Class bestType = key2type.get(bestTypeKey);
 		assert bestType != null;
 		Collection<Object> assessedTypeKeys = null;
 		int count = 0;
@@ -795,7 +794,7 @@ public abstract class AbstractIdResolver implements IdResolver
 			assert anotherValue != null;
 			Object anotherTypeKey = getTypeKeyOf(anotherValue);
 			if ((assessedTypeKeys == null) ? (anotherTypeKey != bestTypeKey) : !assessedTypeKeys.contains(anotherTypeKey)) {
-				DomainClass anotherType = key2type.get(anotherTypeKey);
+				org.eclipse.ocl.pivot.Class anotherType = key2type.get(anotherTypeKey);
 				assert anotherType != null;
 				DomainType commonType = bestType.getCommonType(this, anotherType);
 				if (commonType != bestType) {
@@ -858,7 +857,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		else*/ if (value instanceof EObject) {
 			EClass typeKey = ((EObject)value).eClass();
 			assert typeKey != null;
-			DomainClass type = key2type.get(typeKey);
+			org.eclipse.ocl.pivot.Class type = key2type.get(typeKey);
 			if (type == null) {
 				type = getInheritance(typeKey).getType();
 				assert type != null;
@@ -868,9 +867,9 @@ public abstract class AbstractIdResolver implements IdResolver
 		}
 		else if (value instanceof Value) {
 			TypeId typeKey = ((Value)value).getTypeId();			
-			DomainClass type = key2type.get(typeKey);
+			org.eclipse.ocl.pivot.Class type = key2type.get(typeKey);
 			if (type == null) {
-				type = (DomainClass) typeKey.accept(this);
+				type = (org.eclipse.ocl.pivot.Class) typeKey.accept(this);
 				assert type != null;
 				key2type.put(typeKey, type);
 			}
@@ -884,7 +883,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		else {
 			Class<?> typeKey = value.getClass();
 			assert typeKey != null;
-			DomainClass type = key2type.get(typeKey);
+			org.eclipse.ocl.pivot.Class type = key2type.get(typeKey);
 			if (type != null) {
 				return typeKey;
 			}
@@ -1022,7 +1021,7 @@ public abstract class AbstractIdResolver implements IdResolver
 			throw new UnsupportedOperationException();
 		}
 		CollectionTypeId collectionTypeId = id.getGeneralizedId();
-		DomainClass collectionType = getCollectionType(collectionTypeId);
+		org.eclipse.ocl.pivot.Class collectionType = getCollectionType(collectionTypeId);
 		return environment.getCollectionType(collectionType, elementType, null, null);
 	}
 
@@ -1110,7 +1109,7 @@ public abstract class AbstractIdResolver implements IdResolver
 
 	@Override
 	public @NonNull Operation visitOperationId(@NonNull OperationId id) {
-		DomainClass domainType = (DomainClass) id.getParent().accept(this);
+		org.eclipse.ocl.pivot.Class domainType = (org.eclipse.ocl.pivot.Class) id.getParent().accept(this);
 		if (domainType == null) {
 			throw new UnsupportedOperationException();
 		}
@@ -1133,7 +1132,7 @@ public abstract class AbstractIdResolver implements IdResolver
 
 	@Override
 	public @NonNull Property visitPropertyId(@NonNull PropertyId id) {
-		DomainClass domainType = (DomainClass) id.getParent().accept(this);
+		org.eclipse.ocl.pivot.Class domainType = (org.eclipse.ocl.pivot.Class) id.getParent().accept(this);
 		if (domainType == null) {
 			throw new UnsupportedOperationException();
 		}

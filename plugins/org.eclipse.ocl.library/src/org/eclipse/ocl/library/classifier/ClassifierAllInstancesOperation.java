@@ -15,7 +15,6 @@ import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
@@ -32,7 +31,7 @@ public class ClassifierAllInstancesOperation extends AbstractUnaryOperation
 
 	@Override
 	public @NonNull SetValue evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceVal) {
-		DomainClass type = asClass(sourceVal);
+		org.eclipse.ocl.pivot.Class type = asClass(sourceVal);
 //		if (type instanceof DomainMetaclass) {
 //			type = ((DomainMetaclass)type).getInstanceType();
 //		}

@@ -21,7 +21,6 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.domain.ids.ParametersId;
@@ -76,7 +75,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 				keys[index] = index;
 				int metric = 0;
 				if (operation != null) {
-					DomainClass owningClass = operation.getOwningClass();
+					org.eclipse.ocl.pivot.Class owningClass = operation.getOwningClass();
 					DomainInheritance inheritance = owningClass.getInheritance(metaModelManager.getStandardLibrary());
 					int depth = inheritance.getDepth();
 //					int isRedefinition = (operation instanceof Operation) && (((Operation)operation).getRedefinedOperation().size() > 0) ? 1 : 0;

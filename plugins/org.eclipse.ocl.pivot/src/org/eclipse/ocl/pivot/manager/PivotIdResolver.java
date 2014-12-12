@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.compatibility.UML_4_2.UMLUtil;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.ids.EnumerationLiteralId;
@@ -78,9 +77,9 @@ public class PivotIdResolver extends AbstractIdResolver
 	}
 
 	@Override
-	public @NonNull DomainClass getDynamicTypeOf(@Nullable Object value) {
+	public @NonNull org.eclipse.ocl.pivot.Class getDynamicTypeOf(@Nullable Object value) {
 		if (value instanceof org.eclipse.uml2.uml.Element) {
-			DomainClass metaType = UML2ASUtil.getMetaType(metaModelManager, (org.eclipse.uml2.uml.Element)value);
+			org.eclipse.ocl.pivot.Class metaType = UML2ASUtil.getMetaType(metaModelManager, (org.eclipse.uml2.uml.Element)value);
 			if (metaType != null) {
 				return metaType;
 			}
@@ -118,7 +117,7 @@ public class PivotIdResolver extends AbstractIdResolver
 	}
 
 	@Override
-	public @NonNull DomainClass getStaticTypeOf(@Nullable Object value) {
+	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value) {
 		if (value instanceof org.eclipse.uml2.uml.Element) {
 			try {				// FIXME Find a more efficient way to ensure Profiles are imported and applied
 				org.eclipse.uml2.uml.Element umlElement = (org.eclipse.uml2.uml.Element)value;
@@ -133,7 +132,7 @@ public class PivotIdResolver extends AbstractIdResolver
 				// TODO Auto-generated catch block
 //				e.printStackTrace();
 			}
-			DomainClass metaType = UML2ASUtil.getMetaType(metaModelManager, (org.eclipse.uml2.uml.Element)value);
+			org.eclipse.ocl.pivot.Class metaType = UML2ASUtil.getMetaType(metaModelManager, (org.eclipse.uml2.uml.Element)value);
 			if (metaType != null) {
 				return metaType;
 			}

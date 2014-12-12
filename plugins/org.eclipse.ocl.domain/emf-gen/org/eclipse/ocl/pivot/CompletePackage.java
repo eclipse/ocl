@@ -15,7 +15,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainType;
 
 /**
@@ -99,7 +98,7 @@ public interface CompletePackage extends NamedElement, org.eclipse.ocl.domain.el
 	 */
 	CompleteClass getOwnedCompleteClass(String name);
 
-	@NonNull CompleteClass getCompleteClass(@NonNull DomainClass pivotType);
+	@NonNull CompleteClass getCompleteClass(@NonNull org.eclipse.ocl.pivot.Class pivotType);
 
 
 	org.eclipse.ocl.pivot.Package getPivotPackage();

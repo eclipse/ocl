@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainClass;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.DomainTypedElement;
@@ -409,7 +408,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	}
 
 	@Override
-	public void didAddClass(@NonNull DomainClass partialClass, @NonNull CompleteClassInternal completeClass) {
+	public void didAddClass(@NonNull org.eclipse.ocl.pivot.Class partialClass, @NonNull CompleteClassInternal completeClass) {
 		completeEnvironment.didAddClass(partialClass, completeClass);
 	}
 
@@ -467,7 +466,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	} */
 	
 	@Override
-	public void didRemoveClass(@NonNull DomainClass pivotType) {
+	public void didRemoveClass(@NonNull org.eclipse.ocl.pivot.Class pivotType) {
 		completeEnvironment.didRemoveClass(pivotType);
 	}
 
@@ -681,7 +680,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 		return completeEnvironment.getTupleType(typeName, parts, bindings);
 	}
 
-/*	public void removedType(@NonNull DomainClass pivotType) {
+/*	public void removedType(@NonNull org.eclipse.ocl.pivot.Class pivotType) {
 		CompleteClass completeClass = class2completeClass.get(pivotType);
 		if (completeClass != null) {
 //			completeClass.dispose();
