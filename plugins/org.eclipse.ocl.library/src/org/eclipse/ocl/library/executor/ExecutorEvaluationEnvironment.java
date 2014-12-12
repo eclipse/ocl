@@ -14,26 +14,27 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainType;
-import org.eclipse.ocl.domain.elements.DomainTypedElement;
+import org.eclipse.ocl.domain.elements.AbstractExecutorTypedElement;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluationEnvironment;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.TypedElement;
 
 public class ExecutorEvaluationEnvironment implements DomainEvaluationEnvironment
 {
-	private Map<DomainTypedElement, Object> variables = new HashMap<DomainTypedElement, Object>();
+	private Map<TypedElement, Object> variables = new HashMap<TypedElement, Object>();
 	
 	@Override
-	public void add(@NonNull DomainTypedElement variable, Object value) {
+	public void add(@NonNull TypedElement variable, Object value) {
 		variables.put(variable, value);
 	}
 
 	@Override
-	public @NonNull DomainTypedElement createVariable(@NonNull String name, @NonNull DomainType type) {
-		return new ExecutorTypedElement(name, type);
+	public @NonNull TypedElement createVariable(@NonNull String name, @NonNull Type type) {
+		return new AbstractExecutorTypedElement(name, type);
 	}	
 
 	@Override
-	public void replace(@NonNull DomainTypedElement variable, Object value) {
+	public void replace(@NonNull TypedElement variable, Object value) {
 		variables.put(variable, value);
 	}
 }

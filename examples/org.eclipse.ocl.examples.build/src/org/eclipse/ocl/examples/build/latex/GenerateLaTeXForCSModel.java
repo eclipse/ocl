@@ -77,10 +77,10 @@ public abstract class GenerateLaTeXForCSModel extends GenerateLaTeXUtils
 				cs2csPackage = getSecondaryPackage(metaModelManager, oclResource);
 			}
 			if (cs2asPackage != null) {
-				asPackage = (org.eclipse.ocl.pivot.Package)metaModelManager.getPrimaryPackage(cs2asPackage);
+				asPackage = metaModelManager.getPrimaryPackage(cs2asPackage);
 			}
 			else if (cs2csPackage != null) {
-				asPackage = (org.eclipse.ocl.pivot.Package)metaModelManager.getPrimaryPackage(cs2csPackage);
+				asPackage = metaModelManager.getPrimaryPackage(cs2csPackage);
 			}
 			else {
 				String sourceFile = "/" + projectName + "/" + modelFile;

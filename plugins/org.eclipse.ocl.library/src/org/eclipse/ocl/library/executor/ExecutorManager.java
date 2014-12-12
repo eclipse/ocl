@@ -18,13 +18,13 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
-import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluationEnvironment;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.evaluation.DomainLogger;
 import org.eclipse.ocl.domain.values.CollectionValue;
 import org.eclipse.ocl.domain.values.Value;
 import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.TypedElement;
 
 public abstract class ExecutorManager implements DomainEvaluator
 {	
@@ -92,8 +92,8 @@ public abstract class ExecutorManager implements DomainEvaluator
 //		}
 	}
 
-	public Value evaluateIteration(DomainType returnType, CollectionValue sourceVal, DomainTypedElement accumulator,
-			OCLExpression body, DomainTypedElement[] iterators) {
+	public Value evaluateIteration(DomainType returnType, CollectionValue sourceVal, TypedElement accumulator,
+			OCLExpression body, TypedElement[] iterators) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException();
 	}

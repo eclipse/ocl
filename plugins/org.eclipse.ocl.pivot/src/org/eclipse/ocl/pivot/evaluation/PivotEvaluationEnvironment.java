@@ -15,13 +15,12 @@ package org.eclipse.ocl.pivot.evaluation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainType;
-import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.domain.values.ObjectValue;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 
@@ -393,10 +392,10 @@ public @NonNull DomainModelManager createModelManager(@Nullable Object object) {
 //    }
 
 	@Override
-	public @NonNull DomainTypedElement createVariable(@NonNull String name, @NonNull DomainType type) {
+	public @NonNull TypedElement createVariable(@NonNull String name, @NonNull Type type) {
 		Variable variable = PivotFactory.eINSTANCE.createVariable();
 		variable.setName(name);
-		variable.setType((Type) type);
+		variable.setType(type);
 		return variable;
 	}	
 

@@ -21,9 +21,9 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.UnitLocation;
 import org.eclipse.ocl.examples.debug.vm.core.VMDebugCore;
 import org.eclipse.ocl.examples.debug.vm.utils.VMRuntimeException;
-import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 
@@ -33,7 +33,7 @@ public interface IVMEvaluationEnvironment<T extends NamedElement> extends Evalua
 	{
 		public final @NonNull IStepper stepper;
 		public final @NonNull Element element;
-		private @Nullable Map<DomainTypedElement, Object> partialResults;
+		private @Nullable Map<TypedElement, Object> partialResults;
 		
 		public StepperEntry(@NonNull IStepper stepper, @NonNull Element element) {
 			this.stepper = stepper;
@@ -41,9 +41,9 @@ public interface IVMEvaluationEnvironment<T extends NamedElement> extends Evalua
 		}
 
 		public void popFrom(@NonNull IVMEvaluationEnvironment<?> evaluationEnvironment) {
-			Map<DomainTypedElement, Object> partialResults2 = partialResults;
+			Map<TypedElement, Object> partialResults2 = partialResults;
 			if (partialResults2 != null) {
-				for (DomainTypedElement element : partialResults2.keySet()) {
+				for (TypedElement element : partialResults2.keySet()) {
 					if (element != null) {
 						evaluationEnvironment.remove(element);
 					}
@@ -53,10 +53,10 @@ public interface IVMEvaluationEnvironment<T extends NamedElement> extends Evalua
 			}
 		}
 
-		public void pushTo(@NonNull IVMEvaluationEnvironment<?> evaluationEnvironment, @NonNull DomainTypedElement element, @Nullable Object value) {
-			Map<DomainTypedElement, Object> partialResults2 = partialResults;
+		public void pushTo(@NonNull IVMEvaluationEnvironment<?> evaluationEnvironment, @NonNull TypedElement element, @Nullable Object value) {
+			Map<TypedElement, Object> partialResults2 = partialResults;
 			if (partialResults2 == null) {
-				partialResults = partialResults2 = new HashMap<DomainTypedElement, Object>();
+				partialResults = partialResults2 = new HashMap<TypedElement, Object>();
 			}
 			partialResults2.put(element, value);
 			evaluationEnvironment.replace(element, value);

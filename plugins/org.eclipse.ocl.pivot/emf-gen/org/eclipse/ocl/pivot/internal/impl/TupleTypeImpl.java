@@ -18,7 +18,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
-import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.TuplePartId;
 import org.eclipse.ocl.domain.ids.TupleTypeId;
@@ -27,6 +26,7 @@ import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TupleType;
+import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.util.Visitor;
 
 /**
@@ -78,7 +78,7 @@ public class TupleTypeImpl
 			int iSize = parts.size();
 			List<TuplePartId> partIds = new ArrayList<TuplePartId>(iSize);
 			for (int i = 0; i < iSize; i++) {
-				@SuppressWarnings("null")@NonNull DomainTypedElement part = parts.get(i);
+				@SuppressWarnings("null")@NonNull TypedElement part = parts.get(i);
 				String partName = DomainUtil.getSafeName(part);
 				TypeId partTypeId = part.getTypeId();
 				partIds.add(IdManager.getTuplePartId(i, partName, partTypeId));

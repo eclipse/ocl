@@ -40,13 +40,13 @@ import org.eclipse.ocl.examples.debug.vm.response.VMResponse;
 import org.eclipse.ocl.examples.debug.vm.response.VMVariableResponse;
 import org.eclipse.ocl.examples.debug.vm.utils.VMRuntimeException;
 import org.eclipse.ocl.domain.elements.DomainType;
-import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.CollectionValue;
 import org.eclipse.ocl.domain.values.Value;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
@@ -143,7 +143,7 @@ public class VariableFinder
 	public static @NonNull List<VMVariableData> getVariables(@NonNull IVMEvaluationEnvironment<?> evalEnv) {
 		List<VMVariableData> result = new ArrayList<VMVariableData>();
 
-		for (DomainTypedElement variable : evalEnv.getVariables()) {
+		for (TypedElement variable : evalEnv.getVariables()) {
 			String varName = variable.getName();
 			if (variable instanceof OCLExpression) {
 				OCLExpression oclExpression = (OCLExpression) variable;
@@ -605,7 +605,7 @@ public class VariableFinder
 		String envVarName = DomainUtil.nonNullState(varTreePath[0]);
 		if (envVarName.startsWith("$")) {
 			for (IVMEvaluationEnvironment<?> evalEnv = fEvalEnv; evalEnv != null; evalEnv = evalEnv.getParentEvaluationEnvironment()) {
-				for (DomainTypedElement localVariable : evalEnv.getVariables()) {
+				for (TypedElement localVariable : evalEnv.getVariables()) {
 					if (localVariable instanceof OCLExpression) {
 						OCLExpression oclExpression = (OCLExpression) localVariable;
 						String varName = getTermVariableName(oclExpression);
@@ -622,9 +622,9 @@ public class VariableFinder
 			}
 		}
 		if (!gotIt) {
-			Set<DomainTypedElement> variables = new HashSet<DomainTypedElement>();
+			Set<TypedElement> variables = new HashSet<TypedElement>();
 			for (IVMEvaluationEnvironment<?> evalEnv = fEvalEnv; evalEnv != null; evalEnv = evalEnv.getParentEvaluationEnvironment()) {
-				Set<DomainTypedElement> localVariables = evalEnv.getVariables();
+				Set<TypedElement> localVariables = evalEnv.getVariables();
 				variables.addAll(localVariables);
 				if (DomainUtil.getNamedElement(localVariables, "self") != null) {
 					break;
@@ -632,7 +632,7 @@ public class VariableFinder
 			}
 			rootObj = DomainUtil.getNamedElement(variables, envVarName);
 			if (rootObj instanceof Variable) {
-				rootObj = fEvalEnv.getValueOf((DomainTypedElement)rootObj);
+				rootObj = fEvalEnv.getValueOf((TypedElement)rootObj);
 				gotIt = true;
 			}
 		}

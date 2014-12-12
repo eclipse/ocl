@@ -10,12 +10,14 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot;
 
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.domain.ids.TypeId;
+
 
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Typed Element</b></em>'.
- * @extends org.eclipse.ocl.domain.elements.DomainTypedElement
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -34,8 +36,7 @@ package org.eclipse.ocl.pivot;
  * @see org.eclipse.ocl.pivot.PivotPackage#getTypedElement()
  * @generated
  */
-public interface TypedElement
-		extends NamedElement, org.eclipse.ocl.domain.elements.DomainTypedElement {
+public interface TypedElement extends NamedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference.
@@ -49,7 +50,6 @@ public interface TypedElement
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getTypedElement_Type()
 	 * @generated
 	 */
-	@Override
 	Type getType();
 
 	/**
@@ -112,4 +112,5 @@ public interface TypedElement
 	 */
 	boolean isMany();
 
+	@NonNull TypeId getTypeId();
 } // TypedElement

@@ -110,7 +110,6 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 		org.eclipse.ocl.domain.elements.DomainStandardLibrary.class,
 		org.eclipse.ocl.domain.elements.DomainType.class,
 		org.eclipse.ocl.domain.elements.DomainTypeParameters.class,
-		org.eclipse.ocl.domain.elements.DomainTypedElement.class,
 		org.eclipse.ocl.domain.evaluation.DomainEvaluator.class,
 		org.eclipse.ocl.domain.ids.ClassId.class,
 		org.eclipse.ocl.domain.ids.CollectionTypeId.class,
@@ -169,6 +168,7 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 		org.eclipse.ocl.pivot.PivotPackage.class,
 		org.eclipse.ocl.pivot.Property.class,
 		org.eclipse.ocl.pivot.TupleType.class,
+		org.eclipse.ocl.pivot.TypedElement.class,
 		org.eclipse.ocl.pivot.utilities.PivotUtil.class,
 		org.eclipse.osgi.util.NLS.class
 	};

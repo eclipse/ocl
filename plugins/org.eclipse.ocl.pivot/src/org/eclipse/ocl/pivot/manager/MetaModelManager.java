@@ -798,12 +798,10 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		Set<Constraint> knownInvariants = new HashSet<Constraint>();
 		for (CompleteClass superType : getAllSuperCompleteClasses(pivotType)) {
 			if (superType != null) {
-				for (org.eclipse.ocl.pivot.Class partialSuperType : superType.getPartialClasses()) {
-					if (partialSuperType instanceof org.eclipse.ocl.pivot.Class) {
-						org.eclipse.ocl.pivot.Package partialPackage = partialSuperType.getOwningPackage();
-						if (!(partialPackage instanceof PackageImpl) || !((PackageImpl)partialPackage).isIgnoreInvariants()) {
-							knownInvariants.addAll(((org.eclipse.ocl.pivot.Class)partialSuperType).getOwnedInvariants());
-						}
+				for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Class partialSuperType : superType.getPartialClasses()) {
+					org.eclipse.ocl.pivot.Package partialPackage = partialSuperType.getOwningPackage();
+					if (!(partialPackage instanceof PackageImpl) || !((PackageImpl)partialPackage).isIgnoreInvariants()) {
+						knownInvariants.addAll(partialSuperType.getOwnedInvariants());
 					}
 				}
 			}
@@ -1733,7 +1731,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 
 	public @NonNull org.eclipse.ocl.pivot.Class getPrimaryType(@NonNull org.eclipse.ocl.pivot.Class type) {
 		if (/*(type instanceof Type) &&*/ !isTypeServeable(type)) {
-			return (org.eclipse.ocl.pivot.Class) type;			// FIXME bad cast
+			return type;
 		}
 		return getCompleteClass(type).getPivotClass();
 //		TypeTracker typeTracker = packageManager.findTypeTracker(pivotType);
@@ -1879,11 +1877,11 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 	}
 
 	public @NonNull org.eclipse.ocl.pivot.Class getType(@NonNull org.eclipse.ocl.pivot.Class dType) {				// FIXME simplify eliminate
-		if (dType instanceof Type) {
+//		if (dType instanceof Type) {
 			return getPrimaryType(dType);
-		}
-		CompleteClass completeClass = completeModel.getCompleteClass(dType);
-		return DomainUtil.nonNullState(completeClass.getPivotClass());
+//		}
+//		CompleteClass completeClass = completeModel.getCompleteClass(dType);
+//		return DomainUtil.nonNullState(completeClass.getPivotClass());
 /*		org.eclipse.ocl.pivot.Package dPackage = dType.getOwningPackage();	// FIXME cast
 		if (dPackage != null) {
 			CompletePackage completePackage = getCompletePackage(dPackage);

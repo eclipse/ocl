@@ -16,7 +16,6 @@ import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluationEnvironment;
 import org.eclipse.ocl.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.pivot.Adaptable;
@@ -27,6 +26,7 @@ import org.eclipse.ocl.pivot.Environment;
 import org.eclipse.ocl.pivot.OCLUtil;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 
 /**
@@ -57,12 +57,12 @@ public interface EvaluationEnvironment extends DomainEvaluationEnvironment, Basi
      *            the name whose value is to be returned
      * @return the value associated with the name
      */
-	Object getValueOf(@NonNull DomainTypedElement referredVariable);
+	Object getValueOf(@NonNull TypedElement referredVariable);
 
 	/**
 	 * Return the set of all locally registered variables.
 	 */
-	@NonNull Set<DomainTypedElement> getVariables();
+	@NonNull Set<TypedElement> getVariables();
 
     /**
      * Replaces the current value of the supplied variable declaration with the supplied value.
@@ -73,7 +73,7 @@ public interface EvaluationEnvironment extends DomainEvaluationEnvironment, Basi
      *            the new value
      */
     @Override
-	void replace(@NonNull DomainTypedElement referredVariable, Object value);
+	void replace(@NonNull TypedElement referredVariable, Object value);
 
     /**
      * Adds the supplied variable declaration and value binding to the environment.  The variable declaration
@@ -84,10 +84,10 @@ public interface EvaluationEnvironment extends DomainEvaluationEnvironment, Basi
      * @param value
      *            the associated binding
      *            
-     * @see #replace(DomainTypedElement, Object)
+     * @see #replace(TypedElement, Object)
      */
     @Override
-	void add(@NonNull DomainTypedElement referredVariable, Object value);
+	void add(@NonNull TypedElement referredVariable, Object value);
  
     /**
      * Removes the supplied variable declaration and binding from the environment (if it exists)
@@ -97,7 +97,7 @@ public interface EvaluationEnvironment extends DomainEvaluationEnvironment, Basi
      *            the variable declaration to remove
      * @return the value associated with the removed variable declaration
      */
-    Object remove(@NonNull DomainTypedElement referredVariable);
+    Object remove(@NonNull TypedElement referredVariable);
 
     /**
      * Clears the environment of variables.

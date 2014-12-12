@@ -65,4 +65,9 @@ public class AbstractExecutorTypedElement extends AbstractExecutorObject impleme
 	public void setType(Type value) {
 		throw new UnsupportedOperationException();
 	}
+
+	@Override
+	public String toString() {
+		return String.valueOf(name) + " : " + String.valueOf(executorType); //$NON-NLS-1$
+	}
 }

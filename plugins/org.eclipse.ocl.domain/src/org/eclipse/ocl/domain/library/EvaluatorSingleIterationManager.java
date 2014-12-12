@@ -12,11 +12,11 @@ package org.eclipse.ocl.domain.library;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.evaluation.DomainIterationManager;
 import org.eclipse.ocl.domain.values.CollectionValue;
 import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.TypedElement;
 
 public class EvaluatorSingleIterationManager extends EvaluatorIterationManager
 {
@@ -47,13 +47,13 @@ public class EvaluatorSingleIterationManager extends EvaluatorIterationManager
 		}
 	}
 
-	protected final @NonNull DomainTypedElement referredIterator;
+	protected final @NonNull TypedElement referredIterator;
 	protected final @NonNull ValueIterator iterator;
 
 	public EvaluatorSingleIterationManager(@NonNull DomainEvaluator invokingEvaluator,
 			@NonNull OCLExpression body, @NonNull CollectionValue collectionValue,
-			@Nullable DomainTypedElement accumulator, @Nullable Object accumulatorValue,
-			@NonNull DomainTypedElement referredIterator) {
+			@Nullable TypedElement accumulator, @Nullable Object accumulatorValue,
+			@NonNull TypedElement referredIterator) {
 		super(invokingEvaluator.createNestedEvaluator(), body, collectionValue, accumulator, accumulatorValue);
 		this.referredIterator = referredIterator;
 		this.iterator = new ValueIterator(evaluator, collectionValue, referredIterator);

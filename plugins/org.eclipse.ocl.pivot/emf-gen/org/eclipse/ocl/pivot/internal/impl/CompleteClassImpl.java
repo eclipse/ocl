@@ -28,7 +28,6 @@ import org.eclipse.ocl.domain.elements.DomainType;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.domain.ids.OperationId;
 import org.eclipse.ocl.domain.values.CollectionTypeParameters;
-import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.CompleteClass;
@@ -497,7 +496,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 		{
 			@Override
 			public org.eclipse.ocl.pivot.Class apply(DomainFragment input) {
-				return (Class) input.getBaseInheritance().getType();
+				return input.getBaseInheritance().getType();
 			}
 		});
 	}

@@ -46,7 +46,6 @@ import org.eclipse.ocl.examples.debug.vm.utils.ASTBindingHelper;
 import org.eclipse.ocl.examples.debug.vm.utils.CompiledUnit;
 import org.eclipse.ocl.examples.debug.vm.utils.DebugOptions;
 import org.eclipse.ocl.examples.debug.vm.utils.VMInterruptedExecutionException;
-import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
@@ -55,6 +54,7 @@ import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.Variable;
 
 public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implements IVMRootEvaluationVisitor<ExpressionInOCL>
@@ -339,7 +339,7 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 		if (!stepperStack.isEmpty()) {
 			IVMEvaluationEnvironment.StepperEntry parentStepperEntry = stepperStack.peek();
 			if (element instanceof OCLExpression) { // NB not Variable
-				parentStepperEntry.pushTo(evalEnv, (DomainTypedElement) element, result);
+				parentStepperEntry.pushTo(evalEnv, (TypedElement) element, result);
 			}
 			parentStepper = parentStepperEntry.stepper;
 		}

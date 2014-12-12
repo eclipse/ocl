@@ -14,11 +14,11 @@ import java.util.Iterator;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluationEnvironment;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.values.CollectionValue;
 import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.TypedElement;
 
 public abstract class EvaluatorIterationManager extends AbstractIterationManager
 {
@@ -26,11 +26,11 @@ public abstract class EvaluatorIterationManager extends AbstractIterationManager
 	{
 		private final DomainEvaluationEnvironment evaluationEnvironment;
 		private final @NonNull CollectionValue collectionValue;
-		private final @NonNull DomainTypedElement variable;
+		private final @NonNull TypedElement variable;
 		private Iterator<? extends Object> javaIter;
 		private Object value;		// 'null' is a valid value so 'this' is used as end of iteration
 
-		public ValueIterator(@NonNull DomainEvaluator evaluator, @NonNull CollectionValue collectionValue, @NonNull DomainTypedElement variable) {
+		public ValueIterator(@NonNull DomainEvaluator evaluator, @NonNull CollectionValue collectionValue, @NonNull TypedElement variable) {
 			this.evaluationEnvironment = evaluator.getEvaluationEnvironment();
 			this.collectionValue = collectionValue;
 			this.variable = variable;
@@ -68,11 +68,11 @@ public abstract class EvaluatorIterationManager extends AbstractIterationManager
 		}
 	}
 
-	protected static ValueIterator[] createIterators(@NonNull DomainTypedElement[] referredIterators, @NonNull DomainEvaluator evaluator, @NonNull CollectionValue collectionValue) {
+	protected static ValueIterator[] createIterators(@NonNull TypedElement[] referredIterators, @NonNull DomainEvaluator evaluator, @NonNull CollectionValue collectionValue) {
 		int iMax = referredIterators.length;
 		ValueIterator[] iterators = new ValueIterator[iMax];
 		for (int i = 0; i < iMax; i++) {
-			DomainTypedElement referredIterator = referredIterators[i];
+			TypedElement referredIterator = referredIterators[i];
 			if (referredIterator != null) {
 				ValueIterator valueIterator = new ValueIterator(evaluator, collectionValue, referredIterator);
 				if (!valueIterator.hasCurrent()) {
@@ -86,11 +86,11 @@ public abstract class EvaluatorIterationManager extends AbstractIterationManager
 
 	protected final @NonNull CollectionValue collectionValue;
 	protected final @NonNull OCLExpression body;
-	protected final @Nullable DomainTypedElement accumulatorVariable;
+	protected final @Nullable TypedElement accumulatorVariable;
 	private @Nullable Object accumulatorValue;
 
 	public EvaluatorIterationManager(@NonNull DomainEvaluator evaluator, @NonNull OCLExpression body, @NonNull CollectionValue collectionValue,
-			@Nullable DomainTypedElement accumulatorVariable, @Nullable Object accumulatorValue) {
+			@Nullable TypedElement accumulatorVariable, @Nullable Object accumulatorValue) {
 		super(evaluator);
 		this.collectionValue = collectionValue;
 		this.body = body;
@@ -141,7 +141,7 @@ public abstract class EvaluatorIterationManager extends AbstractIterationManager
 	@Override
 	public @Nullable Object updateAccumulator(Object newValue) {
 		this.accumulatorValue = newValue;
-		DomainTypedElement accumulatorVariable2 = accumulatorVariable;
+		TypedElement accumulatorVariable2 = accumulatorVariable;
 		if (accumulatorVariable2 != null) {
 			getEvaluationEnvironment().replace(accumulatorVariable2, accumulatorValue);
 		}

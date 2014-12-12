@@ -776,18 +776,12 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 //			}
 			for (CompleteClass superCompleteClass : getSuperCompleteClasses()) {
 				if (superCompleteClass != null) {
-					for (org.eclipse.ocl.pivot.Class superType : superCompleteClass.getPartialClasses()) {
-						assert superType != null;
-						if (superType instanceof org.eclipse.ocl.pivot.Class) {
-							org.eclipse.ocl.pivot.Class unspecializedType = PivotUtil.getUnspecializedTemplateableElement((org.eclipse.ocl.pivot.Class) superType);
-							CompleteClass unspecializedCompleteClass = getCompleteModel().getCompleteClass(unspecializedType);
-							for (org.eclipse.ocl.pivot.Class unspecializedPartialType : unspecializedCompleteClass.getPartialClasses()) {
-								assert unspecializedPartialType != null;
-								initMemberOperationsFrom(unspecializedPartialType);
-							}
-						}
-						else {							
-							initMemberOperationsFrom(superType);
+					for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Class superType : superCompleteClass.getPartialClasses()) {
+						org.eclipse.ocl.pivot.Class unspecializedType = PivotUtil.getUnspecializedTemplateableElement(superType);
+						CompleteClass unspecializedCompleteClass = getCompleteModel().getCompleteClass(unspecializedType);
+						for (org.eclipse.ocl.pivot.Class unspecializedPartialType : unspecializedCompleteClass.getPartialClasses()) {
+							assert unspecializedPartialType != null;
+							initMemberOperationsFrom(unspecializedPartialType);
 						}
 					}
 				}
@@ -820,60 +814,42 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 			for (CompleteClass superCompleteClass : getSuperCompleteClasses()) {
 				if (superCompleteClass != null) {
 					for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Class superType : superCompleteClass.getPartialClasses()) {
-						assert superType != null;
-						if (superType instanceof org.eclipse.ocl.pivot.Class) {
-							org.eclipse.ocl.pivot.Class unspecializedType = PivotUtil.getUnspecializedTemplateableElement((org.eclipse.ocl.pivot.Class) superType);
-							List<TypeExtension> extendedBys = unspecializedType.getExtendedBys();
-							if (extendedBys.size() > 0) {
-								if (extendingStereotypes == null) {
-									extendingStereotypes = new HashSet<Stereotype>();
-								}
-								for (TypeExtension typeExtension : extendedBys) {
-									Stereotype stereotype = typeExtension.getStereotype();
-									if (stereotype != null) {
-										extendingStereotypes.add(stereotype);
-									}
+						org.eclipse.ocl.pivot.Class unspecializedType = PivotUtil.getUnspecializedTemplateableElement(superType);
+						List<TypeExtension> extendedBys = unspecializedType.getExtendedBys();
+						if (extendedBys.size() > 0) {
+							if (extendingStereotypes == null) {
+								extendingStereotypes = new HashSet<Stereotype>();
+							}
+							for (TypeExtension typeExtension : extendedBys) {
+								Stereotype stereotype = typeExtension.getStereotype();
+								if (stereotype != null) {
+									extendingStereotypes.add(stereotype);
 								}
 							}
-							if (unspecializedType instanceof Stereotype) {
-								List<TypeExtension> extensionOfs = ((Stereotype)unspecializedType).getExtensionOfs();
-								if (extensionOfs.size() > 0) {
-									if (extendedTypes == null) {
-										extendedTypes = new HashSet<Type>();
-									}
-									for (TypeExtension typeExtension : extensionOfs) {
-										Type type = typeExtension.getType();
-										if (type != null) {
-											extendedTypes.add(type);
-										}
-									}
+						}
+						if (unspecializedType instanceof Stereotype) {
+							List<TypeExtension> extensionOfs = ((Stereotype)unspecializedType).getExtensionOfs();
+							if (extensionOfs.size() > 0) {
+								if (extendedTypes == null) {
+									extendedTypes = new HashSet<Type>();
 								}
-							}
-							CompleteClass unspecializedCompleteClass = getCompleteModel().getCompleteClass(unspecializedType);
-							for (org.eclipse.ocl.pivot.Class unspecializedPartialType : unspecializedCompleteClass.getPartialClasses()) {
-								assert unspecializedPartialType != null;
-								initMemberPropertiesFrom(unspecializedPartialType);
-								if (unspecializedPartialType instanceof org.eclipse.ocl.pivot.Class) {
-									List<ElementExtension> extensions = ((org.eclipse.ocl.pivot.Class)unspecializedPartialType).getExtension();
-									if (extensions.size() > 0) {
-										if (allExtensions == null) {
-											allExtensions = new ArrayList<ElementExtension>();
-										}
-										allExtensions.addAll(extensions);
+								for (TypeExtension typeExtension : extensionOfs) {
+									Type type = typeExtension.getType();
+									if (type != null) {
+										extendedTypes.add(type);
 									}
 								}
 							}
 						}
-						else {							
-							initMemberPropertiesFrom(superType);
-							if (superType instanceof Type) {
-								List<ElementExtension> extensions = ((Type)superType).getExtension();
-								if (extensions.size() > 0) {
-									if (allExtensions == null) {
-										allExtensions = new ArrayList<ElementExtension>();
-									}
-									allExtensions.addAll(extensions);
+						CompleteClass unspecializedCompleteClass = getCompleteModel().getCompleteClass(unspecializedType);
+						for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Class unspecializedPartialType : unspecializedCompleteClass.getPartialClasses()) {
+							initMemberPropertiesFrom(unspecializedPartialType);
+							List<ElementExtension> extensions = unspecializedPartialType.getExtension();
+							if (extensions.size() > 0) {
+								if (allExtensions == null) {
+									allExtensions = new ArrayList<ElementExtension>();
 								}
+								allExtensions.addAll(extensions);
 							}
 						}
 					}
@@ -914,21 +890,13 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 	}
 
 	protected void initMemberPropertiesFrom(@NonNull org.eclipse.ocl.pivot.Class asType) {
-		org.eclipse.ocl.pivot.Class asPrimaryType;
-		if (asType instanceof org.eclipse.ocl.pivot.Class) {
-			asPrimaryType = PivotUtil.getUnspecializedTemplateableElement((org.eclipse.ocl.pivot.Class) asType);
-		}
-		else {
-			asPrimaryType = asType;
-		}
+		org.eclipse.ocl.pivot.Class asPrimaryType = PivotUtil.getUnspecializedTemplateableElement(asType);
 		if (INIT_MEMBER_PROPERTIES.isActive()) {
 			INIT_MEMBER_PROPERTIES.println(this + " from " + asPrimaryType + " " + DomainUtil.debugSimpleName(asPrimaryType));
 		}
-		if (asPrimaryType instanceof Type) {
-			for (ElementExtension extension : ((Type)asPrimaryType).getExtension()) {
-				assert extension != null;
-//				initStereotypePropertiesFrom((Type)asPrimaryType, extension);
-			}
+		for (ElementExtension extension : asPrimaryType.getExtension()) {
+			assert extension != null;
+//			initStereotypePropertiesFrom((Type)asPrimaryType, extension);
 		}
 		for (@SuppressWarnings("null")@NonNull Property pivotProperty : asPrimaryType.getOwnedProperties()) {
 			didAddProperty(pivotProperty);

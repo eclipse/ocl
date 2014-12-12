@@ -78,13 +78,10 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 	}
 
 	protected EClassifier getEClassifier(@NonNull Type type) {
-		for (org.eclipse.ocl.pivot.Class dType : metaModelManager.getPartialClasses(type)) {
-			if (dType instanceof org.eclipse.ocl.pivot.Class) {
-				org.eclipse.ocl.pivot.Class pType = (org.eclipse.ocl.pivot.Class) dType;
-				EClassifier eClass = (EClassifier) pType.getETarget();
-				if (eClass != null) {
-					return eClass;
-				}
+		for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Class dType : metaModelManager.getPartialClasses(type)) {
+			EClassifier eClass = (EClassifier) dType.getETarget();
+			if (eClass != null) {
+				return eClass;
 			}
 		}
 		return null;

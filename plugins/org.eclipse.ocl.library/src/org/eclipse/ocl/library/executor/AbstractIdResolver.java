@@ -41,7 +41,6 @@ import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainType;
-import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.ids.ClassId;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.DataTypeId;
@@ -89,6 +88,7 @@ import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TupleType;
+import org.eclipse.ocl.pivot.TypedElement;
 
 public abstract class AbstractIdResolver implements IdResolver
 {
@@ -227,7 +227,7 @@ public abstract class AbstractIdResolver implements IdResolver
 	 * required part definitions to construct a tuple type in the lightweight execution environment. This cache may remain
 	 * unused when using the full pivot environment.
 	 */
-	private Map<String, Map<DomainType, WeakReference<DomainTypedElement>>> tupleParts = null;		// Lazily created
+	private Map<String, Map<DomainType, WeakReference<TypedElement>>> tupleParts = null;		// Lazily created
 	
 	public AbstractIdResolver(@NonNull DomainEnvironment environment) {
 		this.environment = environment;
@@ -813,23 +813,23 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 	
 	@Override
-	public @NonNull DomainTypedElement getTuplePart(@NonNull String name, @NonNull TypeId typeId) {
+	public @NonNull TypedElement getTuplePart(@NonNull String name, @NonNull TypeId typeId) {
 		return getTuplePart(name, getType(typeId, null));
 	}
 
-	public synchronized @NonNull DomainTypedElement getTuplePart(@NonNull String name, @NonNull DomainType type) {
+	public synchronized @NonNull TypedElement getTuplePart(@NonNull String name, @NonNull DomainType type) {
 		if (tupleParts == null) {
-			tupleParts = new WeakHashMap<String, Map<DomainType, WeakReference<DomainTypedElement>>>();
+			tupleParts = new WeakHashMap<String, Map<DomainType, WeakReference<TypedElement>>>();
 		}
-		Map<DomainType, WeakReference<DomainTypedElement>> typeMap = tupleParts.get(name);
+		Map<DomainType, WeakReference<TypedElement>> typeMap = tupleParts.get(name);
 		if (typeMap == null) {
-			typeMap = new WeakHashMap<DomainType, WeakReference<DomainTypedElement>>();
+			typeMap = new WeakHashMap<DomainType, WeakReference<TypedElement>>();
 			tupleParts.put(name, typeMap);
 		}
-		DomainTypedElement tupleProperty = weakGet(typeMap, type);
+		TypedElement tupleProperty = weakGet(typeMap, type);
 		if (tupleProperty == null) {
 			tupleProperty = new AbstractTuplePart(type, name);
-			typeMap.put(type, new WeakReference<DomainTypedElement>(tupleProperty));
+			typeMap.put(type, new WeakReference<TypedElement>(tupleProperty));
 		}
 		return tupleProperty;
 	}
@@ -1170,7 +1170,7 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	@Override
-	public @NonNull DomainTypedElement visitTuplePartId(@NonNull TuplePartId id) {
+	public @NonNull TypedElement visitTuplePartId(@NonNull TuplePartId id) {
 		throw new UnsupportedOperationException();
 	}
 

@@ -22,7 +22,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainType;
-import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.TemplateParameterId;
 import org.eclipse.ocl.domain.ids.TuplePartId;
@@ -132,7 +131,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		this.selfTypeValue = selfTypeValue;
 	}
 	
-	protected void analyzeFeature(@Nullable Feature formalFeature, @Nullable DomainTypedElement actualElement) {
+	protected void analyzeFeature(@Nullable Feature formalFeature, @Nullable TypedElement actualElement) {
 		if ((formalFeature != null) && (actualElement != null)) {
 			Type formalType = formalFeature.getOwningClass();
 			DomainType actualType = actualElement.getType();
@@ -152,7 +151,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		}
 	}
 
-	protected void analyzeTypedElement(@Nullable TypedElement newFormal, @Nullable DomainTypedElement newActual) {
+	protected void analyzeTypedElement(@Nullable TypedElement newFormal, @Nullable TypedElement newActual) {
 		if ((newFormal != null) && (newActual != null)) {
 			DomainElement oldActual = actual;
 			try {
@@ -164,12 +163,12 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		}
 	}
 
-	protected void analyzeTypedElements(@NonNull List<? extends TypedElement> formalElements, @Nullable List<? extends DomainTypedElement> actualElements) {
+	protected void analyzeTypedElements(@NonNull List<? extends TypedElement> formalElements, @Nullable List<? extends TypedElement> actualElements) {
 		if (actualElements != null) {
 			int iMax = Math.min(formalElements.size(), actualElements.size());
 			for (int i = 0; i < iMax; i++) {
 				TypedElement formalElement = formalElements.get(i);
-				DomainTypedElement actualElement = actualElements.get(i);
+				TypedElement actualElement = actualElements.get(i);
 				analyzeTypedElement(formalElement, actualElement);
 			}
 		}
@@ -224,7 +223,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		}
 		else {
 			Map<String, Type> partMap = new HashMap<String, Type>();
-			for (DomainTypedElement part : type.getOwnedProperties()) {
+			for (TypedElement part : type.getOwnedProperties()) {
 				DomainType type1 = part.getType();
 				if (type1 != null) {
 					Type type2 = metaModelManager.getType(type1);
@@ -500,8 +499,8 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 
 	@Override
 	public @Nullable Object visitTypedElement(@NonNull TypedElement object) {
-		if (actual instanceof DomainTypedElement) {
-			analyzeType(object.getType(), ((DomainTypedElement)actual).getType());
+		if (actual instanceof TypedElement) {
+			analyzeType(object.getType(), ((TypedElement)actual).getType());
 		}
 		return null;
 	}

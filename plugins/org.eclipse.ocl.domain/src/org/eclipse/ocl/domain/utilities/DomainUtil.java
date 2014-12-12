@@ -33,7 +33,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.DomainConstants;
 import org.eclipse.ocl.domain.elements.DomainType;
-import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.elements.Labelable;
 import org.eclipse.ocl.domain.elements.Nameable;
 import org.eclipse.ocl.domain.values.Unlimited;
@@ -42,6 +41,7 @@ import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.osgi.util.NLS;
 
 public class DomainUtil
@@ -444,23 +444,23 @@ public class DomainUtil
 	public static @NonNull DomainType[] getOperationParameterTypes(@NonNull Operation anOperation) {
 		DomainType[] parameterTypes;
 		int iParameter = 0;
-		List<? extends DomainTypedElement> ownedParameters = anOperation.getOwnedParameter();
+		List<? extends TypedElement> ownedParameters = anOperation.getOwnedParameter();
 		if (anOperation instanceof Iteration) {
 			Iteration anIteration = (Iteration)anOperation;
-			List<? extends DomainTypedElement> ownedIterators = anIteration.getOwnedIterator();
-			List<? extends DomainTypedElement> ownedAccumulators = anIteration.getOwnedAccumulator();
+			List<? extends TypedElement> ownedIterators = anIteration.getOwnedIterator();
+			List<? extends TypedElement> ownedAccumulators = anIteration.getOwnedAccumulator();
 			parameterTypes = new DomainType[ownedIterators.size() + ownedAccumulators.size() + ownedParameters.size()];
-			for (DomainTypedElement ownedIterator : ownedIterators) {
+			for (TypedElement ownedIterator : ownedIterators) {
 				parameterTypes[iParameter++] = ownedIterator.getType();
 			}
-			for (DomainTypedElement ownedAccumulator : ownedAccumulators) {
+			for (TypedElement ownedAccumulator : ownedAccumulators) {
 				parameterTypes[iParameter++] = ownedAccumulator.getType();
 			}
 		}
 		else {
 			parameterTypes = new DomainType[ownedParameters.size()];
 		}
-		for (DomainTypedElement ownedParameter : ownedParameters) {
+		for (TypedElement ownedParameter : ownedParameters) {
 			parameterTypes[iParameter++] = ownedParameter.getType();
 		}
 		return parameterTypes;

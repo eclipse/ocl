@@ -21,7 +21,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainType;
-import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.TemplateParameterId;
 import org.eclipse.ocl.domain.ids.TuplePartId;
@@ -34,6 +33,7 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentImpl;
 import org.eclipse.ocl.pivot.internal.impl.TuplePartImpl;
 import org.eclipse.ocl.pivot.internal.impl.TupleTypeImpl;
@@ -199,10 +199,10 @@ public class TupleTypeManager
 		return tupleType;
 	}
 
-	public @NonNull TupleType getTupleType(@NonNull String tupleName, @NonNull Collection<? extends DomainTypedElement> parts,
+	public @NonNull TupleType getTupleType(@NonNull String tupleName, @NonNull Collection<? extends TypedElement> parts,
 			@Nullable TemplateParameterSubstitutions usageBindings) {
 		Map<String, Type> partMap = new HashMap<String, Type>();
-		for (DomainTypedElement part : parts) {
+		for (TypedElement part : parts) {
 			DomainType type1 = part.getType();
 			if (type1 != null) {
 				Type type2 = metaModelManager.getType(type1);

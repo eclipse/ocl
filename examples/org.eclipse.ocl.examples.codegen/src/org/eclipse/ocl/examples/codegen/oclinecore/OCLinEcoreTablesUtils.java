@@ -673,7 +673,7 @@ public class OCLinEcoreTablesUtils
 						}
 					}
 					else if (partialPackage == pPackage) {
-						myType = (Type) type;
+						myType = type;
 					}
 				}
 				if (!pruned && (myType instanceof org.eclipse.ocl.pivot.Class)) {

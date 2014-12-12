@@ -17,10 +17,10 @@ import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.pivot.AbstractBasicEnvironment;
 import org.eclipse.ocl.pivot.Environment;
+import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.osgi.util.NLS;
@@ -42,7 +42,7 @@ public abstract class AbstractEvaluationEnvironment extends AbstractBasicEnviron
 	
     protected final @NonNull MetaModelManager metaModelManager;
 
-    private final @NonNull Map<DomainTypedElement, Object> variableValues = new HashMap<DomainTypedElement, Object>();
+    private final @NonNull Map<TypedElement, Object> variableValues = new HashMap<TypedElement, Object>();
     
     protected AbstractEvaluationEnvironment(@NonNull MetaModelManager metaModelManager) {
     	super(null);
@@ -67,7 +67,7 @@ public abstract class AbstractEvaluationEnvironment extends AbstractBasicEnviron
      * @return the value associated with the referredVariable
      */
 	@Override
-	public @Nullable Object getValueOf(@NonNull DomainTypedElement referredVariable) {
+	public @Nullable Object getValueOf(@NonNull TypedElement referredVariable) {
     	Object object = variableValues.get(referredVariable);
         if (object == null) {
 			if (!variableValues.containsKey(referredVariable)) {
@@ -85,7 +85,7 @@ public abstract class AbstractEvaluationEnvironment extends AbstractBasicEnviron
     
 	@Override
 	@SuppressWarnings("null")
-	public @NonNull Set<DomainTypedElement> getVariables() {
+	public @NonNull Set<TypedElement> getVariables() {
 		return variableValues.keySet();
 	}
 
@@ -98,7 +98,7 @@ public abstract class AbstractEvaluationEnvironment extends AbstractBasicEnviron
      *            the new value
      */
     @Override
-	public void replace(@NonNull DomainTypedElement referredVariable, @Nullable Object value) {
+	public void replace(@NonNull TypedElement referredVariable, @Nullable Object value) {
     	variableValues.put(referredVariable, value);
     }
 
@@ -111,7 +111,7 @@ public abstract class AbstractEvaluationEnvironment extends AbstractBasicEnviron
      *            the associated binding
      */
     @Override
-	public void add(@NonNull DomainTypedElement referredVariable, @Nullable Object value) {
+	public void add(@NonNull TypedElement referredVariable, @Nullable Object value) {
         if (variableValues.containsKey(referredVariable)) {
         	Object oldValue = variableValues.get(referredVariable);
         	if ((oldValue != value) && ((oldValue == null) || !oldValue.equals(value))) {
@@ -135,7 +135,7 @@ public abstract class AbstractEvaluationEnvironment extends AbstractBasicEnviron
      */
     @Override
 	@Deprecated
-    public Object remove(@NonNull DomainTypedElement referredVariable) {
+    public Object remove(@NonNull TypedElement referredVariable) {
     	return variableValues.remove(referredVariable);
     }
 

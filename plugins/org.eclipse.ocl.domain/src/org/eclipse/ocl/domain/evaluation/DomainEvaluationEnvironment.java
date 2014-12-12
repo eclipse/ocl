@@ -11,12 +11,12 @@
 package org.eclipse.ocl.domain.evaluation;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainType;
-import org.eclipse.ocl.domain.elements.DomainTypedElement;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.TypedElement;
 
 public interface DomainEvaluationEnvironment
 {
-	void add(@NonNull DomainTypedElement variable, Object value);
-	@NonNull DomainTypedElement createVariable(@NonNull String name, @NonNull DomainType type);
-	void replace(@NonNull DomainTypedElement variable, Object value);
+	void add(@NonNull TypedElement variable, Object value);
+	@NonNull TypedElement createVariable(@NonNull String name, @NonNull Type type);
+	void replace(@NonNull TypedElement variable, Object value);
 }

@@ -127,7 +127,7 @@ public class OrphanCompletePackageImpl extends RootCompletePackageImpl implement
 				return orphanCompleteClass;
 			}
 		}
-		final @NonNull org.eclipse.ocl.pivot.Class orphanClass = (org.eclipse.ocl.pivot.Class)type;	// FIXME cast
+		final @NonNull org.eclipse.ocl.pivot.Class orphanClass = type;
 		OrphanCompleteClassImpl completeClass = new OrphanCompleteClassImpl(this, orphanClass);
 		completeClass.setName(orphanClass.getName());
 		completeClass.getPartialClasses().add(orphanClass);
