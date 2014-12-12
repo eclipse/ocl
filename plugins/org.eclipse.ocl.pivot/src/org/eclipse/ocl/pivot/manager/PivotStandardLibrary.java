@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.DomainConstants;
-import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.ids.TypeId;
@@ -190,7 +189,7 @@ public class PivotStandardLibrary extends AbstractStandardLibrary	// FIXME Abstr
 	}
 
 	@Override
-	public @NonNull DomainCollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType,
+	public @NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType,
 			@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return metaModelManager.getCompleteEnvironment().getCollectionType(containerType, elementType, lower, upper);
 	}

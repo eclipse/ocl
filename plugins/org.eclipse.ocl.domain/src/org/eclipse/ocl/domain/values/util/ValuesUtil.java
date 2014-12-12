@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainParameterTypes;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
@@ -82,6 +81,7 @@ import org.eclipse.ocl.domain.values.impl.SparseSequenceValueImpl;
 import org.eclipse.ocl.domain.values.impl.TupleValueImpl;
 import org.eclipse.ocl.domain.values.impl.UnlimitedValueImpl;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
+import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.Type;
 
@@ -153,9 +153,9 @@ public abstract class ValuesUtil
 		}
 	}
 
-	public static @NonNull DomainCollectionType asCollectionType(@Nullable Object value) {
-		if (value instanceof DomainCollectionType) {
-			return (DomainCollectionType)value;
+	public static @NonNull CollectionType asCollectionType(@Nullable Object value) {
+		if (value instanceof CollectionType) {
+			return (CollectionType)value;
 		}
 		else {
 			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.COLLECTION_TYPE_NAME, getTypeName(value));

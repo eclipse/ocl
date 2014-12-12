@@ -12,11 +12,11 @@ package org.eclipse.ocl.library.collection;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.AbstractProperty;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.pivot.CollectionType;
 
 /**
  * CollectionLowerProperty realizes the Collection::lower() library property.
@@ -27,7 +27,7 @@ public class CollectionLowerProperty extends AbstractProperty
 
 	@Override
 	public @NonNull IntegerValue evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
-		DomainCollectionType sourceType = asCollectionType(sourceValue);
+		CollectionType sourceType = asCollectionType(sourceValue);
 		return sourceType.getLowerValue();
 	}
 }

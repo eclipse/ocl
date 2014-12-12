@@ -16,7 +16,6 @@ import java.util.WeakHashMap;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.ids.TemplateParameterId;
@@ -31,6 +30,7 @@ import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.impl.CollectionTypeParametersImpl;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
+import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 
@@ -60,7 +60,7 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 	}
 
 	@Override
-	public @NonNull DomainCollectionType getBagType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+	public @NonNull CollectionType getBagType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return getCollectionType(getBagType(), elementType, lower, upper);
 	}
 
@@ -76,7 +76,7 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 
 //	@Override
 	@Override
-	public synchronized @NonNull DomainCollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class genericType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+	public synchronized @NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class genericType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		IntegerValue lower2 = lower;
 		UnlimitedNaturalValue upper2 = upper;
 		if (lower2 == null) {
@@ -180,7 +180,7 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 	}
 
 	@Override
-	public @NonNull DomainCollectionType getOrderedSetType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+	public @NonNull CollectionType getOrderedSetType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return getCollectionType(getOrderedSetType(), elementType, lower, upper);
 	}
 
@@ -195,7 +195,7 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 	}
 
 	@Override
-	public @NonNull DomainCollectionType getSequenceType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+	public @NonNull CollectionType getSequenceType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return getCollectionType(getSequenceType(), elementType, lower, upper);
 	}
 
@@ -205,7 +205,7 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 	}
 
 	@Override
-	public @NonNull DomainCollectionType getSetType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+	public @NonNull CollectionType getSetType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return getCollectionType(getSetType(), elementType, lower, upper);
 	}
 

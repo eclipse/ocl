@@ -16,9 +16,9 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateParameter;
@@ -51,8 +51,8 @@ public class TemplateSpecialisation
 		if (templateParameter != null) {
 			return true;
 		}
-		if (referencedType instanceof DomainCollectionType) {
-			Type elementType = ((DomainCollectionType)referencedType).getElementType();
+		if (referencedType instanceof CollectionType) {
+			Type elementType = ((CollectionType)referencedType).getElementType();
 			return needsSpecialisation(elementType);
 		}
 		if (referencedType instanceof TupleType) {
@@ -111,8 +111,8 @@ public class TemplateSpecialisation
 				return bindings != null ? bindings.get(templateParameter) : null;
 			}
 		}
-		if (referencedType instanceof DomainCollectionType) {
-			DomainCollectionType collectionType = (DomainCollectionType)referencedType;
+		if (referencedType instanceof CollectionType) {
+			CollectionType collectionType = (CollectionType)referencedType;
 			Type elementType = getResolution(collectionType.getElementType());
 			if (elementType == null) {
 				elementType = environment.getStandardLibrary().getOclAnyType();
@@ -153,10 +153,10 @@ public class TemplateSpecialisation
 			}
 			return;
 		}
-		if (referencedType instanceof DomainCollectionType) {
-			if (resolvedType instanceof DomainCollectionType) {
-				Type resolvedElementType = ((DomainCollectionType)resolvedType).getElementType();
-				Type referencedElementType = ((DomainCollectionType)referencedType).getElementType();
+		if (referencedType instanceof CollectionType) {
+			if (resolvedType instanceof CollectionType) {
+				Type resolvedElementType = ((CollectionType)resolvedType).getElementType();
+				Type referencedElementType = ((CollectionType)referencedType).getElementType();
 				installEquivalence(resolvedElementType, referencedElementType);
 			}
 			return;

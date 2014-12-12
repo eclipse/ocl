@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
@@ -581,8 +580,8 @@ public class CollectionTypeImpl
 		if (this == type) {
 			return true;
 		}
-		if (type instanceof DomainCollectionType) {
-			return standardLibrary.conformsToCollectionType(this, (DomainCollectionType)type);
+		if (type instanceof CollectionType) {
+			return standardLibrary.conformsToCollectionType(this, (CollectionType)type);
 		}
 		if (getUnspecializedElement() != null) {
 			return ((Type)getUnspecializedElement()).conformsTo(standardLibrary, type);
@@ -603,12 +602,12 @@ public class CollectionTypeImpl
 		DomainInheritance thatInheritance = type.getInheritance(standardLibrary);
 		DomainInheritance commonInheritance = thisInheritance.getCommonInheritance(thatInheritance);
 		org.eclipse.ocl.pivot.Class commonType = commonInheritance.getType();
-		if (type instanceof DomainCollectionType) {
+		if (type instanceof CollectionType) {
 			Type thisElementType = this.getElementType();
-			Type thatElementType = DomainUtil.nonNullEMF(((DomainCollectionType)type).getElementType());
+			Type thatElementType = DomainUtil.nonNullEMF(((CollectionType)type).getElementType());
 			Type commonElementType = thisElementType.getCommonType(idResolver, thatElementType);
 			if (commonInheritance instanceof CompleteInheritanceImpl) {
-				DomainCollectionType commonCollectionType = (DomainCollectionType)commonType;
+				CollectionType commonCollectionType = (CollectionType)commonType;
 				return environment.getCollectionType(commonCollectionType, commonElementType, null, null);
 			}
 			else {
@@ -651,10 +650,10 @@ public class CollectionTypeImpl
 		if (this == type) {
 			return true;
 		}
-		if (!(type instanceof DomainCollectionType)) {
+		if (!(type instanceof CollectionType)) {
 			return false;
 		}
-		return standardLibrary.isEqualToCollectionType(this, (DomainCollectionType)type);
+		return standardLibrary.isEqualToCollectionType(this, (CollectionType)type);
 	}
 
 	@Override

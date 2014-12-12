@@ -11,6 +11,7 @@
 package org.eclipse.ocl.pivot;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 
@@ -34,7 +35,7 @@ import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
  * @generated
  */
 public interface CollectionType
-		extends DataType, org.eclipse.ocl.domain.elements.DomainCollectionType {
+		extends DataType, org.eclipse.ocl.pivot.Class {
 
 	/**
 	 * Returns the value of the '<em><b>Element Type</b></em>' reference.
@@ -49,7 +50,6 @@ public interface CollectionType
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getCollectionType_ElementType()
 	 * @generated
 	 */
-	@Override
 	Type getElementType();
 
 	/**
@@ -117,6 +117,9 @@ public interface CollectionType
 	void setLowerValue(@NonNull IntegerValue lower);
 	void setUpperValue(@NonNull UnlimitedNaturalValue upper);
 	
-	@Override
 	@NonNull CollectionType getContainerType();
+	@NonNull IntegerValue getLowerValue();		
+	@Override
+	@NonNull CollectionTypeId getTypeId();
+	@NonNull UnlimitedNaturalValue getUpperValue();
 } // CollectionType

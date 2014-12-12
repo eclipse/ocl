@@ -12,11 +12,11 @@ package org.eclipse.ocl.library.collection;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.AbstractProperty;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
+import org.eclipse.ocl.pivot.CollectionType;
 
 /**
  * CollectionUpperProperty realizes the Collection::upper() library property.
@@ -27,7 +27,7 @@ public class CollectionUpperProperty extends AbstractProperty
 
 	@Override
 	public @NonNull UnlimitedNaturalValue evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
-		DomainCollectionType sourceType = asCollectionType(sourceValue);
+		CollectionType sourceType = asCollectionType(sourceValue);
 		return sourceType.getUpperValue();
 	}
 }

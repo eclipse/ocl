@@ -14,17 +14,17 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Type;
 
-public class AbstractCollectionType extends AbstractSpecializedType implements DomainCollectionType
+public class AbstractCollectionType extends AbstractSpecializedType implements CollectionType
 {
 	protected final @NonNull Type elementType;
 	protected final @NonNull IntegerValue lower;
@@ -45,10 +45,10 @@ public class AbstractCollectionType extends AbstractSpecializedType implements D
 		if (this == type) {
 			return true;
 		}
-		if (!(type instanceof DomainCollectionType)) {
+		if (!(type instanceof CollectionType)) {
 			return false;
 		}
-		return standardLibrary.conformsToCollectionType(this, (DomainCollectionType)type);
+		return standardLibrary.conformsToCollectionType(this, (CollectionType)type);
 	}
 
 	@Override
@@ -88,8 +88,8 @@ public class AbstractCollectionType extends AbstractSpecializedType implements D
 	}
 
 	@Override
-	public org.eclipse.ocl.pivot.Class getContainerType() {
-		return containerType;
+	public @NonNull CollectionType getContainerType() {
+		return (CollectionType) containerType;
 	}
 
 	@Override
@@ -127,14 +127,49 @@ public class AbstractCollectionType extends AbstractSpecializedType implements D
 		if (this == type) {
 			return true;
 		}
-		if (!(type instanceof DomainCollectionType)) {
+		if (!(type instanceof CollectionType)) {
 			return false;
 		}
-		return standardLibrary.isEqualToCollectionType(this, (DomainCollectionType)type);
+		return standardLibrary.isEqualToCollectionType(this, (CollectionType)type);
 	}
 
 	@Override
 	public String toString() {
 		return String.valueOf(containerType) + "(" + String.valueOf(elementType) + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+	}
+
+	@Override
+	public void setElementType(Type value) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Number getLower() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setLower(Number value) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Number getUpper() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setUpper(Number value) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setLowerValue(@NonNull IntegerValue lower) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setUpperValue(@NonNull UnlimitedNaturalValue upper) {
+		throw new UnsupportedOperationException();
 	}
 }

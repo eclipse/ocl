@@ -14,13 +14,13 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.library.LibraryConstants;
 import org.eclipse.ocl.library.ecore.EcoreExecutorPackage;
 import org.eclipse.ocl.library.executor.ExecutableStandardLibrary;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
+import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.PivotFactory;
@@ -107,8 +107,8 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 	
 	@SuppressWarnings("null")
 	protected org.eclipse.ocl.pivot.Class getType(Type typeType) {
-		if (typeType instanceof DomainCollectionType) {
-			DomainCollectionType domainCollectionType = (DomainCollectionType)typeType;
+		if (typeType instanceof CollectionType) {
+			CollectionType domainCollectionType = (CollectionType)typeType;
 			return metaModelManager.getCompleteEnvironment().getCollectionType(domainCollectionType.getContainerType(), domainCollectionType.getElementType(), null, null);
 		}
 		if (typeMap == null) {

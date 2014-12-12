@@ -16,6 +16,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.ids.PrimitiveTypeId;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
+import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.LambdaType;
@@ -30,7 +31,7 @@ import org.eclipse.ocl.pivot.Type;
  */
 public interface DomainStandardLibrary
 {
-	boolean conformsToCollectionType(@NonNull DomainCollectionType firstCollectionType, @NonNull DomainCollectionType secondCollectionType);
+	boolean conformsToCollectionType(@NonNull CollectionType firstCollectionType, @NonNull CollectionType secondCollectionType);
 
 	boolean conformsToLambdaType(@NonNull LambdaType firstLambdaType, @NonNull LambdaType secondLambdaType);
 
@@ -70,7 +71,7 @@ public interface DomainStandardLibrary
      */
 	@NonNull org.eclipse.ocl.pivot.Class getCollectionType();
 
-	@NonNull DomainCollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
+	@NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
 
 	/**
 	 * Return the enumeration for a given enumerator.
@@ -257,7 +258,7 @@ public interface DomainStandardLibrary
      */
 	@NonNull org.eclipse.ocl.pivot.Class getUnlimitedNaturalType();
 	
-	boolean isEqualToCollectionType(@NonNull DomainCollectionType firstCollectionType, @NonNull DomainCollectionType secondCollectionType);
+	boolean isEqualToCollectionType(@NonNull CollectionType firstCollectionType, @NonNull CollectionType secondCollectionType);
 
 	boolean isEqualToTupleType(@NonNull TupleType firstTupleType, @NonNull TupleType secondTupleType);
 }

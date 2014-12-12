@@ -16,7 +16,6 @@ import java.util.Map;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
@@ -24,6 +23,7 @@ import org.eclipse.ocl.domain.ids.PrimitiveTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
+import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.LambdaType;
@@ -37,13 +37,10 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 	protected AbstractStandardLibrary() {}
 
 	@Override
-	public boolean conformsToCollectionType(@NonNull DomainCollectionType firstCollectionType, @NonNull DomainCollectionType secondCollectionType) {
+	public boolean conformsToCollectionType(@NonNull CollectionType firstCollectionType, @NonNull CollectionType secondCollectionType) {
 		Type firstContainerType = firstCollectionType.getContainerType();
 		Type secondContainerType = secondCollectionType.getContainerType();
 		if (firstContainerType != secondContainerType) {
-			if ((firstContainerType == null) || (secondContainerType == null)) {
-				return false;
-			}
 			DomainInheritance firstInheritance = firstContainerType.getInheritance(this);
 			DomainInheritance secondInheritance = secondContainerType.getInheritance(this);
 			if (!secondInheritance.isSuperInheritanceOf(firstInheritance)) {
@@ -157,16 +154,11 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 	}
 	
 	@Override
-	public boolean isEqualToCollectionType(@NonNull DomainCollectionType firstCollectionType, @NonNull DomainCollectionType secondCollectionType) {
+	public boolean isEqualToCollectionType(@NonNull CollectionType firstCollectionType, @NonNull CollectionType secondCollectionType) {
 		Type firstContainerType = firstCollectionType.getContainerType();
 		Type secondContainerType = secondCollectionType.getContainerType();
-		if (firstContainerType != secondContainerType) {
-			if ((firstContainerType == null) || (secondContainerType == null)) {
-				return false;
-			}
-			if (!firstContainerType.isEqualToUnspecializedType(this, secondContainerType)) {
-				return false;
-			}
+		if ((firstContainerType != secondContainerType) && !firstContainerType.isEqualToUnspecializedType(this, secondContainerType)) {
+			return false;
 		}
 		Type firstElementType = firstCollectionType.getElementType();
 		Type secondElementType = secondCollectionType.getElementType();

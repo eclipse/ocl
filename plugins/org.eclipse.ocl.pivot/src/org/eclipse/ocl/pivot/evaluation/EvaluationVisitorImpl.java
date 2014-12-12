@@ -24,7 +24,6 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.evaluation.DomainIterationManager;
@@ -55,6 +54,7 @@ import org.eclipse.ocl.pivot.CollectionItem;
 import org.eclipse.ocl.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.pivot.CollectionRange;
+import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.ConstructorExp;
 import org.eclipse.ocl.pivot.ConstructorPart;
 import org.eclipse.ocl.pivot.Element;
@@ -249,7 +249,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		// construct the appropriate collection from the parts
 		// based on the collection kind.
 		List<CollectionLiteralPart> parts = cl.getPart();
-		DomainCollectionType type = (DomainCollectionType) cl.getType();
+		CollectionType type = (CollectionType) cl.getType();
 		boolean isOrdered = type.isOrdered();
 		if (isOrdered && isSimpleRange(cl)) {
 			// literal is of the form: Sequence{first..last}.

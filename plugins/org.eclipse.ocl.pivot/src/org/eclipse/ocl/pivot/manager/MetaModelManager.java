@@ -47,7 +47,6 @@ import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.domain.DomainConstants;
 import org.eclipse.ocl.domain.compatibility.EMF_2_9;
-import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.domain.ids.IdManager;
@@ -1257,8 +1256,8 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		}
 		CompleteClassInternal libraryCompleteClass = getCompleteClass(libraryType);
 		org.eclipse.ocl.pivot.Class pivotClass = libraryCompleteClass.getPivotClass();
-		if (pivotClass instanceof DomainCollectionType) {
-			assert pivotClass instanceof DomainCollectionType;
+		if (pivotClass instanceof CollectionType) {
+			assert pivotClass instanceof CollectionType;
 			assert templateArguments.size() == 1;
 			@SuppressWarnings("null")@NonNull Type templateArgument = templateArguments.get(0);
 			@SuppressWarnings("unchecked") T specializedType = (T) completeModel.getCollectionType(libraryCompleteClass, new CollectionTypeParametersImpl<Type>(templateArgument, null, null));
@@ -1311,8 +1310,8 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 
 	public @NonNull org.eclipse.ocl.pivot.Class getMetaclass(@NonNull Type domainInstanceType) {
 		org.eclipse.ocl.pivot.Class metaType = null;
-		if (domainInstanceType instanceof DomainCollectionType) {
-			DomainCollectionType collectionType = (DomainCollectionType)domainInstanceType;
+		if (domainInstanceType instanceof CollectionType) {
+			CollectionType collectionType = (CollectionType)domainInstanceType;
 			if (collectionType.isOrdered()) {
 				if (collectionType.isUnique()) {
 					metaType = getPivotType("OrderedSetType");

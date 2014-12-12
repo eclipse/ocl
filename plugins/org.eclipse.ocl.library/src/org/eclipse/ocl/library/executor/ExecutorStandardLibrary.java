@@ -20,10 +20,10 @@ import java.util.WeakHashMap;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.library.ecore.EcoreExecutorPackage;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
+import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Type;
 
@@ -122,8 +122,8 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 			DomainType containerType = metaclass;//.getContainerType();
 			return containerType.getInheritance(this);
 		} */
-		if (domainClass instanceof DomainCollectionType) {
-			Type containerType = ((DomainCollectionType)domainClass).getContainerType();
+		if (domainClass instanceof CollectionType) {
+			Type containerType = ((CollectionType)domainClass).getContainerType();
 			if ((containerType != null) && (containerType != domainClass)) {
 				return containerType.getInheritance(this);
 			}
