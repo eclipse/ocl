@@ -16,6 +16,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.ids.PrimitiveTypeId;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
+import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Operation;
@@ -35,7 +36,7 @@ public interface DomainStandardLibrary
 
 	boolean conformsToTupleType(@NonNull TupleType firstTupleType, @NonNull TupleType secondTupleType);
 
-	@NonNull Iterable<? extends DomainCompletePackage> getAllCompletePackages();
+	@NonNull Iterable<? extends CompletePackage> getAllCompletePackages();
 
     /**
      * Obtains the generic instance of the BagType metatype, named

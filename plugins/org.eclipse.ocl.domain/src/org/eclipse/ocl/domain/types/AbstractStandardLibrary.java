@@ -17,7 +17,6 @@ import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
-import org.eclipse.ocl.domain.elements.DomainCompletePackage;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
@@ -25,6 +24,7 @@ import org.eclipse.ocl.domain.ids.PrimitiveTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
+import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Operation;
@@ -95,7 +95,7 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 	}
 
 	@Override
-	public @NonNull Iterable<? extends DomainCompletePackage> getAllCompletePackages() {
+	public @NonNull Iterable<? extends CompletePackage> getAllCompletePackages() {
 		throw new UnsupportedOperationException();
 	}
 

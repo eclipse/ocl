@@ -125,6 +125,7 @@ import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentImpl;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceImpl;
 import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
+import org.eclipse.ocl.pivot.internal.complete.CompletePackageInternal;
 import org.eclipse.ocl.pivot.internal.impl.PackageImpl;
 import org.eclipse.ocl.pivot.library.ConstrainedOperation;
 import org.eclipse.ocl.pivot.library.EInvokeOperation;
@@ -783,7 +784,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		}
 	}
 
-	public @NonNull Iterable<? extends CompletePackage> getAllCompletePackages() {
+	public @NonNull Iterable<CompletePackageInternal> getAllCompletePackages() {
 		if (!libraryLoadInProgress && (asMetamodel == null))  {
 			getASMetamodel();
 		}

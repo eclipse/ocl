@@ -414,7 +414,7 @@ public abstract class CompletePackageImpl extends NamedElementImpl implements Co
 
 	@Override
 	@SuppressWarnings("null")
-	public @NonNull Iterable<? extends org.eclipse.ocl.pivot.Class> getAllClasses() {
+	public @NonNull Iterable<org.eclipse.ocl.pivot.Class> getAllClasses() {
 		return Iterables.transform(getOwnedCompleteClasses(), new Function<CompleteClass, org.eclipse.ocl.pivot.Class>()
 			{
 				@Override

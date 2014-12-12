@@ -21,10 +21,10 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainCompletePackage;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.CompleteClass;
 import org.eclipse.ocl.pivot.CompleteModel;
+import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.NestedCompletePackage;
@@ -367,7 +367,7 @@ public abstract class RootCompletePackageImpl extends CompletePackageImpl implem
 	}
 
 	@Override
-	public DomainCompletePackage getOwningCompletePackage() {
+	public CompletePackage getOwningCompletePackage() {
 		return null;
 	}
 

@@ -505,7 +505,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	}
 
 	@Override
-	public @NonNull Iterable<? extends CompletePackage> getAllCompletePackages() {
+	public @NonNull Iterable<CompletePackageInternal> getAllCompletePackages() {
 		return completeURIs.getAllCompletePackages();
 	}
 

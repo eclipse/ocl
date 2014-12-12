@@ -106,7 +106,7 @@ public class CompleteURIs
 	}
 
 	@SuppressWarnings("null")
-	public @NonNull Iterable<? extends CompletePackageInternal> getAllCompletePackages() {
+	public @NonNull Iterable<CompletePackageInternal> getAllCompletePackages() {
 		return completeURI2completePackage.values();
 	}
 

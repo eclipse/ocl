@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainCompletePackage;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.domain.elements.Nameable;
@@ -706,7 +705,7 @@ public class EnvironmentView
 			if (rootCompletePackage != null) {
 				addNamedElement(rootCompletePackage);
 			}
-			DomainCompletePackage completePackage = completeModel.getCompletePackageByURI(name2);
+			CompletePackage completePackage = completeModel.getCompletePackageByURI(name2);
 			if (completePackage != null) {
 				addElement(name2, completePackage);
 			}

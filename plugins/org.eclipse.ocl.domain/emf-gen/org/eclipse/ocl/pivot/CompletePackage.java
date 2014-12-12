@@ -34,7 +34,7 @@ import org.eclipse.jdt.annotation.Nullable;
  * @see org.eclipse.ocl.pivot.PivotPackage#getCompletePackage()
  * @generated
  */
-public interface CompletePackage extends NamedElement, org.eclipse.ocl.domain.elements.DomainCompletePackage
+public interface CompletePackage extends NamedElement
 {
 	/**
 	 * Returns the value of the '<em><b>Owned Complete Classes</b></em>' containment reference list.
@@ -72,7 +72,6 @@ public interface CompletePackage extends NamedElement, org.eclipse.ocl.domain.el
 	 * @see org.eclipse.ocl.pivot.NestedCompletePackage#getOwningCompletePackage
 	 * @generated
 	 */
-	@Override
 	@NonNull List<NestedCompletePackage> getOwnedCompletePackages();
 
 	/**
@@ -108,20 +107,24 @@ public interface CompletePackage extends NamedElement, org.eclipse.ocl.domain.el
 
 //	@NonNull PackageManager getPackageManager();
 
-//	String getURI();
+	String getURI();
 
-//	String getNsPrefix();
+	String getNsPrefix();
 
 	int getIndex(org.eclipse.ocl.pivot.Package p1);
 
 	void assertSamePackage(org.eclipse.ocl.pivot.Package pivotPackage);
 
-	@Override
-	EPackage getEPackage();
+	@Nullable EPackage getEPackage();
 
 	Type getType(String metatypeName);
 
 	@Nullable CompletePackage getOwnedCompletePackage(@Nullable String name);
 
 	@NonNull CompleteModel getCompleteModel();
+	
+	@NonNull Iterable<org.eclipse.ocl.pivot.Class> getAllClasses();
+	@Nullable CompletePackage getOwningCompletePackage();
+//	/*@NonNull*/ List<? extends DomainClass> getOwnedClasses();
+//	@NonNull PackageId getPackageId();
 } // CompletePackage
