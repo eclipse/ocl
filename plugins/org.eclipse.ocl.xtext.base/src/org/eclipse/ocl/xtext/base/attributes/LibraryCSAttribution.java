@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Library;
@@ -99,7 +98,7 @@ public class LibraryCSAttribution extends AbstractAttribution implements Unresol
 					metaModelManager.installResource(resource);
 					for (EObject root : resource.getContents()) {
 						if (root instanceof Model) {
-							for (DomainElement pkg : ((Model)root).getOwnedPackages()) {
+							for (Element pkg : ((Model)root).getOwnedPackages()) {
 								if (pkg instanceof Library) {
 									environmentView.addElement(name, pkg);									
 								}

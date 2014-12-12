@@ -35,7 +35,6 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.ClassId;
@@ -82,6 +81,7 @@ import org.eclipse.ocl.domain.values.impl.OrderedSetImpl;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.CompletePackage;
+import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.Operation;
@@ -314,7 +314,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		else if (unboxedValue instanceof EObject) {
 			return unboxedValue;
 		}
-		else if (unboxedValue instanceof DomainElement) {
+		else if (unboxedValue instanceof Element) {
 			return unboxedValue;
 		}
 		else if (unboxedValue instanceof EnumerationLiteralId) {		// ?? shouldn't happen
@@ -525,7 +525,7 @@ public abstract class AbstractIdResolver implements IdResolver
 
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getClass(@NonNull TypeId typeId, @Nullable Object context) {
-		DomainElement type = typeId.accept(this);
+		Element type = typeId.accept(this);
 		assert type != null;
 		return (org.eclipse.ocl.pivot.Class)type;
 	}
@@ -663,7 +663,7 @@ public abstract class AbstractIdResolver implements IdResolver
 
 	@Override
 	public @NonNull Operation getOperation(@NonNull OperationId operationId) {
-		DomainElement element = operationId.accept(this);
+		Element element = operationId.accept(this);
 		if (element instanceof Operation) {
 			return (Operation) element;
 		}
@@ -671,7 +671,7 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	public @NonNull org.eclipse.ocl.pivot.Package getPackage(@NonNull PackageId packageId) {
-		DomainElement element = packageId.accept(this);
+		Element element = packageId.accept(this);
 		if (element instanceof org.eclipse.ocl.pivot.Package) {
 			return (org.eclipse.ocl.pivot.Package) element;
 		}
@@ -680,7 +680,7 @@ public abstract class AbstractIdResolver implements IdResolver
 
 	@Override
 	public @NonNull Property getProperty(@NonNull PropertyId propertyId) {
-		DomainElement element = propertyId.accept(this);
+		Element element = propertyId.accept(this);
 		if (element instanceof Property) {
 			return (Property) element;
 		}
@@ -839,7 +839,7 @@ public abstract class AbstractIdResolver implements IdResolver
 
 	@Override
 	public @NonNull Type getType(@NonNull TypeId typeId, @Nullable Object context) {
-		DomainElement type = typeId.accept(this);
+		Element type = typeId.accept(this);
 		assert type != null;
 		return (Type)type;
 	}
@@ -1061,7 +1061,7 @@ public abstract class AbstractIdResolver implements IdResolver
 
 	@Override
 	public @NonNull EnumerationLiteral visitEnumerationLiteralId(@NonNull EnumerationLiteralId id) {
-		DomainElement parent = id.getParentId().accept(this);
+		Element parent = id.getParentId().accept(this);
 		if (!(parent instanceof Enumeration)) {
 			throw new UnsupportedOperationException();
 		}
@@ -1155,12 +1155,12 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	@Override
-	public @NonNull DomainElement visitTemplateBinding(@NonNull TemplateBinding id) {
+	public @NonNull Element visitTemplateBinding(@NonNull TemplateBinding id) {
 		return id.getTemplateParameter();
 	}
 
 	@Override
-	public @NonNull DomainElement visitTemplateParameterId(@NonNull TemplateParameterId id) {
+	public @NonNull Element visitTemplateParameterId(@NonNull TemplateParameterId id) {
 		throw new UnsupportedOperationException();
 	}
 

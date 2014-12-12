@@ -16,7 +16,6 @@ import java.util.WeakHashMap;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
 import org.eclipse.ocl.domain.ids.TemplateParameterId;
 import org.eclipse.ocl.domain.ids.TupleTypeId;
@@ -31,6 +30,7 @@ import org.eclipse.ocl.domain.values.impl.CollectionTypeParametersImpl;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.CollectionType;
+import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 
@@ -260,7 +260,7 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 		}
 	} */
 
-	public @NonNull DomainElement getTemplateParameter(@NonNull TemplateParameterId id, DomainElement context) {
+	public @NonNull Element getTemplateParameter(@NonNull TemplateParameterId id, Element context) {
 		throw new UnsupportedOperationException();
 	}
 

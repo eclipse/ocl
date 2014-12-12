@@ -19,6 +19,7 @@ import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.CompletePackage;
+import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Operation;
@@ -188,7 +189,7 @@ public interface DomainStandardLibrary
      */
 	@NonNull org.eclipse.ocl.pivot.Class getOclVoidType();
 	
-    DomainElement getOperationTemplateParameter(@NonNull Operation anOperation, int index);
+    Element getOperationTemplateParameter(@NonNull Operation anOperation, int index);
 
 	/**
      * Obtains the generic instance of the OrderedCollection metatype, named

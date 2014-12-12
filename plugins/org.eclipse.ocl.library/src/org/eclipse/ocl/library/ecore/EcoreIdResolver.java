@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.ExternalCrossReferencer;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.DomainConstants;
-import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.NsURIPackageId;
 import org.eclipse.ocl.domain.ids.PackageId;
@@ -45,6 +44,7 @@ import org.eclipse.ocl.library.executor.ExecutableStandardLibrary;
 import org.eclipse.ocl.library.executor.ExecutorPackage;
 import org.eclipse.ocl.library.executor.ExecutorStandardLibrary;
 import org.eclipse.ocl.pivot.CompleteInheritance;
+import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.TypedElement;
@@ -132,7 +132,7 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 			ExecutorPackage execPackage = ((ExecutorStandardLibrary)standardLibrary).getPackage(ePackage);
 			if (execPackage == null) {
 				PackageId packageId = IdManager.getPackageId(ePackage);
-				DomainElement domainPackage = packageId.accept(this);
+				Element domainPackage = packageId.accept(this);
 				if (domainPackage instanceof ExecutorPackage) {
 					execPackage = (ExecutorPackage) domainPackage;
 				}

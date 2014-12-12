@@ -12,7 +12,6 @@ package org.eclipse.ocl.domain.ids.impl;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.ids.BindingsId;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.ElementId;
@@ -20,6 +19,7 @@ import org.eclipse.ocl.domain.ids.IdVisitor;
 import org.eclipse.ocl.domain.ids.OclVoidTypeId;
 import org.eclipse.ocl.domain.ids.TuplePartId;
 import org.eclipse.ocl.domain.ids.TypeId;
+import org.eclipse.ocl.pivot.Element;
 
 public class OclVoidTypeIdImpl extends UnscopedId implements OclVoidTypeId
 {
@@ -70,7 +70,7 @@ public class OclVoidTypeIdImpl extends UnscopedId implements OclVoidTypeId
 		return "VoidType";
 	}
 
-	public @Nullable DomainElement getOrigin() {
+	public @Nullable Element getOrigin() {
 		return null;
 	}
 

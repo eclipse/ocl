@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainParameterTypes;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.evaluation.DomainModelManager;
@@ -82,6 +81,7 @@ import org.eclipse.ocl.domain.values.impl.TupleValueImpl;
 import org.eclipse.ocl.domain.values.impl.UnlimitedValueImpl;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.pivot.CollectionType;
+import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.Type;
 
@@ -861,7 +861,7 @@ public abstract class ValuesUtil
 //			return String.valueOf(aValue);
 //		}
 		else if ((aValue instanceof EObject) &&
-			!((aValue instanceof DomainElement) || (aValue instanceof EEnumLiteral))) {
+			!((aValue instanceof Element) || (aValue instanceof EEnumLiteral))) {
 			stringValue = DomainUtil.getLabel((EObject) aValue);
 		}
 		else if (aValue.getClass().isArray()) {

@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.types.IdResolver;
@@ -36,6 +35,7 @@ import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.Value;
 import org.eclipse.ocl.domain.values.ValuesPackage;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.Element;
 
 /**
  * @generated NOT
@@ -90,7 +90,7 @@ public abstract class ValueImpl extends ValuesUtil implements Value
 	}
 
 	@Override
-	public DomainElement asElement() {
+	public Element asElement() {
 		return null;
 	}
 

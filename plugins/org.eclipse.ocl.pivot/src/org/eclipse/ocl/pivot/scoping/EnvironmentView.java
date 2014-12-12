@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.domain.elements.Nameable;
 import org.eclipse.ocl.pivot.CompleteClass;
@@ -595,7 +594,7 @@ public class EnvironmentView
 		}
 	}
 	// This copy here to preserve API until failure of clients to update understood.
-	public void addElement(/*@NonNull*/ String elementName, /*@NonNull*/ DomainElement element) {
+	public void addElement(/*@NonNull*/ String elementName, /*@NonNull*/ Element element) {
 		addElement(elementName, (Object)element);
 	}
 

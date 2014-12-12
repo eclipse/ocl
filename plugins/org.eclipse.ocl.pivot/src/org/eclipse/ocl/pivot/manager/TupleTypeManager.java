@@ -19,7 +19,6 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.TemplateParameterId;
 import org.eclipse.ocl.domain.ids.TuplePartId;
@@ -28,6 +27,7 @@ import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.TemplateParameterSubstitutions;
+import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TupleType;
@@ -55,7 +55,7 @@ public class TupleTypeManager
 		}
 
 		@Override
-		public @NonNull DomainElement visitTemplateParameterId(@NonNull TemplateParameterId id) {
+		public @NonNull Element visitTemplateParameterId(@NonNull TemplateParameterId id) {
 			int index = id.getIndex();
 			TemplateParameter templateParameter = referencesVisitor.templateParameters.get(index);
 			if (templateParameter != null) {

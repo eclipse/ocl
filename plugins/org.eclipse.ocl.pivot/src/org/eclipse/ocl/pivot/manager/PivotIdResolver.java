@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.compatibility.UML_4_2.UMLUtil;
-import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.ids.EnumerationLiteralId;
 import org.eclipse.ocl.domain.ids.NsURIPackageId;
 import org.eclipse.ocl.domain.ids.RootPackageId;
@@ -71,7 +70,7 @@ public class PivotIdResolver extends AbstractIdResolver
 
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getClass(@NonNull TypeId typeId, @Nullable Object context) {
-		DomainElement type = typeId.accept(this);
+		Element type = typeId.accept(this);
 		assert type != null;
 		return (org.eclipse.ocl.pivot.Class)type;
 	}
@@ -229,7 +228,7 @@ public class PivotIdResolver extends AbstractIdResolver
 
 	@Override
 	public @NonNull Type getType(@NonNull TypeId typeId, @Nullable Object context) {
-		DomainElement type = typeId.accept(this);
+		Element type = typeId.accept(this);
 		assert type != null;
 		return (Type)type;
 	}

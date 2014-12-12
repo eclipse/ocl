@@ -13,9 +13,9 @@ package org.eclipse.ocl.domain.values;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.types.IdResolver;
+import org.eclipse.ocl.pivot.Element;
 
 /**
  * A value support wrapping/boxing a value whose Java implementation does not comply with OCL semantics, primarily
@@ -78,7 +78,7 @@ public interface Value
 	/**
 	 * @generated NOT
 	 */
-	DomainElement asElement(); 
+	Element asElement(); 
 
 	/**
 	 * @generated NOT

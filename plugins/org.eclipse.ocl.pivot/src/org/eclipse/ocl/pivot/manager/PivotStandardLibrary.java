@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.DomainConstants;
-import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.types.AbstractStandardLibrary;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
@@ -32,6 +31,7 @@ import org.eclipse.ocl.pivot.BagType;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.CompletePackage;
+import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.InvalidType;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OrderedSetType;
@@ -393,7 +393,7 @@ public class PivotStandardLibrary extends AbstractStandardLibrary	// FIXME Abstr
 	}
 
 	@Override
-	public @Nullable DomainElement getOperationTemplateParameter(@NonNull Operation anOperation, int index) {
+	public @Nullable Element getOperationTemplateParameter(@NonNull Operation anOperation, int index) {
 		anOperation = PivotUtil.getUnspecializedTemplateableElement(anOperation);
 		return anOperation.getTypeParameters().get(index);
 	}

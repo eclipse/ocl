@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.TemplateParameterId;
 import org.eclipse.ocl.domain.ids.TuplePartId;
@@ -32,6 +31,7 @@ import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.CollectionType;
+import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Feature;
 import org.eclipse.ocl.pivot.IterateExp;
 import org.eclipse.ocl.pivot.Iteration;
@@ -121,7 +121,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	/**
 	 * Internal variable used to pass the actual corresponding to the visited formal.
 	 */
-	private DomainElement actual;
+	private Element actual;
 	
 	public TemplateParameterSubstitutionVisitor(@NonNull MetaModelManager metaModelManager, @Nullable Type selfType, @Nullable Type selfTypeValue) {
 		super(new HashMap<Integer, Type>());
@@ -138,9 +138,9 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		}
 	}
 
-	protected void analyzeType(@Nullable Type newFormal, @Nullable DomainElement newActual) {
+	protected void analyzeType(@Nullable Type newFormal, @Nullable Element newActual) {
 		if ((newFormal != null) && (newActual != null)) {
-			DomainElement oldActual = actual;
+			Element oldActual = actual;
 			try {
 				actual = newActual;
 				newFormal.accept(this);
@@ -152,7 +152,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 
 	protected void analyzeTypedElement(@Nullable TypedElement newFormal, @Nullable TypedElement newActual) {
 		if ((newFormal != null) && (newActual != null)) {
-			DomainElement oldActual = actual;
+			Element oldActual = actual;
 			try {
 				actual = newActual;
 				newFormal.accept(this);

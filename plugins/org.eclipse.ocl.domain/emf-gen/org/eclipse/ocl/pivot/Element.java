@@ -19,7 +19,6 @@ import org.eclipse.ocl.pivot.util.Visitable;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Element</b></em>'.
- * @extends org.eclipse.ocl.domain.elements.DomainElement
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -39,8 +38,7 @@ import org.eclipse.ocl.pivot.util.Visitable;
  * @see org.eclipse.ocl.pivot.PivotPackage#getElement()
  * @generated
  */
-public interface Element
-		extends EObject, Visitable, org.eclipse.ocl.domain.elements.DomainElement {
+public interface Element extends EObject, Visitable {
 
 	/**
 	 * Returns the value of the '<em><b>Comment</b></em>' reference list.

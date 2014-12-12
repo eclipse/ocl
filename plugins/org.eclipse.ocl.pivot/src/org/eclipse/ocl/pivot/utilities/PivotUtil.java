@@ -37,7 +37,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.domain.library.LibraryFeature;
@@ -1204,7 +1203,7 @@ public class PivotUtil extends DomainUtil
 	/**
 	 * Return a URI based on the nsURI of the immediate parent package.
 	 */
-	public static String getNsURI(@NonNull DomainElement element) {
+	public static String getNsURI(@NonNull Element element) {
 		if (element instanceof org.eclipse.ocl.pivot.Package) {
 			String nsURI = ((org.eclipse.ocl.pivot.Package)element).getURI();
 			if (nsURI != null) {
@@ -1213,12 +1212,7 @@ public class PivotUtil extends DomainUtil
 		}
 		StringBuilder s = new StringBuilder();
 		s.append("u_r_i:");
-		if (element instanceof Element) {
-			getNsURI(s, (Element)element);
-		}
-		else {
-			s.append(element.hashCode());
-		}
+		getNsURI(s, element);
 		return s.toString();
 	}
 
