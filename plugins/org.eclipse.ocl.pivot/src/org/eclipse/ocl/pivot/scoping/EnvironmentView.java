@@ -29,7 +29,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainCompletePackage;
 import org.eclipse.ocl.domain.elements.DomainElement;
-import org.eclipse.ocl.domain.elements.DomainNamedElement;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.domain.elements.Nameable;
 import org.eclipse.ocl.pivot.CompleteClass;
@@ -40,6 +39,7 @@ import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.Feature;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.PivotPackage;
@@ -686,7 +686,7 @@ public class EnvironmentView
 		}
 	}
 	// This copy here to preserve API until failure of clients to update understood.
-	public void addNamedElement(/*@NonNull*/ DomainNamedElement namedElement) {
+	public void addNamedElement(/*@NonNull*/ NamedElement namedElement) {
 		addNamedElement((Nameable)namedElement);
 	}
 

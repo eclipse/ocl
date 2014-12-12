@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainNamedElement;
 import org.eclipse.ocl.domain.library.AbstractBinaryOperation;
 import org.eclipse.ocl.domain.library.AbstractOperation;
 import org.eclipse.ocl.domain.library.AbstractTernaryOperation;
@@ -40,6 +39,7 @@ import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.codegen.java.ImportUtils;
 import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
 import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.Property;
@@ -51,7 +51,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	public static final @NonNull String TABLES_CLASS_SUFFIX = "Tables";
 	public static final @NonNull String TABLES_PACKAGE_NAME = "";
 	
-	public static @NonNull String encodeName(@NonNull DomainNamedElement element) {
+	public static @NonNull String encodeName(@NonNull NamedElement element) {
 		int arity = element instanceof Operation ? ((Operation)element).getOwnedParameter().size() : 0;
 		String rawEncodeName = rawEncodeName(DomainUtil.nonNullModel(element.getName()), arity);
 		if (element instanceof Operation) {

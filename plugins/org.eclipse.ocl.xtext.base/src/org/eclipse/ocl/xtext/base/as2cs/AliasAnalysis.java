@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainNamedElement;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Element;
@@ -183,8 +182,8 @@ public class AliasAnalysis extends AdapterImpl
 			if (eObject instanceof Pivotable) {
 				eObject = ((Pivotable)eObject).getPivot();
 			}
-			if (eObject instanceof DomainNamedElement) {
-				DomainNamedElement domainNamedElement = (DomainNamedElement) eObject;
+			if (eObject instanceof NamedElement) {
+				NamedElement domainNamedElement = (NamedElement) eObject;
 				if (!(eObject instanceof CompletePackage)) {
 					if (eObject instanceof CompletePackage) {
 						;

@@ -15,7 +15,6 @@ import org.eclipse.ocl.domain.elements.Nameable;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Named Element</b></em>'.
- * @extends org.eclipse.ocl.domain.elements.DomainNamedElement
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -32,8 +31,7 @@ import org.eclipse.ocl.domain.elements.Nameable;
  * @see org.eclipse.ocl.pivot.PivotPackage#getNamedElement()
  * @generated
  */
-public interface NamedElement
-		extends Element, Nameable, org.eclipse.ocl.domain.elements.DomainNamedElement {
+public interface NamedElement extends Element, Nameable {
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.

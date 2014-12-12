@@ -15,8 +15,9 @@ import java.util.List;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.NamedElement;
 
-public interface DomainCompletePackage extends DomainNamedElement
+public interface DomainCompletePackage extends NamedElement
 {
 	@NonNull Iterable<? extends org.eclipse.ocl.pivot.Class> getAllClasses();
 	@Nullable EPackage getEPackage();

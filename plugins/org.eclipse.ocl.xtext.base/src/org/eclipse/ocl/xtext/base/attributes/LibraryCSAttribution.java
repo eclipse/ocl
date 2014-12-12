@@ -24,11 +24,11 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainElement;
-import org.eclipse.ocl.domain.elements.DomainNamedElement;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
@@ -66,8 +66,8 @@ public class LibraryCSAttribution extends AbstractAttribution implements Unresol
 				Resource importedResource = importedElement2.eResource();
 				List<Resource.Diagnostic> errors = importedResource.getErrors();
 				if (errors.size() == 0) {
-					if (importedElement2 instanceof DomainNamedElement) {
-						String name = ((DomainNamedElement)importedElement2).getName();
+					if (importedElement2 instanceof NamedElement) {
+						String name = ((NamedElement)importedElement2).getName();
 						if (name != null) {
 							environmentView.addElement(name, importedElement2);
 							if (importedElement instanceof Model) {
