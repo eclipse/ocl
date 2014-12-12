@@ -14,12 +14,12 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.AbstractExecutorClass;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Type;
 
@@ -101,7 +101,7 @@ public class JavaType extends AbstractExecutorClass
 	}
 	
 	@Override
-	public @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
+	public @NonNull CompleteInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
 		if (Comparable.class.isAssignableFrom(javaClass)) {
 			return standardLibrary.getOclComparableType().getInheritance(standardLibrary);
 		}
@@ -124,14 +124,14 @@ public class JavaType extends AbstractExecutorClass
 
 	@Override
 	public @NonNull Operation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
-		DomainInheritance inheritance = getInheritance(standardLibrary);
+		CompleteInheritance inheritance = getInheritance(standardLibrary);
 		return inheritance.lookupActualOperation(standardLibrary, apparentOperation);
 	}
 
 	@Override
 	@NonNull
 	public LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
-		DomainInheritance inheritance = standardLibrary.getInheritance(standardLibrary.getOclAnyType());
+		CompleteInheritance inheritance = standardLibrary.getInheritance(standardLibrary.getOclAnyType());
 		return inheritance.lookupImplementation(standardLibrary, apparentOperation);
 	}
 

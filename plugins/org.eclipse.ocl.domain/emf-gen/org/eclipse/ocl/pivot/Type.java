@@ -14,7 +14,6 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.types.IdResolver;
@@ -90,7 +89,7 @@ public interface Type extends NamedElement, OCLValue {
 	/**
 	 * Return the inheritance description for this type within standardLibrary.
 	 */
-	@NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary);
+	@NonNull CompleteInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary);
 	
 	/**
 	 * Return the unique executable form of this type within standardLibrary.

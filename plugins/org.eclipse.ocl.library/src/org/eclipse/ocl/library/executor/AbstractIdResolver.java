@@ -37,7 +37,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.ClassId;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
@@ -81,6 +80,7 @@ import org.eclipse.ocl.domain.values.impl.BagImpl;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.domain.values.impl.OrderedSetImpl;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
@@ -1113,7 +1113,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		if (domainType == null) {
 			throw new UnsupportedOperationException();
 		}
-		DomainInheritance inheritance = standardLibrary.getInheritance(domainType);
+		CompleteInheritance inheritance = standardLibrary.getInheritance(domainType);
 		Operation memberOperation = inheritance.getMemberOperation(id);
 		if (memberOperation == null) {
 			throw new UnsupportedOperationException();
@@ -1136,7 +1136,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		if (domainType == null) {
 			throw new UnsupportedOperationException();
 		}
-		DomainInheritance inheritance = standardLibrary.getInheritance(domainType);
+		CompleteInheritance inheritance = standardLibrary.getInheritance(domainType);
 		Property memberProperty = inheritance.getMemberProperty(id.getName());
 		if (memberProperty == null) {
 			throw new UnsupportedOperationException();

@@ -20,7 +20,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.compatibility.UML_4_2.UMLUtil;
 import org.eclipse.ocl.domain.elements.DomainElement;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.ids.EnumerationLiteralId;
 import org.eclipse.ocl.domain.ids.NsURIPackageId;
 import org.eclipse.ocl.domain.ids.RootPackageId;
@@ -28,6 +27,7 @@ import org.eclipse.ocl.domain.ids.TupleTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.library.executor.AbstractIdResolver;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
@@ -112,7 +112,7 @@ public class PivotIdResolver extends AbstractIdResolver
 	}
 
 	@Override
-	public @NonNull DomainInheritance getInheritance(@NonNull EClassifier eClassifier) {
+	public @NonNull CompleteInheritance getInheritance(@NonNull EClassifier eClassifier) {
 		return metaModelManager.getInheritance(getType(eClassifier));
 	}
 

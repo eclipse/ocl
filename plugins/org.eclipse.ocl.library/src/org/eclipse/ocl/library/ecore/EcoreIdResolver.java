@@ -32,7 +32,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil.ExternalCrossReferencer;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.DomainConstants;
 import org.eclipse.ocl.domain.elements.DomainElement;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.NsURIPackageId;
 import org.eclipse.ocl.domain.ids.PackageId;
@@ -45,6 +44,7 @@ import org.eclipse.ocl.library.executor.AbstractIdResolver;
 import org.eclipse.ocl.library.executor.ExecutableStandardLibrary;
 import org.eclipse.ocl.library.executor.ExecutorPackage;
 import org.eclipse.ocl.library.executor.ExecutorStandardLibrary;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.TypedElement;
@@ -72,7 +72,7 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 	private Map<String, org.eclipse.ocl.pivot.Package> roots2package = new HashMap<String, org.eclipse.ocl.pivot.Package>();
 	private boolean directRootsProcessed = false;
 	private boolean crossReferencedRootsProcessed = false;
-	private @NonNull Map<EClassifier, WeakReference<DomainInheritance>> typeMap = new WeakHashMap<EClassifier, WeakReference<DomainInheritance>>();
+	private @NonNull Map<EClassifier, WeakReference<CompleteInheritance>> typeMap = new WeakHashMap<EClassifier, WeakReference<CompleteInheritance>>();
 	
 	public EcoreIdResolver(@NonNull Collection<? extends EObject> roots, @NonNull ExecutorStandardLibrary standardLibrary) {
 		super(standardLibrary);
@@ -124,8 +124,8 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 	}
 
 	@Override
-	public synchronized @NonNull DomainInheritance getInheritance(@NonNull EClassifier eClassifier) {
-		DomainInheritance type = weakGet(typeMap, eClassifier);
+	public synchronized @NonNull CompleteInheritance getInheritance(@NonNull EClassifier eClassifier) {
+		CompleteInheritance type = weakGet(typeMap, eClassifier);
 		if (type == null) {
 			EPackage ePackage = eClassifier.getEPackage();
 			assert ePackage != null;
@@ -141,7 +141,7 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 				org.eclipse.ocl.pivot.Class domainType = execPackage.getType(eClassifier.getName());	
 				if (domainType != null) {
 					type = standardLibrary.getInheritance(domainType);
-					typeMap.put(eClassifier, new WeakReference<DomainInheritance>(type));
+					typeMap.put(eClassifier, new WeakReference<CompleteInheritance>(type));
 				}
 			}
 		}

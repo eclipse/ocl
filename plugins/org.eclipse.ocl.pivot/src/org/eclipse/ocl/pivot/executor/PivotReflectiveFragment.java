@@ -12,15 +12,15 @@ package org.eclipse.ocl.pivot.executor;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.ids.ParametersId;
 import org.eclipse.ocl.library.executor.ReflectiveFragment;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceImpl;
 
 public class PivotReflectiveFragment extends ReflectiveFragment
 {
-	public PivotReflectiveFragment(@NonNull CompleteInheritanceImpl derivedInheritance, @NonNull DomainInheritance baseInheritance) {
+	public PivotReflectiveFragment(@NonNull CompleteInheritanceImpl derivedInheritance, @NonNull CompleteInheritance baseInheritance) {
 		super(derivedInheritance, baseInheritance);
 	}
 

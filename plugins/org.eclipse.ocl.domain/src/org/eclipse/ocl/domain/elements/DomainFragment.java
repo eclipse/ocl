@@ -13,6 +13,7 @@ package org.eclipse.ocl.domain.elements;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.library.LibraryFeature;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 
@@ -29,12 +30,12 @@ public interface DomainFragment
 	/**
 	 * Return the inheritance that introduces the operations and properties in this fragment.
 	 */
-	@NonNull DomainInheritance getBaseInheritance();
+	@NonNull CompleteInheritance getBaseInheritance();
 	
 	/**
 	 * Return the inheritance that overloads the operations and properties in this fragment.
 	 */
-	@NonNull DomainInheritance getDerivedInheritance();
+	@NonNull CompleteInheritance getDerivedInheritance();
 	
 	/**
 	 * Return the actualOperation that has the same signature as apparentOperation.

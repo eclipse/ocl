@@ -33,7 +33,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
@@ -49,6 +48,7 @@ import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.Behavior;
 import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.Comment;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
@@ -1090,8 +1090,8 @@ public class ClassImpl
 		if (this == type) {
 			return true;
 		}
-		DomainInheritance thisInheritance = this.getInheritance(standardLibrary);
-		DomainInheritance thatInheritance = type.getInheritance(standardLibrary);
+		CompleteInheritance thisInheritance = this.getInheritance(standardLibrary);
+		CompleteInheritance thatInheritance = type.getInheritance(standardLibrary);
 		return thisInheritance.isSubInheritanceOf(thatInheritance);
 	}
 
@@ -1101,13 +1101,13 @@ public class ClassImpl
 			return this;
 		}
 		DomainStandardLibrary standardLibrary = idResolver.getStandardLibrary();
-		DomainInheritance thisInheritance = this.getInheritance(standardLibrary);
-		DomainInheritance thatInheritance = type.getInheritance(standardLibrary);
+		CompleteInheritance thisInheritance = this.getInheritance(standardLibrary);
+		CompleteInheritance thatInheritance = type.getInheritance(standardLibrary);
 		return thisInheritance.getCommonInheritance(thatInheritance).getType();
 	}
 
 	@Override
-	public @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
+	public @NonNull CompleteInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
 		return standardLibrary.getInheritance(this);
 	}
 
@@ -1278,13 +1278,13 @@ public class ClassImpl
 
 	@Override
 	public @NonNull Operation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
-		DomainInheritance inheritance = getInheritance(standardLibrary);
+		CompleteInheritance inheritance = getInheritance(standardLibrary);
 		return inheritance.lookupActualOperation(standardLibrary, apparentOperation);
 	}
 
 	@Override
 	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
-		DomainInheritance inheritance = getInheritance(standardLibrary);
+		CompleteInheritance inheritance = getInheritance(standardLibrary);
 		return inheritance.lookupImplementation(standardLibrary, apparentOperation);
 	}
 

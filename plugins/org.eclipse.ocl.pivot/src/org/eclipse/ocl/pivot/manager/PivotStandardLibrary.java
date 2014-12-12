@@ -20,7 +20,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.DomainConstants;
 import org.eclipse.ocl.domain.elements.DomainElement;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.types.AbstractStandardLibrary;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
@@ -31,6 +30,7 @@ import org.eclipse.ocl.library.oclany.OclAnyUnsupportedOperation;
 import org.eclipse.ocl.pivot.AnyType;
 import org.eclipse.ocl.pivot.BagType;
 import org.eclipse.ocl.pivot.CollectionType;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.InvalidType;
 import org.eclipse.ocl.pivot.Operation;
@@ -213,7 +213,7 @@ public class PivotStandardLibrary extends AbstractStandardLibrary	// FIXME Abstr
 
 	@Override
 	@NonNull
-	public DomainInheritance getInheritance(@NonNull org.eclipse.ocl.pivot.Class type) {
+	public CompleteInheritance getInheritance(@NonNull org.eclipse.ocl.pivot.Class type) {
 		return metaModelManager.getInheritance(type);
 	}
 

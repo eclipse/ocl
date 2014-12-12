@@ -20,9 +20,9 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.library.executor.ReflectiveFragment;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 
@@ -30,7 +30,7 @@ public class EcoreReflectiveFragment extends ReflectiveFragment
 {
 	protected final @NonNull EClassifier eClassifier;
 
-	public EcoreReflectiveFragment(@NonNull EcoreReflectiveType derivedInheritance, @NonNull DomainInheritance baseInheritance) {
+	public EcoreReflectiveFragment(@NonNull EcoreReflectiveType derivedInheritance, @NonNull CompleteInheritance baseInheritance) {
 		super(derivedInheritance, baseInheritance);
 		this.eClassifier = derivedInheritance.getEClassifier();		
 	}

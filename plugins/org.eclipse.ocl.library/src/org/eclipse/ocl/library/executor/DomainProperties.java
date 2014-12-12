@@ -17,8 +17,8 @@ import java.util.Map;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainFragment;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Property;
 
 import com.google.common.base.Predicate;
@@ -27,10 +27,10 @@ import com.google.common.collect.Iterables;
 
 public class DomainProperties
 {
-	protected final @NonNull DomainInheritance inheritance;
+	protected final @NonNull CompleteInheritance inheritance;
 	protected final @NonNull Map<String, Property> name2property = new HashMap<String, Property>();
 
-	public DomainProperties(@NonNull DomainInheritance inheritance) {
+	public DomainProperties(@NonNull CompleteInheritance inheritance) {
 		this.inheritance = inheritance;
 		init(inheritance.getAllSuperFragments());
 	}

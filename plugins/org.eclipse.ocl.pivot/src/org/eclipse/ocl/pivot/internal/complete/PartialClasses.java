@@ -30,7 +30,6 @@ import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainFragment;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.domain.ids.OperationId;
@@ -40,6 +39,7 @@ import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Behavior;
 import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.CompleteClass;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.ElementExtension;
@@ -459,13 +459,13 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 		return getCompleteClass().getCompleteModel();
 	}
 
-	public @NonNull Iterable<? extends DomainInheritance> getInitialSuperInheritances() {
+	public @NonNull Iterable<? extends CompleteInheritance> getInitialSuperInheritances() {
 		final Iterator<CompleteClassInternal> iterator = computeSuperCompleteClasses().iterator();			// FIXME Use local cache
-		return new Iterable<DomainInheritance>()
+		return new Iterable<CompleteInheritance>()
 		{
 			@Override
-			public Iterator<DomainInheritance> iterator() {
-				return new Iterator<DomainInheritance>()
+			public Iterator<CompleteInheritance> iterator() {
+				return new Iterator<CompleteInheritance>()
 				{
 					@Override
 					public boolean hasNext() {
@@ -473,7 +473,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 					}
 
 					@Override
-					public DomainInheritance next() {
+					public CompleteInheritance next() {
 						CompleteClassInternal next = iterator.next();
 						return next.getCompleteInheritance();
 					}
@@ -732,7 +732,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 	
 	@SuppressWarnings("null")
 	public @NonNull Iterable<CompleteClass> getSuperCompleteClasses() {
-		DomainInheritance inheritance = getCompleteClass().getCompleteInheritance();
+		CompleteInheritance inheritance = getCompleteClass().getCompleteInheritance();
 		return Iterables.transform(inheritance.getAllSuperFragments(), new Function<DomainFragment, CompleteClass>()
 		{
 			@Override

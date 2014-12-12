@@ -16,7 +16,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.AbstractExecutorClass;
 import org.eclipse.ocl.domain.elements.DomainFragment;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.ids.OperationId;
@@ -27,6 +26,7 @@ import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.OCLValue;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.CallExp;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
@@ -64,7 +64,7 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 
 	@Override
 	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
-		DomainInheritance thatInheritance = type.getInheritance(standardLibrary);
+		CompleteInheritance thatInheritance = type.getInheritance(standardLibrary);
 		if (this == thatInheritance) {
 			return true;
 		}
@@ -92,9 +92,9 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 		if (this == type) {
 			return this.getType();
 		}
-		DomainInheritance firstInheritance = this;
-		DomainInheritance secondInheritance = type.getInheritance(idResolver.getStandardLibrary());
-		DomainInheritance commonInheritance = firstInheritance.getCommonInheritance(secondInheritance);
+		CompleteInheritance firstInheritance = this;
+		CompleteInheritance secondInheritance = type.getInheritance(idResolver.getStandardLibrary());
+		CompleteInheritance commonInheritance = firstInheritance.getCommonInheritance(secondInheritance);
 		return commonInheritance.getType();
 	}
 
@@ -124,7 +124,7 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	}
 
 	@Override
-	public @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
+	public @NonNull CompleteInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
 		return this;
 	}
 

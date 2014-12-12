@@ -16,7 +16,6 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.ids.OperationId;
 import org.eclipse.ocl.domain.ids.TypeId;
@@ -70,7 +69,7 @@ public class CompleteInheritanceImpl extends ReflectiveInheritance implements Co
 	}
 
 	@Override
-	protected @NonNull AbstractFragment createFragment(@NonNull DomainInheritance baseInheritance) {
+	protected @NonNull AbstractFragment createFragment(@NonNull CompleteInheritance baseInheritance) {
 		return new PivotReflectiveFragment(this, baseInheritance);
 	}
 
@@ -79,7 +78,7 @@ public class CompleteInheritanceImpl extends ReflectiveInheritance implements Co
 	}
 
 	@Override
-	public @NonNull Iterable<? extends DomainInheritance> getInitialSuperInheritances() {
+	public @NonNull Iterable<? extends CompleteInheritance> getInitialSuperInheritances() {
 		return isOclAny() ? EMPTY_LIST : completeClass.getPartialClasses().getInitialSuperInheritances();
 	}
 	

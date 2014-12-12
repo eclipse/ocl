@@ -12,14 +12,14 @@ package org.eclipse.ocl.library.executor;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Operation;
 
 public class DomainReflectiveFragment extends ReflectiveFragment
 {
 //	protected final EClassifier eClassifier;
 
-	public DomainReflectiveFragment(@NonNull DomainReflectiveType derivedInheritance, @NonNull DomainInheritance baseInheritance) {
+	public DomainReflectiveFragment(@NonNull DomainReflectiveType derivedInheritance, @NonNull CompleteInheritance baseInheritance) {
 		super(derivedInheritance, baseInheritance);
 //		this.eClassifier = derivedInheritance.getEClassifier();		
 	}

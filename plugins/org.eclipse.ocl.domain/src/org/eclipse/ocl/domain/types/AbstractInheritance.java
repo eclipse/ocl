@@ -14,7 +14,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.AbstractExecutorObject;
 import org.eclipse.ocl.domain.elements.DomainFragment;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.ParametersId;
 import org.eclipse.ocl.domain.ids.TypeId;
@@ -22,10 +21,11 @@ import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.domain.library.UnsupportedOperation;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.utilities.IndexableIterable;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Type;
 
-public abstract class AbstractInheritance extends AbstractExecutorObject implements DomainInheritance
+public abstract class AbstractInheritance extends AbstractExecutorObject implements CompleteInheritance
 {
 	public static class FragmentIterable implements IndexableIterable<DomainFragment>
 	{
@@ -122,7 +122,7 @@ public abstract class AbstractInheritance extends AbstractExecutorObject impleme
 	}
 
 	@Override
-	public @NonNull DomainInheritance getCommonInheritance(@NonNull DomainInheritance thatInheritance) {
+	public @NonNull CompleteInheritance getCommonInheritance(@NonNull CompleteInheritance thatInheritance) {
 		if (this == thatInheritance) {
 			return this;
 		}
@@ -146,12 +146,12 @@ public abstract class AbstractInheritance extends AbstractExecutorObject impleme
 		for ( ; staticDepth > 0; --staticDepth) {
 			int iMax = getIndex(staticDepth+1);
 			int jMax = thatInheritance.getIndex(staticDepth+1);
-			DomainInheritance commonInheritance = null;
+			CompleteInheritance commonInheritance = null;
 			int commonInheritances = 0;
 			for (int i = getIndex(staticDepth); i < iMax; i++) {
-				DomainInheritance thisBaseInheritance = getFragment(i).getBaseInheritance();
+				CompleteInheritance thisBaseInheritance = getFragment(i).getBaseInheritance();
 				for (int j = thatInheritance.getIndex(staticDepth); j < jMax; j++) {
-					DomainInheritance thatBaseInheritance = thatInheritance.getFragment(j).getBaseInheritance();
+					CompleteInheritance thatBaseInheritance = thatInheritance.getFragment(j).getBaseInheritance();
 					if (thisBaseInheritance == thatBaseInheritance) {
 						commonInheritances++;
 						commonInheritance = thisBaseInheritance;
@@ -171,7 +171,7 @@ public abstract class AbstractInheritance extends AbstractExecutorObject impleme
 	}
 
 	@Override
-	public @Nullable DomainFragment getFragment(@NonNull DomainInheritance thatInheritance) {
+	public @Nullable DomainFragment getFragment(@NonNull CompleteInheritance thatInheritance) {
 		int staticDepth = thatInheritance.getDepth();
 		if (staticDepth <= getDepth()) {
 			int iMax = getIndex(staticDepth+1);
@@ -195,7 +195,7 @@ public abstract class AbstractInheritance extends AbstractExecutorObject impleme
 	}
 
 	@Override
-	public boolean isSubInheritanceOf(@NonNull DomainInheritance thatInheritance) {
+	public boolean isSubInheritanceOf(@NonNull CompleteInheritance thatInheritance) {
 		int theseFlags = flags & (OCL_VOID|OCL_INVALID);
 		int thoseFlags = ((AbstractInheritance)thatInheritance).flags & (OCL_VOID|OCL_INVALID);
 		if ((theseFlags == 0) && (thoseFlags == 0)) {
@@ -207,7 +207,7 @@ public abstract class AbstractInheritance extends AbstractExecutorObject impleme
 	}
 
 	@Override
-	public boolean isSuperInheritanceOf(@NonNull DomainInheritance thatInheritance) {
+	public boolean isSuperInheritanceOf(@NonNull CompleteInheritance thatInheritance) {
 		int theseFlags = flags & (OCL_VOID|OCL_INVALID);
 		int thoseFlags = ((AbstractInheritance)thatInheritance).flags & (OCL_VOID|OCL_INVALID);
 		if ((theseFlags == 0) && (thoseFlags == 0)) {
@@ -226,7 +226,7 @@ public abstract class AbstractInheritance extends AbstractExecutorObject impleme
 	@Override
 	public @NonNull Operation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
 		getDepth();
-		DomainInheritance apparentInheritance = apparentOperation.getInheritance(standardLibrary);
+		CompleteInheritance apparentInheritance = apparentOperation.getInheritance(standardLibrary);
 		int apparentDepth = DomainUtil.nonNullModel(apparentInheritance).getDepth();
 		if (apparentDepth+1 < getIndexes()) {				// null and invalid may fail here
 			int iMax = getIndex(apparentDepth+1);
@@ -244,7 +244,7 @@ public abstract class AbstractInheritance extends AbstractExecutorObject impleme
 	@Override
 	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
 		getDepth();
-		DomainInheritance apparentInheritance = apparentOperation.getInheritance(standardLibrary);
+		CompleteInheritance apparentInheritance = apparentOperation.getInheritance(standardLibrary);
 		int apparentDepth = DomainUtil.nonNullModel(apparentInheritance).getDepth();
 		if (apparentDepth+1 < getIndexes()) {				// null and invalid may fail here
 			int iMax = getIndex(apparentDepth+1);
@@ -263,7 +263,7 @@ public abstract class AbstractInheritance extends AbstractExecutorObject impleme
 	}
 
 	@Override
-	public @Nullable Operation lookupLocalOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull String operationName, DomainInheritance... argumentTypes) {
+	public @Nullable Operation lookupLocalOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull String operationName, CompleteInheritance... argumentTypes) {
 		for (Operation localOperation : getType().getOwnedOperations()) {
 			if (localOperation.getName().equals(operationName)) {
 				ParametersId firstParametersId = localOperation.getParametersId();

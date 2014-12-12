@@ -32,7 +32,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.PropertyId;
@@ -50,6 +49,7 @@ import org.eclipse.ocl.library.oclany.OclAnyOclAsTypeOperation;
 import org.eclipse.ocl.library.oclany.OclAnyOclIsKindOfOperation;
 import org.eclipse.ocl.pivot.AssociationClass;
 import org.eclipse.ocl.pivot.Comment;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
@@ -1711,7 +1711,7 @@ public class PropertyImpl
 	}
 
 	@Override
-	public @Nullable DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
+	public @Nullable CompleteInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
 		org.eclipse.ocl.pivot.Class owningType = getOwningClass();
 		if (owningType != null) {
 			return standardLibrary.getInheritance(owningType);

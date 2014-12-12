@@ -15,7 +15,6 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.ids.OperationId;
@@ -23,6 +22,7 @@ import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.types.AbstractFragment;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
@@ -41,7 +41,7 @@ public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 	}
 
 	@Override
-	protected @NonNull AbstractFragment createFragment(@NonNull DomainInheritance baseInheritance) {
+	protected @NonNull AbstractFragment createFragment(@NonNull CompleteInheritance baseInheritance) {
 		return new DomainReflectiveFragment(this, baseInheritance);
 	}
 	
@@ -50,21 +50,21 @@ public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 		if (this == type) {
 			return this.getType();
 		}
-		DomainInheritance firstInheritance = this;
-		DomainInheritance secondInheritance = type.getInheritance(idResolver.getStandardLibrary());
-		DomainInheritance commonInheritance = firstInheritance.getCommonInheritance(secondInheritance);
+		CompleteInheritance firstInheritance = this;
+		CompleteInheritance secondInheritance = type.getInheritance(idResolver.getStandardLibrary());
+		CompleteInheritance commonInheritance = firstInheritance.getCommonInheritance(secondInheritance);
 		return commonInheritance.getType();
 	}
 
 	@Override
-	public @NonNull Iterable<? extends DomainInheritance> getInitialSuperInheritances() {
+	public @NonNull Iterable<? extends CompleteInheritance> getInitialSuperInheritances() {
 		Iterable<? extends org.eclipse.ocl.pivot.Class> superClasses = domainClass.getSuperClasses();
 		final Iterator<? extends org.eclipse.ocl.pivot.Class> iterator = superClasses.iterator();
-		return new Iterable<DomainInheritance>()
+		return new Iterable<CompleteInheritance>()
 		{
 			@Override
-			public Iterator<DomainInheritance> iterator() {
-				return new Iterator<DomainInheritance>()
+			public Iterator<CompleteInheritance> iterator() {
+				return new Iterator<CompleteInheritance>()
 				{
 					private @NonNull DomainStandardLibrary standardLibrary = evaluationPackage.getStandardLibrary();
 					private boolean gotOne = false;
@@ -75,7 +75,7 @@ public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 					}
 
 					@Override
-					public DomainInheritance next() {
+					public CompleteInheritance next() {
 						org.eclipse.ocl.pivot.Class next = null;
 						if (!gotOne) {
 							gotOne = true;

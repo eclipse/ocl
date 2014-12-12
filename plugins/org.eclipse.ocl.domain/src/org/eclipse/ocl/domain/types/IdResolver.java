@@ -20,7 +20,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainElement;
 import org.eclipse.ocl.domain.elements.DomainEnvironment;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.EnumerationLiteralId;
@@ -34,6 +33,7 @@ import org.eclipse.ocl.domain.values.CollectionValue;
 import org.eclipse.ocl.domain.values.OrderedSetValue;
 import org.eclipse.ocl.domain.values.SequenceValue;
 import org.eclipse.ocl.domain.values.SetValue;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TupleType;
@@ -88,7 +88,7 @@ public interface IdResolver extends IdVisitor<DomainElement>
 
 	@NonNull DomainEnvironment getEnvironment();
 
-	@NonNull DomainInheritance getInheritance(@NonNull EClassifier eClassifier);
+	@NonNull CompleteInheritance getInheritance(@NonNull EClassifier eClassifier);
 	
 	@NonNull org.eclipse.ocl.pivot.Class getJavaType(@NonNull Class<?> javaClass);
 

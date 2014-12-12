@@ -16,10 +16,10 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.DomainFragment;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.domain.types.AbstractFragment;
 import org.eclipse.ocl.library.oclany.OclAnyUnsupportedOperation;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 
@@ -33,7 +33,7 @@ public abstract class ReflectiveFragment extends AbstractFragment
 	protected Map<Operation, Operation> apparentOperation2actualOperation = null;
 	protected Map<Property, LibraryFeature> propertyMap = null;
 
-	public ReflectiveFragment(@NonNull DomainInheritance derivedInheritance, @NonNull DomainInheritance baseInheritance) {
+	public ReflectiveFragment(@NonNull CompleteInheritance derivedInheritance, @NonNull CompleteInheritance baseInheritance) {
 		super(derivedInheritance, baseInheritance);
 	}
 
@@ -66,13 +66,13 @@ public abstract class ReflectiveFragment extends AbstractFragment
 			}
 			else {										// Non-trivial, search up the inheritance tree for an inherited operation
 				Operation bestOverload = null;
-				DomainInheritance bestInheritance = null;
+				CompleteInheritance bestInheritance = null;
 				int bestDepth = -1;
 				int minDepth = baseInheritance.getDepth();
 				for (int depth = derivedInheritance.getDepth()-1; depth >= minDepth; depth--) {
 					Iterable<DomainFragment> derivedSuperFragments = derivedInheritance.getSuperFragments(depth);
 					for (DomainFragment derivedSuperFragment : derivedSuperFragments) {
-						DomainInheritance superInheritance = derivedSuperFragment.getBaseInheritance();
+						CompleteInheritance superInheritance = derivedSuperFragment.getBaseInheritance();
 						DomainFragment superFragment = superInheritance.getFragment(baseInheritance);
 						if (superFragment != null) {
 							Operation overload = superFragment.getLocalOperation(apparentOperation);

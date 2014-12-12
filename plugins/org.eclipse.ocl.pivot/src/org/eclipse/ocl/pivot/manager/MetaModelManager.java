@@ -47,7 +47,6 @@ import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.domain.DomainConstants;
 import org.eclipse.ocl.domain.compatibility.EMF_2_9;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.PackageId;
@@ -66,6 +65,7 @@ import org.eclipse.ocl.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteClass;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.DataType;
@@ -837,7 +837,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 	}
 
 	public @NonNull Iterable<? extends Property> getAllProperties(@NonNull Property pivotProperty) {
-		DomainInheritance pivotClass = pivotProperty.getInheritance(standardLibrary);
+		CompleteInheritance pivotClass = pivotProperty.getInheritance(standardLibrary);
 		if (pivotClass == null) {
 			throw new IllegalStateException("Missing owning type");
 		}
@@ -952,9 +952,9 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 			return commonType;
 		}
 		if ((leftType instanceof CollectionType) && (rightType instanceof CollectionType)) {
-			DomainInheritance leftInheritance = leftType.getInheritance(standardLibrary);
-			DomainInheritance rightInheritance = rightType.getInheritance(standardLibrary);
-			DomainInheritance commonInheritance = leftInheritance.getCommonInheritance(rightInheritance);
+			CompleteInheritance leftInheritance = leftType.getInheritance(standardLibrary);
+			CompleteInheritance rightInheritance = rightType.getInheritance(standardLibrary);
+			CompleteInheritance commonInheritance = leftInheritance.getCommonInheritance(rightInheritance);
 			org.eclipse.ocl.pivot.Class commonCollectionType = getType(commonInheritance.getType()); 
 			Type leftElementType = DomainUtil.nonNullModel(((CollectionType)leftType).getElementType());
 			Type rightElementType = DomainUtil.nonNullModel(((CollectionType)rightType).getElementType());
@@ -967,9 +967,9 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		if (conformsTo(rightType, rightSubstitutions, leftType, leftSubstitutions)) {
 			return leftType;
 		}
-		DomainInheritance leftInheritance = leftType.getInheritance(standardLibrary);
-		DomainInheritance rightInheritance = rightType.getInheritance(standardLibrary);
-		DomainInheritance commonInheritance = leftInheritance.getCommonInheritance(rightInheritance);
+		CompleteInheritance leftInheritance = leftType.getInheritance(standardLibrary);
+		CompleteInheritance rightInheritance = rightType.getInheritance(standardLibrary);
+		CompleteInheritance commonInheritance = leftInheritance.getCommonInheritance(rightInheritance);
 		return getType(commonInheritance.getType()); 
 	}
 
@@ -1223,7 +1223,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return precedenceManager.getInfixPrecedence(operatorName);
 	}
 
-	public @NonNull DomainInheritance getInheritance(@NonNull org.eclipse.ocl.pivot.Class type) {
+	public @NonNull CompleteInheritance getInheritance(@NonNull org.eclipse.ocl.pivot.Class type) {
 		org.eclipse.ocl.pivot.Class type1 = getType(type);
 		org.eclipse.ocl.pivot.Class unspecializedType = (org.eclipse.ocl.pivot.Class) type1.getUnspecializedElement();
 		org.eclipse.ocl.pivot.Class theType = unspecializedType != null ? unspecializedType : type1;
@@ -1420,7 +1420,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 	}
 
 	public @NonNull Iterable<? extends Operation> getOperationOverloads(@NonNull Operation pivotOperation) {
-		DomainInheritance pivotClass = pivotOperation.getInheritance(standardLibrary);
+		CompleteInheritance pivotClass = pivotOperation.getInheritance(standardLibrary);
 		if (pivotClass == null) {
 			throw new IllegalStateException("Missing owning type");
 		}
@@ -1647,7 +1647,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 	}
 
 	public @NonNull Operation getPrimaryOperation(@NonNull Operation pivotOperation) {
-		DomainInheritance pivotClass = pivotOperation.getInheritance(standardLibrary);
+		CompleteInheritance pivotClass = pivotOperation.getInheritance(standardLibrary);
 		if (pivotClass != null) {					// Null for an EAnnotation element
 			CompleteClass completeClass = completeModel.getCompleteClass(pivotClass.getType());
 			Operation operation = completeClass.getOperation(pivotOperation);
@@ -1701,7 +1701,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		if (pivotProperty.eContainer() instanceof TupleType) {		// FIXME Find a better way
 			return pivotProperty;
 		}
-		DomainInheritance owningInheritance = pivotProperty.getInheritance(standardLibrary);
+		CompleteInheritance owningInheritance = pivotProperty.getInheritance(standardLibrary);
 		if (owningInheritance != null) {
 			@NonNull String name = DomainUtil.nonNullModel(pivotProperty.getName());
 			Property opposite = pivotProperty.getOpposite();

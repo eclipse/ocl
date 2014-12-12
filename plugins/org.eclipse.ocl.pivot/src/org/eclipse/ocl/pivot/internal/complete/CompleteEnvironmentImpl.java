@@ -18,7 +18,6 @@ import java.util.WeakHashMap;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.CollectionTypeParameters;
 import org.eclipse.ocl.domain.values.IntegerValue;
@@ -27,6 +26,7 @@ import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.impl.CollectionTypeParametersImpl;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteClass;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.ElementExtension;
@@ -139,8 +139,8 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 				return conformsToTupleType((TupleType)firstType, firstSubstitutions, (TupleType)secondType, secondSubstitutions);
 			}
 		}
-		DomainInheritance firstInheritance = firstCompleteClass.getCompleteInheritance();
-		DomainInheritance secondInheritance = secondCompleteClass.getCompleteInheritance();
+		CompleteInheritance firstInheritance = firstCompleteClass.getCompleteInheritance();
+		CompleteInheritance secondInheritance = secondCompleteClass.getCompleteInheritance();
 		return firstInheritance.isSubInheritanceOf(secondInheritance);
 	}
 
@@ -160,8 +160,8 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 		if (firstContainerType != secondContainerType) {
 			CompleteClass firstContainerCompleteClass = getCompleteClass(firstContainerType);
 			CompleteClass secondContainerCompleteClass = getCompleteClass(secondContainerType);
-			DomainInheritance firstContainerInheritance = firstContainerCompleteClass.getCompleteInheritance();
-			DomainInheritance secondContainerInheritance = secondContainerCompleteClass.getCompleteInheritance();
+			CompleteInheritance firstContainerInheritance = firstContainerCompleteClass.getCompleteInheritance();
+			CompleteInheritance secondContainerInheritance = secondContainerCompleteClass.getCompleteInheritance();
 			if (!firstContainerInheritance.isSubInheritanceOf(secondContainerInheritance)) {
 				return false;
 			}

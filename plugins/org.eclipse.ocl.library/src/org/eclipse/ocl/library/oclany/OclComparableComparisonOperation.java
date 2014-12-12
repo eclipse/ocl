@@ -12,7 +12,6 @@ package org.eclipse.ocl.library.oclany;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
@@ -21,6 +20,7 @@ import org.eclipse.ocl.domain.library.LibraryBinaryOperation;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.library.LibraryConstants;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Operation;
 
 /**
@@ -31,11 +31,11 @@ public abstract class OclComparableComparisonOperation extends AbstractUntypedBi
 	@Override
 	public @NonNull Boolean evaluate(@NonNull DomainEvaluator evaluator, @Nullable Object left, @Nullable Object right) {
 		DomainStandardLibrary standardLibrary = evaluator.getStandardLibrary();
-		DomainInheritance leftType = evaluator.getIdResolver().getDynamicTypeOf(left).getInheritance(standardLibrary);
-		DomainInheritance rightType = evaluator.getIdResolver().getDynamicTypeOf(right).getInheritance(standardLibrary);
-		DomainInheritance commonType = leftType.getCommonInheritance(rightType);
-		DomainInheritance comparableType = standardLibrary.getOclComparableType().getInheritance(standardLibrary);
-		DomainInheritance selfType = standardLibrary.getOclSelfType().getInheritance(standardLibrary);
+		CompleteInheritance leftType = evaluator.getIdResolver().getDynamicTypeOf(left).getInheritance(standardLibrary);
+		CompleteInheritance rightType = evaluator.getIdResolver().getDynamicTypeOf(right).getInheritance(standardLibrary);
+		CompleteInheritance commonType = leftType.getCommonInheritance(rightType);
+		CompleteInheritance comparableType = standardLibrary.getOclComparableType().getInheritance(standardLibrary);
+		CompleteInheritance selfType = standardLibrary.getOclSelfType().getInheritance(standardLibrary);
 		Operation staticOperation = comparableType.lookupLocalOperation(standardLibrary, LibraryConstants.COMPARE_TO, selfType);
 		int intComparison;
 		LibraryBinaryOperation implementation = null;

@@ -17,13 +17,13 @@ import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainElement;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.PrimitiveTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.pivot.CollectionType;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.LambdaType;
@@ -41,8 +41,8 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 		Type firstContainerType = firstCollectionType.getContainerType();
 		Type secondContainerType = secondCollectionType.getContainerType();
 		if (firstContainerType != secondContainerType) {
-			DomainInheritance firstInheritance = firstContainerType.getInheritance(this);
-			DomainInheritance secondInheritance = secondContainerType.getInheritance(this);
+			CompleteInheritance firstInheritance = firstContainerType.getInheritance(this);
+			CompleteInheritance secondInheritance = secondContainerType.getInheritance(this);
 			if (!secondInheritance.isSuperInheritanceOf(firstInheritance)) {
 				return false;
 			}
@@ -80,8 +80,8 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 		if (isEqualToTupleType(firstTupleType, secondTupleType)) {
 			return true;
 		}
-		DomainInheritance firstInheritance = firstTupleType.getInheritance(this);
-		DomainInheritance secondInheritance = secondTupleType.getInheritance(this);
+		CompleteInheritance firstInheritance = firstTupleType.getInheritance(this);
+		CompleteInheritance secondInheritance = secondTupleType.getInheritance(this);
 		return firstInheritance.isSuperInheritanceOf(secondInheritance);
 	}
 

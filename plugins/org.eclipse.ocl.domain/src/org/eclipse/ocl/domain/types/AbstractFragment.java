@@ -12,17 +12,17 @@ package org.eclipse.ocl.domain.types;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.DomainFragment;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Operation;
 
 public abstract class AbstractFragment implements DomainFragment
 {
-	public final @NonNull DomainInheritance derivedInheritance;
-	public final @NonNull DomainInheritance baseInheritance;
+	public final @NonNull CompleteInheritance derivedInheritance;
+	public final @NonNull CompleteInheritance baseInheritance;
 
-	public AbstractFragment(@NonNull DomainInheritance derivedInheritance, @NonNull DomainInheritance baseInheritance) {
+	public AbstractFragment(@NonNull CompleteInheritance derivedInheritance, @NonNull CompleteInheritance baseInheritance) {
 		this.derivedInheritance = derivedInheritance;
 		this.baseInheritance = baseInheritance;
 	}
@@ -40,13 +40,13 @@ public abstract class AbstractFragment implements DomainFragment
 		}
 		if (localOperation == null) {				// Non-trivial, search up the inheritance tree for an inherited operation
 			Operation bestOverload = null;
-			DomainInheritance bestInheritance = null;
+			CompleteInheritance bestInheritance = null;
 			int bestDepth = -1;
 			int minDepth = baseInheritance.getDepth();
 			for (int depth = derivedInheritance.getDepth()-1; depth >= minDepth; depth--) {
 				Iterable<DomainFragment> derivedSuperFragments = derivedInheritance.getSuperFragments(depth);
 				for (DomainFragment derivedSuperFragment : derivedSuperFragments) {
-					DomainInheritance superInheritance = derivedSuperFragment.getBaseInheritance();
+					CompleteInheritance superInheritance = derivedSuperFragment.getBaseInheritance();
 					DomainFragment superFragment = superInheritance.getFragment(baseInheritance);
 					if (superFragment != null) {
 						Operation overload = superFragment.getLocalOperation(apparentOperation);
@@ -92,12 +92,12 @@ public abstract class AbstractFragment implements DomainFragment
 	}
 
 	@Override
-	public final @NonNull DomainInheritance getBaseInheritance() {
+	public final @NonNull CompleteInheritance getBaseInheritance() {
 		return baseInheritance;
 	}
 
 	@Override
-	public final @NonNull DomainInheritance getDerivedInheritance() {
+	public final @NonNull CompleteInheritance getDerivedInheritance() {
 		return derivedInheritance;
 	}
 

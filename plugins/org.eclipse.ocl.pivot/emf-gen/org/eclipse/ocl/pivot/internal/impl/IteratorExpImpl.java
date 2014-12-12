@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
@@ -43,6 +42,7 @@ import org.eclipse.ocl.library.iterator.SortedByIteration;
 import org.eclipse.ocl.library.oclany.OclAnyOclAsTypeOperation;
 import org.eclipse.ocl.library.oclany.OclAnyOclIsKindOfOperation;
 import org.eclipse.ocl.pivot.CollectionType;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.IteratorExp;
 import org.eclipse.ocl.pivot.OCLExpression;
@@ -143,8 +143,8 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
 		try {
 			org.eclipse.ocl.pivot.Class oclComparableType = standardLibrary.getOclComparableType();
-			DomainInheritance comparableInheritance = oclComparableType.getInheritance(standardLibrary);
-			DomainInheritance selfType = standardLibrary.getOclSelfType().getInheritance(standardLibrary);
+			CompleteInheritance comparableInheritance = oclComparableType.getInheritance(standardLibrary);
+			CompleteInheritance selfType = standardLibrary.getOclSelfType().getInheritance(standardLibrary);
 			Operation staticOperation = comparableInheritance.lookupLocalOperation(standardLibrary, LibraryConstants.COMPARE_TO, selfType);
 			if (staticOperation == null) {
 				if (diagnostics == null) {

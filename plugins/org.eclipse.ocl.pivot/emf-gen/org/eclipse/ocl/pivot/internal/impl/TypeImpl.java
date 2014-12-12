@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.ids.TypeId;
@@ -33,6 +32,7 @@ import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.OCLValue;
 import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.Comment;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.OCLExpression;
@@ -374,8 +374,8 @@ public abstract class TypeImpl
 			return this;
 		}
 		DomainStandardLibrary standardLibrary = idResolver.getStandardLibrary();
-		DomainInheritance thisInheritance = this.getInheritance(standardLibrary);
-		DomainInheritance thatInheritance = type.getInheritance(standardLibrary);
+		CompleteInheritance thisInheritance = this.getInheritance(standardLibrary);
+		CompleteInheritance thatInheritance = type.getInheritance(standardLibrary);
 		return thisInheritance.getCommonInheritance(thatInheritance).getType();
 	}
 

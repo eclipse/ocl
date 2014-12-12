@@ -19,6 +19,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.ids.OperationId;
 import org.eclipse.ocl.domain.ids.ParametersId;
 import org.eclipse.ocl.pivot.Class;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Operation;
@@ -182,7 +183,7 @@ public class AbstractExecutorOperation extends AbstractExecutorFeature implement
 
 	@Override
 	@Nullable
-	public DomainInheritance getInheritance(
+	public CompleteInheritance getInheritance(
 			@NonNull DomainStandardLibrary standardLibrary) {
 		throw new UnsupportedOperationException();
 	}

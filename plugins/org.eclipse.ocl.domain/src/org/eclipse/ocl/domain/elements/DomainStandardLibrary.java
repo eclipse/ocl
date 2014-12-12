@@ -17,6 +17,7 @@ import org.eclipse.ocl.domain.ids.PrimitiveTypeId;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.pivot.CollectionType;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.LambdaType;
@@ -89,7 +90,7 @@ public interface DomainStandardLibrary
 	/**
 	 * Return the Inheritance dispatch table for a given type.
 	 */
-	@NonNull DomainInheritance getInheritance(@NonNull org.eclipse.ocl.pivot.Class type);
+	@NonNull CompleteInheritance getInheritance(@NonNull org.eclipse.ocl.pivot.Class type);
 	
     /**
      * Obtains the instance of the PrimitiveType metatype, named

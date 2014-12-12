@@ -22,6 +22,7 @@ import org.eclipse.ocl.domain.utilities.IndexableIterable;
 import org.eclipse.ocl.domain.values.OCLValue;
 import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.Class;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
@@ -50,7 +51,7 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 
 	@Override
 	@NonNull
-	public DomainInheritance getInheritance(
+	public CompleteInheritance getInheritance(
 			@NonNull DomainStandardLibrary standardLibrary) {
 		throw new UnsupportedOperationException();
 	}

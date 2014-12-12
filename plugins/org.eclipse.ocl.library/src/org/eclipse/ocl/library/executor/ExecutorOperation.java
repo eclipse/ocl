@@ -15,7 +15,6 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.AbstractExecutorOperation;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainParameterTypes;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
@@ -24,6 +23,7 @@ import org.eclipse.ocl.domain.ids.ParametersId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.library.oclany.OclAnyUnsupportedOperation;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Parameter;
@@ -60,8 +60,8 @@ public class ExecutorOperation extends AbstractExecutorOperation
 	}
 
 	@Override
-	public final @NonNull DomainInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
-		return (DomainInheritance) type;
+	public final @NonNull CompleteInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
+		return (CompleteInheritance) type;
 	}
 
 	@Override

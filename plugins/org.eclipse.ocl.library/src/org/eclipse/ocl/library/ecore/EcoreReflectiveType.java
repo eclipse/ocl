@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.ids.OperationId;
@@ -30,6 +29,7 @@ import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.library.executor.AbstractReflectiveInheritanceType;
 import org.eclipse.ocl.library.executor.DomainProperties;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
@@ -39,7 +39,7 @@ import org.eclipse.ocl.pivot.Type;
 public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 {
 	@SuppressWarnings("null")
-	public static final @NonNull List<DomainInheritance> EMPTY_INHERITANCES = Collections.emptyList();
+	public static final @NonNull List<CompleteInheritance> EMPTY_INHERITANCES = Collections.emptyList();
 	protected final @NonNull EcoreReflectivePackage evaluationPackage;
 	protected final @NonNull EClassifier eClassifier;
 	protected final @NonNull DomainTypeParameters typeParameters;
@@ -53,7 +53,7 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 	}
 
 	@Override
-	protected @NonNull AbstractFragment createFragment(@NonNull DomainInheritance baseInheritance) {
+	protected @NonNull AbstractFragment createFragment(@NonNull CompleteInheritance baseInheritance) {
 		return new EcoreReflectiveFragment(this, baseInheritance);
 	}
 
@@ -83,9 +83,9 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 		if (this == type) {
 			return this.getType();
 		}
-		DomainInheritance firstInheritance = this;
-		DomainInheritance secondInheritance = type.getInheritance(idResolver.getStandardLibrary());
-		DomainInheritance commonInheritance = firstInheritance.getCommonInheritance(secondInheritance);
+		CompleteInheritance firstInheritance = this;
+		CompleteInheritance secondInheritance = type.getInheritance(idResolver.getStandardLibrary());
+		CompleteInheritance commonInheritance = firstInheritance.getCommonInheritance(secondInheritance);
 		return commonInheritance.getType();
 	}
 
@@ -94,14 +94,14 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 	}
 
 	@Override
-	public @NonNull Iterable<? extends DomainInheritance> getInitialSuperInheritances() {
+	public @NonNull Iterable<? extends CompleteInheritance> getInitialSuperInheritances() {
 		List<EClass> eSuperTypes = eClassifier instanceof EClass ? ((EClass)eClassifier).getESuperTypes() : Collections.<EClass>emptyList();
 		final Iterator<EClass> iterator = eSuperTypes.iterator();
-		return new Iterable<DomainInheritance>()
+		return new Iterable<CompleteInheritance>()
 		{
 			@Override
-			public Iterator<DomainInheritance> iterator() {
-				return new Iterator<DomainInheritance>()
+			public Iterator<CompleteInheritance> iterator() {
+				return new Iterator<CompleteInheritance>()
 				{
 					private boolean gotOne = false;
 					
@@ -111,7 +111,7 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 					}
 
 					@Override
-					public DomainInheritance next() {
+					public CompleteInheritance next() {
 						if (!gotOne) {
 							gotOne = true;
 							if (!iterator.hasNext()) {

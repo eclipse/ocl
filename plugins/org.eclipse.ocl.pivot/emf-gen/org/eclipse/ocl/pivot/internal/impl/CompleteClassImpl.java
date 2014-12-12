@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainFragment;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.domain.ids.OperationId;
@@ -30,6 +29,7 @@ import org.eclipse.ocl.domain.values.CollectionTypeParameters;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.CompleteClass;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Element;
@@ -357,8 +357,8 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	@Override
 	public boolean conformsTo(@NonNull Type elementType) {
 		DomainStandardLibrary standardLibrary = getStandardLibrary();
-		DomainInheritance thisInheritance = getCompleteInheritance();
-		DomainInheritance thatInheritance = elementType.getInheritance(standardLibrary);
+		CompleteInheritance thisInheritance = getCompleteInheritance();
+		CompleteInheritance thatInheritance = elementType.getInheritance(standardLibrary);
 		if (thisInheritance == thatInheritance) {
 			return true;
 		}
@@ -367,8 +367,8 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 
 	@Override
 	public boolean conformsTo(@NonNull CompleteClass thatCompleteClass) {
-		DomainInheritance thisInheritance = getCompleteInheritance();
-		DomainInheritance thatInheritance = thatCompleteClass.getCompleteInheritance();
+		CompleteInheritance thisInheritance = getCompleteInheritance();
+		CompleteInheritance thatInheritance = thatCompleteClass.getCompleteInheritance();
 		if (thisInheritance == thatInheritance) {
 			return true;
 		}
@@ -490,7 +490,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	@Override
 	@SuppressWarnings("null")
 	public @NonNull Iterable<org.eclipse.ocl.pivot.Class> getProperSuperClasses() {
-		DomainInheritance inheritance = getCompleteInheritance();
+		CompleteInheritance inheritance = getCompleteInheritance();
 		return Iterables.transform(inheritance.getAllProperSuperFragments(), new Function<DomainFragment, org.eclipse.ocl.pivot.Class>()
 		{
 			@Override
@@ -503,7 +503,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	@Override
 	@SuppressWarnings("null")
 	public @NonNull Iterable<CompleteClass> getProperSuperCompleteClasses() {
-		DomainInheritance inheritance = getCompleteInheritance();
+		CompleteInheritance inheritance = getCompleteInheritance();
 		return Iterables.transform(inheritance.getAllProperSuperFragments(), new Function<DomainFragment, CompleteClass>()
 		{
 			@Override

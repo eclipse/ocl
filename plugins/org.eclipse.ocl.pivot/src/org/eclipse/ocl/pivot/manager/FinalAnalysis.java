@@ -21,10 +21,10 @@ import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.ids.ParametersId;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.pivot.CompleteClass;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
@@ -100,7 +100,7 @@ public class FinalAnalysis
 		Operation candidate = null;
 		PivotStandardLibrary standardLibrary = completeModel.getStandardLibrary();
 		for (Operation override : overrides) {
-			DomainInheritance overrideInheritance = override.getInheritance(standardLibrary);
+			CompleteInheritance overrideInheritance = override.getInheritance(standardLibrary);
 			if ((overrideInheritance != null) && overrideInheritance.getType().conformsTo(standardLibrary, completeClass.getPivotClass())) {
 				if (candidate != null) {
 					return null;

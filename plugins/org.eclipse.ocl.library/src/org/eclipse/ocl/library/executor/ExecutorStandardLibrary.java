@@ -20,10 +20,10 @@ import java.util.WeakHashMap;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.library.ecore.EcoreExecutorPackage;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.CollectionType;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Type;
 
@@ -112,9 +112,9 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 	}
 
 	@Override
-	public @NonNull DomainInheritance getInheritance(@NonNull org.eclipse.ocl.pivot.Class domainClass) {
-		if (domainClass instanceof DomainInheritance) {
-			return (DomainInheritance) domainClass;
+	public @NonNull CompleteInheritance getInheritance(@NonNull org.eclipse.ocl.pivot.Class domainClass) {
+		if (domainClass instanceof CompleteInheritance) {
+			return (CompleteInheritance) domainClass;
 		}
 /*		if (type instanceof DomainMetaclass) {
 			DomainType instanceType = DomainUtil.nonNullPivot(((DomainMetaclass)type).getInstanceType());
@@ -124,7 +124,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 		} */
 		if (domainClass instanceof CollectionType) {
 			Type containerType = ((CollectionType)domainClass).getContainerType();
-			if ((containerType != null) && (containerType != domainClass)) {
+			if (containerType != domainClass) {
 				return containerType.getInheritance(this);
 			}
 		}
@@ -134,7 +134,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 			String nsURI = domainPackage.getURI();
 			EcoreExecutorPackage ecoreExecutorPackage = nsURI != null ? weakGet(ePackageMap, nsURI) : null;
 			if (ecoreExecutorPackage != null) {
-				DomainInheritance executorType = ecoreExecutorPackage.getType(domainClass.getName());
+				CompleteInheritance executorType = ecoreExecutorPackage.getType(domainClass.getName());
 				if (executorType != null) {
 					return executorType;
 				}

@@ -24,7 +24,6 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainInheritance;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.evaluation.DomainIterationManager;
 import org.eclipse.ocl.domain.evaluation.DomainModelManager;
@@ -55,6 +54,7 @@ import org.eclipse.ocl.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.pivot.CollectionRange;
 import org.eclipse.ocl.pivot.CollectionType;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.ConstructorExp;
 import org.eclipse.ocl.pivot.ConstructorPart;
 import org.eclipse.ocl.pivot.Element;
@@ -182,7 +182,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	}
 
 	public @NonNull LibraryFeature lookupImplementation(@NonNull org.eclipse.ocl.pivot.Class dynamicType, @NonNull Operation staticOperation) {
-		DomainInheritance inheritance = metaModelManager.getInheritance(dynamicType);
+		CompleteInheritance inheritance = metaModelManager.getInheritance(dynamicType);
 		return inheritance.getType().lookupImplementation(standardLibrary, staticOperation);
 	}
 
