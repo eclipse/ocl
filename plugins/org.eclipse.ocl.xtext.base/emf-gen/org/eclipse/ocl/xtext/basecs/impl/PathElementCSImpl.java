@@ -346,7 +346,7 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	 * @generated
 	 */
 	public Element getReferredElementGen() {
-		if (referredElement != null && ((EObject)referredElement).eIsProxy())
+		if (referredElement != null && referredElement.eIsProxy())
 		{
 			InternalEObject oldReferredElement = (InternalEObject)referredElement;
 			referredElement = (Element)eResolveProxy(oldReferredElement);

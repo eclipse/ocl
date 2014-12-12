@@ -12,7 +12,6 @@ package org.eclipse.ocl.xtext.completeoclcs.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
@@ -76,7 +75,7 @@ public class IncludeCSImpl
 	 */
 	@Override
 	public Namespace getReferredNamespace() {
-		if (referredNamespace != null && ((EObject)referredNamespace).eIsProxy())
+		if (referredNamespace != null && referredNamespace.eIsProxy())
 		{
 			InternalEObject oldReferredNamespace = (InternalEObject)referredNamespace;
 			referredNamespace = (Namespace)eResolveProxy(oldReferredNamespace);

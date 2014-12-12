@@ -13,7 +13,6 @@ package org.eclipse.ocl.xtext.oclstdlibcs.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
@@ -198,7 +197,7 @@ public class LibOperationCSImpl
 	 */
 	@Override
 	public Precedence getPrecedence() {
-		if (precedence != null && ((EObject)precedence).eIsProxy())
+		if (precedence != null && precedence.eIsProxy())
 		{
 			InternalEObject oldPrecedence = (InternalEObject)precedence;
 			precedence = (Precedence)eResolveProxy(oldPrecedence);

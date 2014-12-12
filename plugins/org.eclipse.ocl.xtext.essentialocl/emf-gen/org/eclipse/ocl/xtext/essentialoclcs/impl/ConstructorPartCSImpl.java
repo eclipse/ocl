@@ -13,7 +13,6 @@ package org.eclipse.ocl.xtext.essentialoclcs.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -140,7 +139,7 @@ public class ConstructorPartCSImpl
 	 */
 	@Override
 	public Property getReferredProperty() {
-		if (referredProperty != null && ((EObject)referredProperty).eIsProxy())
+		if (referredProperty != null && referredProperty.eIsProxy())
 		{
 			InternalEObject oldReferredProperty = (InternalEObject)referredProperty;
 			referredProperty = (Property)eResolveProxy(oldReferredProperty);

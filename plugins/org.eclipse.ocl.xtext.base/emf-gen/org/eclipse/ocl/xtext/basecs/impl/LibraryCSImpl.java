@@ -13,7 +13,6 @@ package org.eclipse.ocl.xtext.basecs.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
@@ -71,7 +70,7 @@ public class LibraryCSImpl extends NamedElementCSImpl implements LibraryCS {
 	 */
 	@Override
 	public org.eclipse.ocl.pivot.Package getReferredPackage() {
-		if (referredPackage != null && ((EObject)referredPackage).eIsProxy())
+		if (referredPackage != null && referredPackage.eIsProxy())
 		{
 			InternalEObject oldReferredPackage = (InternalEObject)referredPackage;
 			referredPackage = (org.eclipse.ocl.pivot.Package)eResolveProxy(oldReferredPackage);
