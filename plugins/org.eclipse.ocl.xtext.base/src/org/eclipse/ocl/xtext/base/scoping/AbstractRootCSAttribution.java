@@ -14,7 +14,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainNamespace;
+import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
@@ -36,9 +36,9 @@ public abstract class AbstractRootCSAttribution extends AbstractAttribution impl
 			}
 		}
 		if (environmentView.accepts(PivotPackage.Literals.NAMESPACE)) {
-			for (Map.Entry<String, DomainNamespace> entry : metaModelManager.getGlobalNamespaces()) {
+			for (Map.Entry<String, Namespace> entry : metaModelManager.getGlobalNamespaces()) {
 				String key = entry.getKey();
-				DomainNamespace value = entry.getValue();
+				Namespace value = entry.getValue();
 				if ((key != null) && (value != null)) {
 					environmentView.addElement(key, value);
 				}

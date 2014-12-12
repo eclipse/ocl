@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainNamedElement;
-import org.eclipse.ocl.domain.elements.DomainNamespace;
 import org.eclipse.ocl.domain.ids.ElementId;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.TypeId;
@@ -37,7 +36,6 @@ import org.eclipse.ocl.examples.codegen.java.JavaStream.SubStream;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.NamedElement;
-import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.VoidType;
@@ -64,9 +62,6 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 	protected static @NonNull Class<?> reClass(@NonNull Class<?> javaClass) {
 		if (javaClass == NamedElement.class) {
 			javaClass = DomainNamedElement.class;
-		}
-		else if (javaClass == Namespace.class) {
-			javaClass = DomainNamespace.class;
 		}
 		return javaClass;
 	}

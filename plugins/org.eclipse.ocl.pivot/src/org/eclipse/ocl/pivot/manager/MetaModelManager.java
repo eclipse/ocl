@@ -49,7 +49,6 @@ import org.eclipse.ocl.domain.DomainConstants;
 import org.eclipse.ocl.domain.compatibility.EMF_2_9;
 import org.eclipse.ocl.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.domain.elements.DomainInheritance;
-import org.eclipse.ocl.domain.elements.DomainNamespace;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.PackageId;
@@ -88,6 +87,7 @@ import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.LoopExp;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.NullLiteralExp;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
@@ -309,7 +309,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 
 	protected @Nullable ResourceSetImpl externalResourceSet = null;
 	
-	private final @NonNull Map<String, DomainNamespace> globalNamespaces = new HashMap<String, DomainNamespace>();
+	private final @NonNull Map<String, Namespace> globalNamespaces = new HashMap<String, Namespace>();
 	private final @NonNull Set<Type> globalTypes = new HashSet<Type>();
 	
 	/**
@@ -431,7 +431,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		genPackageMap2.put(genPackage.getNSURI(), genPackage);
 	}
 
-	public @Nullable DomainNamespace addGlobalNamespace(@NonNull String name, @NonNull DomainNamespace namespace) {
+	public @Nullable Namespace addGlobalNamespace(@NonNull String name, @NonNull Namespace namespace) {
 		return globalNamespaces.put(name, namespace);
 	}
 
@@ -1117,9 +1117,9 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return null;
 	}
 
-	public @NonNull Set<Map.Entry<String, DomainNamespace>> getGlobalNamespaces() {
+	public @NonNull Set<Map.Entry<String, Namespace>> getGlobalNamespaces() {
 		@SuppressWarnings("null")
-		@NonNull Set<Entry<String, DomainNamespace>> entrySet = globalNamespaces.entrySet();
+		@NonNull Set<Entry<String, Namespace>> entrySet = globalNamespaces.entrySet();
 		return entrySet;
 	}
 

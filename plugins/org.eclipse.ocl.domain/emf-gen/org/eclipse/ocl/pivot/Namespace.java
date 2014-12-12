@@ -18,7 +18,6 @@ import org.eclipse.jdt.annotation.NonNull;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Namespace</b></em>'.
- * @extends org.eclipse.ocl.domain.elements.DomainNamespace
  * <!-- end-user-doc -->
  *
  * <p>
@@ -31,8 +30,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * @see org.eclipse.ocl.pivot.PivotPackage#getNamespace()
  * @generated
  */
-public interface Namespace
-		extends NamedElement, org.eclipse.ocl.domain.elements.DomainNamespace {
+public interface Namespace extends NamedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Owned Rule</b></em>' containment reference list.
@@ -47,6 +45,5 @@ public interface Namespace
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getNamespace_OwnedRule()
 	 * @generated
 	 */
-	@Override
 	@NonNull List<Constraint> getOwnedRule();
 } // Namespace
