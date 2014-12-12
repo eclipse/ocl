@@ -5,7 +5,7 @@
     editorDirectory="/org.eclipse.ocl.examples.autogen.editor/emf-gen" modelPluginID="org.eclipse.ocl.examples.autogen"
     modelName="AutoCGmodel" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     suppressEMFTypes="true" testsDirectory="/org.eclipse.ocl.examples.autogen.tests/emf-gen"
-    booleanFlagsReservedBits="8" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
+    booleanFlagsReservedBits="8" importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0"
     copyrightFields="false" usedGenPackages="../../org.eclipse.ocl.examples.codegen/model/cgmodel.genmodel#//cgmodel"
     importOrganizing="true">
   <genAnnotations source="http://www.eclipse.org/OCL/GenModel">
@@ -17,7 +17,19 @@
     <details key="Derived Visitor Class" value="org.eclipse.ocl.examples.autogen.autocgmodel.util.AutoCGModelVisitor"/>
   </genAnnotations>
   <foreignModel>autocgmodel.ecore</foreignModel>
-  <genPackages prefix="AutoCGModel" basePackage="org.eclipse.ocl.examples.autogen" disposableProviderFactory="true"
-      contentTypeIdentifier="org.eclipse.ocl.examples.autogen.autocgmodel" ecorePackage="autocgmodel.ecore#/">
+  <genPackages prefix="AutoCGModel" basePackage="org.eclipse.ocl.examples.autogen"
+      disposableProviderFactory="true" contentTypeIdentifier="org.eclipse.ocl.examples.autogen.autocgmodel"
+      ecorePackage="autocgmodel.ecore#/">
+    <genClasses ecoreClass="autocgmodel.ecore#//CGASTCallExp"/>
+    <genClasses ecoreClass="autocgmodel.ecore#//CGContainmentVisit"/>
+    <genClasses ecoreClass="autocgmodel.ecore#//CGContainmentPart">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference autocgmodel.ecore#//CGContainmentPart/containmentBody"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference autocgmodel.ecore#//CGContainmentPart/init"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference autocgmodel.ecore#//CGContainmentPart/eStructuralFeature"/>
+    </genClasses>
+    <genClasses ecoreClass="autocgmodel.ecore#//CGContainmentBody">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference autocgmodel.ecore#//CGContainmentBody/containmentVisit"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference autocgmodel.ecore#//CGContainmentBody/parts"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>
