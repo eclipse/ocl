@@ -412,7 +412,11 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 
 	@Override
 	public @NonNull TypeDescriptor getTypeDescriptor(@NonNull CGValuedElement cgElement) {
-		CGTypeId cgTypeId = DomainUtil.nonNullState(cgElement.getTypeId());
+		CGTypeId typeId = cgElement.getTypeId();
+		if (typeId == null) {
+			typeId = cgElement.getTypeId();
+		}
+		CGTypeId cgTypeId = DomainUtil.nonNullState(typeId);
 		ElementId elementId = DomainUtil.nonNullState(cgTypeId.getElementId());
 		TypeDescriptor typeDescriptor = getBoxedDescriptor(elementId);
 		if (!cgElement.isBoxed()) {

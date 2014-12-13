@@ -189,8 +189,13 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 	}
 
 	@Override
-	public int compareTo(/*@NonNull*/ NumberValue right) {
-		return -right.commutatedCompareToReal(this);
+	public int compareTo(@Nullable NumberValue right) {
+		if (right != null) {
+			return -right.commutatedCompareToReal(this);
+		}
+		else {
+			return ValuesUtil.throwUnsupportedCompareTo(this, right);
+		}
 	}
 
 	@Override

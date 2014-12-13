@@ -19,6 +19,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Behavior;
 import org.eclipse.ocl.pivot.Class;
+import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
@@ -33,6 +34,11 @@ public class AbstractExecutorClass extends AbstractExecutorType implements org.e
 	}
 
 	@Override
+	public @NonNull CompleteInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
+		return standardLibrary.getInheritance(this);
+	}
+
+	@Override
 	@NonNull
 	public List<Constraint> getOwnedRule() {
 		throw new UnsupportedOperationException();
@@ -40,7 +46,8 @@ public class AbstractExecutorClass extends AbstractExecutorType implements org.e
 
 	@Override
 	public @NonNull String getMetaTypeName() {
-		throw new UnsupportedOperationException();
+		return getTypeId().getMetaTypeName();
+//		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -83,17 +90,20 @@ public class AbstractExecutorClass extends AbstractExecutorType implements org.e
 	@Override
 	@NonNull
 	public DomainTypeParameters getTypeParameters() {
-		throw new UnsupportedOperationException();
+		return DomainTypeParameters.EMPTY_LIST;
+//		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public boolean isOrdered() {
-		throw new UnsupportedOperationException();
+		return false;
+//		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public boolean isUnique() {
-		throw new UnsupportedOperationException();
+		return false;
+//		throw new UnsupportedOperationException();
 	}
 
 	@Override

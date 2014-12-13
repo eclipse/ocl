@@ -387,7 +387,7 @@ public class OCLstdlibTests extends XtextTestCase
 		//	Load OCLmetamodel as pre-code-generated Java.
 		//
 		PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
-		Library asLibrary = (Library) standardLibrary.getOclAnyType().getOwningPackage();
+		Library asLibrary = (Library) standardLibrary.getPackage();
 		org.eclipse.ocl.pivot.Package oclMetamodel = OCLMetaModel.create(standardLibrary, asLibrary.getName(), asLibrary.getNsPrefix(), OCLMetaModel.PIVOT_URI);
 		Resource javaResource = oclMetamodel.eResource();
 		Resource asResource = doLoadAS(resourceSet, pivotURI, javaResource, false);		// FIXME Contents are far from identical

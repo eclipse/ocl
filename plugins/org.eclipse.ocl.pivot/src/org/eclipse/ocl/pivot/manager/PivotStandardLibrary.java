@@ -76,6 +76,7 @@ public class PivotStandardLibrary extends AbstractStandardLibrary	// FIXME Abstr
 	private @Nullable CollectionType collectionType = null;
 	private @Nullable org.eclipse.ocl.pivot.Class enumerationType = null;
 	private @Nullable PrimitiveType integerType = null;
+	private @Nullable org.eclipse.ocl.pivot.Package libraryPackage = null;
 	private @Nullable AnyType oclAnyType = null;
 	private @Nullable org.eclipse.ocl.pivot.Class oclComparableType = null;
 	private @Nullable org.eclipse.ocl.pivot.Class oclElementType = null;
@@ -416,6 +417,16 @@ public class PivotStandardLibrary extends AbstractStandardLibrary	// FIXME Abstr
 		return orderedSetType2;
 	}
 
+	@Override
+	public @NonNull org.eclipse.ocl.pivot.Package getPackage() {
+		org.eclipse.ocl.pivot.Package libraryPackage2 = libraryPackage;
+		if (libraryPackage2 == null) {
+			libraryPackage2 = libraryPackage = getOclAnyType().getOwningPackage();
+			assert libraryPackage2 != null;
+		}
+		return libraryPackage2;
+	}
+
 	/**
 	 * Return the pivot model class for className with the Pivot Model.
 	 */
@@ -536,18 +547,26 @@ public class PivotStandardLibrary extends AbstractStandardLibrary	// FIXME Abstr
 		collectionType = null;
 		enumerationType = null;
 		integerType = null;
+		libraryPackage = null;
 		oclAnyType = null;
+		oclComparableType = null;
 		oclElementType = null;
+		oclInvalidOperation = null;
+		oclInvalidProperty = null;
 		oclInvalidType = null;
 		oclLambdaType = null;
+		oclSelfType = null;
+		oclSummableType = null;
 		oclTupleType = null;
 		oclTypeType = null;
 		oclVoidType = null;
+		orderedCollectionType = null;
 		orderedSetType = null;
 		realType = null;
 		sequenceType = null;
 		setType = null;
 		stringType = null;
+		uniqueCollectionType = null;
 		unlimitedNaturalType = null;
 		nameToLibraryTypeMap = null;
 	}

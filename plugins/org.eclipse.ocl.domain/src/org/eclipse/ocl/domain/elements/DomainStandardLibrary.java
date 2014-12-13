@@ -206,6 +206,11 @@ public interface DomainStandardLibrary
      * @return the <tt>OrderedSet(T)</tt> type (an instance of OrderedSetType)
      */
 	@NonNull org.eclipse.ocl.pivot.Class getOrderedSetType();
+
+	/**
+     * Obtains the package containing the library types
+     */
+	@NonNull org.eclipse.ocl.pivot.Package getPackage();
 	
     Type getPrimitiveType(@NonNull PrimitiveTypeId id);
 

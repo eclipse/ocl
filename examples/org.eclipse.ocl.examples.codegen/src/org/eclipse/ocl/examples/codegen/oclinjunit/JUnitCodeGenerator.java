@@ -31,6 +31,7 @@ import org.eclipse.ocl.examples.codegen.java.JavaGlobalContext;
 import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Variable;
+import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 
 /**
@@ -42,8 +43,16 @@ public class JUnitCodeGenerator extends JavaCodeGenerator
 {
 	public static @NonNull String generateClassFile(@NonNull MetaModelManager metaModelManager, @NonNull ExpressionInOCL query,
 			@NonNull String packageName, @NonNull String className) {
-		JUnitCodeGenerator expressionInOCL2Class = new JUnitCodeGenerator(metaModelManager, true);
-		return expressionInOCL2Class.generate(query, packageName, className);
+		CompleteEnvironmentInternal completeEnvironment = metaModelManager.getCompleteEnvironment();
+		boolean savedIsCodeGenerator = completeEnvironment.isCodeGeneration();
+		try {
+			completeEnvironment.setCodeGeneration(true);		// Workaround for BUG 452621
+			JUnitCodeGenerator expressionInOCL2Class = new JUnitCodeGenerator(metaModelManager, true);
+			return expressionInOCL2Class.generate(query, packageName, className);
+		}
+		finally {
+			completeEnvironment.setCodeGeneration(savedIsCodeGenerator);
+		}
 	}
 	
 	protected final @NonNull JavaGlobalContext<JUnitCodeGenerator> globalContext = new JavaGlobalContext<JUnitCodeGenerator>(this);

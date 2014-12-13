@@ -320,9 +320,9 @@ public abstract class ValuesUtil
 		if (anObject instanceof BigDecimal) {
 			return (BigDecimal)anObject;
 		}
-		else if (anObject instanceof Unlimited) {
-			return BigDecimal.valueOf(Double.POSITIVE_INFINITY);
-		}
+//		else if (anObject instanceof Unlimited) {
+//			return BigDecimal.valueOf(Double.POSITIVE_INFINITY);
+//		}
 		else if (anObject instanceof Number) {
 			return BigDecimal.valueOf(((Number)anObject).doubleValue());
 		}
@@ -820,9 +820,9 @@ public abstract class ValuesUtil
 		else if (aNumber instanceof BigInteger) {
 			return new RealValueImpl(new BigDecimal((BigInteger)aNumber));
 		}
-		else if (aNumber instanceof Unlimited) {
-			return new RealValueImpl(Double.POSITIVE_INFINITY);
-		}
+//		else if (aNumber instanceof Unlimited) {
+//			return new RealValueImpl(Double.POSITIVE_INFINITY);
+//		}
 		else if (aNumber != null) {
 			return new RealValueImpl(aNumber.doubleValue());
 		}

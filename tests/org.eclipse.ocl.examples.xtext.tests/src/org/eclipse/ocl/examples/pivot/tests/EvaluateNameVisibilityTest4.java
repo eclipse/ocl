@@ -117,11 +117,11 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 
     @Test public void test_implicit_source() {
 		DomainStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
-        assertQueryTrue(standardLibrary.getOclAnyType().getOwningPackage(), "ownedClasses->select(name = 'Integer') = Set{Integer}");
-        assertQueryTrue(standardLibrary.getOclAnyType().getOwningPackage(), "let name : String = 'String' in ownedClasses->select(name = 'Integer') = Set{Integer}");
+        assertQueryTrue(standardLibrary.getPackage(), "ownedClasses->select(name = 'Integer') = Set{Integer}");
+        assertQueryTrue(standardLibrary.getPackage(), "let name : String = 'String' in ownedClasses->select(name = 'Integer') = Set{Integer}");
         assertQueryTrue(-1, "let type : Class = oclType() in type.owningPackage.ownedClasses->select(name = type.name) = Set{Integer}");
-        assertQueryTrue(standardLibrary.getOclAnyType().getOwningPackage(), "ownedPackages->select(oclIsKindOf(Integer))->isEmpty()");
-        assertQueryTrue(standardLibrary.getOclAnyType().getOwningPackage(), "ownedPackages->select(oclIsKindOf(Package))->isEmpty()");	// Fails unless implicit Package disambiguated away by argument type expectation
+        assertQueryTrue(standardLibrary.getPackage(), "ownedPackages->select(oclIsKindOf(Integer))->isEmpty()");
+        assertQueryTrue(standardLibrary.getPackage(), "ownedPackages->select(oclIsKindOf(Package))->isEmpty()");	// Fails unless implicit Package disambiguated away by argument type expectation
     }
 
 	@Test public void test_iterator_scope() {

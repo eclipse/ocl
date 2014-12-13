@@ -121,8 +121,13 @@ public abstract class IntegerValueImpl extends NumberValueImpl implements Intege
 	}
 
 	@Override
-	public int compareTo(/*@NonNull*/ NumberValue right) {
-		return -right.commutatedCompareToInteger(this);
+	public int compareTo(@Nullable NumberValue right) {
+		if (right != null) {
+			return -right.commutatedCompareToInteger(this);
+		}
+		else {
+			return ValuesUtil.throwUnsupportedCompareTo(this, right);
+		}
 	}
 
 	@Override

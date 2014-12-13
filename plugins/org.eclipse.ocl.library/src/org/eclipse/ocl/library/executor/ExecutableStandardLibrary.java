@@ -191,6 +191,11 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 	}
 
 	@Override
+	public @NonNull org.eclipse.ocl.pivot.Package getPackage() {
+		return OCLstdlibTables.PACKAGE;
+	}
+
+	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getRealType() {
 		return OCLstdlibTables.Types._Real;
 	}

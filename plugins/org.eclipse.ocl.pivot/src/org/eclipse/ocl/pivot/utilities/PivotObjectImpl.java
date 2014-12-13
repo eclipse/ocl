@@ -10,15 +10,14 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.utilities;
 
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.ocl.domain.elements.Labelable;
+import org.eclipse.ocl.pivot.PivotObject;
 
-public abstract class PivotObjectImpl extends EObjectImpl implements Adapter.Internal, Labelable
+public abstract class PivotObjectImpl extends EObjectImpl implements PivotObject
 {
 	private EObject target;
 

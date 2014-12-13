@@ -42,4 +42,6 @@ public interface CompleteEnvironmentInternal extends CompleteEnvironment
 	@Override
 	@NonNull PivotStandardLibrary getStandardLibrary();
 	@NonNull TupleTypeManager getTupleManager();
+	boolean isCodeGeneration();
+	void setCodeGeneration(boolean isCodeGeneration);
 }

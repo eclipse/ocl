@@ -448,7 +448,7 @@ public class Ecore2AS extends AbstractEcore2AS
 		EPackage libraryEPackage = isLibrary(ecoreContents);
 		if (libraryEPackage != null) {
 			newCreateMap = new HashMap<EObject, Element>();
-			org.eclipse.ocl.pivot.Package asLibrary = standardLibrary.getOclAnyType().getOwningPackage();
+			org.eclipse.ocl.pivot.Package asLibrary = standardLibrary.getPackage();
 			newCreateMap.put(libraryEPackage, asLibrary);
 			List<org.eclipse.ocl.pivot.Class> ownedType = asLibrary.getOwnedClasses();
 //			int prefix = LibraryConstants.ECORE_STDLIB_PREFIX.length();

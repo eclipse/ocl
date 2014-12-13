@@ -540,54 +540,58 @@ public class JavaStream
 					appendAtomicReferenceTo(cgValue);
 					append(".intValue())");
 				}
+				else if ("java.lang.Double".equals(returnClassName)) {
+					appendAtomicReferenceTo(Number.class, cgValue);
+					append(".doubleValue()");
+				}
+				else if ("java.lang.Float".equals(returnClassName)) {
+					appendAtomicReferenceTo(Number.class, cgValue);
+					append(".floatValue()");
+				}
+				else if ("java.lang.Integer".equals(returnClassName)) {
+					appendAtomicReferenceTo(Number.class, cgValue);
+					append(".intValue()");
+				}
+				else if ("java.lang.Long".equals(returnClassName)) {
+					appendAtomicReferenceTo(Number.class, cgValue);
+					append(".longValue()");
+				}
+				else if ("java.lang.Short".equals(returnClassName)) {
+					appendAtomicReferenceTo(Number.class, cgValue);
+					append(".shortValue()");
+				}
+				else if ("double".equals(returnClassName)) {
+					appendAtomicReferenceTo(Number.class, cgValue);
+					append(".doubleValue()");
+				}
+				else if ("float".equals(returnClassName)) {
+					appendAtomicReferenceTo(Number.class, cgValue);
+					append(".floatValue()");
+				}
+				else if ("int".equals(returnClassName)) {
+					appendAtomicReferenceTo(Number.class, cgValue);
+					append(".intValue()");
+				}
+				else if ("long".equals(returnClassName)) {
+					appendAtomicReferenceTo(Number.class, cgValue);
+					append(".longValue()");
+				}
+				else if ("short".equals(returnClassName)) {
+					appendAtomicReferenceTo(Number.class, cgValue);
+					append(".shortValue()");
+				}
 				else {
-					if ("java.lang.Double".equals(returnClassName)) {
-						appendAtomicReferenceTo(Number.class, cgValue);
-						append(".doubleValue()");
-					}
-					else if ("java.lang.Float".equals(returnClassName)) {
-						appendAtomicReferenceTo(Number.class, cgValue);
-						append(".floatValue()");
-					}
-					else if ("java.lang.Integer".equals(returnClassName)) {
-						appendAtomicReferenceTo(Number.class, cgValue);
-						append(".intValue()");
-					}
-					else if ("java.lang.Long".equals(returnClassName)) {
-						appendAtomicReferenceTo(Number.class, cgValue);
-						append(".longValue()");
-					}
-					else if ("java.lang.Short".equals(returnClassName)) {
-						appendAtomicReferenceTo(Number.class, cgValue);
-						append(".shortValue()");
-					}
-					else if ("double".equals(returnClassName)) {
-						appendAtomicReferenceTo(Number.class, cgValue);
-						append(".doubleValue()");
-					}
-					else if ("float".equals(returnClassName)) {
-						appendAtomicReferenceTo(Number.class, cgValue);
-						append(".floatValue()");
-					}
-					else if ("int".equals(returnClassName)) {
-						appendAtomicReferenceTo(Number.class, cgValue);
-						append(".intValue()");
-					}
-					else if ("long".equals(returnClassName)) {
-						appendAtomicReferenceTo(Number.class, cgValue);
-						append(".longValue()");
-					}
-					else if ("short".equals(returnClassName)) {
-						appendAtomicReferenceTo(Number.class, cgValue);
-						append(".shortValue()");
-					}
-					else {
-						appendValueName(cgValue);
-					}
+					appendValueName(cgValue);
 				}
 			}
 			else if (javaClass == Object.class) {						// Integer or UnlimitedNatural (source isn't a Real)
-				if ("java.math.BigInteger".equals(returnClassName)) {
+				if ("java.math.BigDecimal".equals(returnClassName)) {
+					appendClassReference(ValuesUtil.class);
+					append(".bigDecimalValueOf(");
+					appendValueName(cgValue);
+					append(")");
+				}
+				else if ("java.math.BigInteger".equals(returnClassName)) {
 					appendClassReference(ValuesUtil.class);
 					append(".bigIntegerValueOf(");
 					appendValueName(cgValue);
@@ -599,34 +603,48 @@ public class JavaStream
 					appendValueName(cgValue);
 					append(")");
 				}
+				else if ("java.lang.Double".equals(returnClassName)) {
+					appendAtomicReferenceTo(Number.class, cgValue);
+					append(".doubleValue()");
+				}
+				else if ("java.lang.Float".equals(returnClassName)) {
+					appendAtomicReferenceTo(Number.class, cgValue);
+					append(".floatValue()");
+				}
+				else if ("java.lang.Integer".equals(returnClassName)) {
+					appendAtomicReferenceTo(Number.class, cgValue);
+					append(".intValue()");
+				}
+				else if ("java.lang.Long".equals(returnClassName)) {
+					appendAtomicReferenceTo(Number.class, cgValue);
+					append(".longValue()");
+				}
+				else if ("java.lang.Short".equals(returnClassName)) {
+					appendAtomicReferenceTo(Number.class, cgValue);
+					append(".shortValue()");
+				}
+				else if ("double".equals(returnClassName)) {
+					appendAtomicReferenceTo(Number.class, cgValue);
+					append(".doubleValue()");
+				}
+				else if ("float".equals(returnClassName)) {
+					appendAtomicReferenceTo(Number.class, cgValue);
+					append(".floatValue()");
+				}
+				else if ("int".equals(returnClassName)) {
+					appendAtomicReferenceTo(Number.class, cgValue);
+					append(".intValue()");
+				}
+				else if ("long".equals(returnClassName)) {
+					appendAtomicReferenceTo(Number.class, cgValue);
+					append(".longValue()");
+				}
+				else if ("short".equals(returnClassName)) {
+					appendAtomicReferenceTo(Number.class, cgValue);
+					append(".shortValue()");
+				}
 				else {
-					if ("java.lang.Integer".equals(returnClassName)) {
-						appendAtomicReferenceTo(Number.class, cgValue);
-						append(".intValue()");
-					}
-					else if ("java.lang.Long".equals(returnClassName)) {
-						appendAtomicReferenceTo(Number.class, cgValue);
-						append(".longValue()");
-					}
-					else if ("java.lang.Short".equals(returnClassName)) {
-						appendAtomicReferenceTo(Number.class, cgValue);
-						append(".shortValue()");
-					}
-					else if ("int".equals(returnClassName)) {
-						appendAtomicReferenceTo(Number.class, cgValue);
-						append(".intValue()");
-					}
-					else if ("long".equals(returnClassName)) {
-						appendAtomicReferenceTo(Number.class, cgValue);
-						append(".longValue()");
-					}
-					else if ("short".equals(returnClassName)) {
-						appendAtomicReferenceTo(Number.class, cgValue);
-						append(".shortValue()");
-					}
-					else {
-						appendValueName(cgValue);
-					}
+					appendValueName(cgValue);
 				}
 			}
 			else {

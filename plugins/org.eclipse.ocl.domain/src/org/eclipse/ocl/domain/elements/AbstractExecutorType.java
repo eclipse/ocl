@@ -53,6 +53,7 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 	@NonNull
 	public CompleteInheritance getInheritance(
 			@NonNull DomainStandardLibrary standardLibrary) {
+//		return standardLibrary.getInheritance(this);
 		throw new UnsupportedOperationException();
 	}
 
@@ -88,12 +89,19 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 
 	@Override
 	public boolean oclEquals(@NonNull OCLValue thatValue) {
-		throw new UnsupportedOperationException();
+		if (!(thatValue instanceof Type)) {
+			return false;
+		}
+		TypeId thisTypeId = getTypeId();
+		TypeId thatTypeId = ((Type)thatValue).getTypeId();
+		return thisTypeId.equals(thatTypeId);
+//		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public int oclHashCode() {
-		throw new UnsupportedOperationException();
+		return getTypeId().hashCode();
+//		throw new UnsupportedOperationException();
 	}
 
 	@Override

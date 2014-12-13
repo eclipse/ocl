@@ -62,6 +62,7 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 	 * The known tuple types.
 	 */
 	private @Nullable TupleTypeManager tupleManager = null;			// Lazily created
+	private boolean isCodeGeneration = false;
 
 	protected CompleteEnvironmentImpl() {
 		this(new MetaModelManager());
@@ -155,8 +156,8 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 
 	protected boolean conformsToCollectionType(@NonNull CollectionType firstType, @NonNull TemplateParameterSubstitutions firstSubstitutions,
 			@NonNull CollectionType secondType, @NonNull TemplateParameterSubstitutions secondSubstitutions) {
-		CollectionType firstContainerType = firstType.getContainerType();
-		CollectionType secondContainerType = secondType.getContainerType();
+		org.eclipse.ocl.pivot.Class firstContainerType = firstType.getContainerType();
+		org.eclipse.ocl.pivot.Class secondContainerType = secondType.getContainerType();
 		if (firstContainerType != secondContainerType) {
 			CompleteClass firstContainerCompleteClass = getCompleteClass(firstContainerType);
 			CompleteClass secondContainerCompleteClass = getCompleteClass(secondContainerType);
@@ -480,5 +481,15 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 	public @NonNull TupleType getTupleType(@NonNull String typeName, @NonNull Collection<? extends TypedElement> parts,
 			@Nullable TemplateParameterSubstitutions bindings) {
 		return getTupleManager().getTupleType(typeName, parts, bindings);
+	}
+
+	@Override
+	public boolean isCodeGeneration() {
+		return isCodeGeneration ;
+	}
+
+	@Override
+	public void setCodeGeneration(boolean isCodeGeneration) {
+		this.isCodeGeneration = isCodeGeneration;
 	}
 }

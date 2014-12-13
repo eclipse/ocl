@@ -326,8 +326,6 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
      * Tests the oclAsType() operator.
      */
 	@Test public void test_oclAsType() {
-		assertQueryNull(null, "let s : String = null.oclAsType(String) in s");
-//
 		assertQueryInvalid(null, "invalid.oclAsType(String)");
 		assertQueryInvalid(null, "invalid.oclAsType(Integer)");
 		assertQueryInvalid(null, "invalid.oclAsType(Class)");

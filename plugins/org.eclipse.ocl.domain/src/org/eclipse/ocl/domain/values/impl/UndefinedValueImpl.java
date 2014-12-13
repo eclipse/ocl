@@ -261,7 +261,7 @@ public abstract class UndefinedValueImpl extends DomainException implements Null
 	}
 
 	@Override
-	public int compareTo(/*@NonNull*/ NumberValue right) {
+	public int compareTo(@Nullable NumberValue right) {
 		return ValuesUtil.throwUnsupportedCompareTo(this, right);
 	}
 

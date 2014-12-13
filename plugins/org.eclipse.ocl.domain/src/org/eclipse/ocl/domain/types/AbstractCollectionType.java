@@ -88,8 +88,8 @@ public class AbstractCollectionType extends AbstractSpecializedType implements C
 	}
 
 	@Override
-	public @NonNull CollectionType getContainerType() {
-		return (CollectionType) containerType;
+	public @NonNull org.eclipse.ocl.pivot.Class getContainerType() {
+		return containerType;
 	}
 
 	@Override

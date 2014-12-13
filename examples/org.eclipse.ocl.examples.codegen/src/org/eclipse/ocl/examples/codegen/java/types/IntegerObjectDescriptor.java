@@ -21,10 +21,10 @@ import org.eclipse.ocl.examples.codegen.java.JavaStream;
 /**
  * An IntegerObjectDescriptor describes the unboxed representations of an OCL Integer.
  */
-public class IntegerObjectDescriptor extends UnboxedValueDescriptor
+public class IntegerObjectDescriptor extends RootObjectDescriptor
 {
 	public IntegerObjectDescriptor(@NonNull ElementId elementId) {
-		super(elementId, Number.class);
+		super(elementId);
 	}
 
 	@Override

@@ -288,7 +288,7 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Package visitRootPackageId(@NonNull RootPackageId id) {
 		if (id == IdManager.METAMODEL) {
-			return DomainUtil.nonNullState(getStandardLibrary().getOclAnyType().getOwningPackage());
+			return DomainUtil.nonNullState(getStandardLibrary().getPackage());
 		}
 		String name = id.getName();
 		org.eclipse.ocl.pivot.Package knownPackage = roots2package.get(name);

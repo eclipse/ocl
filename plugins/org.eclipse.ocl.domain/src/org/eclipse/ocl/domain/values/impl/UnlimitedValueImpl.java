@@ -93,7 +93,7 @@ public class UnlimitedValueImpl extends NumberValueImpl implements UnlimitedValu
 	}
 
 	@Override
-	public int compareTo(/*@NonNull*/ NumberValue right) {
+	public int compareTo(@Nullable NumberValue right) {
 		if (right instanceof UnlimitedNaturalValue) {
 			if (((UnlimitedNaturalValue)right).isUnlimited()) {
 				return 0;
@@ -102,8 +102,11 @@ public class UnlimitedValueImpl extends NumberValueImpl implements UnlimitedValu
 				return 1;
 			}
 		}
-		else {
+		else if (right != null) {
 			return -right.commutatedCompareTo(this);
+		}
+		else {
+			return ValuesUtil.throwUnsupportedCompareTo(this, right);
 		}
 	}
 

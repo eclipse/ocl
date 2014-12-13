@@ -31,6 +31,7 @@ import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.library.executor.ExecutorManager;
 import org.eclipse.ocl.library.executor.ExecutorStandardLibrary;
 import org.eclipse.ocl.library.executor.LazyModelManager;
+import org.eclipse.ocl.pivot.PivotObject;
 import org.eclipse.ocl.pivot.Type;
 
 /**
@@ -68,7 +69,7 @@ public class EcoreExecutorManager extends ExecutorManager
 	protected @NonNull IdResolver createIdResolver() {
 		if (!(contextObject instanceof EObject)) {
 			@SuppressWarnings("null")@NonNull List<EObject> emptyList = Collections.<EObject>emptyList();
-			return new EcoreIdResolver(emptyList, (ExecutorStandardLibrary) standardLibrary);
+			return new EcoreIdResolver(emptyList, getStandardLibrary());
 		}
 		EObject rootContainer = EcoreUtil.getRootContainer((EObject)contextObject);
 		Notifier notifier;
@@ -105,8 +106,8 @@ public class EcoreExecutorManager extends ExecutorManager
 					roots = resource.getContents();
 				}
 			}
-			org.eclipse.ocl.pivot.Package root = standardLibrary.getOclAnyType().getOwningPackage();
-			if (root != null) {
+			org.eclipse.ocl.pivot.Package root = standardLibrary.getPackage();
+			if (root instanceof PivotObject) {
 				if (roots == null) {
 					roots = new ArrayList<EObject>();
 				}
@@ -116,7 +117,7 @@ public class EcoreExecutorManager extends ExecutorManager
 				roots = Collections.singletonList(rootContainer);
 			}
 			assert roots != null;
-			EcoreIdResolver adapter = new EcoreIdResolver(roots, (ExecutorStandardLibrary) standardLibrary);
+			EcoreIdResolver adapter = new EcoreIdResolver(roots, getStandardLibrary());
 			eAdapters.add(adapter);
 			return adapter;
 		}
@@ -124,7 +125,7 @@ public class EcoreExecutorManager extends ExecutorManager
 
 	@Override
 	public @NonNull DomainEvaluator createNestedEvaluator() {
-		return new EcoreExecutorManager(contextObject, (ExecutorStandardLibrary) standardLibrary);
+		return new EcoreExecutorManager(contextObject, getStandardLibrary());
 	}
 
 	@Override
@@ -172,6 +173,11 @@ public class EcoreExecutorManager extends ExecutorManager
 			idResolver = idResolver2 = createIdResolver();
 		}
 		return idResolver2;
+	}
+
+	@Override
+	public @NonNull ExecutorStandardLibrary getStandardLibrary() {
+		return (ExecutorStandardLibrary)standardLibrary;
 	}
 
 	@Override
