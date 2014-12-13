@@ -11,10 +11,12 @@
 package org.eclipse.ocl.examples.codegen.java.types;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.ids.ElementId;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
+import org.eclipse.ocl.examples.codegen.java.JavaStream.SubStream;
 
 /**
  * A BooleanObjectDescriptor describes the Boolean type and any associated irregular code generation patterns.
@@ -26,6 +28,19 @@ public class BooleanObjectDescriptor extends SimpleValueDescriptor implements Si
 	public BooleanObjectDescriptor(@NonNull ElementId elementId) {
 		super(elementId, Boolean.class);
 		primitiveTypeDescriptor = new BooleanPrimitiveDescriptor(elementId);
+	}
+
+	@Override
+	public void appendCast(@NonNull JavaStream js, @Nullable Class<?> actualJavaClass, @Nullable SubStream subStream) {
+		if (actualJavaClass != boolean.class) {
+			assert (actualJavaClass == null) || (actualJavaClass == Object.class);
+			js.append("(");
+			append(js);
+			js.append(")");
+		}
+		if (subStream != null) {
+			subStream.append();
+		}
 	}
 
 	@Override

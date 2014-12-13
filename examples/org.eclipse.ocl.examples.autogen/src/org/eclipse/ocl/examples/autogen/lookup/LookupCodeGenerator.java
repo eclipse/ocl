@@ -27,6 +27,13 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.domain.ids.IdManager;
+import org.eclipse.ocl.domain.ids.OperationId;
+import org.eclipse.ocl.domain.ids.ParametersId;
+import org.eclipse.ocl.domain.ids.RootPackageId;
+import org.eclipse.ocl.domain.types.IdResolver;
+import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.autogen.analyzer.AutoCG2StringVisitor;
 import org.eclipse.ocl.examples.autogen.java.AutoCG2JavaPreVisitor;
 import org.eclipse.ocl.examples.autogen.java.AutoCodeGenerator;
@@ -43,13 +50,6 @@ import org.eclipse.ocl.examples.codegen.library.NativeProperty;
 import org.eclipse.ocl.examples.codegen.library.NativeStaticOperation;
 import org.eclipse.ocl.examples.codegen.library.NativeVisitorOperation;
 import org.eclipse.ocl.examples.codegen.utilities.RereferencingCopier;
-import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
-import org.eclipse.ocl.domain.ids.IdManager;
-import org.eclipse.ocl.domain.ids.OperationId;
-import org.eclipse.ocl.domain.ids.ParametersId;
-import org.eclipse.ocl.domain.ids.RootPackageId;
-import org.eclipse.ocl.domain.types.IdResolver;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.CompleteClass;
 import org.eclipse.ocl.pivot.Element;
@@ -186,8 +186,8 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		//	Find expected AS elements
 		//
 		ParametersId emptyParametersId = IdManager.getParametersId();
-		org.eclipse.ocl.pivot.Class asElementType = DomainUtil.nonNullState(DomainUtil.getNamedElement(asPackage.getOwnedClasses(), PivotPackage.Literals.ELEMENT.getName()));
-		CompleteClass asElementCompleteClass = metaModelManager.getCompleteClass(asElementType);
+		CompleteClass asElementCompleteClass = metaModelManager.getCompletePackage(asPackage).getOwnedCompleteClass(PivotPackage.Literals.ELEMENT.getName());
+		org.eclipse.ocl.pivot.Class asElementType = asElementCompleteClass.getPivotClass();
 		OperationId envOperationId = asElementType.getTypeId().getOperationId(0, LookupClassContext.ENV_NAME, IdManager.getParametersId(asElementType.getTypeId()));
 		this.asElementEnvOperation = DomainUtil.nonNullState(asElementCompleteClass.getOperation(envOperationId));
 		OperationId parentEnvOperationId = asElementType.getTypeId().getOperationId(0, LookupClassContext.PARENT_ENV_NAME, emptyParametersId);

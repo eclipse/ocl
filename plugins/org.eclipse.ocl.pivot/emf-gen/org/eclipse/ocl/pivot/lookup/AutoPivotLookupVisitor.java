@@ -11,7 +11,6 @@ package org.eclipse.ocl.pivot.lookup;
 
 import java.util.Iterator;
 import java.util.List;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -37,9 +36,9 @@ import org.eclipse.ocl.library.collection.CollectionIncludesOperation;
 import org.eclipse.ocl.library.collection.OrderedCollectionIndexOfOperation;
 import org.eclipse.ocl.library.collection.OrderedSetSubOrderedSetOperation;
 import org.eclipse.ocl.library.executor.ExecutorSingleIterationManager;
-import org.eclipse.ocl.library.numeric.NumericGreaterThanOperation;
 import org.eclipse.ocl.library.numeric.NumericMinusOperation;
 import org.eclipse.ocl.library.oclany.OclAnyOclAsSetOperation;
+import org.eclipse.ocl.library.oclany.OclComparableGreaterThanOperation;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.Behavior;
 import org.eclipse.ocl.pivot.Class;
@@ -48,7 +47,6 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
-import org.eclipse.ocl.pivot.Feature;
 import org.eclipse.ocl.pivot.Import;
 import org.eclipse.ocl.pivot.IterateExp;
 import org.eclipse.ocl.pivot.IteratorExp;
@@ -59,9 +57,11 @@ import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Variable;
+import org.eclipse.ocl.pivot.lookup.Environment;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 
@@ -69,30 +69,43 @@ public class AutoPivotLookupVisitor
 	extends AbstractExtendingVisitor<Environment, Environment>
 {
     public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_$metamodel$ = IdManager.getRootPackageId("$metamodel$");
+    public static final @NonNull /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot = IdManager.getNsURIPackageId("http://www.eclipse.org/ocl/2015/Pivot", null, PivotPackage.eINSTANCE);
     public static final @NonNull /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_example_org_s_examples_s_env_ecore = IdManager.getNsURIPackageId("http://www.example.org/examples/env.ecore", null, null);
-    public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_java_c_s_s_org_eclipse_ocl_examples_pivot_lookup = IdManager.getRootPackageId("java://org.eclipse.ocl.pivot.lookup");
-    public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_org_eclipse_ocl_examples_domain_evaluation = IdManager.getRootPackageId("org.eclipse.ocl.domain.evaluation");
-    public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_org_eclipse_ocl_examples_domain_types = IdManager.getRootPackageId("org.eclipse.ocl.domain.types");
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_AutoPivotLookupVisitor = PACKid_java_c_s_s_org_eclipse_ocl_examples_pivot_lookup.getClassId("AutoPivotLookupVisitor", 0);
+    public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_java_c_s_s_org_eclipse_ocl_pivot_lookup = IdManager.getRootPackageId("java://org.eclipse.ocl.pivot.lookup");
+    public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_org_eclipse_ocl_domain_evaluation = IdManager.getRootPackageId("org.eclipse.ocl.domain.evaluation");
+    public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_org_eclipse_ocl_domain_types = IdManager.getRootPackageId("org.eclipse.ocl.domain.types");
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_AutoPivotLookupVisitor = PACKid_java_c_s_s_org_eclipse_ocl_pivot_lookup.getClassId("AutoPivotLookupVisitor", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Behavior = PACKid_$metamodel$.getClassId("Behavior", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Class = PACKid_$metamodel$.getClassId("Class", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_DataType = PACKid_$metamodel$.getClassId("DataType", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_DomainEvaluator = PACKid_org_eclipse_ocl_examples_domain_evaluation.getClassId("DomainEvaluator", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Class = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("Class", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Class_0 = PACKid_$metamodel$.getClassId("Class", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_DataType = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("DataType", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_DataType_0 = PACKid_$metamodel$.getClassId("DataType", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_DomainEvaluator = PACKid_org_eclipse_ocl_domain_evaluation.getClassId("DomainEvaluator", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Element = PACKid_$metamodel$.getClassId("Element", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Enumeration = PACKid_$metamodel$.getClassId("Enumeration", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Element_0 = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("Element", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Enumeration = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("Enumeration", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_EnumerationLiteral = PACKid_$metamodel$.getClassId("EnumerationLiteral", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Enumeration_0 = PACKid_$metamodel$.getClassId("Enumeration", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Environment = PACKid_http_c_s_s_www_example_org_s_examples_s_env_ecore.getClassId("Environment", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_ExpressionInOCL = PACKid_$metamodel$.getClassId("ExpressionInOCL", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_IdResolver = PACKid_org_eclipse_ocl_examples_domain_types.getClassId("IdResolver", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_ExpressionInOCL = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("ExpressionInOCL", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_ExpressionInOCL_0 = PACKid_$metamodel$.getClassId("ExpressionInOCL", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_IdResolver = PACKid_org_eclipse_ocl_domain_types.getClassId("IdResolver", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Import = PACKid_$metamodel$.getClassId("Import", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_IterateExp = PACKid_$metamodel$.getClassId("IterateExp", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_IteratorExp = PACKid_$metamodel$.getClassId("IteratorExp", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_LetExp = PACKid_$metamodel$.getClassId("LetExp", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Library = PACKid_$metamodel$.getClassId("Library", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Model = PACKid_$metamodel$.getClassId("Model", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_IterateExp = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("IterateExp", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_IterateExp_0 = PACKid_$metamodel$.getClassId("IterateExp", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_IteratorExp = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("IteratorExp", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_IteratorExp_0 = PACKid_$metamodel$.getClassId("IteratorExp", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_LetExp = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("LetExp", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_LetExp_0 = PACKid_$metamodel$.getClassId("LetExp", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Library = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("Library", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Library_0 = PACKid_$metamodel$.getClassId("Library", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Model = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("Model", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Model_0 = PACKid_$metamodel$.getClassId("Model", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_OCLExpression = PACKid_$metamodel$.getClassId("OCLExpression", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Operation = PACKid_$metamodel$.getClassId("Operation", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Operation_0 = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("Operation", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Package = PACKid_$metamodel$.getClassId("Package", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Package_0 = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("Package", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Parameter = PACKid_$metamodel$.getClassId("Parameter", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Precedence = PACKid_$metamodel$.getClassId("Precedence", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Property = PACKid_$metamodel$.getClassId("Property", 0);
@@ -108,7 +121,7 @@ public class AutoPivotLookupVisitor
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Property = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Property);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Variable = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Variable);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Behavior = TypeId.SET.getSpecializedId(CLSSid_Behavior);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Class = TypeId.SET.getSpecializedId(CLSSid_Class);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Class = TypeId.SET.getSpecializedId(CLSSid_Class_0);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Package = TypeId.SET.getSpecializedId(CLSSid_Package);
     
     protected @Nullable /*@Thrown*/ Element child;
@@ -144,7 +157,7 @@ public class AutoPivotLookupVisitor
     }
     
     @Override
-	public @Nullable Environment visiting(@NonNull Visitable visitable) {
+    public @Nullable Environment visiting(@NonNull Visitable visitable) {
         throw new UnsupportedOperationException("AutoPivotLookupVisitor is not supported by \"" + getClass().getName() + "\"");
     }
     
@@ -171,7 +184,7 @@ public class AutoPivotLookupVisitor
         final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
         final @NonNull /*@NonInvalid*/ DomainStandardLibrary standardLibrary = idResolver.getStandardLibrary();
         final @NonNull /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, SET_CLSSid_Class, element);
-        final @NonNull org.eclipse.ocl.pivot.Class TYPE_superClasses_1 = evaluator.getStaticTypeOf(oclAsSet);
+        final @NonNull Class TYPE_superClasses_1 = evaluator.getStaticTypeOf(oclAsSet);
         final @NonNull LibraryIteration IMPL_superClasses_1 = (LibraryIteration)TYPE_superClasses_1.lookupImplementation(standardLibrary, OCLstdlibTables.Operations._Set__closure);
         final @NonNull Object ACC_superClasses_1 = IMPL_superClasses_1.createAccumulatorValue(evaluator, SET_CLSSid_Class, SET_CLSSid_Class);
         /**
@@ -184,11 +197,11 @@ public class AutoPivotLookupVisitor
              */
             @Override
             public @Nullable Object evaluate(final @NonNull DomainEvaluator evaluator, final @NonNull TypeId typeId, final @Nullable Object oclAsSet, final @Nullable /*@NonInvalid*/ Object _1) {
-                final @Nullable /*@NonInvalid*/ org.eclipse.ocl.pivot.Class symbol_0 = (org.eclipse.ocl.pivot.Class)_1;
+                final @Nullable /*@NonInvalid*/ Class symbol_0 = (Class)_1;
                 if (symbol_0 == null) {
                     throw new InvalidValueException("Null source for \'pivot::Class::superClasses\'");
                 }
-                final @NonNull /*@Thrown*/ List<? extends org.eclipse.ocl.pivot.Class> superClasses_0 = symbol_0.getSuperClasses();
+                final @NonNull /*@Thrown*/ List<Class> superClasses_0 = symbol_0.getSuperClasses();
                 final @NonNull /*@Thrown*/ SetValue BOXED_superClasses_0 = idResolver.createSetOfAll(SET_CLSSid_Class, superClasses_0);
                 return BOXED_superClasses_0;
             }
@@ -203,14 +216,14 @@ public class AutoPivotLookupVisitor
                 collect = accumulator;
                 break;
             }
-            @Nullable /*@NonInvalid*/ org.eclipse.ocl.pivot.Class _1_0 = (org.eclipse.ocl.pivot.Class)ITERATOR__1_0.next();
+            @Nullable /*@NonInvalid*/ Class _1_0 = (Class)ITERATOR__1_0.next();
             /**
              * ownedProperties
              */
             if (_1_0 == null) {
                 throw new InvalidValueException("Null source for \'pivot::Class::ownedProperties\'");
             }
-            final @NonNull /*@Thrown*/ List<? extends Property> ownedProperties = _1_0.getOwnedProperties();
+            final @NonNull /*@Thrown*/ List<Property> ownedProperties = _1_0.getOwnedProperties();
             final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedProperties = idResolver.createOrderedSetOfAll(ORD_CLSSid_Property, ownedProperties);
             //
             for (Object value : BOXED_ownedProperties.flatten().getElements()) {
@@ -234,7 +247,7 @@ public class AutoPivotLookupVisitor
                 if (_1_1 == null) {
                     throw new InvalidValueException("Null source for \'pivot::Feature::isStatic\'");
                 }
-                final @Nullable /*@Thrown*/ Boolean self_0 = ((Feature)_1_1).isStatic();
+                final @Nullable /*@Thrown*/ Boolean self_0 = _1_1.isStatic();
                 CAUGHT_self_0 = self_0;
             }
             catch (Exception e) {
@@ -256,7 +269,7 @@ public class AutoPivotLookupVisitor
                 }
                 else {
                     final /*@Thrown*/ boolean eq_0 = CAUGHT_self_0 == Boolean.FALSE;
-                    symbol_2 = (Boolean)eq_0;
+                    symbol_2 = eq_0;
                 }
                 symbol_3 = symbol_2;
             }
@@ -268,7 +281,7 @@ public class AutoPivotLookupVisitor
                 accumulator_0.add(_1_1);
             }
         }
-        final List<? extends Property> UNBOXED_select = select.asEcoreObjects(idResolver, Property.class);
+        final List<Property> UNBOXED_select = select.asEcoreObjects(idResolver, Property.class);
         assert UNBOXED_select != null;
         final @NonNull /*@Thrown*/ Environment addElements = context.addElements(UNBOXED_select);
         @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_1 = ValuesUtil.createBagAccumulatorValue(BAG_CLSSid_Operation);
@@ -279,14 +292,14 @@ public class AutoPivotLookupVisitor
                 collect_0 = accumulator_1;
                 break;
             }
-            @Nullable /*@NonInvalid*/ org.eclipse.ocl.pivot.Class _1_2 = (org.eclipse.ocl.pivot.Class)ITERATOR__1_2.next();
+            @Nullable /*@NonInvalid*/ Class _1_2 = (Class)ITERATOR__1_2.next();
             /**
              * ownedOperations
              */
             if (_1_2 == null) {
                 throw new InvalidValueException("Null source for \'pivot::Class::ownedOperations\'");
             }
-            final @NonNull /*@Thrown*/ List<? extends Operation> ownedOperations = _1_2.getOwnedOperations();
+            final @NonNull /*@Thrown*/ List<Operation> ownedOperations = _1_2.getOwnedOperations();
             final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedOperations = idResolver.createOrderedSetOfAll(ORD_CLSSid_Operation, ownedOperations);
             //
             for (Object value : BOXED_ownedOperations.flatten().getElements()) {
@@ -310,7 +323,7 @@ public class AutoPivotLookupVisitor
                 if (_1_3 == null) {
                     throw new InvalidValueException("Null source for \'pivot::Feature::isStatic\'");
                 }
-                final @Nullable /*@Thrown*/ Boolean self_1 = ((Feature)_1_3).isStatic();
+                final @Nullable /*@Thrown*/ Boolean self_1 = _1_3.isStatic();
                 CAUGHT_self_1 = self_1;
             }
             catch (Exception e) {
@@ -332,7 +345,7 @@ public class AutoPivotLookupVisitor
                 }
                 else {
                     final /*@Thrown*/ boolean eq_2 = CAUGHT_self_1 == Boolean.FALSE;
-                    symbol_5 = (Boolean)eq_2;
+                    symbol_5 = eq_2;
                 }
                 symbol_6 = symbol_5;
             }
@@ -344,7 +357,7 @@ public class AutoPivotLookupVisitor
                 accumulator_2.add(_1_3);
             }
         }
-        final List<? extends Operation> UNBOXED_select_0 = select_0.asEcoreObjects(idResolver, Operation.class);
+        final List<Operation> UNBOXED_select_0 = select_0.asEcoreObjects(idResolver, Operation.class);
         assert UNBOXED_select_0 != null;
         final @NonNull /*@Thrown*/ Environment addElements_0 = addElements.addElements(UNBOXED_select_0);
         final @NonNull /*@Thrown*/ List<Behavior> ownedBehavior = element.getOwnedBehavior();
@@ -355,7 +368,7 @@ public class AutoPivotLookupVisitor
             symbol_7 = inner;
         }
         else {
-            final @Nullable /*@Thrown*/ Environment parentEnv = this.parentEnv((Element)element);
+            final @Nullable /*@Thrown*/ Environment parentEnv = this.parentEnv(element);
             symbol_7 = parentEnv;
         }
         return symbol_7;
@@ -402,7 +415,7 @@ public class AutoPivotLookupVisitor
     public @Nullable /*@NonInvalid*/ Environment visitEnumeration(final @NonNull /*@NonInvalid*/ Enumeration element_2) {
         final @NonNull /*@Thrown*/ List<EnumerationLiteral> ownedLiteral = element_2.getOwnedLiteral();
         final @NonNull /*@Thrown*/ Environment addElements = context.addElements(ownedLiteral);
-        final @NonNull /*@Thrown*/ List<? extends Property> ownedProperties = element_2.getOwnedProperties();
+        final @NonNull /*@Thrown*/ List<Property> ownedProperties = element_2.getOwnedProperties();
         final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedProperties = idResolver.createOrderedSetOfAll(ORD_CLSSid_Property, ownedProperties);
         @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator = ValuesUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Property);
         @Nullable Iterator<?> ITERATOR__1 = BOXED_ownedProperties.iterator();
@@ -421,7 +434,7 @@ public class AutoPivotLookupVisitor
                 if (_1 == null) {
                     throw new InvalidValueException("Null source for \'pivot::Feature::isStatic\'");
                 }
-                final @Nullable /*@Thrown*/ Boolean self_0 = ((Feature)_1).isStatic();
+                final @Nullable /*@Thrown*/ Boolean self_0 = _1.isStatic();
                 CAUGHT_self_0 = self_0;
             }
             catch (Exception e) {
@@ -443,7 +456,7 @@ public class AutoPivotLookupVisitor
                 }
                 else {
                     final /*@Thrown*/ boolean eq_0 = CAUGHT_self_0 == Boolean.FALSE;
-                    symbol_1 = (Boolean)eq_0;
+                    symbol_1 = eq_0;
                 }
                 symbol_2 = symbol_1;
             }
@@ -455,10 +468,10 @@ public class AutoPivotLookupVisitor
                 accumulator.add(_1);
             }
         }
-        final List<? extends Property> UNBOXED_select = select.asEcoreObjects(idResolver, Property.class);
+        final List<Property> UNBOXED_select = select.asEcoreObjects(idResolver, Property.class);
         assert UNBOXED_select != null;
         final @NonNull /*@Thrown*/ Environment addElements_0 = addElements.addElements(UNBOXED_select);
-        final @NonNull /*@Thrown*/ List<? extends Operation> ownedOperations = element_2.getOwnedOperations();
+        final @NonNull /*@Thrown*/ List<Operation> ownedOperations = element_2.getOwnedOperations();
         final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedOperations = idResolver.createOrderedSetOfAll(ORD_CLSSid_Operation, ownedOperations);
         @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator_0 = ValuesUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Operation);
         @Nullable Iterator<?> ITERATOR__1_0 = BOXED_ownedOperations.iterator();
@@ -477,7 +490,7 @@ public class AutoPivotLookupVisitor
                 if (_1_0 == null) {
                     throw new InvalidValueException("Null source for \'pivot::Feature::isStatic\'");
                 }
-                final @Nullable /*@Thrown*/ Boolean self_1 = ((Feature)_1_0).isStatic();
+                final @Nullable /*@Thrown*/ Boolean self_1 = _1_0.isStatic();
                 CAUGHT_self_1 = self_1;
             }
             catch (Exception e) {
@@ -499,7 +512,7 @@ public class AutoPivotLookupVisitor
                 }
                 else {
                     final /*@Thrown*/ boolean eq_2 = CAUGHT_self_1 == Boolean.FALSE;
-                    symbol_4 = (Boolean)eq_2;
+                    symbol_4 = eq_2;
                 }
                 symbol_5 = symbol_4;
             }
@@ -511,7 +524,7 @@ public class AutoPivotLookupVisitor
                 accumulator_0.add(_1_0);
             }
         }
-        final List<? extends Operation> UNBOXED_select_0 = select_0.asEcoreObjects(idResolver, Operation.class);
+        final List<Operation> UNBOXED_select_0 = select_0.asEcoreObjects(idResolver, Operation.class);
         assert UNBOXED_select_0 != null;
         final @NonNull /*@Thrown*/ Environment addElements_1 = addElements_0.addElements(UNBOXED_select_0);
         final @NonNull /*@Thrown*/ List<Behavior> ownedBehavior = element_2.getOwnedBehavior();
@@ -556,7 +569,7 @@ public class AutoPivotLookupVisitor
             symbol_0 = inner;
         }
         else {
-            final @Nullable /*@Thrown*/ Environment parentEnv = this.parentEnv((Element)element_3);
+            final @Nullable /*@Thrown*/ Environment parentEnv = this.parentEnv(element_3);
             symbol_0 = parentEnv;
         }
         return symbol_0;
@@ -622,7 +635,7 @@ public class AutoPivotLookupVisitor
         else {
             final @NonNull /*@Thrown*/ OrderedSetValue BOXED_iterator_0 = idResolver.createOrderedSetOfAll(ORD_CLSSid_Variable, iterator);
             final @NonNull /*@Thrown*/ IntegerValue index = OrderedCollectionIndexOfOperation.INSTANCE.evaluate(BOXED_iterator_0, child);
-            final /*@Thrown*/ boolean gt = NumericGreaterThanOperation.INSTANCE.evaluate(index, INT_1).booleanValue();
+            final /*@Thrown*/ boolean gt = OclComparableGreaterThanOperation.INSTANCE.evaluate(evaluator, index, INT_1).booleanValue();
             @Nullable /*@Thrown*/ Environment symbol_3;
             if (gt) {
                 final @NonNull /*@Thrown*/ IntegerValue diff = (IntegerValue)NumericMinusOperation.INSTANCE.evaluate(index, INT_1);
@@ -691,7 +704,7 @@ public class AutoPivotLookupVisitor
         final @NonNull /*@Thrown*/ List<Variable> iterator = element_5.getIterator();
         final @NonNull /*@Thrown*/ OrderedSetValue BOXED_iterator = idResolver.createOrderedSetOfAll(ORD_CLSSid_Variable, iterator);
         final @NonNull /*@Thrown*/ IntegerValue index = OrderedCollectionIndexOfOperation.INSTANCE.evaluate(BOXED_iterator, child);
-        final /*@Thrown*/ boolean gt = NumericGreaterThanOperation.INSTANCE.evaluate(index, INT_1).booleanValue();
+        final /*@Thrown*/ boolean gt = OclComparableGreaterThanOperation.INSTANCE.evaluate(evaluator, index, INT_1).booleanValue();
         @Nullable /*@Thrown*/ Environment symbol_2;
         if (gt) {
             final @NonNull /*@Thrown*/ IntegerValue diff = (IntegerValue)NumericMinusOperation.INSTANCE.evaluate(index, INT_1);
@@ -784,11 +797,9 @@ public class AutoPivotLookupVisitor
      */
     @Override
     public @Nullable /*@NonInvalid*/ Environment visitLibrary(final @NonNull /*@NonInvalid*/ Library element_7) {
-        final @Nullable /*@Thrown*/ List<? extends org.eclipse.ocl.pivot.Package> ownedPackages = element_7.getOwnedPackages();
-        assert ownedPackages != null;
+        final @NonNull /*@Thrown*/ List<Package> ownedPackages = element_7.getOwnedPackages();
         final @NonNull /*@Thrown*/ Environment addElements = context.addElements(ownedPackages);
-        final @Nullable /*@Thrown*/ List<? extends org.eclipse.ocl.pivot.Class> ownedClasses = element_7.getOwnedClasses();
-        assert ownedClasses != null;
+        final @NonNull /*@Thrown*/ List<Class> ownedClasses = element_7.getOwnedClasses();
         final @NonNull /*@Thrown*/ Environment addElements_0 = addElements.addElements(ownedClasses);
         final @Nullable /*@Thrown*/ List<Precedence> ownedPrecedence = element_7.getOwnedPrecedence();
         assert ownedPrecedence != null;
@@ -821,8 +832,7 @@ public class AutoPivotLookupVisitor
         }
         final @NonNull /*@Thrown*/ List<Import> imports = element_8.getImports();
         final @NonNull /*@Thrown*/ Environment addElements = parentEnv.addElements(imports);
-        final @Nullable /*@Thrown*/ List<? extends org.eclipse.ocl.pivot.Package> ownedPackages = element_8.getOwnedPackages();
-        assert ownedPackages != null;
+        final @NonNull /*@Thrown*/ List<Package> ownedPackages = element_8.getOwnedPackages();
         final @NonNull /*@Thrown*/ Environment addElements_0 = addElements.addElements(ownedPackages);
         return addElements_0;
     }
@@ -884,11 +894,9 @@ public class AutoPivotLookupVisitor
      */
     @Override
     public @Nullable /*@NonInvalid*/ Environment visitPackage(final @NonNull /*@NonInvalid*/ Package element_10) {
-        final @Nullable /*@Thrown*/ List<? extends org.eclipse.ocl.pivot.Package> ownedPackages = element_10.getOwnedPackages();
-        assert ownedPackages != null;
+        final @NonNull /*@Thrown*/ List<Package> ownedPackages = element_10.getOwnedPackages();
         final @NonNull /*@Thrown*/ Environment addElements = context.addElements(ownedPackages);
-        final @Nullable /*@Thrown*/ List<? extends org.eclipse.ocl.pivot.Class> ownedClasses = element_10.getOwnedClasses();
-        assert ownedClasses != null;
+        final @NonNull /*@Thrown*/ List<Class> ownedClasses = element_10.getOwnedClasses();
         final @NonNull /*@Thrown*/ Environment inner = addElements.addElements(ownedClasses);
         final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
         @Nullable /*@Thrown*/ Environment symbol_0;
@@ -896,7 +904,7 @@ public class AutoPivotLookupVisitor
             symbol_0 = inner;
         }
         else {
-            final @Nullable /*@Thrown*/ Environment parentEnv = this.parentEnv((Element)element_10);
+            final @Nullable /*@Thrown*/ Environment parentEnv = this.parentEnv(element_10);
             symbol_0 = parentEnv;
         }
         return symbol_0;

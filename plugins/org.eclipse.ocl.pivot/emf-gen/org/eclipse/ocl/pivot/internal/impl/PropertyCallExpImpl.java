@@ -414,21 +414,29 @@ public class PropertyCallExpImpl
 	 * @generated NOT
 	 */
 	@Override
-	public org.eclipse.ocl.pivot.Class getSpecializedReferredPropertyOwningType()
+	public @NonNull org.eclipse.ocl.pivot.Class getSpecializedReferredPropertyOwningType()
 	{
 		Property referredProperty = getReferredProperty();
 		org.eclipse.ocl.pivot.Class referencedType = referredProperty.getOwningClass();
-		if (!TemplateSpecialisation.needsSpecialisation(referencedType)) {
+		if (TemplateSpecialisation.needsSpecialisation(referencedType)) {
+		    DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
+			TemplateSpecialisation templateSpecialization = new TemplateSpecialisation(evaluator.getCompleteEnvironment());
+			Type resultType = getType();
+//			if (resultType instanceof DomainMetaclass) {
+//				resultType = ((DomainMetaclass)resultType).getInstanceType();
+//			}
+			templateSpecialization.installEquivalence(resultType, referredProperty.getType());
+			if (referencedType != null) {
+				return templateSpecialization.getSpecialisation(referencedType);
+			}
+		}
+		if (referencedType != null) {
 			return referencedType;
 		}
-	    DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
-		TemplateSpecialisation templateSpecialization = new TemplateSpecialisation(evaluator.getCompleteEnvironment());
-		Type resultType = getType();
-//		if (resultType instanceof DomainMetaclass) {
-//			resultType = ((DomainMetaclass)resultType).getInstanceType();
-//		}
-		templateSpecialization.installEquivalence(resultType, referredProperty.getType());
-		return referencedType != null ? templateSpecialization.getSpecialisation(referencedType) : null;
+		else {
+		    DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
+		    return evaluator.getCompleteEnvironment().getStandardLibrary().getOclInvalidType();
+		}
 	}
 
 	/**
@@ -437,7 +445,7 @@ public class PropertyCallExpImpl
 	 * @generated NOT
 	 */
 	@Override
-	public org.eclipse.ocl.pivot.Class getSpecializedReferredPropertyType()
+	public @NonNull org.eclipse.ocl.pivot.Class getSpecializedReferredPropertyType()
 	{
 		Property referredProperty = getReferredProperty();
 		Type referencedType = referredProperty.getType();
@@ -460,8 +468,12 @@ public class PropertyCallExpImpl
 			org.eclipse.ocl.pivot.Class behavioralType = ((DataType)specializedType).getBehavioralClass();
 			return behavioralType != null ? behavioralType : (DataType)specializedType;
 		}
+		else if (specializedType instanceof org.eclipse.ocl.pivot.Class) {
+			return (org.eclipse.ocl.pivot.Class)specializedType;
+		}
 		else {
-			return (org.eclipse.ocl.pivot.Class)specializedType;		// FIXME cast
+		    DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
+		    return evaluator.getCompleteEnvironment().getStandardLibrary().getOclInvalidType();
 		}
 	}
 
@@ -510,7 +522,7 @@ public class PropertyCallExpImpl
 		            }
 		            else {
 		                final /*@Thrown*/ boolean eq_0 = CAUGHT_self_71 == Boolean.FALSE;
-		                symbol_1 = (Boolean)eq_0;
+		                symbol_1 = eq_0;
 		            }
 		            symbol_2 = symbol_1;
 		        }
@@ -548,7 +560,7 @@ public class PropertyCallExpImpl
 		        else {
 		            @Nullable /*@Thrown*/ Boolean symbol_5;
 		            if (CAUGHT_b == Boolean.TRUE) {
-		                symbol_5 = (Boolean)ValuesUtil.TRUE_VALUE;
+		                symbol_5 = ValuesUtil.TRUE_VALUE;
 		            }
 		            else {
 		                if (CAUGHT_symbol_2 instanceof InvalidValueException) {
@@ -567,7 +579,7 @@ public class PropertyCallExpImpl
 		        final /*@Thrown*/ boolean eq_1 = CAUGHT_symbol_2 == Boolean.FALSE;
 		        @Nullable /*@Thrown*/ Boolean symbol_11;
 		        if (eq_1) {
-		            symbol_11 = (Boolean)ValuesUtil.TRUE_VALUE;
+		            symbol_11 = ValuesUtil.TRUE_VALUE;
 		        }
 		        else {
 		            final /*@NonInvalid*/ boolean symbol_7 = CAUGHT_b instanceof InvalidValueException;
@@ -581,7 +593,7 @@ public class PropertyCallExpImpl
 		            else {
 		                @Nullable /*@NonInvalid*/ Boolean symbol_9;
 		                if (CAUGHT_b == Boolean.TRUE) {
-		                    symbol_9 = (Boolean)ValuesUtil.TRUE_VALUE;
+		                    symbol_9 = ValuesUtil.TRUE_VALUE;
 		                }
 		                else {
 		                    final /*@Thrown*/ boolean eq_2 = CAUGHT_symbol_2 == null;
@@ -590,7 +602,7 @@ public class PropertyCallExpImpl
 		                        symbol_8 = null;
 		                    }
 		                    else {
-		                        symbol_8 = (Boolean)ValuesUtil.FALSE_VALUE;
+		                        symbol_8 = ValuesUtil.FALSE_VALUE;
 		                    }
 		                    symbol_9 = symbol_8;
 		                }

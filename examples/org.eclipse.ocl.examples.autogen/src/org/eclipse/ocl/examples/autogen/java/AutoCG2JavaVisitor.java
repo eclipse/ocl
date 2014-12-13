@@ -69,6 +69,7 @@ public abstract class AutoCG2JavaVisitor<CG extends AutoCodeGenerator> extends C
 
 	protected void doVisiting(@NonNull CGClass cgClass) {
 		js.append("\n");
+		js.append("@Override\n");
 		js.append("public ");
 		js.appendIsRequired(false);
 		js.append(" ");
