@@ -62,10 +62,10 @@
 		<!-- create the desired ZIP file -->
 		<zip basedir="${sp:repository}" destfile="${sp:output}/${package.name}${package.qualifier}.zip" />
 
-		<echo>Packaging site: ${package.name}-core</echo>
+		<!--echo>Packaging site: ${package.name}-core</echo-->
 
 		<!-- create the core ZIP file -->
-		<zip basedir="${sp:repository}" destfile="${sp:output}/${package.name}-core${package.qualifier}.zip">
+		<!--zip basedir="${sp:repository}" destfile="${sp:output}/${package.name}-core${package.qualifier}.zip">
 			<include name="artifacts.jar" />
 			<include name="content.jar" />
 			<include name="p2.index" />
@@ -84,7 +84,7 @@
 			<include name="plugins/org.eclipse.ocl.ecore.source*/**" />
 			<include name="plugins/org.eclipse.ocl.uml_*/**" />
 			<include name="plugins/org.eclipse.ocl.uml.source*/**" />
-		</zip>
+		</zip-->
 
 		<echo>Packaging site: ${package.name}-tests</echo>
 

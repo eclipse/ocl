@@ -61,7 +61,7 @@
 			<cs:products alias="output" base="${buckminster.output}/zips/" />
 		</cs:public>
 		
-		<cs:public name="package.mdt-ocl-CoreSDK" actor="ant">
+		<!--cs:public name="package.mdt-ocl-CoreSDK" actor="ant">
 			<cs:actorProperties>
 				<cs:property key="buildFile" value="packaging.ant" />
 				<cs:property key="targets" value="package.ius" />
@@ -76,9 +76,9 @@
 				<cs:attribute name="site.tp" alias="target.platform.repository" />
 			</cs:prerequisites>
 			<cs:products alias="output" base="${buckminster.output}/zips/" />
-		</cs:public>
+		</cs:public-->
 
-		<cs:public name="package.mdt-ocl-runtime" actor="ant">
+		<!--cs:public name="package.mdt-ocl-runtime" actor="ant">
 			<cs:actorProperties>
 				<cs:property key="buildFile" value="packaging.ant" />
 				<cs:property key="targets" value="package.ius" />
@@ -93,7 +93,7 @@
 				<cs:attribute name="site.tp" alias="target.platform.repository" />
 			</cs:prerequisites>
 			<cs:products alias="output" base="${buckminster.output}/zips/" />
-		</cs:public>
+		</cs:public-->
 
 		<!--cs:public name="package.mdt-ocl-Automated-tests" actor="ant">
 			<cs:actorProperties>
@@ -124,8 +124,8 @@
 	<cs:groups>
 		<cs:public name="build">
 			<cs:attribute name="package.mdt-ocl-Update" />
-			<cs:attribute name="package.mdt-ocl-CoreSDK" />
-			<cs:attribute name="package.mdt-ocl-runtime" />
+			<!--cs:attribute name="package.mdt-ocl-CoreSDK" /-->
+			<!--cs:attribute name="package.mdt-ocl-runtime" /-->
 			<!--cs:attribute name="package.mdt-ocl-Automated-tests" /-->
 		</cs:public>
 		
