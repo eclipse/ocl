@@ -77,7 +77,7 @@ public class AbstractExportOCLValidationResultTests extends AbstractValidityTest
 
 	@Before
 	public void setUp() throws Exception {
-		TEST_PROGRESS.setState(true);
+//		TEST_PROGRESS.setState(true);
 		super.setUp();
 		initTestModels();
 		initValidityManager(EMFPlugin.IS_ECLIPSE_RUNNING ? null : new ValidityManager());

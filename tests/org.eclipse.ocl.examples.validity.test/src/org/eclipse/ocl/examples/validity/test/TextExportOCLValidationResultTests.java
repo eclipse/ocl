@@ -32,12 +32,14 @@ import org.junit.Test;
  */
 public class TextExportOCLValidationResultTests extends AbstractExportOCLValidationResultTests
 {
-	private static final int TOTAL_NUMBER_XPATH_LOCATION = 16;
+	private static final int CONSTRAINING_FILES = 3;
+	private static final int TOTAL_NUMBER_XPATH_LOCATION = CONSTRAINING_FILES+11;
 	private static final int SUCCESS_NUMBER_XPATH_LOCATION = TOTAL_NUMBER_XPATH_LOCATION+1;
 	private static final int INFO_NUMBER_XPATH_LOCATION = TOTAL_NUMBER_XPATH_LOCATION+2;
 	private static final int WARNING_NUMBER_XPATH_LOCATION = TOTAL_NUMBER_XPATH_LOCATION+3;
 	private static final int ERROR_NUMBER_XPATH_LOCATION = TOTAL_NUMBER_XPATH_LOCATION+4;
 	private static final int FAILURE_NUMBER_XPATH_LOCATION = TOTAL_NUMBER_XPATH_LOCATION+5;
+	private static final int DIAG_INFO_LOCATION = TOTAL_NUMBER_XPATH_LOCATION+14;
 
 	private String exportedFileName = null;
 
@@ -254,7 +256,7 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 		// launch the exporter
 		String exported = doTest();
 
-		assertLineContains(exported, 30, "null diagnostic message"); //$NON-NLS-1$
+		assertLineContains(exported, DIAG_INFO_LOCATION, "null diagnostic message"); //$NON-NLS-1$
 	}
 
 	/**
@@ -283,7 +285,7 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 		// launch the exporter
 		String exported = doTest();
 
-		assertLineContains(exported, 30, diagnostic);
+		assertLineContains(exported, DIAG_INFO_LOCATION, diagnostic);
 	}
 
 	@Test
@@ -382,11 +384,11 @@ public class TextExportOCLValidationResultTests extends AbstractExportOCLValidat
 		assertLineContains(exported, 2, exportedFileName);
 
 		// test resource validated
-		assertLineContains(exported, 8, OCL_CONSTRAINTS_MODEL); //$NON-NLS-1$
-		assertLineContains(exported, 9, ECORE_MODEL_NAME); //$NON-NLS-1$
-		assertLineContains(exported, 10, OCL_CONSTRAINTS_MODEL2); //$NON-NLS-1$
-		assertLineContains(exported, 11, ECORE_MODEL_NAME3); //$NON-NLS-1$
-		assertLineContains(exported, 12, ECORE_MODEL_NAME2); //$NON-NLS-1$
+//		assertLineContains(exported, 8, OCL_CONSTRAINTS_MODEL); //$NON-NLS-1$
+		assertLineContains(exported, 8, ECORE_MODEL_NAME); //$NON-NLS-1$
+//		assertLineContains(exported, 10, OCL_CONSTRAINTS_MODEL2); //$NON-NLS-1$
+		assertLineContains(exported, 9, ECORE_MODEL_NAME3); //$NON-NLS-1$
+		assertLineContains(exported, 10, ECORE_MODEL_NAME2); //$NON-NLS-1$
 
 		// tests validation results
 		assertLineContains(exported, TOTAL_NUMBER_XPATH_LOCATION, "0"); //$NON-NLS-1$
