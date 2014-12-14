@@ -214,9 +214,10 @@ ocl-releng.psf
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.classic"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,features/org.eclipse.ocl.examples.classic-feature"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,features/org.eclipse.ocl.examples.tests-feature"/>
-<project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.unified"/>
-<project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,features/org.eclipse.ocl.unified-feature"/>
+<project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.unified"/>
+<project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,features/org.eclipse.ocl.examples.unified-feature"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,features/org.eclipse.ocl.unified.core-feature"/>
+<project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,features/org.eclipse.ocl.unified.ui-feature"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,plugins/org.eclipse.ocl.master"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,features/org.eclipse.ocl.master-feature"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,releng/org.eclipse.ocl.releng"/>
@@ -242,9 +243,10 @@ ocl-releng.psf
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.classic" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.classic-feature" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.tests-feature" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.unified" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.unified-feature" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.unified" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.unified-feature" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.unified.core-feature" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.unified.ui-feature" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.master" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.master-feature" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.releng" type="4"/>

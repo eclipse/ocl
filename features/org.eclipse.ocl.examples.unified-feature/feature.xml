@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.ocl.unified"
+      id="org.eclipse.ocl.examples.unified"
       label="%featureName"
       version="1.0.0.qualifier"
       provider-name="%providerName"
@@ -26,7 +26,7 @@
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.ocl.unified.source"
+         id="org.eclipse.ocl.examples.unified.source"
          version="0.0.0"/>
 
    <includes
