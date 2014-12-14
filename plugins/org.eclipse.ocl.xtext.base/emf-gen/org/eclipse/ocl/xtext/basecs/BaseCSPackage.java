@@ -336,10 +336,10 @@ public interface BaseCSPackage extends EPackage {
 	int TYPED_ELEMENT_CS = 49;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.FeatureCS <em>Feature CS</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.FeatureCSImpl <em>Feature CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.xtext.basecs.FeatureCS
+	 * @see org.eclipse.ocl.xtext.basecs.impl.FeatureCSImpl
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getFeatureCS()
 	 * @generated
 	 */
@@ -376,10 +376,10 @@ public interface BaseCSPackage extends EPackage {
 	int LIBRARY_CS = 16;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.NamespaceCS <em>Namespace CS</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.NamespaceCSImpl <em>Namespace CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.xtext.basecs.NamespaceCS
+	 * @see org.eclipse.ocl.xtext.basecs.impl.NamespaceCSImpl
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getNamespaceCS()
 	 * @generated
 	 */
@@ -436,10 +436,10 @@ public interface BaseCSPackage extends EPackage {
 	int REFERENCE_CS = 33;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.TypeCS <em>Type CS</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.TypeCSImpl <em>Type CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.xtext.basecs.TypeCS
+	 * @see org.eclipse.ocl.xtext.basecs.impl.TypeCSImpl
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getTypeCS()
 	 * @generated
 	 */
@@ -6155,10 +6155,10 @@ public interface BaseCSPackage extends EPackage {
 		EAttribute ENUMERATION_LITERAL_CS__VALUE = eINSTANCE.getEnumerationLiteralCS_Value();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.basecs.FeatureCS <em>Feature CS</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.basecs.impl.FeatureCSImpl <em>Feature CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.xtext.basecs.FeatureCS
+		 * @see org.eclipse.ocl.xtext.basecs.impl.FeatureCSImpl
 		 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getFeatureCS()
 		 * @generated
 		 */
@@ -6391,10 +6391,10 @@ public interface BaseCSPackage extends EPackage {
 		EAttribute NAMED_ELEMENT_CS__NAME = eINSTANCE.getNamedElementCS_Name();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.basecs.NamespaceCS <em>Namespace CS</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.basecs.impl.NamespaceCSImpl <em>Namespace CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.xtext.basecs.NamespaceCS
+		 * @see org.eclipse.ocl.xtext.basecs.impl.NamespaceCSImpl
 		 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getNamespaceCS()
 		 * @generated
 		 */
@@ -6965,10 +6965,10 @@ public interface BaseCSPackage extends EPackage {
 		EReference TUPLE_TYPE_CS__OWNED_PARTS = eINSTANCE.getTupleTypeCS_OwnedParts();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.basecs.TypeCS <em>Type CS</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.basecs.impl.TypeCSImpl <em>Type CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.xtext.basecs.TypeCS
+		 * @see org.eclipse.ocl.xtext.basecs.impl.TypeCSImpl
 		 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getTypeCS()
 		 * @generated
 		 */

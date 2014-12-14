@@ -20,7 +20,7 @@ package org.eclipse.ocl.xtext.basecs;
  *
  *
  * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getFeatureCS()
- * @model interface="true" abstract="true"
+ * @model abstract="true"
  * @generated
  */
 public interface FeatureCS extends TypedElementCS {

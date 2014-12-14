@@ -53,6 +53,7 @@ public interface BaseCSVisitor<R>
 	@Nullable R visitElementRefCS(@NonNull org.eclipse.ocl.xtext.basecs.ElementRefCS object);
 	@Nullable R visitEnumerationCS(@NonNull org.eclipse.ocl.xtext.basecs.EnumerationCS object);
 	@Nullable R visitEnumerationLiteralCS(@NonNull org.eclipse.ocl.xtext.basecs.EnumerationLiteralCS object);
+	@Nullable R visitFeatureCS(@NonNull org.eclipse.ocl.xtext.basecs.FeatureCS object);
 	@Nullable R visitImportCS(@NonNull org.eclipse.ocl.xtext.basecs.ImportCS object);
 	@Nullable R visitLambdaTypeCS(@NonNull org.eclipse.ocl.xtext.basecs.LambdaTypeCS object);
 	@Nullable R visitLibraryCS(@NonNull org.eclipse.ocl.xtext.basecs.LibraryCS object);
@@ -62,6 +63,7 @@ public interface BaseCSVisitor<R>
 	@Nullable R visitMultiplicityCS(@NonNull org.eclipse.ocl.xtext.basecs.MultiplicityCS object);
 	@Nullable R visitMultiplicityStringCS(@NonNull org.eclipse.ocl.xtext.basecs.MultiplicityStringCS object);
 	@Nullable R visitNamedElementCS(@NonNull org.eclipse.ocl.xtext.basecs.NamedElementCS object);
+	@Nullable R visitNamespaceCS(@NonNull org.eclipse.ocl.xtext.basecs.NamespaceCS object);
 	@Nullable R visitOperationCS(@NonNull org.eclipse.ocl.xtext.basecs.OperationCS object);
 	@Nullable R visitPackageCS(@NonNull org.eclipse.ocl.xtext.basecs.PackageCS object);
 	@Nullable R visitPackageOwnerCS(@NonNull org.eclipse.ocl.xtext.basecs.PackageOwnerCS object);
@@ -84,6 +86,7 @@ public interface BaseCSVisitor<R>
 	@Nullable R visitTemplateableElementCS(@NonNull org.eclipse.ocl.xtext.basecs.TemplateableElementCS object);
 	@Nullable R visitTuplePartCS(@NonNull org.eclipse.ocl.xtext.basecs.TuplePartCS object);
 	@Nullable R visitTupleTypeCS(@NonNull org.eclipse.ocl.xtext.basecs.TupleTypeCS object);
+	@Nullable R visitTypeCS(@NonNull org.eclipse.ocl.xtext.basecs.TypeCS object);
 	@Nullable R visitTypeParameterCS(@NonNull org.eclipse.ocl.xtext.basecs.TypeParameterCS object);
 	@Nullable R visitTypeRefCS(@NonNull org.eclipse.ocl.xtext.basecs.TypeRefCS object);
 	@Nullable R visitTypedElementCS(@NonNull org.eclipse.ocl.xtext.basecs.TypedElementCS object);

@@ -36,14 +36,20 @@ Workflow {
 //    }
     component = @SubGenerateAutoCSModel { resourceSet = resourceSet
     	projectName = "org.eclipse.ocl.xtext.base"
+    	visitablePackageName = "org.eclipse.ocl.xtext.basecs.util"
+    	visitorPackageName = "org.eclipse.ocl.xtext.basecs.util"
     	modelName = "basecs"
+    	modelPackageName = "org.eclipse.ocl.xtext.basecs"
     	projectPrefix = "BaseCS"
     	superProjectName = ""
     	superModelName = ""
     }
     component = @SubGenerateAutoCSModel { resourceSet = resourceSet
     	projectName = "org.eclipse.ocl.xtext.essentialocl"
+    	visitablePackageName = "org.eclipse.ocl.xtext.basecs.util"
+    	visitorPackageName = "org.eclipse.ocl.xtext.essentialoclcs.util"
     	modelName = "essentialoclcs"
+    	modelPackageName = "org.eclipse.ocl.xtext.essentialoclcs"
     	projectPrefix = "EssentialOCLCS"
     	superProjectName = "org.eclipse.ocl.xtext.base"
     	superModelName = "basecs"
@@ -51,7 +57,10 @@ Workflow {
     }
     component = @SubGenerateAutoCSModel { resourceSet = resourceSet
     	projectName = "org.eclipse.ocl.xtext.oclstdlib"
+    	visitablePackageName = "org.eclipse.ocl.xtext.basecs.util"
+    	visitorPackageName = "org.eclipse.ocl.xtext.oclstdlibcs.util"
     	modelName = "oclstdlibcs"
+    	modelPackageName = "org.eclipse.ocl.xtext.oclstdlibcs"
     	projectPrefix = "OCLstdlibCS"
     	superProjectName = "org.eclipse.ocl.xtext.essentialocl"
     	superModelName = "essentialoclcs"
@@ -59,7 +68,10 @@ Workflow {
     }
     component = @SubGenerateAutoCSModel { resourceSet = resourceSet
     	projectName = "org.eclipse.ocl.xtext.oclinecore"
+    	visitablePackageName = "org.eclipse.ocl.xtext.basecs.util"
+    	visitorPackageName = "org.eclipse.ocl.xtext.oclinecorecs.util"
     	modelName = "oclinecorecs"
+    	modelPackageName = "org.eclipse.ocl.xtext.oclinecorecs"
     	projectPrefix = "OCLinEcoreCS"
     	superProjectName = "org.eclipse.ocl.xtext.essentialocl"
     	superModelName = "essentialoclcs"
@@ -67,7 +79,10 @@ Workflow {
     }
     component = @SubGenerateAutoCSModel { resourceSet = resourceSet
     	projectName = "org.eclipse.ocl.xtext.completeocl"
+    	visitablePackageName = "org.eclipse.ocl.xtext.basecs.util"
+    	visitorPackageName = "org.eclipse.ocl.xtext.completeoclcs.util"
     	modelName = "completeoclcs"
+    	modelPackageName = "org.eclipse.ocl.xtext.completeoclcs"
     	projectPrefix = "CompleteOCLCS"
     	superProjectName = "org.eclipse.ocl.xtext.essentialocl"
     	superModelName = "essentialoclcs"

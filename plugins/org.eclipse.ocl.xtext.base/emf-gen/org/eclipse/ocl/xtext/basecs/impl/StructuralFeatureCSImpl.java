@@ -42,7 +42,7 @@ import org.eclipse.ocl.xtext.basecs.StructuredClassCS;
  *
  * @generated
  */
-public abstract class StructuralFeatureCSImpl extends TypedElementCSImpl implements StructuralFeatureCS {
+public abstract class StructuralFeatureCSImpl extends FeatureCSImpl implements StructuralFeatureCS {
 	/**
 	 * The default value of the '{@link #getDefault() <em>Default</em>}' attribute.
 	 * <!-- begin-user-doc -->

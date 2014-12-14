@@ -122,6 +122,11 @@ public abstract class AbstractDelegatingBaseCSVisitor<R, C, D extends BaseCSVisi
 	}
 
 	@Override
+	public @Nullable R visitFeatureCS(@NonNull org.eclipse.ocl.xtext.basecs.FeatureCS object) {
+		return delegate.visitFeatureCS(object);
+	}
+
+	@Override
 	public @Nullable R visitImportCS(@NonNull org.eclipse.ocl.xtext.basecs.ImportCS object) {
 		return delegate.visitImportCS(object);
 	}
@@ -164,6 +169,11 @@ public abstract class AbstractDelegatingBaseCSVisitor<R, C, D extends BaseCSVisi
 	@Override
 	public @Nullable R visitNamedElementCS(@NonNull org.eclipse.ocl.xtext.basecs.NamedElementCS object) {
 		return delegate.visitNamedElementCS(object);
+	}
+
+	@Override
+	public @Nullable R visitNamespaceCS(@NonNull org.eclipse.ocl.xtext.basecs.NamespaceCS object) {
+		return delegate.visitNamespaceCS(object);
 	}
 
 	@Override
@@ -274,6 +284,11 @@ public abstract class AbstractDelegatingBaseCSVisitor<R, C, D extends BaseCSVisi
 	@Override
 	public @Nullable R visitTupleTypeCS(@NonNull org.eclipse.ocl.xtext.basecs.TupleTypeCS object) {
 		return delegate.visitTupleTypeCS(object);
+	}
+
+	@Override
+	public @Nullable R visitTypeCS(@NonNull org.eclipse.ocl.xtext.basecs.TypeCS object) {
+		return delegate.visitTypeCS(object);
 	}
 
 	@Override

@@ -19,7 +19,7 @@ package org.eclipse.ocl.xtext.basecs;
  *
  *
  * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getTypeCS()
- * @model interface="true" abstract="true"
+ * @model abstract="true"
  * @generated
  */
 public interface TypeCS extends ModelElementCS {

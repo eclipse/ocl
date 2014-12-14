@@ -48,7 +48,7 @@ public abstract class AbstractCompleteOCLCSPreOrderVisitor
 
 	@Override
 	public @Nullable Continuation<?> visitCompleteOCLDocumentCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.CompleteOCLDocumentCS csElement) {
-		return visitNamedElementCS(csElement);
+		return visitNamespaceCS(csElement);
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public abstract class AbstractCompleteOCLCSPreOrderVisitor
 
 	@Override
 	public @Nullable Continuation<?> visitIncludeCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.IncludeCS csElement) {
-		return visitNamedElementCS(csElement);
+		return visitNamespaceCS(csElement);
 	}
 
 	@Override

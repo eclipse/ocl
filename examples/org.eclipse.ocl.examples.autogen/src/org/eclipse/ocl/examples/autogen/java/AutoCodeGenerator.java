@@ -197,7 +197,11 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 		}
 		return cgClass;
 	}
-	
+
+	public @NonNull GenPackage getGenPackage() {
+		return genPackage;
+	}
+
 	protected abstract @NonNull String getManualVisitorClassName(@NonNull String prefix);
 
 	@Override

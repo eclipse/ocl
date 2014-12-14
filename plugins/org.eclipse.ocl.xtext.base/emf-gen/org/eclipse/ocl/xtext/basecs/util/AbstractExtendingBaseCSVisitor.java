@@ -104,8 +104,13 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 	}
 
 	@Override
+	public @Nullable R visitFeatureCS(@NonNull org.eclipse.ocl.xtext.basecs.FeatureCS object) {
+		return visitTypedElementCS(object);
+	}
+
+	@Override
 	public @Nullable R visitImportCS(@NonNull org.eclipse.ocl.xtext.basecs.ImportCS object) {
-		return visitNamedElementCS(object);
+		return visitNamespaceCS(object);
 	}
 
 	@Override
@@ -115,7 +120,7 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 
 	@Override
 	public @Nullable R visitLibraryCS(@NonNull org.eclipse.ocl.xtext.basecs.LibraryCS object) {
-		return visitNamedElementCS(object);
+		return visitNamespaceCS(object);
 	}
 
 	@Override
@@ -149,8 +154,13 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 	}
 
 	@Override
+	public @Nullable R visitNamespaceCS(@NonNull org.eclipse.ocl.xtext.basecs.NamespaceCS object) {
+		return visitNamedElementCS(object);
+	}
+
+	@Override
 	public @Nullable R visitOperationCS(@NonNull org.eclipse.ocl.xtext.basecs.OperationCS object) {
-		return visitTypedElementCS(object);
+		return visitFeatureCS(object);
 	}
 
 	@Override
@@ -215,7 +225,7 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 
 	@Override
 	public @Nullable R visitStructuralFeatureCS(@NonNull org.eclipse.ocl.xtext.basecs.StructuralFeatureCS object) {
-		return visitTypedElementCS(object);
+		return visitFeatureCS(object);
 	}
 
 	@Override
@@ -256,6 +266,11 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 	@Override
 	public @Nullable R visitTupleTypeCS(@NonNull org.eclipse.ocl.xtext.basecs.TupleTypeCS object) {
 		return visitTypedRefCS(object);
+	}
+
+	@Override
+	public @Nullable R visitTypeCS(@NonNull org.eclipse.ocl.xtext.basecs.TypeCS object) {
+		return visitModelElementCS(object);
 	}
 
 	@Override

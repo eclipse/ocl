@@ -36,6 +36,7 @@ import org.eclipse.ocl.examples.codegen.java.CG2JavaPreVisitor;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.ConstructorExp;
 import org.eclipse.ocl.pivot.ConstructorPart;
+import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.OCLExpression;
@@ -207,7 +208,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 					cgClass.getOperations().add(cgOperation);					
 				}
 			}
-			if (!hasCS2ASmappingOperation) {
+			if (!hasCS2ASmappingOperation && !asType.isInterface() && !(asType instanceof DataType)) {
 				CGOperation cgOperation = CGModelFactory.eINSTANCE.createCGEcoreOperation();
 				cgOperation.setName("visit" + asType.getName());
 				cgOperation.setAst(asType);

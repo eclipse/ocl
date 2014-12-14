@@ -39,7 +39,7 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
  *
  * @generated
  */
-public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
+public class ImportCSImpl extends NamespaceCSImpl implements ImportCS {
 	/**
 	 * The default value of the '{@link #isIsAll() <em>Is All</em>}' attribute.
 	 * <!-- begin-user-doc -->

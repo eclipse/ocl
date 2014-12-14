@@ -55,7 +55,7 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
  *
  * @generated
  */
-public class OperationCSImpl extends TypedElementCSImpl implements OperationCS {
+public class OperationCSImpl extends FeatureCSImpl implements OperationCS {
 	/**
 	 * The cached value of the '{@link #getOwnedSignature() <em>Owned Signature</em>}' containment reference.
 	 * <!-- begin-user-doc -->

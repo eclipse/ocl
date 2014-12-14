@@ -100,6 +100,11 @@ public abstract class AbstractNullBaseCSVisitor<R, C>
 	}
 
 	@Override
+	public @Nullable R visitFeatureCS(@NonNull org.eclipse.ocl.xtext.basecs.FeatureCS object) {
+		return null;
+	}
+
+	@Override
 	public @Nullable R visitImportCS(@NonNull org.eclipse.ocl.xtext.basecs.ImportCS object) {
 		return null;
 	}
@@ -141,6 +146,11 @@ public abstract class AbstractNullBaseCSVisitor<R, C>
 
 	@Override
 	public @Nullable R visitNamedElementCS(@NonNull org.eclipse.ocl.xtext.basecs.NamedElementCS object) {
+		return null;
+	}
+
+	@Override
+	public @Nullable R visitNamespaceCS(@NonNull org.eclipse.ocl.xtext.basecs.NamespaceCS object) {
 		return null;
 	}
 
@@ -251,6 +261,11 @@ public abstract class AbstractNullBaseCSVisitor<R, C>
 
 	@Override
 	public @Nullable R visitTupleTypeCS(@NonNull org.eclipse.ocl.xtext.basecs.TupleTypeCS object) {
+		return null;
+	}
+
+	@Override
+	public @Nullable R visitTypeCS(@NonNull org.eclipse.ocl.xtext.basecs.TypeCS object) {
 		return null;
 	}
 

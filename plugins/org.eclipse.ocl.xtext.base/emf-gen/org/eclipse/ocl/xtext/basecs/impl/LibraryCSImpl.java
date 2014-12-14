@@ -34,7 +34,7 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
  *
  * @generated
  */
-public class LibraryCSImpl extends NamedElementCSImpl implements LibraryCS {
+public class LibraryCSImpl extends NamespaceCSImpl implements LibraryCS {
 	/**
 	 * The cached value of the '{@link #getReferredPackage() <em>Referred Package</em>}' reference.
 	 * <!-- begin-user-doc -->

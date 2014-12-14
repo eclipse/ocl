@@ -19,7 +19,7 @@ package org.eclipse.ocl.xtext.basecs;
  *
  *
  * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getNamespaceCS()
- * @model interface="true" abstract="true"
+ * @model abstract="true"
  * @generated
  */
 public interface NamespaceCS extends NamedElementCS {

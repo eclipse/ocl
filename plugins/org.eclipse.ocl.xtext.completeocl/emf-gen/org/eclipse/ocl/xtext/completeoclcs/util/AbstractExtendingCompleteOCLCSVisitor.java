@@ -45,7 +45,7 @@ public abstract class AbstractExtendingCompleteOCLCSVisitor<R, C>
 
 	@Override
 	public @Nullable R visitCompleteOCLDocumentCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.CompleteOCLDocumentCS object) {
-		return visitNamedElementCS(object);
+		return visitNamespaceCS(object);
 	}
 
 	@Override
@@ -75,7 +75,7 @@ public abstract class AbstractExtendingCompleteOCLCSVisitor<R, C>
 
 	@Override
 	public @Nullable R visitIncludeCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.IncludeCS object) {
-		return visitNamedElementCS(object);
+		return visitNamespaceCS(object);
 	}
 
 	@Override

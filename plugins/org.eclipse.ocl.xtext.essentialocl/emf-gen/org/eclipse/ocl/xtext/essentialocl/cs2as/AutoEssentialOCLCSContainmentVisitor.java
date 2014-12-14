@@ -9,7 +9,6 @@
 
 package org.eclipse.ocl.xtext.essentialocl.cs2as;
 
-import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.types.IdResolver;
@@ -84,236 +83,232 @@ public class AutoEssentialOCLCSContainmentVisitor
     }
     
     @Override
-	public @Nullable Continuation<?> visitAbstractNameExpCS(@NonNull AbstractNameExpCS self) {
+    public @Nullable Continuation<?> visitAbstractNameExpCS(@NonNull AbstractNameExpCS self) {
         throw new UnsupportedOperationException("visitAbstractNameExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitAssociationClassCallExpCS(@NonNull AssociationClassCallExpCS self) {
+    public @Nullable Continuation<?> visitAssociationClassCallExpCS(@NonNull AssociationClassCallExpCS self) {
         throw new UnsupportedOperationException("visitAssociationClassCallExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitBooleanLiteralExpCS(@NonNull BooleanLiteralExpCS self) {
+    public @Nullable Continuation<?> visitBooleanLiteralExpCS(@NonNull BooleanLiteralExpCS self) {
         throw new UnsupportedOperationException("visitBooleanLiteralExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitCallExpCS(@NonNull CallExpCS self) {
+    public @Nullable Continuation<?> visitCallExpCS(@NonNull CallExpCS self) {
         throw new UnsupportedOperationException("visitCallExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitCollectionLiteralExpCS(@NonNull CollectionLiteralExpCS self) {
+    public @Nullable Continuation<?> visitCollectionLiteralExpCS(@NonNull CollectionLiteralExpCS self) {
         throw new UnsupportedOperationException("visitCollectionLiteralExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitCollectionLiteralPartCS(@NonNull CollectionLiteralPartCS self) {
+    public @Nullable Continuation<?> visitCollectionLiteralPartCS(@NonNull CollectionLiteralPartCS self) {
         throw new UnsupportedOperationException("visitCollectionLiteralPartCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitCollectionPatternCS(@NonNull CollectionPatternCS self) {
+    public @Nullable Continuation<?> visitCollectionPatternCS(@NonNull CollectionPatternCS self) {
         throw new UnsupportedOperationException("visitCollectionPatternCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitCollectionTypeCS(@NonNull CollectionTypeCS self) {
+    public @Nullable Continuation<?> visitCollectionTypeCS(@NonNull CollectionTypeCS self) {
         throw new UnsupportedOperationException("visitCollectionTypeCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitConstructorExpCS(@NonNull ConstructorExpCS self) {
+    public @Nullable Continuation<?> visitConstructorExpCS(@NonNull ConstructorExpCS self) {
         throw new UnsupportedOperationException("visitConstructorExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitConstructorPartCS(@NonNull ConstructorPartCS self) {
+    public @Nullable Continuation<?> visitConstructorPartCS(@NonNull ConstructorPartCS self) {
         throw new UnsupportedOperationException("visitConstructorPartCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitContextCS(@NonNull ContextCS self) {
+    public @Nullable Continuation<?> visitContextCS(@NonNull ContextCS self) {
         throw new UnsupportedOperationException("visitContextCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitCurlyBracketedClauseCS(@NonNull CurlyBracketedClauseCS self) {
+    public @Nullable Continuation<?> visitCurlyBracketedClauseCS(@NonNull CurlyBracketedClauseCS self) {
         throw new UnsupportedOperationException("visitCurlyBracketedClauseCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitExpCS(@NonNull ExpCS self) {
+    public @Nullable Continuation<?> visitExpCS(@NonNull ExpCS self) {
         throw new UnsupportedOperationException("visitExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitExpSpecificationCS(@NonNull ExpSpecificationCS self) {
+    public @Nullable Continuation<?> visitExpSpecificationCS(@NonNull ExpSpecificationCS self) {
         throw new UnsupportedOperationException("visitExpSpecificationCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitIfExpCS(@NonNull IfExpCS self) {
+    public @Nullable Continuation<?> visitIfExpCS(@NonNull IfExpCS self) {
         throw new UnsupportedOperationException("visitIfExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitIfThenExpCS(@NonNull IfThenExpCS self) {
+    public @Nullable Continuation<?> visitIfThenExpCS(@NonNull IfThenExpCS self) {
         throw new UnsupportedOperationException("visitIfThenExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitInfixExpCS(@NonNull InfixExpCS self) {
+    public @Nullable Continuation<?> visitInfixExpCS(@NonNull InfixExpCS self) {
         throw new UnsupportedOperationException("visitInfixExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitInvalidLiteralExpCS(@NonNull InvalidLiteralExpCS self) {
+    public @Nullable Continuation<?> visitInvalidLiteralExpCS(@NonNull InvalidLiteralExpCS self) {
         throw new UnsupportedOperationException("visitInvalidLiteralExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitIterateCallExpCS(@NonNull IterateCallExpCS self) {
+    public @Nullable Continuation<?> visitIterateCallExpCS(@NonNull IterateCallExpCS self) {
         throw new UnsupportedOperationException("visitIterateCallExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitIterationCallExpCS(@NonNull IterationCallExpCS self) {
+    public @Nullable Continuation<?> visitIterationCallExpCS(@NonNull IterationCallExpCS self) {
         throw new UnsupportedOperationException("visitIterationCallExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitLambdaLiteralExpCS(@NonNull LambdaLiteralExpCS self) {
+    public @Nullable Continuation<?> visitLambdaLiteralExpCS(@NonNull LambdaLiteralExpCS self) {
         throw new UnsupportedOperationException("visitLambdaLiteralExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitLetExpCS(@NonNull LetExpCS self) {
+    public @Nullable Continuation<?> visitLetExpCS(@NonNull LetExpCS self) {
         throw new UnsupportedOperationException("visitLetExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitLetVariableCS(@NonNull LetVariableCS self) {
+    public @Nullable Continuation<?> visitLetVariableCS(@NonNull LetVariableCS self) {
         throw new UnsupportedOperationException("visitLetVariableCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitLiteralExpCS(@NonNull LiteralExpCS self) {
+    public @Nullable Continuation<?> visitLiteralExpCS(@NonNull LiteralExpCS self) {
         throw new UnsupportedOperationException("visitLiteralExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitNameExpCS(@NonNull NameExpCS self) {
+    public @Nullable Continuation<?> visitNameExpCS(@NonNull NameExpCS self) {
         throw new UnsupportedOperationException("visitNameExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitNavigatingArgCS(@NonNull NavigatingArgCS self) {
+    public @Nullable Continuation<?> visitNavigatingArgCS(@NonNull NavigatingArgCS self) {
         throw new UnsupportedOperationException("visitNavigatingArgCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitNestedExpCS(@NonNull NestedExpCS self) {
+    public @Nullable Continuation<?> visitNestedExpCS(@NonNull NestedExpCS self) {
         throw new UnsupportedOperationException("visitNestedExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitNullLiteralExpCS(@NonNull NullLiteralExpCS self) {
+    public @Nullable Continuation<?> visitNullLiteralExpCS(@NonNull NullLiteralExpCS self) {
         throw new UnsupportedOperationException("visitNullLiteralExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitNumberLiteralExpCS(@NonNull NumberLiteralExpCS self) {
+    public @Nullable Continuation<?> visitNumberLiteralExpCS(@NonNull NumberLiteralExpCS self) {
         throw new UnsupportedOperationException("visitNumberLiteralExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitOperationCallExpCS(@NonNull OperationCallExpCS self) {
+    public @Nullable Continuation<?> visitOperationCallExpCS(@NonNull OperationCallExpCS self) {
         throw new UnsupportedOperationException("visitOperationCallExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitOperatorExpCS(@NonNull OperatorExpCS self) {
+    public @Nullable Continuation<?> visitOperatorExpCS(@NonNull OperatorExpCS self) {
         throw new UnsupportedOperationException("visitOperatorExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitPatternExpCS(@NonNull PatternExpCS self) {
+    public @Nullable Continuation<?> visitPatternExpCS(@NonNull PatternExpCS self) {
         throw new UnsupportedOperationException("visitPatternExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitPrefixExpCS(@NonNull PrefixExpCS self) {
+    public @Nullable Continuation<?> visitPrefixExpCS(@NonNull PrefixExpCS self) {
         throw new UnsupportedOperationException("visitPrefixExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitPrimitiveLiteralExpCS(@NonNull PrimitiveLiteralExpCS self) {
+    public @Nullable Continuation<?> visitPrimitiveLiteralExpCS(@NonNull PrimitiveLiteralExpCS self) {
         throw new UnsupportedOperationException("visitPrimitiveLiteralExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitPropertyCallExpCS(@NonNull PropertyCallExpCS self) {
+    public @Nullable Continuation<?> visitPropertyCallExpCS(@NonNull PropertyCallExpCS self) {
         throw new UnsupportedOperationException("visitPropertyCallExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitRoundBracketedClauseCS(@NonNull RoundBracketedClauseCS self) {
+    public @Nullable Continuation<?> visitRoundBracketedClauseCS(@NonNull RoundBracketedClauseCS self) {
         throw new UnsupportedOperationException("visitRoundBracketedClauseCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitSelfExpCS(@NonNull SelfExpCS self) {
+    public @Nullable Continuation<?> visitSelfExpCS(@NonNull SelfExpCS self) {
         throw new UnsupportedOperationException("visitSelfExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitSquareBracketedClauseCS(@NonNull SquareBracketedClauseCS self) {
+    public @Nullable Continuation<?> visitSquareBracketedClauseCS(@NonNull SquareBracketedClauseCS self) {
         throw new UnsupportedOperationException("visitSquareBracketedClauseCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitStringLiteralExpCS(@NonNull StringLiteralExpCS self) {
+    public @Nullable Continuation<?> visitStringLiteralExpCS(@NonNull StringLiteralExpCS self) {
         throw new UnsupportedOperationException("visitStringLiteralExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitTupleLiteralExpCS(@NonNull TupleLiteralExpCS self) {
+    public @Nullable Continuation<?> visitTupleLiteralExpCS(@NonNull TupleLiteralExpCS self) {
         throw new UnsupportedOperationException("visitTupleLiteralExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitTupleLiteralPartCS(@NonNull TupleLiteralPartCS self) {
+    public @Nullable Continuation<?> visitTupleLiteralPartCS(@NonNull TupleLiteralPartCS self) {
         throw new UnsupportedOperationException("visitTupleLiteralPartCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitTypeLiteralExpCS(@NonNull TypeLiteralExpCS self) {
+    public @Nullable Continuation<?> visitTypeLiteralExpCS(@NonNull TypeLiteralExpCS self) {
         throw new UnsupportedOperationException("visitTypeLiteralExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitTypeNameExpCS(@NonNull TypeNameExpCS self) {
+    public @Nullable Continuation<?> visitTypeNameExpCS(@NonNull TypeNameExpCS self) {
         throw new UnsupportedOperationException("visitTypeNameExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitUnlimitedNaturalLiteralExpCS(@NonNull UnlimitedNaturalLiteralExpCS self) {
+    public @Nullable Continuation<?> visitUnlimitedNaturalLiteralExpCS(@NonNull UnlimitedNaturalLiteralExpCS self) {
         throw new UnsupportedOperationException("visitUnlimitedNaturalLiteralExpCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitVariableCS(@NonNull VariableCS self) {
+    public @Nullable Continuation<?> visitVariableCS(@NonNull VariableCS self) {
         throw new UnsupportedOperationException("visitVariableCS is not supported by " + getClass().getName());
     }
     
     @Override
-	public @Nullable Continuation<?> visitVariableExpCS(@NonNull VariableExpCS self) {
+    public @Nullable Continuation<?> visitVariableExpCS(@NonNull VariableExpCS self) {
         throw new UnsupportedOperationException("visitVariableExpCS is not supported by " + getClass().getName());
-    }
-    
-    public @Nullable Continuation<?> visitNavigationRole(@NonNull Enumerator self) {
-        throw new UnsupportedOperationException("visitNavigationRole is not supported by " + getClass().getName());
     }
 }

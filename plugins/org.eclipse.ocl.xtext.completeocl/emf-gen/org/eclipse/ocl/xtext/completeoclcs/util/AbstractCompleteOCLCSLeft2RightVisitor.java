@@ -48,7 +48,7 @@ public abstract class AbstractCompleteOCLCSLeft2RightVisitor
 
 	@Override
 	public @Nullable Element visitCompleteOCLDocumentCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.CompleteOCLDocumentCS csElement) {
-		return visitNamedElementCS(csElement);
+		return visitNamespaceCS(csElement);
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public abstract class AbstractCompleteOCLCSLeft2RightVisitor
 
 	@Override
 	public @Nullable Element visitIncludeCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.IncludeCS csElement) {
-		return visitNamedElementCS(csElement);
+		return visitNamespaceCS(csElement);
 	}
 
 	@Override
