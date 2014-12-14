@@ -16,7 +16,7 @@
    </copyright>
 
    <includes
-         id="org.eclipse.ocl.examples.unified.core"
+         id="org.eclipse.ocl.unified.core"
          version="0.0.0"/>
 
    <plugin
