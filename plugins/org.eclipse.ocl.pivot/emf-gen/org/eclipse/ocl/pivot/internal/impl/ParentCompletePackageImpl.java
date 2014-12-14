@@ -63,11 +63,6 @@ public class ParentCompletePackageImpl extends RootCompletePackageImpl implement
 	public @NonNull PackageId getMetapackageId() {
 		return metapackageId;
 	}
-	
-	@Override
-	public boolean hasNestedClasses() {
-		return true;
-	}
 
 	@Override
 	public void init(@NonNull String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId, @NonNull PackageId metapackageId) {

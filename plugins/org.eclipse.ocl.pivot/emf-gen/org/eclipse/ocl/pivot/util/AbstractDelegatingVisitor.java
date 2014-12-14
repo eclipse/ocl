@@ -357,11 +357,6 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 	}
 
 	@Override
-	public @Nullable R visitNestedCompletePackage(@NonNull org.eclipse.ocl.pivot.NestedCompletePackage object) {
-		return delegate.visitNestedCompletePackage(object);
-	}
-
-	@Override
 	public @Nullable R visitNullLiteralExp(@NonNull org.eclipse.ocl.pivot.NullLiteralExp object) {
 		return delegate.visitNullLiteralExp(object);
 	}

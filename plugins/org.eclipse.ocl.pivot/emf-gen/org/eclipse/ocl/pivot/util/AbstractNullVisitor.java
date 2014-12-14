@@ -335,11 +335,6 @@ public abstract class AbstractNullVisitor<R, C>
 	}
 
 	@Override
-	public @Nullable R visitNestedCompletePackage(@NonNull org.eclipse.ocl.pivot.NestedCompletePackage object) {
-		return null;
-	}
-
-	@Override
 	public @Nullable R visitNullLiteralExp(@NonNull org.eclipse.ocl.pivot.NullLiteralExp object) {
 		return null;
 	}

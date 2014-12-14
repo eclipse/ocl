@@ -72,7 +72,7 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	}
 	
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class flattenedType() {
+	public org.eclipse.ocl.pivot.Class flattenedType() {
 		return this;
 	}
 	

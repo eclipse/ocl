@@ -100,7 +100,6 @@ public interface Visitor<R>
 	@Nullable R visitNamedElement(@NonNull org.eclipse.ocl.pivot.NamedElement object);
 	@Nullable R visitNamespace(@NonNull org.eclipse.ocl.pivot.Namespace object);
 	@Nullable R visitNavigationCallExp(@NonNull org.eclipse.ocl.pivot.NavigationCallExp object);
-	@Nullable R visitNestedCompletePackage(@NonNull org.eclipse.ocl.pivot.NestedCompletePackage object);
 	@Nullable R visitNullLiteralExp(@NonNull org.eclipse.ocl.pivot.NullLiteralExp object);
 	@Nullable R visitNumericLiteralExp(@NonNull org.eclipse.ocl.pivot.NumericLiteralExp object);
 	@Nullable R visitOCLExpression(@NonNull org.eclipse.ocl.pivot.OCLExpression object);

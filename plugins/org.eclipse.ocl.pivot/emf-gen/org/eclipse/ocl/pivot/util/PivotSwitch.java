@@ -73,7 +73,6 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.NavigationCallExp;
-import org.eclipse.ocl.pivot.NestedCompletePackage;
 import org.eclipse.ocl.pivot.NullLiteralExp;
 import org.eclipse.ocl.pivot.NumericLiteralExp;
 import org.eclipse.ocl.pivot.OCLExpression;
@@ -1001,18 +1000,6 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseElement(navigationCallExp);
 				if (result == null) result = caseNameable(navigationCallExp);
 				if (result == null) result = caseVisitable(navigationCallExp);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PivotPackage.NESTED_COMPLETE_PACKAGE:
-			{
-				NestedCompletePackage nestedCompletePackage = (NestedCompletePackage)theEObject;
-				T result = caseNestedCompletePackage(nestedCompletePackage);
-				if (result == null) result = caseCompletePackage(nestedCompletePackage);
-				if (result == null) result = caseNamedElement(nestedCompletePackage);
-				if (result == null) result = caseElement(nestedCompletePackage);
-				if (result == null) result = caseNameable(nestedCompletePackage);
-				if (result == null) result = caseVisitable(nestedCompletePackage);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -3620,22 +3607,6 @@ public class PivotSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNavigationCallExp(NavigationCallExp object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Nested Complete Package</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Nested Complete Package</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseNestedCompletePackage(NestedCompletePackage object)
-	{
 		return null;
 	}
 

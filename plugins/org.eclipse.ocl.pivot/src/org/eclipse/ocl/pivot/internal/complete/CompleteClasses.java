@@ -238,9 +238,6 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 	}
 	
 	protected void doRefreshPartialClass(@NonNull org.eclipse.ocl.pivot.Class partialClass) {
-		if (!getCompletePackage().hasNestedClasses()) {
-			return;
-		}
 		Map<String, CompleteClassInternal> name2completeClass2 = name2completeClass;
 		assert name2completeClass2 != null;
 		CompleteModelInternal completeModel = getCompleteModel();

@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.pivot.CompletePackage;
-import org.eclipse.ocl.pivot.NestedCompletePackage;
 import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.internal.impl.CompletePackageImpl;
@@ -45,7 +44,7 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 	/**
 	 * Map of (nested) package-name to package server.
 	 */
-	private Map<String, NestedCompletePackage> name2nestedCompletePackage = null;
+	private Map<String, CompletePackage> name2nestedCompletePackage = null;
 	
 	/**
 	 * Lazily created map of nested class-name to its inheritance.
@@ -100,7 +99,7 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 		}
 	} */
 
-	void didAddNestedCompletePackage(@NonNull NestedCompletePackage nestedCompletePackage) {
+	void didAddNestedCompletePackage(@NonNull CompletePackage nestedCompletePackage) {
 		assert name2nestedCompletePackage != null;
 		String name = nestedCompletePackage.getName();
 		if (name != null) {
@@ -120,7 +119,7 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 		}
 	} */
 	
-	void didRemoveNestedCompletePackage(@NonNull NestedCompletePackage nestedCompletePackage) {
+	void didRemoveNestedCompletePackage(@NonNull CompletePackage nestedCompletePackage) {
 		assert name2nestedCompletePackage != null;
 		String name = nestedCompletePackage.getName();
 		if (name != null) {

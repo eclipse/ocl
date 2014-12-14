@@ -26,6 +26,8 @@ import org.eclipse.jdt.annotation.Nullable;
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.CompletePackage#getOwnedCompleteClasses <em>Owned Complete Classes</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.CompletePackage#getOwnedCompletePackages <em>Owned Complete Packages</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.CompletePackage#getOwningCompleteModel <em>Owning Complete Model</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.CompletePackage#getOwningCompletePackage <em>Owning Complete Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.CompletePackage#getPartialPackages <em>Partial Packages</em>}</li>
  * </ul>
  * </p>
@@ -69,9 +71,36 @@ public interface CompletePackage extends NamedElement
 	 * @return the value of the '<em>Owned Complete Packages</em>' containment reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getCompletePackage_OwnedCompletePackages()
 	 * @see org.eclipse.ocl.pivot.NestedCompletePackage#getOwningCompletePackage
+	 * @generated NOT
+	 */
+	@NonNull List<CompletePackage> getOwnedCompletePackages();
+
+	/**
+	 * Returns the value of the '<em><b>Owning Complete Model</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.CompleteModel#getOwnedCompletePackages <em>Owned Complete Packages</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owning Complete Model</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owning Complete Model</em>' container reference.
+	 * @see #setOwningCompleteModel(CompleteModel)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getCompletePackage_OwningCompleteModel()
+	 * @see org.eclipse.ocl.pivot.CompleteModel#getOwnedCompletePackages
 	 * @generated
 	 */
-	@NonNull List<NestedCompletePackage> getOwnedCompletePackages();
+	CompleteModel getOwningCompleteModel();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.CompletePackage#getOwningCompleteModel <em>Owning Complete Model</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Complete Model</em>' container reference.
+	 * @see #getOwningCompleteModel()
+	 * @generated
+	 */
+	void setOwningCompleteModel(CompleteModel value);
 
 	/**
 	 * Returns the value of the '<em><b>Partial Packages</b></em>' reference list.
@@ -124,6 +153,16 @@ public interface CompletePackage extends NamedElement
 	
 	@NonNull Iterable<org.eclipse.ocl.pivot.Class> getAllClasses();
 	@Nullable CompletePackage getOwningCompletePackage();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.CompletePackage#getOwningCompletePackage <em>Owning Complete Package</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Complete Package</em>' container reference.
+	 * @see #getOwningCompletePackage()
+	 * @generated
+	 */
+	void setOwningCompletePackage(CompletePackage value);
 //	/*@NonNull*/ List<? extends DomainClass> getOwnedClasses();
 //	@NonNull PackageId getPackageId();
 } // CompletePackage

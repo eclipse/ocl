@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.ids.PackageId;
+import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
@@ -21,7 +22,7 @@ import org.eclipse.ocl.pivot.RootCompletePackage;
 import org.eclipse.ocl.pivot.internal.impl.CompleteModelImpl;
 import org.eclipse.ocl.pivot.manager.Orphanage;
 
-public class RootCompletePackages extends AbstractCompletePackages<RootCompletePackageInternal, RootCompletePackage>
+public class RootCompletePackages extends AbstractCompletePackages
 {
 	private static final Logger logger = Logger.getLogger(RootCompletePackages.class);
 
@@ -65,7 +66,7 @@ public class RootCompletePackages extends AbstractCompletePackages<RootCompleteP
 	}
 
 	@Override
-	protected void didAdd(@NonNull RootCompletePackageInternal rootCompletePackage) {
+	protected void didAdd(@NonNull CompletePackage rootCompletePackage) {
 		super.didAdd(rootCompletePackage);
 //		String nsURI = rootCompletePackage.getURI();			// FIXME complete/package/URI/name
 //		String sharedNsURI = getCompleteURI(nsURI);
@@ -75,7 +76,7 @@ public class RootCompletePackages extends AbstractCompletePackages<RootCompleteP
 	}
 
 	@Override
-	protected void didRemove(int index, RootCompletePackage rootCompletePackage) {
+	protected void didRemove(int index, CompletePackage rootCompletePackage) {
 		assert rootCompletePackage != null;
 		super.didRemove(index, rootCompletePackage);
 //		getCompleteModel().didRemoveCompletePackage(rootCompletePackage);
@@ -88,13 +89,13 @@ public class RootCompletePackages extends AbstractCompletePackages<RootCompleteP
 	}
 
 	@Override
-	public @NonNull RootCompletePackageInternal getOwnedCompletePackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage) {
+	public @NonNull CompletePackageInternal getOwnedCompletePackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage) {
 		//
 		//	Try to find package by packageURI
 		//
 		CompletePackageInternal completePackage = getCompleteModel().getCompleteURIs().getCompletePackage(pivotPackage);
 		if (completePackage != null) {
-			return (RootCompletePackageInternal) completePackage;
+			return completePackage;
 		}
 		//
 		//	Else generate an error for a name-less Package, fatally if also packageURI-less.
@@ -121,7 +122,7 @@ public class RootCompletePackages extends AbstractCompletePackages<RootCompleteP
 		//
 		//	Try to find package by name, provided there is no packageURI conflict
 		//
-		RootCompletePackageInternal rootCompletePackage = getOwnedCompletePackage(name);
+		CompletePackageInternal rootCompletePackage = getOwnedCompletePackage(name);
 		if (rootCompletePackage != null) {
 			String completeURI2 = rootCompletePackage.getURI();
 			if ((packageURI == null) || (completeURI2 == null) || packageURI.equals(completeURI2)) {

@@ -52,8 +52,8 @@ public interface CompleteModel extends NamedElement
 
 	/**
 	 * Returns the value of the '<em><b>Owned Complete Packages</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.pivot.RootCompletePackage}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.RootCompletePackage#getOwningCompleteModel <em>Owning Complete Model</em>}'.
+	 * The list contents are of type {@link org.eclipse.ocl.pivot.CompletePackage}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.CompletePackage#getOwningCompleteModel <em>Owning Complete Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Complete Packages</em>' containment reference list isn't clear,
@@ -62,10 +62,10 @@ public interface CompleteModel extends NamedElement
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Complete Packages</em>' containment reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getCompleteModel_OwnedCompletePackages()
-	 * @see org.eclipse.ocl.pivot.RootCompletePackage#getOwningCompleteModel
+	 * @see org.eclipse.ocl.pivot.CompletePackage#getOwningCompleteModel
 	 * @generated
 	 */
-	@NonNull List<RootCompletePackage> getOwnedCompletePackages();
+	@NonNull List<CompletePackage> getOwnedCompletePackages();
 
 	/**
 	 * Returns the value of the '<em><b>Partial Models</b></em>' reference list.

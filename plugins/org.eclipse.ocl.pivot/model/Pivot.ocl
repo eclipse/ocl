@@ -35,7 +35,7 @@ oclContents()
 --p.oclIsKindOf(self.oclType())
 
 context Type
-def: flattenedType() : Type = self
+def: flattenedType() : Type[?] = self
 
 --context CollectionType
 --def: flattenedType() : Type = elementType.flattenedType()

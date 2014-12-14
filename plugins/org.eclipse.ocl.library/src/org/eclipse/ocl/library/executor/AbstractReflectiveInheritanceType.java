@@ -36,7 +36,7 @@ public abstract class AbstractReflectiveInheritanceType extends ReflectiveInheri
 	}
 	
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class flattenedType() {
+	public org.eclipse.ocl.pivot.Class flattenedType() {
 		return this;
 	}
 

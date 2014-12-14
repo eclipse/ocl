@@ -83,7 +83,6 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.NavigationCallExp;
-import org.eclipse.ocl.pivot.NestedCompletePackage;
 import org.eclipse.ocl.pivot.NullLiteralExp;
 import org.eclipse.ocl.pivot.NumericLiteralExp;
 import org.eclipse.ocl.pivot.OCLExpression;
@@ -992,13 +991,6 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EClass navigationCallExpEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass nestedCompletePackageEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -3435,17 +3427,6 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EReference getRootCompletePackage_OwningCompleteModel()
-	{
-		return (EReference)rootCompletePackageEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getSelfType()
 	{
 		return selfTypeEClass;
@@ -5481,9 +5462,31 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EReference getCompletePackage_PartialPackages()
+	public EReference getCompletePackage_OwningCompleteModel()
 	{
 		return (EReference)completePackageEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCompletePackage_OwningCompletePackage()
+	{
+		return (EReference)completePackageEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCompletePackage_PartialPackages()
+	{
+		return (EReference)completePackageEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -5989,28 +5992,6 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EClass getNestedCompletePackage()
-	{
-		return nestedCompletePackageEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getNestedCompletePackage_OwningCompletePackage()
-	{
-		return (EReference)nestedCompletePackageEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getNavigationCallExp_NavigationSource() {
 		return (EReference)navigationCallExpEClass.getEStructuralFeatures().get(0);
 	}
@@ -6316,6 +6297,8 @@ public class PivotPackageImpl
 		completePackageEClass = createEClass(COMPLETE_PACKAGE);
 		createEReference(completePackageEClass, COMPLETE_PACKAGE__OWNED_COMPLETE_CLASSES);
 		createEReference(completePackageEClass, COMPLETE_PACKAGE__OWNED_COMPLETE_PACKAGES);
+		createEReference(completePackageEClass, COMPLETE_PACKAGE__OWNING_COMPLETE_MODEL);
+		createEReference(completePackageEClass, COMPLETE_PACKAGE__OWNING_COMPLETE_PACKAGE);
 		createEReference(completePackageEClass, COMPLETE_PACKAGE__PARTIAL_PACKAGES);
 		createEOperation(completePackageEClass, COMPLETE_PACKAGE___GET_OWNED_COMPLETE_CLASS__STRING);
 
@@ -6530,9 +6513,6 @@ public class PivotPackageImpl
 		createEReference(navigationCallExpEClass, NAVIGATION_CALL_EXP__NAVIGATION_SOURCE);
 		createEReference(navigationCallExpEClass, NAVIGATION_CALL_EXP__QUALIFIER);
 
-		nestedCompletePackageEClass = createEClass(NESTED_COMPLETE_PACKAGE);
-		createEReference(nestedCompletePackageEClass, NESTED_COMPLETE_PACKAGE__OWNING_COMPLETE_PACKAGE);
-
 		nullLiteralExpEClass = createEClass(NULL_LITERAL_EXP);
 
 		numericLiteralExpEClass = createEClass(NUMERIC_LITERAL_EXP);
@@ -6655,7 +6635,6 @@ public class PivotPackageImpl
 		createEReference(regionEClass, REGION__TRANSITION);
 
 		rootCompletePackageEClass = createEClass(ROOT_COMPLETE_PACKAGE);
-		createEReference(rootCompletePackageEClass, ROOT_COMPLETE_PACKAGE__OWNING_COMPLETE_MODEL);
 
 		selfTypeEClass = createEClass(SELF_TYPE);
 		createEOperation(selfTypeEClass, SELF_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE_1);
@@ -6926,7 +6905,6 @@ public class PivotPackageImpl
 		namedElementEClass.getESuperTypes().add(this.getNameable());
 		namespaceEClass.getESuperTypes().add(this.getNamedElement());
 		navigationCallExpEClass.getESuperTypes().add(this.getFeatureCallExp());
-		nestedCompletePackageEClass.getESuperTypes().add(this.getCompletePackage());
 		nullLiteralExpEClass.getESuperTypes().add(this.getPrimitiveLiteralExp());
 		numericLiteralExpEClass.getESuperTypes().add(this.getPrimitiveLiteralExp());
 		oclExpressionEClass.getESuperTypes().add(this.getTypedElement());
@@ -7134,16 +7112,18 @@ public class PivotPackageImpl
 
 		initEClass(completeModelEClass, CompleteModel.class, "CompleteModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getCompleteModel_OrphanCompletePackage(), this.getOrphanCompletePackage(), null, "orphanCompletePackage", null, 0, 1, CompleteModel.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getCompleteModel_OwnedCompletePackages(), this.getRootCompletePackage(), this.getRootCompletePackage_OwningCompleteModel(), "ownedCompletePackages", null, 0, -1, CompleteModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getCompleteModel_OwnedCompletePackages(), this.getCompletePackage(), this.getCompletePackage_OwningCompleteModel(), "ownedCompletePackages", null, 0, -1, CompleteModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getCompleteModel_PartialModels(), this.getModel(), null, "partialModels", null, 0, -1, CompleteModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getCompleteModel_PrimitiveCompletePackage(), this.getPrimitiveCompletePackage(), null, "primitiveCompletePackage", null, 0, 1, CompleteModel.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		op = initEOperation(getCompleteModel__GetOwnedCompletePackage__String(), this.getCompletePackage(), "getOwnedCompletePackage", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, this.getString(), "name", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(completePackageEClass, CompletePackage.class, "CompletePackage", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(completePackageEClass, CompletePackage.class, "CompletePackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getCompletePackage_OwnedCompleteClasses(), this.getCompleteClass(), this.getCompleteClass_OwningCompletePackage(), "ownedCompleteClasses", null, 0, -1, CompletePackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getCompletePackage_OwnedCompletePackages(), this.getNestedCompletePackage(), this.getNestedCompletePackage_OwningCompletePackage(), "ownedCompletePackages", null, 0, -1, CompletePackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getCompletePackage_OwnedCompletePackages(), this.getCompletePackage(), this.getCompletePackage_OwningCompletePackage(), "ownedCompletePackages", null, 0, -1, CompletePackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getCompletePackage_OwningCompleteModel(), this.getCompleteModel(), this.getCompleteModel_OwnedCompletePackages(), "owningCompleteModel", null, 0, 1, CompletePackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getCompletePackage_OwningCompletePackage(), this.getCompletePackage(), this.getCompletePackage_OwnedCompletePackages(), "owningCompletePackage", null, 0, 1, CompletePackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getCompletePackage_PartialPackages(), this.getPackage(), null, "partialPackages", null, 0, -1, CompletePackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		op = initEOperation(getCompletePackage__GetOwnedCompleteClass__String(), this.getCompleteClass(), "getOwnedCompleteClass", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -7708,9 +7688,6 @@ public class PivotPackageImpl
 		initEReference(getNavigationCallExp_NavigationSource(), this.getProperty(), null, "navigationSource", null, 0, 1, NavigationCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getNavigationCallExp_Qualifier(), this.getOCLExpression(), null, "qualifier", null, 0, -1, NavigationCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(nestedCompletePackageEClass, NestedCompletePackage.class, "NestedCompletePackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getNestedCompletePackage_OwningCompletePackage(), this.getCompletePackage(), this.getCompletePackage_OwnedCompletePackages(), "owningCompletePackage", null, 0, 1, NestedCompletePackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(nullLiteralExpEClass, NullLiteralExp.class, "NullLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(numericLiteralExpEClass, NumericLiteralExp.class, "NumericLiteralExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -7910,7 +7887,6 @@ public class PivotPackageImpl
 		initEReference(getRegion_Transition(), this.getTransition(), this.getTransition_Container(), "transition", null, 0, -1, Region.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(rootCompletePackageEClass, RootCompletePackage.class, "RootCompletePackage", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getRootCompletePackage_OwningCompleteModel(), this.getCompleteModel(), this.getCompleteModel_OwnedCompletePackages(), "owningCompleteModel", null, 0, 1, RootCompletePackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(selfTypeEClass, SelfType.class, "SelfType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -8013,7 +7989,7 @@ public class PivotPackageImpl
 		initEClass(typeEClass, Type.class, "Type", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getType_ExtendedBys(), this.getTypeExtension(), this.getTypeExtension_Type(), "extendedBys", null, 0, -1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEOperation(getType__FlattenedType(), this.getType(), "flattenedType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		initEOperation(getType__FlattenedType(), this.getType(), "flattenedType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEOperation(getType__IsClass(), this.getClass_(), "isClass", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 

@@ -27,9 +27,7 @@ public interface CompletePackageInternal extends CompletePackage
 	CompleteClassInternal getOwnedCompleteClass(String name);
 	@Override
 	@Nullable CompletePackageInternal getOwnedCompletePackage(@Nullable String name);
-//	@Nullable CompletePackageInternal getOwnedCompletePackage(@NonNull DomainPackage partialPackage);
 	@Override
 	@NonNull PartialPackages getPartialPackages();
-	boolean hasNestedClasses();
 	void init(String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId);
-} // CompletePackage
+}

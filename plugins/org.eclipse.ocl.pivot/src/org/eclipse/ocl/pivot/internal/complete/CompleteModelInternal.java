@@ -52,8 +52,8 @@ public interface CompleteModelInternal extends CompleteModel
 	@NonNull MetaModelManager getMetaModelManager();
 	@Override
 	@NonNull OrphanCompletePackageInternal getOrphanCompletePackage();
-	@Override
-	@NonNull RootCompletePackages getOwnedCompletePackages();
+//	@Override
+//	@NonNull RootCompletePackages getOwnedCompletePackages();
 	@Override
 	@NonNull PartialModels getPartialModels();
 	@Override

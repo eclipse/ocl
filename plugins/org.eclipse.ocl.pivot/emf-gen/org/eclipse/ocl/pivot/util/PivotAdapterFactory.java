@@ -74,7 +74,6 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.NavigationCallExp;
-import org.eclipse.ocl.pivot.NestedCompletePackage;
 import org.eclipse.ocl.pivot.NullLiteralExp;
 import org.eclipse.ocl.pivot.NumericLiteralExp;
 import org.eclipse.ocl.pivot.OCLExpression;
@@ -504,11 +503,6 @@ public class PivotAdapterFactory
 			public Adapter caseNavigationCallExp(NavigationCallExp object)
 			{
 				return createNavigationCallExpAdapter();
-			}
-			@Override
-			public Adapter caseNestedCompletePackage(NestedCompletePackage object)
-			{
-				return createNestedCompletePackageAdapter();
 			}
 			@Override
 			public Adapter caseNullLiteralExp(NullLiteralExp object)
@@ -2537,21 +2531,6 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createNavigationCallExpAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.NestedCompletePackage <em>Nested Complete Package</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.pivot.NestedCompletePackage
-	 * @generated
-	 */
-	public Adapter createNestedCompletePackageAdapter()
-	{
 		return null;
 	}
 

@@ -80,7 +80,6 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.NavigationCallExp;
-import org.eclipse.ocl.pivot.NestedCompletePackage;
 import org.eclipse.ocl.pivot.NullLiteralExp;
 import org.eclipse.ocl.pivot.NumericLiteralExp;
 import org.eclipse.ocl.pivot.OCLExpression;
@@ -831,8 +830,6 @@ public class PivotValidator
 				return validateNamespace((Namespace)value, diagnostics, context);
 			case PivotPackage.NAVIGATION_CALL_EXP:
 				return validateNavigationCallExp((NavigationCallExp)value, diagnostics, context);
-			case PivotPackage.NESTED_COMPLETE_PACKAGE:
-				return validateNestedCompletePackage((NestedCompletePackage)value, diagnostics, context);
 			case PivotPackage.NULL_LITERAL_EXP:
 				return validateNullLiteralExp((NullLiteralExp)value, diagnostics, context);
 			case PivotPackage.NUMERIC_LITERAL_EXP:
@@ -1508,16 +1505,6 @@ public class PivotValidator
 			NavigationCallExp navigationCallExp, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(navigationCallExp, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateNestedCompletePackage(NestedCompletePackage nestedCompletePackage, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(nestedCompletePackage, diagnostics, context);
 	}
 
 	/**

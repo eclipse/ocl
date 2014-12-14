@@ -43,7 +43,6 @@ import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.Property;
-import org.eclipse.ocl.pivot.RootCompletePackage;
 import org.eclipse.ocl.pivot.State;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateSignature;
@@ -710,7 +709,7 @@ public class EnvironmentView
 			}
 		}
 		else {
-			for (RootCompletePackage rootCompletePackage : completeModel.getOwnedCompletePackages()) {
+			for (CompletePackage rootCompletePackage : completeModel.getOwnedCompletePackages()) {
 				if (rootCompletePackage != null) {
 					addNamedElement(rootCompletePackage);
 				}

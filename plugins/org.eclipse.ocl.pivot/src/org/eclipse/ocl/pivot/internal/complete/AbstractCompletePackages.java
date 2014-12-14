@@ -24,7 +24,7 @@ import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.internal.impl.NamedElementImpl;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
 
-public abstract class AbstractCompletePackages<Tinternal extends CompletePackageInternal, T extends CompletePackage> extends EObjectContainmentWithInverseEList<T>
+public abstract class AbstractCompletePackages extends EObjectContainmentWithInverseEList<CompletePackage>
 {
 	public static final @NonNull TracingOption COMPLETE_PACKAGES = new TracingOption(PivotPlugin.PLUGIN_ID, "completePackages");
 //	static { COMPLETE_PACKAGES.setState(true); }
@@ -33,7 +33,7 @@ public abstract class AbstractCompletePackages<Tinternal extends CompletePackage
 	/**
 	 * Map of (nested) package-name to package server.
 	 */
-	private final @NonNull Map<String, Tinternal> name2completePackage = new HashMap<String, Tinternal>();
+	private final @NonNull Map<String, CompletePackageInternal> name2completePackage = new HashMap<String, CompletePackageInternal>();
 
 	public AbstractCompletePackages(Class<?> dataClass, @NonNull NamedElementImpl owner, int featureID, int inverseFeatureID) {
 		super(dataClass, owner, featureID, inverseFeatureID);
@@ -43,35 +43,34 @@ public abstract class AbstractCompletePackages<Tinternal extends CompletePackage
 	}
 	
 	@Override
-	public void addUnique(T completePackage) {
+	public void addUnique(CompletePackage completePackage) {
 		assert completePackage != null;
 		super.addUnique(completePackage);
-		@SuppressWarnings("unchecked")Tinternal castCompletePackage = (Tinternal) completePackage;
-		didAdd(castCompletePackage);
+		didAdd(completePackage);
 	}
 
 	@Override
-	public void addUnique(int index, T completePackage) {
+	public void addUnique(int index, CompletePackage completePackage) {
 		assert completePackage != null;
 		super.addUnique(index, completePackage);
-		@SuppressWarnings("unchecked")Tinternal castCompletePackage = (Tinternal) completePackage;
-		didAdd(castCompletePackage);
+		didAdd(completePackage);
 	}
 
-	public abstract @NonNull T createCompletePackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage);
+	public abstract @NonNull CompletePackageInternal createCompletePackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage);
 
-	protected void didAdd(@NonNull Tinternal completePackage) {
-		String name = completePackage.getName();
+	protected void didAdd(@NonNull CompletePackage completePackage) {
+		CompletePackageInternal completePackageInternal = (CompletePackageInternal)completePackage;
+		String name = completePackageInternal.getName();
 		if (name != null) {
 			if (!name2completePackage.containsKey(name)) {
-				CompletePackage oldCompletePackage = name2completePackage.put(name, completePackage);		// New name
+				CompletePackage oldCompletePackage = name2completePackage.put(name, completePackageInternal);		// New name
 				assert oldCompletePackage == null;
 			}
 			else {
 				name2completePackage.put(name, null);														// Ambiguous name
 			}
 		}
-		getCompleteModel().didAddCompletePackage(completePackage);
+		getCompleteModel().didAddCompletePackage(completePackageInternal);
 	}
 
 	public void didAddPackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage) {
@@ -98,12 +97,12 @@ public abstract class AbstractCompletePackages<Tinternal extends CompletePackage
 	}
 
 	@Override
-	protected void didRemove(int index, T completePackage) {
+	protected void didRemove(int index, CompletePackage completePackage) {
 		assert completePackage != null;
-		super.didRemove(index, completePackage);
-		name2completePackage.remove(completePackage.getName());
-		@SuppressWarnings("unchecked")Tinternal castCompletePackage = (Tinternal) completePackage;
-		getCompleteModel().didRemoveCompletePackage(castCompletePackage);
+		CompletePackageInternal completePackageInternal = (CompletePackageInternal)completePackage;
+		super.didRemove(index, completePackageInternal);
+		name2completePackage.remove(completePackageInternal.getName());
+		getCompleteModel().didRemoveCompletePackage(completePackageInternal);
 	}
 
 	public void didRemovePackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
@@ -118,23 +117,24 @@ public abstract class AbstractCompletePackages<Tinternal extends CompletePackage
 	}
 
 	public synchronized void dispose() {
-		Collection<Tinternal> savedCompletePackages = name2completePackage.values();
+		Collection<CompletePackageInternal> savedCompletePackages = name2completePackage.values();
 		name2completePackage.clear();
-		for (Tinternal completePackage : savedCompletePackages) {
-			((CompletePackageInternal)completePackage).dispose();
+		for (CompletePackageInternal completePackage : savedCompletePackages) {
+			completePackage.dispose();
 		}
 	}
 
 	protected abstract CompleteModelInternal getCompleteModel();
 
-	public @NonNull Tinternal getCompletePackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage) {
-		Tinternal completePackage = null;
+	public @NonNull CompletePackageInternal getCompletePackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage) {
+		CompletePackageInternal completePackage = null;
 		if (pivotPackage instanceof CompletePackageInternal) {
-			((CompletePackage)pivotPackage).assertSamePackage(pivotPackage);
-			completePackage = (Tinternal)pivotPackage;
+			((CompletePackageInternal)pivotPackage).assertSamePackage(pivotPackage);
+			completePackage = (CompletePackageInternal)pivotPackage;
 		}
 		else {
-			completePackage = (Tinternal)getCompleteModel().getCompleteURIs().getCompletePackage(pivotPackage);
+			CompleteURIs completeURIs = getCompleteModel().getCompleteURIs();
+			completePackage = completeURIs.getCompletePackage(pivotPackage);
 			if (completePackage == null) {
 				org.eclipse.ocl.pivot.Package pivotPackageParent = pivotPackage.getOwningPackage();
 				if (pivotPackageParent == null) {
@@ -145,7 +145,7 @@ public abstract class AbstractCompletePackages<Tinternal extends CompletePackage
 				}
 				else {
 					CompletePackageInternal completeParentPackage = getCompletePackage(pivotPackageParent);
-					@SuppressWarnings("unchecked")Tinternal completeChildPackage = (Tinternal)completeParentPackage.getOwnedCompletePackage(pivotPackage.getName());
+					CompletePackageInternal completeChildPackage = completeParentPackage.getOwnedCompletePackage(pivotPackage.getName());
 					assert completeChildPackage != null;
 					return completeChildPackage;
 //					CompletePackageParent completePackageParent;
@@ -162,11 +162,11 @@ public abstract class AbstractCompletePackages<Tinternal extends CompletePackage
 		return completePackage;
 	}
 
-	public @Nullable Tinternal getOwnedCompletePackage(@Nullable String name) {
+	public @Nullable CompletePackageInternal getOwnedCompletePackage(@Nullable String name) {
 		return name2completePackage.get(name);
 	}
 	
-	protected abstract @NonNull Tinternal getOwnedCompletePackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage);
+	protected abstract @NonNull CompletePackageInternal getOwnedCompletePackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage);
 
 	protected abstract @NonNull Iterable<org.eclipse.ocl.pivot.Package> getPartialPackages();
 

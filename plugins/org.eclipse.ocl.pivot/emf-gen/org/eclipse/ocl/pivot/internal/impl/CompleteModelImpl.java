@@ -40,7 +40,6 @@ import org.eclipse.ocl.pivot.OrphanCompletePackage;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PrimitiveCompletePackage;
-import org.eclipse.ocl.pivot.RootCompletePackage;
 import org.eclipse.ocl.pivot.TemplateBinding;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateParameterSubstitution;
@@ -214,7 +213,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 				return;
 			case PivotPackage.COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES:
 				getOwnedCompletePackages().clear();
-				getOwnedCompletePackages().addAll((Collection<? extends RootCompletePackage>)newValue);
+				getOwnedCompletePackages().addAll((Collection<? extends CompletePackage>)newValue);
 				return;
 			case PivotPackage.COMPLETE_MODEL__PARTIAL_MODELS:
 				getPartialModels().clear();
@@ -563,11 +562,11 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 		return completeEnvironment.getLambdaType(typeName, contextType, parameterTypes, resultType, bindings);
 	}
 
-	public @Nullable RootCompletePackage getMemberPackage(@NonNull String memberPackageName) {
+	public @Nullable CompletePackage getMemberPackage(@NonNull String memberPackageName) {
 		return ownedCompletePackages.getOwnedCompletePackage(memberPackageName);
 	}
 
-	public @NonNull Iterable<? extends RootCompletePackage> getMemberPackages() {
+	public @NonNull Iterable<? extends CompletePackage> getMemberPackages() {
 		return ownedCompletePackages;
 	}
 
@@ -604,7 +603,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	 * @generated NOT
 	 */
 	@Override
-	public @NonNull RootCompletePackages getOwnedCompletePackages() {
+	public @NonNull List<CompletePackage> getOwnedCompletePackages() {
 		return ownedCompletePackages;
 	}
 

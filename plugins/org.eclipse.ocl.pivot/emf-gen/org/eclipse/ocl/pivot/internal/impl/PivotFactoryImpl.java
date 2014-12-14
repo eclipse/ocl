@@ -37,6 +37,7 @@ import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.CompleteClass;
 import org.eclipse.ocl.pivot.CompleteModel;
+import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.ConnectionPointReference;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ConstructorExp;
@@ -69,7 +70,6 @@ import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.MessageExp;
 import org.eclipse.ocl.pivot.MessageType;
 import org.eclipse.ocl.pivot.Model;
-import org.eclipse.ocl.pivot.NestedCompletePackage;
 import org.eclipse.ocl.pivot.NullLiteralExp;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
@@ -187,6 +187,7 @@ public class PivotFactoryImpl
 			case PivotPackage.COMMENT: return createComment();
 			case PivotPackage.COMPLETE_CLASS: return createCompleteClass();
 			case PivotPackage.COMPLETE_MODEL: return createCompleteModel();
+			case PivotPackage.COMPLETE_PACKAGE: return createCompletePackage();
 			case PivotPackage.CONNECTION_POINT_REFERENCE: return createConnectionPointReference();
 			case PivotPackage.CONSTRAINT: return createConstraint();
 			case PivotPackage.CONSTRUCTOR_EXP: return createConstructorExp();
@@ -219,7 +220,6 @@ public class PivotFactoryImpl
 			case PivotPackage.MESSAGE_EXP: return createMessageExp();
 			case PivotPackage.MESSAGE_TYPE: return createMessageType();
 			case PivotPackage.MODEL: return createModel();
-			case PivotPackage.NESTED_COMPLETE_PACKAGE: return createNestedCompletePackage();
 			case PivotPackage.NULL_LITERAL_EXP: return createNullLiteralExp();
 			case PivotPackage.OPERATION: return createOperation();
 			case PivotPackage.OPERATION_CALL_EXP: return createOperationCallExp();
@@ -573,6 +573,18 @@ public class PivotFactoryImpl
 	{
 		CompleteModelImpl completeModel = new CompleteModelImpl();
 		return completeModel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CompletePackage createCompletePackage()
+	{
+		CompletePackageImpl completePackage = new CompletePackageImpl();
+		return completePackage;
 	}
 
 	/**
@@ -1088,18 +1100,6 @@ public class PivotFactoryImpl
 	{
 		ModelImpl model = new ModelImpl();
 		return model;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NestedCompletePackage createNestedCompletePackage()
-	{
-		NestedCompletePackageImpl nestedCompletePackage = new NestedCompletePackageImpl();
-		return nestedCompletePackage;
 	}
 
 	/**
