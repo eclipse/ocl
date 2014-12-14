@@ -326,6 +326,8 @@ public class ASSaver
 			assert moniker.equals(newMoniker) : newMoniker + " is not equal to " + moniker;
 		} */
 		locateSpecializations(Collections.singletonList(resolvedType));
-		return (T)resolvedType;
+		@SuppressWarnings("unchecked")
+		T castType = (T)resolvedType;
+		return castType;
 	}
 }

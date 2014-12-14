@@ -12,7 +12,6 @@ package org.eclipse.ocl.pivot.attributes;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.scoping.EnvironmentView;
@@ -24,7 +23,7 @@ public class TemplateParameterAttribution extends AbstractAttribution
 
 	@Override
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
-		TemplateParameter targetClass = (TemplateParameter) target;
+//		TemplateParameter targetClass = (TemplateParameter) target;
 		PivotStandardLibrary standardLibrary = environmentView.getStandardLibrary();
 		org.eclipse.ocl.pivot.Class type = standardLibrary.getOclAnyType(); // WIP use lowerbound
 		environmentView.addAllOperations(type, null);

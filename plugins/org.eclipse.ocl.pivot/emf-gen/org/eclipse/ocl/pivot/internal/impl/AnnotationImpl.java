@@ -102,8 +102,9 @@ public class AnnotationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("null")
 	@Override
-	public List<Element> getOwnedContents()
+	public @NonNull List<Element> getOwnedContents()
 	{
 		if (ownedContents == null)
 		{

@@ -18,7 +18,6 @@ import org.eclipse.ocl.pivot.PivotConstants;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PrimitiveCompletePackage;
-import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.internal.complete.CompleteClassInternal;
 import org.eclipse.ocl.pivot.util.Visitor;
 
@@ -64,7 +63,7 @@ public class PrimitiveCompletePackageImpl extends RootCompletePackageImpl implem
 			completeClass = (CompleteClassInternal)PivotFactory.eINSTANCE.createCompleteClass();
 			completeClass.setName(name);
 			getOwnedCompleteClasses().add(completeClass);
-			completeClass.getPartialClasses().add((PrimitiveType)primitiveType);
+			completeClass.getPartialClasses().add(primitiveType);
 //			didAddClass(completeClass, primitiveType);
 		}
 		return completeClass;

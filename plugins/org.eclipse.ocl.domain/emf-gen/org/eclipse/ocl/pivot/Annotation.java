@@ -12,6 +12,8 @@ package org.eclipse.ocl.pivot;
 
 import java.util.List;
 
+import org.eclipse.jdt.annotation.NonNull;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Annotation</b></em>'.
@@ -45,7 +47,7 @@ public interface Annotation
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getAnnotation_OwnedContents()
 	 * @generated
 	 */
-	List<Element> getOwnedContents();
+	@NonNull List<Element> getOwnedContents();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Details</b></em>' containment reference list.
