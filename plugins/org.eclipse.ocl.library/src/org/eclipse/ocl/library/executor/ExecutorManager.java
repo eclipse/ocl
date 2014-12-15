@@ -50,7 +50,7 @@ public abstract class ExecutorManager implements DomainEvaluator
 	
 	public ExecutorManager(@NonNull CompleteEnvironment environment) {
 		this.environment = environment;
-		this.standardLibrary = environment.getStandardLibrary();
+		this.standardLibrary = environment.getOwnedStandardLibrary();
 	}
 	
 	/**

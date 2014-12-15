@@ -57,6 +57,7 @@ public interface Visitor<R>
 	@Nullable R visitCollectionType(@NonNull org.eclipse.ocl.pivot.CollectionType object);
 	@Nullable R visitComment(@NonNull org.eclipse.ocl.pivot.Comment object);
 	@Nullable R visitCompleteClass(@NonNull org.eclipse.ocl.pivot.CompleteClass object);
+	@Nullable R visitCompleteEnvironment(@NonNull org.eclipse.ocl.pivot.CompleteEnvironment object);
 	@Nullable R visitCompleteModel(@NonNull org.eclipse.ocl.pivot.CompleteModel object);
 	@Nullable R visitCompletePackage(@NonNull org.eclipse.ocl.pivot.CompletePackage object);
 	@Nullable R visitConnectionPointReference(@NonNull org.eclipse.ocl.pivot.ConnectionPointReference object);

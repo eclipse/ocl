@@ -142,6 +142,11 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 	}
 
 	@Override
+	public @Nullable R visitCompleteEnvironment(@NonNull org.eclipse.ocl.pivot.CompleteEnvironment object) {
+		return delegate.visitCompleteEnvironment(object);
+	}
+
+	@Override
 	public @Nullable R visitCompleteModel(@NonNull org.eclipse.ocl.pivot.CompleteModel object) {
 		return delegate.visitCompleteModel(object);
 	}

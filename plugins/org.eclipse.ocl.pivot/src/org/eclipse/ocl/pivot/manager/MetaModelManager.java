@@ -43,8 +43,6 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.EMOFResourceFactoryImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.common.utils.EcoreUtils;
-import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.domain.DomainConstants;
 import org.eclipse.ocl.domain.compatibility.EMF_2_9;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
@@ -61,6 +59,8 @@ import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.impl.CollectionTypeParametersImpl;
+import org.eclipse.ocl.examples.common.utils.EcoreUtils;
+import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.CollectionType;
@@ -120,7 +120,6 @@ import org.eclipse.ocl.pivot.context.PropertyContext;
 import org.eclipse.ocl.pivot.ecore.AS2Ecore;
 import org.eclipse.ocl.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.complete.CompleteClassInternal;
-import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentImpl;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceImpl;
 import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
@@ -360,9 +359,9 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 	 * of meta-models, and {@link ProjectMap#getAdapter(ResourceSet)} to assist in locating resources.
 	 */
 	public MetaModelManager(@NonNull ResourceSet asResourceSet) {
-		completeEnvironment = new CompleteEnvironmentImpl(this);
-		standardLibrary = completeEnvironment.getStandardLibrary();
-		completeModel = completeEnvironment.getCompleteModel();
+		completeEnvironment = ((CompleteEnvironmentInternal)PivotFactory.eINSTANCE.createCompleteEnvironment()).init(this);
+		standardLibrary = completeEnvironment.getOwnedStandardLibrary();
+		completeModel = completeEnvironment.getOwnedCompleteModel();
 		if (asResourceSet.getResourceFactoryRegistry().getContentTypeToFactoryMap().get(ASResource.CONTENT_TYPE) == null) {
 			initializeASResourceSet(asResourceSet);
 		}

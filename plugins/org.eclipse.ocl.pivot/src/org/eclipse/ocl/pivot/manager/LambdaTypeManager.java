@@ -21,14 +21,14 @@ import org.eclipse.ocl.domain.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentImpl;
+import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
 
 /**
  * LambdaTypeManager encapsulates the knowledge about known lambda types.
  */
 public class LambdaTypeManager
 {
-	protected final @NonNull CompleteEnvironmentImpl allCompleteClasses;
+	protected final @NonNull CompleteEnvironmentInternal completeEnvironment;
 	protected final @NonNull org.eclipse.ocl.pivot.Class oclLambdaType;
 	
 	/**
@@ -38,9 +38,9 @@ public class LambdaTypeManager
 // FIXME Why does a List map give a moniker test failure
 //	private final @NonNull Map<Type, Map<List<? extends Type>, LambdaType>> lambdaTypes = new HashMap<Type, Map<List<? extends Type>, LambdaType>>();
 	
-	public LambdaTypeManager(@NonNull CompleteEnvironmentImpl allCompleteClasses) {
-		this.allCompleteClasses = allCompleteClasses;
-		this.oclLambdaType = allCompleteClasses.getStandardLibrary().getOclLambdaType();
+	public LambdaTypeManager(@NonNull CompleteEnvironmentInternal allCompleteClasses) {
+		this.completeEnvironment = allCompleteClasses;
+		this.oclLambdaType = allCompleteClasses.getOwnedStandardLibrary().getOclLambdaType();
 	}
 
 	public void dispose() {
@@ -53,14 +53,14 @@ public class LambdaTypeManager
 			return getLambdaType(typeName, contextType, parameterTypes, resultType);
 		}
 		else {
-			Type specializedContextType = allCompleteClasses.getSpecializedType(contextType, bindings);
+			Type specializedContextType = completeEnvironment.getSpecializedType(contextType, bindings);
 			List<Type> specializedParameterTypes = new ArrayList<Type>();
 			for (Type parameterType : parameterTypes) {
 				if (parameterType != null) {
-					specializedParameterTypes.add(allCompleteClasses.getSpecializedType(parameterType, bindings));
+					specializedParameterTypes.add(completeEnvironment.getSpecializedType(parameterType, bindings));
 				}
 			}
-			Type specializedResultType = allCompleteClasses.getSpecializedType(resultType, bindings);
+			Type specializedResultType = completeEnvironment.getSpecializedType(resultType, bindings);
 			return getLambdaType(typeName, specializedContextType, specializedParameterTypes, specializedResultType);
 		}
 	}
@@ -103,7 +103,7 @@ public class LambdaTypeManager
 		lambdaType.getParameterType().addAll(parameterTypes);
 		lambdaType.setResultType(resultType);
 		lambdaType.getSuperClasses().add(oclLambdaType);
-		allCompleteClasses.addOrphanClass(lambdaType);
+		completeEnvironment.addOrphanClass(lambdaType);
 		lambdasList.add(lambdaType);
 		return lambdaType;
 	}

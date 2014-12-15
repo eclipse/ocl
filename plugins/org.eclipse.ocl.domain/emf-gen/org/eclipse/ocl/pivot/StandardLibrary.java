@@ -22,12 +22,45 @@ import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
  * A representation of the model object '<em><b>Standard Library</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.eclipse.ocl.pivot.StandardLibrary#getOwningCompleteEnvironment <em>Owning Complete Environment</em>}</li>
+ * </ul>
+ * </p>
  *
- * @see org.eclipse.ocl.pivot.PivotPackage#getStandardLibrary()
+ * @see org.eclipse.ocl.pivot.PivotPackage#getOwnedStandardLibrary()
  * @generated
  */
 public interface StandardLibrary extends Element
 {
+	/**
+	 * Returns the value of the '<em><b>Owning Complete Environment</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.CompleteEnvironment#getOwnedStandardLibrary <em>Owned Standard Library</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owning Complete Environment</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owning Complete Environment</em>' container reference.
+	 * @see #setOwningCompleteEnvironment(CompleteEnvironment)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getStandardLibrary_OwningCompleteEnvironment()
+	 * @see org.eclipse.ocl.pivot.CompleteEnvironment#getOwnedStandardLibrary
+	 * @generated
+	 */
+	CompleteEnvironment getOwningCompleteEnvironment();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.StandardLibrary#getOwningCompleteEnvironment <em>Owning Complete Environment</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Complete Environment</em>' container reference.
+	 * @see #getOwningCompleteEnvironment()
+	 * @generated
+	 */
+	void setOwningCompleteEnvironment(CompleteEnvironment value);
+
 	@NonNull Iterable<? extends CompletePackage> getAllCompletePackages();
 
     /**

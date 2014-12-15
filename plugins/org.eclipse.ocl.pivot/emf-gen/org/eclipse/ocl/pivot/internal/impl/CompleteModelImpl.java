@@ -15,10 +15,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -30,6 +33,7 @@ import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.impl.CollectionTypeParametersImpl;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Comment;
+import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Element;
@@ -71,6 +75,7 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.internal.impl.CompleteModelImpl#getOrphanCompletePackage <em>Orphan Complete Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.impl.CompleteModelImpl#getOwnedCompletePackages <em>Owned Complete Packages</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.impl.CompleteModelImpl#getOwningCompleteEnvironment <em>Owning Complete Environment</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.impl.CompleteModelImpl#getPartialModels <em>Partial Models</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.impl.CompleteModelImpl#getPrimitiveCompletePackage <em>Primitive Complete Package</em>}</li>
  * </ul>
@@ -120,6 +125,10 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
 			case PivotPackage.COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedCompletePackages()).basicAdd(otherEnd, msgs);
+			case PivotPackage.COMPLETE_MODEL__OWNING_COMPLETE_ENVIRONMENT:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwningCompleteEnvironment((CompleteEnvironment)otherEnd, msgs);
 		}
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -144,8 +153,26 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES:
 				return ((InternalEList<?>)getOwnedCompletePackages()).basicRemove(otherEnd, msgs);
+			case PivotPackage.COMPLETE_MODEL__OWNING_COMPLETE_ENVIRONMENT:
+				return basicSetOwningCompleteEnvironment(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
+	{
+		switch (eContainerFeatureID())
+		{
+			case PivotPackage.COMPLETE_MODEL__OWNING_COMPLETE_ENVIRONMENT:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMPLETE_MODEL, CompleteEnvironment.class, msgs);
+		}
+		return eDynamicBasicRemoveFromContainer(msgs);
 	}
 
 	/**
@@ -172,6 +199,8 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 				return getOrphanCompletePackage();
 			case PivotPackage.COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES:
 				return getOwnedCompletePackages();
+			case PivotPackage.COMPLETE_MODEL__OWNING_COMPLETE_ENVIRONMENT:
+				return getOwningCompleteEnvironment();
 			case PivotPackage.COMPLETE_MODEL__PARTIAL_MODELS:
 				return getPartialModels();
 			case PivotPackage.COMPLETE_MODEL__PRIMITIVE_COMPLETE_PACKAGE:
@@ -214,6 +243,9 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 				getOwnedCompletePackages().clear();
 				getOwnedCompletePackages().addAll((Collection<? extends CompletePackage>)newValue);
 				return;
+			case PivotPackage.COMPLETE_MODEL__OWNING_COMPLETE_ENVIRONMENT:
+				setOwningCompleteEnvironment((CompleteEnvironment)newValue);
+				return;
 			case PivotPackage.COMPLETE_MODEL__PARTIAL_MODELS:
 				getPartialModels().clear();
 				getPartialModels().addAll((Collection<? extends Model>)newValue);
@@ -250,6 +282,9 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 			case PivotPackage.COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES:
 				getOwnedCompletePackages().clear();
 				return;
+			case PivotPackage.COMPLETE_MODEL__OWNING_COMPLETE_ENVIRONMENT:
+				setOwningCompleteEnvironment((CompleteEnvironment)null);
+				return;
 			case PivotPackage.COMPLETE_MODEL__PARTIAL_MODELS:
 				getPartialModels().clear();
 				return;
@@ -281,6 +316,8 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 				return orphanCompletePackage != null;
 			case PivotPackage.COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES:
 				return ownedCompletePackages != null && !ownedCompletePackages.isEmpty();
+			case PivotPackage.COMPLETE_MODEL__OWNING_COMPLETE_ENVIRONMENT:
+				return getOwningCompleteEnvironment() != null;
 			case PivotPackage.COMPLETE_MODEL__PARTIAL_MODELS:
 				return partialModels != null && !partialModels.isEmpty();
 			case PivotPackage.COMPLETE_MODEL__PRIMITIVE_COMPLETE_PACKAGE:
@@ -545,6 +582,53 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CompleteEnvironment getOwningCompleteEnvironment()
+	{
+		if (eContainerFeatureID() != PivotPackage.COMPLETE_MODEL__OWNING_COMPLETE_ENVIRONMENT) return null;
+		return (CompleteEnvironment)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwningCompleteEnvironment(CompleteEnvironment newOwningCompleteEnvironment, NotificationChain msgs)
+	{
+		msgs = eBasicSetContainer((InternalEObject)newOwningCompleteEnvironment, PivotPackage.COMPLETE_MODEL__OWNING_COMPLETE_ENVIRONMENT, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwningCompleteEnvironment(CompleteEnvironment newOwningCompleteEnvironment)
+	{
+		if (newOwningCompleteEnvironment != eInternalContainer() || (eContainerFeatureID() != PivotPackage.COMPLETE_MODEL__OWNING_COMPLETE_ENVIRONMENT && newOwningCompleteEnvironment != null))
+		{
+			if (EcoreUtil.isAncestor(this, newOwningCompleteEnvironment))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwningCompleteEnvironment != null)
+				msgs = ((InternalEObject)newOwningCompleteEnvironment).eInverseAdd(this, PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMPLETE_MODEL, CompleteEnvironment.class, msgs);
+			msgs = basicSetOwningCompleteEnvironment(newOwningCompleteEnvironment, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.COMPLETE_MODEL__OWNING_COMPLETE_ENVIRONMENT, newOwningCompleteEnvironment, newOwningCompleteEnvironment));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
@@ -596,7 +680,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 
 	@Override
 	public @NonNull StandardLibraryInternal getStandardLibrary() {
-		return completeEnvironment.getStandardLibrary();
+		return completeEnvironment.getOwnedStandardLibrary();
 	}
 	
 	@Override

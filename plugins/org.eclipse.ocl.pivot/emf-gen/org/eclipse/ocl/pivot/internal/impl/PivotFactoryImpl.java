@@ -36,6 +36,7 @@ import org.eclipse.ocl.pivot.CollectionRange;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.CompleteClass;
+import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.ConnectionPointReference;
@@ -186,6 +187,7 @@ public class PivotFactoryImpl
 			case PivotPackage.COLLECTION_TYPE: return createCollectionType();
 			case PivotPackage.COMMENT: return createComment();
 			case PivotPackage.COMPLETE_CLASS: return createCompleteClass();
+			case PivotPackage.COMPLETE_ENVIRONMENT: return createCompleteEnvironment();
 			case PivotPackage.COMPLETE_MODEL: return createCompleteModel();
 			case PivotPackage.COMPLETE_PACKAGE: return createCompletePackage();
 			case PivotPackage.CONNECTION_POINT_REFERENCE: return createConnectionPointReference();
@@ -549,6 +551,18 @@ public class PivotFactoryImpl
 	{
 		CompleteClassImpl completeClass = new CompleteClassImpl();
 		return completeClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CompleteEnvironment createCompleteEnvironment()
+	{
+		CompleteEnvironmentImpl completeEnvironment = new CompleteEnvironmentImpl();
+		return completeEnvironment;
 	}
 
 	/**

@@ -194,6 +194,15 @@ public interface PivotFactory
 	CompleteClass createCompleteClass();
 
 	/**
+	 * Returns a new object of class '<em>Complete Environment</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Complete Environment</em>'.
+	 * @generated
+	 */
+	CompleteEnvironment createCompleteEnvironment();
+
+	/**
 	 * Returns a new object of class '<em>Complete Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

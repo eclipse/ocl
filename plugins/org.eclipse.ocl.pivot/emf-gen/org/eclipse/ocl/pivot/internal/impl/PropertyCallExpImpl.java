@@ -435,7 +435,7 @@ public class PropertyCallExpImpl
 		}
 		else {
 		    DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
-		    return evaluator.getCompleteEnvironment().getStandardLibrary().getOclInvalidType();
+		    return evaluator.getCompleteEnvironment().getOwnedStandardLibrary().getOclInvalidType();
 		}
 	}
 
@@ -473,7 +473,7 @@ public class PropertyCallExpImpl
 		}
 		else {
 		    DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
-		    return evaluator.getCompleteEnvironment().getStandardLibrary().getOclInvalidType();
+		    return evaluator.getCompleteEnvironment().getOwnedStandardLibrary().getOclInvalidType();
 		}
 	}
 

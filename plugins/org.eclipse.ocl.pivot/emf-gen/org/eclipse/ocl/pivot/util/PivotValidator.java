@@ -37,6 +37,7 @@ import org.eclipse.ocl.pivot.CollectionRange;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.CompleteClass;
+import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.ConnectionPointReference;
@@ -739,6 +740,8 @@ public class PivotValidator
 				return validateComment((Comment)value, diagnostics, context);
 			case PivotPackage.COMPLETE_CLASS:
 				return validateCompleteClass((CompleteClass)value, diagnostics, context);
+			case PivotPackage.COMPLETE_ENVIRONMENT:
+				return validateCompleteEnvironment((CompleteEnvironment)value, diagnostics, context);
 			case PivotPackage.COMPLETE_MODEL:
 				return validateCompleteModel((CompleteModel)value, diagnostics, context);
 			case PivotPackage.COMPLETE_PACKAGE:
@@ -1378,6 +1381,16 @@ public class PivotValidator
 	public boolean validateCompleteClass(CompleteClass completeClass, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(completeClass, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCompleteEnvironment(CompleteEnvironment completeEnvironment, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(completeEnvironment, diagnostics, context);
 	}
 
 	/**

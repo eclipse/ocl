@@ -99,7 +99,7 @@ public abstract class AbstractEvaluationVisitor
         this.environment = env;
         this.metaModelManager = env.getMetaModelManager();
 		this.completeEnvironment = metaModelManager.getCompleteEnvironment();
-		this.standardLibrary = completeEnvironment.getStandardLibrary();
+		this.standardLibrary = completeEnvironment.getOwnedStandardLibrary();
         this.modelManager = modelManager;
         this.undecoratedVisitor = this;  // assume I have no decorator
     }

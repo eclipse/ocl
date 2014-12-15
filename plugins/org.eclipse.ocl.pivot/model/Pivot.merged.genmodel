@@ -925,11 +925,14 @@
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="Pivot.ecore#//CompleteModel"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//CompleteModel/partialModels"/>
-      </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false" createChild="false">
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//CompleteModel/orphanCompletePackage"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//CompleteModel/owningCompleteEnvironment"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//CompleteModel/partialModels"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false" createChild="false">
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//CompleteModel/primitiveCompletePackage"/>
@@ -943,6 +946,24 @@
           <ecoreParameter href="Pivot.ecore#//CompleteModel/getOwnedCompletePackage/name"/>
         </genParameters>
       </genOperations>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass">
+      <ecoreClass href="Pivot.ecore#//OrphanCompletePackage"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass">
+      <ecoreClass href="Pivot.ecore#//CompleteEnvironment"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//CompleteEnvironment/ownedStandardLibrary"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//CompleteEnvironment/ownedCompleteModel"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass">
+      <ecoreClass href="Pivot.ecore#//StandardLibrary"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//StandardLibrary/owningCompleteEnvironment"/>
+      </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="Pivot.ecore#//Model"/>
@@ -961,9 +982,6 @@
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Import/importedNamespace"/>
       </genFeatures>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass">
-      <ecoreClass href="Pivot.ecore#//OrphanCompletePackage"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="Pivot.ecore#//PrimitiveCompletePackage"/>
@@ -1234,9 +1252,6 @@
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="Pivot.ecore#//SetType"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass">
-      <ecoreClass href="Pivot.ecore#//StandardLibrary"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="Pivot.ecore#//StateExp"/>

@@ -31,6 +31,7 @@ import org.eclipse.ocl.pivot.CollectionRange;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.CompleteClass;
+import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.ConnectionPointReference;
@@ -277,6 +278,11 @@ public class PivotAdapterFactory
 			public Adapter caseCompleteClass(CompleteClass object)
 			{
 				return createCompleteClassAdapter();
+			}
+			@Override
+			public Adapter caseCompleteEnvironment(CompleteEnvironment object)
+			{
+				return createCompleteEnvironmentAdapter();
 			}
 			@Override
 			public Adapter caseCompleteModel(CompleteModel object)
@@ -2261,6 +2267,21 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createCompleteClassAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.CompleteEnvironment <em>Complete Environment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.pivot.CompleteEnvironment
+	 * @generated
+	 */
+	public Adapter createCompleteEnvironmentAdapter()
 	{
 		return null;
 	}

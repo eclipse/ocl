@@ -30,6 +30,7 @@ import org.eclipse.ocl.pivot.CollectionRange;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.CompleteClass;
+import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.ConnectionPointReference;
@@ -419,6 +420,15 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseElement(completeClass);
 				if (result == null) result = caseNameable(completeClass);
 				if (result == null) result = caseVisitable(completeClass);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.COMPLETE_ENVIRONMENT:
+			{
+				CompleteEnvironment completeEnvironment = (CompleteEnvironment)theEObject;
+				T result = caseCompleteEnvironment(completeEnvironment);
+				if (result == null) result = caseElement(completeEnvironment);
+				if (result == null) result = caseVisitable(completeEnvironment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -3321,6 +3331,22 @@ public class PivotSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCompleteClass(CompleteClass object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Complete Environment</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Complete Environment</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCompleteEnvironment(CompleteEnvironment object)
 	{
 		return null;
 	}

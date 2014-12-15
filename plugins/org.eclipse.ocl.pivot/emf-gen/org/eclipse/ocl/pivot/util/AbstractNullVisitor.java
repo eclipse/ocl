@@ -120,6 +120,11 @@ public abstract class AbstractNullVisitor<R, C>
 	}
 
 	@Override
+	public @Nullable R visitCompleteEnvironment(@NonNull org.eclipse.ocl.pivot.CompleteEnvironment object) {
+		return null;
+	}
+
+	@Override
 	public @Nullable R visitCompleteModel(@NonNull org.eclipse.ocl.pivot.CompleteModel object) {
 		return null;
 	}

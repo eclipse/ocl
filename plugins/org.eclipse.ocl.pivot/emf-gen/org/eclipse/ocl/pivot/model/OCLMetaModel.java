@@ -154,6 +154,7 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Class _CollectionType = createClass(PivotPackage.Literals.COLLECTION_TYPE);
 		private final @NonNull Class _Comment = createClass(PivotPackage.Literals.COMMENT);
 		private final @NonNull Class _CompleteClass = createClass(PivotPackage.Literals.COMPLETE_CLASS);
+		private final @NonNull Class _CompleteEnvironment = createClass(PivotPackage.Literals.COMPLETE_ENVIRONMENT);
 		private final @NonNull Class _CompleteModel = createClass(PivotPackage.Literals.COMPLETE_MODEL);
 		private final @NonNull Class _CompletePackage = createClass(PivotPackage.Literals.COMPLETE_PACKAGE);
 		private final @NonNull Class _ConnectionPointReference = createClass(PivotPackage.Literals.CONNECTION_POINT_REFERENCE);
@@ -550,6 +551,9 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedTypes.add(type = _CompleteClass);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NamedElement);
+			ownedTypes.add(type = _CompleteEnvironment);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Element);
 			ownedTypes.add(type = _CompleteModel);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NamedElement);
@@ -1712,8 +1716,11 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_Comment_owningElement = createProperty(PivotPackage.Literals.COMMENT__OWNING_ELEMENT, _Element);
 		private final @NonNull Property pr_CompleteClass_owningCompletePackage = createProperty(PivotPackage.Literals.COMPLETE_CLASS__OWNING_COMPLETE_PACKAGE, _CompletePackage);
 		private final @NonNull Property pr_CompleteClass_partialClasses = createProperty(PivotPackage.Literals.COMPLETE_CLASS__PARTIAL_CLASSES, _Set_Class);
+		private final @NonNull Property pr_CompleteEnvironment_ownedCompleteModel = createProperty(PivotPackage.Literals.COMPLETE_ENVIRONMENT__OWNED_COMPLETE_MODEL, _CompleteModel);
+		private final @NonNull Property pr_CompleteEnvironment_ownedStandardLibrary = createProperty(PivotPackage.Literals.COMPLETE_ENVIRONMENT__OWNED_STANDARD_LIBRARY, _StandardLibrary);
 		private final @NonNull Property pr_CompleteModel_orphanCompletePackage = createProperty(PivotPackage.Literals.COMPLETE_MODEL__ORPHAN_COMPLETE_PACKAGE, _OrphanCompletePackage);
 		private final @NonNull Property pr_CompleteModel_ownedCompletePackages = createProperty(PivotPackage.Literals.COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES, _Set_CompletePackage);
+		private final @NonNull Property pr_CompleteModel_owningCompleteEnvironment = createProperty(PivotPackage.Literals.COMPLETE_MODEL__OWNING_COMPLETE_ENVIRONMENT, _CompleteEnvironment);
 		private final @NonNull Property pr_CompleteModel_partialModels = createProperty(PivotPackage.Literals.COMPLETE_MODEL__PARTIAL_MODELS, _Set_Model);
 		private final @NonNull Property pr_CompleteModel_primitiveCompletePackage = createProperty(PivotPackage.Literals.COMPLETE_MODEL__PRIMITIVE_COMPLETE_PACKAGE, _PrimitiveCompletePackage);
 		private final @NonNull Property pr_CompletePackage_ownedCompleteClasses = createProperty(PivotPackage.Literals.COMPLETE_PACKAGE__OWNED_COMPLETE_CLASSES, _Set_CompleteClass);
@@ -1933,6 +1940,7 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_Slot_definingProperty = createProperty(PivotPackage.Literals.SLOT__DEFINING_PROPERTY, _Property);
 		private final @NonNull Property pr_Slot_owningInstance = createProperty(PivotPackage.Literals.SLOT__OWNING_INSTANCE, _InstanceSpecification);
 		private final @NonNull Property pr_Slot_values = createProperty(PivotPackage.Literals.SLOT__VALUES, _OrderedSet_ValueSpecification);
+		private final @NonNull Property pr_StandardLibrary_owningCompleteEnvironment = createProperty(PivotPackage.Literals.STANDARD_LIBRARY__OWNING_COMPLETE_ENVIRONMENT, _CompleteEnvironment);
 		private final @NonNull Property pr_State_connection = createProperty(PivotPackage.Literals.STATE__CONNECTION, _Set_ConnectionPointReference);
 		private final @NonNull Property pr_State_connectionPoint = createProperty(PivotPackage.Literals.STATE__CONNECTION_POINT, _Set_Pseudostate);
 		private final @NonNull Property pr_State_deferrableTrigger = createProperty(PivotPackage.Literals.STATE__DEFERRABLE_TRIGGER, _Set_Trigger);
@@ -2215,6 +2223,15 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties.add(property = pr_CompleteClass_partialClasses);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Class_CompleteClass_partialClasses);
+			ownedProperties = _CompleteEnvironment.getOwnedProperties();
+			ownedProperties.add(property = pr_CompleteEnvironment_ownedCompleteModel);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_CompleteModel_owningCompleteEnvironment);
+			ownedProperties.add(property = pr_CompleteEnvironment_ownedStandardLibrary);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_StandardLibrary_owningCompleteEnvironment);
 			ownedProperties = _CompleteModel.getOwnedProperties();
 			ownedProperties.add(property = pr_CompleteModel_orphanCompletePackage);
 			property.setIsDerived(true);
@@ -2226,6 +2243,10 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_CompletePackage_owningCompleteModel);
+			ownedProperties.add(property = pr_CompleteModel_owningCompleteEnvironment);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_CompleteEnvironment_ownedCompleteModel);
 			ownedProperties.add(property = pr_CompleteModel_partialModels);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Model_CompleteModel_partialModels);
@@ -3120,6 +3141,11 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_ValueSpecification_owningSlot_values);
+			ownedProperties = _StandardLibrary.getOwnedProperties();
+			ownedProperties.add(property = pr_StandardLibrary_owningCompleteEnvironment);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_CompleteEnvironment_ownedStandardLibrary);
 			ownedProperties = _State.getOwnedProperties();
 			ownedProperties.add(property = pr_State_connection);
 			property.setIsComposite(true);

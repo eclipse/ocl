@@ -242,12 +242,6 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 		return getCollectionType(getSetType(), elementType, lower, upper);
 	}
 
-	
-	@Override
-	public @NonNull ExecutableStandardLibrary getStandardLibrary() {
-		return this;
-	}
-
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getStringType() {
 		return OCLstdlibTables.Types._String;
@@ -321,11 +315,6 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 	}
 
 	@Override
-	public @NonNull CompleteModel getCompleteModel() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
 	public @NonNull LambdaType getLambdaType(@NonNull String typeName,
 			@NonNull Type contextType,
 			@NonNull List<? extends Type> parameterTypes,
@@ -344,6 +333,36 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 	public @NonNull TupleType getTupleType(@NonNull String typeName,
 			@NonNull Collection<? extends TypedElement> parts,
 			@Nullable TemplateParameterSubstitutions bindings) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public @NonNull CompleteModel getOwnedCompleteModel() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setOwnedCompleteModel(CompleteModel value) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public @NonNull StandardLibrary getOwnedStandardLibrary() {
+		return this;
+	}
+
+	@Override
+	public void setOwnedStandardLibrary(StandardLibrary value) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public CompleteEnvironment getOwningCompleteEnvironment() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setOwningCompleteEnvironment(CompleteEnvironment value) {
 		throw new UnsupportedOperationException();
 	}
 

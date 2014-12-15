@@ -1,14 +1,14 @@
-/*******************************************************************************
- * Copyright (c) 2014 E.D.Willink and others.
+/**
+ * Copyright (c) 2010,2015 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *     E.D.Willink - initial API and implementation
- *******************************************************************************/
-package org.eclipse.ocl.pivot.internal.complete;
+ *   E.D.Willink - Initial API and implementation
+ */
+package org.eclipse.ocl.pivot.internal.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,6 +16,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.WeakHashMap;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
@@ -25,31 +31,331 @@ import org.eclipse.ocl.domain.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.impl.CollectionTypeParametersImpl;
 import org.eclipse.ocl.pivot.CollectionType;
+import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.CompleteClass;
+import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.CompleteInheritance;
+import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.DataType;
+import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.PivotFactory;
+import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Stereotype;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.internal.complete.CompleteClassInternal;
+import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
+import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
+import org.eclipse.ocl.pivot.internal.complete.CompletePackageInternal;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.manager.LambdaTypeManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.TupleTypeManager;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
-public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Complete Environment</b></em>'.
+ * @extends org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal
+ * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.impl.CompleteEnvironmentImpl#getOwnedCompleteModel <em>Owned Complete Model</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.impl.CompleteEnvironmentImpl#getOwnedStandardLibrary <em>Owned Standard Library</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @generated
+ */
+public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvironment, org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal
 {
-	protected final @NonNull MetaModelManager metaModelManager;
-	protected final @NonNull CompleteModelInternal completeModel;
-	protected final @NonNull StandardLibraryInternal standardLibrary;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CompleteEnvironmentImpl()
+	{
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass()
+	{
+		return PivotPackage.Literals.COMPLETE_ENVIRONMENT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public NotificationChain basicSetOwnedCompleteModel(CompleteModel newOwnedCompleteModel, NotificationChain msgs)
+	{
+		CompleteModel oldOwnedCompleteModel = ownedCompleteModel;
+		ownedCompleteModel = (CompleteModelInternal) newOwnedCompleteModel;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMPLETE_MODEL, oldOwnedCompleteModel, newOwnedCompleteModel);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwnedCompleteModel(CompleteModel newOwnedCompleteModel)
+	{
+		if (newOwnedCompleteModel != ownedCompleteModel)
+		{
+			NotificationChain msgs = null;
+			if (ownedCompleteModel != null)
+				msgs = ((InternalEObject)ownedCompleteModel).eInverseRemove(this, PivotPackage.COMPLETE_MODEL__OWNING_COMPLETE_ENVIRONMENT, CompleteModel.class, msgs);
+			if (newOwnedCompleteModel != null)
+				msgs = ((InternalEObject)newOwnedCompleteModel).eInverseAdd(this, PivotPackage.COMPLETE_MODEL__OWNING_COMPLETE_ENVIRONMENT, CompleteModel.class, msgs);
+			msgs = basicSetOwnedCompleteModel(newOwnedCompleteModel, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMPLETE_MODEL, newOwnedCompleteModel, newOwnedCompleteModel));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public NotificationChain basicSetOwnedStandardLibrary(StandardLibrary newOwnedStandardLibrary, NotificationChain msgs)
+	{
+		StandardLibrary oldOwnedStandardLibrary = ownedStandardLibrary;
+		ownedStandardLibrary = (StandardLibraryInternal) newOwnedStandardLibrary;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.COMPLETE_ENVIRONMENT__OWNED_STANDARD_LIBRARY, oldOwnedStandardLibrary, newOwnedStandardLibrary);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwnedStandardLibrary(StandardLibrary newOwnedStandardLibrary)
+	{
+		if (newOwnedStandardLibrary != ownedStandardLibrary)
+		{
+			NotificationChain msgs = null;
+			if (ownedStandardLibrary != null)
+				msgs = ((InternalEObject)ownedStandardLibrary).eInverseRemove(this, PivotPackage.STANDARD_LIBRARY__OWNING_COMPLETE_ENVIRONMENT, StandardLibrary.class, msgs);
+			if (newOwnedStandardLibrary != null)
+				msgs = ((InternalEObject)newOwnedStandardLibrary).eInverseAdd(this, PivotPackage.STANDARD_LIBRARY__OWNING_COMPLETE_ENVIRONMENT, StandardLibrary.class, msgs);
+			msgs = basicSetOwnedStandardLibrary(newOwnedStandardLibrary, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.COMPLETE_ENVIRONMENT__OWNED_STANDARD_LIBRARY, newOwnedStandardLibrary, newOwnedStandardLibrary));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case PivotPackage.COMPLETE_ENVIRONMENT__COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
+			case PivotPackage.COMPLETE_ENVIRONMENT__EXTENSION:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMPLETE_MODEL:
+				if (ownedCompleteModel != null)
+					msgs = ((InternalEObject)ownedCompleteModel).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMPLETE_MODEL, null, msgs);
+				return basicSetOwnedCompleteModel((CompleteModel)otherEnd, msgs);
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_STANDARD_LIBRARY:
+				if (ownedStandardLibrary != null)
+					msgs = ((InternalEObject)ownedStandardLibrary).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.COMPLETE_ENVIRONMENT__OWNED_STANDARD_LIBRARY, null, msgs);
+				return basicSetOwnedStandardLibrary((StandardLibrary)otherEnd, msgs);
+		}
+		return eDynamicInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case PivotPackage.COMPLETE_ENVIRONMENT__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
+			case PivotPackage.COMPLETE_ENVIRONMENT__EXTENSION:
+				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_ANNOTATION:
+				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMMENT:
+				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMPLETE_MODEL:
+				return basicSetOwnedCompleteModel(null, msgs);
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_STANDARD_LIBRARY:
+				return basicSetOwnedStandardLibrary(null, msgs);
+		}
+		return eDynamicInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
+		switch (featureID)
+		{
+			case PivotPackage.COMPLETE_ENVIRONMENT__COMMENT:
+				return getComment();
+			case PivotPackage.COMPLETE_ENVIRONMENT__EXTENSION:
+				return getExtension();
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_ANNOTATION:
+				return getOwnedAnnotation();
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMMENT:
+				return getOwnedComment();
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMPLETE_MODEL:
+				return getOwnedCompleteModel();
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_STANDARD_LIBRARY:
+				return getOwnedStandardLibrary();
+		}
+		return eDynamicGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue)
+	{
+		switch (featureID)
+		{
+			case PivotPackage.COMPLETE_ENVIRONMENT__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
+			case PivotPackage.COMPLETE_ENVIRONMENT__EXTENSION:
+				getExtension().clear();
+				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+				return;
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_ANNOTATION:
+				getOwnedAnnotation().clear();
+				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+				return;
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMMENT:
+				getOwnedComment().clear();
+				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+				return;
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMPLETE_MODEL:
+				setOwnedCompleteModel((CompleteModel)newValue);
+				return;
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_STANDARD_LIBRARY:
+				setOwnedStandardLibrary((StandardLibrary)newValue);
+				return;
+		}
+		eDynamicSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID)
+	{
+		switch (featureID)
+		{
+			case PivotPackage.COMPLETE_ENVIRONMENT__COMMENT:
+				getComment().clear();
+				return;
+			case PivotPackage.COMPLETE_ENVIRONMENT__EXTENSION:
+				getExtension().clear();
+				return;
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_ANNOTATION:
+				getOwnedAnnotation().clear();
+				return;
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMMENT:
+				getOwnedComment().clear();
+				return;
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMPLETE_MODEL:
+				setOwnedCompleteModel((CompleteModel)null);
+				return;
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_STANDARD_LIBRARY:
+				setOwnedStandardLibrary((StandardLibrary)null);
+				return;
+		}
+		eDynamicUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID)
+	{
+		switch (featureID)
+		{
+			case PivotPackage.COMPLETE_ENVIRONMENT__COMMENT:
+				return comment != null && !comment.isEmpty();
+			case PivotPackage.COMPLETE_ENVIRONMENT__EXTENSION:
+				return extension != null && !extension.isEmpty();
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_ANNOTATION:
+				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMMENT:
+				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMPLETE_MODEL:
+				return ownedCompleteModel != null;
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_STANDARD_LIBRARY:
+				return ownedStandardLibrary != null;
+		}
+		return eDynamicIsSet(featureID);
+	}
+	protected /*final @NonNull*/ MetaModelManager metaModelManager;
+	protected /*final @NonNull*/ CompleteModelInternal ownedCompleteModel;
+	protected /*final @NonNull*/ StandardLibraryInternal ownedStandardLibrary;
 	protected final @NonNull Map<org.eclipse.ocl.pivot.Class, CompleteClassInternal> class2completeClass = new WeakHashMap<org.eclipse.ocl.pivot.Class, CompleteClassInternal>();
 	
 	/**
@@ -62,17 +368,8 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 	 */
 	private @Nullable TupleTypeManager tupleManager = null;			// Lazily created
 	private boolean isCodeGeneration = false;
-
-	protected CompleteEnvironmentImpl() {
-		this(new MetaModelManager());
-	}
-
-	public CompleteEnvironmentImpl(@NonNull MetaModelManager metaModelManager) {
-		this.metaModelManager = metaModelManager;
-		this.completeModel = ((CompleteModelInternal)PivotFactory.eINSTANCE.createCompleteModel()).init(this);
-		this.standardLibrary = ((StandardLibraryInternal)PivotFactory.eINSTANCE.createStandardLibrary()).init(completeModel);
-	}
 	
+	@Override
 	public void addOrphanClass(@NonNull org.eclipse.ocl.pivot.Class pivotElement) {
 		if (pivotElement.getUnspecializedElement() != null) {
 			assert pivotElement.getUnspecializedElement().getUnspecializedElement() == null;
@@ -81,7 +378,7 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 			assert (pivotElement instanceof LambdaType)
 				|| (pivotElement instanceof TupleType);
 		}
-		pivotElement.setOwningPackage(completeModel.getOrphanage());
+		pivotElement.setOwningPackage(ownedCompleteModel.getOrphanage());
 	}
 
 	@Override
@@ -150,7 +447,7 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 		CollectionType secondCollectionType2 = (CollectionType)secondCollectionType;
 		TemplateParameterSubstitutions firstSubstitutions = TemplateParameterSubstitutionVisitor.createBindings(this, firstCollectionType2, secondCollectionType2);
 		TemplateParameterSubstitutions secondSubstitutions = TemplateParameterSubstitutionVisitor.createBindings(this, secondCollectionType2, firstCollectionType2);
-		return conformsToCollectionType(firstCollectionType2, firstSubstitutions, secondCollectionType2, secondSubstitutions);	// FIXME cast
+		return conformsToCollectionType(firstCollectionType2, firstSubstitutions, secondCollectionType2, secondSubstitutions);
 	} */
 
 	protected boolean conformsToCollectionType(@NonNull CollectionType firstType, @NonNull TemplateParameterSubstitutions firstSubstitutions,
@@ -277,7 +574,7 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 
 	@Override
 	public @NonNull CollectionType getBagType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
-		return getCollectionType(standardLibrary.getBagType(), elementType, lower, upper);
+		return getCollectionType(ownedStandardLibrary.getBagType(), elementType, lower, upper);
 	}
 
 	@Override
@@ -306,7 +603,7 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 			return containerType;	
 		}
 		@SuppressWarnings("unchecked")
-		T specializedType = (T) completeModel.getCollectionType(completeModel.getCompleteClass(containerType), new CollectionTypeParametersImpl<Type>(elementType, lower, upper));
+		T specializedType = (T) ownedCompleteModel.getCollectionType(ownedCompleteModel.getCompleteClass(containerType), new CollectionTypeParametersImpl<Type>(elementType, lower, upper));
 		return specializedType;
 	}
 	
@@ -314,9 +611,9 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 	public @NonNull CompleteClassInternal getCompleteClass(@NonNull Type pivotType) {
 		for (int recursions = 0; pivotType instanceof TemplateParameter; recursions++) {
 			Type lowerBound = ((TemplateParameter)pivotType).getLowerBound();
-			pivotType = lowerBound != null ? lowerBound : getStandardLibrary().getOclAnyType();
+			pivotType = lowerBound != null ? lowerBound : getOwnedStandardLibrary().getOclAnyType();
 			if (recursions > 100) {
-				pivotType = getStandardLibrary().getOclAnyType();
+				pivotType = getOwnedStandardLibrary().getOclAnyType();
 			}
 		}
 		if (pivotType instanceof ElementExtension) {
@@ -330,11 +627,11 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 			return completeClass;
 		}
 		else if (pivotType instanceof PrimitiveType) {
-			CompletePackageInternal primitiveCompletePackage = completeModel.getPrimitiveCompletePackage();
+			CompletePackageInternal primitiveCompletePackage = ownedCompleteModel.getPrimitiveCompletePackage();
 			return primitiveCompletePackage.getCompleteClass((PrimitiveType)pivotType);
 		}
 		else if ((pivotType instanceof CollectionType) && (((CollectionType)pivotType).getUnspecializedElement() != null)) {
-			CompletePackageInternal orphanCompletePackage = completeModel.getOrphanCompletePackage();
+			CompletePackageInternal orphanCompletePackage = ownedCompleteModel.getOrphanCompletePackage();
 			return orphanCompletePackage.getCompleteClass((CollectionType)pivotType);
 		}
 		else if (pivotType instanceof org.eclipse.ocl.pivot.Class) {
@@ -342,7 +639,7 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 			if (pivotPackage == null) {
 				throw new IllegalStateException("type has no package");
 			}
-			CompletePackageInternal completePackage = completeModel.getCompletePackage(pivotPackage);
+			CompletePackageInternal completePackage = ownedCompleteModel.getCompletePackage(pivotPackage);
 			return completePackage.getCompleteClass((org.eclipse.ocl.pivot.Class) pivotType);
 		}
 		else {
@@ -351,8 +648,8 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 	}
 
 	@Override
-	public @NonNull CompleteModelInternal getCompleteModel() {
-		return completeModel;
+	public @NonNull CompleteModelInternal getOwnedCompleteModel() {
+		return DomainUtil.nonNullState(ownedCompleteModel);
 	}
 
 	public @NonNull LambdaTypeManager getLambdaManager() {
@@ -372,6 +669,7 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 
 	@Override
 	public @NonNull MetaModelManager getMetaModelManager() {
+		assert metaModelManager != null;
 		return metaModelManager;
 	}
 
@@ -390,17 +688,17 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 
 	@Override
 	public @NonNull CollectionType getOrderedSetType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
-		return getCollectionType(standardLibrary.getOrderedSetType(), elementType, lower, upper);
+		return getCollectionType(ownedStandardLibrary.getOrderedSetType(), elementType, lower, upper);
 	}
 
 	@Override
 	public @NonNull CollectionType getSequenceType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
-		return getCollectionType(standardLibrary.getSequenceType(), elementType, lower, upper);
+		return getCollectionType(ownedStandardLibrary.getSequenceType(), elementType, lower, upper);
 	}
 
 	@Override
 	public @NonNull CollectionType getSetType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
-		return getCollectionType(standardLibrary.getSetType(), elementType, lower, upper);
+		return getCollectionType(ownedStandardLibrary.getSetType(), elementType, lower, upper);
 	}
 
 	@Override
@@ -463,8 +761,8 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 	}
 
 	@Override
-	public @NonNull StandardLibraryInternal getStandardLibrary() {
-		return standardLibrary;
+	public @NonNull StandardLibraryInternal getOwnedStandardLibrary() {
+		return DomainUtil.nonNullState(ownedStandardLibrary);
 	}
 
 	@Override
@@ -483,6 +781,15 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 	}
 
 	@Override
+	public @NonNull CompleteEnvironmentInternal init(@NonNull MetaModelManager metaModelManager) {
+		this.metaModelManager = metaModelManager;
+		CompleteModelInternal completeModelInternal = ((CompleteModelInternal)PivotFactory.eINSTANCE.createCompleteModel()).init(this);
+		setOwnedCompleteModel(completeModelInternal);
+		setOwnedStandardLibrary(((StandardLibraryInternal)PivotFactory.eINSTANCE.createStandardLibrary()).init(completeModelInternal));
+		return this;
+	}
+
+	@Override
 	public boolean isCodeGeneration() {
 		return isCodeGeneration ;
 	}
@@ -491,4 +798,5 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 	public void setCodeGeneration(boolean isCodeGeneration) {
 		this.isCodeGeneration = isCodeGeneration;
 	}
-}
+
+} //CompleteEnvironmentImpl

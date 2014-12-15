@@ -40,6 +40,7 @@ import org.eclipse.ocl.pivot.CollectionRange;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.CompleteClass;
+import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.ConnectionPointReference;
@@ -864,6 +865,13 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EClass completeClassEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass completeEnvironmentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2940,6 +2948,17 @@ public class PivotPackageImpl
 	public EClass getStandardLibrary()
 	{
 		return standardLibraryEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getStandardLibrary_OwningCompleteEnvironment()
+	{
+		return (EReference)standardLibraryEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -5344,6 +5363,39 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
+	public EClass getCompleteEnvironment()
+	{
+		return completeEnvironmentEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCompleteEnvironment_OwnedCompleteModel()
+	{
+		return (EReference)completeEnvironmentEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCompleteEnvironment_OwnedStandardLibrary()
+	{
+		return (EReference)completeEnvironmentEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getCompleteModel()
 	{
 		return completeModelEClass;
@@ -5377,7 +5429,7 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EReference getCompleteModel_PartialModels()
+	public EReference getCompleteModel_OwningCompleteEnvironment()
 	{
 		return (EReference)completeModelEClass.getEStructuralFeatures().get(2);
 	}
@@ -5388,9 +5440,20 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EReference getCompleteModel_PrimitiveCompletePackage()
+	public EReference getCompleteModel_PartialModels()
 	{
 		return (EReference)completeModelEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCompleteModel_PrimitiveCompletePackage()
+	{
+		return (EReference)completeModelEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -6268,9 +6331,14 @@ public class PivotPackageImpl
 		createEReference(completeClassEClass, COMPLETE_CLASS__OWNING_COMPLETE_PACKAGE);
 		createEReference(completeClassEClass, COMPLETE_CLASS__PARTIAL_CLASSES);
 
+		completeEnvironmentEClass = createEClass(COMPLETE_ENVIRONMENT);
+		createEReference(completeEnvironmentEClass, COMPLETE_ENVIRONMENT__OWNED_COMPLETE_MODEL);
+		createEReference(completeEnvironmentEClass, COMPLETE_ENVIRONMENT__OWNED_STANDARD_LIBRARY);
+
 		completeModelEClass = createEClass(COMPLETE_MODEL);
 		createEReference(completeModelEClass, COMPLETE_MODEL__ORPHAN_COMPLETE_PACKAGE);
 		createEReference(completeModelEClass, COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES);
+		createEReference(completeModelEClass, COMPLETE_MODEL__OWNING_COMPLETE_ENVIRONMENT);
 		createEReference(completeModelEClass, COMPLETE_MODEL__PARTIAL_MODELS);
 		createEReference(completeModelEClass, COMPLETE_MODEL__PRIMITIVE_COMPLETE_PACKAGE);
 		createEOperation(completeModelEClass, COMPLETE_MODEL___GET_OWNED_COMPLETE_PACKAGE__STRING);
@@ -6631,6 +6699,7 @@ public class PivotPackageImpl
 		createEReference(slotEClass, SLOT__VALUES);
 
 		standardLibraryEClass = createEClass(STANDARD_LIBRARY);
+		createEReference(standardLibraryEClass, STANDARD_LIBRARY__OWNING_COMPLETE_ENVIRONMENT);
 
 		stateEClass = createEClass(STATE);
 		createEReference(stateEClass, STATE__CONNECTION);
@@ -6836,6 +6905,7 @@ public class PivotPackageImpl
 		collectionTypeEClass.getESuperTypes().add(this.getDataType());
 		commentEClass.getESuperTypes().add(this.getElement());
 		completeClassEClass.getESuperTypes().add(this.getNamedElement());
+		completeEnvironmentEClass.getESuperTypes().add(this.getElement());
 		completeModelEClass.getESuperTypes().add(this.getNamedElement());
 		completePackageEClass.getESuperTypes().add(this.getNamedElement());
 		connectionPointReferenceEClass.getESuperTypes().add(this.getVertex());
@@ -7088,9 +7158,14 @@ public class PivotPackageImpl
 		initEReference(getCompleteClass_OwningCompletePackage(), this.getCompletePackage(), this.getCompletePackage_OwnedCompleteClasses(), "owningCompletePackage", null, 0, 1, CompleteClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getCompleteClass_PartialClasses(), this.getClass_(), null, "partialClasses", null, 0, -1, CompleteClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
+		initEClass(completeEnvironmentEClass, CompleteEnvironment.class, "CompleteEnvironment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getCompleteEnvironment_OwnedCompleteModel(), this.getCompleteModel(), this.getCompleteModel_OwningCompleteEnvironment(), "ownedCompleteModel", null, 1, 1, CompleteEnvironment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getCompleteEnvironment_OwnedStandardLibrary(), this.getStandardLibrary(), this.getStandardLibrary_OwningCompleteEnvironment(), "ownedStandardLibrary", null, 1, 1, CompleteEnvironment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
 		initEClass(completeModelEClass, CompleteModel.class, "CompleteModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getCompleteModel_OrphanCompletePackage(), this.getOrphanCompletePackage(), null, "orphanCompletePackage", null, 0, 1, CompleteModel.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getCompleteModel_OwnedCompletePackages(), this.getCompletePackage(), this.getCompletePackage_OwningCompleteModel(), "ownedCompletePackages", null, 0, -1, CompleteModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getCompleteModel_OwningCompleteEnvironment(), this.getCompleteEnvironment(), this.getCompleteEnvironment_OwnedCompleteModel(), "owningCompleteEnvironment", null, 0, 1, CompleteModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getCompleteModel_PartialModels(), this.getModel(), null, "partialModels", null, 0, -1, CompleteModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getCompleteModel_PrimitiveCompletePackage(), this.getPrimitiveCompletePackage(), null, "primitiveCompletePackage", null, 0, 1, CompleteModel.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
@@ -7883,6 +7958,7 @@ public class PivotPackageImpl
 		initEReference(getSlot_Values(), this.getValueSpecification(), null, "values", null, 0, -1, Slot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(standardLibraryEClass, StandardLibrary.class, "StandardLibrary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getStandardLibrary_OwningCompleteEnvironment(), this.getCompleteEnvironment(), this.getCompleteEnvironment_OwnedStandardLibrary(), "owningCompleteEnvironment", null, 0, 1, StandardLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getState_Connection(), this.getConnectionPointReference(), this.getConnectionPointReference_State(), "connection", null, 0, -1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$

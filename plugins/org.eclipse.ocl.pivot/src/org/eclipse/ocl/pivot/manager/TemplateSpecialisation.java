@@ -115,7 +115,7 @@ public class TemplateSpecialisation
 			CollectionType collectionType = (CollectionType)referencedType;
 			Type elementType = getResolution(collectionType.getElementType());
 			if (elementType == null) {
-				elementType = environment.getStandardLibrary().getOclAnyType();
+				elementType = environment.getOwnedStandardLibrary().getOclAnyType();
 			}
 			org.eclipse.ocl.pivot.Class containerType = DomainUtil.nonNullState(collectionType.getContainerType());
 			return environment.getCollectionType(containerType, elementType, collectionType.getLowerValue(), collectionType.getUpperValue());

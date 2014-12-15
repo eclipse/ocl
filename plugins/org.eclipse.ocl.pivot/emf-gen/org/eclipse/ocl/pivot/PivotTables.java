@@ -88,6 +88,7 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_CollectionType = PivotTables.PACKid_$metamodel$.getClassId("CollectionType", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Comment = PivotTables.PACKid_$metamodel$.getClassId("Comment", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_CompleteClass = PivotTables.PACKid_$metamodel$.getClassId("CompleteClass", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_CompleteEnvironment = PivotTables.PACKid_$metamodel$.getClassId("CompleteEnvironment", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_CompleteModel = PivotTables.PACKid_$metamodel$.getClassId("CompleteModel", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_CompletePackage = PivotTables.PACKid_$metamodel$.getClassId("CompletePackage", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_ConnectionPointReference = PivotTables.PACKid_$metamodel$.getClassId("ConnectionPointReference", 0);
@@ -147,6 +148,7 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_SetType = PivotTables.PACKid_$metamodel$.getClassId("SetType", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Signal = PivotTables.PACKid_$metamodel$.getClassId("Signal", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Slot = PivotTables.PACKid_$metamodel$.getClassId("Slot", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_StandardLibrary = PivotTables.PACKid_$metamodel$.getClassId("StandardLibrary", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_State = PivotTables.PACKid_$metamodel$.getClassId("State", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_StateExp = PivotTables.PACKid_$metamodel$.getClassId("StateExp", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_StateMachine = PivotTables.PACKid_$metamodel$.getClassId("StateMachine", 0);
@@ -312,6 +314,7 @@ public class PivotTables
 		public static final @NonNull EcoreExecutorType _CollectionType = new EcoreExecutorType(PivotPackage.Literals.COLLECTION_TYPE, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _Comment = new EcoreExecutorType(PivotPackage.Literals.COMMENT, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _CompleteClass = new EcoreExecutorType(PivotPackage.Literals.COMPLETE_CLASS, PACKAGE, 0);
+		public static final @NonNull EcoreExecutorType _CompleteEnvironment = new EcoreExecutorType(PivotPackage.Literals.COMPLETE_ENVIRONMENT, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _CompleteModel = new EcoreExecutorType(PivotPackage.Literals.COMPLETE_MODEL, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _CompletePackage = new EcoreExecutorType(PivotPackage.Literals.COMPLETE_PACKAGE, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _ConnectionPointReference = new EcoreExecutorType(PivotPackage.Literals.CONNECTION_POINT_REFERENCE, PACKAGE, 0);
@@ -442,6 +445,7 @@ public class PivotTables
 			_CollectionType,
 			_Comment,
 			_CompleteClass,
+			_CompleteEnvironment,
 			_CompleteModel,
 			_CompletePackage,
 			_ConnectionPointReference,
@@ -786,6 +790,12 @@ public class PivotTables
 		private static final @NonNull ExecutorFragment _CompleteClass__OclAny = new ExecutorFragment(Types._CompleteClass, OCLstdlibTables.Types._OclAny);
 		private static final @NonNull ExecutorFragment _CompleteClass__OclElement = new ExecutorFragment(Types._CompleteClass, OCLstdlibTables.Types._OclElement);
 		private static final @NonNull ExecutorFragment _CompleteClass__Visitable = new ExecutorFragment(Types._CompleteClass, PivotTables.Types._Visitable);
+
+		private static final @NonNull ExecutorFragment _CompleteEnvironment__CompleteEnvironment = new ExecutorFragment(Types._CompleteEnvironment, PivotTables.Types._CompleteEnvironment);
+		private static final @NonNull ExecutorFragment _CompleteEnvironment__Element = new ExecutorFragment(Types._CompleteEnvironment, PivotTables.Types._Element);
+		private static final @NonNull ExecutorFragment _CompleteEnvironment__OclAny = new ExecutorFragment(Types._CompleteEnvironment, OCLstdlibTables.Types._OclAny);
+		private static final @NonNull ExecutorFragment _CompleteEnvironment__OclElement = new ExecutorFragment(Types._CompleteEnvironment, OCLstdlibTables.Types._OclElement);
+		private static final @NonNull ExecutorFragment _CompleteEnvironment__Visitable = new ExecutorFragment(Types._CompleteEnvironment, PivotTables.Types._Visitable);
 
 		private static final @NonNull ExecutorFragment _CompleteModel__CompleteModel = new ExecutorFragment(Types._CompleteModel, PivotTables.Types._CompleteModel);
 		private static final @NonNull ExecutorFragment _CompleteModel__Element = new ExecutorFragment(Types._CompleteModel, PivotTables.Types._Element);
@@ -2020,10 +2030,14 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _CompleteClass__owningCompletePackage = new EcoreExecutorProperty(PivotPackage.Literals.COMPLETE_CLASS__OWNING_COMPLETE_PACKAGE, Types._CompleteClass, 0);
 		public static final @NonNull ExecutorProperty _CompleteClass__partialClasses = new EcoreExecutorProperty(PivotPackage.Literals.COMPLETE_CLASS__PARTIAL_CLASSES, Types._CompleteClass, 1);
 
+		public static final @NonNull ExecutorProperty _CompleteEnvironment__ownedCompleteModel = new EcoreExecutorProperty(PivotPackage.Literals.COMPLETE_ENVIRONMENT__OWNED_COMPLETE_MODEL, Types._CompleteEnvironment, 0);
+		public static final @NonNull ExecutorProperty _CompleteEnvironment__ownedStandardLibrary = new EcoreExecutorProperty(PivotPackage.Literals.COMPLETE_ENVIRONMENT__OWNED_STANDARD_LIBRARY, Types._CompleteEnvironment, 1);
+
 		public static final @NonNull ExecutorProperty _CompleteModel__orphanCompletePackage = new EcoreExecutorProperty(PivotPackage.Literals.COMPLETE_MODEL__ORPHAN_COMPLETE_PACKAGE, Types._CompleteModel, 0);
 		public static final @NonNull ExecutorProperty _CompleteModel__ownedCompletePackages = new EcoreExecutorProperty(PivotPackage.Literals.COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES, Types._CompleteModel, 1);
-		public static final @NonNull ExecutorProperty _CompleteModel__partialModels = new EcoreExecutorProperty(PivotPackage.Literals.COMPLETE_MODEL__PARTIAL_MODELS, Types._CompleteModel, 2);
-		public static final @NonNull ExecutorProperty _CompleteModel__primitiveCompletePackage = new EcoreExecutorProperty(PivotPackage.Literals.COMPLETE_MODEL__PRIMITIVE_COMPLETE_PACKAGE, Types._CompleteModel, 3);
+		public static final @NonNull ExecutorProperty _CompleteModel__owningCompleteEnvironment = new EcoreExecutorProperty(PivotPackage.Literals.COMPLETE_MODEL__OWNING_COMPLETE_ENVIRONMENT, Types._CompleteModel, 2);
+		public static final @NonNull ExecutorProperty _CompleteModel__partialModels = new EcoreExecutorProperty(PivotPackage.Literals.COMPLETE_MODEL__PARTIAL_MODELS, Types._CompleteModel, 3);
+		public static final @NonNull ExecutorProperty _CompleteModel__primitiveCompletePackage = new EcoreExecutorProperty(PivotPackage.Literals.COMPLETE_MODEL__PRIMITIVE_COMPLETE_PACKAGE, Types._CompleteModel, 4);
 
 		public static final @NonNull ExecutorProperty _CompletePackage__ownedCompleteClasses = new EcoreExecutorProperty(PivotPackage.Literals.COMPLETE_PACKAGE__OWNED_COMPLETE_CLASSES, Types._CompletePackage, 0);
 		public static final @NonNull ExecutorProperty _CompletePackage__ownedCompletePackages = new EcoreExecutorProperty(PivotPackage.Literals.COMPLETE_PACKAGE__OWNED_COMPLETE_PACKAGES, Types._CompletePackage, 1);
@@ -2296,6 +2310,8 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _Slot__definingProperty = new EcoreExecutorProperty(PivotPackage.Literals.SLOT__DEFINING_PROPERTY, Types._Slot, 0);
 		public static final @NonNull ExecutorProperty _Slot__owningInstance = new EcoreExecutorProperty(PivotPackage.Literals.SLOT__OWNING_INSTANCE, Types._Slot, 1);
 		public static final @NonNull ExecutorProperty _Slot__values = new EcoreExecutorProperty(PivotPackage.Literals.SLOT__VALUES, Types._Slot, 2);
+
+		public static final @NonNull ExecutorProperty _StandardLibrary__owningCompleteEnvironment = new EcoreExecutorProperty(PivotPackage.Literals.STANDARD_LIBRARY__OWNING_COMPLETE_ENVIRONMENT, Types._StandardLibrary, 0);
 
 		public static final @NonNull ExecutorProperty _State__connection = new EcoreExecutorProperty(PivotPackage.Literals.STATE__CONNECTION, Types._State, 0);
 		public static final @NonNull ExecutorProperty _State__connectionPoint = new EcoreExecutorProperty(PivotPackage.Literals.STATE__CONNECTION_POINT, Types._State, 1);
@@ -2721,6 +2737,16 @@ public class PivotTables
 			Fragments._CompleteClass__CompleteClass /* 5 */
 		};
 		private static final @NonNull int[] __CompleteClass = { 1,1,2,1,1,1 };
+
+		private static final @NonNull ExecutorFragment[] _CompleteEnvironment =
+		{
+			Fragments._CompleteEnvironment__OclAny /* 0 */,
+			Fragments._CompleteEnvironment__OclElement /* 1 */,
+			Fragments._CompleteEnvironment__Visitable /* 2 */,
+			Fragments._CompleteEnvironment__Element /* 3 */,
+			Fragments._CompleteEnvironment__CompleteEnvironment /* 4 */
+		};
+		private static final @NonNull int[] __CompleteEnvironment = { 1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _CompleteModel =
 		{
@@ -4268,6 +4294,7 @@ public class PivotTables
 			Types._CollectionType.initFragments(_CollectionType, __CollectionType);
 			Types._Comment.initFragments(_Comment, __Comment);
 			Types._CompleteClass.initFragments(_CompleteClass, __CompleteClass);
+			Types._CompleteEnvironment.initFragments(_CompleteEnvironment, __CompleteEnvironment);
 			Types._CompleteModel.initFragments(_CompleteModel, __CompleteModel);
 			Types._CompletePackage.initFragments(_CompletePackage, __CompletePackage);
 			Types._ConnectionPointReference.initFragments(_ConnectionPointReference, __ConnectionPointReference);
@@ -5105,6 +5132,34 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _CompleteClass__Visitable = {};
+
+		private static final @NonNull ExecutorOperation[] _CompleteEnvironment__CompleteEnvironment = {};
+		private static final @NonNull ExecutorOperation[] _CompleteEnvironment__Element = {
+			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
+			PivotTables.Operations._Element__getValue /* getValue(Type,String) */
+		};
+		private static final @NonNull ExecutorOperation[] _CompleteEnvironment__OclAny = {
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+		private static final @NonNull ExecutorOperation[] _CompleteEnvironment__OclElement = {
+			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+		};
+		private static final @NonNull ExecutorOperation[] _CompleteEnvironment__Visitable = {};
 
 		private static final @NonNull ExecutorOperation[] _CompleteModel__CompleteModel = {
 			PivotTables.Operations._CompleteModel__getOwnedCompletePackage /* getOwnedCompletePackage(String[?]) */
@@ -9146,6 +9201,12 @@ public class PivotTables
 			Fragments._CompleteClass__OclElement.initOperations(_CompleteClass__OclElement);
 			Fragments._CompleteClass__Visitable.initOperations(_CompleteClass__Visitable);
 
+			Fragments._CompleteEnvironment__CompleteEnvironment.initOperations(_CompleteEnvironment__CompleteEnvironment);
+			Fragments._CompleteEnvironment__Element.initOperations(_CompleteEnvironment__Element);
+			Fragments._CompleteEnvironment__OclAny.initOperations(_CompleteEnvironment__OclAny);
+			Fragments._CompleteEnvironment__OclElement.initOperations(_CompleteEnvironment__OclElement);
+			Fragments._CompleteEnvironment__Visitable.initOperations(_CompleteEnvironment__Visitable);
+
 			Fragments._CompleteModel__CompleteModel.initOperations(_CompleteModel__CompleteModel);
 			Fragments._CompleteModel__Element.initOperations(_CompleteModel__Element);
 			Fragments._CompleteModel__Nameable.initOperations(_CompleteModel__Nameable);
@@ -10886,6 +10947,19 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotation
 		};
 
+		private static final @NonNull ExecutorProperty[] _CompleteEnvironment = {
+			PivotTables.Properties._Element__comment,
+			PivotTables.Properties._Element__extension,
+			PivotTables.Properties._Element__ownedAnnotation,
+			PivotTables.Properties._Element__ownedComment,
+			PivotTables.Properties._CompleteEnvironment__ownedCompleteModel,
+			PivotTables.Properties._CompleteEnvironment__ownedStandardLibrary,
+			PivotTables.Properties._Element__Annotation__ownedContents,
+			PivotTables.Properties._Element__Annotation__references,
+			PivotTables.Properties._Element__Constraint__constrainedElement,
+			PivotTables.Properties._Element__Element__ownedAnnotation
+		};
+
 		private static final @NonNull ExecutorProperty[] _CompleteModel = {
 			PivotTables.Properties._Element__comment,
 			PivotTables.Properties._Element__extension,
@@ -10894,6 +10968,7 @@ public class PivotTables
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Element__ownedComment,
 			PivotTables.Properties._CompleteModel__ownedCompletePackages,
+			PivotTables.Properties._CompleteModel__owningCompleteEnvironment,
 			PivotTables.Properties._CompleteModel__partialModels,
 			PivotTables.Properties._CompleteModel__primitiveCompletePackage,
 			PivotTables.Properties._Element__Annotation__ownedContents,
@@ -13126,6 +13201,7 @@ public class PivotTables
 			PivotTables.Properties._Element__extension,
 			PivotTables.Properties._Element__ownedAnnotation,
 			PivotTables.Properties._Element__ownedComment,
+			PivotTables.Properties._StandardLibrary__owningCompleteEnvironment,
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
 			PivotTables.Properties._Element__Constraint__constrainedElement,
@@ -14007,6 +14083,7 @@ public class PivotTables
 			Fragments._CollectionType__CollectionType.initProperties(_CollectionType);
 			Fragments._Comment__Comment.initProperties(_Comment);
 			Fragments._CompleteClass__CompleteClass.initProperties(_CompleteClass);
+			Fragments._CompleteEnvironment__CompleteEnvironment.initProperties(_CompleteEnvironment);
 			Fragments._CompleteModel__CompleteModel.initProperties(_CompleteModel);
 			Fragments._CompletePackage__CompletePackage.initProperties(_CompletePackage);
 			Fragments._ConnectionPointReference__ConnectionPointReference.initProperties(_ConnectionPointReference);

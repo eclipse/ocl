@@ -231,7 +231,7 @@ public abstract class AbstractIdResolver implements IdResolver
 	
 	public AbstractIdResolver(@NonNull CompleteEnvironment environment) {
 		this.environment = environment;
-		this.standardLibrary = environment.getStandardLibrary();
+		this.standardLibrary = environment.getOwnedStandardLibrary();
 	}
 
 	@Override

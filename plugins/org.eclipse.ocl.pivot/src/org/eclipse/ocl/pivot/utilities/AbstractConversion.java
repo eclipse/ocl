@@ -66,7 +66,7 @@ public abstract class AbstractConversion
 	protected AbstractConversion(@NonNull MetaModelManager metaModelManager) {
 		this.metaModelManager = metaModelManager;
 		this.completeEnvironment = metaModelManager.getCompleteEnvironment();
-		this.standardLibrary = completeEnvironment.getStandardLibrary();
+		this.standardLibrary = completeEnvironment.getOwnedStandardLibrary();
 	}
 	
 	public @NonNull MetaModelManager getMetaModelManager() {

@@ -639,7 +639,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
      */
     @Test public void test_oclType_Collection() {   	
     	CompleteEnvironment completeEnvironment = metaModelManager.getCompleteEnvironment();
-    	StandardLibrary standardLibrary = completeEnvironment.getStandardLibrary();
+    	StandardLibrary standardLibrary = completeEnvironment.getOwnedStandardLibrary();
     	assertQueryEquals(null, 1, "Set{1}->oclType().ownedOperations->select(name = 'flatten')->size()");
     	assertQueryEquals(null, completeEnvironment.getSetType(standardLibrary.getOclVoidType(), null, null), "Set{}->oclType()");
     	assertQueryEquals(null, completeEnvironment.getSetType(standardLibrary.getIntegerType(), null, null), "Set{1}->oclType()");

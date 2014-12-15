@@ -86,7 +86,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getOCLExpression()
 	 * @generated
 	 */
-	int OCL_EXPRESSION = 64;
+	int OCL_EXPRESSION = 65;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.CallExpImpl <em>Call Exp</em>}' class.
@@ -106,7 +106,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getFeatureCallExp()
 	 * @generated
 	 */
-	int FEATURE_CALL_EXP = 37;
+	int FEATURE_CALL_EXP = 38;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.NavigationCallExpImpl <em>Navigation Call Exp</em>}' class.
@@ -116,7 +116,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getNavigationCallExp()
 	 * @generated
 	 */
-	int NAVIGATION_CALL_EXP = 61;
+	int NAVIGATION_CALL_EXP = 62;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.AssociationClassCallExpImpl <em>Association Class Call Exp</em>}' class.
@@ -136,7 +136,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getDataType()
 	 * @generated
 	 */
-	int DATA_TYPE = 23;
+	int DATA_TYPE = 24;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.CollectionTypeImpl <em>Collection Type</em>}' class.
@@ -166,7 +166,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getLiteralExp()
 	 * @generated
 	 */
-	int LITERAL_EXP = 52;
+	int LITERAL_EXP = 53;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.PrimitiveLiteralExpImpl <em>Primitive Literal Exp</em>}' class.
@@ -176,7 +176,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getPrimitiveLiteralExp()
 	 * @generated
 	 */
-	int PRIMITIVE_LITERAL_EXP = 75;
+	int PRIMITIVE_LITERAL_EXP = 76;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.BooleanLiteralExpImpl <em>Boolean Literal Exp</em>}' class.
@@ -246,7 +246,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getEnumLiteralExp()
 	 * @generated
 	 */
-	int ENUM_LITERAL_EXP = 32;
+	int ENUM_LITERAL_EXP = 33;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.EnumerationLiteralImpl <em>Enumeration Literal</em>}' class.
@@ -256,7 +256,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getEnumerationLiteral()
 	 * @generated
 	 */
-	int ENUMERATION_LITERAL = 34;
+	int ENUMERATION_LITERAL = 35;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.EnumerationImpl <em>Enumeration</em>}' class.
@@ -266,7 +266,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getEnumeration()
 	 * @generated
 	 */
-	int ENUMERATION = 33;
+	int ENUMERATION = 34;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.ExpressionInOCLImpl <em>Expression In OCL</em>}' class.
@@ -276,7 +276,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getExpressionInOCL()
 	 * @generated
 	 */
-	int EXPRESSION_IN_OCL = 35;
+	int EXPRESSION_IN_OCL = 36;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.VariableImpl <em>Variable</em>}' class.
@@ -286,7 +286,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getVariable()
 	 * @generated
 	 */
-	int VARIABLE = 114;
+	int VARIABLE = 115;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.IfExpImpl <em>If Exp</em>}' class.
@@ -296,7 +296,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getIfExp()
 	 * @generated
 	 */
-	int IF_EXP = 39;
+	int IF_EXP = 40;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.NumericLiteralExpImpl <em>Numeric Literal Exp</em>}' class.
@@ -306,7 +306,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getNumericLiteralExp()
 	 * @generated
 	 */
-	int NUMERIC_LITERAL_EXP = 63;
+	int NUMERIC_LITERAL_EXP = 64;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.IntegerLiteralExpImpl <em>Integer Literal Exp</em>}' class.
@@ -316,7 +316,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getIntegerLiteralExp()
 	 * @generated
 	 */
-	int INTEGER_LITERAL_EXP = 42;
+	int INTEGER_LITERAL_EXP = 43;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.InvalidLiteralExpImpl <em>Invalid Literal Exp</em>}' class.
@@ -326,7 +326,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getInvalidLiteralExp()
 	 * @generated
 	 */
-	int INVALID_LITERAL_EXP = 43;
+	int INVALID_LITERAL_EXP = 44;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.InvalidTypeImpl <em>Invalid Type</em>}' class.
@@ -336,7 +336,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getInvalidType()
 	 * @generated
 	 */
-	int INVALID_TYPE = 44;
+	int INVALID_TYPE = 45;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.LetExpImpl <em>Let Exp</em>}' class.
@@ -346,7 +346,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getLetExp()
 	 * @generated
 	 */
-	int LET_EXP = 50;
+	int LET_EXP = 51;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.LoopExpImpl <em>Loop Exp</em>}' class.
@@ -356,7 +356,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getLoopExp()
 	 * @generated
 	 */
-	int LOOP_EXP = 53;
+	int LOOP_EXP = 54;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.MessageExpImpl <em>Message Exp</em>}' class.
@@ -366,7 +366,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getMessageExp()
 	 * @generated
 	 */
-	int MESSAGE_EXP = 54;
+	int MESSAGE_EXP = 55;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.SendSignalActionImpl <em>Send Signal Action</em>}' class.
@@ -376,7 +376,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getSendSignalAction()
 	 * @generated
 	 */
-	int SEND_SIGNAL_ACTION = 86;
+	int SEND_SIGNAL_ACTION = 87;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.SignalImpl <em>Signal</em>}' class.
@@ -386,7 +386,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getSignal()
 	 * @generated
 	 */
-	int SIGNAL = 89;
+	int SIGNAL = 90;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.MessageTypeImpl <em>Message Type</em>}' class.
@@ -396,7 +396,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getMessageType()
 	 * @generated
 	 */
-	int MESSAGE_TYPE = 55;
+	int MESSAGE_TYPE = 56;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.NullLiteralExpImpl <em>Null Literal Exp</em>}' class.
@@ -406,7 +406,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getNullLiteralExp()
 	 * @generated
 	 */
-	int NULL_LITERAL_EXP = 62;
+	int NULL_LITERAL_EXP = 63;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.OperationCallExpImpl <em>Operation Call Exp</em>}' class.
@@ -416,7 +416,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getOperationCallExp()
 	 * @generated
 	 */
-	int OPERATION_CALL_EXP = 66;
+	int OPERATION_CALL_EXP = 67;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.OrderedSetTypeImpl <em>Ordered Set Type</em>}' class.
@@ -426,7 +426,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getOrderedSetType()
 	 * @generated
 	 */
-	int ORDERED_SET_TYPE = 68;
+	int ORDERED_SET_TYPE = 69;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.PrimitiveTypeImpl <em>Primitive Type</em>}' class.
@@ -436,7 +436,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getPrimitiveType()
 	 * @generated
 	 */
-	int PRIMITIVE_TYPE = 76;
+	int PRIMITIVE_TYPE = 77;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.PropertyCallExpImpl <em>Property Call Exp</em>}' class.
@@ -446,7 +446,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getPropertyCallExp()
 	 * @generated
 	 */
-	int PROPERTY_CALL_EXP = 80;
+	int PROPERTY_CALL_EXP = 81;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.RealLiteralExpImpl <em>Real Literal Exp</em>}' class.
@@ -456,7 +456,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getRealLiteralExp()
 	 * @generated
 	 */
-	int REAL_LITERAL_EXP = 82;
+	int REAL_LITERAL_EXP = 83;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.SequenceTypeImpl <em>Sequence Type</em>}' class.
@@ -466,7 +466,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getSequenceType()
 	 * @generated
 	 */
-	int SEQUENCE_TYPE = 87;
+	int SEQUENCE_TYPE = 88;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.SetTypeImpl <em>Set Type</em>}' class.
@@ -476,7 +476,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getSetType()
 	 * @generated
 	 */
-	int SET_TYPE = 88;
+	int SET_TYPE = 89;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.StateImpl <em>State</em>}' class.
@@ -486,7 +486,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getState()
 	 * @generated
 	 */
-	int STATE = 92;
+	int STATE = 93;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.StateExpImpl <em>State Exp</em>}' class.
@@ -496,7 +496,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getStateExp()
 	 * @generated
 	 */
-	int STATE_EXP = 93;
+	int STATE_EXP = 94;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.StringLiteralExpImpl <em>String Literal Exp</em>}' class.
@@ -506,7 +506,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getStringLiteralExp()
 	 * @generated
 	 */
-	int STRING_LITERAL_EXP = 96;
+	int STRING_LITERAL_EXP = 97;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.TupleLiteralExpImpl <em>Tuple Literal Exp</em>}' class.
@@ -516,7 +516,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getTupleLiteralExp()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_EXP = 104;
+	int TUPLE_LITERAL_EXP = 105;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.TupleLiteralPartImpl <em>Tuple Literal Part</em>}' class.
@@ -526,7 +526,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getTupleLiteralPart()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_PART = 105;
+	int TUPLE_LITERAL_PART = 106;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.TupleTypeImpl <em>Tuple Type</em>}' class.
@@ -536,7 +536,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getTupleType()
 	 * @generated
 	 */
-	int TUPLE_TYPE = 106;
+	int TUPLE_TYPE = 107;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.TypeExpImpl <em>Type Exp</em>}' class.
@@ -546,7 +546,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getTypeExp()
 	 * @generated
 	 */
-	int TYPE_EXP = 108;
+	int TYPE_EXP = 109;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.UnlimitedNaturalLiteralExpImpl <em>Unlimited Natural Literal Exp</em>}' class.
@@ -556,7 +556,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getUnlimitedNaturalLiteralExp()
 	 * @generated
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP = 111;
+	int UNLIMITED_NATURAL_LITERAL_EXP = 112;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.UnspecifiedValueExpImpl <em>Unspecified Value Exp</em>}' class.
@@ -566,7 +566,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getUnspecifiedValueExp()
 	 * @generated
 	 */
-	int UNSPECIFIED_VALUE_EXP = 112;
+	int UNSPECIFIED_VALUE_EXP = 113;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.VariableExpImpl <em>Variable Exp</em>}' class.
@@ -576,7 +576,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getVariableExp()
 	 * @generated
 	 */
-	int VARIABLE_EXP = 116;
+	int VARIABLE_EXP = 117;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.VoidTypeImpl <em>Void Type</em>}' class.
@@ -586,7 +586,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getVoidType()
 	 * @generated
 	 */
-	int VOID_TYPE = 119;
+	int VOID_TYPE = 120;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.util.Pivotable <em>Pivotable</em>}' class.
@@ -596,7 +596,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getPivotable()
 	 * @generated
 	 */
-	int PIVOTABLE = 72;
+	int PIVOTABLE = 73;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.util.Visitable <em>Visitable</em>}' class.
@@ -606,7 +606,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getVisitable()
 	 * @generated
 	 */
-	int VISITABLE = 118;
+	int VISITABLE = 119;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.ElementImpl <em>Element</em>}' class.
@@ -616,7 +616,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getElement()
 	 * @generated
 	 */
-	int ELEMENT = 30;
+	int ELEMENT = 31;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.NamedElementImpl <em>Named Element</em>}' class.
@@ -626,7 +626,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getNamedElement()
 	 * @generated
 	 */
-	int NAMED_ELEMENT = 59;
+	int NAMED_ELEMENT = 60;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.AnnotationImpl <em>Annotation</em>}' class.
@@ -646,7 +646,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getType()
 	 * @generated
 	 */
-	int TYPE = 107;
+	int TYPE = 108;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.ClassImpl <em>Class</em>}' class.
@@ -666,7 +666,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getTemplateableElement()
 	 * @generated
 	 */
-	int TEMPLATEABLE_ELEMENT = 101;
+	int TEMPLATEABLE_ELEMENT = 102;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.TemplateBindingImpl <em>Template Binding</em>}' class.
@@ -676,7 +676,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getTemplateBinding()
 	 * @generated
 	 */
-	int TEMPLATE_BINDING = 97;
+	int TEMPLATE_BINDING = 98;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.TemplateSignatureImpl <em>Template Signature</em>}' class.
@@ -686,7 +686,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getTemplateSignature()
 	 * @generated
 	 */
-	int TEMPLATE_SIGNATURE = 100;
+	int TEMPLATE_SIGNATURE = 101;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.TemplateParameterImpl <em>Template Parameter</em>}' class.
@@ -696,7 +696,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getTemplateParameter()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER = 98;
+	int TEMPLATE_PARAMETER = 99;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.TemplateParameterSubstitutionImpl <em>Template Parameter Substitution</em>}' class.
@@ -706,7 +706,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getTemplateParameterSubstitution()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION = 99;
+	int TEMPLATE_PARAMETER_SUBSTITUTION = 100;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.PackageImpl <em>Package</em>}' class.
@@ -716,7 +716,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getPackage()
 	 * @generated
 	 */
-	int PACKAGE = 70;
+	int PACKAGE = 71;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.NamespaceImpl <em>Namespace</em>}' class.
@@ -726,7 +726,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getNamespace()
 	 * @generated
 	 */
-	int NAMESPACE = 60;
+	int NAMESPACE = 61;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.PrecedenceImpl <em>Precedence</em>}' class.
@@ -736,7 +736,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getPrecedence()
 	 * @generated
 	 */
-	int PRECEDENCE = 73;
+	int PRECEDENCE = 74;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.PropertyImpl <em>Property</em>}' class.
@@ -746,7 +746,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getProperty()
 	 * @generated
 	 */
-	int PROPERTY = 79;
+	int PROPERTY = 80;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.TypedElementImpl <em>Typed Element</em>}' class.
@@ -756,7 +756,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getTypedElement()
 	 * @generated
 	 */
-	int TYPED_ELEMENT = 110;
+	int TYPED_ELEMENT = 111;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.AssociationClassImpl <em>Association Class</em>}' class.
@@ -776,7 +776,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getOperation()
 	 * @generated
 	 */
-	int OPERATION = 65;
+	int OPERATION = 66;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.ParameterImpl <em>Parameter</em>}' class.
@@ -786,7 +786,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getParameter()
 	 * @generated
 	 */
-	int PARAMETER = 71;
+	int PARAMETER = 72;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.VariableDeclarationImpl <em>Variable Declaration</em>}' class.
@@ -796,7 +796,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getVariableDeclaration()
 	 * @generated
 	 */
-	int VARIABLE_DECLARATION = 115;
+	int VARIABLE_DECLARATION = 116;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.CommentImpl <em>Comment</em>}' class.
@@ -816,7 +816,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getConstraint()
 	 * @generated
 	 */
-	int CONSTRAINT = 20;
+	int CONSTRAINT = 21;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.ValueSpecificationImpl <em>Value Specification</em>}' class.
@@ -826,7 +826,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getValueSpecification()
 	 * @generated
 	 */
-	int VALUE_SPECIFICATION = 113;
+	int VALUE_SPECIFICATION = 114;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.domain.elements.Nameable <em>Nameable</em>}' class.
@@ -836,7 +836,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getNameable()
 	 * @generated
 	 */
-	int NAMEABLE = 58;
+	int NAMEABLE = 59;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.DetailImpl <em>Detail</em>}' class.
@@ -846,7 +846,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getDetail()
 	 * @generated
 	 */
-	int DETAIL = 24;
+	int DETAIL = 25;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.AnyTypeImpl <em>Any Type</em>}' class.
@@ -866,7 +866,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getFeature()
 	 * @generated
 	 */
-	int FEATURE = 36;
+	int FEATURE = 37;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.IterateExpImpl <em>Iterate Exp</em>}' class.
@@ -876,7 +876,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getIterateExp()
 	 * @generated
 	 */
-	int ITERATE_EXP = 45;
+	int ITERATE_EXP = 46;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.IterationImpl <em>Iteration</em>}' class.
@@ -886,7 +886,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getIteration()
 	 * @generated
 	 */
-	int ITERATION = 46;
+	int ITERATION = 47;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.IteratorExpImpl <em>Iterator Exp</em>}' class.
@@ -896,7 +896,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getIteratorExp()
 	 * @generated
 	 */
-	int ITERATOR_EXP = 47;
+	int ITERATOR_EXP = 48;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.LibraryImpl <em>Library</em>}' class.
@@ -906,7 +906,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getLibrary()
 	 * @generated
 	 */
-	int LIBRARY = 51;
+	int LIBRARY = 52;
 
 	/**
 	 * The number of structural features of the '<em>Visitable</em>' class.
@@ -1205,7 +1205,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getConstructorExp()
 	 * @generated
 	 */
-	int CONSTRUCTOR_EXP = 21;
+	int CONSTRUCTOR_EXP = 22;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.ConstructorPartImpl <em>Constructor Part</em>}' class.
@@ -1215,7 +1215,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getConstructorPart()
 	 * @generated
 	 */
-	int CONSTRUCTOR_PART = 22;
+	int CONSTRUCTOR_PART = 23;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.DynamicElementImpl <em>Dynamic Element</em>}' class.
@@ -1225,7 +1225,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getDynamicElement()
 	 * @generated
 	 */
-	int DYNAMIC_ELEMENT = 26;
+	int DYNAMIC_ELEMENT = 27;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.DynamicPropertyImpl <em>Dynamic Property</em>}' class.
@@ -1235,7 +1235,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getDynamicProperty()
 	 * @generated
 	 */
-	int DYNAMIC_PROPERTY = 27;
+	int DYNAMIC_PROPERTY = 28;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.DynamicTypeImpl <em>Dynamic Type</em>}' class.
@@ -1245,7 +1245,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getDynamicType()
 	 * @generated
 	 */
-	int DYNAMIC_TYPE = 28;
+	int DYNAMIC_TYPE = 29;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.LambdaTypeImpl <em>Lambda Type</em>}' class.
@@ -1255,7 +1255,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getLambdaType()
 	 * @generated
 	 */
-	int LAMBDA_TYPE = 48;
+	int LAMBDA_TYPE = 49;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.util.MorePivotable <em>More Pivotable</em>}' class.
@@ -1265,7 +1265,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getMorePivotable()
 	 * @generated
 	 */
-	int MORE_PIVOTABLE = 57;
+	int MORE_PIVOTABLE = 58;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.VertexImpl <em>Vertex</em>}' class.
@@ -1275,7 +1275,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getVertex()
 	 * @generated
 	 */
-	int VERTEX = 117;
+	int VERTEX = 118;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.ConnectionPointReferenceImpl <em>Connection Point Reference</em>}' class.
@@ -1285,7 +1285,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getConnectionPointReference()
 	 * @generated
 	 */
-	int CONNECTION_POINT_REFERENCE = 19;
+	int CONNECTION_POINT_REFERENCE = 20;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.DynamicBehaviorImpl <em>Dynamic Behavior</em>}' class.
@@ -1295,7 +1295,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getDynamicBehavior()
 	 * @generated
 	 */
-	int DYNAMIC_BEHAVIOR = 25;
+	int DYNAMIC_BEHAVIOR = 26;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.DynamicValueSpecificationImpl <em>Dynamic Value Specification</em>}' class.
@@ -1305,7 +1305,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getDynamicValueSpecification()
 	 * @generated
 	 */
-	int DYNAMIC_VALUE_SPECIFICATION = 29;
+	int DYNAMIC_VALUE_SPECIFICATION = 30;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.ElementExtensionImpl <em>Element Extension</em>}' class.
@@ -1315,7 +1315,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getElementExtension()
 	 * @generated
 	 */
-	int ELEMENT_EXTENSION = 31;
+	int ELEMENT_EXTENSION = 32;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.ProfileImpl <em>Profile</em>}' class.
@@ -1325,7 +1325,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getProfile()
 	 * @generated
 	 */
-	int PROFILE = 77;
+	int PROFILE = 78;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.PseudostateImpl <em>Pseudostate</em>}' class.
@@ -1335,7 +1335,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getPseudostate()
 	 * @generated
 	 */
-	int PSEUDOSTATE = 81;
+	int PSEUDOSTATE = 82;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.ReferringElement <em>Referring Element</em>}' class.
@@ -1345,7 +1345,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getReferringElement()
 	 * @generated
 	 */
-	int REFERRING_ELEMENT = 83;
+	int REFERRING_ELEMENT = 84;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.RegionImpl <em>Region</em>}' class.
@@ -1355,7 +1355,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getRegion()
 	 * @generated
 	 */
-	int REGION = 84;
+	int REGION = 85;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.SelfTypeImpl <em>Self Type</em>}' class.
@@ -1365,7 +1365,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getSelfType()
 	 * @generated
 	 */
-	int SELF_TYPE = 85;
+	int SELF_TYPE = 86;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.FinalStateImpl <em>Final State</em>}' class.
@@ -1375,7 +1375,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getFinalState()
 	 * @generated
 	 */
-	int FINAL_STATE = 38;
+	int FINAL_STATE = 39;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.ImportImpl <em>Import</em>}' class.
@@ -1385,7 +1385,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getImport()
 	 * @generated
 	 */
-	int IMPORT = 40;
+	int IMPORT = 41;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.InstanceSpecificationImpl <em>Instance Specification</em>}' class.
@@ -1395,7 +1395,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getInstanceSpecification()
 	 * @generated
 	 */
-	int INSTANCE_SPECIFICATION = 41;
+	int INSTANCE_SPECIFICATION = 42;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.OppositePropertyCallExpImpl <em>Opposite Property Call Exp</em>}' class.
@@ -1405,7 +1405,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getOppositePropertyCallExp()
 	 * @generated
 	 */
-	int OPPOSITE_PROPERTY_CALL_EXP = 67;
+	int OPPOSITE_PROPERTY_CALL_EXP = 68;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -5765,6 +5765,106 @@ public interface PivotPackage
 	int COMPLETE_CLASS_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.CompleteEnvironmentImpl <em>Complete Environment</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.pivot.internal.impl.CompleteEnvironmentImpl
+	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getCompleteEnvironment()
+	 * @generated
+	 */
+	int COMPLETE_ENVIRONMENT = 17;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_ENVIRONMENT__COMMENT = ELEMENT__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extension</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_ENVIRONMENT__EXTENSION = ELEMENT__EXTENSION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_ENVIRONMENT__OWNED_ANNOTATION = ELEMENT__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_ENVIRONMENT__OWNED_COMMENT = ELEMENT__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Complete Model</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_ENVIRONMENT__OWNED_COMPLETE_MODEL = ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Standard Library</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_ENVIRONMENT__OWNED_STANDARD_LIBRARY = ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Complete Environment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_ENVIRONMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_ENVIRONMENT___ALL_OWNED_ELEMENTS = ELEMENT___ALL_OWNED_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Get Value</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_ENVIRONMENT___GET_VALUE__TYPE_STRING = ELEMENT___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The number of operations of the '<em>Complete Environment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_ENVIRONMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.CompleteModelImpl <em>Complete Model</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5772,7 +5872,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getCompleteModel()
 	 * @generated
 	 */
-	int COMPLETE_MODEL = 17;
+	int COMPLETE_MODEL = 18;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -5838,13 +5938,22 @@ public interface PivotPackage
 	int COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Owning Complete Environment</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_MODEL__OWNING_COMPLETE_ENVIRONMENT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Partial Models</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_MODEL__PARTIAL_MODELS = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int COMPLETE_MODEL__PARTIAL_MODELS = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Primitive Complete Package</b></em>' reference.
@@ -5853,7 +5962,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_MODEL__PRIMITIVE_COMPLETE_PACKAGE = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int COMPLETE_MODEL__PRIMITIVE_COMPLETE_PACKAGE = NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Complete Model</em>' class.
@@ -5862,7 +5971,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_MODEL_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int COMPLETE_MODEL_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -5908,7 +6017,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getCompletePackage()
 	 * @generated
 	 */
-	int COMPLETE_PACKAGE = 18;
+	int COMPLETE_PACKAGE = 19;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -8942,7 +9051,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getLanguageExpression()
 	 * @generated
 	 */
-	int LANGUAGE_EXPRESSION = 49;
+	int LANGUAGE_EXPRESSION = 50;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -9555,7 +9664,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getProfileApplication()
 	 * @generated
 	 */
-	int PROFILE_APPLICATION = 78;
+	int PROFILE_APPLICATION = 79;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.SlotImpl <em>Slot</em>}' class.
@@ -9565,7 +9674,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getSlot()
 	 * @generated
 	 */
-	int SLOT = 90;
+	int SLOT = 91;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.StateMachineImpl <em>State Machine</em>}' class.
@@ -9575,7 +9684,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getStateMachine()
 	 * @generated
 	 */
-	int STATE_MACHINE = 94;
+	int STATE_MACHINE = 95;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.StereotypeImpl <em>Stereotype</em>}' class.
@@ -9585,7 +9694,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getStereotype()
 	 * @generated
 	 */
-	int STEREOTYPE = 95;
+	int STEREOTYPE = 96;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.TransitionImpl <em>Transition</em>}' class.
@@ -9595,7 +9704,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getTransition()
 	 * @generated
 	 */
-	int TRANSITION = 102;
+	int TRANSITION = 103;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.impl.TriggerImpl <em>Trigger</em>}' class.
@@ -9605,7 +9714,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getTrigger()
 	 * @generated
 	 */
-	int TRIGGER = 103;
+	int TRIGGER = 104;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -13998,7 +14107,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getModel()
 	 * @generated
 	 */
-	int MODEL = 56;
+	int MODEL = 57;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -14998,7 +15107,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getOrphanCompletePackage()
 	 * @generated
 	 */
-	int ORPHAN_COMPLETE_PACKAGE = 69;
+	int ORPHAN_COMPLETE_PACKAGE = 70;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -15548,7 +15657,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getPrimitiveCompletePackage()
 	 * @generated
 	 */
-	int PRIMITIVE_COMPLETE_PACKAGE = 74;
+	int PRIMITIVE_COMPLETE_PACKAGE = 75;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -18591,7 +18700,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getStandardLibrary()
 	 * @generated
 	 */
-	int STANDARD_LIBRARY = 91;
+	int STANDARD_LIBRARY = 92;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -18630,13 +18739,22 @@ public interface PivotPackage
 	int STANDARD_LIBRARY__OWNED_COMMENT = ELEMENT__OWNED_COMMENT;
 
 	/**
+	 * The feature id for the '<em><b>Owning Complete Environment</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STANDARD_LIBRARY__OWNING_COMPLETE_ENVIRONMENT = ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Standard Library</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STANDARD_LIBRARY_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 0;
+	int STANDARD_LIBRARY_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -21067,7 +21185,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getTypeExtension()
 	 * @generated
 	 */
-	int TYPE_EXTENSION = 109;
+	int TYPE_EXTENSION = 110;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -22049,7 +22167,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getWildcardType()
 	 * @generated
 	 */
-	int WILDCARD_TYPE = 120;
+	int WILDCARD_TYPE = 121;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference list.
@@ -22338,7 +22456,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getAssociativityKind()
 	 * @generated
 	 */
-	int ASSOCIATIVITY_KIND = 121;
+	int ASSOCIATIVITY_KIND = 122;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.CollectionKind <em>Collection Kind</em>}' enum.
@@ -22348,7 +22466,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getCollectionKind()
 	 * @generated
 	 */
-	int COLLECTION_KIND = 122;
+	int COLLECTION_KIND = 123;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.PseudostateKind <em>Pseudostate Kind</em>}' enum.
@@ -22358,7 +22476,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getPseudostateKind()
 	 * @generated
 	 */
-	int PSEUDOSTATE_KIND = 123;
+	int PSEUDOSTATE_KIND = 124;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.TransitionKind <em>Transition Kind</em>}' enum.
@@ -22368,7 +22486,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getTransitionKind()
 	 * @generated
 	 */
-	int TRANSITION_KIND = 124;
+	int TRANSITION_KIND = 125;
 
 	/**
 	 * The meta object id for the '<em>Boolean</em>' data type.
@@ -22377,7 +22495,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getBoolean()
 	 * @generated
 	 */
-	int BOOLEAN = 125;
+	int BOOLEAN = 126;
 
 	/**
 	 * The meta object id for the '<em>Integer</em>' data type.
@@ -22387,7 +22505,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getInteger()
 	 * @generated
 	 */
-	int INTEGER = 126;
+	int INTEGER = 127;
 
 	/**
 	 * The meta object id for the '<em>Library Feature</em>' data type.
@@ -22397,7 +22515,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getLibraryFeature()
 	 * @generated
 	 */
-	int LIBRARY_FEATURE = 127;
+	int LIBRARY_FEATURE = 128;
 
 	/**
 	 * The meta object id for the '<em>Object</em>' data type.
@@ -22407,7 +22525,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getObject()
 	 * @generated
 	 */
-	int OBJECT = 128;
+	int OBJECT = 129;
 
 	/**
 	 * The meta object id for the '<em>Real</em>' data type.
@@ -22417,7 +22535,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getReal()
 	 * @generated
 	 */
-	int REAL = 129;
+	int REAL = 130;
 
 	/**
 	 * The meta object id for the '<em>String</em>' data type.
@@ -22427,7 +22545,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getString()
 	 * @generated
 	 */
-	int STRING = 130;
+	int STRING = 131;
 
 	/**
 	 * The meta object id for the '<em>Throwable</em>' data type.
@@ -22437,7 +22555,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getThrowable()
 	 * @generated
 	 */
-	int THROWABLE = 131;
+	int THROWABLE = 132;
 
 	/**
 	 * The meta object id for the '<em>Unlimited Natural</em>' data type.
@@ -22447,7 +22565,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getUnlimitedNatural()
 	 * @generated
 	 */
-	int UNLIMITED_NATURAL = 132;
+	int UNLIMITED_NATURAL = 133;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.Annotation <em>Annotation</em>}'.
@@ -24190,6 +24308,17 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EClass getStandardLibrary();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.pivot.StandardLibrary#getOwningCompleteEnvironment <em>Owning Complete Environment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owning Complete Environment</em>'.
+	 * @see org.eclipse.ocl.pivot.StandardLibrary#getOwningCompleteEnvironment()
+	 * @see #getStandardLibrary()
+	 * @generated
+	 */
+	EReference getStandardLibrary_OwningCompleteEnvironment();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.MessageType <em>Message Type</em>}'.
@@ -26577,6 +26706,38 @@ public interface PivotPackage
 	EReference getCompleteClass_PartialClasses();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.CompleteEnvironment <em>Complete Environment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Complete Environment</em>'.
+	 * @see org.eclipse.ocl.pivot.CompleteEnvironment
+	 * @generated
+	 */
+	EClass getCompleteEnvironment();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.pivot.CompleteEnvironment#getOwnedCompleteModel <em>Owned Complete Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Owned Complete Model</em>'.
+	 * @see org.eclipse.ocl.pivot.CompleteEnvironment#getOwnedCompleteModel()
+	 * @see #getCompleteEnvironment()
+	 * @generated
+	 */
+	EReference getCompleteEnvironment_OwnedCompleteModel();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.pivot.CompleteEnvironment#getOwnedStandardLibrary <em>Owned Standard Library</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Owned Standard Library</em>'.
+	 * @see org.eclipse.ocl.pivot.CompleteEnvironment#getOwnedStandardLibrary()
+	 * @see #getCompleteEnvironment()
+	 * @generated
+	 */
+	EReference getCompleteEnvironment_OwnedStandardLibrary();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.CompleteModel <em>Complete Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -26607,6 +26768,17 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getCompleteModel_OwnedCompletePackages();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.pivot.CompleteModel#getOwningCompleteEnvironment <em>Owning Complete Environment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owning Complete Environment</em>'.
+	 * @see org.eclipse.ocl.pivot.CompleteModel#getOwningCompleteEnvironment()
+	 * @see #getCompleteModel()
+	 * @generated
+	 */
+	EReference getCompleteModel_OwningCompleteEnvironment();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.pivot.CompleteModel#getPartialModels <em>Partial Models</em>}'.
@@ -28839,6 +29011,14 @@ public interface PivotPackage
 		EClass STANDARD_LIBRARY = eINSTANCE.getStandardLibrary();
 
 		/**
+		 * The meta object literal for the '<em><b>Owning Complete Environment</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STANDARD_LIBRARY__OWNING_COMPLETE_ENVIRONMENT = eINSTANCE.getStandardLibrary_OwningCompleteEnvironment();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.internal.impl.MessageTypeImpl <em>Message Type</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -30747,6 +30927,32 @@ public interface PivotPackage
 		EReference COMPLETE_CLASS__PARTIAL_CLASSES = eINSTANCE.getCompleteClass_PartialClasses();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.internal.impl.CompleteEnvironmentImpl <em>Complete Environment</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.pivot.internal.impl.CompleteEnvironmentImpl
+		 * @see org.eclipse.ocl.pivot.internal.impl.PivotPackageImpl#getCompleteEnvironment()
+		 * @generated
+		 */
+		EClass COMPLETE_ENVIRONMENT = eINSTANCE.getCompleteEnvironment();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Complete Model</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPLETE_ENVIRONMENT__OWNED_COMPLETE_MODEL = eINSTANCE.getCompleteEnvironment_OwnedCompleteModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Standard Library</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPLETE_ENVIRONMENT__OWNED_STANDARD_LIBRARY = eINSTANCE.getCompleteEnvironment_OwnedStandardLibrary();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.internal.impl.CompleteModelImpl <em>Complete Model</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -30771,6 +30977,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES = eINSTANCE.getCompleteModel_OwnedCompletePackages();
+
+		/**
+		 * The meta object literal for the '<em><b>Owning Complete Environment</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPLETE_MODEL__OWNING_COMPLETE_ENVIRONMENT = eINSTANCE.getCompleteModel_OwningCompleteEnvironment();
 
 		/**
 		 * The meta object literal for the '<em><b>Partial Models</b></em>' reference list feature.

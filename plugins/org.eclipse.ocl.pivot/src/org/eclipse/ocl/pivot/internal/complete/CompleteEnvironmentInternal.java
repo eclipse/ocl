@@ -24,6 +24,7 @@ import org.eclipse.ocl.pivot.manager.TupleTypeManager;
 
 public interface CompleteEnvironmentInternal extends CompleteEnvironment
 {
+	void addOrphanClass(@NonNull org.eclipse.ocl.pivot.Class pivotElement);
 	boolean conformsTo(@NonNull Type firstType, @NonNull TemplateParameterSubstitutions firstSubstitutions,
 			@NonNull Type secondType, @NonNull TemplateParameterSubstitutions secondSubstitutions);
 	void dispose();
@@ -34,13 +35,14 @@ public interface CompleteEnvironmentInternal extends CompleteEnvironment
 	@NonNull <T extends CollectionType> T getCollectionType(@NonNull T containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
 	@NonNull CompleteClassInternal getCompleteClass(@NonNull Type pivotType);
 	@Override
-	@NonNull CompleteModelInternal getCompleteModel();
+	@NonNull CompleteModelInternal getOwnedCompleteModel();
 	@NonNull MetaModelManager getMetaModelManager();
 //	@Override
 //	@NonNull PivotStandardLibrary getStandardLibrary();
 	@Override
-	@NonNull StandardLibraryInternal getStandardLibrary();
+	@NonNull StandardLibraryInternal getOwnedStandardLibrary();
 	@NonNull TupleTypeManager getTupleManager();
+	@NonNull CompleteEnvironmentInternal init(@NonNull MetaModelManager metaModelManager);
 	boolean isCodeGeneration();
 	void setCodeGeneration(boolean isCodeGeneration);
 }
