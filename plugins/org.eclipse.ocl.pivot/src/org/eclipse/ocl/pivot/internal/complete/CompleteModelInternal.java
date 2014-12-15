@@ -25,6 +25,8 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.internal.impl.OrphanCompletePackageImpl;
+import org.eclipse.ocl.pivot.internal.impl.PrimitiveCompletePackageImpl;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.Orphanage;
 import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
@@ -51,13 +53,11 @@ public interface CompleteModelInternal extends CompleteModel
 			@Nullable TemplateParameterSubstitutions bindings);
 	@NonNull MetaModelManager getMetaModelManager();
 	@Override
-	@NonNull OrphanCompletePackageInternal getOrphanCompletePackage();
-//	@Override
-//	@NonNull RootCompletePackages getOwnedCompletePackages();
+	@NonNull OrphanCompletePackageImpl getOrphanCompletePackage();
 	@Override
 	@NonNull PartialModels getPartialModels();
 	@Override
-	@NonNull PrimitiveCompletePackageInternal getPrimitiveCompletePackage();
+	@NonNull PrimitiveCompletePackageImpl getPrimitiveCompletePackage();
 	@NonNull Type getSpecializedType(@NonNull Type type, @Nullable TemplateParameterSubstitutions substitutions);
 	@NonNull TupleType getTupleType(@NonNull String typeName, @NonNull Collection<? extends TypedElement> parts,
 			@Nullable TemplateParameterSubstitutions bindings);	

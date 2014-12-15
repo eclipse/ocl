@@ -467,11 +467,6 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 	}
 
 	@Override
-	public @Nullable R visitRootCompletePackage(@NonNull org.eclipse.ocl.pivot.RootCompletePackage object) {
-		return delegate.visitRootCompletePackage(object);
-	}
-
-	@Override
 	public @Nullable R visitSelfType(@NonNull org.eclipse.ocl.pivot.SelfType object) {
 		return delegate.visitSelfType(object);
 	}

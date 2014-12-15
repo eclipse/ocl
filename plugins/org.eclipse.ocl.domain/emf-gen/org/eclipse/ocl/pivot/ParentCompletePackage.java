@@ -19,6 +19,6 @@ package org.eclipse.ocl.pivot;
  * @see org.eclipse.ocl.pivot.PivotPackage#getParentCompletePackage()
  * @generated
  */
-public interface ParentCompletePackage extends RootCompletePackage
+public interface ParentCompletePackage extends CompletePackage
 {
 } // ParentCompletePackage

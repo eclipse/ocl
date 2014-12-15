@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.CompleteClass;
@@ -35,7 +34,6 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.PivotPackage;
-import org.eclipse.ocl.pivot.RootCompletePackage;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.complete.CompleteClassInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteClasses;
@@ -397,9 +395,25 @@ public class CompletePackageImpl extends NamedElementImpl implements CompletePac
 	@Override
 	public void assertSamePackage(org.eclipse.ocl.pivot.Package pivotPackage) {
 		assert pivotPackage != null;
-		String typeBasedNsURI = pivotPackage.getURI();
-		String serverBasedNsURI = getURI();
-		assert (typeBasedNsURI == serverBasedNsURI) || typeBasedNsURI.equals(serverBasedNsURI);
+		if (getOwningCompletePackage() == null) {
+//		if ((this instanceof OrphanCompletePackage) || (this instanceof ParentCompletePackage) || (this instanceof PrimitiveCompletePackage)) {
+			org.eclipse.ocl.pivot.Package parentPackage = pivotPackage.getOwningPackage();
+			assert parentPackage == null;
+			String typeBasedNsURI = pivotPackage.getURI();
+			String serverBasedNsURI = getURI();
+			if (typeBasedNsURI == null) {
+//				assert serverBasedNsURI == null;
+			}
+			else {
+				CompleteModelInternal completeModel = getCompleteModel();
+				assert (serverBasedNsURI == null) || (completeModel.getCompletePackageByURI(typeBasedNsURI) == completeModel.getCompletePackageByURI(serverBasedNsURI));
+			}
+		}
+		else {
+			String typeBasedNsURI = pivotPackage.getURI();
+			String serverBasedNsURI = getURI();
+			assert (typeBasedNsURI == serverBasedNsURI) || typeBasedNsURI.equals(serverBasedNsURI);
+		}
 	}
 
 	protected void didAddNestedPackage(@NonNull CompleteModel completeModel, @NonNull org.eclipse.ocl.pivot.Package pivotPackage) {
@@ -678,15 +692,16 @@ public class CompletePackageImpl extends NamedElementImpl implements CompletePac
 		Package partialPackage = getCompleteModel().getStandardLibrary().getOclAnyType().getOwningPackage();
 		return DomainUtil.nonNullState(partialPackage);
 	}
-
+	
 	@Override
-	public RootCompletePackage getRootCompletePackage() {
-		for (EObject eContainer = this; eContainer != null; eContainer = eContainer.eContainer()) {
-			if (eContainer instanceof RootCompletePackage) {
-				return (RootCompletePackage) eContainer;
+	public @NonNull CompletePackageInternal getRootCompletePackage() {
+		for (EObject eContainer = eContainer(); eContainer instanceof CompletePackageInternal; eContainer = eContainer.eContainer()) {
+			CompletePackageInternal completePackageInternal = (CompletePackageInternal)eContainer;
+			if (completePackageInternal.getOwningCompletePackage() == null) {
+				return (CompletePackageInternal)eContainer;
 			}
 		}
-		return null;
+		return this;
 	}
 
 	@Override
@@ -701,10 +716,9 @@ public class CompletePackageImpl extends NamedElementImpl implements CompletePac
 	}
 
 	@Override
-	public void init(String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId) {
+	public void init(String name, @Nullable String nsPrefix, @Nullable String nsURI) {
 		setName(name);
 		this.nsPrefix = nsPrefix;
 		this.nsURI = nsURI;
-//		this.packageId = packageId;
 	}
 } //CompletePackageImpl

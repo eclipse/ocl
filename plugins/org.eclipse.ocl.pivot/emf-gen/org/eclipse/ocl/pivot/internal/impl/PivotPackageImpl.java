@@ -108,7 +108,6 @@ import org.eclipse.ocl.pivot.PseudostateKind;
 import org.eclipse.ocl.pivot.RealLiteralExp;
 import org.eclipse.ocl.pivot.ReferringElement;
 import org.eclipse.ocl.pivot.Region;
-import org.eclipse.ocl.pivot.RootCompletePackage;
 import org.eclipse.ocl.pivot.SelfType;
 import org.eclipse.ocl.pivot.SendSignalAction;
 import org.eclipse.ocl.pivot.SequenceType;
@@ -557,13 +556,6 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EClass regionEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass rootCompletePackageEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -3408,17 +3400,6 @@ public class PivotPackageImpl
 	public EReference getRegion_ExtendedRegion()
 	{
 		return (EReference)regionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getRootCompletePackage()
-	{
-		return rootCompletePackageEClass;
 	}
 
 	/**
@@ -6634,8 +6615,6 @@ public class PivotPackageImpl
 		createEReference(regionEClass, REGION__SUBVERTEX);
 		createEReference(regionEClass, REGION__TRANSITION);
 
-		rootCompletePackageEClass = createEClass(ROOT_COMPLETE_PACKAGE);
-
 		selfTypeEClass = createEClass(SELF_TYPE);
 		createEOperation(selfTypeEClass, SELF_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE_1);
 
@@ -6915,12 +6894,12 @@ public class PivotPackageImpl
 		operationCallExpEClass.getESuperTypes().add(this.getReferringElement());
 		oppositePropertyCallExpEClass.getESuperTypes().add(this.getNavigationCallExp());
 		orderedSetTypeEClass.getESuperTypes().add(this.getCollectionType());
-		orphanCompletePackageEClass.getESuperTypes().add(this.getRootCompletePackage());
+		orphanCompletePackageEClass.getESuperTypes().add(this.getCompletePackage());
 		packageEClass.getESuperTypes().add(this.getNamespace());
 		parameterEClass.getESuperTypes().add(this.getVariableDeclaration());
-		parentCompletePackageEClass.getESuperTypes().add(this.getRootCompletePackage());
+		parentCompletePackageEClass.getESuperTypes().add(this.getCompletePackage());
 		precedenceEClass.getESuperTypes().add(this.getNamedElement());
-		primitiveCompletePackageEClass.getESuperTypes().add(this.getRootCompletePackage());
+		primitiveCompletePackageEClass.getESuperTypes().add(this.getCompletePackage());
 		primitiveLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
 		primitiveTypeEClass.getESuperTypes().add(this.getDataType());
 		profileEClass.getESuperTypes().add(this.getPackage());
@@ -6931,7 +6910,6 @@ public class PivotPackageImpl
 		pseudostateEClass.getESuperTypes().add(this.getVertex());
 		realLiteralExpEClass.getESuperTypes().add(this.getNumericLiteralExp());
 		regionEClass.getESuperTypes().add(this.getNamespace());
-		rootCompletePackageEClass.getESuperTypes().add(this.getCompletePackage());
 		selfTypeEClass.getESuperTypes().add(this.getClass_());
 		sendSignalActionEClass.getESuperTypes().add(this.getNamedElement());
 		sequenceTypeEClass.getESuperTypes().add(this.getCollectionType());
@@ -7885,8 +7863,6 @@ public class PivotPackageImpl
 		initEReference(getRegion_StateMachine(), this.getStateMachine(), this.getStateMachine_Region(), "stateMachine", null, 0, 1, Region.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getRegion_Subvertex(), this.getVertex(), this.getVertex_Container(), "subvertex", null, 0, -1, Region.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getRegion_Transition(), this.getTransition(), this.getTransition_Container(), "transition", null, 0, -1, Region.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(rootCompletePackageEClass, RootCompletePackage.class, "RootCompletePackage", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(selfTypeEClass, SelfType.class, "SelfType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

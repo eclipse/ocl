@@ -331,11 +331,11 @@ public class CompleteEnvironmentImpl implements CompleteEnvironmentInternal
 			return completeClass;
 		}
 		else if (pivotType instanceof PrimitiveType) {
-			PrimitiveCompletePackageInternal primitiveCompletePackage = completeModel.getPrimitiveCompletePackage();
+			CompletePackageInternal primitiveCompletePackage = completeModel.getPrimitiveCompletePackage();
 			return primitiveCompletePackage.getCompleteClass((PrimitiveType)pivotType);
 		}
 		else if ((pivotType instanceof CollectionType) && (((CollectionType)pivotType).getUnspecializedElement() != null)) {
-			OrphanCompletePackageInternal orphanCompletePackage = completeModel.getOrphanCompletePackage();
+			CompletePackageInternal orphanCompletePackage = completeModel.getOrphanCompletePackage();
 			return orphanCompletePackage.getCompleteClass((CollectionType)pivotType);
 		}
 		else if (pivotType instanceof org.eclipse.ocl.pivot.Class) {

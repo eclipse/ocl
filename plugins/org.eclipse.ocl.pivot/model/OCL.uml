@@ -102,19 +102,13 @@
       <packagedElement xmi:type="uml:Class" xmi:id="_67hN4CyOEeS77awx34sDEA" name="NamedElement" isAbstract="true"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_c7pEUCyPEeS77awx34sDEA" name="Operation"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_TlOeADQjEeSMlP-TjpzTcA" name="OrphanCompletePackage">
-        <generalization xmi:id="_TlOeATQjEeSMlP-TjpzTcA" general="_OllUMDQjEeSMlP-TjpzTcA"/>
+        <generalization xmi:id="_TlOeATQjEeSMlP-TjpzTcA" general="_-mAioCyOEeS77awx34sDEA"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_Te8gYCyPEeS77awx34sDEA" name="Package"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="_LsLGkDmTEeSB95ugQCao7g" name="ParentCompletePackage">
-        <generalization xmi:id="_LsLGkTmTEeSB95ugQCao7g" general="_OllUMDQjEeSMlP-TjpzTcA"/>
-      </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_Je4TIDmUEeSB95ugQCao7g" name="PrimitiveCompletePackage">
-        <generalization xmi:id="_Je4TITmUEeSB95ugQCao7g" general="_OllUMDQjEeSMlP-TjpzTcA"/>
+        <generalization xmi:id="_Je4TITmUEeSB95ugQCao7g" general="_-mAioCyOEeS77awx34sDEA"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_3pdx4DpxEeSo6P09swtBBA" name="Model"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="_OllUMDQjEeSMlP-TjpzTcA" name="RootCompletePackage" isAbstract="true">
-        <generalization xmi:id="_SGwU4DQjEeSMlP-TjpzTcA" general="_-mAioCyOEeS77awx34sDEA"/>
-      </packagedElement>
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_VYWFYDmdEeSB95ugQCao7g" name="String"/>
       <packagedElement xmi:type="uml:Association" xmi:id="_AJ5sYCyREeS77awx34sDEA" name="A_owningCompleteModel_ownedCompletePackages" memberEnd="_afnRUCyQEeS77awx34sDEA _iRwNYCyPEeS77awx34sDEA"/>
       <packagedElement xmi:type="uml:Association" xmi:id="_IbtxkCyREeS77awx34sDEA" name="A_owningCompletePackage_ownedCompleteClasses" memberEnd="_MP2nACyQEeS77awx34sDEA _xR8PECyPEeS77awx34sDEA"/>

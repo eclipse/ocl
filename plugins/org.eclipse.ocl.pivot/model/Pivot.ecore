@@ -1263,7 +1263,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredProperty" eType="#//Property"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OrderedSetType" eSuperTypes="#//CollectionType"/>
-  <eClassifiers xsi:type="ecore:EClass" name="OrphanCompletePackage" eSuperTypes="#//RootCompletePackage"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OrphanCompletePackage" eSuperTypes="#//CompletePackage"/>
   <eClassifiers xsi:type="ecore:EClass" name="Package" eSuperTypes="#//Namespace">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A package is a container for types and other packages."/>
@@ -1308,13 +1308,13 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ParentCompletePackage" eSuperTypes="#//RootCompletePackage"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ParentCompletePackage" eSuperTypes="#//CompletePackage"/>
   <eClassifiers xsi:type="ecore:EClass" name="Pivotable" instanceClassName="org.eclipse.ocl.pivot.util.Pivotable" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Precedence" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="associativity" eType="#//AssociativityKind" defaultValueLiteral="Left"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="order" lowerBound="1" eType="#//Integer" defaultValueLiteral="0"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveCompletePackage" eSuperTypes="#//RootCompletePackage"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveCompletePackage" eSuperTypes="#//CompletePackage"/>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveLiteralExp" abstract="true" eSuperTypes="#//LiteralExp"/>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveType" eSuperTypes="#//DataType">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1502,7 +1502,6 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RootCompletePackage" abstract="true" eSuperTypes="#//CompletePackage"/>
   <eClassifiers xsi:type="ecore:EClass" name="SelfType" eSuperTypes="#//Class">
     <eOperations name="specializeIn" lowerBound="1" eType="#//Type">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">

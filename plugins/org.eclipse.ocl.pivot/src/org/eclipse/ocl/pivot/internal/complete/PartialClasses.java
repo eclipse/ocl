@@ -26,8 +26,6 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.common.utils.EcoreUtils;
-import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.elements.FeatureFilter;
@@ -35,6 +33,8 @@ import org.eclipse.ocl.domain.ids.OperationId;
 import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.domain.ids.ParametersId;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.common.utils.EcoreUtils;
+import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.pivot.Behavior;
 import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.CompleteClass;
@@ -44,11 +44,11 @@ import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Region;
-import org.eclipse.ocl.pivot.RootCompletePackage;
 import org.eclipse.ocl.pivot.State;
 import org.eclipse.ocl.pivot.StateMachine;
 import org.eclipse.ocl.pivot.Stereotype;
@@ -867,16 +867,19 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 				}
 			}
 			@SuppressWarnings("null")@NonNull String metatypeName = pivotClass.eClass().getName();
-			RootCompletePackage rootCompletePackage = getCompleteClass().getOwningCompletePackage().getRootCompletePackage();
-			PackageId metapackageId = rootCompletePackage.getMetapackageId();
-			MetaModelManager metaModelManager = getMetaModelManager();
-			org.eclipse.ocl.pivot.Package metapackage = metaModelManager.getIdResolver().getPackage(metapackageId);
-			CompletePackage metaCompletePackage = metaModelManager.getCompletePackage(metapackage);
-			Type metatype = metaCompletePackage.getType(metatypeName);
-			if (metatype != null) {
-				CompleteClass metaCompleteClass = getCompleteModel().getCompleteClass(metatype);
-				for (@SuppressWarnings("null")@NonNull Property property : metaCompleteClass.getProperties(FeatureFilter.SELECT_STATIC)) {
-					didAddProperty(property);
+			CompletePackageInternal rootCompletePackage = getCompleteClass().getOwningCompletePackage().getRootCompletePackage();
+			Package pivotPackage = rootCompletePackage.getPivotPackage();
+			if (pivotPackage != null) {
+				MetaModelManager metaModelManager = getMetaModelManager();
+				PackageId metapackageId = metaModelManager.getMetapackageId(pivotPackage);
+				org.eclipse.ocl.pivot.Package metapackage = metaModelManager.getIdResolver().getPackage(metapackageId);
+				CompletePackage metaCompletePackage = metaModelManager.getCompletePackage(metapackage);
+				Type metatype = metaCompletePackage.getType(metatypeName);
+				if (metatype != null) {
+					CompleteClass metaCompleteClass = getCompleteModel().getCompleteClass(metatype);
+					for (@SuppressWarnings("null")@NonNull Property property : metaCompleteClass.getProperties(FeatureFilter.SELECT_STATIC)) {
+						didAddProperty(property);
+					}
 				}
 			}
 			for (PartialProperties properties : name2partialProperties2.values()) {

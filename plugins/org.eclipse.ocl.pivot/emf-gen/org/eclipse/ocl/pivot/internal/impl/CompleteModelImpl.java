@@ -51,9 +51,7 @@ import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceImpl;
 import org.eclipse.ocl.pivot.internal.complete.CompletePackageInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteURIs;
-import org.eclipse.ocl.pivot.internal.complete.OrphanCompletePackageInternal;
 import org.eclipse.ocl.pivot.internal.complete.PartialModels;
-import org.eclipse.ocl.pivot.internal.complete.PrimitiveCompletePackageInternal;
 import org.eclipse.ocl.pivot.internal.complete.RootCompletePackages;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.Orphanage;
@@ -361,32 +359,6 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	public <R> R accept(@NonNull Visitor<R> visitor) {
 		return visitor.visitCompleteModel(this);
 	}
-	
-/*	void addPackage(@NonNull CompletePackage parentCompletePackage, @NonNull org.eclipse.ocl.pivot.Package pivotPackage) {
-		CompletePackage completePackage = null;
-		String name = pivotPackage.getName();
-		String packageURI = pivotPackage.getURI();
-		if (packageURI != null) {										// Explicit packageURI for explicit package (merge)
-			completePackage = completeURI2completePackage.get(packageURI);
-		}
-		else if (name != null) {										// Null packageURI can merge into same named package
-			completePackage = getMemberPackage(name);
-		}
-		if ((name != null) && (completePackage == null)) {
-			completePackage = parentCompletePackage.getOwnedCompletePackage(name);
-		}
-		if (completePackage != null) {
-			assert completePackage != null;
-			completePackage.assertSamePackage(pivotPackage);
-			completePackage.getPartialPackages().add(pivotPackage);
-	//		completePackage.addTrackedPackage(pivotPackage);
-			for (org.eclipse.ocl.pivot.Package nestedPackage : pivotPackage.getOwnedPackages()) {
-				if (nestedPackage != null) {
-					addPackage(completePackage, nestedPackage);
-				}
-			}
-		}
-	} */
 
 	/**
 	 * Partial models such as the OCL Standard Library have their own distinct package URI. These partial
@@ -413,54 +385,16 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	public void didAddCompletePackage(@NonNull CompletePackageInternal completePackage) {
 		completeURIs.didAddCompletePackage(completePackage);
 	}
-	
-//	public void didAddClass(@NonNull org.eclipse.ocl.pivot.Class partialClass) {
-//		throw new UnsupportedOperationException();		// Classes not added to Root
-//	}
 
 	@Override
 	public void didAddNestedPackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage) {
 		ownedCompletePackages.didAddPackage(pivotPackage);
 	}
 	
-/*	public void didAddPackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
-		((PackageImpl)partialPackage).getPackageListeners().addListener(this);
-//		if (name2completeClass != null) {
-//			doRefreshPartialClasses(partialPackage);
-//		}
-	} */
-	
 	@Override
 	public void didAddPartialModel(@NonNull Model partialModel) {
 		completeURIs.didAddPartialModel(partialModel);
 	}
-	
-//	public void didRemoveClass(@NonNull org.eclipse.ocl.pivot.Class partialClass) {
-//		throw new UnsupportedOperationException();		// Classes not added to Root
-//	}
-	
-//	public void didRemovePackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-
-/*	void addedNestedPrimaryPackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage) {
-		String packageURI = PivotUtil.getNsURI(pivotPackage);
-		org.eclipse.ocl.pivot.Package primaryPackage = null;
-		if (packageURI != null) {
-			CompletePackage completePackage = getCompletePackageByURI(packageURI);
-			primaryPackage = completePackage != null ? completePackage.getPivotPackage() : null;
-		}
-		if (primaryPackage == pivotPackage) {
-			// Recursive call
-		}
-		else if (primaryPackage != null) {
-			throw new IllegalArgumentException("Duplicate packageURI '" + packageURI + "'");
-		}
-		else {
-//			getPackageTracker(pivotPackage);
-		}
-	} */
 	
 	@Override
 	public void didRemoveClass(@NonNull org.eclipse.ocl.pivot.Class pivotType) {
@@ -577,14 +511,14 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 
 	@Override
 	@SuppressWarnings("null")
-	public @NonNull OrphanCompletePackageInternal getOrphanCompletePackage()
+	public @NonNull OrphanCompletePackageImpl getOrphanCompletePackage()
 	{
 		OrphanCompletePackage orphanCompletePackage2 = orphanCompletePackage;
 		if (orphanCompletePackage2 == null) {
 			orphanCompletePackage2 = orphanCompletePackage = PivotFactory.eINSTANCE.createOrphanCompletePackage();
 			ownedCompletePackages.add(orphanCompletePackage2);
 		}
-		return (OrphanCompletePackageInternal)orphanCompletePackage2;
+		return (OrphanCompletePackageImpl)orphanCompletePackage2;
 	}
 
 	@Override
@@ -619,14 +553,14 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	
 	@Override
 	@SuppressWarnings("null")
-	public @NonNull PrimitiveCompletePackageInternal getPrimitiveCompletePackage()
+	public @NonNull PrimitiveCompletePackageImpl getPrimitiveCompletePackage()
 	{
 		PrimitiveCompletePackage primitiveCompletePackage2 = primitiveCompletePackage;
 		if (primitiveCompletePackage2 == null) {
 			primitiveCompletePackage2 = primitiveCompletePackage = PivotFactory.eINSTANCE.createPrimitiveCompletePackage();
 			ownedCompletePackages.add(primitiveCompletePackage2);
 		}
-		return (PrimitiveCompletePackageInternal)primitiveCompletePackage2;
+		return (PrimitiveCompletePackageImpl) primitiveCompletePackage2;
 	}
 
 	/**
@@ -650,9 +584,6 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 			return completePackage.getPivotPackage();
 		}
 		completePackage = getOwnedCompletePackage(completeURIorName);
-//		if (completePackage == null) {
-//			completePackage = uri2package.get(name);		// FIXME avoid double lookup
-//		}
 		return completePackage != null ? completePackage.getPivotPackage() : null;
 	}
 	

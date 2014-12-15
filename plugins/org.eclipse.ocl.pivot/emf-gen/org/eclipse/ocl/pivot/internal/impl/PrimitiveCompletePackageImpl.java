@@ -12,8 +12,6 @@ package org.eclipse.ocl.pivot.internal.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.ids.IdManager;
-import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.pivot.PivotConstants;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
@@ -24,14 +22,13 @@ import org.eclipse.ocl.pivot.util.Visitor;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Primitive Complete Package</b></em>'.
- * @extends org.eclipse.ocl.pivot.internal.complete.PrimitiveCompletePackageInternal
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class PrimitiveCompletePackageImpl extends RootCompletePackageImpl implements PrimitiveCompletePackage, org.eclipse.ocl.pivot.internal.complete.PrimitiveCompletePackageInternal
+public class PrimitiveCompletePackageImpl extends CompletePackageImpl implements PrimitiveCompletePackage
 {
 	/**
 	 * <!-- begin-user-doc -->
@@ -47,7 +44,7 @@ public class PrimitiveCompletePackageImpl extends RootCompletePackageImpl implem
 	protected PrimitiveCompletePackageImpl()
 	{
 		super();
-		init("$primitives$", "prim", PivotConstants.PRIMITIVES_URI, IdManager.METAMODEL);		// FIXME names
+		init("$primitives$", "prim", PivotConstants.PRIMITIVES_URI);
 	}
 
 	@Override
@@ -67,10 +64,5 @@ public class PrimitiveCompletePackageImpl extends RootCompletePackageImpl implem
 //			didAddClass(completeClass, primitiveType);
 		}
 		return completeClass;
-	}
-	
-	@Override
-	public @NonNull PackageId getMetapackageId() {
-		return IdManager.METAMODEL;
 	}
 } //PrimitiveCompletePackageImpl

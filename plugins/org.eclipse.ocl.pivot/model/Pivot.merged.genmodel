@@ -966,9 +966,6 @@
       <ecoreClass href="Pivot.ecore#//OrphanCompletePackage"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
-      <ecoreClass href="Pivot.ecore#//RootCompletePackage"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="Pivot.ecore#//PrimitiveCompletePackage"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">

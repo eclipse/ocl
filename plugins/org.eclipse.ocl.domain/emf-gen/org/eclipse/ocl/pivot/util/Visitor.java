@@ -122,7 +122,6 @@ public interface Visitor<R>
 	@Nullable R visitPseudostate(@NonNull org.eclipse.ocl.pivot.Pseudostate object);
 	@Nullable R visitRealLiteralExp(@NonNull org.eclipse.ocl.pivot.RealLiteralExp object);
 	@Nullable R visitRegion(@NonNull org.eclipse.ocl.pivot.Region object);
-	@Nullable R visitRootCompletePackage(@NonNull org.eclipse.ocl.pivot.RootCompletePackage object);
 	@Nullable R visitSelfType(@NonNull org.eclipse.ocl.pivot.SelfType object);
 	@Nullable R visitSendSignalAction(@NonNull org.eclipse.ocl.pivot.SendSignalAction object);
 	@Nullable R visitSequenceType(@NonNull org.eclipse.ocl.pivot.SequenceType object);

@@ -18,8 +18,6 @@ import java.util.WeakHashMap;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.ids.IdManager;
-import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.impl.CollectionTypeParametersImpl;
@@ -32,7 +30,7 @@ import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.complete.CompleteClassInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceImpl;
-import org.eclipse.ocl.pivot.internal.complete.OrphanCompletePackageInternal;
+import org.eclipse.ocl.pivot.internal.complete.CompletePackageInternal;
 import org.eclipse.ocl.pivot.manager.Orphanage;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -40,14 +38,13 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Orphan Complete Package</b></em>'.
- * @extends org.eclipse.ocl.pivot.internal.complete.OrphanCompletePackageInternal
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class OrphanCompletePackageImpl extends RootCompletePackageImpl implements OrphanCompletePackage, org.eclipse.ocl.pivot.internal.complete.OrphanCompletePackageInternal
+public class OrphanCompletePackageImpl extends CompletePackageImpl implements OrphanCompletePackage
 {
 	/**
 	 * <!-- begin-user-doc -->
@@ -60,19 +57,11 @@ public class OrphanCompletePackageImpl extends RootCompletePackageImpl implement
 		return PivotPackage.Literals.ORPHAN_COMPLETE_PACKAGE;
 	}
 	
-	private static class OrphanCompleteClassImpl extends CompleteClassImpl
+	private class OrphanCompleteClassImpl extends CompleteClassImpl
 	{
-		private final @NonNull OrphanCompletePackageInternal orphanCompletePackage;
-//		private final @NonNull org.eclipse.ocl.pivot.Class orphanClass;
-		
-		private OrphanCompleteClassImpl(@NonNull OrphanCompletePackageInternal orphanCompletePackage, @NonNull org.eclipse.ocl.pivot.Class orphanClass) {
-			this.orphanCompletePackage = orphanCompletePackage;
-//			this.orphanClass = orphanClass;
-		}
-		
 		@Override
-		public OrphanCompletePackageInternal getOwningCompletePackage() {
-			return orphanCompletePackage;
+		public @NonNull CompletePackageInternal getOwningCompletePackage() {
+			return OrphanCompletePackageImpl.this;
 		}
 	}
 	
@@ -82,7 +71,7 @@ public class OrphanCompletePackageImpl extends RootCompletePackageImpl implement
 	protected OrphanCompletePackageImpl()
 	{
 		super();
-		init("$orphans$", "orph", PivotConstants.ORPHANAGE_URI, IdManager.METAMODEL);		// FIXME names
+		init("$orphans$", "orph", PivotConstants.ORPHANAGE_URI);
 	}
 
 	@Override
@@ -128,7 +117,7 @@ public class OrphanCompletePackageImpl extends RootCompletePackageImpl implement
 			}
 		}
 		final @NonNull org.eclipse.ocl.pivot.Class orphanClass = type;
-		OrphanCompleteClassImpl completeClass = new OrphanCompleteClassImpl(this, orphanClass);
+		OrphanCompleteClassImpl completeClass = new OrphanCompleteClassImpl();
 		completeClass.setName(orphanClass.getName());
 		completeClass.getPartialClasses().add(orphanClass);
 		class2orphanCompleteClass.put(orphanClass, new WeakReference<OrphanCompleteClassImpl>(completeClass));
@@ -138,11 +127,6 @@ public class OrphanCompletePackageImpl extends RootCompletePackageImpl implement
 	@Override
 	public @NonNull CompleteInheritanceImpl getCompleteInheritance(@NonNull CompleteClassInternal completeClass) {
 		return new CompleteInheritanceImpl(completeClass);
-	}
-	
-	@Override
-	public @NonNull PackageId getMetapackageId() {
-		return IdManager.METAMODEL;
 	}
 
 	@Override

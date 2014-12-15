@@ -97,7 +97,6 @@ import org.eclipse.ocl.pivot.Pseudostate;
 import org.eclipse.ocl.pivot.RealLiteralExp;
 import org.eclipse.ocl.pivot.ReferringElement;
 import org.eclipse.ocl.pivot.Region;
-import org.eclipse.ocl.pivot.RootCompletePackage;
 import org.eclipse.ocl.pivot.SelfType;
 import org.eclipse.ocl.pivot.SendSignalAction;
 import org.eclipse.ocl.pivot.SequenceType;
@@ -623,11 +622,6 @@ public class PivotAdapterFactory
 			public Adapter caseRegion(Region object)
 			{
 				return createRegionAdapter();
-			}
-			@Override
-			public Adapter caseRootCompletePackage(RootCompletePackage object)
-			{
-				return createRootCompletePackageAdapter();
 			}
 			@Override
 			public Adapter caseSelfType(SelfType object)
@@ -1639,21 +1633,6 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createRegionAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.RootCompletePackage <em>Root Complete Package</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.pivot.RootCompletePackage
-	 * @generated
-	 */
-	public Adapter createRootCompletePackageAdapter()
 	{
 		return null;
 	}

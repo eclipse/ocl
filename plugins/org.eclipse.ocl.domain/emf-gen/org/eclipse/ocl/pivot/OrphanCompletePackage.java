@@ -21,6 +21,6 @@ package org.eclipse.ocl.pivot;
  * @see org.eclipse.ocl.pivot.PivotPackage#getOrphanCompletePackage()
  * @generated
  */
-public interface OrphanCompletePackage extends RootCompletePackage
+public interface OrphanCompletePackage extends CompletePackage
 {
 } // OrphanCompletePackage

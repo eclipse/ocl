@@ -29,7 +29,7 @@ public class NestedCompletePackages extends AbstractCompletePackages
 	@Override
 	public @NonNull CompletePackageInternal createCompletePackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
 		CompletePackageInternal completePackage = (CompletePackageInternal) PivotFactory.eINSTANCE.createCompletePackage();
-		completePackage.init(partialPackage.getName(), partialPackage.getNsPrefix(), partialPackage.getURI(), partialPackage.getPackageId());
+		completePackage.init(partialPackage.getName(), partialPackage.getNsPrefix(), partialPackage.getURI());
 		return completePackage;
 	}
 

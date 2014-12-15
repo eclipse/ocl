@@ -30,7 +30,6 @@ import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Namespace;
-import org.eclipse.ocl.pivot.RootCompletePackage;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.util.Pivotable;
 import org.eclipse.ocl.pivot.utilities.PathElement;
@@ -110,7 +109,7 @@ public class AliasAnalysis extends AdapterImpl
 		for (org.eclipse.ocl.pivot.Package localPackage : localPackages) {
 			if (localPackage != null) {
 				CompletePackage primaryPackage = metaModelManager.getCompletePackage(localPackage);
-				if ((primaryPackage.getNsPrefix() != null) || (primaryPackage instanceof RootCompletePackage)) {
+				if ((primaryPackage.getNsPrefix() != null) || (primaryPackage.getOwningCompletePackage() == null)) {
 					if (!allAliases.containsKey(primaryPackage)) {
 						String alias = computeAlias(primaryPackage);
 						allAliases.put(primaryPackage, alias);

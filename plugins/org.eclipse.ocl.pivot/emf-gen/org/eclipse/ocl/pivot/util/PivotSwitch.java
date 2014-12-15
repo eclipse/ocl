@@ -96,7 +96,6 @@ import org.eclipse.ocl.pivot.Pseudostate;
 import org.eclipse.ocl.pivot.RealLiteralExp;
 import org.eclipse.ocl.pivot.ReferringElement;
 import org.eclipse.ocl.pivot.Region;
-import org.eclipse.ocl.pivot.RootCompletePackage;
 import org.eclipse.ocl.pivot.SelfType;
 import org.eclipse.ocl.pivot.SendSignalAction;
 import org.eclipse.ocl.pivot.SequenceType;
@@ -1113,7 +1112,6 @@ public class PivotSwitch<T> extends Switch<T> {
 			{
 				OrphanCompletePackage orphanCompletePackage = (OrphanCompletePackage)theEObject;
 				T result = caseOrphanCompletePackage(orphanCompletePackage);
-				if (result == null) result = caseRootCompletePackage(orphanCompletePackage);
 				if (result == null) result = caseCompletePackage(orphanCompletePackage);
 				if (result == null) result = caseNamedElement(orphanCompletePackage);
 				if (result == null) result = caseElement(orphanCompletePackage);
@@ -1151,7 +1149,6 @@ public class PivotSwitch<T> extends Switch<T> {
 			{
 				ParentCompletePackage parentCompletePackage = (ParentCompletePackage)theEObject;
 				T result = caseParentCompletePackage(parentCompletePackage);
-				if (result == null) result = caseRootCompletePackage(parentCompletePackage);
 				if (result == null) result = caseCompletePackage(parentCompletePackage);
 				if (result == null) result = caseNamedElement(parentCompletePackage);
 				if (result == null) result = caseElement(parentCompletePackage);
@@ -1182,7 +1179,6 @@ public class PivotSwitch<T> extends Switch<T> {
 			{
 				PrimitiveCompletePackage primitiveCompletePackage = (PrimitiveCompletePackage)theEObject;
 				T result = casePrimitiveCompletePackage(primitiveCompletePackage);
-				if (result == null) result = caseRootCompletePackage(primitiveCompletePackage);
 				if (result == null) result = caseCompletePackage(primitiveCompletePackage);
 				if (result == null) result = caseNamedElement(primitiveCompletePackage);
 				if (result == null) result = caseElement(primitiveCompletePackage);
@@ -1317,18 +1313,6 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseElement(region);
 				if (result == null) result = caseNameable(region);
 				if (result == null) result = caseVisitable(region);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PivotPackage.ROOT_COMPLETE_PACKAGE:
-			{
-				RootCompletePackage rootCompletePackage = (RootCompletePackage)theEObject;
-				T result = caseRootCompletePackage(rootCompletePackage);
-				if (result == null) result = caseCompletePackage(rootCompletePackage);
-				if (result == null) result = caseNamedElement(rootCompletePackage);
-				if (result == null) result = caseElement(rootCompletePackage);
-				if (result == null) result = caseNameable(rootCompletePackage);
-				if (result == null) result = caseVisitable(rootCompletePackage);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -2667,22 +2651,6 @@ public class PivotSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseRegion(Region object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Root Complete Package</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Root Complete Package</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseRootCompletePackage(RootCompletePackage object)
 	{
 		return null;
 	}

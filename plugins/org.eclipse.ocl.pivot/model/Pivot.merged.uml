@@ -903,7 +903,7 @@
       <generalization xmi:id="Ppivot.TOrderedSetType.g0" general="Ppivot.TCollectionType"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TOrphanCompletePackage" name="OrphanCompletePackage">
-      <generalization xmi:id="Ppivot.TOrphanCompletePackage.g0" general="Ppivot.TRootCompletePackage"/>
+      <generalization xmi:id="Ppivot.TOrphanCompletePackage.g0" general="Ppivot.TCompletePackage"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TPackage" name="Package">
       <ownedComment xmi:id="Ppivot.TPackage.oC0" annotatedElement="Ppivot.TPackage">
@@ -972,7 +972,7 @@
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TParentCompletePackage" name="ParentCompletePackage">
-      <generalization xmi:id="Ppivot.TParentCompletePackage.g0" general="Ppivot.TRootCompletePackage"/>
+      <generalization xmi:id="Ppivot.TParentCompletePackage.g0" general="Ppivot.TCompletePackage"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TPrecedence" name="Precedence">
       <generalization xmi:id="Ppivot.TPrecedence.g0" general="Ppivot.TNamedElement"/>
@@ -985,7 +985,7 @@
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TPrimitiveCompletePackage" name="PrimitiveCompletePackage">
-      <generalization xmi:id="Ppivot.TPrimitiveCompletePackage.g0" general="Ppivot.TRootCompletePackage"/>
+      <generalization xmi:id="Ppivot.TPrimitiveCompletePackage.g0" general="Ppivot.TCompletePackage"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TPrimitiveLiteralExp" name="PrimitiveLiteralExp" isAbstract="true">
       <generalization xmi:id="Ppivot.TPrimitiveLiteralExp.g0" general="Ppivot.TLiteralExp"/>
@@ -1177,9 +1177,6 @@
         </ownedComment>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TRegion.PextendedRegion.lV"/>
       </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TRootCompletePackage" name="RootCompletePackage" isAbstract="true">
-      <generalization xmi:id="Ppivot.TRootCompletePackage.g0" general="Ppivot.TCompletePackage"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TSelfType" name="SelfType">
       <generalization xmi:id="Ppivot.TSelfType.g0" general="Ppivot.TClass"/>

@@ -445,11 +445,6 @@ public abstract class AbstractNullVisitor<R, C>
 	}
 
 	@Override
-	public @Nullable R visitRootCompletePackage(@NonNull org.eclipse.ocl.pivot.RootCompletePackage object) {
-		return null;
-	}
-
-	@Override
 	public @Nullable R visitSelfType(@NonNull org.eclipse.ocl.pivot.SelfType object) {
 		return null;
 	}

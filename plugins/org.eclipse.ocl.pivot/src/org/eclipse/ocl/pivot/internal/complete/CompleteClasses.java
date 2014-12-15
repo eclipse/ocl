@@ -245,15 +245,15 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 		if (name != null) {
 			CompleteClassInternal completeClass = null;
 			if (partialClass instanceof PrimitiveType) {
-				PrimitiveCompletePackageInternal primitiveCompletePackage = completeModel.getPrimitiveCompletePackage();
+				CompletePackageInternal primitiveCompletePackage = completeModel.getPrimitiveCompletePackage();
 				completeClass = primitiveCompletePackage.getCompleteClass(partialClass);
 			}
 			else if ((partialClass instanceof CollectionType) && (partialClass.getUnspecializedElement() != null)) {
-				OrphanCompletePackageInternal orphanCompletePackage = completeModel.getOrphanCompletePackage();
+				CompletePackageInternal orphanCompletePackage = completeModel.getOrphanCompletePackage();
 				completeClass = orphanCompletePackage.getCompleteClass(partialClass);
 			}
 			else if (DomainConstants.METAMODEL_NAME.equals(getCompletePackage().getURI())) {
-				PrimitiveCompletePackageInternal primitiveCompletePackage = completeModel.getPrimitiveCompletePackage();
+				CompletePackageInternal primitiveCompletePackage = completeModel.getPrimitiveCompletePackage();
 				completeClass = primitiveCompletePackage.getOwnedCompleteClass(name);
 			}
 			if (completeClass == null) {

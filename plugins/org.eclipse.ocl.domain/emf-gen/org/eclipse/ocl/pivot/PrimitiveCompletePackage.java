@@ -20,6 +20,6 @@ package org.eclipse.ocl.pivot;
  * @see org.eclipse.ocl.pivot.PivotPackage#getPrimitiveCompletePackage()
  * @generated
  */
-public interface PrimitiveCompletePackage extends RootCompletePackage
+public interface PrimitiveCompletePackage extends CompletePackage
 {
 } // PrimitiveCompletePackage

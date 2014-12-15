@@ -131,10 +131,6 @@ public interface CompletePackage extends NamedElement
 
 	org.eclipse.ocl.pivot.Class getMemberType(String name);
 
-	RootCompletePackage getRootCompletePackage();
-
-//	@NonNull PackageManager getPackageManager();
-
 	String getURI();
 
 	String getNsPrefix();
@@ -163,6 +159,4 @@ public interface CompletePackage extends NamedElement
 	 * @generated
 	 */
 	void setOwningCompletePackage(CompletePackage value);
-//	/*@NonNull*/ List<? extends DomainClass> getOwnedClasses();
-//	@NonNull PackageId getPackageId();
-} // CompletePackage
+}

@@ -104,7 +104,6 @@ import org.eclipse.ocl.pivot.PseudostateKind;
 import org.eclipse.ocl.pivot.RealLiteralExp;
 import org.eclipse.ocl.pivot.ReferringElement;
 import org.eclipse.ocl.pivot.Region;
-import org.eclipse.ocl.pivot.RootCompletePackage;
 import org.eclipse.ocl.pivot.SelfType;
 import org.eclipse.ocl.pivot.SendSignalAction;
 import org.eclipse.ocl.pivot.SequenceType;
@@ -878,8 +877,6 @@ public class PivotValidator
 				return validateReferringElement((ReferringElement)value, diagnostics, context);
 			case PivotPackage.REGION:
 				return validateRegion((Region)value, diagnostics, context);
-			case PivotPackage.ROOT_COMPLETE_PACKAGE:
-				return validateRootCompletePackage((RootCompletePackage)value, diagnostics, context);
 			case PivotPackage.SELF_TYPE:
 				return validateSelfType((SelfType)value, diagnostics, context);
 			case PivotPackage.SEND_SIGNAL_ACTION:
@@ -3066,16 +3063,6 @@ public class PivotValidator
 	public boolean validateRegion(Region region, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(region, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateRootCompletePackage(RootCompletePackage rootCompletePackage, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(rootCompletePackage, diagnostics, context);
 	}
 
 	/**

@@ -12,7 +12,6 @@ package org.eclipse.ocl.pivot.internal.complete;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.pivot.CompletePackage;
 
 public interface CompletePackageInternal extends CompletePackage
@@ -29,5 +28,6 @@ public interface CompletePackageInternal extends CompletePackage
 	@Nullable CompletePackageInternal getOwnedCompletePackage(@Nullable String name);
 	@Override
 	@NonNull PartialPackages getPartialPackages();
-	void init(String name, @Nullable String nsPrefix, @Nullable String nsURI, @NonNull PackageId packageId);
+	@NonNull CompletePackageInternal getRootCompletePackage();
+	void init(String name, @Nullable String nsPrefix, @Nullable String nsURI);
 }

@@ -13,12 +13,10 @@ package org.eclipse.ocl.pivot.internal.complete;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
-import org.eclipse.ocl.pivot.RootCompletePackage;
 import org.eclipse.ocl.pivot.internal.impl.CompleteModelImpl;
 import org.eclipse.ocl.pivot.manager.Orphanage;
 
@@ -29,40 +27,33 @@ public class RootCompletePackages extends AbstractCompletePackages
 	private static final long serialVersionUID = 1L;
 
 	public RootCompletePackages(@NonNull CompleteModelImpl owner) {
-		super(RootCompletePackage.class, owner, PivotPackage.COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES, PivotPackage.ROOT_COMPLETE_PACKAGE__OWNING_COMPLETE_MODEL);
+		super(CompletePackage.class, owner, PivotPackage.COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES, PivotPackage.COMPLETE_PACKAGE__OWNING_COMPLETE_MODEL);
 	}
 
 	@Override
-	public @NonNull RootCompletePackageInternal createCompletePackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
-		RootCompletePackageInternal completePackage = (RootCompletePackageInternal) PivotFactory.eINSTANCE.createParentCompletePackage();
-		completePackage.init(partialPackage.getName(), partialPackage.getNsPrefix(), partialPackage.getURI(), partialPackage.getPackageId());
+	public @NonNull CompletePackageInternal createCompletePackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
+		CompletePackageInternal completePackage = (CompletePackageInternal) PivotFactory.eINSTANCE.createCompletePackage();
+		completePackage.init(partialPackage.getName(), partialPackage.getNsPrefix(), partialPackage.getURI());
 		return completePackage;
 	}
 	
-	protected @NonNull RootCompletePackageInternal createRootCompletePackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage) {
-		String name = pivotPackage.getName();
-//		if (name == null) {
-//			throw new IllegalStateException("Unnamed package");
-//		}
-		String nonNullName = name;
-		if (nonNullName == null) {
-			nonNullName = "$anon_" + Integer.toHexString(System.identityHashCode(pivotPackage));
-		}
-		String nsPrefix = pivotPackage.getNsPrefix();
-		String completeURI = getCompleteModel().getCompleteURIs().getCompleteURI(pivotPackage.getURI());
-		PackageId packageId = pivotPackage.getPackageId();
-		RootCompletePackageInternal rootCompletePackage;
+	protected @NonNull CompletePackageInternal createRootCompletePackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage) {
 		if (Orphanage.isTypeOrphanage(pivotPackage)) {
-			rootCompletePackage = getCompleteModel().getOrphanCompletePackage();
+			return getCompleteModel().getOrphanCompletePackage();
 		}
 		else {
-			PackageId metapackageId = getCompleteModel().getMetaModelManager().getMetapackageId(pivotPackage);
-			ParentCompletePackageInternal parentCompletePackage = (ParentCompletePackageInternal) PivotFactory.eINSTANCE.createParentCompletePackage();
-			parentCompletePackage.init(nonNullName, nsPrefix, completeURI, packageId, metapackageId);
-			rootCompletePackage = parentCompletePackage;
+			String name = pivotPackage.getName();
+			String nonNullName = name;
+			if (nonNullName == null) {
+				nonNullName = "$anon_" + Integer.toHexString(System.identityHashCode(pivotPackage));
+			}
+			String nsPrefix = pivotPackage.getNsPrefix();
+			String completeURI = getCompleteModel().getCompleteURIs().getCompleteURI(pivotPackage.getURI());
+			CompletePackageInternal rootCompletePackage = (CompletePackageInternal) PivotFactory.eINSTANCE.createCompletePackage();
+			rootCompletePackage.init(nonNullName, nsPrefix, completeURI);
 			add(rootCompletePackage);
+			return rootCompletePackage;
 		}
-		return rootCompletePackage;
 	}
 
 	@Override

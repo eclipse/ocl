@@ -225,7 +225,6 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Class _RealLiteralExp = createClass(PivotPackage.Literals.REAL_LITERAL_EXP);
 		private final @NonNull Class _ReferringElement = createClass(PivotPackage.Literals.REFERRING_ELEMENT);
 		private final @NonNull Class _Region = createClass(PivotPackage.Literals.REGION);
-		private final @NonNull Class _RootCompletePackage = createClass(PivotPackage.Literals.ROOT_COMPLETE_PACKAGE);
 		private final @NonNull Class _SelfType = createClass(PivotPackage.Literals.SELF_TYPE);
 		private final @NonNull Class _SendSignalAction = createClass(PivotPackage.Literals.SEND_SIGNAL_ACTION);
 		private final @NonNull Class _SequenceType = createClass(PivotPackage.Literals.SEQUENCE_TYPE);
@@ -723,7 +722,7 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses.add(_CollectionType);
 			ownedTypes.add(type = _OrphanCompletePackage);
 			superClasses = type.getSuperClasses();
-			superClasses.add(_RootCompletePackage);
+			superClasses.add(_CompletePackage);
 			ownedTypes.add(type = _Package);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Namespace);
@@ -732,7 +731,7 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses.add(_VariableDeclaration);
 			ownedTypes.add(type = _ParentCompletePackage);
 			superClasses = type.getSuperClasses();
-			superClasses.add(_RootCompletePackage);
+			superClasses.add(_CompletePackage);
 			ownedTypes.add(type = _Pivotable);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
@@ -741,7 +740,7 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses.add(_NamedElement);
 			ownedTypes.add(type = _PrimitiveCompletePackage);
 			superClasses = type.getSuperClasses();
-			superClasses.add(_RootCompletePackage);
+			superClasses.add(_CompletePackage);
 			ownedTypes.add(type = _PrimitiveLiteralExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_LiteralExp);
@@ -773,9 +772,6 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedTypes.add(type = _Region);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Namespace);
-			ownedTypes.add(type = _RootCompletePackage);
-			superClasses = type.getSuperClasses();
-			superClasses.add(_CompletePackage);
 			ownedTypes.add(type = _SelfType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Class);
