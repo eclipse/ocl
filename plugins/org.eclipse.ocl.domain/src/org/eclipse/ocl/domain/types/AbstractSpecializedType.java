@@ -12,9 +12,9 @@ package org.eclipse.ocl.domain.types;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.AbstractExecutorClass;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.StandardLibrary;
 
 public abstract class AbstractSpecializedType extends AbstractExecutorClass
 {
@@ -40,12 +40,12 @@ public abstract class AbstractSpecializedType extends AbstractExecutorClass
 	}
 
 	@Override
-	public @NonNull Operation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
+	public @NonNull Operation lookupActualOperation(@NonNull StandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
 		return containerType.lookupActualOperation(standardLibrary, apparentOperation);
 	}
 
 	@Override
-	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
+	public @NonNull LibraryFeature lookupImplementation(@NonNull StandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
 		return containerType.lookupImplementation(standardLibrary, apparentOperation);
 	}
 }

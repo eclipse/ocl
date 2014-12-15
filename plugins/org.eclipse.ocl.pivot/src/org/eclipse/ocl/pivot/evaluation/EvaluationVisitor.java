@@ -14,11 +14,11 @@ package org.eclipse.ocl.pivot.evaluation;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.pivot.Environment;
 import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.util.Visitor;
 
@@ -70,7 +70,7 @@ public interface EvaluationVisitor extends Visitor<Object>, DomainEvaluator
 	@Nullable Monitor getMonitor();
 
 	@Override
-	@NonNull DomainStandardLibrary getStandardLibrary();
+	@NonNull StandardLibrary getStandardLibrary();
 
 	@Override
 	boolean isCanceled();

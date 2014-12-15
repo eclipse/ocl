@@ -26,6 +26,7 @@ import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypeExtension;
@@ -37,7 +38,7 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 	}
 
 	@Override
-	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary,
+	public boolean conformsTo(@NonNull StandardLibrary standardLibrary,
 			@NonNull Type thatType) {
 		throw new UnsupportedOperationException();
 	}
@@ -52,14 +53,14 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 	@Override
 	@NonNull
 	public CompleteInheritance getInheritance(
-			@NonNull DomainStandardLibrary standardLibrary) {
+			@NonNull StandardLibrary standardLibrary) {
 //		return standardLibrary.getInheritance(this);
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getNormalizedType(
-			@NonNull DomainStandardLibrary standardLibrary) {
+			@NonNull StandardLibrary standardLibrary) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -70,20 +71,20 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 	}
 
 	@Override
-	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary,
+	public boolean isEqualTo(@NonNull StandardLibrary standardLibrary,
 			@NonNull Type thatType) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public boolean isEqualToUnspecializedType(
-			@NonNull DomainStandardLibrary standardLibrary,
+			@NonNull StandardLibrary standardLibrary,
 			@NonNull Type type) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public Type specializeIn(@NonNull CallExp expr, @Nullable Type selfType) {
+	public @NonNull Type specializeIn(@NonNull CallExp expr, @Nullable Type selfType) {
 		throw new UnsupportedOperationException();
 	}
 

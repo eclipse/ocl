@@ -16,7 +16,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.AbstractExecutorOperation;
 import org.eclipse.ocl.domain.elements.DomainParameterTypes;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.ids.OperationId;
 import org.eclipse.ocl.domain.ids.ParametersId;
@@ -27,6 +26,7 @@ import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 
 public class ExecutorOperation extends AbstractExecutorOperation
@@ -60,7 +60,7 @@ public class ExecutorOperation extends AbstractExecutorOperation
 	}
 
 	@Override
-	public final @NonNull CompleteInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
+	public final @NonNull CompleteInheritance getInheritance(@NonNull StandardLibrary standardLibrary) {
 		return (CompleteInheritance) type;
 	}
 

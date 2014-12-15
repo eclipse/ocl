@@ -18,12 +18,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.SelfType;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
@@ -105,7 +105,7 @@ public class SelfTypeImpl extends ClassImpl implements SelfType
 	}
 
 	@Override
-	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
+	public boolean conformsTo(@NonNull StandardLibrary standardLibrary, @NonNull Type type) {
 		if (this == type) {
 			return true;
 		}
@@ -120,7 +120,7 @@ public class SelfTypeImpl extends ClassImpl implements SelfType
 	}
 
 	@Override
-	public Type specializeIn(@NonNull CallExp expr, @Nullable Type selfType) {
+	public @NonNull Type specializeIn(@NonNull CallExp expr, @Nullable Type selfType) {
 		if (selfType instanceof org.eclipse.ocl.pivot.Class) {
 			TemplateSignature templateSignature = ((TemplateableElement)selfType).getOwnedTemplateSignature();
 			if (templateSignature != null) {
@@ -129,10 +129,10 @@ public class SelfTypeImpl extends ClassImpl implements SelfType
 					return metaModelManager.specializeType(selfType, expr, selfType, null); // FIXME is this a no-op
 				}
 				else {
-					return null;
+					return this;
 				}
 			}
 		}
-		return selfType;
+		return selfType != null ? selfType : this;
 	}
 } //SelfTypeImpl

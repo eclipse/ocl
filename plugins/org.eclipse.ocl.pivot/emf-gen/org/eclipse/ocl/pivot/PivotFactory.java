@@ -167,15 +167,6 @@ public interface PivotFactory
 	Parameter createParameter();
 
 	/**
-	 * Returns a new object of class '<em>Parent Complete Package</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Parent Complete Package</em>'.
-	 * @generated
-	 */
-	ParentCompletePackage createParentCompletePackage();
-
-	/**
 	 * Returns a new object of class '<em>Opposite Property Call Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -606,6 +597,15 @@ public interface PivotFactory
 	 * @generated
 	 */
 	Slot createSlot();
+
+	/**
+	 * Returns a new object of class '<em>Standard Library</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Standard Library</em>'.
+	 * @generated
+	 */
+	StandardLibrary createStandardLibrary();
 
 	/**
 	 * Returns a new object of class '<em>Message Type</em>'.

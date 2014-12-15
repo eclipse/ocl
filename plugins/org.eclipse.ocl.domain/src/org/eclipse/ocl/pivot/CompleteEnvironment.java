@@ -15,7 +15,6 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
@@ -46,7 +45,7 @@ public interface CompleteEnvironment
 	 */
 	@NonNull CollectionType getSequenceType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
 
-	@NonNull DomainStandardLibrary getStandardLibrary();
+	@NonNull StandardLibrary getStandardLibrary();
 	/**
 	 * Return the instance of the Set metatype whose elements are of elementType.
 	 */

@@ -13,7 +13,6 @@ package org.eclipse.ocl.pivot;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainFragment;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.Nameable;
 import org.eclipse.ocl.domain.ids.OperationId;
 import org.eclipse.ocl.domain.library.LibraryFeature;
@@ -71,11 +70,11 @@ public interface CompleteInheritance extends Nameable
 	boolean isSuperInheritanceOf(@NonNull CompleteInheritance inheritance);
 	boolean isUndefined();
 
-	@NonNull Operation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation);
+	@NonNull Operation lookupActualOperation(@NonNull StandardLibrary standardLibrary, @NonNull Operation apparentOperation);
 	/**
 	 * Return the dynamic (overloaded) implementation of the staticOperation applicable to the types managed
 	 * by the given Standard Library.
 	 */
-	@NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation);
-	@Nullable Operation lookupLocalOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull String operationName, CompleteInheritance... argumentTypes);
+	@NonNull LibraryFeature lookupImplementation(@NonNull StandardLibrary standardLibrary, @NonNull Operation apparentOperation);
+	@Nullable Operation lookupLocalOperation(@NonNull StandardLibrary standardLibrary, @NonNull String operationName, CompleteInheritance... argumentTypes);
 }

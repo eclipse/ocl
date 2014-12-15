@@ -38,8 +38,8 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
@@ -89,7 +89,7 @@ import org.eclipse.ocl.xtext.basecs.util.VisitableCS;
 public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Continuation<?>, CS2ASConversion>
 {
 	protected final @NonNull MetaModelManager metaModelManager;
-	protected final @NonNull PivotStandardLibrary standardLibrary;
+	protected final @NonNull StandardLibraryInternal standardLibrary;
 
 	public BaseCSContainmentVisitor(@NonNull CS2ASConversion context) {
 		super(context);

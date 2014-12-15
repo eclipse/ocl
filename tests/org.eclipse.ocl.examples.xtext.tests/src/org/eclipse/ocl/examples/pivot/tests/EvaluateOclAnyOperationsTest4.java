@@ -18,7 +18,6 @@ import java.util.Collection;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.TuplePartId;
 import org.eclipse.ocl.domain.ids.TupleTypeId;
@@ -28,10 +27,11 @@ import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.InvalidType;
 import org.eclipse.ocl.pivot.PivotConstants;
 import org.eclipse.ocl.pivot.PrimitiveType;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.VoidType;
-import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.junit.After;
 import org.junit.Before;
@@ -130,7 +130,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
 	}
     
     @Test public void testGreaterThan() {
-    	DomainStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+    	StandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
     	loadEPackage("ecore", EcorePackage.eINSTANCE);
         assertQueryTrue(null, "ecore::EDate{'2000-01-25'} > ecore::EDate{'2000-01-24'}");
         assertQueryFalse(null, "ecore::EDate{'2000-01-24'} > ecore::EDate{'2000-01-24'}");
@@ -156,7 +156,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
 	}
     
     @Test public void testGreaterThanOrEqual() {
-    	DomainStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+    	StandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
     	loadEPackage("ecore", EcorePackage.eINSTANCE);
         assertQueryTrue(null, "ecore::EDate{'2000-01-25'} >= ecore::EDate{'2000-01-24'}");
         assertQueryTrue(null, "ecore::EDate{'2000-01-24'} >= ecore::EDate{'2000-01-24'}");
@@ -182,7 +182,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
 	}
     
     @Test public void testLessThan() {
-    	DomainStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+    	StandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
     	loadEPackage("ecore", EcorePackage.eINSTANCE);
     	assertQueryFalse(null, "ecore::EDate{'2000-01-25'} < ecore::EDate{'2000-01-24'}");
     	assertQueryFalse(null, "ecore::EDate{'2000-01-24'} < ecore::EDate{'2000-01-24'}");
@@ -208,7 +208,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
 	}
     
     @Test public void testLessThanOrEqual() {
-    	DomainStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+    	StandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
     	loadEPackage("ecore", EcorePackage.eINSTANCE);
     	assertQueryFalse(null, "ecore::EDate{'2000-01-25'} <= ecore::EDate{'2000-01-24'}");
         assertQueryTrue(null, "ecore::EDate{'2000-01-24'} <= ecore::EDate{'2000-01-24'}");
@@ -298,7 +298,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
      * Tests the implicit oclAsSet() operator.
      */
 	@Test public void test_oclAsSet_implicit() {
-    	PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+    	StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
 		assertQueryResults(null, "Set{true}", "true->select(true)");
 		assertQueryResults(null, "Set{true}", "Set{true}->select(true)");
 		assertQueryResults(null, "Set{}", "null->select(true)");
@@ -597,7 +597,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
      * Tests the oclType() operator for Booleans.
      */
     @Test public void test_oclType_Boolean() {
-    	PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+    	StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
     	PrimitiveType booleanType = standardLibrary.getBooleanType();
     	org.eclipse.ocl.pivot.Class classType = standardLibrary.getClassType();
     	assertQueryEquals(null, booleanType, "true.oclType()");
@@ -620,7 +620,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
      * Tests the oclType() operator for Classifiers.
      */
     @Test public void test_oclType_Classifier() {
-    	PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+    	StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
     	@SuppressWarnings("null") @NonNull Type packageType = metaModelManager.getPivotType("Package");
        	assertQueryEquals(pkg1, packageType, "self.oclType()");
     	assertQueryEquals(pkg1, "Package", "self.oclType().name");
@@ -639,7 +639,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
      */
     @Test public void test_oclType_Collection() {   	
     	CompleteEnvironment completeEnvironment = metaModelManager.getCompleteEnvironment();
-    	DomainStandardLibrary standardLibrary = completeEnvironment.getStandardLibrary();
+    	StandardLibrary standardLibrary = completeEnvironment.getStandardLibrary();
     	assertQueryEquals(null, 1, "Set{1}->oclType().ownedOperations->select(name = 'flatten')->size()");
     	assertQueryEquals(null, completeEnvironment.getSetType(standardLibrary.getOclVoidType(), null, null), "Set{}->oclType()");
     	assertQueryEquals(null, completeEnvironment.getSetType(standardLibrary.getIntegerType(), null, null), "Set{1}->oclType()");
@@ -657,7 +657,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
      * Tests the oclType() operator for Enumerations.
      */
     @Test public void test_oclType_Enumeration() {
-    	PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+    	StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
     	@SuppressWarnings("null") @NonNull Type collectionKindType = metaModelManager.getPivotType("CollectionKind");
 //    	assertQueryEquals(null, metaModelManager.getPivotType("EnumerationLiteral"), "CollectionKind::Set.oclType()");
     	// NB this is not EnumerationLiteral: cf. 4.oclType() is Integer not IntegerLiteral.
@@ -677,7 +677,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
      * Tests the oclType() operator for Numerics.
      */
     @Test public void test_oclType_Numeric() {
-    	PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+    	StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
     	PrimitiveType integerType = standardLibrary.getIntegerType();
     	assertQueryEquals(null, standardLibrary.getIntegerType(), "3.oclType()");
     	assertQueryEquals(null, standardLibrary.getRealType(), "3.0.oclType()");
@@ -694,7 +694,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
      * Tests the oclType() operator for OclAny.
      */
     @Test public void test_oclType_OclAny() {
-    	PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+    	StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
     	AnyType anyType = standardLibrary.getOclAnyType();
     	assertQueryEquals(null, standardLibrary.getOclVoidType(), "null.oclAsType(OclAny).oclType()");		// Cast does not change the dynamic type
 //    	assertQueryEquals(null, "OclAny", "null.oclAsType(OclAny).name");
@@ -710,7 +710,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
      * Tests the oclType() operator for OclInvalid.
      */
     @Test public void test_oclType_OclInvalid() {
-    	PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+    	StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
        	InvalidType invalidType = standardLibrary.getOclInvalidType();
     	assertQueryInvalid(null, "invalid.oclType()");
     	assertQueryInvalid(null, "invalid.oclType().name");
@@ -727,7 +727,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
      * Tests the oclType() operator for OclVoid.
      */
     @Test public void test_oclType_OclVoid() {
-    	PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+    	StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
     	VoidType nullType = standardLibrary.getOclVoidType();
     	assertQueryEquals(null, nullType, "null.oclType()");
     	assertQueryEquals(null, "OclVoid", "null.oclType().name");
@@ -744,7 +744,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
      * Tests the oclType() operator for Tuples.
      */
     @Test public void test_oclType_Tuple() {
-    	PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+    	StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
     	TuplePartId partId = IdManager.getTuplePartId(0, "a", TypeId.INTEGER);
     	TupleTypeId tupleId = IdManager.getTupleTypeId("Tuple", partId);
     	TupleType tupleType = metaModelManager.getIdResolver().getTupleType(tupleId);
@@ -762,7 +762,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
      * Tests the oclType() operator.
      */
     @Test public void test_oclType() {
-    	PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+    	StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
 		assertQueryEquals(null, standardLibrary.getStringType(), "'string'.oclType()");
 		assertQueryEquals(null, standardLibrary.getOclVoidType(), "self.oclType()");
     	assertQueryEquals(null, standardLibrary.getClassType(), "3.oclType().oclType()");

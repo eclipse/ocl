@@ -11,13 +11,13 @@
 package org.eclipse.ocl.examples.codegen.java;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.ids.impl.WeakHashMapOfWeakReference;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.examples.codegen.java.types.JavaTypeId;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.library.UnboxedCompositionProperty;
 import org.eclipse.ocl.pivot.library.UnboxedExplicitNavigationProperty;
 import org.eclipse.ocl.pivot.library.UnboxedOppositeNavigationProperty;
@@ -51,7 +51,7 @@ public class JavaConstants
 	public static final @NonNull TypeId EVALUATOR_TYPE_ID = getJavaTypeId(DomainEvaluator.class);
 	public static final @NonNull TypeId ID_RESOLVER_TYPE_ID = getJavaTypeId(IdResolver.class);
 //	public static final @NonNull TypeId SELF_TYPE_ID = getJavaTypeId(Object.class);
-	public static final @NonNull TypeId STANDARD_LIBRARY_TYPE_ID = getJavaTypeId(DomainStandardLibrary.class);
+	public static final @NonNull TypeId STANDARD_LIBRARY_TYPE_ID = getJavaTypeId(StandardLibrary.class);
 	public static final @NonNull TypeId TYPE_ID_TYPE_ID = getJavaTypeId(TypeId.class);
 	public static final @NonNull TypeId UNBOXED_COMPOSITION_PROPERTY_TYPE_ID = getJavaTypeId(UnboxedCompositionProperty.class);
 	public static final @NonNull TypeId UNBOXED_EXPLICIT_NAVIGATION_PROPERTY_TYPE_ID = getJavaTypeId(UnboxedExplicitNavigationProperty.class);

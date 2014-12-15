@@ -82,7 +82,6 @@ import org.eclipse.ocl.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.pivot.OrderedSetType;
 import org.eclipse.ocl.pivot.OrphanCompletePackage;
 import org.eclipse.ocl.pivot.Parameter;
-import org.eclipse.ocl.pivot.ParentCompletePackage;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.PrimitiveCompletePackage;
@@ -102,6 +101,7 @@ import org.eclipse.ocl.pivot.SequenceType;
 import org.eclipse.ocl.pivot.SetType;
 import org.eclipse.ocl.pivot.Signal;
 import org.eclipse.ocl.pivot.Slot;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.State;
 import org.eclipse.ocl.pivot.StateExp;
 import org.eclipse.ocl.pivot.StateMachine;
@@ -1145,18 +1145,6 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PivotPackage.PARENT_COMPLETE_PACKAGE:
-			{
-				ParentCompletePackage parentCompletePackage = (ParentCompletePackage)theEObject;
-				T result = caseParentCompletePackage(parentCompletePackage);
-				if (result == null) result = caseCompletePackage(parentCompletePackage);
-				if (result == null) result = caseNamedElement(parentCompletePackage);
-				if (result == null) result = caseElement(parentCompletePackage);
-				if (result == null) result = caseNameable(parentCompletePackage);
-				if (result == null) result = caseVisitable(parentCompletePackage);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case PivotPackage.PIVOTABLE:
 			{
 				Pivotable pivotable = (Pivotable)theEObject;
@@ -1397,6 +1385,15 @@ public class PivotSwitch<T> extends Switch<T> {
 				T result = caseSlot(slot);
 				if (result == null) result = caseElement(slot);
 				if (result == null) result = caseVisitable(slot);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.STANDARD_LIBRARY:
+			{
+				StandardLibrary standardLibrary = (StandardLibrary)theEObject;
+				T result = caseStandardLibrary(standardLibrary);
+				if (result == null) result = caseElement(standardLibrary);
+				if (result == null) result = caseVisitable(standardLibrary);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -2407,6 +2404,22 @@ public class PivotSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Standard Library</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Standard Library</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStandardLibrary(StandardLibrary object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Message Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -3247,22 +3260,6 @@ public class PivotSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseParameter(Parameter object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Parent Complete Package</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Parent Complete Package</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseParentCompletePackage(ParentCompletePackage object)
-	{
 		return null;
 	}
 

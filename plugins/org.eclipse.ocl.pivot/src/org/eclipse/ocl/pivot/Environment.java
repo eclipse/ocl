@@ -16,7 +16,6 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.OCLExpression;
@@ -26,8 +25,8 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.State;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.pivot.utilities.EnvironmentRegistryImpl;
 
 /**
@@ -148,11 +147,11 @@ public interface Environment extends BasicEnvironment {
      * 
      * @return the OCL Standard Library implementation for this environment
      */
-	@NonNull DomainStandardLibrary getOCLStandardLibrary();
+	@NonNull StandardLibrary getOCLStandardLibrary();
 
 	@NonNull MetaModelManager getMetaModelManager();
 
-	@NonNull PivotStandardLibrary getStandardLibrary();
+	@NonNull StandardLibraryInternal getStandardLibrary();
 	
 	/**
 	 * Retrieves a list of all possible states of the specified <code>owner</code>

@@ -30,7 +30,7 @@ import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.*;
 import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.Package;
-import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResourceImpl;
 import org.eclipse.ocl.pivot.resource.OCLASResourceFactory;
@@ -49,7 +49,7 @@ public class OCLMetaModel extends ASResourceImpl
 	 */
 	public static final @NonNull String PIVOT_URI = "http://www.eclipse.org/ocl/2015/Pivot";
 
-	public static @NonNull Package create(@NonNull PivotStandardLibrary standardLibrary, @NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
+	public static @NonNull Package create(@NonNull StandardLibraryInternal standardLibrary, @NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
 		OCLMetaModel resource = new OCLMetaModel(DomainUtil.nonNullEMF(URI.createURI(PIVOT_URI)));
 		Contents contents = new Contents(standardLibrary, name, nsPrefix, nsURI);
 		resource.getContents().add(contents.root);
@@ -62,9 +62,9 @@ public class OCLMetaModel extends ASResourceImpl
 
 	protected static class LibraryContents extends AbstractContents
 	{
-		protected final @NonNull PivotStandardLibrary standardLibrary;
+		protected final @NonNull StandardLibraryInternal standardLibrary;
 
-		protected LibraryContents(@NonNull PivotStandardLibrary standardLibrary) {
+		protected LibraryContents(@NonNull StandardLibraryInternal standardLibrary) {
 			this.standardLibrary = standardLibrary;
 		}
 	}
@@ -114,7 +114,7 @@ public class OCLMetaModel extends ASResourceImpl
 		@SuppressWarnings("null") private final @NonNull TemplateSignature _UniqueCollection_ = _UniqueCollection.getOwnedTemplateSignature();
 		@SuppressWarnings("null") private final @NonNull TemplateParameter _UniqueCollection_T = _UniqueCollection_.getOwnedTemplateParameters().get(0);
 
-		protected Contents(@NonNull PivotStandardLibrary standardLibrary, @NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
+		protected Contents(@NonNull StandardLibraryInternal standardLibrary, @NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
 			super(standardLibrary);
 			root = createModel("http://www.eclipse.org/ocl/2015/Pivot");
 			metamodel = createPackage(name, nsPrefix, nsURI, IdManager.METAMODEL);
@@ -211,7 +211,6 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Class _OrphanCompletePackage = createClass(PivotPackage.Literals.ORPHAN_COMPLETE_PACKAGE);
 		private final @NonNull Class _Package = createClass(PivotPackage.Literals.PACKAGE);
 		private final @NonNull Class _Parameter = createClass(PivotPackage.Literals.PARAMETER);
-		private final @NonNull Class _ParentCompletePackage = createClass(PivotPackage.Literals.PARENT_COMPLETE_PACKAGE);
 		private final @NonNull Class _Pivotable = createClass(PivotPackage.Literals.PIVOTABLE);
 		private final @NonNull Class _Precedence = createClass(PivotPackage.Literals.PRECEDENCE);
 		private final @NonNull Class _PrimitiveCompletePackage = createClass(PivotPackage.Literals.PRIMITIVE_COMPLETE_PACKAGE);
@@ -231,6 +230,7 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Class _SetType = createClass(PivotPackage.Literals.SET_TYPE);
 		private final @NonNull Class _Signal = createClass(PivotPackage.Literals.SIGNAL);
 		private final @NonNull Class _Slot = createClass(PivotPackage.Literals.SLOT);
+		private final @NonNull Class _StandardLibrary = createClass(PivotPackage.Literals.STANDARD_LIBRARY);
 		private final @NonNull Class _State = createClass(PivotPackage.Literals.STATE);
 		private final @NonNull Class _StateExp = createClass(PivotPackage.Literals.STATE_EXP);
 		private final @NonNull Class _StateMachine = createClass(PivotPackage.Literals.STATE_MACHINE);
@@ -729,9 +729,6 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedTypes.add(type = _Parameter);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_VariableDeclaration);
-			ownedTypes.add(type = _ParentCompletePackage);
-			superClasses = type.getSuperClasses();
-			superClasses.add(_CompletePackage);
 			ownedTypes.add(type = _Pivotable);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
@@ -788,6 +785,9 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Class);
 			ownedTypes.add(type = _Slot);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Element);
+			ownedTypes.add(type = _StandardLibrary);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Element);
 			ownedTypes.add(type = _State);

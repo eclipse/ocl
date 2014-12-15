@@ -264,11 +264,11 @@
         superClasses="#T.pivot.Vertex">
       <ownedComment body="A connection point reference represents a usage (as part of a submachine state) of an entry/exit point defined in the statemachine reference by the submachine state."/>
       <ownedProperties xmi:id="p.pivot.ConnectionPointReference.entry" name="entry"
-          opposite="#//@ownedPackages.0/@ownedClasses.91/@ownedProperties.3" type="#//@ownedPackages.1/@ownedClasses.149">
+          opposite="#//@ownedPackages.0/@ownedClasses.90/@ownedProperties.3" type="#//@ownedPackages.1/@ownedClasses.149">
         <ownedComment body="The entryPoint kind pseudo states corresponding to this connection point."/>
       </ownedProperties>
       <ownedProperties xmi:id="p.pivot.ConnectionPointReference.exit" name="exit"
-          opposite="#//@ownedPackages.0/@ownedClasses.91/@ownedProperties.4" type="#//@ownedPackages.1/@ownedClasses.149">
+          opposite="#//@ownedPackages.0/@ownedClasses.90/@ownedProperties.4" type="#//@ownedPackages.1/@ownedClasses.149">
         <ownedComment body="The exitPoints kind pseudo states corresponding to this connection point."/>
       </ownedProperties>
       <ownedProperties xmi:id="p.pivot.ConnectionPointReference.state" isRequired="false"
@@ -974,8 +974,6 @@
       <ownedProperties xmi:id="p.pivot.Parameter.Variable" implicit="true" name="Variable"
           opposite="#p.pivot.Variable.representedParameter" type="#//@ownedPackages.1/@ownedClasses.36"/>
     </ownedClasses>
-    <ownedClasses xmi:id="T.pivot.ParentCompletePackage" name="ParentCompletePackage"
-        superClasses="#T.pivot.CompletePackage"/>
     <ownedClasses xmi:id="T.pivot.Pivotable" instanceClassName="org.eclipse.ocl.pivot.util.Pivotable"
         isAbstract="true" isInterface="true" name="Pivotable" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclElement"/>
     <ownedClasses xmi:id="T.pivot.Precedence" name="Precedence" superClasses="#T.pivot.NamedElement">
@@ -1059,10 +1057,10 @@
           type="#Boolean"/>
       <ownedProperties xmi:id="p.pivot.Property.isVolatile" default="false" name="isVolatile"
           type="#Boolean"/>
-      <ownedProperties xmi:id="p.pivot.Property.keys" name="keys" opposite="#//@ownedPackages.0/@ownedClasses.89/@ownedProperties.22"
+      <ownedProperties xmi:id="p.pivot.Property.keys" name="keys" opposite="#//@ownedPackages.0/@ownedClasses.88/@ownedProperties.22"
           type="#//@ownedPackages.1/@ownedClasses.148"/>
       <ownedProperties xmi:id="p.pivot.Property.opposite" isRequired="false" name="opposite"
-          opposite="#//@ownedPackages.0/@ownedClasses.89/@ownedProperties.25" type="#T.pivot.Property">
+          opposite="#//@ownedPackages.0/@ownedClasses.88/@ownedProperties.25" type="#T.pivot.Property">
         <ownedComment body="Two attributes attr1 and attr2 of two objects o1 and o2 (which may be the same object) may be paired with each other so that o1.attr1 refers to o2 if and only if o2.attr2 refers to o1. In such a case attr1 is the opposite of attr2 and attr2 is the opposite of attr1."/>
       </ownedProperties>
       <ownedProperties xmi:id="p.pivot.Property.owningClass" isRequired="false" name="owningClass"
@@ -1070,12 +1068,12 @@
         <ownedComment body="The class that owns the property, and of which the property is an attribute."/>
       </ownedProperties>
       <ownedProperties xmi:id="p.pivot.Property.redefinedProperty" name="redefinedProperty"
-          opposite="#//@ownedPackages.0/@ownedClasses.89/@ownedProperties.26" type="#//@ownedPackages.1/@ownedClasses.148"/>
+          opposite="#//@ownedPackages.0/@ownedClasses.88/@ownedProperties.26" type="#//@ownedPackages.1/@ownedClasses.148"/>
       <ownedProperties xmi:id="p.pivot.Property.referredProperty" isRequired="false"
-          name="referredProperty" opposite="#//@ownedPackages.0/@ownedClasses.89/@ownedProperties.23"
+          name="referredProperty" opposite="#//@ownedPackages.0/@ownedClasses.88/@ownedProperties.23"
           type="#T.pivot.Property"/>
       <ownedProperties xmi:id="p.pivot.Property.subsettedProperty" name="subsettedProperty"
-          opposite="#//@ownedPackages.0/@ownedClasses.89/@ownedProperties.27" type="#//@ownedPackages.1/@ownedClasses.148"/>
+          opposite="#//@ownedPackages.0/@ownedClasses.88/@ownedProperties.27" type="#//@ownedPackages.1/@ownedClasses.148"/>
       <ownedProperties xmi:id="p.pivot.Property.ConstructorPart" implicit="true" name="ConstructorPart"
           opposite="#p.pivot.ConstructorPart.referredProperty" type="#//@ownedPackages.1/@ownedClasses.8"/>
       <ownedProperties xmi:id="p.pivot.Property.DynamicProperty" implicit="true" name="DynamicProperty"
@@ -1248,6 +1246,7 @@
         <ownedComment body="The value or values corresponding to the defining feature for the owning instance specification."/>
       </ownedProperties>
     </ownedClasses>
+    <ownedClasses xmi:id="T.pivot.StandardLibrary" name="StandardLibrary" superClasses="#T.pivot.Element"/>
     <ownedClasses xmi:id="T.pivot.State" name="State" superClasses="#T.pivot.Namespace #T.pivot.Vertex">
       <ownedComment body="A state models a situation during which some (usually implicit) invariant condition holds."/>
       <ownedProperties xmi:id="p.pivot.State.connection" isComposite="true" name="connection"

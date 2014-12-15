@@ -45,9 +45,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.codegen.common.CodeGenHelper;
-import org.eclipse.ocl.examples.codegen.dynamic.JavaGenModelCodeGenHelper;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.LibraryUnaryOperation;
@@ -60,6 +57,8 @@ import org.eclipse.ocl.domain.values.RealValue;
 import org.eclipse.ocl.domain.values.Value;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.examples.codegen.common.CodeGenHelper;
+import org.eclipse.ocl.examples.codegen.dynamic.JavaGenModelCodeGenHelper;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.library.ecore.EcoreExecutorManager;
 import org.eclipse.ocl.pivot.Comment;
@@ -83,6 +82,7 @@ import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.SemanticException;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.context.ClassContext;
@@ -1323,7 +1323,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		return DomainUtil.nonNullState(ocl);
 	}
 	
-	protected @NonNull DomainStandardLibrary getStandardLibrary() {
+	protected @NonNull StandardLibrary getStandardLibrary() {
 		return ocl.getEnvironment().getStandardLibrary();
 	}
 

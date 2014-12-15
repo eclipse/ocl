@@ -13,9 +13,9 @@ package org.eclipse.ocl.library.executor;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.StandardLibrary;
 
 /**
  * DomainExecutorPackage uses the limited Domain interfaces to construct a package description for use
@@ -25,10 +25,10 @@ import org.eclipse.ocl.domain.utilities.DomainUtil;
  */
 public class DomainReflectivePackage extends ReflectivePackage
 {
-	protected final @NonNull DomainStandardLibrary standardLibrary;
+	protected final @NonNull StandardLibrary standardLibrary;
 	protected final @NonNull org.eclipse.ocl.pivot.Package domainPackage;
 
-	public DomainReflectivePackage(@NonNull DomainStandardLibrary standardLibrary, @NonNull org.eclipse.ocl.pivot.Package domainPackage) {
+	public DomainReflectivePackage(@NonNull StandardLibrary standardLibrary, @NonNull org.eclipse.ocl.pivot.Package domainPackage) {
 		super(DomainUtil.nonNullPivot(domainPackage.getName()), domainPackage.getNsPrefix(), domainPackage.getURI(), domainPackage.getPackageId());
 		this.standardLibrary = standardLibrary;
 		this.domainPackage = domainPackage;
@@ -60,7 +60,7 @@ public class DomainReflectivePackage extends ReflectivePackage
 	}
 	
 	@Override
-	protected @NonNull DomainStandardLibrary getStandardLibrary() {
+	protected @NonNull StandardLibrary getStandardLibrary() {
 		return standardLibrary;
 	}
 }

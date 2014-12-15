@@ -19,7 +19,6 @@ import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainLogger;
 import org.eclipse.ocl.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.domain.types.IdResolver;
@@ -30,9 +29,10 @@ import org.eclipse.ocl.pivot.Environment;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.util.Visitor;
@@ -61,7 +61,7 @@ public abstract class AbstractEvaluationVisitor
 	protected final @NonNull Environment environment;
 	protected final @NonNull MetaModelManager metaModelManager;	
 	protected final @NonNull CompleteEnvironmentInternal completeEnvironment;
-	protected final @NonNull PivotStandardLibrary standardLibrary;
+	protected final @NonNull StandardLibraryInternal standardLibrary;
 	protected final @NonNull DomainModelManager modelManager;
 
     protected @NonNull EvaluationVisitor undecoratedVisitor;
@@ -199,7 +199,7 @@ public abstract class AbstractEvaluationVisitor
 	}
 
 	@Override
-	public @NonNull DomainStandardLibrary getStandardLibrary() {
+	public @NonNull StandardLibrary getStandardLibrary() {
 		return standardLibrary;
 	}
 

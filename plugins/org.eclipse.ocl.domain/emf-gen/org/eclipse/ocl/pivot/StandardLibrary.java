@@ -1,44 +1,33 @@
-/*******************************************************************************
- * Copyright (c) 2011, 2013 E.D.Willink and others.
- * All rights reserved.   This program and the accompanying materials
+/**
+ * Copyright (c) 2010,2015 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *   E.D.Willink - Initial API and implementation
- *******************************************************************************/
-package org.eclipse.ocl.domain.elements;
+ */
+package org.eclipse.ocl.pivot;
 
-import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.ids.PrimitiveTypeId;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
-import org.eclipse.ocl.pivot.CollectionType;
-import org.eclipse.ocl.pivot.CompleteInheritance;
-import org.eclipse.ocl.pivot.CompletePackage;
-import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.Enumeration;
-import org.eclipse.ocl.pivot.LambdaType;
-import org.eclipse.ocl.pivot.Operation;
-import org.eclipse.ocl.pivot.TupleType;
-import org.eclipse.ocl.pivot.Type;
+
 
 /**
- * A representation of the OCL Standard Library, which is the set of singleton
- * instances of the OCL-defined metatypes, including the generic collection
- * types (e.g., <tt>Set(T)</tt>).
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Standard Library</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ *
+ * @see org.eclipse.ocl.pivot.PivotPackage#getStandardLibrary()
+ * @generated
  */
-public interface DomainStandardLibrary
+public interface StandardLibrary extends Element
 {
-	boolean conformsToCollectionType(@NonNull CollectionType firstCollectionType, @NonNull CollectionType secondCollectionType);
-
-	boolean conformsToLambdaType(@NonNull LambdaType firstLambdaType, @NonNull LambdaType secondLambdaType);
-
-	boolean conformsToTupleType(@NonNull TupleType firstTupleType, @NonNull TupleType secondTupleType);
-
 	@NonNull Iterable<? extends CompletePackage> getAllCompletePackages();
 
     /**
@@ -74,11 +63,6 @@ public interface DomainStandardLibrary
 	@NonNull org.eclipse.ocl.pivot.Class getCollectionType();
 
 	@NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
-
-	/**
-	 * Return the enumeration for a given enumerator.
-	 */
-	Enumeration getEnumeration(@NonNull Enumerator enumerator);
 	
     /**
      * Obtains the single instance of the EnumerationType metatype, named
@@ -264,8 +248,4 @@ public interface DomainStandardLibrary
      *     PrimitiveType)
      */
 	@NonNull org.eclipse.ocl.pivot.Class getUnlimitedNaturalType();
-	
-	boolean isEqualToCollectionType(@NonNull CollectionType firstCollectionType, @NonNull CollectionType secondCollectionType);
-
-	boolean isEqualToTupleType(@NonNull TupleType firstTupleType, @NonNull TupleType secondTupleType);
-}
+} // StandardLibrary

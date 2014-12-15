@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.TemplateParameterId;
 import org.eclipse.ocl.pivot.CallExp;
@@ -35,6 +34,7 @@ import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
@@ -499,19 +499,19 @@ public class TemplateParameterImpl
 	}
 	
 	@Override
-	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
+	public boolean conformsTo(@NonNull StandardLibrary standardLibrary, @NonNull Type type) {
 		CompleteInheritance thisInheritance = standardLibrary.getOclAnyType().getInheritance(standardLibrary);
 		CompleteInheritance thatInheritance = type.getInheritance(standardLibrary);
 		return thisInheritance.isSubInheritanceOf(thatInheritance);
 	}
 
 	@Override
-	public @NonNull CompleteInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary) {
+	public @NonNull CompleteInheritance getInheritance(@NonNull StandardLibrary standardLibrary) {
 		return standardLibrary.getInheritance(standardLibrary.getOclAnyType());		// FIXME loaer bound
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getNormalizedType(@NonNull DomainStandardLibrary standardLibrary) {
+	public @NonNull org.eclipse.ocl.pivot.Class getNormalizedType(@NonNull StandardLibrary standardLibrary) {
 		try {
 			return getInheritance(standardLibrary).getType();
 		}
@@ -569,12 +569,12 @@ public class TemplateParameterImpl
 	}
 
 	@Override
-	public Type specializeIn(@NonNull CallExp expr, @Nullable Type selfType) {
+	public @NonNull Type specializeIn(@NonNull CallExp expr, @Nullable Type selfType) {
 		Resource eResource = ((EObject) expr).eResource();
 		if ((eResource != null) && (selfType != null)) {
 			MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(eResource);
 			return metaModelManager.specializeType(this, expr, selfType, null);
 		}
-		return null;
+		return this;
 	}
 } //TemplateParameterImpl

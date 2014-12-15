@@ -14,10 +14,10 @@ import java.util.regex.Pattern;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.StandardLibrary;
 
 public interface DomainEvaluator
 {
@@ -43,7 +43,7 @@ public interface DomainEvaluator
 	 */
 	@NonNull Pattern getRegexPattern(@NonNull String regex);
 
-	@NonNull DomainStandardLibrary getStandardLibrary();
+	@NonNull StandardLibrary getStandardLibrary();
 
 	@NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value);
 	@NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Object... values);

@@ -74,9 +74,9 @@ import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.delegate.SettingBehavior;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.impl.PackageImpl;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.pivot.uml.UML2AS;
 import org.eclipse.ocl.pivot.utilities.AS2Moniker;
 import org.eclipse.ocl.pivot.utilities.AliasAdapter;
@@ -270,7 +270,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 		if (!isPrimitive && (instanceClass != null)) {
 			try {
 				MetaModelManager metaModelManager = converter.getMetaModelManager();
-		    	PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+		    	StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
 				if (instanceClass == boolean.class) {
 					pivotElement.setBehavioralClass(standardLibrary.getBooleanType());
 				}

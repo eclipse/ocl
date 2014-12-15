@@ -17,11 +17,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.types.IdResolver;
+import org.eclipse.ocl.domain.types.TypeUtils;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.Unlimited;
@@ -39,6 +39,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TemplateBinding;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
@@ -576,12 +577,12 @@ public class CollectionTypeImpl
 	}
 	
 	@Override
-	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
+	public boolean conformsTo(@NonNull StandardLibrary standardLibrary, @NonNull Type type) {
 		if (this == type) {
 			return true;
 		}
 		if (type instanceof CollectionType) {
-			return standardLibrary.conformsToCollectionType(this, (CollectionType)type);
+			return TypeUtils.conformsToCollectionType(standardLibrary, this, (CollectionType)type);
 		}
 		if (getUnspecializedElement() != null) {
 			return ((Type)getUnspecializedElement()).conformsTo(standardLibrary, type);
@@ -597,7 +598,7 @@ public class CollectionTypeImpl
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getCommonType(@NonNull IdResolver idResolver, @NonNull Type type) {
 		CompleteEnvironment environment = idResolver.getEnvironment();
-		DomainStandardLibrary standardLibrary = environment.getStandardLibrary();
+		StandardLibrary standardLibrary = environment.getStandardLibrary();
 		CompleteInheritance thisInheritance = this.getInheritance(standardLibrary);
 		CompleteInheritance thatInheritance = type.getInheritance(standardLibrary);
 		CompleteInheritance commonInheritance = thisInheritance.getCommonInheritance(thatInheritance);
@@ -646,14 +647,14 @@ public class CollectionTypeImpl
 	}
 
 	@Override
-	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
+	public boolean isEqualTo(@NonNull StandardLibrary standardLibrary, @NonNull Type type) {
 		if (this == type) {
 			return true;
 		}
 		if (!(type instanceof CollectionType)) {
 			return false;
 		}
-		return standardLibrary.isEqualToCollectionType(this, (CollectionType)type);
+		return TypeUtils.isEqualToCollectionType(standardLibrary, this, (CollectionType)type);
 	}
 
 	@Override

@@ -16,10 +16,10 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.CompleteInheritance;
+import org.eclipse.ocl.pivot.StandardLibrary;
 
 /**
  * A ReflectivePackage builds a dispatch table representative of a model package at run-time using a minimal reflective API.
@@ -66,5 +66,5 @@ public abstract class ReflectivePackage extends ExecutorPackage
 		return getDomainClasses();
 	}
 
-	protected abstract @NonNull DomainStandardLibrary getStandardLibrary();
+	protected abstract @NonNull StandardLibrary getStandardLibrary();
 }

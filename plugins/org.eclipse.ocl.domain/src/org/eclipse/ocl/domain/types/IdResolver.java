@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.EnumerationLiteralId;
 import org.eclipse.ocl.domain.ids.IdVisitor;
@@ -36,6 +35,7 @@ import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
@@ -96,7 +96,7 @@ public interface IdResolver extends IdVisitor<Element>
 
 	@NonNull Property getProperty(@NonNull PropertyId propertyId);
 
-	@NonNull DomainStandardLibrary getStandardLibrary();
+	@NonNull StandardLibrary getStandardLibrary();
 
 	@NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value);
 

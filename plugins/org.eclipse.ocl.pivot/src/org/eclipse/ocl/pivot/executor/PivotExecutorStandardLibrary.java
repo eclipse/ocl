@@ -14,6 +14,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.library.LibraryConstants;
 import org.eclipse.ocl.library.ecore.EcoreExecutorPackage;
@@ -93,6 +94,11 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 	@Override
 	public @NonNull MetaModelManager getMetaModelManager() {
 		return metaModelManager;
+	}
+
+	@Override
+	public @Nullable org.eclipse.ocl.pivot.Package getNsURIPackage(@NonNull String nsURI) {
+		throw new UnsupportedOperationException();
 	}
 
 	@Override

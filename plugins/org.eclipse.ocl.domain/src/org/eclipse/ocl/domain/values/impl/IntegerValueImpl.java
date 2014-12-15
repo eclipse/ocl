@@ -15,7 +15,6 @@ import java.math.BigDecimal;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.values.ComparableValue;
@@ -26,6 +25,7 @@ import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.UnlimitedValue;
 import org.eclipse.ocl.domain.values.ValuesPackage;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 
 /**
@@ -145,7 +145,7 @@ public abstract class IntegerValueImpl extends NumberValueImpl implements Intege
 		return this;
 	}
 
-	public @NonNull Type getType(@NonNull DomainStandardLibrary standardLibrary) {
+	public @NonNull Type getType(@NonNull StandardLibrary standardLibrary) {
 		return isUnlimitedNatural() ? standardLibrary.getUnlimitedNaturalType() : standardLibrary.getIntegerType();
 	}
 

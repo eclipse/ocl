@@ -12,9 +12,8 @@ package org.eclipse.ocl.domain.types;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.AbstractExecutorObject;
+import org.eclipse.ocl.domain.elements.AbstractExecutorNamedElement;
 import org.eclipse.ocl.domain.elements.DomainFragment;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.ParametersId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.LibraryFeature;
@@ -23,9 +22,10 @@ import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.utilities.IndexableIterable;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 
-public abstract class AbstractInheritance extends AbstractExecutorObject implements CompleteInheritance
+public abstract class AbstractInheritance extends AbstractExecutorNamedElement implements CompleteInheritance
 {
 	public static class FragmentIterable implements IndexableIterable<DomainFragment>
 	{
@@ -224,7 +224,7 @@ public abstract class AbstractInheritance extends AbstractExecutorObject impleme
 	}
 
 	@Override
-	public @NonNull Operation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
+	public @NonNull Operation lookupActualOperation(@NonNull StandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
 		getDepth();
 		CompleteInheritance apparentInheritance = apparentOperation.getInheritance(standardLibrary);
 		int apparentDepth = DomainUtil.nonNullModel(apparentInheritance).getDepth();
@@ -242,7 +242,7 @@ public abstract class AbstractInheritance extends AbstractExecutorObject impleme
 	}
 
 	@Override
-	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
+	public @NonNull LibraryFeature lookupImplementation(@NonNull StandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
 		getDepth();
 		CompleteInheritance apparentInheritance = apparentOperation.getInheritance(standardLibrary);
 		int apparentDepth = DomainUtil.nonNullModel(apparentInheritance).getDepth();
@@ -263,7 +263,7 @@ public abstract class AbstractInheritance extends AbstractExecutorObject impleme
 	}
 
 	@Override
-	public @Nullable Operation lookupLocalOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull String operationName, CompleteInheritance... argumentTypes) {
+	public @Nullable Operation lookupLocalOperation(@NonNull StandardLibrary standardLibrary, @NonNull String operationName, CompleteInheritance... argumentTypes) {
 		for (Operation localOperation : getType().getOwnedOperations()) {
 			if (localOperation.getName().equals(operationName)) {
 				ParametersId firstParametersId = localOperation.getParametersId();

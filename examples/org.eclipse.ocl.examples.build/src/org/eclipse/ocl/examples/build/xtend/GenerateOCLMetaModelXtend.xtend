@@ -115,7 +115,7 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 			import org.eclipse.ocl.pivot.*;
 			import org.eclipse.ocl.pivot.Class;
 			import org.eclipse.ocl.pivot.Package;
-			import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
+			import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 			import org.eclipse.ocl.pivot.model.OCLstdlib;
 			import org.eclipse.ocl.pivot.resource.ASResourceImpl;
 			import org.eclipse.ocl.pivot.resource.OCLASResourceFactory;
@@ -134,7 +134,7 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 				 */
 				public static final @NonNull String PIVOT_URI = "«uri»";
 			
-				public static @NonNull Package create(@NonNull PivotStandardLibrary standardLibrary, @NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
+				public static @NonNull Package create(@NonNull StandardLibraryInternal standardLibrary, @NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
 					«javaClassName» resource = new «javaClassName»(DomainUtil.nonNullEMF(URI.createURI(PIVOT_URI)));
 					Contents contents = new Contents(standardLibrary, name, nsPrefix, nsURI);
 					resource.getContents().add(contents.root);
@@ -147,9 +147,9 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 			
 				protected static class LibraryContents extends AbstractContents
 				{
-					protected final @NonNull PivotStandardLibrary standardLibrary;
+					protected final @NonNull StandardLibraryInternal standardLibrary;
 			
-					protected LibraryContents(@NonNull PivotStandardLibrary standardLibrary) {
+					protected LibraryContents(@NonNull StandardLibraryInternal standardLibrary) {
 						this.standardLibrary = standardLibrary;
 					}
 				}
@@ -185,7 +185,7 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 					
 					«allTypes.defineCollectionTypeName("UniqueCollection")»
 
-					protected Contents(@NonNull PivotStandardLibrary standardLibrary, @NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
+					protected Contents(@NonNull StandardLibraryInternal standardLibrary, @NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
 						super(standardLibrary);
 						«root.getSymbolName()» = createModel("«pkg.getURI»");
 						«pkg.getSymbolName()» = createPackage(name, nsPrefix, nsURI, IdManager.METAMODEL);

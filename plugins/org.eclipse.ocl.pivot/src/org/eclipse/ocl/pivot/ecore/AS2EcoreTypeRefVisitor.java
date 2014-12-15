@@ -38,8 +38,8 @@ import org.eclipse.ocl.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.VoidType;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.PivotObjectImpl;
@@ -49,7 +49,7 @@ public class AS2EcoreTypeRefVisitor
 	extends AbstractExtendingVisitor<EObject, AS2Ecore>
 {
 	protected final @NonNull MetaModelManager metaModelManager;
-	protected final @NonNull PivotStandardLibrary standardLibrary;
+	protected final @NonNull StandardLibraryInternal standardLibrary;
 	
 	public AS2EcoreTypeRefVisitor(@NonNull AS2Ecore context) {
 		super(context);

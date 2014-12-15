@@ -15,7 +15,6 @@ package org.eclipse.ocl.pivot;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Operation;
@@ -105,14 +104,14 @@ public interface EnvironmentFactory {
      * context classifier (as an OCL type or classifier) will be
      * inferred from the context instance according to the metamodel that the
      * environment factory supports, if possible.  If not possible, then the
-     * {@link DomainStandardLibrary#getOclAnyType() OclAny} type is assumed.
+     * {@link StandardLibrary#getOclAnyType() OclAny} type is assumed.
      * </p>
      * 
      * @param context the context object or value
      * @return the environment
      * 
      * @see #createClassifierContext(Environment, Type)
-     * @see DomainStandardLibrary#getOclAnyType()
+     * @see StandardLibrary#getOclAnyType()
      */
 	@NonNull Environment createInstanceContext(@NonNull Environment parent, @NonNull Object context);
     

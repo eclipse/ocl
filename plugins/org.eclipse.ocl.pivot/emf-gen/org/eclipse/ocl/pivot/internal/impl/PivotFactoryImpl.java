@@ -77,7 +77,6 @@ import org.eclipse.ocl.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.pivot.OrderedSetType;
 import org.eclipse.ocl.pivot.OrphanCompletePackage;
 import org.eclipse.ocl.pivot.Parameter;
-import org.eclipse.ocl.pivot.ParentCompletePackage;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Precedence;
@@ -97,6 +96,7 @@ import org.eclipse.ocl.pivot.SequenceType;
 import org.eclipse.ocl.pivot.SetType;
 import org.eclipse.ocl.pivot.Signal;
 import org.eclipse.ocl.pivot.Slot;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.State;
 import org.eclipse.ocl.pivot.StateExp;
 import org.eclipse.ocl.pivot.StateMachine;
@@ -228,7 +228,6 @@ public class PivotFactoryImpl
 			case PivotPackage.ORPHAN_COMPLETE_PACKAGE: return createOrphanCompletePackage();
 			case PivotPackage.PACKAGE: return createPackage();
 			case PivotPackage.PARAMETER: return createParameter();
-			case PivotPackage.PARENT_COMPLETE_PACKAGE: return createParentCompletePackage();
 			case PivotPackage.PRECEDENCE: return createPrecedence();
 			case PivotPackage.PRIMITIVE_COMPLETE_PACKAGE: return createPrimitiveCompletePackage();
 			case PivotPackage.PRIMITIVE_TYPE: return createPrimitiveType();
@@ -245,6 +244,7 @@ public class PivotFactoryImpl
 			case PivotPackage.SET_TYPE: return createSetType();
 			case PivotPackage.SIGNAL: return createSignal();
 			case PivotPackage.SLOT: return createSlot();
+			case PivotPackage.STANDARD_LIBRARY: return createStandardLibrary();
 			case PivotPackage.STATE: return createState();
 			case PivotPackage.STATE_EXP: return createStateExp();
 			case PivotPackage.STATE_MACHINE: return createStateMachine();
@@ -514,18 +514,6 @@ public class PivotFactoryImpl
 	public Parameter createParameter() {
 		ParameterImpl parameter = new ParameterImpl();
 		return parameter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ParentCompletePackage createParentCompletePackage()
-	{
-		ParentCompletePackageImpl parentCompletePackage = new ParentCompletePackageImpl();
-		return parentCompletePackage;
 	}
 
 	/**
@@ -1077,6 +1065,18 @@ public class PivotFactoryImpl
 	{
 		SlotImpl slot = new SlotImpl();
 		return slot;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public StandardLibrary createStandardLibrary()
+	{
+		StandardLibraryImpl standardLibrary = new StandardLibraryImpl();
+		return standardLibrary;
 	}
 
 	/**

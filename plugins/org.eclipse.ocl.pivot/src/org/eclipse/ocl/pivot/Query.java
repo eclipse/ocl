@@ -14,7 +14,6 @@ package org.eclipse.ocl.pivot;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Type;
@@ -136,7 +135,7 @@ public interface Query {
 	/**
 	 * Obtains the OCL result type of the query.  This may be a classifier
 	 * in the user model, or it may represent a pre-defined OCL data type
-	 * such as {@link DomainStandardLibrary#getBooleanType() Boolean}.
+	 * such as {@link StandardLibrary#getBooleanType() Boolean}.
 	 * 
 	 * @return the query's result type
 	 */

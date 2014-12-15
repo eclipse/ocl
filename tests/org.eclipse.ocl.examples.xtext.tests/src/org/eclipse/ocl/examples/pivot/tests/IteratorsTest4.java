@@ -54,8 +54,8 @@ import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.SemanticException;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.xtext.oclinecore.OCLinEcoreStandaloneSetup;
 import org.junit.After;
@@ -527,7 +527,7 @@ public class IteratorsTest4 extends PivotTestSuite
      * body type with the iterator variable (source element) type.
      */
     @Test public void test_closureValidation_typeConformance_154695() {
-        PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+        StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
         CompleteEnvironment completeEnvironment = metaModelManager.getCompleteEnvironment();
     	Resource fakeResource = new XMIResourceFactoryImpl().createResource(URI.createURI("fake"));
     	Model fakeRoot = metaModelManager.createModel(null);

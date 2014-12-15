@@ -407,11 +407,6 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 	}
 
 	@Override
-	public @Nullable R visitParentCompletePackage(@NonNull org.eclipse.ocl.pivot.ParentCompletePackage object) {
-		return delegate.visitParentCompletePackage(object);
-	}
-
-	@Override
 	public @Nullable R visitPrecedence(@NonNull org.eclipse.ocl.pivot.Precedence object) {
 		return delegate.visitPrecedence(object);
 	}
@@ -494,6 +489,11 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 	@Override
 	public @Nullable R visitSlot(@NonNull org.eclipse.ocl.pivot.Slot object) {
 		return delegate.visitSlot(object);
+	}
+
+	@Override
+	public @Nullable R visitStandardLibrary(@NonNull org.eclipse.ocl.pivot.StandardLibrary object) {
+		return delegate.visitStandardLibrary(object);
 	}
 
 	@Override

@@ -12,11 +12,11 @@ package org.eclipse.ocl.library.numeric;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.library.oclany.OclAnyOclAsTypeOperation;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 
 /**
@@ -28,7 +28,7 @@ public class UnlimitedNaturalOclAsTypeOperation extends OclAnyOclAsTypeOperation
 
 	@Override
 	public @NonNull Object evaluate(@NonNull DomainEvaluator evaluator, @Nullable Object sourceVal, @Nullable Object argVal) {
-		DomainStandardLibrary standardLibrary = evaluator.getStandardLibrary();
+		StandardLibrary standardLibrary = evaluator.getStandardLibrary();
 		Type sourceType = evaluator.getIdResolver().getDynamicTypeOf(sourceVal);
 		Type argType = asType(argVal);
 		if (sourceType.conformsTo(standardLibrary, argType)) {

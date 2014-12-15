@@ -11,7 +11,7 @@
 package org.eclipse.ocl.domain.evaluation;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.pivot.StandardLibrary;
 
 public interface DomainEvaluationVisitor
 {
@@ -32,5 +32,5 @@ public interface DomainEvaluationVisitor
 	 */
 	@NonNull DomainModelManager getModelManager();
 
-	@NonNull DomainStandardLibrary getStandardLibrary();
+	@NonNull StandardLibrary getStandardLibrary();
 }

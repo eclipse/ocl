@@ -923,18 +923,6 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitParentCompletePackage(@NonNull org.eclipse.ocl.pivot.ParentCompletePackage object) {
-		P prologue = preVisit(object);
-		try {
-			R result = delegate.visitParentCompletePackage(object);
-			return postVisit(object, prologue, result);
-		}
-		catch (Throwable e) {
-			return badVisit(object, prologue, e);
-		}
-	}
-
-	@Override
 	public @Nullable R visitPrecedence(@NonNull org.eclipse.ocl.pivot.Precedence object) {
 		P prologue = preVisit(object);
 		try {
@@ -1131,6 +1119,18 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 		P prologue = preVisit(object);
 		try {
 			R result = delegate.visitSlot(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
+	}
+
+	@Override
+	public @Nullable R visitStandardLibrary(@NonNull org.eclipse.ocl.pivot.StandardLibrary object) {
+		P prologue = preVisit(object);
+		try {
+			R result = delegate.visitStandardLibrary(object);
 			return postVisit(object, prologue, result);
 		}
 		catch (Throwable e) {

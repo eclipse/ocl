@@ -52,8 +52,8 @@ import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceImpl;
 import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompletePackageInternal;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
@@ -799,7 +799,7 @@ public class EnvironmentView
 		return contentsSize;
 	}
 
-	public @NonNull PivotStandardLibrary getStandardLibrary() {
+	public @NonNull StandardLibraryInternal getStandardLibrary() {
 		return metaModelManager.getStandardLibrary();
 	}
 

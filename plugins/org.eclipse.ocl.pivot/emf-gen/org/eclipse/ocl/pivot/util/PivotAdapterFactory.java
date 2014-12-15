@@ -83,7 +83,6 @@ import org.eclipse.ocl.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.pivot.OrderedSetType;
 import org.eclipse.ocl.pivot.OrphanCompletePackage;
 import org.eclipse.ocl.pivot.Parameter;
-import org.eclipse.ocl.pivot.ParentCompletePackage;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.PrimitiveCompletePackage;
@@ -103,6 +102,7 @@ import org.eclipse.ocl.pivot.SequenceType;
 import org.eclipse.ocl.pivot.SetType;
 import org.eclipse.ocl.pivot.Signal;
 import org.eclipse.ocl.pivot.Slot;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.State;
 import org.eclipse.ocl.pivot.StateExp;
 import org.eclipse.ocl.pivot.StateMachine;
@@ -554,11 +554,6 @@ public class PivotAdapterFactory
 				return createParameterAdapter();
 			}
 			@Override
-			public Adapter caseParentCompletePackage(ParentCompletePackage object)
-			{
-				return createParentCompletePackageAdapter();
-			}
-			@Override
 			public Adapter casePivotable(Pivotable object)
 			{
 				return createPivotableAdapter();
@@ -652,6 +647,11 @@ public class PivotAdapterFactory
 			public Adapter caseSlot(Slot object)
 			{
 				return createSlotAdapter();
+			}
+			@Override
+			public Adapter caseStandardLibrary(StandardLibrary object)
+			{
+				return createStandardLibraryAdapter();
 			}
 			@Override
 			public Adapter caseState(State object)
@@ -1415,6 +1415,21 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createSlotAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.StandardLibrary <em>Standard Library</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.pivot.StandardLibrary
+	 * @generated
+	 */
+	public Adapter createStandardLibraryAdapter()
 	{
 		return null;
 	}
@@ -2189,21 +2204,6 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createParameterAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.ParentCompletePackage <em>Parent Complete Package</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.pivot.ParentCompletePackage
-	 * @generated
-	 */
-	public Adapter createParentCompletePackageAdapter()
-	{
 		return null;
 	}
 

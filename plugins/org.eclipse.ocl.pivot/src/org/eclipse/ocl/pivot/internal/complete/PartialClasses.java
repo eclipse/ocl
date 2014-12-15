@@ -63,7 +63,6 @@ import org.eclipse.ocl.pivot.internal.impl.ClassImpl;
 import org.eclipse.ocl.pivot.internal.impl.CompleteClassImpl;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.Orphanage;
-import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.pivot.uml.UML2AS;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -701,7 +700,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 		}
 	}
 	
-	public @NonNull PivotStandardLibrary getStandardLibrary() {
+	public @NonNull StandardLibraryInternal getStandardLibrary() {
 		return getCompleteModel().getStandardLibrary();
 	}
 

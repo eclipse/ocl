@@ -18,11 +18,13 @@ import java.util.WeakHashMap;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.domain.elements.AbstractExecutorElement;
+import org.eclipse.ocl.domain.ids.PrimitiveTypeId;
 import org.eclipse.ocl.domain.ids.TemplateParameterId;
 import org.eclipse.ocl.domain.ids.TupleTypeId;
 import org.eclipse.ocl.domain.types.AbstractCollectionType;
-import org.eclipse.ocl.domain.types.AbstractStandardLibrary;
 import org.eclipse.ocl.domain.types.AbstractTupleType;
+import org.eclipse.ocl.domain.types.TypeUtils;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.CollectionTypeParameters;
 import org.eclipse.ocl.domain.values.IntegerValue;
@@ -34,13 +36,16 @@ import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.CompleteModel;
+import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.LambdaType;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 
-public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary implements CompleteEnvironment
+public abstract class ExecutableStandardLibrary extends AbstractExecutorElement implements CompleteEnvironment, StandardLibrary
 {
 	/**
 	 * Shared cache of the lazily created lazily deleted specializations of each type. 
@@ -51,14 +56,11 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 	 * Shared cache of the lazily created lazily deleted tuples. 
 	 */
 	private @NonNull Map<TupleTypeId, WeakReference<TupleType>> tupleTypeMap = new WeakHashMap<TupleTypeId, WeakReference<TupleType>>();
-	
-//	public abstract @NonNull DomainEvaluator createEvaluator(@NonNull EObject contextObject, @Nullable Map<Object, Object> contextMap);
 
-//	@Override
-//	protected @NonNull IdResolver createIdResolver() {
-//		@SuppressWarnings("null")@NonNull List<EObject> emptyList = Collections.<EObject>emptyList();
-//		return new EcoreIdResolver(emptyList, this);
-//	}
+	@Override
+	public @NonNull Iterable<? extends CompletePackage> getAllCompletePackages() {
+		throw new UnsupportedOperationException();
+	}
 
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getBagType() {
@@ -121,6 +123,11 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 	}
 
 	@Override
+	public Type getMetaType(@NonNull Type instanceType) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
 	public @Nullable org.eclipse.ocl.pivot.Package getNestedPackage(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name) {
 		return DomainUtil.getNamedElement(parentPackage.getOwnedPackages(), name);
 	}
@@ -176,6 +183,11 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 	}
 
 	@Override
+	public @Nullable Element getOperationTemplateParameter(@NonNull Operation anOperation, int index) {
+		return anOperation.getTypeParameters().get(index);
+	}
+
+	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getOrderedCollectionType() {
 		return OCLstdlibTables.Types._OrderedCollection;
 	}
@@ -196,8 +208,18 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 	}
 
 	@Override
+	public @Nullable Type getPrimitiveType(@NonNull PrimitiveTypeId typeId) {
+		return TypeUtils.getPrimitiveType(this, typeId);
+	}
+
+	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getRealType() {
 		return OCLstdlibTables.Types._Real;
+	}
+
+	@Override
+	public org.eclipse.ocl.pivot.Package getRootPackage(@NonNull String name) {
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -323,5 +345,21 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary 
 			@NonNull Collection<? extends TypedElement> parts,
 			@Nullable TemplateParameterSubstitutions bindings) {
 		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Return the map.get(key).get() entry if there is one or null if not, removing any stale
+	 * entry that may be encountered.
+	 */
+	protected <K, V> V weakGet(@NonNull Map<K, WeakReference<V>> map, @NonNull K key) {
+		WeakReference<V> ref = map.get(key);
+		if (ref == null) {
+			return null;
+		}
+		V value = ref.get();
+		if (value == null) {
+			map.remove(key);
+		}
+		return value;
 	}
 }

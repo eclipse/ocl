@@ -22,19 +22,19 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.AbstractEnvironment;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Environment;
 import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.PivotFactory;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.State;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.UMLReflection;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.impl.PivotFactoryImpl;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 
 /**
  * Implementation of the {@link Environment} for parsing OCL expressions on
@@ -216,7 +216,7 @@ public class PivotEnvironment extends AbstractEnvironment {
 	}
 
 	@Override
-	public @NonNull DomainStandardLibrary getOCLStandardLibrary() {
+	public @NonNull StandardLibrary getOCLStandardLibrary() {
 		return metaModelManager.getStandardLibrary();
 	}
 
@@ -231,7 +231,7 @@ public class PivotEnvironment extends AbstractEnvironment {
 //	}
 
 	@Override
-	public @NonNull PivotStandardLibrary getStandardLibrary() {
+	public @NonNull StandardLibraryInternal getStandardLibrary() {
 		return metaModelManager.getStandardLibrary();
 	}
 }

@@ -12,11 +12,11 @@ package org.eclipse.ocl.domain.types;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.AbstractExecutorClass;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.TupleTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 
@@ -30,14 +30,14 @@ public class AbstractTupleType extends AbstractExecutorClass implements TupleTyp
 	}
 
 	@Override
-	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
+	public boolean conformsTo(@NonNull StandardLibrary standardLibrary, @NonNull Type type) {
 		if (this == type) {
 			return true;
 		}
 		if (!(type instanceof TupleType)) {
 			return false;
 		}
-		return standardLibrary.conformsToTupleType(this, (TupleType)type);
+		return TypeUtils.conformsToTupleType(standardLibrary, this, (TupleType)type);
 	}
 
 	@Override
@@ -59,23 +59,23 @@ public class AbstractTupleType extends AbstractExecutorClass implements TupleTyp
 	}
 
 	@Override
-	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
+	public boolean isEqualTo(@NonNull StandardLibrary standardLibrary, @NonNull Type type) {
 		if (this == type) {
 			return true;
 		}
 		if (!(type instanceof TupleType)) {
 			return false;
 		}
-		return standardLibrary.isEqualToTupleType(this, (TupleType)type);
+		return TypeUtils.isEqualToTupleType(standardLibrary, this, (TupleType)type);
 	}
 	
 	@Override
-	public @NonNull Operation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
+	public @NonNull Operation lookupActualOperation(@NonNull StandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
 		return standardLibrary.getOclTupleType().lookupActualOperation(standardLibrary, apparentOperation);
 	}
 
 	@Override
-	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
+	public @NonNull LibraryFeature lookupImplementation(@NonNull StandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
 		return standardLibrary.getOclTupleType().lookupImplementation(standardLibrary, apparentOperation);
 	}
 

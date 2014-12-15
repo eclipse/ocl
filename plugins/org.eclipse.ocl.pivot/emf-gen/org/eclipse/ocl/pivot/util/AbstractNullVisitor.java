@@ -385,11 +385,6 @@ public abstract class AbstractNullVisitor<R, C>
 	}
 
 	@Override
-	public @Nullable R visitParentCompletePackage(@NonNull org.eclipse.ocl.pivot.ParentCompletePackage object) {
-		return null;
-	}
-
-	@Override
 	public @Nullable R visitPrecedence(@NonNull org.eclipse.ocl.pivot.Precedence object) {
 		return null;
 	}
@@ -471,6 +466,11 @@ public abstract class AbstractNullVisitor<R, C>
 
 	@Override
 	public @Nullable R visitSlot(@NonNull org.eclipse.ocl.pivot.Slot object) {
+		return null;
+	}
+
+	@Override
+	public @Nullable R visitStandardLibrary(@NonNull org.eclipse.ocl.pivot.StandardLibrary object) {
 		return null;
 	}
 

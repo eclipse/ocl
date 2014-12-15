@@ -49,13 +49,14 @@ import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.internal.complete.CompleteClassInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceImpl;
+import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompletePackageInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteURIs;
 import org.eclipse.ocl.pivot.internal.complete.PartialModels;
 import org.eclipse.ocl.pivot.internal.complete.RootCompletePackages;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.Orphanage;
-import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.pivot.manager.TupleTypeManager;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -261,7 +262,6 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("null")
 	@Override
 	public boolean eIsSet(int featureID)
 	{
@@ -312,12 +312,12 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	/**
 	 * The cached value of the '{@link #getOwnedCompletePackages() <em>Owned Complete Packages</em>}' containment reference list.
 	 */
-	protected final @NonNull RootCompletePackages ownedCompletePackages;
+	protected /*final @NonNull*/ RootCompletePackages ownedCompletePackages;
 
 	/**
 	 * The cached value of the '{@link #getPartialModels() <em>Partial Roots</em>}' reference list.
 	 */
-	protected final @NonNull PartialModels partialModels;
+	protected /*final @NonNull*/ PartialModels partialModels;
 
 	/**
 	 * The cached value of the '{@link #getPrimitiveCompletePackage() <em>Primitive Complete Package</em>}' reference.
@@ -330,30 +330,28 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	protected PrimitiveCompletePackage primitiveCompletePackage;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CompleteModelImpl()
+	{
+		super();
+	}
+
+	/**
 	 * Map from each partial Class to the CompleteClass that supervises its merge. CompleteClass are created lazily. 
 	 */
-	private final @NonNull CompleteEnvironmentInternal completeEnvironment;
+	private /*final @NonNull*/ CompleteEnvironmentInternal completeEnvironment;
 
 	/**
 	 * Map from complete to/from package URI. 
 	 */
 	private final @NonNull CompleteURIs completeURIs = new CompleteURIs(this);
 	
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected /*final @NonNull*/ MetaModelManager metaModelManager;
 	
 	private Orphanage orphanage = null;
-
-	public CompleteModelImpl() {
-		throw new UnsupportedOperationException("Must be constructed by CompleteEnvironment");
-	}
-
-	public CompleteModelImpl(@NonNull CompleteEnvironmentInternal completeEnvironment)
-	{
-		this.completeEnvironment = completeEnvironment;
-		this.metaModelManager = completeEnvironment.getMetaModelManager();
-		partialModels = new PartialModels(this);
-		ownedCompletePackages = new RootCompletePackages(this);
-	}
 
 	@Override
 	public <R> R accept(@NonNull Visitor<R> visitor) {
@@ -462,6 +460,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 
 	@Override
 	public @NonNull CompleteEnvironmentInternal getCompleteEnvironment() {
+		assert completeEnvironment != null;
 		return completeEnvironment;
 	}
 
@@ -501,6 +500,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	}
 
 	public @NonNull Iterable<? extends CompletePackage> getMemberPackages() {
+		assert ownedCompletePackages != null;
 		return ownedCompletePackages;
 	}
 
@@ -538,6 +538,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	 */
 	@Override
 	public @NonNull List<CompletePackage> getOwnedCompletePackages() {
+		assert ownedCompletePackages != null;
 		return ownedCompletePackages;
 	}
 
@@ -548,6 +549,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	 */
 	@Override
 	public @NonNull PartialModels getPartialModels() {
+		assert partialModels != null;
 		return partialModels;
 	}
 	
@@ -593,7 +595,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	}
 
 	@Override
-	public @NonNull PivotStandardLibrary getStandardLibrary() {
+	public @NonNull StandardLibraryInternal getStandardLibrary() {
 		return completeEnvironment.getStandardLibrary();
 	}
 	
@@ -606,6 +608,15 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	public @NonNull TupleType getTupleType(@NonNull String typeName, @NonNull Collection<? extends TypedElement> parts,
 			@Nullable TemplateParameterSubstitutions bindings) {
 		return completeEnvironment.getTupleType(typeName, parts, bindings);
+	}
+
+	@Override
+	public @NonNull CompleteModelInternal init(@NonNull CompleteEnvironmentInternal completeEnvironment) {
+		this.completeEnvironment = completeEnvironment;
+		this.metaModelManager = completeEnvironment.getMetaModelManager();
+		partialModels = new PartialModels(this);
+		ownedCompletePackages = new RootCompletePackages(this);
+		return this;
 	}
 
 /*	public void removedType(@NonNull org.eclipse.ocl.pivot.Class pivotType) {

@@ -35,8 +35,8 @@ import org.eclipse.ocl.pivot.Stereotype;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypeExtension;
 import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 import org.eclipse.uml2.uml.util.UMLSwitch;
 
 //
@@ -49,7 +49,7 @@ public class UML2ASReferenceSwitch extends UMLSwitch<Object>
 
 	protected final @NonNull UML2AS converter;
 	protected final @NonNull MetaModelManager metaModelManager;
-	protected final @NonNull PivotStandardLibrary standardLibrary;
+	protected final @NonNull StandardLibraryInternal standardLibrary;
 	private Set<EClass> doneWarnings = null;
 	
 	public UML2ASReferenceSwitch(@NonNull UML2AS converter) {

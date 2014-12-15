@@ -12,7 +12,6 @@ package org.eclipse.ocl.library.oclany;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.AbstractUntypedBinaryOperation;
@@ -22,6 +21,7 @@ import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.library.LibraryConstants;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.StandardLibrary;
 
 /**
  * OclComparableComparisonOperation provides the abstract support for a comparison operation.
@@ -30,7 +30,7 @@ public abstract class OclComparableComparisonOperation extends AbstractUntypedBi
 {
 	@Override
 	public @NonNull Boolean evaluate(@NonNull DomainEvaluator evaluator, @Nullable Object left, @Nullable Object right) {
-		DomainStandardLibrary standardLibrary = evaluator.getStandardLibrary();
+		StandardLibrary standardLibrary = evaluator.getStandardLibrary();
 		CompleteInheritance leftType = evaluator.getIdResolver().getDynamicTypeOf(left).getInheritance(standardLibrary);
 		CompleteInheritance rightType = evaluator.getIdResolver().getDynamicTypeOf(right).getInheritance(standardLibrary);
 		CompleteInheritance commonType = leftType.getCommonInheritance(rightType);

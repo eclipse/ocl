@@ -1,26 +1,28 @@
-/*******************************************************************************
- * Copyright (c) 2010, 2013 E.D.Willink and others.
+/**
+ * Copyright (c) 2010,2015 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *     E.D.Willink - initial API and implementation
- *******************************************************************************/
-package org.eclipse.ocl.pivot.manager;
+ *   E.D.Willink - Initial API and implementation
+ */
+package org.eclipse.ocl.pivot.internal.impl;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.DomainConstants;
+import org.eclipse.ocl.domain.ids.PrimitiveTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.types.AbstractStandardLibrary;
+import org.eclipse.ocl.domain.types.TypeUtils;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
@@ -37,23 +39,57 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OrderedSetType;
 import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.PivotFactory;
+import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.SelfType;
 import org.eclipse.ocl.pivot.SequenceType;
 import org.eclipse.ocl.pivot.SetType;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.osgi.util.NLS;
 
-public class PivotStandardLibrary extends AbstractStandardLibrary	// FIXME AbstractStandardLibrary is unhelpful
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Standard Library</b></em>'.
+ * @extends org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal
+ * <!-- end-user-doc -->
+ * <p>
+ * </p>
+ *
+ * @generated
+ */
+public class StandardLibraryImpl extends ElementImpl implements StandardLibrary, org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal
 {
-	private static final Logger logger = Logger.getLogger(PivotStandardLibrary.class);
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StandardLibraryImpl()
+	{
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass()
+	{
+		return PivotPackage.Literals.STANDARD_LIBRARY;
+	}
+	private static final Logger logger = Logger.getLogger(StandardLibraryInternal.class);
 
 	/**
 	 * The URI used by default for the OCL Standard Library. NB. This
@@ -99,13 +135,27 @@ public class PivotStandardLibrary extends AbstractStandardLibrary	// FIXME Abstr
 	private @Nullable PrimitiveType unlimitedNaturalType = null;
 	
 	private @Nullable Map<String, org.eclipse.ocl.pivot.Class> nameToLibraryTypeMap = null;
+	
+	protected /*final*/ /*@NonNull*/ CompleteModelInternal completeModel;
+	protected /*final*/ /*@NonNull*/ MetaModelManager metaModelManager;
 
-	/**
-	 * Names of all iterations in the libraries.
-	 */
-//	private Set<String> iterationNames = new HashSet<String>();
+	@Override
+	public @Nullable Operation basicGetOclInvalidOperation() {
+		return oclInvalidOperation;
+	}
 
-	protected void defineLibraryType(@NonNull org.eclipse.ocl.pivot.Class pivotType) {
+	@Override
+	public @Nullable Property basicGetOclInvalidProperty() {
+		return oclInvalidProperty;
+	}
+
+	@Override
+	public @Nullable InvalidType basicGetOclInvalidType() {
+		return oclInvalidType;
+	}
+
+	@Override
+	public void defineLibraryType(@NonNull org.eclipse.ocl.pivot.Class pivotType) {
 		Map<String, org.eclipse.ocl.pivot.Class> nameToLibraryTypeMap2 = nameToLibraryTypeMap;
 		if (nameToLibraryTypeMap2 == null) {
 			nameToLibraryTypeMap = nameToLibraryTypeMap2 = new HashMap<String, org.eclipse.ocl.pivot.Class>();
@@ -121,31 +171,10 @@ public class PivotStandardLibrary extends AbstractStandardLibrary	// FIXME Abstr
 //			}
 //		}
 	}
-	
-	protected final @NonNull CompleteModelInternal completeModel;
-	protected final @NonNull MetaModelManager metaModelManager;
-	
-	public PivotStandardLibrary(@NonNull CompleteModelInternal completeModel) {
-		this.completeModel = completeModel;
-		this.metaModelManager = completeModel.getMetaModelManager();
-	}
-
-	public @Nullable Operation basicGetOclInvalidOperation() {
-		return oclInvalidOperation;
-	}
-
-	public @Nullable Property basicGetOclInvalidProperty() {
-		return oclInvalidProperty;
-	}
-
-	public @Nullable InvalidType basicGetOclInvalidType() {
-		return oclInvalidType;
-	}
 
 	@Override
 	public void dispose() {
 		resetLibrary();	
-		super.dispose();
 	}
 
 	@Override
@@ -195,10 +224,13 @@ public class PivotStandardLibrary extends AbstractStandardLibrary	// FIXME Abstr
 		return metaModelManager.getCompleteEnvironment().getCollectionType(containerType, elementType, lower, upper);
 	}
 
+	@Override
 	public @NonNull CompleteModelInternal getCompleteModel() {
+		assert completeModel != null;
 		return completeModel;
 	}
 
+	@Override
 	public @NonNull String getDefaultStandardLibraryURI() {
 		return defaultStandardLibraryURI;
 	}
@@ -227,6 +259,7 @@ public class PivotStandardLibrary extends AbstractStandardLibrary	// FIXME Abstr
 		return integerType2;
 	}
 
+	@Override
 	public org.eclipse.ocl.pivot.Class getLibraryType(@NonNull String typeName) {
 		Map<String, org.eclipse.ocl.pivot.Class> nameToLibraryTypeMap2 = nameToLibraryTypeMap;
 		if (nameToLibraryTypeMap2 == null) {
@@ -303,6 +336,7 @@ public class PivotStandardLibrary extends AbstractStandardLibrary	// FIXME Abstr
 		return oclInvalidOperation2;
 	}
 
+	@Override
 	public @NonNull Property getOclInvalidProperty() {
 		Property oclInvalidProperty2 = oclInvalidProperty;
 		if (oclInvalidProperty2 == null) {
@@ -331,6 +365,7 @@ public class PivotStandardLibrary extends AbstractStandardLibrary	// FIXME Abstr
 		return oclInvalidType2;
 	}
 
+	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getOclLambdaType() {
 		org.eclipse.ocl.pivot.Class oclLambdaType2 = oclLambdaType;
 		if (oclLambdaType2 == null) {
@@ -376,6 +411,7 @@ public class PivotStandardLibrary extends AbstractStandardLibrary	// FIXME Abstr
 		return metaModelManager.getOclType(typeName);
 	}
 
+	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getOclTypeType() {
 		org.eclipse.ocl.pivot.Class oclTypeType2 = oclTypeType;
 		if (oclTypeType2 == null) {
@@ -430,9 +466,15 @@ public class PivotStandardLibrary extends AbstractStandardLibrary	// FIXME Abstr
 	/**
 	 * Return the pivot model class for className with the Pivot Model.
 	 */
+	@Override
 	public @Nullable org.eclipse.ocl.pivot.Class getPivotType(@NonNull String className) {
 		return metaModelManager.getPivotType(className);
 	}	
+
+	@Override
+	public @Nullable Type getPrimitiveType(@NonNull PrimitiveTypeId typeId) {
+		return TypeUtils.getPrimitiveType(this, typeId);
+	}
 
 	@Override
 	public @NonNull PrimitiveType getRealType() {
@@ -443,6 +485,7 @@ public class PivotStandardLibrary extends AbstractStandardLibrary	// FIXME Abstr
 		return realType2;
 	}
 
+	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getRequiredLibraryType(@NonNull String typeName) {
 		org.eclipse.ocl.pivot.Class type = getLibraryType(typeName);
 		if (type == null) {
@@ -515,6 +558,13 @@ public class PivotStandardLibrary extends AbstractStandardLibrary	// FIXME Abstr
 		}
 		return unlimitedNaturalType2;
 	}
+	
+	@Override
+	public @NonNull StandardLibraryInternal  init(@NonNull CompleteModelInternal completeModel) {
+		this.completeModel = completeModel;
+		this.metaModelManager = completeModel.getMetaModelManager();
+		return this;
+	}
 
 	public boolean isOrdered(Type sourceType) {
 		if (sourceType instanceof OrderedSetType) {
@@ -536,7 +586,8 @@ public class PivotStandardLibrary extends AbstractStandardLibrary	// FIXME Abstr
 		return false;
 	}
 
-	protected @Nullable Resource loadDefaultLibrary(@Nullable String uri) {
+	@Override
+	public @Nullable Resource loadDefaultLibrary(@Nullable String uri) {
 		return metaModelManager.loadDefaultLibrary(uri);
 	}
 
@@ -601,8 +652,10 @@ public class PivotStandardLibrary extends AbstractStandardLibrary	// FIXME Abstr
 		}		
 	}
 
+	@Override
 	public void setDefaultStandardLibraryURI(@NonNull String defaultStandardLibraryURI) {
 		assert !PivotUtil.isASURI(defaultStandardLibraryURI);
 		this.defaultStandardLibraryURI = defaultStandardLibraryURI;
 	}
-}
+
+} //StandardLibraryImpl

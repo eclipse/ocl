@@ -36,9 +36,9 @@ import org.eclipse.ocl.pivot.PivotConstants;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.context.ParserContext;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
-import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -408,7 +408,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 		}
 		MetaModelManager metaModelManager = PivotUtil.findMetaModelManager(this);
 		if (metaModelManager != null) {
-			PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+			StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
 //			if (metaModelManager.getLibraryResource() != org.eclipse.ocl.library.oclstdlib.OCLstdlib.INSTANCE) {
 //				metaModelManager.resetLibrary();		// FIXME is this needed; if so test it
 //			}

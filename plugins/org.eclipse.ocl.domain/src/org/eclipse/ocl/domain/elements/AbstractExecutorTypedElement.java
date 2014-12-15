@@ -17,7 +17,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.ValueSpecification;
 
-public class AbstractExecutorTypedElement extends AbstractExecutorObject implements TypedElement
+public class AbstractExecutorTypedElement extends AbstractExecutorNamedElement implements TypedElement
 {
 	protected final @NonNull Type type;
 

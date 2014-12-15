@@ -14,7 +14,6 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.values.IntegerValue;
@@ -22,6 +21,7 @@ import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 
 public class AbstractCollectionType extends AbstractSpecializedType implements CollectionType
@@ -41,19 +41,19 @@ public class AbstractCollectionType extends AbstractSpecializedType implements C
 	}
 
 	@Override
-	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
+	public boolean conformsTo(@NonNull StandardLibrary standardLibrary, @NonNull Type type) {
 		if (this == type) {
 			return true;
 		}
 		if (!(type instanceof CollectionType)) {
 			return false;
 		}
-		return standardLibrary.conformsToCollectionType(this, (CollectionType)type);
+		return TypeUtils.conformsToCollectionType(standardLibrary, this, (CollectionType)type);
 	}
 
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getCommonType(@NonNull IdResolver idResolver, @NonNull Type type) {
-		DomainStandardLibrary standardLibrary = idResolver.getStandardLibrary();
+		StandardLibrary standardLibrary = idResolver.getStandardLibrary();
 		if (!(type instanceof AbstractCollectionType)) {
 			return standardLibrary.getOclAnyType();
 		}
@@ -123,14 +123,14 @@ public class AbstractCollectionType extends AbstractSpecializedType implements C
 	}
 
 	@Override
-	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
+	public boolean isEqualTo(@NonNull StandardLibrary standardLibrary, @NonNull Type type) {
 		if (this == type) {
 			return true;
 		}
 		if (!(type instanceof CollectionType)) {
 			return false;
 		}
-		return standardLibrary.isEqualToCollectionType(this, (CollectionType)type);
+		return TypeUtils.isEqualToCollectionType(standardLibrary, this, (CollectionType)type);
 	}
 
 	@Override

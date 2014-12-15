@@ -29,7 +29,6 @@ import org.eclipse.ocl.pivot.internal.impl.OrphanCompletePackageImpl;
 import org.eclipse.ocl.pivot.internal.impl.PrimitiveCompletePackageImpl;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.Orphanage;
-import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.pivot.manager.TupleTypeManager;
 
 public interface CompleteModelInternal extends CompleteModel
@@ -71,7 +70,8 @@ public interface CompleteModelInternal extends CompleteModel
 	@Nullable String getCompleteURI(@Nullable String nsURI);
 	@NonNull TupleTypeManager getTupleManager();
 	@NonNull Orphanage getOrphanage();
-	@NonNull PivotStandardLibrary getStandardLibrary();
+	@NonNull StandardLibraryInternal getStandardLibrary();
 	@Override
 	@NonNull CompleteEnvironmentInternal getCompleteEnvironment();
+	@NonNull CompleteModelInternal init(@NonNull CompleteEnvironmentInternal completeEnvironment);
 }

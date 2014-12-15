@@ -20,7 +20,7 @@ import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.InstanceSpecification;
 import org.eclipse.ocl.pivot.ProfileApplication;
 
-public class AbstractExecutorPackage extends AbstractExecutorObject implements org.eclipse.ocl.pivot.Package
+public class AbstractExecutorPackage extends AbstractExecutorNamedElement implements org.eclipse.ocl.pivot.Package
 {
 	public AbstractExecutorPackage(@NonNull String name) {
 		super(name);

@@ -99,6 +99,8 @@
           </ownedParameter>
         </ownedOperation>
       </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_1MSkkIROEeSkK9BZX90Ljg" name="Element" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_3pdx4DpxEeSo6P09swtBBA" name="Model"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_67hN4CyOEeS77awx34sDEA" name="NamedElement" isAbstract="true"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_c7pEUCyPEeS77awx34sDEA" name="Operation"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_TlOeADQjEeSMlP-TjpzTcA" name="OrphanCompletePackage">
@@ -108,7 +110,9 @@
       <packagedElement xmi:type="uml:Class" xmi:id="_Je4TIDmUEeSB95ugQCao7g" name="PrimitiveCompletePackage">
         <generalization xmi:id="_Je4TITmUEeSB95ugQCao7g" general="_-mAioCyOEeS77awx34sDEA"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_3pdx4DpxEeSo6P09swtBBA" name="Model"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_4tc-MIROEeSkK9BZX90Ljg" name="StandardLibrary">
+        <generalization xmi:id="_4tc-MYROEeSkK9BZX90Ljg" general="_1MSkkIROEeSkK9BZX90Ljg"/>
+      </packagedElement>
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_VYWFYDmdEeSB95ugQCao7g" name="String"/>
       <packagedElement xmi:type="uml:Association" xmi:id="_AJ5sYCyREeS77awx34sDEA" name="A_owningCompleteModel_ownedCompletePackages" memberEnd="_afnRUCyQEeS77awx34sDEA _iRwNYCyPEeS77awx34sDEA"/>
       <packagedElement xmi:type="uml:Association" xmi:id="_IbtxkCyREeS77awx34sDEA" name="A_owningCompletePackage_ownedCompleteClasses" memberEnd="_MP2nACyQEeS77awx34sDEA _xR8PECyPEeS77awx34sDEA"/>
@@ -546,4 +550,6 @@
   <Ecore:EClass xmi:id="_o2C70DQZEeSSpuK_vlIP6g" instanceClassName="org.eclipse.ocl.library.executor.ReflectivePackage"/>
   <Ecore:EReference xmi:id="_1I1xoDmUEeSB95ugQCao7g" isTransient="true" base_Property="_O7klUDmUEeSB95ugQCao7g" isResolveProxies="false"/>
   <Ecore:EReference xmi:id="_6uAqYDmUEeSB95ugQCao7g" isTransient="true" base_Property="_UlEkcDmUEeSB95ugQCao7g" isResolveProxies="false"/>
+  <Ecore:EReference xmi:id="_4tv5IIROEeSkK9BZX90Ljg" isTransient="true" isResolveProxies="false"/>
+  <Ecore:EReference xmi:id="_4t5qIIROEeSkK9BZX90Ljg" isTransient="true" isResolveProxies="false"/>
 </xmi:XMI>

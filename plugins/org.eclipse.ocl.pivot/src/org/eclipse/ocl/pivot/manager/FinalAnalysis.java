@@ -28,6 +28,7 @@ import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 
 public class FinalAnalysis
 {
@@ -98,7 +99,7 @@ public class FinalAnalysis
 			return operation;
 		}
 		Operation candidate = null;
-		PivotStandardLibrary standardLibrary = completeModel.getStandardLibrary();
+		StandardLibraryInternal standardLibrary = completeModel.getStandardLibrary();
 		for (Operation override : overrides) {
 			CompleteInheritance overrideInheritance = override.getInheritance(standardLibrary);
 			if ((overrideInheritance != null) && overrideInheritance.getType().conformsTo(standardLibrary, completeClass.getPivotClass())) {

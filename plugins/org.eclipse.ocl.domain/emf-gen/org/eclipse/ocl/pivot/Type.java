@@ -14,7 +14,6 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.types.IdResolver;
 
@@ -79,7 +78,7 @@ public interface Type extends NamedElement, org.eclipse.ocl.domain.values.OCLVal
 	/**
 	 * Return true if this type conform to thatType within standardLibrary.
 	 */
-	boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type thatType);
+	boolean conformsTo(@NonNull StandardLibrary standardLibrary, @NonNull Type thatType);
 	
 	/**
 	 * Return the most derived type common to this type and thatType within standardLibrary.
@@ -89,12 +88,12 @@ public interface Type extends NamedElement, org.eclipse.ocl.domain.values.OCLVal
 	/**
 	 * Return the inheritance description for this type within standardLibrary.
 	 */
-	@NonNull CompleteInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary);
+	@NonNull CompleteInheritance getInheritance(@NonNull StandardLibrary standardLibrary);
 	
 	/**
 	 * Return the unique executable form of this type within standardLibrary.
 	 */
-	@NonNull org.eclipse.ocl.pivot.Class getNormalizedType(@NonNull DomainStandardLibrary standardLibrary);
+	@NonNull org.eclipse.ocl.pivot.Class getNormalizedType(@NonNull StandardLibrary standardLibrary);
 
 	/**
 	 * Return a unique StandardLibrary-independent identifier for this type.
@@ -104,13 +103,13 @@ public interface Type extends NamedElement, org.eclipse.ocl.domain.values.OCLVal
 	/**
 	 * Return true if this is the same type as thatType within standardLibrary.
 	 */
-	boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type thatType);
-	boolean isEqualToUnspecializedType(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type);
+	boolean isEqualTo(@NonNull StandardLibrary standardLibrary, @NonNull Type thatType);
+	boolean isEqualToUnspecializedType(@NonNull StandardLibrary standardLibrary, @NonNull Type type);
 	
 	/**
 	 * Return true if this is an invalid type (with an associated error message).
 	 */
 //	boolean isInvalid();
 
-	/*@NonNull*/ Type specializeIn(@NonNull CallExp expr, @Nullable Type selfType);
+	@NonNull Type specializeIn(@NonNull CallExp expr, @Nullable Type selfType);
 } // Type

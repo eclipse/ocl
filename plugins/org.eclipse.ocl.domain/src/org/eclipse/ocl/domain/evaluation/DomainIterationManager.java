@@ -12,8 +12,9 @@ package org.eclipse.ocl.domain.evaluation;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.values.CollectionValue;
+import org.eclipse.ocl.domain.values.impl.InvalidValueException;
+import org.eclipse.ocl.pivot.StandardLibrary;
 
 /**
  * DomainIterationManager defines the supervisor for an iteration. It provides a body, one or more
@@ -69,7 +70,7 @@ public interface DomainIterationManager
 	 */
 	@NonNull CollectionValue getSourceCollection();
 
-	@NonNull DomainStandardLibrary getStandardLibrary();
+	@NonNull StandardLibrary getStandardLibrary();
 	
 	/**
 	 * Return true if the iterators have a step to be evaluated. 

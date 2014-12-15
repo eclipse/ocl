@@ -22,7 +22,7 @@ import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.Slot;
 
-public class AbstractExecutorEnumerationLiteral extends AbstractExecutorObject implements EnumerationLiteral
+public class AbstractExecutorEnumerationLiteral extends AbstractExecutorNamedElement implements EnumerationLiteral
 {
 	public AbstractExecutorEnumerationLiteral(@NonNull String name) {
 		super(name);

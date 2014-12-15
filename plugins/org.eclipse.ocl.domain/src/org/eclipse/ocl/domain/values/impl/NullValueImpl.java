@@ -14,7 +14,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.OclVoidTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.types.IdResolver;
@@ -22,6 +21,7 @@ import org.eclipse.ocl.domain.values.NullValue;
 import org.eclipse.ocl.domain.values.OCLValue;
 import org.eclipse.ocl.domain.values.ValuesPackage;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 
 /**
@@ -67,7 +67,7 @@ public class NullValueImpl extends UndefinedValueImpl implements NullValue
 		return obj instanceof NullValueImpl;
 	}
 
-	public @NonNull Type getType(@NonNull DomainStandardLibrary standardLibrary) {
+	public @NonNull Type getType(@NonNull StandardLibrary standardLibrary) {
 		return standardLibrary.getOclInvalidType();
 	}
 

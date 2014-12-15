@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.domain.evaluation.EvaluationHaltedException;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
@@ -45,8 +44,8 @@ import org.eclipse.ocl.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.helper.OCLHelper;
 import org.eclipse.ocl.pivot.helper.OCLHelperImpl;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.uml.UML2AS;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
@@ -261,7 +260,7 @@ public class OCL {
 	 *             if the constraint expression is not boolean-valued
 	 */
 	public boolean check(Object context, @NonNull ExpressionInOCL specification) {
-		DomainStandardLibrary stdlib = getEnvironment().getStandardLibrary();
+		StandardLibrary stdlib = getEnvironment().getStandardLibrary();
 		if (specification.getBodyExpression().getType() != stdlib.getBooleanType()) {
 			throw new IllegalArgumentException("constraint is not boolean"); //$NON-NLS-1$
 		}
@@ -560,7 +559,7 @@ public class OCL {
 		return getMetaModelManager().getQueryOrThrow(specification);
 	}
 
-	public @NonNull PivotStandardLibrary getStandardLibrary() {
+	public @NonNull StandardLibraryInternal getStandardLibrary() {
 		return rootEnvironment.getStandardLibrary();
 	}
 

@@ -389,11 +389,6 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	@Override
-	public @Nullable R visitParentCompletePackage(@NonNull org.eclipse.ocl.pivot.ParentCompletePackage object) {
-		return visitCompletePackage(object);
-	}
-
-	@Override
 	public @Nullable R visitPrecedence(@NonNull org.eclipse.ocl.pivot.Precedence object) {
 		return visitNamedElement(object);
 	}
@@ -475,6 +470,11 @@ public abstract class AbstractExtendingVisitor<R, C>
 
 	@Override
 	public @Nullable R visitSlot(@NonNull org.eclipse.ocl.pivot.Slot object) {
+		return visitElement(object);
+	}
+
+	@Override
+	public @Nullable R visitStandardLibrary(@NonNull org.eclipse.ocl.pivot.StandardLibrary object) {
 		return visitElement(object);
 	}
 

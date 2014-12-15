@@ -15,7 +15,6 @@ import java.util.regex.Pattern;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluationEnvironment;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.evaluation.DomainLogger;
@@ -23,6 +22,7 @@ import org.eclipse.ocl.domain.values.CollectionValue;
 import org.eclipse.ocl.domain.values.Value;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 
@@ -35,7 +35,7 @@ public abstract class ExecutorManager implements DomainEvaluator
 	private static final float DEFAULT_REGEX_CACHE_LOAD_FACTOR = 0.75f;
 
 	protected final @NonNull CompleteEnvironment environment;
-	protected final @NonNull DomainStandardLibrary standardLibrary;
+	protected final @NonNull StandardLibrary standardLibrary;
 
     /**
      * Set true by {@link #setCanceled} to terminate execution at next call to {@link #getValuefactory()}.
@@ -149,7 +149,7 @@ public abstract class ExecutorManager implements DomainEvaluator
 	}
 
 	@Override
-	public @NonNull DomainStandardLibrary getStandardLibrary() {
+	public @NonNull StandardLibrary getStandardLibrary() {
 		return standardLibrary;
 	}
 

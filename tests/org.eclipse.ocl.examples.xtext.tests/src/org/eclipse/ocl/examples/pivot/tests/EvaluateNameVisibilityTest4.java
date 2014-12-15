@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
@@ -40,9 +39,10 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.uml.UML2AS;
 import org.eclipse.ocl.xtext.oclinecore.OCLinEcoreStandaloneSetup;
@@ -116,7 +116,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	}
 
     @Test public void test_implicit_source() {
-		DomainStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+		StandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
         assertQueryTrue(standardLibrary.getPackage(), "ownedClasses->select(name = 'Integer') = Set{Integer}");
         assertQueryTrue(standardLibrary.getPackage(), "let name : String = 'String' in ownedClasses->select(name = 'Integer') = Set{Integer}");
         assertQueryTrue(-1, "let type : Class = oclType() in type.owningPackage.ownedClasses->select(name = type.name) = Set{Integer}");
@@ -172,7 +172,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	 * Tests a guarded let if in operator. This gave CG problems.
 	 */
 	@Test public void test_cg_let_implies() {
-		PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+		StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
 		String textQuery = 
 			    "let bodyConstraint : Constraint = null\n" + 
 			    "in bodyConstraint <> null implies\n" +
@@ -184,7 +184,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	}
 	
 	@Test public void test_let_implies_let_implies() {
-		PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+		StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
 		String textQuery = 
 			    "let bodyConstraint : Constraint = oclType().ownedInvariants->any(name = 'body')\n" + 
 			    "in bodyConstraint <> null implies\n" +
@@ -203,7 +203,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	}
 	
 	@Test public void test_cg_implies_calls() throws ParserException {
-		PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+		StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
 		getHelper().setContext(standardLibrary.getOclVoidType());
 		ExpressionInOCL query = getHelper().createQuery("self->any(true)");
 		String textQuery = 
@@ -213,7 +213,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	}
 	
 	@Test public void test_cg_caught_if() throws ParserException {
-		PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+		StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
 		getHelper().setContext(standardLibrary.getOclVoidType());
 		ExpressionInOCL query = getHelper().createQuery("self->any(true)");
 		String textQuery = 

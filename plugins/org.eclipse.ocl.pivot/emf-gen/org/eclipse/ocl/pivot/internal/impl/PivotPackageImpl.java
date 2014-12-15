@@ -92,7 +92,6 @@ import org.eclipse.ocl.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.pivot.OrderedSetType;
 import org.eclipse.ocl.pivot.OrphanCompletePackage;
 import org.eclipse.ocl.pivot.Parameter;
-import org.eclipse.ocl.pivot.ParentCompletePackage;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Precedence;
@@ -114,6 +113,7 @@ import org.eclipse.ocl.pivot.SequenceType;
 import org.eclipse.ocl.pivot.SetType;
 import org.eclipse.ocl.pivot.Signal;
 import org.eclipse.ocl.pivot.Slot;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.State;
 import org.eclipse.ocl.pivot.StateExp;
 import org.eclipse.ocl.pivot.StateMachine;
@@ -451,6 +451,13 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EClass slotEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass standardLibraryEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -829,13 +836,6 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EClass parameterEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass parentCompletePackageEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2929,6 +2929,17 @@ public class PivotPackageImpl
 	public EReference getSlot_Values()
 	{
 		return (EReference)slotEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getStandardLibrary()
+	{
+		return standardLibraryEClass;
 	}
 
 	/**
@@ -5226,17 +5237,6 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EClass getParentCompletePackage()
-	{
-		return parentCompletePackageEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getVariableDeclaration() {
 		return variableDeclarationEClass;
 	}
@@ -6545,8 +6545,6 @@ public class PivotPackageImpl
 		createEAttribute(parameterEClass, PARAMETER__IS_TYPEOF);
 		createEReference(parameterEClass, PARAMETER__OPERATION);
 
-		parentCompletePackageEClass = createEClass(PARENT_COMPLETE_PACKAGE);
-
 		pivotableEClass = createEClass(PIVOTABLE);
 
 		precedenceEClass = createEClass(PRECEDENCE);
@@ -6631,6 +6629,8 @@ public class PivotPackageImpl
 		createEReference(slotEClass, SLOT__DEFINING_PROPERTY);
 		createEReference(slotEClass, SLOT__OWNING_INSTANCE);
 		createEReference(slotEClass, SLOT__VALUES);
+
+		standardLibraryEClass = createEClass(STANDARD_LIBRARY);
 
 		stateEClass = createEClass(STATE);
 		createEReference(stateEClass, STATE__CONNECTION);
@@ -6897,7 +6897,6 @@ public class PivotPackageImpl
 		orphanCompletePackageEClass.getESuperTypes().add(this.getCompletePackage());
 		packageEClass.getESuperTypes().add(this.getNamespace());
 		parameterEClass.getESuperTypes().add(this.getVariableDeclaration());
-		parentCompletePackageEClass.getESuperTypes().add(this.getCompletePackage());
 		precedenceEClass.getESuperTypes().add(this.getNamedElement());
 		primitiveCompletePackageEClass.getESuperTypes().add(this.getCompletePackage());
 		primitiveLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
@@ -6916,6 +6915,7 @@ public class PivotPackageImpl
 		setTypeEClass.getESuperTypes().add(this.getCollectionType());
 		signalEClass.getESuperTypes().add(this.getClass_());
 		slotEClass.getESuperTypes().add(this.getElement());
+		standardLibraryEClass.getESuperTypes().add(this.getElement());
 		stateEClass.getESuperTypes().add(this.getNamespace());
 		stateEClass.getESuperTypes().add(this.getVertex());
 		stateExpEClass.getESuperTypes().add(this.getOCLExpression());
@@ -7765,8 +7765,6 @@ public class PivotPackageImpl
 		initEAttribute(getParameter_IsTypeof(), this.getBoolean(), "isTypeof", "false", 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEReference(getParameter_Operation(), this.getOperation(), this.getOperation_OwnedParameter(), "operation", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(parentCompletePackageEClass, ParentCompletePackage.class, "ParentCompletePackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
 		initEClass(pivotableEClass, Pivotable.class, "Pivotable", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(precedenceEClass, Precedence.class, "Precedence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -7883,6 +7881,8 @@ public class PivotPackageImpl
 		initEReference(getSlot_DefiningProperty(), this.getProperty(), null, "definingProperty", null, 1, 1, Slot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getSlot_OwningInstance(), this.getInstanceSpecification(), this.getInstanceSpecification_Slots(), "owningInstance", null, 1, 1, Slot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getSlot_Values(), this.getValueSpecification(), null, "values", null, 0, -1, Slot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(standardLibraryEClass, StandardLibrary.class, "StandardLibrary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getState_Connection(), this.getConnectionPointReference(), this.getConnectionPointReference_State(), "connection", null, 0, -1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$

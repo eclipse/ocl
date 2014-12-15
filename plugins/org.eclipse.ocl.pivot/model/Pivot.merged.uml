@@ -971,9 +971,6 @@
         <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TParameter.PisTypeof.dlV" value="false"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TParentCompletePackage" name="ParentCompletePackage">
-      <generalization xmi:id="Ppivot.TParentCompletePackage.g0" general="Ppivot.TCompletePackage"/>
-    </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TPrecedence" name="Precedence">
       <generalization xmi:id="Ppivot.TPrecedence.g0" general="Ppivot.TNamedElement"/>
       <ownedAttribute xmi:id="Ppivot.TPrecedence.Passociativity" name="associativity" type="Ppivot.TAssociativityKind">
@@ -1217,6 +1214,9 @@
           <body>The structural feature that specifies the values that may be held by the slot.</body>
         </ownedComment>
       </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TStandardLibrary" name="StandardLibrary">
+      <generalization xmi:id="Ppivot.TStandardLibrary.g0" general="Ppivot.TElement"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TState" name="State">
       <ownedComment xmi:id="Ppivot.TState.oC0" annotatedElement="Ppivot.TState">

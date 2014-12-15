@@ -19,8 +19,8 @@ import org.eclipse.ocl.pivot.AnyType;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.SetType;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 
 /**
  * Tests for OclAny operations.
@@ -40,7 +40,7 @@ public class InheritanceTests extends PivotSimpleTestSuite
 
 	public void test_Inheritance_Boolean() {
 		MetaModelManager metaModelManager = new MetaModelManager();
-		PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+		StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
 		try {
 			CompleteInheritance oclAnyInheritance = standardLibrary.getInheritance(standardLibrary.getOclAnyType());
 			PrimitiveType booleanType = standardLibrary.getBooleanType();
@@ -63,7 +63,7 @@ public class InheritanceTests extends PivotSimpleTestSuite
 
 	public void test_Inheritance_OclAny() {
 		MetaModelManager metaModelManager = new MetaModelManager();
-		PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+		StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
 		try {
 			AnyType oclAnyType = standardLibrary.getOclAnyType();
 			CompleteInheritance oclAnyInheritance = standardLibrary.getInheritance(oclAnyType);
@@ -81,7 +81,7 @@ public class InheritanceTests extends PivotSimpleTestSuite
 
 	public void test_Inheritance_Set() {
 		MetaModelManager metaModelManager = new MetaModelManager();
-		PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+		StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
 		try {
 			CompleteInheritance oclAnyInheritance = standardLibrary.getInheritance(standardLibrary.getOclAnyType());
 	//		InheritanceInheritance collectionInheritance = metaModelManager.getStandardLibrary().getInheritance(metaModelManager.getStandardLibrary().getCollectionType());
@@ -113,7 +113,7 @@ public class InheritanceTests extends PivotSimpleTestSuite
 
 	public void test_Inheritance_IfExp() {
 		MetaModelManager metaModelManager = new MetaModelManager();
-		PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+		StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
 		try {
 			CompleteInheritance oclAnyInheritance = standardLibrary.getInheritance(standardLibrary.getOclAnyType());
 			CompleteInheritance ifInheritance = standardLibrary.getInheritance(DomainUtil.nonNullState(standardLibrary.getPivotType("IfExp")));
@@ -146,7 +146,7 @@ public class InheritanceTests extends PivotSimpleTestSuite
 
 	public void test_Inheritance_UnlimitedNatural() {
 		MetaModelManager metaModelManager = new MetaModelManager();
-		PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+		StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
 		try {
 			CompleteInheritance oclAnyInheritance = standardLibrary.getInheritance(standardLibrary.getOclAnyType());
 //			DomainInheritance realTypeInheritance = standardLibrary.getInheritance(standardLibrary.getRealType());
@@ -177,7 +177,7 @@ public class InheritanceTests extends PivotSimpleTestSuite
 	 */
 	public void test_Inheritance_Loop() {
 		MetaModelManager metaModelManager = new MetaModelManager();
-		PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+		StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
 		try {
 			CompleteInheritance integerTypeInheritance = standardLibrary.getInheritance(standardLibrary.getIntegerType());
 			assertEquals(3, integerTypeInheritance.getDepth());
@@ -200,7 +200,7 @@ public class InheritanceTests extends PivotSimpleTestSuite
 	 */
 	public void test_Inheritance_Addition() {
 		MetaModelManager metaModelManager = new MetaModelManager();
-		PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+		StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
 		try {
 			CompleteInheritance integerTypeInheritance = standardLibrary.getInheritance(standardLibrary.getIntegerType());
 			assertEquals(3, integerTypeInheritance.getDepth());
@@ -222,7 +222,7 @@ public class InheritanceTests extends PivotSimpleTestSuite
 	 */
 	public void test_Inheritance_Removal() {
 		MetaModelManager metaModelManager = new MetaModelManager();
-		PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+		StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
 		try {
 			CompleteInheritance integerTypeInheritance = standardLibrary.getInheritance(standardLibrary.getIntegerType());
 			assertEquals(3, integerTypeInheritance.getDepth());

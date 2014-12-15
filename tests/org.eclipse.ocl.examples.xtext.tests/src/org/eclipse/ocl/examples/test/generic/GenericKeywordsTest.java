@@ -18,7 +18,7 @@ import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestSuite;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 
 /**
  * Tests for usages of model features whose names coincide with "keywords"
@@ -41,7 +41,7 @@ public abstract class GenericKeywordsTest
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-		PivotStandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+		StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
 
         // create a little test model for a Smalltalk-like collection class that
         // defines operations corresponding to OCL iterators

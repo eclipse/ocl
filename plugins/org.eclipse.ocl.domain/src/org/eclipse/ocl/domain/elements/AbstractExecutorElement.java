@@ -28,16 +28,24 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
-import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.util.Visitor;
 
-public class AbstractExecutorObject implements NamedElement
+public class AbstractExecutorElement implements Element
 {
-	protected final @NonNull String name;
+	protected AbstractExecutorElement() {
+	}
 
-	protected AbstractExecutorObject(@NonNull String name) {
-		this.name = name;
+	@Override
+	@Nullable
+	public <R> R accept(@NonNull Visitor<R> visitor) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	@NonNull
+	public List<Element> allOwnedElements() {
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -136,23 +144,12 @@ public class AbstractExecutorObject implements NamedElement
 	}
 
 	@Override
-	public String getName() {
-		return name;
-	}
-
-	@Override
-	public void setName(String value) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
 	public List<Comment> getComment() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	@NonNull
-	public List<Comment> getOwnedComment() {
+	public EObject getETarget() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -170,23 +167,12 @@ public class AbstractExecutorObject implements NamedElement
 
 	@Override
 	@NonNull
-	public List<Element> allOwnedElements() {
+	public List<Comment> getOwnedComment() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public Element getValue(Type stereotype, String propertyName) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public EObject getETarget() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	@Nullable
-	public <R> R accept(@NonNull Visitor<R> visitor) {
 		throw new UnsupportedOperationException();
 	}
 }

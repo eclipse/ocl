@@ -15,10 +15,10 @@ import java.util.Collection;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.library.AbstractUntypedBinaryOperation;
 import org.eclipse.ocl.domain.values.CollectionValue;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 
 /**
@@ -32,7 +32,7 @@ public class CollectionSelectByTypeOperation extends AbstractUntypedBinaryOperat
 	public @NonNull CollectionValue evaluate(@NonNull DomainEvaluator evaluator, @Nullable Object sourceVal, @Nullable Object argVal) {
 		CollectionValue collectionValue = asCollectionValue(sourceVal);
 		Type requiredElementType = asType(argVal);
-    	DomainStandardLibrary standardLibrary = evaluator.getStandardLibrary();
+    	StandardLibrary standardLibrary = evaluator.getStandardLibrary();
 		boolean changedContents = false;
 		Collection<Object> newElements = new ArrayList<Object>();
         for (Object element : collectionValue.iterable()) {

@@ -12,13 +12,13 @@ package org.eclipse.ocl.library.executor;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.elements.AbstractExecutorClass;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 
 public class ExecutorSpecializedType extends AbstractExecutorClass implements ExecutorTypeArgument
@@ -32,26 +32,26 @@ public class ExecutorSpecializedType extends AbstractExecutorClass implements Ex
 	}
 
 	@Override
-	public boolean conformsTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
+	public boolean conformsTo(@NonNull StandardLibrary standardLibrary, @NonNull Type type) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 
 	@Override
-	public boolean isEqualTo(@NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
+	public boolean isEqualTo(@NonNull StandardLibrary standardLibrary, @NonNull Type type) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 
 	@Override
-	public @NonNull Operation lookupActualOperation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
+	public @NonNull Operation lookupActualOperation(@NonNull StandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 
 	@Override
-	public @NonNull LibraryFeature lookupImplementation(@NonNull DomainStandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
+	public @NonNull LibraryFeature lookupImplementation(@NonNull StandardLibrary standardLibrary, @NonNull Operation apparentOperation) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 
-	public Operation lookupOperation(DomainStandardLibrary standardLibrary, @NonNull String operationName, Type... argumentTypes) {
+	public Operation lookupOperation(StandardLibrary standardLibrary, @NonNull String operationName, Type... argumentTypes) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 

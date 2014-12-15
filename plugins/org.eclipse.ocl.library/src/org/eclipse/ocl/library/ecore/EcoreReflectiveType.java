@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.ids.OperationId;
 import org.eclipse.ocl.domain.ids.TypeId;
@@ -33,6 +32,7 @@ import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.Type;
 
@@ -115,7 +115,7 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 						if (!gotOne) {
 							gotOne = true;
 							if (!iterator.hasNext()) {
-								DomainStandardLibrary standardLibrary = evaluationPackage.getStandardLibrary();
+								StandardLibrary standardLibrary = evaluationPackage.getStandardLibrary();
 								org.eclipse.ocl.pivot.Class oclAnyType = standardLibrary.getOclAnyType();
 								return standardLibrary.getInheritance(oclAnyType);
 							}

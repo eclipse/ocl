@@ -14,11 +14,11 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 
 /**
@@ -29,10 +29,10 @@ import org.eclipse.ocl.pivot.Type;
  */
 public class UnboxedElementsDescriptor extends AbstractCollectionDescriptor implements UnboxedDescriptor
 {
-	protected final @NonNull DomainStandardLibrary standardLibrary;
+	protected final @NonNull StandardLibrary standardLibrary;
 	protected final @NonNull Type type;
 	
-	public UnboxedElementsDescriptor(@NonNull CollectionTypeId collectionTypeId, @NonNull DomainStandardLibrary standardLibrary, @NonNull Type type) {
+	public UnboxedElementsDescriptor(@NonNull CollectionTypeId collectionTypeId, @NonNull StandardLibrary standardLibrary, @NonNull Type type) {
 		super(collectionTypeId);
 		this.standardLibrary = standardLibrary;
 		this.type = type;

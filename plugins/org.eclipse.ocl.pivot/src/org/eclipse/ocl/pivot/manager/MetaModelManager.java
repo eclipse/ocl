@@ -125,6 +125,7 @@ import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceImpl;
 import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompletePackageInternal;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.impl.PackageImpl;
 import org.eclipse.ocl.pivot.library.ConstrainedOperation;
 import org.eclipse.ocl.pivot.library.EInvokeOperation;
@@ -272,7 +273,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		packageRegistry.put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
 	}
 	
-	private final @NonNull PivotStandardLibrary standardLibrary;
+	private final @NonNull StandardLibraryInternal standardLibrary;
 	private final @NonNull CompleteEnvironmentInternal completeEnvironment;
 
 	/**
@@ -1874,7 +1875,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return (ASResource)asResource;
 	}
 	
-	public @NonNull PivotStandardLibrary getStandardLibrary() {
+	public @NonNull StandardLibraryInternal getStandardLibrary() {
 		return standardLibrary;
 	}
 	
@@ -2109,7 +2110,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		installResource(asResource);
 	}
 
-	protected @Nullable Resource loadDefaultLibrary(@Nullable String uri) {
+	public @Nullable Resource loadDefaultLibrary(@Nullable String uri) {
 		boolean savedLibraryLoadInProgress = libraryLoadInProgress;
 		libraryLoadInProgress = true;
 		try {

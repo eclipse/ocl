@@ -12,10 +12,10 @@ package org.eclipse.ocl.domain.library;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.evaluation.DomainIterationManager;
 import org.eclipse.ocl.domain.values.CollectionValue;
+import org.eclipse.ocl.pivot.StandardLibrary;
 
 public abstract class AbstractIterationManager implements DomainIterationManager
 {
@@ -46,7 +46,7 @@ public abstract class AbstractIterationManager implements DomainIterationManager
 	}
 
 	@Override
-	public @NonNull DomainStandardLibrary getStandardLibrary() {
+	public @NonNull StandardLibrary getStandardLibrary() {
 		return evaluator.getStandardLibrary();
 	}
 }

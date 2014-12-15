@@ -17,7 +17,6 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.DomainParameterTypes;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.ids.OperationId;
 import org.eclipse.ocl.domain.ids.ParametersId;
@@ -324,7 +323,7 @@ public interface Operation extends Feature, Namespace, TemplateableElement {
 	/**
 	 * Return the Inheritance dispatch table for the owning type, or null for am orphan property owned by an Annotation.
 	 */
-	@Nullable CompleteInheritance getInheritance(@NonNull DomainStandardLibrary standardLibrary);
+	@Nullable CompleteInheritance getInheritance(@NonNull StandardLibrary standardLibrary);
 
 	@NonNull OperationId getOperationId();
 	

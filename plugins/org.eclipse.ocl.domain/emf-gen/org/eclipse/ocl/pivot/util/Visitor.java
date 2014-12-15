@@ -110,7 +110,6 @@ public interface Visitor<R>
 	@Nullable R visitOrphanCompletePackage(@NonNull org.eclipse.ocl.pivot.OrphanCompletePackage object);
 	@Nullable R visitPackage(@NonNull org.eclipse.ocl.pivot.Package object);
 	@Nullable R visitParameter(@NonNull org.eclipse.ocl.pivot.Parameter object);
-	@Nullable R visitParentCompletePackage(@NonNull org.eclipse.ocl.pivot.ParentCompletePackage object);
 	@Nullable R visitPrecedence(@NonNull org.eclipse.ocl.pivot.Precedence object);
 	@Nullable R visitPrimitiveCompletePackage(@NonNull org.eclipse.ocl.pivot.PrimitiveCompletePackage object);
 	@Nullable R visitPrimitiveLiteralExp(@NonNull org.eclipse.ocl.pivot.PrimitiveLiteralExp object);
@@ -128,6 +127,7 @@ public interface Visitor<R>
 	@Nullable R visitSetType(@NonNull org.eclipse.ocl.pivot.SetType object);
 	@Nullable R visitSignal(@NonNull org.eclipse.ocl.pivot.Signal object);
 	@Nullable R visitSlot(@NonNull org.eclipse.ocl.pivot.Slot object);
+	@Nullable R visitStandardLibrary(@NonNull org.eclipse.ocl.pivot.StandardLibrary object);
 	@Nullable R visitState(@NonNull org.eclipse.ocl.pivot.State object);
 	@Nullable R visitStateExp(@NonNull org.eclipse.ocl.pivot.StateExp object);
 	@Nullable R visitStateMachine(@NonNull org.eclipse.ocl.pivot.StateMachine object);

@@ -89,7 +89,6 @@ import org.eclipse.ocl.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.pivot.OrderedSetType;
 import org.eclipse.ocl.pivot.OrphanCompletePackage;
 import org.eclipse.ocl.pivot.Parameter;
-import org.eclipse.ocl.pivot.ParentCompletePackage;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.PrimitiveCompletePackage;
@@ -110,6 +109,7 @@ import org.eclipse.ocl.pivot.SequenceType;
 import org.eclipse.ocl.pivot.SetType;
 import org.eclipse.ocl.pivot.Signal;
 import org.eclipse.ocl.pivot.Slot;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.State;
 import org.eclipse.ocl.pivot.StateExp;
 import org.eclipse.ocl.pivot.StateMachine;
@@ -849,8 +849,6 @@ public class PivotValidator
 				return validatePackage((org.eclipse.ocl.pivot.Package)value, diagnostics, context);
 			case PivotPackage.PARAMETER:
 				return validateParameter((Parameter)value, diagnostics, context);
-			case PivotPackage.PARENT_COMPLETE_PACKAGE:
-				return validateParentCompletePackage((ParentCompletePackage)value, diagnostics, context);
 			case PivotPackage.PIVOTABLE:
 				return validatePivotable((Pivotable)value, diagnostics, context);
 			case PivotPackage.PRECEDENCE:
@@ -889,6 +887,8 @@ public class PivotValidator
 				return validateSignal((Signal)value, diagnostics, context);
 			case PivotPackage.SLOT:
 				return validateSlot((Slot)value, diagnostics, context);
+			case PivotPackage.STANDARD_LIBRARY:
+				return validateStandardLibrary((StandardLibrary)value, diagnostics, context);
 			case PivotPackage.STATE:
 				return validateState((State)value, diagnostics, context);
 			case PivotPackage.STATE_EXP:
@@ -1348,16 +1348,6 @@ public class PivotValidator
 	public boolean validateParameter(Parameter parameter,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(parameter, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateParentCompletePackage(ParentCompletePackage parentCompletePackage, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(parentCompletePackage, diagnostics, context);
 	}
 
 	/**
@@ -2857,6 +2847,16 @@ public class PivotValidator
 	public boolean validateSlot(Slot slot, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(slot, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateStandardLibrary(StandardLibrary standardLibrary, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(standardLibrary, diagnostics, context);
 	}
 
 	/**

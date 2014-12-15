@@ -54,8 +54,8 @@ import org.eclipse.ocl.pivot.context.ParserContext;
 import org.eclipse.ocl.pivot.delegate.InvocationBehavior;
 import org.eclipse.ocl.pivot.delegate.SettingBehavior;
 import org.eclipse.ocl.pivot.delegate.ValidationBehavior;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.ConstraintEvaluator;
@@ -317,7 +317,7 @@ public class EcoreOCLEValidator implements EValidator
 		if (eAnnotation != null) {
 			OCL ocl = getOCL(context);
 			MetaModelManager metaModelManager = ocl.getMetaModelManager();
-			PivotStandardLibrary standardLibrary = ocl.getStandardLibrary();
+			StandardLibraryInternal standardLibrary = ocl.getStandardLibrary();
 			EMap<String, String> details = eAnnotation.getDetails();
 			for (String constraintName : details.keySet()) {
 				String value = details.get(constraintName);
@@ -434,7 +434,7 @@ public class EcoreOCLEValidator implements EValidator
 		if (eAnnotation != null) {
 			OCL ocl = getOCL(context);
 			MetaModelManager metaModelManager = ocl.getMetaModelManager();
-			PivotStandardLibrary standardLibrary = ocl.getStandardLibrary();
+			StandardLibraryInternal standardLibrary = ocl.getStandardLibrary();
 			EMap<String, String> details = eAnnotation.getDetails();
 			Set<String> knownKeys = new HashSet<String>();
 			if (details.containsKey(InvocationBehavior.BODY_CONSTRAINT_KEY)) {

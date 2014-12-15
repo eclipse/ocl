@@ -11,7 +11,6 @@
 package org.eclipse.ocl.library.ecore;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,13 +20,12 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.library.executor.ExecutorPackage;
+import org.eclipse.ocl.pivot.StandardLibrary;
 
-@SuppressWarnings("unused")
 public class EcoreReflectivePackage extends ExecutorPackage
 {
 	protected final @NonNull EcoreIdResolver idResolver;
@@ -115,7 +113,7 @@ public class EcoreReflectivePackage extends ExecutorPackage
 		return null;
 	}
 
-	public @NonNull DomainStandardLibrary getStandardLibrary() {
+	public @NonNull StandardLibrary getStandardLibrary() {
 		return idResolver.getStandardLibrary();
 	}
 }

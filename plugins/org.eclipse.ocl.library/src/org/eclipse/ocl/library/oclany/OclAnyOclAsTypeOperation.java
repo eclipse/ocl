@@ -12,11 +12,11 @@ package org.eclipse.ocl.library.oclany;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.library.AbstractUntypedBinaryOperation;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.values.impl.InvalidValueException;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 
 /**
@@ -33,7 +33,7 @@ public class OclAnyOclAsTypeOperation extends AbstractUntypedBinaryOperation
 		}
 		Type argType = asType(argVal);
 		Type sourceType = evaluator.getIdResolver().getDynamicTypeOf(sourceVal);
-		DomainStandardLibrary standardLibrary = evaluator.getStandardLibrary();
+		StandardLibrary standardLibrary = evaluator.getStandardLibrary();
 		if (sourceType.conformsTo(standardLibrary, argType)) {
 			return sourceVal;
 		}

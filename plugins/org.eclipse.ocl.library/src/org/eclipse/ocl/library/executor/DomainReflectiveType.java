@@ -15,7 +15,6 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.ids.OperationId;
 import org.eclipse.ocl.domain.ids.TypeId;
@@ -26,6 +25,7 @@ import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 
 public class DomainReflectiveType extends AbstractReflectiveInheritanceType
@@ -66,7 +66,7 @@ public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 			public Iterator<CompleteInheritance> iterator() {
 				return new Iterator<CompleteInheritance>()
 				{
-					private @NonNull DomainStandardLibrary standardLibrary = evaluationPackage.getStandardLibrary();
+					private @NonNull StandardLibrary standardLibrary = evaluationPackage.getStandardLibrary();
 					private boolean gotOne = false;
 					
 					@Override

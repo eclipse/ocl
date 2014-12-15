@@ -20,7 +20,6 @@ import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 import org.eclipse.ocl.pivot.manager.TupleTypeManager;
 
 public interface CompleteEnvironmentInternal extends CompleteEnvironment
@@ -40,7 +39,7 @@ public interface CompleteEnvironmentInternal extends CompleteEnvironment
 //	@Override
 //	@NonNull PivotStandardLibrary getStandardLibrary();
 	@Override
-	@NonNull PivotStandardLibrary getStandardLibrary();
+	@NonNull StandardLibraryInternal getStandardLibrary();
 	@NonNull TupleTypeManager getTupleManager();
 	boolean isCodeGeneration();
 	void setCodeGeneration(boolean isCodeGeneration);

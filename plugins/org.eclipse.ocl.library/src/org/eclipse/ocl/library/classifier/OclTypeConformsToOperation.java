@@ -12,9 +12,9 @@ package org.eclipse.ocl.library.classifier;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.library.AbstractUntypedBinaryOperation;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 
 /**
@@ -26,7 +26,7 @@ public class OclTypeConformsToOperation extends AbstractUntypedBinaryOperation
 
 	@Override
 	public @NonNull Boolean evaluate(@NonNull DomainEvaluator evaluator, @Nullable Object sourceVal, @Nullable Object argVal) {
-		DomainStandardLibrary standardLibrary = evaluator.getStandardLibrary();
+		StandardLibrary standardLibrary = evaluator.getStandardLibrary();
 		Type thisType = asType(sourceVal);
 		Type thatType = asType(argVal);
 		boolean result = thisType.conformsTo(standardLibrary, thatType);

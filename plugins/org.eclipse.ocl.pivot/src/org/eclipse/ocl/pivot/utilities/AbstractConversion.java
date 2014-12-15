@@ -19,8 +19,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.manager.PivotStandardLibrary;
 
 public abstract class AbstractConversion
 {
@@ -61,7 +61,7 @@ public abstract class AbstractConversion
 	
 	protected final @NonNull MetaModelManager metaModelManager;
 	protected final @NonNull CompleteEnvironmentInternal completeEnvironment;
-	protected final @NonNull PivotStandardLibrary standardLibrary;
+	protected final @NonNull StandardLibraryInternal standardLibrary;
 
 	protected AbstractConversion(@NonNull MetaModelManager metaModelManager) {
 		this.metaModelManager = metaModelManager;
@@ -73,7 +73,7 @@ public abstract class AbstractConversion
 		return metaModelManager;
 	}
 
-	public @NonNull PivotStandardLibrary getStandardLibrary() {
+	public @NonNull StandardLibraryInternal getStandardLibrary() {
 		return standardLibrary;
 	}
 

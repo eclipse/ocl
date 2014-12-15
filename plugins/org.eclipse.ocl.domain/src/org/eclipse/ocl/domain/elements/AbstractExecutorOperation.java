@@ -25,6 +25,7 @@ import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.Precedence;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TemplateBinding;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
@@ -184,7 +185,7 @@ public class AbstractExecutorOperation extends AbstractExecutorFeature implement
 	@Override
 	@Nullable
 	public CompleteInheritance getInheritance(
-			@NonNull DomainStandardLibrary standardLibrary) {
+			@NonNull StandardLibrary standardLibrary) {
 		throw new UnsupportedOperationException();
 	}
 
