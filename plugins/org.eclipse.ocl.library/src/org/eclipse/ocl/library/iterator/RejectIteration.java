@@ -19,8 +19,8 @@ import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.AbstractIteration;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.values.CollectionValue;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.CollectionValue.Accumulator;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 
 /**
  * RejectIteration realizes the Collection::reject() library iteration.

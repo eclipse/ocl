@@ -8,7 +8,7 @@
  * Contributors:
  *   E.D.Willink (CEA LIST) - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.domain.elements;
+package org.eclipse.ocl.pivot;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Feature;

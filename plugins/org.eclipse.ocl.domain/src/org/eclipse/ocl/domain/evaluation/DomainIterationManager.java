@@ -13,7 +13,7 @@ package org.eclipse.ocl.domain.evaluation;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.values.CollectionValue;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.pivot.StandardLibrary;
 
 /**

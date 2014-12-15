@@ -35,8 +35,7 @@ import org.eclipse.ocl.domain.ids.EnumerationLiteralId;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.library.oclany.OclAnyOclIsKindOfOperation;
 import org.eclipse.ocl.pivot.CollectionKind;
 import org.eclipse.ocl.pivot.CollectionLiteralExp;
@@ -51,6 +50,7 @@ import org.eclipse.ocl.pivot.ValueSpecification;
 import org.eclipse.ocl.pivot.util.PivotValidator;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -205,9 +205,9 @@ public class CollectionLiteralExpImpl
 		    CAUGHT_ne = ne;
 		}
 		catch (Exception e) {
-		    CAUGHT_ne = ValuesUtil.createInvalidValue(e);
+		    CAUGHT_ne = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_ne == ValuesUtil.TRUE_VALUE) {
+		if (CAUGHT_ne == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {
@@ -240,7 +240,7 @@ public class CollectionLiteralExpImpl
 		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValueUtil.createInvalidValue(e);
 		    }
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -252,7 +252,7 @@ public class CollectionLiteralExpImpl
 		        CAUGHT_b = b;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_b = ValueUtil.createInvalidValue(e);
 		    }
 		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_8;
@@ -268,7 +268,7 @@ public class CollectionLiteralExpImpl
 		        else {
 		            /*@Thrown*/ boolean symbol_2;
 		            if (CAUGHT_b == Boolean.TRUE) {
-		                symbol_2 = ValuesUtil.TRUE_VALUE;
+		                symbol_2 = ValueUtil.TRUE_VALUE;
 		            }
 		            else {
 		                if (CAUGHT_self_71 instanceof InvalidValueException) {
@@ -287,7 +287,7 @@ public class CollectionLiteralExpImpl
 		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_7;
 		        if (eq) {
-		            symbol_7 = ValuesUtil.TRUE_VALUE;
+		            symbol_7 = ValueUtil.TRUE_VALUE;
 		        }
 		        else {
 		            final /*@NonInvalid*/ boolean symbol_4 = CAUGHT_b instanceof InvalidValueException;
@@ -301,10 +301,10 @@ public class CollectionLiteralExpImpl
 		            else {
 		                /*@NonInvalid*/ boolean symbol_5;
 		                if (CAUGHT_b == Boolean.TRUE) {
-		                    symbol_5 = ValuesUtil.TRUE_VALUE;
+		                    symbol_5 = ValueUtil.TRUE_VALUE;
 		                }
 		                else {
-		                    symbol_5 = ValuesUtil.FALSE_VALUE;
+		                    symbol_5 = ValueUtil.FALSE_VALUE;
 		                }
 		                symbol_6 = symbol_5;
 		            }
@@ -315,9 +315,9 @@ public class CollectionLiteralExpImpl
 		    CAUGHT_symbol_8 = symbol_8;
 		}
 		catch (Exception e) {
-		    CAUGHT_symbol_8 = ValuesUtil.createInvalidValue(e);
+		    CAUGHT_symbol_8 = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_symbol_8 == ValuesUtil.TRUE_VALUE) {
+		if (CAUGHT_symbol_8 == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {
@@ -351,7 +351,7 @@ public class CollectionLiteralExpImpl
 		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValueUtil.createInvalidValue(e);
 		    }
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -363,7 +363,7 @@ public class CollectionLiteralExpImpl
 		        CAUGHT_b = b;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_b = ValueUtil.createInvalidValue(e);
 		    }
 		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_8;
@@ -379,7 +379,7 @@ public class CollectionLiteralExpImpl
 		        else {
 		            /*@Thrown*/ boolean symbol_2;
 		            if (CAUGHT_b == Boolean.TRUE) {
-		                symbol_2 = ValuesUtil.TRUE_VALUE;
+		                symbol_2 = ValueUtil.TRUE_VALUE;
 		            }
 		            else {
 		                if (CAUGHT_self_71 instanceof InvalidValueException) {
@@ -398,7 +398,7 @@ public class CollectionLiteralExpImpl
 		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_7;
 		        if (eq) {
-		            symbol_7 = ValuesUtil.TRUE_VALUE;
+		            symbol_7 = ValueUtil.TRUE_VALUE;
 		        }
 		        else {
 		            final /*@NonInvalid*/ boolean symbol_4 = CAUGHT_b instanceof InvalidValueException;
@@ -412,10 +412,10 @@ public class CollectionLiteralExpImpl
 		            else {
 		                /*@NonInvalid*/ boolean symbol_5;
 		                if (CAUGHT_b == Boolean.TRUE) {
-		                    symbol_5 = ValuesUtil.TRUE_VALUE;
+		                    symbol_5 = ValueUtil.TRUE_VALUE;
 		                }
 		                else {
-		                    symbol_5 = ValuesUtil.FALSE_VALUE;
+		                    symbol_5 = ValueUtil.FALSE_VALUE;
 		                }
 		                symbol_6 = symbol_5;
 		            }
@@ -426,9 +426,9 @@ public class CollectionLiteralExpImpl
 		    CAUGHT_symbol_8 = symbol_8;
 		}
 		catch (Exception e) {
-		    CAUGHT_symbol_8 = ValuesUtil.createInvalidValue(e);
+		    CAUGHT_symbol_8 = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_symbol_8 == ValuesUtil.TRUE_VALUE) {
+		if (CAUGHT_symbol_8 == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {
@@ -461,7 +461,7 @@ public class CollectionLiteralExpImpl
 		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValueUtil.createInvalidValue(e);
 		    }
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -473,7 +473,7 @@ public class CollectionLiteralExpImpl
 		        CAUGHT_b = b;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_b = ValueUtil.createInvalidValue(e);
 		    }
 		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_8;
@@ -489,7 +489,7 @@ public class CollectionLiteralExpImpl
 		        else {
 		            /*@Thrown*/ boolean symbol_2;
 		            if (CAUGHT_b == Boolean.TRUE) {
-		                symbol_2 = ValuesUtil.TRUE_VALUE;
+		                symbol_2 = ValueUtil.TRUE_VALUE;
 		            }
 		            else {
 		                if (CAUGHT_self_71 instanceof InvalidValueException) {
@@ -508,7 +508,7 @@ public class CollectionLiteralExpImpl
 		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_7;
 		        if (eq) {
-		            symbol_7 = ValuesUtil.TRUE_VALUE;
+		            symbol_7 = ValueUtil.TRUE_VALUE;
 		        }
 		        else {
 		            final /*@NonInvalid*/ boolean symbol_4 = CAUGHT_b instanceof InvalidValueException;
@@ -522,10 +522,10 @@ public class CollectionLiteralExpImpl
 		            else {
 		                /*@NonInvalid*/ boolean symbol_5;
 		                if (CAUGHT_b == Boolean.TRUE) {
-		                    symbol_5 = ValuesUtil.TRUE_VALUE;
+		                    symbol_5 = ValueUtil.TRUE_VALUE;
 		                }
 		                else {
-		                    symbol_5 = ValuesUtil.FALSE_VALUE;
+		                    symbol_5 = ValueUtil.FALSE_VALUE;
 		                }
 		                symbol_6 = symbol_5;
 		            }
@@ -536,9 +536,9 @@ public class CollectionLiteralExpImpl
 		    CAUGHT_symbol_8 = symbol_8;
 		}
 		catch (Exception e) {
-		    CAUGHT_symbol_8 = ValuesUtil.createInvalidValue(e);
+		    CAUGHT_symbol_8 = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_symbol_8 == ValuesUtil.TRUE_VALUE) {
+		if (CAUGHT_symbol_8 == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {
@@ -571,7 +571,7 @@ public class CollectionLiteralExpImpl
 		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValueUtil.createInvalidValue(e);
 		    }
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -583,7 +583,7 @@ public class CollectionLiteralExpImpl
 		        CAUGHT_b = b;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_b = ValueUtil.createInvalidValue(e);
 		    }
 		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_8;
@@ -599,7 +599,7 @@ public class CollectionLiteralExpImpl
 		        else {
 		            /*@Thrown*/ boolean symbol_2;
 		            if (CAUGHT_b == Boolean.TRUE) {
-		                symbol_2 = ValuesUtil.TRUE_VALUE;
+		                symbol_2 = ValueUtil.TRUE_VALUE;
 		            }
 		            else {
 		                if (CAUGHT_self_71 instanceof InvalidValueException) {
@@ -618,7 +618,7 @@ public class CollectionLiteralExpImpl
 		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_7;
 		        if (eq) {
-		            symbol_7 = ValuesUtil.TRUE_VALUE;
+		            symbol_7 = ValueUtil.TRUE_VALUE;
 		        }
 		        else {
 		            final /*@NonInvalid*/ boolean symbol_4 = CAUGHT_b instanceof InvalidValueException;
@@ -632,10 +632,10 @@ public class CollectionLiteralExpImpl
 		            else {
 		                /*@NonInvalid*/ boolean symbol_5;
 		                if (CAUGHT_b == Boolean.TRUE) {
-		                    symbol_5 = ValuesUtil.TRUE_VALUE;
+		                    symbol_5 = ValueUtil.TRUE_VALUE;
 		                }
 		                else {
-		                    symbol_5 = ValuesUtil.FALSE_VALUE;
+		                    symbol_5 = ValueUtil.FALSE_VALUE;
 		                }
 		                symbol_6 = symbol_5;
 		            }
@@ -646,9 +646,9 @@ public class CollectionLiteralExpImpl
 		    CAUGHT_symbol_8 = symbol_8;
 		}
 		catch (Exception e) {
-		    CAUGHT_symbol_8 = ValuesUtil.createInvalidValue(e);
+		    CAUGHT_symbol_8 = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_symbol_8 == ValuesUtil.TRUE_VALUE) {
+		if (CAUGHT_symbol_8 == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {

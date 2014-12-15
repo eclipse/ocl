@@ -102,8 +102,8 @@ import org.eclipse.ocl.examples.codegen.cse.StackPlace;
 import org.eclipse.ocl.examples.codegen.cse.ThrowPlace;
 import org.eclipse.ocl.examples.codegen.java.ImportUtils;
 import org.eclipse.ocl.examples.codegen.utilities.EquivalenceUtils;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 
 /**
  * CGValuedElementModelSpec supports generation of the many methods that contribute to the CGValuedElement.xxxx() method hierarchy.
@@ -491,10 +491,10 @@ public class CGValuedElementModelSpec extends ModelSpec
 			return "return " + classRef(DomainUtil.class) + ".nonNullState(elementId);";
 		}};
 		public static final @NonNull Cvl INVLD = new Cvl() { @Override public @Nullable String generateGetConstantValue(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
-			return "return " + classRef(ValuesUtil.class) + ".INVALID_VALUE;";
+			return "return " + classRef(ValueUtil.class) + ".INVALID_VALUE;";
 		}};
 		public static final @NonNull Cvl NULL = new Cvl() { @Override public @Nullable String generateGetConstantValue(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
-			return "return " + classRef(ValuesUtil.class) + ".NULL_VALUE;";
+			return "return " + classRef(ValueUtil.class) + ".NULL_VALUE;";
 		}};
 		public static final @NonNull Cvl NUMBR = new Cvl() { @Override public @Nullable String generateGetConstantValue(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
 			return "return " + classRef(DomainUtil.class) + ".nonNullState(numericValue);";
@@ -509,7 +509,7 @@ public class CGValuedElementModelSpec extends ModelSpec
 			return "return " + classRef(DomainUtil.class) + ".nonNullState(textValue);";
 		}};
 		public static final @NonNull Cvl UNLMT = new Cvl() { @Override public @Nullable String generateGetConstantValue(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
-			return "return " + classRef(ValuesUtil.class) + ".UNLIMITED_VALUE;";
+			return "return " + classRef(ValueUtil.class) + ".UNLIMITED_VALUE;";
 		}};
 		
 		public static MethodSpec getConstantValue = new MyMethodSpec(CGConstant.class, "@NonNull Object getConstantValue()", null,

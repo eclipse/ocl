@@ -26,8 +26,8 @@ import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.values.SetValue;
 import org.eclipse.ocl.domain.values.TupleValue;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -76,15 +76,15 @@ public class EvaluateTupleOperationsTest4 extends PivotTestSuite
 		TuplePartId aTuplePartId = IdManager.getTuplePartId(0, "a", TypeId.INTEGER);
 		@SuppressWarnings("null") TupleTypeId aTupleTypeId = IdManager.getTupleTypeId("Tuple", Collections.singletonList(aTuplePartId));
 		Map<TuplePartId, Object> aValues = new HashMap<TuplePartId, Object>();
-		aValues.put(aTuplePartId, ValuesUtil.integerValueOf(3));
-		TupleValue aValue = ValuesUtil.createTupleValue(aTupleTypeId, aValues);
+		aValues.put(aTuplePartId, ValueUtil.integerValueOf(3));
+		TupleValue aValue = ValueUtil.createTupleValue(aTupleTypeId, aValues);
 		TuplePartId bTuplePartId = IdManager.getTuplePartId(0, "b", TypeId.INTEGER);
 		@SuppressWarnings("null") TupleTypeId bTupleTypeId = IdManager.getTupleTypeId("Tuple", Collections.singletonList(bTuplePartId));
 		Map<TuplePartId, Object> bValues = new HashMap<TuplePartId, Object>();
-		bValues.put(bTuplePartId, ValuesUtil.integerValueOf(4));
-		TupleValue bValue = ValuesUtil.createTupleValue(bTupleTypeId, bValues);
+		bValues.put(bTuplePartId, ValueUtil.integerValueOf(4));
+		TupleValue bValue = ValueUtil.createTupleValue(bTupleTypeId, bValues);
 		CollectionTypeId collectionTypeId = TypeId.SET.getSpecializedId(TypeId.OCL_ANY);
-		SetValue setValue = ValuesUtil.createSetOfEach(collectionTypeId,  aValue, bValue);
+		SetValue setValue = ValueUtil.createSetOfEach(collectionTypeId,  aValue, bValue);
 		assertQueryEquals(null, setValue, "Set{Tuple{a = 3}, Tuple{b = 4}, Tuple{a = 3}}");						// BUG 4404404
 		assertValidationErrorQuery2(null, "let s : Set(Tuple(a:Integer)) = Set{Tuple{a = 3}, Tuple{b = 4}} in s",
 			EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Variable", "CompatibleInitialiserType",

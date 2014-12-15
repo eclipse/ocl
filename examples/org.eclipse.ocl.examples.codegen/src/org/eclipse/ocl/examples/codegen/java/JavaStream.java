@@ -23,8 +23,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.ids.ElementId;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.examples.codegen.analyzer.CGUtils;
 import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
@@ -50,6 +49,7 @@ import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.util.Visitable;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.xtext.util.Strings;
 
 /**
@@ -518,13 +518,13 @@ public class JavaStream
 			}
 			else if (javaClass == Number.class) {						// Real or Integer or UnlimitedNatural (source isn't a Character but target may be)
 				if ("java.math.BigDecimal".equals(returnClassName)) {
-					appendClassReference(ValuesUtil.class);
+					appendClassReference(ValueUtil.class);
 					append(".bigDecimalValueOf(");
 					appendValueName(cgValue);
 					append(")");
 				}
 				else if ("java.math.BigInteger".equals(returnClassName)) {
-					appendClassReference(ValuesUtil.class);
+					appendClassReference(ValueUtil.class);
 					append(".bigIntegerValueOf(");
 					appendValueName(cgValue);
 					append(")");
@@ -586,19 +586,19 @@ public class JavaStream
 			}
 			else if (javaClass == Object.class) {						// Integer or UnlimitedNatural (source isn't a Real)
 				if ("java.math.BigDecimal".equals(returnClassName)) {
-					appendClassReference(ValuesUtil.class);
+					appendClassReference(ValueUtil.class);
 					append(".bigDecimalValueOf(");
 					appendValueName(cgValue);
 					append(")");
 				}
 				else if ("java.math.BigInteger".equals(returnClassName)) {
-					appendClassReference(ValuesUtil.class);
+					appendClassReference(ValueUtil.class);
 					append(".bigIntegerValueOf(");
 					appendValueName(cgValue);
 					append(")");
 				}
 				else if ("char".equals(returnClassName) || "java.lang.Character".equals(returnClassName)) {
-					appendClassReference(ValuesUtil.class);
+					appendClassReference(ValueUtil.class);
 					append(".characterValueOf(");
 					appendValueName(cgValue);
 					append(")");
@@ -660,7 +660,7 @@ public class JavaStream
 	}
 
 	public void appendFalse() {
-		appendClassReference(ValuesUtil.class);
+		appendClassReference(ValueUtil.class);
 		append(".FALSE_VALUE");
 	}
 
@@ -779,7 +779,7 @@ public class JavaStream
 	}
 
 	public boolean appendThrowBooleanInvalidValueException(/*@NonNull*/ String message, @NonNull String... arguments) {
-		appendClassReference(ValuesUtil.class);
+		appendClassReference(ValueUtil.class);
 		append(".throwBooleanInvalidValueException(");
 		appendString(DomainUtil.nonNullState(message));
 		for (String argument : arguments) {
@@ -804,7 +804,7 @@ public class JavaStream
 	}
 
 	public void appendTrue() {
-		appendClassReference(ValuesUtil.class);
+		appendClassReference(ValueUtil.class);
 		append(".TRUE_VALUE");
 	}
 

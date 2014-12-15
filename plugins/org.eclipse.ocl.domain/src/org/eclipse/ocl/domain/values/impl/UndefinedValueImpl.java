@@ -32,6 +32,7 @@ import org.eclipse.ocl.domain.values.BagValue;
 import org.eclipse.ocl.domain.values.CollectionValue;
 import org.eclipse.ocl.domain.values.ComparableValue;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.NullValue;
 import org.eclipse.ocl.domain.values.NumberValue;
 import org.eclipse.ocl.domain.values.ObjectValue;
@@ -45,8 +46,8 @@ import org.eclipse.ocl.domain.values.UniqueCollectionValue;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.UnlimitedValue;
 import org.eclipse.ocl.domain.values.Value;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * @generated NOT
@@ -247,22 +248,22 @@ public abstract class UndefinedValueImpl extends DomainException implements Null
 
 	@Override
 	public int commutatedCompareTo(@NonNull ComparableValue<?> left) {
-		return ValuesUtil.throwUnsupportedCompareTo(left, this);
+		return ValueUtil.throwUnsupportedCompareTo(left, this);
 	}
 
 	@Override
 	public int commutatedCompareToInteger(@NonNull IntegerValue left) {
-		return ValuesUtil.throwUnsupportedCompareTo(left, this);
+		return ValueUtil.throwUnsupportedCompareTo(left, this);
 	}
 
 	@Override
 	public int commutatedCompareToReal(@NonNull RealValue left) {
-		return ValuesUtil.throwUnsupportedCompareTo(left, this);
+		return ValueUtil.throwUnsupportedCompareTo(left, this);
 	}
 
 	@Override
 	public int compareTo(@Nullable NumberValue right) {
-		return ValuesUtil.throwUnsupportedCompareTo(this, right);
+		return ValueUtil.throwUnsupportedCompareTo(this, right);
 	}
 
     @Override

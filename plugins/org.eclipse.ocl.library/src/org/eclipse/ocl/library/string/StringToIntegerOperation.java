@@ -14,7 +14,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.library.AbstractSimpleUnaryOperation;
 import org.eclipse.ocl.domain.values.IntegerValue;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * StringToIntegerOperation realises the String::toInteger() library operation.
@@ -27,6 +27,6 @@ public class StringToIntegerOperation extends AbstractSimpleUnaryOperation
 	public @NonNull IntegerValue evaluate(@Nullable Object sourceVal) {
 		String sourceString = asString(sourceVal);
 		@SuppressWarnings("null") @NonNull String result = sourceString.trim();
-		return ValuesUtil.integerValueOf(result);
+		return ValueUtil.integerValueOf(result);
 	}
 }

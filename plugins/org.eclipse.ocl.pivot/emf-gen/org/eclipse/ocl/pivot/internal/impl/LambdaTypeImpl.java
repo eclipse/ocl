@@ -23,7 +23,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.ParametersId;
 import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.types.TypeUtils;
 import org.eclipse.ocl.pivot.Behavior;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Constraint;
@@ -40,6 +39,7 @@ import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypeExtension;
 import org.eclipse.ocl.pivot.util.Visitor;
+import org.eclipse.ocl.pivot.utilities.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -556,7 +556,7 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 		if (!(type instanceof LambdaType)) {
 			return false;
 		}
-		return TypeUtils.conformsToLambdaType(standardLibrary, this, (LambdaType)type);
+		return TypeUtil.conformsToLambdaType(standardLibrary, this, (LambdaType)type);
 	}
 	
 	private ParametersId parametersId = null;

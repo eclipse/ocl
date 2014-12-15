@@ -14,8 +14,8 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.library.AbstractSimpleUnaryOperation;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.SetValue;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 
 /**
  * OclInvalidAllInstancesOperation realises the OclInvalid::allInstances() library operation.

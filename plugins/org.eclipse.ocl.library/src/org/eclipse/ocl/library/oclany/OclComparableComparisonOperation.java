@@ -16,12 +16,12 @@ import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.AbstractUntypedBinaryOperation;
 import org.eclipse.ocl.domain.library.LibraryBinaryOperation;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.library.LibraryConstants;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.StandardLibrary;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * OclComparableComparisonOperation provides the abstract support for a comparison operation.
@@ -48,7 +48,7 @@ public abstract class OclComparableComparisonOperation extends AbstractUntypedBi
 		}
 		if (implementation != null) {
 			Object comparison = implementation.evaluate(evaluator, TypeId.INTEGER, left, right);
-			intComparison = ValuesUtil.asInteger(comparison);
+			intComparison = ValueUtil.asInteger(comparison);
 			return getResultValue(intComparison) != false;			// FIXME redundant test to suppress warning
 		}
 		else {

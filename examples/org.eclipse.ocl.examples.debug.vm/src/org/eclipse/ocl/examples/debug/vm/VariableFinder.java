@@ -41,15 +41,15 @@ import org.eclipse.ocl.examples.debug.vm.response.VMVariableResponse;
 import org.eclipse.ocl.examples.debug.vm.utils.VMRuntimeException;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.CollectionValue;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.Value;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 public class VariableFinder
 {
@@ -803,7 +803,7 @@ public class VariableFinder
 		}
 		catch (IllegalArgumentException e) {
             fEvalEnv.throwVMException(new VMRuntimeException("Unknown property '" + property.getName() + "'", e)); //$NON-NLS-1$ //$NON-NLS-2$
-			return ValuesUtil.INVALID_VALUE; //getInvalidResult();
+			return ValueUtil.INVALID_VALUE; //getInvalidResult();
 		}
 	}
 	// implements the inherited specification

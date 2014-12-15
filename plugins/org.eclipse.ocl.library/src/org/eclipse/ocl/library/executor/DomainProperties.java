@@ -16,9 +16,9 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainFragment;
-import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.pivot.CompleteInheritance;
+import org.eclipse.ocl.pivot.FeatureFilter;
+import org.eclipse.ocl.pivot.InheritanceFragment;
 import org.eclipse.ocl.pivot.Property;
 
 import com.google.common.base.Predicate;
@@ -35,8 +35,8 @@ public class DomainProperties
 		init(inheritance.getAllSuperFragments());
 	}
 
-	protected void init(@NonNull Iterable<DomainFragment> allSuperFragments) {
-		for (DomainFragment fragment : allSuperFragments) {
+	protected void init(@NonNull Iterable<InheritanceFragment> allSuperFragments) {
+		for (InheritanceFragment fragment : allSuperFragments) {
 			for (Property property : fragment.getLocalProperties()) {
 				name2property.put(property.getName(), property);
 			}		

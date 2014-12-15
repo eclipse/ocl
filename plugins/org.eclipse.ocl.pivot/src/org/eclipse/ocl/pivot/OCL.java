@@ -30,8 +30,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.domain.evaluation.EvaluationHaltedException;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
@@ -52,6 +51,7 @@ import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.BaseResource;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.QueryImpl;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * Convenient subclass of the <code>OCL</code> fa&ccedil;ade that binds the
@@ -266,7 +266,7 @@ public class OCL {
 		}
 		try {
 			Object result = evaluate(context, specification);
-			return result == ValuesUtil.TRUE_VALUE;
+			return result == ValueUtil.TRUE_VALUE;
 		} catch (InvalidValueException e) {
 			return false;
 		}

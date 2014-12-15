@@ -41,12 +41,11 @@ import org.eclipse.ocl.domain.library.LibrarySimpleOperation;
 import org.eclipse.ocl.domain.library.LibraryUntypedOperation;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.CollectionValue;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.domain.values.TupleValue;
 import org.eclipse.ocl.domain.values.impl.IntIntegerValueImpl;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.domain.values.impl.LongIntegerValueImpl;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.codegen.analyzer.CGUtils;
 import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGAssertNonNullExp;
@@ -131,6 +130,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.xtext.util.Strings;
 
 /**
@@ -759,7 +759,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 			js.pushIndentation(null);
 				js.appendValueName(cgCatchExp);
 				js.append(" = ");
-				js.appendClassReference(ValuesUtil.class);
+				js.appendClassReference(ValueUtil.class);
 				js.append(".createInvalidValue(" + eName + ");\n");
 				js.popIndentation();
 			js.append("}\n");
@@ -822,7 +822,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		}
 		js.appendDeclaration(cgCollectionExp);
 		js.append(" = ");
-		js.appendClassReference(ValuesUtil.class);
+		js.appendClassReference(ValueUtil.class);
 		String kind = ((CollectionLiteralExp)cgCollectionExp.getAst()).getKind().getName();
 		if (ranges > 0) {
 			js.append(".create" + kind + "Range(");
@@ -862,7 +862,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 			}
 			js.appendDeclaration(cgCollectionPart);
 			js.append(" = ");
-			js.appendClassReference(ValuesUtil.class);
+			js.appendClassReference(ValueUtil.class);
 			js.append(".createRange(");
 			js.appendValueName(first);
 			js.append(", ");
@@ -1387,7 +1387,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 	public @NonNull Boolean visitCGInteger(@NonNull CGInteger object) {
 		js.appendDeclaration(object);
 		js.append(" = ");
-		js.appendClassReference(ValuesUtil.class);
+		js.appendClassReference(ValueUtil.class);
 		js.append(".integerValueOf(");
 		Number integerValue = object.getNumericValue();
 		String valueString = integerValue.toString();
@@ -1420,7 +1420,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 			js.append(")");
 		}
 		else {
-			js.appendClassReference(ValuesUtil.class);
+			js.appendClassReference(ValueUtil.class);
 			js.append(".INVALID_VALUE");
 		}
 		return true;
@@ -1867,7 +1867,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 	public @NonNull Boolean visitCGReal(@NonNull CGReal object) {
 		js.appendDeclaration(object);
 		js.append(" = ");
-		js.appendClassReference(ValuesUtil.class);
+		js.appendClassReference(ValueUtil.class);
 		js.append(".realValueOf(");
 		Number realValue = object.getNumericValue();
 		String valueString = realValue.toString();
@@ -1954,7 +1954,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		}
 		js.appendDeclaration(cgTupleExp);
 		js.append(" = ");
-		js.appendClassReference(ValuesUtil.class);
+		js.appendClassReference(ValueUtil.class);
 		js.append(".createTupleOfEach(");
 		js.appendIdReference(cgTupleExp.getTypeId().getElementId());
 		int iSize = parts.size();
@@ -2031,7 +2031,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 
 	@Override
 	public @NonNull Boolean visitCGUnlimited(@NonNull CGUnlimited object) {
-		js.appendClassReference(ValuesUtil.class);
+		js.appendClassReference(ValueUtil.class);
 		js.append(".UNLIMITED_VALUE");
 		return true;
 	}

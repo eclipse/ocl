@@ -14,7 +14,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.library.AbstractSimpleBinaryOperation;
 import org.eclipse.ocl.domain.values.IntegerValue;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * StringCompareToOperation realises the String::compareTo() library operation.
@@ -27,6 +27,6 @@ public class StringCompareToOperation extends AbstractSimpleBinaryOperation
 	public @NonNull IntegerValue evaluate(@Nullable Object left, @Nullable Object right) {
 		String leftString = asString(left);
 		String rightString = asString(right);
-		return ValuesUtil.integerValueOf(leftString.compareTo(rightString));
+		return ValueUtil.integerValueOf(leftString.compareTo(rightString));
 	}
 }

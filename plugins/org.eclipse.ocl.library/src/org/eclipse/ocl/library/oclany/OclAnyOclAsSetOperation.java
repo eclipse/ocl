@@ -16,8 +16,8 @@ import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.AbstractUnaryOperation;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.SetValue;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 
 /**
  * OclAnyOclAsSetOperation realises the OclAny::oclAsSet() library operation.

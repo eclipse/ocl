@@ -13,8 +13,7 @@ package org.eclipse.ocl.examples.codegen.java.iteration;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBuiltInIterationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGInvalid;
@@ -23,6 +22,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGTypeId;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
 import org.eclipse.ocl.examples.codegen.java.types.JavaTypeId;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 public class ExistsIteration2Java extends AbstractIteration2Java
 {
@@ -30,7 +30,7 @@ public class ExistsIteration2Java extends AbstractIteration2Java
 
 	@Override
 	public void appendAccumulatorInit(@NonNull JavaStream js, @NonNull CGBuiltInIterationCallExp cgIterationCallExp) {
-		js.appendClassReference(ValuesUtil.class);
+		js.appendClassReference(ValueUtil.class);
 		js.append(".FALSE_VALUE");
 	}
 	
@@ -44,14 +44,14 @@ public class ExistsIteration2Java extends AbstractIteration2Java
 			js.append(" == null) || (");
 			js.appendValueName(cgAccumulator);
 			js.append(" == ");
-			js.appendClassReference(ValuesUtil.class);
+			js.appendClassReference(ValueUtil.class);
 			js.append(".FALSE_VALUE)) {\n");
 		}
 		else {
 			js.append("if (");
 			js.appendValueName(cgAccumulator);
 			js.append(" == ");
-			js.appendClassReference(ValuesUtil.class);
+			js.appendClassReference(ValueUtil.class);
 			js.append(".FALSE_VALUE) {\n");
 		}
 		js.pushIndentation(null);
@@ -84,14 +84,14 @@ public class ExistsIteration2Java extends AbstractIteration2Java
 		if (cgBody.isTrue()) {
 			js.appendValueName(cgIterationCallExp);
 			js.append(" = ");
-			js.appendClassReference(ValuesUtil.class);
+			js.appendClassReference(ValueUtil.class);
 			js.append(".TRUE_VALUE;\n");
 			js.append("break;\n");
 		}
 		else if (cgBody.isFalse()) {
 			js.appendValueName(cgIterationCallExp);
 			js.append(" = ");
-			js.appendClassReference(ValuesUtil.class);
+			js.appendClassReference(ValueUtil.class);
 			js.append(".FALSE_VALUE;\n");
 			js.append("break;\n");
 		}
@@ -113,12 +113,12 @@ public class ExistsIteration2Java extends AbstractIteration2Java
 			js.append("if (");
 			js.appendValueName(cgBody);
 			js.append(" == ");
-			js.appendClassReference(ValuesUtil.class);
+			js.appendClassReference(ValueUtil.class);
 			js.append(".TRUE_VALUE) {					// Normal successful body evaluation result\n");
 			js.pushIndentation(null);
 				js.appendValueName(cgIterationCallExp);
 				js.append(" = ");
-				js.appendClassReference(ValuesUtil.class);
+				js.appendClassReference(ValueUtil.class);
 				js.append(".TRUE_VALUE;\n");
 				js.append("break;														// Stop immediately \n");
 			js.popIndentation();
@@ -127,7 +127,7 @@ public class ExistsIteration2Java extends AbstractIteration2Java
 			js.append("else if (");
 			js.appendValueName(cgBody);
 			js.append(" == ");
-			js.appendClassReference(ValuesUtil.class);
+			js.appendClassReference(ValueUtil.class);
 			js.append(".FALSE_VALUE) {				// Normal unsuccessful body evaluation result\n");
 			js.pushIndentation(null);
 				js.append(";															// Carry on\n");
@@ -142,7 +142,7 @@ public class ExistsIteration2Java extends AbstractIteration2Java
 					js.append("if (");
 					js.appendValueName(cgAccumulator);
 					js.append(" == ");
-					js.appendClassReference(ValuesUtil.class);
+					js.appendClassReference(ValueUtil.class);
 					js.append(".FALSE_VALUE) {\n");
 					js.pushIndentation(null);
 						js.appendValueName(cgAccumulator);

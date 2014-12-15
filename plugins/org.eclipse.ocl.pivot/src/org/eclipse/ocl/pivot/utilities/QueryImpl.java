@@ -23,7 +23,6 @@ import org.eclipse.ocl.domain.evaluation.DomainException;
 import org.eclipse.ocl.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.domain.evaluation.EvaluationHaltedException;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.Environment;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.OCL;
@@ -89,7 +88,7 @@ public class QueryImpl implements Query, ProblemAware
 			result = evaluate(obj);
 		}
 		
-		return result == ValuesUtil.TRUE_VALUE;
+		return result == ValueUtil.TRUE_VALUE;
 	}
 	
 	@Override

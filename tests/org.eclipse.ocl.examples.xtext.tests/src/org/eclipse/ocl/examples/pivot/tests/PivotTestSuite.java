@@ -52,11 +52,10 @@ import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.utilities.ProjectMap;
 import org.eclipse.ocl.domain.values.CollectionValue;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.OrderedSetValue;
 import org.eclipse.ocl.domain.values.RealValue;
 import org.eclipse.ocl.domain.values.Value;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.codegen.common.CodeGenHelper;
 import org.eclipse.ocl.examples.codegen.dynamic.JavaGenModelCodeGenHelper;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
@@ -99,6 +98,7 @@ import org.eclipse.ocl.pivot.utilities.BaseResource;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironment;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.xtext.diagnostics.ExceptionDiagnostic;
@@ -677,7 +677,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 			assertTrue(expectedResult.getClass().isInstance(result));
 			assertSame(expectedResult.intSize(), ((CollectionValue) result).intSize());
 			Object actualResult = ((CollectionValue) result).includesAll(expectedResult);
-			assertTrue("Expected " + result + " to contain " + expectedResult, actualResult == ValuesUtil.TRUE_VALUE);
+			assertTrue("Expected " + result + " to contain " + expectedResult, actualResult == ValueUtil.TRUE_VALUE);
 			return result;
 		} catch (Exception e) {
 			failOn(expression, e);
@@ -748,8 +748,8 @@ public abstract class PivotTestSuite extends PivotTestCase
 	protected Object assertQueryUnlimited(Object context, @NonNull String expression) {
 		try {
 			Object value = evaluate(getHelper(), context, expression);
-			if (!ValuesUtil.isUnlimited(value)) {
-				assertEquals(expression, ValuesUtil.UNLIMITED_VALUE, value);
+			if (!ValueUtil.isUnlimited(value)) {
+				assertEquals(expression, ValueUtil.UNLIMITED_VALUE, value);
 			}
 			appendLog(getName(), context, expression, null, "*", null);
 			return value;
@@ -877,7 +877,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		}
 		try {
 			Object result = evaluate(constraint, context);
-			return result == ValuesUtil.TRUE_VALUE;
+			return result == ValueUtil.TRUE_VALUE;
 		} catch (Exception e) {
 			return false;
 		}

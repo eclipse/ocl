@@ -24,14 +24,12 @@ import org.eclipse.ocl.domain.ids.TemplateParameterId;
 import org.eclipse.ocl.domain.ids.TupleTypeId;
 import org.eclipse.ocl.domain.types.AbstractCollectionType;
 import org.eclipse.ocl.domain.types.AbstractTupleType;
-import org.eclipse.ocl.domain.types.TypeUtils;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.CollectionTypeParameters;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.impl.CollectionTypeParametersImpl;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
@@ -44,6 +42,8 @@ import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.utilities.TypeUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 public abstract class ExecutableStandardLibrary extends AbstractExecutorElement implements CompleteEnvironment, StandardLibrary
 {
@@ -88,10 +88,10 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 		IntegerValue lower2 = lower;
 		UnlimitedNaturalValue upper2 = upper;
 		if (lower2 == null) {
-			lower2 = ValuesUtil.ZERO_VALUE;
+			lower2 = ValueUtil.ZERO_VALUE;
 		}
 		if (upper2 == null) {
-			upper2 = ValuesUtil.UNLIMITED_VALUE;
+			upper2 = ValueUtil.UNLIMITED_VALUE;
 		}
 		CollectionTypeParameters<Type> typeParameters = new CollectionTypeParametersImpl<Type>(elementType, lower2, upper2);
 		AbstractCollectionType specializedType = null;
@@ -209,7 +209,7 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 
 	@Override
 	public @Nullable Type getPrimitiveType(@NonNull PrimitiveTypeId typeId) {
-		return TypeUtils.getPrimitiveType(this, typeId);
+		return TypeUtil.getPrimitiveType(this, typeId);
 	}
 
 	@Override

@@ -12,7 +12,6 @@ package org.eclipse.ocl.pivot;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.domain.elements.Labelable;
 
 /**
  * A PivotObject distinguishes the Pivot implementation of the Pivot interfaces from the lighterweight Executor implementation. 

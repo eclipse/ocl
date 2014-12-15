@@ -18,15 +18,16 @@ import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.values.ComparableValue;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.NumberValue;
 import org.eclipse.ocl.domain.values.RealValue;
 import org.eclipse.ocl.domain.values.Unlimited;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.UnlimitedValue;
 import org.eclipse.ocl.domain.values.ValuesPackage;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * @generated NOT
@@ -78,7 +79,7 @@ public class UnlimitedValueImpl extends NumberValueImpl implements UnlimitedValu
 			}
 		}
 		else {
-			return ValuesUtil.throwUnsupportedCompareTo(left, this);
+			return ValueUtil.throwUnsupportedCompareTo(left, this);
 		}
 	}
 
@@ -106,7 +107,7 @@ public class UnlimitedValueImpl extends NumberValueImpl implements UnlimitedValu
 			return -right.commutatedCompareTo(this);
 		}
 		else {
-			return ValuesUtil.throwUnsupportedCompareTo(this, right);
+			return ValueUtil.throwUnsupportedCompareTo(this, right);
 		}
 	}
 

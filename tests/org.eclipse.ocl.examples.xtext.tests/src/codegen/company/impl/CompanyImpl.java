@@ -33,14 +33,14 @@ import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.EnumerationLiteralId;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.OrderedSetValue;
 import org.eclipse.ocl.domain.values.SequenceValue;
 import org.eclipse.ocl.domain.values.TupleValue;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.library.collection.CollectionIncludesOperation;
 import org.eclipse.ocl.library.collection.CollectionSizeOperation;
 import org.eclipse.ocl.library.ecore.EcoreExecutorManager;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 import codegen.company.CodegencompanyPackage;
 import codegen.company.CodegencompanyTables;
@@ -208,7 +208,7 @@ public class CompanyImpl extends EObjectImpl implements Company
 		    final @NonNull /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(BOXED_employees);
 		    final /*@Thrown*/ boolean includes = CollectionIncludesOperation.INSTANCE.evaluate(range, size);
 		    //
-		    if (includes != ValuesUtil.FALSE_VALUE) {			// Carry on till something found
+		    if (includes != ValueUtil.FALSE_VALUE) {			// Carry on till something found
 		        any = _1;
 		        break;
 		    }

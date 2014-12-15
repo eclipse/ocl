@@ -35,10 +35,9 @@ import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.values.IntegerRange;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.OrderedSetValue;
 import org.eclipse.ocl.domain.values.SequenceValue;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.library.classifier.OclTypeConformsToOperation;
 import org.eclipse.ocl.library.collection.CollectionSizeOperation;
 import org.eclipse.ocl.library.collection.OrderedCollectionAtOperation;
@@ -57,6 +56,7 @@ import org.eclipse.ocl.pivot.ValueSpecification;
 import org.eclipse.ocl.pivot.util.PivotValidator;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -504,14 +504,14 @@ public class OperationCallExpImpl
 		    final @NonNull /*@Thrown*/ List<OCLExpression> argument = this.getArgument();
 		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_argument = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_OCLExpression, argument);
 		    final @NonNull /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(BOXED_argument);
-		    final @NonNull /*@Thrown*/ IntegerRange RNG = ValuesUtil.createRange(PivotTables.INT_1, size);
-		    final @NonNull /*@Thrown*/ SequenceValue Sequence = ValuesUtil.createSequenceRange(PivotTables.SEQ_PRIMid_Integer, RNG);
-		    @NonNull /*@Thrown*/ Object accumulator = ValuesUtil.TRUE_VALUE;
+		    final @NonNull /*@Thrown*/ IntegerRange RNG = ValueUtil.createRange(PivotTables.INT_1, size);
+		    final @NonNull /*@Thrown*/ SequenceValue Sequence = ValueUtil.createSequenceRange(PivotTables.SEQ_PRIMid_Integer, RNG);
+		    @NonNull /*@Thrown*/ Object accumulator = ValueUtil.TRUE_VALUE;
 		    @Nullable Iterator<?> ITERATOR_i = Sequence.iterator();
 		    /*@Thrown*/ boolean forAll;
 		    while (true) {
 		        if (!ITERATOR_i.hasNext()) {
-		            if (accumulator == ValuesUtil.TRUE_VALUE) {
+		            if (accumulator == ValueUtil.TRUE_VALUE) {
 		                forAll = (Boolean)accumulator;
 		            }
 		            else {
@@ -568,14 +568,14 @@ public class OperationCallExpImpl
 		            CAUGHT_conformsTo = conformsTo;
 		        }
 		        catch (Exception e) {
-		            CAUGHT_conformsTo = ValuesUtil.createInvalidValue(e);
+		            CAUGHT_conformsTo = ValueUtil.createInvalidValue(e);
 		        }
 		        //
-		        if (CAUGHT_conformsTo == ValuesUtil.FALSE_VALUE) {					// Normal unsuccessful body evaluation result
-		            forAll = ValuesUtil.FALSE_VALUE;
+		        if (CAUGHT_conformsTo == ValueUtil.FALSE_VALUE) {					// Normal unsuccessful body evaluation result
+		            forAll = ValueUtil.FALSE_VALUE;
 		            break;														// Stop immediately 
 		        }
-		        else if (CAUGHT_conformsTo == ValuesUtil.TRUE_VALUE) {				// Normal successful body evaluation result
+		        else if (CAUGHT_conformsTo == ValueUtil.TRUE_VALUE) {				// Normal successful body evaluation result
 		            ;															// Carry on
 		        }
 		        else if (CAUGHT_conformsTo instanceof InvalidValueException) {		// Abnormal exception evaluation result
@@ -588,9 +588,9 @@ public class OperationCallExpImpl
 		    CAUGHT_forAll = forAll;
 		}
 		catch (Exception e) {
-		    CAUGHT_forAll = ValuesUtil.createInvalidValue(e);
+		    CAUGHT_forAll = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_forAll == ValuesUtil.TRUE_VALUE) {
+		if (CAUGHT_forAll == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {
@@ -630,9 +630,9 @@ public class OperationCallExpImpl
 		    CAUGHT_eq = eq;
 		}
 		catch (Exception e) {
-		    CAUGHT_eq = ValuesUtil.createInvalidValue(e);
+		    CAUGHT_eq = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_eq == ValuesUtil.TRUE_VALUE) {
+		if (CAUGHT_eq == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {

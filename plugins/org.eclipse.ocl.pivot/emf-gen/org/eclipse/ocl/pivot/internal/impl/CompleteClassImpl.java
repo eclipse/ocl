@@ -21,8 +21,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainFragment;
-import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.domain.ids.OperationId;
 import org.eclipse.ocl.domain.values.CollectionTypeParameters;
 import org.eclipse.ocl.pivot.CollectionType;
@@ -33,6 +31,8 @@ import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
+import org.eclipse.ocl.pivot.FeatureFilter;
+import org.eclipse.ocl.pivot.InheritanceFragment;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
@@ -491,10 +491,10 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	@SuppressWarnings("null")
 	public @NonNull Iterable<org.eclipse.ocl.pivot.Class> getProperSuperClasses() {
 		CompleteInheritance inheritance = getCompleteInheritance();
-		return Iterables.transform(inheritance.getAllProperSuperFragments(), new Function<DomainFragment, org.eclipse.ocl.pivot.Class>()
+		return Iterables.transform(inheritance.getAllProperSuperFragments(), new Function<InheritanceFragment, org.eclipse.ocl.pivot.Class>()
 		{
 			@Override
-			public org.eclipse.ocl.pivot.Class apply(DomainFragment input) {
+			public org.eclipse.ocl.pivot.Class apply(InheritanceFragment input) {
 				return input.getBaseInheritance().getType();
 			}
 		});
@@ -504,10 +504,10 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	@SuppressWarnings("null")
 	public @NonNull Iterable<CompleteClass> getProperSuperCompleteClasses() {
 		CompleteInheritance inheritance = getCompleteInheritance();
-		return Iterables.transform(inheritance.getAllProperSuperFragments(), new Function<DomainFragment, CompleteClass>()
+		return Iterables.transform(inheritance.getAllProperSuperFragments(), new Function<InheritanceFragment, CompleteClass>()
 		{
 			@Override
-			public CompleteClass apply(DomainFragment input) {
+			public CompleteClass apply(InheritanceFragment input) {
 				return ((CompleteInheritanceImpl)input.getBaseInheritance()).getCompleteClass();		// FIXME cast
 			}
 		});

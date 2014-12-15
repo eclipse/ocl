@@ -14,13 +14,13 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIterator;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTypeId;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBuiltInIterationCallExp;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 public class OneIteration2Java extends AbstractAccumulation2Java
 {
@@ -28,7 +28,7 @@ public class OneIteration2Java extends AbstractAccumulation2Java
 
 	@Override
 	public void appendAccumulatorInit(@NonNull JavaStream js, @NonNull CGBuiltInIterationCallExp cgIterationCallExp) {
-		js.appendClassReference(ValuesUtil.class);
+		js.appendClassReference(ValueUtil.class);
 		js.append(".FALSE_VALUE");
 	}
 	
@@ -40,7 +40,7 @@ public class OneIteration2Java extends AbstractAccumulation2Java
 			js.append("if (");
 			js.appendValueName(cgBody);
 			js.append(" != ");
-			js.appendClassReference(ValuesUtil.class);
+			js.appendClassReference(ValueUtil.class);
 			js.append(".FALSE_VALUE) {			// Carry on till something found\n");
 			js.pushIndentation(null);
 				js.append("if (");
@@ -49,7 +49,7 @@ public class OneIteration2Java extends AbstractAccumulation2Java
 				js.pushIndentation(null);
 					js.appendValueName(cgIterationCallExp);
 					js.append(" = ");
-					js.appendClassReference(ValuesUtil.class);
+					js.appendClassReference(ValueUtil.class);
 					js.append(".FALSE_VALUE;\n");
 					js.append("break;\n");
 				js.popIndentation();
@@ -58,7 +58,7 @@ public class OneIteration2Java extends AbstractAccumulation2Java
 					js.pushIndentation(null);
 					js.appendValueName(cgAccumulator);
 					js.append(" = ");
-					js.appendClassReference(ValuesUtil.class);
+					js.appendClassReference(ValueUtil.class);
 					js.append(".TRUE_VALUE;\n");
 				js.popIndentation();
 				js.append("}\n");

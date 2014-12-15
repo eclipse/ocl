@@ -8,7 +8,7 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.domain.values.impl;
+package org.eclipse.ocl.domain.values;
 
 import java.util.List;
 
@@ -20,18 +20,7 @@ import org.eclipse.ocl.domain.ids.OclInvalidTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.values.BagValue;
-import org.eclipse.ocl.domain.values.CollectionValue;
-import org.eclipse.ocl.domain.values.IntegerValue;
-import org.eclipse.ocl.domain.values.InvalidValue;
-import org.eclipse.ocl.domain.values.OCLValue;
-import org.eclipse.ocl.domain.values.ObjectValue;
-import org.eclipse.ocl.domain.values.OrderedSetValue;
-import org.eclipse.ocl.domain.values.RealValue;
-import org.eclipse.ocl.domain.values.SequenceValue;
-import org.eclipse.ocl.domain.values.SetValue;
-import org.eclipse.ocl.domain.values.UniqueCollectionValue;
-import org.eclipse.ocl.domain.values.ValuesPackage;
+import org.eclipse.ocl.domain.values.impl.UndefinedValueImpl;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;

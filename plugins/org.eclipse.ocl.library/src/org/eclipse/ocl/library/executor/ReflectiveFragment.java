@@ -15,11 +15,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.domain.types.AbstractFragment;
 import org.eclipse.ocl.library.oclany.OclAnyUnsupportedOperation;
 import org.eclipse.ocl.pivot.CompleteInheritance;
+import org.eclipse.ocl.pivot.InheritanceFragment;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 
@@ -70,10 +70,10 @@ public abstract class ReflectiveFragment extends AbstractFragment
 				int bestDepth = -1;
 				int minDepth = baseInheritance.getDepth();
 				for (int depth = derivedInheritance.getDepth()-1; depth >= minDepth; depth--) {
-					Iterable<DomainFragment> derivedSuperFragments = derivedInheritance.getSuperFragments(depth);
-					for (DomainFragment derivedSuperFragment : derivedSuperFragments) {
+					Iterable<InheritanceFragment> derivedSuperFragments = derivedInheritance.getSuperFragments(depth);
+					for (InheritanceFragment derivedSuperFragment : derivedSuperFragments) {
 						CompleteInheritance superInheritance = derivedSuperFragment.getBaseInheritance();
-						DomainFragment superFragment = superInheritance.getFragment(baseInheritance);
+						InheritanceFragment superFragment = superInheritance.getFragment(baseInheritance);
 						if (superFragment != null) {
 							Operation overload = superFragment.getLocalOperation(apparentOperation);
 							if (overload != null) {

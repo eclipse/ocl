@@ -10,10 +10,10 @@
  *******************************************************************************/
 package org.eclipse.ocl.domain.library;
 
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  */
-public abstract class AbstractFeature extends ValuesUtil implements LibraryFeature
+public abstract class AbstractFeature extends ValueUtil implements LibraryFeature
 {
 }

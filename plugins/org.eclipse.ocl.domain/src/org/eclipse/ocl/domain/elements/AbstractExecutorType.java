@@ -23,6 +23,7 @@ import org.eclipse.ocl.domain.values.OCLValue;
 import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.CompleteInheritance;
+import org.eclipse.ocl.pivot.InheritanceFragment;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
@@ -107,13 +108,13 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 
 	@Override
 	@NonNull
-	public Iterable<DomainFragment> getAllProperSuperFragments() {
+	public Iterable<InheritanceFragment> getAllProperSuperFragments() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	@NonNull
-	public Iterable<DomainFragment> getAllSuperFragments() {
+	public Iterable<InheritanceFragment> getAllSuperFragments() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -124,12 +125,12 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 
 	@Override
 	@NonNull
-	public Iterable<DomainFragment> getFragments() {
+	public Iterable<InheritanceFragment> getFragments() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public DomainFragment getFragment(int fragmentNumber) {
+	public InheritanceFragment getFragment(int fragmentNumber) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -157,13 +158,13 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 
 	@Override
 	@NonNull
-	public DomainFragment getSelfFragment() {
+	public InheritanceFragment getSelfFragment() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	@NonNull
-	public IndexableIterable<DomainFragment> getSuperFragments(int depth) {
+	public IndexableIterable<InheritanceFragment> getSuperFragments(int depth) {
 		throw new UnsupportedOperationException();
 	}
 

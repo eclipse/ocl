@@ -17,8 +17,9 @@ import java.util.NoSuchElementException;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.values.IntegerRange;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.Value;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * @generated NOT
@@ -54,7 +55,7 @@ public class IntegerRangeImpl extends AbstractList<Value> implements IntegerRang
 			}
 			else if (curr.commutatedCompareToInteger(last) < 0) {
 				try {
-					curr = curr.addInteger(ValuesUtil.ONE_VALUE);
+					curr = curr.addInteger(ValueUtil.ONE_VALUE);
 				} catch (InvalidValueException e) {
 					throw new NoSuchElementException();
 				}
@@ -86,11 +87,11 @@ public class IntegerRangeImpl extends AbstractList<Value> implements IntegerRang
 		this.first = first;
 		this.last = last;
 		if (sizeMinusOne.signum() < 0) {
-			this.fullSize = ValuesUtil.ZERO_VALUE;
+			this.fullSize = ValueUtil.ZERO_VALUE;
 			this.size = 0;
 		}
 		else {
-			this.fullSize = sizeMinusOne.addInteger(ValuesUtil.ONE_VALUE);
+			this.fullSize = sizeMinusOne.addInteger(ValueUtil.ONE_VALUE);
 			this.size = fullSize.asInteger();
 		}
 	}
@@ -111,7 +112,7 @@ public class IntegerRangeImpl extends AbstractList<Value> implements IntegerRang
 //			getValueFactory().throwInvalidValueException("Out of range index {0} for range 0..{1}", index, size);
 		}
 		try {
-			return first.addInteger(ValuesUtil.integerValueOf(index));
+			return first.addInteger(ValueUtil.integerValueOf(index));
 		} catch (InvalidValueException e) {
 			throw new NoSuchElementException();
 		}

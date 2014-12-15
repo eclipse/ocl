@@ -8,7 +8,7 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.domain.elements;
+package org.eclipse.ocl.pivot;
 
 public interface Nameable
 {

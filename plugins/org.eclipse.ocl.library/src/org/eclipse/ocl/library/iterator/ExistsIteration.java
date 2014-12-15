@@ -18,8 +18,8 @@ import org.eclipse.ocl.domain.evaluation.EvaluationHaltedException;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.AbstractIteration;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.domain.values.InvalidValueException;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * ExistsIteration realises the Collection::exists() library iteration.
@@ -78,7 +78,7 @@ public class ExistsIteration extends AbstractIteration
 		catch (Exception e) {
 			MutableObject accumulatorValue = (MutableObject) iterationManager.getAccumulatorValue();
 			assert accumulatorValue != null;
-			accumulatorValue.set(ValuesUtil.createInvalidValue(e));
+			accumulatorValue.set(ValueUtil.createInvalidValue(e));
 			return CARRY_ON;							// Carry on for nothing found
 		}
 	}

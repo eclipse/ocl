@@ -22,10 +22,11 @@ Export-Package: org.eclipse.ocl.domain,
  org.eclipse.ocl.domain.utilities,
  org.eclipse.ocl.domain.validation,
  org.eclipse.ocl.domain.values,
- org.eclipse.ocl.domain.values.impl,
+ org.eclipse.ocl.domain.values.impl;x-friends:="org.eclipse.ocl.examples.xtext.tests,org.eclipse.ocl.examples.codegen",
  org.eclipse.ocl.domain.values.util,
  org.eclipse.ocl.pivot,
- org.eclipse.ocl.pivot.util
+ org.eclipse.ocl.pivot.util,
+ org.eclipse.ocl.pivot.utilities
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Import-Package: com.google.common.base,

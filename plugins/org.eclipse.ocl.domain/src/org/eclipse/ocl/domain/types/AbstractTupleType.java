@@ -19,6 +19,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.utilities.TypeUtil;
 
 public class AbstractTupleType extends AbstractExecutorClass implements TupleType
 {
@@ -37,7 +38,7 @@ public class AbstractTupleType extends AbstractExecutorClass implements TupleTyp
 		if (!(type instanceof TupleType)) {
 			return false;
 		}
-		return TypeUtils.conformsToTupleType(standardLibrary, this, (TupleType)type);
+		return TypeUtil.conformsToTupleType(standardLibrary, this, (TupleType)type);
 	}
 
 	@Override
@@ -66,7 +67,7 @@ public class AbstractTupleType extends AbstractExecutorClass implements TupleTyp
 		if (!(type instanceof TupleType)) {
 			return false;
 		}
-		return TypeUtils.isEqualToTupleType(standardLibrary, this, (TupleType)type);
+		return TypeUtil.isEqualToTupleType(standardLibrary, this, (TupleType)type);
 	}
 	
 	@Override

@@ -22,7 +22,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.evaluation.DomainLogger;
 import org.eclipse.ocl.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.domain.types.IdResolver;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Environment;
@@ -36,6 +35,7 @@ import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.util.Visitor;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * An evaluation visitor implementation for OCL expressions.
@@ -307,7 +307,7 @@ public abstract class AbstractEvaluationVisitor
 //			if (result == null) {
 //				return evaluationEnvironment.throwInvalidEvaluation("null constraint result");
 //			}
-			return ValuesUtil.asBoolean(result);
+			return ValueUtil.asBoolean(result);
 //		} catch (InvalidValueException e) {
 //			return e.getValue();
 //		}

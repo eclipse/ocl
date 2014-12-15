@@ -24,6 +24,7 @@ import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.values.Bag;
 import org.eclipse.ocl.domain.values.BagValue;
 import org.eclipse.ocl.domain.values.CollectionValue;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.SequenceValue;
 import org.eclipse.ocl.domain.values.SetValue;
 import org.eclipse.ocl.domain.values.ValuesPackage;

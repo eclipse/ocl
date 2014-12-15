@@ -25,13 +25,14 @@ import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.values.CollectionValue;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.NullValue;
 import org.eclipse.ocl.domain.values.OrderedCollectionValue;
 import org.eclipse.ocl.domain.values.OrderedSet;
 import org.eclipse.ocl.domain.values.OrderedSetValue;
 import org.eclipse.ocl.domain.values.UniqueCollectionValue;
 import org.eclipse.ocl.domain.values.ValuesPackage;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * @generated NOT
@@ -201,7 +202,7 @@ public abstract class OrderedSetValueImpl extends CollectionValueImpl implements
         if (object == null) {
             for (Object next : elements) {
                 if (next == null) {
-                    return ValuesUtil.integerValueOf(index);
+                    return ValueUtil.integerValueOf(index);
                 }
                 index++;
             }        
@@ -209,7 +210,7 @@ public abstract class OrderedSetValueImpl extends CollectionValueImpl implements
         else {
             for (Object next : elements) {
                 if (object.equals(next)) {
-                    return ValuesUtil.integerValueOf(index);
+                    return ValueUtil.integerValueOf(index);
                 }
                 index++;
             }        

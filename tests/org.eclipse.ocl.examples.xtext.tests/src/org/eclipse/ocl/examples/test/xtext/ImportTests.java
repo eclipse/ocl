@@ -18,7 +18,6 @@ import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.Bag;
 import org.eclipse.ocl.domain.values.Value;
 import org.eclipse.ocl.domain.values.impl.BagImpl;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.library.LibraryConstants;
@@ -26,6 +25,7 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * Tests that load a model and verify that there are no unresolved proxies as a result.
@@ -38,7 +38,7 @@ public class ImportTests extends XtextTestCase
 
 		@Override
 		public Object evaluate(@Nullable Object sourceValue) {
-			String string = sourceValue == null? Value.INVALID_NAME : ValuesUtil.oclToString(sourceValue);
+			String string = sourceValue == null? Value.INVALID_NAME : ValueUtil.oclToString(sourceValue);
 			return string;
 		}
 	}

@@ -41,9 +41,8 @@ import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.SetValue;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.Behavior;
 import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.Comment;
@@ -69,6 +68,7 @@ import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.util.PivotValidator;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -647,12 +647,12 @@ public class ClassImpl
 		try {
 		    final @NonNull /*@Thrown*/ List<Constraint> ownedInvariants = this.getOwnedInvariants();
 		    final @NonNull /*@Thrown*/ SetValue BOXED_ownedInvariants = idResolver.createSetOfAll(PivotTables.SET_CLSSid_Constraint, ownedInvariants);
-		    @NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValuesUtil.createSetAccumulatorValue(PivotTables.SET_CLSSid_Constraint);
+		    @NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValueUtil.createSetAccumulatorValue(PivotTables.SET_CLSSid_Constraint);
 		    @Nullable Iterator<?> ITERATOR__1 = BOXED_ownedInvariants.iterator();
 		    /*@Thrown*/ boolean isUnique;
 		    while (true) {
 		        if (!ITERATOR__1.hasNext()) {
-		            isUnique = ValuesUtil.TRUE_VALUE;
+		            isUnique = ValueUtil.TRUE_VALUE;
 		            break;
 		        }
 		        @Nullable /*@NonInvalid*/ Constraint _1 = (Constraint)ITERATOR__1.next();
@@ -664,8 +664,8 @@ public class ClassImpl
 		        }
 		        final @Nullable /*@Thrown*/ String name = _1.getName();
 		        //
-		        if (accumulator.includes(name) == ValuesUtil.TRUE_VALUE) {
-		            isUnique = ValuesUtil.FALSE_VALUE;			// Abort after second find
+		        if (accumulator.includes(name) == ValueUtil.TRUE_VALUE) {
+		            isUnique = ValueUtil.FALSE_VALUE;			// Abort after second find
 		            break;
 		        }
 		        else {
@@ -675,9 +675,9 @@ public class ClassImpl
 		    CAUGHT_isUnique = isUnique;
 		}
 		catch (Exception e) {
-		    CAUGHT_isUnique = ValuesUtil.createInvalidValue(e);
+		    CAUGHT_isUnique = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_isUnique == ValuesUtil.TRUE_VALUE) {
+		if (CAUGHT_isUnique == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {

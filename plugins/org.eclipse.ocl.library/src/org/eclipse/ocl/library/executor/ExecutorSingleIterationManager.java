@@ -20,7 +20,7 @@ import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.AbstractIterationManager;
 import org.eclipse.ocl.domain.library.LibraryBinaryOperation;
 import org.eclipse.ocl.domain.values.CollectionValue;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 public class ExecutorSingleIterationManager extends AbstractIterationManager
 {	
@@ -61,7 +61,7 @@ public class ExecutorSingleIterationManager extends AbstractIterationManager
 	public ExecutorSingleIterationManager(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @NonNull LibraryBinaryOperation body,
 			@Nullable CollectionValue value, @Nullable Object accumulatorValue) {
 		super(evaluator);
-		this.collectionValue = ValuesUtil.asCollectionValue(value);
+		this.collectionValue = ValueUtil.asCollectionValue(value);
 		this.returnTypeId = returnTypeId;
 		this.body = body;
 		updateAccumulator(accumulatorValue);

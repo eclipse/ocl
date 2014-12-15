@@ -14,7 +14,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIterator;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTypeId;
@@ -22,6 +21,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBuiltInIterationCallExp;
 import org.eclipse.ocl.examples.codegen.java.JavaConstants;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 public class IsUniqueIteration2Java extends AbstractAccumulation2Java
 {
@@ -31,7 +31,7 @@ public class IsUniqueIteration2Java extends AbstractAccumulation2Java
 	public void appendAccumulatorInit(@NonNull JavaStream js, @NonNull CGBuiltInIterationCallExp cgIterationCallExp) {
 		CGTypeId cgAccumulatorId = cgIterationCallExp.getSource().getTypeId();
 		CollectionTypeId elementId = (CollectionTypeId)cgAccumulatorId.getElementId();
-		js.appendClassReference(ValuesUtil.class);
+		js.appendClassReference(ValueUtil.class);
 		js.append(".createSetAccumulatorValue(");
 		js.appendIdReference(elementId != null ? elementId : TypeId.OCL_VOID);
 		js.append(")");
@@ -51,13 +51,13 @@ public class IsUniqueIteration2Java extends AbstractAccumulation2Java
 		js.append(".includes(");
 		js.appendValueName(cgBody);
 		js.append(") == ");
-		js.appendClassReference(ValuesUtil.class);
+		js.appendClassReference(ValueUtil.class);
 		js.append(".TRUE_VALUE) {\n");
 		{
 			js.pushIndentation(null);
 			js.appendValueName(cgIterationCallExp);
 			js.append(" = ");
-			js.appendClassReference(ValuesUtil.class);
+			js.appendClassReference(ValueUtil.class);
 			js.append(".FALSE_VALUE;			// Abort after second find\n");
 			js.append("break;\n");
 			js.popIndentation();

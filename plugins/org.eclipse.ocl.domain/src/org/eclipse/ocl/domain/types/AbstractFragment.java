@@ -11,13 +11,13 @@
 package org.eclipse.ocl.domain.types;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.pivot.CompleteInheritance;
+import org.eclipse.ocl.pivot.InheritanceFragment;
 import org.eclipse.ocl.pivot.Operation;
 
-public abstract class AbstractFragment implements DomainFragment
+public abstract class AbstractFragment implements InheritanceFragment
 {
 	public final @NonNull CompleteInheritance derivedInheritance;
 	public final @NonNull CompleteInheritance baseInheritance;
@@ -44,10 +44,10 @@ public abstract class AbstractFragment implements DomainFragment
 			int bestDepth = -1;
 			int minDepth = baseInheritance.getDepth();
 			for (int depth = derivedInheritance.getDepth()-1; depth >= minDepth; depth--) {
-				Iterable<DomainFragment> derivedSuperFragments = derivedInheritance.getSuperFragments(depth);
-				for (DomainFragment derivedSuperFragment : derivedSuperFragments) {
+				Iterable<InheritanceFragment> derivedSuperFragments = derivedInheritance.getSuperFragments(depth);
+				for (InheritanceFragment derivedSuperFragment : derivedSuperFragments) {
 					CompleteInheritance superInheritance = derivedSuperFragment.getBaseInheritance();
-					DomainFragment superFragment = superInheritance.getFragment(baseInheritance);
+					InheritanceFragment superFragment = superInheritance.getFragment(baseInheritance);
 					if (superFragment != null) {
 						Operation overload = superFragment.getLocalOperation(apparentOperation);
 						if (overload != null) {
@@ -87,7 +87,7 @@ public abstract class AbstractFragment implements DomainFragment
 	}
 
 	@Override
-	public final @NonNull DomainFragment getBaseFragment() {
+	public final @NonNull InheritanceFragment getBaseFragment() {
 		return baseInheritance.getSelfFragment();
 	}
 

@@ -13,7 +13,7 @@ package org.eclipse.ocl.library.numeric;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.library.AbstractSimpleBinaryOperation;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * NumericCompareToOperation realises the numeric compareTo() library operation.
@@ -30,7 +30,7 @@ public class NumericCompareToOperation extends AbstractSimpleBinaryOperation
 			return compareTo;
 		}
 		else {
-			@SuppressWarnings("null")@NonNull Integer valueOf = Integer.valueOf(ValuesUtil.throwUnsupportedCompareTo(left, right));
+			@SuppressWarnings("null")@NonNull Integer valueOf = Integer.valueOf(ValueUtil.throwUnsupportedCompareTo(left, right));
 			return valueOf;
 		}
 //		RealValue leftNumeric = asRealValue(left);

@@ -20,7 +20,7 @@ import org.eclipse.ocl.domain.library.AbstractIterationManager;
 import org.eclipse.ocl.domain.library.LibraryTernaryOperation;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.CollectionValue;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 public class ExecutorDoubleIterationManager extends AbstractIterationManager
 {	
@@ -39,7 +39,7 @@ public class ExecutorDoubleIterationManager extends AbstractIterationManager
 		this.returnTypeId = returnTypeId;
 		this.body = body;
 		this.accumulatorValue = accumulatorValue;
-		this.collectionValue = ValuesUtil.asCollectionValue(collectionValue);
+		this.collectionValue = ValueUtil.asCollectionValue(collectionValue);
 		this.iteratorValue1 = this.collectionValue.iterator();
 		this.iteratorValue2 = this.collectionValue.iterator();
 		currentValue1 = iteratorValue1.hasNext() ? iteratorValue1.next() : null;

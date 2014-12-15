@@ -24,11 +24,12 @@ import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.values.CollectionValue;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.OrderedCollectionValue;
 import org.eclipse.ocl.domain.values.OrderedSetValue;
 import org.eclipse.ocl.domain.values.SequenceValue;
 import org.eclipse.ocl.domain.values.ValuesPackage;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * @generated NOT
@@ -224,7 +225,7 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
         if (index < 0) {
         	throw new InvalidValueException(EvaluatorMessages.MissingValue, "indexOf");
         }
-    	return ValuesUtil.integerValueOf(index+1);
+    	return ValueUtil.integerValueOf(index+1);
     }
 
     @Override

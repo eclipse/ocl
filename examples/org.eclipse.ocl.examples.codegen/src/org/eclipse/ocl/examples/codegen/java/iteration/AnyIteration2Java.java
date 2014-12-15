@@ -13,12 +13,12 @@ package org.eclipse.ocl.examples.codegen.java.iteration;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIterator;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBuiltInIterationCallExp;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 public class AnyIteration2Java extends AbstractIteration2Java
 {
@@ -32,7 +32,7 @@ public class AnyIteration2Java extends AbstractIteration2Java
 			js.append("if (");
 			js.appendValueName(cgBody);
 			js.append(" != ");
-			js.appendClassReference(ValuesUtil.class);
+			js.appendClassReference(ValueUtil.class);
 			js.append(".FALSE_VALUE) {			// Carry on till something found\n");
 			js.pushIndentation(null);
 				js.appendValueName(cgIterationCallExp);

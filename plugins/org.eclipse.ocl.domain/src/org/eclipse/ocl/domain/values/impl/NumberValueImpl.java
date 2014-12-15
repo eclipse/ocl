@@ -21,6 +21,7 @@ import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.values.BagValue;
 import org.eclipse.ocl.domain.values.CollectionValue;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.NumberValue;
 import org.eclipse.ocl.domain.values.OCLValue;
 import org.eclipse.ocl.domain.values.ObjectValue;

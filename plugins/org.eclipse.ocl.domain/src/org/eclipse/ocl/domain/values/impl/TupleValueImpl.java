@@ -18,9 +18,10 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.ids.TuplePartId;
 import org.eclipse.ocl.domain.ids.TupleTypeId;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.TupleValue;
 import org.eclipse.ocl.domain.values.ValuesPackage;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * UML implementation of a tuple value.
@@ -159,7 +160,7 @@ public class TupleValueImpl extends ValueImpl implements TupleValue
             }
 			result.append(partId.getDisplayName());
             result.append(" = "); //$NON-NLS-1$a	
-            ValuesUtil.toString(partValues[i], result, 40);
+            ValueUtil.toString(partValues[i], result, 40);
         }       
         result.append("}"); //$NON-NLS-1$
         return result.toString();

@@ -15,7 +15,6 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.AbstractExecutorOperation;
-import org.eclipse.ocl.domain.elements.DomainParameterTypes;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.ids.OperationId;
 import org.eclipse.ocl.domain.ids.ParametersId;
@@ -26,17 +25,18 @@ import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.ParameterTypes;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 
 public class ExecutorOperation extends AbstractExecutorOperation
 {
-	protected final @NonNull DomainParameterTypes parameterTypes;
+	protected final @NonNull ParameterTypes parameterTypes;
 	protected final int index;
 	protected final @NonNull LibraryFeature implementation;
 	protected final @NonNull DomainTypeParameters typeParameters;
 	
-	public ExecutorOperation(@NonNull String name, @NonNull DomainParameterTypes parameterTypes, @NonNull Type type, int index, @NonNull DomainTypeParameters typeParameters, @Nullable LibraryFeature implementation) {
+	public ExecutorOperation(@NonNull String name, @NonNull ParameterTypes parameterTypes, @NonNull Type type, int index, @NonNull DomainTypeParameters typeParameters, @Nullable LibraryFeature implementation) {
 		super(name, type);
 		this.parameterTypes = parameterTypes;
 		this.index = index;
@@ -95,7 +95,7 @@ public class ExecutorOperation extends AbstractExecutorOperation
 	}
 	
 	@Override
-	public @NonNull DomainParameterTypes getParameterTypes() {
+	public @NonNull ParameterTypes getParameterTypes() {
 		return parameterTypes;
 	}
 

@@ -23,6 +23,7 @@ import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.values.BagValue;
 import org.eclipse.ocl.domain.values.CollectionValue;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.ObjectValue;
 import org.eclipse.ocl.domain.values.OrderedCollectionValue;
 import org.eclipse.ocl.domain.values.OrderedSetValue;
@@ -34,13 +35,13 @@ import org.eclipse.ocl.domain.values.UniqueCollectionValue;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.Value;
 import org.eclipse.ocl.domain.values.ValuesPackage;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * @generated NOT
  */
-public abstract class ValueImpl extends ValuesUtil implements Value
+public abstract class ValueImpl extends ValueUtil implements Value
 {
     static class EmptyIterator implements Iterator<Value>
     {

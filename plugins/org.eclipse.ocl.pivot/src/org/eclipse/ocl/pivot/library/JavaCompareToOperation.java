@@ -17,8 +17,8 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.AbstractSimpleBinaryOperation;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.domain.values.InvalidValueException;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 public class JavaCompareToOperation extends AbstractSimpleBinaryOperation
 {
@@ -37,7 +37,7 @@ public class JavaCompareToOperation extends AbstractSimpleBinaryOperation
 			if (!(result instanceof Integer)) {
 				throw new InvalidValueException(EvaluatorMessages.TypedResultRequired, TypeId.INTEGER_NAME);
 			}
-			return ValuesUtil.integerValueOf(((Integer)result).intValue());
+			return ValueUtil.integerValueOf(((Integer)result).intValue());
 		} catch (Exception e) {
 			throw new InvalidValueException(e, EvaluatorMessages.TypedResultRequired, TypeId.INTEGER_NAME);
 		}

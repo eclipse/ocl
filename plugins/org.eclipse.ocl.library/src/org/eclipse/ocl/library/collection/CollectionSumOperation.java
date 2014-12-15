@@ -16,10 +16,10 @@ import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.AbstractUnaryOperation;
 import org.eclipse.ocl.domain.values.CollectionValue;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.library.numeric.NumericPlusOperation;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * CollectionSumOperation realises the Collection::sum() library operation.
@@ -37,10 +37,10 @@ public class CollectionSumOperation extends AbstractUnaryOperation
 		Type returnType = evaluator.getIdResolver().getType(returnTypeId, null);
 		Object result;
 		if (returnType.conformsTo(standardLibrary, standardLibrary.getIntegerType())) {
-			result = ValuesUtil.integerValueOf(0);
+			result = ValueUtil.integerValueOf(0);
 		}
 		else {
-			result = ValuesUtil.realValueOf(0.0);
+			result = ValueUtil.realValueOf(0.0);
 		}
         for (Object element : collectionValue.iterable()) {
         	result = NumericPlusOperation.INSTANCE.evaluate(result, element);

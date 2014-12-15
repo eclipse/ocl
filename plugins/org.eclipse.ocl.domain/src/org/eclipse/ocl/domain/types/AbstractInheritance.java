@@ -13,7 +13,6 @@ package org.eclipse.ocl.domain.types;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.AbstractExecutorNamedElement;
-import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.ids.ParametersId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.LibraryFeature;
@@ -21,15 +20,16 @@ import org.eclipse.ocl.domain.library.UnsupportedOperation;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.utilities.IndexableIterable;
 import org.eclipse.ocl.pivot.CompleteInheritance;
+import org.eclipse.ocl.pivot.InheritanceFragment;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 
 public abstract class AbstractInheritance extends AbstractExecutorNamedElement implements CompleteInheritance
 {
-	public static class FragmentIterable implements IndexableIterable<DomainFragment>
+	public static class FragmentIterable implements IndexableIterable<InheritanceFragment>
 	{
-		protected class Iterator implements java.util.Iterator<DomainFragment>
+		protected class Iterator implements java.util.Iterator<InheritanceFragment>
 		{
 			private int index = firstIndex;
 			
@@ -39,7 +39,7 @@ public abstract class AbstractInheritance extends AbstractExecutorNamedElement i
 			}
 
 			@Override
-			public DomainFragment next() {
+			public InheritanceFragment next() {
 				return array[index++];
 			}
 
@@ -49,29 +49,29 @@ public abstract class AbstractInheritance extends AbstractExecutorNamedElement i
 			}
 		}
 		
-		private final DomainFragment[] array;
+		private final InheritanceFragment[] array;
 		private final int firstIndex;
 		private final int lastIndex;
 		
-		public FragmentIterable(@NonNull DomainFragment[] array) {
+		public FragmentIterable(@NonNull InheritanceFragment[] array) {
 			this.array = array;
 			this.firstIndex = 0;
 			this.lastIndex = array.length;
 		}
 		
-		public FragmentIterable(@NonNull DomainFragment[] array, int firstIndex, int lastIndex) {
+		public FragmentIterable(@NonNull InheritanceFragment[] array, int firstIndex, int lastIndex) {
 			this.array = array;
 			this.firstIndex = firstIndex;
 			this.lastIndex = lastIndex;
 		}
 
 		@Override
-		public @NonNull DomainFragment get(int index) {
+		public @NonNull InheritanceFragment get(int index) {
 			return DomainUtil.nonNullState(array[firstIndex + index]);
 		}
 		
 		@Override
-		public @NonNull java.util.Iterator<DomainFragment> iterator() {
+		public @NonNull java.util.Iterator<InheritanceFragment> iterator() {
 			return new Iterator();
 		}
 
@@ -171,12 +171,12 @@ public abstract class AbstractInheritance extends AbstractExecutorNamedElement i
 	}
 
 	@Override
-	public @Nullable DomainFragment getFragment(@NonNull CompleteInheritance thatInheritance) {
+	public @Nullable InheritanceFragment getFragment(@NonNull CompleteInheritance thatInheritance) {
 		int staticDepth = thatInheritance.getDepth();
 		if (staticDepth <= getDepth()) {
 			int iMax = getIndex(staticDepth+1);
 			for (int i = getIndex(staticDepth); i < iMax; i++) {
-				DomainFragment fragment = getFragment(i);
+				InheritanceFragment fragment = getFragment(i);
 				if (fragment.getBaseInheritance() == thatInheritance) {
 					return fragment;
 				}
@@ -231,7 +231,7 @@ public abstract class AbstractInheritance extends AbstractExecutorNamedElement i
 		if (apparentDepth+1 < getIndexes()) {				// null and invalid may fail here
 			int iMax = getIndex(apparentDepth+1);
 			for (int i = getIndex(apparentDepth); i < iMax; i++) {
-				DomainFragment fragment = getFragment(i);
+				InheritanceFragment fragment = getFragment(i);
 				if (fragment.getBaseInheritance() == apparentInheritance) {
 					Operation actualOperation = fragment.getActualOperation(apparentOperation);
 					return actualOperation;
@@ -249,7 +249,7 @@ public abstract class AbstractInheritance extends AbstractExecutorNamedElement i
 		if (apparentDepth+1 < getIndexes()) {				// null and invalid may fail here
 			int iMax = getIndex(apparentDepth+1);
 			for (int i = getIndex(apparentDepth); i < iMax; i++) {
-				DomainFragment fragment = getFragment(i);
+				InheritanceFragment fragment = getFragment(i);
 				if (fragment.getBaseInheritance() == apparentInheritance) {
 					return fragment.getImplementation(apparentOperation);
 				}

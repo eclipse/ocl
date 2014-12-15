@@ -18,11 +18,12 @@ import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.utilities.TypeUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 public class AbstractCollectionType extends AbstractSpecializedType implements CollectionType
 {
@@ -35,8 +36,8 @@ public class AbstractCollectionType extends AbstractSpecializedType implements C
 			@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		super(name, containerType);
 		this.elementType = elementType;
-		this.lower = lower != null ? lower : ValuesUtil.ZERO_VALUE;
-		this.upper = upper != null ? upper : ValuesUtil.UNLIMITED_VALUE;
+		this.lower = lower != null ? lower : ValueUtil.ZERO_VALUE;
+		this.upper = upper != null ? upper : ValueUtil.UNLIMITED_VALUE;
 		this.typeId = IdManager.getCollectionTypeId(name).getSpecializedId(elementType.getTypeId());
 	}
 
@@ -48,7 +49,7 @@ public class AbstractCollectionType extends AbstractSpecializedType implements C
 		if (!(type instanceof CollectionType)) {
 			return false;
 		}
-		return TypeUtils.conformsToCollectionType(standardLibrary, this, (CollectionType)type);
+		return TypeUtil.conformsToCollectionType(standardLibrary, this, (CollectionType)type);
 	}
 
 	@Override
@@ -130,7 +131,7 @@ public class AbstractCollectionType extends AbstractSpecializedType implements C
 		if (!(type instanceof CollectionType)) {
 			return false;
 		}
-		return TypeUtils.isEqualToCollectionType(standardLibrary, this, (CollectionType)type);
+		return TypeUtil.isEqualToCollectionType(standardLibrary, this, (CollectionType)type);
 	}
 
 	@Override

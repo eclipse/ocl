@@ -49,9 +49,8 @@ import org.eclipse.ocl.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.domain.evaluation.EvaluationHaltedException;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.CollectionValue;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.Value;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Environment;
 import org.eclipse.ocl.pivot.EnvironmentFactory;
@@ -73,6 +72,7 @@ import org.eclipse.ocl.pivot.utilities.BaseResource;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironment;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.examples.xtext.console.actions.CloseAction;
 import org.eclipse.ocl.examples.xtext.console.actions.DebugAction;
 import org.eclipse.ocl.examples.xtext.console.actions.LoadExpressionAction;
@@ -781,18 +781,18 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
         		}
         	}
         	else if (value != null) {
-        		CollectionValue collectionValue = ValuesUtil.isCollectionValue(value);
+        		CollectionValue collectionValue = ValueUtil.isCollectionValue(value);
 				if (collectionValue != null) {
 					for (Object elementValue : collectionValue.iterable()) {
-						append(ValuesUtil.stringValueOf(elementValue), ColorManager.OUTPUT_RESULTS, false);
+						append(ValueUtil.stringValueOf(elementValue), ColorManager.OUTPUT_RESULTS, false);
 	        		}
 				}
 	        	else {
-	        		append(ValuesUtil.stringValueOf(value), ColorManager.OUTPUT_RESULTS, false);
+	        		append(ValueUtil.stringValueOf(value), ColorManager.OUTPUT_RESULTS, false);
 	        	}
         	}
         	else {
-        		append(ValuesUtil.stringValueOf(value), ColorManager.OUTPUT_ERROR, false);
+        		append(ValueUtil.stringValueOf(value), ColorManager.OUTPUT_ERROR, false);
         	}
             scrollText();
             

@@ -13,11 +13,11 @@ package org.eclipse.ocl.examples.codegen.cgmodel.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGUnlimited;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -63,7 +63,7 @@ public class CGUnlimitedImpl extends CGConstantImpl implements CGUnlimited {
 	 */
 	@Override
 	public @NonNull Object getConstantValue() {
-		return ValuesUtil.UNLIMITED_VALUE;
+		return ValueUtil.UNLIMITED_VALUE;
 	}
 
 	/**

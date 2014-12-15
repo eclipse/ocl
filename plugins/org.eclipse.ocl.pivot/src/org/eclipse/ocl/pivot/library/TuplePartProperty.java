@@ -17,8 +17,8 @@ import org.eclipse.ocl.domain.ids.TuplePartId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.AbstractProperty;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.TupleValue;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 
 public class TuplePartProperty extends AbstractProperty
 {

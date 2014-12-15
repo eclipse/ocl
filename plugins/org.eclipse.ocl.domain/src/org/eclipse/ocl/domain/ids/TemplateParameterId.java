@@ -11,7 +11,7 @@
 package org.eclipse.ocl.domain.ids;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.Nameable;
+import org.eclipse.ocl.pivot.Nameable;
 
 /**
  * A TemplateParameterId provides a unique identifier for a template parameter such as Set<T> or product<T>(...).

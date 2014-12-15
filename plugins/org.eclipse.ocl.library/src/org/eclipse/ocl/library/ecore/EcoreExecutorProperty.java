@@ -18,9 +18,9 @@ import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.LibraryProperty;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.library.executor.ExecutorProperty;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 public class EcoreExecutorProperty extends ExecutorProperty implements LibraryProperty
 {			// FIXME Eliminate spurious ExecutorProperty rather than AbstractExecutorProperty once API has evolved publicly
@@ -34,7 +34,7 @@ public class EcoreExecutorProperty extends ExecutorProperty implements LibraryPr
 
 	@Override
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
-		EObject eObject = ValuesUtil.asNavigableObject(sourceValue, eFeature);
+		EObject eObject = ValueUtil.asNavigableObject(sourceValue, eFeature);
 		Object eValue = eObject.eGet(eFeature);
 		return eValue != null ? evaluator.getIdResolver().boxedValueOf(eValue, eFeature, returnTypeId) : null;
 	}

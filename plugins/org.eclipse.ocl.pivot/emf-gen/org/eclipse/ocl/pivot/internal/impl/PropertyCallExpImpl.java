@@ -27,8 +27,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.library.classifier.OclTypeConformsToOperation;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.DataType;
@@ -45,6 +44,7 @@ import org.eclipse.ocl.pivot.manager.TemplateSpecialisation;
 import org.eclipse.ocl.pivot.util.PivotValidator;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -504,7 +504,7 @@ public class PropertyCallExpImpl
 		            CAUGHT_self_71 = self_71;
 		        }
 		        catch (Exception e) {
-		            CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
+		            CAUGHT_self_71 = ValueUtil.createInvalidValue(e);
 		        }
 		        if (CAUGHT_self_71 instanceof InvalidValueException) {
 		            throw (InvalidValueException)CAUGHT_self_71;
@@ -529,7 +529,7 @@ public class PropertyCallExpImpl
 		        CAUGHT_symbol_2 = symbol_2;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_symbol_2 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_symbol_2 = ValueUtil.createInvalidValue(e);
 		    }
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
@@ -544,7 +544,7 @@ public class PropertyCallExpImpl
 		        CAUGHT_b = b;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_b = ValueUtil.createInvalidValue(e);
 		    }
 		    final /*@NonInvalid*/ boolean symbol_3 = CAUGHT_symbol_2 instanceof InvalidValueException;
 		    @Nullable /*@Thrown*/ Boolean symbol_12;
@@ -560,7 +560,7 @@ public class PropertyCallExpImpl
 		        else {
 		            @Nullable /*@Thrown*/ Boolean symbol_5;
 		            if (CAUGHT_b == Boolean.TRUE) {
-		                symbol_5 = ValuesUtil.TRUE_VALUE;
+		                symbol_5 = ValueUtil.TRUE_VALUE;
 		            }
 		            else {
 		                if (CAUGHT_symbol_2 instanceof InvalidValueException) {
@@ -579,7 +579,7 @@ public class PropertyCallExpImpl
 		        final /*@Thrown*/ boolean eq_1 = CAUGHT_symbol_2 == Boolean.FALSE;
 		        @Nullable /*@Thrown*/ Boolean symbol_11;
 		        if (eq_1) {
-		            symbol_11 = ValuesUtil.TRUE_VALUE;
+		            symbol_11 = ValueUtil.TRUE_VALUE;
 		        }
 		        else {
 		            final /*@NonInvalid*/ boolean symbol_7 = CAUGHT_b instanceof InvalidValueException;
@@ -593,7 +593,7 @@ public class PropertyCallExpImpl
 		            else {
 		                @Nullable /*@NonInvalid*/ Boolean symbol_9;
 		                if (CAUGHT_b == Boolean.TRUE) {
-		                    symbol_9 = ValuesUtil.TRUE_VALUE;
+		                    symbol_9 = ValueUtil.TRUE_VALUE;
 		                }
 		                else {
 		                    final /*@Thrown*/ boolean eq_2 = CAUGHT_symbol_2 == null;
@@ -602,7 +602,7 @@ public class PropertyCallExpImpl
 		                        symbol_8 = null;
 		                    }
 		                    else {
-		                        symbol_8 = ValuesUtil.FALSE_VALUE;
+		                        symbol_8 = ValueUtil.FALSE_VALUE;
 		                    }
 		                    symbol_9 = symbol_8;
 		                }
@@ -615,9 +615,9 @@ public class PropertyCallExpImpl
 		    CAUGHT_symbol_12 = symbol_12;
 		}
 		catch (Exception e) {
-		    CAUGHT_symbol_12 = ValuesUtil.createInvalidValue(e);
+		    CAUGHT_symbol_12 = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_symbol_12 == ValuesUtil.TRUE_VALUE) {
+		if (CAUGHT_symbol_12 == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {
@@ -643,14 +643,14 @@ public class PropertyCallExpImpl
 		try {
 		    final @Nullable /*@Thrown*/ Type type = this.getType();
 		    final @NonNull /*@Thrown*/ org.eclipse.ocl.pivot.Class getSpecializedReferredPropertyType = this.getSpecializedReferredPropertyType();
-		    final /*@Thrown*/ boolean eq = (type != null) ? (type.getTypeId() == getSpecializedReferredPropertyType.getTypeId()) : ValuesUtil.throwBooleanInvalidValueException("null equal input");
+		    final /*@Thrown*/ boolean eq = (type != null) ? (type.getTypeId() == getSpecializedReferredPropertyType.getTypeId()) : ValueUtil.throwBooleanInvalidValueException("null equal input");
 		    ;
 		    CAUGHT_eq = eq;
 		}
 		catch (Exception e) {
-		    CAUGHT_eq = ValuesUtil.createInvalidValue(e);
+		    CAUGHT_eq = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_eq == ValuesUtil.TRUE_VALUE) {
+		if (CAUGHT_eq == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {

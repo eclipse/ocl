@@ -27,7 +27,6 @@ import org.eclipse.emf.codegen.util.CodeGenUtil;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainParameterTypes;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.TemplateParameterId;
@@ -55,6 +54,7 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OrderedSetType;
+import org.eclipse.ocl.pivot.ParameterTypes;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.SequenceType;
 import org.eclipse.ocl.pivot.SetType;
@@ -473,7 +473,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 	}
 
 	protected void declareParameterLists() {
-		Set<DomainParameterTypes> allLists = new HashSet<DomainParameterTypes>();
+		Set<ParameterTypes> allLists = new HashSet<ParameterTypes>();
 		for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : activeClassesSortedByName) {
 			assert pClass != null;
 			for (Operation operation : getOperations(pClass)) {
@@ -484,16 +484,16 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append("	 *	The parameter lists shared by operations.\n");
 		s.append("	 */\n");
 		s.append("	public static class Parameters {\n");
-		List<DomainParameterTypes> sortedLists = new ArrayList<DomainParameterTypes>(allLists);
+		List<ParameterTypes> sortedLists = new ArrayList<ParameterTypes>(allLists);
 		Collections.sort(sortedLists, templateBindingNameComparator);
-		for (/*@NonNull*/ DomainParameterTypes types : sortedLists) {
+		for (/*@NonNull*/ ParameterTypes types : sortedLists) {
 			assert types != null;
 			s.append("		public static final " + atNonNull() + " ");
-			s.appendClassReference(DomainParameterTypes.class);
+			s.appendClassReference(ParameterTypes.class);
 			s.append(" ");
 			s.append(getTemplateBindingsName(types));
 			s.append(" = new ");
-			s.appendClassReference(DomainParameterTypes.class);
+			s.appendClassReference(ParameterTypes.class);
 			s.append("(");
 			for (int i = 0; i < types.size(); i++) {
 				if (i > 0) {

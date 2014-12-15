@@ -26,9 +26,7 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
-import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.domain.ids.OperationId;
 import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.domain.ids.ParametersId;
@@ -43,6 +41,8 @@ import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
+import org.eclipse.ocl.pivot.FeatureFilter;
+import org.eclipse.ocl.pivot.InheritanceFragment;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.PivotFactory;
@@ -732,10 +732,10 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 	@SuppressWarnings("null")
 	public @NonNull Iterable<CompleteClass> getSuperCompleteClasses() {
 		CompleteInheritance inheritance = getCompleteClass().getCompleteInheritance();
-		return Iterables.transform(inheritance.getAllSuperFragments(), new Function<DomainFragment, CompleteClass>()
+		return Iterables.transform(inheritance.getAllSuperFragments(), new Function<InheritanceFragment, CompleteClass>()
 		{
 			@Override
-			public CompleteClass apply(DomainFragment input) {
+			public CompleteClass apply(InheritanceFragment input) {
 				return ((CompleteInheritanceImpl)input.getBaseInheritance()).getCompleteClass();
 			}
 		});

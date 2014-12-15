@@ -24,7 +24,6 @@ import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.RealValue;
 import org.eclipse.ocl.domain.values.TemplateParameterSubstitutions;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBoxExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGUnboxExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
@@ -39,6 +38,7 @@ import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * An AbstractDescriptor provides the most fundamental capabilities of any type description: the correspondence to a pivot ElementId.
@@ -85,7 +85,7 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 				  || isAssignableTo(Short.class)
 				  || isAssignableTo(Byte.class)
 				  || isAssignableTo(Character.class)) {
-				js.appendClassReference(ValuesUtil.class);
+				js.appendClassReference(ValueUtil.class);
 				js.append(".integerValueOf(");
 				js.appendReferenceTo(unboxedValue);
 				js.append(")");
@@ -96,7 +96,7 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 		else if (isAssignableTo(BigDecimal.class)
 				  || isAssignableTo(Double.class)
 				  || isAssignableTo(Float.class)) {
-				js.appendClassReference(ValuesUtil.class);
+				js.appendClassReference(ValueUtil.class);
 				js.append(".realValueOf(");
 				js.appendReferenceTo(unboxedValue);
 				js.append(")");
@@ -119,7 +119,7 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 			throw new UnsupportedOperationException(getClass().getSimpleName() + " should be EnumerationObjectDescriptor");
 		}
 		else {//if (ObjectValue.class.isAssignableFrom(javaClass)) {
-			js.appendClassReference(ValuesUtil.class);
+			js.appendClassReference(ValueUtil.class);
 			js.append(".createObjectValue(");
 			js.appendIdReference(typeId);
 			js.append(", ");

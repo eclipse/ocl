@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 
 import org.eclipse.ocl.domain.values.Bag;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * Default implementation of the {@link Bag} interface.
@@ -47,7 +47,7 @@ public class BagImpl<E> extends AbstractCollection<E> implements Bag<E>
 
     @SuppressWarnings("unchecked")
 	public static <E> Bag<E> emptyBag() {
-		return (Bag<E>) ValuesUtil.EMPTY_BAG;
+		return (Bag<E>) ValueUtil.EMPTY_BAG;
 	}
 	
 	/**

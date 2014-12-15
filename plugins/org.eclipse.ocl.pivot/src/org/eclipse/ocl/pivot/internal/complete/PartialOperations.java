@@ -21,9 +21,9 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.domain.ids.ParametersId;
 import org.eclipse.ocl.pivot.CompleteInheritance;
+import org.eclipse.ocl.pivot.FeatureFilter;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 

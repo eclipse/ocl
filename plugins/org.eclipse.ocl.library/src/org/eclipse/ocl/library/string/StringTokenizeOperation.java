@@ -24,8 +24,8 @@ import org.eclipse.ocl.domain.library.LibraryBinaryOperation;
 import org.eclipse.ocl.domain.library.LibraryTernaryOperation;
 import org.eclipse.ocl.domain.library.LibraryUnaryOperation;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.SequenceValue;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.OperationCallExp;
 

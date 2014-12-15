@@ -28,14 +28,14 @@ import org.eclipse.ocl.domain.library.LibraryBinaryOperation;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.Value;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.domain.values.impl.ValueImpl;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.library.LibraryConstants;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.StandardLibrary;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * SelectIteration realizes the Collection::sortedBy() library iteration.
@@ -81,7 +81,7 @@ public class SortedByIteration extends AbstractIteration
 				return 1;
 			}
 			try {
-				IntegerValue comparison = ValuesUtil.asIntegerValue(implementation.evaluate(evaluator, TypeId.INTEGER, v1, v2));
+				IntegerValue comparison = ValueUtil.asIntegerValue(implementation.evaluate(evaluator, TypeId.INTEGER, v1, v2));
 				return comparison.signum();
 			} catch (InvalidValueException e) {
 				throw e;

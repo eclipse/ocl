@@ -33,10 +33,9 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.types.IdResolver;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.OrderedSetValue;
 import org.eclipse.ocl.domain.values.SetValue;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.library.collection.CollectionIsEmptyOperation;
 import org.eclipse.ocl.library.oclany.OclAnyOclAsSetOperation;
 import org.eclipse.ocl.library.oclany.OclAnyOclIsKindOfOperation;
@@ -54,6 +53,7 @@ import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.util.PivotValidator;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -258,9 +258,9 @@ public abstract class LoopExpImpl
 		    CAUGHT_oclIsKindOf = oclIsKindOf;
 		}
 		catch (Exception e) {
-		    CAUGHT_oclIsKindOf = ValuesUtil.createInvalidValue(e);
+		    CAUGHT_oclIsKindOf = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_oclIsKindOf == ValuesUtil.TRUE_VALUE) {
+		if (CAUGHT_oclIsKindOf == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {
@@ -290,12 +290,12 @@ public abstract class LoopExpImpl
 		try {
 		    final @NonNull /*@Thrown*/ List<Variable> iterator = this.getIterator();
 		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_iterator = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Variable, iterator);
-		    @NonNull /*@Thrown*/ Object accumulator = ValuesUtil.TRUE_VALUE;
+		    @NonNull /*@Thrown*/ Object accumulator = ValueUtil.TRUE_VALUE;
 		    @Nullable Iterator<?> ITERATOR__1 = BOXED_iterator.iterator();
 		    /*@Thrown*/ boolean forAll;
 		    while (true) {
 		        if (!ITERATOR__1.hasNext()) {
-		            if (accumulator == ValuesUtil.TRUE_VALUE) {
+		            if (accumulator == ValueUtil.TRUE_VALUE) {
 		                forAll = (Boolean)accumulator;
 		            }
 		            else {
@@ -318,14 +318,14 @@ public abstract class LoopExpImpl
 		            CAUGHT_isEmpty = isEmpty;
 		        }
 		        catch (Exception e) {
-		            CAUGHT_isEmpty = ValuesUtil.createInvalidValue(e);
+		            CAUGHT_isEmpty = ValueUtil.createInvalidValue(e);
 		        }
 		        //
-		        if (CAUGHT_isEmpty == ValuesUtil.FALSE_VALUE) {					// Normal unsuccessful body evaluation result
-		            forAll = ValuesUtil.FALSE_VALUE;
+		        if (CAUGHT_isEmpty == ValueUtil.FALSE_VALUE) {					// Normal unsuccessful body evaluation result
+		            forAll = ValueUtil.FALSE_VALUE;
 		            break;														// Stop immediately 
 		        }
-		        else if (CAUGHT_isEmpty == ValuesUtil.TRUE_VALUE) {				// Normal successful body evaluation result
+		        else if (CAUGHT_isEmpty == ValueUtil.TRUE_VALUE) {				// Normal successful body evaluation result
 		            ;															// Carry on
 		        }
 		        else if (CAUGHT_isEmpty instanceof InvalidValueException) {		// Abnormal exception evaluation result
@@ -338,9 +338,9 @@ public abstract class LoopExpImpl
 		    CAUGHT_forAll = forAll;
 		}
 		catch (Exception e) {
-		    CAUGHT_forAll = ValuesUtil.createInvalidValue(e);
+		    CAUGHT_forAll = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_forAll == ValuesUtil.TRUE_VALUE) {
+		if (CAUGHT_forAll == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {

@@ -21,8 +21,8 @@ import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.AbstractBinaryOperation;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.values.CollectionValue;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.TupleValue;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 
 /**
  * CollectionProductOperation realises the Collection::product() library operation.

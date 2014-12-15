@@ -32,6 +32,7 @@ import org.eclipse.ocl.domain.values.Bag;
 import org.eclipse.ocl.domain.values.BagValue;
 import org.eclipse.ocl.domain.values.CollectionValue;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.OrderedSet;
 import org.eclipse.ocl.domain.values.OrderedSetValue;
 import org.eclipse.ocl.domain.values.SequenceValue;
@@ -40,7 +41,7 @@ import org.eclipse.ocl.domain.values.TupleValue;
 import org.eclipse.ocl.domain.values.UniqueCollectionValue;
 import org.eclipse.ocl.domain.values.Value;
 import org.eclipse.ocl.domain.values.ValuesPackage;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * @generated NOT
@@ -199,7 +200,7 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 	
 	private boolean checkElementsAreValues(Iterable<? extends Object> elements) {
 		for (Object element : elements) {
-			assert ValuesUtil.isBoxed(element);
+			assert ValueUtil.isBoxed(element);
 //			if (element instanceof Collection<?>) {
 //				assert isNormalized((Iterable<?>)element);
 //				assert checkElementsAreValues((Iterable<?>)element);
@@ -315,7 +316,7 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 	            }
 	        } 
         }
-	    return ValuesUtil.integerValueOf(count);
+	    return ValueUtil.integerValueOf(count);
     }
 
     /**
@@ -383,7 +384,7 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 	public boolean flatten(@NonNull Collection<Object> flattenedElements) {
 		boolean flattened = false;
 		for (Object element : elements) {
-			CollectionValue collectionElement = ValuesUtil.isCollectionValue(element);
+			CollectionValue collectionElement = ValueUtil.isCollectionValue(element);
 			if (collectionElement != null) {
 				flattened = true;
 				collectionElement.flatten(flattenedElements);
@@ -577,7 +578,7 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 		if (this instanceof UniqueCollectionValue || that instanceof UniqueCollectionValue) {
         	@NonNull CollectionTypeId typeId = getSetTypeId();
         	if ((thisSize == 0) || (thatSize == 0)) {
-    			return new SetValueImpl(typeId, ValuesUtil.EMPTY_SET);
+    			return new SetValueImpl(typeId, ValueUtil.EMPTY_SET);
             }    	
             Set<Object> results;
             // loop over the smaller collection and add only elements
@@ -590,12 +591,12 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
                 results = new HashSet<Object>(thoseElements);
             	results.retainAll(theseElements);
             }
-        	return new SetValueImpl(typeId, results.size() > 0 ? results : ValuesUtil.EMPTY_SET);
+        	return new SetValueImpl(typeId, results.size() > 0 ? results : ValueUtil.EMPTY_SET);
         }
         else {
         	@NonNull CollectionTypeId typeId = getBagTypeId();
         	if ((thisSize == 0) || (thatSize == 0)) {
-                return new BagValueImpl(typeId, ValuesUtil.EMPTY_BAG);
+                return new BagValueImpl(typeId, ValueUtil.EMPTY_BAG);
             }    	
             Bag<Object> results = new BagImpl<Object>();
             // loop over the smaller collection and add only elements
@@ -608,7 +609,7 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
             		results.add(e);
             	}
             }
-        	return new BagValueImpl(typeId, results.size() > 0 ? results : ValuesUtil.EMPTY_BAG);
+        	return new BagValueImpl(typeId, results.size() > 0 ? results : ValueUtil.EMPTY_BAG);
         }
 	}
 
@@ -662,7 +663,7 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 
 	@Override
 	public @NonNull IntegerValue size() {
-		return ValuesUtil.integerValueOf(intSize());
+		return ValueUtil.integerValueOf(intSize());
 	}
 
 	@Override
@@ -681,7 +682,7 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 				s.append(",");
 			}
 			if (s.length() < lengthLimit) {
-				ValuesUtil.toString(element, s, lengthLimit-1);
+				ValueUtil.toString(element, s, lengthLimit-1);
 			}
 			else {
 				s.append("...");

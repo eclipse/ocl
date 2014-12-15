@@ -21,8 +21,8 @@
 package org.eclipse.ocl.pivot;
 
 import java.lang.String;
+
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainParameterTypes;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.ids.ClassId;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
@@ -34,7 +34,6 @@ import org.eclipse.ocl.domain.ids.PropertyId;
 import org.eclipse.ocl.domain.ids.RootPackageId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.values.IntegerValue;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.library.ecore.EcoreExecutorEnumeration;
 import org.eclipse.ocl.library.ecore.EcoreExecutorEnumerationLiteral;
 import org.eclipse.ocl.library.ecore.EcoreExecutorPackage;
@@ -48,6 +47,8 @@ import org.eclipse.ocl.library.executor.ExecutorPropertyWithImplementation;
 import org.eclipse.ocl.library.executor.ExecutorStandardLibrary;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.PivotTables;
+import org.eclipse.ocl.pivot.utilities.TypeUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * PivotTables provides the dispatch tables for the pivot for use by the OCL dispatcher.
@@ -177,7 +178,7 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ EnumerationId ENUMid_CollectionKind = PivotTables.PACKid_$metamodel$.getEnumerationId("CollectionKind");
     public static final @NonNull /*@NonInvalid*/ EnumerationId ENUMid_PseudostateKind = PivotTables.PACKid_$metamodel$.getEnumerationId("PseudostateKind");
     public static final @NonNull /*@NonInvalid*/ EnumerationId ENUMid_TransitionKind = PivotTables.PACKid_$metamodel$.getEnumerationId("TransitionKind");
-    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_1 = ValuesUtil.integerValueOf("1");
+    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_1 = ValueUtil.integerValueOf("1");
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_PRIMid_Integer = TypeId.SEQUENCE.getSpecializedId(TypeId.INTEGER);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_PRIMid_String = TypeId.SET.getSpecializedId(TypeId.STRING);
     public static final @NonNull /*@NonInvalid*/ String STR_Boolean = "Boolean";
@@ -1893,13 +1894,13 @@ public class PivotTables
 	 *	The parameter lists shared by operations.
 	 */
 	public static class Parameters {
-		public static final @NonNull DomainParameterTypes _ = new DomainParameterTypes();
-		public static final @NonNull DomainParameterTypes _OCLExpression___Type = new DomainParameterTypes(PivotTables.Types._OCLExpression, PivotTables.Types._Type);
-		public static final @NonNull DomainParameterTypes _Property = new DomainParameterTypes(PivotTables.Types._Property);
-		public static final @NonNull DomainParameterTypes _String = new DomainParameterTypes(OCLstdlibTables.Types._String);
-		public static final @NonNull DomainParameterTypes _Type = new DomainParameterTypes(PivotTables.Types._Type);
-		public static final @NonNull DomainParameterTypes _Type___String = new DomainParameterTypes(PivotTables.Types._Type, OCLstdlibTables.Types._String);
-		public static final @NonNull DomainParameterTypes _ValueSpecification = new DomainParameterTypes(PivotTables.Types._ValueSpecification);
+		public static final @NonNull ParameterTypes _ = TypeUtil.createParameterTypes();
+		public static final @NonNull ParameterTypes _OCLExpression___Type = TypeUtil.createParameterTypes(PivotTables.Types._OCLExpression, PivotTables.Types._Type);
+		public static final @NonNull ParameterTypes _Property = TypeUtil.createParameterTypes(PivotTables.Types._Property);
+		public static final @NonNull ParameterTypes _String = TypeUtil.createParameterTypes(OCLstdlibTables.Types._String);
+		public static final @NonNull ParameterTypes _Type = TypeUtil.createParameterTypes(PivotTables.Types._Type);
+		public static final @NonNull ParameterTypes _Type___String = TypeUtil.createParameterTypes(PivotTables.Types._Type, OCLstdlibTables.Types._String);
+		public static final @NonNull ParameterTypes _ValueSpecification = TypeUtil.createParameterTypes(PivotTables.Types._ValueSpecification);
 	}
 
 	/**

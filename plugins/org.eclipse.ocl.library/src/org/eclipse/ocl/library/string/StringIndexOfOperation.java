@@ -14,7 +14,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.library.AbstractSimpleBinaryOperation;
 import org.eclipse.ocl.domain.values.IntegerValue;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * StringIndexOfOperation realises the String::indexOf() library operation.
@@ -31,15 +31,15 @@ public class StringIndexOfOperation extends AbstractSimpleBinaryOperation
 			return ValuesUtil.integerValueOf(0);
 		}
 		else*/ if (rightString.length() <= 0) {
-			return ValuesUtil.integerValueOf(1);
+			return ValueUtil.integerValueOf(1);
 		}
 		else {
 			int index = leftString.indexOf(rightString);
 			if (index >= 0) {
-				return ValuesUtil.integerValueOf(index+1);
+				return ValueUtil.integerValueOf(index+1);
 			}
 			else {
-				return ValuesUtil.integerValueOf(0);
+				return ValueUtil.integerValueOf(0);
 			}
 		}
 	}

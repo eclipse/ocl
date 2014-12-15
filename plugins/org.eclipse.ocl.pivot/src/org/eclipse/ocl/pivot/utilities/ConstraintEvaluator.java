@@ -19,9 +19,8 @@ import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.TupleValue;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.OCLExpression;
@@ -136,7 +135,7 @@ public abstract class ConstraintEvaluator<T>
 			TupleTypeId tupleTypeId = tupleValue.getTypeId();
 			TuplePartId severityPartId = tupleTypeId.getPartId(PivotConstants.SEVERITY_PART_NAME);
 			if (severityPartId != null) {
-				IntegerValue value = ValuesUtil.integerValueOf(tupleValue.getValue(severityPartId));
+				IntegerValue value = ValueUtil.integerValueOf(tupleValue.getValue(severityPartId));
 				int signum = value.signum();
 				if (signum < 0) {
 					return Diagnostic.ERROR;

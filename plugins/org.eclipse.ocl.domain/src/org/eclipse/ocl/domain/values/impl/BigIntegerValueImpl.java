@@ -16,8 +16,9 @@ import java.math.BigInteger;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.RealValue;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * @generated NOT
@@ -41,13 +42,13 @@ public class BigIntegerValueImpl extends IntegerValueImpl
 	@Override
 	public @NonNull IntegerValue abs() {
 		@SuppressWarnings("null") @NonNull BigInteger result = value.abs();
-		return ValuesUtil.integerValueOf(result);
+		return ValueUtil.integerValueOf(result);
 	}
 
 	@Override
 	public @NonNull IntegerValue addInteger(@NonNull IntegerValue right) {
 		@SuppressWarnings("null") @NonNull BigInteger result = value.add(right.bigIntegerValue());
-		return ValuesUtil.integerValueOf(result);
+		return ValueUtil.integerValueOf(result);
 	}
 
 	@Override
@@ -102,7 +103,7 @@ public class BigIntegerValueImpl extends IntegerValueImpl
 			throw new InvalidValueException("div zero");
 		}
 		@SuppressWarnings("null") @NonNull BigInteger result = value.divide(right.bigIntegerValue());
-		return ValuesUtil.integerValueOf(result);
+		return ValueUtil.integerValueOf(result);
 	}
 
 	@Override
@@ -178,19 +179,19 @@ public class BigIntegerValueImpl extends IntegerValueImpl
 			throw new InvalidValueException("mod zero");
 		}
 		@SuppressWarnings("null") @NonNull BigInteger result = value.remainder(right.bigIntegerValue());
-		return ValuesUtil.integerValueOf(result);
+		return ValueUtil.integerValueOf(result);
 	}
 
 	@Override
 	public @NonNull IntegerValue multiplyInteger(@NonNull IntegerValue right) {
 		@SuppressWarnings("null") @NonNull BigInteger result = value.multiply(right.bigIntegerValue());
-		return ValuesUtil.integerValueOf(result);
+		return ValueUtil.integerValueOf(result);
 	}
 
 	@Override
 	public @NonNull IntegerValue negate() {
 		@SuppressWarnings("null") @NonNull BigInteger result = value.negate();
-		return ValuesUtil.integerValueOf(result);
+		return ValueUtil.integerValueOf(result);
 	}
 
 	@Override
@@ -201,7 +202,7 @@ public class BigIntegerValueImpl extends IntegerValueImpl
 	@Override
 	public @NonNull IntegerValue subtractInteger(@NonNull IntegerValue right) {
 		@SuppressWarnings("null") @NonNull BigInteger result = value.subtract(right.bigIntegerValue());
-		return ValuesUtil.integerValueOf(result);
+		return ValueUtil.integerValueOf(result);
 	}
 
 	@Override

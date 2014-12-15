@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot;
 
-import org.eclipse.ocl.domain.elements.Nameable;
 
 /**
  * <!-- begin-user-doc -->

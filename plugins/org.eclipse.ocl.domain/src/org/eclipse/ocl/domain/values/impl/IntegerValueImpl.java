@@ -19,14 +19,15 @@ import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.values.ComparableValue;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.NumberValue;
 import org.eclipse.ocl.domain.values.RealValue;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.UnlimitedValue;
 import org.eclipse.ocl.domain.values.ValuesPackage;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * @generated NOT
@@ -49,7 +50,7 @@ public abstract class IntegerValueImpl extends NumberValueImpl implements Intege
 	public @NonNull RealValue addReal(@NonNull RealValue rightValue) {
 		try {
 			@SuppressWarnings("null") @NonNull BigDecimal result = bigDecimalValue().add(rightValue.bigDecimalValue());
-			return ValuesUtil.realValueOf(result);
+			return ValueUtil.realValueOf(result);
 		} catch (InvalidValueException e) {
 			throw new InvalidValueException(EvaluatorMessages.InvalidReal, e, null, rightValue);
 		}
@@ -86,7 +87,7 @@ public abstract class IntegerValueImpl extends NumberValueImpl implements Intege
 			return ((NumberValue)left).commutatedCompareToReal(this);
 		}
 		else {
-			return ValuesUtil.throwUnsupportedCompareTo(left, this);
+			return ValueUtil.throwUnsupportedCompareTo(left, this);
 		}
 	}
 
@@ -126,7 +127,7 @@ public abstract class IntegerValueImpl extends NumberValueImpl implements Intege
 			return -right.commutatedCompareToInteger(this);
 		}
 		else {
-			return ValuesUtil.throwUnsupportedCompareTo(this, right);
+			return ValueUtil.throwUnsupportedCompareTo(this, right);
 		}
 	}
 
@@ -187,7 +188,7 @@ public abstract class IntegerValueImpl extends NumberValueImpl implements Intege
 	@Override
 	public @NonNull RealValue maxReal(@NonNull RealValue right) {
 		BigDecimal bigDecimalValue = bigDecimalValue();
-		return bigDecimalValue.compareTo(right.bigDecimalValue()) > 0 ? ValuesUtil.realValueOf(bigDecimalValue) : right;
+		return bigDecimalValue.compareTo(right.bigDecimalValue()) > 0 ? ValueUtil.realValueOf(bigDecimalValue) : right;
 	}
 
 	@Override
@@ -208,7 +209,7 @@ public abstract class IntegerValueImpl extends NumberValueImpl implements Intege
 	@Override
 	public @NonNull RealValue minReal(@NonNull RealValue right) {
 		BigDecimal bigDecimalValue = bigDecimalValue();
-		return bigDecimalValue.compareTo(right.bigDecimalValue()) < 0 ? ValuesUtil.realValueOf(bigDecimalValue) : right;
+		return bigDecimalValue.compareTo(right.bigDecimalValue()) < 0 ? ValueUtil.realValueOf(bigDecimalValue) : right;
 	}
 
 	@Override
@@ -225,7 +226,7 @@ public abstract class IntegerValueImpl extends NumberValueImpl implements Intege
 	public @NonNull RealValue multiplyReal(@NonNull RealValue rightValue) {
 		try {
 			@SuppressWarnings("null") @NonNull BigDecimal result = bigDecimalValue().multiply(rightValue.bigDecimalValue());
-			return ValuesUtil.realValueOf(result);
+			return ValueUtil.realValueOf(result);
 		} catch (InvalidValueException e) {
 			throw new InvalidValueException(EvaluatorMessages.InvalidReal, e, null, rightValue);
 		}
@@ -240,7 +241,7 @@ public abstract class IntegerValueImpl extends NumberValueImpl implements Intege
 	public @NonNull RealValue subtractReal(@NonNull RealValue rightValue) {
 		try {
 			@SuppressWarnings("null") @NonNull BigDecimal result = bigDecimalValue().subtract(rightValue.bigDecimalValue());
-			return ValuesUtil.realValueOf(result);
+			return ValueUtil.realValueOf(result);
 		} catch (InvalidValueException e) {
 			throw new InvalidValueException(EvaluatorMessages.InvalidReal, e, null, rightValue);
 		}

@@ -20,8 +20,7 @@ import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.AbstractProperty;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.ParserException;
@@ -30,6 +29,7 @@ import org.eclipse.ocl.pivot.Stereotype;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitorImpl;
 import org.eclipse.ocl.pivot.uml.UMLElementExtension;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * The static instance of ExplicitNavigationProperty supports evaluation of
@@ -81,7 +81,7 @@ public class ExtensionProperty extends AbstractProperty
 			}
 			TypeId typeId = property.getTypeId();
 			if (typeId instanceof CollectionTypeId) {
-				return ValuesUtil.createSetValue((CollectionTypeId) typeId, selectedExtensions);
+				return ValueUtil.createSetValue((CollectionTypeId) typeId, selectedExtensions);
 			}
 			else if (selectedExtensions.size() == 1) {
 				return selectedExtensions.get(0);

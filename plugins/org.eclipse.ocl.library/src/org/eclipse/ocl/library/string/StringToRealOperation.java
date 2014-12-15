@@ -14,7 +14,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.library.AbstractSimpleUnaryOperation;
 import org.eclipse.ocl.domain.values.RealValue;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * StringToRealOperation realises the String::toReal() library operation.
@@ -26,6 +26,6 @@ public class StringToRealOperation extends AbstractSimpleUnaryOperation
 	@Override
 	public @NonNull RealValue evaluate(@Nullable Object sourceVal) {
 		String sourceString = asString(sourceVal);
-		return ValuesUtil.realValueOf(sourceString);
+		return ValueUtil.realValueOf(sourceString);
 	}
 }

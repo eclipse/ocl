@@ -8,31 +8,33 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.domain.elements;
+package org.eclipse.ocl.domain.types;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.domain.elements.AbstractExecutorParameter;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.ParametersId;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.ParameterTypes;
 import org.eclipse.ocl.pivot.Type;
 
 /**
  * DomainParameterTypesIterable provides a hashable list of operation
  * parameters suitable for use when indexing operation overloads.
  */
-public class DomainParameterTypes
+public class ParameterTypesImpl implements ParameterTypes
 {
-	public static final @NonNull DomainParameterTypes EMPTY_LIST = new DomainParameterTypes();
+	public static final @NonNull ParameterTypesImpl EMPTY_LIST = new ParameterTypesImpl();
 	
 	private final @NonNull ParametersId parametersId;
 	private final @NonNull Type[] parameterTypes;
 	private final int hashCode;
 	private /*@LazyNonNull*/ List<Parameter> parameters = null;
 	
-	public DomainParameterTypes(@NonNull Type... parameterTypes) {
+	public ParameterTypesImpl(@NonNull Type... parameterTypes) {
 		this.parametersId = IdManager.getParametersId(parameterTypes);
 		this.parameterTypes = parameterTypes;
 		hashCode = parametersId.hashCode() + 0x999;
@@ -40,10 +42,10 @@ public class DomainParameterTypes
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof DomainParameterTypes)) {
+		if (!(obj instanceof ParameterTypesImpl)) {
 			return false;
 		}
-		DomainParameterTypes that = (DomainParameterTypes)obj;
+		ParameterTypesImpl that = (ParameterTypesImpl)obj;
 		if (hashCode() != that.hashCode()) {
 			return false;
 		}
@@ -59,6 +61,7 @@ public class DomainParameterTypes
 		return true;
 	}
 
+	@Override
 	public @NonNull Type get(int index) {
 		Type parameterType = parameterTypes[index];
 		assert parameterType != null;
@@ -69,10 +72,12 @@ public class DomainParameterTypes
 		return parameterTypes;
 	}
 
+	@Override
 	public @NonNull ParametersId getParametersId() {
 		return parametersId;
 	}
 	
+	@Override
 	public @NonNull List<Parameter> getParameters() {
 		List<Parameter> parameters2 = parameters;
 		if (parameters2 == null) {
@@ -90,6 +95,7 @@ public class DomainParameterTypes
 		return hashCode;
 	}
 
+	@Override
 	public int size() {
 		return parameterTypes.length;
 	}

@@ -14,7 +14,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.ElementId;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIterator;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTypeId;
@@ -23,6 +22,7 @@ import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
 import org.eclipse.ocl.examples.codegen.java.JavaConstants;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 public abstract class AbstractAccumulation2Java extends AbstractIteration2Java
 {
@@ -31,7 +31,7 @@ public abstract class AbstractAccumulation2Java extends AbstractIteration2Java
 		CGTypeId cgAccumulatorId = cgIterationCallExp.getTypeId();
 		CollectionTypeId elementId = (CollectionTypeId)cgAccumulatorId.getElementId();
 		String name = elementId.getGeneralizedId().getName();
-		js.appendClassReference(ValuesUtil.class);
+		js.appendClassReference(ValueUtil.class);
 		js.append(".create" + name + "AccumulatorValue(");
 		js.appendIdReference(elementId);
 		js.append(")");

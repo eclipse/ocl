@@ -28,10 +28,9 @@ import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.BagValue;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.OrderedSetValue;
 import org.eclipse.ocl.domain.values.SetValue;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.library.collection.CollectionIncludesOperation;
 import org.eclipse.ocl.library.collection.OrderedCollectionIndexOfOperation;
 import org.eclipse.ocl.library.collection.OrderedSetSubOrderedSetOperation;
@@ -64,6 +63,7 @@ import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 public class AutoPivotLookupVisitor
 	extends AbstractExtendingVisitor<Environment, Environment>
@@ -110,7 +110,7 @@ public class AutoPivotLookupVisitor
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Precedence = PACKid_$metamodel$.getClassId("Precedence", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Property = PACKid_$metamodel$.getClassId("Property", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Variable = PACKid_$metamodel$.getClassId("Variable", 0);
-    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_1 = ValuesUtil.integerValueOf("1");
+    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_1 = ValueUtil.integerValueOf("1");
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Operation = TypeId.BAG.getSpecializedId(CLSSid_Operation);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Property = TypeId.BAG.getSpecializedId(CLSSid_Property);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_EnumerationLiteral = TypeId.ORDERED_SET.getSpecializedId(CLSSid_EnumerationLiteral);
@@ -208,7 +208,7 @@ public class AutoPivotLookupVisitor
         };
         final @NonNull  ExecutorSingleIterationManager MGR_superClasses_1 = new ExecutorSingleIterationManager(evaluator, SET_CLSSid_Class, BODY_superClasses_1, oclAsSet, ACC_superClasses_1);
         final @NonNull /*@Thrown*/ SetValue superClasses = DomainUtil.nonNullState((SetValue)IMPL_superClasses_1.evaluateIteration(MGR_superClasses_1));
-        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator = ValuesUtil.createBagAccumulatorValue(BAG_CLSSid_Property);
+        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Property);
         @Nullable Iterator<?> ITERATOR__1_0 = superClasses.iterator();
         @NonNull /*@Thrown*/ BagValue collect;
         while (true) {
@@ -230,7 +230,7 @@ public class AutoPivotLookupVisitor
                 accumulator.add(value);
             }
         }
-        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_0 = ValuesUtil.createBagAccumulatorValue(BAG_CLSSid_Property);
+        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_0 = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Property);
         @Nullable Iterator<?> ITERATOR__1_1 = collect.iterator();
         @NonNull /*@Thrown*/ BagValue select;
         while (true) {
@@ -251,7 +251,7 @@ public class AutoPivotLookupVisitor
                 CAUGHT_self_0 = self_0;
             }
             catch (Exception e) {
-                CAUGHT_self_0 = ValuesUtil.createInvalidValue(e);
+                CAUGHT_self_0 = ValueUtil.createInvalidValue(e);
             }
             if (CAUGHT_self_0 instanceof InvalidValueException) {
                 throw (InvalidValueException)CAUGHT_self_0;
@@ -277,14 +277,14 @@ public class AutoPivotLookupVisitor
                 throw new InvalidValueException("Null body for \'Bag(T).select(Bag.T[?] | Lambda T() : Boolean) : Bag(T)\'");
             }
             //
-            if (symbol_3 == ValuesUtil.TRUE_VALUE) {
+            if (symbol_3 == ValueUtil.TRUE_VALUE) {
                 accumulator_0.add(_1_1);
             }
         }
         final List<Property> UNBOXED_select = select.asEcoreObjects(idResolver, Property.class);
         assert UNBOXED_select != null;
         final @NonNull /*@Thrown*/ Environment addElements = context.addElements(UNBOXED_select);
-        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_1 = ValuesUtil.createBagAccumulatorValue(BAG_CLSSid_Operation);
+        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_1 = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Operation);
         @Nullable Iterator<?> ITERATOR__1_2 = superClasses.iterator();
         @NonNull /*@Thrown*/ BagValue collect_0;
         while (true) {
@@ -306,7 +306,7 @@ public class AutoPivotLookupVisitor
                 accumulator_1.add(value);
             }
         }
-        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_2 = ValuesUtil.createBagAccumulatorValue(BAG_CLSSid_Operation);
+        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_2 = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Operation);
         @Nullable Iterator<?> ITERATOR__1_3 = collect_0.iterator();
         @NonNull /*@Thrown*/ BagValue select_0;
         while (true) {
@@ -327,7 +327,7 @@ public class AutoPivotLookupVisitor
                 CAUGHT_self_1 = self_1;
             }
             catch (Exception e) {
-                CAUGHT_self_1 = ValuesUtil.createInvalidValue(e);
+                CAUGHT_self_1 = ValueUtil.createInvalidValue(e);
             }
             if (CAUGHT_self_1 instanceof InvalidValueException) {
                 throw (InvalidValueException)CAUGHT_self_1;
@@ -353,7 +353,7 @@ public class AutoPivotLookupVisitor
                 throw new InvalidValueException("Null body for \'Bag(T).select(Bag.T[?] | Lambda T() : Boolean) : Bag(T)\'");
             }
             //
-            if (symbol_6 == ValuesUtil.TRUE_VALUE) {
+            if (symbol_6 == ValueUtil.TRUE_VALUE) {
                 accumulator_2.add(_1_3);
             }
         }
@@ -417,7 +417,7 @@ public class AutoPivotLookupVisitor
         final @NonNull /*@Thrown*/ Environment addElements = context.addElements(ownedLiteral);
         final @NonNull /*@Thrown*/ List<Property> ownedProperties = element_2.getOwnedProperties();
         final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedProperties = idResolver.createOrderedSetOfAll(ORD_CLSSid_Property, ownedProperties);
-        @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator = ValuesUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Property);
+        @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator = ValueUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Property);
         @Nullable Iterator<?> ITERATOR__1 = BOXED_ownedProperties.iterator();
         @NonNull /*@Thrown*/ OrderedSetValue select;
         while (true) {
@@ -438,7 +438,7 @@ public class AutoPivotLookupVisitor
                 CAUGHT_self_0 = self_0;
             }
             catch (Exception e) {
-                CAUGHT_self_0 = ValuesUtil.createInvalidValue(e);
+                CAUGHT_self_0 = ValueUtil.createInvalidValue(e);
             }
             if (CAUGHT_self_0 instanceof InvalidValueException) {
                 throw (InvalidValueException)CAUGHT_self_0;
@@ -464,7 +464,7 @@ public class AutoPivotLookupVisitor
                 throw new InvalidValueException("Null body for \'OrderedSet(T).select(OrderedSet.T[?] | Lambda T() : Boolean) : OrderedSet(T)\'");
             }
             //
-            if (symbol_2 == ValuesUtil.TRUE_VALUE) {
+            if (symbol_2 == ValueUtil.TRUE_VALUE) {
                 accumulator.add(_1);
             }
         }
@@ -473,7 +473,7 @@ public class AutoPivotLookupVisitor
         final @NonNull /*@Thrown*/ Environment addElements_0 = addElements.addElements(UNBOXED_select);
         final @NonNull /*@Thrown*/ List<Operation> ownedOperations = element_2.getOwnedOperations();
         final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedOperations = idResolver.createOrderedSetOfAll(ORD_CLSSid_Operation, ownedOperations);
-        @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator_0 = ValuesUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Operation);
+        @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator_0 = ValueUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Operation);
         @Nullable Iterator<?> ITERATOR__1_0 = BOXED_ownedOperations.iterator();
         @NonNull /*@Thrown*/ OrderedSetValue select_0;
         while (true) {
@@ -494,7 +494,7 @@ public class AutoPivotLookupVisitor
                 CAUGHT_self_1 = self_1;
             }
             catch (Exception e) {
-                CAUGHT_self_1 = ValuesUtil.createInvalidValue(e);
+                CAUGHT_self_1 = ValueUtil.createInvalidValue(e);
             }
             if (CAUGHT_self_1 instanceof InvalidValueException) {
                 throw (InvalidValueException)CAUGHT_self_1;
@@ -520,7 +520,7 @@ public class AutoPivotLookupVisitor
                 throw new InvalidValueException("Null body for \'OrderedSet(T).select(OrderedSet.T[?] | Lambda T() : Boolean) : OrderedSet(T)\'");
             }
             //
-            if (symbol_5 == ValuesUtil.TRUE_VALUE) {
+            if (symbol_5 == ValueUtil.TRUE_VALUE) {
                 accumulator_0.add(_1_0);
             }
         }

@@ -21,12 +21,10 @@ import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.IdManager;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.types.IdResolver;
-import org.eclipse.ocl.domain.types.TypeUtils;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.Unlimited;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.Behavior;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Comment;
@@ -47,6 +45,8 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypeExtension;
 import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceImpl;
 import org.eclipse.ocl.pivot.util.Visitor;
+import org.eclipse.ocl.pivot.utilities.TypeUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -582,7 +582,7 @@ public class CollectionTypeImpl
 			return true;
 		}
 		if (type instanceof CollectionType) {
-			return TypeUtils.conformsToCollectionType(standardLibrary, this, (CollectionType)type);
+			return TypeUtil.conformsToCollectionType(standardLibrary, this, (CollectionType)type);
 		}
 		if (getUnspecializedElement() != null) {
 			return ((Type)getUnspecializedElement()).conformsTo(standardLibrary, type);
@@ -654,21 +654,21 @@ public class CollectionTypeImpl
 		if (!(type instanceof CollectionType)) {
 			return false;
 		}
-		return TypeUtils.isEqualToCollectionType(standardLibrary, this, (CollectionType)type);
+		return TypeUtil.isEqualToCollectionType(standardLibrary, this, (CollectionType)type);
 	}
 
 	@Override
 	public @NonNull IntegerValue getLowerValue() {
 		Number lower2 = lower;
 		assert lower2 != null;
-		return ValuesUtil.integerValueOf(lower2);
+		return ValueUtil.integerValueOf(lower2);
 	}
 
 	@Override
 	public @NonNull UnlimitedNaturalValue getUpperValue() {
 		Number upper2 = upper;
 		assert upper2 != null;
-		return ValuesUtil.unlimitedNaturalValueOf(upper2);
+		return ValueUtil.unlimitedNaturalValueOf(upper2);
 	}
 
 	@Override

@@ -17,8 +17,8 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.values.CollectionTypeParameters;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 public class CollectionTypeParametersImpl<T extends Type> implements CollectionTypeParameters<T>
 {
@@ -54,8 +54,8 @@ public class CollectionTypeParametersImpl<T extends Type> implements CollectionT
 
 	public CollectionTypeParametersImpl(@NonNull T elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		this.elementType = elementType;
-		this.lower = lower != null ? lower : ValuesUtil.ZERO_VALUE;
-		this.upper = upper != null ? upper : ValuesUtil.UNLIMITED_VALUE;
+		this.lower = lower != null ? lower : ValueUtil.ZERO_VALUE;
+		this.upper = upper != null ? upper : ValueUtil.UNLIMITED_VALUE;
 		int hash = elementType.hashCode();
 		hash = 111 * hash + this.lower.hashCode();
 		hash = 111 * hash + this.upper.hashCode();

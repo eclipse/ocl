@@ -21,7 +21,7 @@ import org.eclipse.ocl.domain.values.IntegerRange;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.SequenceValue;
 import org.eclipse.ocl.domain.values.Value;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * @generated NOT
@@ -49,7 +49,7 @@ public class RangeSequenceValueImpl extends SequenceValueImpl
 
 	@Override
 	public @NonNull IntegerValue count(@Nullable Object value) {
-		IntegerValue integerValue = ValuesUtil.isIntegerValue(value);
+		IntegerValue integerValue = ValueUtil.isIntegerValue(value);
 		if (integerValue != null) {
 			if (elements.contains(integerValue)) {
 				return ONE_VALUE;

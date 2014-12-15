@@ -42,11 +42,10 @@ import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.CollectionValue;
 import org.eclipse.ocl.domain.values.IntegerRange;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.NullValue;
 import org.eclipse.ocl.domain.values.Unlimited;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.AssociationClassCallExp;
 import org.eclipse.ocl.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.pivot.CollectionItem;
@@ -98,6 +97,7 @@ import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.manager.PivotIdResolver;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * An evaluation visitor implementation for OCL expressions.
@@ -152,7 +152,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	@Override
 	public @Nullable Object evaluate(@NonNull OCLExpression body) {
 		Object value = ((Element) body).accept(undecoratedVisitor);
-		assert ValuesUtil.isBoxed(value);	// Make sure Integer/Real are boxed, invalid is an exception, null is null
+		assert ValueUtil.isBoxed(value);	// Make sure Integer/Real are boxed, invalid is an exception, null is null
 		return value;
 	}
 
@@ -193,7 +193,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		}
 		try {
 			Object result = v.accept(undecoratedVisitor);
-			assert ValuesUtil.isBoxed(result);	// Make sure Integer/Real are boxed, invalid is an exception, null is null
+			assert ValueUtil.isBoxed(result);	// Make sure Integer/Real are boxed, invalid is an exception, null is null
 			return result;
 		} catch (InvalidValueException e) {
 			throw e;
@@ -270,25 +270,25 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 //			}
 			IntegerValue firstInteger;
 //			try {
-				firstInteger = ValuesUtil.asIntegerValue(firstVal);
+				firstInteger = ValueUtil.asIntegerValue(firstVal);
 //			} catch (InvalidValueException e) {
 //				return evaluationEnvironment.throwInvalidEvaluation(e, cl, firstVal, "Non integer first element");
 //			}
 			IntegerValue lastInteger;
 //			try {
-				lastInteger = ValuesUtil.asIntegerValue(lastVal);
+				lastInteger = ValueUtil.asIntegerValue(lastVal);
 //			} catch (InvalidValueException e) {
 //				return evaluationEnvironment.throwInvalidEvaluation(e, cl, lastVal, "Non integer last element");
 //			}
 			// construct a lazy integer list for the range
 //			try {
 				CollectionTypeId typeId = type.getTypeId();
-				IntegerRange range = ValuesUtil.createRange(firstInteger, lastInteger);
+				IntegerRange range = ValueUtil.createRange(firstInteger, lastInteger);
 				if (type.isUnique()) {
-					return ValuesUtil.createOrderedSetRange(typeId, range);
+					return ValueUtil.createOrderedSetRange(typeId, range);
 				}
 				else {
-					return ValuesUtil.createSequenceRange(typeId, range);
+					return ValueUtil.createSequenceRange(typeId, range);
 				}
 //			} catch (InvalidValueException e) {
 //				return evaluationEnvironment.throwInvalidEvaluation(e, cl, lastVal, "Non integer first or last element");
@@ -325,13 +325,13 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 //					}
 					IntegerValue firstInteger;
 //					try {
-						firstInteger = ValuesUtil.asIntegerValue(firstVal);
+						firstInteger = ValueUtil.asIntegerValue(firstVal);
 //					} catch (InvalidValueException e) {
 //						return evaluationEnvironment.throwInvalidEvaluation(e, cl, firstVal, "Non integer first element");
 //					}
 					IntegerValue lastInteger;
 //					try {
-						lastInteger = ValuesUtil.asIntegerValue(lastVal);
+						lastInteger = ValueUtil.asIntegerValue(lastVal);
 //					} catch (InvalidValueException e) {
 //						return evaluationEnvironment.throwInvalidEvaluation(e, cl, lastVal, "Non integer last element");
 //					}
@@ -350,7 +350,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 					// TODO: enhance IntegerRangeList to support multiple ranges
 					// add values between first and last inclusive
 					for (int i = firstInt; true; i++) {
-                        IntegerValue integerValue = ValuesUtil.integerValueOf(i);
+                        IntegerValue integerValue = ValueUtil.integerValueOf(i);
     					if ((uniqueResults == null) || uniqueResults.add(integerValue)) {
     						orderedResults.add(integerValue);
     					}
@@ -390,7 +390,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		else {
 			object = type.createInstance(value);
 		}
-		return object != null ? ValuesUtil.createObjectValue(type.getTypeId(), object) : null;
+		return object != null ? ValueUtil.createObjectValue(type.getTypeId(), object) : null;
     }
 
 	/**
@@ -446,9 +446,9 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
     public Object visitIfExp(@NonNull IfExp ifExp) {
 		OCLExpression condition = ifExp.getCondition();
 		Object acceptedValue = condition.accept(undecoratedVisitor);
-		Object evaluatedCondition = ValuesUtil.asBoolean(acceptedValue);
+		Object evaluatedCondition = ValueUtil.asBoolean(acceptedValue);
 		OCLExpression expression = null;
-		if (evaluatedCondition == ValuesUtil.TRUE_VALUE) {
+		if (evaluatedCondition == ValueUtil.TRUE_VALUE) {
 			expression = ifExp.getThenExpression();
 		}
 		else {
@@ -465,12 +465,12 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	@Override
     public Object visitIntegerLiteralExp(@NonNull IntegerLiteralExp integerLiteralExp) {
 		Number integerSymbol = integerLiteralExp.getIntegerSymbol();
-		return integerSymbol != null ? ValuesUtil.integerValueOf(integerSymbol) : null;
+		return integerSymbol != null ? ValueUtil.integerValueOf(integerSymbol) : null;
 	}
 
 	@Override
     public Object visitInvalidLiteralExp(@NonNull InvalidLiteralExp invalidLiteralExp) {
-		throw ValuesUtil.INVALID_VALUE;
+		throw ValueUtil.INVALID_VALUE;
 	}
 
 	/**
@@ -484,7 +484,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		Iteration staticIteration = DomainUtil.nonNullModel(iterateExp.getReferredIteration());
 		OCLExpression source = iterateExp.getSource();
 		Object acceptedValue = source.accept(undecoratedVisitor);
-		CollectionValue sourceValue = ValuesUtil.asCollectionValue(acceptedValue);
+		CollectionValue sourceValue = ValueUtil.asCollectionValue(acceptedValue);
 		org.eclipse.ocl.pivot.Class dynamicSourceType = metaModelManager.getIdResolver().getClass(sourceValue.getTypeId(), null);
 		LibraryIteration implementation = (LibraryIteration) dynamicSourceType.lookupImplementation(standardLibrary, staticIteration);
 /*		Operation dynamicIteration = metaModelManager.getDynamicOperation((org.eclipse.ocl.pivot.Type) dynamicSourceType, staticIteration);
@@ -556,7 +556,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 //			if (sourceVal == null) {
 //				return evaluationEnvironment.throwInvalidEvaluation("null iterator source");
 //			}
-			sourceValue = ValuesUtil.asCollectionValue(sourceVal);
+			sourceValue = ValueUtil.asCollectionValue(sourceVal);
 //		} catch (InvalidValueException e) {
 //			return evaluationEnvironment.throwInvalidEvaluation(e);
 //		}
@@ -786,7 +786,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	@Override
     public Object visitRealLiteralExp(@NonNull RealLiteralExp realLiteralExp) {
 		Number realSymbol = realLiteralExp.getRealSymbol();
-		return realSymbol != null ? ValuesUtil.realValueOf(realSymbol) : null;
+		return realSymbol != null ? ValueUtil.realValueOf(realSymbol) : null;
 	}
 	
 	@Override
@@ -824,7 +824,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			propertyValues.put(part.getPartId(), part.accept(undecoratedVisitor));
 		}
 //		TupleType tupleType = metaModelManager.getTupleType(type.getName(), propertyValues.keySet());
-		return ValuesUtil.createTupleValue(((TupleType) type).getTupleTypeId(), propertyValues);
+		return ValueUtil.createTupleValue(((TupleType) type).getTupleTypeId(), propertyValues);
 	}
 	
 	@Override
@@ -859,15 +859,15 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			return null;
 		}
 		if (unlimitedNaturalSymbol instanceof Unlimited) {
-			return ValuesUtil.UNLIMITED_VALUE;
+			return ValueUtil.UNLIMITED_VALUE;
 		}
 		if (unlimitedNaturalSymbol instanceof UnlimitedNaturalValue) {
 			return unlimitedNaturalSymbol;
 		}
-		IntegerValue integerValue = ValuesUtil.integerValueOf(unlimitedNaturalSymbol);
+		IntegerValue integerValue = ValueUtil.integerValueOf(unlimitedNaturalSymbol);
 		if (integerValue.signum() < 0) {
-			if (integerValue == ValuesUtil.integerValueOf(-1)) {
-				return ValuesUtil.UNLIMITED_VALUE;
+			if (integerValue == ValueUtil.integerValueOf(-1)) {
+				return ValueUtil.UNLIMITED_VALUE;
 			}
 		}
 		return integerValue.asUnlimitedNaturalValue();

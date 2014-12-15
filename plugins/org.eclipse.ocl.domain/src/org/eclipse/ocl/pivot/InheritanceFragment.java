@@ -8,24 +8,23 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.domain.elements;
+package org.eclipse.ocl.pivot;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.library.LibraryFeature;
-import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 
 /**
- * A DomainFragment identifies the capabilities introduced by a particular inheritance.
+ * An InheritanceFragment identifies the capabilities introduced by a particular inheritance.
  */
-public interface DomainFragment
+public interface InheritanceFragment
 {	
 	/**
 	 * Return the unoverloaded fragment, which is getBaseInheritance().getSelfFragment().
 	 */
-	@NonNull DomainFragment getBaseFragment();
+	@NonNull InheritanceFragment getBaseFragment();
 	
 	/**
 	 * Return the inheritance that introduces the operations and properties in this fragment.

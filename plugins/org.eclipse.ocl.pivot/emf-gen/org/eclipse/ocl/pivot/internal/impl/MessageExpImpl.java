@@ -33,9 +33,8 @@ import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.SetValue;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.library.collection.CollectionSizeOperation;
 import org.eclipse.ocl.library.numeric.NumericPlusOperation;
 import org.eclipse.ocl.library.oclany.OclAnyOclAsSetOperation;
@@ -54,6 +53,7 @@ import org.eclipse.ocl.pivot.ValueSpecification;
 import org.eclipse.ocl.pivot.util.PivotValidator;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -320,9 +320,9 @@ public class MessageExpImpl
 		    CAUGHT_eq = eq;
 		}
 		catch (Exception e) {
-		    CAUGHT_eq = ValuesUtil.createInvalidValue(e);
+		    CAUGHT_eq = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_eq == ValuesUtil.TRUE_VALUE) {
+		if (CAUGHT_eq == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {
@@ -362,7 +362,7 @@ public class MessageExpImpl
 		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValueUtil.createInvalidValue(e);
 		    }
 		    if (CAUGHT_self_71 instanceof InvalidValueException) {
 		        throw (InvalidValueException)CAUGHT_self_71;
@@ -379,9 +379,9 @@ public class MessageExpImpl
 		    CAUGHT_symbol_1 = symbol_1;
 		}
 		catch (Exception e) {
-		    CAUGHT_symbol_1 = ValuesUtil.createInvalidValue(e);
+		    CAUGHT_symbol_1 = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_symbol_1 == ValuesUtil.TRUE_VALUE) {
+		if (CAUGHT_symbol_1 == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {

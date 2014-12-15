@@ -24,7 +24,6 @@ import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
 import org.eclipse.ocl.domain.evaluation.DomainException;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.EvaluationException;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.OCL;
@@ -38,6 +37,7 @@ import org.eclipse.ocl.pivot.context.EInvocationContext;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * An implementation of a query delegate for OCL expressions.
@@ -155,7 +155,7 @@ public class OCLQueryDelegate implements QueryDelegate
 //			}
 			Object unboxedValue = idResolver.unboxedValueOf(result);
 			if (unboxedValue instanceof Number) {
-				return ValuesUtil.getEcoreNumber((Number)unboxedValue, null);
+				return ValueUtil.getEcoreNumber((Number)unboxedValue, null);
 			}
 			else {
 				return unboxedValue;

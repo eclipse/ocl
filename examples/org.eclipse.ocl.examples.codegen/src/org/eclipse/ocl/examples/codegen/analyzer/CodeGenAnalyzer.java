@@ -20,7 +20,6 @@ import org.eclipse.ocl.domain.ids.OperationId;
 import org.eclipse.ocl.domain.ids.PropertyId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBoolean;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstant;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstantExp;
@@ -44,6 +43,7 @@ import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * A CodeGenAnalyzer performs the analysis of a Pivot AST in preparation for code generation.
@@ -248,7 +248,7 @@ public class CodeGenAnalyzer
 		if (cgInvalid2 == null) {
 			cgInvalid = cgInvalid2 = CGModelFactory.eINSTANCE.createCGInvalid();
 //			cgInvalid.setAst(ValuesUtil.INVALID_VALUE);
-			setNames(cgInvalid2, ValuesUtil.INVALID_VALUE);
+			setNames(cgInvalid2, ValueUtil.INVALID_VALUE);
 			cgInvalid2.setTypeId(getTypeId(TypeId.OCL_INVALID));
 		}
 		return cgInvalid2;
@@ -256,7 +256,7 @@ public class CodeGenAnalyzer
 
 	public @NonNull CGInvalid getInvalid(/*@NonNull*/ String messageTemplate, Object... bindings) {
 		CGInvalid cgInvalid = CGModelFactory.eINSTANCE.createCGInvalid();
-		setNames(cgInvalid, ValuesUtil.INVALID_VALUE);
+		setNames(cgInvalid, ValueUtil.INVALID_VALUE);
 		cgInvalid.setTypeId(getTypeId(TypeId.OCL_INVALID));
 		cgInvalid.setMessageTemplate(messageTemplate);
 		for (Object binding : bindings) {
@@ -314,7 +314,7 @@ public class CodeGenAnalyzer
 		CGUnlimited cgUnlimited2 = cgUnlimited;
 		if (cgUnlimited2 == null) {
 			cgUnlimited = cgUnlimited2 = CGModelFactory.eINSTANCE.createCGUnlimited();
-			setNames(cgUnlimited2, ValuesUtil.UNLIMITED_VALUE);
+			setNames(cgUnlimited2, ValueUtil.UNLIMITED_VALUE);
 			cgUnlimited2.setTypeId(getTypeId(TypeId.UNLIMITED_NATURAL));
 		}
 		return cgUnlimited2;

@@ -19,7 +19,6 @@
 package codegen.company;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainParameterTypes;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.ids.ClassId;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
@@ -36,7 +35,6 @@ import org.eclipse.ocl.domain.values.OrderedSetValue;
 import org.eclipse.ocl.domain.values.SequenceValue;
 import org.eclipse.ocl.domain.values.SetValue;
 import org.eclipse.ocl.domain.values.TupleValue;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.library.ecore.EcoreExecutorEnumeration;
 import org.eclipse.ocl.library.ecore.EcoreExecutorEnumerationLiteral;
 import org.eclipse.ocl.library.ecore.EcoreExecutorPackage;
@@ -47,7 +45,10 @@ import org.eclipse.ocl.library.executor.ExecutorOperation;
 import org.eclipse.ocl.library.executor.ExecutorProperty;
 import org.eclipse.ocl.library.executor.ExecutorStandardLibrary;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
+import org.eclipse.ocl.pivot.ParameterTypes;
 import org.eclipse.ocl.pivot.PivotTables;
+import org.eclipse.ocl.pivot.utilities.TypeUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * CodegencompanyTables provides the dispatch tables for the company for use by the OCL dispatcher.
@@ -75,12 +76,12 @@ public class CodegencompanyTables
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Company = CodegencompanyTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_test_s_Pivot_s_Company_ecore.getClassId("Company", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Employee = CodegencompanyTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_test_s_Pivot_s_Company_ecore.getClassId("Employee", 0);
     public static final @NonNull /*@NonInvalid*/ EnumerationId ENUMid_CompanySizeKind = CodegencompanyTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_test_s_Pivot_s_Company_ecore.getEnumerationId("CompanySizeKind");
-    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_0 = ValuesUtil.integerValueOf("0");
-    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_1000 = ValuesUtil.integerValueOf("1000");
-    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_1000000 = ValuesUtil.integerValueOf("1000000");
-    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_49 = ValuesUtil.integerValueOf("49");
-    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_50 = ValuesUtil.integerValueOf("50");
-    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_999 = ValuesUtil.integerValueOf("999");
+    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_0 = ValueUtil.integerValueOf("0");
+    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_1000 = ValueUtil.integerValueOf("1000");
+    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_1000000 = ValueUtil.integerValueOf("1000000");
+    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_49 = ValueUtil.integerValueOf("49");
+    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_50 = ValueUtil.integerValueOf("50");
+    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_999 = ValueUtil.integerValueOf("999");
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_PRIMid_Integer = TypeId.SEQUENCE.getSpecializedId(TypeId.INTEGER);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_PRIMid_UnlimitedNatural = TypeId.SEQUENCE.getSpecializedId(TypeId.UNLIMITED_NATURAL);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_PRIMid_String = TypeId.SET.getSpecializedId(TypeId.STRING);
@@ -92,21 +93,21 @@ public class CodegencompanyTables
     public static final @NonNull /*@NonInvalid*/ TuplePartId PARTid__0 = IdManager.getTuplePartId(1, "size", CodegencompanyTables.ENUMid_CompanySizeKind);
     public static final @NonNull /*@NonInvalid*/ TuplePartId PARTid__1 = IdManager.getTuplePartId(0, "range", CodegencompanyTables.SEQ_PRIMid_Integer);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Employee = TypeId.SET.getSpecializedId(CodegencompanyTables.CLSSid_Employee);
-    public static final @NonNull /*@NonInvalid*/ IntegerRange symbol_0 = ValuesUtil.createRange(CodegencompanyTables.INT_0, CodegencompanyTables.INT_49);
-    public static final @NonNull /*@NonInvalid*/ IntegerRange symbol_4 = ValuesUtil.createRange(CodegencompanyTables.INT_1000, CodegencompanyTables.INT_1000000);
-    public static final @NonNull /*@NonInvalid*/ IntegerRange symbol_2 = ValuesUtil.createRange(CodegencompanyTables.INT_50, CodegencompanyTables.INT_999);
-    public static final @NonNull /*@NonInvalid*/ OrderedSetValue OrderedSet = ValuesUtil.createOrderedSetOfEach(CodegencompanyTables.ORD_CLSSid_Employee);
-    public static final @NonNull /*@NonInvalid*/ SequenceValue Sequence = ValuesUtil.createSequenceRange(CodegencompanyTables.SEQ_PRIMid_UnlimitedNatural, CodegencompanyTables.symbol_0);
-    public static final @NonNull /*@NonInvalid*/ SequenceValue Sequence_1 = ValuesUtil.createSequenceRange(CodegencompanyTables.SEQ_PRIMid_UnlimitedNatural, CodegencompanyTables.symbol_4);
-    public static final @NonNull /*@NonInvalid*/ SequenceValue Sequence_0 = ValuesUtil.createSequenceRange(CodegencompanyTables.SEQ_PRIMid_UnlimitedNatural, CodegencompanyTables.symbol_2);
+    public static final @NonNull /*@NonInvalid*/ IntegerRange symbol_0 = ValueUtil.createRange(CodegencompanyTables.INT_0, CodegencompanyTables.INT_49);
+    public static final @NonNull /*@NonInvalid*/ IntegerRange symbol_4 = ValueUtil.createRange(CodegencompanyTables.INT_1000, CodegencompanyTables.INT_1000000);
+    public static final @NonNull /*@NonInvalid*/ IntegerRange symbol_2 = ValueUtil.createRange(CodegencompanyTables.INT_50, CodegencompanyTables.INT_999);
+    public static final @NonNull /*@NonInvalid*/ OrderedSetValue OrderedSet = ValueUtil.createOrderedSetOfEach(CodegencompanyTables.ORD_CLSSid_Employee);
+    public static final @NonNull /*@NonInvalid*/ SequenceValue Sequence = ValueUtil.createSequenceRange(CodegencompanyTables.SEQ_PRIMid_UnlimitedNatural, CodegencompanyTables.symbol_0);
+    public static final @NonNull /*@NonInvalid*/ SequenceValue Sequence_1 = ValueUtil.createSequenceRange(CodegencompanyTables.SEQ_PRIMid_UnlimitedNatural, CodegencompanyTables.symbol_4);
+    public static final @NonNull /*@NonInvalid*/ SequenceValue Sequence_0 = ValueUtil.createSequenceRange(CodegencompanyTables.SEQ_PRIMid_UnlimitedNatural, CodegencompanyTables.symbol_2);
     public static final @NonNull /*@NonInvalid*/ TupleTypeId TUPLid_ = IdManager.getTupleTypeId("Tuple", CodegencompanyTables.PARTid_, CodegencompanyTables.PARTid__0);
     public static final @NonNull /*@NonInvalid*/ TupleTypeId TUPLid__0 = IdManager.getTupleTypeId("Tuple", CodegencompanyTables.PARTid__1, CodegencompanyTables.PARTid__0);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_TUPLid_ = TypeId.SET.getSpecializedId(CodegencompanyTables.TUPLid_);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_TUPLid__0 = TypeId.SET.getSpecializedId(CodegencompanyTables.TUPLid__0);
-    public static final @NonNull /*@NonInvalid*/ TupleValue symbol_1 = ValuesUtil.createTupleOfEach(CodegencompanyTables.TUPLid_, CodegencompanyTables.Sequence, CodegencompanyTables.ELITid_small);
-    public static final @NonNull /*@NonInvalid*/ TupleValue symbol_5 = ValuesUtil.createTupleOfEach(CodegencompanyTables.TUPLid_, CodegencompanyTables.Sequence_1, CodegencompanyTables.ELITid_large);
-    public static final @NonNull /*@NonInvalid*/ TupleValue symbol_3 = ValuesUtil.createTupleOfEach(CodegencompanyTables.TUPLid_, CodegencompanyTables.Sequence_0, CodegencompanyTables.ELITid_medium);
-    public static final @NonNull /*@NonInvalid*/ SetValue table = ValuesUtil.createSetOfEach(CodegencompanyTables.SET_TUPLid_, CodegencompanyTables.symbol_1, CodegencompanyTables.symbol_3, CodegencompanyTables.symbol_5);
+    public static final @NonNull /*@NonInvalid*/ TupleValue symbol_1 = ValueUtil.createTupleOfEach(CodegencompanyTables.TUPLid_, CodegencompanyTables.Sequence, CodegencompanyTables.ELITid_small);
+    public static final @NonNull /*@NonInvalid*/ TupleValue symbol_5 = ValueUtil.createTupleOfEach(CodegencompanyTables.TUPLid_, CodegencompanyTables.Sequence_1, CodegencompanyTables.ELITid_large);
+    public static final @NonNull /*@NonInvalid*/ TupleValue symbol_3 = ValueUtil.createTupleOfEach(CodegencompanyTables.TUPLid_, CodegencompanyTables.Sequence_0, CodegencompanyTables.ELITid_medium);
+    public static final @NonNull /*@NonInvalid*/ SetValue table = ValueUtil.createSetOfEach(CodegencompanyTables.SET_TUPLid_, CodegencompanyTables.symbol_1, CodegencompanyTables.symbol_3, CodegencompanyTables.symbol_5);
 
 	/**
 	 *	The type parameters for templated types and operations.
@@ -180,8 +181,8 @@ public class CodegencompanyTables
 	 *	The parameter lists shared by operations.
 	 */
 	public static class Parameters {
-		public static final @NonNull DomainParameterTypes _ = new DomainParameterTypes();
-		public static final @NonNull DomainParameterTypes _Employee = new DomainParameterTypes(CodegencompanyTables.Types._Employee);
+		public static final @NonNull ParameterTypes _ = TypeUtil.createParameterTypes();
+		public static final @NonNull ParameterTypes _Employee = TypeUtil.createParameterTypes(CodegencompanyTables.Types._Employee);
 	}
 
 	/**

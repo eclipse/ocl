@@ -13,7 +13,7 @@ package org.eclipse.ocl.domain.evaluation;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.domain.messages.StatusCodes;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 
 /**
  * Exception indicating a managed interruption of evaluation.

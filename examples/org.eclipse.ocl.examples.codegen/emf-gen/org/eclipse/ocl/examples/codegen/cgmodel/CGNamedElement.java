@@ -10,8 +10,8 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.codegen.cgmodel;
 
-import org.eclipse.ocl.domain.elements.Nameable;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.Nameable;
 
 
 /**

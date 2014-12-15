@@ -39,9 +39,8 @@ import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.OrderedSetValue;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.library.classifier.ClassifierOclContainerOperation;
 import org.eclipse.ocl.library.collection.CollectionIncludesOperation;
 import org.eclipse.ocl.library.oclany.OclAnyOclAsTypeOperation;
@@ -63,6 +62,7 @@ import org.eclipse.ocl.pivot.ValueSpecification;
 import org.eclipse.ocl.pivot.util.PivotValidator;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -906,7 +906,7 @@ public class PropertyImpl
 		    CAUGHT_container = container;
 		}
 		catch (Exception e) {
-		    CAUGHT_container = ValuesUtil.createInvalidValue(e);
+		    CAUGHT_container = ValueUtil.createInvalidValue(e);
 		}
 		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -920,7 +920,7 @@ public class PropertyImpl
 		    CAUGHT_self_71 = self_71;
 		}
 		catch (Exception e) {
-		    CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
+		    CAUGHT_self_71 = ValueUtil.createInvalidValue(e);
 		}
 		@NonNull /*@Caught*/ Object CAUGHT_b;
 		try {
@@ -938,7 +938,7 @@ public class PropertyImpl
 		    CAUGHT_b = b;
 		}
 		catch (Exception e) {
-		    CAUGHT_b = ValuesUtil.createInvalidValue(e);
+		    CAUGHT_b = ValueUtil.createInvalidValue(e);
 		}
 		final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		/*@Thrown*/ boolean symbol_8;
@@ -958,7 +958,7 @@ public class PropertyImpl
 		        final /*@Thrown*/ boolean eq = CAUGHT_b == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_2;
 		        if (eq) {
-		            symbol_2 = ValuesUtil.FALSE_VALUE;
+		            symbol_2 = ValueUtil.FALSE_VALUE;
 		        }
 		        else {
 		            if (CAUGHT_self_71 instanceof InvalidValueException) {
@@ -977,7 +977,7 @@ public class PropertyImpl
 		    final /*@Thrown*/ boolean eq_0 = CAUGHT_self_71 == Boolean.FALSE;
 		    /*@Thrown*/ boolean symbol_7;
 		    if (eq_0) {
-		        symbol_7 = ValuesUtil.FALSE_VALUE;
+		        symbol_7 = ValueUtil.FALSE_VALUE;
 		    }
 		    else {
 		        if (CAUGHT_b instanceof InvalidValueException) {
@@ -992,10 +992,10 @@ public class PropertyImpl
 		            final /*@Thrown*/ boolean eq_1 = CAUGHT_b == Boolean.FALSE;
 		            /*@NonInvalid*/ boolean symbol_5;
 		            if (eq_1) {
-		                symbol_5 = ValuesUtil.FALSE_VALUE;
+		                symbol_5 = ValueUtil.FALSE_VALUE;
 		            }
 		            else {
-		                symbol_5 = ValuesUtil.TRUE_VALUE;
+		                symbol_5 = ValueUtil.TRUE_VALUE;
 		            }
 		            symbol_6 = symbol_5;
 		        }
@@ -1031,7 +1031,7 @@ public class PropertyImpl
 		            CAUGHT_self_71 = self_71;
 		        }
 		        catch (Exception e) {
-		            CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
+		            CAUGHT_self_71 = ValueUtil.createInvalidValue(e);
 		        }
 		        final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		        final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -1048,7 +1048,7 @@ public class PropertyImpl
 		            CAUGHT_b = b;
 		        }
 		        catch (Exception e) {
-		            CAUGHT_b = ValuesUtil.createInvalidValue(e);
+		            CAUGHT_b = ValueUtil.createInvalidValue(e);
 		        }
 		        final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_8;
@@ -1068,7 +1068,7 @@ public class PropertyImpl
 		                final /*@Thrown*/ boolean eq = CAUGHT_b == Boolean.FALSE;
 		                /*@Thrown*/ boolean symbol_2;
 		                if (eq) {
-		                    symbol_2 = ValuesUtil.FALSE_VALUE;
+		                    symbol_2 = ValueUtil.FALSE_VALUE;
 		                }
 		                else {
 		                    if (CAUGHT_self_71 instanceof InvalidValueException) {
@@ -1087,7 +1087,7 @@ public class PropertyImpl
 		            final /*@Thrown*/ boolean eq_0 = CAUGHT_self_71 == Boolean.FALSE;
 		            /*@Thrown*/ boolean symbol_7;
 		            if (eq_0) {
-		                symbol_7 = ValuesUtil.FALSE_VALUE;
+		                symbol_7 = ValueUtil.FALSE_VALUE;
 		            }
 		            else {
 		                if (CAUGHT_b instanceof InvalidValueException) {
@@ -1102,10 +1102,10 @@ public class PropertyImpl
 		                    final /*@Thrown*/ boolean eq_1 = CAUGHT_b == Boolean.FALSE;
 		                    /*@NonInvalid*/ boolean symbol_5;
 		                    if (eq_1) {
-		                        symbol_5 = ValuesUtil.FALSE_VALUE;
+		                        symbol_5 = ValueUtil.FALSE_VALUE;
 		                    }
 		                    else {
-		                        symbol_5 = ValuesUtil.TRUE_VALUE;
+		                        symbol_5 = ValueUtil.TRUE_VALUE;
 		                    }
 		                    symbol_6 = symbol_5;
 		                }
@@ -1116,7 +1116,7 @@ public class PropertyImpl
 		        CAUGHT_symbol_8 = symbol_8;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_symbol_8 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_symbol_8 = ValueUtil.createInvalidValue(e);
 		    }
 		    @NonNull /*@Caught*/ Object CAUGHT_b_0;
 		    try {
@@ -1125,7 +1125,7 @@ public class PropertyImpl
 		        CAUGHT_b_0 = b_0;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_b_0 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_b_0 = ValueUtil.createInvalidValue(e);
 		    }
 		    final /*@NonInvalid*/ boolean symbol_9 = CAUGHT_symbol_8 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_17;
@@ -1141,7 +1141,7 @@ public class PropertyImpl
 		        else {
 		            /*@Thrown*/ boolean symbol_11;
 		            if (CAUGHT_b_0 == Boolean.TRUE) {
-		                symbol_11 = ValuesUtil.TRUE_VALUE;
+		                symbol_11 = ValueUtil.TRUE_VALUE;
 		            }
 		            else {
 		                if (CAUGHT_symbol_8 instanceof InvalidValueException) {
@@ -1160,7 +1160,7 @@ public class PropertyImpl
 		        final /*@Thrown*/ boolean eq_2 = CAUGHT_symbol_8 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_16;
 		        if (eq_2) {
-		            symbol_16 = ValuesUtil.TRUE_VALUE;
+		            symbol_16 = ValueUtil.TRUE_VALUE;
 		        }
 		        else {
 		            final /*@NonInvalid*/ boolean symbol_13 = CAUGHT_b_0 instanceof InvalidValueException;
@@ -1174,10 +1174,10 @@ public class PropertyImpl
 		            else {
 		                /*@NonInvalid*/ boolean symbol_14;
 		                if (CAUGHT_b_0 == Boolean.TRUE) {
-		                    symbol_14 = ValuesUtil.TRUE_VALUE;
+		                    symbol_14 = ValueUtil.TRUE_VALUE;
 		                }
 		                else {
-		                    symbol_14 = ValuesUtil.FALSE_VALUE;
+		                    symbol_14 = ValueUtil.FALSE_VALUE;
 		                }
 		                symbol_15 = symbol_14;
 		            }
@@ -1188,9 +1188,9 @@ public class PropertyImpl
 		    CAUGHT_symbol_17 = symbol_17;
 		}
 		catch (Exception e) {
-		    CAUGHT_symbol_17 = ValuesUtil.createInvalidValue(e);
+		    CAUGHT_symbol_17 = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_symbol_17 == ValuesUtil.TRUE_VALUE) {
+		if (CAUGHT_symbol_17 == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {
@@ -1741,11 +1741,11 @@ public class PropertyImpl
 
 	@Override
 	public void initValue(@NonNull EObject objectValue, @Nullable Object unboxedValue) {
-		assert ValuesUtil.isUnboxed(unboxedValue);
+		assert ValueUtil.isUnboxed(unboxedValue);
 		EObject eTarget = getETarget();
 		if (eTarget instanceof EStructuralFeature) {
 			EStructuralFeature eFeature = (EStructuralFeature) eTarget;
-			EObject eObject = ValuesUtil.asNavigableObject(objectValue, eFeature);
+			EObject eObject = ValueUtil.asNavigableObject(objectValue, eFeature);
 			eObject.eSet(eFeature, unboxedValue);
 			return;
 		}

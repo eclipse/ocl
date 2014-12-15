@@ -20,12 +20,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.AbstractExecutorClass;
-import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.types.AbstractFragment;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteInheritance;
+import org.eclipse.ocl.pivot.InheritanceFragment;
 
 /**
  * A ReflectiveType defines a Type using a compact representation suitable for efficient
@@ -60,7 +60,7 @@ public abstract class ReflectiveInheritance extends AbstractExecutorClass
 	/**
 	 * Depth ordered inheritance fragments. OclAny at depth 0, OclSelf at depth size-1.
 	 */
-	private DomainFragment[] fragments = null;
+	private InheritanceFragment[] fragments = null;
 	
 	/**
 	 * The index in fragments at which inheritance fragments at a given depth start.
@@ -131,7 +131,7 @@ public abstract class ReflectiveInheritance extends AbstractExecutorClass
 		if (fragments == null) {
 			initialize();
 		}
-		DomainFragment[] fragments2 = DomainUtil.nonNullState(fragments);
+		InheritanceFragment[] fragments2 = DomainUtil.nonNullState(fragments);
 		return new FragmentIterable(fragments2, 0, fragments2.length-1);
 	}
 
@@ -152,7 +152,7 @@ public abstract class ReflectiveInheritance extends AbstractExecutorClass
 	}
 
 	@Override
-	public DomainFragment getFragment(int fragmentNumber) {
+	public InheritanceFragment getFragment(int fragmentNumber) {
 		if ((fragments == null) && isOclAny()) {
 			installOclAny();
 		}
@@ -160,8 +160,8 @@ public abstract class ReflectiveInheritance extends AbstractExecutorClass
 	}
 	
 	@Override
-	public @NonNull Iterable<DomainFragment> getFragments() {
-		DomainFragment[] fragments2 = fragments;
+	public @NonNull Iterable<InheritanceFragment> getFragments() {
+		InheritanceFragment[] fragments2 = fragments;
 		if (fragments2 == null) {
 			initialize();
 			fragments2 = fragments;
@@ -186,11 +186,11 @@ public abstract class ReflectiveInheritance extends AbstractExecutorClass
 	protected abstract @NonNull Iterable<? extends CompleteInheritance> getInitialSuperInheritances();
 
 	@Override
-	public @NonNull DomainFragment getSelfFragment() {
+	public @NonNull InheritanceFragment getSelfFragment() {
 		if (indexes == null) {
 			initialize();
 		}
-		DomainFragment fragment = getFragment(fragments.length-1);
+		InheritanceFragment fragment = getFragment(fragments.length-1);
 		if (fragment == null) {
 			throw new IllegalStateException("No self fragment"); //$NON-NLS-1$
 		}
@@ -282,7 +282,7 @@ public abstract class ReflectiveInheritance extends AbstractExecutorClass
 					}
 					int jMax = superInheritance.getIndex(i+1);
 					for (; j < jMax; j++) {
-						DomainFragment fragment = superInheritance.getFragment(j);
+						InheritanceFragment fragment = superInheritance.getFragment(j);
 						CompleteInheritance baseInheritance = fragment.getBaseInheritance();
 						if (!some.contains(baseInheritance)) {
 							some.add(baseInheritance);
@@ -299,7 +299,7 @@ public abstract class ReflectiveInheritance extends AbstractExecutorClass
 				superInheritances += some.size();
 			}
 			assert superDepths > 0;
-			fragments = new DomainFragment[superInheritances+1];	// +1 for OclSelf
+			fragments = new InheritanceFragment[superInheritances+1];	// +1 for OclSelf
 			indexes = new int[superDepths+2];		// +1 for OclSelf, +1 for tail pointer
 			int j = 0;
 			indexes[0] = 0;
@@ -323,7 +323,7 @@ public abstract class ReflectiveInheritance extends AbstractExecutorClass
 	 */
 	protected final void installOclAny() {
 		assert fragments == null;
-		fragments = new DomainFragment[] { createFragment(this) };
+		fragments = new InheritanceFragment[] { createFragment(this) };
 		indexes = new int[] { 0, 1 };
 	}
 	
@@ -366,7 +366,7 @@ public abstract class ReflectiveInheritance extends AbstractExecutorClass
 	public void uninstall() {
 		if (fragments != null) {
 //			System.out.println("Uninstall " + this);
-			for (DomainFragment fragment : fragments) {
+			for (InheritanceFragment fragment : fragments) {
 				CompleteInheritance baseInheritance = fragment.getBaseInheritance();
 				if (baseInheritance instanceof ReflectiveInheritance) {
 					((ReflectiveInheritance)baseInheritance).removeSubInheritance(this);

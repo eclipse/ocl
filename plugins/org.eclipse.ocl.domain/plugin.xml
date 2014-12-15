@@ -21,7 +21,7 @@
    <extension point="org.eclipse.ocl.examples.common.label_generator">
       <generator for="org.eclipse.ocl.domain.ids.ElementId"
       	class="org.eclipse.ocl.domain.ids.impl.ElementIdLabelGenerator"/>
-      <generator for="org.eclipse.ocl.domain.elements.Nameable"
+      <generator for="org.eclipse.ocl.pivot.Nameable"
       	class="org.eclipse.ocl.domain.utilities.NameableLabelGenerator"/>
    </extension>
 

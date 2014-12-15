@@ -16,7 +16,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.RealValue;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionPart;
@@ -45,6 +44,7 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.PropertyCallExp;
 import org.eclipse.ocl.pivot.TupleLiteralExp;
 import org.eclipse.ocl.pivot.TupleLiteralPart;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * EquivalenceUtils provides the bodoes for many of the isEquivalentToInternal operations.
@@ -354,14 +354,14 @@ public class EquivalenceUtils
 		else if ((thisNumber instanceof RealValue) && (thatNumber instanceof RealValue)) {
 			return thisNumber.equals(thatNumber);
 		}
-		else if (ValuesUtil.isRealNumber(thisNumber) || ValuesUtil.isRealNumber(thatNumber)) {
-			RealValue thisReal = ValuesUtil.realValueOf(thisNumber);
-			RealValue thatReal = ValuesUtil.realValueOf(thatNumber);
+		else if (ValueUtil.isRealNumber(thisNumber) || ValueUtil.isRealNumber(thatNumber)) {
+			RealValue thisReal = ValueUtil.realValueOf(thisNumber);
+			RealValue thatReal = ValueUtil.realValueOf(thatNumber);
 			return thisReal.equals(thatReal);
 		}
-		else if (ValuesUtil.isIntegerNumber(thisNumber) && ValuesUtil.isIntegerNumber(thatNumber)) {
-			IntegerValue thisInteger = ValuesUtil.integerValueOf(thisNumber);
-			IntegerValue thatInterger = ValuesUtil.integerValueOf(thatNumber);
+		else if (ValueUtil.isIntegerNumber(thisNumber) && ValueUtil.isIntegerNumber(thatNumber)) {
+			IntegerValue thisInteger = ValueUtil.integerValueOf(thisNumber);
+			IntegerValue thatInterger = ValueUtil.integerValueOf(thatNumber);
 			return thisInteger.equals(thatInterger);
 		}
 		else {					// This should never happen

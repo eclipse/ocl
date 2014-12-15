@@ -17,7 +17,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.xtext.base.ui.wizards.AbstractFileDialog;
 import org.eclipse.ocl.xtext.base.ui.wizards.AbstractFileNewWizardPage;
 import org.eclipse.ocl.xtext.oclinecore.ui.messages.OCLinEcoreUIMessages;
@@ -34,7 +34,7 @@ public class OCLinEcoreFileNewWizard extends AbstractOCLinEcoreFileNewWizard
 			URI newURI = URI.createPlatformResourceURI(newFile.getFullPath().toString(), true);
 			for (URI uri : uris) {
 				@SuppressWarnings("null")@NonNull URI deresolvedURI = uri.deresolve(newURI);
-				s.append("import '" + ValuesUtil.oclToString(deresolvedURI) + "';\n");
+				s.append("import '" + ValueUtil.oclToString(deresolvedURI) + "';\n");
 			}
 			s.append("\n");
 		}

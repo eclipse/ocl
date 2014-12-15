@@ -27,7 +27,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.Unlimited;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
@@ -55,6 +54,7 @@ import org.eclipse.ocl.pivot.Vertex;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 //import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.util.UMLSwitch;
 
@@ -556,8 +556,8 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 					isRequired = true;
 					boolean isOrdered = umlMultiplicity.isOrdered();
 					boolean isUnique = umlMultiplicity.isUnique();
-					IntegerValue lowerValue = ValuesUtil.integerValueOf(lower);
-					UnlimitedNaturalValue upperValue = upper == -1 ? ValuesUtil.UNLIMITED_VALUE : ValuesUtil.unlimitedNaturalValueOf(upper);
+					IntegerValue lowerValue = ValueUtil.integerValueOf(lower);
+					UnlimitedNaturalValue upperValue = upper == -1 ? ValueUtil.UNLIMITED_VALUE : ValueUtil.unlimitedNaturalValueOf(upper);
 					pivotType = metaModelManager.getCollectionType(isOrdered, isUnique, pivotType, lowerValue, upperValue);
 				}
 			}

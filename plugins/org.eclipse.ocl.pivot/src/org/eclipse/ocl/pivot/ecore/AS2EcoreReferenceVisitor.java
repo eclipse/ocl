@@ -34,9 +34,8 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.Annotation;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Constraint;
@@ -53,6 +52,7 @@ import org.eclipse.ocl.pivot.delegate.DelegateInstaller;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.PivotObjectImpl;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, AS2Ecore>
 {
@@ -93,8 +93,8 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 				}
 				eRedefinesAnnotation.getReferences().add(eRedefined);
 				//
-				IntegerValue redefinedLower = redefinedProperty.isRequired() ? ValuesUtil.ONE_VALUE :  ValuesUtil.ZERO_VALUE;
-				UnlimitedNaturalValue redefinedUpper = ValuesUtil.UNLIMITED_ONE_VALUE;
+				IntegerValue redefinedLower = redefinedProperty.isRequired() ? ValueUtil.ONE_VALUE :  ValueUtil.ZERO_VALUE;
+				UnlimitedNaturalValue redefinedUpper = ValueUtil.UNLIMITED_ONE_VALUE;
 				Type redefinedType = redefinedProperty.getType();
 				Type redefinedElementType = redefinedType;
 				if (redefinedElementType instanceof CollectionType) {
@@ -104,8 +104,8 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 					redefinedElementType = redefinedCollectionType.getElementType();
 				}
 				//
-				IntegerValue redefiningLower = pivotProperty.isRequired() ? ValuesUtil.ONE_VALUE :  ValuesUtil.ZERO_VALUE;
-				UnlimitedNaturalValue redefiningUpper = ValuesUtil.UNLIMITED_ONE_VALUE;
+				IntegerValue redefiningLower = pivotProperty.isRequired() ? ValueUtil.ONE_VALUE :  ValueUtil.ZERO_VALUE;
+				UnlimitedNaturalValue redefiningUpper = ValueUtil.UNLIMITED_ONE_VALUE;
 				Type redefiningElementType = redefiningType;
 				if (redefiningElementType instanceof CollectionType) {
 					CollectionType redefiningCollectionType = (CollectionType)redefiningElementType;
@@ -121,7 +121,7 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 					changedLower = redefiningLower.toString();
 				}
 				if (!redefinedUpper.equals(redefiningUpper)) {
-					changedUpper = redefiningUpper.equals(ValuesUtil.UNLIMITED_VALUE) ? "-1" : redefiningUpper.toString();
+					changedUpper = redefiningUpper.equals(ValueUtil.UNLIMITED_VALUE) ? "-1" : redefiningUpper.toString();
 				}
 				//
 				if (!(redefiningType instanceof CollectionType)) {

@@ -8223,10 +8223,10 @@ public interface CGModelPackage extends EPackage {
 	int CG_VARIABLE_EXP_FEATURE_COUNT = CG_VALUED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.domain.elements.Nameable <em>Nameable</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.Nameable <em>Nameable</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.domain.elements.Nameable
+	 * @see org.eclipse.ocl.pivot.Nameable
 	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getNameable()
 	 * @generated
 	 */
@@ -10231,11 +10231,11 @@ public interface CGModelPackage extends EPackage {
 	EReference getCGVariableExp_ReferredVariable();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.domain.elements.Nameable <em>Nameable</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.Nameable <em>Nameable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Nameable</em>'.
-	 * @see org.eclipse.ocl.domain.elements.Nameable
+	 * @see org.eclipse.ocl.pivot.Nameable
 	 * @generated
 	 */
 	EClass getNameable();
@@ -11986,10 +11986,10 @@ public interface CGModelPackage extends EPackage {
 		EReference CG_VARIABLE_EXP__REFERRED_VARIABLE = eINSTANCE.getCGVariableExp_ReferredVariable();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.domain.elements.Nameable <em>Nameable</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.Nameable <em>Nameable</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.domain.elements.Nameable
+		 * @see org.eclipse.ocl.pivot.Nameable
 		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getNameable()
 		 * @generated
 		 */

@@ -14,7 +14,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.library.AbstractSimpleUnaryOperation;
 import org.eclipse.ocl.domain.values.IntegerValue;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * StringSizeOperation realises the String::size() library operation.
@@ -26,6 +26,6 @@ public class StringSizeOperation extends AbstractSimpleUnaryOperation
 	@Override
 	public @NonNull IntegerValue evaluate(@Nullable Object sourceVal) {
 		String sourceString = asString(sourceVal);
-		return ValuesUtil.integerValueOf(sourceString.length());
+		return ValueUtil.integerValueOf(sourceString.length());
 	}
 }

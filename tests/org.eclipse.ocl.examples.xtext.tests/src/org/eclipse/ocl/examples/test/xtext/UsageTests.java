@@ -73,7 +73,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreGeneratorAdapterFactory;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.utilities.StandaloneProjectMap;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestSuite;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibPackage;
@@ -81,6 +80,7 @@ import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.helper.OCLHelper;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
@@ -826,8 +826,8 @@ public class UsageTests
 	}
 
 	public void testInitStatics() {
-		assertTrue(ValuesUtil.initAllStatics());
-		assertFalse(ValuesUtil.initAllStatics());
+		assertTrue(ValueUtil.initAllStatics());
+		assertFalse(ValueUtil.initAllStatics());
 	}
 
 	/**

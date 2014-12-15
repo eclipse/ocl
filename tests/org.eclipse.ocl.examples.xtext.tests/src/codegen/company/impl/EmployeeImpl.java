@@ -35,10 +35,9 @@ import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.OrderedSetValue;
 import org.eclipse.ocl.domain.values.SetValue;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.library.classifier.ClassifierAllInstancesOperation;
 import org.eclipse.ocl.library.collection.CollectionIncludesOperation;
 import org.eclipse.ocl.library.collection.CollectionNotEmptyOperation;
@@ -49,6 +48,7 @@ import org.eclipse.ocl.library.numeric.NumericGreaterThanOperation;
 import org.eclipse.ocl.library.oclany.OclAnyOclAsSetOperation;
 import org.eclipse.ocl.library.string.StringSizeOperation;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.osgi.util.NLS;
 
 import codegen.company.CodegencompanyPackage;
@@ -258,7 +258,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		final @NonNull /*@Thrown*/ Company company = this.getCompany();
 		final @NonNull /*@Thrown*/ List<Employee> employees = company.getEmployees();
 		final @NonNull /*@Thrown*/ OrderedSetValue BOXED_employees = idResolver.createOrderedSetOfAll(CodegencompanyTables.ORD_CLSSid_Employee, employees);
-		@NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator = ValuesUtil.createOrderedSetAccumulatorValue(CodegencompanyTables.ORD_CLSSid_Employee);
+		@NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator = ValueUtil.createOrderedSetAccumulatorValue(CodegencompanyTables.ORD_CLSSid_Employee);
 		@Nullable Iterator<?> ITERATOR__1 = BOXED_employees.iterator();
 		@NonNull /*@Thrown*/ OrderedSetValue select;
 		while (true) {
@@ -276,7 +276,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		    final @Nullable /*@Thrown*/ Employee manager_0 = _1.getManager();
 		    final /*@Thrown*/ boolean eq = manager_0 == this;
 		    //
-		    if (eq == ValuesUtil.TRUE_VALUE) {
+		    if (eq == ValueUtil.TRUE_VALUE) {
 		        accumulator.add(_1);
 		    }
 		}
@@ -299,7 +299,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		final @NonNull /*@NonInvalid*/ Type TYP_company_c_c_Employee_0 = idResolver.getType(CodegencompanyTables.CLSSid_Employee, null);
 		final @NonNull /*@Thrown*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE.evaluate(evaluator, CodegencompanyTables.SET_CLSSid_Employee, TYP_company_c_c_Employee_0);
-		@NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValuesUtil.createSetAccumulatorValue(CodegencompanyTables.SET_CLSSid_Employee);
+		@NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValueUtil.createSetAccumulatorValue(CodegencompanyTables.SET_CLSSid_Employee);
 		@Nullable Iterator<?> ITERATOR__1 = allInstances.iterator();
 		@NonNull /*@Thrown*/ SetValue select;
 		while (true) {
@@ -316,7 +316,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		    }
 		    final /*@Thrown*/ boolean reportsTo = _1.reportsTo(this);
 		    //
-		    if (reportsTo == ValuesUtil.TRUE_VALUE) {
+		    if (reportsTo == ValueUtil.TRUE_VALUE) {
 		        accumulator.add(_1);
 		    }
 		}
@@ -347,7 +347,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		    CAUGHT_manager_0 = manager_0;
 		}
 		catch (Exception e) {
-		    CAUGHT_manager_0 = ValuesUtil.createInvalidValue(e);
+		    CAUGHT_manager_0 = ValueUtil.createInvalidValue(e);
 		}
 		final /*@NonInvalid*/ boolean symbol_6 = (CAUGHT_manager_0 == null) || (CAUGHT_manager_0 instanceof InvalidValueException);
 		@NonNull /*@Thrown*/ OrderedSetValue symbol_7;
@@ -421,7 +421,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		        CAUGHT_manager_0 = manager_0;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_manager_0 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_manager_0 = ValueUtil.createInvalidValue(e);
 		    }
 		    final /*@NonInvalid*/ boolean self_11 = (CAUGHT_manager_0 == null) || (CAUGHT_manager_0 instanceof InvalidValueException);
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = new EcoreExecutorManager(this, CodegencompanyTables.LIBRARY);
@@ -435,12 +435,12 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		        CAUGHT_b = b;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_b = ValueUtil.createInvalidValue(e);
 		    }
 		    final /*@NonInvalid*/ boolean eq = !self_11;
 		    /*@Thrown*/ boolean symbol_9;
 		    if (eq) {
-		        symbol_9 = ValuesUtil.TRUE_VALUE;
+		        symbol_9 = ValueUtil.TRUE_VALUE;
 		    }
 		    else {
 		        final /*@NonInvalid*/ boolean symbol_6 = CAUGHT_b instanceof InvalidValueException;
@@ -454,10 +454,10 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		        else {
 		            /*@NonInvalid*/ boolean symbol_7;
 		            if (CAUGHT_b == Boolean.TRUE) {
-		                symbol_7 = ValuesUtil.TRUE_VALUE;
+		                symbol_7 = ValueUtil.TRUE_VALUE;
 		            }
 		            else {
-		                symbol_7 = ValuesUtil.FALSE_VALUE;
+		                symbol_7 = ValueUtil.FALSE_VALUE;
 		            }
 		            symbol_8 = symbol_7;
 		        }
@@ -466,9 +466,9 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		    CAUGHT_symbol_9 = symbol_9;
 		}
 		catch (Exception e) {
-		    CAUGHT_symbol_9 = ValuesUtil.createInvalidValue(e);
+		    CAUGHT_symbol_9 = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_symbol_9 == ValuesUtil.TRUE_VALUE) {
+		if (CAUGHT_symbol_9 == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {
@@ -514,7 +514,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		            CAUGHT_name = name;
 		        }
 		        catch (Exception e) {
-		            CAUGHT_name = ValuesUtil.createInvalidValue(e);
+		            CAUGHT_name = ValueUtil.createInvalidValue(e);
 		        }
 		        final /*@NonInvalid*/ boolean self_11 = (CAUGHT_name == null) || (CAUGHT_name instanceof InvalidValueException);
 		        final /*@NonInvalid*/ boolean eq = !self_11;
@@ -524,12 +524,12 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		            CAUGHT_b = b;
 		        }
 		        catch (Exception e) {
-		            CAUGHT_b = ValuesUtil.createInvalidValue(e);
+		            CAUGHT_b = ValueUtil.createInvalidValue(e);
 		        }
 		        final /*@NonInvalid*/ boolean eq_0 = !eq;
 		        @Nullable /*@Thrown*/ Boolean symbol_10;
 		        if (eq_0) {
-		            symbol_10 = ValuesUtil.FALSE_VALUE;
+		            symbol_10 = ValueUtil.FALSE_VALUE;
 		        }
 		        else {
 		            if (CAUGHT_b instanceof InvalidValueException) {
@@ -544,7 +544,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		                final /*@Thrown*/ boolean eq_1 = CAUGHT_b == Boolean.FALSE;
 		                @Nullable /*@NonInvalid*/ Boolean symbol_8;
 		                if (eq_1) {
-		                    symbol_8 = ValuesUtil.FALSE_VALUE;
+		                    symbol_8 = ValueUtil.FALSE_VALUE;
 		                }
 		                else {
 		                    final /*@Thrown*/ boolean eq_2 = CAUGHT_b == null;
@@ -553,7 +553,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		                        symbol_7 = null;
 		                    }
 		                    else {
-		                        symbol_7 = ValuesUtil.TRUE_VALUE;
+		                        symbol_7 = ValueUtil.TRUE_VALUE;
 		                    }
 		                    symbol_8 = symbol_7;
 		                }
@@ -564,7 +564,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		        CAUGHT_symbol_10 = symbol_10;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_symbol_10 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_symbol_10 = ValueUtil.createInvalidValue(e);
 		    }
 		    @NonNull /*@Caught*/ Object CAUGHT_b_0;
 		    try {
@@ -572,7 +572,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		        CAUGHT_b_0 = b_0;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_b_0 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_b_0 = ValueUtil.createInvalidValue(e);
 		    }
 		    final /*@NonInvalid*/ boolean symbol_11 = CAUGHT_symbol_10 instanceof InvalidValueException;
 		    @Nullable /*@Thrown*/ Boolean symbol_20;
@@ -592,7 +592,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		            final /*@Thrown*/ boolean eq_3 = CAUGHT_b_0 == Boolean.FALSE;
 		            @Nullable /*@Thrown*/ Boolean symbol_13;
 		            if (eq_3) {
-		                symbol_13 = ValuesUtil.FALSE_VALUE;
+		                symbol_13 = ValueUtil.FALSE_VALUE;
 		            }
 		            else {
 		                if (CAUGHT_symbol_10 instanceof InvalidValueException) {
@@ -611,7 +611,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		        final /*@Thrown*/ boolean eq_4 = CAUGHT_symbol_10 == Boolean.FALSE;
 		        @Nullable /*@Thrown*/ Boolean symbol_19;
 		        if (eq_4) {
-		            symbol_19 = ValuesUtil.FALSE_VALUE;
+		            symbol_19 = ValueUtil.FALSE_VALUE;
 		        }
 		        else {
 		            if (CAUGHT_b_0 instanceof InvalidValueException) {
@@ -626,7 +626,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		                final /*@Thrown*/ boolean eq_5 = CAUGHT_b_0 == Boolean.FALSE;
 		                @Nullable /*@NonInvalid*/ Boolean symbol_17;
 		                if (eq_5) {
-		                    symbol_17 = ValuesUtil.FALSE_VALUE;
+		                    symbol_17 = ValueUtil.FALSE_VALUE;
 		                }
 		                else {
 		                    final /*@Thrown*/ boolean eq_6 = CAUGHT_symbol_10 == null;
@@ -635,7 +635,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		                        symbol_16 = null;
 		                    }
 		                    else {
-		                        symbol_16 = ValuesUtil.TRUE_VALUE;
+		                        symbol_16 = ValueUtil.TRUE_VALUE;
 		                    }
 		                    symbol_17 = symbol_16;
 		                }
@@ -648,9 +648,9 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		    CAUGHT_symbol_20 = symbol_20;
 		}
 		catch (Exception e) {
-		    CAUGHT_symbol_20 = ValuesUtil.createInvalidValue(e);
+		    CAUGHT_symbol_20 = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_symbol_20 == ValuesUtil.TRUE_VALUE) {
+		if (CAUGHT_symbol_20 == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {
@@ -681,7 +681,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		        CAUGHT_self_11 = self_11;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_11 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_11 = ValueUtil.createInvalidValue(e);
 		    }
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
@@ -691,7 +691,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		        CAUGHT_b = b;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_b = ValueUtil.createInvalidValue(e);
 		    }
 		    final /*@NonInvalid*/ boolean symbol_6 = CAUGHT_self_11 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_14;
@@ -707,7 +707,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		        else {
 		            /*@Thrown*/ boolean symbol_8;
 		            if (CAUGHT_b == Boolean.TRUE) {
-		                symbol_8 = ValuesUtil.TRUE_VALUE;
+		                symbol_8 = ValueUtil.TRUE_VALUE;
 		            }
 		            else {
 		                if (CAUGHT_self_11 instanceof InvalidValueException) {
@@ -726,7 +726,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		        final /*@Thrown*/ boolean eq = CAUGHT_self_11 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_13;
 		        if (eq) {
-		            symbol_13 = ValuesUtil.TRUE_VALUE;
+		            symbol_13 = ValueUtil.TRUE_VALUE;
 		        }
 		        else {
 		            final /*@NonInvalid*/ boolean symbol_10 = CAUGHT_b instanceof InvalidValueException;
@@ -740,10 +740,10 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		            else {
 		                /*@NonInvalid*/ boolean symbol_11;
 		                if (CAUGHT_b == Boolean.TRUE) {
-		                    symbol_11 = ValuesUtil.TRUE_VALUE;
+		                    symbol_11 = ValueUtil.TRUE_VALUE;
 		                }
 		                else {
-		                    symbol_11 = ValuesUtil.FALSE_VALUE;
+		                    symbol_11 = ValueUtil.FALSE_VALUE;
 		                }
 		                symbol_12 = symbol_11;
 		            }
@@ -754,9 +754,9 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		    CAUGHT_symbol_14 = symbol_14;
 		}
 		catch (Exception e) {
-		    CAUGHT_symbol_14 = ValuesUtil.createInvalidValue(e);
+		    CAUGHT_symbol_14 = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_symbol_14 == ValuesUtil.TRUE_VALUE) {
+		if (CAUGHT_symbol_14 == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {

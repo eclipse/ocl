@@ -29,8 +29,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.library.classifier.OclTypeConformsToOperation;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Element;
@@ -44,6 +43,7 @@ import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.util.PivotValidator;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -236,7 +236,7 @@ public class VariableImpl
 		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_self_71 = ValueUtil.createInvalidValue(e);
 		    }
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
@@ -251,7 +251,7 @@ public class VariableImpl
 		        CAUGHT_b = b;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_b = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_b = ValueUtil.createInvalidValue(e);
 		    }
 		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_8;
@@ -267,7 +267,7 @@ public class VariableImpl
 		        else {
 		            /*@Thrown*/ boolean symbol_2;
 		            if (CAUGHT_b == Boolean.TRUE) {
-		                symbol_2 = ValuesUtil.TRUE_VALUE;
+		                symbol_2 = ValueUtil.TRUE_VALUE;
 		            }
 		            else {
 		                if (CAUGHT_self_71 instanceof InvalidValueException) {
@@ -286,7 +286,7 @@ public class VariableImpl
 		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_7;
 		        if (eq) {
-		            symbol_7 = ValuesUtil.TRUE_VALUE;
+		            symbol_7 = ValueUtil.TRUE_VALUE;
 		        }
 		        else {
 		            final /*@NonInvalid*/ boolean symbol_4 = CAUGHT_b instanceof InvalidValueException;
@@ -300,10 +300,10 @@ public class VariableImpl
 		            else {
 		                /*@NonInvalid*/ boolean symbol_5;
 		                if (CAUGHT_b == Boolean.TRUE) {
-		                    symbol_5 = ValuesUtil.TRUE_VALUE;
+		                    symbol_5 = ValueUtil.TRUE_VALUE;
 		                }
 		                else {
-		                    symbol_5 = ValuesUtil.FALSE_VALUE;
+		                    symbol_5 = ValueUtil.FALSE_VALUE;
 		                }
 		                symbol_6 = symbol_5;
 		            }
@@ -314,9 +314,9 @@ public class VariableImpl
 		    CAUGHT_symbol_8 = symbol_8;
 		}
 		catch (Exception e) {
-		    CAUGHT_symbol_8 = ValuesUtil.createInvalidValue(e);
+		    CAUGHT_symbol_8 = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_symbol_8 == ValuesUtil.TRUE_VALUE) {
+		if (CAUGHT_symbol_8 == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {

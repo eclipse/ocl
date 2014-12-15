@@ -31,7 +31,6 @@ import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.domain.validation.DomainSubstitutionLabelProvider;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestCase;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.OCL;
@@ -41,6 +40,7 @@ import org.eclipse.ocl.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.pivot.helper.OCLHelper;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * Tests for the OCLinEcore tutorial using LPG or Pivot delegate URIs on LPG or Pivot evaluator.
@@ -200,7 +200,7 @@ public class DocumentationExamples extends PivotTestCase
 			ExpressionInOCL query = helper.createQuery("isAvailable()");
 			Query queryEval = ocl.createQuery(query);
 			Object b2Available = queryEval.evaluate(b2Book);
-		    assertFalse(ValuesUtil.asBoolean(b2Available));
+		    assertFalse(ValueUtil.asBoolean(b2Available));
 		    
 			Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
 		    Diagnostic diagnostics = Diagnostician.INSTANCE.validate(xmiLibrary, validationContext);
@@ -208,14 +208,14 @@ public class DocumentationExamples extends PivotTestCase
 		    
 		    b2Book.eSet(bookCopies, BigInteger.valueOf(4));
 			b2Available = queryEval.evaluate(b2Book);
-		    assertTrue(ValuesUtil.asBoolean(b2Available));
+		    assertTrue(ValueUtil.asBoolean(b2Available));
 		    
 		    diagnostics = Diagnostician.INSTANCE.validate(xmiLibrary, validationContext);
 		    assertEquals(2, diagnostics.getChildren().size());
 		    
 		    b2Book.eSet(bookCopies, BigInteger.valueOf(3));
 			b2Available = queryEval.evaluate(b2Book);
-		    assertFalse(ValuesUtil.asBoolean(b2Available));
+		    assertFalse(ValueUtil.asBoolean(b2Available));
 		    
 		    List<?> b2loans = (List<?>)b2Book.eGet(bookLoans);
 		    assertEquals(3, b2loans.size());

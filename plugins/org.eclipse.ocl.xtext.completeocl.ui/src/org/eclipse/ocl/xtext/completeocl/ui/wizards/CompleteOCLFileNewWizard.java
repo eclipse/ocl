@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.xtext.base.ui.wizards.AbstractFileDialog;
 import org.eclipse.ocl.xtext.base.ui.wizards.AbstractFileNewWizard;
 import org.eclipse.ocl.xtext.base.ui.wizards.AbstractFileNewWizardPage;
@@ -76,7 +76,7 @@ public class CompleteOCLFileNewWizard extends AbstractFileNewWizard
 					Resource resource = resourceSet.getResource(uri, true);
 					URI newURI = URI.createPlatformResourceURI(newFile.getFullPath().toString(), true);
 					@SuppressWarnings("null")@NonNull URI deresolvedURI = uri.deresolve(newURI);
-					s.append("import '" + ValuesUtil.oclToString(deresolvedURI) + "'\n");
+					s.append("import '" + ValueUtil.oclToString(deresolvedURI) + "'\n");
 					if (firstPropertyName == null) {
 						for (EObject eObject : resource.getContents()) {
 							if (eObject instanceof org.eclipse.uml2.uml.Package) {

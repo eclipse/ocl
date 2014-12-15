@@ -66,6 +66,7 @@ import org.eclipse.ocl.domain.values.Bag;
 import org.eclipse.ocl.domain.values.BagValue;
 import org.eclipse.ocl.domain.values.CollectionValue;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.OCLValue;
 import org.eclipse.ocl.domain.values.OrderedSet;
 import org.eclipse.ocl.domain.values.OrderedSetValue;
@@ -74,9 +75,7 @@ import org.eclipse.ocl.domain.values.SetValue;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.domain.values.Value;
 import org.eclipse.ocl.domain.values.impl.BagImpl;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.domain.values.impl.OrderedSetImpl;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.CompletePackage;
@@ -89,6 +88,7 @@ import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 public abstract class AbstractIdResolver implements IdResolver
 {
@@ -164,13 +164,13 @@ public abstract class AbstractIdResolver implements IdResolver
 				return stringValue;
 			}
 			else if (id == TypeId.INTEGER) {
-				return ValuesUtil.integerValueOf(stringValue);
+				return ValueUtil.integerValueOf(stringValue);
 			}
 			else if (id == TypeId.REAL) {
-				return ValuesUtil.realValueOf(stringValue);
+				return ValueUtil.realValueOf(stringValue);
 			}
 			else if (id == TypeId.UNLIMITED_NATURAL) {
-				return ValuesUtil.integerValueOf(stringValue);
+				return ValueUtil.integerValueOf(stringValue);
 			}
 			throw new UnsupportedOperationException();
 		}
@@ -250,20 +250,20 @@ public abstract class AbstractIdResolver implements IdResolver
 		}
 		else if (unboxedValue instanceof Number) {
 			if ((unboxedValue instanceof Integer) || (unboxedValue instanceof Long) || (unboxedValue instanceof Short) || (unboxedValue instanceof Byte)) {
-				return ValuesUtil.integerValueOf(((Number) unboxedValue).longValue());
+				return ValueUtil.integerValueOf(((Number) unboxedValue).longValue());
 			}
 			if ((unboxedValue instanceof Float) || (unboxedValue instanceof Double)) {
-				return ValuesUtil.realValueOf(((Number) unboxedValue).doubleValue());
+				return ValueUtil.realValueOf(((Number) unboxedValue).doubleValue());
 			}
 			if (unboxedValue instanceof BigDecimal) {
-				return ValuesUtil.realValueOf((BigDecimal) unboxedValue);
+				return ValueUtil.realValueOf((BigDecimal) unboxedValue);
 			}
 			if (unboxedValue instanceof BigInteger) {
-				return ValuesUtil.integerValueOf((BigInteger) unboxedValue);
+				return ValueUtil.integerValueOf((BigInteger) unboxedValue);
 			}			
 		}
 		else if (unboxedValue instanceof Character) {
-			return ValuesUtil.integerValueOf(((Character) unboxedValue).charValue());
+			return ValueUtil.integerValueOf(((Character) unboxedValue).charValue());
 		}			
 		else if (unboxedValue.getClass().isArray()) {
 			try {
@@ -398,7 +398,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		for (Object unboxedValue : unboxedValues) {
 			boxedValues.add(boxedValueOf(unboxedValue));
 		}
-		return ValuesUtil.createBagValue(typeId, boxedValues);
+		return ValueUtil.createBagValue(typeId, boxedValues);
 	}
 	
 	@Override
@@ -407,7 +407,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		for (Object unboxedValue : unboxedValues) {
 			boxedValues.add(boxedValueOf(unboxedValue));
 		}
-		return ValuesUtil.createBagValue(typeId, boxedValues);
+		return ValueUtil.createBagValue(typeId, boxedValues);
 	}
 	   
 	/**
@@ -467,7 +467,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		for (Object unboxedValue : unboxedValues) {
 			boxedValues.add(boxedValueOf(unboxedValue));
 		}
-		return ValuesUtil.createOrderedSetValue(typeId, boxedValues);
+		return ValueUtil.createOrderedSetValue(typeId, boxedValues);
 	}
 
 	@Override
@@ -476,7 +476,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		for (Object unboxedValue : unboxedValues) {
 			boxedValues.add(boxedValueOf(unboxedValue));
 		}
-		return ValuesUtil.createOrderedSetValue(typeId, boxedValues);
+		return ValueUtil.createOrderedSetValue(typeId, boxedValues);
 	}
 
 	@Override
@@ -485,7 +485,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		for (Object unboxedValue : unboxedValues) {
 			boxedValues.add(boxedValueOf(unboxedValue));
 		}
-		return ValuesUtil.createSequenceValue(typeId, boxedValues);
+		return ValueUtil.createSequenceValue(typeId, boxedValues);
 	}
 
 	@Override
@@ -494,7 +494,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		for (Object unboxedValue : unboxedValues) {
 			boxedValues.add(boxedValueOf(unboxedValue));
 		}
-		return ValuesUtil.createSequenceValue(typeId, boxedValues);
+		return ValueUtil.createSequenceValue(typeId, boxedValues);
 	}
 
 	@Override
@@ -503,7 +503,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		for (Object unboxedValue : unboxedValues) {
 			boxedValues.add(boxedValueOf(unboxedValue));
 		}
-		return ValuesUtil.createSetValue(typeId, boxedValues);
+		return ValueUtil.createSetValue(typeId, boxedValues);
 	}
 
 	@Override
@@ -512,7 +512,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		for (Object unboxedValue : unboxedValues) {
 			boxedValues.add(boxedValueOf(unboxedValue));
 		}
-		return ValuesUtil.createSetValue(typeId, boxedValues);
+		return ValueUtil.createSetValue(typeId, boxedValues);
 	}
 
 	@Override

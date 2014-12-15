@@ -15,7 +15,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.ids.TuplePartId;
 import org.eclipse.ocl.domain.ids.TupleTypeId;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 
 /**
  * Interface of a tuple instance value.  OCL expressions resulting in tuples

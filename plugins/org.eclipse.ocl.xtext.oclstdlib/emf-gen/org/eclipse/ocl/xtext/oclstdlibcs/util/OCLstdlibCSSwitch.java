@@ -14,7 +14,7 @@ package org.eclipse.ocl.xtext.oclstdlibcs.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
-import org.eclipse.ocl.domain.elements.Nameable;
+import org.eclipse.ocl.pivot.Nameable;
 import org.eclipse.ocl.pivot.util.Pivotable;
 import org.eclipse.ocl.xtext.basecs.AttributeCS;
 import org.eclipse.ocl.xtext.basecs.ClassCS;
@@ -37,18 +37,6 @@ import org.eclipse.ocl.xtext.basecs.TypeCS;
 import org.eclipse.ocl.xtext.basecs.TypedElementCS;
 import org.eclipse.ocl.xtext.basecs.util.VisitableCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.*;
-import org.eclipse.ocl.xtext.oclstdlibcs.JavaClassCS;
-import org.eclipse.ocl.xtext.oclstdlibcs.JavaImplementationCS;
-import org.eclipse.ocl.xtext.oclstdlibcs.LibClassCS;
-import org.eclipse.ocl.xtext.oclstdlibcs.LibConstraintCS;
-import org.eclipse.ocl.xtext.oclstdlibcs.LibIterationCS;
-import org.eclipse.ocl.xtext.oclstdlibcs.LibOperationCS;
-import org.eclipse.ocl.xtext.oclstdlibcs.LibPackageCS;
-import org.eclipse.ocl.xtext.oclstdlibcs.LibPropertyCS;
-import org.eclipse.ocl.xtext.oclstdlibcs.LibRootPackageCS;
-import org.eclipse.ocl.xtext.oclstdlibcs.MetaclassNameCS;
-import org.eclipse.ocl.xtext.oclstdlibcs.OCLstdlibCSPackage;
-import org.eclipse.ocl.xtext.oclstdlibcs.PrecedenceCS;
 
 /**
  * <!-- begin-user-doc -->

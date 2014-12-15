@@ -12,8 +12,6 @@ package org.eclipse.ocl.pivot;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainFragment;
-import org.eclipse.ocl.domain.elements.Nameable;
 import org.eclipse.ocl.domain.ids.OperationId;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.domain.utilities.IndexableIterable;
@@ -34,12 +32,12 @@ public interface CompleteInheritance extends Nameable
 	/**
 	 * Return a depth ordered, OclAny-first, OclSelf-last, Iterable of all the super-adapters excluding this one.
 	 */
-	@NonNull Iterable<DomainFragment> getAllProperSuperFragments();
+	@NonNull Iterable<InheritanceFragment> getAllProperSuperFragments();
 	
 	/**
 	 * Return a depth ordered, OclAny-first, OclSelf-last, Iterable of all the super-adapters including this one.
 	 */
-	@NonNull Iterable<DomainFragment> getAllSuperFragments();
+	@NonNull Iterable<InheritanceFragment> getAllSuperFragments();
 
 	@NonNull CompleteInheritance getCommonInheritance(@NonNull CompleteInheritance inheritance);
 
@@ -48,20 +46,20 @@ public interface CompleteInheritance extends Nameable
 	 */
 	int getDepth();
 	
-	@Nullable DomainFragment getFragment(@NonNull CompleteInheritance thatInheritance);
-	@NonNull Iterable<DomainFragment> getFragments();
-	/*@Nullable*/ DomainFragment getFragment(int fragmentNumber);
+	@Nullable InheritanceFragment getFragment(@NonNull CompleteInheritance thatInheritance);
+	@NonNull Iterable<InheritanceFragment> getFragments();
+	/*@Nullable*/ InheritanceFragment getFragment(int fragmentNumber);
 	int getIndex(int fragmentNumber);
 	int getIndexes();
 	@Nullable Operation getMemberOperation(@NonNull OperationId id);
 	@Nullable Property getMemberProperty(@NonNull String name);
 
-	@NonNull DomainFragment getSelfFragment();
+	@NonNull InheritanceFragment getSelfFragment();
 	
 	/**
 	 * Return an Iterable of all the super-inheritances at a specified depth, between 0 and getDepth() inclusive.
 	 */
-	@NonNull IndexableIterable<DomainFragment> getSuperFragments(int depth);
+	@NonNull IndexableIterable<InheritanceFragment> getSuperFragments(int depth);
 
 	@NonNull org.eclipse.ocl.pivot.Class getType();
 

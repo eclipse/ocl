@@ -20,13 +20,13 @@ import org.eclipse.ocl.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.domain.library.AbstractProperty;
 import org.eclipse.ocl.domain.types.IdResolver;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitorImpl;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.LiteralBoolean;
@@ -109,20 +109,20 @@ public class InstanceSlotNavigationProperty extends AbstractProperty
 			return ((LiteralBoolean)valueSpecification).booleanValue();
 		}
 		if (valueSpecification instanceof LiteralInteger) {
-			return ValuesUtil.integerValueOf(((LiteralInteger)valueSpecification).getValue());
+			return ValueUtil.integerValueOf(((LiteralInteger)valueSpecification).getValue());
 		}
 		if (valueSpecification instanceof LiteralNull) {
 			return null;
 		}
 		if (valueSpecification instanceof LiteralReal) {
-			return ValuesUtil.realValueOf(((LiteralReal)valueSpecification).getValue());
+			return ValueUtil.realValueOf(((LiteralReal)valueSpecification).getValue());
 		}
 		if (valueSpecification instanceof LiteralString) {
 			return ((LiteralString)valueSpecification).getValue();
 		}
 		if (valueSpecification instanceof LiteralUnlimitedNatural) {
 			int unlimitedValue = ((LiteralUnlimitedNatural)valueSpecification).unlimitedValue();
-			return unlimitedValue < 0 ? ValuesUtil.UNLIMITED_VALUE : ValuesUtil.integerValueOf(unlimitedValue);
+			return unlimitedValue < 0 ? ValueUtil.UNLIMITED_VALUE : ValueUtil.integerValueOf(unlimitedValue);
 		}
 		if (valueSpecification instanceof InstanceValue) {
 			return ((InstanceValue)valueSpecification).getInstance();

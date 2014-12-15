@@ -11,8 +11,8 @@
 package org.eclipse.ocl.domain.utilities;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.Nameable;
 import org.eclipse.ocl.examples.common.label.AbstractLabelGenerator;
+import org.eclipse.ocl.pivot.Nameable;
 
 public final class NameableLabelGenerator extends AbstractLabelGenerator<Nameable>
 {

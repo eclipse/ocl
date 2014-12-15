@@ -14,7 +14,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.library.AbstractSimpleBinaryOperation;
 import org.eclipse.ocl.domain.values.IntegerValue;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * OclComparableCompareToOperation realizes the abstract compareTo library operation using intrinsic Java functionality.
@@ -30,7 +30,7 @@ public class OclComparableCompareToOperation extends AbstractSimpleBinaryOperati
 			return integerValueOf(compareTo);
 		}
 		else {
-			return integerValueOf(ValuesUtil.throwUnsupportedCompareTo(left, right));
+			return integerValueOf(ValueUtil.throwUnsupportedCompareTo(left, right));
 		}
 	}
 }

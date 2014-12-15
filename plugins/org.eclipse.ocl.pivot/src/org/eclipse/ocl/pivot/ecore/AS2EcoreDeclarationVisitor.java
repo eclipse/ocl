@@ -45,7 +45,6 @@ import org.eclipse.ocl.examples.common.utils.StringUtils;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.Annotation;
 import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.CollectionType;
@@ -75,6 +74,7 @@ import org.eclipse.ocl.pivot.delegate.DelegateInstaller;
 import org.eclipse.ocl.pivot.manager.Orphanage;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
@@ -306,12 +306,12 @@ public class AS2EcoreDeclarationVisitor
 		}
 		else {
 			type = propertyType;
-			lowerValue = property.isRequired() ? ValuesUtil.ONE_VALUE : ValuesUtil.ZERO_VALUE;
-			upperValue = ValuesUtil.UNLIMITED_ONE_VALUE;
-			if (!ValuesUtil.ZERO_VALUE.equals(lowerValue)) {
+			lowerValue = property.isRequired() ? ValueUtil.ONE_VALUE : ValueUtil.ZERO_VALUE;
+			upperValue = ValueUtil.UNLIMITED_ONE_VALUE;
+			if (!ValueUtil.ZERO_VALUE.equals(lowerValue)) {
 				lower = lowerValue.toString();
 			}
-			if (!ValuesUtil.UNLIMITED_ONE_VALUE.equals(upperValue)) {
+			if (!ValueUtil.UNLIMITED_ONE_VALUE.equals(upperValue)) {
 				upper = upperValue.toString();
 			}
 		}

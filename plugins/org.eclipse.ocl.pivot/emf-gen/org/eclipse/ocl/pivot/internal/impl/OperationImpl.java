@@ -33,7 +33,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainParameterTypes;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.domain.ids.IdManager;
@@ -42,9 +41,8 @@ import org.eclipse.ocl.domain.ids.ParametersId;
 import org.eclipse.ocl.domain.library.LibraryFeature;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.types.IdResolver;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.SetValue;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.library.oclany.OclAnyOclAsTypeOperation;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.CompleteInheritance;
@@ -57,6 +55,7 @@ import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.ParameterTypes;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.Precedence;
@@ -69,6 +68,8 @@ import org.eclipse.ocl.pivot.ValueSpecification;
 import org.eclipse.ocl.pivot.util.PivotValidator;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.TypeUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -713,7 +714,7 @@ public class OperationImpl
 		            CAUGHT_self_71 = self_71;
 		        }
 		        catch (Exception e) {
-		            CAUGHT_self_71 = ValuesUtil.createInvalidValue(e);
+		            CAUGHT_self_71 = ValueUtil.createInvalidValue(e);
 		        }
 		        final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		        final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -730,7 +731,7 @@ public class OperationImpl
 		            CAUGHT_b = b;
 		        }
 		        catch (Exception e) {
-		            CAUGHT_b = ValuesUtil.createInvalidValue(e);
+		            CAUGHT_b = ValueUtil.createInvalidValue(e);
 		        }
 		        final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
 		        /*@Thrown*/ boolean symbol_8;
@@ -750,7 +751,7 @@ public class OperationImpl
 		                final /*@Thrown*/ boolean eq = CAUGHT_b == Boolean.FALSE;
 		                /*@Thrown*/ boolean symbol_2;
 		                if (eq) {
-		                    symbol_2 = ValuesUtil.FALSE_VALUE;
+		                    symbol_2 = ValueUtil.FALSE_VALUE;
 		                }
 		                else {
 		                    if (CAUGHT_self_71 instanceof InvalidValueException) {
@@ -769,7 +770,7 @@ public class OperationImpl
 		            final /*@Thrown*/ boolean eq_0 = CAUGHT_self_71 == Boolean.FALSE;
 		            /*@Thrown*/ boolean symbol_7;
 		            if (eq_0) {
-		                symbol_7 = ValuesUtil.FALSE_VALUE;
+		                symbol_7 = ValueUtil.FALSE_VALUE;
 		            }
 		            else {
 		                if (CAUGHT_b instanceof InvalidValueException) {
@@ -784,10 +785,10 @@ public class OperationImpl
 		                    final /*@Thrown*/ boolean eq_1 = CAUGHT_b == Boolean.FALSE;
 		                    /*@NonInvalid*/ boolean symbol_5;
 		                    if (eq_1) {
-		                        symbol_5 = ValuesUtil.FALSE_VALUE;
+		                        symbol_5 = ValueUtil.FALSE_VALUE;
 		                    }
 		                    else {
-		                        symbol_5 = ValuesUtil.TRUE_VALUE;
+		                        symbol_5 = ValueUtil.TRUE_VALUE;
 		                    }
 		                    symbol_6 = symbol_5;
 		                }
@@ -798,7 +799,7 @@ public class OperationImpl
 		        CAUGHT_symbol_8 = symbol_8;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_symbol_8 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_symbol_8 = ValueUtil.createInvalidValue(e);
 		    }
 		    @NonNull /*@Caught*/ Object CAUGHT_b_0;
 		    try {
@@ -807,7 +808,7 @@ public class OperationImpl
 		        CAUGHT_b_0 = b_0;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_b_0 = ValuesUtil.createInvalidValue(e);
+		        CAUGHT_b_0 = ValueUtil.createInvalidValue(e);
 		    }
 		    final /*@NonInvalid*/ boolean symbol_9 = CAUGHT_symbol_8 instanceof InvalidValueException;
 		    /*@Thrown*/ boolean symbol_17;
@@ -823,7 +824,7 @@ public class OperationImpl
 		        else {
 		            /*@Thrown*/ boolean symbol_11;
 		            if (CAUGHT_b_0 == Boolean.TRUE) {
-		                symbol_11 = ValuesUtil.TRUE_VALUE;
+		                symbol_11 = ValueUtil.TRUE_VALUE;
 		            }
 		            else {
 		                if (CAUGHT_symbol_8 instanceof InvalidValueException) {
@@ -842,7 +843,7 @@ public class OperationImpl
 		        final /*@Thrown*/ boolean eq_2 = CAUGHT_symbol_8 == Boolean.FALSE;
 		        /*@Thrown*/ boolean symbol_16;
 		        if (eq_2) {
-		            symbol_16 = ValuesUtil.TRUE_VALUE;
+		            symbol_16 = ValueUtil.TRUE_VALUE;
 		        }
 		        else {
 		            final /*@NonInvalid*/ boolean symbol_13 = CAUGHT_b_0 instanceof InvalidValueException;
@@ -856,10 +857,10 @@ public class OperationImpl
 		            else {
 		                /*@NonInvalid*/ boolean symbol_14;
 		                if (CAUGHT_b_0 == Boolean.TRUE) {
-		                    symbol_14 = ValuesUtil.TRUE_VALUE;
+		                    symbol_14 = ValueUtil.TRUE_VALUE;
 		                }
 		                else {
-		                    symbol_14 = ValuesUtil.FALSE_VALUE;
+		                    symbol_14 = ValueUtil.FALSE_VALUE;
 		                }
 		                symbol_15 = symbol_14;
 		            }
@@ -870,9 +871,9 @@ public class OperationImpl
 		    CAUGHT_symbol_17 = symbol_17;
 		}
 		catch (Exception e) {
-		    CAUGHT_symbol_17 = ValuesUtil.createInvalidValue(e);
+		    CAUGHT_symbol_17 = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_symbol_17 == ValuesUtil.TRUE_VALUE) {
+		if (CAUGHT_symbol_17 == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {
@@ -914,12 +915,12 @@ public class OperationImpl
 		try {
 		    final @NonNull /*@Thrown*/ List<Constraint> precondition = this.getPrecondition();
 		    final @NonNull /*@Thrown*/ SetValue BOXED_precondition = idResolver.createSetOfAll(PivotTables.SET_CLSSid_Constraint, precondition);
-		    @NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValuesUtil.createSetAccumulatorValue(PivotTables.SET_CLSSid_Constraint);
+		    @NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValueUtil.createSetAccumulatorValue(PivotTables.SET_CLSSid_Constraint);
 		    @Nullable Iterator<?> ITERATOR__1 = BOXED_precondition.iterator();
 		    /*@Thrown*/ boolean isUnique;
 		    while (true) {
 		        if (!ITERATOR__1.hasNext()) {
-		            isUnique = ValuesUtil.TRUE_VALUE;
+		            isUnique = ValueUtil.TRUE_VALUE;
 		            break;
 		        }
 		        @Nullable /*@NonInvalid*/ Constraint _1 = (Constraint)ITERATOR__1.next();
@@ -931,8 +932,8 @@ public class OperationImpl
 		        }
 		        final @Nullable /*@Thrown*/ String name = _1.getName();
 		        //
-		        if (accumulator.includes(name) == ValuesUtil.TRUE_VALUE) {
-		            isUnique = ValuesUtil.FALSE_VALUE;			// Abort after second find
+		        if (accumulator.includes(name) == ValueUtil.TRUE_VALUE) {
+		            isUnique = ValueUtil.FALSE_VALUE;			// Abort after second find
 		            break;
 		        }
 		        else {
@@ -942,9 +943,9 @@ public class OperationImpl
 		    CAUGHT_isUnique = isUnique;
 		}
 		catch (Exception e) {
-		    CAUGHT_isUnique = ValuesUtil.createInvalidValue(e);
+		    CAUGHT_isUnique = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_isUnique == ValuesUtil.TRUE_VALUE) {
+		if (CAUGHT_isUnique == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {
@@ -972,12 +973,12 @@ public class OperationImpl
 		try {
 		    final @NonNull /*@Thrown*/ List<Constraint> postcondition = this.getPostcondition();
 		    final @NonNull /*@Thrown*/ SetValue BOXED_postcondition = idResolver.createSetOfAll(PivotTables.SET_CLSSid_Constraint, postcondition);
-		    @NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValuesUtil.createSetAccumulatorValue(PivotTables.SET_CLSSid_Constraint);
+		    @NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValueUtil.createSetAccumulatorValue(PivotTables.SET_CLSSid_Constraint);
 		    @Nullable Iterator<?> ITERATOR__1 = BOXED_postcondition.iterator();
 		    /*@Thrown*/ boolean isUnique;
 		    while (true) {
 		        if (!ITERATOR__1.hasNext()) {
-		            isUnique = ValuesUtil.TRUE_VALUE;
+		            isUnique = ValueUtil.TRUE_VALUE;
 		            break;
 		        }
 		        @Nullable /*@NonInvalid*/ Constraint _1 = (Constraint)ITERATOR__1.next();
@@ -989,8 +990,8 @@ public class OperationImpl
 		        }
 		        final @Nullable /*@Thrown*/ String name = _1.getName();
 		        //
-		        if (accumulator.includes(name) == ValuesUtil.TRUE_VALUE) {
-		            isUnique = ValuesUtil.FALSE_VALUE;			// Abort after second find
+		        if (accumulator.includes(name) == ValueUtil.TRUE_VALUE) {
+		            isUnique = ValueUtil.FALSE_VALUE;			// Abort after second find
 		            break;
 		        }
 		        else {
@@ -1000,9 +1001,9 @@ public class OperationImpl
 		    CAUGHT_isUnique = isUnique;
 		}
 		catch (Exception e) {
-		    CAUGHT_isUnique = ValuesUtil.createInvalidValue(e);
+		    CAUGHT_isUnique = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_isUnique == ValuesUtil.TRUE_VALUE) {
+		if (CAUGHT_isUnique == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {
@@ -1548,14 +1549,14 @@ public class OperationImpl
 	}
 
 	@Override
-	public @NonNull DomainParameterTypes getParameterTypes() {
+	public @NonNull ParameterTypes getParameterTypes() {
 		List<Parameter> ownedParameter = getOwnedParameter();
 		int iMax = ownedParameter.size();
 		Type[] types = new Type[iMax];
 		for (int i = 0; i < iMax; i++) {
 			types[i] = ownedParameter.get(i).getType();
 		}
-		return new DomainParameterTypes(types);
+		return TypeUtil.createParameterTypes(types);
 	}
 
 	@Override

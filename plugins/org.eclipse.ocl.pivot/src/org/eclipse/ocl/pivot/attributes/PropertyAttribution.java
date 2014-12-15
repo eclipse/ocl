@@ -12,8 +12,8 @@ package org.eclipse.ocl.pivot.attributes;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.FeatureFilter;
 import org.eclipse.ocl.pivot.CollectionType;
+import org.eclipse.ocl.pivot.FeatureFilter;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;

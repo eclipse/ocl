@@ -15,7 +15,6 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.elements.AbstractExecutorClass;
-import org.eclipse.ocl.domain.elements.DomainFragment;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.ids.OperationId;
 import org.eclipse.ocl.domain.ids.TypeId;
@@ -27,6 +26,7 @@ import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.InheritanceFragment;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.StandardLibrary;
@@ -78,7 +78,7 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	
 	@Override
 	public final @NonNull FragmentIterable getAllProperSuperFragments() {
-		DomainFragment[] fragments2 = DomainUtil.nonNullState(fragments);
+		InheritanceFragment[] fragments2 = DomainUtil.nonNullState(fragments);
 		return new FragmentIterable(fragments2, 0, fragments2.length-1);
 	}
 	
@@ -104,8 +104,8 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	}
 	
 	@Override
-	public @NonNull Iterable<DomainFragment> getFragments() {
-		return new ArrayIterable<DomainFragment>(fragments);
+	public @NonNull Iterable<InheritanceFragment> getFragments() {
+		return new ArrayIterable<InheritanceFragment>(fragments);
 	}
 
 	@Override

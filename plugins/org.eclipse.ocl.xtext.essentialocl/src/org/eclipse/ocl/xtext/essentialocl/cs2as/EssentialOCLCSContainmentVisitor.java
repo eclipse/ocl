@@ -26,7 +26,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.values.Unlimited;
-import org.eclipse.ocl.domain.values.util.ValuesUtil;
 import org.eclipse.ocl.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.pivot.CollectionItem;
 import org.eclipse.ocl.pivot.CollectionLiteralExp;
@@ -57,6 +56,7 @@ import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.context.ParserContext;
 import org.eclipse.ocl.pivot.utilities.BaseResource;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.xtext.base.cs2as.Continuation;
@@ -352,18 +352,18 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 				BigInteger bigInteger = (BigInteger) number;
 				isNegative = bigInteger.signum() < 0;
 				if (isNegative) {
-					if (bigInteger.compareTo(ValuesUtil.INTEGER_MIN_VALUE) >= 0) {
+					if (bigInteger.compareTo(ValueUtil.INTEGER_MIN_VALUE) >= 0) {
 						number = Integer.valueOf(bigInteger.intValue());
 					}
-					else if (bigInteger.compareTo(ValuesUtil.LONG_MIN_VALUE) >= 0) {
+					else if (bigInteger.compareTo(ValueUtil.LONG_MIN_VALUE) >= 0) {
 						number = Long.valueOf(bigInteger.longValue());
 					}
 				}
 				else {
-					if (bigInteger.compareTo(ValuesUtil.INTEGER_MAX_VALUE) <= 0) {
+					if (bigInteger.compareTo(ValueUtil.INTEGER_MAX_VALUE) <= 0) {
 						number = Integer.valueOf(bigInteger.intValue());
 					}
-					else if (bigInteger.compareTo(ValuesUtil.LONG_MAX_VALUE) <= 0) {
+					else if (bigInteger.compareTo(ValueUtil.LONG_MAX_VALUE) <= 0) {
 						number = Long.valueOf(bigInteger.longValue());
 					}
 				}

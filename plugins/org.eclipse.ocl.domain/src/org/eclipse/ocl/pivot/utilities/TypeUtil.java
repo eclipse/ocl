@@ -8,22 +8,24 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.domain.types;
+package org.eclipse.ocl.pivot.utilities;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.domain.ids.PrimitiveTypeId;
 import org.eclipse.ocl.domain.ids.TypeId;
+import org.eclipse.ocl.domain.types.ParameterTypesImpl;
 import org.eclipse.ocl.domain.values.IntegerValue;
 import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.LambdaType;
+import org.eclipse.ocl.pivot.ParameterTypes;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 
-public class TypeUtils
+public class TypeUtil
 {
 	public static boolean conformsToCollectionType(@NonNull StandardLibrary standardLibrary, @NonNull CollectionType firstCollectionType, @NonNull CollectionType secondCollectionType) {
 		Type firstContainerType = firstCollectionType.getContainerType();
@@ -69,6 +71,10 @@ public class TypeUtils
 		CompleteInheritance firstInheritance = firstTupleType.getInheritance(standardLibrary);
 		CompleteInheritance secondInheritance = secondTupleType.getInheritance(standardLibrary);
 		return firstInheritance.isSuperInheritanceOf(secondInheritance);
+	}
+
+	public static @NonNull ParameterTypes createParameterTypes(@NonNull Type... parameterTypes) {
+		return new ParameterTypesImpl(parameterTypes);
 	}
 
 	public static @Nullable Type getPrimitiveType(@NonNull StandardLibrary standardLibrary, @NonNull PrimitiveTypeId typeId) {

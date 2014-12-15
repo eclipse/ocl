@@ -34,8 +34,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainParameterTypes;
-import org.eclipse.ocl.domain.elements.Nameable;
 import org.eclipse.ocl.domain.ids.BuiltInTypeId;
 import org.eclipse.ocl.domain.ids.LambdaTypeId;
 import org.eclipse.ocl.domain.ids.ParametersId;
@@ -54,9 +52,11 @@ import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Library;
+import org.eclipse.ocl.pivot.Nameable;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Package;
+import org.eclipse.ocl.pivot.ParameterTypes;
 import org.eclipse.ocl.pivot.PivotConstants;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.Property;
@@ -79,10 +79,10 @@ import org.eclipse.xtext.util.Strings;
 
 public class OCLinEcoreTablesUtils
 {	
-	public Comparator<DomainParameterTypes> templateBindingNameComparator = new Comparator<DomainParameterTypes>()
+	public Comparator<ParameterTypes> templateBindingNameComparator = new Comparator<ParameterTypes>()
 	{
 		@Override
-		public int compare(DomainParameterTypes o1, DomainParameterTypes o2) {
+		public int compare(ParameterTypes o1, ParameterTypes o2) {
 			assert o1 != null && o2 != null;
 			String n1 = getTemplateBindingsName(o1);
 			String n2 = getTemplateBindingsName(o2);
@@ -619,7 +619,7 @@ public class OCLinEcoreTablesUtils
 	protected final @NonNull EmitLiteralVisitor emitLiteralVisitor = new EmitLiteralVisitor(s);
 	protected final @NonNull EmitQualifiedLiteralVisitor emitQualifiedLiteralVisitor = new EmitQualifiedLiteralVisitor(s);
 	protected final @NonNull Iterable<org.eclipse.ocl.pivot.Class> activeClassesSortedByName;
-	protected final @NonNull Map<DomainParameterTypes, String> templateBindingsNames = new HashMap<DomainParameterTypes, String>();
+	protected final @NonNull Map<ParameterTypes, String> templateBindingsNames = new HashMap<ParameterTypes, String>();
 	
 
 	protected OCLinEcoreTablesUtils(@NonNull GenPackage genPackage) {
@@ -1000,7 +1000,7 @@ public class OCLinEcoreTablesUtils
 		return genPackage.getPrefix() + AbstractGenModelHelper.TABLES_CLASS_SUFFIX;
 	}
 
-	protected @NonNull String getTemplateBindingsName(@NonNull DomainParameterTypes templateBindings) {
+	protected @NonNull String getTemplateBindingsName(@NonNull ParameterTypes templateBindings) {
 		String name2 = templateBindingsNames.get(templateBindings);
 		if (name2 == null) {
 			StringBuilder s = new StringBuilder();

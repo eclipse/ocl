@@ -8,7 +8,7 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.domain.values.util;
+package org.eclipse.ocl.pivot.utilities;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainParameterTypes;
 import org.eclipse.ocl.domain.elements.DomainTypeParameters;
 import org.eclipse.ocl.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.domain.ids.CollectionTypeId;
@@ -38,6 +37,7 @@ import org.eclipse.ocl.domain.library.UnsupportedOperation;
 import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.domain.messages.StatusCodes;
 import org.eclipse.ocl.domain.types.AbstractInheritance;
+import org.eclipse.ocl.domain.types.ParameterTypesImpl;
 import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.domain.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.domain.validation.DomainSubstitutionLabelProvider;
@@ -46,6 +46,7 @@ import org.eclipse.ocl.domain.values.BagValue;
 import org.eclipse.ocl.domain.values.CollectionValue;
 import org.eclipse.ocl.domain.values.IntegerRange;
 import org.eclipse.ocl.domain.values.IntegerValue;
+import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.domain.values.NullValue;
 import org.eclipse.ocl.domain.values.ObjectValue;
 import org.eclipse.ocl.domain.values.OrderedCollectionValue;
@@ -67,7 +68,6 @@ import org.eclipse.ocl.domain.values.impl.BigIntegerValueImpl;
 import org.eclipse.ocl.domain.values.impl.CollectionValueImpl;
 import org.eclipse.ocl.domain.values.impl.IntIntegerValueImpl;
 import org.eclipse.ocl.domain.values.impl.IntegerRangeImpl;
-import org.eclipse.ocl.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.domain.values.impl.JavaObjectValueImpl;
 import org.eclipse.ocl.domain.values.impl.LongIntegerValueImpl;
 import org.eclipse.ocl.domain.values.impl.NullValueImpl;
@@ -87,7 +87,7 @@ import org.eclipse.ocl.pivot.Type;
 
 /**
  */
-public abstract class ValuesUtil
+public abstract class ValueUtil
 {	
 	public static final @NonNull String NULL_STRING = "null";
 
@@ -568,11 +568,11 @@ public abstract class ValuesUtil
 	 */
 	public static boolean initAllStatics() {
 		if (!allStaticsInitialized) {
-			synchronized (ValuesUtil.class) {
+			synchronized (ValueUtil.class) {
 				if (!allStaticsInitialized) {
 					allStaticsInitialized = true;
 					// org.eclipse.ocl.domain.elements
-					DomainParameterTypes.EMPTY_LIST.getClass();
+					ParameterTypesImpl.EMPTY_LIST.getClass();
 					DomainTypeParameters.EMPTY_LIST.getClass();
 					// org.eclipse.ocl.domain.evaluation
 					DomainModelManager.NULL.getClass();
