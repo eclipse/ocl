@@ -19,23 +19,23 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
-import org.eclipse.ocl.domain.evaluation.DomainIterationManager;
-import org.eclipse.ocl.domain.ids.CollectionTypeId;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.library.AbstractIteration;
-import org.eclipse.ocl.domain.library.LibraryBinaryOperation;
-import org.eclipse.ocl.domain.library.LibraryFeature;
-import org.eclipse.ocl.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.domain.values.IntegerValue;
-import org.eclipse.ocl.domain.values.InvalidValueException;
-import org.eclipse.ocl.domain.values.Value;
-import org.eclipse.ocl.domain.values.impl.ValueImpl;
 import org.eclipse.ocl.library.LibraryConstants;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.StandardLibrary;
+import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.DomainIterationManager;
+import org.eclipse.ocl.pivot.ids.CollectionTypeId;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.library.AbstractIteration;
+import org.eclipse.ocl.pivot.library.LibraryBinaryOperation;
+import org.eclipse.ocl.pivot.library.LibraryFeature;
+import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.pivot.values.Value;
+import org.eclipse.ocl.pivot.values.impl.ValueImpl;
 
 /**
  * SelectIteration realizes the Collection::sortedBy() library iteration.

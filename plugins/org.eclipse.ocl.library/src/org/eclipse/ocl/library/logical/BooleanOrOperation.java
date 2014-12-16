@@ -14,13 +14,13 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.library.AbstractSimpleBinaryOperation;
-import org.eclipse.ocl.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.OperationCallExp;
+import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.library.AbstractSimpleBinaryOperation;
+import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
  * OrOperation realises the or() library operation.

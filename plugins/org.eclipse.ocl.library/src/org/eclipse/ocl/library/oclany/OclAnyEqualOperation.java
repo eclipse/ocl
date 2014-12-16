@@ -12,9 +12,9 @@ package org.eclipse.ocl.library.oclany;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.library.AbstractSimpleBinaryOperation;
-import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.library.AbstractSimpleBinaryOperation;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
  * OclAnyEqualOperation realises the OCLAny::=() library operation and

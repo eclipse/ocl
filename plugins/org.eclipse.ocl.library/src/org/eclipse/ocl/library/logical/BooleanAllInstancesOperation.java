@@ -12,11 +12,11 @@ package org.eclipse.ocl.library.logical;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
-import org.eclipse.ocl.domain.ids.CollectionTypeId;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.library.AbstractUntypedUnaryOperation;
-import org.eclipse.ocl.domain.values.SetValue;
+import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.ids.CollectionTypeId;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.library.AbstractUntypedUnaryOperation;
+import org.eclipse.ocl.pivot.values.SetValue;
 
 /**
  * BooleanAllInstancesOperation realises the Boolean::allInstances() library operation.

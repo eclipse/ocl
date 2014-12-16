@@ -12,9 +12,9 @@ package org.eclipse.ocl.library.numeric;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.library.AbstractSimpleUnaryOperation;
-import org.eclipse.ocl.domain.values.IntegerValue;
-import org.eclipse.ocl.domain.values.RealValue;
+import org.eclipse.ocl.pivot.library.AbstractSimpleUnaryOperation;
+import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.RealValue;
 
 /**
  * NumericFloorOperation realises the floor() library operation.

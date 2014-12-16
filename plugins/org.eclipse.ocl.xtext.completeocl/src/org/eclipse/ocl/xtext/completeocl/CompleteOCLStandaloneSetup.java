@@ -11,7 +11,6 @@
 package org.eclipse.ocl.xtext.completeocl;
 
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetupGenerated;
 import org.eclipse.ocl.xtext.completeocl.scoping.CompleteOCLScoping;
 import org.eclipse.ocl.xtext.completeocl.utilities.CompleteOCLASResourceFactory;
 import org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage;

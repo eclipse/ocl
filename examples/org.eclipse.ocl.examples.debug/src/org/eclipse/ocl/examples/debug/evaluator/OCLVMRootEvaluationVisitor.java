@@ -46,7 +46,6 @@ import org.eclipse.ocl.examples.debug.vm.utils.ASTBindingHelper;
 import org.eclipse.ocl.examples.debug.vm.utils.CompiledUnit;
 import org.eclipse.ocl.examples.debug.vm.utils.DebugOptions;
 import org.eclipse.ocl.examples.debug.vm.utils.VMInterruptedExecutionException;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LoopExp;
@@ -56,6 +55,7 @@ import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.Variable;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implements IVMRootEvaluationVisitor<ExpressionInOCL>
 {
@@ -82,9 +82,9 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 		fCurrentStepMode = VMSuspension.UNSPECIFIED;
 		pushVisitor(this);
 		fCurrentLocation = getCurrentLocation();
-		invalidVariable = DomainUtil.nonNullEMF(PivotFactory.eINSTANCE.createVariable());
+		invalidVariable = ClassUtil.nonNullEMF(PivotFactory.eINSTANCE.createVariable());
 		invalidVariable.setName("$invalid");
-		String typeName = DomainUtil.nonNullEMF(PivotPackage.Literals.OCL_EXPRESSION.getName());
+		String typeName = ClassUtil.nonNullEMF(PivotPackage.Literals.OCL_EXPRESSION.getName());
 		invalidVariable.setType(env.getMetaModelManager().getPivotType(typeName));
 	}
 
@@ -180,7 +180,7 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 		if (name == null) {
 			return "<null>"; //$NON-NLS-1$
 		}
-		return DomainUtil.nonNullState(name);
+		return ClassUtil.nonNullState(name);
 	}
 
 	public @NonNull OCLVMRootEvaluationVisitor getRootEvaluationVisitor() {

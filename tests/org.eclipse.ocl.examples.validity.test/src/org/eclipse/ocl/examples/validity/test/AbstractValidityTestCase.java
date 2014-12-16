@@ -22,11 +22,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.common.utils.TracingOption;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.utilities.ProjectMap;
-import org.eclipse.ocl.domain.utilities.StandaloneProjectMap;
-import org.eclipse.ocl.domain.utilities.StandaloneProjectMap.IProjectDescriptor;
 import org.eclipse.ocl.examples.emf.validation.validity.ConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.Result;
 import org.eclipse.ocl.examples.emf.validation.validity.ResultSet;
@@ -46,6 +41,11 @@ import org.eclipse.ocl.examples.validity.locator.UMLConstraintLocator;
 import org.eclipse.ocl.examples.validity.test.ecoreTest.EcoreTestPackage;
 import org.eclipse.ocl.examples.validity.test.ecoreTest2.EcoreTest2Package;
 import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.ProjectMap;
+import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.utilities.TracingOption;
+import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.IProjectDescriptor;
 import org.eclipse.ocl.pivot.validation.PivotEObjectValidator.ValidationAdapter;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 import org.eclipse.ocl.xtext.completeocl.utilities.CompleteOCLCSResource;
@@ -170,7 +170,7 @@ public abstract class AbstractValidityTestCase extends TestCase
 	public static @NonNull URI getTestModelURI(@NonNull String localFileName) {
 		ProjectMap projectMap = getProjectMap();
 		String urlString = projectMap.getLocation(PLUGIN_ID).toString();
-		return DomainUtil.nonNullEMF(URI.createURI(urlString + localFileName));
+		return ClassUtil.nonNullEMF(URI.createURI(urlString + localFileName));
 	}
 	
 	public static ValidatableNode getValidatableNodeByLabel(@NonNull Iterable<? extends ValidatableNode> validatableNodes, @NonNull String label) {
@@ -232,7 +232,7 @@ public abstract class AbstractValidityTestCase extends TestCase
 		URI oclURI = getTestModelURI(OCL_CONSTRAINTS_MODEL);
 		URI oclURI2 = getTestModelURI(OCL_CONSTRAINTS_MODEL2);
 
-		ResourceSet resourceSet2 = DomainUtil.nonNullState(resourceSet);
+		ResourceSet resourceSet2 = ClassUtil.nonNullState(resourceSet);
 		ecoreResource = resourceSet2.getResource(ecoreURI, true);
 		ecoreResource2 = resourceSet2.getResource(ecoreURI2, true);
 		ecoreResource3 = resourceSet2.getResource(ecoreURI3, true);

@@ -32,7 +32,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.OCLCommon;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.emf.validation.validity.LeafConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.Result;
 import org.eclipse.ocl.examples.emf.validation.validity.ResultConstrainingNode;
@@ -46,6 +45,7 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
@@ -69,7 +69,7 @@ public class DelegateConstraintLocator extends AbstractPivotConstraintLocator
 				if (eClassifier instanceof EClassifier) {
 					org.eclipse.ocl.pivot.Class asType = metaModelManager.getPivotOf(org.eclipse.ocl.pivot.Class.class, eClassifier);
 					if (asType != null) {
-						return DomainUtil.getNamedElement(asType.getOwnedInvariants(), eEntry.getKey());
+						return ClassUtil.getNamedElement(asType.getOwnedInvariants(), eEntry.getKey());
 					}
 				}
 			}
@@ -201,7 +201,7 @@ public class DelegateConstraintLocator extends AbstractPivotConstraintLocator
 					org.eclipse.ocl.pivot.Type primaryType = type != null ? metaModelManager.getPrimaryType(type) : null;
 					EClassifier classifier = primaryType != null ?  (EClassifier)primaryType.getETarget() : null;
 					return classifier != null ? classifier.getName() : "??";
-//								return DomainUtil.getLabel(classifier, object, context);
+//								return ClassUtil.getLabel(classifier, object, context);
 				}
 				
 			};

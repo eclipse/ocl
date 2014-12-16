@@ -14,12 +14,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.library.LibraryProperty;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.library.executor.ExecutorProperty;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.library.LibraryProperty;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 public class EcoreExecutorProperty extends ExecutorProperty implements LibraryProperty
@@ -28,7 +28,7 @@ public class EcoreExecutorProperty extends ExecutorProperty implements LibraryPr
 	protected final @NonNull EStructuralFeature eFeature;
 	
 	public EcoreExecutorProperty(/*@NonNull*/ EStructuralFeature eFeature, @NonNull Type executorType, int propertyIndex) {
-		super(DomainUtil.nonNullModel(eFeature.getName()), executorType, propertyIndex);
+		super(ClassUtil.nonNullModel(eFeature.getName()), executorType, propertyIndex);
 		this.eFeature = eFeature;
 	}
 

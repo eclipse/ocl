@@ -16,9 +16,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;
@@ -55,7 +55,7 @@ public class BaseLocationInFileProvider extends DefaultLocationInFileProvider
 		if (obj instanceof Element) {
 			ModelElementCS csModelElement = ElementUtil.getCsElement((Element) obj);
 			if (csModelElement != null) {
-				return DomainUtil.nonNullState(super.getTextRegion(csModelElement, isSignificant));
+				return ClassUtil.nonNullState(super.getTextRegion(csModelElement, isSignificant));
 			}
 		}
 		else if (obj instanceof Comment) {
@@ -75,6 +75,6 @@ public class BaseLocationInFileProvider extends DefaultLocationInFileProvider
 				}
 			}
 		}
-		return DomainUtil.nonNullState(super.getTextRegion(obj, isSignificant));
+		return ClassUtil.nonNullState(super.getTextRegion(obj, isSignificant));
 	}
 }

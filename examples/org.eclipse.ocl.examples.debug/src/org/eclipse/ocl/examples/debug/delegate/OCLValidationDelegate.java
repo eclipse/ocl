@@ -22,9 +22,6 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
-import org.eclipse.ocl.examples.common.utils.EcoreUtils;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.EvaluationException;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
@@ -39,7 +36,10 @@ import org.eclipse.ocl.pivot.delegate.ValidationDelegate;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ConstraintEvaluator;
+import org.eclipse.ocl.pivot.utilities.LabelUtil;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
  * An implementation of the dynamic validation delegate API, maintaining a cache
@@ -60,8 +60,8 @@ public class OCLValidationDelegate implements ValidationDelegate
 		@Override
 		public Boolean evaluate(@NonNull EvaluationVisitor evaluationVisitor) {
 			if (!isBooleanConstraint()) {
-				String objectLabel = DomainUtil.getLabel(query.getType());
-				String checkMessage = DomainUtil.bind(OCLMessages.ValidationConstraintIsNotBooleanType_ERROR_, getConstraintTypeName(), getConstraintName(), objectLabel);
+				String objectLabel = ClassUtil.getLabel(query.getType());
+				String checkMessage = ClassUtil.bind(OCLMessages.ValidationConstraintIsNotBooleanType_ERROR_, getConstraintTypeName(), getConstraintName(), objectLabel);
 				throw new OCLDelegateException(new EvaluationException(checkMessage));
 			}
 			return super.evaluate(evaluationVisitor);
@@ -69,12 +69,12 @@ public class OCLValidationDelegate implements ValidationDelegate
 
 		@Override
 		protected String getObjectLabel() {
-			return DomainUtil.getLabel(eClassifier, null, null);
+			return ClassUtil.getLabel(eClassifier, null, null);
 		}
 
 		@Override
 		protected Boolean handleExceptionResult(@NonNull Throwable e) {
-			String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
+			String message = ClassUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
 				getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.toString());
 			throw new OCLDelegateException(new EvaluationException(message, e));
 		}
@@ -97,7 +97,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 
 		@Override
 		protected Boolean handleInvalidResult(@NonNull InvalidValueException e) {
-			String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
+			String message = ClassUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
 				getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.getLocalizedMessage());
 			throw new OCLDelegateException(new EvaluationException(message, e));
 		}
@@ -129,7 +129,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 			query = ValidationBehavior.INSTANCE.getQueryOrThrow(metaModelManager, constraint);
 		}
 		if (query == null) {
-			String message = DomainUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, constraint.getContext());
+			String message = ClassUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, constraint.getContext());
 			throw new OCLDelegateException(new SemanticException(message));
 		}
 		return query;
@@ -149,7 +149,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 			throw new NullPointerException("Null EObject");
 		}
 		MetaModelManager metaModelManager = delegateDomain.getMetaModelManager();
-		NamedElement namedElement = delegateDomain.getPivot(NamedElement.class, DomainUtil.nonNullEMF(invariant));
+		NamedElement namedElement = delegateDomain.getPivot(NamedElement.class, ClassUtil.nonNullEMF(invariant));
 		if (namedElement instanceof Operation) {
 			Operation operation = (Operation)namedElement;
 			ExpressionInOCL query = InvocationBehavior.INSTANCE.getQueryOrThrow(metaModelManager, operation);
@@ -174,7 +174,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 	public boolean validate(@NonNull EClass eClass, @NonNull EObject eObject, @Nullable DiagnosticChain diagnostics,
 			Map<Object, Object> context, @NonNull EOperation invariant, String expression, int severity, String source, int code) {
 		MetaModelManager metaModelManager = delegateDomain.getMetaModelManager();
-		NamedElement namedElement = delegateDomain.getPivot(NamedElement.class, DomainUtil.nonNullEMF(invariant));
+		NamedElement namedElement = delegateDomain.getPivot(NamedElement.class, ClassUtil.nonNullEMF(invariant));
 		if (namedElement instanceof Operation) {
 			Operation operation = (Operation)namedElement;
 			ExpressionInOCL query = InvocationBehavior.INSTANCE.getQueryOrThrow(metaModelManager, operation);
@@ -240,8 +240,8 @@ public class OCLValidationDelegate implements ValidationDelegate
 		{
 			@Override
 			protected String getObjectLabel() {
-				return EcoreUtils.qualifiedNameFor(value);
-//				return DomainUtil.getLabel(eClassifier, value, context);
+				return LabelUtil.qualifiedNameFor(value);
+//				return ClassUtil.getLabel(eClassifier, value, context);
 			}
 
 			@Override
@@ -269,7 +269,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 		Type type = delegateDomain.getPivot(Type.class, eClassifier);
 		Constraint constraint = ValidationBehavior.INSTANCE.getConstraint(metaModelManager, eClassifier, constraintName);
 		if (constraint == null) {
-			String message = DomainUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
+			String message = ClassUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
 			throw new OCLDelegateException(new SemanticException(message));
 		}
 		ExpressionInOCL query = null;
@@ -277,7 +277,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 			query = ValidationBehavior.INSTANCE.getQueryOrThrow(metaModelManager, constraint);
 		}
 		if (query == null) {
-			String message = DomainUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
+			String message = ClassUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
 			throw new OCLDelegateException(new SemanticException(message));
 		}
 		return validateExpressionInOCL(eClassifier, value, diagnostics, context,

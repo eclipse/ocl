@@ -34,17 +34,6 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.ids.CollectionTypeId;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.values.BagValue;
-import org.eclipse.ocl.domain.values.CollectionValue;
-import org.eclipse.ocl.domain.values.InvalidValueException;
-import org.eclipse.ocl.domain.values.OrderedSetValue;
-import org.eclipse.ocl.domain.values.SequenceValue;
-import org.eclipse.ocl.domain.values.SetValue;
-import org.eclipse.ocl.domain.values.Value;
 import org.eclipse.ocl.library.LibraryConstants;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.Model;
@@ -53,10 +42,21 @@ import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.SemanticException;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
+import org.eclipse.ocl.pivot.complete.StandardLibraryInternal;
+import org.eclipse.ocl.pivot.ids.CollectionTypeId;
+import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.BagValue;
+import org.eclipse.ocl.pivot.values.CollectionValue;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.pivot.values.OrderedSetValue;
+import org.eclipse.ocl.pivot.values.SequenceValue;
+import org.eclipse.ocl.pivot.values.SetValue;
+import org.eclipse.ocl.pivot.values.Value;
 import org.eclipse.ocl.xtext.oclinecore.OCLinEcoreStandaloneSetup;
 import org.junit.After;
 import org.junit.Before;
@@ -109,7 +109,7 @@ public class IteratorsTest4 extends PivotTestSuite
     @Before public void setUp() throws Exception {
         super.setUp();
         PivotTables.LIBRARY.getClass();
-//		metaModelManager.addGlobalNamespace(PivotConstants.OCL_NAME, DomainUtil.nonNullState(metaModelManager.getASMetamodel()));
+//		metaModelManager.addGlobalNamespace(PivotConstants.OCL_NAME, ClassUtil.nonNullState(metaModelManager.getASMetamodel()));
 
         // need a metamodel that has a reflexive EReference.
         // Ecore will do nicely. Create the following structure:
@@ -131,8 +131,8 @@ public class IteratorsTest4 extends PivotTestSuite
         pkg4 = createPackage(pkg3, "pkg4");
         pkg5 = createPackage(pkg3, "pkg5");
         george = createPackage(pkg5, "george");
-        metaModelManager.installRoot(DomainUtil.nonNullState(root));
-        helper.setContext(DomainUtil.nonNullState(metaModelManager.getPivotType("Package")));
+        metaModelManager.installRoot(ClassUtil.nonNullState(root));
+        helper.setContext(ClassUtil.nonNullState(metaModelManager.getPivotType("Package")));
     }
 
 	@Override
@@ -800,11 +800,11 @@ public class IteratorsTest4 extends PivotTestSuite
      */
     @Test public void test_sortedBy_invalidBody_142518() {
         assertQueryInvalid(EcorePackage.eINSTANCE,
-            "let s : String = null in Bag{1, 2, 3}->sortedBy(s.size())", DomainUtil.bind(EvaluatorMessages.TypedValueRequired, TypeId.STRING_NAME, ValueUtil.getTypeName(null)), InvalidValueException.class);
+            "let s : String = null in Bag{1, 2, 3}->sortedBy(s.size())", ClassUtil.bind(EvaluatorMessages.TypedValueRequired, TypeId.STRING_NAME, ValueUtil.getTypeName(null)), InvalidValueException.class);
 
         // same deal for null values
         assertQueryInvalid(EcorePackage.eINSTANCE,
-            "Bag{1, 2, 3}->sortedBy(null.oclAsType(Integer))", DomainUtil.bind(EvaluatorMessages.UndefinedBody, "sortedBy"), InvalidValueException.class);
+            "Bag{1, 2, 3}->sortedBy(null.oclAsType(Integer))", ClassUtil.bind(EvaluatorMessages.UndefinedBody, "sortedBy"), InvalidValueException.class);
 
     }
 
@@ -815,7 +815,7 @@ public class IteratorsTest4 extends PivotTestSuite
     @Test public void test_iterateWithNullSource_143996() {
         assertQueryInvalid(pkg1,
             "let e : Collection(ocl::Package) = null in e->iterate(" +
-                "p : ocl::Package; s : String = '' | s.concat(p.name))", DomainUtil.bind(EvaluatorMessages.TypedValueRequired, TypeId.COLLECTION_NAME, ValueUtil.getTypeName(null)), InvalidValueException.class);
+                "p : ocl::Package; s : String = '' | s.concat(p.name))", ClassUtil.bind(EvaluatorMessages.TypedValueRequired, TypeId.COLLECTION_NAME, ValueUtil.getTypeName(null)), InvalidValueException.class);
 
         assertQueryInvalid(pkg1,
             "let e : Collection(ocl::Package) = invalid in e->iterate(" +
@@ -829,7 +829,7 @@ public class IteratorsTest4 extends PivotTestSuite
     @Test public void test_existsWithNullSource_143996() {
     	assertQueryInvalid(pkg1,
             "let e : Collection(ocl::Package) = null in e->exists(" +
-                "p : ocl::Package | p.name = 'bob')", DomainUtil.bind(EvaluatorMessages.TypedValueRequired, TypeId.COLLECTION_NAME, ValueUtil.getTypeName(null)), InvalidValueException.class);
+                "p : ocl::Package | p.name = 'bob')", ClassUtil.bind(EvaluatorMessages.TypedValueRequired, TypeId.COLLECTION_NAME, ValueUtil.getTypeName(null)), InvalidValueException.class);
 
     	assertQueryInvalid(pkg1,
             "let e : Collection(ocl::Package) = invalid in e->exists(" +

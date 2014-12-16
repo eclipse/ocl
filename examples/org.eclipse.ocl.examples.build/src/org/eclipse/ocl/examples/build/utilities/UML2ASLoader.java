@@ -17,12 +17,12 @@ import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.WorkflowComponentWithModelSlot;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.uml.UML2AS;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
  * Converts a UML resource to its Pivot form.
@@ -36,7 +36,7 @@ public class UML2ASLoader extends WorkflowComponentWithModelSlot
 		OCLstdlib.install();
 		Resource resource = (Resource) ctx.get(getUmlSlot());
 		log.info("Pivoting '" + resource.getURI() + "'");
-		ResourceSet resourceSet = DomainUtil.nonNullState(resource.getResourceSet());
+		ResourceSet resourceSet = ClassUtil.nonNullState(resource.getResourceSet());
 		MetaModelManager metaModelManager = MetaModelManager.getAdapter(resourceSet);
 		UML2AS uml2as = UML2AS.getAdapter(resource, metaModelManager);
 		Model root;

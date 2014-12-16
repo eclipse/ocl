@@ -14,15 +14,15 @@ import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
-import org.eclipse.ocl.domain.ids.CollectionTypeId;
-import org.eclipse.ocl.domain.ids.TupleTypeId;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.library.AbstractBinaryOperation;
-import org.eclipse.ocl.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.domain.values.CollectionValue;
-import org.eclipse.ocl.domain.values.InvalidValueException;
-import org.eclipse.ocl.domain.values.TupleValue;
+import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.ids.CollectionTypeId;
+import org.eclipse.ocl.pivot.ids.TupleTypeId;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.library.AbstractBinaryOperation;
+import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.values.CollectionValue;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.pivot.values.TupleValue;
 
 /**
  * CollectionProductOperation realises the Collection::product() library operation.

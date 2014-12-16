@@ -13,9 +13,9 @@ package org.eclipse.ocl.examples.codegen.java.types;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.ids.ElementId;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
+import org.eclipse.ocl.pivot.ids.ElementId;
 
 /**
  * A FutureEObjectDescriptor describes a yet-to-be-created type whose boxed and unboxed representations are the same. It has a pivot ElementId, and EClassifier and a Java class name.

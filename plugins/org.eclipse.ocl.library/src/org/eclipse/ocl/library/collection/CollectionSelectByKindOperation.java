@@ -15,11 +15,11 @@ import java.util.Collection;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
-import org.eclipse.ocl.domain.library.AbstractUntypedBinaryOperation;
-import org.eclipse.ocl.domain.values.CollectionValue;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.library.AbstractUntypedBinaryOperation;
+import org.eclipse.ocl.pivot.values.CollectionValue;
 
 /**
  * CollectionSelectByKindOperation realises the Collection::selectByType() library operation.

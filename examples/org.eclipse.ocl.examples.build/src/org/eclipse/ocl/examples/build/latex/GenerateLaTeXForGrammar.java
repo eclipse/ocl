@@ -25,7 +25,7 @@ import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.build.utilities.ClasspathURIHandler;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 import org.eclipse.xtext.Grammar;
@@ -50,12 +50,12 @@ public abstract class GenerateLaTeXForGrammar extends GenerateLaTeXUtils
 			log.info("Loading Grammar '" + fileURI);
 			ResourceSet resourceSet = getResourceSet();
 			Resource xtextResource = resourceSet.getResource(fileURI, true);
-			String message = PivotUtil.formatResourceDiagnostics(DomainUtil.nonNullEMF(xtextResource.getErrors()), "Grammar parse failure", "\n");
+			String message = PivotUtil.formatResourceDiagnostics(ClassUtil.nonNullEMF(xtextResource.getErrors()), "Grammar parse failure", "\n");
 			if (message != null) {
 				issues.addError(this, message, null, null, null);
 				return;
 			}
-			EObject xtextModel = DomainUtil.nonNullState(xtextResource.getContents().get(0));
+			EObject xtextModel = ClassUtil.nonNullState(xtextResource.getContents().get(0));
 			String fileName = folder + "/" + latexFileName + ".tex";
 			log.info("Generating '" + fileName + "'");
 			String latexContent = generateLaTeX((Grammar)xtextModel);

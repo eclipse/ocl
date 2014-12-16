@@ -30,10 +30,10 @@ import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreTables;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
 
 /**
  * Generates the javaFolder/'javaPackageName'Tables.java file defining
@@ -77,7 +77,7 @@ public class Model2tablesGenerator extends AbstractWorkflowComponent
 			projectMap.initializeResourceSet(resourceSet);
 			resourceSet.getPackageRegistry().put(GenModelPackage.eNS_URI, GenModelPackage.eINSTANCE);
 			Resource genModelResource = resourceSet.getResource(genModelURI, true);
-			List<Diagnostic> genModelErrors = DomainUtil.nonNullEMF(genModelResource.getErrors());
+			List<Diagnostic> genModelErrors = ClassUtil.nonNullEMF(genModelResource.getErrors());
 			String errorsString = PivotUtil.formatResourceDiagnostics(genModelErrors, "Loading " + genModelURI, "\n");
 			if (errorsString != null) {
 				issues.addError(this, errorsString, null, null, null);

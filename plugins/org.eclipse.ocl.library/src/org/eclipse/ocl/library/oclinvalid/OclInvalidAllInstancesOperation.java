@@ -12,10 +12,10 @@ package org.eclipse.ocl.library.oclinvalid;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.library.AbstractSimpleUnaryOperation;
-import org.eclipse.ocl.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.domain.values.InvalidValueException;
-import org.eclipse.ocl.domain.values.SetValue;
+import org.eclipse.ocl.pivot.library.AbstractSimpleUnaryOperation;
+import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.pivot.values.SetValue;
 
 /**
  * OclInvalidAllInstancesOperation realises the OclInvalid::allInstances() library operation.

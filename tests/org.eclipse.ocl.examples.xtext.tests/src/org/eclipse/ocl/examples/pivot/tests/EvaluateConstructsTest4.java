@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.osgi.util.NLS;
 import org.junit.After;

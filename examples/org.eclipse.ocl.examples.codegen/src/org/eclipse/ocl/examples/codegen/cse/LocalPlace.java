@@ -15,9 +15,9 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
  * A LocalPlace describes a forest of CG trees that cannot be resolved as global constants. 
@@ -27,7 +27,7 @@ public abstract class LocalPlace extends AbstractPlace
 	public static @NonNull AbstractPlace createLocalPlace(@NonNull Map<CGElement, AbstractPlace> element2place, @NonNull CGValuedElement cgElement) {
 		boolean isGlobal = cgElement.isGlobal();
 		if (isGlobal) {
-			return DomainUtil.nonNullState(element2place.get(null));
+			return ClassUtil.nonNullState(element2place.get(null));
 		}
 		else {
 			return ControlPlace.createControlPlace(element2place, cgElement);

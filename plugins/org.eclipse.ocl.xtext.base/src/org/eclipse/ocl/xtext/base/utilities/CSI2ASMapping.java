@@ -115,7 +115,7 @@ public class CSI2ASMapping extends AdapterImpl implements MetaModelManagerListen
 					if (pivotElement != null) {
 						map.put(pivotElement, csElement);
 					}
-//					System.out.println(DomainUtil.debugSimpleName(pivotElement) + " => " + DomainUtil.debugSimpleName(csElement));
+//					System.out.println(ClassUtil.debugSimpleName(pivotElement) + " => " + ClassUtil.debugSimpleName(csElement));
 				}
 			}
 		}

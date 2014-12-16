@@ -36,11 +36,6 @@ import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.values.Bag;
-import org.eclipse.ocl.domain.values.IntegerValue;
-import org.eclipse.ocl.domain.values.OrderedSet;
-import org.eclipse.ocl.domain.values.RealValue;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.Model;
@@ -49,7 +44,12 @@ import org.eclipse.ocl.pivot.ecore.AS2Ecore;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.ASSaver;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.values.Bag;
+import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.OrderedSet;
+import org.eclipse.ocl.pivot.values.RealValue;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage;
 
@@ -85,7 +85,7 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 			log.info("Loading OCL library '" + fileURI);
 			ResourceSet resourceSet = getResourceSet();
 			BaseCSResource xtextResource = (BaseCSResource)resourceSet.getResource(fileURI, true);
-			String message = PivotUtil.formatResourceDiagnostics(DomainUtil.nonNullEMF(xtextResource.getErrors()), "OCLstdlib parse failure", "\n");
+			String message = PivotUtil.formatResourceDiagnostics(ClassUtil.nonNullEMF(xtextResource.getErrors()), "OCLstdlib parse failure", "\n");
 			if (message != null) {
 				issues.addError(this, message, null, null, null);
 				return;
@@ -94,7 +94,7 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 //			if (asResource == null) {
 //				return;
 //			}
-			EObject pivotModel = DomainUtil.nonNullState(asResource.getContents().get(0));
+			EObject pivotModel = ClassUtil.nonNullState(asResource.getContents().get(0));
 			ASSaver saver = new ASSaver(asResource);
 			saver.localizeSpecializations();
 			String fileName = folder + "/" + javaClassName + ".java";
@@ -116,7 +116,7 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 			@SuppressWarnings("null")@NonNull URI ecoreURI = URI.createPlatformResourceURI(ecoreFile, true);
 			AS2Ecore converter = new AS2Ecore(metaModelManager, ecoreURI, null);
 			XMLResource eResource = converter.convertResource(asResource, ecoreURI);
-			EPackage ePackage = (EPackage) DomainUtil.nonNullState(eResource.getContents().get(0));
+			EPackage ePackage = (EPackage) ClassUtil.nonNullState(eResource.getContents().get(0));
 			ePackage.setName("oclstdlib");
 			ePackage.setNsPrefix("oclstdlib");
 			setInstanceClassName(ePackage, "Bag", Bag.class, null);
@@ -182,7 +182,7 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 	}
 
 	private void setInstanceClassName(@NonNull EPackage ePackage, String typeName, Class<?> javaClass, @Nullable String comment) {
-		EClassifier eClassifier = DomainUtil.nonNullState(ePackage.getEClassifier(typeName));
+		EClassifier eClassifier = ClassUtil.nonNullState(ePackage.getEClassifier(typeName));
 		if (eClassifier instanceof EClass) {
 			String name = eClassifier.getName();
 			ePackage.getEClassifiers().remove(eClassifier);

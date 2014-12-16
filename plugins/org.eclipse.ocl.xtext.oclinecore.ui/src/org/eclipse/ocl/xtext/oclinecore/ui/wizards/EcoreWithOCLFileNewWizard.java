@@ -23,9 +23,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.xtext.base.ui.wizards.AbstractFileDialog;
 import org.eclipse.ocl.xtext.base.ui.wizards.AbstractFileNewWizardPage;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
@@ -52,7 +52,7 @@ public class EcoreWithOCLFileNewWizard extends AbstractOCLinEcoreFileNewWizard
 		@SuppressWarnings("null") OCL ocl = OCL.newInstance(EPackage.Registry.INSTANCE);
 		MetaModelManager metaModelManager = ocl.getMetaModelManager();
 		ResourceSet resourceSet2 = metaModelManager.getExternalResourceSet();
-		BaseCSResource csResource = DomainUtil.nonNullState((BaseCSResource) resourceSet2.createResource(oclInEcoreURI));
+		BaseCSResource csResource = ClassUtil.nonNullState((BaseCSResource) resourceSet2.createResource(oclInEcoreURI));
 		try {
 			ByteArrayInputStream inputStream = new ByteArrayInputStream(initialContentsAsString.getBytes());
 			csResource.load(inputStream, null);

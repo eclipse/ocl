@@ -8,7 +8,10 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 /**
  * Use this class to register components to be used within the IDE.
  */
-public class BaseUiModule extends org.eclipse.ocl.xtext.base.ui.AbstractBaseUiModule {
+public class BaseUiModule extends org.eclipse.ocl.xtext.base.ui.AbstractBaseUiModule
+{
+	public static final String PLUGIN_ID = "org.eclipse.ocl.xtext.base.ui";
+
 	public BaseUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
 	}

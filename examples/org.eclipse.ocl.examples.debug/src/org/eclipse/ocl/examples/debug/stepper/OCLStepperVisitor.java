@@ -14,7 +14,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IStepper;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IStepperVisitor;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.IfExp;
@@ -27,6 +26,7 @@ import org.eclipse.ocl.pivot.PropertyCallExp;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 public class OCLStepperVisitor extends AbstractExtendingVisitor<IStepper, Object> implements IStepperVisitor
 {
@@ -38,7 +38,7 @@ public class OCLStepperVisitor extends AbstractExtendingVisitor<IStepper, Object
 
 	@Override
 	public @NonNull IStepper getStepper(@NonNull Element object) {
-		return DomainUtil.nonNullState(object.accept(this));
+		return ClassUtil.nonNullState(object.accept(this));
 	}
 
 	@Override

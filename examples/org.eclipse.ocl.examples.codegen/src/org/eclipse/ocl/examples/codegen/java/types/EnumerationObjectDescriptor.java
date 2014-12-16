@@ -12,13 +12,13 @@ package org.eclipse.ocl.examples.codegen.java.types;
 
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.ids.ElementId;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBoxExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
+import org.eclipse.ocl.pivot.ids.ElementId;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
  * An EnumerationObjectDescriptor the unboxed representation of an Enumeration.
@@ -40,7 +40,7 @@ public class EnumerationObjectDescriptor extends UnboxedValueDescriptor
 		}
 		js.appendIdReference(typeId);
 		js.append(".getEnumerationLiteralId(");
-		js.appendClassReference(DomainUtil.class);
+		js.appendClassReference(ClassUtil.class);
 		js.append(".nonNullState(");
 		js.appendReferenceTo(unboxedValue);
 		js.append(".getName()))");

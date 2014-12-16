@@ -37,7 +37,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.common.label.ILabelGenerator;
 import org.eclipse.ocl.examples.emf.validation.validity.AbstractNode;
 import org.eclipse.ocl.examples.emf.validation.validity.ConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.LeafConstrainingNode;
@@ -54,6 +53,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.ValidityFactory;
 import org.eclipse.ocl.examples.emf.validation.validity.locator.ConstraintLocator;
 import org.eclipse.ocl.examples.emf.validation.validity.utilities.IVisibilityFilter;
 import org.eclipse.ocl.examples.emf.validation.validity.utilities.SeveritiesVisibilityFilter;
+import org.eclipse.ocl.pivot.labels.ILabelGenerator;
 
 public class ValidityModel
 {

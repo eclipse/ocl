@@ -11,7 +11,7 @@
 package org.eclipse.ocl.library.oclany;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.library.UnsupportedOperation;
+import org.eclipse.ocl.pivot.library.UnsupportedOperation;
 
 /**
  * OclAnyUnsupportedOperation reports an unsupported operation.

@@ -17,7 +17,7 @@ import java.util.Set;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGParameter;
-import org.eclipse.ocl.examples.common.utils.TracingOption;
+import org.eclipse.ocl.pivot.utilities.TracingOption;
 
 public abstract class StackPlace extends LocalPlace
 {

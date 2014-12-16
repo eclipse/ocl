@@ -47,9 +47,9 @@ import org.eclipse.ocl.examples.codegen.java.CG2JavaPreVisitor;
 import org.eclipse.ocl.examples.codegen.java.ImportUtils;
 import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
 import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreGenModelGeneratorAdapter;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
  * AutoCodeGenerator supports generation of the content of a JavaClassFile to
@@ -86,7 +86,7 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 			@Nullable String superManualVisitorPackage,
 			@Nullable String superVisitorClass) {
 		super(metaModelManager);
-		this.genModel = DomainUtil.nonNullState(genPackage.getGenModel());
+		this.genModel = ClassUtil.nonNullState(genPackage.getGenModel());
 		getOptions().setUseNullAnnotations(OCLinEcoreGenModelGeneratorAdapter.useNullAnnotations(genModel));
 		cgAnalyzer = new AutoAnalyzer(this);
 		this.asPackage = asPackage;
@@ -188,7 +188,7 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 			cgPackage.setName(packageName);
 			externalPackages.put(packageName, cgPackage);
 		}
-		CGClass cgClass = DomainUtil.getNamedElement(cgPackage.getClasses(), className);
+		CGClass cgClass = ClassUtil.getNamedElement(cgPackage.getClasses(), className);
 		if (cgClass == null) {
 			cgClass = CGModelFactory.eINSTANCE.createCGClass();
 			cgClass.setName(className);
@@ -210,13 +210,17 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 	}
 
 	public @NonNull String getQualifiedName() {
-		String className = DomainUtil.nonNullState(asPackage.getName());
+		String className = ClassUtil.nonNullState(asPackage.getName());
 		String packagePrefix = getOptions().getPackagePrefix();
 		if (packagePrefix != null) {
 			return packagePrefix + "." + className;
 		} else {
 			return className;
 		}
+	}
+
+	public @NonNull String getSourceFileName() {
+		return genModel.getModelDirectory() + "/" + getVisitorPackageName(projectName).replace('.', '/') + "/" + getAutoVisitorClassName(projectPrefix) + ".java";
 	}
 
 	public abstract @NonNull Class<?> getVisitableClass();
@@ -229,8 +233,7 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 
 	public void saveSourceFile() {
 		// String utilDir = genModel.getModelDirectory() + "/" + genPackage.getBasePackage().replace('.', '/') +"/util/" + genPackage.getPrefix() + "AutoContainmentVisitor.java";
-		String utilDir = genModel.getModelDirectory() + "/" + getVisitorPackageName(projectName).replace('.', '/') + "/" + getAutoVisitorClassName(projectPrefix) + ".java";
-		URI uri = URI.createPlatformResourceURI(utilDir, true);
+		URI uri = URI.createPlatformResourceURI(getSourceFileName(), true);
 		String javaCodeSource;
 		try {
 			javaCodeSource = generateClassFile();

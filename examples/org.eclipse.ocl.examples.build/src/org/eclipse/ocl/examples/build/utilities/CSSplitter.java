@@ -30,7 +30,7 @@ import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.utils.Mapping;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
  * Splits the composite 'in' Ecore file into a distinct URI per selected EPackage.
@@ -89,7 +89,7 @@ public class CSSplitter extends AbstractWorkflowComponent
 		ResourceUtils.checkResourceSet(resourceSet);
 		Map<EPackage, URI> inclusions = new HashMap<EPackage, URI>();
 		Map<EPackage, URI> exclusions = new HashMap<EPackage, URI>();
-		gatherEPackages(DomainUtil.nonNullEMF(resource.getContents()), inclusions, exclusions);
+		gatherEPackages(ClassUtil.nonNullEMF(resource.getContents()), inclusions, exclusions);
 		List<Resource> resources = new ArrayList<Resource>();
 		for (EPackage ePackage : inclusions.keySet()) {
 			URI uri = inclusions.get(ePackage);
@@ -137,7 +137,7 @@ public class CSSplitter extends AbstractWorkflowComponent
 						continue;
 					}
 				}
-				gatherEPackages(DomainUtil.nonNullEMF(ePackage.getESubpackages()), inclusions, exclusions);
+				gatherEPackages(ClassUtil.nonNullEMF(ePackage.getESubpackages()), inclusions, exclusions);
 			}
 		}
 	}

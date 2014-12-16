@@ -39,7 +39,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
 import org.eclipse.ocl.examples.emf.validation.validity.ResultConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.ValidatableNode;
@@ -56,6 +55,7 @@ import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.PivotIdResolver;
 import org.eclipse.ocl.pivot.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
@@ -212,7 +212,7 @@ public class DelegateUIConstraintLocator extends DelegateConstraintLocator imple
 					openError(debug_FailLoad);
 					return;
 				}
-				String message = PivotUtil.formatResourceDiagnostics(DomainUtil.nonNullEMF(csResource.getErrors()), debug_FailLoad, "\n\t");
+				String message = PivotUtil.formatResourceDiagnostics(ClassUtil.nonNullEMF(csResource.getErrors()), debug_FailLoad, "\n\t");
 				if (message != null) {
 					openError(message);
 					return;

@@ -12,7 +12,7 @@ package org.eclipse.ocl.library.oclvoid;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.library.AbstractSimpleBinaryOperation;
+import org.eclipse.ocl.pivot.library.AbstractSimpleBinaryOperation;
 
 /**
  * OclVoidImpliesOperation realises the OclVoid::implies() library operation.

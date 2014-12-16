@@ -16,10 +16,10 @@ import org.eclipse.ocl.examples.autogen.autocgmodel.AutoCGModelFactory;
 import org.eclipse.ocl.examples.autogen.autocgmodel.CGASTCallExp;
 import org.eclipse.ocl.examples.codegen.analyzer.AS2CGVisitor;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 public class CS2ASAS2CGVisitor extends AS2CGVisitor
 {
@@ -30,7 +30,7 @@ public class CS2ASAS2CGVisitor extends AS2CGVisitor
 	@Override
 	public @NonNull
 	CGValuedElement visitOperationCallExp(@NonNull OperationCallExp element) {
-		Operation asOperation = DomainUtil.nonNullState(element.getReferredOperation());
+		Operation asOperation = ClassUtil.nonNullState(element.getReferredOperation());
 		if ("ast".equals(asOperation.getName())) {
 			OCLExpression pSource = element.getSource();
 			CGValuedElement cgSource = pSource != null ? doVisit(CGValuedElement.class, pSource) : null;

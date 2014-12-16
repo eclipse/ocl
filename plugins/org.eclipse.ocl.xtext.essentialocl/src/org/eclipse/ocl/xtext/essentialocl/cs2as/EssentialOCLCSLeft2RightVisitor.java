@@ -20,10 +20,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.library.LibraryFeature;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.utilities.SingletonIterator;
-import org.eclipse.ocl.domain.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.CollectionItem;
@@ -78,12 +74,16 @@ import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableDeclaration;
 import org.eclipse.ocl.pivot.VariableExp;
-import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
+import org.eclipse.ocl.pivot.complete.StandardLibraryInternal;
+import org.eclipse.ocl.pivot.library.LibraryFeature;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.TemplateParameterSubstitutionHelper;
 import org.eclipse.ocl.pivot.manager.TemplateParameterSubstitutionVisitor;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.SingletonIterator;
+import org.eclipse.ocl.pivot.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.xtext.base.cs2as.AmbiguitiesAdapter;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
@@ -155,7 +155,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		
 		@Override
 		public @NonNull Type getSourceType() {
-			return DomainUtil.nonNullState(invocation.getOwningClass());
+			return ClassUtil.nonNullState(invocation.getOwningClass());
 		}
 
 		@Override
@@ -379,7 +379,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		else if (asSourceType != null) {								// Search for a.b() candidates in type of a
 			TemplateParameter asTemplateParameter = asSourceType.isTemplateParameter();
 			if (asTemplateParameter != null) {
-				asSourceType = DomainUtil.nonNullModel(asTemplateParameter.getLowerBound());
+				asSourceType = ClassUtil.nonNullModel(asTemplateParameter.getLowerBound());
 			}
 			Invocations invocations = getInvocations(asSourceType, asSourceTypeValue, name, iteratorCount, expressionCount);
 			if ((invocations == null) && name.startsWith("_")) {
@@ -673,7 +673,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	 * Resolve an invocation such as source.name  or source->name
 	 */
 	protected @NonNull OCLExpression resolveExplicitSourceNavigation(@NonNull OCLExpression sourceExp, @NonNull NameExpCS csNameExp) {
-		Element namedElement = context.lookupUndecoratedName(csNameExp, DomainUtil.nonNullState(csNameExp.getOwnedPathName()));
+		Element namedElement = context.lookupUndecoratedName(csNameExp, ClassUtil.nonNullState(csNameExp.getOwnedPathName()));
 		if ((namedElement instanceof Property) && !namedElement.eIsProxy()) {
 			CallExp callExp = resolvePropertyCallExp(sourceExp, csNameExp, (Property)namedElement);
 			return callExp;
@@ -757,7 +757,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	}
 		else {
 			checkForInvalidImplicitSourceType(csNameExp);
-			CS2AS.setPathElement(DomainUtil.nonNullState(csPathName), null, null);
+			CS2AS.setPathElement(ClassUtil.nonNullState(csPathName), null, null);
 		}
 		if (sourceExp == null) {
 			sourceExp = createImplicitSourceVariableExp(csNameExp, standardLibrary.getOclAnyType());
@@ -872,7 +872,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	}
 
 	protected void resolveIterationContent(@NonNull RoundBracketedClauseCS csRoundBracketedClause, @NonNull LoopExp expression) {
-		OCLExpression source = DomainUtil.nonNullState(expression.getSource());
+		OCLExpression source = ClassUtil.nonNullState(expression.getSource());
 		resolveIterationIterators(csRoundBracketedClause, source, expression);
 		resolveIterationAccumulators(csRoundBracketedClause, expression);
 		resolveOperationArgumentTypes(null, csRoundBracketedClause);
@@ -961,7 +961,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 								isType = true;
 								NameExpCS csNameExp = (NameExpCS)csName;
 								PathNameCS csPathName = csNameExp.getOwnedPathName();
-								Type type = context.getConverter().lookupType(csNameExp, DomainUtil.nonNullState(csPathName));
+								Type type = context.getConverter().lookupType(csNameExp, ClassUtil.nonNullState(csPathName));
 								if (type != null) {
 									arg = resolveTypeExp(csNameExp, type);
 								}
@@ -1022,7 +1022,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			}
 		}
 		if ((csArgumentCount != parametersCount) && (operation != standardLibrary.basicGetOclInvalidOperation())) {
-			String boundMessage = DomainUtil.bind(OCLMessages.MismatchedArgumentCount_ERROR_, csArgumentCount, parametersCount);
+			String boundMessage = ClassUtil.bind(OCLMessages.MismatchedArgumentCount_ERROR_, csArgumentCount, parametersCount);
 			context.addDiagnostic(csNameExp, boundMessage);			
 		}
 		context.refreshList(expression.getArgument(), pivotArguments);
@@ -1071,10 +1071,10 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			}
 			String boundMessage;
 			if (s.length() > 0) {
-				boundMessage = DomainUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, sourceType, csOperator.getName(), s.toString());
+				boundMessage = ClassUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, sourceType, csOperator.getName(), s.toString());
 			}
 			else {
-				boundMessage = DomainUtil.bind(OCLMessages.UnresolvedOperation_ERROR_, sourceType, csOperator.getName());
+				boundMessage = ClassUtil.bind(OCLMessages.UnresolvedOperation_ERROR_, sourceType, csOperator.getName());
 			}
 //			context.addBadExpressionError(csOperator, boundMessage); 
 			context.addDiagnostic(csOperator, boundMessage);

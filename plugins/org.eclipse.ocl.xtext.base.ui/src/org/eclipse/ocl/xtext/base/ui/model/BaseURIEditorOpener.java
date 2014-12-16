@@ -12,7 +12,7 @@ package org.eclipse.ocl.xtext.base.ui.model;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.xtext.ui.editor.GlobalURIEditorOpener;
@@ -22,7 +22,7 @@ public class BaseURIEditorOpener extends GlobalURIEditorOpener
 	@Override
 	public IEditorPart open(URI uri, boolean select) {
 		if (uri != null) {
-			URI trimFragment = DomainUtil.nonNullEMF(uri.trimFragment());
+			URI trimFragment = ClassUtil.nonNullEMF(uri.trimFragment());
 			if (PivotUtil.isASURI(trimFragment)) {
 				uri = PivotUtil.getNonASURI(trimFragment);		// FIXME map AST to CST URI too
 			}

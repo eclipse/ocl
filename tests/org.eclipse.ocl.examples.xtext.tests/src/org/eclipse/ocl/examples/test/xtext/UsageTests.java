@@ -71,15 +71,15 @@ import org.eclipse.emf.mwe.core.ConfigurationException;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreGeneratorAdapterFactory;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestSuite;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibPackage;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.helper.OCLHelper;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
@@ -341,9 +341,9 @@ public class UsageTests
 		List<String> classpathProjects = new ArrayList<String>();
 		classpathProjects.add("org.eclipse.emf.common");
 		classpathProjects.add("org.eclipse.emf.ecore");
-		classpathProjects.add("org.eclipse.ocl.domain");
-		classpathProjects.add("org.eclipse.ocl.library");
 		classpathProjects.add("org.eclipse.ocl.pivot");
+		classpathProjects.add("org.eclipse.ocl.library");
+		classpathProjects.add("org.eclipse.ocl.pivot.internal");
 		classpathProjects.add("org.eclipse.ocl.jdt.annotation7");
 		for (String extraClasspathProject : extraClasspathProjects) {
 			classpathProjects.add(extraClasspathProject);
@@ -868,7 +868,7 @@ public class UsageTests
 			ResourceSet resourceSet = openEditor.getEditingDomain().getResourceSet();
 			EList<Resource> resources = resourceSet.getResources();
 			assertEquals(1, resources.size());
-			Resource resource2 = DomainUtil.nonNullState(resources.get(0));
+			Resource resource2 = ClassUtil.nonNullState(resources.get(0));
 			assertNoResourceErrors("Load", resource2);
 			assertNoValidationErrors("Validate", resource2);
 //			for (int i = 0; i < 1000; i++){
@@ -897,7 +897,7 @@ public class UsageTests
 			+ "    datatype MyString : 'java.lang.String' { serializable };\n"
 			+ "    class ClassExtension extends pivot::Class {}\n"
 			+ "}\n";
-		String genmodelFile = createGenModelContent(testProjectPath, testFileStem, "platform:/plugin/org.eclipse.ocl.pivot/model/Pivot.merged.genmodel#//pivot");
+		String genmodelFile = createGenModelContent(testProjectPath, testFileStem, "platform:/plugin/org.eclipse.ocl.pivot.internal/model/Pivot.merged.genmodel#//pivot");
 		doDelete(testProjectName);
 		URI fileURI = createModels(testProjectPath, testFileStem, oclinecoreFile, genmodelFile);
 		doGenModel(testProjectPath, fileURI);

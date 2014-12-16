@@ -24,15 +24,15 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
-import org.eclipse.ocl.domain.evaluation.DomainModelManager;
-import org.eclipse.ocl.domain.types.IdResolver;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.library.executor.ExecutorManager;
 import org.eclipse.ocl.library.executor.ExecutorStandardLibrary;
 import org.eclipse.ocl.library.executor.LazyModelManager;
 import org.eclipse.ocl.pivot.PivotObject;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
+import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
  * An EcoreExecutorManager instance provides the bridge between a conventional EMF execution context
@@ -149,7 +149,7 @@ public class EcoreExecutorManager extends ExecutorManager
 						{
 							@Override
 							protected boolean isInstance(@NonNull Type type, @NonNull EObject element) {
-								EClass eClass = DomainUtil.nonNullEMF(element.eClass());
+								EClass eClass = ClassUtil.nonNullEMF(element.eClass());
 								Type elementType = idResolver.getInheritance(eClass).getType();
 								return elementType.conformsTo(standardLibrary, type);
 							}

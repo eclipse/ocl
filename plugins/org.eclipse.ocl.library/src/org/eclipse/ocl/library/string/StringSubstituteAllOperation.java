@@ -12,7 +12,7 @@ package org.eclipse.ocl.library.string;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.library.AbstractSimpleTernaryOperation;
+import org.eclipse.ocl.pivot.library.AbstractSimpleTernaryOperation;
 
 /**
  * StringSubstituteAllOperation realises the String::substituteAll() library operation.

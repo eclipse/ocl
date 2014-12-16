@@ -25,7 +25,7 @@ import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
@@ -55,7 +55,7 @@ public class Ecore2UMLConverter extends AbstractWorkflowComponent
 		Resource resource = (Resource) ctx.get(getEcoreSlot());
 		URI ecoreURI = resource.getURI();
 		log.info("Converting '" + ecoreURI + "'");
-		ResourceSet resourceSet = DomainUtil.nonNullState(resource.getResourceSet());
+		ResourceSet resourceSet = ClassUtil.nonNullState(resource.getResourceSet());
 		
 		EPackage ePackage = (EPackage) resource.getContents().get(0);
 		Map<String, String> options = new HashMap<String, String>();

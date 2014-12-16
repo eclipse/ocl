@@ -17,14 +17,14 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.values.Bag;
-import org.eclipse.ocl.domain.values.impl.BagImpl;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.values.Bag;
+import org.eclipse.ocl.pivot.values.impl.BagImpl;
 import org.eclipse.ocl.xtext.essentialocl.utilities.EssentialOCLCSResource;
 
 /**
@@ -50,11 +50,11 @@ public class ErrorTests extends XtextTestCase
 		InputStream inputStream = new URIConverter.ReadableInputStream(metaModelText, "UTF-8");
 		URI xtextURI = URI.createURI("test.oclinecore");
 		ResourceSet resourceSet = new ResourceSetImpl();
-		EssentialOCLCSResource xtextResource = DomainUtil.nonNullState((EssentialOCLCSResource) resourceSet.createResource(xtextURI, null));
+		EssentialOCLCSResource xtextResource = ClassUtil.nonNullState((EssentialOCLCSResource) resourceSet.createResource(xtextURI, null));
 		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
 		xtextResource.load(inputStream, null);
 		assertResourceErrors("Loading Xtext", xtextResource,
-			DomainUtil.bind(OCLMessages.UnresolvedIterationCall_ERROR_, "Set(test::Test)", "iterate", "w, h; acc : String = ''| true"));
+			ClassUtil.bind(OCLMessages.UnresolvedIterationCall_ERROR_, "Set(test::Test)", "iterate", "w, h; acc : String = ''| true"));
         //
 		metaModelManager.dispose();
 	}
@@ -75,11 +75,11 @@ public class ErrorTests extends XtextTestCase
 		InputStream inputStream = new URIConverter.ReadableInputStream(metaModelText, "UTF-8");
 		URI xtextURI = URI.createURI("test.oclinecore");
 		ResourceSet resourceSet = new ResourceSetImpl();
-		EssentialOCLCSResource xtextResource = DomainUtil.nonNullState((EssentialOCLCSResource) resourceSet.createResource(xtextURI, null));
+		EssentialOCLCSResource xtextResource = ClassUtil.nonNullState((EssentialOCLCSResource) resourceSet.createResource(xtextURI, null));
 		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
 		xtextResource.load(inputStream, null);
 		assertResourceErrors("Loading Xtext", xtextResource,
-			DomainUtil.bind(OCLMessages.UnresolvedStaticProperty_ERROR_, "test::Test", "allInstances"));
+			ClassUtil.bind(OCLMessages.UnresolvedStaticProperty_ERROR_, "test::Test", "allInstances"));
         //
 		metaModelManager.dispose();
 	}

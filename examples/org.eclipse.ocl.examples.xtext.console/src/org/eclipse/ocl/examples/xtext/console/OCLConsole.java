@@ -14,8 +14,8 @@ package org.eclipse.ocl.examples.xtext.console;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.xtext.console.messages.ConsoleMessages;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.ui.console.AbstractConsole;
 import org.eclipse.ui.console.ConsolePlugin;
@@ -83,7 +83,7 @@ public class OCLConsole
 		String typeName = "null"; //$NON-NLS-1$;
 		String objectName = "null"; //$NON-NLS-1$
 		if (contextObject != null) {
-			objectName = DomainUtil.getLabel(contextObject);
+			objectName = ClassUtil.getLabel(contextObject);
 			typeName = contextObject.eClass().getName();				
 		}
 		setName(NLS.bind(ConsoleMessages.Console_TitleWithContext, objectName, typeName));		

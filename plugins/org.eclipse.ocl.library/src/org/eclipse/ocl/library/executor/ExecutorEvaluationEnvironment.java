@@ -14,10 +14,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.AbstractExecutorTypedElement;
-import org.eclipse.ocl.domain.evaluation.DomainEvaluationEnvironment;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.elements.AbstractExecutorTypedElement;
+import org.eclipse.ocl.pivot.evaluation.DomainEvaluationEnvironment;
 
 public class ExecutorEvaluationEnvironment implements DomainEvaluationEnvironment
 {

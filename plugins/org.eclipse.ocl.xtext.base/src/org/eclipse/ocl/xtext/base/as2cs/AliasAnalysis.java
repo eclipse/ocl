@@ -25,15 +25,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.util.Pivotable;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PathElement;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.Pivotable;
 import org.eclipse.ocl.xtext.basecs.ImportCS;
 import org.eclipse.ocl.xtext.basecs.NamedElementCS;
 import org.eclipse.ocl.xtext.basecs.RootPackageCS;
@@ -49,7 +49,7 @@ import org.eclipse.ocl.xtext.basecs.RootPackageCS;
 public class AliasAnalysis extends AdapterImpl
 {
 	public static void dispose(@NonNull Resource resource) {
-		List<Adapter> eAdapters = DomainUtil.nonNullEMF(resource.eAdapters());
+		List<Adapter> eAdapters = ClassUtil.nonNullEMF(resource.eAdapters());
 		AliasAnalysis adapter = PivotUtil.getAdapter(AliasAnalysis.class, eAdapters);
 		if (adapter != null) {
 			adapter.dispose();

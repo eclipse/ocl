@@ -26,13 +26,13 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.values.OrderedSetValue;
-import org.eclipse.ocl.domain.values.Value;
 import org.eclipse.ocl.pivot.OCL;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.values.OrderedSetValue;
+import org.eclipse.ocl.pivot.values.Value;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -92,7 +92,7 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 	}
 
 	public @NonNull EObject eCreate(EClass cClass) {
-		return DomainUtil.nonNullEMF(cClass.getEPackage().getEFactoryInstance().create(cClass));
+		return ClassUtil.nonNullEMF(cClass.getEPackage().getEFactoryInstance().create(cClass));
 	}
 
 	public void eSet(@NonNull EObject eObject, @NonNull String featureName, @Nullable Object value) {
@@ -138,7 +138,7 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 			"}\n";
 		Resource metaModel = cs2ecore(getOCL(), metaModelText, null);
 		EPackage ePackage = (EPackage) metaModel.getContents().get(0);
-		EClass eClass = DomainUtil.nonNullState((EClass) ePackage.getEClassifiers().get(0));
+		EClass eClass = ClassUtil.nonNullState((EClass) ePackage.getEClassifiers().get(0));
         helper.setContext(metaModelManager.getIdResolver().getType(eClass));
         EObject eObject = eCreate(eClass);
         //
@@ -269,7 +269,7 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 			"}\n";
 		Resource metaModel = cs2ecore(getOCL(), metaModelText, null);
 		EPackage ePackage = (EPackage) metaModel.getContents().get(0);
-		EClass aClass = DomainUtil.nonNullState((EClass) ePackage.getEClassifier("A"));
+		EClass aClass = ClassUtil.nonNullState((EClass) ePackage.getEClassifier("A"));
 		EClass bClass = (EClass) ePackage.getEClassifier("B");
 		EClass cClass = (EClass) ePackage.getEClassifier("C");
         EObject c1 = eCreate(cClass);
@@ -339,11 +339,11 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 		OCL ocl1 = OCL.newInstance();
 		Resource metaModel = cs2ecore(ocl1, metaModelText, null);
 		EPackage ePackage = (EPackage) metaModel.getContents().get(0);
-		EClass parentClass = DomainUtil.nonNullState((EClass) ePackage.getEClassifier("Parent"));
-		EClass child1Class = DomainUtil.nonNullState((EClass) ePackage.getEClassifier("Child1"));
-		EClass child2Class = DomainUtil.nonNullState((EClass) ePackage.getEClassifier("Child2"));
-		EClass children1Class = DomainUtil.nonNullState((EClass) ePackage.getEClassifier("Children1"));
-		EClass children2Class = DomainUtil.nonNullState((EClass) ePackage.getEClassifier("Children2"));
+		EClass parentClass = ClassUtil.nonNullState((EClass) ePackage.getEClassifier("Parent"));
+		EClass child1Class = ClassUtil.nonNullState((EClass) ePackage.getEClassifier("Child1"));
+		EClass child2Class = ClassUtil.nonNullState((EClass) ePackage.getEClassifier("Child2"));
+		EClass children1Class = ClassUtil.nonNullState((EClass) ePackage.getEClassifier("Children1"));
+		EClass children2Class = ClassUtil.nonNullState((EClass) ePackage.getEClassifier("Children2"));
         EObject parent = eCreate(parentClass);
         EObject child1 = eCreate(child1Class);
         EObject child2 = eCreate(child2Class);
@@ -429,7 +429,7 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 		Resource metaModel = cs2ecore(getOCL(), metaModelText, null);
 		EPackage ePackage = (EPackage) metaModel.getContents().get(0);
 		EClass parentClass = (EClass) ePackage.getEClassifier("Parent");
-		EClass childClass = DomainUtil.nonNullState((EClass) ePackage.getEClassifier("Child"));
+		EClass childClass = ClassUtil.nonNullState((EClass) ePackage.getEClassifier("Child"));
         EObject parent = eCreate(parentClass);
         EObject leftChild = eCreate(childClass);
         EObject rightChild = eCreate(childClass);

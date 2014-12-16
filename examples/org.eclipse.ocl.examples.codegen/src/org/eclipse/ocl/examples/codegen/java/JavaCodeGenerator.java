@@ -22,9 +22,6 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.ids.ElementId;
-import org.eclipse.ocl.domain.library.LibraryIteration;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.codegen.analyzer.BoxingAnalyzer;
 import org.eclipse.ocl.examples.codegen.analyzer.DependencyVisitor;
 import org.eclipse.ocl.examples.codegen.analyzer.FieldingAnalyzer;
@@ -71,7 +68,10 @@ import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.ids.ElementId;
+import org.eclipse.ocl.pivot.library.LibraryIteration;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
  * OCL2JavaClass supports generation of the content of a JavaClassFile to
@@ -105,42 +105,42 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 		java.lang.Package.class,
 		java.util.Iterator.class,
 		org.eclipse.ocl.pivot.ParameterTypes.class,
-		org.eclipse.ocl.domain.elements.DomainTypeParameters.class,
-		org.eclipse.ocl.domain.evaluation.DomainEvaluator.class,
-		org.eclipse.ocl.domain.ids.ClassId.class,
-		org.eclipse.ocl.domain.ids.CollectionTypeId.class,
-		org.eclipse.ocl.domain.ids.DataTypeId.class,
-		org.eclipse.ocl.domain.ids.EnumerationId.class,
-		org.eclipse.ocl.domain.ids.IdManager.class,
-		org.eclipse.ocl.domain.ids.PackageId.class,
-		org.eclipse.ocl.domain.ids.PrimitiveTypeId.class,
-		org.eclipse.ocl.domain.ids.TemplateParameterId.class,
-		org.eclipse.ocl.domain.ids.TuplePartId.class,
-		org.eclipse.ocl.domain.ids.TupleTypeId.class,
-		org.eclipse.ocl.domain.ids.TypeId.class,
-		org.eclipse.ocl.domain.library.AbstractBinaryOperation.class,
-		org.eclipse.ocl.domain.library.AbstractProperty.class,
-		org.eclipse.ocl.domain.library.AbstractTernaryOperation.class,
-		org.eclipse.ocl.domain.library.AbstractUnaryOperation.class,
-		org.eclipse.ocl.domain.library.LibraryBinaryOperation.class,
-		org.eclipse.ocl.domain.library.LibraryIteration.class,
-		org.eclipse.ocl.domain.library.LibraryProperty.class,
-		org.eclipse.ocl.domain.library.LibraryTernaryOperation.class,
-		org.eclipse.ocl.domain.library.LibraryUnaryOperation.class,
-		org.eclipse.ocl.domain.messages.EvaluatorMessages.class,
-		org.eclipse.ocl.domain.values.BagValue.class,
-		org.eclipse.ocl.domain.values.CollectionValue.class,
-		org.eclipse.ocl.domain.values.IntegerRange.class,
-		org.eclipse.ocl.domain.values.IntegerValue.class,
-		org.eclipse.ocl.domain.values.InvalidValue.class,
-		org.eclipse.ocl.domain.values.OrderedSetValue.class,
-		org.eclipse.ocl.domain.values.RealValue.class,
-		org.eclipse.ocl.domain.values.SequenceValue.class,
-		org.eclipse.ocl.domain.values.SetValue.class,
-		org.eclipse.ocl.domain.values.TupleValue.class,
-		org.eclipse.ocl.domain.values.UnlimitedValue.class,
-		org.eclipse.ocl.domain.values.Value.class,
-		org.eclipse.ocl.domain.values.InvalidValueException.class,
+		org.eclipse.ocl.pivot.elements.DomainTypeParameters.class,
+		org.eclipse.ocl.pivot.evaluation.DomainEvaluator.class,
+		org.eclipse.ocl.pivot.ids.ClassId.class,
+		org.eclipse.ocl.pivot.ids.CollectionTypeId.class,
+		org.eclipse.ocl.pivot.ids.DataTypeId.class,
+		org.eclipse.ocl.pivot.ids.EnumerationId.class,
+		org.eclipse.ocl.pivot.ids.IdManager.class,
+		org.eclipse.ocl.pivot.ids.PackageId.class,
+		org.eclipse.ocl.pivot.ids.PrimitiveTypeId.class,
+		org.eclipse.ocl.pivot.ids.TemplateParameterId.class,
+		org.eclipse.ocl.pivot.ids.TuplePartId.class,
+		org.eclipse.ocl.pivot.ids.TupleTypeId.class,
+		org.eclipse.ocl.pivot.ids.TypeId.class,
+		org.eclipse.ocl.pivot.library.AbstractBinaryOperation.class,
+		org.eclipse.ocl.pivot.library.AbstractProperty.class,
+		org.eclipse.ocl.pivot.library.AbstractTernaryOperation.class,
+		org.eclipse.ocl.pivot.library.AbstractUnaryOperation.class,
+		org.eclipse.ocl.pivot.library.LibraryBinaryOperation.class,
+		org.eclipse.ocl.pivot.library.LibraryIteration.class,
+		org.eclipse.ocl.pivot.library.LibraryProperty.class,
+		org.eclipse.ocl.pivot.library.LibraryTernaryOperation.class,
+		org.eclipse.ocl.pivot.library.LibraryUnaryOperation.class,
+		org.eclipse.ocl.pivot.messages.EvaluatorMessages.class,
+		org.eclipse.ocl.pivot.values.BagValue.class,
+		org.eclipse.ocl.pivot.values.CollectionValue.class,
+		org.eclipse.ocl.pivot.values.IntegerRange.class,
+		org.eclipse.ocl.pivot.values.IntegerValue.class,
+		org.eclipse.ocl.pivot.values.InvalidValue.class,
+		org.eclipse.ocl.pivot.values.OrderedSetValue.class,
+		org.eclipse.ocl.pivot.values.RealValue.class,
+		org.eclipse.ocl.pivot.values.SequenceValue.class,
+		org.eclipse.ocl.pivot.values.SetValue.class,
+		org.eclipse.ocl.pivot.values.TupleValue.class,
+		org.eclipse.ocl.pivot.values.UnlimitedValue.class,
+		org.eclipse.ocl.pivot.values.Value.class,
+		org.eclipse.ocl.pivot.values.InvalidValueException.class,
 		org.eclipse.ocl.pivot.utilities.ValueUtil.class,
 		org.eclipse.ocl.library.ecore.EcoreExecutorEnumeration.class,
 		org.eclipse.ocl.library.ecore.EcoreExecutorEnumerationLiteral.class,
@@ -416,8 +416,8 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 		if (typeId == null) {
 			typeId = cgElement.getTypeId();
 		}
-		CGTypeId cgTypeId = DomainUtil.nonNullState(typeId);
-		ElementId elementId = DomainUtil.nonNullState(cgTypeId.getElementId());
+		CGTypeId cgTypeId = ClassUtil.nonNullState(typeId);
+		ElementId elementId = ClassUtil.nonNullState(cgTypeId.getElementId());
 		TypeDescriptor typeDescriptor = getBoxedDescriptor(elementId);
 		if (!cgElement.isBoxed()) {
 			typeDescriptor = typeDescriptor.getUnboxedDescriptor();
@@ -442,7 +442,7 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 			return null;
 		}
 		CGTypeId cgTypeId = getAnalyzer().getTypeId(asOperation.getOwningClass().getTypeId());
-		ElementId elementId = DomainUtil.nonNullState(cgTypeId.getElementId());
+		ElementId elementId = ClassUtil.nonNullState(cgTypeId.getElementId());
 		TypeDescriptor requiredTypeDescriptor = getUnboxedDescriptor(elementId);
 		String getAccessor = genModelHelper.getOperationAccessor(asOperation);
 		Class<?> requiredJavaClass = requiredTypeDescriptor.hasJavaClass();
@@ -463,7 +463,7 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 			return null;
 		}
 		CGTypeId cgTypeId = getAnalyzer().getTypeId(asProperty.getOwningClass().getTypeId());
-		ElementId elementId = DomainUtil.nonNullState(cgTypeId.getElementId());
+		ElementId elementId = ClassUtil.nonNullState(cgTypeId.getElementId());
 		TypeDescriptor requiredTypeDescriptor = getUnboxedDescriptor(elementId);
 		String getAccessor = genModelHelper.getGetAccessor((EStructuralFeature)eStructuralFeature);
 		Class<?> requiredJavaClass = requiredTypeDescriptor.hasJavaClass();

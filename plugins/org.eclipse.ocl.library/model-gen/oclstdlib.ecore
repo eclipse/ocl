@@ -3,11 +3,11 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="oclstdlib" nsURI="http://www.eclipse.org/ocl/2015/Library" nsPrefix="oclstdlib">
   <eAnnotations source="http://www.eclipse.org/OCL/ASLibrary"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Boolean" instanceClassName="java.lang.Boolean"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="Integer" instanceClassName="org.eclipse.ocl.domain.values.IntegerValue"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="Real" instanceClassName="org.eclipse.ocl.domain.values.RealValue"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Integer" instanceClassName="org.eclipse.ocl.pivot.values.IntegerValue"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Real" instanceClassName="org.eclipse.ocl.pivot.values.RealValue"/>
   <eClassifiers xsi:type="ecore:EDataType" name="String" instanceClassName="java.lang.String"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="UnlimitedNatural" instanceClassName="org.eclipse.ocl.domain.values.IntegerValue"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="Bag" instanceClassName="org.eclipse.ocl.domain.values.Bag">
+  <eClassifiers xsi:type="ecore:EDataType" name="UnlimitedNatural" instanceClassName="org.eclipse.ocl.pivot.values.IntegerValue"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Bag" instanceClassName="org.eclipse.ocl.pivot.values.Bag">
     <eTypeParameters name="T"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="Collection" instanceClassName="java.util.Collection">
@@ -15,7 +15,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OclInvalid"/>
   <eClassifiers xsi:type="ecore:EClass" name="OclVoid"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="OrderedSet" instanceClassName="org.eclipse.ocl.domain.values.OrderedSet">
+  <eClassifiers xsi:type="ecore:EDataType" name="OrderedSet" instanceClassName="org.eclipse.ocl.pivot.values.OrderedSet">
     <eTypeParameters name="T"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="Sequence" instanceClassName="java.util.List">

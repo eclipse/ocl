@@ -12,11 +12,11 @@ package org.eclipse.ocl.library.collection;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.library.AbstractSimpleUnaryOperation;
-import org.eclipse.ocl.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.domain.values.CollectionValue;
-import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.library.numeric.NumericMaxOperation;
+import org.eclipse.ocl.pivot.library.AbstractSimpleUnaryOperation;
+import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.values.CollectionValue;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
  * CollectionMaxOperation realises the Collection::max() library operation.

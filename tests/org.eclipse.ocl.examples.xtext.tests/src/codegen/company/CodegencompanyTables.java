@@ -19,22 +19,6 @@
 package codegen.company;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainTypeParameters;
-import org.eclipse.ocl.domain.ids.ClassId;
-import org.eclipse.ocl.domain.ids.CollectionTypeId;
-import org.eclipse.ocl.domain.ids.EnumerationId;
-import org.eclipse.ocl.domain.ids.EnumerationLiteralId;
-import org.eclipse.ocl.domain.ids.IdManager;
-import org.eclipse.ocl.domain.ids.NsURIPackageId;
-import org.eclipse.ocl.domain.ids.TuplePartId;
-import org.eclipse.ocl.domain.ids.TupleTypeId;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.values.IntegerRange;
-import org.eclipse.ocl.domain.values.IntegerValue;
-import org.eclipse.ocl.domain.values.OrderedSetValue;
-import org.eclipse.ocl.domain.values.SequenceValue;
-import org.eclipse.ocl.domain.values.SetValue;
-import org.eclipse.ocl.domain.values.TupleValue;
 import org.eclipse.ocl.library.ecore.EcoreExecutorEnumeration;
 import org.eclipse.ocl.library.ecore.EcoreExecutorEnumerationLiteral;
 import org.eclipse.ocl.library.ecore.EcoreExecutorPackage;
@@ -47,8 +31,24 @@ import org.eclipse.ocl.library.executor.ExecutorStandardLibrary;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.ParameterTypes;
 import org.eclipse.ocl.pivot.PivotTables;
+import org.eclipse.ocl.pivot.elements.DomainTypeParameters;
+import org.eclipse.ocl.pivot.ids.ClassId;
+import org.eclipse.ocl.pivot.ids.CollectionTypeId;
+import org.eclipse.ocl.pivot.ids.EnumerationId;
+import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
+import org.eclipse.ocl.pivot.ids.IdManager;
+import org.eclipse.ocl.pivot.ids.NsURIPackageId;
+import org.eclipse.ocl.pivot.ids.TuplePartId;
+import org.eclipse.ocl.pivot.ids.TupleTypeId;
+import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.utilities.TypeUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.IntegerRange;
+import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.OrderedSetValue;
+import org.eclipse.ocl.pivot.values.SequenceValue;
+import org.eclipse.ocl.pivot.values.SetValue;
+import org.eclipse.ocl.pivot.values.TupleValue;
 
 /**
  * CodegencompanyTables provides the dispatch tables for the company for use by the OCL dispatcher.

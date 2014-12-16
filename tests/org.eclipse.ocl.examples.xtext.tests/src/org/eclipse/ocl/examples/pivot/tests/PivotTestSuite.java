@@ -45,17 +45,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.library.LibraryUnaryOperation;
-import org.eclipse.ocl.domain.types.IdResolver;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.utilities.ProjectMap;
-import org.eclipse.ocl.domain.values.CollectionValue;
-import org.eclipse.ocl.domain.values.InvalidValueException;
-import org.eclipse.ocl.domain.values.OrderedSetValue;
-import org.eclipse.ocl.domain.values.RealValue;
-import org.eclipse.ocl.domain.values.Value;
 import org.eclipse.ocl.examples.codegen.common.CodeGenHelper;
 import org.eclipse.ocl.examples.codegen.dynamic.JavaGenModelCodeGenHelper;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
@@ -87,7 +76,11 @@ import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.context.ClassContext;
 import org.eclipse.ocl.pivot.context.ParserContext;
 import org.eclipse.ocl.pivot.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
 import org.eclipse.ocl.pivot.helper.OCLHelper;
+import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.library.LibraryUnaryOperation;
 import org.eclipse.ocl.pivot.manager.AbstractMetaModelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
@@ -95,10 +88,17 @@ import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.BaseResource;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironment;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ProjectMap;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.CollectionValue;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.pivot.values.OrderedSetValue;
+import org.eclipse.ocl.pivot.values.RealValue;
+import org.eclipse.ocl.pivot.values.Value;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.xtext.diagnostics.ExceptionDiagnostic;
@@ -219,7 +219,7 @@ public abstract class PivotTestSuite extends PivotTestCase
     		org.eclipse.ocl.pivot.Class contextClassifier = environment.getContextClassifier();
     		ParserContext semanticContext = new ClassContext(metaModelManager, null, contextClassifier, null);
 			resource = semanticContext.createBaseResource(expression);
-			PivotUtil.checkResourceErrors(DomainUtil.bind(OCLMessages.ErrorsInResource, expression), resource);
+			PivotUtil.checkResourceErrors(ClassUtil.bind(OCLMessages.ErrorsInResource, expression), resource);
             fail("Should not have parsed \"" + expression + "\"");
         } catch (ParserException e) {
         	assertEquals("Exception for \"" + expression + "\"", exception, e.getClass());
@@ -228,7 +228,7 @@ public abstract class PivotTestSuite extends PivotTestCase
     			assertNoException(diagnostic, ClassCastException.class);
             	assertNoException(diagnostic, NullPointerException.class);
 //            	assertEquals("Severity for \"" + expression + "\"", severity, diagnostic.getSeverity());
-            	String expectedMessage = DomainUtil.bind(messageTemplate, bindings);
+            	String expectedMessage = ClassUtil.bind(messageTemplate, bindings);
             	assertEquals("Message for \"" + expression + "\"", expectedMessage, diagnostic.getMessage());
         	}
         } catch (IOException e) {
@@ -256,7 +256,7 @@ public abstract class PivotTestSuite extends PivotTestCase
    		org.eclipse.ocl.pivot.Class contextClassifier = environment.getContextClassifier();
    		ParserContext classContext = new ClassContext(metaModelManager, null, contextClassifier, null);
    		csResource = (BaseCSResource) classContext.createBaseResource(expression);
-			PivotUtil.checkResourceErrors(DomainUtil.bind(OCLMessages.ErrorsInResource, expression), csResource);
+			PivotUtil.checkResourceErrors(ClassUtil.bind(OCLMessages.ErrorsInResource, expression), csResource);
 			CS2ASResourceAdapter cs2as = csResource.getCS2ASAdapter(metaModelManager);
 			Resource asResource = cs2as.getASResource(csResource);
 			assertNoValidationErrors("Validating", asResource);
@@ -268,7 +268,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 //			assertNoException(diagnostic, ClassCastException.class);
 //       	assertNoException(diagnostic, NullPointerException.class);
 //       	assertEquals("Severity for \"" + expression + "\"", severity, diagnostic.getSeverity());
-       	String expectedMessage = DomainUtil.bind(messageTemplate, bindings);
+       	String expectedMessage = ClassUtil.bind(messageTemplate, bindings);
        	assertEquals("Message for \"" + expression + "\"", expectedMessage, diagnostic.getMessage());
 		appendLog(getName(), null, expression, expectedMessage, null, null);
        } catch (IOException e) {
@@ -290,7 +290,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 			org.eclipse.ocl.pivot.Class contextClassifier = environment.getContextClassifier();
 			ParserContext classContext = new ClassContext(metaModelManager, null, contextClassifier, null);
 			csResource = (BaseCSResource) classContext.createBaseResource(expression);
-			PivotUtil.checkResourceErrors(DomainUtil.bind(OCLMessages.ErrorsInResource, expression), csResource);
+			PivotUtil.checkResourceErrors(ClassUtil.bind(OCLMessages.ErrorsInResource, expression), csResource);
 			CS2ASResourceAdapter cs2as = csResource.getCS2ASAdapter(metaModelManager);
 			Resource asResource = cs2as.getASResource(csResource);
 			assertNoValidationErrors("Validating", asResource);
@@ -302,7 +302,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 //			assertNoException(diagnostic, ClassCastException.class);
 //       	assertNoException(diagnostic, NullPointerException.class);
 //       	assertEquals("Severity for \"" + expression + "\"", severity, diagnostic.getSeverity());
-			String expectedMessage = DomainUtil.bind(messageTemplate, bindings);
+			String expectedMessage = ClassUtil.bind(messageTemplate, bindings);
 			assertEquals("Message for \"" + expression + "\"", expectedMessage, diagnostic.getMessage());
 			appendLog(getName(), contextType, expression, expectedMessage, null, null);
 		} catch (IOException e) {
@@ -782,10 +782,10 @@ public abstract class PivotTestSuite extends PivotTestCase
 	   		org.eclipse.ocl.pivot.Class contextClassifier = environment.getContextClassifier();
 	   		ParserContext classContext = new ClassContext(metaModelManager, null, contextClassifier, null);
 	   		csResource = (BaseCSResource) classContext.createBaseResource(expression);
-			PivotUtil.checkResourceErrors(DomainUtil.bind(OCLMessages.ErrorsInResource, expression), csResource);
+			PivotUtil.checkResourceErrors(ClassUtil.bind(OCLMessages.ErrorsInResource, expression), csResource);
 			CS2ASResourceAdapter cs2as = csResource.getCS2ASAdapter(metaModelManager);
 			Resource asResource = cs2as.getASResource(csResource);
-	       	String expectedMessage = DomainUtil.bind(messageTemplate, bindings);
+	       	String expectedMessage = ClassUtil.bind(messageTemplate, bindings);
 			assertValidationDiagnostics("Validating", asResource, new String[] {expectedMessage});
 			appendLog(getName(), null, expression, expectedMessage, null, null);
 		} catch (Exception e) {
@@ -807,10 +807,10 @@ public abstract class PivotTestSuite extends PivotTestCase
 	   		org.eclipse.ocl.pivot.Class contextClassifier = environment.getContextClassifier();
 	   		ParserContext classContext = new ClassContext(metaModelManager, null, contextClassifier, null);
 	   		csResource = (BaseCSResource) classContext.createBaseResource(expression);
-			PivotUtil.checkResourceErrors(DomainUtil.bind(OCLMessages.ErrorsInResource, expression), csResource);
+			PivotUtil.checkResourceErrors(ClassUtil.bind(OCLMessages.ErrorsInResource, expression), csResource);
 			CS2ASResourceAdapter cs2as = csResource.getCS2ASAdapter(metaModelManager);
 			Resource asResource = cs2as.getASResource(csResource);
-	       	String expectedMessage = DomainUtil.bind(messageTemplate, bindings);
+	       	String expectedMessage = ClassUtil.bind(messageTemplate, bindings);
 			assertValidationDiagnostics("Validating", asResource, new String[] {expectedMessage});
 			appendLog(getName(), contextType, expression, expectedMessage, null, null);
 		} catch (Exception e) {
@@ -1255,7 +1255,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	 * @return The first {@link org.eclipse.uml2.uml.Property} with the specified '<em><b>Name</b></em>', and '<em><b>Type</b></em>', or <code>null</code>.
 	 */
 	protected Property getAttribute(@NonNull org.eclipse.ocl.pivot.Class classifier, @NonNull String name, @NonNull Type type) {
-		Property feature = DomainUtil.getNamedElement(classifier.getOwnedProperties(), name);
+		Property feature = ClassUtil.getNamedElement(classifier.getOwnedProperties(), name);
 		if (feature == null)
 			return null;
 		// check type
@@ -1265,7 +1265,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	@SuppressWarnings("null")
 	public CodeGenHelper getCodeGenHelper(@NonNull MetaModelManager metaModelManager) throws IOException {
 		URI genModelURI = URI.createPlatformResourceURI(
-				"/org.eclipse.ocl.pivot/model/Pivot.merged.genmodel",
+				"/org.eclipse.ocl.pivot.internal/model/Pivot.merged.genmodel",
 				true);
 //		ResourceSet resourceSet = getResourceSet();
 		Resource genModelResource = resourceSet.getResource(genModelURI, true);
@@ -1308,7 +1308,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	}
 
 	protected @NonNull OCLHelper getHelper() {
-		return DomainUtil.nonNullState(helper);
+		return ClassUtil.nonNullState(helper);
 	}
    
 	protected @NonNull org.eclipse.ocl.pivot.Class getMetaclass(@NonNull String name) {
@@ -1320,7 +1320,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	}
 
 	protected @NonNull OCL getOCL() {
-		return DomainUtil.nonNullState(ocl);
+		return ClassUtil.nonNullState(ocl);
 	}
 	
 	protected @NonNull StandardLibrary getStandardLibrary() {
@@ -1340,7 +1340,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	}
 
 	protected @NonNull org.eclipse.ocl.pivot.Package getUMLMetamodel() {
-		return DomainUtil.nonNullState(metaModelManager.getASMetamodel());
+		return ClassUtil.nonNullState(metaModelManager.getASMetamodel());
 	}
 	
 	protected @NonNull Type getUMLString() {

@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.Model;
@@ -35,11 +34,12 @@ import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.scoping.ScopeView;
-import org.eclipse.ocl.pivot.util.Pivotable;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.xtext.base.cs2as.ValidationDiagnostic;
+import org.eclipse.ocl.pivot.utilities.Pivotable;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS.UnresolvedProxyMessageProvider;
+import org.eclipse.ocl.xtext.base.cs2as.ValidationDiagnostic;
 import org.eclipse.ocl.xtext.base.scoping.AbstractJavaClassScope;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
@@ -129,7 +129,7 @@ public class LibraryCSAttribution extends AbstractAttribution implements Unresol
 				return;
 			}
 			List<EObject> importedElements = new ArrayList<EObject>();
-			ResourceSet csResourceSet = DomainUtil.nonNullState(csResource.getResourceSet());
+			ResourceSet csResourceSet = ClassUtil.nonNullState(csResource.getResourceSet());
 			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 			MetaModelManagerResourceSetAdapter.getAdapter(csResourceSet, metaModelManager);
 			try {
@@ -154,7 +154,7 @@ public class LibraryCSAttribution extends AbstractAttribution implements Unresol
 				List<Resource.Diagnostic> warnings = importedResource.getWarnings();
 				if (warnings.size() > 0) {
 					INode node = NodeModelUtils.getNode(target);
-					String errorMessage = PivotUtil.formatResourceDiagnostics(warnings, DomainUtil.bind(OCLMessages.WarningsInURI, uri), "\n\t");
+					String errorMessage = PivotUtil.formatResourceDiagnostics(warnings, ClassUtil.bind(OCLMessages.WarningsInURI, uri), "\n\t");
 					Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, errorMessage);
 					csResource.getWarnings().add(resourceDiagnostic);
 				}

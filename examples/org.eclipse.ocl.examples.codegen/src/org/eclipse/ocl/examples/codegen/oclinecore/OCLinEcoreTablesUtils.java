@@ -34,11 +34,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.ids.BuiltInTypeId;
-import org.eclipse.ocl.domain.ids.LambdaTypeId;
-import org.eclipse.ocl.domain.ids.ParametersId;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.codegen.common.NameQueries;
 import org.eclipse.ocl.examples.codegen.generator.AbstractGenModelHelper;
 import org.eclipse.ocl.library.LibraryConstants;
@@ -67,13 +62,18 @@ import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.VoidType;
+import org.eclipse.ocl.pivot.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.ecore.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
+import org.eclipse.ocl.pivot.ids.BuiltInTypeId;
+import org.eclipse.ocl.pivot.ids.LambdaTypeId;
+import org.eclipse.ocl.pivot.ids.ParametersId;
+import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.xtext.util.Strings;
 
@@ -194,7 +194,7 @@ public class OCLinEcoreTablesUtils
 	}
 	
 	public static @NonNull Boolean isBuiltInType(@NonNull Type type) {
-//		System.out.println(DomainUtil.debugSimpleName(type) + " + " + DomainUtil.debugSimpleName(type.getTypeId()) + " + " + type.getTypeId());
+//		System.out.println(ClassUtil.debugSimpleName(type) + " + " + ClassUtil.debugSimpleName(type.getTypeId()) + " + " + type.getTypeId());
 		return type.getTypeId() instanceof BuiltInTypeId;
 	}
 
@@ -380,8 +380,8 @@ public class OCLinEcoreTablesUtils
 		public @Nullable Object visitCollectionType(@NonNull CollectionType type) {
 			s.append("new ");
 			s.appendClassReference(ExecutorSpecializedType.class);
-			s.append("(LIBRARY, ");
-			s.appendString(DomainUtil.nonNullModel(type.getName()));
+			s.append("(");
+			s.appendString(ClassUtil.nonNullModel(type.getName()));
 			s.append(", ");
 			type.getElementType().accept(this);
 			s.append(")");
@@ -392,8 +392,8 @@ public class OCLinEcoreTablesUtils
 		public @Nullable Object visitLambdaType(@NonNull LambdaType lambdaType) {
 			s.append("new ");
 			s.appendClassReference(ExecutorLambdaType.class);
-			s.append("(LIBRARY, ");
-			s.appendString(DomainUtil.nonNullModel(lambdaType.getName()));
+			s.append("(");
+			s.appendString(ClassUtil.nonNullModel(lambdaType.getName()));
 			s.append(", ");
 			lambdaType.getContextType().accept(this);
 			for (Type parameterType : lambdaType.getParameterType()) {
@@ -408,8 +408,8 @@ public class OCLinEcoreTablesUtils
 		public @Nullable Object visitTupleType(@NonNull TupleType tupleType) {
 			s.append("new ");
 			s.appendClassReference(ExecutorTupleType.class);
-			s.append("(LIBRARY, ");
-			s.appendString(DomainUtil.nonNullModel(tupleType.getName()));
+			s.append("(");
+			s.appendString(ClassUtil.nonNullModel(tupleType.getName()));
 			s.append(", ");
 			for (Property part : tupleType.getOwnedProperties()) {
 				s.append(", ");
@@ -490,7 +490,7 @@ public class OCLinEcoreTablesUtils
 
 		@Override
 		public @Nullable Object visitConstraint(@NonNull Constraint constraint) {
-			Type type = DomainUtil.nonNullModel((Type) constraint.eContainer());
+			Type type = ClassUtil.nonNullModel((Type) constraint.eContainer());
 			s.appendScopedTypeName(type);
 			s.append("__");
 			s.append(NameQueries.getUniqueText(type, constraint));
@@ -499,7 +499,7 @@ public class OCLinEcoreTablesUtils
 
 		@Override
 		public @Nullable Object visitEnumerationLiteral(@NonNull EnumerationLiteral enumerationLiteral) {
-			Enumeration enumeration = DomainUtil.nonNullModel(enumerationLiteral.getEnumeration());
+			Enumeration enumeration = ClassUtil.nonNullModel(enumerationLiteral.getEnumeration());
 //			s.appendClassReference(getQualifiedTablesClassName(enumeration));
 			s.append("EnumerationLiterals.");
 			s.appendScopedTypeName(enumeration);
@@ -510,7 +510,7 @@ public class OCLinEcoreTablesUtils
 
 		@Override
 		public @Nullable Object visitOperation(@NonNull Operation operation) {
-			s.appendScopedTypeName(DomainUtil.nonNullModel(operation.getOwningClass()));
+			s.appendScopedTypeName(ClassUtil.nonNullModel(operation.getOwningClass()));
 			s.append("__");
 			s.appendName(operation);
 			return null;
@@ -525,7 +525,7 @@ public class OCLinEcoreTablesUtils
 
 		@Override
 		public @Nullable Object visitProperty(@NonNull Property property) {
-			s.appendScopedTypeName(DomainUtil.nonNullModel(property.getOwningClass()));
+			s.appendScopedTypeName(ClassUtil.nonNullModel(property.getOwningClass()));
 			s.append("__");
 			s.appendName(property);
 			if (property.isImplicit()) {
@@ -575,7 +575,7 @@ public class OCLinEcoreTablesUtils
 
 		@Override
 		public @Nullable Object visitEnumerationLiteral(@NonNull EnumerationLiteral enumerationLiteral) {
-			Enumeration enumeration = DomainUtil.nonNullModel(enumerationLiteral.getEnumeration());
+			Enumeration enumeration = ClassUtil.nonNullModel(enumerationLiteral.getEnumeration());
 			s.appendClassReference(getQualifiedTablesClassName(enumeration));
 			s.append(".EnumerationLiterals.");
 			s.appendScopedTypeName(enumeration);
@@ -586,7 +586,7 @@ public class OCLinEcoreTablesUtils
 
 		@Override
 		public @Nullable Object visitOperation(@NonNull Operation operation) {
-			org.eclipse.ocl.pivot.Class type = DomainUtil.nonNullModel(operation.getOwningClass());
+			org.eclipse.ocl.pivot.Class type = ClassUtil.nonNullModel(operation.getOwningClass());
 			s.appendClassReference(getQualifiedTablesClassName(type));
 			s.append(".Operations.");
 			return super.visitOperation(operation);
@@ -594,7 +594,7 @@ public class OCLinEcoreTablesUtils
 
 		@Override
 		public @Nullable Object visitProperty(@NonNull Property property) {
-			org.eclipse.ocl.pivot.Class type = DomainUtil.nonNullModel(property.getOwningClass());
+			org.eclipse.ocl.pivot.Class type = ClassUtil.nonNullModel(property.getOwningClass());
 			s.appendClassReference(getQualifiedTablesClassName(type));
 			s.append(".Properties.");
 			return super.visitProperty(property);
@@ -630,7 +630,7 @@ public class OCLinEcoreTablesUtils
 		MetaModelManagerResourceSetAdapter resourceSetAdapter = MetaModelManagerResourceSetAdapter.getAdapter(genModelResourceSet, null);
 		this.metaModelManager = resourceSetAdapter.getMetaModelManager();
 		this.standardLibrary = metaModelManager.getStandardLibrary();
-		this.pPackage = DomainUtil.nonNullModel(getPivotPackage(genPackage));
+		this.pPackage = ClassUtil.nonNullModel(getPivotPackage(genPackage));
 		activeClassesSortedByName = getActiveClassesSortedByName(pPackage);
 	}
 
@@ -841,7 +841,7 @@ public class OCLinEcoreTablesUtils
 		else {
 //		    List<Constraint> constraints = operation.getOwnedRule();
 //			if (constraints.size() > 0) {
-//				return getQualifiedBodiesClassName(DomainUtil.nonNullModel(operation.getOwningType())) + "._" + operation.getName() + "_" + constraints.get(0).getStereotype() + "_.INSTANCE";
+//				return getQualifiedBodiesClassName(ClassUtil.nonNullModel(operation.getOwningType())) + "._" + operation.getName() + "_" + constraints.get(0).getStereotype() + "_.INSTANCE";
 //			}
 //			else {
 				return "null";
@@ -887,8 +887,8 @@ public class OCLinEcoreTablesUtils
 		Operation best = null;
 		for (org.eclipse.ocl.pivot.Class aClass : results.keySet()) {
 			int aDepth = results.get(aClass);
-			for (Operation op : getOperations(DomainUtil.nonNullState(aClass))) {
-				if (baseSignature.equals(getSignature(DomainUtil.nonNullState(op))) && (aDepth > bestDepth)) {
+			for (Operation op : getOperations(ClassUtil.nonNullState(aClass))) {
+				if (baseSignature.equals(getSignature(ClassUtil.nonNullState(op))) && (aDepth > bestDepth)) {
 					bestDepth = aDepth;
 					best = op;
 				}
@@ -1025,10 +1025,10 @@ public class OCLinEcoreTablesUtils
 		if (templateParameter != null) {
 			TemplateableElement template = templateParameter.getOwningTemplateSignature().getOwningTemplateableElement();
 			if (template instanceof Operation) {
-				s.append(AbstractGenModelHelper.encodeName(DomainUtil.nonNullModel(((Operation) template).getOwningClass())));
+				s.append(AbstractGenModelHelper.encodeName(ClassUtil.nonNullModel(((Operation) template).getOwningClass())));
 				s.append("_");
 			}
-			s.append(AbstractGenModelHelper.encodeName(DomainUtil.nonNullModel((NamedElement) template)));
+			s.append(AbstractGenModelHelper.encodeName(ClassUtil.nonNullModel((NamedElement) template)));
 			s.append("_");
 		}
 		s.append(AbstractGenModelHelper.encodeName(element));
@@ -1039,7 +1039,7 @@ public class OCLinEcoreTablesUtils
 				for (TemplateBinding templateBinding : templateBindings) {
 					for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedTemplateParameterSubstitutions()) {
 						s.append("_");
-						getTemplateBindingsName(s, DomainUtil.nonNullModel(templateParameterSubstitution.getActual()));
+						getTemplateBindingsName(s, ClassUtil.nonNullModel(templateParameterSubstitution.getActual()));
 					}
 				}
 				s.append("__");
@@ -1048,14 +1048,14 @@ public class OCLinEcoreTablesUtils
 		if (element instanceof LambdaType) {
 			LambdaType lambdaType = (LambdaType)element;
 			s.append("_");
-			getTemplateBindingsName(s, DomainUtil.nonNullModel(lambdaType.getContextType()));
+			getTemplateBindingsName(s, ClassUtil.nonNullModel(lambdaType.getContextType()));
 			for (/*@NonNull*/ Type type : lambdaType.getParameterType()) {
 				assert type != null;
 				s.append("_");
 				getTemplateBindingsName(s, type);
 			}
 			s.append("_");
-			getTemplateBindingsName(s, DomainUtil.nonNullModel(lambdaType.getResultType()));
+			getTemplateBindingsName(s, ClassUtil.nonNullModel(lambdaType.getResultType()));
 		}
 	}
 	
@@ -1144,7 +1144,7 @@ public class OCLinEcoreTablesUtils
 			Map<org.eclipse.ocl.pivot.Class,org.eclipse.ocl.pivot.Class> typeMap = new HashMap<org.eclipse.ocl.pivot.Class,org.eclipse.ocl.pivot.Class>();
 			ArrayList<org.eclipse.ocl.pivot.Class> libraryTypes = new ArrayList<org.eclipse.ocl.pivot.Class>(library.getOwnedClasses());
 			for (org.eclipse.ocl.pivot.Class secondaryType : libraryTypes) {
-				org.eclipse.ocl.pivot.Class primaryType = DomainUtil.getNamedElement(primaryTypes, secondaryType.getName());
+				org.eclipse.ocl.pivot.Class primaryType = ClassUtil.getNamedElement(primaryTypes, secondaryType.getName());
 				if (primaryType != null) {
 					typeMap.put(secondaryType, primaryType);
 				}
@@ -1172,8 +1172,8 @@ public class OCLinEcoreTablesUtils
 		}
 		for (org.eclipse.ocl.pivot.Class primaryType : primaryTypes) {
 			List<org.eclipse.ocl.pivot.Class> primarySuperClasses = primaryType.getSuperClasses();
-			Type classType = DomainUtil.getNamedElement(primarySuperClasses, TypeId.CLASS_NAME);
-			Type metaclass = DomainUtil.getNamedElement(primarySuperClasses, "Classifier");
+			Type classType = ClassUtil.getNamedElement(primarySuperClasses, TypeId.CLASS_NAME);
+			Type metaclass = ClassUtil.getNamedElement(primarySuperClasses, "Classifier");
 			if ((classType != null) && (metaclass != null)) {
 				primarySuperClasses.remove(classType);		// WIP FIXME fix at source
 			}

@@ -18,11 +18,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.vm.evaluator.VMModelManager;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
  * OCL Domain Manager is the class responsible for managing the OCL virtual
@@ -72,7 +72,7 @@ public class OCLVMModelManager extends VMModelManager
 		EPackage ePackage = eClass.getEPackage();
 		Type objectType = null;
 		if (ePackage == PivotPackage.eINSTANCE) {
-			String name = DomainUtil.nonNullEMF(eClass.getName());
+			String name = ClassUtil.nonNullEMF(eClass.getName());
 			objectType = metaModelManager.getPivotType(name);
 		}
 		else {

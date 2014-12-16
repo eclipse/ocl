@@ -12,8 +12,8 @@ package org.eclipse.ocl.xtext.essentialocl.as2cs;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.xtext.base.as2cs.BaseLocationInFileProvider;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.basecs.ElementCS;
@@ -90,7 +90,7 @@ public class EssentialOCLLocationInFileProvider extends BaseLocationInFileProvid
 			}
 			ITextRegion leftRegion = super.getTextRegion(csLeftmost, isSignificant);
 			ITextRegion rightRegion = super.getTextRegion(csRightmost, isSignificant);
-			return DomainUtil.nonNullState(leftRegion.merge(rightRegion));
+			return ClassUtil.nonNullState(leftRegion.merge(rightRegion));
 		}
 		else {
 			return super.getTextRegion(csExp, isSignificant);

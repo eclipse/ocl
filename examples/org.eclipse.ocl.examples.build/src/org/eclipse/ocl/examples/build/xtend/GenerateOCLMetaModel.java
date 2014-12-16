@@ -28,14 +28,6 @@ import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.utilities.StandaloneProjectMap;
-import org.eclipse.ocl.domain.utilities.StandaloneProjectMap.IPackageDescriptor;
-import org.eclipse.ocl.domain.utilities.StandaloneProjectMap.IProjectDescriptor;
-import org.eclipse.ocl.domain.utilities.StandaloneProjectMap.LoadDynamicResourceStrategy;
-import org.eclipse.ocl.domain.values.IntegerValue;
-import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreTablesUtils;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.DataType;
@@ -51,12 +43,20 @@ import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.ASSaver;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.IPackageDescriptor;
+import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.IProjectDescriptor;
+import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.LoadDynamicResourceStrategy;
+import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 
 public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 {	
@@ -188,7 +188,7 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 
 	@Override
 	protected void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor, Issues issues) {
-		ResourceSet resourceSet = DomainUtil.nonNullState(getResourceSet());
+		ResourceSet resourceSet = ClassUtil.nonNullState(getResourceSet());
 		StandaloneProjectMap projectMap = StandaloneProjectMap.getAdapter(resourceSet);
 		assert projectName != null;
 		IProjectDescriptor projectDescriptor = projectMap.getProjectDescriptor(projectName);
@@ -209,9 +209,9 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 		try {
 			MetaModelManager metaModelManager = MetaModelManager.getAdapter(resourceSet);
 			NameQueries.setMetaModelManager(metaModelManager);
-			Resource ecoreResource = DomainUtil.nonNullState(resourceSet.getResource(inputURI, true));
+			Resource ecoreResource = ClassUtil.nonNullState(resourceSet.getResource(inputURI, true));
 			MetaModelManagerResourceAdapter.getAdapter(ecoreResource, metaModelManager);
-			String ecoreErrorsString = PivotUtil.formatResourceDiagnostics(DomainUtil.nonNullEMF(ecoreResource.getErrors()), "Loading " + inputURI, "\n");
+			String ecoreErrorsString = PivotUtil.formatResourceDiagnostics(ClassUtil.nonNullEMF(ecoreResource.getErrors()), "Loading " + inputURI, "\n");
 			if (ecoreErrorsString != null) {
 				issues.addError(this, ecoreErrorsString, null, null, null);
 				return;
@@ -219,7 +219,7 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 			Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metaModelManager);
 			Model pivotModel = ecore2as.getPivotModel();
 			Resource asResource = pivotModel.eResource();
-			String pivotErrorsString = PivotUtil.formatResourceDiagnostics(DomainUtil.nonNullEMF(asResource.getErrors()), "Converting " + inputURI, "\n");
+			String pivotErrorsString = PivotUtil.formatResourceDiagnostics(ClassUtil.nonNullEMF(asResource.getErrors()), "Converting " + inputURI, "\n");
 				if (pivotErrorsString != null) {
 					issues.addError(this, pivotErrorsString, null, null, null);
 					return;
@@ -249,7 +249,7 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 				EObject eObject = tit.next();
 				if (eObject instanceof org.eclipse.ocl.pivot.Class) {
 					List<Property> ownedAttribute = ((org.eclipse.ocl.pivot.Class)eObject).getOwnedProperties();
-					DomainUtil.sort(ownedAttribute, OCLinEcoreTablesUtils.propertyComparator);
+					ClassUtil.sort(ownedAttribute, OCLinEcoreTablesUtils.propertyComparator);
 				}
 			}
 			asResource.setURI(saveURI);

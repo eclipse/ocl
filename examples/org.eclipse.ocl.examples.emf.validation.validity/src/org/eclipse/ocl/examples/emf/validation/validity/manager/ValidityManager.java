@@ -39,9 +39,6 @@ import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.common.label.ILabelGenerator;
-import org.eclipse.ocl.examples.common.utils.EcoreUtils;
-import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.examples.emf.validation.validity.AbstractNode;
 import org.eclipse.ocl.examples.emf.validation.validity.ConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.Result;
@@ -54,6 +51,9 @@ import org.eclipse.ocl.examples.emf.validation.validity.ValidatableNode;
 import org.eclipse.ocl.examples.emf.validation.validity.locator.ConstraintLocator;
 import org.eclipse.ocl.examples.emf.validation.validity.plugin.ValidityPlugin;
 import org.eclipse.ocl.examples.emf.validation.validity.utilities.IVisibilityFilter;
+import org.eclipse.ocl.pivot.labels.ILabelGenerator;
+import org.eclipse.ocl.pivot.utilities.LabelUtil;
+import org.eclipse.ocl.pivot.utilities.TracingOption;
 
 public class ValidityManager
 {	
@@ -390,7 +390,7 @@ public class ValidityManager
 
 	public @NonNull String getValidatableLabel(@NonNull EObject eObject, boolean withContext) {
 		StringBuilder s = new StringBuilder();
-		s.append(EcoreUtils.SIMPLE_NAME_REGISTRY.labelFor(eObject, LABEL_OPTIONS));
+		s.append(LabelUtil.SIMPLE_NAME_REGISTRY.labelFor(eObject, LABEL_OPTIONS));
 /*		if (eObject instanceof ENamedElement) {
 			s.append(((ENamedElement)eObject).getName());
 		}

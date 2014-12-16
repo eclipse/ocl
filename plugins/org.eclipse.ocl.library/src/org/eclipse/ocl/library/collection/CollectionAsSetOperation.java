@@ -12,8 +12,8 @@ package org.eclipse.ocl.library.collection;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.library.AbstractSimpleUnaryOperation;
-import org.eclipse.ocl.domain.values.SetValue;
+import org.eclipse.ocl.pivot.library.AbstractSimpleUnaryOperation;
+import org.eclipse.ocl.pivot.values.SetValue;
 
 /**
  * CollectionAsSetOperation realises the Collection::asSet() library operation.

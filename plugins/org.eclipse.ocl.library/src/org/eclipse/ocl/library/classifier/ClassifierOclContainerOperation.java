@@ -13,7 +13,7 @@ package org.eclipse.ocl.library.classifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.library.AbstractSimpleUnaryOperation;
+import org.eclipse.ocl.pivot.library.AbstractSimpleUnaryOperation;
 
 /**
  * ClassifierOclContainerOperation realises the Classifier::oclContainer() library operation.

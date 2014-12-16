@@ -15,9 +15,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicSettingDelegate;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
-import org.eclipse.ocl.domain.evaluation.DomainException;
-import org.eclipse.ocl.domain.types.IdResolver;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.EvaluationException;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.OCL;
@@ -26,8 +23,11 @@ import org.eclipse.ocl.pivot.Query;
 import org.eclipse.ocl.pivot.SemanticException;
 import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.delegate.SettingBehavior;
+import org.eclipse.ocl.pivot.evaluation.DomainException;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
@@ -80,7 +80,7 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 			}
 		}
 		catch (DomainException e) {
-			String message = DomainUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, property);
+			String message = ClassUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, property);
 			throw new OCLDelegateException(new EvaluationException(message, e));
 		}
 	}
@@ -88,7 +88,7 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 	public @NonNull Property getProperty() {
 		Property property2 = property;
 		if (property2 == null) {
-			property2 = property = delegateDomain.getPivot(Property.class, DomainUtil.nonNullEMF(eStructuralFeature));
+			property2 = property = delegateDomain.getPivot(Property.class, ClassUtil.nonNullEMF(eStructuralFeature));
 			if (property2 == null) {
 				throw new OCLDelegateException(new SemanticException("No pivot property for " + eStructuralFeature)) ;
 			}

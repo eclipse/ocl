@@ -23,7 +23,6 @@ import org.eclipse.debug.core.model.IValue;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.examples.debug.vm.core.VMDebugTarget;
 import org.eclipse.ocl.examples.debug.vm.core.VMLocalValue;
 import org.eclipse.ocl.examples.debug.vm.core.VMLocalValue.LocalValue;
@@ -31,8 +30,8 @@ import org.eclipse.ocl.examples.debug.vm.data.VMBreakpointData;
 import org.eclipse.ocl.examples.debug.vm.data.VMNewBreakpointData;
 import org.eclipse.ocl.examples.debug.vm.data.VMStackFrameData;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IDebuggableRunnerFactory;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IVMRootEvaluationVisitor;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
+import org.eclipse.ocl.examples.debug.vm.evaluator.IVMRootEvaluationVisitor;
 import org.eclipse.ocl.examples.debug.vm.event.VMEvent;
 import org.eclipse.ocl.examples.debug.vm.event.VMStartEvent;
 import org.eclipse.ocl.examples.debug.vm.event.VMTerminateEvent;
@@ -53,6 +52,7 @@ import org.eclipse.ocl.examples.debug.vm.utils.DebugOptions;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.TracingOption;
 
 public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 {

@@ -13,14 +13,14 @@ package org.eclipse.ocl.examples.pivot.tests;
 
 import java.util.Iterator;
 
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.AnyType;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.InheritanceFragment;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.SetType;
-import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
+import org.eclipse.ocl.pivot.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
  * Tests for OclAny operations.
@@ -116,7 +116,7 @@ public class InheritanceTests extends PivotSimpleTestSuite
 		StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
 		try {
 			CompleteInheritance oclAnyInheritance = standardLibrary.getInheritance(standardLibrary.getOclAnyType());
-			CompleteInheritance ifInheritance = standardLibrary.getInheritance(DomainUtil.nonNullState(standardLibrary.getPivotType("IfExp")));
+			CompleteInheritance ifInheritance = standardLibrary.getInheritance(ClassUtil.nonNullState(standardLibrary.getPivotType("IfExp")));
 			Iterator<InheritanceFragment> allSuperInheritances = ifInheritance.getAllSuperFragments().iterator();
 			assert allSuperInheritances.next().getBaseInheritance() == oclAnyInheritance;
 			CompleteInheritance next = allSuperInheritances.next().getBaseInheritance();
@@ -133,10 +133,10 @@ public class InheritanceTests extends PivotSimpleTestSuite
 			assert !depthNInheritances.hasNext();
 			assert oclAnyInheritance.isSuperInheritanceOf(ifInheritance);
 			assert !ifInheritance.isSuperInheritanceOf(oclAnyInheritance);
-			CompleteInheritance oclExpressionInheritance = standardLibrary.getInheritance(DomainUtil.nonNullState(standardLibrary.getPivotType("OCLExpression")));
+			CompleteInheritance oclExpressionInheritance = standardLibrary.getInheritance(ClassUtil.nonNullState(standardLibrary.getPivotType("OCLExpression")));
 			assert oclExpressionInheritance.isSuperInheritanceOf(ifInheritance);
 			assert !ifInheritance.isSuperInheritanceOf(oclExpressionInheritance);
-			CompleteInheritance loopExpInheritance = standardLibrary.getInheritance(DomainUtil.nonNullState(standardLibrary.getPivotType("LoopExp")));
+			CompleteInheritance loopExpInheritance = standardLibrary.getInheritance(ClassUtil.nonNullState(standardLibrary.getPivotType("LoopExp")));
 			assert !ifInheritance.isSuperInheritanceOf(loopExpInheritance);
 			assert !loopExpInheritance.isSuperInheritanceOf(ifInheritance);
 		} finally {

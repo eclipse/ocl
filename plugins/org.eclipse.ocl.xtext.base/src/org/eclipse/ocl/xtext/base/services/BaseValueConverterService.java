@@ -18,7 +18,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.xtext.AbstractRule;
 import org.eclipse.xtext.Grammar;
@@ -67,7 +67,7 @@ public class BaseValueConverterService extends AbstractDeclarativeValueConverter
 			try {
 				String result = string.substring(1, string.length() - 1);
 				assert result != null;
-				return DomainUtil.convertFromOCLString(result);
+				return ClassUtil.convertFromOCLString(result);
 			} catch(IllegalArgumentException e) {
 				throw new ValueConverterException(e.getMessage(), node, e);
 			}
@@ -75,7 +75,7 @@ public class BaseValueConverterService extends AbstractDeclarativeValueConverter
 
 		@Override
 		protected String internalToString(String value) {
-			return '"' + DomainUtil.convertToOCLString(value) + '"';
+			return '"' + ClassUtil.convertToOCLString(value) + '"';
 		}
 	}
 
@@ -116,7 +116,7 @@ public class BaseValueConverterService extends AbstractDeclarativeValueConverter
 			try {
 				String result = string.substring(2, string.length() - 2);
 				assert result != null;
-				return DomainUtil.convertFromOCLString(result);
+				return ClassUtil.convertFromOCLString(result);
 			} catch(IllegalArgumentException e) {
 				throw new ValueConverterException(e.getMessage(), node, e);
 			}
@@ -124,7 +124,7 @@ public class BaseValueConverterService extends AbstractDeclarativeValueConverter
 
 		@Override
 		protected String internalToString(String value) {
-			return "'" + DomainUtil.convertToOCLString(value) + "'";
+			return "'" + ClassUtil.convertToOCLString(value) + "'";
 		}
 	}
 
@@ -205,7 +205,7 @@ public class BaseValueConverterService extends AbstractDeclarativeValueConverter
 			try {
 				String result = string.substring(1, string.length() - 1);
 				assert result != null;
-				return DomainUtil.convertFromOCLString(result);
+				return ClassUtil.convertFromOCLString(result);
 			} catch(IllegalArgumentException e) {
 				throw new ValueConverterException(e.getMessage(), node, e);
 			}
@@ -213,7 +213,7 @@ public class BaseValueConverterService extends AbstractDeclarativeValueConverter
 		
 		@Override
 		protected String internalToString(String value) {
-			return "'" + DomainUtil.convertToOCLString(value) + "'";
+			return "'" + ClassUtil.convertToOCLString(value) + "'";
 		}
 	}
 
@@ -224,7 +224,7 @@ public class BaseValueConverterService extends AbstractDeclarativeValueConverter
 			try {
 				String result = string.substring(1, string.length() - 1);
 				assert result != null;
-				return DomainUtil.convertFromOCLString(result);
+				return ClassUtil.convertFromOCLString(result);
 			} catch(IllegalArgumentException e) {
 				throw new ValueConverterException(e.getMessage(), node, e);
 			}

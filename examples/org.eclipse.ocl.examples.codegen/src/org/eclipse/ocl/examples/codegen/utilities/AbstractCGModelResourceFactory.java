@@ -13,8 +13,8 @@ package org.eclipse.ocl.examples.codegen.utilities;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.codegen.analyzer.CG2StringVisitor;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
  * The <b>Resource Factory</b> associated with the package.
@@ -26,7 +26,7 @@ public class AbstractCGModelResourceFactory extends ResourceFactoryImpl implemen
 	 */
 	@Override
 	public @NonNull CGModelResource createResource(URI uri) {
-		return new CGModelResourceImpl(DomainUtil.nonNullState(uri), this);
+		return new CGModelResourceImpl(ClassUtil.nonNullState(uri), this);
 	}
 
 	@Override

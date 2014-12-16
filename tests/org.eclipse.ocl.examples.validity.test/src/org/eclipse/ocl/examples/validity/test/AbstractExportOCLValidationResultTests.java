@@ -21,11 +21,11 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.emf.validation.validity.Result;
 import org.eclipse.ocl.examples.emf.validation.validity.export.IValidityExporter;
 import org.eclipse.ocl.examples.emf.validation.validity.export.ValidityExporterRegistry;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityManager;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.junit.After;
 import org.junit.Before;
 
@@ -50,7 +50,7 @@ public class AbstractExportOCLValidationResultTests extends AbstractValidityTest
 			}
 		}
 		catch (Throwable e) {}
-		return DomainUtil.nonNullState(projectURL);
+		return ClassUtil.nonNullState(projectURL);
 	}
 	
 	protected @NonNull String getProjectFileName(String referenceName) {

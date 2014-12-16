@@ -12,9 +12,6 @@ package org.eclipse.ocl.examples.codegen.analyzer;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.ids.ElementId;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
@@ -40,6 +37,9 @@ import org.eclipse.ocl.examples.codegen.cgmodel.util.AbstractExtendingCGModelVis
 import org.eclipse.ocl.examples.codegen.generator.LocalContext;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypeExp;
+import org.eclipse.ocl.pivot.ids.ElementId;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
@@ -95,7 +95,7 @@ public class AnalysisVisitor extends AbstractExtendingCGModelVisitor<Object, Cod
 /*	@Override
 	public void visitEnumLiteralExp(@NonNull EnumLiteralExp element) {
 		CGElement thisAnalysis = context.getCurrentAnalysis();
-		thisAnalysis.initHashSource(DomainUtil.nonNullModel(element.getReferredEnumLiteral()));
+		thisAnalysis.initHashSource(ClassUtil.nonNullModel(element.getReferredEnumLiteral()));
 		return thisAnalysis;
 	}*/
 
@@ -275,7 +275,7 @@ public class AnalysisVisitor extends AbstractExtendingCGModelVisitor<Object, Cod
 	@Override
 	public @Nullable Object visitCGOppositePropertyCallExp(@NonNull CGOppositePropertyCallExp cgPropertyCallExp) {
 		super.visitCGOppositePropertyCallExp(cgPropertyCallExp);
-//		Property referredProperty = DomainUtil.nonNullModel(element.getReferredProperty());
+//		Property referredProperty = ClassUtil.nonNullModel(element.getReferredProperty());
 //		thisAnalysis.initHashSource(referredProperty);
 //		context.addNamedElement(referredProperty);
 		CGValuedElement cgSource = context.getExpression(cgPropertyCallExp.getSource());
@@ -297,7 +297,7 @@ public class AnalysisVisitor extends AbstractExtendingCGModelVisitor<Object, Cod
 	@Override
 	public @Nullable Object visitCGPropertyCallExp(@NonNull CGPropertyCallExp cgPropertyCallExp) {
 		super.visitCGPropertyCallExp(cgPropertyCallExp);
-//		Property referredProperty = DomainUtil.nonNullModel(element.getReferredProperty());
+//		Property referredProperty = ClassUtil.nonNullModel(element.getReferredProperty());
 //		thisAnalysis.initHashSource(referredProperty);
 //		context.addNamedElement(referredProperty);
 		CGValuedElement cgSource = context.getExpression(cgPropertyCallExp.getSource());

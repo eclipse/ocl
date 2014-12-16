@@ -21,11 +21,11 @@ import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 
@@ -55,7 +55,7 @@ public abstract class GenerateLaTeXForASModel extends GenerateLaTeXUtils
 			Ecore2AS adapter = Ecore2AS.getAdapter(eResource, metaModelManager);
 			Model asModel = adapter.getPivotModel();
 			org.eclipse.ocl.pivot.Package asPackage = asModel.getOwnedPackages().get(0);
-			String message = PivotUtil.formatResourceDiagnostics(DomainUtil.nonNullEMF(eResource.getErrors()), "OCLstdlib parse failure", "\n");
+			String message = PivotUtil.formatResourceDiagnostics(ClassUtil.nonNullEMF(eResource.getErrors()), "OCLstdlib parse failure", "\n");
 			if (message != null) {
 				issues.addError(this, message, null, null, null);
 				return;
@@ -64,7 +64,7 @@ public abstract class GenerateLaTeXForASModel extends GenerateLaTeXUtils
 //			saver.localizeSpecializations();
 			String fileName = folder + "/" + latexFileName + ".tex";
 			log.info("Generating '" + fileName + "'");
-			String latexContent = generateLaTeX(DomainUtil.nonNullState(asPackage));
+			String latexContent = generateLaTeX(ClassUtil.nonNullState(asPackage));
 			String encodedContent = encodeForLaTeX(latexContent);
 			FileWriter fw = new FileWriter(fileName);
 			fw.append(encodedContent);

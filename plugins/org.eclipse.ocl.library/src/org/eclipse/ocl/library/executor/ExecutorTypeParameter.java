@@ -14,14 +14,14 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.AbstractExecutorType;
-import org.eclipse.ocl.domain.ids.TemplateParameterId;
-import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.elements.AbstractExecutorType;
+import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.ids.TemplateParameterId;
 
 public class ExecutorTypeParameter extends AbstractExecutorType implements ExecutorTypeArgument, TemplateParameter
 {

@@ -20,7 +20,6 @@ import org.eclipse.emf.mwe.utils.*
 import org.eclipse.emf.ecore.resource.impl.*
 
 var sourceName = "org.eclipse.ocl.library"
-var targetName = "org.eclipse.ocl.pivot"
 
 /**
  *	Generate the OCLstdlib Model, by converting oclstdlib.oclstdlib to OCLstdlib.java.
@@ -35,8 +34,8 @@ Workflow {
     	projectName = "${sourceName}"
     	modelFile = "model/OCL-2.5.oclstdlib"
     	uri = "http://www.eclipse.org/ocl/2015/Library"
-    	javaFolder = "/${targetName}/emf-gen"
-    	javaPackageName = "${targetName}.model"
+    	javaFolder = "/org.eclipse.ocl.pivot.internal/emf-gen"
+    	javaPackageName = "org.eclipse.ocl.pivot.model"
     	javaClassName = "OCLstdlib"
     }
     component = GenerateModel { resourceSet = resourceSet skipOnErrors = true

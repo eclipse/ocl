@@ -41,11 +41,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
-import org.eclipse.ocl.examples.common.plugin.OCLExamplesCommonPlugin;
-import org.eclipse.ocl.domain.utilities.ProjectMap;
-import org.eclipse.ocl.domain.utilities.StandaloneProjectMap;
-import org.eclipse.ocl.domain.utilities.StandaloneProjectMap.IProjectDescriptor;
-import org.eclipse.ocl.domain.utilities.StandaloneProjectMap.MapToFirstConflictHandlerWithLog;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.PivotConstants;
 import org.eclipse.ocl.pivot.PivotPackage;
@@ -55,6 +50,11 @@ import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.OCLASResourceFactory;
 import org.eclipse.ocl.pivot.utilities.BaseResource;
+import org.eclipse.ocl.pivot.utilities.ProjectMap;
+import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.IProjectDescriptor;
+import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.MapToFirstConflictHandlerWithLog;
+import org.eclipse.ocl.xtext.base.ui.BaseUiModule;
 import org.eclipse.ocl.xtext.base.ui.BaseUiPluginHelper;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
@@ -117,10 +117,10 @@ public abstract class BaseDocumentProvider extends XtextDocumentProvider impleme
 				s.append("\n");
 				s.append(diagnostic.toString());
 			}
-			throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, s.toString(), e));
+			throw new CoreException(new Status(IStatus.ERROR, BaseUiModule.PLUGIN_ID, s.toString(), e));
 		}
 		else {
-			throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, "Failed to load", e));
+			throw new CoreException(new Status(IStatus.ERROR, BaseUiModule.PLUGIN_ID, "Failed to load", e));
 		}
 	}
 
@@ -329,7 +329,7 @@ public abstract class BaseDocumentProvider extends XtextDocumentProvider impleme
 						s.append("\n");
 						s.append(diagnostic.toString());
 					}
-					throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, s.toString()));
+					throw new CoreException(new Status(IStatus.ERROR, BaseUiModule.PLUGIN_ID, s.toString()));
 				}
 				ASResource asResource = null;
 				EList<EObject> contents = xmiResource.getContents();
@@ -343,7 +343,7 @@ public abstract class BaseDocumentProvider extends XtextDocumentProvider impleme
 					// FIXME general extensibility
 				}
 				if (asResource == null) {
-					throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, "Failed to load"));
+					throw new CoreException(new Status(IStatus.ERROR, BaseUiModule.PLUGIN_ID, "Failed to load"));
 				}
 //				
 				ResourceSetImpl csResourceSet = (ResourceSetImpl)resourceSet;
@@ -397,7 +397,7 @@ public abstract class BaseDocumentProvider extends XtextDocumentProvider impleme
 //		} catch (ParserException e) {
 //			throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, "Failed to load", e));
 		} catch (IOException e) {
-			throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, "Failed to load", e));
+			throw new CoreException(new Status(IStatus.ERROR, BaseUiModule.PLUGIN_ID, "Failed to load", e));
 		}
 /*
  * 		This fails to setup Xtext correctly: No state leads to NPE from EcoreUtil.resolveAll.

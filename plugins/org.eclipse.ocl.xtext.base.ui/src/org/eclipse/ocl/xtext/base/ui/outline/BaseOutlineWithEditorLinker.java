@@ -12,8 +12,8 @@ package org.eclipse.ocl.xtext.base.ui.outline;
 
 import org.apache.log4j.Logger;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.common.utils.TracingOption;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.TracingOption;
 import org.eclipse.ocl.xtext.base.ui.BaseUiPluginHelper;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
@@ -43,13 +43,13 @@ public class BaseOutlineWithEditorLinker extends OutlineWithEditorLinker
 				StringBuilder s = new StringBuilder();
 				s.append("FindBest limit at ");
 				ElementUtil.appendTextRegion(s, selectedTextRegion, true);
-				s.append(" " + DomainUtil.debugSimpleName(input));
+				s.append(" " + ClassUtil.debugSimpleName(input));
 				logger.error(s.toString());
 				return null;
 			}
 			if (LOCATE.isActive()) {
 				StringBuilder s = new StringBuilder();
-				s.append("FindBest " + depth + " at "); // + DomainUtil.debugSimpleName(input));
+				s.append("FindBest " + depth + " at "); // + ClassUtil.debugSimpleName(input));
 				ElementUtil.appendTextRegion(s, selectedTextRegion, true);
 				s.append(" for ");
 				ElementUtil.appendTextRegion(s, input.getFullTextRegion(), false);

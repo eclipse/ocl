@@ -27,15 +27,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.ids.TuplePartId;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.library.LibraryFeature;
-import org.eclipse.ocl.domain.library.LibraryIteration;
-import org.eclipse.ocl.domain.library.LibraryOperation;
-import org.eclipse.ocl.domain.library.LibraryProperty;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.values.Unlimited;
-import org.eclipse.ocl.domain.values.UnlimitedValue;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGAccumulator;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBuiltInIterationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
@@ -152,13 +143,19 @@ import org.eclipse.ocl.pivot.VariableDeclaration;
 import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.ecore.EObjectOperation;
 import org.eclipse.ocl.pivot.ecore.EObjectProperty;
-import org.eclipse.ocl.pivot.internal.impl.TuplePartImpl;
+import org.eclipse.ocl.pivot.ids.TuplePartId;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.impl.TuplePartImpl;
 import org.eclipse.ocl.pivot.library.CompositionProperty;
 import org.eclipse.ocl.pivot.library.ConstrainedOperation;
 import org.eclipse.ocl.pivot.library.ConstrainedProperty;
 import org.eclipse.ocl.pivot.library.EInvokeOperation;
 import org.eclipse.ocl.pivot.library.ExplicitNavigationProperty;
 import org.eclipse.ocl.pivot.library.ImplicitNonCompositionProperty;
+import org.eclipse.ocl.pivot.library.LibraryFeature;
+import org.eclipse.ocl.pivot.library.LibraryIteration;
+import org.eclipse.ocl.pivot.library.LibraryOperation;
+import org.eclipse.ocl.pivot.library.LibraryProperty;
 import org.eclipse.ocl.pivot.library.StaticProperty;
 import org.eclipse.ocl.pivot.library.StereotypeProperty;
 import org.eclipse.ocl.pivot.library.TuplePartProperty;
@@ -166,7 +163,10 @@ import org.eclipse.ocl.pivot.manager.FinalAnalysis;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.values.Unlimited;
+import org.eclipse.ocl.pivot.values.UnlimitedValue;
 
 /**
  * The AS2CGVisitor performs the first stage of code generation by converting the Pivot AST to the CG AST.
@@ -183,7 +183,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 
 		@Override
 		public int compare(CGTuplePart o1, CGTuplePart o2) {
-			return DomainUtil.safeCompareTo(o1.getName(), o2.getName());
+			return ClassUtil.safeCompareTo(o1.getName(), o2.getName());
 		}
 	}
 
@@ -474,7 +474,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			return null;	// Avoid an infinite inlining recursion.
 		}
 		ExpressionInOCL asClone = EcoreUtil.copy(prototype);
-		OCLExpression asExpression = DomainUtil.nonNullState(asClone.getBodyExpression());
+		OCLExpression asExpression = ClassUtil.nonNullState(asClone.getBodyExpression());
 		List<OCLExpression> asArguments = callExp.getArgument();
 		int argumentsSize = asArguments.size();
 		if (argumentsSize > 0) {
@@ -632,7 +632,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			}
 		}
 		if (cgConstructorExp != null) {
-			CGExecutorType cgExecutorType = context.createExecutorType(DomainUtil.nonNullState(element.getType()));
+			CGExecutorType cgExecutorType = context.createExecutorType(ClassUtil.nonNullState(element.getType()));
 			cgConstructorExp.setExecutorType(cgExecutorType);
 			cgConstructorExp.getOwns().add(cgExecutorType);
 			setAst(cgConstructorExp, element);
@@ -800,7 +800,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 
 	@Override
 	public @NonNull CGIterationCallExp visitIteratorExp(@NonNull IteratorExp element) {
-		Iteration asIteration = DomainUtil.nonNullState(element.getReferredIteration());
+		Iteration asIteration = ClassUtil.nonNullState(element.getReferredIteration());
 		CGValuedElement cgSource = doVisit(CGValuedElement.class, element.getSource());
 		LibraryIteration libraryIteration = (LibraryIteration) metaModelManager.getImplementation(asIteration);
 		IterationHelper iterationHelper = codeGenerator.getIterationHelper(asIteration);
@@ -927,7 +927,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 
 	@Override
 	public @NonNull CGValuedElement visitOperationCallExp(@NonNull OperationCallExp element) {
-		Operation asOperation = DomainUtil.nonNullState(element.getReferredOperation());
+		Operation asOperation = ClassUtil.nonNullState(element.getReferredOperation());
 		OCLExpression pSource = element.getSource();
 		boolean isRequired = asOperation.isRequired();
 		CGValuedElement cgSource = pSource != null ? doVisit(CGValuedElement.class, pSource) : null;
@@ -999,7 +999,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		}
 		else if (libraryOperation instanceof ConstrainedOperation) {
 			if (pSource != null) {
-				Type sourceType = DomainUtil.nonNullState(pSource.getType());
+				Type sourceType = ClassUtil.nonNullState(pSource.getType());
 				Operation finalOperation = codeGenerator.isFinal(asOperation, (org.eclipse.ocl.pivot.Class)sourceType);	// FIXME cast
 				if (finalOperation != null) {
 					LanguageExpression bodyExpression = asOperation.getBodyExpression();
@@ -1078,8 +1078,8 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 
 	@Override
 	public @NonNull CGValuedElement visitOppositePropertyCallExp(@NonNull OppositePropertyCallExp element) {
-		Property asOppositeProperty = DomainUtil.nonNullModel(element.getReferredProperty());
-		Property asProperty = DomainUtil.nonNullModel(asOppositeProperty.getOpposite());
+		Property asOppositeProperty = ClassUtil.nonNullModel(element.getReferredProperty());
+		Property asProperty = ClassUtil.nonNullModel(asOppositeProperty.getOpposite());
 		boolean isRequired = asProperty.isRequired();
 		LibraryProperty libraryProperty = metaModelManager.getImplementation(null, asProperty);
 		CGOppositePropertyCallExp cgPropertyCallExp = null;
@@ -1167,7 +1167,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 
 	@Override
 	public @NonNull CGValuedElement visitPropertyCallExp(@NonNull PropertyCallExp element) {
-		Property asProperty = DomainUtil.nonNullModel(element.getReferredProperty());
+		Property asProperty = ClassUtil.nonNullModel(element.getReferredProperty());
 		boolean isRequired = asProperty.isRequired();
 		LibraryProperty libraryProperty = metaModelManager.getImplementation(null, asProperty);
 		CGPropertyCallExp cgPropertyCallExp = null;
@@ -1272,7 +1272,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		CGTypeExp cgTypeExp = CGModelFactory.eINSTANCE.createCGTypeExp();
 //		setPivot(cgTypeExp, pTypeExp);
 		cgTypeExp.setAst(pTypeExp);
-		CGExecutorType cgExecutorType = context.createExecutorType(DomainUtil.nonNullState(pTypeExp.getReferredType()));
+		CGExecutorType cgExecutorType = context.createExecutorType(ClassUtil.nonNullState(pTypeExp.getReferredType()));
 		cgTypeExp.setExecutorType(cgExecutorType);
 		cgTypeExp.getOwns().add(cgExecutorType);
 //		cgTypeExp.setReferredType(codeGenerator.getGlobalContext().getLocalContext(cgTypeExp).getExecutorType(pTypeExp.getReferredType()));

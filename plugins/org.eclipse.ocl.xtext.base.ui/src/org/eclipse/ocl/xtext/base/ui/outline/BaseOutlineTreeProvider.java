@@ -13,13 +13,13 @@ package org.eclipse.ocl.xtext.base.ui.outline;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.common.utils.TracingOption;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
-import org.eclipse.ocl.pivot.util.Pivotable;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.Pivotable;
+import org.eclipse.ocl.pivot.utilities.TracingOption;
 import org.eclipse.ocl.xtext.base.ui.BaseUiPluginHelper;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.basecs.ElementCS;
@@ -73,7 +73,7 @@ public class BaseOutlineTreeProvider extends DefaultOutlineTreeProvider
 			ElementUtil.appendTextRegion(s, eObjectNode.getFullTextRegion(), false);
 			s.append(" ");
 			ElementUtil.appendTextRegion(s, eObjectNode.getSignificantTextRegion(), true);
-			s.append(" " + DomainUtil.debugSimpleName(eObjectNode) + " " + String.valueOf(eObjectNode.getText()).replace("\n", "\\n"));
+			s.append(" " + ClassUtil.debugSimpleName(eObjectNode) + " " + String.valueOf(eObjectNode.getText()).replace("\n", "\\n"));
 			CREATE.println(s.toString());
 		}
 		return eObjectNode;

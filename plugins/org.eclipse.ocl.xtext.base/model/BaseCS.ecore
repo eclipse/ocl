@@ -56,7 +56,7 @@
     <eStructuralFeatures
         xsi:type="ecore:EAttribute"
         name="instanceClassName"
-        eType="ecore:EDataType ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//String"/>
+        eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//String"/>
     <eStructuralFeatures
         xsi:type="ecore:EReference"
         name="ownedConstraints"
@@ -72,7 +72,7 @@
         xsi:type="ecore:EAttribute"
         name="qualifiers"
         upperBound="-1"
-        eType="ecore:EDataType ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//String"/>
+        eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//String"/>
   </eClassifiers>
   <eClassifiers
       xsi:type="ecore:EClass"
@@ -91,7 +91,7 @@
     <eStructuralFeatures
         xsi:type="ecore:EAttribute"
         name="stereotype"
-        eType="ecore:EDataType ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//String"/>
+        eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//String"/>
   </eClassifiers>
   <eClassifiers
       xsi:type="ecore:EClass"
@@ -110,7 +110,7 @@
         xsi:type="ecore:EAttribute"
         name="values"
         upperBound="-1"
-        eType="ecore:EDataType ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//String"/>
+        eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//String"/>
   </eClassifiers>
   <eClassifiers
       xsi:type="ecore:EClass"
@@ -119,7 +119,7 @@
     <eStructuralFeatures
         xsi:type="ecore:EAttribute"
         name="value"
-        eType="ecore:EDataType ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//String"/>
+        eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//String"/>
   </eClassifiers>
   <eClassifiers
       xsi:type="ecore:EClass"
@@ -128,7 +128,7 @@
       eSuperTypes="#//VisitableCS">
     <eOperations
         name="getDescription"
-        eType="ecore:EDataType ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//String"/>
+        eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//String"/>
     <eStructuralFeatures
         xsi:type="ecore:EReference"
         name="parent"
@@ -176,7 +176,7 @@
     <eStructuralFeatures
         xsi:type="ecore:EAttribute"
         name="isAll"
-        eType="ecore:EDataType ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Boolean"
+        eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Boolean"
         defaultValueLiteral="false"/>
     <eStructuralFeatures
         xsi:type="ecore:EReference"
@@ -186,7 +186,7 @@
     <eStructuralFeatures
         xsi:type="ecore:EReference"
         name="referredNamespace"
-        eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Namespace"
+        eType="ecore:EClass ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Namespace"
         changeable="false"
         volatile="true"
         transient="true"
@@ -196,11 +196,11 @@
   <eClassifiers
       xsi:type="ecore:EClass"
       name="LambdaTypeCS"
-      eSuperTypes="#//TypedRefCS #//TemplateableElementCS ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Nameable">
+      eSuperTypes="#//TypedRefCS #//TemplateableElementCS ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Nameable">
     <eStructuralFeatures
         xsi:type="ecore:EAttribute"
         name="name"
-        eType="ecore:EDataType ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//String"/>
+        eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//String"/>
     <eStructuralFeatures
         xsi:type="ecore:EReference"
         name="ownedContextType"
@@ -225,7 +225,7 @@
     <eStructuralFeatures
         xsi:type="ecore:EReference"
         name="referredPackage"
-        eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Package"/>
+        eType="ecore:EClass ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Package"/>
   </eClassifiers>
   <eClassifiers
       xsi:type="ecore:EClass"
@@ -235,12 +235,12 @@
     <eStructuralFeatures
         xsi:type="ecore:EAttribute"
         name="csi"
-        eType="ecore:EDataType ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//String"
+        eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//String"
         transient="true"/>
     <eStructuralFeatures
         xsi:type="ecore:EAttribute"
         name="originalXmiId"
-        eType="ecore:EDataType ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//String"
+        eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//String"
         transient="true"/>
     <eStructuralFeatures
         xsi:type="ecore:EReference"
@@ -261,7 +261,7 @@
     <eStructuralFeatures
         xsi:type="ecore:EReference"
         name="referredElement"
-        eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Element"
+        eType="ecore:EClass ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Element"
         changeable="false"
         volatile="true"
         transient="true"
@@ -303,18 +303,18 @@
     <eStructuralFeatures
         xsi:type="ecore:EAttribute"
         name="stringBounds"
-        eType="ecore:EDataType ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//String"
+        eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//String"
         defaultValueLiteral="1"/>
   </eClassifiers>
   <eClassifiers
       xsi:type="ecore:EClass"
       name="NamedElementCS"
       abstract="true"
-      eSuperTypes="#//ModelElementCS ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Nameable">
+      eSuperTypes="#//ModelElementCS ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Nameable">
     <eStructuralFeatures
         xsi:type="ecore:EAttribute"
         name="name"
-        eType="ecore:EDataType ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//String"/>
+        eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//String"/>
   </eClassifiers>
   <eClassifiers
       xsi:type="ecore:EClass"
@@ -369,11 +369,11 @@
     <eStructuralFeatures
         xsi:type="ecore:EAttribute"
         name="nsPrefix"
-        eType="ecore:EDataType ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//String"/>
+        eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//String"/>
     <eStructuralFeatures
         xsi:type="ecore:EAttribute"
         name="nsURI"
-        eType="ecore:EDataType ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//String"/>
+        eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//String"/>
     <eStructuralFeatures
         xsi:type="ecore:EReference"
         name="ownedClasses"
@@ -407,7 +407,7 @@
   <eClassifiers
       xsi:type="ecore:EClass"
       name="PathElementCS"
-      eSuperTypes="#//ElementCS ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Pivotable">
+      eSuperTypes="#//ElementCS ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Pivotable">
     <eStructuralFeatures
         xsi:type="ecore:EReference"
         name="elementType"
@@ -423,7 +423,7 @@
         xsi:type="ecore:EReference"
         name="referredElement"
         lowerBound="1"
-        eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Element"/>
+        eType="ecore:EClass ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Element"/>
   </eClassifiers>
   <eClassifiers
       xsi:type="ecore:EClass"
@@ -432,13 +432,13 @@
     <eStructuralFeatures
         xsi:type="ecore:EAttribute"
         name="uri"
-        eType="ecore:EDataType ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//String"
+        eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//String"
         transient="true"/>
   </eClassifiers>
   <eClassifiers
       xsi:type="ecore:EClass"
       name="PathNameCS"
-      eSuperTypes="#//ElementCS ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Pivotable">
+      eSuperTypes="#//ElementCS ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Pivotable">
     <eStructuralFeatures
         xsi:type="ecore:EReference"
         name="context"
@@ -458,7 +458,7 @@
         xsi:type="ecore:EReference"
         name="referredElement"
         lowerBound="1"
-        eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Element"
+        eType="ecore:EClass ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Element"
         changeable="false"
         volatile="true"
         transient="true"
@@ -473,22 +473,22 @@
       xsi:type="ecore:EClass"
       name="PivotableElementCS"
       abstract="true"
-      eSuperTypes="#//ElementCS ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Pivotable">
+      eSuperTypes="#//ElementCS ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Pivotable">
     <eStructuralFeatures
         xsi:type="ecore:EReference"
         name="pivot"
-        eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Element"
+        eType="ecore:EClass ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Element"
         transient="true"
         resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers
       xsi:type="ecore:EClass"
       name="PrimitiveTypeRefCS"
-      eSuperTypes="#//TypedRefCS ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Nameable">
+      eSuperTypes="#//TypedRefCS ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Nameable">
     <eStructuralFeatures
         xsi:type="ecore:EAttribute"
         name="name"
-        eType="ecore:EDataType ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//String"/>
+        eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//String"/>
   </eClassifiers>
   <eClassifiers
       xsi:type="ecore:EClass"
@@ -498,11 +498,11 @@
         xsi:type="ecore:EReference"
         name="referredKeys"
         upperBound="-1"
-        eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Property"/>
+        eType="ecore:EClass ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Property"/>
     <eStructuralFeatures
         xsi:type="ecore:EReference"
         name="referredOpposite"
-        eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Property"/>
+        eType="ecore:EClass ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Property"/>
   </eClassifiers>
   <eClassifiers
       xsi:type="ecore:EClass"
@@ -533,7 +533,7 @@
     <eStructuralFeatures
         xsi:type="ecore:EAttribute"
         name="exprString"
-        eType="ecore:EDataType ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//String"/>
+        eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//String"/>
   </eClassifiers>
   <eClassifiers
       xsi:type="ecore:EClass"
@@ -543,7 +543,7 @@
     <eStructuralFeatures
         xsi:type="ecore:EAttribute"
         name="default"
-        eType="ecore:EDataType ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//String"/>
+        eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//String"/>
     <eStructuralFeatures
         xsi:type="ecore:EReference"
         name="ownedDefaultExpressions"
@@ -666,11 +666,11 @@
   <eClassifiers
       xsi:type="ecore:EClass"
       name="TupleTypeCS"
-      eSuperTypes="#//TypedRefCS ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Nameable">
+      eSuperTypes="#//TypedRefCS ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Nameable">
     <eStructuralFeatures
         xsi:type="ecore:EAttribute"
         name="name"
-        eType="ecore:EDataType ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//String"/>
+        eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//String"/>
     <eStructuralFeatures
         xsi:type="ecore:EReference"
         name="ownedParts"
@@ -712,7 +712,7 @@
     <eStructuralFeatures
         xsi:type="ecore:EAttribute"
         name="isOptional"
-        eType="ecore:EDataType ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Boolean"/>
+        eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Boolean"/>
     <eStructuralFeatures
         xsi:type="ecore:EReference"
         name="ownedType"
@@ -722,7 +722,7 @@
         xsi:type="ecore:EAttribute"
         name="qualifiers"
         upperBound="-1"
-        eType="ecore:EDataType ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//String"/>
+        eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//String"/>
   </eClassifiers>
   <eClassifiers
       xsi:type="ecore:EClass"
@@ -743,7 +743,7 @@
         xsi:type="ecore:EAttribute"
         name="isTypeof"
         lowerBound="1"
-        eType="ecore:EDataType ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Boolean"
+        eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Boolean"
         defaultValueLiteral="false"/>
     <eStructuralFeatures
         xsi:type="ecore:EReference"
@@ -759,7 +759,7 @@
     <eStructuralFeatures
         xsi:type="ecore:EReference"
         name="referredType"
-        eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Type"
+        eType="ecore:EClass ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Type"
         changeable="false"
         volatile="true"
         transient="true"

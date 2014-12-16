@@ -45,10 +45,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.utilities.ProjectMap;
-import org.eclipse.ocl.domain.values.Bag;
-import org.eclipse.ocl.domain.values.impl.BagImpl;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestCase;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
@@ -71,7 +67,11 @@ import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ProjectMap;
+import org.eclipse.ocl.pivot.values.Bag;
+import org.eclipse.ocl.pivot.values.impl.BagImpl;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;
@@ -119,7 +119,7 @@ public class XtextTestCase extends PivotTestCase
 		public void normalize() {
 			EList<EAnnotation> eList = eModelElement.getEAnnotations();
 			List<EAnnotation> newOrder = new ArrayList<EAnnotation>(eList);
-			Collections.sort(newOrder, DomainUtil.EAnnotationComparator.INSTANCE);
+			Collections.sort(newOrder, ClassUtil.EAnnotationComparator.INSTANCE);
 			eList.clear();
 			eList.addAll(newOrder);
 		}
@@ -308,9 +308,9 @@ public class XtextTestCase extends PivotTestCase
 
 	protected void doBadLoadFromString(@NonNull String fileName, @NonNull String testFile, @NonNull Bag<String> expectedErrorMessages) throws Exception {
 		MetaModelManager metaModelManager = new MetaModelManager();
-		metaModelManager.addClassLoader(DomainUtil.nonNullState(getClass().getClassLoader()));
+		metaModelManager.addClassLoader(ClassUtil.nonNullState(getClass().getClassLoader()));
 		try {
-			MetaModelManagerResourceSetAdapter.getAdapter(DomainUtil.nonNullState(resourceSet), metaModelManager);
+			MetaModelManagerResourceSetAdapter.getAdapter(ClassUtil.nonNullState(resourceSet), metaModelManager);
 			URI libraryURI = getProjectFileURI(fileName);
 			@SuppressWarnings("null")@NonNull BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(libraryURI);
 			@SuppressWarnings("null")@NonNull ClassLoader classLoader = getClass().getClassLoader();
@@ -566,7 +566,7 @@ public class XtextTestCase extends PivotTestCase
 		CS2ASResourceAdapter adapter = null;
 		try {
 			ResourceSet resourceSet2 = metaModelManager.getExternalResourceSet();
-			BaseCSResource xtextResource = DomainUtil.nonNullState((BaseCSResource) resourceSet2.getResource(inputURI, true));
+			BaseCSResource xtextResource = ClassUtil.nonNullState((BaseCSResource) resourceSet2.getResource(inputURI, true));
 			assertNoResourceErrors("Load failed", xtextResource);
 			adapter = xtextResource.getCS2ASAdapter(null);
 			Resource asResource = adapter.getASResource(xtextResource);
@@ -582,7 +582,7 @@ public class XtextTestCase extends PivotTestCase
 			}
 			Writer writer = new StringWriter();
 			ecoreResource.save(writer, null);
-			return DomainUtil.nonNullState(writer.toString());
+			return ClassUtil.nonNullState(writer.toString());
 		}
 		finally {
 			if (adapter != null) {

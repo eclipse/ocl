@@ -15,9 +15,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.delegate.AbstractOCLDelegateFactory;
 import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
  * Factory for OCL derived-attribute setting delegates.
@@ -34,7 +34,7 @@ public class OCLDebugSettingDelegateFactory extends AbstractOCLDelegateFactory
 			return null;
 		}
 		EPackage ePackage = structuralFeature.getEContainingClass().getEPackage();
-		OCLDelegateDomain delegateDomain = getDelegateDomain(DomainUtil.nonNullEMF(ePackage));
+		OCLDelegateDomain delegateDomain = getDelegateDomain(ClassUtil.nonNullEMF(ePackage));
 		if (delegateDomain == null) {
 			return null;
 		}

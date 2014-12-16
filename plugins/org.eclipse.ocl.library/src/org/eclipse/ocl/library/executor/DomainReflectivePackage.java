@@ -13,9 +13,9 @@ package org.eclipse.ocl.library.executor;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.ids.PackageId;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.StandardLibrary;
+import org.eclipse.ocl.pivot.ids.PackageId;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
  * DomainExecutorPackage uses the limited Domain interfaces to construct a package description for use
@@ -29,7 +29,7 @@ public class DomainReflectivePackage extends ReflectivePackage
 	protected final @NonNull org.eclipse.ocl.pivot.Package domainPackage;
 
 	public DomainReflectivePackage(@NonNull StandardLibrary standardLibrary, @NonNull org.eclipse.ocl.pivot.Package domainPackage) {
-		super(DomainUtil.nonNullPivot(domainPackage.getName()), domainPackage.getNsPrefix(), domainPackage.getURI(), domainPackage.getPackageId());
+		super(ClassUtil.nonNullPivot(domainPackage.getName()), domainPackage.getNsPrefix(), domainPackage.getURI(), domainPackage.getPackageId());
 		this.standardLibrary = standardLibrary;
 		this.domainPackage = domainPackage;
 	}
@@ -41,7 +41,7 @@ public class DomainReflectivePackage extends ReflectivePackage
 
 	@Override
 	protected @NonNull List<org.eclipse.ocl.pivot.Class> getDomainClasses() {
-		return DomainUtil.nonNullPivot(domainPackage.getOwnedClasses());
+		return ClassUtil.nonNullPivot(domainPackage.getOwnedClasses());
 	}
 
 	@Override

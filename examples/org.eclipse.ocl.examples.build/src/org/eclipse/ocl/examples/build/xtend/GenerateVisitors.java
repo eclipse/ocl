@@ -22,9 +22,9 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.build.genmodel.OCLBuildGenModelUtil;
 import org.eclipse.ocl.examples.build.genmodel.SplitGenModelGeneratorAdapterFactory;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 
 public abstract class GenerateVisitors extends GenerateVisitorsWorkflowComponent
@@ -49,7 +49,7 @@ public abstract class GenerateVisitors extends GenerateVisitorsWorkflowComponent
 				sortedEClasses.add((EClass) eClassifier);
 			}
 		}
-		Collections.sort(sortedEClasses, DomainUtil.ENamedElementComparator.INSTANCE);
+		Collections.sort(sortedEClasses, ClassUtil.ENamedElementComparator.INSTANCE);
 		return sortedEClasses;
 	}
 	

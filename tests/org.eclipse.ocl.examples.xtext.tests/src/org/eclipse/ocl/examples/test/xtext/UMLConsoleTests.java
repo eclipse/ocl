@@ -75,7 +75,7 @@ public class UMLConsoleTests extends AbstractConsoleTests
         Resource umlProfileResource = resourceSet.getResource(getTestModelURI("model/Internationalized.profile.uml"), true);
 //        ASResource asResource = ocl.uml2as(umlResource);
 //        Root root = (Root) asResource.getContents().get(0);
-//        org.eclipse.ocl.pivot.Package modelPackage = DomainUtil.getNamedElement(root.getNestedPackage(), "Model");
+//        org.eclipse.ocl.pivot.Package modelPackage = ClassUtil.getNamedElement(root.getNestedPackage(), "Model");
         org.eclipse.uml2.uml.Package umlPackage = (org.eclipse.uml2.uml.Package) umlResource.getContents().get(0);
         org.eclipse.uml2.uml.Type umlEnglishClass = umlPackage.getOwnedType("EnglishClass");
         org.eclipse.uml2.uml.Profile umlProfile = (org.eclipse.uml2.uml.Profile) umlProfileResource.getContents().get(0);
@@ -83,15 +83,15 @@ public class UMLConsoleTests extends AbstractConsoleTests
         org.eclipse.uml2.uml.Stereotype umlInFrenchStereotype = umlProfile.getOwnedStereotype("InFrench");
         org.eclipse.uml2.uml.Stereotype umlInGermanStereotype = umlProfile.getOwnedStereotype("InGerman");
         Type asEnglishClass = metaModelManager.getPivotOf(Type.class, umlEnglishClass);
-//        Type englishClass = DomainUtil.getNamedElement(modelPackage.getOwnedType(), "EnglishClass");
-//        Type frenchClass = DomainUtil.getNamedElement(modelPackage.getOwnedType(), "FrenchClass");
-//        Type germanClass = DomainUtil.getNamedElement(modelPackage.getOwnedType(), "GermanClass");
-//        Type plainClass = DomainUtil.getNamedElement(modelPackage.getOwnedType(), "PlainClass");
+//        Type englishClass = ClassUtil.getNamedElement(modelPackage.getOwnedType(), "EnglishClass");
+//        Type frenchClass = ClassUtil.getNamedElement(modelPackage.getOwnedType(), "FrenchClass");
+//        Type germanClass = ClassUtil.getNamedElement(modelPackage.getOwnedType(), "GermanClass");
+//        Type plainClass = ClassUtil.getNamedElement(modelPackage.getOwnedType(), "PlainClass");
 //        PackageServer profile = metaModelManager.getPackageManager().getPackageByURI("http://www.eclipse.org/ocl/examples/Internationalized");
 //        Type inEnglishStereotype = profile.getMemberType("InEnglish");
 //        Type inFrenchStereotype = profile.getMemberType("InFrench");
 //        Type inGermanStereotype = profile.getMemberType("InGerman");
-//        ElementExtension englishClassInEnglish = DomainUtil.getNamedElement(englishClass.getExtension(), "EnglishClass$InEnglish");
+//        ElementExtension englishClassInEnglish = ClassUtil.getNamedElement(englishClass.getExtension(), "EnglishClass$InEnglish");
         //
 		assertConsoleResult(consolePage, umlEnglishClass, "self.name", "'EnglishClass'\n");
 		// allInstances

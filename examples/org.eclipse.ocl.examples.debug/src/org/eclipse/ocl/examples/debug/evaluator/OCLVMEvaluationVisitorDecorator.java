@@ -14,18 +14,18 @@ package org.eclipse.ocl.examples.debug.evaluator;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.evaluation.DomainLogger;
-import org.eclipse.ocl.domain.types.IdResolver;
-import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.examples.debug.OCLDebugPlugin;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.evaluation.AbstractEvaluationVisitorDecorator;
+import org.eclipse.ocl.pivot.evaluation.DomainLogger;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
  * OCLVMEvaluationVisitorDecorator is the class for ...

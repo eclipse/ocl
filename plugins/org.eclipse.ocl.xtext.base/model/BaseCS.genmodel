@@ -6,13 +6,13 @@
     templateDirectory="/org.eclipse.ocl.examples.build/templates" redirection="" forceOverwrite="true"
     modelName="BaseCS" nonNLSMarkers="true" codeFormatting="true" testsDirectory="/org.eclipse.ocl.xtext.base.tests/emf-gen"
     booleanFlagsField="" importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0"
-    copyrightFields="false" runtimeVersion="2.7" language="" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.ocl.pivot/model/Pivot.merged.genmodel#//pivot"
+    copyrightFields="false" runtimeVersion="2.7" language="" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.ocl.pivot.internal/model/Pivot.merged.genmodel#//pivot"
     classNamePattern="" importOrganizing="true">
   <genAnnotations source="http://www.eclipse.org/OCL/GenModel">
     <details key="Use Null Annotations" value="true"/>
   </genAnnotations>
   <genAnnotations source="http://www.eclipse.org/OCL/GenModel/ToString">
-    <details key="org.eclipse.ocl.xtext.basecs.ElementCS" value="&lt;%org.eclipse.xtext.nodemodel.ICompositeNode%> parserNode = &lt;%org.eclipse.xtext.nodemodel.util.NodeModelUtils%>.getNode(this);&#xD;&#xA;if (parserNode != null) {&#xD;&#xA;&#x9;return parserNode.getText().trim();&#xD;&#xA;}&#xD;&#xA;return &lt;%org.eclipse.ocl.domain.utilities.DomainUtil%>.debugFullName(this);"/>
+    <details key="org.eclipse.ocl.xtext.basecs.ElementCS" value="&lt;%org.eclipse.xtext.nodemodel.ICompositeNode%> parserNode = &lt;%org.eclipse.xtext.nodemodel.util.NodeModelUtils%>.getNode(this);&#xD;&#xA;if (parserNode != null) {&#xD;&#xA;&#x9;return parserNode.getText().trim();&#xD;&#xA;}&#xD;&#xA;return &lt;%org.eclipse.ocl.pivot.utilities.ClassUtil%>.debugFullName(this);"/>
   </genAnnotations>
   <genAnnotations source="http://www.eclipse.org/OCL/GenModel/Visitor">
     <details key="Root Visitor Class" value="org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor"/>

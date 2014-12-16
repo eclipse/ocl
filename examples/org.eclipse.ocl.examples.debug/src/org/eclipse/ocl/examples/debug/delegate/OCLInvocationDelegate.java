@@ -19,9 +19,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
-import org.eclipse.ocl.domain.evaluation.DomainException;
-import org.eclipse.ocl.domain.types.IdResolver;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.EvaluationException;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
@@ -34,9 +31,12 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.delegate.InvocationBehavior;
 import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.pivot.evaluation.DomainException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
@@ -70,7 +70,7 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 			ExpressionInOCL specification2 = specification;
 			if (specification2 == null) {
 				Operation operation2 = operation;
-				NamedElement namedElement = delegateDomain.getPivot(NamedElement.class, DomainUtil.nonNullEMF(eOperation));
+				NamedElement namedElement = delegateDomain.getPivot(NamedElement.class, ClassUtil.nonNullEMF(eOperation));
 				if (namedElement instanceof Operation) {
 					operation2 = operation = (Operation) namedElement;
 					specification2 = specification = InvocationBehavior.INSTANCE.getQueryOrThrow(metaModelManager, operation2);
@@ -89,14 +89,14 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 			EvaluationEnvironment env = query.getEvaluationEnvironment();
 			Object object = target;
 			Object value = idResolver.boxedValueOf(target);
-			env.add(DomainUtil.nonNullModel(specification2.getContextVariable()), value);
+			env.add(ClassUtil.nonNullModel(specification2.getContextVariable()), value);
 			List<Variable> parms = specification2.getParameterVariable();
 			if (!parms.isEmpty()) {
 				// bind arguments to parameter names
 				for (int i = 0; i < parms.size(); i++) {
 					object = arguments.get(i);
 					value = idResolver.boxedValueOf(object);
-					env.add(DomainUtil.nonNullModel(parms.get(i)), value);
+					env.add(ClassUtil.nonNullModel(parms.get(i)), value);
 				}
 			}
 			Object result = query.evaluate(target);
@@ -113,7 +113,7 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 			}
 		}
 		catch (DomainException e) {
-			String message = DomainUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, operation);
+			String message = ClassUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, operation);
 			throw new OCLDelegateException(new EvaluationException(message, e));
 		}
 	}
@@ -125,7 +125,7 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 			query = ValidationBehavior.INSTANCE.getQueryOrThrow(metaModelManager, constraint);
 		}
 		if (query == null) {
-			String message = DomainUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, constraint.getContext());
+			String message = ClassUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, constraint.getContext());
 			throw new OCLDelegateException(new SemanticException(message));
 		}
 		return query;
@@ -134,7 +134,7 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 	public @NonNull Operation getOperation() {
 		Operation operation2 = operation;
 		if (operation2 == null) {
-			NamedElement pivot = delegateDomain.getPivot(NamedElement.class, DomainUtil.nonNullEMF(eOperation));
+			NamedElement pivot = delegateDomain.getPivot(NamedElement.class, ClassUtil.nonNullEMF(eOperation));
 			if (pivot instanceof Operation) {
 				operation2 = operation = (Operation) pivot;
 			}

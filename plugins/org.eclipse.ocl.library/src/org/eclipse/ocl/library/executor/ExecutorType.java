@@ -14,14 +14,6 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.AbstractExecutorClass;
-import org.eclipse.ocl.domain.elements.DomainTypeParameters;
-import org.eclipse.ocl.domain.ids.OperationId;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.types.IdResolver;
-import org.eclipse.ocl.domain.utilities.ArrayIterable;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.values.OCLValue;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.CompleteInheritance;
@@ -32,6 +24,14 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.elements.AbstractExecutorClass;
+import org.eclipse.ocl.pivot.elements.DomainTypeParameters;
+import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.ids.OperationId;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.utilities.ArrayIterable;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.values.OCLValue;
 
 /**
  * An ExecutorType defines a Type using a compact representation suitable for efficient
@@ -78,13 +78,13 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	
 	@Override
 	public final @NonNull FragmentIterable getAllProperSuperFragments() {
-		InheritanceFragment[] fragments2 = DomainUtil.nonNullState(fragments);
+		InheritanceFragment[] fragments2 = ClassUtil.nonNullState(fragments);
 		return new FragmentIterable(fragments2, 0, fragments2.length-1);
 	}
 	
 	@Override
 	public @NonNull FragmentIterable getAllSuperFragments() {
-		return new FragmentIterable(DomainUtil.nonNullState(fragments));
+		return new FragmentIterable(ClassUtil.nonNullState(fragments));
 	}
 	
 	@Override
@@ -179,7 +179,7 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 
 	@Override
 	public @NonNull ExecutorFragment getSelfFragment() {
-		return DomainUtil.nonNullState(getFragment(fragments.length-1));
+		return ClassUtil.nonNullState(getFragment(fragments.length-1));
 	}
 
 	public @NonNull StandardLibrary getStandardLibrary() {
@@ -193,7 +193,7 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	
 	@Override
 	public final @NonNull FragmentIterable getSuperFragments(int depth) {
-		return new FragmentIterable(DomainUtil.nonNullState(fragments), indexes[depth], indexes[depth+1]);
+		return new FragmentIterable(ClassUtil.nonNullState(fragments), indexes[depth], indexes[depth+1]);
 	}
 
 	@Override

@@ -19,8 +19,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.pivot.CompleteClass;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Iteration;
@@ -30,10 +28,12 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
+import org.eclipse.ocl.pivot.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.TemplateParameterSubstitutionVisitor;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.xtext.essentialocl.cs2as.EssentialOCLCSLeft2RightVisitor.Invocations;
 
 public abstract class AbstractOperationMatcher
@@ -147,8 +147,8 @@ public abstract class AbstractOperationMatcher
 				candidateConversions = Integer.MIN_VALUE;
 			}
 			else {
-				referenceType = PivotUtil.getType(DomainUtil.nonNullModel(referenceParameter.getType()));
-				candidateType = PivotUtil.getType(DomainUtil.nonNullModel(candidateParameter.getType()));
+				referenceType = PivotUtil.getType(ClassUtil.nonNullModel(referenceParameter.getType()));
+				candidateType = PivotUtil.getType(ClassUtil.nonNullModel(candidateParameter.getType()));
 				specializedReferenceType = completeModel.getSpecializedType(referenceType, referenceBindings);
 				specializedCandidateType = completeModel.getSpecializedType(candidateType, candidateBindings);
 				if (argumentType != specializedReferenceType) {

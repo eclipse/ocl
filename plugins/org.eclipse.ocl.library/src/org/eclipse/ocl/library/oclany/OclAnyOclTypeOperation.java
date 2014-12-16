@@ -12,9 +12,9 @@ package org.eclipse.ocl.library.oclany;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
-import org.eclipse.ocl.domain.library.AbstractUntypedUnaryOperation;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.library.AbstractUntypedUnaryOperation;
 
 /**
  * OclAnyOclTypeOperation realises the OclAny::oclType() library operation.

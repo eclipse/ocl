@@ -12,9 +12,9 @@ package org.eclipse.ocl.library.string;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.library.AbstractSimpleUnaryOperation;
-import org.eclipse.ocl.domain.values.RealValue;
+import org.eclipse.ocl.pivot.library.AbstractSimpleUnaryOperation;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.RealValue;
 
 /**
  * StringToRealOperation realises the String::toReal() library operation.

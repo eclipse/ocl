@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.codegen.cgmodel;
 
-import org.eclipse.ocl.domain.ids.TuplePartId;
+import org.eclipse.ocl.pivot.ids.TuplePartId;
 
 
 /**

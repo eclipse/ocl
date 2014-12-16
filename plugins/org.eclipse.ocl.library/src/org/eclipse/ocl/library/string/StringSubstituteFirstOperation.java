@@ -12,9 +12,9 @@ package org.eclipse.ocl.library.string;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.library.AbstractSimpleTernaryOperation;
-import org.eclipse.ocl.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.domain.values.InvalidValueException;
+import org.eclipse.ocl.pivot.library.AbstractSimpleTernaryOperation;
+import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
  * StringSubstituteFirstOperation realises the String::substituteFirst() library operation.

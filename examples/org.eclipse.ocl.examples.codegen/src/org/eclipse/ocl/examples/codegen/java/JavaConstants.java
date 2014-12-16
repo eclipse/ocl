@@ -11,13 +11,13 @@
 package org.eclipse.ocl.examples.codegen.java;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.ids.impl.WeakHashMapOfWeakReference;
-import org.eclipse.ocl.domain.types.IdResolver;
 import org.eclipse.ocl.examples.codegen.java.types.JavaTypeId;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.StandardLibrary;
+import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.ids.impl.WeakHashMapOfWeakReference;
 import org.eclipse.ocl.pivot.library.UnboxedCompositionProperty;
 import org.eclipse.ocl.pivot.library.UnboxedExplicitNavigationProperty;
 import org.eclipse.ocl.pivot.library.UnboxedOppositeNavigationProperty;

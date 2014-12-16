@@ -16,9 +16,9 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.delegate.AbstractOCLDelegateFactory;
 import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
  * Factory for OCL query delegates.
@@ -52,7 +52,7 @@ public class OCLDebugQueryDelegateFactory extends AbstractOCLDelegateFactory
 		if ((context == null) || (expression == null)) {
 			return null;
 		}
-		OCLDelegateDomain delegateDomain = loadDelegateDomain(DomainUtil.nonNullEMF(context.getEPackage()));
+		OCLDelegateDomain delegateDomain = loadDelegateDomain(ClassUtil.nonNullEMF(context.getEPackage()));
 		if (delegateDomain == null) {
 			return null;
 		}

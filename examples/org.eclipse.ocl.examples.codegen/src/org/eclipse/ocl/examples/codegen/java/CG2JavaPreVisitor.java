@@ -14,19 +14,6 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.ids.CollectionTypeId;
-import org.eclipse.ocl.domain.ids.ElementId;
-import org.eclipse.ocl.domain.ids.EnumerationLiteralId;
-import org.eclipse.ocl.domain.ids.NestedTypeId;
-import org.eclipse.ocl.domain.ids.OclVoidTypeId;
-import org.eclipse.ocl.domain.ids.PrimitiveTypeId;
-import org.eclipse.ocl.domain.ids.TuplePartId;
-import org.eclipse.ocl.domain.ids.TupleTypeId;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.library.LibraryOperation;
-import org.eclipse.ocl.domain.library.LibrarySimpleOperation;
-import org.eclipse.ocl.domain.library.LibraryUntypedOperation;
-import org.eclipse.ocl.domain.values.CollectionValue;
 import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBoxExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBuiltInIterationCallExp;
@@ -69,6 +56,19 @@ import org.eclipse.ocl.examples.codegen.generator.GenModelHelper;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.ids.CollectionTypeId;
+import org.eclipse.ocl.pivot.ids.ElementId;
+import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
+import org.eclipse.ocl.pivot.ids.NestedTypeId;
+import org.eclipse.ocl.pivot.ids.OclVoidTypeId;
+import org.eclipse.ocl.pivot.ids.PrimitiveTypeId;
+import org.eclipse.ocl.pivot.ids.TuplePartId;
+import org.eclipse.ocl.pivot.ids.TupleTypeId;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.library.LibraryOperation;
+import org.eclipse.ocl.pivot.library.LibrarySimpleOperation;
+import org.eclipse.ocl.pivot.library.LibraryUntypedOperation;
+import org.eclipse.ocl.pivot.values.CollectionValue;
 
 /**
  * A CG2JavaPreVisitor prepares for Java code generation by performing a tree traversal

@@ -13,16 +13,16 @@ package org.eclipse.ocl.examples.codegen.common;
 import java.util.LinkedHashSet;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 public class PivotQueries
 {
 	public static @NonNull LinkedHashSet<Operation> getOperations(@NonNull org.eclipse.ocl.pivot.Class type) {
-		MetaModelManager metaModelManager = DomainUtil.nonNullState(PivotUtil.findMetaModelManager(type));
+		MetaModelManager metaModelManager = ClassUtil.nonNullState(PivotUtil.findMetaModelManager(type));
 		LinkedHashSet<Operation> operations = new LinkedHashSet<Operation>();
 		for (Operation operation : metaModelManager.getMemberOperations(type, false)) {
 			operations.add(operation);
@@ -34,7 +34,7 @@ public class PivotQueries
 	}
 	
 	public static @NonNull LinkedHashSet<Property> getProperties(@NonNull org.eclipse.ocl.pivot.Class type) {
-		MetaModelManager metaModelManager = DomainUtil.nonNullState(PivotUtil.findMetaModelManager(type));
+		MetaModelManager metaModelManager = ClassUtil.nonNullState(PivotUtil.findMetaModelManager(type));
 		LinkedHashSet<Property> properties = new LinkedHashSet<Property>();
 		for (Property property : metaModelManager.getMemberProperties(type, false)) {
 			properties.add(property);

@@ -15,9 +15,9 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.delegate.AbstractOCLDelegateFactory;
 import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
  * Factory for OCL operation-invocation delegates.
@@ -33,7 +33,7 @@ public class OCLDebugInvocationDelegateFactory extends AbstractOCLDelegateFactor
 		if (operation == null) {
 			return null;
 		}
-		EPackage ePackage = DomainUtil.nonNullEMF(operation.getEContainingClass().getEPackage());
+		EPackage ePackage = ClassUtil.nonNullEMF(operation.getEContainingClass().getEPackage());
 		OCLDelegateDomain delegateDomain = getDelegateDomain(ePackage);
 		return delegateDomain != null ? new OCLDebugInvocationDelegate(delegateDomain, operation) : null;
 	}

@@ -11,8 +11,8 @@
 package org.eclipse.ocl.library.executor;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.library.LibraryProperty;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.library.LibraryProperty;
 
 public class ExecutorPropertyWithImplementation extends ExecutorProperty
 {

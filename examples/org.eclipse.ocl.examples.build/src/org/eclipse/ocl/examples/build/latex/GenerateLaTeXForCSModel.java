@@ -26,11 +26,11 @@ import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.build.utilities.ClasspathURIHandler;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 import org.eclipse.xtext.Grammar;
@@ -64,14 +64,14 @@ public abstract class GenerateLaTeXForCSModel extends GenerateLaTeXUtils
 			org.eclipse.ocl.pivot.Package cs2csPackage = null;
 			if ((cs2asFile != null) && (cs2asFile.length() > 0)) {
 				String cs2asSourceFile = "/" + projectName + "/" + cs2asFile;
-				URI cs2asURI = DomainUtil.nonNullState(URI.createPlatformResourceURI(cs2asSourceFile, true));
+				URI cs2asURI = ClassUtil.nonNullState(URI.createPlatformResourceURI(cs2asSourceFile, true));
 				log.info("Loading Model '" + cs2asURI);
 				Resource oclResource = ocl.load(cs2asURI);
 				cs2asPackage = getSecondaryPackage(metaModelManager, oclResource);
 			}
 			if ((cs2csFile != null) && (cs2csFile.length() > 0)) {
 				String cs2csSourceFile = "/" + projectName + "/" + cs2csFile;
-				URI cs2csURI = DomainUtil.nonNullState(URI.createPlatformResourceURI(cs2csSourceFile, true));
+				URI cs2csURI = ClassUtil.nonNullState(URI.createPlatformResourceURI(cs2csSourceFile, true));
 				log.info("Loading Model '" + cs2csURI);
 				Resource oclResource = ocl.load(cs2csURI);
 				cs2csPackage = getSecondaryPackage(metaModelManager, oclResource);
@@ -101,19 +101,19 @@ public abstract class GenerateLaTeXForCSModel extends GenerateLaTeXUtils
 			log.info("Loading Grammar '" + fileURI);
 //			ResourceSet resourceSet = getResourceSet();
 			Resource xtextResource = resourceSet.getResource(fileURI, true);
-			String message = PivotUtil.formatResourceDiagnostics(DomainUtil.nonNullEMF(xtextResource.getErrors()), "Grammar parse failure", "\n");
+			String message = PivotUtil.formatResourceDiagnostics(ClassUtil.nonNullEMF(xtextResource.getErrors()), "Grammar parse failure", "\n");
 			if (message != null) {
 				issues.addError(this, message, null, null, null);
 				return;
 			}
-			EObject xtextModel = DomainUtil.nonNullState(xtextResource.getContents().get(0));
+			EObject xtextModel = ClassUtil.nonNullState(xtextResource.getContents().get(0));
 			
 			
 			
 			EObject eObject = asPackage.getETarget();
 			Resource eResource = eObject.eResource();
 			if (eResource != null) {
-				String message2 = PivotUtil.formatResourceDiagnostics(DomainUtil.nonNullEMF(eResource.getErrors()), "OCLstdlib parse failure", "\n");
+				String message2 = PivotUtil.formatResourceDiagnostics(ClassUtil.nonNullEMF(eResource.getErrors()), "OCLstdlib parse failure", "\n");
 				if (message2 != null) {
 					issues.addError(this, message, null, null, null);
 					return;

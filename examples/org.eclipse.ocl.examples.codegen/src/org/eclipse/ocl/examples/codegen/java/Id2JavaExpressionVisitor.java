@@ -13,34 +13,34 @@ package org.eclipse.ocl.examples.codegen.java;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.ids.BindingsId;
-import org.eclipse.ocl.domain.ids.ClassId;
-import org.eclipse.ocl.domain.ids.CollectionTypeId;
-import org.eclipse.ocl.domain.ids.DataTypeId;
-import org.eclipse.ocl.domain.ids.ElementId;
-import org.eclipse.ocl.domain.ids.EnumerationId;
-import org.eclipse.ocl.domain.ids.EnumerationLiteralId;
-import org.eclipse.ocl.domain.ids.IdManager;
-import org.eclipse.ocl.domain.ids.IdVisitor;
-import org.eclipse.ocl.domain.ids.LambdaTypeId;
-import org.eclipse.ocl.domain.ids.NestedPackageId;
-import org.eclipse.ocl.domain.ids.NsURIPackageId;
-import org.eclipse.ocl.domain.ids.OclInvalidTypeId;
-import org.eclipse.ocl.domain.ids.OclVoidTypeId;
-import org.eclipse.ocl.domain.ids.OperationId;
-import org.eclipse.ocl.domain.ids.PrimitiveTypeId;
-import org.eclipse.ocl.domain.ids.PropertyId;
-import org.eclipse.ocl.domain.ids.RootPackageId;
-import org.eclipse.ocl.domain.ids.SpecializedId;
-import org.eclipse.ocl.domain.ids.TemplateBinding;
-import org.eclipse.ocl.domain.ids.TemplateParameterId;
-import org.eclipse.ocl.domain.ids.TemplateableTypeId;
-import org.eclipse.ocl.domain.ids.TuplePartId;
-import org.eclipse.ocl.domain.ids.TupleTypeId;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.ids.UnspecifiedId;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.ids.BindingsId;
+import org.eclipse.ocl.pivot.ids.ClassId;
+import org.eclipse.ocl.pivot.ids.CollectionTypeId;
+import org.eclipse.ocl.pivot.ids.DataTypeId;
+import org.eclipse.ocl.pivot.ids.ElementId;
+import org.eclipse.ocl.pivot.ids.EnumerationId;
+import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
+import org.eclipse.ocl.pivot.ids.IdManager;
+import org.eclipse.ocl.pivot.ids.IdVisitor;
+import org.eclipse.ocl.pivot.ids.LambdaTypeId;
+import org.eclipse.ocl.pivot.ids.NestedPackageId;
+import org.eclipse.ocl.pivot.ids.NsURIPackageId;
+import org.eclipse.ocl.pivot.ids.OclInvalidTypeId;
+import org.eclipse.ocl.pivot.ids.OclVoidTypeId;
+import org.eclipse.ocl.pivot.ids.OperationId;
+import org.eclipse.ocl.pivot.ids.PrimitiveTypeId;
+import org.eclipse.ocl.pivot.ids.PropertyId;
+import org.eclipse.ocl.pivot.ids.RootPackageId;
+import org.eclipse.ocl.pivot.ids.SpecializedId;
+import org.eclipse.ocl.pivot.ids.TemplateBinding;
+import org.eclipse.ocl.pivot.ids.TemplateParameterId;
+import org.eclipse.ocl.pivot.ids.TemplateableTypeId;
+import org.eclipse.ocl.pivot.ids.TuplePartId;
+import org.eclipse.ocl.pivot.ids.TupleTypeId;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.ids.UnspecifiedId;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
  * An Id2JavaExpressionVisitor appends the expression body of an Id declaration.
@@ -80,7 +80,7 @@ public class Id2JavaExpressionVisitor implements IdVisitor<Object>
 				if (i > 0) {
 					js.append(", ");
 				}
-				ElementId elementId = DomainUtil.nonNullModel(templateBindings.get(i));
+				ElementId elementId = ClassUtil.nonNullModel(templateBindings.get(i));
 				js.appendIdReference(elementId);
 			}
 			js.append(")");

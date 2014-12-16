@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
-import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.pivot.EvaluationException;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.OCL;
@@ -26,12 +25,12 @@ import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.delegate.OCLValidationDelegate;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.utilities.ConstraintEvaluator;
+import org.eclipse.ocl.pivot.utilities.LabelUtil;
 
 /**
  * An implementation of the dynamic validation delegate API, maintaining a cache
  * of compiled constraints and invariants.
  */
-@SuppressWarnings("restriction")
 public class OCLDebugValidationDelegate extends OCLValidationDelegate
 {	
 	public OCLDebugValidationDelegate(@NonNull OCLDelegateDomain delegateDomain, @NonNull EClassifier classifier) {
@@ -44,8 +43,8 @@ public class OCLDebugValidationDelegate extends OCLValidationDelegate
 		{
 			@Override
 			protected String getObjectLabel() {
-				return EcoreUtils.qualifiedNameFor(value);
-//				return DomainUtil.getLabel(eClassifier, value, context);
+				return LabelUtil.qualifiedNameFor(value);
+//				return ClassUtil.getLabel(eClassifier, value, context);
 			}
 
 			@Override

@@ -18,12 +18,12 @@ import org.eclipse.ocl.examples.debug.vm.IVMDebuggerShell;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEnvironmentFactory;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMModelManager;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Environment;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironmentFactory;
 
 public class OCLVMEnvironmentFactory extends PivotEnvironmentFactory implements IVMEnvironmentFactory
@@ -67,7 +67,7 @@ public class OCLVMEnvironmentFactory extends PivotEnvironmentFactory implements 
 	}
 
 	public @NonNull OCLVMRootEvaluationVisitor createEvaluationVisitor(@NonNull OCLVMEnvironment env, @NonNull IOCLVMEvaluationEnvironment evalEnv) {
-		return new OCLVMRootEvaluationVisitor(env, evalEnv, DomainUtil.nonNullState(shell));
+		return new OCLVMRootEvaluationVisitor(env, evalEnv, ClassUtil.nonNullState(shell));
 	}
 
 	public @NonNull OCLVMModelManager createModelManager(@NonNull MetaModelManager metaModelManager) {

@@ -19,13 +19,13 @@ import org.eclipse.emf.codegen.util.CodeGenUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.generator.AbstractGenModelHelper;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 public class NameQueries
 {
@@ -59,8 +59,8 @@ public class NameQueries
 	
 	public static @NonNull String getEcoreLiteral(@NonNull EnumerationLiteral enumerationLiteral) {
 		Enumeration enumeration = enumerationLiteral.getEnumeration();
-		String nsURI = DomainUtil.nonNullModel(enumeration.getOwningPackage().getURI());
-		GenPackage genPackage = DomainUtil.nonNullState(metaModelManager).getGenPackage(nsURI);
+		String nsURI = ClassUtil.nonNullModel(enumeration.getOwningPackage().getURI());
+		GenPackage genPackage = ClassUtil.nonNullState(metaModelManager).getGenPackage(nsURI);
 		if (genPackage != null) {
 			return /*genPackage.getInterfacePackageName() +*/ genPackage.getPackageInterfaceName() + ".Literals." + CodeGenUtil.upperName(enumeration.getName())
 						+ ".getEEnumLiteral(" + enumeration.getName() + "." + CodeGenUtil.upperName(enumerationLiteral.getName()) + "_VALUE)";
@@ -72,8 +72,8 @@ public class NameQueries
 		if (!property.isImplicit()) {
 			org.eclipse.ocl.pivot.Class type = property.getOwningClass();
 			if (type != null) {
-				String nsURI = DomainUtil.nonNullModel(type.getOwningPackage().getURI());
-				GenPackage genPackage = DomainUtil.nonNullState(metaModelManager).getGenPackage(nsURI);
+				String nsURI = ClassUtil.nonNullModel(type.getOwningPackage().getURI());
+				GenPackage genPackage = ClassUtil.nonNullState(metaModelManager).getGenPackage(nsURI);
 				if (genPackage != null) {
 					return /*genPackage.getInterfacePackageName() +*/genPackage
 						.getPackageInterfaceName()
@@ -88,8 +88,8 @@ public class NameQueries
 	}
 	
 	public static @NonNull String getEcoreLiteral(@NonNull org.eclipse.ocl.pivot.Class type) {
-		String nsURI = DomainUtil.nonNullModel(type.getOwningPackage().getURI());
-		GenPackage genPackage = DomainUtil.nonNullState(metaModelManager).getGenPackage(nsURI);
+		String nsURI = ClassUtil.nonNullModel(type.getOwningPackage().getURI());
+		GenPackage genPackage = ClassUtil.nonNullState(metaModelManager).getGenPackage(nsURI);
 		if (genPackage != null) {
 			return /*genPackage.getInterfacePackageName() +*/ genPackage.getPackageInterfaceName() + ".Literals." + CodeGenUtil.upperName(type.getName());
 		}

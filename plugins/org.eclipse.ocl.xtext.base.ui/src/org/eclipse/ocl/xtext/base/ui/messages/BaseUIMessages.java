@@ -39,4 +39,16 @@ public class BaseUIMessages
 	public static String SaveCS_Title;
 	public static String SaveCS_Description;
 	public static String SaveError_Title;
+	
+	// source IDEWorkbenchMessages	
+	public static String ContainerGroup_message;
+	public static String ContainerGroup_selectFolder;
+	
+	public static String ResourceGroup_resource;
+	public static String ResourceGroup_nameExists;
+	public static String ResourceGroup_folderEmpty;
+	public static String ResourceGroup_noProject;
+	public static String ResourceGroup_emptyName;
+	public static String ResourceGroup_invalidFilename;
+	public static String ResourceGroup_pathOccupied;
 }

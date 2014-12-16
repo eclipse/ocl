@@ -14,7 +14,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.codegen.CodeGenConstants;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.generator.CodeGenerator;
-import org.eclipse.ocl.examples.common.utils.TracingOption;
+import org.eclipse.ocl.pivot.utilities.TracingOption;
 
 /**
  * A CommonSubexpressionEliminator supervises the rewrites of structurally equivalent CG nodes with shared CG nodes.

@@ -33,24 +33,24 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.values.CollectionTypeParameters;
-import org.eclipse.ocl.domain.values.impl.CollectionTypeParametersImpl;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.library.LibraryConstants;
 import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.PivotConstants;
 import org.eclipse.ocl.pivot.SequenceType;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.complete.CompleteClassInternal;
+import org.eclipse.ocl.pivot.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.context.ModelContext;
 import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.ecore.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.complete.CompleteClassInternal;
-import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.values.CollectionTypeParameters;
+import org.eclipse.ocl.pivot.values.impl.CollectionTypeParametersImpl;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.xtext.essentialocl.utilities.EssentialOCLCSResource;
@@ -382,7 +382,7 @@ public class EditTests extends XtextTestCase
 		Set<EObject> loadPivotContent = new HashSet<EObject>();
 		for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
-//			System.out.println(DomainUtil.debugSimpleName(eObject));
+//			System.out.println(ClassUtil.debugSimpleName(eObject));
 			loadPivotContent.add(eObject);
 		}
 		{
@@ -398,7 +398,7 @@ public class EditTests extends XtextTestCase
 			Set<EObject> parsePivotContent = new HashSet<EObject>();
 			for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {
 				EObject eObject = tit.next();
-//				System.out.println(DomainUtil.debugSimpleName(eObject));
+//				System.out.println(ClassUtil.debugSimpleName(eObject));
 				parsePivotContent.add(eObject);
 			}
 			assertEquals(loadPivotContent.size(), parsePivotContent.size());
@@ -541,10 +541,10 @@ public class EditTests extends XtextTestCase
 		//	Changing "TestClass1" to "Testing" renames a type and breaks the invariant.
 		//
 		doRename(xtextResource, asResource, "TestClass1", "Testing",
-//			DomainUtil.bind(OCLMessages.Unresolved_ERROR_, "Type", pivotTestClass1.getName()),
-			DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "", pivotTestClass1.getName()),
-			DomainUtil.bind(OCLMessages.UnresolvedProperty_ERROR_, "OclInvalid", "testProperty1"),
-			DomainUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, "OclInvalid", "testOperation", "123456"));
+//			ClassUtil.bind(OCLMessages.Unresolved_ERROR_, "Type", pivotTestClass1.getName()),
+			ClassUtil.bind(OCLMessages.UnresolvedType_ERROR_, "", pivotTestClass1.getName()),
+			ClassUtil.bind(OCLMessages.UnresolvedProperty_ERROR_, "OclInvalid", "testProperty1"),
+			ClassUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, "OclInvalid", "testOperation", "123456"));
 		//
 		//	Changing "Testing" back to "TestClass1" restores the type and the invariant.
 		//
@@ -554,7 +554,7 @@ public class EditTests extends XtextTestCase
 		//	Changing "testProperty1" to "tProperty" renames the property and breaks the invariant.
 		//
 		doRename(xtextResource, asResource, "testProperty1", "tProperty",
-			DomainUtil.bind(OCLMessages.UnresolvedProperty_ERROR_, pivotTestClass1 + "", "testProperty1"));
+			ClassUtil.bind(OCLMessages.UnresolvedProperty_ERROR_, pivotTestClass1 + "", "testProperty1"));
 		//
 		//	Changing "tProperty" back to "testProperty" restores the property and the invariant.
 		//
@@ -563,7 +563,7 @@ public class EditTests extends XtextTestCase
 		//	Changing "testOperation" to "tOperation" renames the operation and breaks the invariant.
 		//
 		doRename(xtextResource, asResource, "testOperation", "tOperation",
-			DomainUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, pivotTestClass1 + "", "testOperation", "123456"));
+			ClassUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, pivotTestClass1 + "", "testOperation", "123456"));
 		//
 		//	Changing "tOperation" back to "testOperation" restores the operation and the invariant.
 		//
@@ -572,7 +572,7 @@ public class EditTests extends XtextTestCase
 		//	Changing "testOperation(i : Integer)" to "testOperation()" mismatches the operation signature and breaks the invariant.
 		//
 		doRename(xtextResource, asResource, "testOperation(i : Integer)", "testOperation()",
-			DomainUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, pivotTestClass1 + "", "testOperation", "123456"));
+			ClassUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, pivotTestClass1 + "", "testOperation", "123456"));
 		//
 		//	Changing "testOperation()" back to "testOperation(i : Integer)" restores the operation and the invariant.
 		//
@@ -581,7 +581,7 @@ public class EditTests extends XtextTestCase
 		//	Changing "testOperation(i : Integer)" to "testOperation(s : String)" mismatches the operation signature and breaks the invariant.
 		//
 		doRename(xtextResource, asResource, "testOperation(i : Integer)", "testOperation(s : String)",
-			DomainUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, pivotTestClass1 + "", "testOperation", "Integer"));
+			ClassUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, pivotTestClass1 + "", "testOperation", "Integer"));
 		//
 		//	Changing "testOperation()" back to "testOperation(i : Integer)" restores the operation and the invariant.
 		//
@@ -627,7 +627,7 @@ public class EditTests extends XtextTestCase
 		//	Changing "TestClass1" to "Testing" renames a type and breaks the referredProperty/referredOperation.
 		//
 		doRename(xtextResource, asResource, "TestClass1", "Testing",
-			DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "", pivotTestClass1.getName()));
+			ClassUtil.bind(OCLMessages.UnresolvedType_ERROR_, "", pivotTestClass1.getName()));
 		//
 		//	Changing "Testing" back to "TestClass1" restores the type and the referredProperty/referredOperation.
 		//
@@ -637,7 +637,7 @@ public class EditTests extends XtextTestCase
 		//	Changing "TestClass1" to "Testing" renames a type and breaks the referredProperty/referredOperation.
 		//
 		doRename(xtextResource, asResource, "TestClass1", "Testing",
-			DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "", pivotTestClass1.getName()));
+			ClassUtil.bind(OCLMessages.UnresolvedType_ERROR_, "", pivotTestClass1.getName()));
 		//
 		//	Changing "Testing" back to "TestClass1" restores the type and the referredProperty/referredOperation.
 		//

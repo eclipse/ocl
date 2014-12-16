@@ -21,18 +21,18 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.compatibility.EMF_2_9;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.compatibility.EMF_2_9;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.scoping.ScopeView;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.xtext.base.cs2as.ValidationDiagnostic;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS.UnresolvedProxyMessageProvider;
+import org.eclipse.ocl.xtext.base.cs2as.ValidationDiagnostic;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
 import org.eclipse.ocl.xtext.basecs.ImportCS;
@@ -116,14 +116,14 @@ public class ImportCSAttribution extends AbstractAttribution implements Unresolv
 					List<Resource.Diagnostic> warnings = importedResource.getWarnings();
 					if (warnings.size() > 0) {
 						INode node = NodeModelUtils.getNode(target);
-						String errorMessage = PivotUtil.formatResourceDiagnostics(warnings, DomainUtil.bind(OCLMessages.WarningsInURI, uri2), "\n\t");
+						String errorMessage = PivotUtil.formatResourceDiagnostics(warnings, ClassUtil.bind(OCLMessages.WarningsInURI, uri2), "\n\t");
 						Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, errorMessage);
 						csResource.getWarnings().add(resourceDiagnostic);
 					}
 					List<Resource.Diagnostic> errors = importedResource.getErrors();
 					if (errors.size() > 0) {
 						INode node = NodeModelUtils.getNode(target);
-						String errorMessage = PivotUtil.formatResourceDiagnostics(errors, DomainUtil.bind(OCLMessages.ErrorsInURI, uri), "\n\t");
+						String errorMessage = PivotUtil.formatResourceDiagnostics(errors, ClassUtil.bind(OCLMessages.ErrorsInURI, uri), "\n\t");
 						Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, errorMessage);
 						csResource.getErrors().add(resourceDiagnostic);
 					}

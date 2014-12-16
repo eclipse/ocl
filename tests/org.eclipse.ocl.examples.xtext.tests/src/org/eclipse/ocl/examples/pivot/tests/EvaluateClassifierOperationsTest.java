@@ -13,9 +13,9 @@
 package org.eclipse.ocl.examples.pivot.tests;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.ids.CollectionTypeId;
-import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.ids.CollectionTypeId;
+import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.xtext.base.services.BaseLinkingService;
 

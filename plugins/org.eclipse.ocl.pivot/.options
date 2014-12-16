@@ -1,49 +1,25 @@
 # Debugging options for the org.eclipse.ocl.pivot plug-in
 
-# Turn on general tracing of moniker creation 
-#org.eclipse.ocl.pivot/traceMonikers=false
+# Turn on tracing of the nsURI to *.ecore mapping discovery
+org.eclipse.ocl.pivot/projectMap/addEPackage=false
 
-# Trace maintenance of CompleteClasses 
-org.eclipse.ocl.pivot/completeClasses=false
+# Turn on tracing of the nsURI to GenModel location discovery 
+org.eclipse.ocl.pivot/projectMap/addGenModel=false
 
-# Trace maintenance of CompletePackages 
-org.eclipse.ocl.pivot/completePackages=false
+# Turn on tracing of the plgin.xml generated_package extension point 
+org.eclipse.ocl.pivot/projectMap/addGeneratedPackage=false
 
-# Trace maintenance of PartialClasses 
-org.eclipse.ocl.pivot/partialClasses=false
+# Turn on tracing of the ResourceSet.Converter.URI_MAP URI initialisation 
+org.eclipse.ocl.pivot/projectMap/addURIMap=false
 
-# Trace creation of base_xxx properties 
-org.eclipse.ocl.pivot/partialClasses/addBaseProperty=false
+# Turn on tracing of the resource load strategy configuration commands
+org.eclipse.ocl.pivot/projectMap/configure=false
 
-# Trace creation of extension_xxx properties 
-org.eclipse.ocl.pivot/partialClasses/addExtensionProperty=false
+# Turn on tracing of the package/resource gets that trigger resolutions
+org.eclipse.ocl.pivot/projectMap/get=false
 
-# Trace lazy resolution of member operations 
-org.eclipse.ocl.pivot/partialClasses/initMemberOperations=false
+# Turn on tracing of the install/uninstall of EPackage.Registry descriptors
+org.eclipse.ocl.pivot/projectMap/install=false
 
-# Trace lazy resolution of member properties 
-org.eclipse.ocl.pivot/partialClasses/initMemberProperties=false
-
-# Trace maintenance of PartialModels 
-org.eclipse.ocl.pivot/partialModels=false
-
-# Trace maintenance of PartialPackages 
-org.eclipse.ocl.pivot/partialPackages=false
-
-# Trace validation of InstanceSpecifications 
-org.eclipse.ocl.pivot/validate/instance=false
-
-# Trace validation of OpaqueElement bodies 
-org.eclipse.ocl.pivot/validate/opaqueElement=false
-
-# Trace validation of ElementExtension creations 
-org.eclipse.ocl.pivot/uml2as/addElementExtension=false
-
-# Trace validation of Import discoveries 
-org.eclipse.ocl.pivot/uml2as/addImportedResource=false
-
-# Trace validation of Profile Application discoveries 
-org.eclipse.ocl.pivot/uml2as/addProfileApplication=false
-
-# Trace validation of Stereotype Application discoveries 
-org.eclipse.ocl.pivot/uml2as/addStereotypeApplication=false
+# Turn on tracing of the resolution of EPackage.Registry and ResourceSet.URIResourceMap entries 
+org.eclipse.ocl.pivot/projectMap/resolve=false

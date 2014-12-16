@@ -11,8 +11,8 @@
 package org.eclipse.ocl.library.executor;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.AbstractExecutorProperty;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.elements.AbstractExecutorProperty;
 
 public abstract class ExecutorProperty extends AbstractExecutorProperty		 // FIXME Make abstract merging AbstractExecutorProperty, eliminating 'implementation'
 {

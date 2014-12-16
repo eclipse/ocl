@@ -16,10 +16,10 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.ids.PackageId;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.StandardLibrary;
+import org.eclipse.ocl.pivot.ids.PackageId;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
  * A ReflectivePackage builds a dispatch table representative of a model package at run-time using a minimal reflective API.
@@ -52,7 +52,7 @@ public abstract class ReflectivePackage extends ExecutorPackage
 		if (class2inheritance2 == null) {
 			class2inheritance2 = computeClasses();
 		}
-		return DomainUtil.nonNullState(class2inheritance2.get(domainClass));
+		return ClassUtil.nonNullState(class2inheritance2.get(domainClass));
 	}
 
 	@Override

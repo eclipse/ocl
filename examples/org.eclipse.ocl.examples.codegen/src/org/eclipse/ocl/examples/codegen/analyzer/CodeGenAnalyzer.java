@@ -15,11 +15,6 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.ids.ElementId;
-import org.eclipse.ocl.domain.ids.OperationId;
-import org.eclipse.ocl.domain.ids.PropertyId;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBoolean;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstant;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstantExp;
@@ -43,6 +38,11 @@ import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.ids.ElementId;
+import org.eclipse.ocl.pivot.ids.OperationId;
+import org.eclipse.ocl.pivot.ids.PropertyId;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
@@ -159,7 +159,7 @@ public class CodeGenAnalyzer
 		PropertyId propertyId = asProperty.getPropertyId();
 		CGExecutorProperty cgProperty = null;
 		CGElementId cgPropertyId = getElementId(propertyId);
-		Property asOppositeProperty = DomainUtil.nonNullState(asProperty.getOpposite());
+		Property asOppositeProperty = ClassUtil.nonNullState(asProperty.getOpposite());
 		if (asOppositeProperty.isComposite()) {
 			cgPropertyId = getElementId(propertyId);
 			cgProperty = CGModelFactory.eINSTANCE.createCGExecutorCompositionProperty();					
@@ -294,7 +294,7 @@ public class CodeGenAnalyzer
 	}
 
 	public @NonNull NameManager getNameManager() {
-		return DomainUtil.nonNullState(nameManager);
+		return ClassUtil.nonNullState(nameManager);
 	}
 
 	public @NonNull CGTypeId getTypeId(@NonNull TypeId typeId) {
@@ -304,7 +304,7 @@ public class CodeGenAnalyzer
 			cgTypeId = CGModelFactory.eINSTANCE.createCGTypeId();
 			cgTypeId.setElementId(typeId);
 			cgTypeId.setName(nameManager.getGlobalSymbolName(typeId));
-			cgTypeId.setValueName(DomainUtil.nonNullState(cgTypeId.getName()));
+			cgTypeId.setValueName(ClassUtil.nonNullState(cgTypeId.getName()));
 			cgElementIds.put(typeId, cgTypeId);
 		}
 		return cgTypeId;

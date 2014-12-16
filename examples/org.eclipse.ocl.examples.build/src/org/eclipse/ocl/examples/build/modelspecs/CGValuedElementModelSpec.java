@@ -102,8 +102,8 @@ import org.eclipse.ocl.examples.codegen.cse.StackPlace;
 import org.eclipse.ocl.examples.codegen.cse.ThrowPlace;
 import org.eclipse.ocl.examples.codegen.java.ImportUtils;
 import org.eclipse.ocl.examples.codegen.utilities.EquivalenceUtils;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 
 /**
  * CGValuedElementModelSpec supports generation of the many methods that contribute to the CGValuedElement.xxxx() method hierarchy.
@@ -488,7 +488,7 @@ public class CGValuedElementModelSpec extends ModelSpec
 			return "return booleanValue == true;";
 		}};
 		public static final @NonNull Cvl EL_ID = new Cvl() { @Override public @Nullable String generateGetConstantValue(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
-			return "return " + classRef(DomainUtil.class) + ".nonNullState(elementId);";
+			return "return " + classRef(ClassUtil.class) + ".nonNullState(elementId);";
 		}};
 		public static final @NonNull Cvl INVLD = new Cvl() { @Override public @Nullable String generateGetConstantValue(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
 			return "return " + classRef(ValueUtil.class) + ".INVALID_VALUE;";
@@ -497,16 +497,16 @@ public class CGValuedElementModelSpec extends ModelSpec
 			return "return " + classRef(ValueUtil.class) + ".NULL_VALUE;";
 		}};
 		public static final @NonNull Cvl NUMBR = new Cvl() { @Override public @Nullable String generateGetConstantValue(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
-			return "return " + classRef(DomainUtil.class) + ".nonNullState(numericValue);";
+			return "return " + classRef(ClassUtil.class) + ".nonNullState(numericValue);";
 		}};
 		public static final @NonNull Cvl ROOT = new Cvl() { @Override public @Nullable String generateGetConstantValue(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
 			return null;
 		}};
 		public static final @NonNull Cvl STRNG = new Cvl() { @Override public @Nullable String generateGetConstantValue(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
-			return "return " + classRef(DomainUtil.class) + ".nonNullState(stringValue);";
+			return "return " + classRef(ClassUtil.class) + ".nonNullState(stringValue);";
 		}};
 		public static final @NonNull Cvl TEXT = new Cvl() { @Override public @Nullable String generateGetConstantValue(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
-			return "return " + classRef(DomainUtil.class) + ".nonNullState(textValue);";
+			return "return " + classRef(ClassUtil.class) + ".nonNullState(textValue);";
 		}};
 		public static final @NonNull Cvl UNLMT = new Cvl() { @Override public @Nullable String generateGetConstantValue(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
 			return "return " + classRef(ValueUtil.class) + ".UNLIMITED_VALUE;";

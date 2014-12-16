@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Environment;
 import org.eclipse.ocl.pivot.Iteration;
@@ -48,6 +47,7 @@ import org.eclipse.ocl.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.scoping.ScopeFilter;
 import org.eclipse.ocl.pivot.scoping.ScopeView;
 import org.eclipse.ocl.pivot.utilities.AbstractConversion;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.scoping.AbstractJavaClassScope;
 import org.eclipse.ocl.xtext.base.scoping.BaseScopeView;
@@ -154,7 +154,7 @@ public abstract class CS2AS extends AbstractConversion implements MetaModelManag
 
 		@Override
 		public @NonNull String bind(@NonNull EObject csContext, @NonNull String messageTemplate, Object... bindings) {
-			return DomainUtil.bind(messageTemplate, bindings);
+			return ClassUtil.bind(messageTemplate, bindings);
 		}
 	}
 
@@ -167,7 +167,7 @@ public abstract class CS2AS extends AbstractConversion implements MetaModelManag
 
 		@Override
 		public @NonNull String bind(@NonNull EObject csContext, @NonNull String messageTemplate, Object... bindings) {
-			String message = DomainUtil.bind(messageTemplate, bindings);
+			String message = ClassUtil.bind(messageTemplate, bindings);
 			ICompositeNode node = NodeModelUtils.getNode(csContext);
 			if (node != null) {
 				int startLine = node.getStartLine();
@@ -401,7 +401,7 @@ public abstract class CS2AS extends AbstractConversion implements MetaModelManag
 		super(metaModelManager);
 		this.csi2asMapping = CSI2ASMapping.getAdapter(metaModelManager);
 		csi2asMapping.add(cs2asResourceMap);
-		this.csResources = DomainUtil.nonNullState(cs2asResourceMap.keySet());
+		this.csResources = ClassUtil.nonNullState(cs2asResourceMap.keySet());
 		metaModelManager.addListener(this);
 		metaModelManager.getASResourceSet().eAdapters().add(this);
 	}

@@ -18,9 +18,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.core.EvaluationContext;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 public class OCLEvaluationContext extends EvaluationContext
@@ -33,7 +33,7 @@ public class OCLEvaluationContext extends EvaluationContext
 	public OCLEvaluationContext(@NonNull ExpressionInOCL expressionObject, @Nullable EObject contextObject) {
 		this.expressionObject = expressionObject;
 		this.contextObject = contextObject;
-		this.constraintURI = DomainUtil.nonNullState(EcoreUtil.getURI(expressionObject));
+		this.constraintURI = ClassUtil.nonNullState(EcoreUtil.getURI(expressionObject));
 		this.contextURI = contextObject != null ? EcoreUtil.getURI(contextObject) : null;
 	}
 

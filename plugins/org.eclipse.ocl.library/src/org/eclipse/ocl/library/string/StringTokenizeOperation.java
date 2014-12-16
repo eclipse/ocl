@@ -16,18 +16,18 @@ import java.util.StringTokenizer;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
-import org.eclipse.ocl.domain.ids.CollectionTypeId;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.library.AbstractOperation;
-import org.eclipse.ocl.domain.library.LibraryBinaryOperation;
-import org.eclipse.ocl.domain.library.LibraryTernaryOperation;
-import org.eclipse.ocl.domain.library.LibraryUnaryOperation;
-import org.eclipse.ocl.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.domain.values.InvalidValueException;
-import org.eclipse.ocl.domain.values.SequenceValue;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.OperationCallExp;
+import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.ids.CollectionTypeId;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.library.AbstractOperation;
+import org.eclipse.ocl.pivot.library.LibraryBinaryOperation;
+import org.eclipse.ocl.pivot.library.LibraryTernaryOperation;
+import org.eclipse.ocl.pivot.library.LibraryUnaryOperation;
+import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.pivot.values.SequenceValue;
 
 /**
  * StringTokenizeOperation realises the String::tokenize() library operations.
@@ -95,7 +95,7 @@ public class StringTokenizeOperation extends AbstractOperation implements Librar
 			assert argumentValue0 != null;
 			delims = asString(argumentValue0);
 		}
-		return evaluate(evaluator, (CollectionTypeId)DomainUtil.nonNullPivot(callExp.getType()).getTypeId(), sourceValue, delims, returnDelims);
+		return evaluate(evaluator, (CollectionTypeId)ClassUtil.nonNullPivot(callExp.getType()).getTypeId(), sourceValue, delims, returnDelims);
 	} */
 
 	private @NonNull SequenceValue evaluate(@NonNull DomainEvaluator evaluator, @NonNull CollectionTypeId returnTypeId, @Nullable Object sourceValue, @NonNull String delims, boolean returnDelims) {

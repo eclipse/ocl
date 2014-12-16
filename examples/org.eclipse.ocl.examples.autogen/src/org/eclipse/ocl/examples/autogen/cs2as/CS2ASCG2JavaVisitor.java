@@ -16,9 +16,6 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.types.IdResolver;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.autogen.autocgmodel.CGASTCallExp;
 import org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentBody;
 import org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentPart;
@@ -34,6 +31,9 @@ import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.xtext.base.cs2as.Continuation;
@@ -86,7 +86,7 @@ public class CS2ASCG2JavaVisitor extends AutoCG2JavaVisitor<CS2ASCodeGenerator>
 
 	@Override
 	public @NonNull Boolean visitCGASTCallExp(@NonNull CGASTCallExp object) {
-		CGValuedElement cgSource = DomainUtil.nonNullState(object.getSource());
+		CGValuedElement cgSource = ClassUtil.nonNullState(object.getSource());
 		TypeDescriptor typeDescriptor = context.getTypeDescriptor(object);
 		if (!js.appendLocalStatements(cgSource)) {
 			return false;
@@ -100,7 +100,7 @@ public class CS2ASCG2JavaVisitor extends AutoCG2JavaVisitor<CS2ASCodeGenerator>
 
 	@Override
 	public @NonNull Boolean visitCGContainmentBody(@NonNull CGContainmentBody object) {
-		org.eclipse.ocl.pivot.Class asType = (org.eclipse.ocl.pivot.Class)DomainUtil.nonNullState(((Operation) object.getAst()).getType());	// FIXME cast
+		org.eclipse.ocl.pivot.Class asType = (org.eclipse.ocl.pivot.Class)ClassUtil.nonNullState(((Operation) object.getAst()).getType());	// FIXME cast
 		String factoryName = context.getGenModelHelper().getQualifiedFactoryInterfaceName(asType);
 		// TypeDescriptor typeDescriptor = context.getTypeDescriptor(asType.getTypeId(), false);
 		String typeQualifiedName = context.getGenModelHelper().getEcoreInterfaceName(asType);
@@ -145,8 +145,8 @@ public class CS2ASCG2JavaVisitor extends AutoCG2JavaVisitor<CS2ASCodeGenerator>
 
 	@Override
 	public @NonNull Boolean visitCGContainmentPart(@NonNull CGContainmentPart object) {
-		CGValuedElement cgInit = DomainUtil.nonNullState(object.getInit());
-		EStructuralFeature eStructuralFeature = DomainUtil.nonNullModel(object.getEStructuralFeature());
+		CGValuedElement cgInit = ClassUtil.nonNullState(object.getInit());
+		EStructuralFeature eStructuralFeature = ClassUtil.nonNullModel(object.getEStructuralFeature());
 		js.append("//\n");
 		js.append("// " + eStructuralFeature.getEContainingClass().getName() + "::" + eStructuralFeature.getName() + "\n");
 		js.append("//\n");
@@ -199,7 +199,7 @@ public class CS2ASCG2JavaVisitor extends AutoCG2JavaVisitor<CS2ASCodeGenerator>
 		if (localContext2 != null) {
 			localContext = localContext2;
 			try {
-				CGValuedElement cgContainmentBody = DomainUtil.nonNullState(object.getBody());
+				CGValuedElement cgContainmentBody = ClassUtil.nonNullState(object.getBody());
 				Type csType = (Type) object.getAst();
 				TypeDescriptor typeDescriptor = context.getUnboxedDescriptor(csType.getTypeId());
 				js.append("public ");

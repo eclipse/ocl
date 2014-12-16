@@ -22,10 +22,10 @@ import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.xtext.XtextStandaloneSetup;
@@ -47,7 +47,7 @@ public abstract class GenerateLaTeXForLibrary extends GenerateLaTeXUtils
 			log.info("Loading OCL library '" + fileURI);
 			ResourceSet resourceSet = getResourceSet();
 			Resource xtextResource = resourceSet.getResource(fileURI, true);
-			String message = PivotUtil.formatResourceDiagnostics(DomainUtil.nonNullEMF(xtextResource.getErrors()), "OCLstdlib parse failure", "\n");
+			String message = PivotUtil.formatResourceDiagnostics(ClassUtil.nonNullEMF(xtextResource.getErrors()), "OCLstdlib parse failure", "\n");
 			if (message != null) {
 				issues.addError(this, message, null, null, null);
 				return;
@@ -56,12 +56,12 @@ public abstract class GenerateLaTeXForLibrary extends GenerateLaTeXUtils
 //			if (asResource == null) {
 //				return;
 //			}
-			EObject pivotModel = DomainUtil.nonNullState(asResource.getContents().get(0));
+			EObject pivotModel = ClassUtil.nonNullState(asResource.getContents().get(0));
 //			ASSaver saver = new ASSaver(asResource);
 //			saver.localizeSpecializations();
 			String fileName = folder + "/" + latexFileName + ".tex";
 			log.info("Generating '" + fileName + "'");
-			String latexContent = generateLaTeX(DomainUtil.nonNullState((Library) ((Model)pivotModel).getOwnedPackages().get(0)));
+			String latexContent = generateLaTeX(ClassUtil.nonNullState((Library) ((Model)pivotModel).getOwnedPackages().get(0)));
 			String encodedContent = encodeForLaTeX(latexContent);
 			FileWriter fw = new FileWriter(fileName);
 			fw.append(encodedContent);

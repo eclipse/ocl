@@ -20,12 +20,6 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainTypeParameters;
-import org.eclipse.ocl.domain.ids.OperationId;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.types.AbstractFragment;
-import org.eclipse.ocl.domain.types.IdResolver;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.library.executor.AbstractReflectiveInheritanceType;
 import org.eclipse.ocl.library.executor.DomainProperties;
 import org.eclipse.ocl.pivot.CompleteInheritance;
@@ -35,6 +29,12 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.elements.DomainTypeParameters;
+import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.ids.OperationId;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.types.AbstractFragment;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 {
@@ -46,7 +46,7 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 	private /*@LazyNonNull*/ DomainProperties allProperties;
 	
 	public EcoreReflectiveType(@NonNull EcoreReflectivePackage evaluationPackage, int flags, @NonNull EClassifier eClassifier, @NonNull TemplateParameter... typeParameters) {
-		super(DomainUtil.nonNullEMF(eClassifier.getName()), flags);
+		super(ClassUtil.nonNullEMF(eClassifier.getName()), flags);
 		this.evaluationPackage = evaluationPackage;
 		this.eClassifier = eClassifier;
 		this.typeParameters = new DomainTypeParameters(typeParameters);
@@ -63,7 +63,7 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 			EClass eClass = (EClass)eClassifier;
 			EObject element = eClass.getEPackage().getEFactoryInstance().create(eClass);
 //			TypeId typeId = IdManager.INSTANCE.getTypeId(eClass);
-			return /*ValuesUtil.createObjectValue(typeId,*/ DomainUtil.nonNullEMF(element); //);
+			return /*ValuesUtil.createObjectValue(typeId,*/ ClassUtil.nonNullEMF(element); //);
 		}
 		throw new UnsupportedOperationException();
 	}
@@ -73,7 +73,7 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 		if (eClassifier instanceof EDataType) {
 			EDataType eDataType = (EDataType)eClassifier;
 			Object element = eDataType.getEPackage().getEFactoryInstance().createFromString(eDataType, value);
-			return DomainUtil.nonNullEMF(element);
+			return ClassUtil.nonNullEMF(element);
 		}
 		throw new UnsupportedOperationException();
 	}
@@ -161,7 +161,7 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 
 	@Override
 	public @NonNull String getMetaTypeName() {
-		return DomainUtil.nonNullPivot(eClassifier.getName());
+		return ClassUtil.nonNullPivot(eClassifier.getName());
 	}
 
 	@Override

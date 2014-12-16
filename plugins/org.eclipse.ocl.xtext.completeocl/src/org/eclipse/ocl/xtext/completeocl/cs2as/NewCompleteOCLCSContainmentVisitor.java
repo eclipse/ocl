@@ -12,7 +12,6 @@ package org.eclipse.ocl.xtext.completeocl.cs2as;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
-import org.eclipse.ocl.xtext.completeocl.cs2as.AutoCompleteOCLCSContainmentVisitor;
 
 
 public class NewCompleteOCLCSContainmentVisitor extends AutoCompleteOCLCSContainmentVisitor {

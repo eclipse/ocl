@@ -13,6 +13,7 @@ package org.eclipse.ocl.examples.modelregistry.environment;
 import org.eclipse.ocl.examples.common.utils.ClassUtils;
 
 
+
 /**
  * ClassDelegate captures a class name mentioned in an extension, but defers loading that
  * class until it is actually needed.

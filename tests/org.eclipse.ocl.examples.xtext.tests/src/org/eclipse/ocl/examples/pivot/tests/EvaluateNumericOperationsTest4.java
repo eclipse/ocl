@@ -17,11 +17,11 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.values.impl.BigIntegerValueImpl;
-import org.eclipse.ocl.domain.values.impl.IntIntegerValueImpl;
-import org.eclipse.ocl.domain.values.impl.LongIntegerValueImpl;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.impl.BigIntegerValueImpl;
+import org.eclipse.ocl.pivot.values.impl.IntIntegerValueImpl;
+import org.eclipse.ocl.pivot.values.impl.LongIntegerValueImpl;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;

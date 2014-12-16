@@ -15,18 +15,18 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainTypeParameters;
-import org.eclipse.ocl.domain.ids.OperationId;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.types.AbstractFragment;
-import org.eclipse.ocl.domain.types.IdResolver;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.elements.DomainTypeParameters;
+import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.ids.OperationId;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.types.AbstractFragment;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 {
@@ -35,7 +35,7 @@ public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 	private /*@LazyNonNull*/ DomainProperties allProperties;
 
 	public DomainReflectiveType(@NonNull DomainReflectivePackage evaluationPackage, @NonNull org.eclipse.ocl.pivot.Class domainClass) {
-		super(DomainUtil.nonNullModel(domainClass.getName()), computeFlags(domainClass));
+		super(ClassUtil.nonNullModel(domainClass.getName()), computeFlags(domainClass));
 		this.evaluationPackage = evaluationPackage;
 		this.domainClass = domainClass;
 	}

@@ -28,13 +28,13 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.registry.CompleteOCLRegistry;
+import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.ui.utilities.PDEUtils;
 import org.eclipse.swt.SWT;
@@ -229,9 +229,9 @@ public class DebugDialog extends Dialog
 	}
 
 	public void setSelection(@NonNull EObject eObject) {
-		elementName.setText(EcoreUtils.qualifiedNameFor(eObject));
+		elementName.setText(LabelUtil.qualifiedNameFor(eObject));
 		EClass eClass = eObject.eClass();
-		elementClass.setText(EcoreUtils.qualifiedNameFor(eClass));
+		elementClass.setText(LabelUtil.qualifiedNameFor(eClass));
 		EPackage ePackage = eClass != null ? eClass.getEPackage() : null;
 		String nsURI = ePackage != null ? ePackage.getNsURI() : null;
 		elementNsURI.setText(String.valueOf(nsURI));

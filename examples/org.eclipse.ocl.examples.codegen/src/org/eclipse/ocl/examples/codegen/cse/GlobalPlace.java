@@ -20,13 +20,13 @@ import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
 import org.eclipse.ocl.examples.codegen.analyzer.DependencyVisitor;
 import org.eclipse.ocl.examples.codegen.analyzer.ReferencesVisitor;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
-import org.eclipse.ocl.examples.common.utils.TracingOption;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.TracingOption;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
@@ -54,7 +54,7 @@ public class GlobalPlace extends AbstractPlace
 	}
 
 	public void addSimpleAnalysis(@NonNull SimpleAnalysis simpleAnalysis) {
-//		System.out.println(DomainUtil.debugSimpleName(simpleAnalysis.getCGElement()) + " => " + DomainUtil.debugSimpleName(simpleAnalysis));
+//		System.out.println(ClassUtil.debugSimpleName(simpleAnalysis.getCGElement()) + " => " + ClassUtil.debugSimpleName(simpleAnalysis));
 		CGValuedElement cgElement = simpleAnalysis.getElement();
 		element2simpleAnalysis.put(cgElement, simpleAnalysis);
 		if (cgElement.isGlobal() && !cgElement.isInlined()) {
@@ -74,7 +74,7 @@ public class GlobalPlace extends AbstractPlace
 	 */
 	protected @Nullable SimpleAnalysis buildSimpleAnalysisTree(@NonNull CGElement cgElement, int depth) {
 		if (CommonSubexpressionEliminator.CSE_BUILD.isActive()) {
-			CommonSubexpressionEliminator.CSE_BUILD.println(DomainUtil.getIndentation(depth, "  ") + "Build " + DomainUtil.debugSimpleName(cgElement) + " " + DomainUtil.convertToOCLString(cgElement.toString()));
+			CommonSubexpressionEliminator.CSE_BUILD.println(ClassUtil.getIndentation(depth, "  ") + "Build " + ClassUtil.debugSimpleName(cgElement) + " " + ClassUtil.convertToOCLString(cgElement.toString()));
 		}
 		//
 		//	Create the Place hierarchy in Preorder
@@ -87,7 +87,7 @@ public class GlobalPlace extends AbstractPlace
 			element2place.put(cgElement, abstractPlace);
 		}
 		if (CommonSubexpressionEliminator.CSE_BUILD.isActive()) {
-			CommonSubexpressionEliminator.CSE_BUILD.println(DomainUtil.getIndentation(depth, "  ") + " ==> " + DomainUtil.debugSimpleName(abstractPlace));
+			CommonSubexpressionEliminator.CSE_BUILD.println(ClassUtil.getIndentation(depth, "  ") + " ==> " + ClassUtil.debugSimpleName(abstractPlace));
 		}
 		//
 		//	Determine the local part of the structural hash code from referenced objects
@@ -114,9 +114,9 @@ public class GlobalPlace extends AbstractPlace
 			return null;
 		}
 		CGValuedElement cgValuedElement = (CGValuedElement)cgElement;
-//		System.out.println("Build2 " + DomainUtil.debugSimpleName(cgElement));
+//		System.out.println("Build2 " + ClassUtil.debugSimpleName(cgElement));
 		if (CommonSubexpressionEliminator.CSE_BUILD.isActive()) {
-			CommonSubexpressionEliminator.CSE_BUILD.println(DomainUtil.getIndentation(depth, "  ") + "=> " + DomainUtil.debugSimpleName(abstractPlace) + " " + structuralHashCode);
+			CommonSubexpressionEliminator.CSE_BUILD.println(ClassUtil.getIndentation(depth, "  ") + "=> " + ClassUtil.debugSimpleName(abstractPlace) + " " + structuralHashCode);
 		}
 		if (abstractPlace != this) {			// FIXME Ugh!
 			StackPlace stackPlace = abstractPlace.getStackPlace();
@@ -127,8 +127,8 @@ public class GlobalPlace extends AbstractPlace
 				return null;
 			}
 		}
-//		System.out.println("Build3 " + DomainUtil.debugSimpleName(cgElement));
-//		System.out.println("new " + structuralHashCode + " " + DomainUtil.debugSimpleName(cgValuedElement) + " " + cgValuedElement.toString());
+//		System.out.println("Build3 " + ClassUtil.debugSimpleName(cgElement));
+//		System.out.println("new " + structuralHashCode + " " + ClassUtil.debugSimpleName(cgValuedElement) + " " + cgValuedElement.toString());
 		SimpleAnalysis structuralAnalysis;
 		if (childAnalyses != null) {
 			@SuppressWarnings("null")@NonNull SimpleAnalysis[] childArray = childAnalyses.toArray(new SimpleAnalysis[childAnalyses.size()]);
@@ -138,7 +138,7 @@ public class GlobalPlace extends AbstractPlace
 			structuralAnalysis = new SimpleAnalysis(this, cgValuedElement, depth, structuralHashCode, SimpleAnalysis.EMPTY_LIST);
 		}
 		if (CommonSubexpressionEliminator.CSE_BUILD.isActive()) {
-			CommonSubexpressionEliminator.CSE_BUILD.println(DomainUtil.getIndentation(depth, "  ") + "=> " + DomainUtil.debugSimpleName(structuralAnalysis) + " " + structuralAnalysis.toString());
+			CommonSubexpressionEliminator.CSE_BUILD.println(ClassUtil.getIndentation(depth, "  ") + "=> " + ClassUtil.debugSimpleName(structuralAnalysis) + " " + structuralAnalysis.toString());
 		}
 		return structuralAnalysis;
 	}
@@ -199,7 +199,7 @@ public class GlobalPlace extends AbstractPlace
 	}
 
 	protected int getStructuralHashCode(@NonNull CGElement cgElement, @NonNull String prefix) {
-//		System.out.println(prefix + "getStructuralHashCode " + DomainUtil.debugSimpleName(cgElement) + " " + cgElement.toString());
+//		System.out.println(prefix + "getStructuralHashCode " + ClassUtil.debugSimpleName(cgElement) + " " + cgElement.toString());
 		int structuralHashCode = cgElement.getClass().getName().hashCode();
 //		System.out.println(prefix + "  class " + structuralHashCode);
 		List<Object> referencedObjects = cgElement.accept(referencesVisitor);
@@ -213,12 +213,12 @@ public class GlobalPlace extends AbstractPlace
 					else {
 						referenceHashCode = referencedObject.hashCode();
 					}
-//					System.out.println(prefix + "  ref " + referenceHashCode + " " + DomainUtil.debugSimpleName(referencedObject) + " " + referencedObject.toString());
+//					System.out.println(prefix + "  ref " + referenceHashCode + " " + ClassUtil.debugSimpleName(referencedObject) + " " + referencedObject.toString());
 				}
 				structuralHashCode = 3 * structuralHashCode + referenceHashCode;
 			}
 		}
-//		System.out.println(prefix + "  = " + structuralHashCode + " " + DomainUtil.debugSimpleName(cgElement) + " " + cgElement.toString());
+//		System.out.println(prefix + "  = " + structuralHashCode + " " + ClassUtil.debugSimpleName(cgElement) + " " + cgElement.toString());
 		return structuralHashCode;
 	}
 

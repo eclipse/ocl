@@ -19,37 +19,6 @@ import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.ids.ClassId;
-import org.eclipse.ocl.domain.ids.CollectionTypeId;
-import org.eclipse.ocl.domain.ids.DataTypeId;
-import org.eclipse.ocl.domain.ids.ElementId;
-import org.eclipse.ocl.domain.ids.EnumerationId;
-import org.eclipse.ocl.domain.ids.EnumerationLiteralId;
-import org.eclipse.ocl.domain.ids.IdVisitor;
-import org.eclipse.ocl.domain.ids.LambdaTypeId;
-import org.eclipse.ocl.domain.ids.NestedPackageId;
-import org.eclipse.ocl.domain.ids.NestedTypeId;
-import org.eclipse.ocl.domain.ids.NsURIPackageId;
-import org.eclipse.ocl.domain.ids.OclInvalidTypeId;
-import org.eclipse.ocl.domain.ids.OclVoidTypeId;
-import org.eclipse.ocl.domain.ids.OperationId;
-import org.eclipse.ocl.domain.ids.PackageId;
-import org.eclipse.ocl.domain.ids.PrimitiveTypeId;
-import org.eclipse.ocl.domain.ids.PropertyId;
-import org.eclipse.ocl.domain.ids.RootPackageId;
-import org.eclipse.ocl.domain.ids.TemplateBinding;
-import org.eclipse.ocl.domain.ids.TemplateParameterId;
-import org.eclipse.ocl.domain.ids.TemplateableTypeId;
-import org.eclipse.ocl.domain.ids.TuplePartId;
-import org.eclipse.ocl.domain.ids.TupleTypeId;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.ids.UnspecifiedId;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.values.CollectionValue;
-import org.eclipse.ocl.domain.values.IntegerRange;
-import org.eclipse.ocl.domain.values.IntegerValue;
-import org.eclipse.ocl.domain.values.InvalidValue;
-import org.eclipse.ocl.domain.values.RealValue;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBoxExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCatchExp;
@@ -91,6 +60,37 @@ import org.eclipse.ocl.pivot.TypeExp;
 import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.VariableDeclaration;
 import org.eclipse.ocl.pivot.VariableExp;
+import org.eclipse.ocl.pivot.ids.ClassId;
+import org.eclipse.ocl.pivot.ids.CollectionTypeId;
+import org.eclipse.ocl.pivot.ids.DataTypeId;
+import org.eclipse.ocl.pivot.ids.ElementId;
+import org.eclipse.ocl.pivot.ids.EnumerationId;
+import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
+import org.eclipse.ocl.pivot.ids.IdVisitor;
+import org.eclipse.ocl.pivot.ids.LambdaTypeId;
+import org.eclipse.ocl.pivot.ids.NestedPackageId;
+import org.eclipse.ocl.pivot.ids.NestedTypeId;
+import org.eclipse.ocl.pivot.ids.NsURIPackageId;
+import org.eclipse.ocl.pivot.ids.OclInvalidTypeId;
+import org.eclipse.ocl.pivot.ids.OclVoidTypeId;
+import org.eclipse.ocl.pivot.ids.OperationId;
+import org.eclipse.ocl.pivot.ids.PackageId;
+import org.eclipse.ocl.pivot.ids.PrimitiveTypeId;
+import org.eclipse.ocl.pivot.ids.PropertyId;
+import org.eclipse.ocl.pivot.ids.RootPackageId;
+import org.eclipse.ocl.pivot.ids.TemplateBinding;
+import org.eclipse.ocl.pivot.ids.TemplateParameterId;
+import org.eclipse.ocl.pivot.ids.TemplateableTypeId;
+import org.eclipse.ocl.pivot.ids.TuplePartId;
+import org.eclipse.ocl.pivot.ids.TupleTypeId;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.ids.UnspecifiedId;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.values.CollectionValue;
+import org.eclipse.ocl.pivot.values.IntegerRange;
+import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.InvalidValue;
+import org.eclipse.ocl.pivot.values.RealValue;
 
 /**
  * A NameManager provides suggestions for names and maintains caches of used names so that model elements are consistently
@@ -475,7 +475,7 @@ public class NameManager
 		}
 
 		public @NonNull Context getContext() {
-			return DomainUtil.nonNullState(context);
+			return ClassUtil.nonNullState(context);
 		}
 		
 		protected @NonNull String getGlobalUniqueName(@Nullable Object anObject, @Nullable String... nameHints) {
@@ -869,7 +869,7 @@ public class NameManager
 	}
 
 	protected String getVariableDeclarationNameHint(@NonNull VariableDeclaration aVariableDeclaration) {
-		String string = DomainUtil.nonNullModel(aVariableDeclaration.getName());
+		String string = ClassUtil.nonNullModel(aVariableDeclaration.getName());
 		return VARIABLE_DECLARATION_NAME_HINT_PREFIX + getValidJavaIdentifier(string, VARIABLE_DECLARATION_NAME_HINT_PREFIX.length() > 0, aVariableDeclaration);
 	}
 	

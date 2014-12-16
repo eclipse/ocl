@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.codegen.cgmodel;
 
-import org.eclipse.ocl.domain.library.LibraryOperation;
+import org.eclipse.ocl.pivot.library.LibraryOperation;
 
 /**
  * <!-- begin-user-doc -->

@@ -13,7 +13,6 @@ package org.eclipse.ocl.xtext.oclstdlib;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EValidator;
-import org.eclipse.ocl.xtext.oclstdlib.OCLstdlibStandaloneSetupGenerated;
 import org.eclipse.ocl.xtext.oclstdlib.utilities.OCLstdlibASResourceFactory;
 import org.eclipse.ocl.xtext.oclstdlibcs.OCLstdlibCSPackage;
 import org.eclipse.ocl.xtext.oclstdlibcs.util.OCLstdlibCSValidator;

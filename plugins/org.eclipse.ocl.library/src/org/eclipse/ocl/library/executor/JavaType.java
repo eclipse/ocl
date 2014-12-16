@@ -12,15 +12,15 @@ package org.eclipse.ocl.library.executor;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.AbstractExecutorClass;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.library.LibraryFeature;
-import org.eclipse.ocl.domain.types.IdResolver;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.elements.AbstractExecutorClass;
+import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.library.LibraryFeature;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
  * JavaType supports the usage of Java Class to define the type of an object.
@@ -30,7 +30,7 @@ public class JavaType extends AbstractExecutorClass
 	protected final @NonNull Class<?> javaClass;
 	
 	public JavaType(@NonNull Class<?> javaClass) {
-		super(DomainUtil.nonNullState(javaClass.getName()), 0);
+		super(ClassUtil.nonNullState(javaClass.getName()), 0);
 		this.javaClass = javaClass;
 	}
 

@@ -18,18 +18,6 @@ import java.util.WeakHashMap;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.AbstractExecutorElement;
-import org.eclipse.ocl.domain.ids.PrimitiveTypeId;
-import org.eclipse.ocl.domain.ids.TemplateParameterId;
-import org.eclipse.ocl.domain.ids.TupleTypeId;
-import org.eclipse.ocl.domain.types.AbstractCollectionType;
-import org.eclipse.ocl.domain.types.AbstractTupleType;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.values.CollectionTypeParameters;
-import org.eclipse.ocl.domain.values.IntegerValue;
-import org.eclipse.ocl.domain.values.TemplateParameterSubstitutions;
-import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
-import org.eclipse.ocl.domain.values.impl.CollectionTypeParametersImpl;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
@@ -42,8 +30,20 @@ import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.elements.AbstractExecutorElement;
+import org.eclipse.ocl.pivot.ids.PrimitiveTypeId;
+import org.eclipse.ocl.pivot.ids.TemplateParameterId;
+import org.eclipse.ocl.pivot.ids.TupleTypeId;
+import org.eclipse.ocl.pivot.types.AbstractCollectionType;
+import org.eclipse.ocl.pivot.types.AbstractTupleType;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.TypeUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.CollectionTypeParameters;
+import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.TemplateParameterSubstitutions;
+import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
+import org.eclipse.ocl.pivot.values.impl.CollectionTypeParametersImpl;
 
 public abstract class ExecutableStandardLibrary extends AbstractExecutorElement implements CompleteEnvironment, StandardLibrary
 {
@@ -104,7 +104,7 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 			specializedType = weakGet(map, typeParameters);
 		}
 		if (specializedType == null) {
-			specializedType = new AbstractCollectionType(DomainUtil.nonNullModel(genericType.getName()), genericType, elementType, lower, upper);
+			specializedType = new AbstractCollectionType(ClassUtil.nonNullModel(genericType.getName()), genericType, elementType, lower, upper);
 			map.put(typeParameters, new WeakReference<AbstractCollectionType>(specializedType));
 		}
 		return specializedType;
@@ -129,12 +129,12 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 
 	@Override
 	public @Nullable org.eclipse.ocl.pivot.Package getNestedPackage(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name) {
-		return DomainUtil.getNamedElement(parentPackage.getOwnedPackages(), name);
+		return ClassUtil.getNamedElement(parentPackage.getOwnedPackages(), name);
 	}
 
 	@Override
 	public @Nullable org.eclipse.ocl.pivot.Class getNestedType(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name) {
-		return DomainUtil.getNamedElement(parentPackage.getOwnedClasses(), name);
+		return ClassUtil.getNamedElement(parentPackage.getOwnedClasses(), name);
 	}
 
 	@Override

@@ -21,9 +21,6 @@ import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
-import org.eclipse.ocl.domain.evaluation.DomainException;
-import org.eclipse.ocl.domain.types.IdResolver;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.EvaluationException;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.OCL;
@@ -36,9 +33,12 @@ import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.context.EInvocationContext;
 import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.delegate.OCLQueryDelegateFactory;
+import org.eclipse.ocl.pivot.evaluation.DomainException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
@@ -110,13 +110,13 @@ public class OCLQueryDelegate implements QueryDelegate
 			org.eclipse.ocl.pivot.Class targetType = idResolver.getStaticTypeOf(targetValue);
 			Type requiredType = nonNullSpecification.getContextVariable().getType();
 			if ((requiredType == null) || !targetType.conformsTo(metaModelManager.getStandardLibrary(), requiredType)) {
-				String message = DomainUtil.bind(OCLMessages.WrongContextClassifier_ERROR_, targetType, requiredType);
+				String message = ClassUtil.bind(OCLMessages.WrongContextClassifier_ERROR_, targetType, requiredType);
 				throw new OCLDelegateException(new SemanticException(message));
 			}
 			List<Variable> parameterVariables = nonNullSpecification.getParameterVariable();
 			int argCount = arguments != null ? arguments.size() : 0;
 			if (parameterVariables.size() != argCount) {
-				String message = DomainUtil.bind(OCLMessages.MismatchedArgumentCount_ERROR_, argCount, parameterVariables.size());
+				String message = ClassUtil.bind(OCLMessages.MismatchedArgumentCount_ERROR_, argCount, parameterVariables.size());
 				throw new OCLDelegateException(new SemanticException(message));
 			}
 			Query query = ocl.createQuery(nonNullSpecification);
@@ -126,25 +126,25 @@ public class OCLQueryDelegate implements QueryDelegate
 				String name = parameterVariable.getName();
 				Object object = nonNullArguments.get(name);
 				if ((object == null) && !nonNullArguments.containsKey(name)) {
-					String message = DomainUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, nonNullSpecification.getBody());
+					String message = ClassUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, nonNullSpecification.getBody());
 					throw new OCLDelegateException(new SemanticException(message));
 				}
 				Object value = idResolver.boxedValueOf(object);
 				targetType = idResolver.getStaticTypeOf(value);
-				requiredType = DomainUtil.nonNullModel(parameterVariable.getType());
+				requiredType = ClassUtil.nonNullModel(parameterVariable.getType());
 				if (!targetType.conformsTo(metaModelManager.getStandardLibrary(), requiredType)) {
-					String message = DomainUtil.bind(OCLMessages.MismatchedArgumentType_ERROR_, name, targetType, requiredType);
+					String message = ClassUtil.bind(OCLMessages.MismatchedArgumentType_ERROR_, name, targetType, requiredType);
 					throw new OCLDelegateException(new SemanticException(message));
 				}
 				env.add(parameterVariable, value);
 			}
 			Object result = query.evaluate(target);
 //			if (result.isInvalid()) {
-//				String message = DomainUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, getOperationName());
+//				String message = ClassUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, getOperationName());
 //				throw new OCLDelegateException(message);
 //			}
 	//		if ((result == null) / * || ocl.isInvalid(result) * /) {
-	//			String message = DomainUtil.bind(OCLMessages.EvaluationResultIsNull_ERROR_, getOperationName());
+	//			String message = ClassUtil.bind(OCLMessages.EvaluationResultIsNull_ERROR_, getOperationName());
 	//			throw new OCLDelegateException(message);
 	//		}
 	//		return converter.convert(ocl, result);
@@ -164,7 +164,7 @@ public class OCLQueryDelegate implements QueryDelegate
 			throw e;
 		}
 		catch (DomainException e) {
-			String message = DomainUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, expression);
+			String message = ClassUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, expression);
 			throw new InvocationTargetException(new EvaluationException(message));
 		}
 		catch (WrappedException e) {

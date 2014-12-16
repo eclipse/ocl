@@ -24,8 +24,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.common.utils.ClassUtils;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Annotation;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
@@ -40,6 +38,7 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.util.PivotSwitch;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 /**
@@ -196,7 +195,7 @@ public class CompleteOCLSplitter
 			else {
 				separateSiblings = ((org.eclipse.ocl.pivot.Package)separateParent).getOwnedPackages();
 			}
-			org.eclipse.ocl.pivot.Package separateObject = DomainUtil.getNamedElement(separateSiblings, name);
+			org.eclipse.ocl.pivot.Package separateObject = ClassUtil.getNamedElement(separateSiblings, name);
 			if (separateObject == null) {
 				separateObject = (org.eclipse.ocl.pivot.Package) object.eClass().getEPackage().getEFactoryInstance().create(object.eClass());
 				separateObject.setName(name);
@@ -235,7 +234,7 @@ public class CompleteOCLSplitter
 
 		protected <T extends NamedElement> T cloneNamedElement(List<T> separateSiblings, T object) {
 			String name = object.getName();
-			T separateObject = DomainUtil.getNamedElement(separateSiblings, name);
+			T separateObject = ClassUtil.getNamedElement(separateSiblings, name);
 			if (separateObject == null) {
 				@SuppressWarnings("unchecked")
 				T castObject = (T) object.eClass().getEPackage().getEFactoryInstance().create(object.eClass());
@@ -250,7 +249,7 @@ public class CompleteOCLSplitter
 			if (elements == null)
 				return null;
 			for (EObject element : elements)
-				if ((element instanceof NamedElement) && ClassUtils.equals(name, ((NamedElement)element).getName()))
+				if ((element instanceof NamedElement) && ClassUtil.equals(name, ((NamedElement)element).getName()))
 					return (NamedElement)element;
 			return null;				
 		}

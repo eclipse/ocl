@@ -17,12 +17,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
 import org.eclipse.ocl.examples.codegen.analyzer.DependencyVisitor;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
-import org.eclipse.ocl.examples.common.utils.TracingOption;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.TracingOption;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
@@ -35,7 +35,7 @@ public class ControlPlace extends LocalPlace
 {
 	public static @NonNull AbstractPlace createControlPlace(@NonNull Map<CGElement, AbstractPlace> element2place, @NonNull CGValuedElement cgElement) {
 		if (cgElement.isGlobal()) {
-			return DomainUtil.nonNullState(element2place.get(null));
+			return ClassUtil.nonNullState(element2place.get(null));
 		}
 		CGElement cgParent = cgElement.getParent();
 		AbstractPlace parentPlace = element2place.get(cgParent);
@@ -102,7 +102,7 @@ public class ControlPlace extends LocalPlace
 	public @NonNull SimpleAnalysis getSimpleAnalysis() {
 		SimpleAnalysis controlAnalysis2 = controlAnalysis;
 		if (controlAnalysis2 == null) {
-//			System.out.println(DomainUtil.debugSimpleName(placedElement));
+//			System.out.println(ClassUtil.debugSimpleName(placedElement));
 			controlAnalysis2 = globalPlace.getSimpleAnalysis(placedElement);
 			assert controlAnalysis2 != null;
 			controlAnalysis = controlAnalysis2;
@@ -212,7 +212,7 @@ public class ControlPlace extends LocalPlace
 	public String toString() {
 		SimpleAnalysis controlAnalysis2 = controlAnalysis;
 		if (controlAnalysis2 == null) {
-//			System.out.println(DomainUtil.debugSimpleName(placedElement));
+//			System.out.println(ClassUtil.debugSimpleName(placedElement));
 			controlAnalysis2 = globalPlace.getSimpleAnalysis(placedElement);
 		}
 		return getClass().getSimpleName() + ": " + String.valueOf(controlAnalysis2);

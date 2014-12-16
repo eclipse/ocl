@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Annotation;
 import org.eclipse.ocl.pivot.AnyType;
 import org.eclipse.ocl.pivot.AssociationClassCallExp;
@@ -97,6 +96,7 @@ import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.utilities.AS2Moniker;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.basecs.NamedElementCS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
@@ -129,7 +129,7 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 		long lower = ele.getLower().longValue();
 		long upper = ele.getUpper().longValue();
 		if ((lower != 1) || (upper != 1)) {
-			DomainUtil.formatMultiplicity(s, lower, upper);
+			ClassUtil.formatMultiplicity(s, lower, upper);
 		}
 	} */
 
@@ -138,7 +138,7 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 			if (element.eIsProxy()) {
 				EcoreUtil.resolve(element, element);
 			}
-			appendString(s, DomainUtil.getSafeName(element));
+			appendString(s, ClassUtil.getSafeName(element));
 		}	
 	}
 
@@ -147,7 +147,7 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 			if (csElement.eIsProxy()) {
 				EcoreUtil.resolve(csElement, csElement);
 			}
-			appendString(s, DomainUtil.getSafeName(csElement));
+			appendString(s, ClassUtil.getSafeName(csElement));
 		}	
 	}
 

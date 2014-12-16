@@ -15,10 +15,10 @@ import java.util.List;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.AbstractExecutorPackage;
-import org.eclipse.ocl.domain.ids.ElementId;
-import org.eclipse.ocl.domain.ids.PackageId;
 import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.elements.AbstractExecutorPackage;
+import org.eclipse.ocl.pivot.ids.ElementId;
+import org.eclipse.ocl.pivot.ids.PackageId;
 
 public abstract class ExecutorPackage extends AbstractExecutorPackage
 {

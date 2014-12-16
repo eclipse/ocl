@@ -19,13 +19,13 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.AbstractExecutorClass;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.types.AbstractFragment;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.InheritanceFragment;
+import org.eclipse.ocl.pivot.elements.AbstractExecutorClass;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.types.AbstractFragment;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
  * A ReflectiveType defines a Type using a compact representation suitable for efficient
@@ -131,7 +131,7 @@ public abstract class ReflectiveInheritance extends AbstractExecutorClass
 		if (fragments == null) {
 			initialize();
 		}
-		InheritanceFragment[] fragments2 = DomainUtil.nonNullState(fragments);
+		InheritanceFragment[] fragments2 = ClassUtil.nonNullState(fragments);
 		return new FragmentIterable(fragments2, 0, fragments2.length-1);
 	}
 
@@ -140,7 +140,7 @@ public abstract class ReflectiveInheritance extends AbstractExecutorClass
 		if (fragments == null) {
 			initialize();
 		}
-		return new FragmentIterable(DomainUtil.nonNullState(fragments));
+		return new FragmentIterable(ClassUtil.nonNullState(fragments));
 	}
 
 	@Override
@@ -199,7 +199,7 @@ public abstract class ReflectiveInheritance extends AbstractExecutorClass
 	
 	@Override
 	public final @NonNull FragmentIterable getSuperFragments(int depth) {
-		return new FragmentIterable(DomainUtil.nonNullState(fragments), indexes[depth], indexes[depth+1]);
+		return new FragmentIterable(ClassUtil.nonNullState(fragments), indexes[depth], indexes[depth+1]);
 	}
 
 	protected synchronized void initialize() {

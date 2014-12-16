@@ -12,7 +12,7 @@ package org.eclipse.ocl.library.string;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.library.AbstractSimpleBinaryOperation;
+import org.eclipse.ocl.pivot.library.AbstractSimpleBinaryOperation;
 
 /**
  * StringGreaterThanOperation realises the String::>() library operation.

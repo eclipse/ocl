@@ -116,7 +116,7 @@ Workflow {
     	}
      	exclude = Mapping {
     		from = "cspivot"
-//    		to = "platform:/resource/org.eclipse.ocl.pivot/model/Pivot.ecore"
+//    		to = "platform:/resource/org.eclipse.ocl.pivot.internal/model/Pivot.ecore"
     		to = "Pivot.ecore"
     	}
      	include = Mapping {

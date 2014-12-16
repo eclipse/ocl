@@ -12,7 +12,7 @@ package org.eclipse.ocl.library.string;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.library.AbstractSimpleUnaryOperation;
+import org.eclipse.ocl.pivot.library.AbstractSimpleUnaryOperation;
 
 /**
  * StringToLowerCaseOperation realises the String::toLowerCase() library operation.

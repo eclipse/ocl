@@ -22,10 +22,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.utilities.StandaloneProjectMap;
-import org.eclipse.ocl.domain.utilities.StandaloneProjectMap.IPackageDescriptor;
-import org.eclipse.ocl.domain.utilities.StandaloneProjectMap.IProjectDescriptor;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.OCL;
@@ -35,6 +31,10 @@ import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.uml.UML2AS;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.IPackageDescriptor;
+import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.IProjectDescriptor;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.basecs.ImportCS;
 import org.eclipse.ocl.xtext.basecs.RootPackageCS;
@@ -461,7 +461,7 @@ public class SerializeTests extends XtextTestCase
 	public void testSerialize_States() throws Exception {
 		Map<Object, Object> options = new HashMap<Object, Object>();
 		options.put("cs2asErrors", 
-			DomainUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, "OclInvalid", "substring", "1, 1"));
+			ClassUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, "OclInvalid", "substring", "1, 1"));
 		doSerialize("States", "States", options, true, true);
 	}	
 

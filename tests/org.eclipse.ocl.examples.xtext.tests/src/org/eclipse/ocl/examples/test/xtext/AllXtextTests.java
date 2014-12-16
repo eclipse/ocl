@@ -44,6 +44,8 @@ import org.eclipse.ocl.examples.pivot.tests.StereotypesTest;
 import org.eclipse.ocl.examples.pivot.tests.UMLValidateTest;
 import org.eclipse.ocl.examples.pivot.tests.ValidateTests;
 import org.eclipse.ocl.examples.test.ecore.ProjectMapTest;
+import org.eclipse.ocl.examples.test.label.PluginLabelTests;
+import org.eclipse.ocl.examples.test.label.StandaloneLabelTests;
 import org.eclipse.ocl.examples.test.standalone.StandaloneExecutionTests;
 import org.eclipse.ocl.examples.test.standalone.StandaloneParserTests;
 import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
@@ -123,7 +125,11 @@ public class AllXtextTests
 			result.addTestSuite(UMLConsoleTests.class);
 			result.addTestSuite(EditorTests.class);
 			result.addTestSuite(FileNewWizardTest.class);
+			result.addTestSuite(PluginLabelTests.class);
 //			result.addTestSuite(DebuggerTests.class);
+		}
+		else {
+			result.addTestSuite(StandaloneLabelTests.class);
 		}
 		return result;
 	}

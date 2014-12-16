@@ -12,7 +12,6 @@ package org.eclipse.ocl.examples.build.latex
 
 import org.eclipse.jdt.annotation.NonNull
 import org.eclipse.jdt.annotation.Nullable
-import org.eclipse.ocl.domain.utilities.DomainUtil
 import org.eclipse.ocl.pivot.Class
 import org.eclipse.ocl.pivot.Element
 import org.eclipse.ocl.pivot.Namespace
@@ -32,6 +31,7 @@ import org.eclipse.xtext.RuleCall
 import org.eclipse.xtext.TypeRef
 import org.eclipse.xtext.UntilToken
 import org.eclipse.xtext.Wildcard
+import org.eclipse.ocl.pivot.utilities.ClassUtil
 
 public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 {
@@ -117,7 +117,7 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 	}
 
 	protected def emitCS2AS(@NonNull Class asClass, @NonNull Package cs2asPackage) {
-		var cs2asClass = DomainUtil.getNamedElement(cs2asPackage.getOwnedClasses(), asClass.getName());
+		var cs2asClass = ClassUtil.getNamedElement(cs2asPackage.getOwnedClasses(), asClass.getName());
 		if (cs2asClass != null)  {
 		'''
 
@@ -135,7 +135,7 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 	}
 
 	protected def emitCS2CS(@NonNull Class asClass, @NonNull Package cs2asPackage) {
-		var cs2csClass = DomainUtil.getNamedElement(cs2asPackage.getOwnedClasses(), asClass.getName());
+		var cs2csClass = ClassUtil.getNamedElement(cs2asPackage.getOwnedClasses(), asClass.getName());
 		if (cs2csClass != null)  {
 		'''
 
@@ -185,10 +185,10 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 			«emitOperations(asClass)»
 			«emitParserRules(asClass, grammar)»
 			«IF cs2csPackage != null»
-			«emitCS2CS(asClass, DomainUtil.nonNullState(cs2csPackage))»
+			«emitCS2CS(asClass, ClassUtil.nonNullState(cs2csPackage))»
 			«ENDIF»
 			«IF cs2asPackage != null»
-			«emitCS2AS(asClass, DomainUtil.nonNullState(cs2asPackage))»
+			«emitCS2AS(asClass, ClassUtil.nonNullState(cs2asPackage))»
 			«ENDIF»
 		«ENDFOR»
 		'''

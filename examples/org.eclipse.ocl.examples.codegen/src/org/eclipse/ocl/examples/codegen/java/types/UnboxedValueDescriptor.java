@@ -11,8 +11,8 @@
 package org.eclipse.ocl.examples.codegen.java.types;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.ids.ElementId;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
+import org.eclipse.ocl.pivot.ids.ElementId;
 
 /**
  * An UnboxedValueDescriptor describes a type whose unboxed representation differs from its boxed representation. It has a pivot ElementId and a Java class.

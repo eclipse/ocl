@@ -33,10 +33,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.common.utils.TracingOption;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.values.IntegerValue;
-import org.eclipse.ocl.domain.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.pivot.Annotation;
 import org.eclipse.ocl.pivot.AnyType;
 import org.eclipse.ocl.pivot.CollectionType;
@@ -68,11 +64,15 @@ import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.context.AbstractBase2ASConversion;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.scoping.ScopeFilter;
-import org.eclipse.ocl.pivot.util.MorePivotable;
-import org.eclipse.ocl.pivot.util.Pivotable;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.IllegalLibraryException;
+import org.eclipse.ocl.pivot.utilities.MorePivotable;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.Pivotable;
+import org.eclipse.ocl.pivot.utilities.TracingOption;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.xtext.base.cs2as.BaseCSPreOrderVisitor.OperatorExpContinuation;
 import org.eclipse.ocl.xtext.base.cs2as.BaseCSPreOrderVisitor.TemplateSignatureContinuation;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
@@ -229,7 +229,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 	protected void diagnoseContinuationFailure(@NonNull List<BasicContinuation<?>> continuations) {
 		if (CONTINUATION.isActive()) {
 			for (BasicContinuation<?> continuation : continuations) {
-				CONTINUATION.println(DomainUtil.nonNullState(continuation.toString()));
+				CONTINUATION.println(ClassUtil.nonNullState(continuation.toString()));
 				for (Dependency dependency : continuation.getDependencies()) {
 					boolean canExecute = dependency.canExecute();
 					CONTINUATION.println((canExecute ? "+ " : "- ") + dependency.toString());
@@ -833,7 +833,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		boolean tracingOn = CONTINUATION.isActive();
 		if (tracingOn) {
 			CONTINUATION.println("------------------------------------------------ " + continuations.size());
-			CONTINUATION.println(DomainUtil.nonNullState(typesHaveSignatures.toString()));
+			CONTINUATION.println(ClassUtil.nonNullState(typesHaveSignatures.toString()));
 		}
 		for (BasicContinuation<?> continuation : continuations) {
 			boolean canExecute = continuation.canExecute();
@@ -918,7 +918,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 	}
 
 	public void refreshContextVariable(@NonNull ExpressionInOCL pivotSpecification) {
-//		System.out.println(DomainUtil.debugSimpleName(pivotSpecification) + " " + pivotSpecification);
+//		System.out.println(ClassUtil.debugSimpleName(pivotSpecification) + " " + pivotSpecification);
 		EObject eContainer = pivotSpecification.eContainer();
 		EStructuralFeature eContainingFeature = pivotSpecification.eContainingFeature();
 		if (eContainingFeature == PivotPackage.Literals.CONSTRAINT__SPECIFICATION) {

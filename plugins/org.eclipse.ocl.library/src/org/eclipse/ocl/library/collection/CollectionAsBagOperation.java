@@ -12,8 +12,8 @@ package org.eclipse.ocl.library.collection;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.library.AbstractSimpleUnaryOperation;
-import org.eclipse.ocl.domain.values.BagValue;
+import org.eclipse.ocl.pivot.library.AbstractSimpleUnaryOperation;
+import org.eclipse.ocl.pivot.values.BagValue;
 
 /**
  * CollectionAsBagOperation realises the Collection::asBag() library operation.

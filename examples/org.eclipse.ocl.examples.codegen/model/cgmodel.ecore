@@ -612,21 +612,21 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="Element" instanceClassName="org.eclipse.ocl.pivot.Element"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="ElementId" instanceClassName="org.eclipse.ocl.domain.ids.ElementId"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="EnumerationLiteralId" instanceClassName="org.eclipse.ocl.domain.ids.EnumerationLiteralId"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="ElementId" instanceClassName="org.eclipse.ocl.pivot.ids.ElementId"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="EnumerationLiteralId" instanceClassName="org.eclipse.ocl.pivot.ids.EnumerationLiteralId"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Iteration" instanceClassName="org.eclipse.ocl.pivot.Iteration"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Field" instanceClassName="java.lang.reflect.Field"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="LibraryIteration" instanceClassName="org.eclipse.ocl.domain.library.LibraryIteration"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="LibraryOperation" instanceClassName="org.eclipse.ocl.domain.library.LibraryOperation"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="LibraryProperty" instanceClassName="org.eclipse.ocl.domain.library.LibraryProperty"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="LibraryIteration" instanceClassName="org.eclipse.ocl.pivot.library.LibraryIteration"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="LibraryOperation" instanceClassName="org.eclipse.ocl.pivot.library.LibraryOperation"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="LibraryProperty" instanceClassName="org.eclipse.ocl.pivot.library.LibraryProperty"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Method" instanceClassName="java.lang.reflect.Method"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Nameable" instanceClassName="org.eclipse.ocl.domain.elements.Nameable"
+  <eClassifiers xsi:type="ecore:EClass" name="Nameable" instanceClassName="org.eclipse.ocl.pivot.Nameable"
       abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Number" instanceClassName="java.lang.Number"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Object" instanceClassName="java.lang.Object"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Operation" instanceClassName="org.eclipse.ocl.pivot.Operation"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Property" instanceClassName="org.eclipse.ocl.pivot.Property"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="TuplePartId" instanceClassName="org.eclipse.ocl.domain.ids.TuplePartId"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="TuplePartId" instanceClassName="org.eclipse.ocl.pivot.ids.TuplePartId"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Type" instanceClassName="org.eclipse.ocl.pivot.Type"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="TypeId" instanceClassName="org.eclipse.ocl.domain.ids.TypeId"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="TypeId" instanceClassName="org.eclipse.ocl.pivot.ids.TypeId"/>
 </ecore:EPackage>

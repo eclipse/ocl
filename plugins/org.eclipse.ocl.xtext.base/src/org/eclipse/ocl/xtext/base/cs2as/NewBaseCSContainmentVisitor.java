@@ -11,7 +11,6 @@
 package org.eclipse.ocl.xtext.base.cs2as;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.xtext.base.cs2as.AutoBaseCSContainmentVisitor;
 
 
 public class NewBaseCSContainmentVisitor extends AutoBaseCSContainmentVisitor{

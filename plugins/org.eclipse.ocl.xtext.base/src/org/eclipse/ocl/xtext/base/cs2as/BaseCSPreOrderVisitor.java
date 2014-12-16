@@ -14,8 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.types.AbstractTuplePart;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.AnyType;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Element;
@@ -28,6 +26,8 @@ import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.types.AbstractTuplePart;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.basecs.AnnotationCS;
@@ -102,15 +102,15 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 	protected static class LambdaContinuation extends SingleContinuation<LambdaTypeCS>
 	{
 		private static Dependency[] computeDependencies(@NonNull CS2ASConversion context, @NonNull LambdaTypeCS csElement) {
-			TypedRefCS ownedContextType = DomainUtil.nonNullState(csElement.getOwnedContextType());
-			TypedRefCS ownedResultType = DomainUtil.nonNullState(csElement.getOwnedResultType());
+			TypedRefCS ownedContextType = ClassUtil.nonNullState(csElement.getOwnedContextType());
+			TypedRefCS ownedResultType = ClassUtil.nonNullState(csElement.getOwnedResultType());
 			List<TypedRefCS> csParameterTypes = csElement.getOwnedParameterTypes();
 			int iMax = csParameterTypes.size();
 			Dependency[] dependencies = new Dependency[2 + iMax];
 			dependencies[0] = context.createTypeIsReferenceableDependency(ownedContextType);
 			dependencies[1] = context.createTypeIsReferenceableDependency(ownedResultType);
 			for (int i = 0; i < iMax; i++) {
-				TypedRefCS csParameterType = DomainUtil.nonNullState(csParameterTypes.get(i));
+				TypedRefCS csParameterType = ClassUtil.nonNullState(csParameterTypes.get(i));
 				dependencies[i+2] = context.createTypeIsReferenceableDependency(csParameterType);
 			}
 			return dependencies;
@@ -361,7 +361,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 				List<Property> tupleParts = tupleType.getOwnedProperties();
 				for (TuplePartCS csTuplePart : csElement.getOwnedParts()) {
 					String partName = csTuplePart.getName();
-					Property tuplePart = DomainUtil.getNamedElement(tupleParts, partName);
+					Property tuplePart = ClassUtil.getNamedElement(tupleParts, partName);
 					if (tuplePart != null) {
 						context.installPivotUsage(csTuplePart, tuplePart);
 					}

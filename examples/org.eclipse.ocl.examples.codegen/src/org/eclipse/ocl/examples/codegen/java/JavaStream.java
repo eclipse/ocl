@@ -21,9 +21,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.ids.ElementId;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.examples.codegen.analyzer.CGUtils;
 import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
@@ -45,11 +42,14 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.ids.ElementId;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.util.Visitable;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.xtext.util.Strings;
 
 /**
@@ -781,10 +781,10 @@ public class JavaStream
 	public boolean appendThrowBooleanInvalidValueException(/*@NonNull*/ String message, @NonNull String... arguments) {
 		appendClassReference(ValueUtil.class);
 		append(".throwBooleanInvalidValueException(");
-		appendString(DomainUtil.nonNullState(message));
+		appendString(ClassUtil.nonNullState(message));
 		for (String argument : arguments) {
 			append(", ");
-			appendString(DomainUtil.nonNullState(argument));
+			appendString(ClassUtil.nonNullState(argument));
 		}
 		append(");\n");
 		return false;
@@ -794,10 +794,10 @@ public class JavaStream
 		append("throw new ");
 		appendClassReference(InvalidValueException.class);
 		append("(");
-		appendString(DomainUtil.nonNullState(message));
+		appendString(ClassUtil.nonNullState(message));
 		for (String argument : arguments) {
 			append(", ");
-			appendString(DomainUtil.nonNullState(argument));
+			appendString(ClassUtil.nonNullState(argument));
 		}
 		append(");\n");
 		return false;

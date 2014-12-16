@@ -21,6 +21,13 @@
    </url>
 
    <plugin
+         id="org.eclipse.ocl.jdt.annotation7"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
          id="org.eclipse.ocl.common"
          download-size="0"
          install-size="0"
@@ -28,21 +35,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.ocl.examples.common"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.ocl.domain"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.ocl.jdt.annotation7"
+         id="org.eclipse.ocl.pivot"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -56,7 +49,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.ocl.pivot"
+         id="org.eclipse.ocl.pivot.internal"
          download-size="0"
          install-size="0"
          version="0.0.0"

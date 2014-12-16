@@ -22,12 +22,12 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.examples.common.utils.EcoreUtils;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.AssociationClass;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.uml2.uml.Association;
 
 /**
@@ -103,7 +103,7 @@ public abstract class PivotFruitTestSuite extends PivotTestSuite
 	}
 	
 	private EOperation getEOperation(EClass eClass, String name, Object object, Object object2) {
-		return EcoreUtils.getNamedElement(eClass.getEOperations(), name);
+		return LabelUtil.getNamedElement(eClass.getEOperations(), name);
 	}
 
 	private EAttribute getEAttribute(EClass cls, String name, Object object) {
@@ -124,7 +124,7 @@ public abstract class PivotFruitTestSuite extends PivotTestSuite
 		fruitEPackage = (EPackage)ecoreResource.getContents().get(0);
 		fruitEFactory = fruitEPackage.getEFactoryInstance();
 		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metaModelManager);
-		fruitPackage = DomainUtil.getNamedElement(ecore2as.getPivotModel().getOwnedPackages(), "fruit");
+		fruitPackage = ClassUtil.getNamedElement(ecore2as.getPivotModel().getOwnedPackages(), "fruit");
 		
 		fruit = (EClass) getEClassifier(fruitEPackage, "Fruit");
 		fruit_ripen = getEOperation(fruit, "ripen", null, null);

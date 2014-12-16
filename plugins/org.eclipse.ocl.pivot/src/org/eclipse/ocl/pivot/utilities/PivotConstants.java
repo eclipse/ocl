@@ -1,0 +1,87 @@
+/*******************************************************************************
+ * Copyright (c) 2014 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   E.D.Willink - initial API and implementation
+ *******************************************************************************/
+package org.eclipse.ocl.pivot.utilities;
+
+import org.eclipse.jdt.annotation.NonNull;
+
+public interface PivotConstants
+{
+	/**
+	 * EPackage annotation indicating that the EPackage is an Ecore serialisation of an OCL AS Metamodel.
+	 * No details are defined for this EAnnotation.
+	 * <p>
+	 * This annotation is used by /org.eclipse.ocl.pivot.internal/model/Pivot.ecore. It is not
+	 * intended to be used by client code.
+	 */
+	static final @NonNull String AS_METAMODEL_ANNOTATION_SOURCE = "http://www.eclipse.org/OCL/ASMetamodel";
+	
+	/**
+	 * The Package name of the shared metamodel.
+	 */
+	static final @NonNull String METAMODEL_NAME = "$metamodel$";
+	
+	/**
+	 * The Package name of the shared types metamodel.
+	 */
+	static final @NonNull String TYPES_METAMODEL_NAME = "$types$";	// FIXME Use extension point
+	
+	/**
+	 * The Package name of the shared uml metamodel.
+	 */
+	static final @NonNull String UML_METAMODEL_NAME = "$uml$";	// FIXME Use extension point
+
+	static final @NonNull String OCL_AS_FILE_EXTENSION = "oclas";
+	static final @NonNull String DOT_OCL_AS_FILE_EXTENSION = "." + OCL_AS_FILE_EXTENSION;
+	
+	/**
+	 * String-valued URI prefix of a package defining the primitive types. Proxy references to
+	 * e.g. OCL's String rather than Ecore's EString are constructed by just appending 'String' to
+	 * the prefix.
+	 */
+	static final @NonNull String PRIMITIVE_TYPES_URI_PREFIX = "PRIMITIVE_TYPES_URI_PREFIX";
+
+	/**
+	 * EPackage annotation identifying models that must be imported.
+	 * Each detail is an alias-name, import uri pair.
+	 */
+	static final @NonNull String IMPORT_ANNOTATION_SOURCE = "http://www.eclipse.org/OCL/Import";
+	static final @NonNull String SYSML_ANNOTATION_SOURCE = "http://www.omg.org/spec/SysML";
+	
+	/**
+	 * EPackage annotation indicating that the EPackage is an Ecore serialisation of an OCL AS Library.
+	 * No details are defined for this EAnnotation.
+	 * <p>
+	 * This annotation is used by /org.eclipse.ocl.library/model/oclstdlib.ecore. It is not
+	 * intended to be used by client code.
+	 */
+	static final @NonNull String AS_LIBRARY_ANNOTATION_SOURCE = "http://www.eclipse.org/OCL/ASLibrary";
+
+	static final @NonNull String OMG_OCL_ANNOTATION_SOURCE = "http://www.omg.org/ocl";
+
+	static final @NonNull String COLLECTION_NAVIGATION_OPERATOR = "->";
+	static final @NonNull String OBJECT_NAVIGATION_OPERATOR = ".";
+	static final @NonNull String GREATER_THAN_OPERATOR = ">";
+	static final @NonNull String GREATER_THAN_OR_EQUAL_OPERATOR = ">=";
+	static final @NonNull String LESS_THAN_OPERATOR = "<";
+	static final @NonNull String LESS_THAN_OR_EQUAL_OPERATOR = "<=";
+
+	static final @NonNull String ORPHANAGE_NAME = "$$";
+	static final @NonNull String ORPHANAGE_PREFIX = "orphanage";
+	static final @NonNull String ORPHANAGE_URI = "http://www.eclipse.org/ocl/2015/Orphanage";
+	static final @NonNull String PRIMITIVES_URI = "http://www.eclipse.org/ocl/2015/Primitives";
+	
+	static final @NonNull String OCL_LANGUAGE = "OCL";			// More visible UMLUtil.Language_OCL
+	static final @NonNull String OCL_NAME = "ocl";
+	
+	static final @NonNull String MESSAGE_PART_NAME = "message";
+	static final @NonNull String SEVERITY_PART_NAME = "severity";
+	static final @NonNull String STATUS_PART_NAME = "status";
+}

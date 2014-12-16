@@ -28,8 +28,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.values.Unlimited;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Element;
@@ -48,7 +46,9 @@ import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.AbstractConversion;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.values.Unlimited;
 import org.eclipse.ocl.xtext.base.as2cs.AS2CS.Factory;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.basecs.AnnotationCS;
@@ -112,7 +112,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 	}
 
 	public void createImports(@NonNull RootCS documentCS, @NonNull Map<Namespace, List<String>> importedNamespaces) {
-		BaseCSResource csResource = (BaseCSResource) DomainUtil.nonNullState(documentCS.eResource());
+		BaseCSResource csResource = (BaseCSResource) ClassUtil.nonNullState(documentCS.eResource());
 		AliasAnalysis.dispose(csResource);			// Force reanalysis
 		MetaModelManager metaModelManager = PivotUtil.findMetaModelManager(csResource);
 		if (metaModelManager == null) {
@@ -146,7 +146,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 				if (eObject instanceof EPackage) {
 					EPackage ePackage = (EPackage)eObject;
 					Resource resource = ePackage.eResource();
-					if (DomainUtil.isRegistered(resource)) {
+					if (ClassUtil.isRegistered(resource)) {
 						importURI = ePackage.getNsURI();
 					}
 				}

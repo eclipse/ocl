@@ -14,11 +14,11 @@ package org.eclipse.ocl.examples.test.generic;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestSuite;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
+import org.eclipse.ocl.pivot.complete.StandardLibraryInternal;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
  * Tests for usages of model features whose names coincide with "keywords"
@@ -45,7 +45,7 @@ public abstract class GenericKeywordsTest
 
         // create a little test model for a Smalltalk-like collection class that
         // defines operations corresponding to OCL iterators
-        smalltalk = metaModelManager.createPackage(org.eclipse.ocl.pivot.Package.class, DomainUtil.nonNullEMF(PivotPackage.Literals.PACKAGE), "Smalltalk", null, null);
+        smalltalk = metaModelManager.createPackage(org.eclipse.ocl.pivot.Package.class, ClassUtil.nonNullEMF(PivotPackage.Literals.PACKAGE), "Smalltalk", null, null);
         registerPackage(smalltalk, "st", "foo://smalltalk");
 
         org.eclipse.ocl.pivot.Class object = createOwnedClass(smalltalk, "Object", false);

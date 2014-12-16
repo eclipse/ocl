@@ -336,13 +336,13 @@ public class CompletionProposalTests extends XtextTestCase
 			//
 			//	Completion proposal that probably resolves to a folder entry.
 			//
-			IReferenceCompletionProposal proposal3a = new ReferenceConfigurableCompletionProposal("org.eclipse.ocl.domain.ids.impl.OclInvalidTypeIdImpl");
-			IReferenceCompletionProposal proposal3b = new ReferenceConfigurableCompletionProposal("org.eclipse.ocl.domain.ids.impl.OclVoidTypeIdImpl");
+			IReferenceCompletionProposal proposal3a = new ReferenceConfigurableCompletionProposal("org.eclipse.ocl.pivot.ids.impl.OclInvalidTypeIdImpl");
+			IReferenceCompletionProposal proposal3b = new ReferenceConfigurableCompletionProposal("org.eclipse.ocl.pivot.ids.impl.OclVoidTypeIdImpl");
 			doTestEditor(
 				"import 'http://www.eclipse.org/ocl/2015/Library';\n" +
 				"library ocl : ocl = 'http://www.eclipse.org/ocl/2015/Library' {\n" +
 				"	type Complex : PrimitiveType {\n" +
-				"		operation testing() : String => 'org.eclipse.ocl.domain.ids.impl.O$';\n" +
+				"		operation testing() : String => 'org.eclipse.ocl.pivot.ids.impl.O$';\n" +
 				"	}\n" +
 				"}';\n",
 				new IReferenceCompletionProposal[]{proposal3a, proposal3b}, null);

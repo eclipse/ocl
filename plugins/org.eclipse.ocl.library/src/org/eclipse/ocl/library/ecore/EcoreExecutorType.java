@@ -16,16 +16,16 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainTypeParameters;
-import org.eclipse.ocl.domain.ids.BuiltInTypeId;
-import org.eclipse.ocl.domain.ids.IdManager;
-import org.eclipse.ocl.domain.ids.PackageId;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.library.executor.ExecutorFragment;
 import org.eclipse.ocl.library.executor.ExecutorPackage;
 import org.eclipse.ocl.library.executor.ExecutorType;
 import org.eclipse.ocl.library.executor.ExecutorTypeParameter;
+import org.eclipse.ocl.pivot.elements.DomainTypeParameters;
+import org.eclipse.ocl.pivot.ids.BuiltInTypeId;
+import org.eclipse.ocl.pivot.ids.IdManager;
+import org.eclipse.ocl.pivot.ids.PackageId;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 public class EcoreExecutorType extends ExecutorType
 {
@@ -55,7 +55,7 @@ public class EcoreExecutorType extends ExecutorType
 	 * Construct an executable type descriptor for a known EClassifier.
 	 */
 	public EcoreExecutorType(/*@NonNull*/ EClassifier eClassifier, @NonNull EcoreExecutorPackage evaluationPackage, int flags, @NonNull ExecutorTypeParameter... typeParameters) {
-		super(DomainUtil.nonNullModel(eClassifier.getName()), evaluationPackage, flags, typeParameters);
+		super(ClassUtil.nonNullModel(eClassifier.getName()), evaluationPackage, flags, typeParameters);
 		this.eClassifier = eClassifier;		
 	}
 
@@ -66,7 +66,7 @@ public class EcoreExecutorType extends ExecutorType
 			EClass eClass = (EClass)eClassifier2;
 			EObject element = eClass.getEPackage().getEFactoryInstance().create(eClass);
 //			TypeId typeId = IdManager.getTypeId(eClass);
-			return /*ValuesUtil.createObjectValue(typeId, */DomainUtil.nonNullEMF(element); //);
+			return /*ValuesUtil.createObjectValue(typeId, */ClassUtil.nonNullEMF(element); //);
 		}
 		throw new UnsupportedOperationException();
 	}
@@ -77,7 +77,7 @@ public class EcoreExecutorType extends ExecutorType
 		if (eClassifier2 instanceof EDataType) {
 			EDataType eDataType = (EDataType) eClassifier2;
 			Object element = eDataType.getEPackage().getEFactoryInstance().createFromString(eDataType, value);
-			return /*ValuesUtil.valueOf(*/DomainUtil.nonNullEMF(element); //);
+			return /*ValuesUtil.valueOf(*/ClassUtil.nonNullEMF(element); //);
 		}
 		throw new UnsupportedOperationException();
 	}
@@ -89,7 +89,7 @@ public class EcoreExecutorType extends ExecutorType
 	@Override
 	public @NonNull String getMetaTypeName() {
 		if (eClassifier != null) {					// FIXME Enforce @NonNull
-			return DomainUtil.nonNullModel(DomainUtil.nonNullState(eClassifier).getName());
+			return ClassUtil.nonNullModel(ClassUtil.nonNullState(eClassifier).getName());
 		}
 		else {
 			return getTypeId().getMetaTypeName();
@@ -134,7 +134,7 @@ public class EcoreExecutorType extends ExecutorType
 		assert eClassifier != null;
 		assert this.eClassifier == null;
 		assert name.equals(eClassifier.getName());
-		this.eClassifier = DomainUtil.nonNullState(eClassifier);		
+		this.eClassifier = ClassUtil.nonNullState(eClassifier);		
 		initFragments(fragments, depthCounts);
 		return this;
 	}

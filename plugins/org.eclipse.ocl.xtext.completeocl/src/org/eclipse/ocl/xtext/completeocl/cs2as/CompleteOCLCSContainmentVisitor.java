@@ -18,7 +18,6 @@ import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
@@ -34,6 +33,7 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.scoping.ScopeFilter;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
@@ -189,7 +189,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		Operation contextOperation = context.refreshModelElement(Operation.class, PivotPackage.Literals.OPERATION, operationContextDecl);
 		Operation modelOperation = operationContextDecl.getReferredOperation();
 		if (modelOperation != null) {
-			context.refreshName(contextOperation, DomainUtil.nonNullModel(modelOperation.getName()));
+			context.refreshName(contextOperation, ClassUtil.nonNullModel(modelOperation.getName()));
 			context.setType(contextOperation, modelOperation.getType(), modelOperation.isRequired());
 			List<ExpSpecificationCS> ownedBodies = operationContextDecl.getOwnedBodies();
 			ExpSpecificationCS ownedBody = ownedBodies.size() > 0 ? ownedBodies.get(0) : null;
@@ -271,7 +271,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		Property contextProperty = context.refreshModelElement(Property.class, PivotPackage.Literals.PROPERTY, propertyContextDecl);
 		Property modelProperty = propertyContextDecl.getReferredProperty();
 		if (modelProperty != null) {
-			context.refreshName(contextProperty, DomainUtil.nonNullModel(modelProperty.getName()));
+			context.refreshName(contextProperty, ClassUtil.nonNullModel(modelProperty.getName()));
 			context.setType(contextProperty, modelProperty.getType(), modelProperty.isRequired());
 			List<ExpSpecificationCS> ownedDefaultExpressions = propertyContextDecl.getOwnedDefaultExpressions();
 			ExpSpecificationCS ownedDefaultExpression = ownedDefaultExpressions.size() > 0 ? ownedDefaultExpressions.get(0) : null;

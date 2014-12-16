@@ -43,10 +43,10 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jface.dialogs.MessageDialogWithToggle;
 import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
@@ -136,7 +136,7 @@ public class DebuggerTests extends XtextTestCase
 		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(oclResource);
 		org.eclipse.ocl.pivot.Class customerClass = metaModelManager.getPivotOf(org.eclipse.ocl.pivot.Class.class, eObject.eClass());
 		Iterable<Constraint> customerInvariants = metaModelManager.getAllInvariants(customerClass);
-		Constraint constraint = DomainUtil.getNamedElement(customerInvariants, "invariant_sizesAgree");
+		Constraint constraint = ClassUtil.getNamedElement(customerInvariants, "invariant_sizesAgree");
 
 		ILaunchConfigurationWorkingCopy launchConfiguration = createLaunchConfiguration(iProject, constraint, eObject);
 		launchConfiguration.doSave();

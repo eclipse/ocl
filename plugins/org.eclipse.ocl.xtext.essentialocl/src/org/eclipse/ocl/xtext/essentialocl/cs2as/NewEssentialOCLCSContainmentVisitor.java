@@ -12,7 +12,6 @@ package org.eclipse.ocl.xtext.essentialocl.cs2as;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
-import org.eclipse.ocl.xtext.essentialocl.cs2as.AutoEssentialOCLCSContainmentVisitor;
 
 
 public class NewEssentialOCLCSContainmentVisitor extends AutoEssentialOCLCSContainmentVisitor {

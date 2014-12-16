@@ -13,7 +13,7 @@ package org.eclipse.ocl.xtext.basecs;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.scoping.ScopeFilter;
-import org.eclipse.ocl.pivot.util.Pivotable;
+import org.eclipse.ocl.pivot.utilities.Pivotable;
 
 /**
  * <!-- begin-user-doc -->

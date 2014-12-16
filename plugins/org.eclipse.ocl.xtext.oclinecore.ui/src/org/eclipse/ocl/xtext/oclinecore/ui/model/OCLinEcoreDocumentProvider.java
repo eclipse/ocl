@@ -43,11 +43,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
-import org.eclipse.ocl.examples.common.plugin.OCLExamplesCommonPlugin;
-import org.eclipse.ocl.domain.utilities.ProjectMap;
-import org.eclipse.ocl.domain.utilities.StandaloneProjectMap;
-import org.eclipse.ocl.domain.utilities.StandaloneProjectMap.IProjectDescriptor;
-import org.eclipse.ocl.domain.utilities.StandaloneProjectMap.MapToFirstConflictHandlerWithLog;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.PivotConstants;
@@ -62,8 +57,13 @@ import org.eclipse.ocl.pivot.resource.OCLASResourceFactory;
 import org.eclipse.ocl.pivot.uml.UML2AS;
 import org.eclipse.ocl.pivot.utilities.BaseResource;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ProjectMap;
+import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.IProjectDescriptor;
+import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.MapToFirstConflictHandlerWithLog;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
+import org.eclipse.ocl.xtext.oclinecore.ui.OCLinEcoreUiModule;
 import org.eclipse.ocl.xtext.oclinecore.ui.OCLinEcoreUiPluginHelper;
 import org.eclipse.ocl.xtext.oclinecorecs.OCLinEcoreCSPackage;
 import org.eclipse.ui.IEditorInput;
@@ -128,10 +128,10 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 				s.append("\n");
 				s.append(diagnostic.toString());
 			}
-			throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, s.toString(), e));
+			throw new CoreException(new Status(IStatus.ERROR, OCLinEcoreUiModule.PLUGIN_ID, s.toString(), e));
 		}
 		else {
-			throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, "Failed to load", e));
+			throw new CoreException(new Status(IStatus.ERROR, OCLinEcoreUiModule.PLUGIN_ID, "Failed to load", e));
 		}
 	}
 
@@ -139,7 +139,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 		List<Resource.Diagnostic> errors = resource.getErrors();
 		if (errors.size() > 0) {
 			String formattedMessage = PivotUtil.formatResourceDiagnostics(errors, "Failed to load", "\n");
-			throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, formattedMessage));
+			throw new CoreException(new Status(IStatus.ERROR, OCLinEcoreUiModule.PLUGIN_ID, formattedMessage));
 		}
 	}
 
@@ -356,7 +356,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 						s.append("\n");
 						s.append(diagnostic.toString());
 					}
-					throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, s.toString()));
+					throw new CoreException(new Status(IStatus.ERROR, OCLinEcoreUiModule.PLUGIN_ID, s.toString()));
 				}
 				ASResource asResource = null;
 				EList<EObject> contents = xmiResource.getContents();
@@ -388,7 +388,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 					// FIXME general extensibility
 				}
 				if (asResource == null) {
-					throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, "Failed to load"));
+					throw new CoreException(new Status(IStatus.ERROR, OCLinEcoreUiModule.PLUGIN_ID, "Failed to load"));
 				}
 //				
 				ResourceSetImpl csResourceSet = (ResourceSetImpl)resourceSet;
@@ -445,9 +445,9 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 			loadedAsMap.put(document, persistAs);
 			saveAsMap.put(document, persistAs);
 		} catch (ParserException e) {
-			throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, "Failed to load", e));
+			throw new CoreException(new Status(IStatus.ERROR, OCLinEcoreUiModule.PLUGIN_ID, "Failed to load", e));
 		} catch (IOException e) {
-			throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, "Failed to load", e));
+			throw new CoreException(new Status(IStatus.ERROR, OCLinEcoreUiModule.PLUGIN_ID, "Failed to load", e));
 		}
 /*
  * 		This fails to setup Xtext correctly: No state leads to NPE from EcoreUtil.resolveAll.

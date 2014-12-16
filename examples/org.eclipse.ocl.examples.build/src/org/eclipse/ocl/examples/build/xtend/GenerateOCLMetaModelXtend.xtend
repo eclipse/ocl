@@ -109,16 +109,16 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 			import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 			import org.eclipse.jdt.annotation.NonNull;
 			import org.eclipse.jdt.annotation.Nullable;
-			import org.eclipse.ocl.domain.ids.IdManager;
-			import org.eclipse.ocl.domain.library.LibraryFeature;
-			import org.eclipse.ocl.domain.utilities.DomainUtil;
 			import org.eclipse.ocl.pivot.*;
 			import org.eclipse.ocl.pivot.Class;
 			import org.eclipse.ocl.pivot.Package;
-			import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
+			import org.eclipse.ocl.pivot.complete.StandardLibraryInternal;
+			import org.eclipse.ocl.pivot.ids.IdManager;
+			import org.eclipse.ocl.pivot.library.LibraryFeature;
 			import org.eclipse.ocl.pivot.model.OCLstdlib;
 			import org.eclipse.ocl.pivot.resource.ASResourceImpl;
 			import org.eclipse.ocl.pivot.resource.OCLASResourceFactory;
+			import org.eclipse.ocl.pivot.utilities.ClassUtil;
 			import org.eclipse.ocl.pivot.utilities.PivotUtil;
 			
 			/**
@@ -135,7 +135,7 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 				public static final @NonNull String PIVOT_URI = "«uri»";
 			
 				public static @NonNull Package create(@NonNull StandardLibraryInternal standardLibrary, @NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
-					«javaClassName» resource = new «javaClassName»(DomainUtil.nonNullEMF(URI.createURI(PIVOT_URI)));
+					«javaClassName» resource = new «javaClassName»(ClassUtil.nonNullEMF(URI.createURI(PIVOT_URI)));
 					Contents contents = new Contents(standardLibrary, name, nsPrefix, nsURI);
 					resource.getContents().add(contents.root);
 					return contents.metamodel;

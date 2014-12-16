@@ -17,8 +17,6 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.types.IdResolver;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.Query;
@@ -26,7 +24,9 @@ import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.delegate.OCLInvocationDelegate;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
@@ -45,14 +45,14 @@ public class OCLDebugInvocationDelegate extends OCLInvocationDelegate
 		EvaluationEnvironment env = query2.getEvaluationEnvironment();
 		Object object = target;
 		Object value = idResolver.boxedValueOf(target);
-		env.add(DomainUtil.nonNullModel(query.getContextVariable()), value);
+		env.add(ClassUtil.nonNullModel(query.getContextVariable()), value);
 		List<Variable> parms = query.getParameterVariable();
 		if (!parms.isEmpty()) {
 			// bind arguments to parameter names
 			for (int i = 0; i < parms.size(); i++) {
 				object = arguments.get(i);
 				value = idResolver.boxedValueOf(object);
-				env.add(DomainUtil.nonNullModel(parms.get(i)), value);
+				env.add(ClassUtil.nonNullModel(parms.get(i)), value);
 			}
 		}
 		Object result = query2.evaluate(target);

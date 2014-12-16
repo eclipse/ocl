@@ -57,26 +57,26 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.ocl.common.OCLConstants;
-import org.eclipse.ocl.domain.evaluation.DomainException;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.utilities.ProjectMap;
-import org.eclipse.ocl.domain.utilities.StandaloneProjectMap;
-import org.eclipse.ocl.domain.validation.DomainSubstitutionLabelProvider;
-import org.eclipse.ocl.domain.values.Bag;
-import org.eclipse.ocl.domain.values.Value;
 import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.PivotConstants;
 import org.eclipse.ocl.pivot.PivotStandaloneSetup;
 import org.eclipse.ocl.pivot.delegate.ValidationDelegate;
 import org.eclipse.ocl.pivot.ecore.AS2Ecore;
+import org.eclipse.ocl.pivot.evaluation.DomainException;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.BaseResource;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ProjectMap;
+import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.validation.DomainSubstitutionLabelProvider;
+import org.eclipse.ocl.pivot.values.Bag;
+import org.eclipse.ocl.pivot.values.Value;
 import org.eclipse.ocl.xtext.base.BaseStandaloneSetup;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
@@ -135,15 +135,15 @@ public class PivotTestCase extends TestCase
 				}
 				testLog.append(";");
 				if (testExpression != null) {
-					testLog.append("\"" + DomainUtil.convertToOCLString(testExpression) + "\"");
+					testLog.append("\"" + ClassUtil.convertToOCLString(testExpression) + "\"");
 				}
 				testLog.append(";");
 				if (parseVerdict != null) {
-					testLog.append("\"" + DomainUtil.convertToOCLString(parseVerdict) + "\"");
+					testLog.append("\"" + ClassUtil.convertToOCLString(parseVerdict) + "\"");
 				}
 				testLog.append(";");
 				if (evaluationVerdict != null) {
-					testLog.append("\"" + DomainUtil.convertToOCLString(evaluationVerdict) + "\"");
+					testLog.append("\"" + ClassUtil.convertToOCLString(evaluationVerdict) + "\"");
 				}
 				testLog.append(";");
 				if (evaluationTolerance != null) {
@@ -157,7 +157,7 @@ public class PivotTestCase extends TestCase
 	}
 
 	public static @NonNull XtextResource as2cs(@NonNull OCL ocl, @NonNull ResourceSet resourceSet, @NonNull ASResource asResource, @NonNull URI outputURI) throws IOException {
-		XtextResource xtextResource = DomainUtil.nonNullState((XtextResource) resourceSet.createResource(outputURI, OCLinEcoreCSPackage.eCONTENT_TYPE));
+		XtextResource xtextResource = ClassUtil.nonNullState((XtextResource) resourceSet.createResource(outputURI, OCLinEcoreCSPackage.eCONTENT_TYPE));
 //		ResourceSet csResourceSet = resourceSet; //new ResourceSetImpl();
 //		csResourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("cs", new EcoreResourceFactoryImpl());
 //		csResourceSet.getPackageRegistry().put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
@@ -169,7 +169,7 @@ public class PivotTestCase extends TestCase
 		//
 		//	CS save and reload
 		//		
-		URI savedURI = DomainUtil.nonNullState(asResource.getURI());
+		URI savedURI = ClassUtil.nonNullState(asResource.getURI());
 //		asResource.setURI(PivotUtil.getNonPivotURI(savedURI).appendFileExtension(PivotConstants.OCL_AS_FILE_EXTENSION));
 		asResource.setURI(outputURI.trimFileExtension().trimFileExtension().appendFileExtension(PivotConstants.OCL_AS_FILE_EXTENSION));
 		asResource.save(null);
@@ -191,7 +191,7 @@ public class PivotTestCase extends TestCase
 	}
 
 	public static @NonNull Resource as2ecore(@NonNull OCL ocl, @NonNull Resource asResource, @Nullable URI ecoreURI, boolean validateSaved) throws IOException {
-		Resource ecoreResource = ocl.as2ecore(asResource, ecoreURI != null ? ecoreURI : DomainUtil.nonNullEMF(URI.createURI("test.ecore")));
+		Resource ecoreResource = ocl.as2ecore(asResource, ecoreURI != null ? ecoreURI : ClassUtil.nonNullEMF(URI.createURI("test.ecore")));
 		if (ecoreURI != null) {
 			ecoreResource.save(null);
 		}
@@ -266,7 +266,7 @@ public class PivotTestCase extends TestCase
 	}
 
 	public static void assertNoResourceErrors(@NonNull String prefix, @NonNull Resource resource) {
-		String message = PivotUtil.formatResourceDiagnostics(DomainUtil.nonNullEMF(resource.getErrors()), prefix, "\n\t");
+		String message = PivotUtil.formatResourceDiagnostics(ClassUtil.nonNullEMF(resource.getErrors()), prefix, "\n\t");
 		if (message != null)
 			fail(message);
 	}
@@ -294,13 +294,13 @@ public class PivotTestCase extends TestCase
 
 	public static void assertNoValidationErrors(@NonNull String string, @NonNull Resource resource) {
 		for (EObject eObject : resource.getContents()) {
-			assertNoValidationErrors(string, DomainUtil.nonNullEMF(eObject));
+			assertNoValidationErrors(string, ClassUtil.nonNullEMF(eObject));
 		}
 	}
 
 	public static void assertNoValidationErrors(@NonNull String string, @NonNull EObject eObject) {
 		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
-		Resource eResource = DomainUtil.nonNullState(eObject.eResource());
+		Resource eResource = ClassUtil.nonNullState(eObject.eResource());
 		PivotUtil.getMetaModelManager(eResource);	// FIXME oclIsKindOf fails because ExecutableStandardLibrary.getMetaclass is bad
 		Diagnostic diagnostic = Diagnostician.INSTANCE.validate(eObject, validationContext);
 		List<Diagnostic> children = diagnostic.getChildren();
@@ -317,7 +317,7 @@ public class PivotTestCase extends TestCase
 	}
 
 	public static void assertResourceErrors(@NonNull String prefix, @NonNull Resource resource, String... messages) {
-		assertResourceDiagnostics(prefix, DomainUtil.nonNullEMF(resource.getErrors()), messages);
+		assertResourceDiagnostics(prefix, ClassUtil.nonNullEMF(resource.getErrors()), messages);
 	}
 
 	public static void assertResourceDiagnostics(@NonNull String prefix, @NonNull List<Resource.Diagnostic> resourceDiagnostics, String... messages) {
@@ -456,7 +456,7 @@ public class PivotTestCase extends TestCase
 		InputStream inputStream = new URIConverter.ReadableInputStream(testDocument, "UTF-8");
 		URI xtextURI = URI.createURI("test.oclinecore");
 		ResourceSet resourceSet = new ResourceSetImpl();
-		EssentialOCLCSResource xtextResource = DomainUtil.nonNullState((EssentialOCLCSResource) resourceSet.createResource(xtextURI, null));
+		EssentialOCLCSResource xtextResource = ClassUtil.nonNullState((EssentialOCLCSResource) resourceSet.createResource(xtextURI, null));
 		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
 		xtextResource.load(inputStream, null);
 		assertNoResourceErrors("Loading Xtext", xtextResource);
@@ -470,7 +470,7 @@ public class PivotTestCase extends TestCase
 		InputStream inputStream = new URIConverter.ReadableInputStream(testDocument, "UTF-8");
 		URI xtextURI = URI.createURI("test.oclinecore");
 		ResourceSet resourceSet = new ResourceSetImpl();
-		EssentialOCLCSResource xtextResource = DomainUtil.nonNullState((EssentialOCLCSResource) resourceSet.createResource(xtextURI, null));
+		EssentialOCLCSResource xtextResource = ClassUtil.nonNullState((EssentialOCLCSResource) resourceSet.createResource(xtextURI, null));
 		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
 		xtextResource.load(inputStream, null);
 		assertNoResourceErrors("Loading Xtext", xtextResource);
@@ -645,7 +645,7 @@ public class PivotTestCase extends TestCase
 		CS2ASResourceAdapter adapter = null;
 		try {
 			ResourceSet resourceSet2 = metaModelManager.getExternalResourceSet();
-			BaseCSResource xtextResource = DomainUtil.nonNullState((BaseCSResource) resourceSet2.getResource(inputURI, true));
+			BaseCSResource xtextResource = ClassUtil.nonNullState((BaseCSResource) resourceSet2.getResource(inputURI, true));
 			assertNoResourceErrors("Load failed", xtextResource);
 			adapter = xtextResource.getCS2ASAdapter(null);
 			Resource asResource = adapter.getASResource(xtextResource);
@@ -685,7 +685,7 @@ public class PivotTestCase extends TestCase
 	
 	protected @NonNull URI getProjectFileURI(String referenceName) {
 		File projectFile = getProjectFile();
-		return DomainUtil.nonNullState(URI.createFileURI(projectFile.toString() + "/" + referenceName));
+		return ClassUtil.nonNullState(URI.createFileURI(projectFile.toString() + "/" + referenceName));
 	}
 	
 	protected @NonNull String getProjectName() {
@@ -696,7 +696,7 @@ public class PivotTestCase extends TestCase
 		ProjectMap projectMap = getProjectMap();
 		String urlString = projectMap.getLocation(PLUGIN_ID).toString();
 		TestCase.assertNotNull(urlString);
-		return DomainUtil.nonNullEMF(URI.createURI(urlString + localFileName));
+		return ClassUtil.nonNullEMF(URI.createURI(urlString + localFileName));
 	}
 
 	protected @NonNull URL getTestResource(@NonNull String resourceName) {
@@ -712,7 +712,7 @@ public class PivotTestCase extends TestCase
 			}
 		}
 		catch (Throwable e) {}
-		return DomainUtil.nonNullState(projectURL);
+		return ClassUtil.nonNullState(projectURL);
 	}
 
 	private GlobalStateMemento makeCopyOfGlobalState = null;

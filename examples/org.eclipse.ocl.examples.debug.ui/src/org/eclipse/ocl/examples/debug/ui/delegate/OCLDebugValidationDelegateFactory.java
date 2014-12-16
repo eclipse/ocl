@@ -23,11 +23,11 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.delegate.AbstractOCLDelegateFactory;
 import org.eclipse.ocl.pivot.delegate.DelegateEClassifierAdapter;
 import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.delegate.ValidationDelegate;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
  * Factory for OCL derived-classifier validation delegates.
@@ -40,7 +40,7 @@ public class OCLDebugValidationDelegateFactory extends AbstractOCLDelegateFactor
 	}
 
 	public @Nullable ValidationDelegate createValidationDelegate(@NonNull EClassifier classifier) {
-		EPackage ePackage = DomainUtil.nonNullEMF(classifier.getEPackage());
+		EPackage ePackage = ClassUtil.nonNullEMF(classifier.getEPackage());
 		OCLDelegateDomain delegateDomain = getDelegateDomain(ePackage);
 		if (delegateDomain == null) {
 			return null;

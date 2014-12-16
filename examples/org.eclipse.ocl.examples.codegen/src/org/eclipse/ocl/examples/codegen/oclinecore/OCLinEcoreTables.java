@@ -27,11 +27,6 @@ import org.eclipse.emf.codegen.util.CodeGenUtil;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.elements.DomainTypeParameters;
-import org.eclipse.ocl.domain.ids.IdManager;
-import org.eclipse.ocl.domain.ids.TemplateParameterId;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.library.ecore.EcoreExecutorEnumeration;
 import org.eclipse.ocl.library.ecore.EcoreExecutorEnumerationLiteral;
 import org.eclipse.ocl.library.ecore.EcoreExecutorInvalidType;
@@ -62,7 +57,13 @@ import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.VoidType;
+import org.eclipse.ocl.pivot.elements.DomainTypeParameters;
+import org.eclipse.ocl.pivot.ids.IdManager;
+import org.eclipse.ocl.pivot.ids.TemplateParameterId;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.TypeUtil;
 
 public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 {
@@ -70,7 +71,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 	
 	public OCLinEcoreTables(@NonNull GenPackage genPackage) {
 		super(genPackage);
-		GenModel genModel = DomainUtil.nonNullState(genPackage.getGenModel());
+		GenModel genModel = ClassUtil.nonNullState(genPackage.getGenModel());
 		this.useNullAnnotations = OCLinEcoreGenModelGeneratorAdapter.useNullAnnotations(genModel);
 	}
 
@@ -121,7 +122,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 	}
 
 	protected void appendUpperName(@NonNull NamedElement namedElement) {
-		s.append(DomainUtil.nonNullModel(CodeGenUtil.upperName(namedElement.getName())));
+		s.append(ClassUtil.nonNullModel(CodeGenUtil.upperName(namedElement.getName())));
 	}
 	
 	protected @NonNull String atNonNull() {
@@ -184,7 +185,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 				s.append("\n");
 				List<EnumerationLiteral> enumerationLiterals = ((Enumeration)pClass).getOwnedLiteral();
 				for (int i = 0; i < enumerationLiterals.size(); i++) {
-					EnumerationLiteral enumerationLiteral = DomainUtil.nonNullModel(enumerationLiterals.get(i));
+					EnumerationLiteral enumerationLiteral = ClassUtil.nonNullModel(enumerationLiterals.get(i));
 					s.append("		public static final " + atNonNull() + " ");
 					s.appendClassReference(EcoreExecutorEnumerationLiteral.class);
 					s.append(" ");
@@ -197,7 +198,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 					s.append(genPackage.getPrefix() + "Package.Literals.");
 					appendUpperName(pClass);
 					s.append(".getEEnumLiteral(");
-					s.appendString(DomainUtil.nonNullModel(enumerationLiteral.getName()));
+					s.appendString(ClassUtil.nonNullModel(enumerationLiteral.getName()));
 					s.append("), Types.");
 					s.appendScopedTypeName(pClass);
 					s.append(", " + i + ");\n");
@@ -208,7 +209,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 				s.appendScopedTypeName(pClass);
 				s.append(" = {");
 				for (int i = 0; i < enumerationLiterals.size(); i++) {
-					EnumerationLiteral enumerationLiteral = DomainUtil.nonNullModel(enumerationLiterals.get(i));
+					EnumerationLiteral enumerationLiteral = ClassUtil.nonNullModel(enumerationLiterals.get(i));
 					if (i > 0) {
 						s.append(",");
 					}
@@ -308,7 +309,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 					else {
 						s.append("{");
 						for (int i = 0; i < sortedOperations.size(); i++) {
-							Operation op = DomainUtil.nonNullModel(sortedOperations.get(i));
+							Operation op = ClassUtil.nonNullModel(sortedOperations.get(i));
 							Operation overloadOp = getOverloadOp(pClass, op);
 							if (i > 0) {
 								s.append(",");
@@ -439,7 +440,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 				s.append(" = new ");
 				s.appendClassReference(ExecutorOperation.class);
 				s.append("(");
-				s.appendString(DomainUtil.nonNullModel(op.getName()));
+				s.appendString(ClassUtil.nonNullModel(op.getName()));
 				s.append(", Parameters.");
 				s.append(getTemplateBindingsName(op.getParameterTypes()));
 				s.append(", ");
@@ -492,9 +493,9 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 			s.appendClassReference(ParameterTypes.class);
 			s.append(" ");
 			s.append(getTemplateBindingsName(types));
-			s.append(" = new ");
-			s.appendClassReference(ParameterTypes.class);
-			s.append("(");
+			s.append(" = ");
+			s.appendClassReference(TypeUtil.class);
+			s.append(".createParameterTypes(");
 			for (int i = 0; i < types.size(); i++) {
 				if (i > 0) {
 					s.append(", ");
@@ -518,7 +519,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 			List<Property> sortedProperties = getLocalPropertiesSortedByName(pClass);
 			assert pClass != null;
 			for (int i = 0; i < sortedProperties.size(); i++) {
-				Property prop = DomainUtil.nonNullModel(sortedProperties.get(i));
+				Property prop = ClassUtil.nonNullModel(sortedProperties.get(i));
 				if (isProperty(prop)) {
 					s.append("\n");
 					if (isFirst) {
@@ -530,7 +531,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 					s.append(" ");
 					prop.accept(emitLiteralVisitor);
 					s.append(" = new ");
-					String name = DomainUtil.nonNullModel(prop.getName());
+					String name = ClassUtil.nonNullModel(prop.getName());
 					if (prop.getImplementationClass() != null) {
 						s.appendClassReference(ExecutorPropertyWithImplementation.class);
 						s.append("(");
@@ -543,7 +544,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 					}
 					else if (hasEcore(prop)) {
 //					    List<Constraint> constraints = prop.getOwnedRule();
-						org.eclipse.ocl.pivot.Class owningType = DomainUtil.nonNullModel(prop.getOwningClass());
+						org.eclipse.ocl.pivot.Class owningType = ClassUtil.nonNullModel(prop.getOwningClass());
 /*						if (constraints.size() > 0) {
 							s.appendClassReference(ExecutorPropertyWithImplementation.class);
 							s.append("(");
@@ -583,7 +584,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 							s.append("(");
 							s.append(genPackage.getPrefix());
 							s.append("Package.Literals." );
-							appendUpperName(DomainUtil.nonNullModel(opposite.getOwningClass()));
+							appendUpperName(ClassUtil.nonNullModel(opposite.getOwningClass()));
 							s.append("__" );
 							appendUpperName(opposite);
 							s.append("))");
@@ -633,7 +634,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 				appendUpperName(pClass);
 			}
 			else {
-				s.appendString(DomainUtil.nonNullModel(pClass.getName()));
+				s.appendString(ClassUtil.nonNullModel(pClass.getName()));
 			}
 		}
 		else {
@@ -843,8 +844,8 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 							s.appendClassReference(IdManager.class);
 							s.append(".getTemplateParameterId(" + elementId.getIndex() + ")");
 						}
- 						s.append(", LIBRARY, ");
-						s.appendString(DomainUtil.nonNullModel(parameter.getName()));
+ 						s.append(", ");
+						s.appendString(ClassUtil.nonNullModel(parameter.getName()));
 						s.append(");\n");
 					}
 				}
@@ -875,8 +876,8 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 								s.appendClassReference(IdManager.class);
 								s.append(".getTemplateParameterId(" + elementId.getIndex() + ")");
 							}
-							s.append(", LIBRARY, ");
-							s.appendString(DomainUtil.nonNullModel(parameter.getName()));
+							s.append(", ");
+							s.appendString(ClassUtil.nonNullModel(parameter.getName()));
 							s.append(");\n");
 						}
 					}

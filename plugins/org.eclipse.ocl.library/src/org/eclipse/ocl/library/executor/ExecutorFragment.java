@@ -14,12 +14,12 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.library.LibraryFeature;
-import org.eclipse.ocl.domain.types.AbstractFragment;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.library.LibraryFeature;
+import org.eclipse.ocl.pivot.types.AbstractFragment;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 import com.google.common.collect.Lists;
 
@@ -43,7 +43,7 @@ public class ExecutorFragment extends AbstractFragment
 	public @NonNull LibraryFeature getImplementation(@NonNull Operation staticOperation) {
 		int index = staticOperation.getIndex();
 		if (index >= 0) {
-			return DomainUtil.nonNullState(operations[index].implementation);
+			return ClassUtil.nonNullState(operations[index].implementation);
 		}
 		else {
 			throw new UnsupportedOperationException();		// WIP 

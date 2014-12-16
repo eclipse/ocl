@@ -12,10 +12,10 @@ package org.eclipse.ocl.library.classifier;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
-import org.eclipse.ocl.domain.library.AbstractUntypedBinaryOperation;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.library.AbstractUntypedBinaryOperation;
 
 /**
  * OclTypeConformsToOperation realises the OclType::conformsTo(OclType) library operation.

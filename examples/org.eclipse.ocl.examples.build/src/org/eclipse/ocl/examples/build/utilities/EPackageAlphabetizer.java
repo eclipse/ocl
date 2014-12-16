@@ -30,7 +30,7 @@ import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.WorkflowComponentWithModelSlot;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
  * Alphabeticizes a designated <tt>modelSlot</tt> so that primitive types
@@ -69,7 +69,7 @@ public class EPackageAlphabetizer extends WorkflowComponentWithModelSlot
 			}
 			String n1 = o1.getName();
 			String n2 = o2.getName();
-			return DomainUtil.safeCompareTo(n1, n2);
+			return ClassUtil.safeCompareTo(n1, n2);
 		}
 	}
 
@@ -84,17 +84,17 @@ public class EPackageAlphabetizer extends WorkflowComponentWithModelSlot
 			EObject eObject = it.next();
 			if (eObject instanceof EPackage) {
 				EPackage package_ = (EPackage) eObject;
-				listOfLists.put(package_.getESubpackages(), DomainUtil.ENamedElementComparator.INSTANCE);
+				listOfLists.put(package_.getESubpackages(), ClassUtil.ENamedElementComparator.INSTANCE);
 				listOfLists.put(package_.getEClassifiers(), EClassifierComparator.INSTANCE);
 			}
 			else if (eObject instanceof EClass) {
 				EClass class_ = (EClass) eObject;
-				listOfLists.put(class_.getEStructuralFeatures(), DomainUtil.ENamedElementComparator.INSTANCE);
-				listOfLists.put(class_.getEOperations(), DomainUtil.ENamedElementComparator.INSTANCE);
+				listOfLists.put(class_.getEStructuralFeatures(), ClassUtil.ENamedElementComparator.INSTANCE);
+				listOfLists.put(class_.getEOperations(), ClassUtil.ENamedElementComparator.INSTANCE);
 			}
 			if (eObject instanceof EModelElement) {
 				EModelElement eEModelElement = (EModelElement) eObject;
-				listOfLists.put(eEModelElement.getEAnnotations(), DomainUtil.EAnnotationComparator.INSTANCE);
+				listOfLists.put(eEModelElement.getEAnnotations(), ClassUtil.EAnnotationComparator.INSTANCE);
 			}
 		}
 		for (Map.Entry<EList<? extends EObject>, Comparator<? extends EObject>> entry : listOfLists.entrySet()) {

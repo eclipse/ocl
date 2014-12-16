@@ -17,10 +17,10 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.ids.EnumerationId;
-import org.eclipse.ocl.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
+import org.eclipse.ocl.pivot.ids.EnumerationId;
+import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
 import org.eclipse.osgi.util.NLS;
 
 import com.google.common.collect.Lists;

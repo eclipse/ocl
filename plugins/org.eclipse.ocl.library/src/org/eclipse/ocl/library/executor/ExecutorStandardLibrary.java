@@ -117,7 +117,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 			return (CompleteInheritance) domainClass;
 		}
 /*		if (type instanceof DomainMetaclass) {
-			DomainType instanceType = DomainUtil.nonNullPivot(((DomainMetaclass)type).getInstanceType());
+			DomainType instanceType = ClassUtil.nonNullPivot(((DomainMetaclass)type).getInstanceType());
 			org.eclipse.ocl.pivot.Class metaclass = getMetaclass(instanceType);
 			DomainType containerType = metaclass;//.getContainerType();
 			return containerType.getInheritance(this);

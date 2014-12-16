@@ -17,12 +17,12 @@ import java.util.List;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.ids.IdManager;
-import org.eclipse.ocl.domain.ids.PackageId;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.library.executor.ExecutorPackage;
 import org.eclipse.ocl.library.executor.ExecutorStandardLibrary;
 import org.eclipse.ocl.library.executor.ExecutorType;
+import org.eclipse.ocl.pivot.ids.IdManager;
+import org.eclipse.ocl.pivot.ids.PackageId;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 import com.google.common.collect.Lists;
 
@@ -34,12 +34,12 @@ public class EcoreExecutorPackage extends ExecutorPackage
 	private @Nullable List<org.eclipse.ocl.pivot.Package> packages = null;
 
 	public EcoreExecutorPackage(/*@NonNull*/ EPackage ePackage) {
-		super(DomainUtil.nonNullEMF(ePackage.getName()), ePackage.getNsPrefix(), ePackage.getNsURI(), IdManager.getPackageId(ePackage));
+		super(ClassUtil.nonNullEMF(ePackage.getName()), ePackage.getNsPrefix(), ePackage.getNsURI(), IdManager.getPackageId(ePackage));
 		this.ePackage = ePackage;		
 	}
 
 	public EcoreExecutorPackage(@NonNull EPackage ePackage, @NonNull PackageId packageId) {
-		super(DomainUtil.nonNullEMF(ePackage.getName()), ePackage.getNsPrefix(), ePackage.getNsURI(), packageId);
+		super(ClassUtil.nonNullEMF(ePackage.getName()), ePackage.getNsPrefix(), ePackage.getNsURI(), packageId);
 		this.ePackage = ePackage;		
 	}
 

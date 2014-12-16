@@ -21,9 +21,6 @@
 package org.eclipse.ocl.library.oclstdlib;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.elements.DomainTypeParameters;
-import org.eclipse.ocl.domain.ids.IdManager;
-import org.eclipse.ocl.domain.ids.TypeId;
 import org.eclipse.ocl.library.ecore.EcoreExecutorInvalidType;
 import org.eclipse.ocl.library.ecore.EcoreExecutorPackage;
 import org.eclipse.ocl.library.ecore.EcoreExecutorType;
@@ -37,6 +34,9 @@ import org.eclipse.ocl.library.executor.ExecutorType;
 import org.eclipse.ocl.library.executor.ExecutorTypeParameter;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.ParameterTypes;
+import org.eclipse.ocl.pivot.elements.DomainTypeParameters;
+import org.eclipse.ocl.pivot.ids.IdManager;
+import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.utilities.TypeUtil;
 
 /**

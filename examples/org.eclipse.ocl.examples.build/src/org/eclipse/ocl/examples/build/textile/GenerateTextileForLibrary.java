@@ -28,11 +28,11 @@ import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.oclstdlib.OCLstdlibStandaloneSetup;
@@ -108,7 +108,7 @@ public abstract class GenerateTextileForLibrary extends AbstractWorkflowComponen
 			log.info("Loading OCL library '" + fileURI);
 			ResourceSet resourceSet = getResourceSet();
 			BaseCSResource xtextResource = (BaseCSResource)resourceSet.getResource(fileURI, true);
-			String message = PivotUtil.formatResourceDiagnostics(DomainUtil.nonNullEMF(xtextResource.getErrors()), "OCLstdlib parse failure", "\n");
+			String message = PivotUtil.formatResourceDiagnostics(ClassUtil.nonNullEMF(xtextResource.getErrors()), "OCLstdlib parse failure", "\n");
 			if (message != null) {
 				issues.addError(this, message, null, null, null);
 				return;
@@ -117,7 +117,7 @@ public abstract class GenerateTextileForLibrary extends AbstractWorkflowComponen
 //			if (asResource == null) {
 //				return;
 //			}
-			EObject pivotModel = DomainUtil.nonNullState(asResource.getContents().get(0));
+			EObject pivotModel = ClassUtil.nonNullState(asResource.getContents().get(0));
 //			ASSaver saver = new ASSaver(asResource);
 //			saver.localizeSpecializations();
 			String fileName = folder + "/" + textileFileName + ".textile";

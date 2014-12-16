@@ -19,7 +19,6 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.codegen.analyzer.AS2CGVisitor;
 import org.eclipse.ocl.examples.codegen.analyzer.BoxingAnalyzer;
 import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
@@ -32,6 +31,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGVariable;
 import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 /**
@@ -87,7 +87,7 @@ public class OCLinEcoreCodeGenerator extends JavaCodeGenerator
 
 	public static void generatePackage(@NonNull GenPackage genPackage,
 			@NonNull Map<String, String> uri2body, @NonNull Map<GenPackage, String> constantsTexts) {
-		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(DomainUtil.nonNullState(genPackage.eResource()));
+		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(ClassUtil.nonNullState(genPackage.eResource()));
 		OCLinEcoreCodeGenerator generator = new OCLinEcoreCodeGenerator(metaModelManager, genPackage);
 		generator.generate(uri2body, constantsTexts);
 	}
@@ -98,7 +98,7 @@ public class OCLinEcoreCodeGenerator extends JavaCodeGenerator
 	
 	protected OCLinEcoreCodeGenerator(@NonNull MetaModelManager metaModelManager, @NonNull GenPackage genPackage) {
 		super(metaModelManager);
-		GenModel genModel = DomainUtil.nonNullModel(genPackage.getGenModel());
+		GenModel genModel = ClassUtil.nonNullModel(genPackage.getGenModel());
 		metaModelManager.addGenModel(genModel);
 		getOptions().setUseNullAnnotations(OCLinEcoreGenModelGeneratorAdapter.useNullAnnotations(genModel));
 		this.cgAnalyzer = new CodeGenAnalyzer(this);
@@ -121,7 +121,7 @@ public class OCLinEcoreCodeGenerator extends JavaCodeGenerator
 		org.eclipse.ocl.pivot.Package asPackage = metaModelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Package.class, ecorePackage);
 		assert asPackage != null;
 		AS2CGVisitor as2cgVisitor = new OCLinEcoreAS2CGVisitor(cgAnalyzer, globalContext);
-		CGPackage cgPackage = (CGPackage) DomainUtil.nonNullState(asPackage.accept(as2cgVisitor));
+		CGPackage cgPackage = (CGPackage) ClassUtil.nonNullState(asPackage.accept(as2cgVisitor));
 		optimize(cgPackage);
 		OCLinEcoreCG2JavaVisitor cg2java = new OCLinEcoreCG2JavaVisitor(this, genPackage, cgPackage);
 		Map<String, String> results = cg2java.generateBodies();

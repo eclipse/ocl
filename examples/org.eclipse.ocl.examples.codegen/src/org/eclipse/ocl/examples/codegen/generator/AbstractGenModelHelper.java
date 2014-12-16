@@ -27,15 +27,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.library.AbstractBinaryOperation;
-import org.eclipse.ocl.domain.library.AbstractOperation;
-import org.eclipse.ocl.domain.library.AbstractTernaryOperation;
-import org.eclipse.ocl.domain.library.AbstractUnaryOperation;
-import org.eclipse.ocl.domain.library.LibraryBinaryOperation;
-import org.eclipse.ocl.domain.library.LibraryOperation;
-import org.eclipse.ocl.domain.library.LibraryTernaryOperation;
-import org.eclipse.ocl.domain.library.LibraryUnaryOperation;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.codegen.java.ImportUtils;
 import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
 import org.eclipse.ocl.pivot.Model;
@@ -44,7 +35,16 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.library.AbstractBinaryOperation;
+import org.eclipse.ocl.pivot.library.AbstractOperation;
+import org.eclipse.ocl.pivot.library.AbstractTernaryOperation;
+import org.eclipse.ocl.pivot.library.AbstractUnaryOperation;
+import org.eclipse.ocl.pivot.library.LibraryBinaryOperation;
+import org.eclipse.ocl.pivot.library.LibraryOperation;
+import org.eclipse.ocl.pivot.library.LibraryTernaryOperation;
+import org.eclipse.ocl.pivot.library.LibraryUnaryOperation;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 public class AbstractGenModelHelper implements GenModelHelper
 {
@@ -53,12 +53,12 @@ public class AbstractGenModelHelper implements GenModelHelper
 	
 	public static @NonNull String encodeName(@NonNull NamedElement element) {
 		int arity = element instanceof Operation ? ((Operation)element).getOwnedParameter().size() : 0;
-		String rawEncodeName = rawEncodeName(DomainUtil.nonNullModel(element.getName()), arity);
+		String rawEncodeName = rawEncodeName(ClassUtil.nonNullModel(element.getName()), arity);
 		if (element instanceof Operation) {
 			int sameNames = 0;
 			int myIndex = 0;
 			for (Operation operation : ((Operation)element).getOwningClass().getOwnedOperations()) {
-				String rawName = rawEncodeName(DomainUtil.nonNullModel(operation.getName()), DomainUtil.nonNullModel(operation.getOwnedParameter().size()));
+				String rawName = rawEncodeName(ClassUtil.nonNullModel(operation.getName()), ClassUtil.nonNullModel(operation.getOwnedParameter().size()));
 				if (rawName.equals(rawEncodeName)) {
 					if (operation == element) {
 						myIndex = sameNames;
@@ -638,7 +638,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 
 	@Override
 	public @NonNull String getQualifiedValidatorClassName(@NonNull GenPackage genPackage) {
-		return DomainUtil.nonNullEMF(genPackage.getQualifiedValidatorClassName());
+		return ClassUtil.nonNullEMF(genPackage.getQualifiedValidatorClassName());
 	}
 	
 	@Override

@@ -11,11 +11,11 @@
 package org.eclipse.ocl.library.ecore;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.ids.BuiltInTypeId;
 import org.eclipse.ocl.library.executor.ExecutorPackage;
 import org.eclipse.ocl.library.executor.ExecutorTypeParameter;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.ids.BuiltInTypeId;
 
 public class EcoreExecutorInvalidType extends EcoreExecutorType
 {

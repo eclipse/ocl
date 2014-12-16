@@ -1,0 +1,400 @@
+/*******************************************************************************
+ * Copyright (c) 2010, 2013 E.D.Willink and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   E.D.Willink - Initial API and implementation
+ *******************************************************************************/
+package org.eclipse.ocl.pivot.impl;
+
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.Comment;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.ElementExtension;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.util.Visitor;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Parameter</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.ParameterImpl#isTypeof <em>Is Typeof</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.ParameterImpl#getOperation <em>Operation</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @generated
+ */
+public class ParameterImpl
+		extends VariableDeclarationImpl
+		implements Parameter {
+
+	/**
+	 * The default value of the '{@link #isTypeof() <em>Is Typeof</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isTypeof()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_TYPEOF_EDEFAULT = false;
+	/**
+	 * The flag representing the value of the '{@link #isTypeof() <em>Is Typeof</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isTypeof()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int IS_TYPEOF_EFLAG = 1 << 9;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ParameterImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return PivotPackage.Literals.PARAMETER;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isTypeof()
+	{
+		return (eFlags & IS_TYPEOF_EFLAG) != 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsTypeof(boolean newIsTypeof)
+	{
+		boolean oldIsTypeof = (eFlags & IS_TYPEOF_EFLAG) != 0;
+		if (newIsTypeof) eFlags |= IS_TYPEOF_EFLAG; else eFlags &= ~IS_TYPEOF_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PARAMETER__IS_TYPEOF, oldIsTypeof, newIsTypeof));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Operation getOperation() {
+		if (eContainerFeatureID() != PivotPackage.PARAMETER__OPERATION) return null;
+		return (Operation)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOperation(Operation newOperation,
+			NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newOperation, PivotPackage.PARAMETER__OPERATION, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOperation(Operation newOperation) {
+		if (newOperation != eInternalContainer() || (eContainerFeatureID() != PivotPackage.PARAMETER__OPERATION && newOperation != null))
+		{
+			if (EcoreUtil.isAncestor(this, newOperation))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOperation != null)
+				msgs = ((InternalEObject)newOperation).eInverseAdd(this, PivotPackage.OPERATION__OWNED_PARAMETER, Operation.class, msgs);
+			msgs = basicSetOperation(newOperation, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PARAMETER__OPERATION, newOperation, newOperation));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
+		switch (featureID)
+		{
+			case PivotPackage.PARAMETER__COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
+			case PivotPackage.PARAMETER__EXTENSION:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
+			case PivotPackage.PARAMETER__OWNED_COMMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
+			case PivotPackage.PARAMETER__OPERATION:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOperation((Operation)otherEnd, msgs);
+		}
+		return eDynamicInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
+		switch (featureID)
+		{
+			case PivotPackage.PARAMETER__COMMENT:
+				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PARAMETER__EXTENSION:
+				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PARAMETER__OWNED_ANNOTATION:
+				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PARAMETER__OWNED_COMMENT:
+				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PARAMETER__OPERATION:
+				return basicSetOperation(null, msgs);
+		}
+		return eDynamicInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
+		switch (eContainerFeatureID())
+		{
+			case PivotPackage.PARAMETER__OPERATION:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.OPERATION__OWNED_PARAMETER, Operation.class, msgs);
+		}
+		return eDynamicBasicRemoveFromContainer(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID)
+		{
+			case PivotPackage.PARAMETER__COMMENT:
+				return getComment();
+			case PivotPackage.PARAMETER__EXTENSION:
+				return getExtension();
+			case PivotPackage.PARAMETER__OWNED_ANNOTATION:
+				return getOwnedAnnotation();
+			case PivotPackage.PARAMETER__OWNED_COMMENT:
+				return getOwnedComment();
+			case PivotPackage.PARAMETER__NAME:
+				return getName();
+			case PivotPackage.PARAMETER__IS_MANY:
+				return isMany();
+			case PivotPackage.PARAMETER__IS_REQUIRED:
+				return isRequired();
+			case PivotPackage.PARAMETER__TYPE:
+				if (resolve) return getType();
+				return basicGetType();
+			case PivotPackage.PARAMETER__TYPE_VALUE:
+				return getTypeValue();
+			case PivotPackage.PARAMETER__IS_TYPEOF:
+				return isTypeof();
+			case PivotPackage.PARAMETER__OPERATION:
+				return getOperation();
+		}
+		return eDynamicGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID)
+		{
+			case PivotPackage.PARAMETER__COMMENT:
+				getComment().clear();
+				getComment().addAll((Collection<? extends Comment>)newValue);
+				return;
+			case PivotPackage.PARAMETER__EXTENSION:
+				getExtension().clear();
+				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+				return;
+			case PivotPackage.PARAMETER__OWNED_ANNOTATION:
+				getOwnedAnnotation().clear();
+				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+				return;
+			case PivotPackage.PARAMETER__OWNED_COMMENT:
+				getOwnedComment().clear();
+				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+				return;
+			case PivotPackage.PARAMETER__NAME:
+				setName((String)newValue);
+				return;
+			case PivotPackage.PARAMETER__IS_REQUIRED:
+				setIsRequired((Boolean)newValue);
+				return;
+			case PivotPackage.PARAMETER__TYPE:
+				setType((Type)newValue);
+				return;
+			case PivotPackage.PARAMETER__TYPE_VALUE:
+				setTypeValue((Type)newValue);
+				return;
+			case PivotPackage.PARAMETER__IS_TYPEOF:
+				setIsTypeof((Boolean)newValue);
+				return;
+			case PivotPackage.PARAMETER__OPERATION:
+				setOperation((Operation)newValue);
+				return;
+		}
+		eDynamicSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID)
+		{
+			case PivotPackage.PARAMETER__COMMENT:
+				getComment().clear();
+				return;
+			case PivotPackage.PARAMETER__EXTENSION:
+				getExtension().clear();
+				return;
+			case PivotPackage.PARAMETER__OWNED_ANNOTATION:
+				getOwnedAnnotation().clear();
+				return;
+			case PivotPackage.PARAMETER__OWNED_COMMENT:
+				getOwnedComment().clear();
+				return;
+			case PivotPackage.PARAMETER__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case PivotPackage.PARAMETER__IS_REQUIRED:
+				setIsRequired(IS_REQUIRED_EDEFAULT);
+				return;
+			case PivotPackage.PARAMETER__TYPE:
+				setType((Type)null);
+				return;
+			case PivotPackage.PARAMETER__TYPE_VALUE:
+				setTypeValue((Type)null);
+				return;
+			case PivotPackage.PARAMETER__IS_TYPEOF:
+				setIsTypeof(IS_TYPEOF_EDEFAULT);
+				return;
+			case PivotPackage.PARAMETER__OPERATION:
+				setOperation((Operation)null);
+				return;
+		}
+		eDynamicUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID)
+		{
+			case PivotPackage.PARAMETER__COMMENT:
+				return comment != null && !comment.isEmpty();
+			case PivotPackage.PARAMETER__EXTENSION:
+				return extension != null && !extension.isEmpty();
+			case PivotPackage.PARAMETER__OWNED_ANNOTATION:
+				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
+			case PivotPackage.PARAMETER__OWNED_COMMENT:
+				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.PARAMETER__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.PARAMETER__IS_MANY:
+				return isMany() != IS_MANY_EDEFAULT;
+			case PivotPackage.PARAMETER__IS_REQUIRED:
+				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
+			case PivotPackage.PARAMETER__TYPE:
+				return type != null;
+			case PivotPackage.PARAMETER__TYPE_VALUE:
+				return typeValue != null;
+			case PivotPackage.PARAMETER__IS_TYPEOF:
+				return ((eFlags & IS_TYPEOF_EFLAG) != 0) != IS_TYPEOF_EDEFAULT;
+			case PivotPackage.PARAMETER__OPERATION:
+				return getOperation() != null;
+		}
+		return eDynamicIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String toString() {
+		return super.toString();
+	}
+
+	@Override
+	public <R> R accept(@NonNull Visitor<R> visitor) {
+		return visitor.visitParameter(this);
+	}
+
+} //ParameterImpl

@@ -14,12 +14,12 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.ids.CollectionTypeId;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.ids.CollectionTypeId;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
  * A UnboxedElementsDescriptor describes a collection type for which no Java class may eveer exist. It has a pivot CollectionTypeId, and
@@ -50,7 +50,7 @@ public class UnboxedElementsDescriptor extends AbstractCollectionDescriptor impl
 
 	@Override
 	public @NonNull String getClassName() {
-		return DomainUtil.nonNullModel(type.getName());
+		return ClassUtil.nonNullModel(type.getName());
 	}
 
 	@Override

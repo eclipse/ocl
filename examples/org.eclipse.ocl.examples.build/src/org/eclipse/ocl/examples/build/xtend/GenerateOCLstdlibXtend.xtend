@@ -12,8 +12,8 @@ package org.eclipse.ocl.examples.build.xtend
 
 import org.eclipse.ocl.pivot.DataType
 import org.eclipse.jdt.annotation.NonNull
-import org.eclipse.ocl.domain.utilities.DomainUtil
 import org.eclipse.ocl.pivot.Model
+import org.eclipse.ocl.pivot.utilities.ClassUtil
 
 public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 {
@@ -29,7 +29,7 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 	'''}
 
 	@NonNull protected override String generateMetamodel(@NonNull Model root) {
-		var lib = DomainUtil.nonNullState(root.getLibrary());
+		var lib = ClassUtil.nonNullState(root.getLibrary());
 		var allCoercions = root.getSortedCoercions();
 		var allEnumerations = root.getSortedEnumerations();
 		'''
@@ -70,17 +70,17 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 			import org.eclipse.emf.ecore.resource.ResourceSet;
 			import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 			import org.eclipse.jdt.annotation.NonNull;
-			import org.eclipse.ocl.domain.ids.IdManager;
-			import org.eclipse.ocl.domain.ids.PackageId;
-			import org.eclipse.ocl.domain.utilities.DomainUtil;
 			import org.eclipse.ocl.pivot.*;
 			import org.eclipse.ocl.pivot.Class;
 			import org.eclipse.ocl.pivot.Package;
+			import org.eclipse.ocl.pivot.ids.IdManager;
+			import org.eclipse.ocl.pivot.ids.PackageId;
 			import org.eclipse.ocl.pivot.library.StandardLibraryContribution;
 			import org.eclipse.ocl.pivot.manager.MetaModelManager;
 			import org.eclipse.ocl.pivot.resource.ASResourceImpl;
 			import org.eclipse.ocl.pivot.resource.OCLASResourceFactory;
 			import org.eclipse.ocl.pivot.utilities.AS2XMIid;
+			import org.eclipse.ocl.pivot.utilities.ClassUtil;
 			import org.eclipse.ocl.pivot.utilities.PivotUtil;
 			
 			/**
@@ -219,7 +219,7 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 				 *	Construct an OCL Standard Library with specified resource URI and library content.
 				 */
 				private «javaClassName»(@NonNull String asURI, @NonNull Model libraryModel) {
-					super(DomainUtil.nonNullState(URI.createURI(asURI)), OCLASResourceFactory.INSTANCE);
+					super(ClassUtil.nonNullState(URI.createURI(asURI)), OCLASResourceFactory.INSTANCE);
 					assert PivotUtil.isASURI(asURI);
 					getContents().add(libraryModel);
 			//		System.out.println(Thread.currentThread().getName() + " Create " + debugSimpleName(this));		

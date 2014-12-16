@@ -30,15 +30,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.ExternalCrossReferencer;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.DomainConstants;
-import org.eclipse.ocl.domain.ids.IdManager;
-import org.eclipse.ocl.domain.ids.NsURIPackageId;
-import org.eclipse.ocl.domain.ids.PackageId;
-import org.eclipse.ocl.domain.ids.RootPackageId;
-import org.eclipse.ocl.domain.ids.TuplePartId;
-import org.eclipse.ocl.domain.ids.TupleTypeId;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.library.executor.AbstractIdResolver;
 import org.eclipse.ocl.library.executor.ExecutableStandardLibrary;
 import org.eclipse.ocl.library.executor.ExecutorPackage;
@@ -48,6 +39,15 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.ids.IdManager;
+import org.eclipse.ocl.pivot.ids.NsURIPackageId;
+import org.eclipse.ocl.pivot.ids.PackageId;
+import org.eclipse.ocl.pivot.ids.RootPackageId;
+import org.eclipse.ocl.pivot.ids.TuplePartId;
+import org.eclipse.ocl.pivot.ids.TupleTypeId;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 /**
  * EcoreIdResolver provides a package discovery capability so that package identifiers can be resolved.
@@ -85,17 +85,17 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 			nsURI2package.put(nsURI, userPackage);
 			EPackage ePackage = userPackage.getEPackage();
 			if (ePackage != null) {
-				if (DomainUtil.basicGetMetamodelAnnotation(ePackage) != null) {
-					if (roots2package.get(DomainConstants.METAMODEL_NAME) == null) {
-						roots2package.put(DomainConstants.METAMODEL_NAME, userPackage);
+				if (ClassUtil.basicGetMetamodelAnnotation(ePackage) != null) {
+					if (roots2package.get(PivotConstants.METAMODEL_NAME) == null) {
+						roots2package.put(PivotConstants.METAMODEL_NAME, userPackage);
 					}
 				}
 			}
 			else {
 				for (org.eclipse.ocl.pivot.Class asType : userPackage.getOwnedClasses()) {
 					if ("Boolean".equals(asType.getName())) {			// FIXME Check PrimitiveType //$NON-NLS-1$
-						if (roots2package.get(DomainConstants.METAMODEL_NAME) == null) {
-							roots2package.put(DomainConstants.METAMODEL_NAME, userPackage);
+						if (roots2package.get(PivotConstants.METAMODEL_NAME) == null) {
+							roots2package.put(PivotConstants.METAMODEL_NAME, userPackage);
 						}
 						break;
 					}
@@ -145,7 +145,7 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 				}
 			}
 		}
-		return DomainUtil.nonNullState(type);
+		return ClassUtil.nonNullState(type);
 	}
 
 	@Override
@@ -163,7 +163,7 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 		List<TuplePartId> partsList = new ArrayList<TuplePartId>(iSize);
 		for (int i = 0; i < iSize; i++) {
 			TypedElement part = parts[i];
-			String partName = DomainUtil.getSafeName(part);
+			String partName = ClassUtil.getSafeName(part);
 			partsList.add(IdManager.getTuplePartId(i, partName, part.getTypeId()));
 		}
 		return getTupleType(IdManager.getTupleTypeId(TypeId.TUPLE_NAME, partsList));
@@ -288,7 +288,7 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Package visitRootPackageId(@NonNull RootPackageId id) {
 		if (id == IdManager.METAMODEL) {
-			return DomainUtil.nonNullState(getStandardLibrary().getPackage());
+			return ClassUtil.nonNullState(getStandardLibrary().getPackage());
 		}
 		String name = id.getName();
 		org.eclipse.ocl.pivot.Package knownPackage = roots2package.get(name);

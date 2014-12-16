@@ -12,8 +12,8 @@ package org.eclipse.ocl.library.numeric;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.library.AbstractSimpleBinaryOperation;
-import org.eclipse.ocl.domain.values.RealValue;
+import org.eclipse.ocl.pivot.library.AbstractSimpleBinaryOperation;
+import org.eclipse.ocl.pivot.values.RealValue;
 
 /**
  * NumericLessThanEqualOperation realises the <=() library operation.

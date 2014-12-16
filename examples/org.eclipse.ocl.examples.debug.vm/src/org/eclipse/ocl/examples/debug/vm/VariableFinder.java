@@ -39,17 +39,17 @@ import org.eclipse.ocl.examples.debug.vm.request.VMVariableRequest;
 import org.eclipse.ocl.examples.debug.vm.response.VMResponse;
 import org.eclipse.ocl.examples.debug.vm.response.VMVariableResponse;
 import org.eclipse.ocl.examples.debug.vm.utils.VMRuntimeException;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.values.CollectionValue;
-import org.eclipse.ocl.domain.values.InvalidValueException;
-import org.eclipse.ocl.domain.values.Value;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.CollectionValue;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.pivot.values.Value;
 
 public class VariableFinder
 {
@@ -123,7 +123,7 @@ public class VariableFinder
 			}
 			s.append("(");
 			s.append(eType.getName());
-			DomainUtil.formatMultiplicity(s, lowerBound, upperBound);
+			ClassUtil.formatMultiplicity(s, lowerBound, upperBound);
 			s.append(")");
 		}
 		else {
@@ -461,7 +461,7 @@ public class VariableFinder
 	} */
 	
 	private @NonNull VMVariableData createFeatureVar(@NonNull EStructuralFeature feature, Object value, String uri) {
-		String varName = DomainUtil.nonNullModel(feature.getName());
+		String varName = ClassUtil.nonNullModel(feature.getName());
 		String declaredType = getOCLType(feature);
 		
 		int kind = VMVariableData.ATTRIBUTE;
@@ -520,7 +520,7 @@ public class VariableFinder
 		
 		if (parentObj instanceof EObject) {
 			EObject eObject = (EObject) parentObj;
-			EStructuralFeature eFeature = findFeature(DomainUtil.nonNullState(varTreePath[pathIndex]), eObject.eClass());
+			EStructuralFeature eFeature = findFeature(ClassUtil.nonNullState(varTreePath[pathIndex]), eObject.eClass());
 			if (eFeature != null) {
 				Object value = getValue(eFeature, eObject);
 				childVar = createFeatureVar(eFeature, value, uri.toString());
@@ -602,7 +602,7 @@ public class VariableFinder
 	private @Nullable Object findStackObject(@NonNull String[] varTreePath) {
 		Object rootObj = null;
 		boolean gotIt = false;
-		String envVarName = DomainUtil.nonNullState(varTreePath[0]);
+		String envVarName = ClassUtil.nonNullState(varTreePath[0]);
 		if (envVarName.startsWith("$")) {
 			for (IVMEvaluationEnvironment<?> evalEnv = fEvalEnv; evalEnv != null; evalEnv = evalEnv.getParentEvaluationEnvironment()) {
 				for (TypedElement localVariable : evalEnv.getVariables()) {
@@ -626,11 +626,11 @@ public class VariableFinder
 			for (IVMEvaluationEnvironment<?> evalEnv = fEvalEnv; evalEnv != null; evalEnv = evalEnv.getParentEvaluationEnvironment()) {
 				Set<TypedElement> localVariables = evalEnv.getVariables();
 				variables.addAll(localVariables);
-				if (DomainUtil.getNamedElement(localVariables, "self") != null) {
+				if (ClassUtil.getNamedElement(localVariables, "self") != null) {
 					break;
 				}
 			}
-			rootObj = DomainUtil.getNamedElement(variables, envVarName);
+			rootObj = ClassUtil.getNamedElement(variables, envVarName);
 			if (rootObj instanceof Variable) {
 				rootObj = fEvalEnv.getValueOf((TypedElement)rootObj);
 				gotIt = true;

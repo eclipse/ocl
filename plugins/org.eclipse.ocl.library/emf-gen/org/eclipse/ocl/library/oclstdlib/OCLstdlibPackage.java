@@ -21,10 +21,10 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.values.Bag;
-import org.eclipse.ocl.domain.values.IntegerValue;
-import org.eclipse.ocl.domain.values.OrderedSet;
-import org.eclipse.ocl.domain.values.RealValue;
+import org.eclipse.ocl.pivot.values.Bag;
+import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.OrderedSet;
+import org.eclipse.ocl.pivot.values.RealValue;
 
 /**
  * <!-- begin-user-doc -->
@@ -151,7 +151,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 * The meta object id for the '<em>Integer</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.domain.values.IntegerValue
+	 * @see org.eclipse.ocl.pivot.values.IntegerValue
 	 * @see org.eclipse.ocl.library.oclstdlib.OCLstdlibPackage#getInteger()
 	 * @generated
 	 */
@@ -161,7 +161,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 * The meta object id for the '<em>Real</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.domain.values.RealValue
+	 * @see org.eclipse.ocl.pivot.values.RealValue
 	 * @see org.eclipse.ocl.library.oclstdlib.OCLstdlibPackage#getReal()
 	 * @generated
 	 */
@@ -181,7 +181,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 * The meta object id for the '<em>Unlimited Natural</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.domain.values.IntegerValue
+	 * @see org.eclipse.ocl.pivot.values.IntegerValue
 	 * @see org.eclipse.ocl.library.oclstdlib.OCLstdlibPackage#getUnlimitedNatural()
 	 * @generated
 	 */
@@ -191,7 +191,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 * The meta object id for the '<em>Bag</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.domain.values.Bag
+	 * @see org.eclipse.ocl.pivot.values.Bag
 	 * @see org.eclipse.ocl.library.oclstdlib.OCLstdlibPackage#getBag()
 	 * @generated
 	 */
@@ -211,7 +211,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 * The meta object id for the '<em>Ordered Set</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.domain.values.OrderedSet
+	 * @see org.eclipse.ocl.pivot.values.OrderedSet
 	 * @see org.eclipse.ocl.library.oclstdlib.OCLstdlibPackage#getOrderedSet()
 	 * @generated
 	 */
@@ -447,12 +447,12 @@ public class OCLstdlibPackage extends EPackageImpl {
 	}
 
 	/**
-	 * Returns the meta object for data type '{@link org.eclipse.ocl.domain.values.IntegerValue <em>Integer</em>}'.
+	 * Returns the meta object for data type '{@link org.eclipse.ocl.pivot.values.IntegerValue <em>Integer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Integer</em>'.
-	 * @see org.eclipse.ocl.domain.values.IntegerValue
-	 * @model instanceClass="org.eclipse.ocl.domain.values.IntegerValue"
+	 * @see org.eclipse.ocl.pivot.values.IntegerValue
+	 * @model instanceClass="org.eclipse.ocl.pivot.values.IntegerValue"
 	 * @generated
 	 */
 	public EDataType getInteger() {
@@ -460,12 +460,12 @@ public class OCLstdlibPackage extends EPackageImpl {
 	}
 
 	/**
-	 * Returns the meta object for data type '{@link org.eclipse.ocl.domain.values.RealValue <em>Real</em>}'.
+	 * Returns the meta object for data type '{@link org.eclipse.ocl.pivot.values.RealValue <em>Real</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Real</em>'.
-	 * @see org.eclipse.ocl.domain.values.RealValue
-	 * @model instanceClass="org.eclipse.ocl.domain.values.RealValue"
+	 * @see org.eclipse.ocl.pivot.values.RealValue
+	 * @model instanceClass="org.eclipse.ocl.pivot.values.RealValue"
 	 * @generated
 	 */
 	public EDataType getReal() {
@@ -486,12 +486,12 @@ public class OCLstdlibPackage extends EPackageImpl {
 	}
 
 	/**
-	 * Returns the meta object for data type '{@link org.eclipse.ocl.domain.values.IntegerValue <em>Unlimited Natural</em>}'.
+	 * Returns the meta object for data type '{@link org.eclipse.ocl.pivot.values.IntegerValue <em>Unlimited Natural</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Unlimited Natural</em>'.
-	 * @see org.eclipse.ocl.domain.values.IntegerValue
-	 * @model instanceClass="org.eclipse.ocl.domain.values.IntegerValue"
+	 * @see org.eclipse.ocl.pivot.values.IntegerValue
+	 * @model instanceClass="org.eclipse.ocl.pivot.values.IntegerValue"
 	 * @generated
 	 */
 	public EDataType getUnlimitedNatural() {
@@ -499,12 +499,12 @@ public class OCLstdlibPackage extends EPackageImpl {
 	}
 
 	/**
-	 * Returns the meta object for data type '{@link org.eclipse.ocl.domain.values.Bag <em>Bag</em>}'.
+	 * Returns the meta object for data type '{@link org.eclipse.ocl.pivot.values.Bag <em>Bag</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Bag</em>'.
-	 * @see org.eclipse.ocl.domain.values.Bag
-	 * @model instanceClass="org.eclipse.ocl.domain.values.Bag" typeParameters="T"
+	 * @see org.eclipse.ocl.pivot.values.Bag
+	 * @model instanceClass="org.eclipse.ocl.pivot.values.Bag" typeParameters="T"
 	 * @generated
 	 */
 	public EDataType getBag() {
@@ -525,12 +525,12 @@ public class OCLstdlibPackage extends EPackageImpl {
 	}
 
 	/**
-	 * Returns the meta object for data type '{@link org.eclipse.ocl.domain.values.OrderedSet <em>Ordered Set</em>}'.
+	 * Returns the meta object for data type '{@link org.eclipse.ocl.pivot.values.OrderedSet <em>Ordered Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Ordered Set</em>'.
-	 * @see org.eclipse.ocl.domain.values.OrderedSet
-	 * @model instanceClass="org.eclipse.ocl.domain.values.OrderedSet" typeParameters="T"
+	 * @see org.eclipse.ocl.pivot.values.OrderedSet
+	 * @model instanceClass="org.eclipse.ocl.pivot.values.OrderedSet" typeParameters="T"
 	 * @generated
 	 */
 	public EDataType getOrderedSet() {
@@ -759,7 +759,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 		 * The meta object literal for the '<em>Integer</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.domain.values.IntegerValue
+		 * @see org.eclipse.ocl.pivot.values.IntegerValue
 		 * @see org.eclipse.ocl.library.oclstdlib.OCLstdlibPackage#getInteger()
 		 * @generated
 		 */
@@ -769,7 +769,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 		 * The meta object literal for the '<em>Real</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.domain.values.RealValue
+		 * @see org.eclipse.ocl.pivot.values.RealValue
 		 * @see org.eclipse.ocl.library.oclstdlib.OCLstdlibPackage#getReal()
 		 * @generated
 		 */
@@ -789,7 +789,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 		 * The meta object literal for the '<em>Unlimited Natural</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.domain.values.IntegerValue
+		 * @see org.eclipse.ocl.pivot.values.IntegerValue
 		 * @see org.eclipse.ocl.library.oclstdlib.OCLstdlibPackage#getUnlimitedNatural()
 		 * @generated
 		 */
@@ -799,7 +799,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 		 * The meta object literal for the '<em>Bag</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.domain.values.Bag
+		 * @see org.eclipse.ocl.pivot.values.Bag
 		 * @see org.eclipse.ocl.library.oclstdlib.OCLstdlibPackage#getBag()
 		 * @generated
 		 */
@@ -819,7 +819,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 		 * The meta object literal for the '<em>Ordered Set</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.domain.values.OrderedSet
+		 * @see org.eclipse.ocl.pivot.values.OrderedSet
 		 * @see org.eclipse.ocl.library.oclstdlib.OCLstdlibPackage#getOrderedSet()
 		 * @generated
 		 */

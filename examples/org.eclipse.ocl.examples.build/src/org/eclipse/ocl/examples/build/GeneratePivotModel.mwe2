@@ -23,6 +23,7 @@ import org.eclipse.uml2.uml.resource.XMI2UMLResource
 var ecoreSlot = "ecore"
 var umlSlot = "uml"
 var projectName = "org.eclipse.ocl.pivot"
+var internalProjectName = "org.eclipse.ocl.pivot.internal"
 //var platformURI = ".."
 
 /**
@@ -40,7 +41,7 @@ Workflow {
     bean = SplitGenModelSetup { resourceSet = resourceSet }
     component = ResourceReader { resourceSet = resourceSet skipOnErrors = true
     	modelSlot = "${umlSlot}"
-    	uri = "/${projectName}/model/Pivot.uml"
+    	uri = "/${internalProjectName}/model/Pivot.uml"
 	}
     component = PackageMerger { skipOnErrors = true
     	modelSlot = "${umlSlot}"
@@ -62,23 +63,23 @@ Workflow {
     }
     component = ResourceWriter { resourceSet = resourceSet skipOnErrors = true
     	modelSlot = "${umlSlot}"
-    	uri = "/${projectName}/model/Pivot.merged.uml"
+    	uri = "/${internalProjectName}/model/Pivot.merged.uml"
 		contentTypeIdentifier = "org.eclipse.uml2.uml_5_0_0" // UMLResource.UML_CONTENT_TYPE_IDENTIFIER
     }
     component = GenmodelReloader { resourceSet = resourceSet skipOnErrors = true
-    	projectName = "${projectName}"
+    	projectName = "${internalProjectName}"
     	modelSlot = "${ecoreSlot}"
-    	genModel = "/${projectName}/model/Pivot.merged.genmodel"
-    	ecoreFile = "/${projectName}/model/Pivot.ecore"
+    	genModel = "/${internalProjectName}/model/Pivot.merged.genmodel"
+    	ecoreFile = "/${internalProjectName}/model/Pivot.ecore"
 //    	modelImporter = "org.eclipse.uml2.uml.ecore.importer.UMLImporter"
 //    	modelImporter = "org.eclipse.ocl.examples.build.utilities.UMLImporterWithDelegates"	
     }
     component = ResourceReader { resourceSet = resourceSet skipOnErrors = true
     	modelSlot = "${ecoreSlot}"
-    	uri = "/${projectName}/model/Pivot.ecore"
+    	uri = "/${internalProjectName}/model/Pivot.ecore"
     }
     component = ConstraintMerger { resourceSet = resourceSet skipOnErrors = true
-    	projectName = "${projectName}"
+    	projectName = "${internalProjectName}"
     	modelSlot = "${ecoreSlot}"
     	uri = "model/Pivot.ocl"
     }
@@ -111,13 +112,13 @@ Workflow {
 //
 //    component = ResourceReader { resourceSet = resourceSet skipOnErrors = true
 //    	modelSlot = "${ecoreSlot}"
-//    	uri = "/${projectName}/model/Pivot.ecore"
+//    	uri = "/${internalProjectName}/model/Pivot.ecore"
 //    }
 //    
 //    component = OCLVisitorPatternWeaverComponent {
 //    	resourceSet = resourceSet
 //    	uri = "/org.eclipse.ocl.examples.build/qvtoTransf/VisitorPatternTransf.qvto"
-//    	in = "/${projectName}/model/Pivot.ecore" 
+//    	in = "/${internalProjectName}/model/Pivot.ecore" 
 //    	visitorInterfaceName = "Visitor"
 //    	visitorInterfaceQualifiedName = "org.eclipse.ocl.pivot.util.Visitor"
 //    }
@@ -127,8 +128,8 @@ Workflow {
 //    }
 //****** END OF ASBH
     component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
-//    	projectName = "${projectName}"
-    	genModel = "/${projectName}/model/Pivot.merged.genmodel"
+//    	projectName = "${internalProjectName}"
+    	genModel = "/${internalProjectName}/model/Pivot.merged.genmodel"
 //    	clearResourceSet = false
 //    	modelSlot = "${ecoreSlot}"
     }
@@ -143,7 +144,7 @@ Workflow {
     	visitableClassName = "Visitable"
     } */
     component = GenerateASVisitors { resourceSet = resourceSet
-    	projectName = "${projectName}"
+    	projectName = "${internalProjectName}"
     	projectPrefix = "Pivot"
     	superProjectName = ""
     	genModelFile = "model/Pivot.merged.genmodel"
@@ -163,7 +164,7 @@ Workflow {
     	javaClassName = "OCLMetaModel"
     } */
     component = GenerateOCLMetaModelXtend { //resourceSet = resourceSet
-    	projectName = "${projectName}"
+    	projectName = "${internalProjectName}"
     	modelFile = "model/Pivot.ecore"
     	uri = "http://www.eclipse.org/ocl/2015/Pivot"
     	javaFolder = "emf-gen"

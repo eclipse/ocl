@@ -13,36 +13,36 @@ package org.eclipse.ocl.examples.codegen.java;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.ids.ClassId;
-import org.eclipse.ocl.domain.ids.ElementId;
-import org.eclipse.ocl.domain.ids.IdVisitor;
-import org.eclipse.ocl.domain.ids.LambdaTypeId;
-import org.eclipse.ocl.domain.ids.NestedPackageId;
-import org.eclipse.ocl.domain.ids.NsURIPackageId;
-import org.eclipse.ocl.domain.ids.OclInvalidTypeId;
-import org.eclipse.ocl.domain.ids.OclVoidTypeId;
-import org.eclipse.ocl.domain.ids.OperationId;
-import org.eclipse.ocl.domain.ids.PrimitiveTypeId;
-import org.eclipse.ocl.domain.ids.PropertyId;
-import org.eclipse.ocl.domain.ids.RootPackageId;
-import org.eclipse.ocl.domain.ids.TemplateBinding;
-import org.eclipse.ocl.domain.ids.TemplateParameterId;
-import org.eclipse.ocl.domain.ids.TemplateableTypeId;
-import org.eclipse.ocl.domain.ids.TuplePartId;
-import org.eclipse.ocl.domain.ids.TupleTypeId;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.ids.UnspecifiedId;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.values.IntegerRange;
-import org.eclipse.ocl.domain.values.InvalidValueException;
-import org.eclipse.ocl.domain.values.TupleValue;
 import org.eclipse.ocl.examples.codegen.generator.GenModelHelper;
 import org.eclipse.ocl.examples.codegen.java.types.JavaTypeId;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.ids.ClassId;
+import org.eclipse.ocl.pivot.ids.ElementId;
+import org.eclipse.ocl.pivot.ids.IdVisitor;
+import org.eclipse.ocl.pivot.ids.LambdaTypeId;
+import org.eclipse.ocl.pivot.ids.NestedPackageId;
+import org.eclipse.ocl.pivot.ids.NsURIPackageId;
+import org.eclipse.ocl.pivot.ids.OclInvalidTypeId;
+import org.eclipse.ocl.pivot.ids.OclVoidTypeId;
+import org.eclipse.ocl.pivot.ids.OperationId;
+import org.eclipse.ocl.pivot.ids.PrimitiveTypeId;
+import org.eclipse.ocl.pivot.ids.PropertyId;
+import org.eclipse.ocl.pivot.ids.RootPackageId;
+import org.eclipse.ocl.pivot.ids.TemplateBinding;
+import org.eclipse.ocl.pivot.ids.TemplateParameterId;
+import org.eclipse.ocl.pivot.ids.TemplateableTypeId;
+import org.eclipse.ocl.pivot.ids.TuplePartId;
+import org.eclipse.ocl.pivot.ids.TupleTypeId;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.ids.UnspecifiedId;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.values.IntegerRange;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.pivot.values.TupleValue;
 
 public abstract class AbstractId2JavaClassVisitor implements IdVisitor<Class<?>>
 {
@@ -53,7 +53,7 @@ public abstract class AbstractId2JavaClassVisitor implements IdVisitor<Class<?>>
 	}
 
 	public @NonNull Class<?> doVisit(@NonNull ElementId elementId) {
-		return DomainUtil.nonNullState(elementId.accept(this));
+		return ClassUtil.nonNullState(elementId.accept(this));
 	}
 
 	@Override

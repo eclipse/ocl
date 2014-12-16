@@ -33,7 +33,6 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGParameter;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.CG2JavaPreVisitor;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.ConstructorExp;
 import org.eclipse.ocl.pivot.ConstructorPart;
 import org.eclipse.ocl.pivot.DataType;
@@ -45,6 +44,7 @@ import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.xtext.base.cs2as.Continuation;
@@ -73,7 +73,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 //		CommonSubexpressionEliminator.CSE_REWRITE.setState(true);
 	
 		AutoCG2StringVisitor.FACTORY.getClass();
-		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(DomainUtil.nonNullState(ePackage.eResource()));
+		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(ClassUtil.nonNullState(ePackage.eResource()));
 		org.eclipse.ocl.pivot.Package asPackage = metaModelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Package.class, ePackage);
 		if (asPackage != null) {
 			GenPackage superGenPackage = null;
@@ -146,7 +146,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 		String superProjectPrefix2 = superProjectPrefix;
 		if (superProjectPrefix2 != null) {
 			// String superPackageName = super
-			String superPackageName = getVisitorPackageName(DomainUtil.nonNullState(superManualVisitorPackage));
+			String superPackageName = getVisitorPackageName(ClassUtil.nonNullState(superManualVisitorPackage));
 			// String superClassName = superGenPackage2.getPrefix() + "AutoContainmentVisitor";
 			String superClassName = getManualVisitorClassName(superProjectPrefix2);
 			// String superInterfaceName = /*trimmed*/prefix + "Visitor";
@@ -169,9 +169,9 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 		cgPackage.getClasses().add(cgClass);
 		for (org.eclipse.ocl.pivot.Class asType : asPackage.getOwnedClasses()) {
 			boolean hasCS2ASmappingOperation = false;
-			Operation astOperation = DomainUtil.getNamedElement(asType.getOwnedOperations(), "ast");			
+			Operation astOperation = ClassUtil.getNamedElement(asType.getOwnedOperations(), "ast");			
 			if (astOperation != null) {
-				LanguageExpression specification = DomainUtil.nonNullState(astOperation.getBodyExpression());
+				LanguageExpression specification = ClassUtil.nonNullState(astOperation.getBodyExpression());
 				ExpressionInOCL expressionInOCL = metaModelManager.getQueryOrThrow(specification);
 				OCLExpression oclExpression = expressionInOCL.getBodyExpression();
 				if (oclExpression instanceof ConstructorExp) {
@@ -193,15 +193,15 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 						cgParameters.add(cgContext);
 					}
 					
-					org.eclipse.ocl.pivot.Class constructorType = DomainUtil.nonNullState(constructorExp.getType());
-					GenClass genClass = DomainUtil.nonNullState((GenClass) genModelHelper.getGenClassifier(constructorType));
-					EClass eClass = DomainUtil.nonNullState(genClass.getEcoreClass());
+					org.eclipse.ocl.pivot.Class constructorType = ClassUtil.nonNullState(constructorExp.getType());
+					GenClass genClass = ClassUtil.nonNullState((GenClass) genModelHelper.getGenClassifier(constructorType));
+					EClass eClass = ClassUtil.nonNullState(genClass.getEcoreClass());
 					for (ConstructorPart constructorPart : constructorExp.getPart()) {
 						CGContainmentPart cgPart = AutoCGModelFactory.eINSTANCE.createCGContainmentPart();
 						String name = constructorPart.getName();
 						cgPart.setName(name);
 						cgPart.setAst(constructorPart);
-						cgPart.setEStructuralFeature(DomainUtil.nonNullState(eClass.getEStructuralFeature(name)));
+						cgPart.setEStructuralFeature(ClassUtil.nonNullState(eClass.getEStructuralFeature(name)));
 						cgPart.setInit((CGValuedElement) constructorPart.getInitExpression().accept(as2cgVisitor));
 						cgBody.getParts().add(cgPart);
 					}

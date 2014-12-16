@@ -18,8 +18,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.values.InvalidValueException;
 import org.eclipse.ocl.examples.emf.validation.validity.LeafConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.locator.AbstractConstraintLocator;
 import org.eclipse.ocl.pivot.Constraint;
@@ -30,8 +28,10 @@ import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironmentFactory;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 public abstract class AbstractPivotConstraintLocator extends AbstractConstraintLocator
 {
@@ -48,7 +48,7 @@ public abstract class AbstractPivotConstraintLocator extends AbstractConstraintL
 
 		@Override
 		protected Diagnostic handleExceptionResult(@NonNull Throwable e) {
-			String message = DomainUtil.bind(OCLMessages.ValidationConstraintException_ERROR_,
+			String message = ClassUtil.bind(OCLMessages.ValidationConstraintException_ERROR_,
 				getConstraintTypeName(), getConstraintName(), getObjectLabel(), e);
 			return new BasicDiagnostic(Diagnostic.ERROR, EObjectValidator.DIAGNOSTIC_SOURCE, 0, message, new Object [] { object });
 		}
@@ -67,7 +67,7 @@ public abstract class AbstractPivotConstraintLocator extends AbstractConstraintL
 
 		@Override
 		protected Diagnostic handleInvalidResult(@NonNull InvalidValueException e) {
-			String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
+			String message = ClassUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
 				getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.getLocalizedMessage());
 			return new BasicDiagnostic(Diagnostic.ERROR, EObjectValidator.DIAGNOSTIC_SOURCE, 0, message, new Object [] { object });
 		}

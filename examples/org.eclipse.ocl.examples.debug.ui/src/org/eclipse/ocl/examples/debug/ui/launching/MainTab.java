@@ -33,13 +33,13 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
 import org.eclipse.ocl.examples.debug.ui.OCLDebugUIPlugin;
 import org.eclipse.ocl.examples.debug.vm.ui.launching.LaunchingUtils;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
@@ -87,7 +87,7 @@ public class MainTab extends AbstractMainTab implements OCLLaunchConstants
 				List<String> elements = new ArrayList<String>();
 				for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
 					EObject eObject = tit.next();
-					String displayString = DomainUtil.getLabel(eObject);
+					String displayString = ClassUtil.getLabel(eObject);
 					URI uri = EcoreUtil.getURI(eObject);
 					elements.add(displayString);
 					element2uri.put(displayString, uri);
@@ -328,7 +328,7 @@ public class MainTab extends AbstractMainTab implements OCLLaunchConstants
 				modelPath.setText(contextURI.trimFragment().toString());
 				EObject eObject = getMetaModelManager().getExternalResourceSet().getEObject(contextURI, true);
 				if (eObject  != null) {
-					String displayString = DomainUtil.getLabel(eObject);
+					String displayString = ClassUtil.getLabel(eObject);
 					int index = elementCombo.indexOf(displayString);
 					elementCombo.select(index);
 				}

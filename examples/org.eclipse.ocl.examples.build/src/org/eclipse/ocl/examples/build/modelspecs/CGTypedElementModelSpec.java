@@ -19,7 +19,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGTypeId;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTypedElement;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
-import org.eclipse.ocl.domain.ids.TypeId;
+import org.eclipse.ocl.pivot.ids.TypeId;
 
 /**
  * CGTypedElementModelSpec supports generation of the CGTypedElement.getASTypeId() method hierarchy.

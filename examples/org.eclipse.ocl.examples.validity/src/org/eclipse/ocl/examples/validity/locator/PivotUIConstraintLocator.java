@@ -28,8 +28,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
 import org.eclipse.ocl.examples.emf.validation.validity.ResultConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.ValidatableNode;
@@ -45,6 +43,8 @@ import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.PivotConstants;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Shell;
@@ -120,7 +120,7 @@ public class PivotUIConstraintLocator extends PivotConstraintLocator implements 
     public static @NonNull PivotUIConstraintLocator INSTANCE = new PivotUIConstraintLocator();
 
 	public static @NonNull IStatus createStatus(Throwable e, String messageTemplate, Object... bindings) {
-		String message = DomainUtil.bind(messageTemplate, bindings);
+		String message = ClassUtil.bind(messageTemplate, bindings);
 		return new Status(IStatus.ERROR, OCLValidityPlugin.PLUGIN_ID, 0, message, e);
 	}
 
@@ -140,19 +140,19 @@ public class PivotUIConstraintLocator extends PivotConstraintLocator implements 
 			asConstraint = (Constraint)constrainingObject;
 		}
 		if (asConstraint == null) {
-			IStatus status = createStatus(null, OCLMessages.MissingSpecification_ERROR_, EcoreUtils.qualifiedNameFor(asConstraint), PivotConstants.OWNED_RULE_ROLE);
+			IStatus status = createStatus(null, OCLMessages.MissingSpecification_ERROR_, LabelUtil.qualifiedNameFor(asConstraint), PivotConstants.OWNED_RULE_ROLE);
 			throw new CoreException(status);
 		}
 		LanguageExpression specification = asConstraint.getSpecification();
 		if (specification == null) {
-			IStatus status = createStatus(null, OCLMessages.MissingSpecificationBody_ERROR_, EcoreUtils.qualifiedNameFor(asConstraint), PivotConstants.OWNED_RULE_ROLE);
+			IStatus status = createStatus(null, OCLMessages.MissingSpecificationBody_ERROR_, LabelUtil.qualifiedNameFor(asConstraint), PivotConstants.OWNED_RULE_ROLE);
 			throw new CoreException(status);
 		}
 		ExpressionInOCL query;
 		try {
 			query = metaModelManager.getQueryOrThrow(specification);
 		} catch (ParserException e) {
-			IStatus status = createStatus(e, OCLMessages.InvalidSpecificationBody_ERROR_, EcoreUtils.qualifiedNameFor(asConstraint), PivotConstants.OWNED_RULE_ROLE);
+			IStatus status = createStatus(e, OCLMessages.InvalidSpecificationBody_ERROR_, LabelUtil.qualifiedNameFor(asConstraint), PivotConstants.OWNED_RULE_ROLE);
 			throw new CoreException(status);
 		}
 		ValidatableNode parent = resultConstrainingNode.getResultValidatableNode().getParent();

@@ -12,10 +12,10 @@ package org.eclipse.ocl.library.string;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.library.AbstractSimpleTernaryOperation;
-import org.eclipse.ocl.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.values.InvalidValueException;
+import org.eclipse.ocl.pivot.library.AbstractSimpleTernaryOperation;
+import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
  * StringSubstringOperation realises the String::substring() library operation.
@@ -37,7 +37,7 @@ public class StringSubstringOperation extends AbstractSimpleTernaryOperation
 			return result;
 		}
 		else {
-			throw new InvalidValueException(DomainUtil.bind(EvaluatorMessages.IndexesOutOfRange, lower, upper, size));
+			throw new InvalidValueException(ClassUtil.bind(EvaluatorMessages.IndexesOutOfRange, lower, upper, size));
 		}
 	}
 }

@@ -59,7 +59,6 @@ import org.eclipse.ocl.common.OCLCommon;
 import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.common.internal.options.CodeGenerationMode;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.codegen.common.PivotQueries;
 import org.eclipse.ocl.examples.codegen.generator.AbstractGenModelHelper;
 import org.eclipse.ocl.library.LibraryConstants;
@@ -73,8 +72,9 @@ import org.eclipse.ocl.pivot.ecore.AS2Ecore;
 import org.eclipse.ocl.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
-import org.eclipse.ocl.pivot.util.PivotPlugin;
+import org.eclipse.ocl.pivot.util.PivotInternalPlugin;
 import org.eclipse.ocl.pivot.utilities.AS2Moniker;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.uml2.codegen.ecore.genmodel.util.UML2GenModelUtil;
 
@@ -256,8 +256,8 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 				if (!modelPluginVariables.contains(LibraryConstants.PLUGIN_ID)) {
 					modelPluginVariables.add(LibraryConstants.PLUGIN_ID);
 				}				
-				if (!modelPluginVariables.contains(PivotPlugin.PLUGIN_ID)) {	// FIXME delete me BUG 401862
-					modelPluginVariables.add(PivotPlugin.PLUGIN_ID);
+				if (!modelPluginVariables.contains(PivotInternalPlugin.PLUGIN_ID)) {	// FIXME delete me BUG 401862
+					modelPluginVariables.add(PivotInternalPlugin.PLUGIN_ID);
 				}				
 				if (!modelPluginVariables.contains("org.eclipse.ocl.examples.codegen")) {	// FIXME delete me BUG 401862
 					modelPluginVariables.add("org.eclipse.ocl.examples.codegen");
@@ -349,8 +349,8 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		    IProject modelProject = workspace.getRoot().getProject(modelProjectDirectory);
 		    IPath javaSource = new Path(modelDirectory);
 		    IFolder folder = modelProject.getParent().getFolder(javaSource);
-		    java.net.URI locationURI = DomainUtil.nonNullState(folder.getLocationURI());
-		    return DomainUtil.nonNullState(URIUtil.toFile(locationURI));
+		    java.net.URI locationURI = ClassUtil.nonNullState(folder.getLocationURI());
+		    return ClassUtil.nonNullState(URIUtil.toFile(locationURI));
 		}
 		else {
 		    URI locationURI = URI.createPlatformResourceURI(modelDirectory, true);

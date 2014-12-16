@@ -14,13 +14,13 @@ import java.util.Iterator;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.evaluation.DomainEvaluator;
-import org.eclipse.ocl.domain.ids.TypeId;
-import org.eclipse.ocl.domain.library.AbstractIterationManager;
-import org.eclipse.ocl.domain.library.LibraryTernaryOperation;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.values.CollectionValue;
+import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.library.AbstractIterationManager;
+import org.eclipse.ocl.pivot.library.LibraryTernaryOperation;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.CollectionValue;
 
 public class ExecutorDoubleIterationManager extends AbstractIterationManager
 {	
@@ -66,7 +66,7 @@ public class ExecutorDoubleIterationManager extends AbstractIterationManager
 	@Override
 	public @Nullable Object evaluateBody() {
 		return body.evaluate(evaluator, returnTypeId, accumulatorValue,
-			DomainUtil.nonNullState(currentValue1), DomainUtil.nonNullState(currentValue2));
+			ClassUtil.nonNullState(currentValue1), ClassUtil.nonNullState(currentValue2));
 	}
 
 	@Override

@@ -24,8 +24,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
-import org.eclipse.ocl.domain.values.Unlimited;
 import org.eclipse.ocl.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.pivot.CollectionItem;
 import org.eclipse.ocl.pivot.CollectionLiteralExp;
@@ -55,8 +53,10 @@ import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.context.ParserContext;
 import org.eclipse.ocl.pivot.utilities.BaseResource;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.Unlimited;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.xtext.base.cs2as.Continuation;
@@ -183,7 +183,7 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 			tupleParts.put(PivotConstants.MESSAGE_PART_NAME, standardLibrary.getStringType());
 			tupleParts.put(PivotConstants.STATUS_PART_NAME, standardLibrary.getBooleanType());
 			TupleType tupleType = metaModelManager.getCompleteModel().getTupleManager().getTupleType("Tuple", tupleParts);
-			Property statusProperty = DomainUtil.getNamedElement(tupleType.getOwnedProperties(), PivotConstants.STATUS_PART_NAME);
+			Property statusProperty = ClassUtil.getNamedElement(tupleType.getOwnedProperties(), PivotConstants.STATUS_PART_NAME);
 			LanguageExpression asSpecification = asConstraint.getSpecification();
 			//
 			ExpressionInOCL asExpressionInOCL;
