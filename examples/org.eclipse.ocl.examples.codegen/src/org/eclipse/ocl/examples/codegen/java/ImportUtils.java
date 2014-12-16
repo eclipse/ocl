@@ -42,17 +42,17 @@ public class ImportUtils
 				String oldImport = shortables.get(shortName);
 				long2shortNames.put(oldImport, null);
 				long2shortNames.put(longName, null);
-				shortables.put(shortName,  null);
+				shortables.put(shortName, null);
 			}
 			else {
 				long2shortNames.put(longName, shortName);
-				shortables.put(shortName,  longName);
+				shortables.put(shortName, longName);
 			}
 		}
 		Map<String, String> long2short = new HashMap<String, String>();
 		for (String longName : long2shortNames.keySet()) {
 			String shortName = long2shortNames.get(longName);
-			long2short.put(longName, shortName != null ? shortName : longName);
+			long2short.put(longName, shortName != null ? shortName : null);
 		}
 		return long2short;
 	}
@@ -69,7 +69,8 @@ public class ImportUtils
 		List<String> sortedImports = new ArrayList<String>(long2short.keySet());
 		Collections.sort(sortedImports);
 		for (String anImport : sortedImports) {
-			if (!anImport.startsWith("java.lang.")) {
+			String shortname = long2short.get(anImport);
+			if (!anImport.startsWith("java.lang.") && (shortname != null)) {
 				s.append("import " + anImport +";\n");
 			}
 		}
