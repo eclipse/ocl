@@ -59,11 +59,11 @@ import org.eclipse.ocl.pivot.manager.TupleTypeManager;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.TypeUtil;
 import org.eclipse.ocl.pivot.values.CollectionTypeParameters;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
-import org.eclipse.ocl.pivot.values.impl.CollectionTypeParametersImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -487,7 +487,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	}
 
 	public @NonNull CollectionType getCollectionType(@NonNull CompleteClassInternal completeClass, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
-		return completeEnvironment.getCollectionType(completeClass, new CollectionTypeParametersImpl<Type>(elementType, lower, upper));
+		return completeEnvironment.getCollectionType(completeClass, TypeUtil.createCollectionTypeParameters(elementType, lower, upper));
 	}
 	
 	@Override
@@ -746,7 +746,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 					if (superSpecializedTemplateParameterSubstitutions.size() == 1) {
 						Type templateArgument = superSpecializedTemplateParameterSubstitutions.get(0).getActual();
 						if (templateArgument != null) {
-							org.eclipse.ocl.pivot.Class specializedSuperClass = completeEnvironment.getCollectionType(superCompleteClass, new CollectionTypeParametersImpl<Type>(templateArgument, null, null));
+							org.eclipse.ocl.pivot.Class specializedSuperClass = completeEnvironment.getCollectionType(superCompleteClass, TypeUtil.createCollectionTypeParameters(templateArgument, null, null));
 							specializedClass.getSuperClasses().add(specializedSuperClass);
 						}
 					}

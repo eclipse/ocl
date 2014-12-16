@@ -43,7 +43,6 @@ import org.eclipse.ocl.pivot.values.CollectionTypeParameters;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
-import org.eclipse.ocl.pivot.values.impl.CollectionTypeParametersImpl;
 
 public abstract class ExecutableStandardLibrary extends AbstractExecutorElement implements CompleteEnvironment, StandardLibrary
 {
@@ -93,7 +92,7 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 		if (upper2 == null) {
 			upper2 = ValueUtil.UNLIMITED_VALUE;
 		}
-		CollectionTypeParameters<Type> typeParameters = new CollectionTypeParametersImpl<Type>(elementType, lower2, upper2);
+		CollectionTypeParameters<Type> typeParameters = TypeUtil.createCollectionTypeParameters(elementType, lower2, upper2);
 		AbstractCollectionType specializedType = null;
 		Map<CollectionTypeParameters<Type>, WeakReference<AbstractCollectionType>> map = specializations.get(genericType);
 		if (map == null) {

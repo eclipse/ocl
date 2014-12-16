@@ -22,8 +22,10 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.PrimitiveTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.types.ParameterTypesImpl;
+import org.eclipse.ocl.pivot.values.CollectionTypeParameters;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
+import org.eclipse.ocl.pivot.values.impl.CollectionTypeParametersImpl;
 
 public class TypeUtil
 {
@@ -71,6 +73,11 @@ public class TypeUtil
 		CompleteInheritance firstInheritance = firstTupleType.getInheritance(standardLibrary);
 		CompleteInheritance secondInheritance = secondTupleType.getInheritance(standardLibrary);
 		return firstInheritance.isSuperInheritanceOf(secondInheritance);
+	}
+
+	public static @NonNull CollectionTypeParameters<Type> createCollectionTypeParameters(@NonNull Type elementType,
+		@Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+		return new CollectionTypeParametersImpl<Type>(elementType, lower, upper);
 	}
 
 	public static @NonNull ParameterTypes createParameterTypes(@NonNull Type... parameterTypes) {

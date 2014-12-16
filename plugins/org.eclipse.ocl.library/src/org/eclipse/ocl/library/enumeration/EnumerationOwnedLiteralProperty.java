@@ -19,6 +19,7 @@ import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractProperty;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
@@ -33,13 +34,14 @@ public class EnumerationOwnedLiteralProperty extends AbstractProperty
 
 	@Override
 	public @NonNull OrderedSetValue evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
+		IdResolver idResolver = evaluator.getIdResolver();
 		Type sourceType = asType(sourceValue);
 		Set<Object> results = new OrderedSetImpl<Object>();
 		for (Element instance : ((Enumeration)sourceType).getOwnedLiteral()) {
 			if (instance != null) {
-				results.add(evaluator.getIdResolver().boxedValueOf(instance));
+				results.add(idResolver.boxedValueOf(instance));
 			}
 		}
-		return evaluator.getIdResolver().createOrderedSetOfAll((CollectionTypeId)returnTypeId, results);
+		return idResolver.createOrderedSetOfAll((CollectionTypeId)returnTypeId, results);
 	}
 }

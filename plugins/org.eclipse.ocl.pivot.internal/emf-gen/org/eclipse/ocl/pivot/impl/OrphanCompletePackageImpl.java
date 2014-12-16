@@ -31,9 +31,9 @@ import org.eclipse.ocl.pivot.complete.CompletePackageInternal;
 import org.eclipse.ocl.pivot.manager.Orphanage;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.TypeUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
-import org.eclipse.ocl.pivot.values.impl.CollectionTypeParametersImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -103,7 +103,7 @@ public class OrphanCompletePackageImpl extends CompletePackageImpl implements Or
 		}
 		org.eclipse.ocl.pivot.complete.CompleteClassInternal completeClass = getCompleteModel().getCompleteClass(containerType);
 		@SuppressWarnings("unchecked")
-		T specializedType = (T) getCompleteModel().getCollectionType(completeClass, new CollectionTypeParametersImpl<Type>(elementType, lower, upper));
+		T specializedType = (T) getCompleteModel().getCollectionType(completeClass, TypeUtil.createCollectionTypeParameters(elementType, lower, upper));
 		return specializedType;
 	}
 

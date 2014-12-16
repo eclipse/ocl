@@ -56,11 +56,11 @@ import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.TupleTypeManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.TypeUtil;
 import org.eclipse.ocl.pivot.values.CollectionTypeParameters;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
-import org.eclipse.ocl.pivot.values.impl.CollectionTypeParametersImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -603,7 +603,7 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 			return containerType;	
 		}
 		@SuppressWarnings("unchecked")
-		T specializedType = (T) ownedCompleteModel.getCollectionType(ownedCompleteModel.getCompleteClass(containerType), new CollectionTypeParametersImpl<Type>(elementType, lower, upper));
+		T specializedType = (T) ownedCompleteModel.getCollectionType(ownedCompleteModel.getCompleteClass(containerType), TypeUtil.createCollectionTypeParameters(elementType, lower, upper));
 		return specializedType;
 	}
 	

@@ -23,7 +23,7 @@ Export-Package: org.eclipse.ocl.pivot,
  org.eclipse.ocl.pivot.utilities,
  org.eclipse.ocl.pivot.validation,
  org.eclipse.ocl.pivot.values,
- org.eclipse.ocl.pivot.values.impl;x-friends:="org.eclipse.ocl.examples.xtext.tests,org.eclipse.ocl.examples.codegen",
+ org.eclipse.ocl.pivot.values.impl;x-friends:="org.eclipse.ocl.examples.xtext.tests,org.eclipse.ocl.examples.codegen,org.eclipse.ocl.library",
  org.eclipse.ocl.pivot.values.util
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
