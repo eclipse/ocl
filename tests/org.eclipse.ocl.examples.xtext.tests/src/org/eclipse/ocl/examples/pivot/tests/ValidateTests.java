@@ -202,7 +202,7 @@ public class ValidateTests extends AbstractValidateTests
 			getProjectMap().initializeResourceSet(resourceSet);
 			OCLASResourceFactory.INSTANCE.configure(resourceSet);
 		}
-		Resource resource = resourceSet.getResource(URI.createPlatformResourceURI("org.eclipse.ocl.pivot/model-gen/Pivot.oclas", true), true);
+		Resource resource = resourceSet.getResource(URI.createPlatformResourceURI("org.eclipse.ocl.pivot.internal/model-gen/Pivot.oclas", true), true);
 		assertNoValidationErrors("Validating", ClassUtil.nonNullState(resource));
 	}
 

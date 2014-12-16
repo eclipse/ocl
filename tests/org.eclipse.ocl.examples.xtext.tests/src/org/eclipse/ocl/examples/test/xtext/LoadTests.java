@@ -1040,7 +1040,7 @@ public class LoadTests extends XtextTestCase
 
 	public void testLoad_Pivot_ocl() throws IOException, InterruptedException {
 //		Abstract2Moniker.TRACE_MONIKERS.setState(true);
-		doLoad_OCL(URI.createPlatformResourceURI("/org.eclipse.ocl.pivot/model/Pivot.ocl", true));
+		doLoad_OCL(URI.createPlatformResourceURI("/org.eclipse.ocl.pivot.internal/model/Pivot.ocl", true));
 	}	
 
 	public void testLoad_RoyalAndLoyal_ocl() throws IOException, InterruptedException {

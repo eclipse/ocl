@@ -103,31 +103,31 @@ public class ProjectMapTest extends AbstractProjectMapTest
 	}
 	
 	public void testProjectMap_Pivot_LoadBoth() {					// Almost certainly a workspace project; always a project on Hudson
-		@SuppressWarnings("null")@NonNull String project = PivotPackage.class.getPackage().getName();
+		String project = "org.eclipse.ocl.pivot.internal";
 		String modelPath = project + "/model/Pivot.ecore";
 		doTestProjectMap_LoadBoth(PivotPackage.eINSTANCE, project, modelPath, "/");
 	}
 	
 	public void testProjectMap_Pivot_LoadDefault() {					// Almost certainly a workspace project; always a project on Hudson
-		@SuppressWarnings("null")@NonNull String project = PivotPackage.class.getPackage().getName();
+		String project = "org.eclipse.ocl.pivot.internal";
 		String modelPath = project + "/model/Pivot.ecore";
 		doTestProjectMap_LoadDefault(PivotPackage.eINSTANCE, project, modelPath, "/", false);
 	}
 	
 	public void testProjectMap_Pivot_LoadEPackage() {					// Almost certainly a workspace project; always a project on Hudson
-		@SuppressWarnings("null")@NonNull String project = PivotPackage.class.getPackage().getName();
+		String project = "org.eclipse.ocl.pivot.internal";
 		String modelPath = project + "/model/Pivot.ecore";
 		doTestProjectMap_LoadEPackage(PivotPackage.eINSTANCE, project, modelPath, "/");
 	}
 	
 	public void testProjectMap_Pivot_LoadFirst() {					// Almost certainly a workspace project; always a project on Hudson
-		@SuppressWarnings("null")@NonNull String project = PivotPackage.class.getPackage().getName();
+		String project = "org.eclipse.ocl.pivot.internal";
 		String modelPath = project + "/model/Pivot.ecore";
 		doTestProjectMap_LoadFirst(PivotPackage.eINSTANCE, project, modelPath, "/", false);
 	}
 	
 	public void testProjectMap_Pivot_LoadModel() {					// Almost certainly a workspace project; always a project on Hudson
-		@SuppressWarnings("null")@NonNull String project = PivotPackage.class.getPackage().getName();
+		String project = "org.eclipse.ocl.pivot.internal";
 		String modelPath = project + "/model/Pivot.ecore";
 		doTestProjectMap_LoadModel(PivotPackage.eINSTANCE, project, modelPath, "/", false);
 	}

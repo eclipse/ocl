@@ -382,7 +382,7 @@ public class OCLstdlibTests extends XtextTestCase
 		ResourceSet resourceSet = new ResourceSetImpl();
 		new ProjectMap().initializeResourceSet(resourceSet);
 		ASResourceFactoryRegistry.INSTANCE.configureResourceSet(resourceSet);
-		URI pivotURI = URI.createPlatformResourceURI("org.eclipse.ocl.pivot/model-gen/Pivot.oclas", true);
+		URI pivotURI = URI.createPlatformResourceURI("org.eclipse.ocl.pivot.internal/model-gen/Pivot.oclas", true);
 		//
 		//	Load OCLmetamodel as pre-code-generated Java.
 		//

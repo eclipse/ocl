@@ -244,7 +244,7 @@ public class EditorTests extends XtextTestCase
 	}	
 	
 	public void testEditor_OpenCompleteOCLEditor4Pivot_OCL() throws Exception {
-		URI uri = URI.createPlatformPluginURI("org.eclipse.ocl.pivot/model/Pivot.ocl", true);
+		URI uri = URI.createPlatformPluginURI("org.eclipse.ocl.pivot.internal/model/Pivot.ocl", true);
 		String documentText = doTestEditor(CompleteOCLUiModule.EDITOR_ID, uri);
 		assertTrue(documentText.contains("inv CollectNestedTypeIsBag: name = 'collectNested' implies type.oclIsKindOf(BagType)"));
 	}	
