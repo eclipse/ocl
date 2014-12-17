@@ -31,8 +31,12 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.util.EcoreEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.EcoreUtil.ExternalCrossReferencer;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
@@ -41,6 +45,7 @@ import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
+import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.StandardLibrary;
@@ -74,6 +79,7 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.ids.UnspecifiedId;
 import org.eclipse.ocl.pivot.types.AbstractTuplePart;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.Bag;
 import org.eclipse.ocl.pivot.values.BagValue;
@@ -218,6 +224,9 @@ public abstract class AbstractIdResolver implements IdResolver
 
 	protected final @NonNull CompleteEnvironment environment;
 	protected final @NonNull StandardLibrary standardLibrary;
+	private final @NonNull Set<EObject> directRoots = new HashSet<EObject>();
+	private boolean directRootsProcessed = false;
+	private boolean crossReferencedRootsProcessed = false;
 	private final @NonNull Map<Object, org.eclipse.ocl.pivot.Class> key2type = new HashMap<Object, org.eclipse.ocl.pivot.Class>();	// Concurrent puts are duplicates
 	private /*@LazyNonNull*/ Map<EnumerationLiteralId, Enumerator> enumerationLiteral2enumerator = null;	// Concurrent puts are duplicates
 	private /*@LazyNonNull*/ Map<Enumerator, EnumerationLiteralId> enumerator2enumerationLiteralId = null;	// Concurrent puts are duplicates
@@ -228,10 +237,65 @@ public abstract class AbstractIdResolver implements IdResolver
 	 * unused when using the full pivot environment.
 	 */
 	private Map<String, Map<Type, WeakReference<TypedElement>>> tupleParts = null;		// Lazily created
+
+	/**
+	 * Mapping from package URI to corresponding Pivot Package. (used to resolve NsURIPackageId).
+	 */
+	protected final @NonNull  Map<String, org.eclipse.ocl.pivot.Package> nsURI2package = new HashMap<String, org.eclipse.ocl.pivot.Package>();
+
+	/**
+	 * Mapping from root package name to corresponding Pivot Package. (used to resolve RootPackageId).
+	 */
+	protected final @NonNull  Map<String, org.eclipse.ocl.pivot.Package> roots2package = new HashMap<String, org.eclipse.ocl.pivot.Package>();
 	
 	public AbstractIdResolver(@NonNull CompleteEnvironment environment) {
 		this.environment = environment;
 		this.standardLibrary = environment.getOwnedStandardLibrary();
+	}
+
+	protected abstract @NonNull org.eclipse.ocl.pivot.Package addEPackage(@NonNull EPackage ePackage);
+
+	private void addPackage(@NonNull org.eclipse.ocl.pivot.Package userPackage) {
+		String nsURI = userPackage.getURI();
+		if (nsURI != null) {
+			nsURI2package.put(nsURI, userPackage);
+			EPackage ePackage = userPackage.getEPackage();
+			if (ePackage != null) {
+				if (ClassUtil.basicGetMetamodelAnnotation(ePackage) != null) {
+					if (roots2package.get(PivotConstants.METAMODEL_NAME) == null) {
+						roots2package.put(PivotConstants.METAMODEL_NAME, userPackage);
+					}
+				}
+			}
+			else {
+				for (org.eclipse.ocl.pivot.Class asType : userPackage.getOwnedClasses()) {
+					if ("Boolean".equals(asType.getName())) {			// FIXME Check PrimitiveType //$NON-NLS-1$
+						if (roots2package.get(PivotConstants.METAMODEL_NAME) == null) {
+							roots2package.put(PivotConstants.METAMODEL_NAME, userPackage);
+						}
+						break;
+					}
+				}
+			}
+		}
+		else {
+			String name = userPackage.getName();
+			if (name != null) {
+				roots2package.put(name, userPackage);
+			}
+		}
+		addPackages(userPackage.getOwnedPackages());
+	}
+
+	private void addPackages(/*@NonNull*/ Iterable<? extends org.eclipse.ocl.pivot.Package> userPackages) {
+		for (org.eclipse.ocl.pivot.Package userPackage : userPackages) {
+			assert userPackage != null;
+			addPackage(userPackage);
+		}
+	}
+
+	public void addRoot(@NonNull EObject eObject) {
+		directRoots.add(eObject);
 	}
 
 	@Override
@@ -942,6 +1006,57 @@ public abstract class AbstractIdResolver implements IdResolver
 		}
 	}
 
+	protected synchronized void processCrossReferencedRoots() {
+		if (crossReferencedRootsProcessed ) {
+			return;
+		}
+		crossReferencedRootsProcessed = true;
+		new ExternalCrossReferencer(directRoots)
+		{
+			private static final long serialVersionUID = 1L;
+			
+			private Set<EObject> moreRoots = new HashSet<EObject>();
+
+			{ findExternalCrossReferences(); }
+
+			@Override
+			protected boolean crossReference(EObject eObject, EReference eReference, EObject crossReferencedEObject) {
+				EObject root = EcoreUtil.getRootContainer(crossReferencedEObject);
+				if (moreRoots.add(root) && !directRoots.contains(root)) {
+					if (root instanceof Model) {
+						addPackages(((Model)root).getOwnedPackages());
+					}
+					else if (root instanceof org.eclipse.ocl.pivot.Package) {					// Perhaps this is only needed for a lazy JUnit test
+						addPackage((org.eclipse.ocl.pivot.Package)root);
+					}
+				}
+				return false;
+			}
+		};
+	}
+
+	protected synchronized void processDirectRoots() {
+		if (directRootsProcessed) {
+			return;
+		}
+		directRootsProcessed = true;
+		Set<EPackage> ePackages = new HashSet<EPackage>();
+		for (EObject eObject : directRoots) {
+			if (eObject instanceof Model) {
+				addPackages(((Model)eObject).getOwnedPackages());
+			}
+//			else if (eObject instanceof org.eclipse.ocl.pivot.Package) {							// Perhaps this is only needed for a lazy JUnit test
+//				addPackage((org.eclipse.ocl.pivot.Package)eObject);
+//			}
+			else {
+				ePackages.add(eObject.eClass().getEPackage());
+			}
+		}
+		for (@SuppressWarnings("null")@NonNull EPackage ePackage : ePackages) {
+			addEPackage(ePackage);
+		}
+	}
+
 	@Override
 	public @Nullable Object unboxedValueOf(@Nullable Object boxedValue) {
 		if (boxedValue instanceof Value) {
@@ -1093,13 +1208,55 @@ public abstract class AbstractIdResolver implements IdResolver
 		return nestedPackage;
 	}
 
-	@Override
+/*	@Override
 	public @NonNull org.eclipse.ocl.pivot.Package visitNsURIPackageId(@NonNull NsURIPackageId id) {
 		org.eclipse.ocl.pivot.Package nsURIPackage = standardLibrary.getNsURIPackage(id.getNsURI());
 		if (nsURIPackage == null) {
 			throw new UnsupportedOperationException();
 		}
 		return nsURIPackage;
+	} */
+
+	@Override
+	public synchronized @NonNull org.eclipse.ocl.pivot.Package visitNsURIPackageId(@NonNull NsURIPackageId id) {
+		String nsURI = id.getNsURI();
+		org.eclipse.ocl.pivot.Package knownPackage = nsURI2package.get(nsURI);
+		if (knownPackage != null) {
+			return knownPackage;
+		}
+		org.eclipse.ocl.pivot.Package libraryPackage = standardLibrary.getNsURIPackage(nsURI);
+		if (libraryPackage != null) {
+			nsURI2package.put(nsURI, libraryPackage);
+			return libraryPackage;
+		}
+		if (!directRootsProcessed) {
+			processDirectRoots();
+			knownPackage = nsURI2package.get(nsURI);
+			if (knownPackage != null) {
+				return knownPackage;
+			}
+		}
+		if (!crossReferencedRootsProcessed) {
+			processCrossReferencedRoots();
+			knownPackage = nsURI2package.get(nsURI);
+			if (knownPackage != null) {
+				return knownPackage;
+			}
+		}
+		EPackage ePackage = id.getEPackage();
+		if (ePackage != null) {
+			org.eclipse.ocl.pivot.Package asPackage = addEPackage(ePackage);
+/*			EcoreReflectivePackage ecoreExecutorPackage = new EcoreReflectivePackage(ePackage, this, id);
+//			EList<EClassifier> eClassifiers = ePackage.getEClassifiers();
+//			EcoreReflectiveType[] types = new EcoreReflectiveType[eClassifiers.size()];
+//			for (int i = 0; i < types.length; i++) {
+//				types[i] = new EcoreReflectiveType(eClassifiers.get(i), ecoreExecutorPackage, 0);
+//			}
+//			ecoreExecutorPackage.init((ExecutorStandardLibrary) standardLibrary, types);
+			nsURI2package.put(nsURI, ecoreExecutorPackage); */
+			return asPackage;
+		}
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -1144,7 +1301,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		return memberProperty;
 	}
 
-	@Override
+/*	@Override
 	public @NonNull org.eclipse.ocl.pivot.Package visitRootPackageId(@NonNull RootPackageId id) {
 		String completeURIorName = id.getName();
 		org.eclipse.ocl.pivot.Package rootPackage = standardLibrary.getRootPackage(completeURIorName);
@@ -1152,6 +1309,38 @@ public abstract class AbstractIdResolver implements IdResolver
 			throw new UnsupportedOperationException();
 		}
 		return rootPackage;
+	} */
+
+	@Override
+	public @NonNull org.eclipse.ocl.pivot.Package visitRootPackageId(@NonNull RootPackageId id) {
+		if (id == IdManager.METAMODEL) {
+			return ClassUtil.nonNullState(getStandardLibrary().getPackage());
+		}
+		String name = id.getName();
+		org.eclipse.ocl.pivot.Package knownPackage = roots2package.get(name);
+		if (knownPackage != null) {
+			return knownPackage;
+		}
+//		org.eclipse.ocl.pivot.Package libraryPackage = standardLibrary.getNsURIPackage(nsURI);
+//		if (libraryPackage != null) {
+//			nsURI2package.put(nsURI, libraryPackage);
+//			return libraryPackage;
+//		}
+		if (!directRootsProcessed) {
+			processDirectRoots();
+			knownPackage = roots2package.get(name);
+			if (knownPackage != null) {
+				return knownPackage;
+			}
+		}
+		if (!crossReferencedRootsProcessed) {
+			processCrossReferencedRoots();
+			knownPackage = roots2package.get(name);
+			if (knownPackage != null) {
+				return knownPackage;
+			}
+		}
+		throw new UnsupportedOperationException();
 	}
 
 	@Override

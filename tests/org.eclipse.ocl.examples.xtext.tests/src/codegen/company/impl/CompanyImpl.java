@@ -31,10 +31,11 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.library.collection.CollectionIncludesOperation;
 import org.eclipse.ocl.library.collection.CollectionSizeOperation;
-import org.eclipse.ocl.library.ecore.EcoreExecutorManager;
 import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
 import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
 import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -176,7 +177,7 @@ public class CompanyImpl extends EObjectImpl implements Company
 		/**
 		 * 
 		 * let
-		 *   table : Set(Tuple(range : Sequence(Integer), size : CompanySizeKind)) = Set{
+		 *   table : Set(Tuple(range:Sequence(Integer), size:company::CompanySizeKind)) = Set{
 		 *     Tuple{range = Sequence{0..49}, size = CompanySizeKind::small
 		 *     }
 		 *     , Tuple{range = Sequence{50..999}, size = CompanySizeKind::medium
@@ -187,7 +188,7 @@ public class CompanyImpl extends EObjectImpl implements Company
 		 * in
 		 *   table->any(range->includes(employees->size())).size
 		 */
-		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = new EcoreExecutorManager(this, CodegencompanyTables.LIBRARY);
+		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		@Nullable Iterator<?> ITERATOR__1 = CodegencompanyTables.table.iterator();
 		@Nullable /*@Thrown*/ TupleValue any;
@@ -200,13 +201,13 @@ public class CompanyImpl extends EObjectImpl implements Company
 		     * range->includes(employees->size())
 		     */
 		    if (_1 == null) {
-		        throw new InvalidValueException("Null source for \'$$::Tuple.range\'");
+		        throw new InvalidValueException("Null source for \'$$::Tuple::range\'");
 		    }
 		    final @NonNull /*@NonInvalid*/ SequenceValue range = (SequenceValue)_1.getValue(0/*range*/);
 		    final @NonNull /*@Thrown*/ List<Employee> employees = this.getEmployees();
 		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_employees = idResolver.createOrderedSetOfAll(CodegencompanyTables.ORD_CLSSid_Employee, employees);
-		    final @NonNull /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(BOXED_employees);
-		    final /*@Thrown*/ boolean includes = CollectionIncludesOperation.INSTANCE.evaluate(range, size);
+		    final @NonNull /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(BOXED_employees));
+		    final /*@Thrown*/ boolean includes = ClassUtil.nonNullState(CollectionIncludesOperation.INSTANCE.evaluate(range, size).booleanValue());
 		    //
 		    if (includes != ValueUtil.FALSE_VALUE) {			// Carry on till something found
 		        any = _1;
@@ -214,7 +215,7 @@ public class CompanyImpl extends EObjectImpl implements Company
 		    }
 		}
 		if (any == null) {
-		    throw new InvalidValueException("Null source for \'$$::Tuple.size\'");
+		    throw new InvalidValueException("Null source for \'$$::Tuple::size\'");
 		}
 		final @NonNull /*@NonInvalid*/ EnumerationLiteralId size_0 = (EnumerationLiteralId)any.getValue(1/*size*/);
 		final @Nullable /*@NonInvalid*/ Enumerator UNBOXED_size_0 = idResolver.unboxedValueOf(size_0);

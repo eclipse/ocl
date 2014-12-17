@@ -912,13 +912,11 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.appendClassReference(EcoreExecutorPackage.class);
 		s.append(" PACKAGE = new ");
 		s.appendClassReference(EcoreExecutorPackage.class);
-		s.append("(" + genPackage.getPrefix() + "Package.eINSTANCE, ");
+		s.append("(" + genPackage.getPrefix() + "Package.eINSTANCE");
 		if (pPackage.getPackageId() == IdManager.METAMODEL) {
+			s.append(", ");
 			s.appendClassReference(IdManager.class);
 			s.append(".METAMODEL");
-		}
-		else {
-			s.append("null");
 		}
 		s.append(");\n");
 		

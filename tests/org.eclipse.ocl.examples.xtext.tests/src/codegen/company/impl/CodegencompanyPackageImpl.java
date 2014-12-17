@@ -474,12 +474,12 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 		  (this, 
 		   source, 
 		   new String[] {
-		   });		
+		   });	
 		addAnnotation
 		  (employeeEClass, 
 		   source, 
 		   new String[] {
-		   });	
+		   });
 	}
 
 } //CodegencompanyPackageImpl

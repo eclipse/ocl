@@ -10,18 +10,36 @@
  *******************************************************************************/
 package org.eclipse.ocl.library.executor;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.Nameable;
 import org.eclipse.ocl.pivot.elements.AbstractExecutorPackage;
 import org.eclipse.ocl.pivot.ids.ElementId;
 import org.eclipse.ocl.pivot.ids.PackageId;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 public abstract class ExecutorPackage extends AbstractExecutorPackage
 {
+	public static final class StringNameable
+	implements Nameable {
+
+private final String typeName;
+
+public StringNameable(String typeName) {
+	this.typeName = typeName;
+}
+
+@Override
+public String getName() {
+	return typeName;
+}
+}
+
 	protected final @Nullable String nsPrefix;
 	protected final @Nullable String nsURI;
 	protected final @NonNull PackageId packageId;
@@ -65,15 +83,30 @@ public abstract class ExecutorPackage extends AbstractExecutorPackage
 		return packageId;
 	}
 
-
-	public org.eclipse.ocl.pivot.Class getType(String typeName) {
-		for (org.eclipse.ocl.pivot.Class type: getOwnedClasses()) {
+	@Override
+	public @Nullable org.eclipse.ocl.pivot.Class getOwnedClass(String typeName) {
+		List<org.eclipse.ocl.pivot.Class> ownedClasses = getOwnedClasses();
+		int index = Collections.binarySearch(ownedClasses, new StringNameable(typeName), ClassUtil.NameableComparator.INSTANCE);
+		if (index >= 0) {
+			return ownedClasses.get(index);
+		}
+		//	Should be sorted, but do linear search just in case
+		for (org.eclipse.ocl.pivot.Class type : ownedClasses) {
 			if (type.getName().equals(typeName)) {
 				return type;
 			}
 		}
 		return null;
 	}
+
+//	public org.eclipse.ocl.pivot.Class getType(String typeName) {
+//		for (org.eclipse.ocl.pivot.Class type: getOwnedClasses()) {
+//			if (type.getName().equals(typeName)) {
+//				return type;
+//			}
+//		}
+//		return null;
+//	}
 
 	@Override
 	public String toString() {

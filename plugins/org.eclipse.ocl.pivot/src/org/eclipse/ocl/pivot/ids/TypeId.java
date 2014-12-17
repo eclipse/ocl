@@ -33,6 +33,7 @@ import org.eclipse.ocl.pivot.ids.impl.OclVoidTypeIdImpl;
 public interface TypeId extends ElementId
 {
 	public static final @NonNull String BAG_NAME = "Bag";
+	public static final @NonNull String BAG_TYPE_NAME = "BagType";
 	public static final @NonNull String BOOLEAN_NAME = "Boolean";
 	public static final @NonNull String CLASS_NAME = "Class";
 	public static final @NonNull String COLLECTION_NAME = "Collection";
@@ -52,11 +53,14 @@ public interface TypeId extends ElementId
 	public static final @NonNull String OPERATION_NAME = "Operation";
 	public static final @NonNull String ORDERED_COLLECTION_NAME = "OrderedCollection";
 	public static final @NonNull String ORDERED_SET_NAME = "OrderedSet";
+	public static final @NonNull String ORDERED_SET_TYPE_NAME = "OrderedSetType";
 	public static final @NonNull String PRIMITIVE_TYPE_NAME = "PrimitiveType";
 	public static final @NonNull String PROPERTY_NAME = "Property";
 	public static final @NonNull String REAL_NAME = "Real";
 	public static final @NonNull String SEQUENCE_NAME = "Sequence";
+	public static final @NonNull String SEQUENCE_TYPE_NAME = "SequenceType";
 	public static final @NonNull String SET_NAME = "Set";
+	public static final @NonNull String SET_TYPE_NAME = "SetType";
 	public static final @NonNull String STRING_NAME = "String";
 	public static final @NonNull String TUPLE_NAME = "Tuple";
 	public static final @NonNull String TUPLE_TYPE_NAME = "TupleType";

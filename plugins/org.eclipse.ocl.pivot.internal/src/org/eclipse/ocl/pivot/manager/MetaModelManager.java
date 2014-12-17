@@ -111,6 +111,7 @@ import org.eclipse.ocl.pivot.ecore.AS2Ecore;
 import org.eclipse.ocl.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.PackageId;
+import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.impl.PackageImpl;
 import org.eclipse.ocl.pivot.library.ConstrainedOperation;
 import org.eclipse.ocl.pivot.library.EInvokeOperation;
@@ -1332,18 +1333,18 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 			CollectionType collectionType = (CollectionType)domainInstanceType;
 			if (collectionType.isOrdered()) {
 				if (collectionType.isUnique()) {
-					metaType = getPivotType("OrderedSetType");
+					metaType = getPivotType(TypeId.ORDERED_SET_TYPE_NAME);
 				}
 				else {
-					metaType = getPivotType("SequenceType");
+					metaType = getPivotType(TypeId.SEQUENCE_TYPE_NAME);
 				}
 			}
 			else {
 				if (collectionType.isUnique()) {
-					metaType = getPivotType("SetType");
+					metaType = getPivotType(TypeId.SET_TYPE_NAME);
 				}
 				else {
-					metaType = getPivotType("BagType");
+					metaType = getPivotType(TypeId.BAG_TYPE_NAME);
 				}
 			}
 

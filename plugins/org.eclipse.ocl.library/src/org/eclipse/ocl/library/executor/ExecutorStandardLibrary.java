@@ -26,6 +26,8 @@ import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 {
@@ -76,15 +78,9 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 		if (classType != null) {
 			return classType;
 		}
-		for (EcoreExecutorPackage basePackage : extensions2.keySet()) {
-			for (EcoreExecutorPackage extensionPackage : extensions2.get(basePackage)) {
-				for (org.eclipse.ocl.pivot.Class type : extensionPackage.getOwnedClasses()) {
-					if ("Class".equals(type.getName())) { //$NON-NLS-1$
-						classType = type;
-						return type;
-					}
-				}
-			}
+		classType = getPivotType(TypeId.CLASS_NAME);
+		if (classType != null) {
+			return classType;
 		}
 		throw new IllegalStateException("No extension package defines Class type"); //$NON-NLS-1$
 	}
@@ -98,15 +94,9 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 		if (enumerationType != null) {
 			return enumerationType;
 		}
-		for (EcoreExecutorPackage basePackage : extensions2.keySet()) {
-			for (EcoreExecutorPackage extensionPackage : extensions2.get(basePackage)) {
-				for (org.eclipse.ocl.pivot.Class type : extensionPackage.getOwnedClasses()) {
-					if ("Enumeration".equals(type.getName())) { //$NON-NLS-1$
-						enumerationType = type;
-						return type;
-					}
-				}
-			}
+		enumerationType = getPivotType(TypeId.ENUMERATION_NAME);
+		if (enumerationType != null) {
+			return enumerationType;
 		}
 		throw new IllegalStateException("No extension package defines Enumeration type"); //$NON-NLS-1$
 	}
@@ -134,7 +124,8 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 			String nsURI = domainPackage.getURI();
 			EcoreExecutorPackage ecoreExecutorPackage = nsURI != null ? weakGet(ePackageMap, nsURI) : null;
 			if (ecoreExecutorPackage != null) {
-				CompleteInheritance executorType = ecoreExecutorPackage.getType(domainClass.getName());
+				String name = domainClass.getName();
+				CompleteInheritance executorType = ecoreExecutorPackage.getOwnedClass(name);
 				if (executorType != null) {
 					return executorType;
 				}
@@ -142,13 +133,16 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 				if (extensions2 != null) {
 					List<EcoreExecutorPackage> packages = extensions2.get(ecoreExecutorPackage);
 					if (packages != null) {
-						for (EcoreExecutorPackage extensionPackage : packages) {
-							executorType = extensionPackage.getType(domainClass.getName());
+						for (@SuppressWarnings("null")@NonNull EcoreExecutorPackage extensionPackage : packages) {
+							executorType = extensionPackage.getOwnedClass(name);
 							if (executorType != null) {
-								return executorType;
+								break;
 							}
 						}
 					}
+				}
+				if (executorType != null) {
+					return executorType;
 				}
 			}
 			domainPackageMap2 = domainPackageMap;
@@ -168,22 +162,11 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 
 	@Override
 	public @Nullable org.eclipse.ocl.pivot.Class getNestedType(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name) {
-		org.eclipse.ocl.pivot.Class nestedType = super.getNestedType(parentPackage, name);
+		org.eclipse.ocl.pivot.Class nestedType = ClassUtil.getNamedElement(parentPackage.getOwnedClasses(), name);
 		if (nestedType != null) {
 			return nestedType;
 		}
-		if (extensions != null) {
-			List<EcoreExecutorPackage> list = extensions.get(parentPackage);
-			if (list != null) {
-				for (EcoreExecutorPackage extensionPackage : list) {
-					assert extensionPackage != null;
-					nestedType = super.getNestedType(extensionPackage, name);
-					if (nestedType != null) {
-						return nestedType;
-					}
-				}
-			}
-		}
+		nestedType = getPivotType(name);
 		return nestedType;
 	}
 
@@ -207,15 +190,31 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 	}
 
 	@Override
-	public synchronized ExecutorType getOclType(@NonNull String typeName) {
+	public synchronized org.eclipse.ocl.pivot.Class getOclType(@NonNull String typeName) {
 		for (WeakReference<EcoreExecutorPackage> dPackage : ePackageMap.values()) {
 // FIXME			if (OCLstdlibTables.PACKAGE.getNsURI().equals(dPackage.getNsURI())) {
 			if (dPackage != null) {
 				EcoreExecutorPackage packageRef = dPackage.get();
 				if (packageRef != null) {
-					ExecutorType type = packageRef.getType(typeName);
+					org.eclipse.ocl.pivot.Class type = packageRef.getOwnedClass(typeName);
 					if (type != null) {
 						return type;
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public @Nullable org.eclipse.ocl.pivot.Class getPivotType(@NonNull String className) {
+		Map<EcoreExecutorPackage, List<EcoreExecutorPackage>> extensions2 = extensions;
+		if (extensions2 != null) {
+			for (@SuppressWarnings("null")@NonNull List<EcoreExecutorPackage> packages : extensions2.values()) {
+				for (@SuppressWarnings("null")@NonNull EcoreExecutorPackage extensionPackage : packages) {
+					org.eclipse.ocl.pivot.Class executorType = extensionPackage.getOwnedClass(className);
+					if (executorType != null) {
+						return executorType;
 					}
 				}
 			}

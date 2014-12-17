@@ -34,6 +34,7 @@ import org.eclipse.ocl.pivot.elements.AbstractExecutorElement;
 import org.eclipse.ocl.pivot.ids.PrimitiveTypeId;
 import org.eclipse.ocl.pivot.ids.TemplateParameterId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
+import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.types.AbstractCollectionType;
 import org.eclipse.ocl.pivot.types.AbstractTupleType;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -117,6 +118,30 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 	// FIXME cf MetaModelManager
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getMetaclass(@NonNull Type classType) {
+		org.eclipse.ocl.pivot.Class metaType = null;
+		if (classType instanceof CollectionType) {
+			CollectionType collectionType = (CollectionType)classType;
+			if (collectionType.isOrdered()) {
+				if (collectionType.isUnique()) {
+					metaType = getPivotType(TypeId.ORDERED_SET_TYPE_NAME);
+				}
+				else {
+					metaType =  getPivotType(TypeId.SEQUENCE_TYPE_NAME);
+				}
+			}
+			else {
+				if (collectionType.isUnique()) {
+					metaType =  getPivotType(TypeId.SET_TYPE_NAME);
+				}
+				else {
+					metaType =  getPivotType(TypeId.BAG_TYPE_NAME);
+				}
+			}
+
+		}
+		if (metaType != null) {
+			return metaType;
+		}
 //		return OCLstdlibTables.Types._OclType;
 		return getClassType();
 	}
@@ -205,6 +230,10 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 	public @NonNull org.eclipse.ocl.pivot.Package getPackage() {
 		return OCLstdlibTables.PACKAGE;
 	}
+
+	public @Nullable org.eclipse.ocl.pivot.Class getPivotType(@NonNull String className) {
+		throw new UnsupportedOperationException();
+	}	
 
 	@Override
 	public @Nullable Type getPrimitiveType(@NonNull PrimitiveTypeId typeId) {

@@ -621,7 +621,8 @@ public class EmbeddedXtextEditor {
 					IEditorPart activeEditor = activePage.getActiveEditor();
 					if (activeEditor != null) {
 						IWorkbenchPartSite site = activeEditor.getSite();
-						IContextService contextService = site.getService(IContextService.class);
+						@SuppressWarnings("cast")			// Needed for org.eclipse.ui.workbench < 3.107.0
+						IContextService contextService = (IContextService)site.getService(IContextService.class);
 						contextService.deactivateContext(fContextActivation);
 					}
 				}
@@ -642,7 +643,8 @@ public class EmbeddedXtextEditor {
 				IEditorPart activeEditor = activePage.getActiveEditor();
 				if (activeEditor != null) {
 					IWorkbenchPartSite site = activeEditor.getSite();
-					IContextService contextService = site.getService(IContextService.class);
+					@SuppressWarnings("cast")			// Needed for org.eclipse.ui.workbench < 3.107.0
+					IContextService contextService = (IContextService)site.getService(IContextService.class);
 					fContextActivation = contextService.activateContext(EMBEDEDXTEXT_EDITOR_CONTEXT);
 				}
 				else {

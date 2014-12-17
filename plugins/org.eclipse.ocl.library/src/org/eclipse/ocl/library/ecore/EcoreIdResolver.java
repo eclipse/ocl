@@ -12,12 +12,8 @@ package org.eclipse.ocl.library.ecore;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.WeakHashMap;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -26,9 +22,6 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.EcoreUtil.ExternalCrossReferencer;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.library.executor.AbstractIdResolver;
 import org.eclipse.ocl.library.executor.ExecutableStandardLibrary;
@@ -36,18 +29,15 @@ import org.eclipse.ocl.library.executor.ExecutorPackage;
 import org.eclipse.ocl.library.executor.ExecutorStandardLibrary;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.ids.IdManager;
-import org.eclipse.ocl.pivot.ids.NsURIPackageId;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.ids.RootPackageId;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 /**
  * EcoreIdResolver provides a package discovery capability so that package identifiers can be resolved.
@@ -58,64 +48,29 @@ import org.eclipse.ocl.pivot.utilities.PivotConstants;
  */
 public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 {
-	protected final @NonNull Collection<? extends EObject> directRoots;
 //	protected @NonNull Map<ElementId, DomainElement> id2element = new HashMap<ElementId, DomainElement>();
-
-	/**
-	 * Mapping from package URI to corresponding Pivot Package. (used to resolve NsURIPackageId).
-	 */
-	private Map<String, org.eclipse.ocl.pivot.Package> nsURI2package = new HashMap<String, org.eclipse.ocl.pivot.Package>();
-
-	/**
-	 * Mapping from root package name to corresponding Pivot Package. (used to resolve RootPackageId).
-	 */
-	private Map<String, org.eclipse.ocl.pivot.Package> roots2package = new HashMap<String, org.eclipse.ocl.pivot.Package>();
-	private boolean directRootsProcessed = false;
-	private boolean crossReferencedRootsProcessed = false;
 	private @NonNull Map<EClassifier, WeakReference<CompleteInheritance>> typeMap = new WeakHashMap<EClassifier, WeakReference<CompleteInheritance>>();
 	
-	public EcoreIdResolver(@NonNull Collection<? extends EObject> roots, @NonNull ExecutorStandardLibrary standardLibrary) {
+	public EcoreIdResolver(@NonNull Iterable<? extends EObject> roots, @NonNull ExecutorStandardLibrary standardLibrary) {
 		super(standardLibrary);
-		this.directRoots = roots;
+		for (@SuppressWarnings("null")@NonNull EObject root : roots) {
+			addRoot(root);
+		}
 	}
 
-	private void addPackage(@NonNull org.eclipse.ocl.pivot.Package userPackage) {
-		String nsURI = userPackage.getURI();
-		if (nsURI != null) {
-			nsURI2package.put(nsURI, userPackage);
-			EPackage ePackage = userPackage.getEPackage();
-			if (ePackage != null) {
-				if (ClassUtil.basicGetMetamodelAnnotation(ePackage) != null) {
-					if (roots2package.get(PivotConstants.METAMODEL_NAME) == null) {
-						roots2package.put(PivotConstants.METAMODEL_NAME, userPackage);
-					}
-				}
-			}
-			else {
-				for (org.eclipse.ocl.pivot.Class asType : userPackage.getOwnedClasses()) {
-					if ("Boolean".equals(asType.getName())) {			// FIXME Check PrimitiveType //$NON-NLS-1$
-						if (roots2package.get(PivotConstants.METAMODEL_NAME) == null) {
-							roots2package.put(PivotConstants.METAMODEL_NAME, userPackage);
-						}
-						break;
-					}
-				}
+	@Override
+	protected @NonNull org.eclipse.ocl.pivot.Package addEPackage(@NonNull EPackage ePackage) {
+		String nsURI = ePackage.getNsURI();
+		org.eclipse.ocl.pivot.Package asPackage = nsURI2package.get(nsURI);
+		if (asPackage == null) {
+			PackageId packageId = IdManager.getPackageId(ePackage);
+			asPackage = new EcoreReflectivePackage(ePackage, this, packageId);
+			nsURI2package.put(nsURI, asPackage);
+			if (packageId instanceof RootPackageId) {
+				roots2package.put(((RootPackageId)packageId).getName(), asPackage);
 			}
 		}
-		else {
-			String name = userPackage.getName();
-			if (name != null) {
-				roots2package.put(name, userPackage);
-			}
-		}
-		addPackages(userPackage.getOwnedPackages());
-	}
-
-	private void addPackages(/*@NonNull*/ Iterable<? extends org.eclipse.ocl.pivot.Package> userPackages) {
-		for (org.eclipse.ocl.pivot.Package userPackage : userPackages) {
-			assert userPackage != null;
-			addPackage(userPackage);
-		}
+		return asPackage;
 	}
 
 	@Override
@@ -138,7 +93,7 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 				}
 			}
 			if (execPackage != null) {
-				org.eclipse.ocl.pivot.Class domainType = execPackage.getType(eClassifier.getName());	
+				org.eclipse.ocl.pivot.Class domainType = execPackage.getOwnedClass(eClassifier.getName());	
 				if (domainType != null) {
 					type = standardLibrary.getInheritance(domainType);
 					typeMap.put(eClassifier, new WeakReference<CompleteInheritance>(type));
@@ -182,138 +137,8 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 	@Override
 	public void notifyChanged(Notification notification) {}			// FIXME ?? invalidate
 
-	protected synchronized void processCrossReferencedRoots() {
-		if (crossReferencedRootsProcessed ) {
-			return;
-		}
-		crossReferencedRootsProcessed = true;
-		new ExternalCrossReferencer(directRoots)
-		{
-			private static final long serialVersionUID = 1L;
-			
-			private Set<EObject> moreRoots = new HashSet<EObject>();
-
-			{ findExternalCrossReferences(); }
-
-			@Override
-			protected boolean crossReference(EObject eObject, EReference eReference, EObject crossReferencedEObject) {
-				EObject root = EcoreUtil.getRootContainer(crossReferencedEObject);
-				if (moreRoots.add(root) && !directRoots.contains(root)) {
-					if (root instanceof Model) {
-						addPackages(((Model)root).getOwnedPackages());
-					}
-					else if (root instanceof org.eclipse.ocl.pivot.Package) {					// Perhaps this is only needed for a lazy JUnit test
-						addPackage((org.eclipse.ocl.pivot.Package)root);
-					}
-				}
-				return false;
-			}
-		};
-	}
-
-	protected synchronized void processDirectRoots() {
-		if (directRootsProcessed) {
-			return;
-		}
-		directRootsProcessed = true;
-		Set<EPackage> ePackages = new HashSet<EPackage>();
-		for (EObject eObject : directRoots) {
-			if (eObject instanceof Model) {
-				addPackages(((Model)eObject).getOwnedPackages());
-			}
-//			else if (eObject instanceof org.eclipse.ocl.pivot.Package) {							// Perhaps this is only needed for a lazy JUnit test
-//				addPackage((org.eclipse.ocl.pivot.Package)eObject);
-//			}
-			ePackages.add(eObject.eClass().getEPackage());
-		}
-		for (EPackage ePackage : ePackages) {
-			String nsURI = ePackage.getNsURI();
-			if (nsURI2package.get(nsURI) == null) {
-				PackageId packageId = IdManager.getPackageId(ePackage);
-				org.eclipse.ocl.pivot.Package domainPackage = new EcoreReflectivePackage(ePackage, this, packageId);
-				nsURI2package.put(nsURI, domainPackage);
-				if (packageId instanceof RootPackageId) {
-					roots2package.put(((RootPackageId)packageId).getName(), domainPackage);
-				}
-			}
-		}
-	}
-
 	@Override
 	public void setTarget(Notifier newTarget) {
 //			assert newTarget == resource;
-	}
-
-	@Override
-	public synchronized @NonNull org.eclipse.ocl.pivot.Package visitNsURIPackageId(@NonNull NsURIPackageId id) {
-		String nsURI = id.getNsURI();
-		org.eclipse.ocl.pivot.Package knownPackage = nsURI2package.get(nsURI);
-		if (knownPackage != null) {
-			return knownPackage;
-		}
-		org.eclipse.ocl.pivot.Package libraryPackage = standardLibrary.getNsURIPackage(nsURI);
-		if (libraryPackage != null) {
-			nsURI2package.put(nsURI, libraryPackage);
-			return libraryPackage;
-		}
-		if (!directRootsProcessed) {
-			processDirectRoots();
-			knownPackage = nsURI2package.get(nsURI);
-			if (knownPackage != null) {
-				return knownPackage;
-			}
-		}
-		if (!crossReferencedRootsProcessed) {
-			processCrossReferencedRoots();
-			knownPackage = nsURI2package.get(nsURI);
-			if (knownPackage != null) {
-				return knownPackage;
-			}
-		}
-		EPackage ePackage = id.getEPackage();
-		if (ePackage != null) {
-			EcoreReflectivePackage ecoreExecutorPackage = new EcoreReflectivePackage(ePackage, this, id);
-//			EList<EClassifier> eClassifiers = ePackage.getEClassifiers();
-//			EcoreReflectiveType[] types = new EcoreReflectiveType[eClassifiers.size()];
-//			for (int i = 0; i < types.length; i++) {
-//				types[i] = new EcoreReflectiveType(eClassifiers.get(i), ecoreExecutorPackage, 0);
-//			}
-//			ecoreExecutorPackage.init((ExecutorStandardLibrary) standardLibrary, types);
-			nsURI2package.put(nsURI, ecoreExecutorPackage);
-			return ecoreExecutorPackage;
-		}
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public @NonNull org.eclipse.ocl.pivot.Package visitRootPackageId(@NonNull RootPackageId id) {
-		if (id == IdManager.METAMODEL) {
-			return ClassUtil.nonNullState(getStandardLibrary().getPackage());
-		}
-		String name = id.getName();
-		org.eclipse.ocl.pivot.Package knownPackage = roots2package.get(name);
-		if (knownPackage != null) {
-			return knownPackage;
-		}
-//		org.eclipse.ocl.pivot.Package libraryPackage = standardLibrary.getNsURIPackage(nsURI);
-//		if (libraryPackage != null) {
-//			nsURI2package.put(nsURI, libraryPackage);
-//			return libraryPackage;
-//		}
-		if (!directRootsProcessed) {
-			processDirectRoots();
-			knownPackage = roots2package.get(name);
-			if (knownPackage != null) {
-				return knownPackage;
-			}
-		}
-		if (!crossReferencedRootsProcessed) {
-			processCrossReferencedRoots();
-			knownPackage = roots2package.get(name);
-			if (knownPackage != null) {
-				return knownPackage;
-			}
-		}
-		throw new UnsupportedOperationException();
 	}
 }

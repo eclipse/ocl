@@ -31,7 +31,9 @@ import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.compatibility.UML_4_2.UMLUtil;
 import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
+import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.NsURIPackageId;
+import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.ids.RootPackageId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -49,6 +51,22 @@ public class PivotIdResolver extends AbstractIdResolver
 	public PivotIdResolver(@NonNull MetaModelManager metaModelManager) {
 		super(metaModelManager.getCompleteEnvironment());
 		this.metaModelManager = metaModelManager;
+	}
+
+	@Override
+	protected @NonNull org.eclipse.ocl.pivot.Package addEPackage(@NonNull EPackage ePackage) {
+		String nsURI = ePackage.getNsURI();
+		org.eclipse.ocl.pivot.Package asPackage = nsURI2package.get(nsURI);
+		if (asPackage == null) {
+			PackageId packageId = IdManager.getPackageId(ePackage);
+			asPackage = metaModelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Package.class, ePackage);
+			assert asPackage != null;
+			nsURI2package.put(nsURI, asPackage);
+			if (packageId instanceof RootPackageId) {
+				roots2package.put(((RootPackageId)packageId).getName(), asPackage);
+			}
+		}
+		return asPackage;
 	}
 
 	@Override
@@ -94,20 +112,6 @@ public class PivotIdResolver extends AbstractIdResolver
 			}
 		}
 		return super.getDynamicTypeOf(value);
-	}
-
-	@Override
-	public @NonNull org.eclipse.ocl.pivot.Package visitRootPackageId(@NonNull RootPackageId id) {
-		String completeURIorName = id.getName();
-		org.eclipse.ocl.pivot.Package rootPackage = standardLibrary.getRootPackage(completeURIorName);
-		if (rootPackage == null) {
-			Orphanage orphanage = metaModelManager.getCompleteModel().getOrphanage();
-			rootPackage = ClassUtil.getNamedElement(orphanage.getOwnedPackages(), completeURIorName);
-			if (rootPackage == null) {
-				throw new UnsupportedOperationException();
-			}
-		}
-		return rootPackage;
 	}
 
 	@Override
@@ -248,20 +252,35 @@ public class PivotIdResolver extends AbstractIdResolver
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Package visitNsURIPackageId(@NonNull NsURIPackageId id) {
+	public synchronized @NonNull org.eclipse.ocl.pivot.Package visitNsURIPackageId(@NonNull NsURIPackageId id) {
 		String nsURI = id.getNsURI();
 		org.eclipse.ocl.pivot.Package nsURIPackage = standardLibrary.getNsURIPackage(nsURI);
-		if (nsURIPackage == null) {
-			metaModelManager.setAutoLoadASMetamodel(true);
-			org.eclipse.ocl.pivot.Package asMetamodel = metaModelManager.getASMetamodel();
-			if ((asMetamodel != null) && PivotPackage.eNS_URI.equals(nsURI)) {
-				return asMetamodel;
-			}
-			nsURIPackage = standardLibrary.getNsURIPackage(nsURI);
-			if (nsURIPackage == null) {
+		if (nsURIPackage != null) {
+			return nsURIPackage;
+		}
+		metaModelManager.setAutoLoadASMetamodel(true);
+		org.eclipse.ocl.pivot.Package asMetamodel = metaModelManager.getASMetamodel();
+		if ((asMetamodel != null) && PivotPackage.eNS_URI.equals(nsURI)) {
+			return asMetamodel;
+		}
+		nsURIPackage = standardLibrary.getNsURIPackage(nsURI);
+		if (nsURIPackage != null) {
+			return nsURIPackage;
+		}
+		return super.visitNsURIPackageId(id);
+	}
+
+	@Override
+	public @NonNull org.eclipse.ocl.pivot.Package visitRootPackageId(@NonNull RootPackageId id) {
+		String completeURIorName = id.getName();
+		org.eclipse.ocl.pivot.Package rootPackage = standardLibrary.getRootPackage(completeURIorName);
+		if (rootPackage == null) {
+			Orphanage orphanage = metaModelManager.getCompleteModel().getOrphanage();
+			rootPackage = ClassUtil.getNamedElement(orphanage.getOwnedPackages(), completeURIorName);
+			if (rootPackage == null) {
 				throw new UnsupportedOperationException();
 			}
 		}
-		return nsURIPackage;
+		return rootPackage;
 	}
 }

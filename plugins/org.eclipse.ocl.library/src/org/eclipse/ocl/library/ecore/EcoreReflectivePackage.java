@@ -23,18 +23,19 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.library.executor.ExecutorPackage;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.ids.IdManager;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 public class EcoreReflectivePackage extends ExecutorPackage
 {
-	protected final @NonNull EcoreIdResolver idResolver;
+	protected final @NonNull IdResolver idResolver;
 //	protected final @NonNull ExecutorStandardLibrary standardLibrary;
 	protected final EPackage ePackage;
 	protected @Nullable Map<EClassifier, org.eclipse.ocl.pivot.Class> types = null;
 	protected @Nullable Map<String, EcoreReflectivePackage> nestedPackages = null;
 	
-	public EcoreReflectivePackage(@NonNull EPackage ePackage, @NonNull EcoreIdResolver idResolver, @NonNull PackageId packageId) {
+	public EcoreReflectivePackage(@NonNull EPackage ePackage, @NonNull IdResolver idResolver, @NonNull PackageId packageId) {
 		super(ClassUtil.nonNullEMF(ePackage.getName()), ePackage.getNsPrefix(), ePackage.getNsURI(), packageId);
 		this.idResolver = idResolver;
 //		this.standardLibrary = idResolver.getStandardLibrary();
@@ -68,7 +69,7 @@ public class EcoreReflectivePackage extends ExecutorPackage
 //		throw new UnsupportedOperationException();		// FIXME
 //	}
 
-	public @NonNull EcoreIdResolver getIdResolver() {
+	public @NonNull IdResolver getIdResolver() {
 		return idResolver;
 	}
 
@@ -101,16 +102,6 @@ public class EcoreReflectivePackage extends ExecutorPackage
 		}
 		List<org.eclipse.ocl.pivot.Class> values2 = new ArrayList<org.eclipse.ocl.pivot.Class>(types2.values());
 		return values2;
-	}
-
-	@Override
-	public EcoreReflectiveType getType(String typeName) {
-		for (org.eclipse.ocl.pivot.Class type: getOwnedClasses()) {
-			if (type.getName().equals(typeName)) {
-				return (EcoreReflectiveType) type;
-			}
-		}
-		return null;
 	}
 
 	public @NonNull StandardLibrary getStandardLibrary() {

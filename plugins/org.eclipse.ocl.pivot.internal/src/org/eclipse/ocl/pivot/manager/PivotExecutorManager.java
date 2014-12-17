@@ -12,6 +12,7 @@ package org.eclipse.ocl.pivot.manager;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.library.executor.ExecutorManager;
@@ -23,7 +24,7 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
- * n PivotExecutorManager instance provides the bridge between a conventional EMF execution context
+ * A PivotExecutorManager instance provides the bridge between a conventional EMF execution context
  * and the richer OCL Pivot concepts. Since the OCL concepts are not needed for simple expressions
  * that make no use of types, the default construction is lightweight deferring construction costs
  * until actually needed.
@@ -40,6 +41,7 @@ public class PivotExecutorManager extends ExecutorManager
 		this.metaModelManager = metaModelManager;
 		this.idResolver = metaModelManager.getIdResolver();
 		this.contextObject = contextObject;
+		idResolver.addRoot(ClassUtil.nonNullEMF(EcoreUtil.getRootContainer(contextObject)));
 	}
 
 	protected @NonNull IdResolver createIdResolver() {

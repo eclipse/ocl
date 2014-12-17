@@ -11,6 +11,7 @@
 package org.eclipse.ocl.library.ecore;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -90,8 +91,13 @@ public class EcoreExecutorPackage extends ExecutorPackage
 	}
 
 	@Override
-	public ExecutorType getType(String typeName) {
-		for (org.eclipse.ocl.pivot.Class type: getOwnedClasses()) {
+	public @Nullable ExecutorType getOwnedClass(String typeName) {
+		int index = Arrays.binarySearch(types, new StringNameable(typeName), ClassUtil.NameableComparator.INSTANCE);
+		if (index >= 0) {
+			return types[index];
+		}
+		//	Should be sorted, but do linear search just in case
+		for (org.eclipse.ocl.pivot.Class type : types) {
 			if (type.getName().equals(typeName)) {
 				return (ExecutorType) type;
 			}

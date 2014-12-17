@@ -18,6 +18,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.library.LibraryConstants;
 import org.eclipse.ocl.library.ecore.EcoreExecutorPackage;
 import org.eclipse.ocl.library.executor.ExecutableStandardLibrary;
+import org.eclipse.ocl.library.executor.ExecutorType;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteInheritance;
@@ -108,7 +109,8 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 
 	@Override
 	public Type getOclType(@NonNull String typeName) {
-		return PivotTables.PACKAGE.getType(typeName).getType();
+		ExecutorType type = PivotTables.PACKAGE.getOwnedClass(typeName);
+		return type != null ? type.getType() : null;
 	}
 	
 	@SuppressWarnings("null")

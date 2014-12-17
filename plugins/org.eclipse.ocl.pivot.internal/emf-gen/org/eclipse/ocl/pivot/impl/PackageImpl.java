@@ -39,6 +39,7 @@ import org.eclipse.ocl.pivot.complete.PackageListeners;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.util.Visitor;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -646,6 +647,12 @@ public class PackageImpl
 	public @Nullable EPackage getEPackage() {
 		EObject eTarget = getETarget();
 		return eTarget instanceof EPackage ? (EPackage) eTarget : null;
+	}
+
+	@Override
+	
+	public @Nullable org.eclipse.ocl.pivot.Class getOwnedClass(String className) {
+		return ClassUtil.getNamedElement(getOwnedClasses(), className);
 	}
 
 	@Override

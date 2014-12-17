@@ -122,7 +122,7 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 						}
 						EClass next = iterator.next();
 						assert next != null;
-						EcoreIdResolver idResolver = evaluationPackage.getIdResolver();
+						IdResolver idResolver = evaluationPackage.getIdResolver();
 						return idResolver.getInheritance(next);
 					}
 
