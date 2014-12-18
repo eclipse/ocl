@@ -73,7 +73,7 @@ public class EInvokeOperation extends AbstractOperation
 
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue,
 			@NonNull Object... argumentValues) {
-		EObject eObject = asNavigableObject(sourceValue, eOperation);
+		EObject eObject = asNavigableObject(sourceValue, eOperation, evaluator);
 		EList<Object> arguments = evaluator.getIdResolver().unboxedValuesOfEach(argumentValues);
 		try {
 			Object eResult = eObject.eInvoke(eOperation, arguments);

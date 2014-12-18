@@ -40,7 +40,7 @@ public class ExplicitNavigationProperty extends AbstractProperty
 	}
 	
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
-		EObject eObject = asNavigableObject(sourceValue, propertyId); 
+		EObject eObject = asNavigableObject(sourceValue, propertyId, evaluator); 
 		EStructuralFeature eFeature2 = eFeature;
 		if (eFeature2 == null) {
 			EClass eClass = eObject.eClass();

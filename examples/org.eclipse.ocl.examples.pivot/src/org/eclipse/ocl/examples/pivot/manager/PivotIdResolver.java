@@ -14,14 +14,17 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.compatibility.UML_4_2.UMLUtil;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
+import org.eclipse.ocl.examples.domain.elements.DomainEnumerationLiteral;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.ids.EnumerationLiteralId;
 import org.eclipse.ocl.examples.domain.ids.NsURIPackageId;
 import org.eclipse.ocl.examples.domain.ids.RootPackageId;
 import org.eclipse.ocl.examples.domain.ids.TupleTypeId;
@@ -39,6 +42,7 @@ import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.uml.UML2PivotUtil;
 import org.eclipse.ocl.examples.pivot.uml.UMLElementExtension;
+import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.uml2.uml.UMLPackage;
 
 public class PivotIdResolver extends AbstractIdResolver
@@ -88,6 +92,28 @@ public class PivotIdResolver extends AbstractIdResolver
 			}
 		}
 		return super.getDynamicTypeOf(value);
+	}
+
+	@Override
+	public @Nullable Object unboxedValueOf(@Nullable Object boxedValue) {
+		if (boxedValue instanceof EnumerationLiteralId) {
+			DomainEnumerationLiteral enumerationLiteral = visitEnumerationLiteralId((EnumerationLiteralId)boxedValue);
+			if (enumerationLiteral instanceof PivotObjectImpl) {
+				EObject eTarget = ((PivotObjectImpl)enumerationLiteral).getETarget();
+				if (eTarget instanceof EEnumLiteral) {				// Ecore unboxes to the Enumerator
+					return ((EEnumLiteral)eTarget).getInstance();
+				}
+				else {												// UML unboxes to UML's EnumerationLiteral
+					return eTarget;
+				}
+			}
+			else {
+				return enumerationLiteral;
+			}
+		}
+		else {
+			return super.unboxedValueOf(boxedValue);
+		}
 	}
 
 	@Override

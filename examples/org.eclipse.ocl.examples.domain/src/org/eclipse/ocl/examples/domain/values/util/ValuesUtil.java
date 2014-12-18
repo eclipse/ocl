@@ -33,6 +33,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainMetaclass;
 import org.eclipse.ocl.examples.domain.elements.DomainParameterTypes;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypeParameters;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.examples.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.examples.domain.ids.ElementId;
@@ -188,7 +189,12 @@ public abstract class ValuesUtil
 		}
 	}
 
+	@Deprecated
 	public static @NonNull EObject asNavigableObject(@Nullable Object value, @NonNull Object navigation) {
+		return asNavigableObject(value, navigation, null);
+	}
+
+	public static @NonNull EObject asNavigableObject(@Nullable Object value, @NonNull Object navigation, @Nullable DomainEvaluator evaluator) {
 		if (value instanceof Value) {
 			return ((Value)value).asNavigableObject();
 		}
@@ -198,9 +204,13 @@ public abstract class ValuesUtil
 		else if (value == null) {
 			throw new InvalidValueException(("Attempt to navigate from null to '" + EcoreUtils.qualifiedNameFor(navigation) + "'").replace("'", "''"));
 		}
-		else {
-			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, "NavigableObject", getTypeName(value));
+		else if ((evaluator != null) && (value instanceof ElementId)) {
+			Object unboxedValue = evaluator.getIdResolver().unboxedValueOf(value);		// Primarily to unbox and so allow navigation of UML EnumerationLiterals
+			if (unboxedValue instanceof EObject) {
+				return (EObject) unboxedValue;
+			}
 		}
+		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, "NavigableObject", getTypeName(value));
 	}
 
 	public static @Nullable Object asObject(@Nullable Object value) {
