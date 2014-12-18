@@ -24,7 +24,6 @@ import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.library.AbstractOperation;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
@@ -73,11 +72,11 @@ public class EInvokeOperation extends AbstractOperation
 	}
 
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue,
-			@NonNull Object... argumentValues) {
+			@NonNull Object... boxedArgumentValues) {
 		EObject eObject = asNavigableObject(sourceValue, eOperation, evaluator);
-		EList<Object> arguments = evaluator.getIdResolver().unboxedValuesOfEach(argumentValues);
+		EList<Object> ecoreArguments = evaluator.getIdResolver().ecoreValuesOfEach(boxedArgumentValues);
 		try {
-			Object eResult = eObject.eInvoke(eOperation, arguments);
+			Object eResult = eObject.eInvoke(eOperation, ecoreArguments);
 			return getResultValue(evaluator, returnTypeId, eResult);
 		} catch (InvocationTargetException e) {
 			return createInvalidValue(e);

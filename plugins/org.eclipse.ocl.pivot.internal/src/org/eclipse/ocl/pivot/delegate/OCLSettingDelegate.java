@@ -73,12 +73,7 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 //				throw new OCLDelegateException(message);
 //			}
 			Object unboxedValue = idResolver.unboxedValueOf(result);
-			if (unboxedValue instanceof Number) {
-				return ValueUtil.getEcoreNumber((Number)unboxedValue, eStructuralFeature.getEType().getInstanceClass());
-			}
-			else {
-				return unboxedValue;
-			}
+			return ValueUtil.ecoreValueOf(unboxedValue, eStructuralFeature.getEType().getInstanceClass());
 		}
 		catch (DomainException e) {
 			String message = ClassUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, property);

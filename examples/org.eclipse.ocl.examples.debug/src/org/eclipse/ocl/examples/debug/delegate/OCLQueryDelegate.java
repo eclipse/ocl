@@ -153,12 +153,7 @@ public class OCLQueryDelegate implements QueryDelegate
 //				throw new InvocationTargetException(new OCLDelegateException(message));
 //			}
 			Object unboxedValue = idResolver.unboxedValueOf(result);
-			if (unboxedValue instanceof Number) {
-				return ValueUtil.getEcoreNumber((Number)unboxedValue, null);
-			}
-			else {
-				return unboxedValue;
-			}
+			return ValueUtil.ecoreValueOf(unboxedValue, null);
 		}
 		catch (InvocationTargetException e) {
 			throw e;

@@ -14,7 +14,6 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
@@ -245,12 +244,12 @@ public class PivotIdResolver extends AbstractIdResolver
 			EnumerationLiteral enumerationLiteral = visitEnumerationLiteralId((EnumerationLiteralId)boxedValue);
 			if (enumerationLiteral instanceof PivotObjectImpl) {
 				EObject eTarget = ((PivotObjectImpl)enumerationLiteral).getETarget();
-				if (eTarget instanceof EEnumLiteral) {				// Ecore unboxes to the Enumerator
-					return ((EEnumLiteral)eTarget).getInstance();
-				}
-				else {												// UML unboxes to UML's EnumerationLiteral
+//				if (eTarget instanceof EEnumLiteral) {				// Ecore unboxes to the Enumerator
+//					return ((EEnumLiteral)eTarget).getInstance();
+//				}
+//				else {												// UML unboxes to UML's EnumerationLiteral
 					return eTarget;
-				}
+//				}
 			}
 			else {
 				return enumerationLiteral;
@@ -288,6 +287,7 @@ public class PivotIdResolver extends AbstractIdResolver
 			Orphanage orphanage = metaModelManager.getCompleteModel().getOrphanage();
 			rootPackage = ClassUtil.getNamedElement(orphanage.getOwnedPackages(), completeURIorName);
 			if (rootPackage == null) {
+//				return super.visitRootPackageId(id);
 				throw new UnsupportedOperationException();
 			}
 		}

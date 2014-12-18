@@ -588,6 +588,16 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	@Override
+	public @NonNull EList<Object> ecoreValuesOfEach(@NonNull Object... boxedValues) {
+		Object[] unboxedValues = new Object[boxedValues.length];
+		int i= 0;
+		for (Object boxedValue : boxedValues) {
+			unboxedValues[i++] = ValueUtil.ecoreValueOf(unboxedValueOf(boxedValue), null);
+		}
+		return new EcoreEList.UnmodifiableEList<Object>(null, null, boxedValues.length, unboxedValues);
+	}
+
+	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getClass(@NonNull TypeId typeId, @Nullable Object context) {
 		Element type = typeId.accept(this);
 		assert type != null;

@@ -114,12 +114,7 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 //				throw new InvocationTargetException(new OCLDelegateException(message));
 //			}
 		Object unboxedValue = idResolver.unboxedValueOf(result);
-		if (unboxedValue instanceof Number) {
-			return ValueUtil.getEcoreNumber((Number)unboxedValue, eOperation.getEType().getInstanceClass());
-		}
-		else {
-			return unboxedValue;
-		}
+		return ValueUtil.ecoreValueOf(unboxedValue, eOperation.getEType().getInstanceClass());
 	}
 
 	public @NonNull Operation getOperation() {

@@ -68,6 +68,8 @@ public interface IdResolver extends IdVisitor<Element>
 	@NonNull SetValue createSetOfEach(@NonNull CollectionTypeId typeId, @NonNull Object... unboxedValues);
 
 	void dispose();
+	
+	@NonNull EList<Object> ecoreValuesOfEach(@NonNull Object... boxedValues);
 
 	@NonNull org.eclipse.ocl.pivot.Class getClass(@NonNull TypeId typeId, @Nullable Object context);
 
