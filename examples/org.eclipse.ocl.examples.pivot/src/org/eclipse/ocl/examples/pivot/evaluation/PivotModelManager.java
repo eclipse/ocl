@@ -15,7 +15,6 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
@@ -24,7 +23,6 @@ import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.uml2.uml.resource.UMLResource;
 
 public class PivotModelManager extends LazyModelManager
 {	
@@ -32,13 +30,10 @@ public class PivotModelManager extends LazyModelManager
 
 	protected final @NonNull MetaModelManager metaModelManager;
 	private boolean generatedErrorMessage = false;
-	private boolean isUML;		// FIXME BUG 448470 UML EnumerationLiterals should consistently unboxed
 	
 	public PivotModelManager(@NonNull MetaModelManager metaModelManager, EObject context) {
 		super(context);
 		this.metaModelManager = metaModelManager;
-		context = EcoreUtil.getRootContainer(context);		
-		isUML = context.eResource() instanceof UMLResource;
 	}
 
 	/**
@@ -64,12 +59,5 @@ public class PivotModelManager extends LazyModelManager
 			}
 		}
 	    return (objectType != null) && objectType.conformsTo(metaModelManager, requiredType);
-	}
-	
-	/**
-	 * @since 3.5
-	 */
-	public boolean isUML() {
-		return isUML;
 	}
 }

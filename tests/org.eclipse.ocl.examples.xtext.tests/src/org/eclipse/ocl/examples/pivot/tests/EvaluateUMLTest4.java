@@ -21,6 +21,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.domain.DomainConstants;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.ids.CollectionTypeId;
+import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -128,5 +130,20 @@ public class EvaluateUMLTest4 extends PivotStateMachineTestSuite
 		assertSemanticErrorQuery2((Type)contextType, "self.extension_vStereotype1.base_Class = self.oclType()", OCLMessages.UnresolvedProperty_ERROR_, "base_Class", "Bug431638Profile::vStereotype1");	
 //		assertQueryTrue(context, "self.extension_vStereotype1.base_Class.oclIsKindOf(UML::Property)");	
 //		assertSemanticErrorQuery2((Type)contextType, "self.extension_vStereotype1", OCLMessages.UnresolvedProperty_ERROR_, "S2b", "Model::C1");	
+	}
+	
+	/**
+	 * Tests construction of a type instance with property values
+	 * @throws ParserException 
+	 */
+	@Test public void test_enumerations_Bug455394() throws Exception {
+		EObject context = doLoadUML(ocl, "Bug455394", "Model.Class1.class2");
+		assertNotNull(context);
+		DomainType contextType = metaModelManager.getIdResolver().getStaticTypeOf(context);
+		assertQueryTrue(context, "self.aggregation=UML::AggregationKind::composite");	
+		assertQueryResults(context, "UML::AggregationKind::composite", "self.aggregation");	
+		EObject associationContext = doLoadUML(ocl, "Bug455394", "Model.A_class2_class1");
+		CollectionTypeId collectionTypeId = TypeId.ORDERED_SET.getSpecializedId(contextType.getTypeId());
+		assertQueryEquals(associationContext, idResolver.createOrderedSetOfEach(collectionTypeId, context), "self.memberEnd->select(e|e.aggregation=AggregationKind::composite)");	
 	}
 }
