@@ -131,7 +131,6 @@ public class EvaluateUMLTest4 extends PivotStateMachineTestSuite
 	
 	/**
 	 * Tests construction of a type instance with property values
-	 * @throws ParserException 
 	 */
 	@Test public void test_enumerations_Bug455394() throws Exception {
 		EObject context = doLoadUML(ocl, "Bug455394", "Model.Class1.class2");
