@@ -72,12 +72,7 @@ import org.eclipse.ocl.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableDeclaration;
 import org.eclipse.ocl.pivot.VariableExp;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
-import org.eclipse.ocl.pivot.evaluation.DomainIterationManager;
-import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
-import org.eclipse.ocl.pivot.evaluation.EvaluationHaltedException;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
-import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.library.EvaluatorMultipleIterationManager;
 import org.eclipse.ocl.pivot.library.EvaluatorSingleIterationManager;
@@ -405,16 +400,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
     public Object visitEnumLiteralExp(@NonNull EnumLiteralExp el) {
 		EnumerationLiteral enumLiteral = el.getReferredEnumLiteral();
 		assert enumLiteral != null;
-		EnumerationLiteralId enumerationLiteralId = enumLiteral.getEnumerationLiteralId();
-		DomainModelManager modelManager = getModelManager();
-		boolean isUML = (modelManager instanceof PivotModelManager) && ((PivotModelManager)modelManager).isUML();
-		if (isUML) {		// FIXME BUG 448470 UML EnumerationLiterals should consistently unboxed
-			PivotIdResolver idResolver = metaModelManager.getIdResolver();
-			return idResolver.unboxedValueOfUML(enumerationLiteralId);
-		}
-		else {
-			return enumerationLiteralId;
-		}
+		return enumLiteral.getEnumerationLiteralId();
 	}
 
 //	private static int depth = 0;

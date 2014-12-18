@@ -30,6 +30,7 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.elements.DomainTypeParameters;
+import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
 import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.ElementId;
@@ -189,7 +190,7 @@ public abstract class ValueUtil
 		}
 	}
 
-	public static @NonNull EObject asNavigableObject(@Nullable Object value, @NonNull Object navigation) {
+	public static @NonNull EObject asNavigableObject(@Nullable Object value, @NonNull Object navigation, @Nullable DomainEvaluator evaluator) {
 		if (value instanceof Value) {
 			return ((Value)value).asNavigableObject();
 		}
@@ -199,9 +200,13 @@ public abstract class ValueUtil
 		else if (value == null) {
 			throw new InvalidValueException(("Attempt to navigate from null to '" + LabelUtil.qualifiedNameFor(navigation) + "'").replace("'", "''"));
 		}
-		else {
-			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, "NavigableObject", getTypeName(value));
+		else if ((evaluator != null) && (value instanceof ElementId)) {
+			Object unboxedValue = evaluator.getIdResolver().unboxedValueOf(value);		// Primarily to unbox and so allow navigation of UML EnumerationLiterals
+			if (unboxedValue instanceof EObject) {
+				return (EObject) unboxedValue;
+			}
 		}
+		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, "NavigableObject", getTypeName(value));
 	}
 
 	public static @Nullable Object asObject(@Nullable Object value) {

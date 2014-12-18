@@ -1745,7 +1745,7 @@ public class PropertyImpl
 		EObject eTarget = getETarget();
 		if (eTarget instanceof EStructuralFeature) {
 			EStructuralFeature eFeature = (EStructuralFeature) eTarget;
-			EObject eObject = ValueUtil.asNavigableObject(objectValue, eFeature);
+			EObject eObject = ValueUtil.asNavigableObject(objectValue, eFeature, null);
 			eObject.eSet(eFeature, unboxedValue);
 			return;
 		}

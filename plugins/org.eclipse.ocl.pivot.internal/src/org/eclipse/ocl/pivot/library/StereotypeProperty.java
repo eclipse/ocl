@@ -44,7 +44,7 @@ public class StereotypeProperty extends ConstrainedProperty
 	@Override
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		IdResolver idResolver = evaluator.getIdResolver();
-		EObject eObject = asNavigableObject(sourceValue, property);
+		EObject eObject = asNavigableObject(sourceValue, property, evaluator);
 //		if (eObject instanceof Metaclass<?>) {
 //			eObject = ((Metaclass<?>)eObject).getInstanceType();
 //		}

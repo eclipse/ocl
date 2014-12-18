@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
@@ -40,6 +41,7 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.uml.UML2ASUtil;
 import org.eclipse.ocl.pivot.uml.UMLElementExtension;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotObjectImpl;
 import org.eclipse.uml2.uml.UMLPackage;
 
 public class PivotIdResolver extends AbstractIdResolver
@@ -71,7 +73,7 @@ public class PivotIdResolver extends AbstractIdResolver
 
 	@Override
 	public @Nullable Object boxedValueOf(@Nullable Object unboxedValue) {
-/*		if (unboxedValue instanceof org.eclipse.uml2.uml.EnumerationLiteral) {				// FIXME make extensible
+		if (unboxedValue instanceof org.eclipse.uml2.uml.EnumerationLiteral) {				// FIXME make extensible
 			org.eclipse.uml2.uml.EnumerationLiteral umlEnumerationLiteral = (org.eclipse.uml2.uml.EnumerationLiteral) unboxedValue;
 			try {
 				EnumerationLiteral asEnumerationLiteral = metaModelManager.getPivotOf(EnumerationLiteral.class, umlEnumerationLiteral);
@@ -82,7 +84,7 @@ public class PivotIdResolver extends AbstractIdResolver
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} */
+		}
 		return super.boxedValueOf(unboxedValue);
 	}
 
@@ -237,18 +239,26 @@ public class PivotIdResolver extends AbstractIdResolver
 		return (Type)type;
 	}
 
-	/**
-	 * @since 3.5
-	 */
-	public @NonNull Object unboxedValueOfUML(@NonNull EnumerationLiteralId enumerationLiteralId) {		// FIXME BUG 448470 UML EnumerationLiterals should consistently unboxed
-		EnumerationLiteral enumerationLiteral = (EnumerationLiteral) enumerationLiteralId.accept(this);
-		if (enumerationLiteral != null) {
-			EObject eTarget = enumerationLiteral.getETarget();
-			if (eTarget != null) {
-				return eTarget;
+	@Override
+	public @Nullable Object unboxedValueOf(@Nullable Object boxedValue) {
+		if (boxedValue instanceof EnumerationLiteralId) {
+			EnumerationLiteral enumerationLiteral = visitEnumerationLiteralId((EnumerationLiteralId)boxedValue);
+			if (enumerationLiteral instanceof PivotObjectImpl) {
+				EObject eTarget = ((PivotObjectImpl)enumerationLiteral).getETarget();
+				if (eTarget instanceof EEnumLiteral) {				// Ecore unboxes to the Enumerator
+					return ((EEnumLiteral)eTarget).getInstance();
+				}
+				else {												// UML unboxes to UML's EnumerationLiteral
+					return eTarget;
+				}
+			}
+			else {
+				return enumerationLiteral;
 			}
 		}
-		throw new UnsupportedOperationException();		// FIXME
+		else {
+			return super.unboxedValueOf(boxedValue);
+		}
 	}
 
 	@Override
