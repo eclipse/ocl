@@ -24,7 +24,7 @@ def: ast() : ocl::Property=
 		isUnsettable = qualifiers->includes('unsettable'),
 		isVolatile = qualifiers->includes('volatile'),
 		-- isRequired = isRequired(), FIXME autogen fails when invoking ConstrainedOperations. Not researched
-		default = default,
+		defaultValueString = default,
 		defaultExpression = ownedDefaultExpressions.ast(),
 		ownedAnnotation = ownedAnnotations.ast(),
 		type = ownedType.ast(), -- REF
@@ -234,7 +234,7 @@ def : ast() : ocl::Property =
 		isUnsettable = qualifiers->includes('unsettable'),
 		isVolatile = qualifiers->includes('volatile'),
 		keys = referredKeys, -- No idea what is this for
-		default = default, -- default vs defaultExpressions ?
+		defaultValueString = default, -- default vs defaultExpressions ?
 		defaultExpression = if ownedDefaultExpressions->notEmpty()
 							then ownedDefaultExpressions.ast()
 							else null

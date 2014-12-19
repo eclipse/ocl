@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.ocl.examples.common.utils.ClassUtils;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.part.FileEditorInput;
 
@@ -82,7 +81,7 @@ public class EcoreTestFileBase implements EcoreTestFile
 		for (EObject eObject : resource.getContents()) {
 			if (eObject instanceof EPackage) {
 				EPackage ePackage = (EPackage) eObject;
-				if (ClassUtils.equals(ePackage.getName(), name)) {
+				if ((name != null) && name.equals(ePackage.getName())) {
 					return ePackage;
 				}
 			}

@@ -14,13 +14,11 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.eclipse.ocl.examples.test.modelregistry.AllRegistryTests;
 import org.eclipse.ocl.examples.validity.test.AllValidityTests;
 
 public class AllExamplesTests extends TestCase
 {
 	public static void buildSuite(TestSuite suite) {
-		AllRegistryTests.buildSuite(suite);
 		AllValidityTests.buildSuite(suite);
 	}
 
