@@ -90,15 +90,14 @@ The dependency tree for the basic parsing and evaluation is:
 
 bc.. 
 org.eclipse.ocl.common
-  org.eclipse.ocl.examples.common
-    org.eclipse.ocl.domain
-      org.eclipse.ocl.library
-        org.eclipse.ocl.pivot
-          org.eclipse.ocl.xtext.base
-            org.eclipse.ocl.xtext.essentialocl
-              org.eclipse.ocl.xtext.completeocl
-              org.eclipse.ocl.xtext.oclinecore
-              org.eclipse.ocl.xtext.oclstdlib
+  org.eclipse.ocl.pivot
+    org.eclipse.ocl.library
+      org.eclipse.ocl.pivot.internal
+        org.eclipse.ocl.xtext.base
+          org.eclipse.ocl.xtext.essentialocl
+            org.eclipse.ocl.xtext.completeocl
+            org.eclipse.ocl.xtext.oclinecore
+            org.eclipse.ocl.xtext.oclstdlib
 p. 
 
 Additionally the UI requires
@@ -112,6 +111,7 @@ org.eclipse.ocl.common.ui
         org.eclipse.ocl.xtext.oclinecore.ui
         org.eclipse.ocl.xtext.oclstdlib.ui
         org.eclipse.ocl.examples.xtext.console
+              org.eclipse.ocl.pivot.ui
 p. 
 
 You may also need the Xtext, EMF, MWE, Orbit plugins and their dependencies

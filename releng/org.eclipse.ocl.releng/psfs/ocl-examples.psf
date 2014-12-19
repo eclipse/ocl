@@ -5,14 +5,9 @@ ocl-examples.psf
 -->
 <provider id="org.eclipse.egit.core.GitProvider">
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples"/>
-<project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.common"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.emf.validation.validity"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.emf.validation.validity.ui"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.interpreter"/>
-<project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.modelregistry"/>
-<project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.modelregistry.edit"/>
-<project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.modelregistry.editor"/>
-<project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.modelregistry.ui"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.project.completeocltutorial"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.project.empty"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,examples/org.eclipse.ocl.examples.project.oclinecoretutorial"/>
@@ -24,15 +19,10 @@ ocl-examples.psf
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,tests/org.eclipse.ocl.examples.validity.test"/>
 </provider>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1346923163412_2" label="OCL Examples" name="OCL Examples">
-<item factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory" elementID="=org.eclipse.ocl.examples.common"/>
 <item factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory" elementID="=org.eclipse.ocl.examples.consumers.tests"/>
 <item factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory" elementID="=org.eclipse.ocl.examples.emf.validation.validity"/>
 <item factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory" elementID="=org.eclipse.ocl.examples.emf.validation.validity.ui"/>
 <item factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory" elementID="=org.eclipse.ocl.examples.interpreter"/>
-<item factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory" elementID="=org.eclipse.ocl.examples.modelregistry"/>
-<item factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory" elementID="=org.eclipse.ocl.examples.modelregistry.edit"/>
-<item factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory" elementID="=org.eclipse.ocl.examples.modelregistry.editor"/>
-<item factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory" elementID="=org.eclipse.ocl.examples.modelregistry.ui"/>
 <item factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory" elementID="=org.eclipse.ocl.examples.tests"/>
 <item factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory" elementID="=org.eclipse.ocl.examples.ui"/>
 <item factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory" elementID="=org.eclipse.ocl.examples.validity.test"/>
