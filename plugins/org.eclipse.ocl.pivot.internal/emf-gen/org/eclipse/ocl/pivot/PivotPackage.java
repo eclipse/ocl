@@ -16461,22 +16461,31 @@ public interface PivotPackage
 	int PROPERTY__ASSOCIATION_CLASS = FEATURE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Default</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__DEFAULT = FEATURE_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Default Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__DEFAULT_EXPRESSION = FEATURE_FEATURE_COUNT + 2;
+	int PROPERTY__DEFAULT_EXPRESSION = FEATURE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Default Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__DEFAULT_VALUE = FEATURE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Default Value String</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__DEFAULT_VALUE_STRING = FEATURE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
@@ -16485,7 +16494,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IMPLICIT = FEATURE_FEATURE_COUNT + 3;
+	int PROPERTY__IMPLICIT = FEATURE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -16494,7 +16503,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_COMPOSITE = FEATURE_FEATURE_COUNT + 4;
+	int PROPERTY__IS_COMPOSITE = FEATURE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
@@ -16503,7 +16512,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_DERIVED = FEATURE_FEATURE_COUNT + 5;
+	int PROPERTY__IS_DERIVED = FEATURE_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Is ID</b></em>' attribute.
@@ -16512,7 +16521,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_ID = FEATURE_FEATURE_COUNT + 6;
+	int PROPERTY__IS_ID = FEATURE_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Is Read Only</b></em>' attribute.
@@ -16521,7 +16530,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_READ_ONLY = FEATURE_FEATURE_COUNT + 7;
+	int PROPERTY__IS_READ_ONLY = FEATURE_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Is Resolve Proxies</b></em>' attribute.
@@ -16530,7 +16539,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_RESOLVE_PROXIES = FEATURE_FEATURE_COUNT + 8;
+	int PROPERTY__IS_RESOLVE_PROXIES = FEATURE_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Is Transient</b></em>' attribute.
@@ -16539,7 +16548,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_TRANSIENT = FEATURE_FEATURE_COUNT + 9;
+	int PROPERTY__IS_TRANSIENT = FEATURE_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Is Unsettable</b></em>' attribute.
@@ -16548,7 +16557,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_UNSETTABLE = FEATURE_FEATURE_COUNT + 10;
+	int PROPERTY__IS_UNSETTABLE = FEATURE_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Is Volatile</b></em>' attribute.
@@ -16557,7 +16566,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__IS_VOLATILE = FEATURE_FEATURE_COUNT + 11;
+	int PROPERTY__IS_VOLATILE = FEATURE_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Keys</b></em>' reference list.
@@ -16566,7 +16575,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__KEYS = FEATURE_FEATURE_COUNT + 12;
+	int PROPERTY__KEYS = FEATURE_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Opposite</b></em>' reference.
@@ -16575,7 +16584,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__OPPOSITE = FEATURE_FEATURE_COUNT + 13;
+	int PROPERTY__OPPOSITE = FEATURE_FEATURE_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
@@ -16584,7 +16593,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__OWNING_CLASS = FEATURE_FEATURE_COUNT + 14;
+	int PROPERTY__OWNING_CLASS = FEATURE_FEATURE_COUNT + 15;
 
 	/**
 	 * The feature id for the '<em><b>Redefined Property</b></em>' reference list.
@@ -16593,7 +16602,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__REDEFINED_PROPERTY = FEATURE_FEATURE_COUNT + 15;
+	int PROPERTY__REDEFINED_PROPERTY = FEATURE_FEATURE_COUNT + 16;
 
 	/**
 	 * The feature id for the '<em><b>Referred Property</b></em>' reference.
@@ -16602,7 +16611,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__REFERRED_PROPERTY = FEATURE_FEATURE_COUNT + 16;
+	int PROPERTY__REFERRED_PROPERTY = FEATURE_FEATURE_COUNT + 17;
 
 	/**
 	 * The feature id for the '<em><b>Subsetted Property</b></em>' reference list.
@@ -16611,7 +16620,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__SUBSETTED_PROPERTY = FEATURE_FEATURE_COUNT + 17;
+	int PROPERTY__SUBSETTED_PROPERTY = FEATURE_FEATURE_COUNT + 18;
 
 	/**
 	 * The number of structural features of the '<em>Property</em>' class.
@@ -16620,7 +16629,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_FEATURE_COUNT = FEATURE_FEATURE_COUNT + 18;
+	int PROPERTY_FEATURE_COUNT = FEATURE_FEATURE_COUNT + 19;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -26117,17 +26126,6 @@ public interface PivotPackage
 	EAttribute getProperty_IsReadOnly();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Property#getDefault <em>Default</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Default</em>'.
-	 * @see org.eclipse.ocl.pivot.Property#getDefault()
-	 * @see #getProperty()
-	 * @generated
-	 */
-	EAttribute getProperty_Default();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Property#isComposite <em>Is Composite</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -26192,6 +26190,28 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getProperty_DefaultExpression();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Property#getDefaultValue <em>Default Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Default Value</em>'.
+	 * @see org.eclipse.ocl.pivot.Property#getDefaultValue()
+	 * @see #getProperty()
+	 * @generated
+	 */
+	EAttribute getProperty_DefaultValue();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Property#getDefaultValueString <em>Default Value String</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Default Value String</em>'.
+	 * @see org.eclipse.ocl.pivot.Property#getDefaultValueString()
+	 * @see #getProperty()
+	 * @generated
+	 */
+	EAttribute getProperty_DefaultValueString();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Property#isID <em>Is ID</em>}'.
@@ -30471,14 +30491,6 @@ public interface PivotPackage
 		EAttribute PROPERTY__IS_READ_ONLY = eINSTANCE.getProperty_IsReadOnly();
 
 		/**
-		 * The meta object literal for the '<em><b>Default</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PROPERTY__DEFAULT = eINSTANCE.getProperty_Default();
-
-		/**
 		 * The meta object literal for the '<em><b>Is Composite</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -30525,6 +30537,22 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference PROPERTY__DEFAULT_EXPRESSION = eINSTANCE.getProperty_DefaultExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROPERTY__DEFAULT_VALUE = eINSTANCE.getProperty_DefaultValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Value String</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROPERTY__DEFAULT_VALUE_STRING = eINSTANCE.getProperty_DefaultValueString();
 
 		/**
 		 * The meta object literal for the '<em><b>Is ID</b></em>' attribute feature.

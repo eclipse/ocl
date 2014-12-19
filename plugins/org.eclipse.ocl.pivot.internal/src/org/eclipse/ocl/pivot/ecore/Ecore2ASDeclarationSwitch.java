@@ -794,12 +794,6 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 		pivotElement.setIsTransient(eObject.isTransient());			
 		pivotElement.setIsUnsettable(eObject.isUnsettable());			
 		pivotElement.setIsVolatile(eObject.isVolatile());			
-		if (eObject.eIsSet(EcorePackage.Literals.ESTRUCTURAL_FEATURE__DEFAULT_VALUE_LITERAL)) {
-			pivotElement.setDefault(eObject.getDefaultValueLiteral());
-		}
-		else {
-			pivotElement.eUnset(PivotPackage.Literals.PROPERTY__DEFAULT);
-		}
 	}
 
 	protected void copyTypedElement(@NonNull TypedElement pivotElement, @NonNull ETypedElement eTypedElement, List<EAnnotation> excludedAnnotations) {

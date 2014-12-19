@@ -475,12 +475,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		pivotElement.setIsTransient(qualifiers.contains("transient"));
 		pivotElement.setIsUnsettable(qualifiers.contains("unsettable"));
 		pivotElement.setIsVolatile(qualifiers.contains("volatile"));
-		if (csElement.eIsSet(BaseCSPackage.Literals.STRUCTURAL_FEATURE_CS__DEFAULT)) {
-			pivotElement.setDefault(csElement.getDefault());
-		}
-		else {
-			pivotElement.eUnset(PivotPackage.Literals.PROPERTY__DEFAULT);
-		}
+		pivotElement.setDefaultValueString(csElement.getDefault());
 		List<SpecificationCS> csDefaultExpressions = csElement.getOwnedDefaultExpressions();
 		SpecificationCS csDefaultExpression = csDefaultExpressions.size() > 0 ? csDefaultExpressions.get(0) : null;
 		pivotElement.setDefaultExpression(PivotUtil.getPivot(ExpressionInOCL.class, csDefaultExpression));

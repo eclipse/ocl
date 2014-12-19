@@ -21,6 +21,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -41,6 +42,8 @@ import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
+import org.eclipse.ocl.pivot.Enumeration;
+import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.OCLExpression;
@@ -51,6 +54,7 @@ import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ValueSpecification;
 import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.ids.EnumerationId;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.PropertyId;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -63,6 +67,7 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
+import org.eclipse.ocl.pivot.values.Value;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -73,8 +78,9 @@ import org.eclipse.osgi.util.NLS;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyImpl#getAssociationClass <em>Association Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyImpl#getDefault <em>Default</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyImpl#getDefaultExpression <em>Default Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyImpl#getDefaultValue <em>Default Value</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyImpl#getDefaultValueString <em>Default Value String</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyImpl#isImplicit <em>Implicit</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyImpl#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyImpl#isDerived <em>Is Derived</em>}</li>
@@ -111,26 +117,6 @@ public class PropertyImpl
 	protected AssociationClass associationClass;
 
 	/**
-	 * The default value of the '{@link #getDefault() <em>Default</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDefault()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DEFAULT_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDefault() <em>Default</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDefault()
-	 * @generated
-	 * @ordered
-	 */
-	protected String default_ = DEFAULT_EDEFAULT;
-
-	/**
 	 * The cached value of the '{@link #getDefaultExpression() <em>Default Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -139,6 +125,46 @@ public class PropertyImpl
 	 * @ordered
 	 */
 	protected LanguageExpression defaultExpression;
+
+	/**
+	 * The default value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDefaultValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Object DEFAULT_VALUE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDefaultValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected Object defaultValue = DEFAULT_VALUE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDefaultValueString() <em>Default Value String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDefaultValueString()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DEFAULT_VALUE_STRING_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDefaultValueString() <em>Default Value String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDefaultValueString()
+	 * @generated
+	 * @ordered
+	 */
+	protected String defaultValueString = DEFAULT_VALUE_STRING_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isImplicit() <em>Implicit</em>}' attribute.
@@ -489,29 +515,6 @@ public class PropertyImpl
 	 * @generated
 	 */
 	@Override
-	public String getDefault() {
-		return default_;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setDefault(String newDefault) {
-		String oldDefault = default_;
-		default_ = newDefault;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__DEFAULT, oldDefault, default_));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public boolean isComposite() {
 		return (eFlags & IS_COMPOSITE_EFLAG) != 0;
 	}
@@ -667,6 +670,115 @@ public class PropertyImpl
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__DEFAULT_EXPRESSION, newDefaultExpression, newDefaultExpression));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public Object getDefaultValue()
+	{
+		String defaultValueString2 = defaultValueString;
+		if ((defaultValue == null) && (defaultValueString2 != null)) {
+			TypeId typeId = getTypeId();
+			if (typeId instanceof EnumerationId) {
+				defaultValue = ClassUtil.getNamedElement(((Enumeration)type).getOwnedLiteral(), defaultValueString2);
+				if (defaultValue == null) {
+					throw new IllegalStateException("Unknown enumeration literal'" + defaultValueString2 + "' for '" + typeId + "'");
+				}
+			}
+			else if (typeId == TypeId.BOOLEAN) {
+				defaultValue = Boolean.valueOf(defaultValueString2);
+			}
+			else if (typeId == TypeId.STRING) {
+				defaultValue = (String)defaultValueString2;
+			}
+			else if (typeId == TypeId.REAL) {
+				defaultValue = ValueUtil.realValueOf(defaultValueString2);
+			}
+			else if (typeId == TypeId.INTEGER) {
+				defaultValue = ValueUtil.integerValueOf(defaultValueString2);
+			}
+			else if (typeId == TypeId.UNLIMITED_NATURAL) {
+				defaultValue = ValueUtil.unlimitedNaturalValueOf(defaultValueString2);
+			}
+			else {
+				defaultValue = null;		// FIXME ?? caller's responsibility to help by providing a ResourceSet etc.
+			}
+		}
+		return defaultValue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setDefaultValue(Object newDefaultValue)
+	{
+		Object oldDefaultValue = defaultValue;
+		defaultValue = newDefaultValue;
+		if (newDefaultValue != oldDefaultValue) {
+			String newDefaultValueString = null;
+			if (newDefaultValue instanceof String) {
+				newDefaultValueString = (String)newDefaultValue;
+			}
+			else if (newDefaultValue instanceof Boolean) {
+				newDefaultValueString = newDefaultValue.toString();
+			}
+			else if (newDefaultValue instanceof Value) {
+				newDefaultValueString = newDefaultValue.toString();
+			}
+			else if (newDefaultValue instanceof EnumerationLiteral) {
+				newDefaultValueString = ((EnumerationLiteral)newDefaultValue).getName();
+			}
+			else if (newDefaultValue instanceof EObject) {
+				URI uri = EcoreUtil.getURI((EObject)newDefaultValue);
+				if (uri != null) {
+					newDefaultValueString = uri.toString(); 		// FIXME resolve to parent base URI
+				}
+			}
+			else {
+				newDefaultValueString = newDefaultValue.toString();	
+			}
+			setDefaultValueStringGen(newDefaultValueString);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getDefaultValueString()
+	{
+		return defaultValueString;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDefaultValueStringGen(String newDefaultValueString)
+	{
+		String oldDefaultValueString = defaultValueString;
+		defaultValueString = newDefaultValueString;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__DEFAULT_VALUE_STRING, oldDefaultValueString, defaultValueString));
+	}
+	@Override
+	public void setDefaultValueString(String newDefaultValueString)
+	{
+		String oldDefaultValueString = defaultValueString;
+		setDefaultValueStringGen(newDefaultValueString);
+		if ((oldDefaultValueString != defaultValueString) && ((oldDefaultValueString == null) || !oldDefaultValueString.equals(defaultValueString))) {
+			defaultValue = null;
+		}
 	}
 
 	/**
@@ -900,15 +1012,15 @@ public class PropertyImpl
 		 *   container.oclAsType(Class)
 		 *   .ownedProperties->includes(self)
 		 */
+		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		@Nullable /*@Caught*/ Object CAUGHT_container;
 		try {
-		    final @Nullable /*@Thrown*/ Object container = ClassifierOclContainerOperation.INSTANCE.evaluate(this);
+		    final @Nullable /*@Thrown*/ Object container = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
 		    CAUGHT_container = container;
 		}
 		catch (Exception e) {
 		    CAUGHT_container = ValueUtil.createInvalidValue(e);
 		}
-		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		@NonNull /*@Caught*/ Object CAUGHT_self_71;
 		try {
@@ -1309,10 +1421,12 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__ASSOCIATION_CLASS:
 				if (resolve) return getAssociationClass();
 				return basicGetAssociationClass();
-			case PivotPackage.PROPERTY__DEFAULT:
-				return getDefault();
 			case PivotPackage.PROPERTY__DEFAULT_EXPRESSION:
 				return getDefaultExpression();
+			case PivotPackage.PROPERTY__DEFAULT_VALUE:
+				return getDefaultValue();
+			case PivotPackage.PROPERTY__DEFAULT_VALUE_STRING:
+				return getDefaultValueString();
 			case PivotPackage.PROPERTY__IMPLICIT:
 				return isImplicit();
 			case PivotPackage.PROPERTY__IS_COMPOSITE:
@@ -1396,11 +1510,14 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__ASSOCIATION_CLASS:
 				setAssociationClass((AssociationClass)newValue);
 				return;
-			case PivotPackage.PROPERTY__DEFAULT:
-				setDefault((String)newValue);
-				return;
 			case PivotPackage.PROPERTY__DEFAULT_EXPRESSION:
 				setDefaultExpression((LanguageExpression)newValue);
+				return;
+			case PivotPackage.PROPERTY__DEFAULT_VALUE:
+				setDefaultValue(newValue);
+				return;
+			case PivotPackage.PROPERTY__DEFAULT_VALUE_STRING:
+				setDefaultValueString((String)newValue);
 				return;
 			case PivotPackage.PROPERTY__IMPLICIT:
 				setImplicit((Boolean)newValue);
@@ -1496,11 +1613,14 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__ASSOCIATION_CLASS:
 				setAssociationClass((AssociationClass)null);
 				return;
-			case PivotPackage.PROPERTY__DEFAULT:
-				setDefault(DEFAULT_EDEFAULT);
-				return;
 			case PivotPackage.PROPERTY__DEFAULT_EXPRESSION:
 				setDefaultExpression((LanguageExpression)null);
+				return;
+			case PivotPackage.PROPERTY__DEFAULT_VALUE:
+				setDefaultValue(DEFAULT_VALUE_EDEFAULT);
+				return;
+			case PivotPackage.PROPERTY__DEFAULT_VALUE_STRING:
+				setDefaultValueString(DEFAULT_VALUE_STRING_EDEFAULT);
 				return;
 			case PivotPackage.PROPERTY__IMPLICIT:
 				setImplicit(IMPLICIT_EDEFAULT);
@@ -1584,10 +1704,12 @@ public class PropertyImpl
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.PROPERTY__ASSOCIATION_CLASS:
 				return associationClass != null;
-			case PivotPackage.PROPERTY__DEFAULT:
-				return DEFAULT_EDEFAULT == null ? default_ != null : !DEFAULT_EDEFAULT.equals(default_);
 			case PivotPackage.PROPERTY__DEFAULT_EXPRESSION:
 				return defaultExpression != null;
+			case PivotPackage.PROPERTY__DEFAULT_VALUE:
+				return DEFAULT_VALUE_EDEFAULT == null ? defaultValue != null : !DEFAULT_VALUE_EDEFAULT.equals(defaultValue);
+			case PivotPackage.PROPERTY__DEFAULT_VALUE_STRING:
+				return DEFAULT_VALUE_STRING_EDEFAULT == null ? defaultValueString != null : !DEFAULT_VALUE_STRING_EDEFAULT.equals(defaultValueString);
 			case PivotPackage.PROPERTY__IMPLICIT:
 				return ((eFlags & IMPLICIT_EFLAG) != 0) != IMPLICIT_EDEFAULT;
 			case PivotPackage.PROPERTY__IS_COMPOSITE:

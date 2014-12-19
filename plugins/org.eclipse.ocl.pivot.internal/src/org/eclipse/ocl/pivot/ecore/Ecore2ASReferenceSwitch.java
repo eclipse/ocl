@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.ETypedElement;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreSwitch;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.EMOFExtendedMetaData;
@@ -405,6 +406,43 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 					}	
 				}
 			}
+//			Object boxedDefaultValue = null;
+			String defaultValueLiteral = null;
+			if (eObject.eIsSet(EcorePackage.Literals.ESTRUCTURAL_FEATURE__DEFAULT_VALUE_LITERAL)) {
+				defaultValueLiteral = eObject.getDefaultValueLiteral();
+/*				EClassifier eType = eObject.getEType();
+				if (eType instanceof EEnum) {
+					EEnum eEnum = (EEnum)eType;
+					EEnumLiteral unboxedValue = eEnum.getEEnumLiteral(defaultValueLiteral);
+					if (unboxedValue != null) {
+						boxedDefaultValue = metaModelManager.getPivotOfEcore(EnumerationLiteral.class, unboxedValue);
+					}
+					else {
+//						converter.addError("Unknown enumeration literal");
+					}
+				}
+				else if (eType instanceof EDataType) {
+					EDataType eDataType = (EDataType)eType;
+					EPackage ePackage = eDataType.getEPackage();
+					if (PivotPackage.eNS_URI.equals(ePackage.getNsURI()) && !(ePackage instanceof PivotPackage)) {	// Occurs when ConstraintMerger using dynamic Pivot
+						ePackage = PivotPackage.eINSTANCE;
+						eDataType = (EDataType) ePackage.getEClassifier(eDataType.getName());
+					}
+					EFactory eFactoryInstance = ePackage.getEFactoryInstance();
+					boxedDefaultValue = eFactoryInstance.createFromString(eDataType, defaultValueLiteral);
+				}
+				else {
+					URI uri = URI.createURI(defaultValueLiteral);
+					EObject defaultEObject = metaModelManager.getExternalResourceSet().getEObject(uri, false);
+					if (defaultEObject instanceof Element) {
+						boxedDefaultValue = defaultEObject;
+					}
+					else {
+						boxedDefaultValue = defaultEObject;
+					}
+				} */
+			}
+			pivotElement.setDefaultValueString(defaultValueLiteral);
 		}
 		return pivotElement;
 	}

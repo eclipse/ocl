@@ -28,6 +28,9 @@ import com.google.inject.name.Names;
  */
 public class CompleteOCLRuntimeModule extends org.eclipse.ocl.xtext.completeocl.AbstractCompleteOCLRuntimeModule
 {
+	public static final String LANGUAGE_ID = "org.eclipse.ocl.xtext.completeocl.CompleteOCL";
+
+
 	@Override
 	public void configure(Binder binder) {
 		super.configure(binder);

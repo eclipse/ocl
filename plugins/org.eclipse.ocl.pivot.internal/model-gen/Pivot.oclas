@@ -73,8 +73,8 @@
           name="booleanSymbol" type="#Boolean"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.CallExp" isAbstract="true" name="CallExp" superClasses="#T.pivot.OCLExpression">
-      <ownedProperties xmi:id="p.pivot.CallExp.implicit" default="false" isRequired="false"
-          name="implicit" type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.CallExp.implicit" defaultValueString="false"
+          isRequired="false" name="implicit" type="#Boolean"/>
       <ownedProperties xmi:id="p.pivot.CallExp.source" isComposite="true" isRequired="false"
           name="source" opposite="#p.pivot.OCLExpression.CallExp" type="#T.pivot.OCLExpression"/>
     </ownedClasses>
@@ -94,16 +94,16 @@
       </ownedInvariants>
       <ownedProperties xmi:id="p.pivot.Class.instanceClassName" isRequired="false"
           name="instanceClassName" type="#String"/>
-      <ownedProperties xmi:id="p.pivot.Class.isAbstract" default="false" name="isAbstract"
-          type="#Boolean">
+      <ownedProperties xmi:id="p.pivot.Class.isAbstract" defaultValueString="false"
+          name="isAbstract" type="#Boolean">
         <ownedComment body="True when a class is abstract."/>
       </ownedProperties>
-      <ownedProperties xmi:id="p.pivot.Class.isActive" default="false" name="isActive"
-          type="#Boolean">
+      <ownedProperties xmi:id="p.pivot.Class.isActive" defaultValueString="false"
+          name="isActive" type="#Boolean">
         <ownedComment body="True when a class is active."/>
       </ownedProperties>
-      <ownedProperties xmi:id="p.pivot.Class.isInterface" default="false" name="isInterface"
-          type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.Class.isInterface" defaultValueString="false"
+          name="isInterface" type="#Boolean"/>
       <ownedProperties xmi:id="p.pivot.Class.ownedBehavior" isComposite="true" name="ownedBehavior"
           opposite="#p.pivot.Behavior.Class" type="#//@ownedPackages.1/@ownedClasses.133"/>
       <ownedProperties xmi:id="p.pivot.Class.ownedInvariants" isComposite="true" name="ownedInvariants"
@@ -194,10 +194,10 @@
     <ownedClasses xmi:id="T.pivot.CollectionType" name="CollectionType" superClasses="#T.pivot.DataType">
       <ownedProperties xmi:id="p.pivot.CollectionType.elementType" name="elementType"
           opposite="#p.pivot.Type.CollectionType" type="#T.pivot.Type"/>
-      <ownedProperties xmi:id="p.pivot.CollectionType.lower" default="0" name="lower"
-          type="#Integer"/>
-      <ownedProperties xmi:id="p.pivot.CollectionType.upper" default="*" name="upper"
-          type="#UnlimitedNatural"/>
+      <ownedProperties xmi:id="p.pivot.CollectionType.lower" defaultValueString="0"
+          name="lower" type="#Integer"/>
+      <ownedProperties xmi:id="p.pivot.CollectionType.upper" defaultValueString="*"
+          name="upper" type="#UnlimitedNatural"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.Comment" name="Comment" superClasses="#T.pivot.Element">
       <ownedComment body="A comment is a textual annotation that can be attached to a set of elements."/>
@@ -300,8 +300,8 @@
       <ownedProperties xmi:id="p.pivot.Constraint.context" isDerived="true" isReadOnly="true"
           isRequired="false" isResolveProxies="false" isTransient="true" isVolatile="true"
           name="context" opposite="#p.pivot.Namespace.Constraint" type="#T.pivot.Namespace"/>
-      <ownedProperties xmi:id="p.pivot.Constraint.isCallable" default="false" name="isCallable"
-          type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.Constraint.isCallable" defaultValueString="false"
+          name="isCallable" type="#Boolean"/>
       <ownedProperties xmi:id="p.pivot.Constraint.owningState" isRequired="false"
           name="owningState" opposite="#p.pivot.State.stateInvariant" type="#T.pivot.State"/>
       <ownedProperties xmi:id="p.pivot.Constraint.postContext" isRequired="false"
@@ -344,8 +344,8 @@
       <ownedComment body="DataType is an abstract class that acts as a common superclass for different kinds of data types."/>
       <ownedProperties xmi:id="p.pivot.DataType.behavioralClass" isRequired="false"
           name="behavioralClass" opposite="#p.pivot.Class.DataType" type="#T.pivot.Class"/>
-      <ownedProperties xmi:id="p.pivot.DataType.isSerializable" default="true" name="isSerializable"
-          type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.DataType.isSerializable" defaultValueString="true"
+          name="isSerializable" type="#Boolean"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.Detail" name="Detail" superClasses="#T.pivot.NamedElement">
       <ownedProperties xmi:id="p.pivot.Detail.value" name="value" type="#//@ownedPackages.1/@ownedClasses.132"/>
@@ -408,9 +408,9 @@
     <ownedClasses xmi:id="T.pivot.ElementExtension" name="ElementExtension" superClasses="#T.pivot.Class">
       <ownedProperties xmi:id="p.pivot.ElementExtension.base" name="base" opposite="#p.pivot.Element.extension"
           type="#T.pivot.Element"/>
-      <ownedProperties xmi:id="p.pivot.ElementExtension.isApplied" default="false"
+      <ownedProperties xmi:id="p.pivot.ElementExtension.isApplied" defaultValueString="false"
           name="isApplied" type="#Boolean"/>
-      <ownedProperties xmi:id="p.pivot.ElementExtension.isRequired" default="false"
+      <ownedProperties xmi:id="p.pivot.ElementExtension.isRequired" defaultValueString="false"
           name="isRequired" type="#Boolean"/>
       <ownedProperties xmi:id="p.pivot.ElementExtension.stereotype" name="stereotype"
           opposite="#p.pivot.Stereotype.ElementExtension" type="#T.pivot.Stereotype"/>
@@ -437,8 +437,8 @@
           opposite="#p.pivot.Enumeration.ownedLiteral" type="#T.pivot.Enumeration">
         <ownedComment body="The Enumeration that this EnumerationLiteral is a member of."/>
       </ownedProperties>
-      <ownedProperties xmi:id="p.pivot.EnumerationLiteral.value" default="0" isRequired="false"
-          name="value" type="#Integer"/>
+      <ownedProperties xmi:id="p.pivot.EnumerationLiteral.value" defaultValueString="0"
+          isRequired="false" name="value" type="#Integer"/>
       <ownedProperties xmi:id="p.pivot.EnumerationLiteral.EnumLiteralExp" implicit="true"
           name="EnumLiteralExp" opposite="#p.pivot.EnumLiteralExp.referredEnumLiteral"
           type="#//@ownedPackages.1/@ownedClasses.13"/>
@@ -463,13 +463,13 @@
           isTransient="true" name="implementation" type="#T.pivot.LibraryFeature"/>
       <ownedProperties xmi:id="p.pivot.Feature.implementationClass" isRequired="false"
           name="implementationClass" type="#String"/>
-      <ownedProperties xmi:id="p.pivot.Feature.isStatic" default="false" name="isStatic"
-          type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.Feature.isStatic" defaultValueString="false"
+          name="isStatic" type="#Boolean"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.FeatureCallExp" isAbstract="true" name="FeatureCallExp"
         superClasses="#T.pivot.CallExp">
-      <ownedProperties xmi:id="p.pivot.FeatureCallExp.isPre" default="false" name="isPre"
-          type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.FeatureCallExp.isPre" defaultValueString="false"
+          name="isPre" type="#Boolean"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.FinalState" name="FinalState" superClasses="#T.pivot.State">
       <ownedComment body="A special kind of state signifying that the enclosing region is completed. If the enclosing region is directly contained in a state machine and all other regions in the state machine also are completed, then it means that the entire state machine is completed."/>
@@ -869,12 +869,12 @@
       <ownedProperties xmi:id="p.pivot.Operation.bodyExpression" isComposite="true"
           isRequired="false" name="bodyExpression" opposite="#p.pivot.LanguageExpression.Operation"
           type="#T.pivot.LanguageExpression"/>
-      <ownedProperties xmi:id="p.pivot.Operation.isInvalidating" default="false" name="isInvalidating"
-          type="#Boolean"/>
-      <ownedProperties xmi:id="p.pivot.Operation.isTypeof" default="false" name="isTypeof"
-          type="#Boolean"/>
-      <ownedProperties xmi:id="p.pivot.Operation.isValidating" default="false" name="isValidating"
-          type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.Operation.isInvalidating" defaultValueString="false"
+          name="isInvalidating" type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.Operation.isTypeof" defaultValueString="false"
+          name="isTypeof" type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.Operation.isValidating" defaultValueString="false"
+          name="isValidating" type="#Boolean"/>
       <ownedProperties xmi:id="p.pivot.Operation.ownedParameter" isComposite="true"
           name="ownedParameter" opposite="#p.pivot.Parameter.operation" type="#//@ownedPackages.1/@ownedClasses.124">
         <ownedComment body="The parameters to the operation."/>
@@ -973,8 +973,8 @@
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.Parameter" name="Parameter" superClasses="#T.pivot.VariableDeclaration">
       <ownedComment body="A parameter is a typed element that represents a parameter of an operation."/>
-      <ownedProperties xmi:id="p.pivot.Parameter.isTypeof" default="false" name="isTypeof"
-          type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.Parameter.isTypeof" defaultValueString="false"
+          name="isTypeof" type="#Boolean"/>
       <ownedProperties xmi:id="p.pivot.Parameter.operation" isRequired="false" name="operation"
           opposite="#p.pivot.Operation.ownedParameter" type="#T.pivot.Operation">
         <ownedComment body="The operation that owns the parameter."/>
@@ -989,9 +989,9 @@
     <ownedClasses xmi:id="T.pivot.Pivotable" instanceClassName="org.eclipse.ocl.pivot.utilities.Pivotable"
         isAbstract="true" isInterface="true" name="Pivotable" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclElement"/>
     <ownedClasses xmi:id="T.pivot.Precedence" name="Precedence" superClasses="#T.pivot.NamedElement">
-      <ownedProperties xmi:id="p.pivot.Precedence.associativity" default="Left" isRequired="false"
-          name="associativity" type="#T.pivot.AssociativityKind"/>
-      <ownedProperties xmi:id="p.pivot.Precedence.order" default="0" name="order"
+      <ownedProperties xmi:id="p.pivot.Precedence.associativity" defaultValueString="Left"
+          isRequired="false" name="associativity" type="#T.pivot.AssociativityKind"/>
+      <ownedProperties xmi:id="p.pivot.Precedence.order" defaultValueString="0" name="order"
           type="#Integer"/>
       <ownedProperties xmi:id="p.pivot.Precedence.Library" implicit="true" isRequired="false"
           name="Library" opposite="#p.pivot.Library.ownedPrecedence" type="#T.pivot.Library"/>
@@ -1020,7 +1020,7 @@
           opposite="#p.pivot.Profile.application" type="#T.pivot.Profile"/>
       <ownedProperties xmi:id="p.pivot.ProfileApplication.applyingPackage" name="applyingPackage"
           opposite="#p.pivot.Package.profileApplication" type="#T.pivot.Package"/>
-      <ownedProperties xmi:id="p.pivot.ProfileApplication.isStrict" default="false"
+      <ownedProperties xmi:id="p.pivot.ProfileApplication.isStrict" defaultValueString="false"
           name="isStrict" type="#Boolean"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.Property" name="Property" superClasses="#T.pivot.Feature">
@@ -1038,41 +1038,45 @@
       <ownedProperties xmi:id="p.pivot.Property.associationClass" isRequired="false"
           name="associationClass" opposite="#p.pivot.AssociationClass.unownedAttributes"
           type="#T.pivot.AssociationClass"/>
-      <ownedProperties xmi:id="p.pivot.Property.default" isRequired="false" name="default"
-          type="#String">
-        <ownedComment body="A string that is evaluated to give a default value for the attribute when an object of the owning class is instantiated."/>
-      </ownedProperties>
       <ownedProperties xmi:id="p.pivot.Property.defaultExpression" isComposite="true"
           isRequired="false" name="defaultExpression" opposite="#p.pivot.LanguageExpression.Property"
           type="#T.pivot.LanguageExpression"/>
-      <ownedProperties xmi:id="p.pivot.Property.implicit" default="false" isRequired="false"
-          name="implicit" type="#Boolean"/>
-      <ownedProperties xmi:id="p.pivot.Property.isComposite" default="false" name="isComposite"
-          type="#Boolean">
+      <ownedProperties xmi:id="p.pivot.Property.defaultValue" isDerived="true" isRequired="false"
+          isTransient="true" name="defaultValue" type="#T.pivot.Object">
+        <ownedComment body="An object that defines the initial value for the property when an object of the owning class is instantiated. The value is derived by interpreting the defaultValueString in accordance with the property type."/>
+      </ownedProperties>
+      <ownedProperties xmi:id="p.pivot.Property.defaultValueString" isRequired="false"
+          name="defaultValueString" type="#String">
+        <ownedComment body="A string that is used to give an initial value for the property when an object of the owning class is instantiated. Interpretation of the string depends on the property type. For a Boolean Property the string may be 'true' (without quotes) denoting the Boolean true value. For a String property, the string may again be 'true' (without quotes) denoting the four character sequence 't' 'r' 'u' 'e'."/>
+      </ownedProperties>
+      <ownedProperties xmi:id="p.pivot.Property.implicit" defaultValueString="false"
+          isRequired="false" name="implicit" type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.Property.isComposite" defaultValueString="false"
+          name="isComposite" type="#Boolean">
         <ownedComment body="If isComposite is true, the object containing the attribute is a container for the object or value contained in the attribute."/>
       </ownedProperties>
-      <ownedProperties xmi:id="p.pivot.Property.isDerived" default="false" name="isDerived"
-          type="#Boolean">
+      <ownedProperties xmi:id="p.pivot.Property.isDerived" defaultValueString="false"
+          name="isDerived" type="#Boolean">
         <ownedComment body="If isDerived is true, the value of the attribute is derived from information elsewhere."/>
       </ownedProperties>
-      <ownedProperties xmi:id="p.pivot.Property.isID" default="false" name="isID"
+      <ownedProperties xmi:id="p.pivot.Property.isID" defaultValueString="false" name="isID"
           type="#Boolean"/>
-      <ownedProperties xmi:id="p.pivot.Property.isReadOnly" default="false" name="isReadOnly"
-          type="#Boolean">
+      <ownedProperties xmi:id="p.pivot.Property.isReadOnly" defaultValueString="false"
+          name="isReadOnly" type="#Boolean">
         <ownedComment body="If isReadOnly is true, the attribute may not be written to after initialization."/>
       </ownedProperties>
-      <ownedProperties xmi:id="p.pivot.Property.isResolveProxies" default="true" name="isResolveProxies"
-          type="#Boolean"/>
-      <ownedProperties xmi:id="p.pivot.Property.isTransient" default="false" name="isTransient"
-          type="#Boolean"/>
-      <ownedProperties xmi:id="p.pivot.Property.isUnsettable" default="false" name="isUnsettable"
-          type="#Boolean"/>
-      <ownedProperties xmi:id="p.pivot.Property.isVolatile" default="false" name="isVolatile"
-          type="#Boolean"/>
-      <ownedProperties xmi:id="p.pivot.Property.keys" name="keys" opposite="#//@ownedPackages.0/@ownedClasses.89/@ownedProperties.22"
+      <ownedProperties xmi:id="p.pivot.Property.isResolveProxies" defaultValueString="true"
+          name="isResolveProxies" type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.Property.isTransient" defaultValueString="false"
+          name="isTransient" type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.Property.isUnsettable" defaultValueString="false"
+          name="isUnsettable" type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.Property.isVolatile" defaultValueString="false"
+          name="isVolatile" type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.Property.keys" name="keys" opposite="#//@ownedPackages.0/@ownedClasses.89/@ownedProperties.23"
           type="#//@ownedPackages.1/@ownedClasses.148"/>
       <ownedProperties xmi:id="p.pivot.Property.opposite" isRequired="false" name="opposite"
-          opposite="#//@ownedPackages.0/@ownedClasses.89/@ownedProperties.25" type="#T.pivot.Property">
+          opposite="#//@ownedPackages.0/@ownedClasses.89/@ownedProperties.26" type="#T.pivot.Property">
         <ownedComment body="Two attributes attr1 and attr2 of two objects o1 and o2 (which may be the same object) may be paired with each other so that o1.attr1 refers to o2 if and only if o2.attr2 refers to o1. In such a case attr1 is the opposite of attr2 and attr2 is the opposite of attr1."/>
       </ownedProperties>
       <ownedProperties xmi:id="p.pivot.Property.owningClass" isRequired="false" name="owningClass"
@@ -1080,12 +1084,12 @@
         <ownedComment body="The class that owns the property, and of which the property is an attribute."/>
       </ownedProperties>
       <ownedProperties xmi:id="p.pivot.Property.redefinedProperty" name="redefinedProperty"
-          opposite="#//@ownedPackages.0/@ownedClasses.89/@ownedProperties.26" type="#//@ownedPackages.1/@ownedClasses.148"/>
+          opposite="#//@ownedPackages.0/@ownedClasses.89/@ownedProperties.27" type="#//@ownedPackages.1/@ownedClasses.148"/>
       <ownedProperties xmi:id="p.pivot.Property.referredProperty" isRequired="false"
-          name="referredProperty" opposite="#//@ownedPackages.0/@ownedClasses.89/@ownedProperties.23"
+          name="referredProperty" opposite="#//@ownedPackages.0/@ownedClasses.89/@ownedProperties.24"
           type="#T.pivot.Property"/>
       <ownedProperties xmi:id="p.pivot.Property.subsettedProperty" name="subsettedProperty"
-          opposite="#//@ownedPackages.0/@ownedClasses.89/@ownedProperties.27" type="#//@ownedPackages.1/@ownedClasses.148"/>
+          opposite="#//@ownedPackages.0/@ownedClasses.89/@ownedProperties.28" type="#//@ownedPackages.1/@ownedClasses.148"/>
       <ownedProperties xmi:id="p.pivot.Property.ConstructorPart" implicit="true" name="ConstructorPart"
           opposite="#p.pivot.ConstructorPart.referredProperty" type="#//@ownedPackages.1/@ownedClasses.8"/>
       <ownedProperties xmi:id="p.pivot.Property.DynamicProperty" implicit="true" name="DynamicProperty"
@@ -1133,8 +1137,8 @@
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.Pseudostate" name="Pseudostate" superClasses="#T.pivot.Vertex">
       <ownedComment body="A pseudostate is an abstraction that encompasses different types of transient vertices in the state machine graph."/>
-      <ownedProperties xmi:id="p.pivot.Pseudostate.kind" default="initial" name="kind"
-          type="#T.pivot.PseudostateKind">
+      <ownedProperties xmi:id="p.pivot.Pseudostate.kind" defaultValueString="initial"
+          name="kind" type="#T.pivot.PseudostateKind">
         <ownedComment body="Determines the precise type of the Pseudostate and can be one of: entryPoint, exitPoint, initial, deepHistory, shallowHistory, join, fork, junction, terminate or choice."/>
       </ownedProperties>
       <ownedProperties xmi:id="p.pivot.Pseudostate.state" isRequired="false" name="state"
@@ -1481,8 +1485,8 @@
           name="guard" opposite="#p.pivot.Constraint.transition" type="#T.pivot.Constraint">
         <ownedComment body="A guard is a constraint that provides a fine-grained control over the firing of the transition. The guard is evaluated when an event occurrence is dispatched by the state machine. If the guard is true at that time, the transition may be enabled, otherwise, it is disabled. Guards should be pure expressions without side effects. Guard expressions with side effects are ill formed."/>
       </ownedProperties>
-      <ownedProperties xmi:id="p.pivot.Transition.kind" default="external" name="kind"
-          type="#T.pivot.TransitionKind">
+      <ownedProperties xmi:id="p.pivot.Transition.kind" defaultValueString="external"
+          name="kind" type="#T.pivot.TransitionKind">
         <ownedComment body="Indicates  the precise type of the transition."/>
       </ownedProperties>
       <ownedProperties xmi:id="p.pivot.Transition.source" name="source" opposite="#p.pivot.Vertex.outgoing"
@@ -1583,8 +1587,8 @@
           opposite="#p.pivot.Type.TypeExp" type="#T.pivot.Type"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.TypeExtension" name="TypeExtension" superClasses="#T.pivot.Element">
-      <ownedProperties xmi:id="p.pivot.TypeExtension.isRequired" default="false" name="isRequired"
-          type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.TypeExtension.isRequired" defaultValueString="false"
+          name="isRequired" type="#Boolean"/>
       <ownedProperties xmi:id="p.pivot.TypeExtension.stereotype" name="stereotype"
           opposite="#p.pivot.Stereotype.extensionOfs" type="#T.pivot.Stereotype"/>
       <ownedProperties xmi:id="p.pivot.TypeExtension.type" name="type" opposite="#p.pivot.Type.extendedBys"
@@ -1605,8 +1609,8 @@
       </ownedOperations>
       <ownedProperties xmi:id="p.pivot.TypedElement.isMany" isDerived="true" isReadOnly="true"
           isTransient="true" isVolatile="true" name="isMany" type="#Boolean"/>
-      <ownedProperties xmi:id="p.pivot.TypedElement.isRequired" default="true" name="isRequired"
-          type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.TypedElement.isRequired" defaultValueString="true"
+          name="isRequired" type="#Boolean"/>
       <ownedProperties xmi:id="p.pivot.TypedElement.type" isRequired="false" name="type"
           opposite="#p.pivot.Type.typedElement" type="#T.pivot.Type">
         <ownedComment body="The type of the TypedElement."/>
@@ -1653,8 +1657,8 @@
           name="CompatibleInitialiserType">
         <specification xsi:type="pivot:ExpressionInOCL" body="initExpression &lt;> null implies initExpression.type.conformsTo(type)&#xA;&#xA;"/>
       </ownedInvariants>
-      <ownedProperties xmi:id="p.pivot.Variable.implicit" default="false" isRequired="false"
-          name="implicit" type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.Variable.implicit" defaultValueString="false"
+          isRequired="false" name="implicit" type="#Boolean"/>
       <ownedProperties xmi:id="p.pivot.Variable.initExpression" isComposite="true"
           isRequired="false" name="initExpression" opposite="#p.pivot.OCLExpression.Variable"
           type="#T.pivot.OCLExpression"/>
@@ -1681,8 +1685,8 @@
           name="VariableExp" opposite="#p.pivot.VariableExp.referredVariable" type="#//@ownedPackages.1/@ownedClasses.35"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.VariableExp" name="VariableExp" superClasses="#T.pivot.OCLExpression #T.pivot.ReferringElement">
-      <ownedProperties xmi:id="p.pivot.VariableExp.implicit" default="false" isRequired="false"
-          name="implicit" type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.VariableExp.implicit" defaultValueString="false"
+          isRequired="false" name="implicit" type="#Boolean"/>
       <ownedProperties xmi:id="p.pivot.VariableExp.referredVariable" isRequired="false"
           name="referredVariable" opposite="#p.pivot.VariableDeclaration.VariableExp"
           type="#T.pivot.VariableDeclaration"/>

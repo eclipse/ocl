@@ -1361,12 +1361,17 @@
       <eParameters name="p" lowerBound="1" eType="#//Property"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="associationClass" eType="#//AssociationClass" eOpposite="#//AssociationClass/unownedAttributes"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="default" eType="#//String">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="defaultExpression" eType="#//LanguageExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="#//Object" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="A string that is evaluated to give a default value for the attribute when an object of the owning class is instantiated."/>
+        <details key="documentation" value="An object that defines the initial value for the property when an object of the owning class is instantiated. The value is derived by interpreting the defaultValueString in accordance with the property type."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="defaultExpression" eType="#//LanguageExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValueString" eType="#//String">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A string that is used to give an initial value for the property when an object of the owning class is instantiated. Interpretation of the string depends on the property type. For a Boolean Property the string may be 'true' (without quotes) denoting the Boolean true value. For a String property, the string may again be 'true' (without quotes) denoting the four character sequence 't' 'r' 'u' 'e'."/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="implicit" eType="#//Boolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isComposite" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

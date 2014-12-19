@@ -39,8 +39,23 @@ public abstract class AbstractExecutorProperty extends AbstractExecutorFeature i
 	}
 
 	@Override
+	public AssociationClass getAssociationClass() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
 	public LanguageExpression getDefaultExpression() {
-		throw new UnsupportedOperationException(); 			// FIXME
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Object getDefaultValue() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public String getDefaultValueString() {
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -49,32 +64,13 @@ public abstract class AbstractExecutorProperty extends AbstractExecutorFeature i
 	}
 
 	@Override
-	public @NonNull Property getOpposite() {
-		return ClassUtil.nonNullState(opposite);
-	}
-
-	void initOpposite(@NonNull Property opposite) {
-		this.opposite = opposite;
-	}
-
-	@Override
-	public void initValue(@NonNull EObject objectValue, @Nullable Object propertyValue) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public AssociationClass getAssociationClass() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public String getDefault() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
 	public List<Property> getKeys() {
 		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public @NonNull Property getOpposite() {
+		return ClassUtil.nonNullState(opposite);
 	}
 
 	@Override
@@ -95,6 +91,15 @@ public abstract class AbstractExecutorProperty extends AbstractExecutorFeature i
 
 	@Override
 	public List<Property> getSubsettedProperty() {
+		throw new UnsupportedOperationException();
+	}
+
+	void initOpposite(@NonNull Property opposite) {
+		this.opposite = opposite;
+	}
+
+	@Override
+	public void initValue(@NonNull EObject objectValue, @Nullable Object propertyValue) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -152,14 +157,18 @@ public abstract class AbstractExecutorProperty extends AbstractExecutorFeature i
 	public void setAssociationClass(AssociationClass value) {
 		throw new UnsupportedOperationException();
 	}
-
 	@Override
-	public void setDefault(String value) {
+	public void setDefaultExpression(LanguageExpression value) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void setDefaultExpression(LanguageExpression value) {
+	public void setDefaultValue(Object value) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setDefaultValueString(String value) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -224,13 +233,13 @@ public abstract class AbstractExecutorProperty extends AbstractExecutorFeature i
 	}
 
 	@Override
+	public String toString() {
+		return String.valueOf(type) + "::" + String.valueOf(name); //$NON-NLS-1$
+	}
+
+	@Override
 	public boolean validateCompatibleDefaultExpression(
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		throw new UnsupportedOperationException();
-	}
-	
-	@Override
-	public String toString() {
-		return String.valueOf(type) + "::" + String.valueOf(name); //$NON-NLS-1$
 	}
 }

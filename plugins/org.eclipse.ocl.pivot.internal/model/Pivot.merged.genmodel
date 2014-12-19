@@ -641,7 +641,7 @@
         <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//Property/isReadOnly"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
-        <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//Property/default"/>
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//Property/defaultValue"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//Property/isComposite"/>
@@ -651,6 +651,9 @@
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Property/opposite"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//Property/defaultValueString"/>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//Property/associationClass"/>

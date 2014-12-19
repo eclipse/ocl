@@ -4765,17 +4765,7 @@ public class PivotPackageImpl
 	 */
 	@Override
 	public EAttribute getProperty_IsReadOnly() {
-		return (EAttribute)propertyEClass.getEStructuralFeatures().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getProperty_Default() {
-		return (EAttribute)propertyEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)propertyEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -4785,16 +4775,6 @@ public class PivotPackageImpl
 	 */
 	@Override
 	public EAttribute getProperty_IsComposite() {
-		return (EAttribute)propertyEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getProperty_IsDerived() {
 		return (EAttribute)propertyEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -4804,8 +4784,18 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
+	public EAttribute getProperty_IsDerived() {
+		return (EAttribute)propertyEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EReference getProperty_Opposite() {
-		return (EReference)propertyEClass.getEStructuralFeatures().get(13);
+		return (EReference)propertyEClass.getEStructuralFeatures().get(14);
 	}
 
 	/**
@@ -4816,7 +4806,7 @@ public class PivotPackageImpl
 	@Override
 	public EReference getProperty_OwningClass()
 	{
-		return (EReference)propertyEClass.getEStructuralFeatures().get(14);
+		return (EReference)propertyEClass.getEStructuralFeatures().get(15);
 	}
 
 	/**
@@ -4827,7 +4817,7 @@ public class PivotPackageImpl
 	@Override
 	public EAttribute getProperty_Implicit()
 	{
-		return (EAttribute)propertyEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)propertyEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -4838,7 +4828,29 @@ public class PivotPackageImpl
 	@Override
 	public EReference getProperty_DefaultExpression()
 	{
-		return (EReference)propertyEClass.getEStructuralFeatures().get(2);
+		return (EReference)propertyEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getProperty_DefaultValue()
+	{
+		return (EAttribute)propertyEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getProperty_DefaultValueString()
+	{
+		return (EAttribute)propertyEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -4849,7 +4861,7 @@ public class PivotPackageImpl
 	@Override
 	public EAttribute getProperty_IsID()
 	{
-		return (EAttribute)propertyEClass.getEStructuralFeatures().get(6);
+		return (EAttribute)propertyEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -4860,7 +4872,7 @@ public class PivotPackageImpl
 	@Override
 	public EReference getProperty_Keys()
 	{
-		return (EReference)propertyEClass.getEStructuralFeatures().get(12);
+		return (EReference)propertyEClass.getEStructuralFeatures().get(13);
 	}
 
 	/**
@@ -4871,7 +4883,7 @@ public class PivotPackageImpl
 	@Override
 	public EAttribute getProperty_IsResolveProxies()
 	{
-		return (EAttribute)propertyEClass.getEStructuralFeatures().get(8);
+		return (EAttribute)propertyEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -4882,7 +4894,7 @@ public class PivotPackageImpl
 	@Override
 	public EAttribute getProperty_IsTransient()
 	{
-		return (EAttribute)propertyEClass.getEStructuralFeatures().get(9);
+		return (EAttribute)propertyEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -4893,7 +4905,7 @@ public class PivotPackageImpl
 	@Override
 	public EAttribute getProperty_IsUnsettable()
 	{
-		return (EAttribute)propertyEClass.getEStructuralFeatures().get(10);
+		return (EAttribute)propertyEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -4904,7 +4916,7 @@ public class PivotPackageImpl
 	@Override
 	public EAttribute getProperty_IsVolatile()
 	{
-		return (EAttribute)propertyEClass.getEStructuralFeatures().get(11);
+		return (EAttribute)propertyEClass.getEStructuralFeatures().get(12);
 	}
 
 	/**
@@ -4915,7 +4927,7 @@ public class PivotPackageImpl
 	@Override
 	public EReference getProperty_RedefinedProperty()
 	{
-		return (EReference)propertyEClass.getEStructuralFeatures().get(15);
+		return (EReference)propertyEClass.getEStructuralFeatures().get(16);
 	}
 
 	/**
@@ -4926,7 +4938,7 @@ public class PivotPackageImpl
 	@Override
 	public EReference getProperty_SubsettedProperty()
 	{
-		return (EReference)propertyEClass.getEStructuralFeatures().get(17);
+		return (EReference)propertyEClass.getEStructuralFeatures().get(18);
 	}
 
 	/**
@@ -4937,7 +4949,7 @@ public class PivotPackageImpl
 	@Override
 	public EReference getProperty_ReferredProperty()
 	{
-		return (EReference)propertyEClass.getEStructuralFeatures().get(16);
+		return (EReference)propertyEClass.getEStructuralFeatures().get(17);
 	}
 
 	/**
@@ -6636,8 +6648,9 @@ public class PivotPackageImpl
 
 		propertyEClass = createEClass(PROPERTY);
 		createEReference(propertyEClass, PROPERTY__ASSOCIATION_CLASS);
-		createEAttribute(propertyEClass, PROPERTY__DEFAULT);
 		createEReference(propertyEClass, PROPERTY__DEFAULT_EXPRESSION);
+		createEAttribute(propertyEClass, PROPERTY__DEFAULT_VALUE);
+		createEAttribute(propertyEClass, PROPERTY__DEFAULT_VALUE_STRING);
 		createEAttribute(propertyEClass, PROPERTY__IMPLICIT);
 		createEAttribute(propertyEClass, PROPERTY__IS_COMPOSITE);
 		createEAttribute(propertyEClass, PROPERTY__IS_DERIVED);
@@ -7863,8 +7876,9 @@ public class PivotPackageImpl
 
 		initEClass(propertyEClass, Property.class, "Property", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getProperty_AssociationClass(), this.getAssociationClass(), this.getAssociationClass_UnownedAttributes(), "associationClass", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getProperty_Default(), this.getString(), "default", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getProperty_DefaultExpression(), this.getLanguageExpression(), null, "defaultExpression", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getProperty_DefaultValue(), this.getObject(), "defaultValue", null, 0, 1, Property.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getProperty_DefaultValueString(), this.getString(), "defaultValueString", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getProperty_Implicit(), this.getBoolean(), "implicit", "false", 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getProperty_IsComposite(), this.getBoolean(), "isComposite", "false", 1, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getProperty_IsDerived(), this.getBoolean(), "isDerived", "false", 1, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$

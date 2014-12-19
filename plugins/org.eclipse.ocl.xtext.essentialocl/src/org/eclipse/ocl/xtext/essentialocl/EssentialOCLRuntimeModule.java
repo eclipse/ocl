@@ -23,8 +23,6 @@ import com.google.inject.name.Names;
  */
 public class EssentialOCLRuntimeModule extends org.eclipse.ocl.xtext.essentialocl.AbstractEssentialOCLRuntimeModule
 {	
-	public static final String LANGUAGE_ID = "org.eclipse.ocl.xtext.essentialocl.EssentialOCL";
-
 	@Override
 	public void configure(Binder binder) {
 		super.configure(binder);

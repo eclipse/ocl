@@ -1048,11 +1048,11 @@
         </ownedComment>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TProperty.PisReadOnly.dlV" value="false"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="Ppivot.TProperty.Pdefault" name="default" type="Ppivot.TString">
-        <ownedComment xmi:id="Ppivot.TProperty.Pdefault.oC0" annotatedElement="Ppivot.TProperty.Pdefault">
-          <body>A string that is evaluated to give a default value for the attribute when an object of the owning class is instantiated.</body>
+      <ownedAttribute xmi:id="Ppivot.TProperty.PdefaultValue" name="defaultValue" type="Ppivot.TObject" isDerived="true">
+        <ownedComment xmi:id="Ppivot.TProperty.PdefaultValue.oC0" annotatedElement="Ppivot.TProperty.PdefaultValue">
+          <body>An object that defines the initial value for the property when an object of the owning class is instantiated. The value is derived by interpreting the defaultValueString in accordance with the property type.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TProperty.Pdefault.lV"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TProperty.PdefaultValue.lV"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TProperty.PisComposite" name="isComposite" type="Ppivot.TBoolean">
         <ownedComment xmi:id="Ppivot.TProperty.PisComposite.oC0" annotatedElement="Ppivot.TProperty.PisComposite">
@@ -1077,6 +1077,12 @@
           <body>Two attributes attr1 and attr2 of two objects o1 and o2 (which may be the same object) may be paired with each other so that o1.attr1 refers to o2 if and only if o2.attr2 refers to o1. In such a case attr1 is the opposite of attr2 and attr2 is the opposite of attr1.</body>
         </ownedComment>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TProperty.Popposite.lV"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="Ppivot.TProperty.PdefaultValueString" name="defaultValueString" type="Ppivot.TString">
+        <ownedComment xmi:id="Ppivot.TProperty.PdefaultValueString.oC0" annotatedElement="Ppivot.TProperty.PdefaultValueString">
+          <body>A string that is used to give an initial value for the property when an object of the owning class is instantiated. Interpretation of the string depends on the property type. For a Boolean Property the string may be 'true' (without quotes) denoting the Boolean true value. For a String property, the string may again be 'true' (without quotes) denoting the four character sequence 't' 'r' 'u' 'e'.</body>
+        </ownedComment>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TProperty.PdefaultValueString.lV"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="Ppivot.TProperty.PassociationClass" name="associationClass" type="Ppivot.TAssociationClass" association="Ppivot.A_associationClass_unownedAttribute">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TProperty.PassociationClass.lV"/>
@@ -1940,6 +1946,7 @@
     </profileApplication>
   </uml:Package>
   <Ecore:EPackage xmi:id="PA.Ppivot" base_Package="Ppivot" nsURI="http://www.eclipse.org/ocl/2015/Pivot"/>
+  <Ecore:EAttribute xmi:id="PA.Ppivot.TProperty.PdefaultValue" isTransient="true" base_Property="Ppivot.TProperty.PdefaultValue"/>
   <Ecore:EReference xmi:id="PA.Ppivot.TConstraint.Pcontext" isTransient="true" isVolatile="true" base_Property="Ppivot.TConstraint.Pcontext"
       isResolveProxies="false"/>
   <Ecore:EAttribute xmi:id="PA.Ppivot.TLanguageExpression.Planguage" isTransient="true" isVolatile="true" base_Property="Ppivot.TLanguageExpression.Planguage"/>

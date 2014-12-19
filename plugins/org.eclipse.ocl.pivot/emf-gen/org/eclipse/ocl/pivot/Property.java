@@ -32,8 +32,9 @@ import org.eclipse.ocl.pivot.ids.PropertyId;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.Property#getAssociationClass <em>Association Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Property#getDefault <em>Default</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Property#getDefaultExpression <em>Default Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Property#getDefaultValue <em>Default Value</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Property#getDefaultValueString <em>Default Value String</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Property#isImplicit <em>Implicit</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Property#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Property#isDerived <em>Is Derived</em>}</li>
@@ -108,30 +109,6 @@ public interface Property extends Feature {
 	 * @generated
 	 */
 	void setIsReadOnly(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Default</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * A string that is evaluated to give a default value for the attribute when an object of the owning class is instantiated.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Default</em>' attribute.
-	 * @see #setDefault(String)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_Default()
-	 * @generated
-	 */
-	String getDefault();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Property#getDefault <em>Default</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Default</em>' attribute.
-	 * @see #getDefault()
-	 * @generated
-	 */
-	void setDefault(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Is Composite</b></em>' attribute.
@@ -257,6 +234,54 @@ public interface Property extends Feature {
 	 * @generated
 	 */
 	void setDefaultExpression(LanguageExpression value);
+
+	/**
+	 * Returns the value of the '<em><b>Default Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * An object that defines the initial value for the property when an object of the owning class is instantiated. The value is derived by interpreting the defaultValueString in accordance with the property type.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Default Value</em>' attribute.
+	 * @see #setDefaultValue(Object)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_DefaultValue()
+	 * @generated
+	 */
+	Object getDefaultValue();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Property#getDefaultValue <em>Default Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Default Value</em>' attribute.
+	 * @see #getDefaultValue()
+	 * @generated
+	 */
+	void setDefaultValue(Object value);
+
+	/**
+	 * Returns the value of the '<em><b>Default Value String</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A string that is used to give an initial value for the property when an object of the owning class is instantiated. Interpretation of the string depends on the property type. For a Boolean Property the string may be 'true' (without quotes) denoting the Boolean true value. For a String property, the string may again be 'true' (without quotes) denoting the four character sequence 't' 'r' 'u' 'e'.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Default Value String</em>' attribute.
+	 * @see #setDefaultValueString(String)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_DefaultValueString()
+	 * @generated
+	 */
+	String getDefaultValueString();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Property#getDefaultValueString <em>Default Value String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Default Value String</em>' attribute.
+	 * @see #getDefaultValueString()
+	 * @generated
+	 */
+	void setDefaultValueString(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Is ID</b></em>' attribute.

@@ -174,6 +174,7 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Vertex = PivotTables.PACKid_$metamodel$.getClassId("Vertex", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_WildcardType = PivotTables.PACKid_$metamodel$.getClassId("WildcardType", 0);
     public static final @NonNull /*@NonInvalid*/ DataTypeId DATAid_LibraryFeature = PivotTables.PACKid_$metamodel$.getDataTypeId("LibraryFeature", 0);
+    public static final @NonNull /*@NonInvalid*/ DataTypeId DATAid_Object = PivotTables.PACKid_$metamodel$.getDataTypeId("Object", 0);
     public static final @NonNull /*@NonInvalid*/ EnumerationId ENUMid_AssociativityKind = PivotTables.PACKid_$metamodel$.getEnumerationId("AssociativityKind");
     public static final @NonNull /*@NonInvalid*/ EnumerationId ENUMid_CollectionKind = PivotTables.PACKid_$metamodel$.getEnumerationId("CollectionKind");
     public static final @NonNull /*@NonInvalid*/ EnumerationId ENUMid_PseudostateKind = PivotTables.PACKid_$metamodel$.getEnumerationId("PseudostateKind");
@@ -2256,34 +2257,35 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _ProfileApplication__isStrict = new EcoreExecutorProperty(PivotPackage.Literals.PROFILE_APPLICATION__IS_STRICT, Types._ProfileApplication, 2);
 
 		public static final @NonNull ExecutorProperty _Property__associationClass = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__ASSOCIATION_CLASS, Types._Property, 0);
-		public static final @NonNull ExecutorProperty _Property__default = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__DEFAULT, Types._Property, 1);
-		public static final @NonNull ExecutorProperty _Property__defaultExpression = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__DEFAULT_EXPRESSION, Types._Property, 2);
-		public static final @NonNull ExecutorProperty _Property__implicit = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__IMPLICIT, Types._Property, 3);
-		public static final @NonNull ExecutorProperty _Property__isComposite = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__IS_COMPOSITE, Types._Property, 4);
-		public static final @NonNull ExecutorProperty _Property__isDerived = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__IS_DERIVED, Types._Property, 5);
-		public static final @NonNull ExecutorProperty _Property__isID = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__IS_ID, Types._Property, 6);
-		public static final @NonNull ExecutorProperty _Property__isReadOnly = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__IS_READ_ONLY, Types._Property, 7);
-		public static final @NonNull ExecutorProperty _Property__isResolveProxies = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__IS_RESOLVE_PROXIES, Types._Property, 8);
-		public static final @NonNull ExecutorProperty _Property__isTransient = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__IS_TRANSIENT, Types._Property, 9);
-		public static final @NonNull ExecutorProperty _Property__isUnsettable = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__IS_UNSETTABLE, Types._Property, 10);
-		public static final @NonNull ExecutorProperty _Property__isVolatile = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__IS_VOLATILE, Types._Property, 11);
-		public static final @NonNull ExecutorProperty _Property__keys = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__KEYS, Types._Property, 12);
-		public static final @NonNull ExecutorProperty _Property__opposite = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__OPPOSITE, Types._Property, 13);
-		public static final @NonNull ExecutorProperty _Property__owningClass = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__OWNING_CLASS, Types._Property, 14);
-		public static final @NonNull ExecutorProperty _Property__redefinedProperty = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__REDEFINED_PROPERTY, Types._Property, 15);
-		public static final @NonNull ExecutorProperty _Property__referredProperty = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__REFERRED_PROPERTY, Types._Property, 16);
-		public static final @NonNull ExecutorProperty _Property__subsettedProperty = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__SUBSETTED_PROPERTY, Types._Property, 17);
-		public static final @NonNull ExecutorProperty _Property__ConstructorPart__referredProperty = new ExecutorPropertyWithImplementation("ConstructorPart", Types._Property, 18, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CONSTRUCTOR_PART__REFERRED_PROPERTY));
-		public static final @NonNull ExecutorProperty _Property__DynamicProperty__referredProperty = new ExecutorPropertyWithImplementation("DynamicProperty", Types._Property, 19, new EcoreLibraryOppositeProperty(PivotPackage.Literals.DYNAMIC_PROPERTY__REFERRED_PROPERTY));
-		public static final @NonNull ExecutorProperty _Property__NavigationCallExp__navigationSource = new ExecutorPropertyWithImplementation("NavigationCallExp", Types._Property, 20, new EcoreLibraryOppositeProperty(PivotPackage.Literals.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE));
-		public static final @NonNull ExecutorProperty _Property__OppositePropertyCallExp__referredProperty = new ExecutorPropertyWithImplementation("OppositePropertyCallExp", Types._Property, 21, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_PROPERTY));
-		public static final @NonNull ExecutorProperty _Property__Property__keys = new ExecutorPropertyWithImplementation("Property", Types._Property, 22, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__KEYS));
-		public static final @NonNull ExecutorProperty _Property__Property__referredProperty = new ExecutorPropertyWithImplementation("Property", Types._Property, 23, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__REFERRED_PROPERTY));
-		public static final @NonNull ExecutorProperty _Property__PropertyCallExp__referredProperty = new ExecutorPropertyWithImplementation("PropertyCallExp", Types._Property, 24, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY_CALL_EXP__REFERRED_PROPERTY));
-		public static final @NonNull ExecutorProperty _Property__property__opposite = new ExecutorPropertyWithImplementation("property", Types._Property, 25, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__OPPOSITE));
-		public static final @NonNull ExecutorProperty _Property__property__redefinedProperty = new ExecutorPropertyWithImplementation("property", Types._Property, 26, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__REDEFINED_PROPERTY));
-		public static final @NonNull ExecutorProperty _Property__property__subsettedProperty = new ExecutorPropertyWithImplementation("property", Types._Property, 27, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__SUBSETTED_PROPERTY));
-		public static final @NonNull ExecutorProperty _Property__slot__definingProperty = new ExecutorPropertyWithImplementation("slot", Types._Property, 28, new EcoreLibraryOppositeProperty(PivotPackage.Literals.SLOT__DEFINING_PROPERTY));
+		public static final @NonNull ExecutorProperty _Property__defaultExpression = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__DEFAULT_EXPRESSION, Types._Property, 1);
+		public static final @NonNull ExecutorProperty _Property__defaultValue = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__DEFAULT_VALUE, Types._Property, 2);
+		public static final @NonNull ExecutorProperty _Property__defaultValueString = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__DEFAULT_VALUE_STRING, Types._Property, 3);
+		public static final @NonNull ExecutorProperty _Property__implicit = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__IMPLICIT, Types._Property, 4);
+		public static final @NonNull ExecutorProperty _Property__isComposite = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__IS_COMPOSITE, Types._Property, 5);
+		public static final @NonNull ExecutorProperty _Property__isDerived = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__IS_DERIVED, Types._Property, 6);
+		public static final @NonNull ExecutorProperty _Property__isID = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__IS_ID, Types._Property, 7);
+		public static final @NonNull ExecutorProperty _Property__isReadOnly = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__IS_READ_ONLY, Types._Property, 8);
+		public static final @NonNull ExecutorProperty _Property__isResolveProxies = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__IS_RESOLVE_PROXIES, Types._Property, 9);
+		public static final @NonNull ExecutorProperty _Property__isTransient = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__IS_TRANSIENT, Types._Property, 10);
+		public static final @NonNull ExecutorProperty _Property__isUnsettable = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__IS_UNSETTABLE, Types._Property, 11);
+		public static final @NonNull ExecutorProperty _Property__isVolatile = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__IS_VOLATILE, Types._Property, 12);
+		public static final @NonNull ExecutorProperty _Property__keys = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__KEYS, Types._Property, 13);
+		public static final @NonNull ExecutorProperty _Property__opposite = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__OPPOSITE, Types._Property, 14);
+		public static final @NonNull ExecutorProperty _Property__owningClass = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__OWNING_CLASS, Types._Property, 15);
+		public static final @NonNull ExecutorProperty _Property__redefinedProperty = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__REDEFINED_PROPERTY, Types._Property, 16);
+		public static final @NonNull ExecutorProperty _Property__referredProperty = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__REFERRED_PROPERTY, Types._Property, 17);
+		public static final @NonNull ExecutorProperty _Property__subsettedProperty = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__SUBSETTED_PROPERTY, Types._Property, 18);
+		public static final @NonNull ExecutorProperty _Property__ConstructorPart__referredProperty = new ExecutorPropertyWithImplementation("ConstructorPart", Types._Property, 19, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CONSTRUCTOR_PART__REFERRED_PROPERTY));
+		public static final @NonNull ExecutorProperty _Property__DynamicProperty__referredProperty = new ExecutorPropertyWithImplementation("DynamicProperty", Types._Property, 20, new EcoreLibraryOppositeProperty(PivotPackage.Literals.DYNAMIC_PROPERTY__REFERRED_PROPERTY));
+		public static final @NonNull ExecutorProperty _Property__NavigationCallExp__navigationSource = new ExecutorPropertyWithImplementation("NavigationCallExp", Types._Property, 21, new EcoreLibraryOppositeProperty(PivotPackage.Literals.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE));
+		public static final @NonNull ExecutorProperty _Property__OppositePropertyCallExp__referredProperty = new ExecutorPropertyWithImplementation("OppositePropertyCallExp", Types._Property, 22, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_PROPERTY));
+		public static final @NonNull ExecutorProperty _Property__Property__keys = new ExecutorPropertyWithImplementation("Property", Types._Property, 23, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__KEYS));
+		public static final @NonNull ExecutorProperty _Property__Property__referredProperty = new ExecutorPropertyWithImplementation("Property", Types._Property, 24, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__REFERRED_PROPERTY));
+		public static final @NonNull ExecutorProperty _Property__PropertyCallExp__referredProperty = new ExecutorPropertyWithImplementation("PropertyCallExp", Types._Property, 25, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY_CALL_EXP__REFERRED_PROPERTY));
+		public static final @NonNull ExecutorProperty _Property__property__opposite = new ExecutorPropertyWithImplementation("property", Types._Property, 26, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__OPPOSITE));
+		public static final @NonNull ExecutorProperty _Property__property__redefinedProperty = new ExecutorPropertyWithImplementation("property", Types._Property, 27, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__REDEFINED_PROPERTY));
+		public static final @NonNull ExecutorProperty _Property__property__subsettedProperty = new ExecutorPropertyWithImplementation("property", Types._Property, 28, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__SUBSETTED_PROPERTY));
+		public static final @NonNull ExecutorProperty _Property__slot__definingProperty = new ExecutorPropertyWithImplementation("slot", Types._Property, 29, new EcoreLibraryOppositeProperty(PivotPackage.Literals.SLOT__DEFINING_PROPERTY));
 
 		public static final @NonNull ExecutorProperty _PropertyCallExp__referredProperty = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY_CALL_EXP__REFERRED_PROPERTY, Types._PropertyCallExp, 0);
 
@@ -12759,8 +12761,9 @@ public class PivotTables
 		private static final @NonNull ExecutorProperty[] _Property = {
 			PivotTables.Properties._Property__associationClass,
 			PivotTables.Properties._Element__comment,
-			PivotTables.Properties._Property__default,
 			PivotTables.Properties._Property__defaultExpression,
+			PivotTables.Properties._Property__defaultValue,
+			PivotTables.Properties._Property__defaultValueString,
 			PivotTables.Properties._Element__extension,
 			PivotTables.Properties._Feature__implementation,
 			PivotTables.Properties._Feature__implementationClass,

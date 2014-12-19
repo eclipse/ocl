@@ -75,7 +75,6 @@ import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
-
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 
@@ -682,8 +681,47 @@ public class AS2EcoreDeclarationVisitor
 		eStructuralFeature.setTransient(pivotProperty.isTransient());
 		eStructuralFeature.setUnsettable(pivotProperty.isUnsettable());
 		eStructuralFeature.setVolatile(pivotProperty.isVolatile());
-		if (pivotProperty.eIsSet(PivotPackage.Literals.PROPERTY__DEFAULT)) {
-			eStructuralFeature.setDefaultValueLiteral(pivotProperty.getDefault());
+//		Object defaultValue = pivotProperty.getDefaultValue();
+		String defaultValueLiteral = pivotProperty.getDefaultValueString();
+/*		if (defaultValue != null) {
+			if (defaultValue instanceof String) {
+				defaultValueLiteral = (String)defaultValue;
+			}
+			else if (defaultValue instanceof Boolean) {
+				defaultValueLiteral = defaultValue.toString();
+			}
+			else if (defaultValue instanceof Value) {
+				defaultValueLiteral = defaultValue.toString();
+			}
+			else if (defaultValue instanceof EnumerationLiteral) {
+				defaultValueLiteral = ((EnumerationLiteral)defaultValue).getName();
+			}
+//			else if (defaultValue instanceof EnumerationLiteralId) {						// type is Enumeration
+//				defaultValueLiteral = ((EnumerationLiteralId)defaultValue).getName();
+//			}
+			else {			// FIXME Use URI for lack of Ecore support
+				defaultValueLiteral = String.valueOf(defaultValue);		// FIXME need init EAnnotation for generality
+			}
+/ *			String defaultValueLiteral = eObject.getDefaultValueLiteral();
+			Object boxedValue;
+			EClassifier eType = eObject.getEType();
+			if (type instanceof DataType) {
+				EDataType eDataType = (EDataType)eType;
+				EFactory eFactoryInstance = eDataType.getEPackage().getEFactoryInstance();
+				Object unboxedValue = eFactoryInstance.createFromString(eDataType, defaultValueLiteral);
+				boxedValue = metaModelManager.getIdResolver().boxedValueOf(unboxedValue);
+				pivotElement.setDefaultValue(boxedValue);
+			}
+			else {
+				URI uri = URI.createURI(defaultValueLiteral);
+				boxedValue = metaModelManager.getExternalResourceSet().getEObject(uri, false);
+			}
+			pivotElement.setDefaultValue(boxedValue); * /
+			
+			
+		} */
+		if (defaultValueLiteral != null) {
+			eStructuralFeature.setDefaultValueLiteral(defaultValueLiteral);
 		}
 		else {
 			eStructuralFeature.eUnset(EcorePackage.Literals.ESTRUCTURAL_FEATURE__DEFAULT_VALUE_LITERAL);

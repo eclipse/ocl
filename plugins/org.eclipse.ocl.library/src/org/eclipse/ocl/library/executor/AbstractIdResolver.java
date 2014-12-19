@@ -91,6 +91,7 @@ import org.eclipse.ocl.pivot.values.OrderedSet;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.SequenceValue;
 import org.eclipse.ocl.pivot.values.SetValue;
+import org.eclipse.ocl.pivot.values.Unlimited;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.pivot.values.Value;
 import org.eclipse.ocl.pivot.values.impl.BagImpl;
@@ -324,6 +325,9 @@ public abstract class AbstractIdResolver implements IdResolver
 			}
 			if (unboxedValue instanceof BigInteger) {
 				return ValueUtil.integerValueOf((BigInteger) unboxedValue);
+			}			
+			if (unboxedValue instanceof Unlimited) {
+				return unboxedValue;
 			}			
 		}
 		else if (unboxedValue instanceof Character) {

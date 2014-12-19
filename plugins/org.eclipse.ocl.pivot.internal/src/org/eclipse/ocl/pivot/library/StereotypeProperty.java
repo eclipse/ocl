@@ -60,7 +60,7 @@ public class StereotypeProperty extends ConstrainedProperty
 			Property extensionProperty = ClassUtil.getNamedElement(elementExtension.getOwnedProperties(), propertyName);
 			if (extensionProperty == null) {
 				boolean gotIt = false;
-				String defaultValue = null;
+				Object defaultValue = null;
 				LanguageExpression defaultExpression = null;
 				if (elementExtension.isApplied()) {
 					EObject umlStereotypeApplication = elementExtension.getETarget();
@@ -68,15 +68,14 @@ public class StereotypeProperty extends ConstrainedProperty
 						EClass eClass = umlStereotypeApplication.eClass();
 						EStructuralFeature eStructuralFeature = LabelUtil.getNamedElement(eClass.getEAllStructuralFeatures(), propertyName);
 						if (eStructuralFeature != null) {
-							Object value = umlStereotypeApplication.eGet(eStructuralFeature);
-							defaultValue = value != null ? value.toString() : null;
+							defaultValue = idResolver.boxedValueOf(umlStereotypeApplication.eGet(eStructuralFeature));
 							gotIt = true;
 						}
 					}
 				}
 				if (!gotIt && (elementExtension.isApplied() || elementExtension.isRequired())) {
 					Property theProperty = ClassUtil.getNamedElement(elementExtension.getStereotype().getOwnedProperties(), propertyName);
-					defaultValue = theProperty.getDefault();
+					defaultValue = theProperty.getDefaultValue();
 					defaultExpression = theProperty.getDefaultExpression();
 					gotIt = true;
 				}
@@ -85,7 +84,7 @@ public class StereotypeProperty extends ConstrainedProperty
 				extensionProperty.setIsRequired(property.isRequired());
 				extensionProperty.setIsStatic(property.isStatic());
 				extensionProperty.setType(property.getType());
-				extensionProperty.setDefault(defaultValue);
+				extensionProperty.setDefaultValue(defaultValue);
 				extensionProperty.setDefaultExpression(defaultExpression);
 				elementExtension.getOwnedProperties().add(extensionProperty);
 			}
@@ -110,10 +109,10 @@ public class StereotypeProperty extends ConstrainedProperty
 //			if (theProperty == null) {
 //				return super.evaluate(evaluator, returnTypeId, sourceValue);
 //			}
-			String defaultValueLiteral = extensionProperty.getDefault();
+			Object defaultValue = extensionProperty.getDefaultValue();
 			LanguageExpression defaultExpression = extensionProperty.getDefaultExpression();
-			if (defaultValueLiteral != null) {
-				boxedValue = idResolver.createInstance(property.getTypeId(), defaultValueLiteral);
+			if (!extensionProperty.isDerived()) {
+				boxedValue = defaultValue; //idResolver.createInstance(property.getTypeId(), defaultValueLiteral);
 			}
 			else if (defaultExpression != null) {
 				String body = defaultExpression.getBody();

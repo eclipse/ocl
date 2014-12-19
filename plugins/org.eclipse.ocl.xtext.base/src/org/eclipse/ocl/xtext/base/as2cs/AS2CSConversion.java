@@ -455,12 +455,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 		refreshQualifiers(csElement.getQualifiers(), "transient", object.isTransient());
 		refreshQualifiers(csElement.getQualifiers(), "unsettable", object.isUnsettable());
 		refreshQualifiers(csElement.getQualifiers(), "volatile", object.isVolatile());
-		if (object.eIsSet(PivotPackage.Literals.PROPERTY__DEFAULT)) {
-			csElement.setDefault(object.getDefault());
-		}
-		else {
-			csElement.eUnset(BaseCSPackage.Literals.STRUCTURAL_FEATURE_CS__DEFAULT);
-		}
+		csElement.setDefault(object.getDefaultValueString());
 		return csElement;
 	}
 	
