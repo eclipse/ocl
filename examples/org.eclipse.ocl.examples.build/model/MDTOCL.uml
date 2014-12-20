@@ -34,6 +34,12 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="MDTOCL-MDT_OCL_Cache" name="MDT_OCL_Cache">
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Cache-OCLExpression" name="OCLExpression" isAbstract="true"/>
+      <packagedElement xmi:type="uml:PrimitiveType" xmi:id="__oy_kIhHEeS7_fz8n0YOtw" name="Object"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_zKTekIhHEeS7_fz8n0YOtw" name="Property">
+        <ownedAttribute xmi:id="_2RIFkIhHEeS7_fz8n0YOtw" name="defaultValue" type="__oy_kIhHEeS7_fz8n0YOtw" isDerived="true">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5bw1kIhHEeS7_fz8n0YOtw"/>
+        </ownedAttribute>
+      </packagedElement>
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="MDTOCL-MDT_OCL_Cache-String" name="String"/>
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Cache-TemplateableElement" name="TemplateableElement" isAbstract="true">
         <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Cache-TemplateableElement-unspecializedElement" name="unspecializedElement" type="MDTOCL-MDT_OCL_Cache-TemplateableElement">
@@ -207,11 +213,11 @@
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_K7U5AARMEeSiuvNrq-crrw" value="*"/>
         </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="MDTOCL-MDT_OCL_Instances-A_package_ownedInstance" name="A_owningPackage_ownedInstances" memberEnd="_wtFQ4BusEeSIos3S87O_rg MDTOCL-MDT_OCL_Instances-Package-ownedInstances"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_A8ymsBseEeSM9LreJtBwBg" name="Property"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_AsjLQBseEeSM9LreJtBwBg" name="Slot">
         <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Instances-Slot-definingProperty" name="definingProperty" type="_A8ymsBseEeSM9LreJtBwBg"/>
       </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="MDTOCL-MDT_OCL_Instances-A_package_ownedInstance" name="A_owningPackage_ownedInstances" memberEnd="_wtFQ4BusEeSIos3S87O_rg MDTOCL-MDT_OCL_Instances-Package-ownedInstances"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="MDTOCL-MDT_OCL_Precedences" name="MDT_OCL_Precedences">
       <packagedElement xmi:type="uml:Enumeration" xmi:id="MDTOCL-MDT_OCL_Precedences-AssociativityKind" name="AssociativityKind">
@@ -430,16 +436,17 @@
   <Ecore:EDataType xmi:id="_d3XbwMo-Ed-ZL8lMORCEkg" instanceClassName="boolean" base_PrimitiveType="MDTOCL-MDT_OCL_PrimitiveTypes-Boolean"/>
   <Ecore:EClass xmi:id="_eCpH8M9-Ed-OX-Zde0V6vA" instanceClassName="org.eclipse.ocl.pivot.util.Visitable" base_Interface="MDTOCL-MDT_OCL_Visiting-Visitable" className="Visitable"/>
   <Ecore:EClass xmi:id="_n6SYcN9WEd-5RuvZBdnt0A" instanceClassName="org.eclipse.ocl.pivot.Nameable" base_Interface="MDTOCL-MDT_OCL_Framework-Nameable" className="Nameable"/>
-  <Ecore:EClass xmi:id="_pecS0N9WEd-5RuvZBdnt0A" instanceClassName="org.eclipse.ocl.pivot.util.Pivotable" base_Interface="MDTOCL-MDT_OCL_Framework-Pivotable" className="Pivotable"/>
+  <Ecore:EClass xmi:id="_pecS0N9WEd-5RuvZBdnt0A" instanceClassName="org.eclipse.ocl.pivot.utilities.Pivotable" base_Interface="MDTOCL-MDT_OCL_Framework-Pivotable" className="Pivotable"/>
   <Ecore:EAttribute xmi:id="_1hNtAPPiEd-7P5P8zTFtow" isUnsettable="true" base_Property="MDTOCL-MDT_OCL_PrimitiveTypes-BooleanLiteralExp-booleanSymbol"/>
   <Ecore:EDataType xmi:id="_51mtUAFqEeCxa8jNFLJGww" instanceClassName="org.eclipse.ocl.pivot.library.LibraryFeature" base_PrimitiveType="MDTOCL-MDT_OCL_Evaluation-LibraryFeature"/>
   <Ecore:EAttribute xmi:id="_VZMlMAFrEeCxa8jNFLJGww" isTransient="true" base_Property="MDTOCL-MDT_OCL_Evaluation-Feature-implementation"/>
   <Ecore:EDataType xmi:id="_jgIDoAFrEeCxa8jNFLJGww" instanceClassName="java.lang.Throwable" base_PrimitiveType="MDTOCL-MDT_OCL_Evaluation-Throwable"/>
   <Ecore:EDataType xmi:id="_o1e-wAFrEeCxa8jNFLJGww" instanceClassName="java.lang.Object" base_PrimitiveType="MDTOCL-MDT_OCL_Evaluation-Object"/>
   <Ecore:EReference xmi:id="_CoMyoHSeEeC3-tVPqYIPdQ" isTransient="true" base_Property="MDTOCL-MDT_OCL_Cache-TemplateableElement-unspecializedElement" isResolveProxies="false"/>
-  <Ecore:EClass xmi:id="_eO7hgEOIEeGtTYkEXjnZtw" instanceClassName="org.eclipse.ocl.pivot.util.MorePivotable" base_Interface="MDTOCL-MDT_OCL_Framework-MorePivotable" className="MorePivotable"/>
+  <Ecore:EClass xmi:id="_eO7hgEOIEeGtTYkEXjnZtw" instanceClassName="org.eclipse.ocl.pivot.utilities.MorePivotable" base_Interface="MDTOCL-MDT_OCL_Framework-MorePivotable" className="MorePivotable"/>
   <Ecore:EClass xmi:id="_VF5C4PtzEeGgYeRoQSJFAw" base_Interface="MDTOCL-MDT_OCL_Referring-ReferringElement"/>
   <Ecore:EReference xmi:id="_rK9W8DTYEeS3ndOfdXtkXQ" isTransient="true" base_Property="_qhogAC-cEeSc2LncrXmagQ" isResolveProxies="false"/>
   <Ecore:EAttribute xmi:id="_zxJwsDTYEeS3ndOfdXtkXQ" isTransient="true" isVolatile="true" base_Property="_iMnUQBuwEeSIos3S87O_rg"/>
   <Ecore:EReference xmi:id="_7JX7cDTYEeS3ndOfdXtkXQ" isTransient="true" base_Property="_x-pUsC9bEeSc2LncrXmagQ" isResolveProxies="false"/>
+  <Ecore:EAttribute xmi:id="_-z330IhJEeS7_fz8n0YOtw" isTransient="true" base_Property="_2RIFkIhHEeS7_fz8n0YOtw"/>
 </xmi:XMI>

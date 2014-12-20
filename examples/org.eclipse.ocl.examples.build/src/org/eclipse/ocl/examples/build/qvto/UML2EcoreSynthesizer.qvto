@@ -421,9 +421,9 @@ helper UML::LiteralString::getDefaultValue() : String
 
 helper Ecore::EClassifier::getDefaultValue() : String
 {
-	if ('Boolean' = self.name) return 'false';
-	if ('Integer' = self.name) return '0';
-	if ('String' = self.name) return "''";
+	if ('Boolean' = self.name) return null;
+	if ('Integer' = self.name) return null;
+	if ('String' = self.name) return null;
 	return null;
 }
 
