@@ -651,7 +651,12 @@ mapping inout Ecore::EClass::resolveEClass()
 		var oldType : UML::Type := selectType(pc.oldOperations.type->asSet());
 		var newType : Ecore::EClassifier := umlType2eClassifier->get(oldType);
 		if (newType <> null) then {
-			self.eOperations += pc.map createOperation(self, pc.oldOperations, newType);
+			var oldParameters := pc.oldOperations.ownedParameter->select(direction <> UML::ParameterDirectionKind::_'return');
+			var oldParameterTypes := oldParameters.type->asSet();
+			var newParameterTypes := oldParameterTypes->collect(ot | umlType2eClassifier->get(ot));
+			if (newParameterTypes->excludes(null)) then {
+				self.eOperations += pc.map createOperation(self, pc.oldOperations, newType);
+			} endif;
 		} endif;
 	};
 	
