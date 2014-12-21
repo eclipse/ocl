@@ -364,12 +364,16 @@ when { not newType.oclIsKindOf(Ecore::EDataType) }
 
 helper UML2EcoreMapping::CreateProperty::createStructuralFeature(inout output : Ecore::EStructuralFeature, oldProperties : Set(UML::Property), newType : Ecore::EClassifier)
 {
+--	log(' createStructuralFeature', oldProperties->display());
 	var oldProperty : Property := oldProperties->any(true);
 	var defaultValues : Set(UML::ValueSpecification) := oldProperties.defaultValue->excluding(null)->asSet();
 	output.name := self.newName;
 	output.map installComments(oldProperties.ownedComment->asSet());
-	output.lowerBound := oldProperties.lower->max();
-	output.upperBound := oldProperty->upper->min();
+	output.lowerBound := if self.newLowerBound <> null then self.newLowerBound else oldProperties.lower->excluding(null)->max() endif;
+	if (debugDerived) log('    lowerBound', if self.newLowerBound <>null then self.newLowerBound.toString() else 'null' endif + "=>" + output.lowerBound.toString());
+	var finiteUppers := oldProperties.upper->excluding(null)->select(n | n >= 0);
+	output.upperBound := if finiteUppers->notEmpty() then finiteUppers->min() else -1 endif;
+	if (debugDerived) log('    upperBound', 'null' + "=>" + output.upperBound.toString());
 	output.unique := oldProperty->exists(isUnique);
 	output._'ordered' := if (0 <= output.upperBound) and (output.upperBound <= 1) then true else oldProperty->exists(isOrdered) endif;
 	output.changeable := oldProperties->forAll(not isReadOnly);

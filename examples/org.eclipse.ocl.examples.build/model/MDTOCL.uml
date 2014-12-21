@@ -20,12 +20,12 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Annotations-Detail" name="Detail">
         <generalization xmi:id="_Xp6OHH7VEeOu79LxSz8Ylw" general="MDTOCL-MDT_OCL_Annotations-NamedElement"/>
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Annotations-Detail-value" name="value" type="MDTOCL-MDT_OCL_Annotations-String">
+        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Annotations-Detail-value" name="values" type="MDTOCL-MDT_OCL_Annotations-String">
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xpwc_X7VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Annotations-Element" name="Element" isAbstract="true">
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Annotations-Element-ownedAnnotation" name="ownedAnnotation" type="MDTOCL-MDT_OCL_Annotations-Element" isOrdered="true" aggregation="composite">
+        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Annotations-Element-ownedAnnotation" name="ownedAnnotations" type="MDTOCL-MDT_OCL_Annotations-Element" isOrdered="true" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xpwc_n7VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xpwc_37VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
@@ -68,7 +68,7 @@
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Dynamics-DynamicType" name="DynamicType">
         <generalization xmi:id="_Xp6OH37VEeOu79LxSz8Ylw" general="MDTOCL-MDT_OCL_Dynamics-DynamicElement"/>
         <generalization xmi:id="_Xp6OIH7VEeOu79LxSz8Ylw" general="_2gYyIBqBEeSM9LreJtBwBg"/>
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Dynamics-DynamicType-ownedProperty" name="ownedProperty" type="MDTOCL-MDT_OCL_Dynamics-DynamicProperty" aggregation="composite">
+        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Dynamics-DynamicType-ownedProperty" name="ownedDynamicProperties" type="MDTOCL-MDT_OCL_Dynamics-DynamicProperty" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6N8H7VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xp6N8X7VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
@@ -158,10 +158,6 @@
         <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Framework-Class-instanceClassName" name="instanceClassName" type="MDTOCL-MDT_OCL_Framework-String">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6OAn7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_gdHCkBsNEeSM9LreJtBwBg" name="ownedBehavior" type="_mHOFsBsNEeSM9LreJtBwBg" aggregation="composite">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_jVSwoBsNEeSM9LreJtBwBg"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_j1VioBsNEeSM9LreJtBwBg" value="*"/>
-        </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Framework-Element" name="Element" isAbstract="true"/>
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Framework-Feature" name="Feature" isAbstract="true"/>
@@ -177,7 +173,7 @@
         <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Framework-Package-nsURI" name="URI" type="MDTOCL-MDT_OCL_Framework-String">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6OBH7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Framework-Package-importedPackage" name="importedPackage" type="MDTOCL-MDT_OCL_Framework-Package">
+        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Framework-Package-importedPackage" name="importedPackages" type="MDTOCL-MDT_OCL_Framework-Package">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6OBX7VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xp6OBn7VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
@@ -196,7 +192,7 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5nTnEBtCEeSM9LreJtBwBg"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5JpasBtCEeSM9LreJtBwBg" value="*"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Instances-InstanceSpecification-specification" name="specification" type="_3x36ABtDEeSM9LreJtBwBg" aggregation="composite">
+        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Instances-InstanceSpecification-specification" name="ownedSpecification" type="_3x36ABtDEeSM9LreJtBwBg" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ATYoEBtEEeSM9LreJtBwBg"/>
         </ownedAttribute>
         <ownedAttribute xmi:id="_wtFQ4BusEeSIos3S87O_rg" name="owningPackage" type="MDTOCL-MDT_OCL_Instances-Package" association="MDTOCL-MDT_OCL_Instances-A_package_ownedInstance">
@@ -221,8 +217,8 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="MDTOCL-MDT_OCL_Precedences" name="MDT_OCL_Precedences">
       <packagedElement xmi:type="uml:Enumeration" xmi:id="MDTOCL-MDT_OCL_Precedences-AssociativityKind" name="AssociativityKind">
-        <ownedLiteral xmi:id="_5uMlIMlAEd-bx742yyafXQ" name="Left"/>
-        <ownedLiteral xmi:id="_8ybyMMlAEd-bx742yyafXQ" name="Right"/>
+        <ownedLiteral xmi:id="_5uMlIMlAEd-bx742yyafXQ" name="left"/>
+        <ownedLiteral xmi:id="_8ybyMMlAEd-bx742yyafXQ" name="right"/>
       </packagedElement>
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="MDTOCL-MDT_OCL_Precedences-Boolean" name="Boolean"/>
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="MDTOCL-MDT_OCL_Precedences-Integer" name="Integer"/>
@@ -239,7 +235,7 @@
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Precedences-Library" name="Library">
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Precedences-Library-ownedPrecedence" name="ownedPrecedence" type="MDTOCL-MDT_OCL_Precedences-Precedence" isOrdered="true" aggregation="composite">
+        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Precedences-Library-ownedPrecedence" name="ownedPrecedences" type="MDTOCL-MDT_OCL_Precedences-Precedence" isOrdered="true" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6OCn7VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xp6OC37VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
@@ -248,7 +244,7 @@
         <generalization xmi:id="_Xp6OIn7VEeOu79LxSz8Ylw" general="MDTOCL-MDT_OCL_Precedences-NamedElement"/>
         <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Precedences-Precedence-associativity" name="associativity" type="MDTOCL-MDT_OCL_Precedences-AssociativityKind">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6ODH7VEeOu79LxSz8Ylw"/>
-          <defaultValue xmi:type="uml:LiteralString" xmi:id="_Xp6ODX7VEeOu79LxSz8Ylw" value="Left"/>
+          <defaultValue xmi:type="uml:InstanceValue" xmi:id="_XOGPIIkHEeSBZI5ewYKP9Q" instance="_5uMlIMlAEd-bx742yyafXQ"/>
         </ownedAttribute>
         <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Precedences-Precedence-order" name="order" type="MDTOCL-MDT_OCL_PrimitiveTypes-Integer">
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_Xp6ODn7VEeOu79LxSz8Ylw" value="0"/>
@@ -267,7 +263,7 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="MDTOCL-MDT_OCL_Redefinitions" name="MDT_OCL_Redefinitions">
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Redefinitions-Constraint" name="Constraint">
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Redefinitions-Constraint-redefinedConstraint" name="redefinedConstraint" type="MDTOCL-MDT_OCL_Redefinitions-Constraint">
+        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Redefinitions-Constraint-redefinedConstraint" name="redefinedConstraints" type="MDTOCL-MDT_OCL_Redefinitions-Constraint">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6OD37VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xp6OEH7VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
@@ -306,16 +302,16 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_noL7MOC2EeK2XIQZsal-uQ" name="Model">
         <generalization xmi:id="_PG7Ht_cPEeOIuskgmmQAHw" general="_lVjxQOC2EeK2XIQZsal-uQ"/>
-        <ownedAttribute xmi:id="_KGF50OC3EeK2XIQZsal-uQ" name="nestedPackage" type="_lkT-8OC2EeK2XIQZsal-uQ" aggregation="composite">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PG7HsfcPEeOIuskgmmQAHw"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PG7HsvcPEeOIuskgmmQAHw" value="*"/>
-        </ownedAttribute>
         <ownedAttribute xmi:id="_XLYVEOC3EeK2XIQZsal-uQ" name="externalURI" type="_ZX1lkOC3EeK2XIQZsal-uQ">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PG7Hs_cPEeOIuskgmmQAHw"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_Xjt8kOC3EeK2XIQZsal-uQ" name="imports" type="_hor24OC2EeK2XIQZsal-uQ" isOrdered="true" aggregation="composite">
+        <ownedAttribute xmi:id="_Xjt8kOC3EeK2XIQZsal-uQ" name="ownedImports" type="_hor24OC2EeK2XIQZsal-uQ" isOrdered="true" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PG7HtPcPEeOIuskgmmQAHw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PG7HtfcPEeOIuskgmmQAHw" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_KGF50OC3EeK2XIQZsal-uQ" name="ownedPackages" type="_lkT-8OC2EeK2XIQZsal-uQ" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PG7HsfcPEeOIuskgmmQAHw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PG7HsvcPEeOIuskgmmQAHw" value="*"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_0pHa4OC2EeK2XIQZsal-uQ" name="NamedElement" isAbstract="true"/>
@@ -325,9 +321,14 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="MDTOCL-MDT_OCL_Stereotypes" name="MDT_OCL_Stereotypes">
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="MDTOCL-MDT_OCL_Stereotypes-Boolean" name="Boolean"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="__SVv8BqBEeSM9LreJtBwBg" name="Class"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="__SVv8BqBEeSM9LreJtBwBg" name="Class">
+        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Stereotypes-Type-extendedBys" name="extenders" type="MDTOCL-MDT_OCL_Stereotypes-TypeExtension" association="MDTOCL-MDT_OCL_Stereotypes-A_extendedBys_type">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_v4pX0br3EeOJE7XljxXQdw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_v4pX0rr3EeOJE7XljxXQdw" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Stereotypes-Element" name="Element" isAbstract="true">
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Stereotypes-Element-extension" name="extension" type="MDTOCL-MDT_OCL_Stereotypes-ElementExtension" aggregation="composite" association="MDTOCL-MDT_OCL_Stereotypes-A_base_extension">
+        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Stereotypes-Element-extension" name="ownedExtensions" type="MDTOCL-MDT_OCL_Stereotypes-ElementExtension" aggregation="composite" association="MDTOCL-MDT_OCL_Stereotypes-A_base_extension">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6OF37VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xp6OGH7VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
@@ -335,13 +336,13 @@
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Stereotypes-ElementExtension" name="ElementExtension">
         <generalization xmi:id="_Xp6OI37VEeOu79LxSz8Ylw" general="__SVv8BqBEeSM9LreJtBwBg"/>
         <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Stereotypes-ElementExtension-base" name="base" type="MDTOCL-MDT_OCL_Stereotypes-Element" association="MDTOCL-MDT_OCL_Stereotypes-A_base_extension"/>
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Stereotypes-ElementExtension-stereotype" name="stereotype" type="MDTOCL-MDT_OCL_Stereotypes-Stereotype"/>
         <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Stereotypes-ElementExtension-isApplied" name="isApplied" type="MDTOCL-MDT_OCL_Stereotypes-Boolean">
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_j3pkwcJCEeOQaItKldfYpg" value="false"/>
         </ownedAttribute>
         <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Stereotypes-ElementExtension-isRequired" name="isRequired" type="MDTOCL-MDT_OCL_Stereotypes-Boolean">
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_BWwV4cZbEeOTV8sx3nKyiA" value="false"/>
         </ownedAttribute>
+        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Stereotypes-ElementExtension-stereotype" name="stereotype" type="MDTOCL-MDT_OCL_Stereotypes-Stereotype"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Stereotypes-NamedElement" name="NamedElement" isAbstract="true"/>
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Stereotypes-Property" name="Property">
@@ -350,35 +351,30 @@
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Stereotypes-Stereotype" name="Stereotype">
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Stereotypes-Stereotype-extensionOfs" name="extensionOfs" type="MDTOCL-MDT_OCL_Stereotypes-TypeExtension" aggregation="composite" association="MDTOCL-MDT_OCL_Stereotypes-A_extensionOfs_stereotype">
+        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Stereotypes-Stereotype-extensionOfs" name="ownedExtenders" type="MDTOCL-MDT_OCL_Stereotypes-TypeExtension" aggregation="composite" association="MDTOCL-MDT_OCL_Stereotypes-A_extensionOfs_stereotype">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vMLMcbqAEeOj4te9p7yCCw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vMLMcrqAEeOj4te9p7yCCw" value="*"/>
         </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:PrimitiveType" xmi:id="MDTOCL-MDT_OCL_Stereotypes-String" name="String"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Stereotypes-Type" name="Type" isAbstract="true">
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Stereotypes-Type-extendedBys" name="extendedBys" type="MDTOCL-MDT_OCL_Stereotypes-TypeExtension" association="MDTOCL-MDT_OCL_Stereotypes-A_extendedBys_type">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_v4pX0br3EeOJE7XljxXQdw"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_v4pX0rr3EeOJE7XljxXQdw" value="*"/>
-        </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Stereotypes-TypeExtension" name="TypeExtension">
+      <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Stereotypes-TypeExtension" name="StereotypeExtender">
         <generalization xmi:id="_EMo5ELqCEeOj4te9p7yCCw" general="MDTOCL-MDT_OCL_Stereotypes-Element"/>
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Stereotypes-TypeExtension-isRequired" name="isRequired" type="MDTOCL-MDT_OCL_Stereotypes-Boolean">
-          <defaultValue xmi:type="uml:LiteralString" xmi:id="_csryULqAEeOj4te9p7yCCw" value="false"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Stereotypes-TypeExtension-stereotype" name="stereotype" type="MDTOCL-MDT_OCL_Stereotypes-Stereotype" association="MDTOCL-MDT_OCL_Stereotypes-A_extensionOfs_stereotype">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_krHogbqAEeOj4te9p7yCCw" value="1"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_krHogrqAEeOj4te9p7yCCw" value="1"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Stereotypes-TypeExtension-type" name="type" type="MDTOCL-MDT_OCL_Stereotypes-Type" association="MDTOCL-MDT_OCL_Stereotypes-A_extendedBys_type">
+        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Stereotypes-TypeExtension-type" name="class" type="__SVv8BqBEeSM9LreJtBwBg" association="MDTOCL-MDT_OCL_Stereotypes-A_extendedBys_type">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2zQSkbqAEeOj4te9p7yCCw" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2zQSkrqAEeOj4te9p7yCCw" value="1"/>
         </ownedAttribute>
+        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Stereotypes-TypeExtension-isRequired" name="isRequired" type="MDTOCL-MDT_OCL_Stereotypes-Boolean">
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_csryULqAEeOj4te9p7yCCw" value="false"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Stereotypes-TypeExtension-stereotype" name="owningStereotype" type="MDTOCL-MDT_OCL_Stereotypes-Stereotype" association="MDTOCL-MDT_OCL_Stereotypes-A_extensionOfs_stereotype">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_krHogbqAEeOj4te9p7yCCw" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_krHogrqAEeOj4te9p7yCCw" value="1"/>
+        </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="MDTOCL-MDT_OCL_Stereotypes-A_base_extension" name="A_base_extension" memberEnd="MDTOCL-MDT_OCL_Stereotypes-Element-extension MDTOCL-MDT_OCL_Stereotypes-ElementExtension-base"/>
-      <packagedElement xmi:type="uml:Association" xmi:id="MDTOCL-MDT_OCL_Stereotypes-A_extendedBys_type" name="A_extendedBys_type" memberEnd="MDTOCL-MDT_OCL_Stereotypes-Type-extendedBys MDTOCL-MDT_OCL_Stereotypes-TypeExtension-type"/>
-      <packagedElement xmi:type="uml:Association" xmi:id="MDTOCL-MDT_OCL_Stereotypes-A_extensionOfs_stereotype" name="A_extensionOfs_stereotype" memberEnd="MDTOCL-MDT_OCL_Stereotypes-Stereotype-extensionOfs MDTOCL-MDT_OCL_Stereotypes-TypeExtension-stereotype"/>
+      <packagedElement xmi:type="uml:PrimitiveType" xmi:id="MDTOCL-MDT_OCL_Stereotypes-String" name="String"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Stereotypes-Type" name="Type" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="MDTOCL-MDT_OCL_Stereotypes-A_extendedBys_type" name="A_extenders_class" memberEnd="MDTOCL-MDT_OCL_Stereotypes-Type-extendedBys MDTOCL-MDT_OCL_Stereotypes-TypeExtension-type"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="MDTOCL-MDT_OCL_Stereotypes-A_extensionOfs_stereotype" name="A_ownedExtenders_owningStereotype" memberEnd="MDTOCL-MDT_OCL_Stereotypes-Stereotype-extensionOfs MDTOCL-MDT_OCL_Stereotypes-TypeExtension-stereotype"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="MDTOCL-MDT_OCL_Stereotypes-A_base_extension" name="A_ownedExtensions_base" memberEnd="MDTOCL-MDT_OCL_Stereotypes-Element-extension MDTOCL-MDT_OCL_Stereotypes-ElementExtension-base"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_MkqM8DThEeS3ndOfdXtkXQ" name="MDT_OCL_Templates">
       <packagedElement xmi:type="uml:Class" xmi:id="_XlWTMDThEeS3ndOfdXtkXQ" name="TemplateBinding"/>

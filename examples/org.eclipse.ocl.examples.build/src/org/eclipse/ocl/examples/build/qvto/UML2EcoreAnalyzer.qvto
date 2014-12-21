@@ -14,6 +14,10 @@ helper Set(UML::Property)::display() : String {
 	return self->sortedBy(getPropertyName())->iterate(p; acc : String = '' | acc + ' ' + p.getPropertyName());
 }
 
+helper Set(UML::Type)::display() : String {
+	return self->sortedBy(getTypeName())->iterate(t; acc : String = '' | acc + ' ' + t.getTypeName());
+}
+
 helper Set(UML2EcoreControl::CreateProperty)::display() : String {
 	return self->sortedBy(newName)->iterate(p; acc : String = '' | acc + ' ' + p.newName);
 }
@@ -33,6 +37,10 @@ helper UML::Property::getOwningType() : Type {
 helper UML::Property::getPropertyName() : String {
 	var type : Type := self.getOwningType();
 	return type.package.getName() + '::' + type.getName() + '::' + self.getName();
+}
+
+helper UML::Type::getTypeName() : String {
+	return self.package.getName() + '::' + self.getName();
 }
 
 /*
@@ -219,7 +227,7 @@ mapping String::createCreateType() : UML2EcoreMapping::CreateType
 
 mapping UML::Type::createCreateType() : UML2EcoreMapping::CreateType
 {
-	log('createCreateType', self.name);
+--	log('createCreateType', self.name);
 	var myTypes : Set(UML::Type) := getAllTypes(self->asSet()) - explicitDeleteTypes;
 	result.newName := self.name;
 	result.oldTypes := myTypes;
@@ -319,6 +327,7 @@ mapping String::createCreateProperty(wantedProperties : Set(UML::Property)) : UM
 	result.newIsTransient := let newIsTransient : Bag(Boolean) = explicitCreateProperties->collect(newIsTransient)->excluding(null) in if newIsTransient->notEmpty() then newIsTransient->exists(n | n) else null endif;
 	result.newIsUnsettable := let newIsUnsettable : Bag(Boolean) = explicitCreateProperties->collect(newIsUnsettable)->excluding(null) in if newIsUnsettable->notEmpty() then newIsUnsettable->exists(n | n) else null endif;
 	result.newIsVolatile := let newIsVolatile : Bag(Boolean) = explicitCreateProperties->collect(newIsVolatile)->excluding(null) in if newIsVolatile->notEmpty() then newIsVolatile->exists(n | n) else null endif;
+	result.newLowerBound := let newLowerBound : Bag(Integer) = explicitCreateProperties->collect(newLowerBound)->excluding(null) in if newLowerBound->notEmpty() then newLowerBound->max() else null endif;
 	result.oldProperties := sameNamedProperties;
 	var oppositeProperties1 : Set(UML::Property) := sameNamedProperties.getOtherEnd()->excluding(null)->asSet();
 	if (debugProperty) log('    oppositeProperties1', oppositeProperties1->display());
@@ -337,7 +346,7 @@ mapping UML::Property::createDeleteProperty() : UML2EcoreMapping::DeleteProperty
 
 mapping UML2EcoreControl::CreateProperty::createRenameProperty() : UML2EcoreMapping::CreateProperty
 {
-	if (debugProperty) log('createRenameProperty', self.newName);
+	if (debugProperty) log('  createRenameProperty', self.newName);
 	result.newName := self.newName;
 	var oldProperties : Set(UML::Property) := self.oldProperties;
 	if (debugProperty) log('    oldProperties', oldProperties->display());
@@ -352,6 +361,8 @@ mapping UML2EcoreControl::CreateProperty::createRenameProperty() : UML2EcoreMapp
 	result.newIsUnsettable := self.newIsUnsettable;
 	if (debugProperty) log('    newIsVolatile', self.newIsVolatile);
 	result.newIsVolatile := self.newIsVolatile;
+	if (debugProperty) log('    newLowerBound', self.newLowerBound);
+	result.newLowerBound := self.newLowerBound;
 	var oppositeProperties1 : Set(UML::Property) := oldProperties.getOtherEnd()->excluding(null)->asSet();
 	if (debugProperty) log('    oppositeProperties1', oppositeProperties1->display());
 	var oppositeProperties2 : Set(UML::Property) := oppositeProperties1 - explicitDeleteProperties;
@@ -364,6 +375,7 @@ mapping UML2EcoreControl::CreateProperty::createRenameProperty() : UML2EcoreMapp
  * Select the properties for the merge of types and return as a set of CreateProperty for keeps and DeleteProperty for removes.
  */
 query selectProperties(types : Set(UML::Type)) : OrderedSet(UML2EcoreMapping::PropertyMapping) {
+	if (debugProperty) log(' selectProperties', types->display());
 	var classifiers : Set(UML::StructuredClassifier) = types->selectByKind(UML::StructuredClassifier)->asSet();
 	var directProperties : Set(UML::Property) = classifiers.ownedAttribute->asSet();
 	var indirectProperties : Set(UML::Property) = allUnnavigableForwards->select(types->includes(type))->collect(association.ownedEnd)->asSet();
@@ -371,18 +383,21 @@ query selectProperties(types : Set(UML::Type)) : OrderedSet(UML2EcoreMapping::Pr
 	var unwantedProperties : Set(UML::Property) = properties->select(isDerivedUnion);
 	var deletedProperties : Set(UML::Property) = explicitDeletePropertiesMappings.oldProperties->asSet();
 	var wantedProperties : Set(UML::Property) = properties - unwantedProperties - deletedProperties;
+	if (debugProperty) log('  wantedProperties', wantedProperties->display());
 
 	var renameProperties : Set(UML2EcoreControl::CreateProperty) := explicitCreatePropertyMappings->select(oldProperties->intersection(wantedProperties)->notEmpty());
 	var renamedProperties : Set(UML::Property) := renameProperties.oldProperties->asSet();
+	var moveProperties : Set(UML2EcoreControl::CreateProperty) := explicitCreatePropertyMappings->select(types->includes(newOwningType));
+	var movedProperties : Set(UML::Property) := moveProperties.oldProperties->asSet();
 	var oldPropertyNames : Set(String) := renamedProperties.name->asSet();
-	var newPropertyNames : Set(String) := renameProperties.newName->asSet();
+	var newPropertyNames : Set(String) := renameProperties.newName->asSet()->union(moveProperties.newName->asSet());
 
 	var wantedPropertyNames : Set(String) = (wantedProperties.name->asSet() - oldPropertyNames); -- ->union(newPropertyNames);
 	
 	
 	
 	var creates : Sequence(UML2EcoreMapping::PropertyMapping) = wantedPropertyNames->map createCreateProperty(wantedProperties)->asSequence()->sortedBy(newName);
-	var renames : Sequence(UML2EcoreMapping::CreateProperty) = renameProperties->map createRenameProperty()->asSequence()->sortedBy(newName);
+	var renames : Sequence(UML2EcoreMapping::CreateProperty) = renameProperties->union(moveProperties)->map createRenameProperty()->asSequence()->sortedBy(newName);
 	var deletes : Sequence(UML2EcoreMapping::PropertyMapping) = unwantedProperties->map createDeleteProperty()->asSequence()->sortedBy(oldName);
 	var createsAndRenames : Sequence(UML2EcoreMapping::PropertyMapping) = creates->iterate(c : UML2EcoreMapping::PropertyMapping; acc : Sequence(UML2EcoreMapping::PropertyMapping) = renames | acc->including(c));
 	return createsAndRenames->iterate(c : UML2EcoreMapping::PropertyMapping; acc  : Sequence(UML2EcoreMapping::PropertyMapping) = deletes | acc->including(c))->asOrderedSet();

@@ -171,6 +171,9 @@ mapping String::createCreateProperty(someCreateProperties : Set(UML2EcoreControl
 	if (debugPackage) log('createCreateProperty', self);
 	result.newName := self;
 	var myCreateProperties : Set(UML2EcoreControl::CreateProperty) := someCreateProperties->select(newName = self);
+	var newOwningTypes := myCreateProperties.newOwningType->asSet()->excluding(null);
+	if (newOwningTypes->size() > 1) log("Ambiguous newOwningType for ", self);
+	if (newOwningTypes->size() = 1) result.newOwningType := newOwningTypes->any(true);
 	var newIsDeriveds := myCreateProperties.newIsDerived->asSet()->excluding(null);
 	if (newIsDeriveds->size() > 1) log("Ambiguous newIsDerived for ", self);
 	if (newIsDeriveds->size() = 1) result.newIsDerived := newIsDeriveds->any(true);
@@ -186,5 +189,8 @@ mapping String::createCreateProperty(someCreateProperties : Set(UML2EcoreControl
 	var newIsVolatiles := myCreateProperties.newIsVolatile->asSet()->excluding(null);
 	if (newIsVolatiles->size() > 1) log("Ambiguous newIsVolatile for ", self);
 	if (newIsVolatiles->size() = 1) result.newIsVolatile := newIsVolatiles->any(true);
+	var newLowerBounds := myCreateProperties.newLowerBound->asSet()->excluding(null);
+	if (newLowerBounds->size() > 1) log("Ambiguous newLowerBound for ", self);
+	if (newLowerBounds->size() = 1) result.newLowerBound := newLowerBounds->max();
 	result.oldProperties := myCreateProperties.oldProperties->asSet()->excluding(null);
 }
