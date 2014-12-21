@@ -61,6 +61,7 @@ import org.eclipse.ocl.examples.debug.vm.request.VMTerminateRequest;
 import org.eclipse.ocl.examples.debug.vm.response.VMBreakpointResponse;
 import org.eclipse.ocl.examples.debug.vm.response.VMResponse;
 import org.eclipse.ocl.examples.debug.vm.utils.DebugOptions;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 public abstract class VMDebugTarget extends VMDebugElement implements IVMDebugTarget, IDebugEventSetListener, IBreakpointManagerListener {
 
@@ -135,7 +136,7 @@ public abstract class VMDebugTarget extends VMDebugElement implements IVMDebugTa
 		fireEvent(createEvent);
 	}
 
-	protected URI computeBreakpointURI(URI sourceURI) {
+	protected @NonNull URI computeBreakpointURI(@NonNull URI sourceURI) {
 		return sourceURI;
 	}
 	
@@ -155,8 +156,9 @@ public abstract class VMDebugTarget extends VMDebugElement implements IVMDebugTa
 				installedBreakpoints.put(new Long(((VMLineBreakpoint) vmBp).getID()),
 						vmBp);
 				try {
-					VMNewBreakpointData data = vmBp.createNewBreakpointData();
-					data.targetURI = computeBreakpointURI(URI.createURI(data.targetURI, true)).toString();
+					String unitURI = vmBp.getUnitURI().toString();
+					@SuppressWarnings("null")@NonNull String targetURI = computeBreakpointURI(ClassUtil.nonNullEMF(URI.createURI(unitURI, true))).toString();
+					VMNewBreakpointData data = vmBp.createNewBreakpointData(targetURI);
 					
 					allBpData.add(data);
 				} catch (CoreException e) {
@@ -356,17 +358,13 @@ public abstract class VMDebugTarget extends VMDebugElement implements IVMDebugTa
 			VMLineBreakpoint vmBreakpoint = (VMLineBreakpoint) breakpoint;
 			if (nowEnabled && !beforeEnabled) {
 				// just to be added to VM
-				changeRequest = VMBreakpointRequest
-						.createAdd(new VMNewBreakpointData[] { vmBreakpoint
-								.createNewBreakpointData() });
+				changeRequest = VMBreakpointRequest.createAdd(new VMNewBreakpointData[] { vmBreakpoint.createNewBreakpointData() });
 			} else if (!nowEnabled && beforeEnabled) {
 				// just to be removed from VM
-				changeRequest = VMBreakpointRequest.createRemove(vmBreakpoint
-						.getID());
+				changeRequest = VMBreakpointRequest.createRemove(vmBreakpoint.getID());
 			} else {
 				// modify existing data
-				changeRequest = VMBreakpointRequest.createChange(vmBreakpoint
-						.getID(), vmBreakpoint.createBreakpointData());
+				changeRequest = VMBreakpointRequest.createChange(vmBreakpoint.getID(), vmBreakpoint.createBreakpointData());
 			}
 
 		} catch (CoreException e) {

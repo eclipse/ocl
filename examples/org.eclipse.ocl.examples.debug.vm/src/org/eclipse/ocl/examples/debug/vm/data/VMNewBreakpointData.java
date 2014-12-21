@@ -12,23 +12,41 @@
 package org.eclipse.ocl.examples.debug.vm.data;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+
 
 public class VMNewBreakpointData extends VMBreakpointData
 {
 	private static final long serialVersionUID = -8614925057936040002L;
 
-	public long ID;
-	public int line = -1;
-	public String targetURI;
+	private final long ID;
+	private final int line;// = -1;
+	private final @NonNull String targetURI;
 	
-	public VMNewBreakpointData() {
-		super();
+	public VMNewBreakpointData(boolean conditionEnabled, @Nullable String condition, boolean conditionSuspendOnTrue, int hitCount,
+			long id, int line, @NonNull String targetURI) {
+		super(conditionEnabled, condition, conditionSuspendOnTrue, hitCount);
+		this.ID = id;
+		this.line = line;
+		this.targetURI = targetURI;			
 	}
 	
-	public VMNewBreakpointData(long id, int line, String targetURI, @NonNull VMBreakpointData data) {
+	public VMNewBreakpointData(@NonNull VMBreakpointData data, long id, int line, @NonNull String targetURI) {
 		super(data);
 		this.ID = id;
 		this.line = line;
 		this.targetURI = targetURI;			
+	}
+
+	public long getID() {
+		return ID;
+	}
+
+	public int getLine() {
+		return line;
+	}
+
+	public @NonNull String getTargetURI() {
+		return targetURI;
 	}
 }

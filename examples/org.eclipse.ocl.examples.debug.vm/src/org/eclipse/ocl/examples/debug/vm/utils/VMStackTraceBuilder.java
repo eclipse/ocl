@@ -15,15 +15,9 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
-import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.FeatureCallExp;
 import org.eclipse.ocl.pivot.NamedElement;
-import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.VariableExp;
 
 /**
  * Helps to build VM stack trace from a given state of OCL code execution.
@@ -85,10 +79,10 @@ public class VMStackTraceBuilder {
     	String operName = UNKNOWN_NAME;
     	int lineNumber = UNKNOWN_LINE_NUM;    	
     	
-    	Type module = null;
+//    	Type module = null;
     	NamedElement operation = env.getOperation();
 
-    	int resultOffset = getCurrentASTOffset(env);
+//    	int resultOffset = getCurrentASTOffset(env);
 		
     	NamedElement currentExpressionInOCL = env.getDebuggableElement();
 //    	if (currentTransformation == null) {
@@ -97,7 +91,7 @@ public class VMStackTraceBuilder {
     	
     	moduleName = currentExpressionInOCL.getName();
     	
-		if(operation == null) {
+/*		if(operation == null) {
 			// we must be executing a module instance initialization - synthetic constructor
 	    	operName = moduleName;
 	    	
@@ -107,27 +101,27 @@ public class VMStackTraceBuilder {
 		    		resultOffset = astNode.getStartPosition();
 		    	}
 	    	}
-		} else {
+		} else { */
     		operName = operation.getName();	    		
 //    		EClassifier contextType = QvtOperationalParserUtil.getContextualType(operation);
 //    		if(contextType != null) {
 //    			operName = contextType.getName() + "::" + operName;
 //    		}
-		}
+//		}
 
-		IModuleSourceInfo sourceInfo = module != null ? ASTBindingHelper.getModuleSourceBinding(module) : null;
+/*		IModuleSourceInfo sourceInfo = module != null ? ASTBindingHelper.getModuleSourceBinding(module) : null;
 		if (sourceInfo != null) {
 			URI uri = sourceInfo.getSourceURI();
 			unitName = uri.lastSegment();
 			if(resultOffset >= 0) {
 				lineNumber = sourceInfo.getLineNumberProvider().getLineNumber(resultOffset);
 			}
-		}
+		} */
     	
     	return new VMStackTraceElement(moduleName, operName, unitName, lineNumber);
     }
 
-	private static int getCurrentASTOffset(@NonNull IVMEvaluationEnvironment<?> evalEnv) {
+/*	private static int getCurrentASTOffset(@NonNull IVMEvaluationEnvironment<?> evalEnv) {
     	// TODO - for cases that AST does not fill all offset
     	// traverse up to the enclosing operation scope, taking the closest 
     	// offset which has been initialized    	
@@ -155,5 +149,5 @@ public class VMStackTraceBuilder {
 		}
     	
     	return -1;
-    }
+    } */
 }

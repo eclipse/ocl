@@ -122,28 +122,20 @@ public abstract class VMLineBreakpoint extends LineBreakpoint {
     }
 
     public @NonNull VMNewBreakpointData createNewBreakpointData() throws CoreException {
-		VMNewBreakpointData newBpData = new VMNewBreakpointData();
-		newBpData.ID = getID();
-		newBpData.line = getLineNumber();
-		
-		URI uri = getUnitURI();
-		newBpData.targetURI = uri.toString();
-		
-    	setBreakpointData(newBpData);
+    	@SuppressWarnings("null")@NonNull String string = getUnitURI().toString();
+		VMNewBreakpointData newBpData = createNewBreakpointData(string);
+    	return newBpData;
+    }
+
+    public @NonNull VMNewBreakpointData createNewBreakpointData(@NonNull String targetURI) throws CoreException {
+		VMNewBreakpointData newBpData = new VMNewBreakpointData(isConditionEnabled(), getCondition(), isConditionSuspendOnTrue(), getHitCount(), 
+				getID(), getLineNumber(), targetURI);
     	return newBpData;
     }
     
     public @NonNull VMBreakpointData createBreakpointData() throws CoreException {
-    	VMBreakpointData bpData = new VMBreakpointData();
-    	setBreakpointData(bpData);
+    	VMBreakpointData bpData = new VMBreakpointData(isConditionEnabled(), getCondition(), isConditionSuspendOnTrue(), getHitCount());
     	return bpData;
-    }
-    
-    public void setBreakpointData(VMBreakpointData bpData) throws CoreException {
-    	bpData.condition = getCondition();
-    	bpData.hitCount = getHitCount();
-    	bpData.conditionEnabled = isConditionEnabled();
-    	bpData.conditionSuspendOnTrue = isConditionSuspendOnTrue();
     }
     
     public @NonNull String getModelIdentifier() {

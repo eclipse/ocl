@@ -70,7 +70,7 @@ public class VMBreakpointManager
 	@SuppressWarnings("null")
 	public synchronized @Nullable VMBreakpoint createBreakpoint(VMNewBreakpointData data) {
     	// FIXME - raise CoreEXxc... for invalid uris
-    	URI uri = URI.createURI(data.targetURI);
+    	URI uri = URI.createURI(data.getTargetURI());
     	
     	// FIXME - a temp hack to get correct source URI when running a separate VM
     	if(uri.isPlatformResource() && isPlatformDeployed()) {
@@ -82,7 +82,7 @@ public class VMBreakpointManager
     		uri = URI.createURI(URI.decode(uri.toString()));
     	}
     	
-    	int line = data.line;
+    	int line = data.getLine();
     	Element targetElement = getBreakpointableElement(uri, line);
         if(targetElement == null) {
             return null;
@@ -94,13 +94,9 @@ public class VMBreakpointManager
     }
 
     
-    public synchronized @NonNull VMBreakpoint createVMPrivateBreakpoint(URI unitURI, Element element, int line, boolean isTemporary) throws CoreException {
-        VMNewBreakpointData bpData = new VMNewBreakpointData();
-        bpData.ID = --fPrivateBreakpointID;
-        bpData.targetURI = unitURI.toString();
-        bpData.line = line;
-        
-        VMBreakpoint breakpoint = new VMBreakpoint(element, bpData, isTemporary);        
+    public synchronized @NonNull VMBreakpoint createVMPrivateBreakpoint(URI unitURI, @NonNull Element element, int line, boolean isTemporary) throws CoreException {
+    	@SuppressWarnings("null")@NonNull String string = unitURI.toString();
+		VMBreakpoint breakpoint = new VMBreakpoint(element, --fPrivateBreakpointID, line, string, isTemporary);        
         fElement2Breakpoint.put(element, breakpoint);
         return breakpoint;
     }
@@ -152,7 +148,7 @@ public class VMBreakpointManager
             if(breakpointID == next.getID()) {
             	fElement2Breakpoint.remove(entry.getKey());
             	if (data != null) {
-            		newBreakpointData = new VMNewBreakpointData(breakpointID, next.getLineNumber(), next.getUri(), data);
+            		newBreakpointData = new VMNewBreakpointData(data, breakpointID, next.getLineNumber(), next.getUri());
             	}
             	break;
             }

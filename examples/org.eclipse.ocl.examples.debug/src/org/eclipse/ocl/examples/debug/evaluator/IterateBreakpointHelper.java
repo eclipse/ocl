@@ -77,7 +77,7 @@ public class IterateBreakpointHelper {
 		return fBreakpoints.contains(breakpoint);
 	}
 
-	public VMBreakpoint createIterateBreakpoint(URI unitURI, Element breakpointedElement, int line) {
+	public VMBreakpoint createIterateBreakpoint(URI unitURI, @NonNull Element breakpointedElement, int line) {
 		VMBreakpoint breakpoint = null;
 		try {
 			breakpoint = fBPM.createVMPrivateBreakpoint(unitURI, breakpointedElement, line, false);
@@ -88,13 +88,13 @@ public class IterateBreakpointHelper {
 		return breakpoint;
 	}
 
-	public void removeIterateBreakpoint(VMBreakpoint breakpoint) {
+	public void removeIterateBreakpoint(@NonNull VMBreakpoint breakpoint) {
 		fBPM.removeBreakpoint(breakpoint);
 		fBreakpoints.remove(breakpoint);
 	}
 
 	public void removeAllIterateBreakpoints() {
-		for (VMBreakpoint brk : fBreakpoints) {
+		for (@SuppressWarnings("null")@NonNull VMBreakpoint brk : fBreakpoints) {
 			fBPM.removeBreakpoint(brk);
 		}
 		

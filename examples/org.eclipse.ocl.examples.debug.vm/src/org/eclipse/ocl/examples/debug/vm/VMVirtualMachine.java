@@ -282,17 +282,17 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 					VMBreakpoint breakpoint = fBreakpointManager.createBreakpoint(newBreakpoint);
 					
 					if(breakpoint != null) {
-						addedBpIDs.add(new Long(newBreakpoint.ID));
+						addedBpIDs.add(new Long(newBreakpoint.getID()));
 						
 						getDebugCore().getTrace().trace(DebugOptions.VM,
 								"Installing breakpoing: " + " line:" //$NON-NLS-1$ //$NON-NLS-2$
-										+ newBreakpoint.line + " " //$NON-NLS-1$
-										+ newBreakpoint.targetURI);
+										+ newBreakpoint.getLine() + " " //$NON-NLS-1$
+										+ newBreakpoint.getTargetURI());
 					} else {
 						getDebugCore().getTrace().trace(DebugOptions.VM,
 								"Failed to create breakpoing: " + " line:" //$NON-NLS-1$ //$NON-NLS-2$
-										+ newBreakpoint.line + " " //$NON-NLS-1$
-										+ newBreakpoint.targetURI);
+										+ newBreakpoint.getLine() + " " //$NON-NLS-1$
+										+ newBreakpoint.getTargetURI());
 					}
 				}
 				

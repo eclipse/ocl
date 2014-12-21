@@ -12,6 +12,8 @@
 package org.eclipse.ocl.examples.debug.vm;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.data.VMNewBreakpointData;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationVisitor;
 import org.eclipse.ocl.pivot.Element;
@@ -20,13 +22,13 @@ import org.eclipse.ocl.pivot.Element;
 public class VMBreakpoint {
 	
 	private final long fID;	
-	private final String fTargetURI;
+	private final @NonNull String fTargetURI;
 	private final int fLineNumber;	
 	
 	private final int fHitCount;
-	private final Element fElement;
+	private final @NonNull Element fElement;
 	private final boolean fIsTemporary;			
-	private final String fConditionBody;
+	private final @Nullable String fConditionBody;
 	
 	// intermediate calculated values
 	private int fCurrentHitCount;		
@@ -36,22 +38,37 @@ public class VMBreakpoint {
 	private ConditionChecker fChecker;
 
 	
-	public VMBreakpoint(Element element, VMNewBreakpointData data, boolean isTemporary)  {
-		fID = data.ID;
-		fTargetURI = data.targetURI;
+	public VMBreakpoint(@NonNull Element element, @NonNull VMNewBreakpointData data, boolean isTemporary)  {
+		fID = data.getID();
+		fTargetURI = data.getTargetURI();
 		fElement = element;
-		fLineNumber = data.line;		
+		fLineNumber = data.getLine();		
 		fIsTemporary = isTemporary;
 		
-		fHitCount = data.hitCount;
+		fHitCount = data.getHitCount();
 		fCurrentHitCount = 0;
 
-		fConditionBody = data.condition;
-		fConditionEnabled = data.conditionEnabled;
-		fConditionSuspendOnTrue = data.conditionSuspendOnTrue;
+		fConditionBody = data.getCondition();
+		fConditionEnabled = data.getConditionEnabled();
+		fConditionSuspendOnTrue = data.getConditionSuspendOnTrue();
 	}
 	
-	public String getUri() {
+	public VMBreakpoint(@NonNull Element element, long id, int line, @NonNull String targetURI, boolean isTemporary)  {
+		fID = id;
+		fTargetURI = targetURI;
+		fElement = element;
+		fLineNumber = line;		
+		fIsTemporary = isTemporary;
+		
+		fHitCount = 0;
+		fCurrentHitCount = 0;
+
+		fConditionBody = null;
+		fConditionEnabled = false;
+		fConditionSuspendOnTrue = false;
+	}
+	
+	public @NonNull String getUri() {
 		return fTargetURI;
 	}
 
@@ -59,7 +76,7 @@ public class VMBreakpoint {
 		return fID;
 	}
 
-	public Element getElement() {
+	public @NonNull Element getElement() {
 		return fElement;
 	}
 
@@ -79,7 +96,7 @@ public class VMBreakpoint {
 		return fHitCount > 0 && fCurrentHitCount >= fHitCount;
 	}
 	
-	public boolean hitAndCheckIfTriggered(IVMEvaluationVisitor<?> visitor) throws CoreException {
+	public boolean hitAndCheckIfTriggered(@NonNull IVMEvaluationVisitor<?> visitor) throws CoreException {
 		if(expired()) {
 			return false;
 		}
@@ -97,9 +114,10 @@ public class VMBreakpoint {
 		return true;
 	}
 
-	private boolean checkCondition(IVMEvaluationVisitor<?> visitor) throws CoreException {
-		if(fChecker == null) {
-			fChecker = new ConditionChecker(fConditionBody, fElement);
+	private boolean checkCondition(@NonNull IVMEvaluationVisitor<?> visitor) throws CoreException {
+		String fConditionBody2 = fConditionBody;
+		if ((fChecker == null) && (fConditionBody2 != null)) {
+			fChecker = new ConditionChecker(fConditionBody2, fElement);
 		}
 		
 		boolean prevValue = fLastValue;
