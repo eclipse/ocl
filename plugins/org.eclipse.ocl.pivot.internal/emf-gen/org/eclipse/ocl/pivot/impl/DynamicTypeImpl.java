@@ -37,7 +37,7 @@ import org.eclipse.ocl.pivot.TemplateBinding;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.TypeExtension;
+import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.util.Visitor;
 
 /**
@@ -176,14 +176,14 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_TYPE__OWNED_EXTENSIONS:
 				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
-			case PivotPackage.DYNAMIC_TYPE__EXTENDED_BYS:
-				return ((InternalEList<?>)getExtendedBys()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_TYPE__OWNED_CONSTRAINTS:
 				return ((InternalEList<?>)getOwnedConstraints()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_TYPE__OWNED_BINDINGS:
 				return ((InternalEList<?>)getOwnedBindings()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_TYPE__OWNED_SIGNATURE:
 				return basicSetOwnedSignature(null, msgs);
+			case PivotPackage.DYNAMIC_TYPE__EXTENDERS:
+				return ((InternalEList<?>)getExtenders()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_TYPE__OWNED_BEHAVIORS:
 				return ((InternalEList<?>)getOwnedBehaviors()).basicRemove(otherEnd, msgs);
 			case PivotPackage.DYNAMIC_TYPE__OWNED_INVARIANTS:
@@ -220,8 +220,6 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 				return getOwnedExtensions();
 			case PivotPackage.DYNAMIC_TYPE__NAME:
 				return getName();
-			case PivotPackage.DYNAMIC_TYPE__EXTENDED_BYS:
-				return getExtendedBys();
 			case PivotPackage.DYNAMIC_TYPE__OWNED_CONSTRAINTS:
 				return getOwnedConstraints();
 			case PivotPackage.DYNAMIC_TYPE__OWNED_BINDINGS:
@@ -230,6 +228,8 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 				return getOwnedSignature();
 			case PivotPackage.DYNAMIC_TYPE__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
+			case PivotPackage.DYNAMIC_TYPE__EXTENDERS:
+				return getExtenders();
 			case PivotPackage.DYNAMIC_TYPE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.DYNAMIC_TYPE__IS_ABSTRACT:
@@ -289,10 +289,6 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 			case PivotPackage.DYNAMIC_TYPE__NAME:
 				setName((String)newValue);
 				return;
-			case PivotPackage.DYNAMIC_TYPE__EXTENDED_BYS:
-				getExtendedBys().clear();
-				getExtendedBys().addAll((Collection<? extends TypeExtension>)newValue);
-				return;
 			case PivotPackage.DYNAMIC_TYPE__OWNED_CONSTRAINTS:
 				getOwnedConstraints().clear();
 				getOwnedConstraints().addAll((Collection<? extends Constraint>)newValue);
@@ -306,6 +302,10 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 				return;
 			case PivotPackage.DYNAMIC_TYPE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
+				return;
+			case PivotPackage.DYNAMIC_TYPE__EXTENDERS:
+				getExtenders().clear();
+				getExtenders().addAll((Collection<? extends StereotypeExtender>)newValue);
 				return;
 			case PivotPackage.DYNAMIC_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
@@ -378,9 +378,6 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 			case PivotPackage.DYNAMIC_TYPE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case PivotPackage.DYNAMIC_TYPE__EXTENDED_BYS:
-				getExtendedBys().clear();
-				return;
 			case PivotPackage.DYNAMIC_TYPE__OWNED_CONSTRAINTS:
 				getOwnedConstraints().clear();
 				return;
@@ -392,6 +389,9 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 				return;
 			case PivotPackage.DYNAMIC_TYPE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
+				return;
+			case PivotPackage.DYNAMIC_TYPE__EXTENDERS:
+				getExtenders().clear();
 				return;
 			case PivotPackage.DYNAMIC_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
@@ -453,8 +453,6 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.DYNAMIC_TYPE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.DYNAMIC_TYPE__EXTENDED_BYS:
-				return extendedBys != null && !extendedBys.isEmpty();
 			case PivotPackage.DYNAMIC_TYPE__OWNED_CONSTRAINTS:
 				return ownedConstraints != null && !ownedConstraints.isEmpty();
 			case PivotPackage.DYNAMIC_TYPE__OWNED_BINDINGS:
@@ -463,6 +461,8 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 				return ownedSignature != null;
 			case PivotPackage.DYNAMIC_TYPE__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
+			case PivotPackage.DYNAMIC_TYPE__EXTENDERS:
+				return extenders != null && !extenders.isEmpty();
 			case PivotPackage.DYNAMIC_TYPE__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.DYNAMIC_TYPE__IS_ABSTRACT:

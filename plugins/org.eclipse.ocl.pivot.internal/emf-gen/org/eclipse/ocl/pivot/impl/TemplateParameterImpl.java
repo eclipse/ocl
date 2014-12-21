@@ -37,7 +37,6 @@ import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.TypeExtension;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.TemplateParameterId;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
@@ -281,8 +280,6 @@ public class TemplateParameterImpl
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComments()).basicAdd(otherEnd, msgs);
 			case PivotPackage.TEMPLATE_PARAMETER__OWNED_EXTENSIONS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedExtensions()).basicAdd(otherEnd, msgs);
-			case PivotPackage.TEMPLATE_PARAMETER__EXTENDED_BYS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtendedBys()).basicAdd(otherEnd, msgs);
 			case PivotPackage.TEMPLATE_PARAMETER__OWNING_SIGNATURE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -309,8 +306,6 @@ public class TemplateParameterImpl
 				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TEMPLATE_PARAMETER__OWNED_EXTENSIONS:
 				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
-			case PivotPackage.TEMPLATE_PARAMETER__EXTENDED_BYS:
-				return ((InternalEList<?>)getExtendedBys()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TEMPLATE_PARAMETER__OWNING_SIGNATURE:
 				return basicSetOwningSignature(null, msgs);
 		}
@@ -352,8 +347,6 @@ public class TemplateParameterImpl
 				return getOwnedExtensions();
 			case PivotPackage.TEMPLATE_PARAMETER__NAME:
 				return getName();
-			case PivotPackage.TEMPLATE_PARAMETER__EXTENDED_BYS:
-				return getExtendedBys();
 			case PivotPackage.TEMPLATE_PARAMETER__CONSTRAINING_CLASSES:
 				return getConstrainingClasses();
 			case PivotPackage.TEMPLATE_PARAMETER__LOWER_BOUND:
@@ -397,10 +390,6 @@ public class TemplateParameterImpl
 			case PivotPackage.TEMPLATE_PARAMETER__NAME:
 				setName((String)newValue);
 				return;
-			case PivotPackage.TEMPLATE_PARAMETER__EXTENDED_BYS:
-				getExtendedBys().clear();
-				getExtendedBys().addAll((Collection<? extends TypeExtension>)newValue);
-				return;
 			case PivotPackage.TEMPLATE_PARAMETER__CONSTRAINING_CLASSES:
 				getConstrainingClasses().clear();
 				getConstrainingClasses().addAll((Collection<? extends org.eclipse.ocl.pivot.Class>)newValue);
@@ -442,9 +431,6 @@ public class TemplateParameterImpl
 			case PivotPackage.TEMPLATE_PARAMETER__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case PivotPackage.TEMPLATE_PARAMETER__EXTENDED_BYS:
-				getExtendedBys().clear();
-				return;
 			case PivotPackage.TEMPLATE_PARAMETER__CONSTRAINING_CLASSES:
 				getConstrainingClasses().clear();
 				return;
@@ -480,8 +466,6 @@ public class TemplateParameterImpl
 				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.TEMPLATE_PARAMETER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.TEMPLATE_PARAMETER__EXTENDED_BYS:
-				return extendedBys != null && !extendedBys.isEmpty();
 			case PivotPackage.TEMPLATE_PARAMETER__CONSTRAINING_CLASSES:
 				return constrainingClasses != null && !constrainingClasses.isEmpty();
 			case PivotPackage.TEMPLATE_PARAMETER__LOWER_BOUND:

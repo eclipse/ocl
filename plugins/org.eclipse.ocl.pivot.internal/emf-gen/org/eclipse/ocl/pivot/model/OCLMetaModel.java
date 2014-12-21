@@ -236,6 +236,7 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Class _StateExp = createClass(PivotPackage.Literals.STATE_EXP);
 		private final @NonNull Class _StateMachine = createClass(PivotPackage.Literals.STATE_MACHINE);
 		private final @NonNull Class _Stereotype = createClass(PivotPackage.Literals.STEREOTYPE);
+		private final @NonNull Class _StereotypeExtender = createClass(PivotPackage.Literals.STEREOTYPE_EXTENDER);
 		private final @NonNull Class _StringLiteralExp = createClass(PivotPackage.Literals.STRING_LITERAL_EXP);
 		private final @NonNull Class _TemplateBinding = createClass(PivotPackage.Literals.TEMPLATE_BINDING);
 		private final @NonNull Class _TemplateParameter = createClass(PivotPackage.Literals.TEMPLATE_PARAMETER);
@@ -250,7 +251,6 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Class _TupleType = createClass(PivotPackage.Literals.TUPLE_TYPE);
 		private final @NonNull Class _Type = createClass(PivotPackage.Literals.TYPE);
 		private final @NonNull Class _TypeExp = createClass(PivotPackage.Literals.TYPE_EXP);
-		private final @NonNull Class _TypeExtension = createClass(PivotPackage.Literals.TYPE_EXTENSION);
 		private final @NonNull Class _TypedElement = createClass(PivotPackage.Literals.TYPED_ELEMENT);
 		private final @NonNull Class _UnlimitedNaturalLiteralExp = createClass(PivotPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP);
 		private final @NonNull Class _UnspecifiedValueExp = createClass(PivotPackage.Literals.UNSPECIFIED_VALUE_EXP);
@@ -375,6 +375,7 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull CollectionType _Collection_State = createCollectionType(_Collection, _State);
 		private final @NonNull CollectionType _Collection_StateExp = createCollectionType(_Collection, _StateExp);
 		private final @NonNull CollectionType _Collection_StateMachine = createCollectionType(_Collection, _StateMachine);
+		private final @NonNull CollectionType _Collection_StereotypeExtender = createCollectionType(_Collection, _StereotypeExtender);
 		private final @NonNull CollectionType _Collection_String = createCollectionType(_Collection, _String);
 		private final @NonNull CollectionType _Collection_TemplateBinding = createCollectionType(_Collection, _TemplateBinding);
 		private final @NonNull CollectionType _Collection_TemplateParameter = createCollectionType(_Collection, _TemplateParameter);
@@ -384,7 +385,6 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull CollectionType _Collection_TupleLiteralPart = createCollectionType(_Collection, _TupleLiteralPart);
 		private final @NonNull CollectionType _Collection_Type = createCollectionType(_Collection, _Type);
 		private final @NonNull CollectionType _Collection_TypeExp = createCollectionType(_Collection, _TypeExp);
-		private final @NonNull CollectionType _Collection_TypeExtension = createCollectionType(_Collection, _TypeExtension);
 		private final @NonNull CollectionType _Collection_ValueSpecification = createCollectionType(_Collection, _ValueSpecification);
 		private final @NonNull CollectionType _Collection_Variable = createCollectionType(_Collection, _Variable);
 		private final @NonNull CollectionType _Collection_VariableExp = createCollectionType(_Collection, _VariableExp);
@@ -444,13 +444,13 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull SetType _Set_Slot = createSetType(_Set, _Slot);
 		private final @NonNull SetType _Set_State = createSetType(_Set, _State);
 		private final @NonNull SetType _Set_StateMachine = createSetType(_Set, _StateMachine);
+		private final @NonNull SetType _Set_StereotypeExtender = createSetType(_Set, _StereotypeExtender);
 		private final @NonNull SetType _Set_String = createSetType(_Set, _String);
 		private final @NonNull SetType _Set_TemplateBinding = createSetType(_Set, _TemplateBinding);
 		private final @NonNull SetType _Set_TemplateParameterSubstitution = createSetType(_Set, _TemplateParameterSubstitution);
 		private final @NonNull SetType _Set_Transition = createSetType(_Set, _Transition);
 		private final @NonNull SetType _Set_Trigger = createSetType(_Set, _Trigger);
 		private final @NonNull SetType _Set_Type = createSetType(_Set, _Type);
-		private final @NonNull SetType _Set_TypeExtension = createSetType(_Set, _TypeExtension);
 		private final @NonNull SetType _Set_Vertex = createSetType(_Set, _Vertex);
 		private final @NonNull CollectionType _UniqueCollection_Behavior = createCollectionType(_UniqueCollection, _Behavior);
 		private final @NonNull CollectionType _UniqueCollection_Class = createCollectionType(_UniqueCollection, _Class);
@@ -481,6 +481,7 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull CollectionType _UniqueCollection_Slot = createCollectionType(_UniqueCollection, _Slot);
 		private final @NonNull CollectionType _UniqueCollection_State = createCollectionType(_UniqueCollection, _State);
 		private final @NonNull CollectionType _UniqueCollection_StateMachine = createCollectionType(_UniqueCollection, _StateMachine);
+		private final @NonNull CollectionType _UniqueCollection_StereotypeExtender = createCollectionType(_UniqueCollection, _StereotypeExtender);
 		private final @NonNull CollectionType _UniqueCollection_String = createCollectionType(_UniqueCollection, _String);
 		private final @NonNull CollectionType _UniqueCollection_TemplateBinding = createCollectionType(_UniqueCollection, _TemplateBinding);
 		private final @NonNull CollectionType _UniqueCollection_TemplateParameter = createCollectionType(_UniqueCollection, _TemplateParameter);
@@ -489,7 +490,6 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull CollectionType _UniqueCollection_Trigger = createCollectionType(_UniqueCollection, _Trigger);
 		private final @NonNull CollectionType _UniqueCollection_TupleLiteralPart = createCollectionType(_UniqueCollection, _TupleLiteralPart);
 		private final @NonNull CollectionType _UniqueCollection_Type = createCollectionType(_UniqueCollection, _Type);
-		private final @NonNull CollectionType _UniqueCollection_TypeExtension = createCollectionType(_UniqueCollection, _TypeExtension);
 		private final @NonNull CollectionType _UniqueCollection_ValueSpecification = createCollectionType(_UniqueCollection, _ValueSpecification);
 		private final @NonNull CollectionType _UniqueCollection_Variable = createCollectionType(_UniqueCollection, _Variable);
 		private final @NonNull CollectionType _UniqueCollection_Vertex = createCollectionType(_UniqueCollection, _Vertex);
@@ -807,6 +807,9 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedTypes.add(type = _Stereotype);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Class);
+			ownedTypes.add(type = _StereotypeExtender);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Element);
 			ownedTypes.add(type = _StringLiteralExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_PrimitiveLiteralExp);
@@ -850,9 +853,6 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OCLExpression);
 			superClasses.add(_ReferringElement);
-			ownedTypes.add(type = _TypeExtension);
-			superClasses = type.getSuperClasses();
-			superClasses.add(_Element);
 			ownedTypes.add(type = _TypedElement);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NamedElement);
@@ -1200,6 +1200,9 @@ public class OCLMetaModel extends ASResourceImpl
 			orphanTypes.add(type = _Collection_StateMachine);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclAny);
+			orphanTypes.add(type = _Collection_StereotypeExtender);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclAny);
 			orphanTypes.add(type = _Collection_String);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclAny);
@@ -1225,9 +1228,6 @@ public class OCLMetaModel extends ASResourceImpl
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclAny);
 			orphanTypes.add(type = _Collection_TypeExp);
-			superClasses = type.getSuperClasses();
-			superClasses.add(_OclAny);
-			orphanTypes.add(type = _Collection_TypeExtension);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclAny);
 			orphanTypes.add(type = _Collection_ValueSpecification);
@@ -1422,6 +1422,9 @@ public class OCLMetaModel extends ASResourceImpl
 			orphanTypes.add(type = _Set_StateMachine);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_StateMachine);
+			orphanTypes.add(type = _Set_StereotypeExtender);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_UniqueCollection_StereotypeExtender);
 			orphanTypes.add(type = _Set_String);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_String);
@@ -1440,9 +1443,6 @@ public class OCLMetaModel extends ASResourceImpl
 			orphanTypes.add(type = _Set_Type);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_Type);
-			orphanTypes.add(type = _Set_TypeExtension);
-			superClasses = type.getSuperClasses();
-			superClasses.add(_UniqueCollection_TypeExtension);
 			orphanTypes.add(type = _Set_Vertex);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_Vertex);
@@ -1533,6 +1533,9 @@ public class OCLMetaModel extends ASResourceImpl
 			orphanTypes.add(type = _UniqueCollection_StateMachine);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_StateMachine);
+			orphanTypes.add(type = _UniqueCollection_StereotypeExtender);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Collection_StereotypeExtender);
 			orphanTypes.add(type = _UniqueCollection_String);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_String);
@@ -1557,9 +1560,6 @@ public class OCLMetaModel extends ASResourceImpl
 			orphanTypes.add(type = _UniqueCollection_Type);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Type);
-			orphanTypes.add(type = _UniqueCollection_TypeExtension);
-			superClasses = type.getSuperClasses();
-			superClasses.add(_Collection_TypeExtension);
 			orphanTypes.add(type = _UniqueCollection_ValueSpecification);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_ValueSpecification);
@@ -1687,6 +1687,7 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_CallExp_ownedSource = createProperty(PivotPackage.Literals.CALL_EXP__OWNED_SOURCE, _OCLExpression);
 		private final @NonNull Property pr_CallOperationAction_operation = createProperty(PivotPackage.Literals.CALL_OPERATION_ACTION__OPERATION, _Operation);
 		private final @NonNull Property pr_CallOperationAction_MessageExp_ownedCalledOperation = createProperty("MessageExp", _MessageExp);
+		private final @NonNull Property pr_Class_extenders = createProperty(PivotPackage.Literals.CLASS__EXTENDERS, _Set_StereotypeExtender);
 		private final @NonNull Property pr_Class_instanceClassName = createProperty(PivotPackage.Literals.CLASS__INSTANCE_CLASS_NAME, _String);
 		private final @NonNull Property pr_Class_isAbstract = createProperty(PivotPackage.Literals.CLASS__IS_ABSTRACT, _Boolean);
 		private final @NonNull Property pr_Class_isActive = createProperty(PivotPackage.Literals.CLASS__IS_ACTIVE, _Boolean);
@@ -1964,8 +1965,11 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_StateMachine_ownedRegions = createProperty(PivotPackage.Literals.STATE_MACHINE__OWNED_REGIONS, _Set_Region_1);
 		private final @NonNull Property pr_StateMachine_submachineStates = createProperty(PivotPackage.Literals.STATE_MACHINE__SUBMACHINE_STATES, _Set_State);
 		private final @NonNull Property pr_StateMachine_StateMachine_extendedStateMachines = createProperty("StateMachine", _Bag_StateMachine);
-		private final @NonNull Property pr_Stereotype_ownedExtensionOfs = createProperty(PivotPackage.Literals.STEREOTYPE__OWNED_EXTENSION_OFS, _Set_TypeExtension);
+		private final @NonNull Property pr_Stereotype_ownedExtenders = createProperty(PivotPackage.Literals.STEREOTYPE__OWNED_EXTENDERS, _Set_StereotypeExtender);
 		private final @NonNull Property pr_Stereotype_ElementExtension_stereotype = createProperty("ElementExtension", _Bag_ElementExtension);
+		private final @NonNull Property pr_StereotypeExtender_class = createProperty(PivotPackage.Literals.STEREOTYPE_EXTENDER__CLASS, _Class);
+		private final @NonNull Property pr_StereotypeExtender_isRequired = createProperty(PivotPackage.Literals.STEREOTYPE_EXTENDER__IS_REQUIRED, _Boolean);
+		private final @NonNull Property pr_StereotypeExtender_owningStereotype = createProperty(PivotPackage.Literals.STEREOTYPE_EXTENDER__OWNING_STEREOTYPE, _Stereotype);
 		private final @NonNull Property pr_StringLiteralExp_stringSymbol = createProperty(PivotPackage.Literals.STRING_LITERAL_EXP__STRING_SYMBOL, _String);
 		private final @NonNull Property pr_TemplateBinding_ownedSubstitutions = createProperty(PivotPackage.Literals.TEMPLATE_BINDING__OWNED_SUBSTITUTIONS, _Set_TemplateParameterSubstitution);
 		private final @NonNull Property pr_TemplateBinding_owningElement = createProperty(PivotPackage.Literals.TEMPLATE_BINDING__OWNING_ELEMENT, _TemplateableElement);
@@ -1997,7 +2001,6 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_TupleLiteralExp_ownedParts = createProperty(PivotPackage.Literals.TUPLE_LITERAL_EXP__OWNED_PARTS, _OrderedSet_TupleLiteralPart);
 		private final @NonNull Property pr_TupleLiteralPart_ownedInit = createProperty(PivotPackage.Literals.TUPLE_LITERAL_PART__OWNED_INIT, _OCLExpression);
 		private final @NonNull Property pr_TupleLiteralPart_TupleLiteralExp_ownedParts = createProperty("TupleLiteralExp", _TupleLiteralExp);
-		private final @NonNull Property pr_Type_extendedBys = createProperty(PivotPackage.Literals.TYPE__EXTENDED_BYS, _Set_TypeExtension);
 		private final @NonNull Property pr_Type_CollectionType_elementType = createProperty("CollectionType", _Bag_CollectionType);
 		private final @NonNull Property pr_Type_DynamicElement_metaType = createProperty("DynamicElement", _Bag_DynamicElement);
 		private final @NonNull Property pr_Type_LambdaType_contextType = createProperty("LambdaType", _Bag_LambdaType);
@@ -2012,9 +2015,6 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_Type_operation_raisedExceptions = createProperty("operation", _Operation);
 		private final @NonNull Property pr_Type_typedElement_type = createProperty("typedElement", _TypedElement);
 		private final @NonNull Property pr_TypeExp_referredType = createProperty(PivotPackage.Literals.TYPE_EXP__REFERRED_TYPE, _Type);
-		private final @NonNull Property pr_TypeExtension_isRequired = createProperty(PivotPackage.Literals.TYPE_EXTENSION__IS_REQUIRED, _Boolean);
-		private final @NonNull Property pr_TypeExtension_owningStereotype = createProperty(PivotPackage.Literals.TYPE_EXTENSION__OWNING_STEREOTYPE, _Stereotype);
-		private final @NonNull Property pr_TypeExtension_type = createProperty(PivotPackage.Literals.TYPE_EXTENSION__TYPE, _Type);
 		private final @NonNull Property pr_TypedElement_isMany = createProperty(PivotPackage.Literals.TYPED_ELEMENT__IS_MANY, _Boolean);
 		private final @NonNull Property pr_TypedElement_isRequired = createProperty(PivotPackage.Literals.TYPED_ELEMENT__IS_REQUIRED, _Boolean);
 		private final @NonNull Property pr_TypedElement_type = createProperty(PivotPackage.Literals.TYPED_ELEMENT__TYPE, _Type);
@@ -2116,6 +2116,9 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_MessageExp_ownedCalledOperation);
 			ownedProperties = _Class.getOwnedProperties();
+			ownedProperties.add(property = pr_Class_extenders);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_StereotypeExtender_class);
 			ownedProperties.add(property = pr_Class_instanceClassName);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
@@ -3254,14 +3257,23 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_StateMachine_extendedStateMachines);
 			ownedProperties = _Stereotype.getOwnedProperties();
-			ownedProperties.add(property = pr_Stereotype_ownedExtensionOfs);
+			ownedProperties.add(property = pr_Stereotype_ownedExtenders);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_TypeExtension_owningStereotype);
+			property.setOpposite(pr_StereotypeExtender_owningStereotype);
 			ownedProperties.add(property = pr_Stereotype_ElementExtension_stereotype);
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_ElementExtension_stereotype);
+			ownedProperties = _StereotypeExtender.getOwnedProperties();
+			ownedProperties.add(property = pr_StereotypeExtender_class);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Class_extenders);
+			ownedProperties.add(property = pr_StereotypeExtender_isRequired);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_StereotypeExtender_owningStereotype);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Stereotype_ownedExtenders);
 			ownedProperties = _StringLiteralExp.getOwnedProperties();
 			ownedProperties.add(property = pr_StringLiteralExp_stringSymbol);
 			property.setIsResolveProxies(true);
@@ -3390,9 +3402,6 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TupleLiteralExp_ownedParts);
 			ownedProperties = _Type.getOwnedProperties();
-			ownedProperties.add(property = pr_Type_extendedBys);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_TypeExtension_type);
 			ownedProperties.add(property = pr_Type_CollectionType_elementType);
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
@@ -3452,15 +3461,6 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Type_TypeExp_referredType);
-			ownedProperties = _TypeExtension.getOwnedProperties();
-			ownedProperties.add(property = pr_TypeExtension_isRequired);
-			property.setIsResolveProxies(true);
-			ownedProperties.add(property = pr_TypeExtension_owningStereotype);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Stereotype_ownedExtensionOfs);
-			ownedProperties.add(property = pr_TypeExtension_type);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Type_extendedBys);
 			ownedProperties = _TypedElement.getOwnedProperties();
 			ownedProperties.add(property = pr_TypedElement_isMany);
 			property.setIsDerived(true);
@@ -3744,6 +3744,8 @@ public class OCLMetaModel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Collection_T, _StateMachine)));
 			_Collection_State.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _State)));
+			_Collection_StereotypeExtender.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_Collection_T, _StereotypeExtender)));
 			_Collection_TemplateBinding.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _TemplateBinding)));
 			_Collection_TemplateParameterSubstitution.getOwnedBindings().add(createTemplateBinding(
@@ -3758,8 +3760,6 @@ public class OCLMetaModel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Collection_T, _TupleLiteralPart)));
 			_Collection_TypeExp.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _TypeExp)));
-			_Collection_TypeExtension.getOwnedBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(_Collection_T, _TypeExtension)));
 			_Collection_Type.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _Type)));
 			_Collection_ValueSpecification.getOwnedBindings().add(createTemplateBinding(
@@ -3882,6 +3882,8 @@ public class OCLMetaModel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Set_T, _StateMachine)));
 			_Set_State.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _State)));
+			_Set_StereotypeExtender.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_Set_T, _StereotypeExtender)));
 			_Set_TemplateBinding.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _TemplateBinding)));
 			_Set_TemplateParameterSubstitution.getOwnedBindings().add(createTemplateBinding(
@@ -3890,8 +3892,6 @@ public class OCLMetaModel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Set_T, _Transition)));
 			_Set_Trigger.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _Trigger)));
-			_Set_TypeExtension.getOwnedBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(_Set_T, _TypeExtension)));
 			_Set_Type.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _Type)));
 			_Set_Vertex.getOwnedBindings().add(createTemplateBinding(
@@ -3956,6 +3956,8 @@ public class OCLMetaModel extends ASResourceImpl
 				createTemplateParameterSubstitution(_UniqueCollection_T, _StateMachine)));
 			_UniqueCollection_State.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _State)));
+			_UniqueCollection_StereotypeExtender.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_UniqueCollection_T, _StereotypeExtender)));
 			_UniqueCollection_TemplateBinding.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _TemplateBinding)));
 			_UniqueCollection_TemplateParameterSubstitution.getOwnedBindings().add(createTemplateBinding(
@@ -3968,8 +3970,6 @@ public class OCLMetaModel extends ASResourceImpl
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Trigger)));
 			_UniqueCollection_TupleLiteralPart.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _TupleLiteralPart)));
-			_UniqueCollection_TypeExtension.getOwnedBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(_UniqueCollection_T, _TypeExtension)));
 			_UniqueCollection_Type.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Type)));
 			_UniqueCollection_ValueSpecification.getOwnedBindings().add(createTemplateBinding(

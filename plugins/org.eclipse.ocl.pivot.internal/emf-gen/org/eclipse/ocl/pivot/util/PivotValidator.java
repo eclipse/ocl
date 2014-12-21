@@ -128,7 +128,7 @@ import org.eclipse.ocl.pivot.TupleLiteralPart;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypeExp;
-import org.eclipse.ocl.pivot.TypeExtension;
+import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.UnspecifiedValueExp;
@@ -902,6 +902,8 @@ public class PivotValidator
 				return validateStateMachine((StateMachine)value, diagnostics, context);
 			case PivotPackage.STEREOTYPE:
 				return validateStereotype((Stereotype)value, diagnostics, context);
+			case PivotPackage.STEREOTYPE_EXTENDER:
+				return validateStereotypeExtender((StereotypeExtender)value, diagnostics, context);
 			case PivotPackage.STRING_LITERAL_EXP:
 				return validateStringLiteralExp((StringLiteralExp)value, diagnostics, context);
 			case PivotPackage.TEMPLATE_BINDING:
@@ -928,8 +930,6 @@ public class PivotValidator
 				return validateType((Type)value, diagnostics, context);
 			case PivotPackage.TYPE_EXP:
 				return validateTypeExp((TypeExp)value, diagnostics, context);
-			case PivotPackage.TYPE_EXTENSION:
-				return validateTypeExtension((TypeExtension)value, diagnostics, context);
 			case PivotPackage.TYPED_ELEMENT:
 				return validateTypedElement((TypedElement)value, diagnostics, context);
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP:
@@ -3215,6 +3215,16 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateStereotypeExtender(StereotypeExtender stereotypeExtender, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(stereotypeExtender, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateStringLiteralExp(StringLiteralExp stringLiteralExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(stringLiteralExp, diagnostics, context);
@@ -3268,16 +3278,6 @@ public class PivotValidator
 	public boolean validateTypeExp(TypeExp typeExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(typeExp, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateTypeExtension(TypeExtension typeExtension, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(typeExtension, diagnostics, context);
 	}
 
 	/**

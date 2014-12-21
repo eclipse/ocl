@@ -171,6 +171,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extenders" ordered="false" upperBound="-1" eType="#//StereotypeExtender" eOpposite="#//StereotypeExtender/class"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="instanceClassName" eType="#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAbstract" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1674,8 +1675,13 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Stereotype" eSuperTypes="#//Class">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedExtensionOfs" ordered="false" upperBound="-1" eType="#//TypeExtension"
-        containment="true" eOpposite="#//TypeExtension/owningStereotype"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedExtenders" ordered="false" upperBound="-1" eType="#//StereotypeExtender"
+        containment="true" eOpposite="#//StereotypeExtender/owningStereotype"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StereotypeExtender" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="class" lowerBound="1" eType="#//Class" eOpposite="#//Class/extenders"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isRequired" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningStereotype" lowerBound="1" eType="#//Stereotype" eOpposite="#//Stereotype/ownedExtenders"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StringLiteralExp" eSuperTypes="#//PrimitiveLiteralExp">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stringSymbol" lowerBound="1" eType="#//String"/>
@@ -1855,15 +1861,9 @@
       <eParameters name="expr" lowerBound="1" eType="#//OCLExpression"/>
       <eParameters name="selfType" lowerBound="1" eType="#//Type"/>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="extendedBys" ordered="false" upperBound="-1" eType="#//TypeExtension" eOpposite="#//TypeExtension/type"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeExp" eSuperTypes="#//OCLExpression #//ReferringElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredType" eType="#//Type"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeExtension" eSuperTypes="#//Element">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isRequired" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="owningStereotype" lowerBound="1" eType="#//Stereotype" eOpposite="#//Stereotype/ownedExtensionOfs"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//Type" eOpposite="#//Type/extendedBys"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypedElement" abstract="true" eSuperTypes="#//NamedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

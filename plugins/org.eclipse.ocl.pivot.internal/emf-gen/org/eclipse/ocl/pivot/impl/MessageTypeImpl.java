@@ -30,7 +30,7 @@ import org.eclipse.ocl.pivot.Signal;
 import org.eclipse.ocl.pivot.TemplateBinding;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
-import org.eclipse.ocl.pivot.TypeExtension;
+import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.util.Visitor;
 
 /**
@@ -193,8 +193,6 @@ public class MessageTypeImpl
 				return getOwnedExtensions();
 			case PivotPackage.MESSAGE_TYPE__NAME:
 				return getName();
-			case PivotPackage.MESSAGE_TYPE__EXTENDED_BYS:
-				return getExtendedBys();
 			case PivotPackage.MESSAGE_TYPE__OWNED_CONSTRAINTS:
 				return getOwnedConstraints();
 			case PivotPackage.MESSAGE_TYPE__OWNED_BINDINGS:
@@ -203,6 +201,8 @@ public class MessageTypeImpl
 				return getOwnedSignature();
 			case PivotPackage.MESSAGE_TYPE__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
+			case PivotPackage.MESSAGE_TYPE__EXTENDERS:
+				return getExtenders();
 			case PivotPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.MESSAGE_TYPE__IS_ABSTRACT:
@@ -262,10 +262,6 @@ public class MessageTypeImpl
 			case PivotPackage.MESSAGE_TYPE__NAME:
 				setName((String)newValue);
 				return;
-			case PivotPackage.MESSAGE_TYPE__EXTENDED_BYS:
-				getExtendedBys().clear();
-				getExtendedBys().addAll((Collection<? extends TypeExtension>)newValue);
-				return;
 			case PivotPackage.MESSAGE_TYPE__OWNED_CONSTRAINTS:
 				getOwnedConstraints().clear();
 				getOwnedConstraints().addAll((Collection<? extends Constraint>)newValue);
@@ -279,6 +275,10 @@ public class MessageTypeImpl
 				return;
 			case PivotPackage.MESSAGE_TYPE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
+				return;
+			case PivotPackage.MESSAGE_TYPE__EXTENDERS:
+				getExtenders().clear();
+				getExtenders().addAll((Collection<? extends StereotypeExtender>)newValue);
 				return;
 			case PivotPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
@@ -349,9 +349,6 @@ public class MessageTypeImpl
 			case PivotPackage.MESSAGE_TYPE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case PivotPackage.MESSAGE_TYPE__EXTENDED_BYS:
-				getExtendedBys().clear();
-				return;
 			case PivotPackage.MESSAGE_TYPE__OWNED_CONSTRAINTS:
 				getOwnedConstraints().clear();
 				return;
@@ -363,6 +360,9 @@ public class MessageTypeImpl
 				return;
 			case PivotPackage.MESSAGE_TYPE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
+				return;
+			case PivotPackage.MESSAGE_TYPE__EXTENDERS:
+				getExtenders().clear();
 				return;
 			case PivotPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
@@ -423,8 +423,6 @@ public class MessageTypeImpl
 				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.MESSAGE_TYPE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.MESSAGE_TYPE__EXTENDED_BYS:
-				return extendedBys != null && !extendedBys.isEmpty();
 			case PivotPackage.MESSAGE_TYPE__OWNED_CONSTRAINTS:
 				return ownedConstraints != null && !ownedConstraints.isEmpty();
 			case PivotPackage.MESSAGE_TYPE__OWNED_BINDINGS:
@@ -433,6 +431,8 @@ public class MessageTypeImpl
 				return ownedSignature != null;
 			case PivotPackage.MESSAGE_TYPE__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
+			case PivotPackage.MESSAGE_TYPE__EXTENDERS:
+				return extenders != null && !extenders.isEmpty();
 			case PivotPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.MESSAGE_TYPE__IS_ABSTRACT:

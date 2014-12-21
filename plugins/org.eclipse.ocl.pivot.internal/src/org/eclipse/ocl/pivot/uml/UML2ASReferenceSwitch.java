@@ -30,7 +30,7 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Slot;
 import org.eclipse.ocl.pivot.Stereotype;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.TypeExtension;
+import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
@@ -95,16 +95,16 @@ public class UML2ASReferenceSwitch extends UMLSwitch<Object>
 	public Object caseExtension(org.eclipse.uml2.uml.Extension umlExtension) {
 		caseAssociation(umlExtension);
 		assert umlExtension != null;
-		TypeExtension asTypeExtension = converter.getCreated(TypeExtension.class, umlExtension);
+		StereotypeExtender asTypeExtension = converter.getCreated(StereotypeExtender.class, umlExtension);
 		if (asTypeExtension != null) {
 			org.eclipse.uml2.uml.Class umlMetaclass = umlExtension.getMetaclass();
 			org.eclipse.uml2.uml.Stereotype umlStereotype = umlExtension.getStereotype();
 			if ((umlMetaclass != null) && (umlStereotype != null)) {
-				Type asMetaclass = converter.getCreated(Type.class, umlMetaclass);
+				org.eclipse.ocl.pivot.Class asMetaclass = converter.getCreated(org.eclipse.ocl.pivot.Class.class, umlMetaclass);
 				Stereotype asStereotype = converter.getCreated(Stereotype.class, umlStereotype);
 				if ((asMetaclass != null) && (asStereotype != null)) {
 					asTypeExtension.setOwningStereotype(asStereotype);
-					asTypeExtension.setType(asMetaclass);
+					asTypeExtension.setClass_(asMetaclass);
 					if (UML2AS.ADD_TYPE_EXTENSION.isActive()) {
 						UML2AS.ADD_TYPE_EXTENSION.println(asTypeExtension.toString());
 					}

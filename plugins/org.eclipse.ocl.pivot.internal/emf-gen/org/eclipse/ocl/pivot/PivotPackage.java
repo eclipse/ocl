@@ -506,7 +506,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.impl.PivotPackageImpl#getStringLiteralExp()
 	 * @generated
 	 */
-	int STRING_LITERAL_EXP = 97;
+	int STRING_LITERAL_EXP = 98;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.impl.TupleLiteralExpImpl <em>Tuple Literal Exp</em>}' class.
@@ -516,7 +516,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.impl.PivotPackageImpl#getTupleLiteralExp()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_EXP = 105;
+	int TUPLE_LITERAL_EXP = 106;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.impl.TupleLiteralPartImpl <em>Tuple Literal Part</em>}' class.
@@ -526,7 +526,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.impl.PivotPackageImpl#getTupleLiteralPart()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_PART = 106;
+	int TUPLE_LITERAL_PART = 107;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.impl.TupleTypeImpl <em>Tuple Type</em>}' class.
@@ -536,7 +536,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.impl.PivotPackageImpl#getTupleType()
 	 * @generated
 	 */
-	int TUPLE_TYPE = 107;
+	int TUPLE_TYPE = 108;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.impl.TypeExpImpl <em>Type Exp</em>}' class.
@@ -546,7 +546,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.impl.PivotPackageImpl#getTypeExp()
 	 * @generated
 	 */
-	int TYPE_EXP = 109;
+	int TYPE_EXP = 110;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.impl.UnlimitedNaturalLiteralExpImpl <em>Unlimited Natural Literal Exp</em>}' class.
@@ -646,7 +646,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.impl.PivotPackageImpl#getType()
 	 * @generated
 	 */
-	int TYPE = 108;
+	int TYPE = 109;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.impl.ClassImpl <em>Class</em>}' class.
@@ -666,7 +666,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.impl.PivotPackageImpl#getTemplateableElement()
 	 * @generated
 	 */
-	int TEMPLATEABLE_ELEMENT = 102;
+	int TEMPLATEABLE_ELEMENT = 103;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.impl.TemplateBindingImpl <em>Template Binding</em>}' class.
@@ -676,7 +676,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.impl.PivotPackageImpl#getTemplateBinding()
 	 * @generated
 	 */
-	int TEMPLATE_BINDING = 98;
+	int TEMPLATE_BINDING = 99;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.impl.TemplateSignatureImpl <em>Template Signature</em>}' class.
@@ -686,7 +686,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.impl.PivotPackageImpl#getTemplateSignature()
 	 * @generated
 	 */
-	int TEMPLATE_SIGNATURE = 101;
+	int TEMPLATE_SIGNATURE = 102;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.impl.TemplateParameterImpl <em>Template Parameter</em>}' class.
@@ -696,7 +696,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.impl.PivotPackageImpl#getTemplateParameter()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER = 99;
+	int TEMPLATE_PARAMETER = 100;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.impl.TemplateParameterSubstitutionImpl <em>Template Parameter Substitution</em>}' class.
@@ -706,7 +706,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.impl.PivotPackageImpl#getTemplateParameterSubstitution()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION = 100;
+	int TEMPLATE_PARAMETER_SUBSTITUTION = 101;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.impl.PackageImpl <em>Package</em>}' class.
@@ -1453,22 +1453,13 @@ public interface PivotPackage
 	int TYPE__NAME = NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE__EXTENDED_BYS = NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int TYPE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -1579,15 +1570,6 @@ public interface PivotPackage
 	int CLASS__NAME = TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS__EXTENDED_BYS = TYPE__EXTENDED_BYS;
-
-	/**
 	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1624,13 +1606,22 @@ public interface PivotPackage
 	int CLASS__UNSPECIALIZED_ELEMENT = TYPE_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Extenders</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__EXTENDERS = TYPE_FEATURE_COUNT + 4;
+
+	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__INSTANCE_CLASS_NAME = TYPE_FEATURE_COUNT + 4;
+	int CLASS__INSTANCE_CLASS_NAME = TYPE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -1639,7 +1630,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__IS_ABSTRACT = TYPE_FEATURE_COUNT + 5;
+	int CLASS__IS_ABSTRACT = TYPE_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Is Active</b></em>' attribute.
@@ -1648,7 +1639,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__IS_ACTIVE = TYPE_FEATURE_COUNT + 6;
+	int CLASS__IS_ACTIVE = TYPE_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
@@ -1657,7 +1648,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__IS_INTERFACE = TYPE_FEATURE_COUNT + 7;
+	int CLASS__IS_INTERFACE = TYPE_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Owned Behaviors</b></em>' containment reference list.
@@ -1666,7 +1657,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OWNED_BEHAVIORS = TYPE_FEATURE_COUNT + 8;
+	int CLASS__OWNED_BEHAVIORS = TYPE_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
@@ -1675,7 +1666,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OWNED_INVARIANTS = TYPE_FEATURE_COUNT + 9;
+	int CLASS__OWNED_INVARIANTS = TYPE_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -1684,7 +1675,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OWNED_OPERATIONS = TYPE_FEATURE_COUNT + 10;
+	int CLASS__OWNED_OPERATIONS = TYPE_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
@@ -1693,7 +1684,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OWNED_PROPERTIES = TYPE_FEATURE_COUNT + 11;
+	int CLASS__OWNED_PROPERTIES = TYPE_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
@@ -1702,7 +1693,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OWNING_PACKAGE = TYPE_FEATURE_COUNT + 12;
+	int CLASS__OWNING_PACKAGE = TYPE_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
@@ -1711,7 +1702,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__SUPER_CLASSES = TYPE_FEATURE_COUNT + 13;
+	int CLASS__SUPER_CLASSES = TYPE_FEATURE_COUNT + 14;
 
 	/**
 	 * The number of structural features of the '<em>Class</em>' class.
@@ -1720,7 +1711,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_FEATURE_COUNT = TYPE_FEATURE_COUNT + 14;
+	int CLASS_FEATURE_COUNT = TYPE_FEATURE_COUNT + 15;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -1840,15 +1831,6 @@ public interface PivotPackage
 	int ANY_TYPE__NAME = CLASS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANY_TYPE__EXTENDED_BYS = CLASS__EXTENDED_BYS;
-
-	/**
 	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1883,6 +1865,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ANY_TYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extenders</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANY_TYPE__EXTENDERS = CLASS__EXTENDERS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -2101,15 +2092,6 @@ public interface PivotPackage
 	int ASSOCIATION_CLASS__NAME = CLASS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS__EXTENDED_BYS = CLASS__EXTENDED_BYS;
-
-	/**
 	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2144,6 +2126,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ASSOCIATION_CLASS__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extenders</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS__EXTENDERS = CLASS__EXTENDERS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -3316,15 +3307,6 @@ public interface PivotPackage
 	int DATA_TYPE__NAME = CLASS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE__EXTENDED_BYS = CLASS__EXTENDED_BYS;
-
-	/**
 	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3359,6 +3341,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DATA_TYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extenders</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE__EXTENDERS = CLASS__EXTENDERS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -3595,15 +3586,6 @@ public interface PivotPackage
 	int COLLECTION_TYPE__NAME = DATA_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_TYPE__EXTENDED_BYS = DATA_TYPE__EXTENDED_BYS;
-
-	/**
 	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3638,6 +3620,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_TYPE__UNSPECIALIZED_ELEMENT = DATA_TYPE__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extenders</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_TYPE__EXTENDERS = DATA_TYPE__EXTENDERS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -3901,15 +3892,6 @@ public interface PivotPackage
 	int BAG_TYPE__NAME = COLLECTION_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BAG_TYPE__EXTENDED_BYS = COLLECTION_TYPE__EXTENDED_BYS;
-
-	/**
 	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3944,6 +3926,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int BAG_TYPE__UNSPECIALIZED_ELEMENT = COLLECTION_TYPE__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extenders</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAG_TYPE__EXTENDERS = COLLECTION_TYPE__EXTENDERS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -4207,15 +4198,6 @@ public interface PivotPackage
 	int BEHAVIOR__NAME = CLASS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR__EXTENDED_BYS = CLASS__EXTENDED_BYS;
-
-	/**
 	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4250,6 +4232,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int BEHAVIOR__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extenders</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR__EXTENDERS = CLASS__EXTENDERS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -7001,15 +6992,6 @@ public interface PivotPackage
 	int DYNAMIC_TYPE__NAME = CLASS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_TYPE__EXTENDED_BYS = CLASS__EXTENDED_BYS;
-
-	/**
 	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7044,6 +7026,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DYNAMIC_TYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extenders</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_TYPE__EXTENDERS = CLASS__EXTENDERS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -7280,15 +7271,6 @@ public interface PivotPackage
 	int DYNAMIC_BEHAVIOR__NAME = DYNAMIC_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__EXTENDED_BYS = DYNAMIC_TYPE__EXTENDED_BYS;
-
-	/**
 	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7323,6 +7305,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DYNAMIC_BEHAVIOR__UNSPECIALIZED_ELEMENT = DYNAMIC_TYPE__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extenders</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__EXTENDERS = DYNAMIC_TYPE__EXTENDERS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -8099,15 +8090,6 @@ public interface PivotPackage
 	int ELEMENT_EXTENSION__NAME = CLASS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_EXTENSION__EXTENDED_BYS = CLASS__EXTENDED_BYS;
-
-	/**
 	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8142,6 +8124,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ELEMENT_EXTENSION__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extenders</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_EXTENSION__EXTENDERS = CLASS__EXTENDERS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -8549,15 +8540,6 @@ public interface PivotPackage
 	int ENUMERATION__NAME = DATA_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION__EXTENDED_BYS = DATA_TYPE__EXTENDED_BYS;
-
-	/**
 	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8592,6 +8574,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ENUMERATION__UNSPECIALIZED_ELEMENT = DATA_TYPE__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extenders</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION__EXTENDERS = DATA_TYPE__EXTENDERS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -9713,7 +9704,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.impl.PivotPackageImpl#getTransition()
 	 * @generated
 	 */
-	int TRANSITION = 103;
+	int TRANSITION = 104;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.impl.TriggerImpl <em>Trigger</em>}' class.
@@ -9723,7 +9714,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.impl.PivotPackageImpl#getTrigger()
 	 * @generated
 	 */
-	int TRIGGER = 104;
+	int TRIGGER = 105;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
@@ -11022,15 +11013,6 @@ public interface PivotPackage
 	int INVALID_TYPE__NAME = CLASS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_TYPE__EXTENDED_BYS = CLASS__EXTENDED_BYS;
-
-	/**
 	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11065,6 +11047,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int INVALID_TYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extenders</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_TYPE__EXTENDERS = CLASS__EXTENDERS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -12876,15 +12867,6 @@ public interface PivotPackage
 	int LAMBDA_TYPE__NAME = DATA_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAMBDA_TYPE__EXTENDED_BYS = DATA_TYPE__EXTENDED_BYS;
-
-	/**
 	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12919,6 +12901,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LAMBDA_TYPE__UNSPECIALIZED_ELEMENT = DATA_TYPE__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extenders</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_TYPE__EXTENDERS = DATA_TYPE__EXTENDERS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -13866,15 +13857,6 @@ public interface PivotPackage
 	int MESSAGE_TYPE__NAME = CLASS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_TYPE__EXTENDED_BYS = CLASS__EXTENDED_BYS;
-
-	/**
 	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13909,6 +13891,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int MESSAGE_TYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extenders</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE__EXTENDERS = CLASS__EXTENDERS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -14839,15 +14830,6 @@ public interface PivotPackage
 	int ORDERED_SET_TYPE__NAME = COLLECTION_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERED_SET_TYPE__EXTENDED_BYS = COLLECTION_TYPE__EXTENDED_BYS;
-
-	/**
 	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14882,6 +14864,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ORDERED_SET_TYPE__UNSPECIALIZED_ELEMENT = COLLECTION_TYPE__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extenders</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_SET_TYPE__EXTENDERS = COLLECTION_TYPE__EXTENDERS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -15840,15 +15831,6 @@ public interface PivotPackage
 	int PRIMITIVE_TYPE__NAME = DATA_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_TYPE__EXTENDED_BYS = DATA_TYPE__EXTENDED_BYS;
-
-	/**
 	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15883,6 +15865,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PRIMITIVE_TYPE__UNSPECIALIZED_ELEMENT = DATA_TYPE__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extenders</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE__EXTENDERS = DATA_TYPE__EXTENDERS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -17415,15 +17406,6 @@ public interface PivotPackage
 	int SELF_TYPE__NAME = CLASS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SELF_TYPE__EXTENDED_BYS = CLASS__EXTENDED_BYS;
-
-	/**
 	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17458,6 +17440,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SELF_TYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extenders</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELF_TYPE__EXTENDERS = CLASS__EXTENDERS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -17775,15 +17766,6 @@ public interface PivotPackage
 	int SEQUENCE_TYPE__NAME = COLLECTION_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_TYPE__EXTENDED_BYS = COLLECTION_TYPE__EXTENDED_BYS;
-
-	/**
 	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17818,6 +17800,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SEQUENCE_TYPE__UNSPECIALIZED_ELEMENT = COLLECTION_TYPE__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extenders</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_TYPE__EXTENDERS = COLLECTION_TYPE__EXTENDERS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -18081,15 +18072,6 @@ public interface PivotPackage
 	int SET_TYPE__NAME = COLLECTION_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SET_TYPE__EXTENDED_BYS = COLLECTION_TYPE__EXTENDED_BYS;
-
-	/**
 	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18124,6 +18106,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SET_TYPE__UNSPECIALIZED_ELEMENT = COLLECTION_TYPE__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extenders</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_TYPE__EXTENDERS = COLLECTION_TYPE__EXTENDERS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -18387,15 +18378,6 @@ public interface PivotPackage
 	int SIGNAL__NAME = CLASS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIGNAL__EXTENDED_BYS = CLASS__EXTENDED_BYS;
-
-	/**
 	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18430,6 +18412,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SIGNAL__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extenders</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL__EXTENDERS = CLASS__EXTENDERS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -18982,15 +18973,6 @@ public interface PivotPackage
 	int STATE_MACHINE__NAME = BEHAVIOR__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_MACHINE__EXTENDED_BYS = BEHAVIOR__EXTENDED_BYS;
-
-	/**
 	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19025,6 +19007,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STATE_MACHINE__UNSPECIALIZED_ELEMENT = BEHAVIOR__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extenders</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_MACHINE__EXTENDERS = BEHAVIOR__EXTENDERS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -19288,15 +19279,6 @@ public interface PivotPackage
 	int STEREOTYPE__NAME = CLASS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE__EXTENDED_BYS = CLASS__EXTENDED_BYS;
-
-	/**
 	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19331,6 +19313,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STEREOTYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extenders</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE__EXTENDERS = CLASS__EXTENDERS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -19423,13 +19414,13 @@ public interface PivotPackage
 	int STEREOTYPE__SUPER_CLASSES = CLASS__SUPER_CLASSES;
 
 	/**
-	 * The feature id for the '<em><b>Owned Extension Ofs</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Extenders</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE__OWNED_EXTENSION_OFS = CLASS_FEATURE_COUNT + 0;
+	int STEREOTYPE__OWNED_EXTENDERS = CLASS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Stereotype</em>' class.
@@ -19511,6 +19502,115 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STEREOTYPE_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.impl.StereotypeExtenderImpl <em>Stereotype Extender</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.pivot.impl.StereotypeExtenderImpl
+	 * @see org.eclipse.ocl.pivot.impl.PivotPackageImpl#getStereotypeExtender()
+	 * @generated
+	 */
+	int STEREOTYPE_EXTENDER = 97;
+
+	/**
+	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_EXTENDER__ANNOTATING_COMMENTS = ELEMENT__ANNOTATING_COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_EXTENDER__OWNED_ANNOTATIONS = ELEMENT__OWNED_ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_EXTENDER__OWNED_COMMENTS = ELEMENT__OWNED_COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_EXTENDER__OWNED_EXTENSIONS = ELEMENT__OWNED_EXTENSIONS;
+
+	/**
+	 * The feature id for the '<em><b>Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_EXTENDER__CLASS = ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_EXTENDER__IS_REQUIRED = ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Owning Stereotype</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_EXTENDER__OWNING_STEREOTYPE = ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Stereotype Extender</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_EXTENDER_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_EXTENDER___ALL_OWNED_ELEMENTS = ELEMENT___ALL_OWNED_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Get Value</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_EXTENDER___GET_VALUE__TYPE_STRING = ELEMENT___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The number of operations of the '<em>Stereotype Extender</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_EXTENDER_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
@@ -19799,15 +19899,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TEMPLATE_PARAMETER__NAME = TYPE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER__EXTENDED_BYS = TYPE__EXTENDED_BYS;
 
 	/**
 	 * The feature id for the '<em><b>Constraining Classes</b></em>' reference list.
@@ -20800,15 +20891,6 @@ public interface PivotPackage
 	int TUPLE_TYPE__NAME = DATA_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_TYPE__EXTENDED_BYS = DATA_TYPE__EXTENDED_BYS;
-
-	/**
 	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20843,6 +20925,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TUPLE_TYPE__UNSPECIALIZED_ELEMENT = DATA_TYPE__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extenders</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE__EXTENDERS = DATA_TYPE__EXTENDERS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -21185,115 +21276,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TYPE_EXP_OPERATION_COUNT = OCL_EXPRESSION_OPERATION_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.pivot.impl.TypeExtensionImpl <em>Type Extension</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.pivot.impl.TypeExtensionImpl
-	 * @see org.eclipse.ocl.pivot.impl.PivotPackageImpl#getTypeExtension()
-	 * @generated
-	 */
-	int TYPE_EXTENSION = 110;
-
-	/**
-	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_EXTENSION__ANNOTATING_COMMENTS = ELEMENT__ANNOTATING_COMMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_EXTENSION__OWNED_ANNOTATIONS = ELEMENT__OWNED_ANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comments</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_EXTENSION__OWNED_COMMENTS = ELEMENT__OWNED_COMMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Extensions</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_EXTENSION__OWNED_EXTENSIONS = ELEMENT__OWNED_EXTENSIONS;
-
-	/**
-	 * The feature id for the '<em><b>Is Required</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_EXTENSION__IS_REQUIRED = ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owning Stereotype</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_EXTENSION__OWNING_STEREOTYPE = ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_EXTENSION__TYPE = ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Type Extension</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_EXTENSION_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The operation id for the '<em>All Owned Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_EXTENSION___ALL_OWNED_ELEMENTS = ELEMENT___ALL_OWNED_ELEMENTS;
-
-	/**
-	 * The operation id for the '<em>Get Value</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_EXTENSION___GET_VALUE__TYPE_STRING = ELEMENT___GET_VALUE__TYPE_STRING;
-
-	/**
-	 * The number of operations of the '<em>Type Extension</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_EXTENSION_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
@@ -21953,15 +21935,6 @@ public interface PivotPackage
 	int VOID_TYPE__NAME = CLASS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VOID_TYPE__EXTENDED_BYS = CLASS__EXTENDED_BYS;
-
-	/**
 	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21996,6 +21969,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VOID_TYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extenders</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VOID_TYPE__EXTENDERS = CLASS__EXTENDERS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -22224,15 +22206,6 @@ public interface PivotPackage
 	int WILDCARD_TYPE__NAME = CLASS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Extended Bys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WILDCARD_TYPE__EXTENDED_BYS = CLASS__EXTENDED_BYS;
-
-	/**
 	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -22267,6 +22240,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int WILDCARD_TYPE__UNSPECIALIZED_ELEMENT = CLASS__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extenders</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE__EXTENDERS = CLASS__EXTENDERS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -25081,15 +25063,58 @@ public interface PivotPackage
 	EClass getStereotype();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.pivot.Stereotype#getOwnedExtensionOfs <em>Owned Extension Ofs</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.pivot.Stereotype#getOwnedExtenders <em>Owned Extenders</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Extension Ofs</em>'.
-	 * @see org.eclipse.ocl.pivot.Stereotype#getOwnedExtensionOfs()
+	 * @return the meta object for the containment reference list '<em>Owned Extenders</em>'.
+	 * @see org.eclipse.ocl.pivot.Stereotype#getOwnedExtenders()
 	 * @see #getStereotype()
 	 * @generated
 	 */
-	EReference getStereotype_OwnedExtensionOfs();
+	EReference getStereotype_OwnedExtenders();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.StereotypeExtender <em>Stereotype Extender</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Stereotype Extender</em>'.
+	 * @see org.eclipse.ocl.pivot.StereotypeExtender
+	 * @generated
+	 */
+	EClass getStereotypeExtender();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.pivot.StereotypeExtender#getClass_ <em>Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Class</em>'.
+	 * @see org.eclipse.ocl.pivot.StereotypeExtender#getClass_()
+	 * @see #getStereotypeExtender()
+	 * @generated
+	 */
+	EReference getStereotypeExtender_Class();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.StereotypeExtender#isRequired <em>Is Required</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Required</em>'.
+	 * @see org.eclipse.ocl.pivot.StereotypeExtender#isRequired()
+	 * @see #getStereotypeExtender()
+	 * @generated
+	 */
+	EAttribute getStereotypeExtender_IsRequired();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.pivot.StereotypeExtender#getOwningStereotype <em>Owning Stereotype</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owning Stereotype</em>'.
+	 * @see org.eclipse.ocl.pivot.StereotypeExtender#getOwningStereotype()
+	 * @see #getStereotypeExtender()
+	 * @generated
+	 */
+	EReference getStereotypeExtender_OwningStereotype();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.StringLiteralExp <em>String Literal Exp</em>}'.
@@ -25184,49 +25209,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getTypeExp_ReferredType();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.TypeExtension <em>Type Extension</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Type Extension</em>'.
-	 * @see org.eclipse.ocl.pivot.TypeExtension
-	 * @generated
-	 */
-	EClass getTypeExtension();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.TypeExtension#isRequired <em>Is Required</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Required</em>'.
-	 * @see org.eclipse.ocl.pivot.TypeExtension#isRequired()
-	 * @see #getTypeExtension()
-	 * @generated
-	 */
-	EAttribute getTypeExtension_IsRequired();
-
-	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.pivot.TypeExtension#getOwningStereotype <em>Owning Stereotype</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Owning Stereotype</em>'.
-	 * @see org.eclipse.ocl.pivot.TypeExtension#getOwningStereotype()
-	 * @see #getTypeExtension()
-	 * @generated
-	 */
-	EReference getTypeExtension_OwningStereotype();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.pivot.TypeExtension#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Type</em>'.
-	 * @see org.eclipse.ocl.pivot.TypeExtension#getType()
-	 * @see #getTypeExtension()
-	 * @generated
-	 */
-	EReference getTypeExtension_Type();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp <em>Unlimited Natural Literal Exp</em>}'.
@@ -25407,6 +25389,17 @@ public interface PivotPackage
 	EClass getClass_();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.pivot.Class#getExtenders <em>Extenders</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Extenders</em>'.
+	 * @see org.eclipse.ocl.pivot.Class#getExtenders()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_Extenders();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Class#getInstanceClassName <em>Instance Class Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -25535,17 +25528,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EClass getType();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.pivot.Type#getExtendedBys <em>Extended Bys</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Extended Bys</em>'.
-	 * @see org.eclipse.ocl.pivot.Type#getExtendedBys()
-	 * @see #getType()
-	 * @generated
-	 */
-	EReference getType_ExtendedBys();
 
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.Type#flattenedType() <em>Flattened Type</em>}' operation.
@@ -29651,12 +29633,46 @@ public interface PivotPackage
 		EClass STEREOTYPE = eINSTANCE.getStereotype();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Extension Ofs</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Extenders</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference STEREOTYPE__OWNED_EXTENSION_OFS = eINSTANCE.getStereotype_OwnedExtensionOfs();
+		EReference STEREOTYPE__OWNED_EXTENDERS = eINSTANCE.getStereotype_OwnedExtenders();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.impl.StereotypeExtenderImpl <em>Stereotype Extender</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.pivot.impl.StereotypeExtenderImpl
+		 * @see org.eclipse.ocl.pivot.impl.PivotPackageImpl#getStereotypeExtender()
+		 * @generated
+		 */
+		EClass STEREOTYPE_EXTENDER = eINSTANCE.getStereotypeExtender();
+
+		/**
+		 * The meta object literal for the '<em><b>Class</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STEREOTYPE_EXTENDER__CLASS = eINSTANCE.getStereotypeExtender_Class();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Required</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STEREOTYPE_EXTENDER__IS_REQUIRED = eINSTANCE.getStereotypeExtender_IsRequired();
+
+		/**
+		 * The meta object literal for the '<em><b>Owning Stereotype</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STEREOTYPE_EXTENDER__OWNING_STEREOTYPE = eINSTANCE.getStereotypeExtender_OwningStereotype();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.impl.StringLiteralExpImpl <em>String Literal Exp</em>}' class.
@@ -29739,40 +29755,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference TYPE_EXP__REFERRED_TYPE = eINSTANCE.getTypeExp_ReferredType();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.impl.TypeExtensionImpl <em>Type Extension</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.pivot.impl.TypeExtensionImpl
-		 * @see org.eclipse.ocl.pivot.impl.PivotPackageImpl#getTypeExtension()
-		 * @generated
-		 */
-		EClass TYPE_EXTENSION = eINSTANCE.getTypeExtension();
-
-		/**
-		 * The meta object literal for the '<em><b>Is Required</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TYPE_EXTENSION__IS_REQUIRED = eINSTANCE.getTypeExtension_IsRequired();
-
-		/**
-		 * The meta object literal for the '<em><b>Owning Stereotype</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TYPE_EXTENSION__OWNING_STEREOTYPE = eINSTANCE.getTypeExtension_OwningStereotype();
-
-		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TYPE_EXTENSION__TYPE = eINSTANCE.getTypeExtension_Type();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.impl.UnlimitedNaturalLiteralExpImpl <em>Unlimited Natural Literal Exp</em>}' class.
@@ -29929,6 +29911,14 @@ public interface PivotPackage
 		EClass CLASS = eINSTANCE.getClass_();
 
 		/**
+		 * The meta object literal for the '<em><b>Extenders</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__EXTENDERS = eINSTANCE.getClass_Extenders();
+
+		/**
 		 * The meta object literal for the '<em><b>Instance Class Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -30025,14 +30015,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EClass TYPE = eINSTANCE.getType();
-
-		/**
-		 * The meta object literal for the '<em><b>Extended Bys</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TYPE__EXTENDED_BYS = eINSTANCE.getType_ExtendedBys();
 
 		/**
 		 * The meta object literal for the '<em><b>Flattened Type</b></em>' operation.

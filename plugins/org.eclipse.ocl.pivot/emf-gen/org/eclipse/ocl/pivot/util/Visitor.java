@@ -133,6 +133,7 @@ public interface Visitor<R>
 	@Nullable R visitStateExp(@NonNull org.eclipse.ocl.pivot.StateExp object);
 	@Nullable R visitStateMachine(@NonNull org.eclipse.ocl.pivot.StateMachine object);
 	@Nullable R visitStereotype(@NonNull org.eclipse.ocl.pivot.Stereotype object);
+	@Nullable R visitStereotypeExtender(@NonNull org.eclipse.ocl.pivot.StereotypeExtender object);
 	@Nullable R visitStringLiteralExp(@NonNull org.eclipse.ocl.pivot.StringLiteralExp object);
 	@Nullable R visitTemplateBinding(@NonNull org.eclipse.ocl.pivot.TemplateBinding object);
 	@Nullable R visitTemplateParameter(@NonNull org.eclipse.ocl.pivot.TemplateParameter object);
@@ -146,7 +147,6 @@ public interface Visitor<R>
 	@Nullable R visitTupleType(@NonNull org.eclipse.ocl.pivot.TupleType object);
 	@Nullable R visitType(@NonNull org.eclipse.ocl.pivot.Type object);
 	@Nullable R visitTypeExp(@NonNull org.eclipse.ocl.pivot.TypeExp object);
-	@Nullable R visitTypeExtension(@NonNull org.eclipse.ocl.pivot.TypeExtension object);
 	@Nullable R visitTypedElement(@NonNull org.eclipse.ocl.pivot.TypedElement object);
 	@Nullable R visitUnlimitedNaturalLiteralExp(@NonNull org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp object);
 	@Nullable R visitUnspecifiedValueExp(@NonNull org.eclipse.ocl.pivot.UnspecifiedValueExp object);

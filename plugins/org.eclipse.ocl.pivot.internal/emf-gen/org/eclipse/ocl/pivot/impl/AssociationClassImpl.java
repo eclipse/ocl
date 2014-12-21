@@ -32,7 +32,7 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateBinding;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
-import org.eclipse.ocl.pivot.TypeExtension;
+import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.util.Visitor;
 
 /**
@@ -112,14 +112,14 @@ public class AssociationClassImpl
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComments()).basicAdd(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_EXTENSIONS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedExtensions()).basicAdd(otherEnd, msgs);
-			case PivotPackage.ASSOCIATION_CLASS__EXTENDED_BYS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtendedBys()).basicAdd(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_BINDINGS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedBindings()).basicAdd(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_SIGNATURE:
 				if (ownedSignature != null)
 					msgs = ((InternalEObject)ownedSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.ASSOCIATION_CLASS__OWNED_SIGNATURE, null, msgs);
 				return basicSetOwnedSignature((TemplateSignature)otherEnd, msgs);
+			case PivotPackage.ASSOCIATION_CLASS__EXTENDERS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtenders()).basicAdd(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_OPERATIONS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedOperations()).basicAdd(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_PROPERTIES:
@@ -152,14 +152,14 @@ public class AssociationClassImpl
 				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_EXTENSIONS:
 				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ASSOCIATION_CLASS__EXTENDED_BYS:
-				return ((InternalEList<?>)getExtendedBys()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_CONSTRAINTS:
 				return ((InternalEList<?>)getOwnedConstraints()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_BINDINGS:
 				return ((InternalEList<?>)getOwnedBindings()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_SIGNATURE:
 				return basicSetOwnedSignature(null, msgs);
+			case PivotPackage.ASSOCIATION_CLASS__EXTENDERS:
+				return ((InternalEList<?>)getExtenders()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_BEHAVIORS:
 				return ((InternalEList<?>)getOwnedBehaviors()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_INVARIANTS:
@@ -195,8 +195,6 @@ public class AssociationClassImpl
 				return getOwnedExtensions();
 			case PivotPackage.ASSOCIATION_CLASS__NAME:
 				return getName();
-			case PivotPackage.ASSOCIATION_CLASS__EXTENDED_BYS:
-				return getExtendedBys();
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_CONSTRAINTS:
 				return getOwnedConstraints();
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_BINDINGS:
@@ -205,6 +203,8 @@ public class AssociationClassImpl
 				return getOwnedSignature();
 			case PivotPackage.ASSOCIATION_CLASS__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
+			case PivotPackage.ASSOCIATION_CLASS__EXTENDERS:
+				return getExtenders();
 			case PivotPackage.ASSOCIATION_CLASS__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.ASSOCIATION_CLASS__IS_ABSTRACT:
@@ -260,10 +260,6 @@ public class AssociationClassImpl
 			case PivotPackage.ASSOCIATION_CLASS__NAME:
 				setName((String)newValue);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__EXTENDED_BYS:
-				getExtendedBys().clear();
-				getExtendedBys().addAll((Collection<? extends TypeExtension>)newValue);
-				return;
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_CONSTRAINTS:
 				getOwnedConstraints().clear();
 				getOwnedConstraints().addAll((Collection<? extends Constraint>)newValue);
@@ -277,6 +273,10 @@ public class AssociationClassImpl
 				return;
 			case PivotPackage.ASSOCIATION_CLASS__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
+				return;
+			case PivotPackage.ASSOCIATION_CLASS__EXTENDERS:
+				getExtenders().clear();
+				getExtenders().addAll((Collection<? extends StereotypeExtender>)newValue);
 				return;
 			case PivotPackage.ASSOCIATION_CLASS__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
@@ -345,9 +345,6 @@ public class AssociationClassImpl
 			case PivotPackage.ASSOCIATION_CLASS__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__EXTENDED_BYS:
-				getExtendedBys().clear();
-				return;
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_CONSTRAINTS:
 				getOwnedConstraints().clear();
 				return;
@@ -359,6 +356,9 @@ public class AssociationClassImpl
 				return;
 			case PivotPackage.ASSOCIATION_CLASS__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
+				return;
+			case PivotPackage.ASSOCIATION_CLASS__EXTENDERS:
+				getExtenders().clear();
 				return;
 			case PivotPackage.ASSOCIATION_CLASS__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
@@ -416,8 +416,6 @@ public class AssociationClassImpl
 				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.ASSOCIATION_CLASS__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.ASSOCIATION_CLASS__EXTENDED_BYS:
-				return extendedBys != null && !extendedBys.isEmpty();
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_CONSTRAINTS:
 				return ownedConstraints != null && !ownedConstraints.isEmpty();
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_BINDINGS:
@@ -426,6 +424,8 @@ public class AssociationClassImpl
 				return ownedSignature != null;
 			case PivotPackage.ASSOCIATION_CLASS__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
+			case PivotPackage.ASSOCIATION_CLASS__EXTENDERS:
+				return extenders != null && !extenders.isEmpty();
 			case PivotPackage.ASSOCIATION_CLASS__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.ASSOCIATION_CLASS__IS_ABSTRACT:

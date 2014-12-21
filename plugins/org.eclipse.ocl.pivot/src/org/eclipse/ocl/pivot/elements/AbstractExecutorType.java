@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.elements;
 
-import java.util.List;
-
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CallExp;
@@ -24,7 +22,6 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.TypeExtension;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.OperationId;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -171,11 +168,6 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 	@Override
 	@NonNull
 	public org.eclipse.ocl.pivot.Class getType() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public List<TypeExtension> getExtendedBys() {
 		throw new UnsupportedOperationException();
 	}
 

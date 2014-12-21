@@ -1199,6 +1199,18 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
+	public @Nullable R visitStereotypeExtender(@NonNull org.eclipse.ocl.pivot.StereotypeExtender object) {
+		P prologue = preVisit(object);
+		try {
+			R result = delegate.visitStereotypeExtender(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
+	}
+
+	@Override
 	public @Nullable R visitStringLiteralExp(@NonNull org.eclipse.ocl.pivot.StringLiteralExp object) {
 		P prologue = preVisit(object);
 		try {
@@ -1347,18 +1359,6 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 		P prologue = preVisit(object);
 		try {
 			R result = delegate.visitTypeExp(object);
-			return postVisit(object, prologue, result);
-		}
-		catch (Throwable e) {
-			return badVisit(object, prologue, e);
-		}
-	}
-
-	@Override
-	public @Nullable R visitTypeExtension(@NonNull org.eclipse.ocl.pivot.TypeExtension object) {
-		P prologue = preVisit(object);
-		try {
-			R result = delegate.visitTypeExtension(object);
 			return postVisit(object, prologue, result);
 		}
 		catch (Throwable e) {

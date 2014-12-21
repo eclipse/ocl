@@ -111,7 +111,7 @@ import org.eclipse.ocl.pivot.TupleLiteralExp;
 import org.eclipse.ocl.pivot.TupleLiteralPart;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.TypeExp;
-import org.eclipse.ocl.pivot.TypeExtension;
+import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.pivot.Variable;
@@ -251,6 +251,7 @@ public class PivotFactoryImpl
 			case PivotPackage.STATE_EXP: return createStateExp();
 			case PivotPackage.STATE_MACHINE: return createStateMachine();
 			case PivotPackage.STEREOTYPE: return createStereotype();
+			case PivotPackage.STEREOTYPE_EXTENDER: return createStereotypeExtender();
 			case PivotPackage.STRING_LITERAL_EXP: return createStringLiteralExp();
 			case PivotPackage.TEMPLATE_BINDING: return createTemplateBinding();
 			case PivotPackage.TEMPLATE_PARAMETER: return createTemplateParameter();
@@ -262,7 +263,6 @@ public class PivotFactoryImpl
 			case PivotPackage.TUPLE_LITERAL_PART: return createTupleLiteralPart();
 			case PivotPackage.TUPLE_TYPE: return createTupleType();
 			case PivotPackage.TYPE_EXP: return createTypeExp();
-			case PivotPackage.TYPE_EXTENSION: return createTypeExtension();
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP: return createUnlimitedNaturalLiteralExp();
 			case PivotPackage.UNSPECIFIED_VALUE_EXP: return createUnspecifiedValueExp();
 			case PivotPackage.VARIABLE: return createVariable();
@@ -1328,6 +1328,18 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
+	public StereotypeExtender createStereotypeExtender()
+	{
+		StereotypeExtenderImpl stereotypeExtender = new StereotypeExtenderImpl();
+		return stereotypeExtender;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public StringLiteralExp createStringLiteralExp() {
 		StringLiteralExpImpl stringLiteralExp = new StringLiteralExpImpl();
 		return stringLiteralExp;
@@ -1375,18 +1387,6 @@ public class PivotFactoryImpl
 	public TypeExp createTypeExp() {
 		TypeExpImpl typeExp = new TypeExpImpl();
 		return typeExp;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public TypeExtension createTypeExtension()
-	{
-		TypeExtensionImpl typeExtension = new TypeExtensionImpl();
-		return typeExtension;
 	}
 
 	/**

@@ -120,7 +120,7 @@ import org.eclipse.ocl.pivot.TupleLiteralPart;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypeExp;
-import org.eclipse.ocl.pivot.TypeExtension;
+import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.UnspecifiedValueExp;
@@ -1466,6 +1466,15 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case PivotPackage.STEREOTYPE_EXTENDER:
+			{
+				StereotypeExtender stereotypeExtender = (StereotypeExtender)theEObject;
+				T result = caseStereotypeExtender(stereotypeExtender);
+				if (result == null) result = caseElement(stereotypeExtender);
+				if (result == null) result = caseVisitable(stereotypeExtender);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case PivotPackage.STRING_LITERAL_EXP:
 			{
 				StringLiteralExp stringLiteralExp = (StringLiteralExp)theEObject;
@@ -1617,15 +1626,6 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseElement(typeExp);
 				if (result == null) result = caseNameable(typeExp);
 				if (result == null) result = caseVisitable(typeExp);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PivotPackage.TYPE_EXTENSION:
-			{
-				TypeExtension typeExtension = (TypeExtension)theEObject;
-				T result = caseTypeExtension(typeExtension);
-				if (result == null) result = caseElement(typeExtension);
-				if (result == null) result = caseVisitable(typeExtension);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -2789,6 +2789,22 @@ public class PivotSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Stereotype Extender</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Stereotype Extender</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStereotypeExtender(StereotypeExtender object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>String Literal Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -2860,22 +2876,6 @@ public class PivotSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTypeExp(TypeExp object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Type Extension</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Type Extension</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTypeExtension(TypeExtension object)
-	{
 		return null;
 	}
 

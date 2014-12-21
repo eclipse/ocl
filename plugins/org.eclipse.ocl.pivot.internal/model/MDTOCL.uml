@@ -394,7 +394,12 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_Ojs8cLoxEeGoaKB2Aghcrw" name="MDT_OCL_Stereotypes">
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_V3bxwLqAEeOj4te9p7yCCw" name="Boolean"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="_E-TYYBouEeSM9LreJtBwBg" name="Class"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_E-TYYBouEeSM9LreJtBwBg" name="Class">
+        <ownedAttribute xmi:id="_v4pX0Lr3EeOJE7XljxXQdw" name="extenders" type="_Q9FXoLqAEeOj4te9p7yCCw" association="_9iZLALr3EeOJE7XljxXQdw">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_v4pX0br3EeOJE7XljxXQdw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_v4pX0rr3EeOJE7XljxXQdw" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_eVCuQLoxEeGoaKB2Aghcrw" name="Element" isAbstract="true">
         <ownedAttribute xmi:id="_eVCuQboxEeGoaKB2Aghcrw" name="ownedExtensions" type="_h8QFgLoxEeGoaKB2Aghcrw" aggregation="composite" association="_OmXs4PEOEeGbmcl4mtVQXA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xp6OF37VEeOu79LxSz8Ylw"/>
@@ -419,19 +424,12 @@
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_HL7moLqAEeOj4te9p7yCCw" name="Stereotype">
-        <ownedAttribute xmi:id="_vMLMcLqAEeOj4te9p7yCCw" name="ownedExtensionOfs" type="_Q9FXoLqAEeOj4te9p7yCCw" aggregation="composite" association="_9fIUsLqAEeOj4te9p7yCCw">
+        <ownedAttribute xmi:id="_vMLMcLqAEeOj4te9p7yCCw" name="ownedExtenders" type="_Q9FXoLqAEeOj4te9p7yCCw" aggregation="composite" association="_9fIUsLqAEeOj4te9p7yCCw">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vMLMcbqAEeOj4te9p7yCCw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vMLMcrqAEeOj4te9p7yCCw" value="*"/>
         </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_p5yUELpCEeGoaKB2Aghcrw" name="String"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="_wP0RwLoxEeGoaKB2Aghcrw" name="Type" isAbstract="true">
-        <ownedAttribute xmi:id="_v4pX0Lr3EeOJE7XljxXQdw" name="extendedBys" type="_Q9FXoLqAEeOj4te9p7yCCw" association="_9iZLALr3EeOJE7XljxXQdw">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_v4pX0br3EeOJE7XljxXQdw"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_v4pX0rr3EeOJE7XljxXQdw" value="*"/>
-        </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_Q9FXoLqAEeOj4te9p7yCCw" name="TypeExtension">
+      <packagedElement xmi:type="uml:Class" xmi:id="_Q9FXoLqAEeOj4te9p7yCCw" name="StereotypeExtender">
         <generalization xmi:id="_EMo5ELqCEeOj4te9p7yCCw" general="_eVCuQLoxEeGoaKB2Aghcrw"/>
         <ownedAttribute xmi:id="_akG8QLqAEeOj4te9p7yCCw" name="isRequired" type="_V3bxwLqAEeOj4te9p7yCCw">
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_csryULqAEeOj4te9p7yCCw" value="false"/>
@@ -440,14 +438,16 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_krHogbqAEeOj4te9p7yCCw" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_krHogrqAEeOj4te9p7yCCw" value="1"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_2zQSkLqAEeOj4te9p7yCCw" name="type" type="_wP0RwLoxEeGoaKB2Aghcrw" association="_9iZLALr3EeOJE7XljxXQdw">
+        <ownedAttribute xmi:id="_2zQSkLqAEeOj4te9p7yCCw" name="class" type="_E-TYYBouEeSM9LreJtBwBg" association="_9iZLALr3EeOJE7XljxXQdw">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2zQSkbqAEeOj4te9p7yCCw" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2zQSkrqAEeOj4te9p7yCCw" value="1"/>
         </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_OmXs4PEOEeGbmcl4mtVQXA" name="A_base_extension" memberEnd="_eVCuQboxEeGoaKB2Aghcrw _sckpoLoxEeGoaKB2Aghcrw"/>
-      <packagedElement xmi:type="uml:Association" xmi:id="_9iZLALr3EeOJE7XljxXQdw" name="A_extendedBys_type" memberEnd="_v4pX0Lr3EeOJE7XljxXQdw _2zQSkLqAEeOj4te9p7yCCw"/>
-      <packagedElement xmi:type="uml:Association" xmi:id="_9fIUsLqAEeOj4te9p7yCCw" name="A_ownedExtensionOfs_owningStereotype" memberEnd="_vMLMcLqAEeOj4te9p7yCCw _krHogLqAEeOj4te9p7yCCw"/>
+      <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_p5yUELpCEeGoaKB2Aghcrw" name="String"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_wP0RwLoxEeGoaKB2Aghcrw" name="Type" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_OmXs4PEOEeGbmcl4mtVQXA" name="A_ownedExtensions_base" memberEnd="_eVCuQboxEeGoaKB2Aghcrw _sckpoLoxEeGoaKB2Aghcrw"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_9iZLALr3EeOJE7XljxXQdw" name="A_extenders_class" memberEnd="_v4pX0Lr3EeOJE7XljxXQdw _2zQSkLqAEeOj4te9p7yCCw"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_9fIUsLqAEeOj4te9p7yCCw" name="A_ownedExtenders_owningStereotype" memberEnd="_vMLMcLqAEeOj4te9p7yCCw _krHogLqAEeOj4te9p7yCCw"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_zNR5QMilEd-sJIf4tYBt-g" name="MDT_OCL_TypedMultiplicity">
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_iauzUOLYEeGCOa0Md3lQkQ" name="Boolean"/>

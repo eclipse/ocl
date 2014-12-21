@@ -64,7 +64,7 @@ import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Transition;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.TypeExtension;
+import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.ecore.Ecore2ASDeclarationSwitch;
@@ -261,7 +261,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 				}
 			}
 		} */
-		TypeExtension asTypeExtension = converter.refreshElement(TypeExtension.class, PivotPackage.Literals.TYPE_EXTENSION, umlExtension);
+		StereotypeExtender asTypeExtension = converter.refreshElement(StereotypeExtender.class, PivotPackage.Literals.STEREOTYPE_EXTENDER, umlExtension);
 		converter.copyModelElement(asTypeExtension, umlExtension);
 //		converter.queueReference(umlProfileApplication);
 //		converter.addProfileApplication(umlProfileApplication);

@@ -797,6 +797,15 @@ public interface PivotFactory
 	Stereotype createStereotype();
 
 	/**
+	 * Returns a new object of class '<em>Stereotype Extender</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Stereotype Extender</em>'.
+	 * @generated
+	 */
+	StereotypeExtender createStereotypeExtender();
+
+	/**
 	 * Returns a new object of class '<em>String Literal Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -840,15 +849,6 @@ public interface PivotFactory
 	 * @generated
 	 */
 	TypeExp createTypeExp();
-
-	/**
-	 * Returns a new object of class '<em>Type Extension</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Type Extension</em>'.
-	 * @generated
-	 */
-	TypeExtension createTypeExtension();
 
 	/**
 	 * Returns a new object of class '<em>Unlimited Natural Literal Exp</em>'.

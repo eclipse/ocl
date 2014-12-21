@@ -29,7 +29,7 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateBinding;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
-import org.eclipse.ocl.pivot.TypeExtension;
+import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.util.Visitor;
@@ -115,8 +115,6 @@ public class PrimitiveTypeImpl
 				return getOwnedExtensions();
 			case PivotPackage.PRIMITIVE_TYPE__NAME:
 				return getName();
-			case PivotPackage.PRIMITIVE_TYPE__EXTENDED_BYS:
-				return getExtendedBys();
 			case PivotPackage.PRIMITIVE_TYPE__OWNED_CONSTRAINTS:
 				return getOwnedConstraints();
 			case PivotPackage.PRIMITIVE_TYPE__OWNED_BINDINGS:
@@ -125,6 +123,8 @@ public class PrimitiveTypeImpl
 				return getOwnedSignature();
 			case PivotPackage.PRIMITIVE_TYPE__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
+			case PivotPackage.PRIMITIVE_TYPE__EXTENDERS:
+				return getExtenders();
 			case PivotPackage.PRIMITIVE_TYPE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.PRIMITIVE_TYPE__IS_ABSTRACT:
@@ -186,10 +186,6 @@ public class PrimitiveTypeImpl
 			case PivotPackage.PRIMITIVE_TYPE__NAME:
 				setName((String)newValue);
 				return;
-			case PivotPackage.PRIMITIVE_TYPE__EXTENDED_BYS:
-				getExtendedBys().clear();
-				getExtendedBys().addAll((Collection<? extends TypeExtension>)newValue);
-				return;
 			case PivotPackage.PRIMITIVE_TYPE__OWNED_CONSTRAINTS:
 				getOwnedConstraints().clear();
 				getOwnedConstraints().addAll((Collection<? extends Constraint>)newValue);
@@ -203,6 +199,10 @@ public class PrimitiveTypeImpl
 				return;
 			case PivotPackage.PRIMITIVE_TYPE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
+				return;
+			case PivotPackage.PRIMITIVE_TYPE__EXTENDERS:
+				getExtenders().clear();
+				getExtenders().addAll((Collection<? extends StereotypeExtender>)newValue);
 				return;
 			case PivotPackage.PRIMITIVE_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
@@ -278,9 +278,6 @@ public class PrimitiveTypeImpl
 			case PivotPackage.PRIMITIVE_TYPE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case PivotPackage.PRIMITIVE_TYPE__EXTENDED_BYS:
-				getExtendedBys().clear();
-				return;
 			case PivotPackage.PRIMITIVE_TYPE__OWNED_CONSTRAINTS:
 				getOwnedConstraints().clear();
 				return;
@@ -292,6 +289,9 @@ public class PrimitiveTypeImpl
 				return;
 			case PivotPackage.PRIMITIVE_TYPE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
+				return;
+			case PivotPackage.PRIMITIVE_TYPE__EXTENDERS:
+				getExtenders().clear();
 				return;
 			case PivotPackage.PRIMITIVE_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
@@ -356,8 +356,6 @@ public class PrimitiveTypeImpl
 				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.PRIMITIVE_TYPE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.PRIMITIVE_TYPE__EXTENDED_BYS:
-				return extendedBys != null && !extendedBys.isEmpty();
 			case PivotPackage.PRIMITIVE_TYPE__OWNED_CONSTRAINTS:
 				return ownedConstraints != null && !ownedConstraints.isEmpty();
 			case PivotPackage.PRIMITIVE_TYPE__OWNED_BINDINGS:
@@ -366,6 +364,8 @@ public class PrimitiveTypeImpl
 				return ownedSignature != null;
 			case PivotPackage.PRIMITIVE_TYPE__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
+			case PivotPackage.PRIMITIVE_TYPE__EXTENDERS:
+				return extenders != null && !extenders.isEmpty();
 			case PivotPackage.PRIMITIVE_TYPE__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.PRIMITIVE_TYPE__IS_ABSTRACT:

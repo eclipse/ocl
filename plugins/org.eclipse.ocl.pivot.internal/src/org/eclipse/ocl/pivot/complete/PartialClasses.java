@@ -50,7 +50,7 @@ import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.TypeExtension;
+import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.Vertex;
 import org.eclipse.ocl.pivot.elements.DomainTypeParameters;
 import org.eclipse.ocl.pivot.ids.OperationId;
@@ -202,8 +202,8 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 		}
 		extensionProperty.setType(stereotype);
 		boolean isRequired = false;
-		for (TypeExtension typeExtension : stereotype.getOwnedExtensionOfs()) {
-			Type metatype = typeExtension.getType();
+		for (StereotypeExtender typeExtension : stereotype.getOwnedExtenders()) {
+			Type metatype = typeExtension.getClass_();
 			if ((metatype != null) && baseType.conformsTo(getStandardLibrary(), metatype)) {
 				isRequired = true;
 				break;
@@ -813,12 +813,12 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 				if (superCompleteClass != null) {
 					for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Class superType : superCompleteClass.getPartialClasses()) {
 						org.eclipse.ocl.pivot.Class unspecializedType = PivotUtil.getUnspecializedTemplateableElement(superType);
-						List<TypeExtension> extendedBys = unspecializedType.getExtendedBys();
+						List<StereotypeExtender> extendedBys = unspecializedType.getExtenders();
 						if (extendedBys.size() > 0) {
 							if (extendingStereotypes == null) {
 								extendingStereotypes = new HashSet<Stereotype>();
 							}
-							for (TypeExtension typeExtension : extendedBys) {
+							for (StereotypeExtender typeExtension : extendedBys) {
 								Stereotype stereotype = typeExtension.getOwningStereotype();
 								if (stereotype != null) {
 									extendingStereotypes.add(stereotype);
@@ -826,13 +826,13 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 							}
 						}
 						if (unspecializedType instanceof Stereotype) {
-							List<TypeExtension> extensionOfs = ((Stereotype)unspecializedType).getOwnedExtensionOfs();
+							List<StereotypeExtender> extensionOfs = ((Stereotype)unspecializedType).getOwnedExtenders();
 							if (extensionOfs.size() > 0) {
 								if (extendedTypes == null) {
 									extendedTypes = new HashSet<Type>();
 								}
-								for (TypeExtension typeExtension : extensionOfs) {
-									Type type = typeExtension.getType();
+								for (StereotypeExtender typeExtension : extensionOfs) {
+									Type type = typeExtension.getClass_();
 									if (type != null) {
 										extendedTypes.add(type);
 									}

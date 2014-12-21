@@ -33,6 +33,7 @@ import org.eclipse.ocl.pivot.library.LibraryFeature;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.pivot.Class#getExtenders <em>Extenders</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Class#getInstanceClassName <em>Instance Class Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Class#isAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Class#isActive <em>Is Active</em>}</li>
@@ -51,6 +52,23 @@ import org.eclipse.ocl.pivot.library.LibraryFeature;
  */
 public interface Class
 		extends Type, Namespace, TemplateableElement {
+
+	/**
+	 * Returns the value of the '<em><b>Extenders</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.pivot.StereotypeExtender}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.StereotypeExtender#getClass_ <em>Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Extenders</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Extenders</em>' reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getClass_Extenders()
+	 * @see org.eclipse.ocl.pivot.StereotypeExtender#getClass_
+	 * @generated
+	 */
+	@NonNull List<StereotypeExtender> getExtenders();
 
 	/**
 	 * Returns the value of the '<em><b>Instance Class Name</b></em>' attribute.

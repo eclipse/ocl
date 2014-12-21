@@ -20,7 +20,7 @@ import java.util.List;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.Stereotype#getOwnedExtensionOfs <em>Owned Extension Ofs</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Stereotype#getOwnedExtenders <em>Owned Extenders</em>}</li>
  * </ul>
  * </p>
  *
@@ -31,19 +31,19 @@ public interface Stereotype extends org.eclipse.ocl.pivot.Class
 {
 
 	/**
-	 * Returns the value of the '<em><b>Owned Extension Ofs</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.pivot.TypeExtension}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.TypeExtension#getOwningStereotype <em>Owning Stereotype</em>}'.
+	 * Returns the value of the '<em><b>Owned Extenders</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.pivot.StereotypeExtender}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.StereotypeExtender#getOwningStereotype <em>Owning Stereotype</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Extension Ofs</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Extension Ofs</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getStereotype_OwnedExtensionOfs()
-	 * @see org.eclipse.ocl.pivot.TypeExtension#getOwningStereotype
+	 * @return the value of the '<em>Owned Extenders</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getStereotype_OwnedExtenders()
+	 * @see org.eclipse.ocl.pivot.StereotypeExtender#getOwningStereotype
 	 * @generated
 	 */
-	List<TypeExtension> getOwnedExtensionOfs();
+	List<StereotypeExtender> getOwnedExtenders();
 } // Stereotype

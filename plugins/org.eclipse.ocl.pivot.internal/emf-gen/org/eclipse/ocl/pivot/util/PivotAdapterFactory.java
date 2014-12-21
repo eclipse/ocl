@@ -121,7 +121,7 @@ import org.eclipse.ocl.pivot.TupleLiteralPart;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypeExp;
-import org.eclipse.ocl.pivot.TypeExtension;
+import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.UnspecifiedValueExp;
@@ -682,6 +682,11 @@ public class PivotAdapterFactory
 				return createStereotypeAdapter();
 			}
 			@Override
+			public Adapter caseStereotypeExtender(StereotypeExtender object)
+			{
+				return createStereotypeExtenderAdapter();
+			}
+			@Override
 			public Adapter caseStringLiteralExp(StringLiteralExp object)
 			{
 				return createStringLiteralExpAdapter();
@@ -745,11 +750,6 @@ public class PivotAdapterFactory
 			public Adapter caseTypeExp(TypeExp object)
 			{
 				return createTypeExpAdapter();
-			}
-			@Override
-			public Adapter caseTypeExtension(TypeExtension object)
-			{
-				return createTypeExtensionAdapter();
 			}
 			@Override
 			public Adapter caseTypedElement(TypedElement object)
@@ -1762,6 +1762,21 @@ public class PivotAdapterFactory
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.StereotypeExtender <em>Stereotype Extender</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.pivot.StereotypeExtender
+	 * @generated
+	 */
+	public Adapter createStereotypeExtenderAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.StringLiteralExp <em>String Literal Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1828,21 +1843,6 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createTypeExpAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.TypeExtension <em>Type Extension</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.pivot.TypeExtension
-	 * @generated
-	 */
-	public Adapter createTypeExtensionAdapter()
-	{
 		return null;
 	}
 

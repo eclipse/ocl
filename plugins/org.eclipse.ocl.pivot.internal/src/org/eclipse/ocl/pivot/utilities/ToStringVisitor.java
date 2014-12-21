@@ -85,7 +85,7 @@ import org.eclipse.ocl.pivot.TupleLiteralPart;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypeExp;
-import org.eclipse.ocl.pivot.TypeExtension;
+import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.UnspecifiedValueExp;
@@ -1048,6 +1048,14 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 		return null;
 	}
 
+	@Override
+	public String visitStereotypeExtender(@NonNull StereotypeExtender object) {
+		appendQualifiedName(object.getClass_());
+		append(" extended-by ");
+		appendQualifiedName(object.getOwningStereotype());
+		return null;
+	}
+
 	/**
 	 * Callback for a StringLiteralExp visit.
 	 * 
@@ -1155,14 +1163,6 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	@Override
 	public String visitTypeExp(@NonNull TypeExp t) {
 		appendQualifiedName(t.getReferredType());
-		return null;
-	}
-
-	@Override
-	public String visitTypeExtension(@NonNull TypeExtension object) {
-		appendQualifiedName(object.getType());
-		append(" extended-by ");
-		appendQualifiedName(object.getOwningStereotype());
 		return null;
 	}
 

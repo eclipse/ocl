@@ -55,7 +55,7 @@ import org.eclipse.ocl.pivot.ProfileApplication;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Stereotype;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.TypeExtension;
+import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.ecore.AbstractEcore2AS;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
@@ -337,7 +337,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 		}
 
 		@Override
-		public void addTypeExtension(@NonNull TypeExtension asTypeExtension) {
+		public void addTypeExtension(@NonNull StereotypeExtender asTypeExtension) {
 			root.addTypeExtension(asTypeExtension);
 		}
 
@@ -532,7 +532,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 		}
 
 		@Override
-		public void addTypeExtension(@NonNull TypeExtension asTypeExtension) {
+		public void addTypeExtension(@NonNull StereotypeExtender asTypeExtension) {
 			profileAnalysis.addTypeExtension(asTypeExtension);
 		}
 
@@ -864,7 +864,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 
 	public abstract void addStereotypeApplication(@NonNull EObject stereotypeApplication);
 
-	public abstract void addTypeExtension(@NonNull TypeExtension asTypeExtension);
+	public abstract void addTypeExtension(@NonNull StereotypeExtender asTypeExtension);
 
 	public void copyModelElement(@NonNull Element pivotElement, @NonNull org.eclipse.uml2.uml.Element umlElement) {
 		setOriginalMapping(pivotElement, umlElement);

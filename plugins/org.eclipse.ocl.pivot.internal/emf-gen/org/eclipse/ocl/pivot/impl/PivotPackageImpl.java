@@ -132,7 +132,7 @@ import org.eclipse.ocl.pivot.TupleLiteralPart;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypeExp;
-import org.eclipse.ocl.pivot.TypeExtension;
+import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.UnspecifiedValueExp;
@@ -619,6 +619,13 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass stereotypeExtenderEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass stringLiteralExpEClass = null;
 
 	/**
@@ -648,13 +655,6 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EClass typeExpEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass typeExtensionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -3751,9 +3751,53 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EReference getStereotype_OwnedExtensionOfs()
+	public EReference getStereotype_OwnedExtenders()
 	{
 		return (EReference)stereotypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getStereotypeExtender()
+	{
+		return stereotypeExtenderEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getStereotypeExtender_Class()
+	{
+		return (EReference)stereotypeExtenderEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getStereotypeExtender_IsRequired()
+	{
+		return (EAttribute)stereotypeExtenderEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getStereotypeExtender_OwningStereotype()
+	{
+		return (EReference)stereotypeExtenderEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -3846,50 +3890,6 @@ public class PivotPackageImpl
 	@Override
 	public EReference getTypeExp_ReferredType() {
 		return (EReference)typeExpEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getTypeExtension()
-	{
-		return typeExtensionEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getTypeExtension_IsRequired()
-	{
-		return (EAttribute)typeExtensionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getTypeExtension_OwningStereotype()
-	{
-		return (EReference)typeExtensionEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getTypeExtension_Type()
-	{
-		return (EReference)typeExtensionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -4077,9 +4077,20 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
+	public EReference getClass_Extenders()
+	{
+		return (EReference)classEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EAttribute getClass_InstanceClassName()
 	{
-		return (EAttribute)classEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)classEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -4089,7 +4100,7 @@ public class PivotPackageImpl
 	 */
 	@Override
 	public EAttribute getClass_IsAbstract() {
-		return (EAttribute)classEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)classEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -4100,7 +4111,7 @@ public class PivotPackageImpl
 	@Override
 	public EAttribute getClass_IsActive()
 	{
-		return (EAttribute)classEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)classEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -4111,7 +4122,7 @@ public class PivotPackageImpl
 	@Override
 	public EReference getClass_OwnedInvariants()
 	{
-		return (EReference)classEClass.getEStructuralFeatures().get(5);
+		return (EReference)classEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -4122,7 +4133,7 @@ public class PivotPackageImpl
 	@Override
 	public EReference getClass_OwnedOperations()
 	{
-		return (EReference)classEClass.getEStructuralFeatures().get(6);
+		return (EReference)classEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -4133,7 +4144,7 @@ public class PivotPackageImpl
 	@Override
 	public EReference getClass_OwnedProperties()
 	{
-		return (EReference)classEClass.getEStructuralFeatures().get(7);
+		return (EReference)classEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -4144,7 +4155,7 @@ public class PivotPackageImpl
 	@Override
 	public EReference getClass_OwningPackage()
 	{
-		return (EReference)classEClass.getEStructuralFeatures().get(8);
+		return (EReference)classEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -4155,7 +4166,7 @@ public class PivotPackageImpl
 	@Override
 	public EReference getClass_SuperClasses()
 	{
-		return (EReference)classEClass.getEStructuralFeatures().get(9);
+		return (EReference)classEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -4177,7 +4188,7 @@ public class PivotPackageImpl
 	@Override
 	public EAttribute getClass_IsInterface()
 	{
-		return (EAttribute)classEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)classEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -4188,7 +4199,7 @@ public class PivotPackageImpl
 	@Override
 	public EReference getClass_OwnedBehaviors()
 	{
-		return (EReference)classEClass.getEStructuralFeatures().get(4);
+		return (EReference)classEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -4199,17 +4210,6 @@ public class PivotPackageImpl
 	@Override
 	public EClass getType() {
 		return typeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getType_ExtendedBys()
-	{
-		return (EReference)typeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -6330,6 +6330,7 @@ public class PivotPackageImpl
 		createEReference(callOperationActionEClass, CALL_OPERATION_ACTION__OPERATION);
 
 		classEClass = createEClass(CLASS);
+		createEReference(classEClass, CLASS__EXTENDERS);
 		createEAttribute(classEClass, CLASS__INSTANCE_CLASS_NAME);
 		createEAttribute(classEClass, CLASS__IS_ABSTRACT);
 		createEAttribute(classEClass, CLASS__IS_ACTIVE);
@@ -6772,7 +6773,12 @@ public class PivotPackageImpl
 		createEReference(stateMachineEClass, STATE_MACHINE__SUBMACHINE_STATES);
 
 		stereotypeEClass = createEClass(STEREOTYPE);
-		createEReference(stereotypeEClass, STEREOTYPE__OWNED_EXTENSION_OFS);
+		createEReference(stereotypeEClass, STEREOTYPE__OWNED_EXTENDERS);
+
+		stereotypeExtenderEClass = createEClass(STEREOTYPE_EXTENDER);
+		createEReference(stereotypeExtenderEClass, STEREOTYPE_EXTENDER__CLASS);
+		createEAttribute(stereotypeExtenderEClass, STEREOTYPE_EXTENDER__IS_REQUIRED);
+		createEReference(stereotypeExtenderEClass, STEREOTYPE_EXTENDER__OWNING_STEREOTYPE);
 
 		stringLiteralExpEClass = createEClass(STRING_LITERAL_EXP);
 		createEAttribute(stringLiteralExpEClass, STRING_LITERAL_EXP__STRING_SYMBOL);
@@ -6825,7 +6831,6 @@ public class PivotPackageImpl
 		tupleTypeEClass = createEClass(TUPLE_TYPE);
 
 		typeEClass = createEClass(TYPE);
-		createEReference(typeEClass, TYPE__EXTENDED_BYS);
 		createEOperation(typeEClass, TYPE___FLATTENED_TYPE);
 		createEOperation(typeEClass, TYPE___IS_CLASS);
 		createEOperation(typeEClass, TYPE___IS_TEMPLATE_PARAMETER);
@@ -6833,11 +6838,6 @@ public class PivotPackageImpl
 
 		typeExpEClass = createEClass(TYPE_EXP);
 		createEReference(typeExpEClass, TYPE_EXP__REFERRED_TYPE);
-
-		typeExtensionEClass = createEClass(TYPE_EXTENSION);
-		createEAttribute(typeExtensionEClass, TYPE_EXTENSION__IS_REQUIRED);
-		createEReference(typeExtensionEClass, TYPE_EXTENSION__OWNING_STEREOTYPE);
-		createEReference(typeExtensionEClass, TYPE_EXTENSION__TYPE);
 
 		typedElementEClass = createEClass(TYPED_ELEMENT);
 		createEAttribute(typedElementEClass, TYPED_ELEMENT__IS_MANY);
@@ -7036,6 +7036,7 @@ public class PivotPackageImpl
 		stateExpEClass.getESuperTypes().add(this.getOCLExpression());
 		stateMachineEClass.getESuperTypes().add(this.getBehavior());
 		stereotypeEClass.getESuperTypes().add(this.getClass_());
+		stereotypeExtenderEClass.getESuperTypes().add(this.getElement());
 		stringLiteralExpEClass.getESuperTypes().add(this.getPrimitiveLiteralExp());
 		templateBindingEClass.getESuperTypes().add(this.getElement());
 		templateParameterEClass.getESuperTypes().add(this.getType());
@@ -7050,7 +7051,6 @@ public class PivotPackageImpl
 		typeEClass.getESuperTypes().add(this.getNamedElement());
 		typeExpEClass.getESuperTypes().add(this.getOCLExpression());
 		typeExpEClass.getESuperTypes().add(this.getReferringElement());
-		typeExtensionEClass.getESuperTypes().add(this.getElement());
 		typedElementEClass.getESuperTypes().add(this.getNamedElement());
 		unlimitedNaturalLiteralExpEClass.getESuperTypes().add(this.getNumericLiteralExp());
 		unspecifiedValueExpEClass.getESuperTypes().add(this.getOCLExpression());
@@ -7102,6 +7102,7 @@ public class PivotPackageImpl
 		initEReference(getCallOperationAction_Operation(), this.getOperation(), null, "operation", null, 1, 1, CallOperationAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(classEClass, org.eclipse.ocl.pivot.Class.class, "Class", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getClass_Extenders(), this.getStereotypeExtender(), this.getStereotypeExtender_Class(), "extenders", null, 0, -1, org.eclipse.ocl.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getClass_InstanceClassName(), this.getString(), "instanceClassName", null, 0, 1, org.eclipse.ocl.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getClass_IsAbstract(), this.getBoolean(), "isAbstract", "false", 1, 1, org.eclipse.ocl.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getClass_IsActive(), this.getBoolean(), "isActive", "false", 1, 1, org.eclipse.ocl.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
@@ -8032,7 +8033,12 @@ public class PivotPackageImpl
 		initEReference(getStateMachine_SubmachineStates(), this.getState(), this.getState_Submachines(), "submachineStates", null, 0, -1, StateMachine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(stereotypeEClass, Stereotype.class, "Stereotype", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getStereotype_OwnedExtensionOfs(), this.getTypeExtension(), this.getTypeExtension_OwningStereotype(), "ownedExtensionOfs", null, 0, -1, Stereotype.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getStereotype_OwnedExtenders(), this.getStereotypeExtender(), this.getStereotypeExtender_OwningStereotype(), "ownedExtenders", null, 0, -1, Stereotype.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(stereotypeExtenderEClass, StereotypeExtender.class, "StereotypeExtender", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getStereotypeExtender_Class(), this.getClass_(), this.getClass_Extenders(), "class", null, 1, 1, StereotypeExtender.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getStereotypeExtender_IsRequired(), this.getBoolean(), "isRequired", "false", 1, 1, StereotypeExtender.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEReference(getStereotypeExtender_OwningStereotype(), this.getStereotype(), this.getStereotype_OwnedExtenders(), "owningStereotype", null, 1, 1, StereotypeExtender.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(stringLiteralExpEClass, StringLiteralExp.class, "StringLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getStringLiteralExp_StringSymbol(), this.getString(), "stringSymbol", null, 1, 1, StringLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -8085,7 +8091,6 @@ public class PivotPackageImpl
 		initEClass(tupleTypeEClass, TupleType.class, "TupleType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(typeEClass, Type.class, "Type", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getType_ExtendedBys(), this.getTypeExtension(), this.getTypeExtension_Type(), "extendedBys", null, 0, -1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEOperation(getType__FlattenedType(), this.getType(), "flattenedType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
@@ -8099,11 +8104,6 @@ public class PivotPackageImpl
 
 		initEClass(typeExpEClass, TypeExp.class, "TypeExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTypeExp_ReferredType(), this.getType(), null, "referredType", null, 0, 1, TypeExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(typeExtensionEClass, TypeExtension.class, "TypeExtension", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getTypeExtension_IsRequired(), this.getBoolean(), "isRequired", "false", 1, 1, TypeExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEReference(getTypeExtension_OwningStereotype(), this.getStereotype(), this.getStereotype_OwnedExtensionOfs(), "owningStereotype", null, 1, 1, TypeExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTypeExtension_Type(), this.getType(), this.getType_ExtendedBys(), "type", null, 1, 1, TypeExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(typedElementEClass, TypedElement.class, "TypedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getTypedElement_IsMany(), this.getBoolean(), "isMany", null, 1, 1, TypedElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

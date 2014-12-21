@@ -504,6 +504,11 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	@Override
+	public @Nullable R visitStereotypeExtender(@NonNull org.eclipse.ocl.pivot.StereotypeExtender object) {
+		return visitElement(object);
+	}
+
+	@Override
 	public @Nullable R visitStringLiteralExp(@NonNull org.eclipse.ocl.pivot.StringLiteralExp object) {
 		return visitPrimitiveLiteralExp(object);
 	}
@@ -566,11 +571,6 @@ public abstract class AbstractExtendingVisitor<R, C>
 	@Override
 	public @Nullable R visitTypeExp(@NonNull org.eclipse.ocl.pivot.TypeExp object) {
 		return visitOCLExpression(object);
-	}
-
-	@Override
-	public @Nullable R visitTypeExtension(@NonNull org.eclipse.ocl.pivot.TypeExtension object) {
-		return visitElement(object);
 	}
 
 	@Override

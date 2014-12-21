@@ -522,6 +522,11 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 	}
 
 	@Override
+	public @Nullable R visitStereotypeExtender(@NonNull org.eclipse.ocl.pivot.StereotypeExtender object) {
+		return delegate.visitStereotypeExtender(object);
+	}
+
+	@Override
 	public @Nullable R visitStringLiteralExp(@NonNull org.eclipse.ocl.pivot.StringLiteralExp object) {
 		return delegate.visitStringLiteralExp(object);
 	}
@@ -584,11 +589,6 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 	@Override
 	public @Nullable R visitTypeExp(@NonNull org.eclipse.ocl.pivot.TypeExp object) {
 		return delegate.visitTypeExp(object);
-	}
-
-	@Override
-	public @Nullable R visitTypeExtension(@NonNull org.eclipse.ocl.pivot.TypeExtension object) {
-		return delegate.visitTypeExtension(object);
 	}
 
 	@Override

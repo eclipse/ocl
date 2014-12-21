@@ -34,7 +34,7 @@ import org.eclipse.ocl.pivot.Profile;
 import org.eclipse.ocl.pivot.ProfileApplication;
 import org.eclipse.ocl.pivot.Stereotype;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.TypeExtension;
+import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.uml.UML2AS.Outer;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -356,7 +356,7 @@ public class ModelAnalysis
 		for (org.eclipse.ocl.pivot.Package asPackage : package2appliedProfileClosure.keySet()) {
 			if ((asPackage != null) && !(asPackage instanceof Profile)) {
 				@SuppressWarnings("null")@NonNull Set<Profile> appliedProfileClosure = package2appliedProfileClosure.get(asPackage);
-				Map<Type, Set<TypeExtension>> metatype2typeExtensions = profileAnalysis.computeMetatypes2typeExtensions(appliedProfileClosure);
+				Map<Type, Set<StereotypeExtender>> metatype2typeExtensions = profileAnalysis.computeMetatypes2typeExtensions(appliedProfileClosure);
 				printMetatypes2StereotypeExtensions(asPackage, metatype2typeExtensions);
 				for (TreeIterator<EObject> tit = asPackage.eAllContents(); tit.hasNext(); ) {
 					EObject eObject = tit.next();
@@ -374,7 +374,7 @@ public class ModelAnalysis
 							}
 						}
 						if (metatype != null) {
-							Set<TypeExtension> typeExtensions = metatype2typeExtensions.get(metatype);
+							Set<StereotypeExtender> typeExtensions = metatype2typeExtensions.get(metatype);
 							if (typeExtensions != null) {
 								Map<Stereotype, ElementExtension> stereotype2extension = installExtensions(asElement, typeExtensions);
 								element2stereotype2extension.put(asElement, stereotype2extension);
@@ -401,9 +401,9 @@ public class ModelAnalysis
 //			}
 	}
 
-	private @NonNull Map<Stereotype, ElementExtension> installExtensions(@NonNull Element asElement, @NonNull Set<TypeExtension> typeExtensions) {
+	private @NonNull Map<Stereotype, ElementExtension> installExtensions(@NonNull Element asElement, @NonNull Set<StereotypeExtender> typeExtensions) {
 		Map<Stereotype, ElementExtension> stereotype2extension = new HashMap<Stereotype, ElementExtension>();
-		for (TypeExtension typeExtension : typeExtensions) {
+		for (StereotypeExtender typeExtension : typeExtensions) {
 			Stereotype stereotype = typeExtension.getOwningStereotype();
 			if (stereotype != null) {
 				ElementExtension elementExtension = metaModelManager.getElementExtension(asElement, stereotype);
@@ -418,7 +418,7 @@ public class ModelAnalysis
 	}
 
 	protected void printMetatypes2StereotypeExtensions(@NonNull org.eclipse.ocl.pivot.Package asPackage,
-			@NonNull Map<Type, Set<TypeExtension>> metatype2typeExtensions) {
+			@NonNull Map<Type, Set<StereotypeExtender>> metatype2typeExtensions) {
 		if (UML2AS.TYPE_EXTENSIONS.isActive()) {
 			StringBuffer s = new StringBuffer();
 			s.append(LabelUtil.qualifiedNameFor(asPackage) + " : " + asPackage.getURI());
@@ -427,9 +427,9 @@ public class ModelAnalysis
 			for (Type metatype : metatypes) {
 				if (metatype != null) {
 					s.append("\n\t" + LabelUtil.qualifiedNameFor(metatype) + " ++"); //+ " : " + asProfile.getNsURI());
-					Set<TypeExtension> typeExtensions = metatype2typeExtensions.get(metatype);
+					Set<StereotypeExtender> typeExtensions = metatype2typeExtensions.get(metatype);
 					List<Stereotype> stereotypes = new ArrayList<Stereotype>();
-					for (TypeExtension typeExtension : typeExtensions) {
+					for (StereotypeExtender typeExtension : typeExtensions) {
 						stereotypes.add(typeExtension.getOwningStereotype());
 					}
 					Collections.sort(stereotypes, PivotUtil.NAMEABLE_COMPARATOR);

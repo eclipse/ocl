@@ -25,8 +25,7 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Stereotype;
-import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.TypeExtension;
+import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.util.Visitor;
 
 /**
@@ -36,16 +35,26 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.impl.TypeExtensionImpl#isRequired <em>Is Required</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.TypeExtensionImpl#getOwningStereotype <em>Owning Stereotype</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.TypeExtensionImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.StereotypeExtenderImpl#getClass_ <em>Class</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.StereotypeExtenderImpl#isRequired <em>Is Required</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.StereotypeExtenderImpl#getOwningStereotype <em>Owning Stereotype</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class TypeExtensionImpl extends ElementImpl implements TypeExtension
+public class StereotypeExtenderImpl extends ElementImpl implements StereotypeExtender
 {
+	/**
+	 * The cached value of the '{@link #getClass_() <em>Class</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getClass_()
+	 * @generated
+	 * @ordered
+	 */
+	protected org.eclipse.ocl.pivot.Class class_;
+
 	/**
 	 * The default value of the '{@link #isRequired() <em>Is Required</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -67,21 +76,11 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	protected static final int IS_REQUIRED_EFLAG = 1 << 8;
 
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
-	protected Type type;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TypeExtensionImpl()
+	protected StereotypeExtenderImpl()
 	{
 		super();
 	}
@@ -94,7 +93,7 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	@Override
 	protected EClass eStaticClass()
 	{
-		return PivotPackage.Literals.TYPE_EXTENSION;
+		return PivotPackage.Literals.STEREOTYPE_EXTENDER;
 	}
 
 	/**
@@ -119,7 +118,7 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 		boolean oldIsRequired = (eFlags & IS_REQUIRED_EFLAG) != 0;
 		if (newIsRequired) eFlags |= IS_REQUIRED_EFLAG; else eFlags &= ~IS_REQUIRED_EFLAG;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TYPE_EXTENSION__IS_REQUIRED, oldIsRequired, newIsRequired));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.STEREOTYPE_EXTENDER__IS_REQUIRED, oldIsRequired, newIsRequired));
 	}
 
 	/**
@@ -130,7 +129,7 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	@Override
 	public Stereotype getOwningStereotype()
 	{
-		if (eContainerFeatureID() != PivotPackage.TYPE_EXTENSION__OWNING_STEREOTYPE) return null;
+		if (eContainerFeatureID() != PivotPackage.STEREOTYPE_EXTENDER__OWNING_STEREOTYPE) return null;
 		return (Stereotype)eInternalContainer();
 	}
 
@@ -141,7 +140,7 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	 */
 	public NotificationChain basicSetOwningStereotype(Stereotype newOwningStereotype, NotificationChain msgs)
 	{
-		msgs = eBasicSetContainer((InternalEObject)newOwningStereotype, PivotPackage.TYPE_EXTENSION__OWNING_STEREOTYPE, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newOwningStereotype, PivotPackage.STEREOTYPE_EXTENDER__OWNING_STEREOTYPE, msgs);
 		return msgs;
 	}
 
@@ -153,7 +152,7 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	@Override
 	public void setOwningStereotype(Stereotype newOwningStereotype)
 	{
-		if (newOwningStereotype != eInternalContainer() || (eContainerFeatureID() != PivotPackage.TYPE_EXTENSION__OWNING_STEREOTYPE && newOwningStereotype != null))
+		if (newOwningStereotype != eInternalContainer() || (eContainerFeatureID() != PivotPackage.STEREOTYPE_EXTENDER__OWNING_STEREOTYPE && newOwningStereotype != null))
 		{
 			if (EcoreUtil.isAncestor(this, newOwningStereotype))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
@@ -161,12 +160,12 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newOwningStereotype != null)
-				msgs = ((InternalEObject)newOwningStereotype).eInverseAdd(this, PivotPackage.STEREOTYPE__OWNED_EXTENSION_OFS, Stereotype.class, msgs);
+				msgs = ((InternalEObject)newOwningStereotype).eInverseAdd(this, PivotPackage.STEREOTYPE__OWNED_EXTENDERS, Stereotype.class, msgs);
 			msgs = basicSetOwningStereotype(newOwningStereotype, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TYPE_EXTENSION__OWNING_STEREOTYPE, newOwningStereotype, newOwningStereotype));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.STEREOTYPE_EXTENDER__OWNING_STEREOTYPE, newOwningStereotype, newOwningStereotype));
 	}
 
 	/**
@@ -175,19 +174,19 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	 * @generated
 	 */
 	@Override
-	public Type getType()
+	public org.eclipse.ocl.pivot.Class getClass_()
 	{
-		if (type != null && type.eIsProxy())
+		if (class_ != null && class_.eIsProxy())
 		{
-			InternalEObject oldType = (InternalEObject)type;
-			type = (Type)eResolveProxy(oldType);
-			if (type != oldType)
+			InternalEObject oldClass = (InternalEObject)class_;
+			class_ = (org.eclipse.ocl.pivot.Class)eResolveProxy(oldClass);
+			if (class_ != oldClass)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.TYPE_EXTENSION__TYPE, oldType, type));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.STEREOTYPE_EXTENDER__CLASS, oldClass, class_));
 			}
 		}
-		return type;
+		return class_;
 	}
 
 	/**
@@ -195,9 +194,9 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type basicGetType()
+	public org.eclipse.ocl.pivot.Class basicGetClass_()
 	{
-		return type;
+		return class_;
 	}
 
 	/**
@@ -205,13 +204,13 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetType(Type newType, NotificationChain msgs)
+	public NotificationChain basicSetClass_(org.eclipse.ocl.pivot.Class newClass, NotificationChain msgs)
 	{
-		Type oldType = type;
-		type = newType;
+		org.eclipse.ocl.pivot.Class oldClass = class_;
+		class_ = newClass;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.TYPE_EXTENSION__TYPE, oldType, newType);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.STEREOTYPE_EXTENDER__CLASS, oldClass, newClass);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -223,20 +222,20 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	 * @generated
 	 */
 	@Override
-	public void setType(Type newType)
+	public void setClass_(org.eclipse.ocl.pivot.Class newClass)
 	{
-		if (newType != type)
+		if (newClass != class_)
 		{
 			NotificationChain msgs = null;
-			if (type != null)
-				msgs = ((InternalEObject)type).eInverseRemove(this, PivotPackage.TYPE__EXTENDED_BYS, Type.class, msgs);
-			if (newType != null)
-				msgs = ((InternalEObject)newType).eInverseAdd(this, PivotPackage.TYPE__EXTENDED_BYS, Type.class, msgs);
-			msgs = basicSetType(newType, msgs);
+			if (class_ != null)
+				msgs = ((InternalEObject)class_).eInverseRemove(this, PivotPackage.CLASS__EXTENDERS, org.eclipse.ocl.pivot.Class.class, msgs);
+			if (newClass != null)
+				msgs = ((InternalEObject)newClass).eInverseAdd(this, PivotPackage.CLASS__EXTENDERS, org.eclipse.ocl.pivot.Class.class, msgs);
+			msgs = basicSetClass_(newClass, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TYPE_EXTENSION__TYPE, newType, newType));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.STEREOTYPE_EXTENDER__CLASS, newClass, newClass));
 	}
 
 	/**
@@ -250,20 +249,20 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	{
 		switch (featureID)
 		{
-			case PivotPackage.TYPE_EXTENSION__ANNOTATING_COMMENTS:
+			case PivotPackage.STEREOTYPE_EXTENDER__ANNOTATING_COMMENTS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAnnotatingComments()).basicAdd(otherEnd, msgs);
-			case PivotPackage.TYPE_EXTENSION__OWNED_COMMENTS:
+			case PivotPackage.STEREOTYPE_EXTENDER__OWNED_COMMENTS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComments()).basicAdd(otherEnd, msgs);
-			case PivotPackage.TYPE_EXTENSION__OWNED_EXTENSIONS:
+			case PivotPackage.STEREOTYPE_EXTENDER__OWNED_EXTENSIONS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedExtensions()).basicAdd(otherEnd, msgs);
-			case PivotPackage.TYPE_EXTENSION__OWNING_STEREOTYPE:
+			case PivotPackage.STEREOTYPE_EXTENDER__CLASS:
+				if (class_ != null)
+					msgs = ((InternalEObject)class_).eInverseRemove(this, PivotPackage.CLASS__EXTENDERS, org.eclipse.ocl.pivot.Class.class, msgs);
+				return basicSetClass_((org.eclipse.ocl.pivot.Class)otherEnd, msgs);
+			case PivotPackage.STEREOTYPE_EXTENDER__OWNING_STEREOTYPE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningStereotype((Stereotype)otherEnd, msgs);
-			case PivotPackage.TYPE_EXTENSION__TYPE:
-				if (type != null)
-					msgs = ((InternalEObject)type).eInverseRemove(this, PivotPackage.TYPE__EXTENDED_BYS, Type.class, msgs);
-				return basicSetType((Type)otherEnd, msgs);
 		}
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -278,18 +277,18 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	{
 		switch (featureID)
 		{
-			case PivotPackage.TYPE_EXTENSION__ANNOTATING_COMMENTS:
+			case PivotPackage.STEREOTYPE_EXTENDER__ANNOTATING_COMMENTS:
 				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
-			case PivotPackage.TYPE_EXTENSION__OWNED_ANNOTATIONS:
+			case PivotPackage.STEREOTYPE_EXTENDER__OWNED_ANNOTATIONS:
 				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
-			case PivotPackage.TYPE_EXTENSION__OWNED_COMMENTS:
+			case PivotPackage.STEREOTYPE_EXTENDER__OWNED_COMMENTS:
 				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
-			case PivotPackage.TYPE_EXTENSION__OWNED_EXTENSIONS:
+			case PivotPackage.STEREOTYPE_EXTENDER__OWNED_EXTENSIONS:
 				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
-			case PivotPackage.TYPE_EXTENSION__OWNING_STEREOTYPE:
+			case PivotPackage.STEREOTYPE_EXTENDER__CLASS:
+				return basicSetClass_(null, msgs);
+			case PivotPackage.STEREOTYPE_EXTENDER__OWNING_STEREOTYPE:
 				return basicSetOwningStereotype(null, msgs);
-			case PivotPackage.TYPE_EXTENSION__TYPE:
-				return basicSetType(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -304,8 +303,8 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	{
 		switch (eContainerFeatureID())
 		{
-			case PivotPackage.TYPE_EXTENSION__OWNING_STEREOTYPE:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.STEREOTYPE__OWNED_EXTENSION_OFS, Stereotype.class, msgs);
+			case PivotPackage.STEREOTYPE_EXTENDER__OWNING_STEREOTYPE:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.STEREOTYPE__OWNED_EXTENDERS, Stereotype.class, msgs);
 		}
 		return eDynamicBasicRemoveFromContainer(msgs);
 	}
@@ -320,21 +319,21 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	{
 		switch (featureID)
 		{
-			case PivotPackage.TYPE_EXTENSION__ANNOTATING_COMMENTS:
+			case PivotPackage.STEREOTYPE_EXTENDER__ANNOTATING_COMMENTS:
 				return getAnnotatingComments();
-			case PivotPackage.TYPE_EXTENSION__OWNED_ANNOTATIONS:
+			case PivotPackage.STEREOTYPE_EXTENDER__OWNED_ANNOTATIONS:
 				return getOwnedAnnotations();
-			case PivotPackage.TYPE_EXTENSION__OWNED_COMMENTS:
+			case PivotPackage.STEREOTYPE_EXTENDER__OWNED_COMMENTS:
 				return getOwnedComments();
-			case PivotPackage.TYPE_EXTENSION__OWNED_EXTENSIONS:
+			case PivotPackage.STEREOTYPE_EXTENDER__OWNED_EXTENSIONS:
 				return getOwnedExtensions();
-			case PivotPackage.TYPE_EXTENSION__IS_REQUIRED:
+			case PivotPackage.STEREOTYPE_EXTENDER__CLASS:
+				if (resolve) return getClass_();
+				return basicGetClass_();
+			case PivotPackage.STEREOTYPE_EXTENDER__IS_REQUIRED:
 				return isRequired();
-			case PivotPackage.TYPE_EXTENSION__OWNING_STEREOTYPE:
+			case PivotPackage.STEREOTYPE_EXTENDER__OWNING_STEREOTYPE:
 				return getOwningStereotype();
-			case PivotPackage.TYPE_EXTENSION__TYPE:
-				if (resolve) return getType();
-				return basicGetType();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -350,30 +349,30 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	{
 		switch (featureID)
 		{
-			case PivotPackage.TYPE_EXTENSION__ANNOTATING_COMMENTS:
+			case PivotPackage.STEREOTYPE_EXTENDER__ANNOTATING_COMMENTS:
 				getAnnotatingComments().clear();
 				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.TYPE_EXTENSION__OWNED_ANNOTATIONS:
+			case PivotPackage.STEREOTYPE_EXTENDER__OWNED_ANNOTATIONS:
 				getOwnedAnnotations().clear();
 				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.TYPE_EXTENSION__OWNED_COMMENTS:
+			case PivotPackage.STEREOTYPE_EXTENDER__OWNED_COMMENTS:
 				getOwnedComments().clear();
 				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.TYPE_EXTENSION__OWNED_EXTENSIONS:
+			case PivotPackage.STEREOTYPE_EXTENDER__OWNED_EXTENSIONS:
 				getOwnedExtensions().clear();
 				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
-			case PivotPackage.TYPE_EXTENSION__IS_REQUIRED:
+			case PivotPackage.STEREOTYPE_EXTENDER__CLASS:
+				setClass_((org.eclipse.ocl.pivot.Class)newValue);
+				return;
+			case PivotPackage.STEREOTYPE_EXTENDER__IS_REQUIRED:
 				setIsRequired((Boolean)newValue);
 				return;
-			case PivotPackage.TYPE_EXTENSION__OWNING_STEREOTYPE:
+			case PivotPackage.STEREOTYPE_EXTENDER__OWNING_STEREOTYPE:
 				setOwningStereotype((Stereotype)newValue);
-				return;
-			case PivotPackage.TYPE_EXTENSION__TYPE:
-				setType((Type)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -389,26 +388,26 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	{
 		switch (featureID)
 		{
-			case PivotPackage.TYPE_EXTENSION__ANNOTATING_COMMENTS:
+			case PivotPackage.STEREOTYPE_EXTENDER__ANNOTATING_COMMENTS:
 				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.TYPE_EXTENSION__OWNED_ANNOTATIONS:
+			case PivotPackage.STEREOTYPE_EXTENDER__OWNED_ANNOTATIONS:
 				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.TYPE_EXTENSION__OWNED_COMMENTS:
+			case PivotPackage.STEREOTYPE_EXTENDER__OWNED_COMMENTS:
 				getOwnedComments().clear();
 				return;
-			case PivotPackage.TYPE_EXTENSION__OWNED_EXTENSIONS:
+			case PivotPackage.STEREOTYPE_EXTENDER__OWNED_EXTENSIONS:
 				getOwnedExtensions().clear();
 				return;
-			case PivotPackage.TYPE_EXTENSION__IS_REQUIRED:
+			case PivotPackage.STEREOTYPE_EXTENDER__CLASS:
+				setClass_((org.eclipse.ocl.pivot.Class)null);
+				return;
+			case PivotPackage.STEREOTYPE_EXTENDER__IS_REQUIRED:
 				setIsRequired(IS_REQUIRED_EDEFAULT);
 				return;
-			case PivotPackage.TYPE_EXTENSION__OWNING_STEREOTYPE:
+			case PivotPackage.STEREOTYPE_EXTENDER__OWNING_STEREOTYPE:
 				setOwningStereotype((Stereotype)null);
-				return;
-			case PivotPackage.TYPE_EXTENSION__TYPE:
-				setType((Type)null);
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -424,27 +423,27 @@ public class TypeExtensionImpl extends ElementImpl implements TypeExtension
 	{
 		switch (featureID)
 		{
-			case PivotPackage.TYPE_EXTENSION__ANNOTATING_COMMENTS:
+			case PivotPackage.STEREOTYPE_EXTENDER__ANNOTATING_COMMENTS:
 				return annotatingComments != null && !annotatingComments.isEmpty();
-			case PivotPackage.TYPE_EXTENSION__OWNED_ANNOTATIONS:
+			case PivotPackage.STEREOTYPE_EXTENDER__OWNED_ANNOTATIONS:
 				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
-			case PivotPackage.TYPE_EXTENSION__OWNED_COMMENTS:
+			case PivotPackage.STEREOTYPE_EXTENDER__OWNED_COMMENTS:
 				return ownedComments != null && !ownedComments.isEmpty();
-			case PivotPackage.TYPE_EXTENSION__OWNED_EXTENSIONS:
+			case PivotPackage.STEREOTYPE_EXTENDER__OWNED_EXTENSIONS:
 				return ownedExtensions != null && !ownedExtensions.isEmpty();
-			case PivotPackage.TYPE_EXTENSION__IS_REQUIRED:
+			case PivotPackage.STEREOTYPE_EXTENDER__CLASS:
+				return class_ != null;
+			case PivotPackage.STEREOTYPE_EXTENDER__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
-			case PivotPackage.TYPE_EXTENSION__OWNING_STEREOTYPE:
+			case PivotPackage.STEREOTYPE_EXTENDER__OWNING_STEREOTYPE:
 				return getOwningStereotype() != null;
-			case PivotPackage.TYPE_EXTENSION__TYPE:
-				return type != null;
 		}
 		return eDynamicIsSet(featureID);
 	}
 
 	@Override
 	public <R> R accept(@NonNull Visitor<R> visitor) {
-		return visitor.visitTypeExtension(this);
+		return visitor.visitStereotypeExtender(this);
 	}
 
 	@Override

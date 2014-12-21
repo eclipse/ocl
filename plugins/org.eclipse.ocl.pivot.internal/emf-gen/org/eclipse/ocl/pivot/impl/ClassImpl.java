@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
@@ -52,7 +53,7 @@ import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.TypeExtension;
+import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.complete.ClassListeners;
 import org.eclipse.ocl.pivot.elements.DomainTypeParameters;
 import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
@@ -82,6 +83,7 @@ import org.eclipse.osgi.util.NLS;
  *   <li>{@link org.eclipse.ocl.pivot.impl.ClassImpl#getOwnedBindings <em>Owned Bindings</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ClassImpl#getOwnedSignature <em>Owned Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ClassImpl#getUnspecializedElement <em>Unspecialized Element</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.ClassImpl#getExtenders <em>Extenders</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ClassImpl#getInstanceClassName <em>Instance Class Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ClassImpl#isAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ClassImpl#isActive <em>Is Active</em>}</li>
@@ -140,6 +142,16 @@ public class ClassImpl
 	 * @ordered
 	 */
 	protected TemplateableElement unspecializedElement;
+
+	/**
+	 * The cached value of the '{@link #getExtenders() <em>Extenders</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExtenders()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<StereotypeExtender> extenders;
 
 	/**
 	 * The default value of the '{@link #getInstanceClassName() <em>Instance Class Name</em>}' attribute.
@@ -390,6 +402,22 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("null")
+	@Override
+	public @NonNull List<StereotypeExtender> getExtenders()
+	{
+		if (extenders == null)
+		{
+			extenders = new EObjectWithInverseResolvingEList<StereotypeExtender>(StereotypeExtender.class, this, PivotPackage.CLASS__EXTENDERS, PivotPackage.STEREOTYPE_EXTENDER__CLASS);
+		}
+		return extenders;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public String getInstanceClassName()
 	{
@@ -538,14 +566,14 @@ public class ClassImpl
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComments()).basicAdd(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_EXTENSIONS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedExtensions()).basicAdd(otherEnd, msgs);
-			case PivotPackage.CLASS__EXTENDED_BYS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtendedBys()).basicAdd(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_BINDINGS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedBindings()).basicAdd(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_SIGNATURE:
 				if (ownedSignature != null)
 					msgs = ((InternalEObject)ownedSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.CLASS__OWNED_SIGNATURE, null, msgs);
 				return basicSetOwnedSignature((TemplateSignature)otherEnd, msgs);
+			case PivotPackage.CLASS__EXTENDERS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtenders()).basicAdd(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_OPERATIONS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedOperations()).basicAdd(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_PROPERTIES:
@@ -576,14 +604,14 @@ public class ClassImpl
 				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_EXTENSIONS:
 				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
-			case PivotPackage.CLASS__EXTENDED_BYS:
-				return ((InternalEList<?>)getExtendedBys()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_CONSTRAINTS:
 				return ((InternalEList<?>)getOwnedConstraints()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_BINDINGS:
 				return ((InternalEList<?>)getOwnedBindings()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_SIGNATURE:
 				return basicSetOwnedSignature(null, msgs);
+			case PivotPackage.CLASS__EXTENDERS:
+				return ((InternalEList<?>)getExtenders()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_BEHAVIORS:
 				return ((InternalEList<?>)getOwnedBehaviors()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_INVARIANTS:
@@ -732,8 +760,6 @@ public class ClassImpl
 				return getOwnedExtensions();
 			case PivotPackage.CLASS__NAME:
 				return getName();
-			case PivotPackage.CLASS__EXTENDED_BYS:
-				return getExtendedBys();
 			case PivotPackage.CLASS__OWNED_CONSTRAINTS:
 				return getOwnedConstraints();
 			case PivotPackage.CLASS__OWNED_BINDINGS:
@@ -742,6 +768,8 @@ public class ClassImpl
 				return getOwnedSignature();
 			case PivotPackage.CLASS__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
+			case PivotPackage.CLASS__EXTENDERS:
+				return getExtenders();
 			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.CLASS__IS_ABSTRACT:
@@ -795,10 +823,6 @@ public class ClassImpl
 			case PivotPackage.CLASS__NAME:
 				setName((String)newValue);
 				return;
-			case PivotPackage.CLASS__EXTENDED_BYS:
-				getExtendedBys().clear();
-				getExtendedBys().addAll((Collection<? extends TypeExtension>)newValue);
-				return;
 			case PivotPackage.CLASS__OWNED_CONSTRAINTS:
 				getOwnedConstraints().clear();
 				getOwnedConstraints().addAll((Collection<? extends Constraint>)newValue);
@@ -812,6 +836,10 @@ public class ClassImpl
 				return;
 			case PivotPackage.CLASS__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
+				return;
+			case PivotPackage.CLASS__EXTENDERS:
+				getExtenders().clear();
+				getExtenders().addAll((Collection<? extends StereotypeExtender>)newValue);
 				return;
 			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
@@ -876,9 +904,6 @@ public class ClassImpl
 			case PivotPackage.CLASS__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case PivotPackage.CLASS__EXTENDED_BYS:
-				getExtendedBys().clear();
-				return;
 			case PivotPackage.CLASS__OWNED_CONSTRAINTS:
 				getOwnedConstraints().clear();
 				return;
@@ -890,6 +915,9 @@ public class ClassImpl
 				return;
 			case PivotPackage.CLASS__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
+				return;
+			case PivotPackage.CLASS__EXTENDERS:
+				getExtenders().clear();
 				return;
 			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
@@ -944,8 +972,6 @@ public class ClassImpl
 				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.CLASS__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.CLASS__EXTENDED_BYS:
-				return extendedBys != null && !extendedBys.isEmpty();
 			case PivotPackage.CLASS__OWNED_CONSTRAINTS:
 				return ownedConstraints != null && !ownedConstraints.isEmpty();
 			case PivotPackage.CLASS__OWNED_BINDINGS:
@@ -954,6 +980,8 @@ public class ClassImpl
 				return ownedSignature != null;
 			case PivotPackage.CLASS__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
+			case PivotPackage.CLASS__EXTENDERS:
+				return extenders != null && !extenders.isEmpty();
 			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.CLASS__IS_ABSTRACT:

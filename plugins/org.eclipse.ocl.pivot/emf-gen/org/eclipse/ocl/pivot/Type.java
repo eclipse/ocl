@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot;
 
-import java.util.List;
-
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ids.IdResolver;
@@ -28,34 +26,11 @@ import org.eclipse.ocl.pivot.ids.TypeId;
  * Type is defined to be a kind of templateable element so that a type can be parameterized. It is also defined to be a kind of parameterable element so that a type can be a formal template parameter.
  * <!-- end-model-doc -->
  *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.Type#getExtendedBys <em>Extended Bys</em>}</li>
- * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getType()
  * @generated
  */
 public interface Type extends NamedElement, org.eclipse.ocl.pivot.values.OCLValue {
-
-	/**
-	 * Returns the value of the '<em><b>Extended Bys</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.pivot.TypeExtension}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.TypeExtension#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Extended Bys</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Extended Bys</em>' reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getType_ExtendedBys()
-	 * @see org.eclipse.ocl.pivot.TypeExtension#getType
-	 * @generated
-	 */
-	List<TypeExtension> getExtendedBys();
 
 	/**
 	 * <!-- begin-user-doc -->

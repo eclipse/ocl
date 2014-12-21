@@ -24,6 +24,7 @@ import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.StandardLibrary;
+import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.TemplateBinding;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
@@ -32,48 +33,6 @@ public class AbstractExecutorClass extends AbstractExecutorType implements org.e
 {
 	public AbstractExecutorClass(@NonNull String name, int flags) {
 		super(name, flags);
-	}
-
-	@Override
-	public @NonNull CompleteInheritance getInheritance(@NonNull StandardLibrary standardLibrary) {
-		return standardLibrary.getInheritance(this);
-	}
-
-	@Override
-	@NonNull
-	public List<Constraint> getOwnedConstraints() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public @NonNull String getMetaTypeName() {
-		return getTypeId().getMetaTypeName();
-//		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public List<TemplateBinding> getOwnedBindings() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public TemplateSignature getOwnedSignature() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public void setOwnedSignature(TemplateSignature value) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public TemplateableElement getUnspecializedElement() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public void setUnspecializedElement(TemplateableElement value) {
-		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -88,23 +47,19 @@ public class AbstractExecutorClass extends AbstractExecutorType implements org.e
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
-	@NonNull
-	public DomainTypeParameters getTypeParameters() {
-		return DomainTypeParameters.EMPTY_LIST;
-//		throw new UnsupportedOperationException();
+	//	@Override
+	public Class getBehavioralClass() {
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public boolean isOrdered() {
-		return false;
-//		throw new UnsupportedOperationException();
+	public @NonNull List<StereotypeExtender> getExtenders() {
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public boolean isUnique() {
-		return false;
-//		throw new UnsupportedOperationException();
+	public @NonNull CompleteInheritance getInheritance(@NonNull StandardLibrary standardLibrary) {
+		return standardLibrary.getInheritance(this);
 	}
 
 	@Override
@@ -113,33 +68,25 @@ public class AbstractExecutorClass extends AbstractExecutorType implements org.e
 	}
 
 	@Override
-	public void setInstanceClassName(String value) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public boolean isAbstract() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public void setIsAbstract(boolean value) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public boolean isActive() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public void setIsActive(boolean value) {
-		throw new UnsupportedOperationException();
+	public @NonNull String getMetaTypeName() {
+		return getTypeId().getMetaTypeName();
+//		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	@NonNull
 	public List<Behavior> getOwnedBehaviors() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public List<TemplateBinding> getOwnedBindings() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	@NonNull
+	public List<Constraint> getOwnedConstraints() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -156,12 +103,18 @@ public class AbstractExecutorClass extends AbstractExecutorType implements org.e
 	}
 
 	@Override
-	public org.eclipse.ocl.pivot.Package getOwningPackage() {
+	@NonNull
+	public List<Property> getOwnedProperties() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void setOwningPackage(org.eclipse.ocl.pivot.Package value) {
+	public TemplateSignature getOwnedSignature() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public org.eclipse.ocl.pivot.Package getOwningPackage() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -172,8 +125,24 @@ public class AbstractExecutorClass extends AbstractExecutorType implements org.e
 	}
 
 	@Override
-	public boolean validateUniqueInvariantName(DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
+		@NonNull
+		public DomainTypeParameters getTypeParameters() {
+			return DomainTypeParameters.EMPTY_LIST;
+	//		throw new UnsupportedOperationException();
+		}
+
+	@Override
+	public TemplateableElement getUnspecializedElement() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public boolean isAbstract() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public boolean isActive() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -183,33 +152,70 @@ public class AbstractExecutorClass extends AbstractExecutorType implements org.e
 	}
 
 	@Override
-	public void setIsInterface(boolean value) {
-		throw new UnsupportedOperationException();
+	public boolean isOrdered() {
+		return false;
+//		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	@NonNull
-	public List<Property> getOwnedProperties() {
-		throw new UnsupportedOperationException();
+	public boolean isUnique() {
+		return false;
+//		throw new UnsupportedOperationException();
 	}
 
-//	@Override
+	//	@Override
 	public boolean isSerializable() {
 		throw new UnsupportedOperationException();
 	}
 
 //	@Override
+	public void setBehavioralClass(Class value) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setInstanceClassName(String value) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setIsAbstract(boolean value) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setIsActive(boolean value) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setIsInterface(boolean value) {
+		throw new UnsupportedOperationException();
+	}
+
+	//	@Override
 	public void setIsSerializable(boolean value) {
 		throw new UnsupportedOperationException();
 	}
 
-//	@Override
-	public Class getBehavioralClass() {
+	@Override
+	public void setOwnedSignature(TemplateSignature value) {
 		throw new UnsupportedOperationException();
 	}
 
-//	@Override
-	public void setBehavioralClass(Class value) {
+	@Override
+	public void setOwningPackage(org.eclipse.ocl.pivot.Package value) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setUnspecializedElement(TemplateableElement value) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public boolean validateUniqueInvariantName(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		throw new UnsupportedOperationException();
 	}
 }
