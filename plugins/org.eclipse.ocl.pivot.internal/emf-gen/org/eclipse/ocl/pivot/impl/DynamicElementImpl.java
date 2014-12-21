@@ -126,14 +126,14 @@ public class DynamicElementImpl extends ElementImpl implements DynamicElement
 	{
 		switch (featureID)
 		{
-			case PivotPackage.DYNAMIC_ELEMENT__COMMENT:
-				return getComment();
-			case PivotPackage.DYNAMIC_ELEMENT__EXTENSION:
-				return getExtension();
-			case PivotPackage.DYNAMIC_ELEMENT__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.DYNAMIC_ELEMENT__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.DYNAMIC_ELEMENT__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.DYNAMIC_ELEMENT__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.DYNAMIC_ELEMENT__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.DYNAMIC_ELEMENT__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.DYNAMIC_ELEMENT__META_TYPE:
 				if (resolve) return getMetaType();
 				return basicGetMetaType();
@@ -152,21 +152,21 @@ public class DynamicElementImpl extends ElementImpl implements DynamicElement
 	{
 		switch (featureID)
 		{
-			case PivotPackage.DYNAMIC_ELEMENT__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.DYNAMIC_ELEMENT__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.DYNAMIC_ELEMENT__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.DYNAMIC_ELEMENT__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.DYNAMIC_ELEMENT__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.DYNAMIC_ELEMENT__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.DYNAMIC_ELEMENT__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.DYNAMIC_ELEMENT__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.DYNAMIC_ELEMENT__META_TYPE:
 				setMetaType((Type)newValue);
@@ -185,17 +185,17 @@ public class DynamicElementImpl extends ElementImpl implements DynamicElement
 	{
 		switch (featureID)
 		{
-			case PivotPackage.DYNAMIC_ELEMENT__COMMENT:
-				getComment().clear();
+			case PivotPackage.DYNAMIC_ELEMENT__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.DYNAMIC_ELEMENT__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.DYNAMIC_ELEMENT__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.DYNAMIC_ELEMENT__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.DYNAMIC_ELEMENT__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.DYNAMIC_ELEMENT__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.DYNAMIC_ELEMENT__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.DYNAMIC_ELEMENT__META_TYPE:
 				setMetaType((Type)null);
@@ -214,14 +214,14 @@ public class DynamicElementImpl extends ElementImpl implements DynamicElement
 	{
 		switch (featureID)
 		{
-			case PivotPackage.DYNAMIC_ELEMENT__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.DYNAMIC_ELEMENT__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.DYNAMIC_ELEMENT__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.DYNAMIC_ELEMENT__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.DYNAMIC_ELEMENT__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.DYNAMIC_ELEMENT__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.DYNAMIC_ELEMENT__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.DYNAMIC_ELEMENT__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.DYNAMIC_ELEMENT__META_TYPE:
 				return metaType != null;
 		}

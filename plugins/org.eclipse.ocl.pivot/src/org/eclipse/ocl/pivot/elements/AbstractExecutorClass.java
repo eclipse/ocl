@@ -41,7 +41,7 @@ public class AbstractExecutorClass extends AbstractExecutorType implements org.e
 
 	@Override
 	@NonNull
-	public List<Constraint> getOwnedRule() {
+	public List<Constraint> getOwnedConstraints() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -52,17 +52,17 @@ public class AbstractExecutorClass extends AbstractExecutorType implements org.e
 	}
 
 	@Override
-	public List<TemplateBinding> getOwnedTemplateBindings() {
+	public List<TemplateBinding> getOwnedBindings() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public TemplateSignature getOwnedTemplateSignature() {
+	public TemplateSignature getOwnedSignature() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void setOwnedTemplateSignature(TemplateSignature value) {
+	public void setOwnedSignature(TemplateSignature value) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -139,7 +139,7 @@ public class AbstractExecutorClass extends AbstractExecutorType implements org.e
 
 	@Override
 	@NonNull
-	public List<Behavior> getOwnedBehavior() {
+	public List<Behavior> getOwnedBehaviors() {
 		throw new UnsupportedOperationException();
 	}
 

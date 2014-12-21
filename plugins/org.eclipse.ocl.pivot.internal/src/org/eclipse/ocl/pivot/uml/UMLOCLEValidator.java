@@ -300,7 +300,7 @@ public class UMLOCLEValidator implements EValidator
 								HashSet<org.eclipse.ocl.pivot.Constraint> allConstraints = new HashSet<org.eclipse.ocl.pivot.Constraint>();
 								gatherTypes(allClassifiers, allConstraints, stereotype);
 								for (org.eclipse.ocl.pivot.Constraint constraint : allConstraints) {
-									LanguageExpression specification = constraint.getSpecification();
+									LanguageExpression specification = constraint.getOwnedSpecification();
 									if (specification != null) {
 										try {
 											ExpressionInOCL query = metaModelManager.getQueryOrThrow(specification);

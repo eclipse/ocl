@@ -28,7 +28,7 @@ import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.EnumerationLiteral#getEnumeration <em>Enumeration</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.EnumerationLiteral#getOwningEnumeration <em>Owning Enumeration</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.EnumerationLiteral#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
@@ -39,30 +39,30 @@ import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
 public interface EnumerationLiteral extends InstanceSpecification {
 
 	/**
-	 * Returns the value of the '<em><b>Enumeration</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Enumeration#getOwnedLiteral <em>Owned Literal</em>}'.
+	 * Returns the value of the '<em><b>Owning Enumeration</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Enumeration#getOwnedLiterals <em>Owned Literals</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The Enumeration that this EnumerationLiteral is a member of.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Enumeration</em>' container reference.
-	 * @see #setEnumeration(Enumeration)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getEnumerationLiteral_Enumeration()
-	 * @see org.eclipse.ocl.pivot.Enumeration#getOwnedLiteral
+	 * @return the value of the '<em>Owning Enumeration</em>' container reference.
+	 * @see #setOwningEnumeration(Enumeration)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getEnumerationLiteral_OwningEnumeration()
+	 * @see org.eclipse.ocl.pivot.Enumeration#getOwnedLiterals
 	 * @generated
 	 */
-	Enumeration getEnumeration();
+	Enumeration getOwningEnumeration();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.EnumerationLiteral#getEnumeration <em>Enumeration</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.EnumerationLiteral#getOwningEnumeration <em>Owning Enumeration</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Enumeration</em>' container reference.
-	 * @see #getEnumeration()
+	 * @param value the new value of the '<em>Owning Enumeration</em>' container reference.
+	 * @see #getOwningEnumeration()
 	 * @generated
 	 */
-	void setEnumeration(Enumeration value);
+	void setOwningEnumeration(Enumeration value);
 
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.

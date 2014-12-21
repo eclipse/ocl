@@ -46,7 +46,7 @@ public class ConstrainedProperty extends AbstractProperty
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		ExpressionInOCL expression2 = expression;
 		if (expression2 == null) {
-			LanguageExpression defaultSpecification = property.getDefaultExpression();
+			LanguageExpression defaultSpecification = property.getOwnedExpression();
 			if (defaultSpecification == null) {
 				throw new InvalidValueException("No defaultExpression for '{0}'", property);
 			}
@@ -67,12 +67,12 @@ public class ConstrainedProperty extends AbstractProperty
 			nestedVisitor = evaluationVisitor.createNestedEvaluator();
 		}
 		EvaluationEnvironment nestedEvaluationEnvironment = nestedVisitor.getEvaluationEnvironment();
-		Variable contextVariable = expression2.getContextVariable();
+		Variable contextVariable = expression2.getOwnedContext();
 		if (contextVariable != null) {
 			nestedEvaluationEnvironment.add(contextVariable, sourceValue);
 		}
 		try {
-			OCLExpression bodyExpression = expression2.getBodyExpression();
+			OCLExpression bodyExpression = expression2.getOwnedBody();
 			assert bodyExpression != null;
 			return nestedVisitor.evaluate(bodyExpression);
 		}

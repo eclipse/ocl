@@ -287,11 +287,11 @@ public abstract class AbstractEvaluationVisitor
 	 */
 	@Override
     public Object visitConstraint(@NonNull Constraint constraint) {
-		LanguageExpression specification = constraint.getSpecification();
+		LanguageExpression specification = constraint.getOwnedSpecification();
 		if (!(specification instanceof ExpressionInOCL)) {
 			return null;
 		}
-		OCLExpression body = ((ExpressionInOCL)specification).getBodyExpression();
+		OCLExpression body = ((ExpressionInOCL)specification).getOwnedBody();
 //		boolean isBoolean = BOOLEAN_CONSTRAINTS.contains(constraint.getStereotype());
 		
 		if (body == null) {

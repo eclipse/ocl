@@ -363,7 +363,7 @@ public class PrettyPrinter
 		String prefix = ""; //$NON-NLS-1$
 		if (operation instanceof Iteration) {
 			Iteration iteration = (Iteration)operation;
-			for (Parameter parameter : iteration.getOwnedIterator()) {
+			for (Parameter parameter : iteration.getOwnedIterators()) {
 				append(prefix);
 				if (withNames) {
 					appendName(parameter);
@@ -372,9 +372,9 @@ public class PrettyPrinter
 				appendTypedMultiplicity(parameter);
 				prefix = ", ";
 			}
-			if (iteration.getOwnedAccumulator().size() > 0) {
+			if (iteration.getOwnedAccumulators().size() > 0) {
 				prefix = "; ";
-				for (Parameter parameter : iteration.getOwnedAccumulator()) {
+				for (Parameter parameter : iteration.getOwnedAccumulators()) {
 					if (withNames) {
 						appendName(parameter);
 						append(" : ");
@@ -386,7 +386,7 @@ public class PrettyPrinter
 			}
 			prefix = " | ";
 		}
-		for (Parameter parameter : operation.getOwnedParameter()) {
+		for (Parameter parameter : operation.getOwnedParameters()) {
 			append(prefix);
 			if (withNames) {
 				appendName(parameter);
@@ -573,12 +573,12 @@ public class PrettyPrinter
     public void appendTemplateBindings(TemplateableElement typeRef) {
     	Mode savedMode = pushMode(Mode.NAME);
 		try {
-			List<TemplateBinding> templateBindings = typeRef.getOwnedTemplateBindings();
+			List<TemplateBinding> templateBindings = typeRef.getOwnedBindings();
 			if (!templateBindings.isEmpty()) {
 				append("(");
 				String prefix = ""; //$NON-NLS-1$
 				for (TemplateBinding templateBinding : templateBindings) {
-					for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedTemplateParameterSubstitutions()) {
+					for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedSubstitutions()) {
 						append(prefix);
 						Namespace savedScope = pushScope((Namespace) typeRef);
 						try {
@@ -599,9 +599,9 @@ public class PrettyPrinter
 	}
 
 	public void appendTemplateParameters(TemplateableElement templateableElement) {
-		TemplateSignature templateSignature = templateableElement.getOwnedTemplateSignature();
+		TemplateSignature templateSignature = templateableElement.getOwnedSignature();
 		if (templateSignature != null) {
-			List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
+			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
 			if (!templateParameters.isEmpty()) {
 				append("(");
 				String prefix = ""; //$NON-NLS-1$

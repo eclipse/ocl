@@ -24,8 +24,8 @@ import java.util.List;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.TemplateBinding#getOwnedTemplateParameterSubstitutions <em>Owned Template Parameter Substitutions</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.TemplateBinding#getOwningTemplateableElement <em>Owning Templateable Element</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.TemplateBinding#getOwnedSubstitutions <em>Owned Substitutions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.TemplateBinding#getOwningElement <em>Owning Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.TemplateBinding#getTemplateSignature <em>Template Signature</em>}</li>
  * </ul>
  * </p>
@@ -37,46 +37,46 @@ public interface TemplateBinding
 		extends Element {
 
 	/**
-	 * Returns the value of the '<em><b>Owned Template Parameter Substitutions</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Substitutions</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.TemplateParameterSubstitution}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.TemplateParameterSubstitution#getOwningTemplateBinding <em>Owning Template Binding</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.TemplateParameterSubstitution#getOwningBinding <em>Owning Binding</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The parameter substitutions owned by this template binding.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Template Parameter Substitutions</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateBinding_OwnedTemplateParameterSubstitutions()
-	 * @see org.eclipse.ocl.pivot.TemplateParameterSubstitution#getOwningTemplateBinding
+	 * @return the value of the '<em>Owned Substitutions</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateBinding_OwnedSubstitutions()
+	 * @see org.eclipse.ocl.pivot.TemplateParameterSubstitution#getOwningBinding
 	 * @generated
 	 */
-	List<TemplateParameterSubstitution> getOwnedTemplateParameterSubstitutions();
+	List<TemplateParameterSubstitution> getOwnedSubstitutions();
 
 	/**
-	 * Returns the value of the '<em><b>Owning Templateable Element</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.TemplateableElement#getOwnedTemplateBindings <em>Owned Template Bindings</em>}'.
+	 * Returns the value of the '<em><b>Owning Element</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.TemplateableElement#getOwnedBindings <em>Owned Bindings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The element that is bound by this binding.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owning Templateable Element</em>' container reference.
-	 * @see #setOwningTemplateableElement(TemplateableElement)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateBinding_OwningTemplateableElement()
-	 * @see org.eclipse.ocl.pivot.TemplateableElement#getOwnedTemplateBindings
+	 * @return the value of the '<em>Owning Element</em>' container reference.
+	 * @see #setOwningElement(TemplateableElement)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateBinding_OwningElement()
+	 * @see org.eclipse.ocl.pivot.TemplateableElement#getOwnedBindings
 	 * @generated
 	 */
-	TemplateableElement getOwningTemplateableElement();
+	TemplateableElement getOwningElement();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.TemplateBinding#getOwningTemplateableElement <em>Owning Templateable Element</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.TemplateBinding#getOwningElement <em>Owning Element</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Templateable Element</em>' container reference.
-	 * @see #getOwningTemplateableElement()
+	 * @param value the new value of the '<em>Owning Element</em>' container reference.
+	 * @see #getOwningElement()
 	 * @generated
 	 */
-	void setOwningTemplateableElement(TemplateableElement value);
+	void setOwningElement(TemplateableElement value);
 
 	/**
 	 * Returns the value of the '<em><b>Template Signature</b></em>' reference.

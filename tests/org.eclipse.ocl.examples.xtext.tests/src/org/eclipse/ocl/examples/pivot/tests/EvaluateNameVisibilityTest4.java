@@ -136,9 +136,9 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 
 	@Test public void test_self_scope() {
 		ExpressionInOCL query = createQuery(null, "Sequence{1}");
-		CollectionLiteralExp coll = (CollectionLiteralExp) query.getBodyExpression();
-		CollectionItem item = (CollectionItem) coll.getPart().get(0);
-		assertQueryTrue(item, "type = item.type");
+		CollectionLiteralExp coll = (CollectionLiteralExp) query.getOwnedBody();
+		CollectionItem item = (CollectionItem) coll.getOwnedParts().get(0);
+		assertQueryTrue(item, "type = ownedItem.type");
 //		assertQueryInvalid(null, "type = item.type");		// A2.2 def'n of invalid = invalid
 		assertQueryInvalid(null, "let item : CollectionItem = null in item.type = item");		// A2.2 def'n of invalid = invalid
 		assertQueryInvalid(null, "let item : CollectionItem = invalid in item.type = item");		// A2.2 def'n of invalid = invalid
@@ -176,7 +176,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		String textQuery = 
 			    "let bodyConstraint : Constraint = null\n" + 
 			    "in bodyConstraint <> null implies\n" +
-			    "bodyConstraint.specification = null";
+			    "bodyConstraint.ownedSpecification = null";
 		org.eclipse.ocl.pivot.Class testType = standardLibrary.getIntegerType();
 		assert testType.getOwnedInvariants().isEmpty();
 		assertQueryTrue(testType, textQuery);
@@ -188,7 +188,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		String textQuery = 
 			    "let bodyConstraint : Constraint = oclType().ownedInvariants->any(name = 'body')\n" + 
 			    "in bodyConstraint <> null implies\n" +
-			    "let bodySpecification : ValueSpecification = bodyConstraint.specification\n" +
+			    "let bodySpecification : ValueSpecification = bodyConstraint.ownedSpecification\n" +
 			    "in bodySpecification <> null and\n" +
 			    "bodySpecification.oclIsKindOf(ExpressionInOCL) implies\n" +
 			    "true";
@@ -209,7 +209,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		String textQuery = 
 			    "name = 'closure' implies\n" +
 			    "type.oclAsType(CollectionType).elementType = null";
-		assertQueryTrue(query.getBodyExpression(), textQuery);
+		assertQueryTrue(query.getOwnedBody(), textQuery);
 	}
 	
 	@Test public void test_cg_caught_if() throws ParserException {
@@ -218,9 +218,9 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		ExpressionInOCL query = getHelper().createQuery("self->any(true)");
 		String textQuery = 
 			    "name = 'closure' implies\n" +
-			    "if self.source.type.oclIsKindOf(SequenceType) or self.source.type.oclIsKindOf(OrderedSetType)"
+			    "if self.ownedSource.type.oclIsKindOf(SequenceType) or self.ownedSource.type.oclIsKindOf(OrderedSetType)"
 			    + "then self.type.oclIsKindOf(OrderedSetType) else self.type.oclIsKindOf(SetType) endif";
-		assertQueryTrue(query.getBodyExpression(), textQuery);
+		assertQueryTrue(query.getOwnedBody(), textQuery);
 	}
 	
 	@Test public void test_cg_loop_source_self_or() throws ParserException, IOException {

@@ -66,7 +66,7 @@ public class QueryImpl implements Query, ProblemAware
 		this.ocl = ocl;
 		this.environment = ocl.getEnvironment();
 		this.query = query;
-		this.expression = query.getBodyExpression();
+		this.expression = query.getOwnedBody();
 		this.modelManager = ocl.getModelManager();
 	}
 
@@ -169,7 +169,7 @@ public class QueryImpl implements Query, ProblemAware
 		//    the client.  Initialize it with the "self" context variable
 		EvaluationEnvironment myEnv = getEvaluationEnvironment();
 		MetaModelManager metaModelManager = myEnv.getMetaModelManager();
-		Variable contextVariable = ClassUtil.nonNullState(query.getContextVariable());
+		Variable contextVariable = ClassUtil.nonNullState(query.getOwnedContext());
 		myEnv.add(contextVariable, metaModelManager.getIdResolver().boxedValueOf(obj));
 //		Variable resultVariable = specification.getResultVariable();
 //		if (resultVariable != null) {
@@ -244,7 +244,7 @@ public class QueryImpl implements Query, ProblemAware
 		if (modelManager == null) {
 			EvaluationEnvironment myEnv = getEvaluationEnvironment();
 			
-			Object context = myEnv.getValueOf(query.getContextVariable());
+			Object context = myEnv.getValueOf(query.getOwnedContext());
 			
 			modelManager = myEnv.createModelManager(context);
 		}

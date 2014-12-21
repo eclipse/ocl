@@ -1333,10 +1333,10 @@ public class OCLstdlib extends ASResourceImpl
 			Parameter parameter;
 			ownedOperations = _Boolean.getOwnedOperations();
 			ownedOperations.add(operation = op_Boolean__lt__gt_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object2", _OclSelf, true));
 			ownedOperations.add(operation = op_Boolean__eq_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object2", _OclSelf, true));
 			ownedOperations.add(operation = op_Boolean_allInstances);
 			operation.setIsStatic(true);
@@ -1345,14 +1345,14 @@ public class OCLstdlib extends ASResourceImpl
 			operation.setIsRequired(false);
 			operation.setIsValidating(true);
 			operation.setBodyExpression(createExpressionInOCL(_Boolean, "if self.oclIsInvalid() then\n\t\t        if b.oclIsInvalid() then self\n\t\t        else if b = false then false\n\t\t        else self\n\t\t        endif endif\n\t\t      else if self = false then false\n\t\t      else if b.oclIsInvalid() then b\n\t\t      else if b = false then false\n\t\t      else if self = null then null\n\t\t      else if b = null then null\n\t\t      else true\n\t\t      endif endif endif endif endif endif"));
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("b", _Boolean, false));
 			ownedOperations.add(operation = op_Boolean_implies);
 			operation.setIsInvalidating(true);
 			operation.setIsRequired(false);
 			operation.setIsValidating(true);
 			operation.setBodyExpression(createExpressionInOCL(_Boolean, "if self.oclIsInvalid() then\n\t\t        if b.oclIsInvalid() then self\n\t\t        else if b = true then true\n\t\t        else self\n\t\t        endif endif\n\t\t      else if self = false then true\n\t\t      else if b.oclIsInvalid() then b\n\t\t      else if b = true then true\n\t\t      else if self = null then null\n\t\t      else if b = null then b\n\t\t      else false\n\t\t      endif endif endif endif endif endif"));
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("b", _Boolean, false));
 			ownedOperations.add(operation = op_Boolean_not);
 			operation.setIsRequired(false);
@@ -1362,146 +1362,146 @@ public class OCLstdlib extends ASResourceImpl
 			operation.setIsRequired(false);
 			operation.setIsValidating(true);
 			operation.setBodyExpression(createExpressionInOCL(_Boolean, "if self.oclIsInvalid() then\n\t\t        if b.oclIsInvalid() then self\n\t\t\t    else if b = true then true\n\t\t        else self\n\t\t        endif endif\n\t\t      else if self = true then true\n\t\t\t  else if b.oclIsInvalid() then b\n\t\t\t  else if b = true then true\n\t\t\t  else if self = null then null\n\t\t\t  else if b = null then null\n\t\t      else false\n\t\t      endif endif endif endif endif endif"));
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("b", _Boolean, false));
 			ownedOperations.add(operation = op_Boolean_toString);
 			ownedOperations.add(operation = op_Boolean_xor);
 			operation.setIsRequired(false);
 			operation.setBodyExpression(createExpressionInOCL(_Boolean, "if self.oclIsInvalid() then self\n\t\t      else if b.oclIsInvalid() then b\n\t\t      else if self = null then null\n\t\t      else if b = null then null\n\t\t      else self <> b\n\t\t      endif endif endif endif"));
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("b", _Boolean, false));
 			ownedOperations = _Integer.getOwnedOperations();
 			ownedOperations.add(operation = op_Integer__mul_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("i", _OclSelf, true));
 			ownedOperations.add(operation = op_Integer__add_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("i", _OclSelf, true));
 			ownedOperations.add(operation = op_Integer__neg_);
 			ownedOperations.add(operation = op_Integer__neg__1);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("i", _OclSelf, true));
 			ownedOperations.add(operation = op_Integer__div_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("i", _OclSelf, true));
 			ownedOperations.add(operation = op_Integer_abs);
 			ownedOperations.add(operation = op_Integer_div);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("i", _Integer, true));
 			ownedOperations.add(operation = op_Integer_max);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("i", _OclSelf, true));
 			ownedOperations.add(operation = op_Integer_min);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("i", _OclSelf, true));
 			ownedOperations.add(operation = op_Integer_mod);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("i", _Integer, true));
 			ownedOperations.add(operation = op_Integer_toString);
 			ownedOperations.add(operation = op_Integer_toUnlimitedNatural);
 			ownedOperations = _Real.getOwnedOperations();
 			ownedOperations.add(operation = op_Real__mul_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("r", _OclSelf, true));
 			ownedOperations.add(operation = op_Real__add_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("r", _OclSelf, true));
 			ownedOperations.add(operation = op_Real__neg_);
 			ownedOperations.add(operation = op_Real__neg__1);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("r", _OclSelf, true));
 			ownedOperations.add(operation = op_Real__div_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("r", _OclSelf, true));
 			ownedOperations.add(operation = op_Real__lt__gt_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object2", _OclSelf, true));
 			ownedOperations.add(operation = op_Real__eq_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object2", _OclSelf, true));
 			ownedOperations.add(operation = op_Real_abs);
 			ownedOperations.add(operation = op_Real_floor);
 			ownedOperations.add(operation = op_Real_max);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("r", _OclSelf, true));
 			ownedOperations.add(operation = op_Real_min);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("r", _OclSelf, true));
 			ownedOperations.add(operation = op_Real_round);
 			ownedOperations.add(operation = op_Real_toString);
 			ownedOperations = _String.getOwnedOperations();
 			ownedOperations.add(operation = op_String__add_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("s", _String, true));
 			ownedOperations.add(operation = op_String__lt_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("s", _OclSelf, true));
 			ownedOperations.add(operation = op_String__lt__eq_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("s", _OclSelf, true));
 			ownedOperations.add(operation = op_String__lt__gt_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object2", _OclSelf, true));
 			ownedOperations.add(operation = op_String__eq_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object2", _OclSelf, true));
 			ownedOperations.add(operation = op_String__gt_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("s", _OclSelf, true));
 			ownedOperations.add(operation = op_String__gt__eq_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("s", _OclSelf, true));
 			ownedOperations.add(operation = op_String_at);
 			operation.setIsInvalidating(true);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("i", _Integer, true));
 			ownedOperations.add(operation = op_String_characters);
 			ownedOperations.add(operation = op_String_compareTo);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("that", _OclSelf, true));
 			ownedOperations.add(operation = op_String_concat);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("s", _String, true));
 			ownedOperations.add(operation = op_String_endsWith);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("s", _String, true));
 			ownedOperations.add(operation = op_String_equalsIgnoreCase);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("s", _String, true));
 			ownedOperations.add(operation = op_String_indexOf);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("s", _String, true));
 			ownedOperations.add(operation = op_String_lastIndexOf);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("s", _String, true));
 			ownedOperations.add(operation = op_String_matches);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("regex", _String, true));
 			ownedOperations.add(operation = op_String_replaceAll);
 			operation.setIsInvalidating(true);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("regex", _String, true));
 			ownedParameters.add(parameter = createParameter("replacement", _String, true));
 			ownedOperations.add(operation = op_String_replaceFirst);
 			operation.setIsInvalidating(true);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("regex", _String, true));
 			ownedParameters.add(parameter = createParameter("replacement", _String, true));
 			ownedOperations.add(operation = op_String_size);
 			ownedOperations.add(operation = op_String_startsWith);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("s", _String, true));
 			ownedOperations.add(operation = op_String_substituteAll);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("oldSubstring", _String, true));
 			ownedParameters.add(parameter = createParameter("newSubstring", _String, true));
 			ownedOperations.add(operation = op_String_substituteFirst);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("oldSubstring", _String, true));
 			ownedParameters.add(parameter = createParameter("newSubstring", _String, true));
 			ownedOperations.add(operation = op_String_substring);
 			operation.setIsInvalidating(true);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lower", _Integer, true));
 			ownedParameters.add(parameter = createParameter("upper", _Integer, true));
 			ownedOperations.add(operation = op_String_toBoolean);
@@ -1517,170 +1517,170 @@ public class OCLstdlib extends ASResourceImpl
 			ownedOperations.add(operation = op_String_toUpperCase);
 			ownedOperations.add(operation = op_String_tokenize);
 			ownedOperations.add(operation = op_String_tokenize_1);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("delimiters", _String, true));
 			ownedOperations.add(operation = op_String_tokenize_2);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("delimiters", _String, true));
 			ownedParameters.add(parameter = createParameter("returnDelimiters", _Boolean, true));
 			ownedOperations.add(operation = op_String_trim);
 			ownedOperations = _UnlimitedNatural.getOwnedOperations();
 			ownedOperations.add(operation = op_UnlimitedNatural_max);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("i", _OclSelf, true));
 			ownedOperations.add(operation = op_UnlimitedNatural_min);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("i", _OclSelf, true));
 			ownedOperations.add(operation = op_UnlimitedNatural_oclAsType);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("type", tp_UnlimitedNatural_oclAsType_TT, true));
 			parameter.setIsTypeof(true);
 			ownedOperations.add(operation = op_UnlimitedNatural_toInteger);
 			ownedOperations = _Bag_Bag_T.getOwnedOperations();
 			ownedOperations.add(operation = op_Bag__lt__gt_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object2", _OclSelf, true));
 			ownedOperations.add(operation = op_Bag__eq_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object2", _OclSelf, true));
 			ownedOperations.add(operation = op_Bag_excluding);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object", _OclAny, false));
 			ownedOperations.add(operation = op_Bag_excludingAll);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("objects", _Collection_OclAny, true));
 			ownedOperations.add(operation = op_Bag_flatten);
 			ownedOperations.add(operation = op_Bag_including);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object", tp_Bag_T, false));
 			ownedOperations.add(operation = op_Bag_includingAll);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("objects", _Collection_Bag_T, true));
 			ownedOperations.add(operation = op_Bag_selectByKind);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("type", tp_Bag_selectByKind_TT, true));
 			parameter.setIsTypeof(true);
 			ownedOperations.add(operation = op_Bag_selectByType);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("type", tp_Bag_selectByType_TT, true));
 			parameter.setIsTypeof(true);
 			ownedOperations = _Collection_Collection_T.getOwnedOperations();
 			ownedOperations.add(operation = op_Collection__lt__gt_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object2", _OclSelf, true));
 			ownedOperations.add(operation = op_Collection__eq_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object2", _OclSelf, true));
 			ownedOperations.add(operation = op_Collection_asBag);
 			ownedOperations.add(operation = op_Collection_asOrderedSet);
 			ownedOperations.add(operation = op_Collection_asSequence);
 			ownedOperations.add(operation = op_Collection_asSet);
 			ownedOperations.add(operation = op_Collection_count);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object", _OclAny, false));
 			ownedOperations.add(operation = op_Collection_excludes);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object", _OclAny, false));
 			ownedOperations.add(operation = op_Collection_excludesAll);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("c2", _Collection_Collection_excludesAll_T2, true));
 			ownedOperations.add(operation = op_Collection_excluding);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object", _OclAny, false));
 			ownedOperations.add(operation = op_Collection_excludingAll);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("objects", _Collection_OclAny, true));
 			ownedOperations.add(operation = op_Collection_flatten);
 			ownedOperations.add(operation = op_Collection_includes);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object", _OclAny, false));
 			ownedOperations.add(operation = op_Collection_includesAll);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("c2", _Collection_Collection_includesAll_T2, true));
 			ownedOperations.add(operation = op_Collection_including);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object", tp_Collection_T, false));
 			ownedOperations.add(operation = op_Collection_includingAll);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("objects", _Collection_Collection_T, true));
 			ownedOperations.add(operation = op_Collection_intersection);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("c", _Collection_Collection_T, true));
 			ownedOperations.add(operation = op_Collection_intersection_1);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("u", _UniqueCollection_Collection_T, true));
 			ownedOperations.add(operation = op_Collection_isEmpty);
 			ownedOperations.add(operation = op_Collection_max);
 			ownedOperations.add(operation = op_Collection_min);
 			ownedOperations.add(operation = op_Collection_notEmpty);
 			ownedOperations.add(operation = op_Collection_product);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("c2", _Collection_Collection_product_T2, true));
 			ownedOperations.add(operation = op_Collection_selectByKind);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("type", tp_Collection_selectByKind_TT, true));
 			parameter.setIsTypeof(true);
 			ownedOperations.add(operation = op_Collection_selectByType);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("type", tp_Collection_selectByType_TT, true));
 			parameter.setIsTypeof(true);
 			ownedOperations.add(operation = op_Collection_size);
 			ownedOperations.add(operation = op_Collection_sum);
 			ownedOperations.add(operation = op_Collection_union);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("c", _Collection_Collection_T, true));
 			ownedOperations = _Enumeration.getOwnedOperations();
 			ownedOperations.add(operation = op_Enumeration_allInstances);
 			operation.setIsStatic(true);
 			ownedOperations = _OclAny.getOwnedOperations();
 			ownedOperations.add(operation = op_OclAny__lt__gt_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object2", _OclSelf, true));
 			ownedOperations.add(operation = op_OclAny__eq_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object2", _OclSelf, true));
 			ownedOperations.add(operation = op_OclAny_oclAsSet);
 			ownedOperations.add(operation = op_OclAny_oclAsType);
 			operation.setIsRequired(false);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("type", tp_OclAny_oclAsType_TT, true));
 			parameter.setIsTypeof(true);
 			ownedOperations.add(operation = op_OclAny_oclIsInState);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("statespec", _OclState, true));
 			ownedOperations.add(operation = op_OclAny_oclIsInvalid);
 			operation.setIsValidating(true);
 			ownedOperations.add(operation = op_OclAny_oclIsKindOf);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("type", _OclType, true));
 			ownedOperations.add(operation = op_OclAny_oclIsNew);
 			ownedOperations.add(operation = op_OclAny_oclIsTypeOf);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("type", _OclType, true));
 			ownedOperations.add(operation = op_OclAny_oclIsUndefined);
 			operation.setIsValidating(true);
 			ownedOperations.add(operation = op_OclAny_oclLog);
 			ownedOperations.add(operation = op_OclAny_oclLog_1);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("message", _String, true));
 			ownedOperations.add(operation = op_OclAny_oclType);
 			operation.setIsTypeof(true);
 			ownedOperations.add(operation = op_OclAny_toString);
 			ownedOperations = _OclComparable.getOwnedOperations();
 			ownedOperations.add(operation = op_OclComparable__lt_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("that", _OclSelf, true));
 			ownedOperations.add(operation = op_OclComparable__lt__eq_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("that", _OclSelf, true));
 			ownedOperations.add(operation = op_OclComparable__gt_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("that", _OclSelf, true));
 			ownedOperations.add(operation = op_OclComparable__gt__eq_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("that", _OclSelf, true));
 			ownedOperations.add(operation = op_OclComparable_compareTo);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("that", _OclSelf, true));
 			ownedOperations = _OclElement.getOwnedOperations();
 			ownedOperations.add(operation = op_OclElement_allInstances);
@@ -1690,35 +1690,35 @@ public class OCLstdlib extends ASResourceImpl
 			ownedOperations.add(operation = op_OclElement_oclContents);
 			ownedOperations = _OclInvalid.getOwnedOperations();
 			ownedOperations.add(operation = op_OclInvalid__lt__gt_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object2", _OclSelf, true));
 			ownedOperations.add(operation = op_OclInvalid__eq_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object2", _OclSelf, true));
 			ownedOperations.add(operation = op_OclInvalid_allInstances);
 			operation.setIsStatic(true);
 			ownedOperations.add(operation = op_OclInvalid_and);
 			operation.setIsRequired(false);
 			operation.setIsValidating(true);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("b", _Boolean, false));
 			ownedOperations.add(operation = op_OclInvalid_implies);
 			operation.setIsRequired(false);
 			operation.setIsValidating(true);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("b", _Boolean, false));
 			ownedOperations.add(operation = op_OclInvalid_oclAsSet);
 			ownedOperations.add(operation = op_OclInvalid_oclAsType);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("type", tp_OclInvalid_oclAsType_TT, true));
 			parameter.setIsTypeof(true);
 			ownedOperations.add(operation = op_OclInvalid_oclIsInvalid);
 			operation.setIsValidating(true);
 			ownedOperations.add(operation = op_OclInvalid_oclIsKindOf);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("type", _OclType, true));
 			ownedOperations.add(operation = op_OclInvalid_oclIsTypeOf);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("type", _OclType, true));
 			ownedOperations.add(operation = op_OclInvalid_oclIsUndefined);
 			operation.setIsValidating(true);
@@ -1727,7 +1727,7 @@ public class OCLstdlib extends ASResourceImpl
 			ownedOperations.add(operation = op_OclInvalid_or);
 			operation.setIsRequired(false);
 			operation.setIsValidating(true);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("b", _Boolean, false));
 			ownedOperations.add(operation = op_OclInvalid_toString);
 			ownedOperations = _OclMessage.getOwnedOperations();
@@ -1737,36 +1737,36 @@ public class OCLstdlib extends ASResourceImpl
 			ownedOperations.add(operation = op_OclMessage_result);
 			ownedOperations = _OclSummable.getOwnedOperations();
 			ownedOperations.add(operation = op_OclSummable_sum);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("that", _OclSelf, true));
 			ownedOperations.add(operation = op_OclSummable_zero);
 			ownedOperations = _OclTuple.getOwnedOperations();
 			ownedOperations.add(operation = op_OclTuple__lt__gt_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object2", _OclSelf, true));
 			ownedOperations.add(operation = op_OclTuple__eq_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object2", _OclSelf, true));
 			ownedOperations = _OclType.getOwnedOperations();
 			ownedOperations.add(operation = op_OclType_conformsTo);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("type2", _OclType, true));
 			ownedOperations = _OclVoid.getOwnedOperations();
 			ownedOperations.add(operation = op_OclVoid__lt__gt_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object2", _OclSelf, true));
 			ownedOperations.add(operation = op_OclVoid__eq_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object2", _OclSelf, true));
 			ownedOperations.add(operation = op_OclVoid_allInstances);
 			operation.setIsStatic(true);
 			ownedOperations.add(operation = op_OclVoid_and);
 			operation.setIsRequired(false);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("b", _Boolean, false));
 			ownedOperations.add(operation = op_OclVoid_implies);
 			operation.setIsRequired(false);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("b", _Boolean, false));
 			ownedOperations.add(operation = op_OclVoid_oclIsInvalid);
 			operation.setIsValidating(true);
@@ -1774,170 +1774,170 @@ public class OCLstdlib extends ASResourceImpl
 			operation.setIsValidating(true);
 			ownedOperations.add(operation = op_OclVoid_or);
 			operation.setIsRequired(false);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("b", _Boolean, false));
 			ownedOperations.add(operation = op_OclVoid_toString);
 			ownedOperations = _OrderedCollection_OrderedCollection_T.getOwnedOperations();
 			ownedOperations.add(operation = op_OrderedCollection_at);
 			operation.setIsInvalidating(true);
 			operation.setIsRequired(false);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("index", _Integer, true));
 			ownedOperations.add(operation = op_OrderedCollection_first);
 			operation.setIsInvalidating(true);
 			operation.setIsRequired(false);
 			ownedOperations.add(operation = op_OrderedCollection_indexOf);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("obj", _OclAny, false));
 			ownedOperations.add(operation = op_OrderedCollection_last);
 			operation.setIsInvalidating(true);
 			operation.setIsRequired(false);
 			ownedOperations = _OrderedSet_OrderedSet_T.getOwnedOperations();
 			ownedOperations.add(operation = op_OrderedSet__neg_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("s", _UniqueCollection_OclAny, true));
 			ownedOperations.add(operation = op_OrderedSet__lt__gt_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object2", _OclSelf, true));
 			ownedOperations.add(operation = op_OrderedSet__eq_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object2", _OclSelf, true));
 			ownedOperations.add(operation = op_OrderedSet_append);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object", tp_OrderedSet_T, false));
 			ownedOperations.add(operation = op_OrderedSet_appendAll);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("objects", _OrderedCollection_OrderedSet_T, true));
 			ownedOperations.add(operation = op_OrderedSet_excluding);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object", _OclAny, false));
 			ownedOperations.add(operation = op_OrderedSet_excludingAll);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("objects", _Collection_OclAny, true));
 			ownedOperations.add(operation = op_OrderedSet_flatten);
 			ownedOperations.add(operation = op_OrderedSet_including);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object", tp_OrderedSet_T, false));
 			ownedOperations.add(operation = op_OrderedSet_insertAt);
 			operation.setIsInvalidating(true);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("index", _Integer, true));
 			ownedParameters.add(parameter = createParameter("object", tp_OrderedSet_T, false));
 			ownedOperations.add(operation = op_OrderedSet_prepend);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object", tp_OrderedSet_T, false));
 			ownedOperations.add(operation = op_OrderedSet_prependAll);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("objects", _OrderedCollection_OrderedSet_T, true));
 			ownedOperations.add(operation = op_OrderedSet_reverse);
 			ownedOperations.add(operation = op_OrderedSet_selectByKind);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("type", tp_OrderedSet_selectByKind_TT, true));
 			parameter.setIsTypeof(true);
 			ownedOperations.add(operation = op_OrderedSet_selectByType);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("type", tp_OrderedSet_selectByType_TT, true));
 			parameter.setIsTypeof(true);
 			ownedOperations.add(operation = op_OrderedSet_subOrderedSet);
 			operation.setIsInvalidating(true);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lower", _Integer, true));
 			ownedParameters.add(parameter = createParameter("upper", _Integer, true));
 			ownedOperations = _Sequence_Sequence_T.getOwnedOperations();
 			ownedOperations.add(operation = op_Sequence__lt__gt_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object2", _OclSelf, true));
 			ownedOperations.add(operation = op_Sequence__eq_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object2", _OclSelf, true));
 			ownedOperations.add(operation = op_Sequence_append);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object", tp_Sequence_T, false));
 			ownedOperations.add(operation = op_Sequence_appendAll);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("objects", _OrderedCollection_Sequence_T, true));
 			ownedOperations.add(operation = op_Sequence_excluding);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object", _OclAny, false));
 			ownedOperations.add(operation = op_Sequence_excludingAll);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("objects", _Collection_OclAny, true));
 			ownedOperations.add(operation = op_Sequence_flatten);
 			ownedOperations.add(operation = op_Sequence_including);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object", tp_Sequence_T, false));
 			ownedOperations.add(operation = op_Sequence_insertAt);
 			operation.setIsInvalidating(true);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("index", _Integer, true));
 			ownedParameters.add(parameter = createParameter("object", tp_Sequence_T, false));
 			ownedOperations.add(operation = op_Sequence_prepend);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object", tp_Sequence_T, false));
 			ownedOperations.add(operation = op_Sequence_prependAll);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("objects", _OrderedCollection_Sequence_T, true));
 			ownedOperations.add(operation = op_Sequence_reverse);
 			ownedOperations.add(operation = op_Sequence_selectByKind);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("type", tp_Sequence_selectByKind_TT, true));
 			parameter.setIsTypeof(true);
 			ownedOperations.add(operation = op_Sequence_selectByType);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("type", tp_Sequence_selectByType_TT, true));
 			parameter.setIsTypeof(true);
 			ownedOperations.add(operation = op_Sequence_subSequence);
 			operation.setIsInvalidating(true);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lower", _Integer, true));
 			ownedParameters.add(parameter = createParameter("upper", _Integer, true));
 			ownedOperations = _Set_Set_T.getOwnedOperations();
 			ownedOperations.add(operation = op_Set__neg_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("s", _UniqueCollection_OclAny, true));
 			ownedOperations.add(operation = op_Set__lt__gt_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object2", _OclSelf, true));
 			ownedOperations.add(operation = op_Set__eq_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object2", _OclSelf, true));
 			ownedOperations.add(operation = op_Set_excluding);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object", _OclAny, false));
 			ownedOperations.add(operation = op_Set_excludingAll);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("objects", _Collection_OclAny, true));
 			ownedOperations.add(operation = op_Set_flatten);
 			ownedOperations.add(operation = op_Set_including);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("object", tp_Set_T, false));
 			ownedOperations.add(operation = op_Set_includingAll);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("objects", _Collection_Set_T, true));
 			ownedOperations.add(operation = op_Set_selectByKind);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("type", tp_Set_selectByKind_TT, true));
 			parameter.setIsTypeof(true);
 			ownedOperations.add(operation = op_Set_selectByType);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("type", tp_Set_selectByType_TT, true));
 			parameter.setIsTypeof(true);
 			ownedOperations = _Type.getOwnedOperations();
 			ownedOperations.add(operation = op_Type_conformsTo);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("type2", _Type, true));
 			ownedOperations = _UniqueCollection_UniqueCollection_T.getOwnedOperations();
 			ownedOperations.add(operation = op_UniqueCollection__neg_);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("s", _UniqueCollection_OclAny, true));
 			ownedOperations.add(operation = op_UniqueCollection_intersection);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("c", _Collection_UniqueCollection_T, true));
 			ownedOperations.add(operation = op_UniqueCollection_symmetricDifference);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("s", _UniqueCollection_OclAny, true));
 			ownedOperations.add(operation = op_UniqueCollection_union);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("s", _UniqueCollection_UniqueCollection_T, true));
 		}
 
@@ -1987,214 +1987,214 @@ public class OCLstdlib extends ASResourceImpl
 			Parameter parameter;
 			ownedIterations = _Bag_Bag_T.getOwnedOperations();
 			ownedIterations.add(iteration = it_Bag_closure);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Bag_T, true));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T_4, true));
 			ownedIterations.add(iteration = it_Bag_collectNested);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Bag_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T_1, false));
 			ownedIterations.add(iteration = it_Bag_collect);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Bag_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T_2, false));
 			ownedIterations.add(iteration = it_Bag_reject);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Bag_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T, true));
 			ownedIterations.add(iteration = it_Bag_select);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Bag_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T, true));
 			ownedIterations.add(iteration = it_Bag_sortedBy);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Bag_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T_3, true));
 			ownedIterations = _Collection_Collection_T.getOwnedOperations();
 			ownedIterations.add(iteration = it_Collection_any);
 			iteration.setIsInvalidating(true);
 			iteration.setIsRequired(false);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Collection_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Collection_T, true));
 			ownedIterations.add(iteration = it_Collection_collectNested);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Collection_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Collection_T_1, false));
 			ownedIterations.add(iteration = it_Collection_collect);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Collection_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Collection_T_2, false));
 			ownedIterations.add(iteration = it_Collection_exists);
 			iteration.setIsRequired(false);
 			iteration.setIsValidating(true);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Collection_T, false));
 			ownedParameters.add(parameter = createParameter("j", tp_Collection_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Collection_T, false));
 			ownedIterations.add(iteration = it_Collection_exists_1);
 			iteration.setIsRequired(false);
 			iteration.setIsValidating(true);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Collection_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Collection_T, false));
 			ownedIterations.add(iteration = it_Collection_forAll);
 			iteration.setIsRequired(false);
 			iteration.setIsValidating(true);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Collection_T, false));
 			ownedParameters.add(parameter = createParameter("j", tp_Collection_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Collection_T, false));
 			ownedIterations.add(iteration = it_Collection_forAll_1);
 			iteration.setIsRequired(false);
 			iteration.setIsValidating(true);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Collection_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Collection_T, false));
 			ownedIterations.add(iteration = it_Collection_isUnique);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Collection_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Collection_T_4, false));
 			ownedIterations.add(iteration = it_Collection_iterate);
 			iteration.setIsRequired(false);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Collection_T, false));
-			ownedParameters = iteration.getOwnedAccumulator();
+			ownedParameters = iteration.getOwnedAccumulators();
 			ownedParameters.add(parameter = createParameter("acc", tp_Collection_iterate_Tacc, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Collection_T_3, false));
 			ownedIterations.add(iteration = it_Collection_one);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Collection_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Collection_T, true));
 			ownedIterations.add(iteration = it_Collection_reject);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Collection_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Collection_T, true));
 			ownedIterations.add(iteration = it_Collection_select);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Collection_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Collection_T, true));
 			ownedIterations.add(iteration = it_Collection_sortedBy);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Collection_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Collection_T_4, true));
 			ownedIterations = _OrderedSet_OrderedSet_T.getOwnedOperations();
 			ownedIterations.add(iteration = it_OrderedSet_closure);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_OrderedSet_T, true));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_OrderedSet_T_2, true));
 			ownedIterations.add(iteration = it_OrderedSet_collectNested);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_OrderedSet_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_OrderedSet_T_3, false));
 			ownedIterations.add(iteration = it_OrderedSet_collect);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_OrderedSet_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_OrderedSet_T_4, false));
 			ownedIterations.add(iteration = it_OrderedSet_reject);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_OrderedSet_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_OrderedSet_T, true));
 			ownedIterations.add(iteration = it_OrderedSet_select);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_OrderedSet_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_OrderedSet_T, true));
 			ownedIterations.add(iteration = it_OrderedSet_sortedBy);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_OrderedSet_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_OrderedSet_T_1, true));
 			ownedIterations = _Sequence_Sequence_T.getOwnedOperations();
 			ownedIterations.add(iteration = it_Sequence_closure);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Sequence_T, true));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Sequence_T_2, true));
 			ownedIterations.add(iteration = it_Sequence_collectNested);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Sequence_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Sequence_T_3, false));
 			ownedIterations.add(iteration = it_Sequence_collect);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Sequence_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Sequence_T_4, false));
 			ownedIterations.add(iteration = it_Sequence_reject);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Sequence_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Sequence_T, true));
 			ownedIterations.add(iteration = it_Sequence_select);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Sequence_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Sequence_T, true));
 			ownedIterations.add(iteration = it_Sequence_sortedBy);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Sequence_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Sequence_T_1, true));
 			ownedIterations = _Set_Set_T.getOwnedOperations();
 			ownedIterations.add(iteration = it_Set_closure);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Set_T, true));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Set_T_2, true));
 			ownedIterations.add(iteration = it_Set_collectNested);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Set_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Set_T_3, false));
 			ownedIterations.add(iteration = it_Set_collect);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Set_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Set_T_4, false));
 			ownedIterations.add(iteration = it_Set_reject);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Set_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Set_T, true));
 			ownedIterations.add(iteration = it_Set_select);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Set_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Set_T, true));
 			ownedIterations.add(iteration = it_Set_sortedBy);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Set_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Set_T_1, true));
 			ownedIterations = _UniqueCollection_UniqueCollection_T.getOwnedOperations();
 			ownedIterations.add(iteration = it_UniqueCollection_sortedBy);
-			ownedParameters = iteration.getOwnedIterator();
+			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_UniqueCollection_T, false));
-			ownedParameters = iteration.getOwnedParameter();
+			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_UniqueCollection_T, true));
 		}
 
@@ -2239,243 +2239,243 @@ public class OCLstdlib extends ASResourceImpl
 			property.setImplementation(org.eclipse.ocl.library.enumeration.EnumerationOwnedLiteralProperty.INSTANCE);
 			ownedProperties = _EnumerationLiteral.getOwnedProperties();
 			ownedProperties.add(property = pr_EnumerationLiteral_Enumeration_allLiterals);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Enumeration_allLiterals);
 		}
 
 		private void installTemplateBindings() {
-			_Bag_Bag_collectNested_V.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_Bag_collectNested_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Bag_T, tp_Bag_collectNested_V)));
-			_Bag_Bag_collect_V.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_Bag_collect_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Bag_T, tp_Bag_collect_V)));
-			_Bag_Bag_flatten_T2.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_Bag_flatten_T2.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Bag_T, tp_Bag_flatten_T2)));
-			_Bag_Bag_selectByKind_TT.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_Bag_selectByKind_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Bag_T, tp_Bag_selectByKind_TT)));
-			_Bag_Bag_selectByType_TT.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_Bag_selectByType_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Bag_T, tp_Bag_selectByType_TT)));
-			_Bag_Collection_T.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_Collection_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Bag_T, tp_Collection_T)));
-			_Bag_Enumeration.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_Enumeration.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Bag_T, _Enumeration)));
-			_Bag_Set_collectNested_V.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_Set_collectNested_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Bag_T, tp_Set_collectNested_V)));
-			_Bag_Set_collect_V.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_Set_collect_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Bag_T, tp_Set_collect_V)));
-			_Collection_Integer.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Integer.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, _Integer)));
-			_Collection_String.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_String.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, _String)));
-			_Collection_Tuple.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Tuple.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, _Tuple)));
-			_Collection_Bag_collectNested_V.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Bag_collectNested_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Bag_collectNested_V)));
-			_Collection_Bag_collect_V.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Bag_collect_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Bag_collect_V)));
-			_Collection_Bag_flatten_T2.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Bag_flatten_T2.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Bag_flatten_T2)));
-			_Collection_Bag_selectByKind_TT.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Bag_selectByKind_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Bag_selectByKind_TT)));
-			_Collection_Bag_selectByType_TT.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Bag_selectByType_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Bag_selectByType_TT)));
-			_Collection_Bag_T.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Bag_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Bag_T)));
-			_Collection_Collection_collectNested_V.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Collection_collectNested_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Collection_collectNested_V)));
-			_Collection_Collection_collect_V.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Collection_collect_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Collection_collect_V)));
-			_Collection_Collection_excludesAll_T2.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Collection_excludesAll_T2.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Collection_excludesAll_T2)));
-			_Collection_Collection_flatten_T2.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Collection_flatten_T2.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Collection_flatten_T2)));
-			_Collection_Collection_includesAll_T2.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Collection_includesAll_T2.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Collection_includesAll_T2)));
-			_Collection_Collection_product_T2.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Collection_product_T2.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Collection_product_T2)));
-			_Collection_Collection_selectByKind_TT.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Collection_selectByKind_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Collection_selectByKind_TT)));
-			_Collection_Collection_selectByType_TT.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Collection_selectByType_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Collection_selectByType_TT)));
-			_Collection_Collection_T_1.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Collection_T_1.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Collection_T)));
-			_Collection_EnumerationLiteral.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_EnumerationLiteral.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, _EnumerationLiteral)));
-			_Collection_Enumeration.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Enumeration.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, _Enumeration)));
-			_Collection_OclAny.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_OclAny.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, _OclAny)));
-			_Collection_OclElement.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_OclElement.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, _OclElement)));
-			_Collection_OclSelf.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_OclSelf.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, _OclSelf)));
-			_Collection_OrderedCollection_T.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_OrderedCollection_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_OrderedCollection_T)));
-			_Collection_OrderedSet_collectNested_V.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_OrderedSet_collectNested_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_OrderedSet_collectNested_V)));
-			_Collection_OrderedSet_collect_V.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_OrderedSet_collect_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_OrderedSet_collect_V)));
-			_Collection_OrderedSet_flatten_T2.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_OrderedSet_flatten_T2.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_OrderedSet_flatten_T2)));
-			_Collection_OrderedSet_selectByKind_TT.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_OrderedSet_selectByKind_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_OrderedSet_selectByKind_TT)));
-			_Collection_OrderedSet_selectByType_TT.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_OrderedSet_selectByType_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_OrderedSet_selectByType_TT)));
-			_Collection_OrderedSet_T.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_OrderedSet_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_OrderedSet_T)));
-			_Collection_Sequence_collectNested_V.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Sequence_collectNested_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Sequence_collectNested_V)));
-			_Collection_Sequence_collect_V.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Sequence_collect_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Sequence_collect_V)));
-			_Collection_Sequence_flatten_T2.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Sequence_flatten_T2.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Sequence_flatten_T2)));
-			_Collection_Sequence_selectByKind_TT.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Sequence_selectByKind_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Sequence_selectByKind_TT)));
-			_Collection_Sequence_selectByType_TT.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Sequence_selectByType_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Sequence_selectByType_TT)));
-			_Collection_Sequence_T.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Sequence_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Sequence_T)));
-			_Collection_Set_collectNested_V.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Set_collectNested_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Set_collectNested_V)));
-			_Collection_Set_collect_V.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Set_collect_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Set_collect_V)));
-			_Collection_Set_flatten_T2.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Set_flatten_T2.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Set_flatten_T2)));
-			_Collection_Set_selectByKind_TT.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Set_selectByKind_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Set_selectByKind_TT)));
-			_Collection_Set_selectByType_TT.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Set_selectByType_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Set_selectByType_TT)));
-			_Collection_Set_T.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Set_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Set_T)));
-			_Collection_UniqueCollection_T.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_UniqueCollection_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_UniqueCollection_T)));
-			_OrderedCollection_Integer.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_Integer.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, _Integer)));
-			_OrderedCollection_String.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_String.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, _String)));
-			_OrderedCollection_Bag_T.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_Bag_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_Bag_T)));
-			_OrderedCollection_Collection_T.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_Collection_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_Collection_T)));
-			_OrderedCollection_EnumerationLiteral.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_EnumerationLiteral.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, _EnumerationLiteral)));
-			_OrderedCollection_OrderedSet_collectNested_V.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_OrderedSet_collectNested_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_OrderedSet_collectNested_V)));
-			_OrderedCollection_OrderedSet_collect_V.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_OrderedSet_collect_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_OrderedSet_collect_V)));
-			_OrderedCollection_OrderedSet_flatten_T2.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_OrderedSet_flatten_T2.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_OrderedSet_flatten_T2)));
-			_OrderedCollection_OrderedSet_selectByKind_TT.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_OrderedSet_selectByKind_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_OrderedSet_selectByKind_TT)));
-			_OrderedCollection_OrderedSet_selectByType_TT.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_OrderedSet_selectByType_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_OrderedSet_selectByType_TT)));
-			_OrderedCollection_OrderedSet_T.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_OrderedSet_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_OrderedSet_T)));
-			_OrderedCollection_Sequence_collectNested_V.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_Sequence_collectNested_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_Sequence_collectNested_V)));
-			_OrderedCollection_Sequence_collect_V.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_Sequence_collect_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_Sequence_collect_V)));
-			_OrderedCollection_Sequence_flatten_T2.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_Sequence_flatten_T2.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_Sequence_flatten_T2)));
-			_OrderedCollection_Sequence_selectByKind_TT.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_Sequence_selectByKind_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_Sequence_selectByKind_TT)));
-			_OrderedCollection_Sequence_selectByType_TT.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_Sequence_selectByType_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_Sequence_selectByType_TT)));
-			_OrderedCollection_Sequence_T.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_Sequence_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_Sequence_T)));
-			_OrderedCollection_Set_T.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_Set_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_Set_T)));
-			_OrderedCollection_UniqueCollection_T.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_UniqueCollection_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_UniqueCollection_T)));
-			_OrderedSet_Collection_T.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedSet_Collection_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedSet_T, tp_Collection_T)));
-			_OrderedSet_EnumerationLiteral.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedSet_EnumerationLiteral.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedSet_T, _EnumerationLiteral)));
-			_OrderedSet_OrderedSet_flatten_T2.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedSet_OrderedSet_flatten_T2.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedSet_T, tp_OrderedSet_flatten_T2)));
-			_OrderedSet_OrderedSet_selectByKind_TT.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedSet_OrderedSet_selectByKind_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedSet_T, tp_OrderedSet_selectByKind_TT)));
-			_OrderedSet_OrderedSet_selectByType_TT.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedSet_OrderedSet_selectByType_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedSet_T, tp_OrderedSet_selectByType_TT)));
-			_OrderedSet_Sequence_T.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedSet_Sequence_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedSet_T, tp_Sequence_T)));
-			_OrderedSet_Set_T.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedSet_Set_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedSet_T, tp_Set_T)));
-			_OrderedSet_UniqueCollection_T.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedSet_UniqueCollection_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedSet_T, tp_UniqueCollection_T)));
-			_Sequence_Integer.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Sequence_Integer.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Sequence_T, _Integer)));
-			_Sequence_String.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Sequence_String.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Sequence_T, _String)));
-			_Sequence_Bag_T.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Sequence_Bag_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Sequence_T, tp_Bag_T)));
-			_Sequence_Collection_T.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Sequence_Collection_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Sequence_T, tp_Collection_T)));
-			_Sequence_OrderedSet_collectNested_V.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Sequence_OrderedSet_collectNested_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Sequence_T, tp_OrderedSet_collectNested_V)));
-			_Sequence_OrderedSet_collect_V.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Sequence_OrderedSet_collect_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Sequence_T, tp_OrderedSet_collect_V)));
-			_Sequence_Sequence_collectNested_V.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Sequence_Sequence_collectNested_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Sequence_T, tp_Sequence_collectNested_V)));
-			_Sequence_Sequence_collect_V.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Sequence_Sequence_collect_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Sequence_T, tp_Sequence_collect_V)));
-			_Sequence_Sequence_flatten_T2.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Sequence_Sequence_flatten_T2.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Sequence_T, tp_Sequence_flatten_T2)));
-			_Sequence_Sequence_selectByKind_TT.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Sequence_Sequence_selectByKind_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Sequence_T, tp_Sequence_selectByKind_TT)));
-			_Sequence_Sequence_selectByType_TT.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Sequence_Sequence_selectByType_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Sequence_T, tp_Sequence_selectByType_TT)));
-			_Set_Tuple.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_Tuple.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Set_T, _Tuple)));
-			_Set_Bag_T.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_Bag_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Set_T, tp_Bag_T)));
-			_Set_Collection_T.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_Collection_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Set_T, tp_Collection_T)));
-			_Set_OclElement.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_OclElement.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Set_T, _OclElement)));
-			_Set_OclSelf.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_OclSelf.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Set_T, _OclSelf)));
-			_Set_Set_flatten_T2.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_Set_flatten_T2.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Set_T, tp_Set_flatten_T2)));
-			_Set_Set_selectByKind_TT.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_Set_selectByKind_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Set_T, tp_Set_selectByKind_TT)));
-			_Set_Set_selectByType_TT.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_Set_selectByType_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Set_T, tp_Set_selectByType_TT)));
-			_Set_UniqueCollection_T.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_UniqueCollection_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Set_T, tp_UniqueCollection_T)));
-			_UniqueCollection_Tuple.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_Tuple.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_UniqueCollection_T, _Tuple)));
-			_UniqueCollection_Bag_T.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_Bag_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_UniqueCollection_T, tp_Bag_T)));
-			_UniqueCollection_Collection_T.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_Collection_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_UniqueCollection_T, tp_Collection_T)));
-			_UniqueCollection_EnumerationLiteral.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_EnumerationLiteral.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_UniqueCollection_T, _EnumerationLiteral)));
-			_UniqueCollection_OclAny.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_OclAny.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_UniqueCollection_T, _OclAny)));
-			_UniqueCollection_OclElement.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_OclElement.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_UniqueCollection_T, _OclElement)));
-			_UniqueCollection_OclSelf.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_OclSelf.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_UniqueCollection_T, _OclSelf)));
-			_UniqueCollection_OrderedSet_flatten_T2.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_OrderedSet_flatten_T2.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_UniqueCollection_T, tp_OrderedSet_flatten_T2)));
-			_UniqueCollection_OrderedSet_selectByKind_TT.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_OrderedSet_selectByKind_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_UniqueCollection_T, tp_OrderedSet_selectByKind_TT)));
-			_UniqueCollection_OrderedSet_selectByType_TT.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_OrderedSet_selectByType_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_UniqueCollection_T, tp_OrderedSet_selectByType_TT)));
-			_UniqueCollection_OrderedSet_T.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_OrderedSet_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_UniqueCollection_T, tp_OrderedSet_T)));
-			_UniqueCollection_Sequence_T.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_Sequence_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_UniqueCollection_T, tp_Sequence_T)));
-			_UniqueCollection_Set_flatten_T2.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_Set_flatten_T2.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_UniqueCollection_T, tp_Set_flatten_T2)));
-			_UniqueCollection_Set_selectByKind_TT.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_Set_selectByKind_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_UniqueCollection_T, tp_Set_selectByKind_TT)));
-			_UniqueCollection_Set_selectByType_TT.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_Set_selectByType_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_UniqueCollection_T, tp_Set_selectByType_TT)));
-			_UniqueCollection_Set_T.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_Set_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_UniqueCollection_T, tp_Set_T)));
-			_UniqueCollection_UniqueCollection_T_1.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_UniqueCollection_T_1.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_UniqueCollection_T, tp_UniqueCollection_T)));
 		}
 
@@ -2491,7 +2491,7 @@ public class OCLstdlib extends ASResourceImpl
 			final Precedence prec_UNARY = createPrecedence("UNARY", AssociativityKind.LEFT);
 			final Precedence prec_XOR = createPrecedence("XOR", AssociativityKind.LEFT);
 		
-			final List<Precedence> ownedPrecedences = library.getOwnedPrecedence();
+			final List<Precedence> ownedPrecedences = library.getOwnedPrecedences();
 			ownedPrecedences.add(prec_NAVIGATION);
 			ownedPrecedences.add(prec_UNARY);
 			ownedPrecedences.add(prec_MULTIPLICATIVE);

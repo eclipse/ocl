@@ -209,7 +209,7 @@ public class RoundTripTests extends XtextTestCase
 				if (eObject instanceof ExpressionInOCL) {
 //					System.out.println(++i + ": " + eObject);
 					ExpressionInOCL specification = (ExpressionInOCL) eObject;
-					if ((specification.getBodyExpression() != null) || (specification.getBody() != null)) {
+					if ((specification.getOwnedBody() != null) || (specification.getBody() != null)) {
 						metaModelManager.getQueryOrThrow(specification);
 					}
 					tit.prune();

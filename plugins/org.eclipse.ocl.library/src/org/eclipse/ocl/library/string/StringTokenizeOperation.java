@@ -42,7 +42,7 @@ public class StringTokenizeOperation extends AbstractOperation implements Librar
 		String delims = DELIMS;
 		boolean returnDelims = false;
 		TypeId typeId = callExp.getTypeId();
-		List<? extends OCLExpression> arguments = callExp.getArgument();
+		List<? extends OCLExpression> arguments = callExp.getOwnedArguments();
 		if (arguments.size() > 0) {
 			if (arguments.size() > 1) {
 				if (arguments.size() > 2) {

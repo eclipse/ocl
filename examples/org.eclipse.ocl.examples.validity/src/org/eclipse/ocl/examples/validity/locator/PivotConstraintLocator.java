@@ -101,7 +101,7 @@ public class PivotConstraintLocator extends AbstractConstraintLocator
 		if (!(constrainingObject instanceof Constraint)) {
 			return null;
 		}
-		LanguageExpression specification = ((Constraint)constrainingObject).getSpecification();
+		LanguageExpression specification = ((Constraint)constrainingObject).getOwnedSpecification();
 		if (specification == null) {
 			return null;
 		}

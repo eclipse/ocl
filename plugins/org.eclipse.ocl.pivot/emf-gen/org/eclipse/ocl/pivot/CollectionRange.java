@@ -18,8 +18,8 @@ package org.eclipse.ocl.pivot;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.CollectionRange#getFirst <em>First</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.CollectionRange#getLast <em>Last</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.CollectionRange#getOwnedFirst <em>Owned First</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.CollectionRange#getOwnedLast <em>Owned Last</em>}</li>
  * </ul>
  * </p>
  *
@@ -30,53 +30,53 @@ public interface CollectionRange
 		extends CollectionLiteralPart {
 
 	/**
-	 * Returns the value of the '<em><b>First</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned First</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>First</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>First</em>' containment reference.
-	 * @see #setFirst(OCLExpression)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getCollectionRange_First()
+	 * @return the value of the '<em>Owned First</em>' containment reference.
+	 * @see #setOwnedFirst(OCLExpression)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getCollectionRange_OwnedFirst()
 	 * @generated
 	 */
-	OCLExpression getFirst();
+	OCLExpression getOwnedFirst();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.CollectionRange#getFirst <em>First</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.CollectionRange#getOwnedFirst <em>Owned First</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>First</em>' containment reference.
-	 * @see #getFirst()
+	 * @param value the new value of the '<em>Owned First</em>' containment reference.
+	 * @see #getOwnedFirst()
 	 * @generated
 	 */
-	void setFirst(OCLExpression value);
+	void setOwnedFirst(OCLExpression value);
 
 	/**
-	 * Returns the value of the '<em><b>Last</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Last</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Last</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Last</em>' containment reference.
-	 * @see #setLast(OCLExpression)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getCollectionRange_Last()
+	 * @return the value of the '<em>Owned Last</em>' containment reference.
+	 * @see #setOwnedLast(OCLExpression)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getCollectionRange_OwnedLast()
 	 * @generated
 	 */
-	OCLExpression getLast();
+	OCLExpression getOwnedLast();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.CollectionRange#getLast <em>Last</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.CollectionRange#getOwnedLast <em>Owned Last</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Last</em>' containment reference.
-	 * @see #getLast()
+	 * @param value the new value of the '<em>Owned Last</em>' containment reference.
+	 * @see #getOwnedLast()
 	 * @generated
 	 */
-	void setLast(OCLExpression value);
+	void setOwnedLast(OCLExpression value);
 
 } // CollectionRange

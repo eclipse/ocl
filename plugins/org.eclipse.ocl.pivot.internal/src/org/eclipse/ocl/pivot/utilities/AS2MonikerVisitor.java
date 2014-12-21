@@ -76,8 +76,8 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 			@Nullable TemplateableElement templateableElement) {
 		for (EObject eObject = templateableElement; eObject != null; eObject = eObject.eContainer()) {
 			if (eObject instanceof TemplateableElement) {
-				for (TemplateBinding templateBinding : ((TemplateableElement) eObject).getOwnedTemplateBindings()) {
-					for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedTemplateParameterSubstitutions()) {
+				for (TemplateBinding templateBinding : ((TemplateableElement) eObject).getOwnedBindings()) {
+					for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedSubstitutions()) {
 						if (map == null) {
 							map = new HashMap<TemplateParameter, Type>();
 						}
@@ -97,7 +97,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 	public static void initialize() {
 		if (!initialized) {
 			initialized = true;
-			roleNames.put(PivotPackage.Literals.LOOP_EXP__BODY, "argument");
+			roleNames.put(PivotPackage.Literals.LOOP_EXP__OWNED_BODY, "argument");
 //			roleNames.put(PivotPackage.Literals.EXPRESSION_IN_OCL__BODY_EXPRESSION, "ownedExpression");
 	
 			/*		roleNames.put(PivotPackage.Literals.CALL_EXP__SOURCE, "s");
@@ -136,8 +136,8 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 			CallExp callExpParent = (CallExp)parent;
 			if (callExpParent.isImplicit()) {
 				if (callExpParent instanceof IteratorExp) {		// Bypass implicit collect
-					if (callExpParent.getSource() == object) {
-						context.appendElement(((IteratorExp)callExpParent).getBody());
+					if (callExpParent.getOwnedSource() == object) {
+						context.appendElement(((IteratorExp)callExpParent).getOwnedBody());
 						context.append(MONIKER_SCOPE_SEPARATOR);
 						context.appendRole(object);
 						context.append(MONIKER_OPERATOR_SEPARATOR);
@@ -150,7 +150,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 						return;
 					}
 				}
-				else if (callExpParent.getSource() == object) {
+				else if (callExpParent.getOwnedSource() == object) {
 					object = callExpParent;
 				}
 			}
@@ -198,7 +198,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 
 	@Override
 	public Object visitClass(@NonNull org.eclipse.ocl.pivot.Class object) {
-		if (!object.getOwnedTemplateBindings().isEmpty()) {
+		if (!object.getOwnedBindings().isEmpty()) {
 			Type templateableClass = PivotUtil.getUnspecializedTemplateableElement(object);
 			context.appendParent(templateableClass, MONIKER_SCOPE_SEPARATOR);
 			context.appendName(templateableClass);
@@ -206,7 +206,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 		}
 		else if (object.eContainer() instanceof TemplateParameterSubstitution) {
 			TemplateParameter formal = ((TemplateParameterSubstitution)object.eContainer()).getFormal();
-			int index = formal.getOwningTemplateSignature().getOwnedTemplateParameters().indexOf(formal);
+			int index = formal.getOwningSignature().getOwnedParameters().indexOf(formal);
 			context.appendParent(object, MONIKER_SCOPE_SEPARATOR);
 			context.append(WILDCARD_INDICATOR + index);
 		}
@@ -306,7 +306,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 	@Override
 	public Object visitEnumLiteralExp(@NonNull EnumLiteralExp object) {
 		appendExpPrefix(object);
-		context.appendName(object.getReferredEnumLiteral());
+		context.appendName(object.getReferredLiteral());
 		return true;
 	}
 
@@ -363,7 +363,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 	public Object visitLoopExp(@NonNull LoopExp object) {
 		appendExpPrefix(object);
 		if (object.isImplicit()) {
-			OCLExpression body = object.getBody();
+			OCLExpression body = object.getOwnedBody();
 			if (body instanceof CallExp) {
 				Feature referredFeature = PivotUtil.getReferredFeature((CallExp) body);
 				context.appendName(referredFeature);
@@ -396,7 +396,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 
 	@Override
 	public Object visitOperation(@NonNull Operation object) {
-		if (!object.getOwnedTemplateBindings().isEmpty()) {
+		if (!object.getOwnedBindings().isEmpty()) {
 			context.appendParent(object, MONIKER_SCOPE_SEPARATOR);
 			context.appendName(object);
 			Map<TemplateParameter, Type> bindings = getAllTemplateParameterSubstitutions(null, object);
@@ -483,7 +483,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 	public Object visitTemplateBinding(@NonNull TemplateBinding object) {
 		TemplateSignature signature = object.getTemplateSignature();
 		if (signature != null) {
-			context.appendElement(signature.getOwningTemplateableElement());
+			context.appendElement(signature.getOwningElement());
 		}
 		context.append(BINDINGS_PREFIX);
 		return true;
@@ -491,7 +491,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 
 	@Override
 	public Object visitTemplateParameter(@NonNull TemplateParameter object) {
-		TemplateableElement owningTemplateElement = object.getOwningTemplateSignature().getOwningTemplateableElement();
+		TemplateableElement owningTemplateElement = object.getOwningSignature().getOwningElement();
 		context.appendElement(owningTemplateElement);
 		context.append(TEMPLATE_PARAMETER_PREFIX);
 		context.appendName(object);
@@ -500,7 +500,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 
 	@Override
 	public Object visitTemplateParameterSubstitution(@NonNull TemplateParameterSubstitution object) {
-		context.appendElement(object.getOwningTemplateBinding());
+		context.appendElement(object.getOwningBinding());
 		context.appendName(object.getFormal());
 		return true;
 	}

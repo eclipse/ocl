@@ -75,7 +75,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 			}
 			if (object instanceof Operation) {
 				Operation candidateOperation = (Operation)object;
-				List<Parameter> candidateParameters = candidateOperation.getOwnedParameter();
+				List<Parameter> candidateParameters = candidateOperation.getOwnedParameters();
 				int iMax = csParameters.size();
 				if (iMax != candidateParameters.size()) {
 					return false;
@@ -195,9 +195,9 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 			ExpSpecificationCS ownedBody = ownedBodies.size() > 0 ? ownedBodies.get(0) : null;
 			LanguageExpression languageExpression = ownedBody != null ? PivotUtil.getPivot(LanguageExpression.class,  ownedBody) : null;
 			contextOperation.setBodyExpression(languageExpression);
-			context.refreshPivotList(Parameter.class, contextOperation.getOwnedParameter(), operationContextDecl.getOwnedParameters());
-			context.refreshPivotList(Constraint.class, contextOperation.getPrecondition(), operationContextDecl.getOwnedPreconditions());
-			context.refreshPivotList(Constraint.class, contextOperation.getPostcondition(), operationContextDecl.getOwnedPostconditions());
+			context.refreshPivotList(Parameter.class, contextOperation.getOwnedParameters(), operationContextDecl.getOwnedParameters());
+			context.refreshPivotList(Constraint.class, contextOperation.getOwnedPreconditions(), operationContextDecl.getOwnedPreconditions());
+			context.refreshPivotList(Constraint.class, contextOperation.getOwnedPostconditions(), operationContextDecl.getOwnedPostconditions());
 		}
 		context.refreshComments(contextOperation, operationContextDecl);
 		return contextOperation;
@@ -276,7 +276,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 			List<ExpSpecificationCS> ownedDefaultExpressions = propertyContextDecl.getOwnedDefaultExpressions();
 			ExpSpecificationCS ownedDefaultExpression = ownedDefaultExpressions.size() > 0 ? ownedDefaultExpressions.get(0) : null;
 			LanguageExpression languageExpression = ownedDefaultExpression != null ? PivotUtil.getPivot(LanguageExpression.class,  ownedDefaultExpression) : null;
-			contextProperty.setDefaultExpression(languageExpression);
+			contextProperty.setOwnedExpression(languageExpression);
 		}
 		context.refreshComments(contextProperty, propertyContextDecl);
 		return contextProperty;
@@ -361,7 +361,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 			}
 		}
 		@NonNull Model contextRoot = refreshRoot(Model.class, PivotPackage.Literals.MODEL, csElement);
-		context.refreshPivotList(Import.class, contextRoot.getImports(), csElement.getOwnedImports());
+		context.refreshPivotList(Import.class, contextRoot.getOwnedImports(), csElement.getOwnedImports());
 		context.refreshList(contextRoot.getOwnedPackages(), contextPackages);
 		return null;
 	}
@@ -369,7 +369,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 	@Override
 	public Continuation<?> visitDefOperationCS(@NonNull DefOperationCS csElement) {
 		@NonNull Operation contextOperation = refreshNamedElement(Operation.class, PivotPackage.Literals.OPERATION, csElement);
-		context.refreshPivotList(Parameter.class, contextOperation.getOwnedParameter(), csElement.getOwnedParameters());
+		context.refreshPivotList(Parameter.class, contextOperation.getOwnedParameters(), csElement.getOwnedParameters());
 		ExpressionInOCL pivotSpecification = PivotUtil.getPivot(ExpressionInOCL.class, csElement.getOwnedSpecification());
 		contextOperation.setBodyExpression(pivotSpecification);
 		return null;
@@ -384,7 +384,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		contextProperty.setIsVolatile(true);
 		contextProperty.setIsResolveProxies(false);
 		ExpressionInOCL pivotSpecification = PivotUtil.getPivot(ExpressionInOCL.class, csElement.getOwnedSpecification());
-		contextProperty.setDefaultExpression(pivotSpecification);
+		contextProperty.setOwnedExpression(pivotSpecification);
 		return null;
 	}
 

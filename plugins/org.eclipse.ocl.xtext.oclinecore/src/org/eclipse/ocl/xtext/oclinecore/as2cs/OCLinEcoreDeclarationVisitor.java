@@ -74,7 +74,7 @@ public class OCLinEcoreDeclarationVisitor extends EssentialOCLDeclarationVisitor
 	public ElementCS visitModel(@NonNull Model object) {
 		TopLevelCS csElement = context.refreshElement(TopLevelCS.class, OCLinEcoreCSPackage.Literals.TOP_LEVEL_CS, object);
 		context.refreshList(csElement.getOwnedPackages(), context.visitDeclarations(PackageCS.class, object.getOwnedPackages(), null));
-		context.visitDeclarations(ImportCS.class, object.getImports(), null);
+		context.visitDeclarations(ImportCS.class, object.getOwnedImports(), null);
 		return csElement;
 	}
 }

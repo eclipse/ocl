@@ -48,9 +48,9 @@ public class OCLstdlibCSPreOrderVisitor extends AbstractOCLstdlibCSPreOrderVisit
 		public BasicContinuation<?> execute() {
 			CollectionType type = PivotUtil.getPivot(CollectionType.class, csElement);
 			if (type != null) {
-				TemplateSignature ownedTemplateSignature = type.getOwnedTemplateSignature();
+				TemplateSignature ownedTemplateSignature = type.getOwnedSignature();
 				if (ownedTemplateSignature != null) {
-					List<TemplateParameter> parameters = ownedTemplateSignature.getOwnedTemplateParameters();
+					List<TemplateParameter> parameters = ownedTemplateSignature.getOwnedParameters();
 					type.setElementType(parameters.size() > 0 ? parameters.get(0) : null);
 				}
 			}

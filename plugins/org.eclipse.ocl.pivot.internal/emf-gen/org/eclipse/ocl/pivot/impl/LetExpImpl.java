@@ -50,8 +50,8 @@ import org.eclipse.osgi.util.NLS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.impl.LetExpImpl#getIn <em>In</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.LetExpImpl#getVariable <em>Variable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.LetExpImpl#getOwnedIn <em>Owned In</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.LetExpImpl#getOwnedVariable <em>Owned Variable</em>}</li>
  * </ul>
  * </p>
  *
@@ -62,24 +62,24 @@ public class LetExpImpl
 		implements LetExp {
 
 	/**
-	 * The cached value of the '{@link #getIn() <em>In</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedIn() <em>Owned In</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getIn()
+	 * @see #getOwnedIn()
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLExpression in;
+	protected OCLExpression ownedIn;
 
 	/**
-	 * The cached value of the '{@link #getVariable() <em>Variable</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedVariable() <em>Owned Variable</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getVariable()
+	 * @see #getOwnedVariable()
 	 * @generated
 	 * @ordered
 	 */
-	protected Variable variable;
+	protected Variable ownedVariable;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -106,8 +106,8 @@ public class LetExpImpl
 	 * @generated
 	 */
 	@Override
-	public OCLExpression getIn() {
-		return in;
+	public OCLExpression getOwnedIn() {
+		return ownedIn;
 	}
 
 	/**
@@ -115,13 +115,13 @@ public class LetExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetIn(OCLExpression newIn,
-			NotificationChain msgs) {
-		OCLExpression oldIn = in;
-		in = newIn;
+	public NotificationChain basicSetOwnedIn(OCLExpression newOwnedIn, NotificationChain msgs)
+	{
+		OCLExpression oldOwnedIn = ownedIn;
+		ownedIn = newOwnedIn;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.LET_EXP__IN, oldIn, newIn);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.LET_EXP__OWNED_IN, oldOwnedIn, newOwnedIn);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -133,19 +133,19 @@ public class LetExpImpl
 	 * @generated
 	 */
 	@Override
-	public void setIn(OCLExpression newIn) {
-		if (newIn != in)
+	public void setOwnedIn(OCLExpression newOwnedIn) {
+		if (newOwnedIn != ownedIn)
 		{
 			NotificationChain msgs = null;
-			if (in != null)
-				msgs = ((InternalEObject)in).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.LET_EXP__IN, null, msgs);
-			if (newIn != null)
-				msgs = ((InternalEObject)newIn).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.LET_EXP__IN, null, msgs);
-			msgs = basicSetIn(newIn, msgs);
+			if (ownedIn != null)
+				msgs = ((InternalEObject)ownedIn).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.LET_EXP__OWNED_IN, null, msgs);
+			if (newOwnedIn != null)
+				msgs = ((InternalEObject)newOwnedIn).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.LET_EXP__OWNED_IN, null, msgs);
+			msgs = basicSetOwnedIn(newOwnedIn, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.LET_EXP__IN, newIn, newIn));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.LET_EXP__OWNED_IN, newOwnedIn, newOwnedIn));
 	}
 
 	/**
@@ -154,8 +154,8 @@ public class LetExpImpl
 	 * @generated
 	 */
 	@Override
-	public Variable getVariable() {
-		return variable;
+	public Variable getOwnedVariable() {
+		return ownedVariable;
 	}
 
 	/**
@@ -163,13 +163,13 @@ public class LetExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetVariable(Variable newVariable,
-			NotificationChain msgs) {
-		Variable oldVariable = variable;
-		variable = newVariable;
+	public NotificationChain basicSetOwnedVariable(Variable newOwnedVariable, NotificationChain msgs)
+	{
+		Variable oldOwnedVariable = ownedVariable;
+		ownedVariable = newOwnedVariable;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.LET_EXP__VARIABLE, oldVariable, newVariable);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.LET_EXP__OWNED_VARIABLE, oldOwnedVariable, newOwnedVariable);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -181,19 +181,19 @@ public class LetExpImpl
 	 * @generated
 	 */
 	@Override
-	public void setVariable(Variable newVariable) {
-		if (newVariable != variable)
+	public void setOwnedVariable(Variable newOwnedVariable) {
+		if (newOwnedVariable != ownedVariable)
 		{
 			NotificationChain msgs = null;
-			if (variable != null)
-				msgs = ((InternalEObject)variable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.LET_EXP__VARIABLE, null, msgs);
-			if (newVariable != null)
-				msgs = ((InternalEObject)newVariable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.LET_EXP__VARIABLE, null, msgs);
-			msgs = basicSetVariable(newVariable, msgs);
+			if (ownedVariable != null)
+				msgs = ((InternalEObject)ownedVariable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.LET_EXP__OWNED_VARIABLE, null, msgs);
+			if (newOwnedVariable != null)
+				msgs = ((InternalEObject)newOwnedVariable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.LET_EXP__OWNED_VARIABLE, null, msgs);
+			msgs = basicSetOwnedVariable(newOwnedVariable, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.LET_EXP__VARIABLE, newVariable, newVariable));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.LET_EXP__OWNED_VARIABLE, newOwnedVariable, newOwnedVariable));
 	}
 
 	/**
@@ -205,16 +205,16 @@ public class LetExpImpl
 	public boolean validateTypeIsInType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv TypeIsInType: type = _'in'.type
+		 * inv TypeIsInType: type = ownedIn.type
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_eq;
 		try {
 		    final @Nullable /*@Thrown*/ Type type = this.getType();
-		    final @Nullable /*@Thrown*/ OCLExpression in = this.getIn();
-		    if (in == null) {
+		    final @Nullable /*@Thrown*/ OCLExpression ownedIn = this.getOwnedIn();
+		    if (ownedIn == null) {
 		        throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		    }
-		    final @Nullable /*@Thrown*/ Type type_0 = in.getType();
+		    final @Nullable /*@Thrown*/ Type type_0 = ownedIn.getType();
 		    final /*@Thrown*/ boolean eq = (type != null) && (type_0 != null) ? (type.getTypeId() == type_0.getTypeId()) : ValueUtil.throwBooleanInvalidValueException("null equal input");
 		    ;
 		    CAUGHT_eq = eq;
@@ -243,18 +243,18 @@ public class LetExpImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case PivotPackage.LET_EXP__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.LET_EXP__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.LET_EXP__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.LET_EXP__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.LET_EXP__IN:
-				return basicSetIn(null, msgs);
-			case PivotPackage.LET_EXP__VARIABLE:
-				return basicSetVariable(null, msgs);
+			case PivotPackage.LET_EXP__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LET_EXP__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LET_EXP__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LET_EXP__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LET_EXP__OWNED_IN:
+				return basicSetOwnedIn(null, msgs);
+			case PivotPackage.LET_EXP__OWNED_VARIABLE:
+				return basicSetOwnedVariable(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -268,14 +268,14 @@ public class LetExpImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case PivotPackage.LET_EXP__COMMENT:
-				return getComment();
-			case PivotPackage.LET_EXP__EXTENSION:
-				return getExtension();
-			case PivotPackage.LET_EXP__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.LET_EXP__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.LET_EXP__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.LET_EXP__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.LET_EXP__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.LET_EXP__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.LET_EXP__NAME:
 				return getName();
 			case PivotPackage.LET_EXP__IS_MANY:
@@ -287,10 +287,10 @@ public class LetExpImpl
 				return basicGetType();
 			case PivotPackage.LET_EXP__TYPE_VALUE:
 				return getTypeValue();
-			case PivotPackage.LET_EXP__IN:
-				return getIn();
-			case PivotPackage.LET_EXP__VARIABLE:
-				return getVariable();
+			case PivotPackage.LET_EXP__OWNED_IN:
+				return getOwnedIn();
+			case PivotPackage.LET_EXP__OWNED_VARIABLE:
+				return getOwnedVariable();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -305,21 +305,21 @@ public class LetExpImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case PivotPackage.LET_EXP__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.LET_EXP__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.LET_EXP__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.LET_EXP__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.LET_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.LET_EXP__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.LET_EXP__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.LET_EXP__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.LET_EXP__NAME:
 				setName((String)newValue);
@@ -333,11 +333,11 @@ public class LetExpImpl
 			case PivotPackage.LET_EXP__TYPE_VALUE:
 				setTypeValue((Type)newValue);
 				return;
-			case PivotPackage.LET_EXP__IN:
-				setIn((OCLExpression)newValue);
+			case PivotPackage.LET_EXP__OWNED_IN:
+				setOwnedIn((OCLExpression)newValue);
 				return;
-			case PivotPackage.LET_EXP__VARIABLE:
-				setVariable((Variable)newValue);
+			case PivotPackage.LET_EXP__OWNED_VARIABLE:
+				setOwnedVariable((Variable)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -352,17 +352,17 @@ public class LetExpImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.LET_EXP__COMMENT:
-				getComment().clear();
+			case PivotPackage.LET_EXP__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.LET_EXP__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.LET_EXP__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.LET_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.LET_EXP__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.LET_EXP__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.LET_EXP__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.LET_EXP__NAME:
 				setName(NAME_EDEFAULT);
@@ -376,11 +376,11 @@ public class LetExpImpl
 			case PivotPackage.LET_EXP__TYPE_VALUE:
 				setTypeValue((Type)null);
 				return;
-			case PivotPackage.LET_EXP__IN:
-				setIn((OCLExpression)null);
+			case PivotPackage.LET_EXP__OWNED_IN:
+				setOwnedIn((OCLExpression)null);
 				return;
-			case PivotPackage.LET_EXP__VARIABLE:
-				setVariable((Variable)null);
+			case PivotPackage.LET_EXP__OWNED_VARIABLE:
+				setOwnedVariable((Variable)null);
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -395,14 +395,14 @@ public class LetExpImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.LET_EXP__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.LET_EXP__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.LET_EXP__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.LET_EXP__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.LET_EXP__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.LET_EXP__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.LET_EXP__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.LET_EXP__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.LET_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.LET_EXP__IS_MANY:
@@ -413,10 +413,10 @@ public class LetExpImpl
 				return type != null;
 			case PivotPackage.LET_EXP__TYPE_VALUE:
 				return typeValue != null;
-			case PivotPackage.LET_EXP__IN:
-				return in != null;
-			case PivotPackage.LET_EXP__VARIABLE:
-				return variable != null;
+			case PivotPackage.LET_EXP__OWNED_IN:
+				return ownedIn != null;
+			case PivotPackage.LET_EXP__OWNED_VARIABLE:
+				return ownedVariable != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

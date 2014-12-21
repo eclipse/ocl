@@ -19,8 +19,8 @@ package org.eclipse.ocl.pivot;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.Trigger#getState <em>State</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Trigger#getTransition <em>Transition</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Trigger#getOwningState <em>Owning State</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Trigger#getOwningTransition <em>Owning Transition</em>}</li>
  * </ul>
  * </p>
  *
@@ -31,56 +31,56 @@ public interface Trigger extends NamedElement
 {
 
 	/**
-	 * Returns the value of the '<em><b>State</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.State#getDeferrableTrigger <em>Deferrable Trigger</em>}'.
+	 * Returns the value of the '<em><b>Owning State</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.State#getOwnedDeferrableTriggers <em>Owned Deferrable Triggers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>State</em>' container reference isn't clear,
+	 * If the meaning of the '<em>Owning State</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>State</em>' container reference.
-	 * @see #setState(State)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getTrigger_State()
-	 * @see org.eclipse.ocl.pivot.State#getDeferrableTrigger
+	 * @return the value of the '<em>Owning State</em>' container reference.
+	 * @see #setOwningState(State)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getTrigger_OwningState()
+	 * @see org.eclipse.ocl.pivot.State#getOwnedDeferrableTriggers
 	 * @generated
 	 */
-	State getState();
+	State getOwningState();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Trigger#getState <em>State</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Trigger#getOwningState <em>Owning State</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>State</em>' container reference.
-	 * @see #getState()
+	 * @param value the new value of the '<em>Owning State</em>' container reference.
+	 * @see #getOwningState()
 	 * @generated
 	 */
-	void setState(State value);
+	void setOwningState(State value);
 
 	/**
-	 * Returns the value of the '<em><b>Transition</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Transition#getTrigger <em>Trigger</em>}'.
+	 * Returns the value of the '<em><b>Owning Transition</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Transition#getOwnedTriggers <em>Owned Triggers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Transition</em>' container reference isn't clear,
+	 * If the meaning of the '<em>Owning Transition</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Transition</em>' container reference.
-	 * @see #setTransition(Transition)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getTrigger_Transition()
-	 * @see org.eclipse.ocl.pivot.Transition#getTrigger
+	 * @return the value of the '<em>Owning Transition</em>' container reference.
+	 * @see #setOwningTransition(Transition)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getTrigger_OwningTransition()
+	 * @see org.eclipse.ocl.pivot.Transition#getOwnedTriggers
 	 * @generated
 	 */
-	Transition getTransition();
+	Transition getOwningTransition();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Trigger#getTransition <em>Transition</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Trigger#getOwningTransition <em>Owning Transition</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Transition</em>' container reference.
-	 * @see #getTransition()
+	 * @param value the new value of the '<em>Owning Transition</em>' container reference.
+	 * @see #getOwningTransition()
 	 * @generated
 	 */
-	void setTransition(Transition value);
+	void setOwningTransition(Transition value);
 } // Trigger

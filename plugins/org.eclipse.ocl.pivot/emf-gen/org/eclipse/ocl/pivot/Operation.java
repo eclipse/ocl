@@ -37,13 +37,13 @@ import org.eclipse.ocl.pivot.ids.ParametersId;
  *   <li>{@link org.eclipse.ocl.pivot.Operation#isInvalidating <em>Is Invalidating</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Operation#isTypeof <em>Is Typeof</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Operation#isValidating <em>Is Validating</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Operation#getOwnedParameter <em>Owned Parameter</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Operation#getOwnedParameters <em>Owned Parameters</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Operation#getOwnedPostconditions <em>Owned Postconditions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Operation#getOwnedPreconditions <em>Owned Preconditions</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Operation#getOwningClass <em>Owning Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Operation#getPostcondition <em>Postcondition</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Operation#getPrecedence <em>Precedence</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Operation#getPrecondition <em>Precondition</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Operation#getRaisedException <em>Raised Exception</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Operation#getRedefinedOperation <em>Redefined Operation</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Operation#getRaisedExceptions <em>Raised Exceptions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Operation#getRedefinedOperations <em>Redefined Operations</em>}</li>
  * </ul>
  * </p>
  *
@@ -53,34 +53,83 @@ import org.eclipse.ocl.pivot.ids.ParametersId;
 public interface Operation extends Feature, Namespace, TemplateableElement {
 
 	/**
-	 * Returns the value of the '<em><b>Raised Exception</b></em>' reference list.
+	 * Returns the value of the '<em><b>Raised Exceptions</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.Type}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The exceptions that are declared as possible during an invocation of the operation.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Raised Exception</em>' reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getOperation_RaisedException()
+	 * @return the value of the '<em>Raised Exceptions</em>' reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getOperation_RaisedExceptions()
 	 * @generated
 	 */
-	@NonNull List<Type> getRaisedException();
+	@NonNull List<Type> getRaisedExceptions();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Parameter</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Redefined Operations</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.pivot.Operation}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Redefined Operations</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Redefined Operations</em>' reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getOperation_RedefinedOperations()
+	 * @generated
+	 */
+	List<Operation> getRedefinedOperations();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Parameters</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.Parameter}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Parameter#getOperation <em>Operation</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Parameter#getOwningOperation <em>Owning Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The parameters to the operation.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Parameter</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getOperation_OwnedParameter()
-	 * @see org.eclipse.ocl.pivot.Parameter#getOperation
+	 * @return the value of the '<em>Owned Parameters</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getOperation_OwnedParameters()
+	 * @see org.eclipse.ocl.pivot.Parameter#getOwningOperation
 	 * @generated
 	 */
-	@NonNull List<Parameter> getOwnedParameter();
+	@NonNull List<Parameter> getOwnedParameters();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Postconditions</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.pivot.Constraint}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Constraint#getOwningPostContext <em>Owning Post Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Postconditions</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Postconditions</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getOperation_OwnedPostconditions()
+	 * @see org.eclipse.ocl.pivot.Constraint#getOwningPostContext
+	 * @generated
+	 */
+	List<Constraint> getOwnedPostconditions();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Preconditions</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.pivot.Constraint}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Constraint#getOwningPreContext <em>Owning Pre Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Preconditions</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Preconditions</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getOperation_OwnedPreconditions()
+	 * @see org.eclipse.ocl.pivot.Constraint#getOwningPreContext
+	 * @generated
+	 */
+	List<Constraint> getOwnedPreconditions();
 
 	/**
 	 * Returns the value of the '<em><b>Precedence</b></em>' reference.
@@ -106,55 +155,6 @@ public interface Operation extends Feature, Namespace, TemplateableElement {
 	 * @generated
 	 */
 	void setPrecedence(Precedence value);
-
-	/**
-	 * Returns the value of the '<em><b>Redefined Operation</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.pivot.Operation}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Redefined Operation</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Redefined Operation</em>' reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getOperation_RedefinedOperation()
-	 * @generated
-	 */
-	@NonNull List<Operation> getRedefinedOperation();
-
-	/**
-	 * Returns the value of the '<em><b>Precondition</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.pivot.Constraint}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Constraint#getPreContext <em>Pre Context</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Precondition</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Precondition</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getOperation_Precondition()
-	 * @see org.eclipse.ocl.pivot.Constraint#getPreContext
-	 * @generated
-	 */
-	@NonNull List<Constraint> getPrecondition();
-
-	/**
-	 * Returns the value of the '<em><b>Postcondition</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.pivot.Constraint}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Constraint#getPostContext <em>Post Context</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Postcondition</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Postcondition</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getOperation_Postcondition()
-	 * @see org.eclipse.ocl.pivot.Constraint#getPostContext
-	 * @generated
-	 */
-	@NonNull List<Constraint> getPostcondition();
 
 	/**
 	 * Returns the value of the '<em><b>Body Expression</b></em>' containment reference.

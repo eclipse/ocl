@@ -458,9 +458,9 @@ public class LoadTests extends XtextTestCase
 		ExpressionInOCL specification;
 //		long startParseTime = System.currentTimeMillis();
 		specification = ocl.getSpecification(constraint);
-		constraint.setSpecification(specification);
+		constraint.setOwnedSpecification(specification);
 		if (specification != null) {
-			LanguageExpression specification2 = constraint.getSpecification();
+			LanguageExpression specification2 = constraint.getOwnedSpecification();
 			String body = specification2.getBody();
 			if (body != null) {
 				String language = specification2.getLanguage();
@@ -972,7 +972,7 @@ public class LoadTests extends XtextTestCase
 		assertEquals("pivot", oclDocPackage.getName());
 		assertEquals("http://www.eclipse.org/ocl/2015/Pivot", oclDocPackage.getURI());
 		
-		Import _import = root.getImports().get(0);
+		Import _import = root.getOwnedImports().get(0);
 		assertEquals("pivot", _import.getName());
 		Namespace nSpace = _import.getImportedNamespace();
 		assertTrue(nSpace instanceof org.eclipse.ocl.pivot.Package);
@@ -991,7 +991,7 @@ public class LoadTests extends XtextTestCase
 		assertEquals("ocl", oclDocPackage.getName());
 		assertEquals("http://www.eclipse.org/ocl/2015/Library", oclDocPackage.getURI());
 
-		Import _import = root.getImports().get(0);
+		Import _import = root.getOwnedImports().get(0);
 		assertEquals("pivot", _import.getName());
 		Namespace nSpace = _import.getImportedNamespace();
 		assertTrue(nSpace instanceof org.eclipse.ocl.pivot.Package);

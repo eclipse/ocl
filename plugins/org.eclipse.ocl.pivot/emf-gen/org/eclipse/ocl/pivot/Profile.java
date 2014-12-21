@@ -12,8 +12,6 @@ package org.eclipse.ocl.pivot;
 
 import java.util.List;
 
-import org.eclipse.jdt.annotation.NonNull;
-
 
 
 /**
@@ -24,7 +22,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.Profile#getApplication <em>Application</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Profile#getProfileApplications <em>Profile Applications</em>}</li>
  * </ul>
  * </p>
  *
@@ -35,20 +33,20 @@ public interface Profile extends org.eclipse.ocl.pivot.Package
 {
 
 	/**
-	 * Returns the value of the '<em><b>Application</b></em>' reference list.
+	 * Returns the value of the '<em><b>Profile Applications</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.ProfileApplication}.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.ProfileApplication#getAppliedProfile <em>Applied Profile</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Application</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Profile Applications</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Application</em>' reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getProfile_Application()
+	 * @return the value of the '<em>Profile Applications</em>' reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getProfile_ProfileApplications()
 	 * @see org.eclipse.ocl.pivot.ProfileApplication#getAppliedProfile
 	 * @generated
 	 */
-	@NonNull List<ProfileApplication> getApplication();
+	List<ProfileApplication> getProfileApplications();
 
 } // Profile

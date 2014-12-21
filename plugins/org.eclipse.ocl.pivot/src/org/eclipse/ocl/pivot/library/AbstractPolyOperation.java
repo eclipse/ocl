@@ -27,7 +27,7 @@ public abstract class AbstractPolyOperation extends AbstractOperation implements
 	@Override
 	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
 		TypeId typeId = callExp.getTypeId();
-		List<? extends OCLExpression> arguments = callExp.getArgument();
+		List<? extends OCLExpression> arguments = callExp.getOwnedArguments();
 		if (arguments.size() == 0) {
 			return evaluate(evaluator, typeId, sourceValue);
 		}

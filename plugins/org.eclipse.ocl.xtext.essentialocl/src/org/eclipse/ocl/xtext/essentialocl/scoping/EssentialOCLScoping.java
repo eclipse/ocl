@@ -163,7 +163,7 @@ public class EssentialOCLScoping
 				}
 				else if (eContainer instanceof SpecificationCS) {
 					ExpressionInOCL expression = PivotUtil.getContainingExpressionInOCL(((SpecificationCS)eContainer).getPivot());
-					source = expression!= null ? expression.getContextVariable() : null;
+					source = expression!= null ? expression.getOwnedContext() : null;
 					break;
 				}
 				else {

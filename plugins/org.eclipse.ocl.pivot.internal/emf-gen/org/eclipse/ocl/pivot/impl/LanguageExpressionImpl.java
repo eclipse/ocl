@@ -170,7 +170,7 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newOwningConstraint != null)
-				msgs = ((InternalEObject)newOwningConstraint).eInverseAdd(this, PivotPackage.CONSTRAINT__SPECIFICATION, Constraint.class, msgs);
+				msgs = ((InternalEObject)newOwningConstraint).eInverseAdd(this, PivotPackage.CONSTRAINT__OWNED_SPECIFICATION, Constraint.class, msgs);
 			msgs = basicSetOwningConstraint(newOwningConstraint, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -189,12 +189,12 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.LANGUAGE_EXPRESSION__COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.LANGUAGE_EXPRESSION__EXTENSION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
-			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
+			case PivotPackage.LANGUAGE_EXPRESSION__ANNOTATING_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAnnotatingComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_EXTENSIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedExtensions()).basicAdd(otherEnd, msgs);
 			case PivotPackage.LANGUAGE_EXPRESSION__OWNING_CONSTRAINT:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -213,14 +213,14 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.LANGUAGE_EXPRESSION__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.LANGUAGE_EXPRESSION__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LANGUAGE_EXPRESSION__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
 			case PivotPackage.LANGUAGE_EXPRESSION__OWNING_CONSTRAINT:
 				return basicSetOwningConstraint(null, msgs);
 		}
@@ -238,7 +238,7 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 		switch (eContainerFeatureID())
 		{
 			case PivotPackage.LANGUAGE_EXPRESSION__OWNING_CONSTRAINT:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.CONSTRAINT__SPECIFICATION, Constraint.class, msgs);
+				return eInternalContainer().eInverseRemove(this, PivotPackage.CONSTRAINT__OWNED_SPECIFICATION, Constraint.class, msgs);
 		}
 		return eDynamicBasicRemoveFromContainer(msgs);
 	}
@@ -253,14 +253,14 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.LANGUAGE_EXPRESSION__COMMENT:
-				return getComment();
-			case PivotPackage.LANGUAGE_EXPRESSION__EXTENSION:
-				return getExtension();
-			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.LANGUAGE_EXPRESSION__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.LANGUAGE_EXPRESSION__NAME:
 				return getName();
 			case PivotPackage.LANGUAGE_EXPRESSION__IS_MANY:
@@ -291,21 +291,21 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.LANGUAGE_EXPRESSION__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.LANGUAGE_EXPRESSION__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.LANGUAGE_EXPRESSION__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.LANGUAGE_EXPRESSION__NAME:
 				setName((String)newValue);
@@ -336,17 +336,17 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.LANGUAGE_EXPRESSION__COMMENT:
-				getComment().clear();
+			case PivotPackage.LANGUAGE_EXPRESSION__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.LANGUAGE_EXPRESSION__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.LANGUAGE_EXPRESSION__NAME:
 				setName(NAME_EDEFAULT);
@@ -377,14 +377,14 @@ public abstract class LanguageExpressionImpl extends ValueSpecificationImpl impl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.LANGUAGE_EXPRESSION__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.LANGUAGE_EXPRESSION__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.LANGUAGE_EXPRESSION__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.LANGUAGE_EXPRESSION__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.LANGUAGE_EXPRESSION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.LANGUAGE_EXPRESSION__IS_MANY:

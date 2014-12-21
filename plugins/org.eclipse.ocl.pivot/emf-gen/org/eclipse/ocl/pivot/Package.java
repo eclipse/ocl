@@ -30,13 +30,13 @@ import org.eclipse.ocl.pivot.ids.PackageId;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.Package#getURI <em>URI</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Package#getImportedPackage <em>Imported Package</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Package#getImportedPackages <em>Imported Packages</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Package#getNsPrefix <em>Ns Prefix</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Package#getOwnedClasses <em>Owned Classes</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Package#getOwnedInstances <em>Owned Instances</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Package#getOwnedPackages <em>Owned Packages</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Package#getOwnedProfileApplications <em>Owned Profile Applications</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Package#getOwningPackage <em>Owning Package</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Package#getProfileApplication <em>Profile Application</em>}</li>
  * </ul>
  * </p>
  *
@@ -60,6 +60,23 @@ public interface Package extends Namespace {
 	 * @generated
 	 */
 	@NonNull List<Package> getOwnedPackages();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Profile Applications</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.pivot.ProfileApplication}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.ProfileApplication#getOwningPackage <em>Owning Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Profile Applications</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Profile Applications</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getPackage_OwnedProfileApplications()
+	 * @see org.eclipse.ocl.pivot.ProfileApplication#getOwningPackage
+	 * @generated
+	 */
+	List<ProfileApplication> getOwnedProfileApplications();
 
 	/**
 	 * Returns the value of the '<em><b>Ns Prefix</b></em>' attribute.
@@ -128,7 +145,7 @@ public interface Package extends Namespace {
 	List<InstanceSpecification> getOwnedInstances();
 
 	/**
-	 * Returns the value of the '<em><b>Imported Package</b></em>' reference list.
+	 * Returns the value of the '<em><b>Imported Packages</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.Package}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -136,11 +153,11 @@ public interface Package extends Namespace {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Imported Package</em>' reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getPackage_ImportedPackage()
+	 * @return the value of the '<em>Imported Packages</em>' reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getPackage_ImportedPackages()
 	 * @generated
 	 */
-	@NonNull List<Package> getImportedPackage();
+	@NonNull List<Package> getImportedPackages();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Classes</b></em>' containment reference list.
@@ -157,23 +174,6 @@ public interface Package extends Namespace {
 	 * @generated
 	 */
 	@NonNull List<org.eclipse.ocl.pivot.Class> getOwnedClasses();
-
-	/**
-	 * Returns the value of the '<em><b>Profile Application</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.pivot.ProfileApplication}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.ProfileApplication#getApplyingPackage <em>Applying Package</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Profile Application</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Profile Application</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getPackage_ProfileApplication()
-	 * @see org.eclipse.ocl.pivot.ProfileApplication#getApplyingPackage
-	 * @generated
-	 */
-	@NonNull List<ProfileApplication> getProfileApplication();
 
 	/**
 	 * Returns the value of the '<em><b>Owning Package</b></em>' container reference.

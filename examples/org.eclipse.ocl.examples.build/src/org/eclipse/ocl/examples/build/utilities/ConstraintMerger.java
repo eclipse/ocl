@@ -190,10 +190,10 @@ public class ConstraintMerger extends AbstractProjectComponent
 			for (@SuppressWarnings("null")@NonNull Property mergeProperty : new ArrayList<Property>(mergeProperties)) {
 				Property primaryProperty = metaModelManager.getPrimaryElement(mergeProperty);
 				if (primaryProperty != mergeProperty) {			// If merge needed
-					LanguageExpression pivotDefaultExpression = mergeProperty.getDefaultExpression();
-					LanguageExpression primaryDefaultExpression = primaryProperty.getDefaultExpression();
+					LanguageExpression pivotDefaultExpression = mergeProperty.getOwnedExpression();
+					LanguageExpression primaryDefaultExpression = primaryProperty.getOwnedExpression();
 					if ((primaryDefaultExpression == null) && (pivotDefaultExpression != null)) {
-						primaryProperty.setDefaultExpression(pivotDefaultExpression);
+						primaryProperty.setOwnedExpression(pivotDefaultExpression);
 					}
 				}
 				else											// Else simple promotion

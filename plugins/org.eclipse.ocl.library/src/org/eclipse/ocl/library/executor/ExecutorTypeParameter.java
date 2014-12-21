@@ -73,7 +73,7 @@ public class ExecutorTypeParameter extends AbstractExecutorType implements Execu
 	}
 
 	@Override
-	public List<Class> getConstrainingClass() {
+	public List<Class> getConstrainingClasses() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -83,12 +83,12 @@ public class ExecutorTypeParameter extends AbstractExecutorType implements Execu
 	}
 
 	@Override
-	public TemplateSignature getOwningTemplateSignature() {
+	public TemplateSignature getOwningSignature() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void setOwningTemplateSignature(TemplateSignature value) {
+	public void setOwningSignature(TemplateSignature value) {
 		throw new UnsupportedOperationException();
 	}
 

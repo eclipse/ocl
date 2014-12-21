@@ -121,7 +121,7 @@ public interface PivotConstants extends org.eclipse.ocl.pivot.utilities.PivotCon
 
 	static final @NonNull String BODY_EXPRESSION_ROLE = "body";
 	static final @NonNull String DEFAULT_EXPRESSION_ROLE = "initializer";
-	static final @NonNull String OWNED_RULE_ROLE = "constraint";
+	static final @NonNull String OWNED_CONSTRAINT_ROLE = "constraint";
 	static final @NonNull String POSTCONDITION_ROLE = "postcondition";
 	static final @NonNull String PRECONDITION_ROLE = "precondition";
 	static final @NonNull String UNKNOWN_ROLE = "<<unknown>>";

@@ -132,11 +132,11 @@ public class BaseOutlineTreeProvider extends DefaultOutlineTreeProvider
 	}
 
 	protected void _createChildren(IOutlineNode parentNode, Constraint constraint) {
-		createNode(parentNode, constraint.getSpecification());
+		createNode(parentNode, constraint.getOwnedSpecification());
 	}
 
 	protected void _createChildren(IOutlineNode parentNode, Operation ele) {
-		for (Parameter parameter : ele.getOwnedParameter()) {
+		for (Parameter parameter : ele.getOwnedParameters()) {
 			createNode(parentNode, parameter);
 		}
 		createNode(parentNode, ele.getBodyExpression());

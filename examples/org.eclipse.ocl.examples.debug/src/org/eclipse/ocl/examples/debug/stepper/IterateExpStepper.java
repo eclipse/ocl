@@ -30,8 +30,8 @@ public class IterateExpStepper extends LoopExpStepper
 		}
 		if (parentElement instanceof IterateExp) {
 			IterateExp iterateExp = (IterateExp)parentElement;
-			if (childElement == iterateExp.getSource()) {
-				Variable accumulator = iterateExp.getResult();
+			if (childElement == iterateExp.getOwnedSource()) {
+				Variable accumulator = iterateExp.getOwnedResult();
 				if (accumulator != null) {
 					return getFirstElement(vmEvaluationVisitor, accumulator);
 				}

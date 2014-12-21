@@ -27,9 +27,9 @@ import org.eclipse.ocl.pivot.ids.TemplateParameterId;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.TemplateParameter#getConstrainingClass <em>Constraining Class</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.TemplateParameter#getConstrainingClasses <em>Constraining Classes</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.TemplateParameter#getLowerBound <em>Lower Bound</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.TemplateParameter#getOwningTemplateSignature <em>Owning Template Signature</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.TemplateParameter#getOwningSignature <em>Owning Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.TemplateParameter#getUpperBound <em>Upper Bound</em>}</li>
  * </ul>
  * </p>
@@ -40,18 +40,18 @@ import org.eclipse.ocl.pivot.ids.TemplateParameterId;
 public interface TemplateParameter extends Type {
 
 	/**
-	 * Returns the value of the '<em><b>Constraining Class</b></em>' reference list.
+	 * Returns the value of the '<em><b>Constraining Classes</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.Class}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Constraining Class</em>' reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateParameter_ConstrainingClass()
+	 * @return the value of the '<em>Constraining Classes</em>' reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateParameter_ConstrainingClasses()
 	 * @generated
 	 */
-	List<org.eclipse.ocl.pivot.Class> getConstrainingClass();
+	List<org.eclipse.ocl.pivot.Class> getConstrainingClasses();
 
 	/**
 	 * Returns the value of the '<em><b>Lower Bound</b></em>' reference.
@@ -78,30 +78,30 @@ public interface TemplateParameter extends Type {
 	void setLowerBound(Type value);
 
 	/**
-	 * Returns the value of the '<em><b>Owning Template Signature</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.TemplateSignature#getOwnedTemplateParameters <em>Owned Template Parameters</em>}'.
+	 * Returns the value of the '<em><b>Owning Signature</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.TemplateSignature#getOwnedParameters <em>Owned Parameters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The template signature that owns this template parameter.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owning Template Signature</em>' container reference.
-	 * @see #setOwningTemplateSignature(TemplateSignature)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateParameter_OwningTemplateSignature()
-	 * @see org.eclipse.ocl.pivot.TemplateSignature#getOwnedTemplateParameters
+	 * @return the value of the '<em>Owning Signature</em>' container reference.
+	 * @see #setOwningSignature(TemplateSignature)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateParameter_OwningSignature()
+	 * @see org.eclipse.ocl.pivot.TemplateSignature#getOwnedParameters
 	 * @generated
 	 */
-	TemplateSignature getOwningTemplateSignature();
+	TemplateSignature getOwningSignature();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.TemplateParameter#getOwningTemplateSignature <em>Owning Template Signature</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.TemplateParameter#getOwningSignature <em>Owning Signature</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Template Signature</em>' container reference.
-	 * @see #getOwningTemplateSignature()
+	 * @param value the new value of the '<em>Owning Signature</em>' container reference.
+	 * @see #getOwningSignature()
 	 * @generated
 	 */
-	void setOwningTemplateSignature(TemplateSignature value);
+	void setOwningSignature(TemplateSignature value);
 
 	/**
 	 * Returns the value of the '<em><b>Upper Bound</b></em>' reference.

@@ -109,9 +109,9 @@ public class StereotypesTest extends PivotTestSuite
 	        asGermanClass = metaModelManager.getPivotOf(org.eclipse.ocl.pivot.Class.class, umlGermanClass);
 	        //
 	    	umlEnglishClassInEnglish = (UMLElementExtension) UMLElementExtension.getUMLElementExtension(mmm.asInEnglishStereotype, umlEnglishClass);
-	        asEnglishClassInEnglish = ClassUtil.getNamedElement(asEnglishClass.getExtension(), "EnglishClass$InEnglish");
-	        asFrenchClassInEnglish = ClassUtil.getNamedElement(asFrenchClass.getExtension(), "FrenchClass$InFrench");
-	        asGermanClassInEnglish = ClassUtil.getNamedElement(asGermanClass.getExtension(), "GermanClass$InGerman");
+	        asEnglishClassInEnglish = ClassUtil.getNamedElement(asEnglishClass.getOwnedExtensions(), "EnglishClass$InEnglish");
+	        asFrenchClassInEnglish = ClassUtil.getNamedElement(asFrenchClass.getOwnedExtensions(), "FrenchClass$InFrench");
+	        asGermanClassInEnglish = ClassUtil.getNamedElement(asGermanClass.getOwnedExtensions(), "GermanClass$InGerman");
 	    }
 	}
 	

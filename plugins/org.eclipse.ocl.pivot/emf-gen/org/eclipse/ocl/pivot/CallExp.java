@@ -18,8 +18,8 @@ package org.eclipse.ocl.pivot;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.CallExp#isImplicit <em>Implicit</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.CallExp#getSource <em>Source</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.CallExp#isImplicit <em>Is Implicit</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.CallExp#getOwnedSource <em>Owned Source</em>}</li>
  * </ul>
  * </p>
  *
@@ -29,54 +29,54 @@ package org.eclipse.ocl.pivot;
 public interface CallExp extends OCLExpression {
 
 	/**
-	 * Returns the value of the '<em><b>Source</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Is Implicit</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Implicit</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Implicit</em>' attribute.
+	 * @see #setIsImplicit(boolean)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getCallExp_IsImplicit()
+	 * @generated
+	 */
+	boolean isImplicit();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source</em>' containment reference.
-	 * @see #setSource(OCLExpression)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getCallExp_Source()
+	 * @return the value of the '<em>Owned Source</em>' containment reference.
+	 * @see #setOwnedSource(OCLExpression)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getCallExp_OwnedSource()
 	 * @generated
 	 */
-	OCLExpression getSource();
+	OCLExpression getOwnedSource();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.CallExp#getSource <em>Source</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.CallExp#getOwnedSource <em>Owned Source</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Source</em>' containment reference.
-	 * @see #getSource()
+	 * @param value the new value of the '<em>Owned Source</em>' containment reference.
+	 * @see #getOwnedSource()
 	 * @generated
 	 */
-	void setSource(OCLExpression value);
+	void setOwnedSource(OCLExpression value);
 
 	/**
-	 * Returns the value of the '<em><b>Implicit</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Implicit</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Implicit</em>' attribute.
-	 * @see #setImplicit(boolean)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getCallExp_Implicit()
-	 * @generated
-	 */
-	boolean isImplicit();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.CallExp#isImplicit <em>Implicit</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.CallExp#isImplicit <em>Is Implicit</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Implicit</em>' attribute.
+	 * @param value the new value of the '<em>Is Implicit</em>' attribute.
 	 * @see #isImplicit()
 	 * @generated
 	 */
-	void setImplicit(boolean value);
+	void setIsImplicit(boolean value);
 
 } // CallExp

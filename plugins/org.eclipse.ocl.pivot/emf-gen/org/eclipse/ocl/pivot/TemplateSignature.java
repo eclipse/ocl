@@ -26,8 +26,8 @@ import org.eclipse.jdt.annotation.NonNull;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.TemplateSignature#getOwnedTemplateParameters <em>Owned Template Parameters</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.TemplateSignature#getOwningTemplateableElement <em>Owning Templateable Element</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.TemplateSignature#getOwnedParameters <em>Owned Parameters</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.TemplateSignature#getOwningElement <em>Owning Element</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,45 +38,45 @@ public interface TemplateSignature
 		extends Element {
 
 	/**
-	 * Returns the value of the '<em><b>Owned Template Parameters</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Parameters</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.TemplateParameter}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.TemplateParameter#getOwningTemplateSignature <em>Owning Template Signature</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.TemplateParameter#getOwningSignature <em>Owning Signature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The formal template parameters that are owned by this template signature.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Template Parameters</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateSignature_OwnedTemplateParameters()
-	 * @see org.eclipse.ocl.pivot.TemplateParameter#getOwningTemplateSignature
+	 * @return the value of the '<em>Owned Parameters</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateSignature_OwnedParameters()
+	 * @see org.eclipse.ocl.pivot.TemplateParameter#getOwningSignature
 	 * @generated
 	 */
-	@NonNull List<TemplateParameter> getOwnedTemplateParameters();
+	@NonNull List<TemplateParameter> getOwnedParameters();
 
 	/**
-	 * Returns the value of the '<em><b>Owning Templateable Element</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.TemplateableElement#getOwnedTemplateSignature <em>Owned Template Signature</em>}'.
+	 * Returns the value of the '<em><b>Owning Element</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.TemplateableElement#getOwnedSignature <em>Owned Signature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The element that owns this template signature.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owning Templateable Element</em>' container reference.
-	 * @see #setOwningTemplateableElement(TemplateableElement)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateSignature_OwningTemplateableElement()
-	 * @see org.eclipse.ocl.pivot.TemplateableElement#getOwnedTemplateSignature
+	 * @return the value of the '<em>Owning Element</em>' container reference.
+	 * @see #setOwningElement(TemplateableElement)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateSignature_OwningElement()
+	 * @see org.eclipse.ocl.pivot.TemplateableElement#getOwnedSignature
 	 * @generated
 	 */
-	TemplateableElement getOwningTemplateableElement();
+	TemplateableElement getOwningElement();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.TemplateSignature#getOwningTemplateableElement <em>Owning Templateable Element</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.TemplateSignature#getOwningElement <em>Owning Element</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Templateable Element</em>' container reference.
-	 * @see #getOwningTemplateableElement()
+	 * @param value the new value of the '<em>Owning Element</em>' container reference.
+	 * @see #getOwningElement()
 	 * @generated
 	 */
-	void setOwningTemplateableElement(TemplateableElement value);
+	void setOwningElement(TemplateableElement value);
 
 } // TemplateSignature

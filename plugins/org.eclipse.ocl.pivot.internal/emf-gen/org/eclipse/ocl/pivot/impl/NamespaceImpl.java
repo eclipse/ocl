@@ -35,7 +35,7 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.impl.NamespaceImpl#getOwnedRule <em>Owned Rule</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.NamespaceImpl#getOwnedConstraints <em>Owned Constraints</em>}</li>
  * </ul>
  * </p>
  *
@@ -46,15 +46,14 @@ public abstract class NamespaceImpl
 		implements Namespace {
 
 	/**
-	 * The cached value of the '{@link #getOwnedRule() <em>Owned Rule</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedConstraints() <em>Owned Constraints</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedRule()
+	 * @see #getOwnedConstraints()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Constraint> ownedRule;
-
+	protected EList<Constraint> ownedConstraints;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -81,13 +80,13 @@ public abstract class NamespaceImpl
 	 */
 	@Override
 	@SuppressWarnings("null")
-	public @NonNull List<Constraint> getOwnedRule()
+	public @NonNull List<Constraint> getOwnedConstraints()
 	{
-		if (ownedRule == null)
+		if (ownedConstraints == null)
 		{
-			ownedRule = new EObjectContainmentEList<Constraint>(Constraint.class, this, PivotPackage.NAMESPACE__OWNED_RULE);
+			ownedConstraints = new EObjectContainmentEList<Constraint>(Constraint.class, this, PivotPackage.NAMESPACE__OWNED_CONSTRAINTS);
 		}
-		return ownedRule;
+		return ownedConstraints;
 	}
 
 	/**
@@ -100,16 +99,16 @@ public abstract class NamespaceImpl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.NAMESPACE__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.NAMESPACE__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.NAMESPACE__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.NAMESPACE__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.NAMESPACE__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
+			case PivotPackage.NAMESPACE__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.NAMESPACE__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.NAMESPACE__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.NAMESPACE__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.NAMESPACE__OWNED_CONSTRAINTS:
+				return ((InternalEList<?>)getOwnedConstraints()).basicRemove(otherEnd, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -124,18 +123,18 @@ public abstract class NamespaceImpl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.NAMESPACE__COMMENT:
-				return getComment();
-			case PivotPackage.NAMESPACE__EXTENSION:
-				return getExtension();
-			case PivotPackage.NAMESPACE__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.NAMESPACE__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.NAMESPACE__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.NAMESPACE__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.NAMESPACE__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.NAMESPACE__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.NAMESPACE__NAME:
 				return getName();
-			case PivotPackage.NAMESPACE__OWNED_RULE:
-				return getOwnedRule();
+			case PivotPackage.NAMESPACE__OWNED_CONSTRAINTS:
+				return getOwnedConstraints();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -151,28 +150,28 @@ public abstract class NamespaceImpl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.NAMESPACE__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.NAMESPACE__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.NAMESPACE__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.NAMESPACE__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.NAMESPACE__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.NAMESPACE__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.NAMESPACE__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.NAMESPACE__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.NAMESPACE__NAME:
 				setName((String)newValue);
 				return;
-			case PivotPackage.NAMESPACE__OWNED_RULE:
-				getOwnedRule().clear();
-				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
+			case PivotPackage.NAMESPACE__OWNED_CONSTRAINTS:
+				getOwnedConstraints().clear();
+				getOwnedConstraints().addAll((Collection<? extends Constraint>)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -188,23 +187,23 @@ public abstract class NamespaceImpl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.NAMESPACE__COMMENT:
-				getComment().clear();
+			case PivotPackage.NAMESPACE__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.NAMESPACE__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.NAMESPACE__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.NAMESPACE__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.NAMESPACE__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.NAMESPACE__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.NAMESPACE__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.NAMESPACE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case PivotPackage.NAMESPACE__OWNED_RULE:
-				getOwnedRule().clear();
+			case PivotPackage.NAMESPACE__OWNED_CONSTRAINTS:
+				getOwnedConstraints().clear();
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -220,18 +219,18 @@ public abstract class NamespaceImpl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.NAMESPACE__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.NAMESPACE__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.NAMESPACE__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.NAMESPACE__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.NAMESPACE__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.NAMESPACE__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.NAMESPACE__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.NAMESPACE__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.NAMESPACE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.NAMESPACE__OWNED_RULE:
-				return ownedRule != null && !ownedRule.isEmpty();
+			case PivotPackage.NAMESPACE__OWNED_CONSTRAINTS:
+				return ownedConstraints != null && !ownedConstraints.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
 	}

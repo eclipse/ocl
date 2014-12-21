@@ -126,14 +126,14 @@ public class AssociationClassCallExpImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__COMMENT:
-				return getComment();
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__EXTENSION:
-				return getExtension();
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__NAME:
 				return getName();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_MANY:
@@ -145,17 +145,17 @@ public class AssociationClassCallExpImpl
 				return basicGetType();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__TYPE_VALUE:
 				return getTypeValue();
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IMPLICIT:
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_IMPLICIT:
 				return isImplicit();
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__SOURCE:
-				return getSource();
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_SOURCE:
+				return getOwnedSource();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_PRE:
 				return isPre();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__NAVIGATION_SOURCE:
 				if (resolve) return getNavigationSource();
 				return basicGetNavigationSource();
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__QUALIFIER:
-				return getQualifier();
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__QUALIFIERS:
+				return getQualifiers();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS:
 				if (resolve) return getReferredAssociationClass();
 				return basicGetReferredAssociationClass();
@@ -173,21 +173,21 @@ public class AssociationClassCallExpImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__NAME:
 				setName((String)newValue);
@@ -201,11 +201,11 @@ public class AssociationClassCallExpImpl
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__TYPE_VALUE:
 				setTypeValue((Type)newValue);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IMPLICIT:
-				setImplicit((Boolean)newValue);
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_IMPLICIT:
+				setIsImplicit((Boolean)newValue);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__SOURCE:
-				setSource((OCLExpression)newValue);
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_SOURCE:
+				setOwnedSource((OCLExpression)newValue);
 				return;
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_PRE:
 				setIsPre((Boolean)newValue);
@@ -213,9 +213,9 @@ public class AssociationClassCallExpImpl
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__NAVIGATION_SOURCE:
 				setNavigationSource((Property)newValue);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__QUALIFIER:
-				getQualifier().clear();
-				getQualifier().addAll((Collection<? extends OCLExpression>)newValue);
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__QUALIFIERS:
+				getQualifiers().clear();
+				getQualifiers().addAll((Collection<? extends OCLExpression>)newValue);
 				return;
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS:
 				setReferredAssociationClass((AssociationClass)newValue);
@@ -233,17 +233,17 @@ public class AssociationClassCallExpImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__COMMENT:
-				getComment().clear();
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__NAME:
 				setName(NAME_EDEFAULT);
@@ -257,11 +257,11 @@ public class AssociationClassCallExpImpl
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__TYPE_VALUE:
 				setTypeValue((Type)null);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IMPLICIT:
-				setImplicit(IMPLICIT_EDEFAULT);
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_IMPLICIT:
+				setIsImplicit(IS_IMPLICIT_EDEFAULT);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__SOURCE:
-				setSource((OCLExpression)null);
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_SOURCE:
+				setOwnedSource((OCLExpression)null);
 				return;
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_PRE:
 				setIsPre(IS_PRE_EDEFAULT);
@@ -269,8 +269,8 @@ public class AssociationClassCallExpImpl
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__NAVIGATION_SOURCE:
 				setNavigationSource((Property)null);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__QUALIFIER:
-				getQualifier().clear();
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__QUALIFIERS:
+				getQualifiers().clear();
 				return;
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS:
 				setReferredAssociationClass((AssociationClass)null);
@@ -288,14 +288,14 @@ public class AssociationClassCallExpImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_MANY:
@@ -306,16 +306,16 @@ public class AssociationClassCallExpImpl
 				return type != null;
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__TYPE_VALUE:
 				return typeValue != null;
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IMPLICIT:
-				return ((eFlags & IMPLICIT_EFLAG) != 0) != IMPLICIT_EDEFAULT;
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__SOURCE:
-				return source != null;
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_IMPLICIT:
+				return ((eFlags & IS_IMPLICIT_EFLAG) != 0) != IS_IMPLICIT_EDEFAULT;
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_SOURCE:
+				return ownedSource != null;
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_PRE:
 				return ((eFlags & IS_PRE_EFLAG) != 0) != IS_PRE_EDEFAULT;
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__NAVIGATION_SOURCE:
 				return navigationSource != null;
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__QUALIFIER:
-				return qualifier != null && !qualifier.isEmpty();
+			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__QUALIFIERS:
+				return qualifiers != null && !qualifiers.isEmpty();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS:
 				return referredAssociationClass != null;
 		}

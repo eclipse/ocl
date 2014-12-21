@@ -310,7 +310,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 			csInvariant.setStereotype(UMLReflection.INVARIANT);
 		}
 		refreshList(csElement.getOwnedConstraints(), csInvariants);
-		TemplateSignature ownedTemplateSignature = object.getOwnedTemplateSignature();
+		TemplateSignature ownedTemplateSignature = object.getOwnedSignature();
 		if (ownedTemplateSignature != null) {
 			csElement.setOwnedSignature(visitDeclaration(TemplateSignatureCS.class, ownedTemplateSignature));
 		}
@@ -340,7 +340,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 		T csElement = refreshElement(csClass, csEClass, object);
 		String name = object.getName();
 		csElement.setName(name);
-		refreshList(csElement.getOwnedAnnotations(), visitDeclarations(AnnotationCS.class, object.getOwnedAnnotation(), null));
+		refreshList(csElement.getOwnedAnnotations(), visitDeclarations(AnnotationCS.class, object.getOwnedAnnotations(), null));
 		return csElement;
 	}
 

@@ -80,7 +80,7 @@ public class AS2Ecore extends AbstractConversion
 	public static void copyAnnotationComments(@NonNull EAnnotation eModelElement, @NonNull Constraint pivotConstraint) {
 		String key = DelegateInstaller.getAnnotationKey(pivotConstraint);
 		EAnnotation commentAnnotation = eModelElement.getEAnnotation(PivotConstants.DOCUMENTATION_ANNOTATION_SOURCE);
-		List<Comment> newComments = pivotConstraint.getOwnedComment();
+		List<Comment> newComments = pivotConstraint.getOwnedComments();
 		int iMax = newComments.size();
 		if (iMax > 0) {
 			if (commentAnnotation == null) {
@@ -104,7 +104,7 @@ public class AS2Ecore extends AbstractConversion
 
 	public static void copyComments(EModelElement eModelElement, Element pivotElement) {
 		EList<EAnnotation> allEAnnotations = eModelElement.getEAnnotations();
-		List<Comment> newComments = pivotElement.getOwnedComment();
+		List<Comment> newComments = pivotElement.getOwnedComments();
 		int iComment = 0;
 		int iMax = newComments.size();
 		List<EAnnotation> removals = null;
@@ -175,7 +175,7 @@ public class AS2Ecore extends AbstractConversion
 				secondParameter.getEAnnotations().add(eAnnotation);
 			}
 		}
-		LanguageExpression specification = pivotConstraint.getSpecification();
+		LanguageExpression specification = pivotConstraint.getOwnedSpecification();
 		if (specification != null) {
 			String body = specification.getBody();
 			if (body != null) {

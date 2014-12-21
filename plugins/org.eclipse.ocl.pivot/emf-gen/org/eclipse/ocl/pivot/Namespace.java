@@ -23,7 +23,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.Namespace#getOwnedRule <em>Owned Rule</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Namespace#getOwnedConstraints <em>Owned Constraints</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,7 +33,7 @@ import org.eclipse.jdt.annotation.NonNull;
 public interface Namespace extends NamedElement {
 
 	/**
-	 * Returns the value of the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Constraints</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.Constraint}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -41,9 +41,9 @@ public interface Namespace extends NamedElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Rule</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getNamespace_OwnedRule()
+	 * @return the value of the '<em>Owned Constraints</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getNamespace_OwnedConstraints()
 	 * @generated
 	 */
-	@NonNull List<Constraint> getOwnedRule();
+	@NonNull List<Constraint> getOwnedConstraints();
 } // Namespace

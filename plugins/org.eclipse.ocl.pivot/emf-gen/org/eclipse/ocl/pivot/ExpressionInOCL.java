@@ -26,10 +26,10 @@ import org.eclipse.jdt.annotation.NonNull;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.ExpressionInOCL#getBodyExpression <em>Body Expression</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.ExpressionInOCL#getContextVariable <em>Context Variable</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.ExpressionInOCL#getParameterVariable <em>Parameter Variable</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.ExpressionInOCL#getResultVariable <em>Result Variable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.ExpressionInOCL#getOwnedBody <em>Owned Body</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.ExpressionInOCL#getOwnedContext <em>Owned Context</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.ExpressionInOCL#getOwnedParameters <em>Owned Parameters</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.ExpressionInOCL#getOwnedResult <em>Owned Result</em>}</li>
  * </ul>
  * </p>
  *
@@ -39,82 +39,82 @@ import org.eclipse.jdt.annotation.NonNull;
 public interface ExpressionInOCL extends LanguageExpression {
 
 	/**
-	 * Returns the value of the '<em><b>Body Expression</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Body</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Body Expression</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Body Expression</em>' containment reference.
-	 * @see #setBodyExpression(OCLExpression)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getExpressionInOCL_BodyExpression()
+	 * @return the value of the '<em>Owned Body</em>' containment reference.
+	 * @see #setOwnedBody(OCLExpression)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getExpressionInOCL_OwnedBody()
 	 * @generated
 	 */
-	OCLExpression getBodyExpression();
+	OCLExpression getOwnedBody();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.ExpressionInOCL#getBodyExpression <em>Body Expression</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.ExpressionInOCL#getOwnedBody <em>Owned Body</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Body Expression</em>' containment reference.
-	 * @see #getBodyExpression()
+	 * @param value the new value of the '<em>Owned Body</em>' containment reference.
+	 * @see #getOwnedBody()
 	 * @generated
 	 */
-	void setBodyExpression(OCLExpression value);
+	void setOwnedBody(OCLExpression value);
 
 	/**
-	 * Returns the value of the '<em><b>Context Variable</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Context</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Context Variable</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Context Variable</em>' containment reference.
-	 * @see #setContextVariable(Variable)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getExpressionInOCL_ContextVariable()
+	 * @return the value of the '<em>Owned Context</em>' containment reference.
+	 * @see #setOwnedContext(Variable)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getExpressionInOCL_OwnedContext()
 	 * @generated
 	 */
-	Variable getContextVariable();
+	Variable getOwnedContext();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.ExpressionInOCL#getContextVariable <em>Context Variable</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.ExpressionInOCL#getOwnedContext <em>Owned Context</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Context Variable</em>' containment reference.
-	 * @see #getContextVariable()
+	 * @param value the new value of the '<em>Owned Context</em>' containment reference.
+	 * @see #getOwnedContext()
 	 * @generated
 	 */
-	void setContextVariable(Variable value);
+	void setOwnedContext(Variable value);
 
 	/**
-	 * Returns the value of the '<em><b>Result Variable</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Result</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Result Variable</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Result Variable</em>' containment reference.
-	 * @see #setResultVariable(Variable)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getExpressionInOCL_ResultVariable()
+	 * @return the value of the '<em>Owned Result</em>' containment reference.
+	 * @see #setOwnedResult(Variable)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getExpressionInOCL_OwnedResult()
 	 * @generated
 	 */
-	Variable getResultVariable();
+	Variable getOwnedResult();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.ExpressionInOCL#getResultVariable <em>Result Variable</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.ExpressionInOCL#getOwnedResult <em>Owned Result</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Result Variable</em>' containment reference.
-	 * @see #getResultVariable()
+	 * @param value the new value of the '<em>Owned Result</em>' containment reference.
+	 * @see #getOwnedResult()
 	 * @generated
 	 */
-	void setResultVariable(Variable value);
+	void setOwnedResult(Variable value);
 
 	/**
-	 * Returns the value of the '<em><b>Parameter Variable</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Parameters</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.Variable}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -122,10 +122,10 @@ public interface ExpressionInOCL extends LanguageExpression {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Parameter Variable</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getExpressionInOCL_ParameterVariable()
+	 * @return the value of the '<em>Owned Parameters</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getExpressionInOCL_OwnedParameters()
 	 * @generated
 	 */
-	@NonNull List<Variable> getParameterVariable();
+	@NonNull List<Variable> getOwnedParameters();
 
 } // ExpressionInOCL

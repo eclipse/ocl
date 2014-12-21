@@ -83,7 +83,7 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 		String changedEType = null;
 		String changedLower = null;
 		String changedUpper = null;
-		for (@SuppressWarnings("null")@NonNull Property redefinedProperty : pivotProperty.getRedefinedProperty()) {
+		for (@SuppressWarnings("null")@NonNull Property redefinedProperty : pivotProperty.getRedefinedProperties()) {
 			EStructuralFeature eRedefined = context.getCreated(EStructuralFeature.class, redefinedProperty);
 			if (eRedefined != null) {
 				if (eRedefinesAnnotation == null) {
@@ -156,11 +156,11 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 	}
 
 	protected boolean addPropertyRenameEAnnotations(@NonNull EStructuralFeature eStructuralFeature, @NonNull Property pivotProperty) {
-		for (@SuppressWarnings("null")@NonNull Property redefinedProperty1 :  pivotProperty.getRedefinedProperty()) {
+		for (@SuppressWarnings("null")@NonNull Property redefinedProperty1 :  pivotProperty.getRedefinedProperties()) {
 			if (!ClassUtil.safeEquals(pivotProperty.getName(), redefinedProperty1.getName())) {
 				EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 				eAnnotation.setSource(PivotConstants.REDEFINES_ANNOTATION_SOURCE);
-				for (@SuppressWarnings("null")@NonNull Property redefinedProperty2 :  pivotProperty.getRedefinedProperty()) {
+				for (@SuppressWarnings("null")@NonNull Property redefinedProperty2 :  pivotProperty.getRedefinedProperties()) {
 					EStructuralFeature eRedefined = context.getCreated(EStructuralFeature.class, redefinedProperty2);
 					if (eRedefined != null) {
 						eAnnotation.getReferences().add(eRedefined);
@@ -306,7 +306,7 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 	public EObject visitConstraint(@NonNull Constraint pivotConstraint) {
 		EOperation eOperation = context.getCreated(EOperation.class, pivotConstraint);
 		EAnnotation eRedefinesAnnotation = null;
-		for (@SuppressWarnings("null")@NonNull Constraint redefinedConstraint : pivotConstraint.getRedefinedConstraint()) {
+		for (@SuppressWarnings("null")@NonNull Constraint redefinedConstraint : pivotConstraint.getRedefinedConstraints()) {
 			EOperation eRedefined = context.getCreated(EOperation.class, redefinedConstraint);
 			if (eRedefined != null) {
 				if (eRedefinesAnnotation == null) {
@@ -331,9 +331,9 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 	@Override
 	public EObject visitOperation(@NonNull Operation pivotOperation) {
 		EOperation eOperation = context.getCreated(EOperation.class, pivotOperation);
-		safeVisitAll(EClassifier.class, eOperation.getEGenericExceptions(), eOperation.getEExceptions(), pivotOperation.getRaisedException());
+		safeVisitAll(EClassifier.class, eOperation.getEGenericExceptions(), eOperation.getEExceptions(), pivotOperation.getRaisedExceptions());
 		EAnnotation eRedefinesAnnotation = null;
-		for (@SuppressWarnings("null")@NonNull Operation redefinedOperation : pivotOperation.getRedefinedOperation()) {
+		for (@SuppressWarnings("null")@NonNull Operation redefinedOperation : pivotOperation.getRedefinedOperations()) {
 			EOperation eRedefined = context.getCreated(EOperation.class, redefinedOperation);
 			if (eRedefined != null) {
 				if (eRedefinesAnnotation == null) {
@@ -413,7 +413,7 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 	@Override
 	public EObject visitTemplateParameter(@NonNull TemplateParameter pivotTemplateParameter) {
 		ETypeParameter eTypeParameter = context.getCreated(ETypeParameter.class, pivotTemplateParameter);
-		for (org.eclipse.ocl.pivot.Class constrainingType : pivotTemplateParameter.getConstrainingClass()) {
+		for (org.eclipse.ocl.pivot.Class constrainingType : pivotTemplateParameter.getConstrainingClasses()) {
 			if (constrainingType != null) {
 				EGenericType eGenericType = typeRefVisitor.resolveEGenericType(constrainingType);
 				eTypeParameter.getEBounds().add(eGenericType);

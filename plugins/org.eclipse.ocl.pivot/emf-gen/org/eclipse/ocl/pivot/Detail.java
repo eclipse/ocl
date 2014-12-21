@@ -12,6 +12,8 @@ package org.eclipse.ocl.pivot;
 
 import java.util.List;
 
+import org.eclipse.jdt.annotation.NonNull;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Detail</b></em>'.
@@ -20,7 +22,7 @@ import java.util.List;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.Detail#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Detail#getValues <em>Values</em>}</li>
  * </ul>
  * </p>
  *
@@ -31,7 +33,7 @@ public interface Detail
 		extends NamedElement {
 
 	/**
-	 * Returns the value of the '<em><b>Value</b></em>' attribute list.
+	 * Returns the value of the '<em><b>Values</b></em>' attribute list.
 	 * The list contents are of type {@link java.lang.String}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -39,10 +41,10 @@ public interface Detail
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Value</em>' attribute list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getDetail_Value()
+	 * @return the value of the '<em>Values</em>' attribute list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getDetail_Values()
 	 * @generated
 	 */
-	List<String> getValue();
+	@NonNull List<String> getValues();
 
 } // Detail

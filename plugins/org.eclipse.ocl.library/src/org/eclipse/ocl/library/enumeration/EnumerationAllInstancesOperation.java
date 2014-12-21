@@ -36,7 +36,7 @@ public class EnumerationAllInstancesOperation extends AbstractUnaryOperation
 		Type sourceType = asType(sourceVal);
 		Set<Object> results = new HashSet<Object>();
 		if (sourceType instanceof Enumeration) {
-			for (EnumerationLiteral instance : ((Enumeration)sourceType).getOwnedLiteral()) {
+			for (EnumerationLiteral instance : ((Enumeration)sourceType).getOwnedLiterals()) {
 				if (instance != null) {
 					results.add(instance.getEnumerationLiteralId());
 				}

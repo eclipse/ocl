@@ -25,8 +25,8 @@ import java.util.List;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.Slot#getDefiningProperty <em>Defining Property</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Slot#getOwnedValues <em>Owned Values</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Slot#getOwningInstance <em>Owning Instance</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Slot#getValues <em>Values</em>}</li>
  * </ul>
  * </p>
  *
@@ -60,8 +60,22 @@ public interface Slot extends Element
 	void setDefiningProperty(Property value);
 
 	/**
+	 * Returns the value of the '<em><b>Owned Values</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.pivot.ValueSpecification}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The value or values corresponding to the defining feature for the owning instance specification.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Values</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getSlot_OwnedValues()
+	 * @generated
+	 */
+	List<ValueSpecification> getOwnedValues();
+
+	/**
 	 * Returns the value of the '<em><b>Owning Instance</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.InstanceSpecification#getSlots <em>Slots</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.InstanceSpecification#getOwnedSlots <em>Owned Slots</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -70,7 +84,7 @@ public interface Slot extends Element
 	 * @return the value of the '<em>Owning Instance</em>' container reference.
 	 * @see #setOwningInstance(InstanceSpecification)
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getSlot_OwningInstance()
-	 * @see org.eclipse.ocl.pivot.InstanceSpecification#getSlots
+	 * @see org.eclipse.ocl.pivot.InstanceSpecification#getOwnedSlots
 	 * @generated
 	 */
 	InstanceSpecification getOwningInstance();
@@ -84,19 +98,5 @@ public interface Slot extends Element
 	 * @generated
 	 */
 	void setOwningInstance(InstanceSpecification value);
-
-	/**
-	 * Returns the value of the '<em><b>Values</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.pivot.ValueSpecification}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The value or values corresponding to the defining feature for the owning instance specification.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Values</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getSlot_Values()
-	 * @generated
-	 */
-	List<ValueSpecification> getValues();
 
 } // Slot

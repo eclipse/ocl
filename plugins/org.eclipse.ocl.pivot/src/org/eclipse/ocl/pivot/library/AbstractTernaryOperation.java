@@ -27,7 +27,7 @@ public abstract class AbstractTernaryOperation extends AbstractOperation impleme
 {
 	@Override
 	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
-		List<? extends OCLExpression> arguments = callExp.getArgument();
+		List<? extends OCLExpression> arguments = callExp.getOwnedArguments();
 		OCLExpression argument0 = arguments.get(0);
 		OCLExpression argument1 = arguments.get(1);
 		assert argument0 != null;

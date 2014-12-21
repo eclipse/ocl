@@ -88,7 +88,7 @@ public class AS2UMLReferenceVisitor
 	@Override
 	public EObject visitOperation(@NonNull Operation pivotOperation) {
 		org.eclipse.uml2.uml.Operation umlOperation = context.getCreated(org.eclipse.uml2.uml.Operation.class, pivotOperation);
-		safeVisitAll(umlOperation.getRaisedExceptions(), pivotOperation.getRaisedException());
+		safeVisitAll(umlOperation.getRaisedExceptions(), pivotOperation.getRaisedExceptions());
 		Type pivotType = pivotOperation.getType();
 		if (pivotType == null) {
 			return null;				// Occurs for Operation return type

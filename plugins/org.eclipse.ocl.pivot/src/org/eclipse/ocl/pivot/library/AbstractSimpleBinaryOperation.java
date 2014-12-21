@@ -27,7 +27,7 @@ public abstract class AbstractSimpleBinaryOperation extends AbstractUntypedBinar
 {
 	@Override
 	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
-		List<? extends OCLExpression> arguments = callExp.getArgument();
+		List<? extends OCLExpression> arguments = callExp.getOwnedArguments();
 		OCLExpression argument0 = arguments.get(0);
 		assert argument0 != null;
 		Object firstArgument = evaluator.evaluate(argument0);

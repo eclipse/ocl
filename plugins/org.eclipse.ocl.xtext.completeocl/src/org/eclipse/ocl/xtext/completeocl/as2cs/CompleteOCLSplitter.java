@@ -61,7 +61,7 @@ public class CompleteOCLSplitter
 				}
 			}
 			else if (eObject instanceof Property) {
-				LanguageExpression bodyExpression = ((Property)eObject).getDefaultExpression();
+				LanguageExpression bodyExpression = ((Property)eObject).getOwnedExpression();
 				if (bodyExpression != null) {
 					allExpressionInOCLs.add(bodyExpression);
 				}
@@ -135,7 +135,7 @@ public class CompleteOCLSplitter
 			}
 			if (separateParent instanceof Property) {
 				PivotUtil.resetContainer(object);
-				((Property)separateParent).setDefaultExpression(object);
+				((Property)separateParent).setOwnedExpression(object);
 			}
 			return object;
 		}
@@ -166,7 +166,7 @@ public class CompleteOCLSplitter
 			{
 				@Override
 				protected void copyContainment(EReference eReference, EObject eObject, EObject copyEObject) {
-					if (eReference == PivotPackage.Literals.OPERATION__OWNED_PARAMETER) {
+					if (eReference == PivotPackage.Literals.OPERATION__OWNED_PARAMETERS) {
 						super.copyContainment(eReference, eObject, copyEObject);
 					}
 				}				

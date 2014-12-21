@@ -442,7 +442,7 @@ public abstract class AbstractIdResolver implements IdResolver
 					for (CompletePackage dPackage : standardLibrary.getAllCompletePackages()) {
 						for (org.eclipse.ocl.pivot.Class dType : dPackage.getAllClasses()) {
 							if (dType instanceof Enumeration) {
-								for (EnumerationLiteral dEnumerationLiteral : ((Enumeration) dType).getOwnedLiteral()) {
+								for (EnumerationLiteral dEnumerationLiteral : ((Enumeration) dType).getOwnedLiterals()) {
 									Enumerator enumerator = dEnumerationLiteral.getEnumerator();
 									EnumerationLiteralId enumerationLiteralId = dEnumerationLiteral.getEnumerationLiteralId();
 									enumerator2enumerationLiteralId.put(enumerator, enumerationLiteralId);
@@ -822,7 +822,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		else if (value instanceof EnumerationLiteralId) {
 			EnumerationLiteral enumLiteral = (EnumerationLiteral) ((EnumerationLiteralId)value).accept(this);
 			assert enumLiteral != null;
-			Enumeration enumeration = enumLiteral.getEnumeration();
+			Enumeration enumeration = enumLiteral.getOwningEnumeration();
 			assert enumeration != null;
 			return enumeration;
 		}

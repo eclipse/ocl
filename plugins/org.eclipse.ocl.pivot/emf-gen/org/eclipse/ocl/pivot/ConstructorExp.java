@@ -12,6 +12,8 @@ package org.eclipse.ocl.pivot;
 
 import java.util.List;
 
+import org.eclipse.jdt.annotation.NonNull;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Constructor Exp</b></em>'.
@@ -20,7 +22,7 @@ import java.util.List;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.ConstructorExp#getPart <em>Part</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.ConstructorExp#getOwnedParts <em>Owned Parts</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.ConstructorExp#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
@@ -31,7 +33,7 @@ import java.util.List;
 public interface ConstructorExp extends OCLExpression
 {
 	/**
-	 * Returns the value of the '<em><b>Part</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Parts</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.ConstructorPart}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -39,11 +41,11 @@ public interface ConstructorExp extends OCLExpression
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Part</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getConstructorExp_Part()
+	 * @return the value of the '<em>Owned Parts</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getConstructorExp_OwnedParts()
 	 * @generated
 	 */
-	List<ConstructorPart> getPart();
+	@NonNull List<ConstructorPart> getOwnedParts();
 
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.

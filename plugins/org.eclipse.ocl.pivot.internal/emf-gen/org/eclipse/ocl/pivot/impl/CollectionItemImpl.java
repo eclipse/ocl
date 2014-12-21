@@ -49,7 +49,7 @@ import org.eclipse.osgi.util.NLS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.impl.CollectionItemImpl#getItem <em>Item</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.CollectionItemImpl#getOwnedItem <em>Owned Item</em>}</li>
  * </ul>
  * </p>
  *
@@ -60,15 +60,14 @@ public class CollectionItemImpl
 		implements CollectionItem {
 
 	/**
-	 * The cached value of the '{@link #getItem() <em>Item</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedItem() <em>Owned Item</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getItem()
+	 * @see #getOwnedItem()
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLExpression item;
-
+	protected OCLExpression ownedItem;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -94,8 +93,8 @@ public class CollectionItemImpl
 	 * @generated
 	 */
 	@Override
-	public OCLExpression getItem() {
-		return item;
+	public OCLExpression getOwnedItem() {
+		return ownedItem;
 	}
 
 	/**
@@ -103,13 +102,13 @@ public class CollectionItemImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetItem(OCLExpression newItem,
-			NotificationChain msgs) {
-		OCLExpression oldItem = item;
-		item = newItem;
+	public NotificationChain basicSetOwnedItem(OCLExpression newOwnedItem, NotificationChain msgs)
+	{
+		OCLExpression oldOwnedItem = ownedItem;
+		ownedItem = newOwnedItem;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.COLLECTION_ITEM__ITEM, oldItem, newItem);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.COLLECTION_ITEM__OWNED_ITEM, oldOwnedItem, newOwnedItem);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -121,19 +120,19 @@ public class CollectionItemImpl
 	 * @generated
 	 */
 	@Override
-	public void setItem(OCLExpression newItem) {
-		if (newItem != item)
+	public void setOwnedItem(OCLExpression newOwnedItem) {
+		if (newOwnedItem != ownedItem)
 		{
 			NotificationChain msgs = null;
-			if (item != null)
-				msgs = ((InternalEObject)item).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.COLLECTION_ITEM__ITEM, null, msgs);
-			if (newItem != null)
-				msgs = ((InternalEObject)newItem).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.COLLECTION_ITEM__ITEM, null, msgs);
-			msgs = basicSetItem(newItem, msgs);
+			if (ownedItem != null)
+				msgs = ((InternalEObject)ownedItem).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.COLLECTION_ITEM__OWNED_ITEM, null, msgs);
+			if (newOwnedItem != null)
+				msgs = ((InternalEObject)newOwnedItem).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.COLLECTION_ITEM__OWNED_ITEM, null, msgs);
+			msgs = basicSetOwnedItem(newOwnedItem, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.COLLECTION_ITEM__ITEM, newItem, newItem));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.COLLECTION_ITEM__OWNED_ITEM, newOwnedItem, newOwnedItem));
 	}
 
 	/**
@@ -145,16 +144,16 @@ public class CollectionItemImpl
 	public boolean validateTypeIsItemType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv TypeIsItemType: type = item.type
+		 * inv TypeIsItemType: type = ownedItem.type
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_eq;
 		try {
 		    final @Nullable /*@Thrown*/ Type type = this.getType();
-		    final @Nullable /*@Thrown*/ OCLExpression item = this.getItem();
-		    if (item == null) {
+		    final @Nullable /*@Thrown*/ OCLExpression ownedItem = this.getOwnedItem();
+		    if (ownedItem == null) {
 		        throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		    }
-		    final @Nullable /*@Thrown*/ Type type_0 = item.getType();
+		    final @Nullable /*@Thrown*/ Type type_0 = ownedItem.getType();
 		    final /*@Thrown*/ boolean eq = (type != null) && (type_0 != null) ? (type.getTypeId() == type_0.getTypeId()) : ValueUtil.throwBooleanInvalidValueException("null equal input");
 		    ;
 		    CAUGHT_eq = eq;
@@ -183,16 +182,16 @@ public class CollectionItemImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case PivotPackage.COLLECTION_ITEM__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.COLLECTION_ITEM__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.COLLECTION_ITEM__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.COLLECTION_ITEM__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.COLLECTION_ITEM__ITEM:
-				return basicSetItem(null, msgs);
+			case PivotPackage.COLLECTION_ITEM__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.COLLECTION_ITEM__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.COLLECTION_ITEM__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.COLLECTION_ITEM__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.COLLECTION_ITEM__OWNED_ITEM:
+				return basicSetOwnedItem(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -206,14 +205,14 @@ public class CollectionItemImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case PivotPackage.COLLECTION_ITEM__COMMENT:
-				return getComment();
-			case PivotPackage.COLLECTION_ITEM__EXTENSION:
-				return getExtension();
-			case PivotPackage.COLLECTION_ITEM__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.COLLECTION_ITEM__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.COLLECTION_ITEM__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.COLLECTION_ITEM__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.COLLECTION_ITEM__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.COLLECTION_ITEM__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.COLLECTION_ITEM__NAME:
 				return getName();
 			case PivotPackage.COLLECTION_ITEM__IS_MANY:
@@ -223,8 +222,8 @@ public class CollectionItemImpl
 			case PivotPackage.COLLECTION_ITEM__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
-			case PivotPackage.COLLECTION_ITEM__ITEM:
-				return getItem();
+			case PivotPackage.COLLECTION_ITEM__OWNED_ITEM:
+				return getOwnedItem();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -239,21 +238,21 @@ public class CollectionItemImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case PivotPackage.COLLECTION_ITEM__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.COLLECTION_ITEM__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.COLLECTION_ITEM__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.COLLECTION_ITEM__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.COLLECTION_ITEM__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.COLLECTION_ITEM__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.COLLECTION_ITEM__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.COLLECTION_ITEM__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.COLLECTION_ITEM__NAME:
 				setName((String)newValue);
@@ -264,8 +263,8 @@ public class CollectionItemImpl
 			case PivotPackage.COLLECTION_ITEM__TYPE:
 				setType((Type)newValue);
 				return;
-			case PivotPackage.COLLECTION_ITEM__ITEM:
-				setItem((OCLExpression)newValue);
+			case PivotPackage.COLLECTION_ITEM__OWNED_ITEM:
+				setOwnedItem((OCLExpression)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -280,17 +279,17 @@ public class CollectionItemImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.COLLECTION_ITEM__COMMENT:
-				getComment().clear();
+			case PivotPackage.COLLECTION_ITEM__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.COLLECTION_ITEM__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.COLLECTION_ITEM__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.COLLECTION_ITEM__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.COLLECTION_ITEM__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.COLLECTION_ITEM__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.COLLECTION_ITEM__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.COLLECTION_ITEM__NAME:
 				setName(NAME_EDEFAULT);
@@ -301,8 +300,8 @@ public class CollectionItemImpl
 			case PivotPackage.COLLECTION_ITEM__TYPE:
 				setType((Type)null);
 				return;
-			case PivotPackage.COLLECTION_ITEM__ITEM:
-				setItem((OCLExpression)null);
+			case PivotPackage.COLLECTION_ITEM__OWNED_ITEM:
+				setOwnedItem((OCLExpression)null);
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -317,14 +316,14 @@ public class CollectionItemImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.COLLECTION_ITEM__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.COLLECTION_ITEM__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.COLLECTION_ITEM__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.COLLECTION_ITEM__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.COLLECTION_ITEM__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.COLLECTION_ITEM__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.COLLECTION_ITEM__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.COLLECTION_ITEM__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.COLLECTION_ITEM__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.COLLECTION_ITEM__IS_MANY:
@@ -333,8 +332,8 @@ public class CollectionItemImpl
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.COLLECTION_ITEM__TYPE:
 				return type != null;
-			case PivotPackage.COLLECTION_ITEM__ITEM:
-				return item != null;
+			case PivotPackage.COLLECTION_ITEM__OWNED_ITEM:
+				return ownedItem != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

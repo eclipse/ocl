@@ -47,7 +47,7 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 				return constraint;
 			}
 		}
-		throw new OCLDelegateException(new SemanticException(OCLMessages.MissingSpecificationBody_ERROR_, type, PivotConstants.OWNED_RULE_ROLE));
+		throw new OCLDelegateException(new SemanticException(OCLMessages.MissingSpecificationBody_ERROR_, type, PivotConstants.OWNED_CONSTRAINT_ROLE));
 	}
 
 	@Override
@@ -109,9 +109,9 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 	 * @throws OCLDelegateException 
 	 */
 	public @NonNull ExpressionInOCL getQueryOrThrow(@NonNull MetaModelManager metaModelManager, @NonNull Constraint constraint) throws OCLDelegateException {
-		LanguageExpression specification = constraint.getSpecification();
+		LanguageExpression specification = constraint.getOwnedSpecification();
 		if (specification == null) {
-			throw new OCLDelegateException(new SemanticException(OCLMessages.MissingSpecificationBody_ERROR_, constraint, PivotConstants.OWNED_RULE_ROLE));
+			throw new OCLDelegateException(new SemanticException(OCLMessages.MissingSpecificationBody_ERROR_, constraint, PivotConstants.OWNED_CONSTRAINT_ROLE));
 		}
 		try {
 			return metaModelManager.getQueryOrThrow(specification);

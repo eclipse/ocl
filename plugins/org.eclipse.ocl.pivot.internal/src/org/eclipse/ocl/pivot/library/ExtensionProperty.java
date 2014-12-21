@@ -67,7 +67,7 @@ public class ExtensionProperty extends AbstractProperty
 		}
 		if (element != null) {
 			List<ElementExtension> selectedExtensions = null;
-			for (ElementExtension elementExtension : element.getExtension()) {
+			for (ElementExtension elementExtension : element.getOwnedExtensions()) {
 				Stereotype dynamicStereotype = elementExtension.getStereotype();
 				if (dynamicStereotype.conformsTo(evaluator.getStandardLibrary(), staticType)) {
 					if (selectedExtensions == null) {

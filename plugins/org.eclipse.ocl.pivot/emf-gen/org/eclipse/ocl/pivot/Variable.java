@@ -21,8 +21,8 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.Variable#isImplicit <em>Implicit</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Variable#getInitExpression <em>Init Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Variable#isImplicit <em>Is Implicit</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Variable#getOwnedInit <em>Owned Init</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Variable#getRepresentedParameter <em>Represented Parameter</em>}</li>
  * </ul>
  * </p>
@@ -34,29 +34,29 @@ public interface Variable
 		extends VariableDeclaration {
 
 	/**
-	 * Returns the value of the '<em><b>Init Expression</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Init</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Init Expression</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Init Expression</em>' containment reference.
-	 * @see #setInitExpression(OCLExpression)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getVariable_InitExpression()
+	 * @return the value of the '<em>Owned Init</em>' containment reference.
+	 * @see #setOwnedInit(OCLExpression)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getVariable_OwnedInit()
 	 * @generated
 	 */
-	OCLExpression getInitExpression();
+	OCLExpression getOwnedInit();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Variable#getInitExpression <em>Init Expression</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Variable#getOwnedInit <em>Owned Init</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Init Expression</em>' containment reference.
-	 * @see #getInitExpression()
+	 * @param value the new value of the '<em>Owned Init</em>' containment reference.
+	 * @see #getOwnedInit()
 	 * @generated
 	 */
-	void setInitExpression(OCLExpression value);
+	void setOwnedInit(OCLExpression value);
 
 	/**
 	 * Returns the value of the '<em><b>Represented Parameter</b></em>' reference.
@@ -91,7 +91,7 @@ public interface Variable
 	boolean validateCompatibleInitialiserType(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
-	 * Returns the value of the '<em><b>Implicit</b></em>' attribute.
+	 * Returns the value of the '<em><b>Is Implicit</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -99,21 +99,21 @@ public interface Variable
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Implicit</em>' attribute.
-	 * @see #setImplicit(boolean)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getVariable_Implicit()
+	 * @return the value of the '<em>Is Implicit</em>' attribute.
+	 * @see #setIsImplicit(boolean)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getVariable_IsImplicit()
 	 * @generated
 	 */
 	boolean isImplicit();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Variable#isImplicit <em>Implicit</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Variable#isImplicit <em>Is Implicit</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Implicit</em>' attribute.
+	 * @param value the new value of the '<em>Is Implicit</em>' attribute.
 	 * @see #isImplicit()
 	 * @generated
 	 */
-	void setImplicit(boolean value);
+	void setIsImplicit(boolean value);
 
 } // Variable

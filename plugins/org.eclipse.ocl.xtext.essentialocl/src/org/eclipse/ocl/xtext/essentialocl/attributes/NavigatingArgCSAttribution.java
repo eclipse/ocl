@@ -50,7 +50,7 @@ public class NavigatingArgCSAttribution extends AbstractAttribution
 		OCLExpression pivot = PivotUtil.getPivot(OCLExpression.class, targetElement);	// NB QVTr's RelationCallExp is not a CallExp
 		if (pivot instanceof LoopExp) {				// FIXME This is null for nested iteration
 			if (role == NavigationRole.EXPRESSION) {
-				for (Variable iterator : ((LoopExp)pivot).getIterator()) {
+				for (Variable iterator : ((LoopExp)pivot).getOwnedIterators()) {
 					if (iterator.isImplicit()) {
 						environmentView.addElementsOfScope(iterator.getType(), scopeView);
 					}
@@ -62,7 +62,7 @@ public class NavigatingArgCSAttribution extends AbstractAttribution
 					}
 				}
 				if (pivot instanceof IterateExp) {
-					Variable result = ((IterateExp)pivot).getResult();
+					Variable result = ((IterateExp)pivot).getOwnedResult();
 					if (result.isImplicit()) {
 						environmentView.addElementsOfScope(result.getType(), scopeView);
 					}
@@ -75,12 +75,12 @@ public class NavigatingArgCSAttribution extends AbstractAttribution
 				}
 			}
 			else if (role == NavigationRole.ITERATOR) {			// Happens during save
-				List<Variable> iterators = ((LoopExp)pivot).getIterator();
+				List<Variable> iterators = ((LoopExp)pivot).getOwnedIterators();
 				assert iterators != null;
 				environmentView.addNamedElements(iterators);
 			}
 			else if (role == NavigationRole.ACCUMULATOR) {
-				Variable result = ((IterateExp)pivot).getResult();
+				Variable result = ((IterateExp)pivot).getOwnedResult();
 				if (result != null) {
 					environmentView.addNamedElement(result);
 				}

@@ -20,7 +20,7 @@ package org.eclipse.ocl.pivot;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.TypeExtension#isRequired <em>Is Required</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.TypeExtension#getStereotype <em>Stereotype</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.TypeExtension#getOwningStereotype <em>Owning Stereotype</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.TypeExtension#getType <em>Type</em>}</li>
  * </ul>
  * </p>
@@ -57,31 +57,31 @@ public interface TypeExtension extends Element
 	void setIsRequired(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Stereotype</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Stereotype#getExtensionOfs <em>Extension Ofs</em>}'.
+	 * Returns the value of the '<em><b>Owning Stereotype</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Stereotype#getOwnedExtensionOfs <em>Owned Extension Ofs</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Stereotype</em>' container reference isn't clear,
+	 * If the meaning of the '<em>Owning Stereotype</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Stereotype</em>' container reference.
-	 * @see #setStereotype(Stereotype)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getTypeExtension_Stereotype()
-	 * @see org.eclipse.ocl.pivot.Stereotype#getExtensionOfs
+	 * @return the value of the '<em>Owning Stereotype</em>' container reference.
+	 * @see #setOwningStereotype(Stereotype)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getTypeExtension_OwningStereotype()
+	 * @see org.eclipse.ocl.pivot.Stereotype#getOwnedExtensionOfs
 	 * @generated
 	 */
-	Stereotype getStereotype();
+	Stereotype getOwningStereotype();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.TypeExtension#getStereotype <em>Stereotype</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.TypeExtension#getOwningStereotype <em>Owning Stereotype</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Stereotype</em>' container reference.
-	 * @see #getStereotype()
+	 * @param value the new value of the '<em>Owning Stereotype</em>' container reference.
+	 * @see #getOwningStereotype()
 	 * @generated
 	 */
-	void setStereotype(Stereotype value);
+	void setOwningStereotype(Stereotype value);
 
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference.

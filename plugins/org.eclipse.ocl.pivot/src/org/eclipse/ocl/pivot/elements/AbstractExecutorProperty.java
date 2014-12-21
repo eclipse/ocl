@@ -44,11 +44,6 @@ public abstract class AbstractExecutorProperty extends AbstractExecutorFeature i
 	}
 
 	@Override
-	public LanguageExpression getDefaultExpression() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
 	public Object getDefaultValue() {
 		throw new UnsupportedOperationException();
 	}
@@ -74,13 +69,18 @@ public abstract class AbstractExecutorProperty extends AbstractExecutorFeature i
 	}
 
 	@Override
+	public LanguageExpression getOwnedExpression() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
 	@NonNull
 	public PropertyId getPropertyId() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public List<Property> getRedefinedProperty() {
+	public List<Property> getRedefinedProperties() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -158,22 +158,12 @@ public abstract class AbstractExecutorProperty extends AbstractExecutorFeature i
 		throw new UnsupportedOperationException();
 	}
 	@Override
-	public void setDefaultExpression(LanguageExpression value) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
 	public void setDefaultValue(Object value) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public void setDefaultValueString(String value) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public void setImplicit(boolean value) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -189,6 +179,11 @@ public abstract class AbstractExecutorProperty extends AbstractExecutorFeature i
 
 	@Override
 	public void setIsID(boolean value) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setIsImplicit(boolean value) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -219,6 +214,11 @@ public abstract class AbstractExecutorProperty extends AbstractExecutorFeature i
 
 	@Override
 	public void setOpposite(Property value) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setOwnedExpression(LanguageExpression value) {
 		throw new UnsupportedOperationException();
 	}
 

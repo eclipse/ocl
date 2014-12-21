@@ -43,7 +43,7 @@ public class OperationContextFilter implements ScopeFilter
 //			return false;
 //		}
 		List<ParameterCS> contextParameters = csOperationContext.getOwnedParameters();
-		List<Parameter> candidateParameters = candidateOperation.getOwnedParameter();
+		List<Parameter> candidateParameters = candidateOperation.getOwnedParameters();
 		int iMax = contextParameters.size();
 		if (iMax != candidateParameters.size()) {
 			return false;

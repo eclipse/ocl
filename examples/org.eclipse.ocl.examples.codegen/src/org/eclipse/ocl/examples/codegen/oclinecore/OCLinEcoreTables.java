@@ -183,7 +183,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		for (org.eclipse.ocl.pivot.Class pClass : activeClassesSortedByName) {
 			if (pClass instanceof Enumeration) {
 				s.append("\n");
-				List<EnumerationLiteral> enumerationLiterals = ((Enumeration)pClass).getOwnedLiteral();
+				List<EnumerationLiteral> enumerationLiterals = ((Enumeration)pClass).getOwnedLiterals();
 				for (int i = 0; i < enumerationLiterals.size(); i++) {
 					EnumerationLiteral enumerationLiteral = ClassUtil.nonNullModel(enumerationLiterals.get(i));
 					s.append("		public static final " + atNonNull() + " ");
@@ -432,7 +432,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 					s.append("\n");
 				}
 				Operation op = sortedOperations.get(i);
-				TemplateSignature ownedTemplateSignature = op.getOwnedTemplateSignature();
+				TemplateSignature ownedTemplateSignature = op.getOwnedSignature();
 				s.append("		public static final " + atNonNull() + " ");
 				s.appendClassReference(ExecutorOperation.class);
 				s.append(" ");
@@ -454,7 +454,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 					s.append("new ");
 					s.appendClassReference(DomainTypeParameters.class);
 					s.append("(");
-					for (TemplateParameter parameter : ownedTemplateSignature.getOwnedTemplateParameters()) {
+					for (TemplateParameter parameter : ownedTemplateSignature.getOwnedParameters()) {
 						if (parameter != null) {
 							s.append("TypeParameters._");
 							op.accept(emitLiteralVisitor);
@@ -645,8 +645,8 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		}
 		s.append(", PACKAGE, ");
 		appendTypeFlags(pClass);
-		if (pClass.getOwnedTemplateSignature() != null) {
-			for (TemplateParameter parameter : pClass.getOwnedTemplateSignature().getOwnedTemplateParameters()) {
+		if (pClass.getOwnedSignature() != null) {
+			for (TemplateParameter parameter : pClass.getOwnedSignature().getOwnedParameters()) {
 				if (parameter != null) {
 					s.append(", TypeParameters.");
 					s.appendScopedTypeName(pClass);
@@ -819,10 +819,10 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append("	 */\n");
 		s.append("	public static class TypeParameters {");
 		for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : activeClassesSortedByName) {
-			TemplateSignature templateSignature = pClass.getOwnedTemplateSignature();
+			TemplateSignature templateSignature = pClass.getOwnedSignature();
 			if (templateSignature != null) {
 				s.append("\n");
-				for (TemplateParameter parameter : templateSignature.getOwnedTemplateParameters()) {
+				for (TemplateParameter parameter : templateSignature.getOwnedParameters()) {
 					if (parameter != null) {
 						s.append("		public static final " + atNonNull() + " ");
 						s.appendClassReference(ExecutorTypeParameter.class);
@@ -852,9 +852,9 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 			}
 			for (/*@NonNull*/ Operation operation : getLocalOperationsSortedBySignature(pClass)) {
 				assert operation != null;
-				templateSignature = operation.getOwnedTemplateSignature();
+				templateSignature = operation.getOwnedSignature();
 				if (templateSignature != null) {
-					for (/*@NonNull*/ TemplateParameter parameter : templateSignature.getOwnedTemplateParameters()) {
+					for (/*@NonNull*/ TemplateParameter parameter : templateSignature.getOwnedParameters()) {
 						if (parameter != null) {
 							s.append("		public static final " + atNonNull() + " ");
 							s.appendClassReference(ExecutorTypeParameter.class);

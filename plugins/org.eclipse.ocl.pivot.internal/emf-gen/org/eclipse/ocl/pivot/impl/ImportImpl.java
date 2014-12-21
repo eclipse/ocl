@@ -125,14 +125,14 @@ public class ImportImpl extends NamedElementImpl implements Import
 	{
 		switch (featureID)
 		{
-			case PivotPackage.IMPORT__COMMENT:
-				return getComment();
-			case PivotPackage.IMPORT__EXTENSION:
-				return getExtension();
-			case PivotPackage.IMPORT__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.IMPORT__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.IMPORT__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.IMPORT__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.IMPORT__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.IMPORT__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.IMPORT__NAME:
 				return getName();
 			case PivotPackage.IMPORT__IMPORTED_NAMESPACE:
@@ -153,21 +153,21 @@ public class ImportImpl extends NamedElementImpl implements Import
 	{
 		switch (featureID)
 		{
-			case PivotPackage.IMPORT__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.IMPORT__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.IMPORT__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.IMPORT__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.IMPORT__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.IMPORT__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.IMPORT__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.IMPORT__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.IMPORT__NAME:
 				setName((String)newValue);
@@ -189,17 +189,17 @@ public class ImportImpl extends NamedElementImpl implements Import
 	{
 		switch (featureID)
 		{
-			case PivotPackage.IMPORT__COMMENT:
-				getComment().clear();
+			case PivotPackage.IMPORT__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.IMPORT__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.IMPORT__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.IMPORT__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.IMPORT__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.IMPORT__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.IMPORT__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.IMPORT__NAME:
 				setName(NAME_EDEFAULT);
@@ -221,14 +221,14 @@ public class ImportImpl extends NamedElementImpl implements Import
 	{
 		switch (featureID)
 		{
-			case PivotPackage.IMPORT__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.IMPORT__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.IMPORT__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.IMPORT__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.IMPORT__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.IMPORT__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.IMPORT__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.IMPORT__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.IMPORT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.IMPORT__IMPORTED_NAMESPACE:

@@ -156,7 +156,7 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 	}
 
 	protected void appendNavigationOperator(@NonNull StringBuilder s, @NonNull CallExp ele) {
-		OCLExpression source = ele.getSource();
+		OCLExpression source = ele.getOwnedSource();
 		if (source == null) {
 			return;
 		}
@@ -236,10 +236,10 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 
 	protected void appendTemplateBindings(@NonNull StringBuilder s, TemplateableElement templateableElement) {
 		if (templateableElement != null) {
-			for (TemplateBinding templateBinding : templateableElement.getOwnedTemplateBindings()) {
+			for (TemplateBinding templateBinding : templateableElement.getOwnedBindings()) {
 				s.append("(");
 				String prefix = "";
-				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedTemplateParameterSubstitutions()) {
+				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedSubstitutions()) {
 					s.append(prefix);
 					Type actual = templateParameterSubstitution.getActual();
 					appendType(s, actual);
@@ -252,10 +252,10 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 
 	protected void appendTemplateSignature(@NonNull StringBuilder s, TemplateableElement templateableElement) {
 		if (templateableElement != null) {
-			TemplateSignature templateSignature = templateableElement.getOwnedTemplateSignature();
+			TemplateSignature templateSignature = templateableElement.getOwnedSignature();
 			if (templateSignature != null) {
 				s.append("(");
-				Collection<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
+				Collection<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
 				if (!templateParameters.isEmpty()) {
 					String prefix = "";
 					for (TemplateParameter templateParameter : templateParameters) {
@@ -426,7 +426,7 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 		if (eContainingFeature == PivotPackage.Literals.OPERATION__BODY_EXPRESSION) {
 			return "/org.eclipse.ocl.xtext.oclinecore.ui/icons/full/obj16/DefinitionConstraint.gif";
 		}
-		else if (eContainingFeature == PivotPackage.Literals.PROPERTY__DEFAULT_EXPRESSION) {
+		else if (eContainingFeature == PivotPackage.Literals.PROPERTY__OWNED_EXPRESSION) {
 			return "/org.eclipse.ocl.xtext.oclinecore.ui/icons/full/obj16/DerivationConstraint.gif";
 		}
 	//	else if (UMLReflection.INITIAL.equals(stereotype)) {
@@ -435,10 +435,10 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 		else if (eContainingFeature == PivotPackage.Literals.CLASS__OWNED_INVARIANTS) {
 			return "/org.eclipse.ocl.xtext.oclinecore.ui/icons/full/obj16/InvariantConstraint.gif";
 		}
-		else if (eContainingFeature == PivotPackage.Literals.OPERATION__POSTCONDITION) {
+		else if (eContainingFeature == PivotPackage.Literals.OPERATION__OWNED_POSTCONDITIONS) {
 			return "/org.eclipse.ocl.xtext.oclinecore.ui/icons/full/obj16/PostconditionConstraint.gif";
 		}
-		else if (eContainingFeature == PivotPackage.Literals.OPERATION__PRECONDITION) {
+		else if (eContainingFeature == PivotPackage.Literals.OPERATION__OWNED_PRECONDITIONS) {
 			return "/org.eclipse.ocl.xtext.oclinecore.ui/icons/full/obj16/PreconditionConstraint.gif";
 		}
 		return "/org.eclipse.ocl.edit/icons/full/obj16/Constraint.gif";
@@ -497,7 +497,7 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 		s.append("\"");
 		appendString(s, ele.getName());			
 		s.append("\" : ");
-		appendString(s, ele.getValue().get(0), 40);
+		appendString(s, ele.getValues().get(0), 40);
 		return s.toString();
 	}
 
@@ -563,7 +563,7 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 		StringBuilder s = new StringBuilder();
 		appendName(s, ele);
 		appendTemplateSignature(s, ele);
-		appendParameters(s, ele.getOwnedIterator());
+		appendParameters(s, ele.getOwnedIterators());
 		s.append(" : ");
 		appendType(s, ele.getType());
 //		appendMultiplicity(s, ele);
@@ -652,7 +652,7 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 		StringBuilder s = new StringBuilder();
 		appendName(s, ele);
 		appendTemplateSignature(s, ele);
-		appendParameters(s, ele.getOwnedParameter());
+		appendParameters(s, ele.getOwnedParameters());
 		s.append(" : ");
 		appendType(s, ele.getType());
 //		appendMultiplicity(s, ele);

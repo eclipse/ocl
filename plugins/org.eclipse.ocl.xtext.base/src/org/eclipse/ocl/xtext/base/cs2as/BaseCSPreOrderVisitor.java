@@ -301,7 +301,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 	protected static class TemplateSignatureContinuation extends SingleContinuation<ClassCS>
 	{
 		public TemplateSignatureContinuation(@NonNull CS2ASConversion context, NamedElement pivotParent, @NonNull ClassCS csElement) {
-			super(context, pivotParent, PivotPackage.Literals.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE, csElement);
+			super(context, pivotParent, PivotPackage.Literals.TEMPLATEABLE_ELEMENT__OWNED_SIGNATURE, csElement);
 			context.getTypesHaveSignaturesInterDependency().addDependency(this);
 		}
 
@@ -519,7 +519,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 			continuations.add(new TemplateSignatureContinuation(context, pivotElement, csClass));
 		}
 		else {
-			pivotElement.setOwnedTemplateSignature(null);
+			pivotElement.setOwnedSignature(null);
 		}
 		if (!(pivotElement instanceof AnyType)) {
 			continuations.add(new ClassSupersContinuation(context, pivotElement, csClass));

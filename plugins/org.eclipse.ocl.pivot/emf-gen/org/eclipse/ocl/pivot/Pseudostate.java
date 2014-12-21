@@ -24,8 +24,8 @@ package org.eclipse.ocl.pivot;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.Pseudostate#getKind <em>Kind</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Pseudostate#getState <em>State</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Pseudostate#getStateMachine <em>State Machine</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Pseudostate#getOwningState <em>Owning State</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Pseudostate#getOwningStateMachine <em>Owning State Machine</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,55 +63,55 @@ public interface Pseudostate extends Vertex
 	void setKind(PseudostateKind value);
 
 	/**
-	 * Returns the value of the '<em><b>State Machine</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.StateMachine#getConnectionPoint <em>Connection Point</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The StateMachine in which this Pseudostate is defined. This only applies to Pseudostates of the kind entryPoint or exitPoint.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>State Machine</em>' container reference.
-	 * @see #setStateMachine(StateMachine)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getPseudostate_StateMachine()
-	 * @see org.eclipse.ocl.pivot.StateMachine#getConnectionPoint
-	 * @generated
-	 */
-	StateMachine getStateMachine();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Pseudostate#getStateMachine <em>State Machine</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>State Machine</em>' container reference.
-	 * @see #getStateMachine()
-	 * @generated
-	 */
-	void setStateMachine(StateMachine value);
-
-	/**
-	 * Returns the value of the '<em><b>State</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.State#getConnectionPoint <em>Connection Point</em>}'.
+	 * Returns the value of the '<em><b>Owning State</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.State#getOwnedConnectionPoints <em>Owned Connection Points</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The State that owns this pseudostate and in which it appears.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>State</em>' container reference.
-	 * @see #setState(State)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getPseudostate_State()
-	 * @see org.eclipse.ocl.pivot.State#getConnectionPoint
+	 * @return the value of the '<em>Owning State</em>' container reference.
+	 * @see #setOwningState(State)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getPseudostate_OwningState()
+	 * @see org.eclipse.ocl.pivot.State#getOwnedConnectionPoints
 	 * @generated
 	 */
-	State getState();
+	State getOwningState();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Pseudostate#getState <em>State</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Pseudostate#getOwningState <em>Owning State</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>State</em>' container reference.
-	 * @see #getState()
+	 * @param value the new value of the '<em>Owning State</em>' container reference.
+	 * @see #getOwningState()
 	 * @generated
 	 */
-	void setState(State value);
+	void setOwningState(State value);
+
+	/**
+	 * Returns the value of the '<em><b>Owning State Machine</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.StateMachine#getOwnedConnectionPoints <em>Owned Connection Points</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The StateMachine in which this Pseudostate is defined. This only applies to Pseudostates of the kind entryPoint or exitPoint.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owning State Machine</em>' container reference.
+	 * @see #setOwningStateMachine(StateMachine)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getPseudostate_OwningStateMachine()
+	 * @see org.eclipse.ocl.pivot.StateMachine#getOwnedConnectionPoints
+	 * @generated
+	 */
+	StateMachine getOwningStateMachine();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Pseudostate#getOwningStateMachine <em>Owning State Machine</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning State Machine</em>' container reference.
+	 * @see #getOwningStateMachine()
+	 * @generated
+	 */
+	void setOwningStateMachine(StateMachine value);
 
 } // Pseudostate

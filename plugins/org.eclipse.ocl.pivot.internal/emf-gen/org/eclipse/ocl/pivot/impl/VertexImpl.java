@@ -39,9 +39,9 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.impl.VertexImpl#getContainer <em>Container</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.VertexImpl#getIncoming <em>Incoming</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.VertexImpl#getOutgoing <em>Outgoing</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.VertexImpl#getIncomingTransitions <em>Incoming Transitions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.VertexImpl#getOutgoingTransitions <em>Outgoing Transitions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.VertexImpl#getOwningRegion <em>Owning Region</em>}</li>
  * </ul>
  * </p>
  *
@@ -50,24 +50,23 @@ import org.eclipse.ocl.pivot.util.Visitor;
 public abstract class VertexImpl extends NamedElementImpl implements Vertex
 {
 	/**
-	 * The cached value of the '{@link #getIncoming() <em>Incoming</em>}' reference list.
+	 * The cached value of the '{@link #getIncomingTransitions() <em>Incoming Transitions</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getIncoming()
+	 * @see #getIncomingTransitions()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Transition> incoming;
+	protected EList<Transition> incomingTransitions;
 	/**
-	 * The cached value of the '{@link #getOutgoing() <em>Outgoing</em>}' reference list.
+	 * The cached value of the '{@link #getOutgoingTransitions() <em>Outgoing Transitions</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOutgoing()
+	 * @see #getOutgoingTransitions()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Transition> outgoing;
-
+	protected EList<Transition> outgoingTransitions;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -95,9 +94,39 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex
 	 * @generated
 	 */
 	@Override
-	public Region getContainer()
+	public List<Transition> getIncomingTransitions()
 	{
-		if (eContainerFeatureID() != PivotPackage.VERTEX__CONTAINER) return null;
+		if (incomingTransitions == null)
+		{
+			incomingTransitions = new EObjectWithInverseResolvingEList<Transition>(Transition.class, this, PivotPackage.VERTEX__INCOMING_TRANSITIONS, PivotPackage.TRANSITION__TARGET);
+		}
+		return incomingTransitions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public List<Transition> getOutgoingTransitions()
+	{
+		if (outgoingTransitions == null)
+		{
+			outgoingTransitions = new EObjectWithInverseResolvingEList<Transition>(Transition.class, this, PivotPackage.VERTEX__OUTGOING_TRANSITIONS, PivotPackage.TRANSITION__SOURCE);
+		}
+		return outgoingTransitions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Region getOwningRegion()
+	{
+		if (eContainerFeatureID() != PivotPackage.VERTEX__OWNING_REGION) return null;
 		return (Region)eInternalContainer();
 	}
 
@@ -106,9 +135,9 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetContainer(Region newContainer, NotificationChain msgs)
+	public NotificationChain basicSetOwningRegion(Region newOwningRegion, NotificationChain msgs)
 	{
-		msgs = eBasicSetContainer((InternalEObject)newContainer, PivotPackage.VERTEX__CONTAINER, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newOwningRegion, PivotPackage.VERTEX__OWNING_REGION, msgs);
 		return msgs;
 	}
 
@@ -118,52 +147,22 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex
 	 * @generated
 	 */
 	@Override
-	public void setContainer(Region newContainer)
+	public void setOwningRegion(Region newOwningRegion)
 	{
-		if (newContainer != eInternalContainer() || (eContainerFeatureID() != PivotPackage.VERTEX__CONTAINER && newContainer != null))
+		if (newOwningRegion != eInternalContainer() || (eContainerFeatureID() != PivotPackage.VERTEX__OWNING_REGION && newOwningRegion != null))
 		{
-			if (EcoreUtil.isAncestor(this, newContainer))
+			if (EcoreUtil.isAncestor(this, newOwningRegion))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newContainer != null)
-				msgs = ((InternalEObject)newContainer).eInverseAdd(this, PivotPackage.REGION__SUBVERTEX, Region.class, msgs);
-			msgs = basicSetContainer(newContainer, msgs);
+			if (newOwningRegion != null)
+				msgs = ((InternalEObject)newOwningRegion).eInverseAdd(this, PivotPackage.REGION__OWNED_SUBVERTEXES, Region.class, msgs);
+			msgs = basicSetOwningRegion(newOwningRegion, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.VERTEX__CONTAINER, newContainer, newContainer));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public List<Transition> getOutgoing()
-	{
-		if (outgoing == null)
-		{
-			outgoing = new EObjectWithInverseResolvingEList<Transition>(Transition.class, this, PivotPackage.VERTEX__OUTGOING, PivotPackage.TRANSITION__SOURCE);
-		}
-		return outgoing;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public List<Transition> getIncoming()
-	{
-		if (incoming == null)
-		{
-			incoming = new EObjectWithInverseResolvingEList<Transition>(Transition.class, this, PivotPackage.VERTEX__INCOMING, PivotPackage.TRANSITION__TARGET);
-		}
-		return incoming;
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.VERTEX__OWNING_REGION, newOwningRegion, newOwningRegion));
 	}
 
 	/**
@@ -177,20 +176,20 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex
 	{
 		switch (featureID)
 		{
-			case PivotPackage.VERTEX__COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.VERTEX__EXTENSION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
-			case PivotPackage.VERTEX__OWNED_COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.VERTEX__CONTAINER:
+			case PivotPackage.VERTEX__ANNOTATING_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAnnotatingComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.VERTEX__OWNED_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.VERTEX__OWNED_EXTENSIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedExtensions()).basicAdd(otherEnd, msgs);
+			case PivotPackage.VERTEX__INCOMING_TRANSITIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getIncomingTransitions()).basicAdd(otherEnd, msgs);
+			case PivotPackage.VERTEX__OUTGOING_TRANSITIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOutgoingTransitions()).basicAdd(otherEnd, msgs);
+			case PivotPackage.VERTEX__OWNING_REGION:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetContainer((Region)otherEnd, msgs);
-			case PivotPackage.VERTEX__INCOMING:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getIncoming()).basicAdd(otherEnd, msgs);
-			case PivotPackage.VERTEX__OUTGOING:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOutgoing()).basicAdd(otherEnd, msgs);
+				return basicSetOwningRegion((Region)otherEnd, msgs);
 		}
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -205,20 +204,20 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex
 	{
 		switch (featureID)
 		{
-			case PivotPackage.VERTEX__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.VERTEX__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.VERTEX__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.VERTEX__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.VERTEX__CONTAINER:
-				return basicSetContainer(null, msgs);
-			case PivotPackage.VERTEX__INCOMING:
-				return ((InternalEList<?>)getIncoming()).basicRemove(otherEnd, msgs);
-			case PivotPackage.VERTEX__OUTGOING:
-				return ((InternalEList<?>)getOutgoing()).basicRemove(otherEnd, msgs);
+			case PivotPackage.VERTEX__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.VERTEX__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.VERTEX__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.VERTEX__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.VERTEX__INCOMING_TRANSITIONS:
+				return ((InternalEList<?>)getIncomingTransitions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.VERTEX__OUTGOING_TRANSITIONS:
+				return ((InternalEList<?>)getOutgoingTransitions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.VERTEX__OWNING_REGION:
+				return basicSetOwningRegion(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -233,8 +232,8 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex
 	{
 		switch (eContainerFeatureID())
 		{
-			case PivotPackage.VERTEX__CONTAINER:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.REGION__SUBVERTEX, Region.class, msgs);
+			case PivotPackage.VERTEX__OWNING_REGION:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.REGION__OWNED_SUBVERTEXES, Region.class, msgs);
 		}
 		return eDynamicBasicRemoveFromContainer(msgs);
 	}
@@ -249,22 +248,22 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex
 	{
 		switch (featureID)
 		{
-			case PivotPackage.VERTEX__COMMENT:
-				return getComment();
-			case PivotPackage.VERTEX__EXTENSION:
-				return getExtension();
-			case PivotPackage.VERTEX__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.VERTEX__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.VERTEX__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.VERTEX__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.VERTEX__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.VERTEX__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.VERTEX__NAME:
 				return getName();
-			case PivotPackage.VERTEX__CONTAINER:
-				return getContainer();
-			case PivotPackage.VERTEX__INCOMING:
-				return getIncoming();
-			case PivotPackage.VERTEX__OUTGOING:
-				return getOutgoing();
+			case PivotPackage.VERTEX__INCOMING_TRANSITIONS:
+				return getIncomingTransitions();
+			case PivotPackage.VERTEX__OUTGOING_TRANSITIONS:
+				return getOutgoingTransitions();
+			case PivotPackage.VERTEX__OWNING_REGION:
+				return getOwningRegion();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -280,27 +279,27 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex
 	{
 		switch (featureID)
 		{
-			case PivotPackage.VERTEX__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.VERTEX__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.VERTEX__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.VERTEX__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.VERTEX__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.VERTEX__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.VERTEX__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.VERTEX__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.VERTEX__NAME:
 				setName((String)newValue);
 				return;
-			case PivotPackage.VERTEX__CONTAINER:
-				setContainer((Region)newValue);
+			case PivotPackage.VERTEX__OWNING_REGION:
+				setOwningRegion((Region)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -316,23 +315,23 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex
 	{
 		switch (featureID)
 		{
-			case PivotPackage.VERTEX__COMMENT:
-				getComment().clear();
+			case PivotPackage.VERTEX__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.VERTEX__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.VERTEX__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.VERTEX__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.VERTEX__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.VERTEX__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.VERTEX__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.VERTEX__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case PivotPackage.VERTEX__CONTAINER:
-				setContainer((Region)null);
+			case PivotPackage.VERTEX__OWNING_REGION:
+				setOwningRegion((Region)null);
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -348,22 +347,22 @@ public abstract class VertexImpl extends NamedElementImpl implements Vertex
 	{
 		switch (featureID)
 		{
-			case PivotPackage.VERTEX__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.VERTEX__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.VERTEX__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.VERTEX__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.VERTEX__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.VERTEX__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.VERTEX__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.VERTEX__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.VERTEX__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.VERTEX__CONTAINER:
-				return getContainer() != null;
-			case PivotPackage.VERTEX__INCOMING:
-				return incoming != null && !incoming.isEmpty();
-			case PivotPackage.VERTEX__OUTGOING:
-				return outgoing != null && !outgoing.isEmpty();
+			case PivotPackage.VERTEX__INCOMING_TRANSITIONS:
+				return incomingTransitions != null && !incomingTransitions.isEmpty();
+			case PivotPackage.VERTEX__OUTGOING_TRANSITIONS:
+				return outgoingTransitions != null && !outgoingTransitions.isEmpty();
+			case PivotPackage.VERTEX__OWNING_REGION:
+				return getOwningRegion() != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

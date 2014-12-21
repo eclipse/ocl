@@ -454,7 +454,7 @@ public class CG2StringVisitor extends AbstractExtendingCGModelVisitor<String, Ob
 		safeVisit(source);
 		LoopExp iterationCallExp = (LoopExp) ic.getAst();
 		Iteration iter = iterationCallExp.getReferredIteration();
-	        Type sourceType = source != null ? iterationCallExp.getSource().getType() : null;
+	        Type sourceType = source != null ? iterationCallExp.getOwnedSource().getType() : null;
 			append(sourceType instanceof CollectionType
 					? PivotConstants.COLLECTION_NAVIGATION_OPERATOR
 					: PivotConstants.OBJECT_NAVIGATION_OPERATOR);
@@ -532,7 +532,7 @@ public class CG2StringVisitor extends AbstractExtendingCGModelVisitor<String, Ob
 		safeVisit(source);
 		OperationCallExp operationCallExp = (OperationCallExp) oc.getAst();
 		Operation oper = operationCallExp.getReferredOperation();
-	        Type sourceType = source != null ? operationCallExp.getSource().getType() : null;
+	        Type sourceType = source != null ? operationCallExp.getOwnedSource().getType() : null;
 			append(sourceType instanceof CollectionType
 					? PivotConstants.COLLECTION_NAVIGATION_OPERATOR
 					: PivotConstants.OBJECT_NAVIGATION_OPERATOR);
@@ -558,7 +558,7 @@ public class CG2StringVisitor extends AbstractExtendingCGModelVisitor<String, Ob
 		OppositePropertyCallExp propertyCallExp = (OppositePropertyCallExp) pc.getAst();
 		Property oppositeProperty = propertyCallExp.getReferredProperty();
 		Property property = oppositeProperty.getOpposite();
-        Type sourceType = source != null ? propertyCallExp.getSource().getType() : null;
+        Type sourceType = source != null ? propertyCallExp.getOwnedSource().getType() : null;
 		result.append(sourceType instanceof CollectionType
 				? PivotConstants.COLLECTION_NAVIGATION_OPERATOR
 				: PivotConstants.OBJECT_NAVIGATION_OPERATOR);
@@ -593,7 +593,7 @@ public class CG2StringVisitor extends AbstractExtendingCGModelVisitor<String, Ob
 		PropertyCallExp propertyCallExp = (PropertyCallExp) pc.getAst();
 		if (propertyCallExp != null) {
 			Property property = propertyCallExp.getReferredProperty();
-	        Type sourceType = source != null ? propertyCallExp.getSource().getType() : null;
+	        Type sourceType = source != null ? propertyCallExp.getOwnedSource().getType() : null;
 			result.append(sourceType instanceof CollectionType
 					? PivotConstants.COLLECTION_NAVIGATION_OPERATOR
 					: PivotConstants.OBJECT_NAVIGATION_OPERATOR);

@@ -173,7 +173,7 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	}
 
 	@Override
-	public @NonNull List<Constraint> getOwnedRule() {
+	public @NonNull List<Constraint> getOwnedConstraints() {
 		throw new UnsupportedOperationException();			// FIXME
 	}
 

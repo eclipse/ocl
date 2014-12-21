@@ -23,7 +23,7 @@ public class IfExpStepper extends AbstractStepper
 
 	@Override
 	public @Nullable Element getFirstElement(@NonNull Element element) {
-		return element instanceof IfExp ? ((IfExp)element).getCondition() : element;
+		return element instanceof IfExp ? ((IfExp)element).getOwnedCondition() : element;
 	}
 	
 	@Override
@@ -31,12 +31,12 @@ public class IfExpStepper extends AbstractStepper
 		EObject parentElement = childElement.eContainer();
 		if (parentElement instanceof IfExp) {
 			IfExp ifExp = (IfExp)parentElement;
-			if (childElement == ifExp.getCondition()) {
+			if (childElement == ifExp.getOwnedCondition()) {
 				if (result == Boolean.TRUE) {
-					return getFirstElement(vmEvaluationVisitor, ifExp.getThenExpression());
+					return getFirstElement(vmEvaluationVisitor, ifExp.getOwnedThen());
 				}
 				else if (result == Boolean.FALSE) {
-					return getFirstElement(vmEvaluationVisitor, ifExp.getElseExpression());
+					return getFirstElement(vmEvaluationVisitor, ifExp.getOwnedElse());
 				}
 				return ifExp;
 			}

@@ -172,14 +172,14 @@ public class DynamicPropertyImpl extends ElementImpl implements DynamicProperty
 	{
 		switch (featureID)
 		{
-			case PivotPackage.DYNAMIC_PROPERTY__COMMENT:
-				return getComment();
-			case PivotPackage.DYNAMIC_PROPERTY__EXTENSION:
-				return getExtension();
-			case PivotPackage.DYNAMIC_PROPERTY__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.DYNAMIC_PROPERTY__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.DYNAMIC_PROPERTY__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.DYNAMIC_PROPERTY__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.DYNAMIC_PROPERTY__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.DYNAMIC_PROPERTY__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.DYNAMIC_PROPERTY__DEFAULT:
 				return getDefault();
 			case PivotPackage.DYNAMIC_PROPERTY__REFERRED_PROPERTY:
@@ -200,21 +200,21 @@ public class DynamicPropertyImpl extends ElementImpl implements DynamicProperty
 	{
 		switch (featureID)
 		{
-			case PivotPackage.DYNAMIC_PROPERTY__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.DYNAMIC_PROPERTY__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.DYNAMIC_PROPERTY__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.DYNAMIC_PROPERTY__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.DYNAMIC_PROPERTY__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.DYNAMIC_PROPERTY__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.DYNAMIC_PROPERTY__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.DYNAMIC_PROPERTY__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.DYNAMIC_PROPERTY__DEFAULT:
 				setDefault((String)newValue);
@@ -236,17 +236,17 @@ public class DynamicPropertyImpl extends ElementImpl implements DynamicProperty
 	{
 		switch (featureID)
 		{
-			case PivotPackage.DYNAMIC_PROPERTY__COMMENT:
-				getComment().clear();
+			case PivotPackage.DYNAMIC_PROPERTY__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.DYNAMIC_PROPERTY__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.DYNAMIC_PROPERTY__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.DYNAMIC_PROPERTY__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.DYNAMIC_PROPERTY__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.DYNAMIC_PROPERTY__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.DYNAMIC_PROPERTY__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.DYNAMIC_PROPERTY__DEFAULT:
 				setDefault(DEFAULT_EDEFAULT);
@@ -268,14 +268,14 @@ public class DynamicPropertyImpl extends ElementImpl implements DynamicProperty
 	{
 		switch (featureID)
 		{
-			case PivotPackage.DYNAMIC_PROPERTY__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.DYNAMIC_PROPERTY__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.DYNAMIC_PROPERTY__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.DYNAMIC_PROPERTY__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.DYNAMIC_PROPERTY__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.DYNAMIC_PROPERTY__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.DYNAMIC_PROPERTY__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.DYNAMIC_PROPERTY__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.DYNAMIC_PROPERTY__DEFAULT:
 				return DEFAULT_EDEFAULT == null ? default_ != null : !DEFAULT_EDEFAULT.equals(default_);
 			case PivotPackage.DYNAMIC_PROPERTY__REFERRED_PROPERTY:

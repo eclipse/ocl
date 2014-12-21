@@ -44,7 +44,7 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.impl.EnumerationLiteralImpl#getEnumeration <em>Enumeration</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.EnumerationLiteralImpl#getOwningEnumeration <em>Owning Enumeration</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.EnumerationLiteralImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
@@ -99,8 +99,9 @@ public class EnumerationLiteralImpl
 	 * @generated
 	 */
 	@Override
-	public Enumeration getEnumeration() {
-		if (eContainerFeatureID() != PivotPackage.ENUMERATION_LITERAL__ENUMERATION) return null;
+	public Enumeration getOwningEnumeration()
+	{
+		if (eContainerFeatureID() != PivotPackage.ENUMERATION_LITERAL__OWNING_ENUMERATION) return null;
 		return (Enumeration)eInternalContainer();
 	}
 
@@ -109,9 +110,9 @@ public class EnumerationLiteralImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetEnumeration(Enumeration newEnumeration,
-			NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newEnumeration, PivotPackage.ENUMERATION_LITERAL__ENUMERATION, msgs);
+	public NotificationChain basicSetOwningEnumeration(Enumeration newOwningEnumeration, NotificationChain msgs)
+	{
+		msgs = eBasicSetContainer((InternalEObject)newOwningEnumeration, PivotPackage.ENUMERATION_LITERAL__OWNING_ENUMERATION, msgs);
 		return msgs;
 	}
 
@@ -121,21 +122,22 @@ public class EnumerationLiteralImpl
 	 * @generated
 	 */
 	@Override
-	public void setEnumeration(Enumeration newEnumeration) {
-		if (newEnumeration != eInternalContainer() || (eContainerFeatureID() != PivotPackage.ENUMERATION_LITERAL__ENUMERATION && newEnumeration != null))
+	public void setOwningEnumeration(Enumeration newOwningEnumeration)
+	{
+		if (newOwningEnumeration != eInternalContainer() || (eContainerFeatureID() != PivotPackage.ENUMERATION_LITERAL__OWNING_ENUMERATION && newOwningEnumeration != null))
 		{
-			if (EcoreUtil.isAncestor(this, newEnumeration))
+			if (EcoreUtil.isAncestor(this, newOwningEnumeration))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newEnumeration != null)
-				msgs = ((InternalEObject)newEnumeration).eInverseAdd(this, PivotPackage.ENUMERATION__OWNED_LITERAL, Enumeration.class, msgs);
-			msgs = basicSetEnumeration(newEnumeration, msgs);
+			if (newOwningEnumeration != null)
+				msgs = ((InternalEObject)newOwningEnumeration).eInverseAdd(this, PivotPackage.ENUMERATION__OWNED_LITERALS, Enumeration.class, msgs);
+			msgs = basicSetOwningEnumeration(newOwningEnumeration, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.ENUMERATION_LITERAL__ENUMERATION, newEnumeration, newEnumeration));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.ENUMERATION_LITERAL__OWNING_ENUMERATION, newOwningEnumeration, newOwningEnumeration));
 	}
 
 	/**
@@ -174,22 +176,22 @@ public class EnumerationLiteralImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case PivotPackage.ENUMERATION_LITERAL__COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.ENUMERATION_LITERAL__EXTENSION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
-			case PivotPackage.ENUMERATION_LITERAL__OWNED_COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
+			case PivotPackage.ENUMERATION_LITERAL__ANNOTATING_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAnnotatingComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.ENUMERATION_LITERAL__OWNED_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.ENUMERATION_LITERAL__OWNED_EXTENSIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedExtensions()).basicAdd(otherEnd, msgs);
+			case PivotPackage.ENUMERATION_LITERAL__OWNED_SLOTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedSlots()).basicAdd(otherEnd, msgs);
 			case PivotPackage.ENUMERATION_LITERAL__OWNING_PACKAGE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningPackage((org.eclipse.ocl.pivot.Package)otherEnd, msgs);
-			case PivotPackage.ENUMERATION_LITERAL__SLOTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSlots()).basicAdd(otherEnd, msgs);
-			case PivotPackage.ENUMERATION_LITERAL__ENUMERATION:
+			case PivotPackage.ENUMERATION_LITERAL__OWNING_ENUMERATION:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetEnumeration((Enumeration)otherEnd, msgs);
+				return basicSetOwningEnumeration((Enumeration)otherEnd, msgs);
 		}
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -204,22 +206,22 @@ public class EnumerationLiteralImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case PivotPackage.ENUMERATION_LITERAL__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ENUMERATION_LITERAL__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ENUMERATION_LITERAL__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ENUMERATION_LITERAL__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ENUMERATION_LITERAL__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ENUMERATION_LITERAL__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ENUMERATION_LITERAL__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ENUMERATION_LITERAL__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ENUMERATION_LITERAL__OWNED_SLOTS:
+				return ((InternalEList<?>)getOwnedSlots()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ENUMERATION_LITERAL__OWNED_SPECIFICATION:
+				return basicSetOwnedSpecification(null, msgs);
 			case PivotPackage.ENUMERATION_LITERAL__OWNING_PACKAGE:
 				return basicSetOwningPackage(null, msgs);
-			case PivotPackage.ENUMERATION_LITERAL__SLOTS:
-				return ((InternalEList<?>)getSlots()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ENUMERATION_LITERAL__SPECIFICATION:
-				return basicSetSpecification(null, msgs);
-			case PivotPackage.ENUMERATION_LITERAL__ENUMERATION:
-				return basicSetEnumeration(null, msgs);
+			case PivotPackage.ENUMERATION_LITERAL__OWNING_ENUMERATION:
+				return basicSetOwningEnumeration(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -236,8 +238,8 @@ public class EnumerationLiteralImpl
 		{
 			case PivotPackage.ENUMERATION_LITERAL__OWNING_PACKAGE:
 				return eInternalContainer().eInverseRemove(this, PivotPackage.PACKAGE__OWNED_INSTANCES, org.eclipse.ocl.pivot.Package.class, msgs);
-			case PivotPackage.ENUMERATION_LITERAL__ENUMERATION:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.ENUMERATION__OWNED_LITERAL, Enumeration.class, msgs);
+			case PivotPackage.ENUMERATION_LITERAL__OWNING_ENUMERATION:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.ENUMERATION__OWNED_LITERALS, Enumeration.class, msgs);
 		}
 		return eDynamicBasicRemoveFromContainer(msgs);
 	}
@@ -251,26 +253,26 @@ public class EnumerationLiteralImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case PivotPackage.ENUMERATION_LITERAL__COMMENT:
-				return getComment();
-			case PivotPackage.ENUMERATION_LITERAL__EXTENSION:
-				return getExtension();
-			case PivotPackage.ENUMERATION_LITERAL__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.ENUMERATION_LITERAL__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.ENUMERATION_LITERAL__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.ENUMERATION_LITERAL__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.ENUMERATION_LITERAL__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.ENUMERATION_LITERAL__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.ENUMERATION_LITERAL__NAME:
 				return getName();
 			case PivotPackage.ENUMERATION_LITERAL__CLASSES:
 				return getClasses();
+			case PivotPackage.ENUMERATION_LITERAL__OWNED_SLOTS:
+				return getOwnedSlots();
+			case PivotPackage.ENUMERATION_LITERAL__OWNED_SPECIFICATION:
+				return getOwnedSpecification();
 			case PivotPackage.ENUMERATION_LITERAL__OWNING_PACKAGE:
 				return getOwningPackage();
-			case PivotPackage.ENUMERATION_LITERAL__SLOTS:
-				return getSlots();
-			case PivotPackage.ENUMERATION_LITERAL__SPECIFICATION:
-				return getSpecification();
-			case PivotPackage.ENUMERATION_LITERAL__ENUMERATION:
-				return getEnumeration();
+			case PivotPackage.ENUMERATION_LITERAL__OWNING_ENUMERATION:
+				return getOwningEnumeration();
 			case PivotPackage.ENUMERATION_LITERAL__VALUE:
 				return getValue();
 		}
@@ -287,21 +289,21 @@ public class EnumerationLiteralImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case PivotPackage.ENUMERATION_LITERAL__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.ENUMERATION_LITERAL__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.ENUMERATION_LITERAL__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.ENUMERATION_LITERAL__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.ENUMERATION_LITERAL__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.ENUMERATION_LITERAL__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.ENUMERATION_LITERAL__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.ENUMERATION_LITERAL__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.ENUMERATION_LITERAL__NAME:
 				setName((String)newValue);
@@ -310,18 +312,18 @@ public class EnumerationLiteralImpl
 				getClasses().clear();
 				getClasses().addAll((Collection<? extends org.eclipse.ocl.pivot.Class>)newValue);
 				return;
+			case PivotPackage.ENUMERATION_LITERAL__OWNED_SLOTS:
+				getOwnedSlots().clear();
+				getOwnedSlots().addAll((Collection<? extends Slot>)newValue);
+				return;
+			case PivotPackage.ENUMERATION_LITERAL__OWNED_SPECIFICATION:
+				setOwnedSpecification((LanguageExpression)newValue);
+				return;
 			case PivotPackage.ENUMERATION_LITERAL__OWNING_PACKAGE:
 				setOwningPackage((org.eclipse.ocl.pivot.Package)newValue);
 				return;
-			case PivotPackage.ENUMERATION_LITERAL__SLOTS:
-				getSlots().clear();
-				getSlots().addAll((Collection<? extends Slot>)newValue);
-				return;
-			case PivotPackage.ENUMERATION_LITERAL__SPECIFICATION:
-				setSpecification((LanguageExpression)newValue);
-				return;
-			case PivotPackage.ENUMERATION_LITERAL__ENUMERATION:
-				setEnumeration((Enumeration)newValue);
+			case PivotPackage.ENUMERATION_LITERAL__OWNING_ENUMERATION:
+				setOwningEnumeration((Enumeration)newValue);
 				return;
 			case PivotPackage.ENUMERATION_LITERAL__VALUE:
 				setValue((Number)newValue);
@@ -339,17 +341,17 @@ public class EnumerationLiteralImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.ENUMERATION_LITERAL__COMMENT:
-				getComment().clear();
+			case PivotPackage.ENUMERATION_LITERAL__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.ENUMERATION_LITERAL__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.ENUMERATION_LITERAL__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.ENUMERATION_LITERAL__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.ENUMERATION_LITERAL__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.ENUMERATION_LITERAL__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.ENUMERATION_LITERAL__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.ENUMERATION_LITERAL__NAME:
 				setName(NAME_EDEFAULT);
@@ -357,17 +359,17 @@ public class EnumerationLiteralImpl
 			case PivotPackage.ENUMERATION_LITERAL__CLASSES:
 				getClasses().clear();
 				return;
+			case PivotPackage.ENUMERATION_LITERAL__OWNED_SLOTS:
+				getOwnedSlots().clear();
+				return;
+			case PivotPackage.ENUMERATION_LITERAL__OWNED_SPECIFICATION:
+				setOwnedSpecification((LanguageExpression)null);
+				return;
 			case PivotPackage.ENUMERATION_LITERAL__OWNING_PACKAGE:
 				setOwningPackage((org.eclipse.ocl.pivot.Package)null);
 				return;
-			case PivotPackage.ENUMERATION_LITERAL__SLOTS:
-				getSlots().clear();
-				return;
-			case PivotPackage.ENUMERATION_LITERAL__SPECIFICATION:
-				setSpecification((LanguageExpression)null);
-				return;
-			case PivotPackage.ENUMERATION_LITERAL__ENUMERATION:
-				setEnumeration((Enumeration)null);
+			case PivotPackage.ENUMERATION_LITERAL__OWNING_ENUMERATION:
+				setOwningEnumeration((Enumeration)null);
 				return;
 			case PivotPackage.ENUMERATION_LITERAL__VALUE:
 				setValue(VALUE_EDEFAULT);
@@ -385,26 +387,26 @@ public class EnumerationLiteralImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.ENUMERATION_LITERAL__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.ENUMERATION_LITERAL__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.ENUMERATION_LITERAL__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.ENUMERATION_LITERAL__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.ENUMERATION_LITERAL__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.ENUMERATION_LITERAL__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.ENUMERATION_LITERAL__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.ENUMERATION_LITERAL__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.ENUMERATION_LITERAL__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.ENUMERATION_LITERAL__CLASSES:
 				return classes != null && !classes.isEmpty();
+			case PivotPackage.ENUMERATION_LITERAL__OWNED_SLOTS:
+				return ownedSlots != null && !ownedSlots.isEmpty();
+			case PivotPackage.ENUMERATION_LITERAL__OWNED_SPECIFICATION:
+				return ownedSpecification != null;
 			case PivotPackage.ENUMERATION_LITERAL__OWNING_PACKAGE:
 				return getOwningPackage() != null;
-			case PivotPackage.ENUMERATION_LITERAL__SLOTS:
-				return slots != null && !slots.isEmpty();
-			case PivotPackage.ENUMERATION_LITERAL__SPECIFICATION:
-				return specification != null;
-			case PivotPackage.ENUMERATION_LITERAL__ENUMERATION:
-				return getEnumeration() != null;
+			case PivotPackage.ENUMERATION_LITERAL__OWNING_ENUMERATION:
+				return getOwningEnumeration() != null;
 			case PivotPackage.ENUMERATION_LITERAL__VALUE:
 				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
@@ -445,7 +447,7 @@ public class EnumerationLiteralImpl
 		EnumerationLiteralId enumerationLiteralId2 = enumerationLiteralId;
 		if (enumerationLiteralId2 == null) {
 			String name = ClassUtil.nonNullModel(getName());
-			EnumerationId enumerationId = getEnumeration().getEnumerationId();
+			EnumerationId enumerationId = getOwningEnumeration().getEnumerationId();
 			enumerationLiteralId = enumerationLiteralId2 = enumerationId.getEnumerationLiteralId(name);
 		}
 		return enumerationLiteralId2;

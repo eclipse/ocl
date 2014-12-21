@@ -32,12 +32,12 @@ public class ExpressionInOCLAttribution extends AbstractAttribution
 	@Override
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		ExpressionInOCL targetExpression = (ExpressionInOCL) target;
-		Variable contextVariable = targetExpression.getContextVariable();
-		for (Variable parameterVariable : targetExpression.getParameterVariable()) {
+		Variable contextVariable = targetExpression.getOwnedContext();
+		for (Variable parameterVariable : targetExpression.getOwnedParameters()) {
 			assert parameterVariable != null;
 			environmentView.addNamedElement(parameterVariable);
 		}
-		Variable resultVariable = targetExpression.getResultVariable();
+		Variable resultVariable = targetExpression.getOwnedResult();
 		if (resultVariable != null) {
 			environmentView.addNamedElement(resultVariable);
 		}

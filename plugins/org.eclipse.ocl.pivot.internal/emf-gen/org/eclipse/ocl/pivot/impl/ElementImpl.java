@@ -45,10 +45,10 @@ import org.eclipse.ocl.pivot.values.SetValue;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.impl.ElementImpl#getComment <em>Comment</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.ElementImpl#getExtension <em>Extension</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.ElementImpl#getOwnedAnnotation <em>Owned Annotation</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.ElementImpl#getOwnedComment <em>Owned Comment</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.ElementImpl#getAnnotatingComments <em>Annotating Comments</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.ElementImpl#getOwnedAnnotations <em>Owned Annotations</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.ElementImpl#getOwnedComments <em>Owned Comments</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.ElementImpl#getOwnedExtensions <em>Owned Extensions</em>}</li>
  * </ul>
  * </p>
  *
@@ -59,41 +59,41 @@ public abstract class ElementImpl
 		implements Element {
 
 	/**
-	 * The cached value of the '{@link #getComment() <em>Comment</em>}' reference list.
+	 * The cached value of the '{@link #getAnnotatingComments() <em>Annotating Comments</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getComment()
+	 * @see #getAnnotatingComments()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Comment> comment;
+	protected EList<Comment> annotatingComments;
 	/**
-	 * The cached value of the '{@link #getExtension() <em>Extension</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedAnnotations() <em>Owned Annotations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExtension()
+	 * @see #getOwnedAnnotations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ElementExtension> extension;
+	protected EList<Element> ownedAnnotations;
 	/**
-	 * The cached value of the '{@link #getOwnedAnnotation() <em>Owned Annotation</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedComments() <em>Owned Comments</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedAnnotation()
+	 * @see #getOwnedComments()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Element> ownedAnnotation;
+	protected EList<Comment> ownedComments;
 	/**
-	 * The cached value of the '{@link #getOwnedComment() <em>Owned Comment</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedExtensions() <em>Owned Extensions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedComment()
+	 * @see #getOwnedExtensions()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Comment> ownedComment;
+	protected EList<ElementExtension> ownedExtensions;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -119,13 +119,13 @@ public abstract class ElementImpl
 	 * @generated
 	 */
 	@Override
-	public List<Comment> getComment()
+	public List<Comment> getAnnotatingComments()
 	{
-		if (comment == null)
+		if (annotatingComments == null)
 		{
-			comment = new EObjectWithInverseResolvingEList.ManyInverse<Comment>(Comment.class, this, PivotPackage.ELEMENT__COMMENT, PivotPackage.COMMENT__ANNOTATED_ELEMENT);
+			annotatingComments = new EObjectWithInverseResolvingEList.ManyInverse<Comment>(Comment.class, this, PivotPackage.ELEMENT__ANNOTATING_COMMENTS, PivotPackage.COMMENT__ANNOTATED_ELEMENTS);
 		}
-		return comment;
+		return annotatingComments;
 	}
 
 	/**
@@ -135,13 +135,13 @@ public abstract class ElementImpl
 	 */
 	@Override
 	@SuppressWarnings("null")
-	public @NonNull List<Comment> getOwnedComment()
+	public @NonNull List<ElementExtension> getOwnedExtensions()
 	{
-		if (ownedComment == null)
+		if (ownedExtensions == null)
 		{
-			ownedComment = new EObjectContainmentWithInverseEList<Comment>(Comment.class, this, PivotPackage.ELEMENT__OWNED_COMMENT, PivotPackage.COMMENT__OWNING_ELEMENT);
+			ownedExtensions = new EObjectContainmentWithInverseEList<ElementExtension>(ElementExtension.class, this, PivotPackage.ELEMENT__OWNED_EXTENSIONS, PivotPackage.ELEMENT_EXTENSION__BASE);
 		}
-		return ownedComment;
+		return ownedExtensions;
 	}
 
 	/**
@@ -151,13 +151,13 @@ public abstract class ElementImpl
 	 */
 	@Override
 	@SuppressWarnings("null")
-	public @NonNull List<ElementExtension> getExtension()
+	public @NonNull List<Element> getOwnedAnnotations()
 	{
-		if (extension == null)
+		if (ownedAnnotations == null)
 		{
-			extension = new EObjectContainmentWithInverseEList<ElementExtension>(ElementExtension.class, this, PivotPackage.ELEMENT__EXTENSION, PivotPackage.ELEMENT_EXTENSION__BASE);
+			ownedAnnotations = new EObjectContainmentEList<Element>(Element.class, this, PivotPackage.ELEMENT__OWNED_ANNOTATIONS);
 		}
-		return extension;
+		return ownedAnnotations;
 	}
 
 	/**
@@ -166,14 +166,13 @@ public abstract class ElementImpl
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("null")
-	public @NonNull List<Element> getOwnedAnnotation()
+	public List<Comment> getOwnedComments()
 	{
-		if (ownedAnnotation == null)
+		if (ownedComments == null)
 		{
-			ownedAnnotation = new EObjectContainmentEList<Element>(Element.class, this, PivotPackage.ELEMENT__OWNED_ANNOTATION);
+			ownedComments = new EObjectContainmentWithInverseEList<Comment>(Comment.class, this, PivotPackage.ELEMENT__OWNED_COMMENTS, PivotPackage.COMMENT__OWNING_ELEMENT);
 		}
-		return ownedAnnotation;
+		return ownedComments;
 	}
 
 	/**
@@ -221,12 +220,12 @@ public abstract class ElementImpl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.ELEMENT__COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.ELEMENT__EXTENSION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
-			case PivotPackage.ELEMENT__OWNED_COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
+			case PivotPackage.ELEMENT__ANNOTATING_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAnnotatingComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.ELEMENT__OWNED_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.ELEMENT__OWNED_EXTENSIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedExtensions()).basicAdd(otherEnd, msgs);
 		}
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -241,14 +240,14 @@ public abstract class ElementImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case PivotPackage.ELEMENT__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ELEMENT__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ELEMENT__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ELEMENT__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ELEMENT__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ELEMENT__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ELEMENT__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ELEMENT__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -262,14 +261,14 @@ public abstract class ElementImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case PivotPackage.ELEMENT__COMMENT:
-				return getComment();
-			case PivotPackage.ELEMENT__EXTENSION:
-				return getExtension();
-			case PivotPackage.ELEMENT__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.ELEMENT__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.ELEMENT__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.ELEMENT__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.ELEMENT__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.ELEMENT__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -284,21 +283,21 @@ public abstract class ElementImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case PivotPackage.ELEMENT__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.ELEMENT__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.ELEMENT__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.ELEMENT__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.ELEMENT__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.ELEMENT__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.ELEMENT__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.ELEMENT__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -313,17 +312,17 @@ public abstract class ElementImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.ELEMENT__COMMENT:
-				getComment().clear();
+			case PivotPackage.ELEMENT__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.ELEMENT__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.ELEMENT__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.ELEMENT__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.ELEMENT__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.ELEMENT__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.ELEMENT__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -338,14 +337,14 @@ public abstract class ElementImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.ELEMENT__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.ELEMENT__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.ELEMENT__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.ELEMENT__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.ELEMENT__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.ELEMENT__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.ELEMENT__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.ELEMENT__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
 	}

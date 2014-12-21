@@ -28,8 +28,8 @@ public class OperationCallExpAttribution extends AbstractAttribution
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		OperationCallExp targetExpression = (OperationCallExp)target;
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
-		if (containmentFeature == PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT) {
-			OCLExpression source = targetExpression.getSource();
+		if (containmentFeature == PivotPackage.Literals.OPERATION_CALL_EXP__OWNED_ARGUMENTS) {
+			OCLExpression source = targetExpression.getOwnedSource();
 			environmentView.addElementsOfScope(source.getType(), scopeView);
 		}
 		return scopeView.getParent();

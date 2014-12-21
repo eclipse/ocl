@@ -125,7 +125,7 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 		Constraint pivotElement = converter.refreshNamedElement(Constraint.class, PivotPackage.Literals.CONSTRAINT, umlConstraint);
 		org.eclipse.uml2.uml.ValueSpecification umlSpecification = umlConstraint.getSpecification();
 		Object pivotSpecification = umlSpecification != null ? doSwitch(umlSpecification) : null;
-		pivotElement.setSpecification((ExpressionInOCL) pivotSpecification);
+		pivotElement.setOwnedSpecification((ExpressionInOCL) pivotSpecification);
 		converter.copyNamedElement(pivotElement, umlConstraint);
 //		if (!umlConstraint.getConstrainedElements().isEmpty()) {
 //			converter.queueReference(umlConstraint);	// Defer
@@ -133,7 +133,7 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 //		else {
 //			pivotElement.getConstrainedElement().clear();
 //		}
-		doSwitchAll(Element.class, pivotElement.getConstrainedElement(), umlConstraint.getConstrainedElements());
+		doSwitchAll(Element.class, pivotElement.getConstrainedElements(), umlConstraint.getConstrainedElements());
 		return pivotElement;
 	}
 
@@ -144,17 +144,17 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 		if (umlInstance instanceof org.eclipse.uml2.uml.EnumerationLiteral) {
 			EnumerationLiteral pivotEnumerationLiteral = converter.getCreated(EnumerationLiteral.class, umlInstance);
 			ExpressionInOCL pivotElement = converter.refreshNamedElement(ExpressionInOCL.class, PivotPackage.Literals.EXPRESSION_IN_OCL, umlInstanceValue);
-			OCLExpression body = pivotElement.getBodyExpression();
+			OCLExpression body = pivotElement.getOwnedBody();
 			if (!(body instanceof EnumLiteralExp)) {
 				body = PivotFactory.eINSTANCE.createEnumLiteralExp();
-				pivotElement.setBodyExpression(body);
+				pivotElement.setOwnedBody(body);
 				if (pivotEnumerationLiteral != null) {
-					Type type = pivotEnumerationLiteral.getEnumeration();
+					Type type = pivotEnumerationLiteral.getOwningEnumeration();
 					body.setType(type);
 					pivotElement.setType(type);
 				}
 			}
-			((EnumLiteralExp)body).setReferredEnumLiteral(pivotEnumerationLiteral);
+			((EnumLiteralExp)body).setReferredLiteral(pivotEnumerationLiteral);
 			converter.copyNamedElement(pivotElement, umlInstanceValue);
 			return pivotElement;
 		}
@@ -193,10 +193,10 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 	public Object caseLiteralBoolean(org.eclipse.uml2.uml.LiteralBoolean umlLiteral) {
 		assert umlLiteral != null;
 		ExpressionInOCL pivotElement = converter.refreshNamedElement(ExpressionInOCL.class, PivotPackage.Literals.EXPRESSION_IN_OCL, umlLiteral);
-		OCLExpression body = pivotElement.getBodyExpression();
+		OCLExpression body = pivotElement.getOwnedBody();
 		if (!(body instanceof BooleanLiteralExp)) {
 			body = PivotFactory.eINSTANCE.createBooleanLiteralExp();
-			pivotElement.setBodyExpression(body);
+			pivotElement.setOwnedBody(body);
 			Type type = standardLibrary.getBooleanType();
 			body.setType(type);
 			pivotElement.setType(type);
@@ -210,10 +210,10 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 	public Object caseLiteralInteger(org.eclipse.uml2.uml.LiteralInteger umlLiteral) {
 		assert umlLiteral != null;
 		ExpressionInOCL pivotElement = converter.refreshNamedElement(ExpressionInOCL.class, PivotPackage.Literals.EXPRESSION_IN_OCL, umlLiteral);
-		OCLExpression body = pivotElement.getBodyExpression();
+		OCLExpression body = pivotElement.getOwnedBody();
 		if (!(body instanceof IntegerLiteralExp)) {
 			body = PivotFactory.eINSTANCE.createIntegerLiteralExp();
-			pivotElement.setBodyExpression(body);
+			pivotElement.setOwnedBody(body);
 			Type type = standardLibrary.getIntegerType();
 			body.setType(type);
 			pivotElement.setType(type);
@@ -227,10 +227,10 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 	public Object caseLiteralNull(org.eclipse.uml2.uml.LiteralNull umlLiteral) {
 		assert umlLiteral != null;
 		ExpressionInOCL pivotElement = converter.refreshNamedElement(ExpressionInOCL.class, PivotPackage.Literals.EXPRESSION_IN_OCL, umlLiteral);
-		OCLExpression body = pivotElement.getBodyExpression();
+		OCLExpression body = pivotElement.getOwnedBody();
 		if (!(body instanceof NullLiteralExp)) {
 			body = PivotFactory.eINSTANCE.createNullLiteralExp();
-			pivotElement.setBodyExpression(body);
+			pivotElement.setOwnedBody(body);
 			Type type = standardLibrary.getOclVoidType();
 			body.setType(type);
 			pivotElement.setType(type);
@@ -243,10 +243,10 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 	public Object caseLiteralReal(org.eclipse.uml2.uml.LiteralReal umlLiteral) {
 		assert umlLiteral != null;
 		ExpressionInOCL pivotElement = converter.refreshNamedElement(ExpressionInOCL.class, PivotPackage.Literals.EXPRESSION_IN_OCL, umlLiteral);
-		OCLExpression body = pivotElement.getBodyExpression();
+		OCLExpression body = pivotElement.getOwnedBody();
 		if (!(body instanceof RealLiteralExp)) {
 			body = PivotFactory.eINSTANCE.createRealLiteralExp();
-			pivotElement.setBodyExpression(body);
+			pivotElement.setOwnedBody(body);
 			Type type = standardLibrary.getRealType();
 			body.setType(type);
 			pivotElement.setType(type);
@@ -260,10 +260,10 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 	public Object caseLiteralString(org.eclipse.uml2.uml.LiteralString umlLiteral) {
 		assert umlLiteral != null;
 		ExpressionInOCL pivotElement = converter.refreshNamedElement(ExpressionInOCL.class, PivotPackage.Literals.EXPRESSION_IN_OCL, umlLiteral);
-		OCLExpression body = pivotElement.getBodyExpression();
+		OCLExpression body = pivotElement.getOwnedBody();
 		if (!(body instanceof StringLiteralExp)) {
 			body = PivotFactory.eINSTANCE.createStringLiteralExp();
-			pivotElement.setBodyExpression(body);
+			pivotElement.setOwnedBody(body);
 			Type type = standardLibrary.getStringType();
 			body.setType(type);
 			pivotElement.setType(type);
@@ -278,10 +278,10 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 	public Object caseLiteralUnlimitedNatural(org.eclipse.uml2.uml.LiteralUnlimitedNatural umlLiteral) {
 		assert umlLiteral != null;
 		ExpressionInOCL pivotElement = converter.refreshNamedElement(ExpressionInOCL.class, PivotPackage.Literals.EXPRESSION_IN_OCL, umlLiteral);
-		OCLExpression body = pivotElement.getBodyExpression();
+		OCLExpression body = pivotElement.getOwnedBody();
 		if (!(body instanceof UnlimitedNaturalLiteralExp)) {
 			body = PivotFactory.eINSTANCE.createUnlimitedNaturalLiteralExp();
-			pivotElement.setBodyExpression(body);
+			pivotElement.setOwnedBody(body);
 			Type type = standardLibrary.getUnlimitedNaturalType();
 			body.setType(type);
 			pivotElement.setType(type);
@@ -304,8 +304,8 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 		assert umlOperation != null;
 		Operation pivotElement = converter.getCreated(Operation.class, umlOperation);
 		if (pivotElement != null) {
-			doSwitchAll(Type.class, pivotElement.getRaisedException(), umlOperation.getRaisedExceptions());
-			doSwitchAll(Operation.class, pivotElement.getRedefinedOperation(), umlOperation.getRedefinedOperations());
+			doSwitchAll(Type.class, pivotElement.getRaisedExceptions(), umlOperation.getRaisedExceptions());
+			doSwitchAll(Operation.class, pivotElement.getRedefinedOperations(), umlOperation.getRedefinedOperations());
 			for (org.eclipse.uml2.uml.Parameter umlParameter : umlOperation.getOwnedParameters()) {
 				org.eclipse.uml2.uml.ParameterDirectionKind direction = umlParameter.getDirection();
 				if (direction == org.eclipse.uml2.uml.ParameterDirectionKind.RETURN_LITERAL) {
@@ -315,13 +315,13 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 			List<org.eclipse.uml2.uml.Constraint> preconditions = umlOperation.getPreconditions();
 			org.eclipse.uml2.uml.Constraint bodyCondition = umlOperation.getBodyCondition();
 			List<org.eclipse.uml2.uml.Constraint> postconditions = umlOperation.getPostconditions();
-			doSwitchAll(Constraint.class, pivotElement.getPrecondition(), preconditions);
-			doSwitchAll(Constraint.class, pivotElement.getPostcondition(), postconditions);
+			doSwitchAll(Constraint.class, pivotElement.getOwnedPreconditions(), preconditions);
+			doSwitchAll(Constraint.class, pivotElement.getOwnedPostconditions(), postconditions);
 			Constraint constraint = bodyCondition != null ? (Constraint) doSwitch(bodyCondition) : null;
 			LanguageExpression specification = null;
 			if (constraint != null) {
-				specification = constraint.getSpecification();
-				constraint.setSpecification(null);			// Avoid a child-stealing detection
+				specification = constraint.getOwnedSpecification();
+				constraint.setOwnedSpecification(null);			// Avoid a child-stealing detection
 			}
 			pivotElement.setBodyExpression(specification);
 			List<org.eclipse.uml2.uml.Constraint> exclusions;
@@ -348,7 +348,7 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 		assert umlPackage != null;
 		org.eclipse.ocl.pivot.Package pivotElement = converter.getCreated(org.eclipse.ocl.pivot.Package.class, umlPackage);
 		if (pivotElement != null) {
-			doSwitchAll(org.eclipse.ocl.pivot.Package.class, pivotElement.getImportedPackage(), umlPackage.getImportedPackages());
+			doSwitchAll(org.eclipse.ocl.pivot.Package.class, pivotElement.getImportedPackages(), umlPackage.getImportedPackages());
 			copyConstraints(pivotElement, umlPackage, null);
 		}
 		return pivotElement;
@@ -368,7 +368,7 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 		Property pivotElement = converter.getCreated(Property.class, umlProperty);
 		if (pivotElement != null) {
 			resolveMultiplicity(pivotElement, umlProperty);
-			doSwitchAll(Property.class, pivotElement.getRedefinedProperty(), umlProperty.getRedefinedProperties());
+			doSwitchAll(Property.class, pivotElement.getRedefinedProperties(), umlProperty.getRedefinedProperties());
 	//		doSwitchAll(Property.class, pivotElement.getSubsettedProperty(), umlProperty.getSubsettedProperties());
 			ExpressionInOCL asExpression = null;
 			//
@@ -410,7 +410,7 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 					}
 				}
 			}
-			pivotElement.setDefaultExpression(asExpression);
+			pivotElement.setOwnedExpression(asExpression);
 		}
 		return pivotElement;
 	}
@@ -484,7 +484,7 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 			ownedRules = new ArrayList<org.eclipse.uml2.uml.Constraint>(ownedRules);
 			ownedRules.removeAll(exclusions);
 		}
-		doSwitchAll(Constraint.class, pivotElement.getOwnedRule(), ownedRules);
+		doSwitchAll(Constraint.class, pivotElement.getOwnedConstraints(), ownedRules);
 	}
 
 	public Object doInPackageSwitch(EObject eObject) {

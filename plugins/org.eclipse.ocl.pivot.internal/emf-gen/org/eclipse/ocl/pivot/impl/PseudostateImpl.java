@@ -39,8 +39,8 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.PseudostateImpl#getKind <em>Kind</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.PseudostateImpl#getState <em>State</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.PseudostateImpl#getStateMachine <em>State Machine</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.PseudostateImpl#getOwningState <em>Owning State</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.PseudostateImpl#getOwningStateMachine <em>Owning State Machine</em>}</li>
  * </ul>
  * </p>
  *
@@ -148,10 +148,10 @@ public class PseudostateImpl extends VertexImpl implements Pseudostate
 	 * @generated
 	 */
 	@Override
-	public StateMachine getStateMachine()
+	public State getOwningState()
 	{
-		if (eContainerFeatureID() != PivotPackage.PSEUDOSTATE__STATE_MACHINE) return null;
-		return (StateMachine)eInternalContainer();
+		if (eContainerFeatureID() != PivotPackage.PSEUDOSTATE__OWNING_STATE) return null;
+		return (State)eInternalContainer();
 	}
 
 	/**
@@ -159,9 +159,9 @@ public class PseudostateImpl extends VertexImpl implements Pseudostate
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetStateMachine(StateMachine newStateMachine, NotificationChain msgs)
+	public NotificationChain basicSetOwningState(State newOwningState, NotificationChain msgs)
 	{
-		msgs = eBasicSetContainer((InternalEObject)newStateMachine, PivotPackage.PSEUDOSTATE__STATE_MACHINE, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newOwningState, PivotPackage.PSEUDOSTATE__OWNING_STATE, msgs);
 		return msgs;
 	}
 
@@ -171,22 +171,69 @@ public class PseudostateImpl extends VertexImpl implements Pseudostate
 	 * @generated
 	 */
 	@Override
-	public void setStateMachine(StateMachine newStateMachine)
+	public void setOwningState(State newOwningState)
 	{
-		if (newStateMachine != eInternalContainer() || (eContainerFeatureID() != PivotPackage.PSEUDOSTATE__STATE_MACHINE && newStateMachine != null))
+		if (newOwningState != eInternalContainer() || (eContainerFeatureID() != PivotPackage.PSEUDOSTATE__OWNING_STATE && newOwningState != null))
 		{
-			if (EcoreUtil.isAncestor(this, newStateMachine))
+			if (EcoreUtil.isAncestor(this, newOwningState))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newStateMachine != null)
-				msgs = ((InternalEObject)newStateMachine).eInverseAdd(this, PivotPackage.STATE_MACHINE__CONNECTION_POINT, StateMachine.class, msgs);
-			msgs = basicSetStateMachine(newStateMachine, msgs);
+			if (newOwningState != null)
+				msgs = ((InternalEObject)newOwningState).eInverseAdd(this, PivotPackage.STATE__OWNED_CONNECTION_POINTS, State.class, msgs);
+			msgs = basicSetOwningState(newOwningState, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PSEUDOSTATE__STATE_MACHINE, newStateMachine, newStateMachine));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PSEUDOSTATE__OWNING_STATE, newOwningState, newOwningState));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public StateMachine getOwningStateMachine()
+	{
+		if (eContainerFeatureID() != PivotPackage.PSEUDOSTATE__OWNING_STATE_MACHINE) return null;
+		return (StateMachine)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwningStateMachine(StateMachine newOwningStateMachine, NotificationChain msgs)
+	{
+		msgs = eBasicSetContainer((InternalEObject)newOwningStateMachine, PivotPackage.PSEUDOSTATE__OWNING_STATE_MACHINE, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwningStateMachine(StateMachine newOwningStateMachine)
+	{
+		if (newOwningStateMachine != eInternalContainer() || (eContainerFeatureID() != PivotPackage.PSEUDOSTATE__OWNING_STATE_MACHINE && newOwningStateMachine != null))
+		{
+			if (EcoreUtil.isAncestor(this, newOwningStateMachine))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwningStateMachine != null)
+				msgs = ((InternalEObject)newOwningStateMachine).eInverseAdd(this, PivotPackage.STATE_MACHINE__OWNED_CONNECTION_POINTS, StateMachine.class, msgs);
+			msgs = basicSetOwningStateMachine(newOwningStateMachine, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PSEUDOSTATE__OWNING_STATE_MACHINE, newOwningStateMachine, newOwningStateMachine));
 	}
 
 	/**
@@ -200,28 +247,28 @@ public class PseudostateImpl extends VertexImpl implements Pseudostate
 	{
 		switch (featureID)
 		{
-			case PivotPackage.PSEUDOSTATE__COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.PSEUDOSTATE__EXTENSION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
-			case PivotPackage.PSEUDOSTATE__OWNED_COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.PSEUDOSTATE__CONTAINER:
+			case PivotPackage.PSEUDOSTATE__ANNOTATING_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAnnotatingComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.PSEUDOSTATE__OWNED_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.PSEUDOSTATE__OWNED_EXTENSIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedExtensions()).basicAdd(otherEnd, msgs);
+			case PivotPackage.PSEUDOSTATE__INCOMING_TRANSITIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getIncomingTransitions()).basicAdd(otherEnd, msgs);
+			case PivotPackage.PSEUDOSTATE__OUTGOING_TRANSITIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOutgoingTransitions()).basicAdd(otherEnd, msgs);
+			case PivotPackage.PSEUDOSTATE__OWNING_REGION:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetContainer((Region)otherEnd, msgs);
-			case PivotPackage.PSEUDOSTATE__INCOMING:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getIncoming()).basicAdd(otherEnd, msgs);
-			case PivotPackage.PSEUDOSTATE__OUTGOING:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOutgoing()).basicAdd(otherEnd, msgs);
-			case PivotPackage.PSEUDOSTATE__STATE:
+				return basicSetOwningRegion((Region)otherEnd, msgs);
+			case PivotPackage.PSEUDOSTATE__OWNING_STATE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetState((State)otherEnd, msgs);
-			case PivotPackage.PSEUDOSTATE__STATE_MACHINE:
+				return basicSetOwningState((State)otherEnd, msgs);
+			case PivotPackage.PSEUDOSTATE__OWNING_STATE_MACHINE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetStateMachine((StateMachine)otherEnd, msgs);
+				return basicSetOwningStateMachine((StateMachine)otherEnd, msgs);
 		}
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -236,24 +283,24 @@ public class PseudostateImpl extends VertexImpl implements Pseudostate
 	{
 		switch (featureID)
 		{
-			case PivotPackage.PSEUDOSTATE__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.PSEUDOSTATE__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.PSEUDOSTATE__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.PSEUDOSTATE__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.PSEUDOSTATE__CONTAINER:
-				return basicSetContainer(null, msgs);
-			case PivotPackage.PSEUDOSTATE__INCOMING:
-				return ((InternalEList<?>)getIncoming()).basicRemove(otherEnd, msgs);
-			case PivotPackage.PSEUDOSTATE__OUTGOING:
-				return ((InternalEList<?>)getOutgoing()).basicRemove(otherEnd, msgs);
-			case PivotPackage.PSEUDOSTATE__STATE:
-				return basicSetState(null, msgs);
-			case PivotPackage.PSEUDOSTATE__STATE_MACHINE:
-				return basicSetStateMachine(null, msgs);
+			case PivotPackage.PSEUDOSTATE__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PSEUDOSTATE__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PSEUDOSTATE__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PSEUDOSTATE__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PSEUDOSTATE__INCOMING_TRANSITIONS:
+				return ((InternalEList<?>)getIncomingTransitions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PSEUDOSTATE__OUTGOING_TRANSITIONS:
+				return ((InternalEList<?>)getOutgoingTransitions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PSEUDOSTATE__OWNING_REGION:
+				return basicSetOwningRegion(null, msgs);
+			case PivotPackage.PSEUDOSTATE__OWNING_STATE:
+				return basicSetOwningState(null, msgs);
+			case PivotPackage.PSEUDOSTATE__OWNING_STATE_MACHINE:
+				return basicSetOwningStateMachine(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -268,61 +315,14 @@ public class PseudostateImpl extends VertexImpl implements Pseudostate
 	{
 		switch (eContainerFeatureID())
 		{
-			case PivotPackage.PSEUDOSTATE__CONTAINER:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.REGION__SUBVERTEX, Region.class, msgs);
-			case PivotPackage.PSEUDOSTATE__STATE:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.STATE__CONNECTION_POINT, State.class, msgs);
-			case PivotPackage.PSEUDOSTATE__STATE_MACHINE:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.STATE_MACHINE__CONNECTION_POINT, StateMachine.class, msgs);
+			case PivotPackage.PSEUDOSTATE__OWNING_REGION:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.REGION__OWNED_SUBVERTEXES, Region.class, msgs);
+			case PivotPackage.PSEUDOSTATE__OWNING_STATE:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.STATE__OWNED_CONNECTION_POINTS, State.class, msgs);
+			case PivotPackage.PSEUDOSTATE__OWNING_STATE_MACHINE:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.STATE_MACHINE__OWNED_CONNECTION_POINTS, StateMachine.class, msgs);
 		}
 		return eDynamicBasicRemoveFromContainer(msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public State getState()
-	{
-		if (eContainerFeatureID() != PivotPackage.PSEUDOSTATE__STATE) return null;
-		return (State)eInternalContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetState(State newState, NotificationChain msgs)
-	{
-		msgs = eBasicSetContainer((InternalEObject)newState, PivotPackage.PSEUDOSTATE__STATE, msgs);
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setState(State newState)
-	{
-		if (newState != eInternalContainer() || (eContainerFeatureID() != PivotPackage.PSEUDOSTATE__STATE && newState != null))
-		{
-			if (EcoreUtil.isAncestor(this, newState))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newState != null)
-				msgs = ((InternalEObject)newState).eInverseAdd(this, PivotPackage.STATE__CONNECTION_POINT, State.class, msgs);
-			msgs = basicSetState(newState, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PSEUDOSTATE__STATE, newState, newState));
 	}
 
 	/**
@@ -335,28 +335,28 @@ public class PseudostateImpl extends VertexImpl implements Pseudostate
 	{
 		switch (featureID)
 		{
-			case PivotPackage.PSEUDOSTATE__COMMENT:
-				return getComment();
-			case PivotPackage.PSEUDOSTATE__EXTENSION:
-				return getExtension();
-			case PivotPackage.PSEUDOSTATE__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.PSEUDOSTATE__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.PSEUDOSTATE__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.PSEUDOSTATE__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.PSEUDOSTATE__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.PSEUDOSTATE__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.PSEUDOSTATE__NAME:
 				return getName();
-			case PivotPackage.PSEUDOSTATE__CONTAINER:
-				return getContainer();
-			case PivotPackage.PSEUDOSTATE__INCOMING:
-				return getIncoming();
-			case PivotPackage.PSEUDOSTATE__OUTGOING:
-				return getOutgoing();
+			case PivotPackage.PSEUDOSTATE__INCOMING_TRANSITIONS:
+				return getIncomingTransitions();
+			case PivotPackage.PSEUDOSTATE__OUTGOING_TRANSITIONS:
+				return getOutgoingTransitions();
+			case PivotPackage.PSEUDOSTATE__OWNING_REGION:
+				return getOwningRegion();
 			case PivotPackage.PSEUDOSTATE__KIND:
 				return getKind();
-			case PivotPackage.PSEUDOSTATE__STATE:
-				return getState();
-			case PivotPackage.PSEUDOSTATE__STATE_MACHINE:
-				return getStateMachine();
+			case PivotPackage.PSEUDOSTATE__OWNING_STATE:
+				return getOwningState();
+			case PivotPackage.PSEUDOSTATE__OWNING_STATE_MACHINE:
+				return getOwningStateMachine();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -372,36 +372,36 @@ public class PseudostateImpl extends VertexImpl implements Pseudostate
 	{
 		switch (featureID)
 		{
-			case PivotPackage.PSEUDOSTATE__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.PSEUDOSTATE__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.PSEUDOSTATE__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.PSEUDOSTATE__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.PSEUDOSTATE__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.PSEUDOSTATE__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.PSEUDOSTATE__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.PSEUDOSTATE__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.PSEUDOSTATE__NAME:
 				setName((String)newValue);
 				return;
-			case PivotPackage.PSEUDOSTATE__CONTAINER:
-				setContainer((Region)newValue);
+			case PivotPackage.PSEUDOSTATE__OWNING_REGION:
+				setOwningRegion((Region)newValue);
 				return;
 			case PivotPackage.PSEUDOSTATE__KIND:
 				setKind((PseudostateKind)newValue);
 				return;
-			case PivotPackage.PSEUDOSTATE__STATE:
-				setState((State)newValue);
+			case PivotPackage.PSEUDOSTATE__OWNING_STATE:
+				setOwningState((State)newValue);
 				return;
-			case PivotPackage.PSEUDOSTATE__STATE_MACHINE:
-				setStateMachine((StateMachine)newValue);
+			case PivotPackage.PSEUDOSTATE__OWNING_STATE_MACHINE:
+				setOwningStateMachine((StateMachine)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -417,32 +417,32 @@ public class PseudostateImpl extends VertexImpl implements Pseudostate
 	{
 		switch (featureID)
 		{
-			case PivotPackage.PSEUDOSTATE__COMMENT:
-				getComment().clear();
+			case PivotPackage.PSEUDOSTATE__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.PSEUDOSTATE__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.PSEUDOSTATE__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.PSEUDOSTATE__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.PSEUDOSTATE__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.PSEUDOSTATE__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.PSEUDOSTATE__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.PSEUDOSTATE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case PivotPackage.PSEUDOSTATE__CONTAINER:
-				setContainer((Region)null);
+			case PivotPackage.PSEUDOSTATE__OWNING_REGION:
+				setOwningRegion((Region)null);
 				return;
 			case PivotPackage.PSEUDOSTATE__KIND:
 				setKind(KIND_EDEFAULT);
 				return;
-			case PivotPackage.PSEUDOSTATE__STATE:
-				setState((State)null);
+			case PivotPackage.PSEUDOSTATE__OWNING_STATE:
+				setOwningState((State)null);
 				return;
-			case PivotPackage.PSEUDOSTATE__STATE_MACHINE:
-				setStateMachine((StateMachine)null);
+			case PivotPackage.PSEUDOSTATE__OWNING_STATE_MACHINE:
+				setOwningStateMachine((StateMachine)null);
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -458,28 +458,28 @@ public class PseudostateImpl extends VertexImpl implements Pseudostate
 	{
 		switch (featureID)
 		{
-			case PivotPackage.PSEUDOSTATE__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.PSEUDOSTATE__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.PSEUDOSTATE__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.PSEUDOSTATE__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.PSEUDOSTATE__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.PSEUDOSTATE__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.PSEUDOSTATE__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.PSEUDOSTATE__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.PSEUDOSTATE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.PSEUDOSTATE__CONTAINER:
-				return getContainer() != null;
-			case PivotPackage.PSEUDOSTATE__INCOMING:
-				return incoming != null && !incoming.isEmpty();
-			case PivotPackage.PSEUDOSTATE__OUTGOING:
-				return outgoing != null && !outgoing.isEmpty();
+			case PivotPackage.PSEUDOSTATE__INCOMING_TRANSITIONS:
+				return incomingTransitions != null && !incomingTransitions.isEmpty();
+			case PivotPackage.PSEUDOSTATE__OUTGOING_TRANSITIONS:
+				return outgoingTransitions != null && !outgoingTransitions.isEmpty();
+			case PivotPackage.PSEUDOSTATE__OWNING_REGION:
+				return getOwningRegion() != null;
 			case PivotPackage.PSEUDOSTATE__KIND:
 				return (eFlags & KIND_EFLAG) != KIND_EFLAG_DEFAULT;
-			case PivotPackage.PSEUDOSTATE__STATE:
-				return getState() != null;
-			case PivotPackage.PSEUDOSTATE__STATE_MACHINE:
-				return getStateMachine() != null;
+			case PivotPackage.PSEUDOSTATE__OWNING_STATE:
+				return getOwningState() != null;
+			case PivotPackage.PSEUDOSTATE__OWNING_STATE_MACHINE:
+				return getOwningStateMachine() != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

@@ -88,7 +88,7 @@ public abstract class AbstractPivotConstraintLocator extends AbstractConstraintL
 	}
 
 	protected @NonNull ExpressionInOCL getQuery(@NonNull MetaModelManager metaModelManager, @NonNull Constraint constraint) throws ParserException {
-		LanguageExpression specification = constraint.getSpecification();
+		LanguageExpression specification = constraint.getOwnedSpecification();
 		assert specification != null;
 		return metaModelManager.getQueryOrThrow(specification);
 	}

@@ -57,7 +57,7 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 	 * @throws OCLDelegateException 
 	 */
 	public @NonNull ExpressionInOCL getQueryOrThrow(@NonNull MetaModelManager metaModelManager, @NonNull Property property) throws OCLDelegateException {
-		LanguageExpression specification = property.getDefaultExpression();
+		LanguageExpression specification = property.getOwnedExpression();
 		if (specification == null) {
 			String message = NLS.bind(OCLMessages.MissingDerivationForSettingDelegate_ERROR_, property);
 			throw new OCLDelegateException(new SemanticException(message));

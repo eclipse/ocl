@@ -364,7 +364,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 				!((eObject instanceof Property) && (((Property)eObject).getOwningClass() == null)) &&
 				!((eObject instanceof org.eclipse.ocl.pivot.Class) && !oclTypes.contains(eObject))) {
 				Element t = (Element)eObject;
-				if (t.getOwnedComment().size() > 0) {
+				if (t.getOwnedComments().size() > 0) {
 					allElements.add(t);
 				}
 			}
@@ -375,7 +375,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 	}
 
 	protected @NonNull List<Comment> getSortedComments(@NonNull Element element) {
-		List<Comment> sortedElements = new ArrayList<Comment>(element.getOwnedComment());
+		List<Comment> sortedElements = new ArrayList<Comment>(element.getOwnedComments());
 		Collections.sort(sortedElements, commentComparator);
 		return sortedElements;
 	}
@@ -562,7 +562,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 	}
 
 	protected @NonNull List<Precedence> getSortedPrecedences(@NonNull Library library) {
-		List<Precedence> sortedElements = new ArrayList<Precedence>(library.getOwnedPrecedence());
+		List<Precedence> sortedElements = new ArrayList<Precedence>(library.getOwnedPrecedences());
 		Collections.sort(sortedElements, nameableComparator);
 		return sortedElements;
 	}
@@ -652,7 +652,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 			EObject eObject = tit.next();
 			if (eObject instanceof TemplateableElement) {
 				TemplateableElement asTemplateableElement = (TemplateableElement)eObject;
-				if (asTemplateableElement.getOwnedTemplateBindings().size() > 0) {
+				if (asTemplateableElement.getOwnedBindings().size() > 0) {
 					allElements.add(asTemplateableElement);
 				}
 			}
@@ -694,8 +694,8 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 
 	protected @NonNull List<TemplateParameterSubstitution> getTemplateParameterSubstitutions(@NonNull TemplateableElement element) {
 		List<TemplateParameterSubstitution> allElements = new ArrayList<TemplateParameterSubstitution>();
-		for (TemplateBinding templateBinding : element.getOwnedTemplateBindings()) {
-			allElements.addAll(templateBinding.getOwnedTemplateParameterSubstitutions());
+		for (TemplateBinding templateBinding : element.getOwnedBindings()) {
+			allElements.addAll(templateBinding.getOwnedSubstitutions());
 		}
 		return allElements;
 	}
@@ -705,7 +705,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 	}
 
 	protected Boolean isEcoreConstraint(@NonNull Operation operation) {
-		for (Parameter p : operation.getOwnedParameter()) {
+		for (Parameter p : operation.getOwnedParameters()) {
 			if (p.getName().equals("diagnostics") && p.getType().getName().equals("EDiagnosticChain")) {
 				return true;
 			}

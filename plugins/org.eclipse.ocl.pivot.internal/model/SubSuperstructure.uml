@@ -19,7 +19,7 @@
             <body>A template binding represents a relationship between a templateable element and a template. A template binding specifies the substitutions of actual parameters for the formal parameters of the template.</body>
           </ownedComment>
           <generalization xmi:id="_XnqLMn7VEeOu79LxSz8Ylw" general="_nFdeAJwSEd-STLWP-FLKew"/>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-boundElement" name="owningTemplateableElement" type="AuxiliaryConstructs-Templates-TemplateableElement" association="AuxiliaryConstructs-Templates-A_templateBinding_boundElement">
+          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-boundElement" name="owningElement" type="AuxiliaryConstructs-Templates-TemplateableElement" association="AuxiliaryConstructs-Templates-A_templateBinding_boundElement">
             <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-boundElement-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateBinding-boundElement">
               <body>The element that is bound by this binding.</body>
             </ownedComment>
@@ -29,7 +29,7 @@
               <body>The template signature for the template that is the target of the binding.</body>
             </ownedComment>
           </ownedAttribute>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-parameterSubstitution" name="ownedTemplateParameterSubstitutions" type="AuxiliaryConstructs-Templates-TemplateParameterSubstitution" aggregation="composite" association="AuxiliaryConstructs-Templates-A_parameterSubstitution_templateBinding">
+          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-parameterSubstitution" name="ownedSubstitutions" type="AuxiliaryConstructs-Templates-TemplateParameterSubstitution" aggregation="composite" association="AuxiliaryConstructs-Templates-A_parameterSubstitution_templateBinding">
             <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateBinding-parameterSubstitution-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateBinding-parameterSubstitution">
               <body>The parameter substitutions owned by this template binding.</body>
             </ownedComment>
@@ -42,12 +42,12 @@
             <body>A template parameter exposes a parameterable element as a formal template parameter of a template.</body>
           </ownedComment>
           <generalization xmi:id="_XnqLMX7VEeOu79LxSz8Ylw" general="AuxiliaryConstructs-Templates-Classifier"/>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-signature" name="owningTemplateSignature" type="AuxiliaryConstructs-Templates-TemplateSignature" association="AuxiliaryConstructs-Templates-A_ownedParameter_signature">
+          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-signature" name="owningSignature" type="AuxiliaryConstructs-Templates-TemplateSignature" association="AuxiliaryConstructs-Templates-A_ownedParameter_signature">
             <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-signature-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateParameter-signature">
               <body>The template signature that owns this template parameter.</body>
             </ownedComment>
           </ownedAttribute>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-constrainingType" name="constrainingClass" type="_RHSqABpbEeSM9LreJtBwBg">
+          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-constrainingType" name="constrainingClasses" type="_RHSqABpbEeSM9LreJtBwBg">
             <ownedComment xmi:id="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-constrainingType-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ClassifierTemplateParameter-constrainingType">
               <body>The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument.</body>
             </ownedComment>
@@ -77,7 +77,7 @@
               <body>The formal template parameter that is associated with this substitution.</body>
             </ownedComment>
           </ownedAttribute>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-templateBinding" name="owningTemplateBinding" type="AuxiliaryConstructs-Templates-TemplateBinding" association="AuxiliaryConstructs-Templates-A_parameterSubstitution_templateBinding">
+          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-templateBinding" name="owningBinding" type="AuxiliaryConstructs-Templates-TemplateBinding" association="AuxiliaryConstructs-Templates-A_parameterSubstitution_templateBinding">
             <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-templateBinding-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateParameterSubstitution-templateBinding">
               <body>The optional bindings from this element to templates.</body>
             </ownedComment>
@@ -99,14 +99,14 @@
             <body>A template signature bundles the set of formal template parameters for a templated element.</body>
           </ownedComment>
           <generalization xmi:id="_XnqLMH7VEeOu79LxSz8Ylw" general="_nFdeAJwSEd-STLWP-FLKew"/>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-ownedParameter" name="ownedTemplateParameters" type="AuxiliaryConstructs-Templates-TemplateParameter" isOrdered="true" aggregation="composite" association="AuxiliaryConstructs-Templates-A_ownedParameter_signature">
+          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-ownedParameter" name="ownedParameters" type="AuxiliaryConstructs-Templates-TemplateParameter" isOrdered="true" aggregation="composite" association="AuxiliaryConstructs-Templates-A_ownedParameter_signature">
             <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-ownedParameter-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateSignature-ownedParameter">
               <body>The formal template parameters that are owned by this template signature.</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QUaIYBsHEeSM9LreJtBwBg" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnNfQn7VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-template" name="owningTemplateableElement" type="AuxiliaryConstructs-Templates-TemplateableElement" association="AuxiliaryConstructs-Templates-A_ownedTemplateSignature_template">
+          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-template" name="owningElement" type="AuxiliaryConstructs-Templates-TemplateableElement" association="AuxiliaryConstructs-Templates-A_ownedTemplateSignature_template">
             <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-template-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateSignature-template">
               <body>The element that owns this template signature.</body>
             </ownedComment>
@@ -117,14 +117,14 @@
             <body>A templateable element is an element that can optionally be defined as a template and bound to other templates.</body>
           </ownedComment>
           <generalization xmi:id="_XnqLNH7VEeOu79LxSz8Ylw" general="_nFdeAJwSEd-STLWP-FLKew"/>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateableElement-templateBinding" name="ownedTemplateBindings" type="AuxiliaryConstructs-Templates-TemplateBinding" aggregation="composite" association="AuxiliaryConstructs-Templates-A_templateBinding_boundElement">
+          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateableElement-templateBinding" name="ownedBindings" type="AuxiliaryConstructs-Templates-TemplateBinding" aggregation="composite" association="AuxiliaryConstructs-Templates-A_templateBinding_boundElement">
             <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateableElement-templateBinding-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateableElement-templateBinding">
               <body>The optional bindings from this element to templates.</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnNfSX7VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnNfSn7VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateableElement-ownedTemplateSignature" name="ownedTemplateSignature" type="AuxiliaryConstructs-Templates-TemplateSignature" aggregation="composite" association="AuxiliaryConstructs-Templates-A_ownedTemplateSignature_template">
+          <ownedAttribute xmi:id="AuxiliaryConstructs-Templates-TemplateableElement-ownedTemplateSignature" name="ownedSignature" type="AuxiliaryConstructs-Templates-TemplateSignature" aggregation="composite" association="AuxiliaryConstructs-Templates-A_ownedTemplateSignature_template">
             <ownedComment xmi:id="AuxiliaryConstructs-Templates-TemplateableElement-ownedTemplateSignature-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-TemplateableElement-ownedTemplateSignature">
               <body>The optional template signature specifying the formal template parameters.</body>
             </ownedComment>
@@ -167,10 +167,10 @@
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ujWgxSbPEeS7N_aTjEWq7Q"/>
           </ownedAttribute>
         </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_ownedParameter_signature" name="A_ownedTemplateParameters_owningTemplateSignature" memberEnd="AuxiliaryConstructs-Templates-TemplateSignature-ownedParameter AuxiliaryConstructs-Templates-TemplateParameter-signature"/>
-        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_templateBinding_boundElement" name="A_ownedTemplateBinding_owningTemplateableElement" memberEnd="AuxiliaryConstructs-Templates-TemplateableElement-templateBinding AuxiliaryConstructs-Templates-TemplateBinding-boundElement"/>
-        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_parameterSubstitution_templateBinding" name="A_ownedTemplateParameterSubstitutions_templateBinding" memberEnd="AuxiliaryConstructs-Templates-TemplateBinding-parameterSubstitution AuxiliaryConstructs-Templates-TemplateParameterSubstitution-templateBinding"/>
-        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_ownedTemplateSignature_template" name="A_ownedTemplateSignature_owningTemplateableElement" memberEnd="AuxiliaryConstructs-Templates-TemplateableElement-ownedTemplateSignature AuxiliaryConstructs-Templates-TemplateSignature-template"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_ownedParameter_signature" name="A_ownedParameters_owningSignature" memberEnd="AuxiliaryConstructs-Templates-TemplateSignature-ownedParameter AuxiliaryConstructs-Templates-TemplateParameter-signature"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_templateBinding_boundElement" name="A_ownedBindings_owningElement" memberEnd="AuxiliaryConstructs-Templates-TemplateableElement-templateBinding AuxiliaryConstructs-Templates-TemplateBinding-boundElement"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_parameterSubstitution_templateBinding" name="A_ownedSubstitutions_owningBinding" memberEnd="AuxiliaryConstructs-Templates-TemplateBinding-parameterSubstitution AuxiliaryConstructs-Templates-TemplateParameterSubstitution-templateBinding"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="AuxiliaryConstructs-Templates-A_ownedTemplateSignature_template" name="A_ownedSignature_owningElement" memberEnd="AuxiliaryConstructs-Templates-TemplateableElement-ownedTemplateSignature AuxiliaryConstructs-Templates-TemplateSignature-template"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_sBOM4K5nEd-xTJkHwX_SlQ" name="Constraints">
         <packagedElement xmi:type="uml:Class" xmi:id="_JhArsK5oEd-xTJkHwX_SlQ" name="Constraint">
@@ -198,7 +198,7 @@
           <generalization xmi:id="_VY5XECDHEeSNlrewQPlAjA">
             <general xmi:type="uml:Class" href="Infrastructure.uml#Core-Basic-NamedElement"/>
           </generalization>
-          <ownedAttribute xmi:id="_JhArua5oEd-xTJkHwX_SlQ" name="constrainedElement" isOrdered="true">
+          <ownedAttribute xmi:id="_JhArua5oEd-xTJkHwX_SlQ" name="constrainedElements" isOrdered="true">
             <ownedComment xmi:id="_JhAruq5oEd-xTJkHwX_SlQ" annotatedElement="_JhArua5oEd-xTJkHwX_SlQ">
               <body>The ordered set of Elements referenced by this Constraint.</body>
             </ownedComment>
@@ -206,7 +206,7 @@
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQTH7VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnXQTX7VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_JhArva5oEd-xTJkHwX_SlQ" name="specification" type="_VcCqIBlSEeSM9LreJtBwBg" aggregation="composite" association="_U6pm4BzMEeSIos3S87O_rg">
+          <ownedAttribute xmi:id="_JhArva5oEd-xTJkHwX_SlQ" name="ownedSpecification" type="_VcCqIBlSEeSM9LreJtBwBg" aggregation="composite" association="_U6pm4BzMEeSIos3S87O_rg">
             <ownedComment xmi:id="_JhArvq5oEd-xTJkHwX_SlQ" annotatedElement="_JhArva5oEd-xTJkHwX_SlQ">
               <body>A condition that must be true when evaluated in order for the constraint to be satisfied.</body>
             </ownedComment>
@@ -316,7 +316,7 @@
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_MUAiUK5pEd-xTJkHwX_SlQ" name="NamedElement" isAbstract="true"/>
         <packagedElement xmi:type="uml:Class" xmi:id="_ece4cLKGEeKjjeuHwYguuQ" name="Namespace" isAbstract="true">
-          <ownedAttribute xmi:id="_FR6McbB1Ed-sntd82PWy7Q" name="ownedRule" type="_JhArsK5oEd-xTJkHwX_SlQ" aggregation="composite">
+          <ownedAttribute xmi:id="_FR6McbB1Ed-sntd82PWy7Q" name="ownedConstraints" type="_JhArsK5oEd-xTJkHwX_SlQ" aggregation="composite">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQVX7VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnXQVn7VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
@@ -343,7 +343,7 @@
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Qb_qQBzMEeSIos3S87O_rg"/>
           </ownedAttribute>
         </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="_U6pm4BzMEeSIos3S87O_rg" name="A_specification_owningConstraint" memberEnd="_JhArva5oEd-xTJkHwX_SlQ _MoSIEBzMEeSIos3S87O_rg"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="_U6pm4BzMEeSIos3S87O_rg" name="A_ownedSpecification_owningConstraint" memberEnd="_JhArva5oEd-xTJkHwX_SlQ _MoSIEBzMEeSIos3S87O_rg"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_97IzMLB0Ed-sntd82PWy7Q" name="Namespaces">
         <packagedElement xmi:type="uml:Class" xmi:id="_97IzMbB0Ed-sntd82PWy7Q" name="Class">
@@ -363,13 +363,13 @@
       <packagedElement xmi:type="uml:Package" xmi:id="_0lPd4Mf5Ed-sJIf4tYBt-g" name="States">
         <packagedElement xmi:type="uml:Class" xmi:id="_CO_y8EeyEeKdl-y5nJoJpQ" name="Behavior" isAbstract="true">
           <generalization xmi:id="_XnqLT37VEeOu79LxSz8Ylw" general="_ZFGA8EeyEeKdl-y5nJoJpQ"/>
-          <ownedAttribute xmi:id="_DPEqcMU_EeOUxMGVZGOl2Q" name="transition" type="_Et9DUEefEeKdl-y5nJoJpQ" association="_R5_mwMU_EeOUxMGVZGOl2Q">
+          <ownedAttribute xmi:id="_DPEqcMU_EeOUxMGVZGOl2Q" name="owningTransition" type="_Et9DUEefEeKdl-y5nJoJpQ" association="_R5_mwMU_EeOUxMGVZGOl2Q">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DPEqccU_EeOUxMGVZGOl2Q"/>
           </ownedAttribute>
         </packagedElement>
         <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_lg9w8EegEeKdl-y5nJoJpQ" name="Boolean"/>
         <packagedElement xmi:type="uml:Class" xmi:id="_ZFGA8EeyEeKdl-y5nJoJpQ" name="Class">
-          <ownedAttribute xmi:id="_i7RooEfCEeKdl-y5nJoJpQ" name="ownedBehavior" type="_CO_y8EeyEeKdl-y5nJoJpQ" aggregation="composite">
+          <ownedAttribute xmi:id="_i7RooEfCEeKdl-y5nJoJpQ" name="ownedBehaviors" type="_CO_y8EeyEeKdl-y5nJoJpQ" aggregation="composite">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XngaU37VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XngaVH7VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
@@ -397,20 +397,20 @@
             </specification>
           </ownedRule>
           <generalization xmi:id="_XnqLTX7VEeOu79LxSz8Ylw" general="_Et9qYEefEeKdl-y5nJoJpQ"/>
-          <ownedAttribute xmi:id="_Et-4l0efEeKdl-y5nJoJpQ" name="entry" type="_Et-RcEefEeKdl-y5nJoJpQ" association="_IWCyAMVEEeOUxMGVZGOl2Q">
+          <ownedAttribute xmi:id="_Et-4l0efEeKdl-y5nJoJpQ" name="entries" type="_Et-RcEefEeKdl-y5nJoJpQ" association="_IWCyAMVEEeOUxMGVZGOl2Q">
             <ownedComment xmi:id="_Et-4mEefEeKdl-y5nJoJpQ" annotatedElement="_Et-4l0efEeKdl-y5nJoJpQ">
               <body>The entryPoint kind pseudo states corresponding to this connection point.</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XngaM37VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XngaNH7VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_Et-4m0efEeKdl-y5nJoJpQ" name="state" type="_DKDnoEefEeKdl-y5nJoJpQ" association="_cqOSUMVDEeOUxMGVZGOl2Q">
+          <ownedAttribute xmi:id="_Et-4m0efEeKdl-y5nJoJpQ" name="owningState" type="_DKDnoEefEeKdl-y5nJoJpQ" association="_cqOSUMVDEeOUxMGVZGOl2Q">
             <ownedComment xmi:id="_Et-4nEefEeKdl-y5nJoJpQ" annotatedElement="_Et-4m0efEeKdl-y5nJoJpQ">
               <body>The State in which the connection point refreshens are defined.</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XngaNX7VEeOu79LxSz8Ylw"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_Et-4n0efEeKdl-y5nJoJpQ" name="exit" type="_Et-RcEefEeKdl-y5nJoJpQ" association="_gADwQMVEEeOUxMGVZGOl2Q">
+          <ownedAttribute xmi:id="_Et-4n0efEeKdl-y5nJoJpQ" name="exits" type="_Et-RcEefEeKdl-y5nJoJpQ" association="_gADwQMVEEeOUxMGVZGOl2Q">
             <ownedComment xmi:id="_Et-4oEefEeKdl-y5nJoJpQ" annotatedElement="_Et-4n0efEeKdl-y5nJoJpQ">
               <body>The exitPoints kind pseudo states corresponding to this connection point.</body>
             </ownedComment>
@@ -422,7 +422,7 @@
           <ownedAttribute xmi:id="_ox-ZMMVBEeOUxMGVZGOl2Q" name="owningState" type="_DKDnoEefEeKdl-y5nJoJpQ" association="_xUTmoMVBEeOUxMGVZGOl2Q">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ox-ZMcVBEeOUxMGVZGOl2Q"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_uREfIMVBEeOUxMGVZGOl2Q" name="transition" type="_Et9DUEefEeKdl-y5nJoJpQ" association="_xUTmocVBEeOUxMGVZGOl2Q">
+          <ownedAttribute xmi:id="_uREfIMVBEeOUxMGVZGOl2Q" name="owningTransition" type="_Et9DUEefEeKdl-y5nJoJpQ" association="_xUTmocVBEeOUxMGVZGOl2Q">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_uREfIcVBEeOUxMGVZGOl2Q"/>
           </ownedAttribute>
         </packagedElement>
@@ -595,13 +595,13 @@
             </ownedComment>
             <defaultValue xmi:type="uml:LiteralString" xmi:id="_XngaMH7VEeOu79LxSz8Ylw" value="initial"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_Et-RkUefEeKdl-y5nJoJpQ" name="stateMachine" type="_vAUZkEebEeKdl-y5nJoJpQ" association="_f_Y-EBsIEeSM9LreJtBwBg">
+          <ownedAttribute xmi:id="_Et-RkUefEeKdl-y5nJoJpQ" name="owningStateMachine" type="_vAUZkEebEeKdl-y5nJoJpQ" association="_f_Y-EBsIEeSM9LreJtBwBg">
             <ownedComment xmi:id="_Et-RkkefEeKdl-y5nJoJpQ" annotatedElement="_Et-RkUefEeKdl-y5nJoJpQ">
               <body>The StateMachine in which this Pseudostate is defined. This only applies to Pseudostates of the kind entryPoint or exitPoint.</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XngaMX7VEeOu79LxSz8Ylw"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_Et-RlUefEeKdl-y5nJoJpQ" name="state" type="_DKDnoEefEeKdl-y5nJoJpQ" association="_NtdYEMVDEeOUxMGVZGOl2Q">
+          <ownedAttribute xmi:id="_Et-RlUefEeKdl-y5nJoJpQ" name="owningState" type="_DKDnoEefEeKdl-y5nJoJpQ" association="_NtdYEMVDEeOUxMGVZGOl2Q">
             <ownedComment xmi:id="_Et-RlkefEeKdl-y5nJoJpQ" annotatedElement="_Et-RlUefEeKdl-y5nJoJpQ">
               <body>The State that owns this pseudostate and in which it appears.</body>
             </ownedComment>
@@ -711,27 +711,27 @@ select(p : Pseudostate | p.kind = #shallowHistory)->size() &lt;= 1
             </specification>
           </ownedRule>
           <generalization xmi:id="_XnqLTn7VEeOu79LxSz8Ylw" general="_JofBoEe1EeKdl-y5nJoJpQ"/>
-          <ownedAttribute xmi:id="_Et_fkkefEeKdl-y5nJoJpQ" name="subvertex" type="_Et9qYEefEeKdl-y5nJoJpQ" aggregation="composite" association="_9FFU0EebEeKdl-y5nJoJpQ">
+          <ownedAttribute xmi:id="_Et_fkkefEeKdl-y5nJoJpQ" name="ownedSubvertexes" type="_Et9qYEefEeKdl-y5nJoJpQ" aggregation="composite" association="_9FFU0EebEeKdl-y5nJoJpQ">
             <ownedComment xmi:id="_Et_fk0efEeKdl-y5nJoJpQ" annotatedElement="_Et_fkkefEeKdl-y5nJoJpQ">
               <body>The set of vertices that are owned by this region.</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XngaOH7VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XngaOX7VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_Et_flkefEeKdl-y5nJoJpQ" name="transition" type="_Et9DUEefEeKdl-y5nJoJpQ" aggregation="composite" association="_9FFU0UebEeKdl-y5nJoJpQ">
+          <ownedAttribute xmi:id="_Et_flkefEeKdl-y5nJoJpQ" name="ownedTransitions" type="_Et9DUEefEeKdl-y5nJoJpQ" aggregation="composite" association="_9FFU0UebEeKdl-y5nJoJpQ">
             <ownedComment xmi:id="_Et_fl0efEeKdl-y5nJoJpQ" annotatedElement="_Et_flkefEeKdl-y5nJoJpQ">
               <body>The set of transitions owned by the region. Note that internal transitions are owned by a region, but applies to the source state.</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XngaOn7VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XngaO37VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_Et_fmkefEeKdl-y5nJoJpQ" name="stateMachine" type="_vAUZkEebEeKdl-y5nJoJpQ" association="_-hK0EMVCEeOUxMGVZGOl2Q">
+          <ownedAttribute xmi:id="_Et_fmkefEeKdl-y5nJoJpQ" name="owningStateMachine" type="_vAUZkEebEeKdl-y5nJoJpQ" association="_-hK0EMVCEeOUxMGVZGOl2Q">
             <ownedComment xmi:id="_Et_fm0efEeKdl-y5nJoJpQ" annotatedElement="_Et_fmkefEeKdl-y5nJoJpQ">
               <body>The StateMachine that owns the Region. If a Region is owned by a StateMachine, then it cannot also be owned by a State.</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XngaPH7VEeOu79LxSz8Ylw"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_Et_fnkefEeKdl-y5nJoJpQ" name="state" type="_DKDnoEefEeKdl-y5nJoJpQ" association="_wImzEMVCEeOUxMGVZGOl2Q">
+          <ownedAttribute xmi:id="_Et_fnkefEeKdl-y5nJoJpQ" name="owningState" type="_DKDnoEefEeKdl-y5nJoJpQ" association="_wImzEMVCEeOUxMGVZGOl2Q">
             <ownedComment xmi:id="_Et_fn0efEeKdl-y5nJoJpQ" annotatedElement="_Et_fnkefEeKdl-y5nJoJpQ">
               <body>The State that owns the Region. If a Region is owned by a State, then it cannot also be owned by a StateMachine.</body>
             </ownedComment>
@@ -785,27 +785,27 @@ select(p : Pseudostate | p.kind = #shallowHistory)->size() &lt;= 1
             </specification>
           </ownedRule>
           <generalization xmi:id="_XnqLRn7VEeOu79LxSz8Ylw" general="_CO_y8EeyEeKdl-y5nJoJpQ"/>
-          <ownedAttribute xmi:id="_vAUZn0ebEeKdl-y5nJoJpQ" name="region" type="_Et-4o0efEeKdl-y5nJoJpQ" aggregation="composite" association="_-hK0EMVCEeOUxMGVZGOl2Q">
+          <ownedAttribute xmi:id="_vAUZn0ebEeKdl-y5nJoJpQ" name="ownedRegions" type="_Et-4o0efEeKdl-y5nJoJpQ" aggregation="composite" association="_-hK0EMVCEeOUxMGVZGOl2Q">
             <ownedComment xmi:id="_vAUZoEebEeKdl-y5nJoJpQ" annotatedElement="_vAUZn0ebEeKdl-y5nJoJpQ">
               <body>The regions owned directly by the state machine.</body>
             </ownedComment>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnXQWX7VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_vAUZo0ebEeKdl-y5nJoJpQ" name="connectionPoint" type="_Et-RcEefEeKdl-y5nJoJpQ" aggregation="composite" association="_f_Y-EBsIEeSM9LreJtBwBg">
+          <ownedAttribute xmi:id="_vAUZo0ebEeKdl-y5nJoJpQ" name="ownedConnectionPoints" type="_Et-RcEefEeKdl-y5nJoJpQ" aggregation="composite" association="_f_Y-EBsIEeSM9LreJtBwBg">
             <ownedComment xmi:id="_vAUZpEebEeKdl-y5nJoJpQ" annotatedElement="_vAUZo0ebEeKdl-y5nJoJpQ">
               <body>The connection points defined for this state machine. They represent the interface of the state machine when used as part of submachine state.</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQWn7VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnXQW37VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_vAUZp0ebEeKdl-y5nJoJpQ" name="extendedStateMachine" type="_vAUZkEebEeKdl-y5nJoJpQ">
+          <ownedAttribute xmi:id="_vAUZp0ebEeKdl-y5nJoJpQ" name="extendedStateMachines" type="_vAUZkEebEeKdl-y5nJoJpQ">
             <ownedComment xmi:id="_vAUZqEebEeKdl-y5nJoJpQ" annotatedElement="_vAUZp0ebEeKdl-y5nJoJpQ">
               <body>The state machines of which this is an extension.</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQXH7VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnXQXX7VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_vAUZq0ebEeKdl-y5nJoJpQ" name="submachineState" type="_DKDnoEefEeKdl-y5nJoJpQ" association="_9FFU1EebEeKdl-y5nJoJpQ">
+          <ownedAttribute xmi:id="_vAUZq0ebEeKdl-y5nJoJpQ" name="submachineStates" type="_DKDnoEefEeKdl-y5nJoJpQ" association="_9FFU1EebEeKdl-y5nJoJpQ">
             <ownedComment xmi:id="_vAUZrEebEeKdl-y5nJoJpQ" annotatedElement="_vAUZq0ebEeKdl-y5nJoJpQ">
               <body>References the submachine(s) in case of a submachine state. Multiple machines are referenced in case of a concurrent state.</body>
             </ownedComment>
@@ -886,13 +886,13 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
               <body>A state with isSubmachineState=true is said to be a submachine state. Such a state refers to a state machine (submachine).</body>
             </ownedComment>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_DKDnwEefEeKdl-y5nJoJpQ" name="submachine" type="_vAUZkEebEeKdl-y5nJoJpQ" association="_9FFU1EebEeKdl-y5nJoJpQ">
+          <ownedAttribute xmi:id="_DKDnwEefEeKdl-y5nJoJpQ" name="submachines" type="_vAUZkEebEeKdl-y5nJoJpQ" association="_9FFU1EebEeKdl-y5nJoJpQ">
             <ownedComment xmi:id="_DKDnwUefEeKdl-y5nJoJpQ" annotatedElement="_DKDnwEefEeKdl-y5nJoJpQ">
               <body>The state machine that is to be inserted in place of the (submachine) state.</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQZH7VEeOu79LxSz8Ylw"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_DKDnxEefEeKdl-y5nJoJpQ" name="connection" type="_Et-4jkefEeKdl-y5nJoJpQ" aggregation="composite" association="_cqOSUMVDEeOUxMGVZGOl2Q">
+          <ownedAttribute xmi:id="_DKDnxEefEeKdl-y5nJoJpQ" name="ownedConnections" type="_Et-4jkefEeKdl-y5nJoJpQ" aggregation="composite" association="_cqOSUMVDEeOUxMGVZGOl2Q">
             <ownedComment xmi:id="_DKDnxUefEeKdl-y5nJoJpQ" annotatedElement="_DKDnxEefEeKdl-y5nJoJpQ">
               <body>The entry and exit connection points used in conjunction with this (submachine) state, i.e. as targets and sources, respectively, in the region with the submachine state. A connection point reference references the corresponding definition of a connection point pseudostate in the statemachine referenced by the submachinestate.</body>
             </ownedComment>
@@ -905,47 +905,47 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQZ37VEeOu79LxSz8Ylw"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_DKDnzEefEeKdl-y5nJoJpQ" name="region" type="_Et-4o0efEeKdl-y5nJoJpQ" aggregation="composite" association="_wImzEMVCEeOUxMGVZGOl2Q">
+          <ownedAttribute xmi:id="_DKDnzEefEeKdl-y5nJoJpQ" name="ownedRegions" type="_Et-4o0efEeKdl-y5nJoJpQ" aggregation="composite" association="_wImzEMVCEeOUxMGVZGOl2Q">
             <ownedComment xmi:id="_DKDnzUefEeKdl-y5nJoJpQ" annotatedElement="_DKDnzEefEeKdl-y5nJoJpQ">
               <body>The regions owned directly by the state.</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQaH7VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnXQaX7VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_DKDn1EefEeKdl-y5nJoJpQ" name="stateInvariant" type="_jAYTcEe0EeKdl-y5nJoJpQ" aggregation="composite" association="_xUTmoMVBEeOUxMGVZGOl2Q">
+          <ownedAttribute xmi:id="_DKDn1EefEeKdl-y5nJoJpQ" name="ownedStateInvariant" type="_jAYTcEe0EeKdl-y5nJoJpQ" aggregation="composite" association="_xUTmoMVBEeOUxMGVZGOl2Q">
             <ownedComment xmi:id="_DKDn1UefEeKdl-y5nJoJpQ" annotatedElement="_DKDn1EefEeKdl-y5nJoJpQ">
               <body>Specifies conditions that are always true when this state is the current state. In protocol state machines, state invariants are additional conditions to the preconditions of the outgoing transitions, and to the postcondition of the incoming transitions.&#xD;
 </body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQan7VEeOu79LxSz8Ylw"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_DKDn2EefEeKdl-y5nJoJpQ" name="entry" type="_CO_y8EeyEeKdl-y5nJoJpQ" aggregation="composite">
+          <ownedAttribute xmi:id="_DKDn2EefEeKdl-y5nJoJpQ" name="ownedEntry" type="_CO_y8EeyEeKdl-y5nJoJpQ" aggregation="composite">
             <ownedComment xmi:id="_DKDn2UefEeKdl-y5nJoJpQ" annotatedElement="_DKDn2EefEeKdl-y5nJoJpQ">
               <body>An optional behavior that is executed whenever this state is entered regardless of the transition taken to reach the state. If defined, entry actions are always executed to completion prior to any internal behavior or transitions performed within the state.&#xD;
 </body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQa37VEeOu79LxSz8Ylw"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_DKDn3EefEeKdl-y5nJoJpQ" name="exit" type="_CO_y8EeyEeKdl-y5nJoJpQ" aggregation="composite">
+          <ownedAttribute xmi:id="_DKDn3EefEeKdl-y5nJoJpQ" name="ownedExit" type="_CO_y8EeyEeKdl-y5nJoJpQ" aggregation="composite">
             <ownedComment xmi:id="_DKDn3UefEeKdl-y5nJoJpQ" annotatedElement="_DKDn3EefEeKdl-y5nJoJpQ">
               <body>An optional behavior that is executed whenever this state is exited regardless of which transition was taken out of the state. If defined, exit actions are always executed to completion only after all internal activities and transition actions have completed execution.</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQbH7VEeOu79LxSz8Ylw"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_DKDn4EefEeKdl-y5nJoJpQ" name="doActivity" type="_CO_y8EeyEeKdl-y5nJoJpQ" aggregation="composite">
+          <ownedAttribute xmi:id="_DKDn4EefEeKdl-y5nJoJpQ" name="ownedDoActivity" type="_CO_y8EeyEeKdl-y5nJoJpQ" aggregation="composite">
             <ownedComment xmi:id="_DKDn4UefEeKdl-y5nJoJpQ" annotatedElement="_DKDn4EefEeKdl-y5nJoJpQ">
               <body>An optional behavior that is executed while being in the state. The execution starts when this state is entered, and stops either by itself, or when the state is exited, whichever comes first.</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQbX7VEeOu79LxSz8Ylw"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_DKDn5EefEeKdl-y5nJoJpQ" name="connectionPoint" type="_Et-RcEefEeKdl-y5nJoJpQ" aggregation="composite" association="_NtdYEMVDEeOUxMGVZGOl2Q">
+          <ownedAttribute xmi:id="_DKDn5EefEeKdl-y5nJoJpQ" name="ownedConnectionPoints" type="_Et-RcEefEeKdl-y5nJoJpQ" aggregation="composite" association="_NtdYEMVDEeOUxMGVZGOl2Q">
             <ownedComment xmi:id="_DKDn5UefEeKdl-y5nJoJpQ" annotatedElement="_DKDn5EefEeKdl-y5nJoJpQ">
               <body>The entry and exit pseudostates of a composite state. These can only be entry or exit Pseudostates, and they must have different names. They can only be defined for composite states.</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQbn7VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnXQb37VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_DKDn6EefEeKdl-y5nJoJpQ" name="deferrableTrigger" type="_5gHlAEe2EeKdl-y5nJoJpQ" aggregation="composite" association="_Cig0gMVBEeOUxMGVZGOl2Q">
+          <ownedAttribute xmi:id="_DKDn6EefEeKdl-y5nJoJpQ" name="ownedDeferrableTriggers" type="_5gHlAEe2EeKdl-y5nJoJpQ" aggregation="composite" association="_Cig0gMVBEeOUxMGVZGOl2Q">
             <ownedComment xmi:id="_DKDn6UefEeKdl-y5nJoJpQ" annotatedElement="_DKDn6EefEeKdl-y5nJoJpQ">
               <body>A list of triggers that are candidates to be retained by the state machine if they trigger no transitions out of the state (not consumed). A deferred trigger is retained until the state machine reaches a state configuration where it is no longer deferred.&#xD;
 </body>
@@ -1034,7 +1034,7 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
             </ownedComment>
             <defaultValue xmi:type="uml:LiteralString" xmi:id="_XnXQcn7VEeOu79LxSz8Ylw" value="external"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_Et9DbEefEeKdl-y5nJoJpQ" name="container" type="_Et-4o0efEeKdl-y5nJoJpQ" association="_9FFU0UebEeKdl-y5nJoJpQ">
+          <ownedAttribute xmi:id="_Et9DbEefEeKdl-y5nJoJpQ" name="owningRegion" type="_Et-4o0efEeKdl-y5nJoJpQ" association="_9FFU0UebEeKdl-y5nJoJpQ">
             <ownedComment xmi:id="_Et9DbUefEeKdl-y5nJoJpQ" annotatedElement="_Et9DbEefEeKdl-y5nJoJpQ">
               <body>Designates the region that owns this transition.</body>
             </ownedComment>
@@ -1049,19 +1049,19 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
               <body>Designates the target vertex that is reached when the transition is taken.</body>
             </ownedComment>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_Et9DfEefEeKdl-y5nJoJpQ" name="guard" type="_jAYTcEe0EeKdl-y5nJoJpQ" aggregation="composite" association="_xUTmocVBEeOUxMGVZGOl2Q">
+          <ownedAttribute xmi:id="_Et9DfEefEeKdl-y5nJoJpQ" name="ownedGuard" type="_jAYTcEe0EeKdl-y5nJoJpQ" aggregation="composite" association="_xUTmocVBEeOUxMGVZGOl2Q">
             <ownedComment xmi:id="_Et9DfUefEeKdl-y5nJoJpQ" annotatedElement="_Et9DfEefEeKdl-y5nJoJpQ">
               <body>A guard is a constraint that provides a fine-grained control over the firing of the transition. The guard is evaluated when an event occurrence is dispatched by the state machine. If the guard is true at that time, the transition may be enabled, otherwise, it is disabled. Guards should be pure expressions without side effects. Guard expressions with side effects are ill formed.</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQc37VEeOu79LxSz8Ylw"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_Et9DhEefEeKdl-y5nJoJpQ" name="effect" type="_CO_y8EeyEeKdl-y5nJoJpQ" aggregation="composite" association="_R5_mwMU_EeOUxMGVZGOl2Q">
+          <ownedAttribute xmi:id="_Et9DhEefEeKdl-y5nJoJpQ" name="ownedEffect" type="_CO_y8EeyEeKdl-y5nJoJpQ" aggregation="composite" association="_R5_mwMU_EeOUxMGVZGOl2Q">
             <ownedComment xmi:id="_Et9DhUefEeKdl-y5nJoJpQ" annotatedElement="_Et9DhEefEeKdl-y5nJoJpQ">
               <body>Specifies an optional behavior to be performed when the transition fires.</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQdH7VEeOu79LxSz8Ylw"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_Et9DiEefEeKdl-y5nJoJpQ" name="trigger" type="_5gHlAEe2EeKdl-y5nJoJpQ" aggregation="composite" association="_9FF8CUebEeKdl-y5nJoJpQ">
+          <ownedAttribute xmi:id="_Et9DiEefEeKdl-y5nJoJpQ" name="ownedTriggers" type="_5gHlAEe2EeKdl-y5nJoJpQ" aggregation="composite" association="_9FF8CUebEeKdl-y5nJoJpQ">
             <ownedComment xmi:id="_Et9DiUefEeKdl-y5nJoJpQ" annotatedElement="_Et9DiEefEeKdl-y5nJoJpQ">
               <body>Specifies the triggers that may fire the transition.</body>
             </ownedComment>
@@ -1109,10 +1109,10 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_5gHlAEe2EeKdl-y5nJoJpQ" name="Trigger">
           <generalization xmi:id="_XnqLUH7VEeOu79LxSz8Ylw" general="_39jdgMf5Ed-sJIf4tYBt-g"/>
-          <ownedAttribute xmi:id="_2o4UEMVAEeOUxMGVZGOl2Q" name="state" type="_DKDnoEefEeKdl-y5nJoJpQ" association="_Cig0gMVBEeOUxMGVZGOl2Q">
+          <ownedAttribute xmi:id="_2o4UEMVAEeOUxMGVZGOl2Q" name="owningState" type="_DKDnoEefEeKdl-y5nJoJpQ" association="_Cig0gMVBEeOUxMGVZGOl2Q">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2o4UEcVAEeOUxMGVZGOl2Q"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_9FF8CkebEeKdl-y5nJoJpQ" name="transition" type="_Et9DUEefEeKdl-y5nJoJpQ" association="_9FF8CUebEeKdl-y5nJoJpQ">
+          <ownedAttribute xmi:id="_9FF8CkebEeKdl-y5nJoJpQ" name="owningTransition" type="_Et9DUEefEeKdl-y5nJoJpQ" association="_9FF8CUebEeKdl-y5nJoJpQ">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XngaUX7VEeOu79LxSz8Ylw"/>
           </ownedAttribute>
         </packagedElement>
@@ -1121,20 +1121,20 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
             <body>A vertex is an abstraction of a node in a state machine graph. In general, it can be the source or destination of any number of transitions.</body>
           </ownedComment>
           <generalization xmi:id="_XnqLSn7VEeOu79LxSz8Ylw" general="_39jdgMf5Ed-sJIf4tYBt-g"/>
-          <ownedAttribute xmi:id="_Et9qY0efEeKdl-y5nJoJpQ" name="container" type="_Et-4o0efEeKdl-y5nJoJpQ" association="_9FFU0EebEeKdl-y5nJoJpQ">
+          <ownedAttribute xmi:id="_Et9qY0efEeKdl-y5nJoJpQ" name="owningRegion" type="_Et-4o0efEeKdl-y5nJoJpQ" association="_9FFU0EebEeKdl-y5nJoJpQ">
             <ownedComment xmi:id="_Et9qZEefEeKdl-y5nJoJpQ" annotatedElement="_Et9qY0efEeKdl-y5nJoJpQ">
               <body>The region that contains this vertex.</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQd37VEeOu79LxSz8Ylw"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_Et9qZ0efEeKdl-y5nJoJpQ" name="outgoing" type="_Et9DUEefEeKdl-y5nJoJpQ" isReadOnly="true" association="_9FFU0kebEeKdl-y5nJoJpQ">
+          <ownedAttribute xmi:id="_Et9qZ0efEeKdl-y5nJoJpQ" name="outgoingTransitions" type="_Et9DUEefEeKdl-y5nJoJpQ" isReadOnly="true" association="_9FFU0kebEeKdl-y5nJoJpQ">
             <ownedComment xmi:id="_Et9qaEefEeKdl-y5nJoJpQ" annotatedElement="_Et9qZ0efEeKdl-y5nJoJpQ">
               <body>Specifies the transitions departing from this vertex.</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XnXQeH7VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XnXQeX7VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_Et9qa0efEeKdl-y5nJoJpQ" name="incoming" type="_Et9DUEefEeKdl-y5nJoJpQ" isReadOnly="true" association="_9FFU00ebEeKdl-y5nJoJpQ">
+          <ownedAttribute xmi:id="_Et9qa0efEeKdl-y5nJoJpQ" name="incomingTransitions" type="_Et9DUEefEeKdl-y5nJoJpQ" isReadOnly="true" association="_9FFU00ebEeKdl-y5nJoJpQ">
             <ownedComment xmi:id="_Et9qbEefEeKdl-y5nJoJpQ" annotatedElement="_Et9qa0efEeKdl-y5nJoJpQ">
               <body>Specifies the transitions entering this vertex.</body>
             </ownedComment>
@@ -1152,21 +1152,21 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gADwQsVEEeOUxMGVZGOl2Q"/>
           </ownedEnd>
         </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="_NtdYEMVDEeOUxMGVZGOl2Q" name="A_connectionPoint_state" memberEnd="_DKDn5EefEeKdl-y5nJoJpQ _Et-RlUefEeKdl-y5nJoJpQ"/>
-        <packagedElement xmi:type="uml:Association" xmi:id="_f_Y-EBsIEeSM9LreJtBwBg" name="A_connectionPoint_stateMachine" memberEnd="_vAUZo0ebEeKdl-y5nJoJpQ _Et-RkUefEeKdl-y5nJoJpQ"/>
-        <packagedElement xmi:type="uml:Association" xmi:id="_cqOSUMVDEeOUxMGVZGOl2Q" name="A_connection_state" memberEnd="_DKDnxEefEeKdl-y5nJoJpQ _Et-4m0efEeKdl-y5nJoJpQ"/>
-        <packagedElement xmi:type="uml:Association" xmi:id="_9FFU0EebEeKdl-y5nJoJpQ" name="A_container_subvertex" memberEnd="_Et9qY0efEeKdl-y5nJoJpQ _Et_fkkefEeKdl-y5nJoJpQ"/>
-        <packagedElement xmi:type="uml:Association" xmi:id="_9FFU0UebEeKdl-y5nJoJpQ" name="A_container_transition" memberEnd="_Et9DbEefEeKdl-y5nJoJpQ _Et_flkefEeKdl-y5nJoJpQ"/>
-        <packagedElement xmi:type="uml:Association" xmi:id="_Cig0gMVBEeOUxMGVZGOl2Q" name="A_deferrableTrigger_state" memberEnd="_DKDn6EefEeKdl-y5nJoJpQ _2o4UEMVAEeOUxMGVZGOl2Q"/>
-        <packagedElement xmi:type="uml:Association" xmi:id="_R5_mwMU_EeOUxMGVZGOl2Q" name="A_effect_transition" memberEnd="_Et9DhEefEeKdl-y5nJoJpQ _DPEqcMU_EeOUxMGVZGOl2Q"/>
-        <packagedElement xmi:type="uml:Association" xmi:id="_xUTmocVBEeOUxMGVZGOl2Q" name="A_guard_transition" memberEnd="_Et9DfEefEeKdl-y5nJoJpQ _uREfIMVBEeOUxMGVZGOl2Q"/>
-        <packagedElement xmi:type="uml:Association" xmi:id="_9FFU00ebEeKdl-y5nJoJpQ" name="A_incoming_target" memberEnd="_Et9qa0efEeKdl-y5nJoJpQ _Et9DdEefEeKdl-y5nJoJpQ"/>
-        <packagedElement xmi:type="uml:Association" xmi:id="_9FFU0kebEeKdl-y5nJoJpQ" name="A_outgoing_source" memberEnd="_Et9qZ0efEeKdl-y5nJoJpQ _Et9DcEefEeKdl-y5nJoJpQ"/>
-        <packagedElement xmi:type="uml:Association" xmi:id="_xUTmoMVBEeOUxMGVZGOl2Q" name="A_owningState_stateInvariant" memberEnd="_DKDn1EefEeKdl-y5nJoJpQ _ox-ZMMVBEeOUxMGVZGOl2Q"/>
-        <packagedElement xmi:type="uml:Association" xmi:id="_wImzEMVCEeOUxMGVZGOl2Q" name="A_region_state" memberEnd="_DKDnzEefEeKdl-y5nJoJpQ _Et_fnkefEeKdl-y5nJoJpQ"/>
-        <packagedElement xmi:type="uml:Association" xmi:id="_-hK0EMVCEeOUxMGVZGOl2Q" name="A_region_stateMachiine" memberEnd="_vAUZn0ebEeKdl-y5nJoJpQ _Et_fmkefEeKdl-y5nJoJpQ"/>
-        <packagedElement xmi:type="uml:Association" xmi:id="_9FFU1EebEeKdl-y5nJoJpQ" name="A_submachineState_submachine" memberEnd="_vAUZq0ebEeKdl-y5nJoJpQ _DKDnwEefEeKdl-y5nJoJpQ"/>
-        <packagedElement xmi:type="uml:Association" xmi:id="_9FF8CUebEeKdl-y5nJoJpQ" name="A_transition_trigger" memberEnd="_9FF8CkebEeKdl-y5nJoJpQ _Et9DiEefEeKdl-y5nJoJpQ"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="_NtdYEMVDEeOUxMGVZGOl2Q" name="A_ownedConnectionPoints_owningState" memberEnd="_DKDn5EefEeKdl-y5nJoJpQ _Et-RlUefEeKdl-y5nJoJpQ"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="_f_Y-EBsIEeSM9LreJtBwBg" name="A_ownedConnectionPoints_owningStateMachine" memberEnd="_vAUZo0ebEeKdl-y5nJoJpQ _Et-RkUefEeKdl-y5nJoJpQ"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="_cqOSUMVDEeOUxMGVZGOl2Q" name="A_ownedConnections_owningState" memberEnd="_DKDnxEefEeKdl-y5nJoJpQ _Et-4m0efEeKdl-y5nJoJpQ"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="_9FFU0EebEeKdl-y5nJoJpQ" name="A_owningRegion_ownedSubvertexes" memberEnd="_Et9qY0efEeKdl-y5nJoJpQ _Et_fkkefEeKdl-y5nJoJpQ"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="_9FFU0UebEeKdl-y5nJoJpQ" name="A_owningRegion_ownedTransitions" memberEnd="_Et9DbEefEeKdl-y5nJoJpQ _Et_flkefEeKdl-y5nJoJpQ"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="_Cig0gMVBEeOUxMGVZGOl2Q" name="A_ownedDeferrableTriggers_owningState" memberEnd="_DKDn6EefEeKdl-y5nJoJpQ _2o4UEMVAEeOUxMGVZGOl2Q"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="_R5_mwMU_EeOUxMGVZGOl2Q" name="A_ownedEffect_owningTransition" memberEnd="_Et9DhEefEeKdl-y5nJoJpQ _DPEqcMU_EeOUxMGVZGOl2Q"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="_xUTmocVBEeOUxMGVZGOl2Q" name="A_ownedGuard_owningTransition" memberEnd="_Et9DfEefEeKdl-y5nJoJpQ _uREfIMVBEeOUxMGVZGOl2Q"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="_9FFU00ebEeKdl-y5nJoJpQ" name="A_incomingTransitions_target" memberEnd="_Et9qa0efEeKdl-y5nJoJpQ _Et9DdEefEeKdl-y5nJoJpQ"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="_9FFU0kebEeKdl-y5nJoJpQ" name="A_outgoingTransitions_source" memberEnd="_Et9qZ0efEeKdl-y5nJoJpQ _Et9DcEefEeKdl-y5nJoJpQ"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="_xUTmoMVBEeOUxMGVZGOl2Q" name="A_owningState_ownedStateInvariant" memberEnd="_DKDn1EefEeKdl-y5nJoJpQ _ox-ZMMVBEeOUxMGVZGOl2Q"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="_wImzEMVCEeOUxMGVZGOl2Q" name="A_ownedRegions_owningState" memberEnd="_DKDnzEefEeKdl-y5nJoJpQ _Et_fnkefEeKdl-y5nJoJpQ"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="_-hK0EMVCEeOUxMGVZGOl2Q" name="A_ownedRegions_owningStateMachiine" memberEnd="_vAUZn0ebEeKdl-y5nJoJpQ _Et_fmkefEeKdl-y5nJoJpQ"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="_9FFU1EebEeKdl-y5nJoJpQ" name="A_submachineStates_submachines" memberEnd="_vAUZq0ebEeKdl-y5nJoJpQ _DKDnwEefEeKdl-y5nJoJpQ"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="_9FF8CUebEeKdl-y5nJoJpQ" name="A_owningTransition_ownedTriggers" memberEnd="_9FF8CkebEeKdl-y5nJoJpQ _Et9DiEefEeKdl-y5nJoJpQ"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_AD6JQMitEd-sJIf4tYBt-g" name="Actions">
         <packagedElement xmi:type="uml:Class" xmi:id="_CmXe8MitEd-sJIf4tYBt-g" name="CallOperationAction">
@@ -1198,7 +1198,7 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
           <ownedAttribute xmi:id="_diPHkMaCEeGSosHO1vMMFA" name="externalURI" type="_b9hMgMaCEeGSosHO1vMMFA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XngaV37VEeOu79LxSz8Ylw"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_c7chEJ0dEeKlhqsLHPfBIg" name="imports" type="__xSUAJ0cEeKlhqsLHPfBIg" isOrdered="true" aggregation="composite">
+          <ownedAttribute xmi:id="_c7chEJ0dEeKlhqsLHPfBIg" name="ownedImports" type="__xSUAJ0cEeKlhqsLHPfBIg" isOrdered="true" aggregation="composite">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XngaWH7VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XngaWX7VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
@@ -1210,14 +1210,14 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
         <packagedElement xmi:type="uml:Class" xmi:id="_oMqCQOkFEeGPiYoGg5fAqg" name="Class"/>
         <packagedElement xmi:type="uml:Class" xmi:id="_XmK6gLjKEeOjq8qOYXet4Q" name="Element" isAbstract="true"/>
         <packagedElement xmi:type="uml:Class" xmi:id="_lDhHEOkFEeGPiYoGg5fAqg" name="Package">
-          <ownedAttribute xmi:id="_4ZppkLjIEeOjq8qOYXet4Q" name="profileApplication" type="_hi6iYLjIEeOjq8qOYXet4Q" aggregation="composite" association="_wiEz4LjJEeOjq8qOYXet4Q">
+          <ownedAttribute xmi:id="_4ZppkLjIEeOjq8qOYXet4Q" name="ownedProfileApplications" type="_hi6iYLjIEeOjq8qOYXet4Q" aggregation="composite" association="_wiEz4LjJEeOjq8qOYXet4Q">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_6y4x0LjIEeOjq8qOYXet4Q"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7Lk-oLjIEeOjq8qOYXet4Q" value="*"/>
           </ownedAttribute>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_lOhdMOkFEeGPiYoGg5fAqg" name="Profile">
           <generalization xmi:id="_XnqLVX7VEeOu79LxSz8Ylw" general="_lDhHEOkFEeGPiYoGg5fAqg"/>
-          <ownedAttribute xmi:id="_QdKF4LjJEeOjq8qOYXet4Q" name="application" type="_hi6iYLjIEeOjq8qOYXet4Q" association="_iwALILjJEeOjq8qOYXet4Q">
+          <ownedAttribute xmi:id="_QdKF4LjJEeOjq8qOYXet4Q" name="profileApplications" type="_hi6iYLjIEeOjq8qOYXet4Q" association="_iwALILjJEeOjq8qOYXet4Q">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QdKF4bjJEeOjq8qOYXet4Q"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_QdKF4rjJEeOjq8qOYXet4Q" value="*"/>
           </ownedAttribute>
@@ -1227,7 +1227,7 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
           <ownedAttribute xmi:id="_okNa4LjIEeOjq8qOYXet4Q" name="isStrict" type="_tEhkYLjIEeOjq8qOYXet4Q">
             <defaultValue xmi:type="uml:LiteralString" xmi:id="_zCR8QLjIEeOjq8qOYXet4Q" value="false"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_D0t-sLjJEeOjq8qOYXet4Q" name="applyingPackage" type="_lDhHEOkFEeGPiYoGg5fAqg" association="_wiEz4LjJEeOjq8qOYXet4Q">
+          <ownedAttribute xmi:id="_D0t-sLjJEeOjq8qOYXet4Q" name="owningPackage" type="_lDhHEOkFEeGPiYoGg5fAqg" association="_wiEz4LjJEeOjq8qOYXet4Q">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_D0t-sbjJEeOjq8qOYXet4Q" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_D0t-srjJEeOjq8qOYXet4Q" value="1"/>
           </ownedAttribute>
@@ -1239,8 +1239,8 @@ cp.exit->forAll (p | p.statemachine = self.submachine)))</body>
         <packagedElement xmi:type="uml:Class" xmi:id="_nH7O0OkFEeGPiYoGg5fAqg" name="Stereotype">
           <generalization xmi:id="_XnqLVn7VEeOu79LxSz8Ylw" general="_oMqCQOkFEeGPiYoGg5fAqg"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="_iwALILjJEeOjq8qOYXet4Q" name="A_appliedProfile_application" memberEnd="_SS1OELjJEeOjq8qOYXet4Q _QdKF4LjJEeOjq8qOYXet4Q"/>
-        <packagedElement xmi:type="uml:Association" xmi:id="_wiEz4LjJEeOjq8qOYXet4Q" name="A_applyingPackage_profileApplication" memberEnd="_D0t-sLjJEeOjq8qOYXet4Q _4ZppkLjIEeOjq8qOYXet4Q"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="_iwALILjJEeOjq8qOYXet4Q" name="A_appliedProfile_profileApplications" memberEnd="_SS1OELjJEeOjq8qOYXet4Q _QdKF4LjJEeOjq8qOYXet4Q"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="_wiEz4LjJEeOjq8qOYXet4Q" name="A_owningPackage_ownedProfileApplications" memberEnd="_D0t-sLjJEeOjq8qOYXet4Q _4ZppkLjIEeOjq8qOYXet4Q"/>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_xg6fUPF8Ed-BXqn3guNB1A" name="Sub_IsStatic">

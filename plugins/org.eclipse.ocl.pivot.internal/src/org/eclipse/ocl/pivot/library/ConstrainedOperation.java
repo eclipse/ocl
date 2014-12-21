@@ -41,7 +41,7 @@ public class ConstrainedOperation extends AbstractOperation
 	
 	@Override
 	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
-		List<? extends OCLExpression> arguments = callExp.getArgument();
+		List<? extends OCLExpression> arguments = callExp.getOwnedArguments();
 		Object[] argumentValues = new Object[arguments.size()];
 		for (int i = 0; i < arguments.size(); i++) {
 			OCLExpression argument = arguments.get(i);
@@ -62,8 +62,8 @@ public class ConstrainedOperation extends AbstractOperation
 			nestedVisitor = evaluationVisitor.createNestedEvaluator();
 		}
 		EvaluationEnvironment nestedEvaluationEnvironment = nestedVisitor.getEvaluationEnvironment();
-		nestedEvaluationEnvironment.add(ClassUtil.nonNullModel(expressionInOCL.getContextVariable()), sourceValue);
-		List<Variable> parameters = expressionInOCL.getParameterVariable();
+		nestedEvaluationEnvironment.add(ClassUtil.nonNullModel(expressionInOCL.getOwnedContext()), sourceValue);
+		List<Variable> parameters = expressionInOCL.getOwnedParameters();
 		if (!parameters.isEmpty()) {
 			for (int i = 0; i < parameters.size(); i++) {
 				Object value = argumentValues[i];
@@ -71,7 +71,7 @@ public class ConstrainedOperation extends AbstractOperation
 			}
 		}
 		try {
-			OCLExpression bodyExpression = expressionInOCL.getBodyExpression();
+			OCLExpression bodyExpression = expressionInOCL.getOwnedBody();
 			assert bodyExpression != null;
 			return nestedVisitor.evaluate(bodyExpression);
 		}

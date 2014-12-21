@@ -52,13 +52,13 @@ public class AbstractGenModelHelper implements GenModelHelper
 	public static final @NonNull String TABLES_PACKAGE_NAME = "";
 	
 	public static @NonNull String encodeName(@NonNull NamedElement element) {
-		int arity = element instanceof Operation ? ((Operation)element).getOwnedParameter().size() : 0;
+		int arity = element instanceof Operation ? ((Operation)element).getOwnedParameters().size() : 0;
 		String rawEncodeName = rawEncodeName(ClassUtil.nonNullModel(element.getName()), arity);
 		if (element instanceof Operation) {
 			int sameNames = 0;
 			int myIndex = 0;
 			for (Operation operation : ((Operation)element).getOwningClass().getOwnedOperations()) {
-				String rawName = rawEncodeName(ClassUtil.nonNullModel(operation.getName()), ClassUtil.nonNullModel(operation.getOwnedParameter().size()));
+				String rawName = rawEncodeName(ClassUtil.nonNullModel(operation.getName()), ClassUtil.nonNullModel(operation.getOwnedParameters().size()));
 				if (rawName.equals(rawEncodeName)) {
 					if (operation == element) {
 						myIndex = sameNames;
@@ -413,7 +413,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	@Override
 	public @NonNull GenOperation getGenOperation(@NonNull Operation operation) throws GenModelException {
 		Operation baseOperation = operation;
-		for ( ; baseOperation.getRedefinedOperation().size() > 0; baseOperation = baseOperation.getRedefinedOperation().get(0)) {
+		for ( ; baseOperation.getRedefinedOperations().size() > 0; baseOperation = baseOperation.getRedefinedOperations().get(0)) {
 			;
 		}
 		org.eclipse.ocl.pivot.Class owningType = baseOperation.getOwningClass();
@@ -429,7 +429,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 			}
 		}
 		Operation baseOperation2 = operation;
-		for ( ; baseOperation2.getRedefinedOperation().size() > 0; baseOperation2 = baseOperation2.getRedefinedOperation().get(0)) {
+		for ( ; baseOperation2.getRedefinedOperations().size() > 0; baseOperation2 = baseOperation2.getRedefinedOperations().get(0)) {
 			;
 		}
 		throw new GenModelException("No GenFeature for " + baseOperation);
@@ -481,9 +481,9 @@ public class AbstractGenModelHelper implements GenModelHelper
 	
 	@Override
 	public @Nullable GenParameter getGenParameter(@NonNull Parameter parameter) throws GenModelException {
-		Operation operation = parameter.getOperation();
+		Operation operation = parameter.getOwningOperation();
 		if (operation != null) {
-			int index = operation.getOwnedParameter().indexOf(parameter);
+			int index = operation.getOwnedParameters().indexOf(parameter);
 			GenOperation genOperation = getGenOperation(operation);
 			List<GenParameter> genParameters = genOperation.getGenParameters();
 			if ((0 <= index) && (index < genParameters.size())) {

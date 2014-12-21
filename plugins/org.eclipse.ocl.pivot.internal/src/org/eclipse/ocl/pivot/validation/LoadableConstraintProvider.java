@@ -89,7 +89,7 @@ public abstract class LoadableConstraintProvider extends XmlConstraintProvider
 	
 	protected void installConstraint(@NonNull Constraint constraint, @NonNull Set<Category> categories) {
         MetaModelManager metaModelManager = ocl.getMetaModelManager();
-        for (/*@NonNull*/ Element constrainedElement : constraint.getConstrainedElement()) {
+        for (/*@NonNull*/ Element constrainedElement : constraint.getConstrainedElements()) {
     		if (constrainedElement != null) {
     			EModelElement targetElement = metaModelManager.getEcoreOfPivot(EModelElement.class, constrainedElement);
                 if (targetElement != null) {

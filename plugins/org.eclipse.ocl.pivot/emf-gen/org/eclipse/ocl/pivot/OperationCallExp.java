@@ -24,7 +24,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.OperationCallExp#getArgument <em>Argument</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.OperationCallExp#getOwnedArguments <em>Owned Arguments</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.OperationCallExp#getReferredOperation <em>Referred Operation</em>}</li>
  * </ul>
  * </p>
@@ -36,7 +36,7 @@ public interface OperationCallExp
 		extends FeatureCallExp, ReferringElement {
 
 	/**
-	 * Returns the value of the '<em><b>Argument</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Arguments</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.OCLExpression}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -44,11 +44,11 @@ public interface OperationCallExp
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Argument</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getOperationCallExp_Argument()
+	 * @return the value of the '<em>Owned Arguments</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getOperationCallExp_OwnedArguments()
 	 * @generated
 	 */
-	@NonNull List<OCLExpression> getArgument();
+	@NonNull List<OCLExpression> getOwnedArguments();
 
 	/**
 	 * Returns the value of the '<em><b>Referred Operation</b></em>' reference.

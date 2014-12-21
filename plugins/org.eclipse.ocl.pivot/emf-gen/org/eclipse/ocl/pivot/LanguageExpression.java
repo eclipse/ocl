@@ -73,7 +73,7 @@ public interface LanguageExpression extends ValueSpecification
 
 	/**
 	 * Returns the value of the '<em><b>Owning Constraint</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Constraint#getSpecification <em>Specification</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Constraint#getOwnedSpecification <em>Owned Specification</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Constraint</em>' container reference isn't clear,
@@ -83,7 +83,7 @@ public interface LanguageExpression extends ValueSpecification
 	 * @return the value of the '<em>Owning Constraint</em>' container reference.
 	 * @see #setOwningConstraint(Constraint)
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getLanguageExpression_OwningConstraint()
-	 * @see org.eclipse.ocl.pivot.Constraint#getSpecification
+	 * @see org.eclipse.ocl.pivot.Constraint#getOwnedSpecification
 	 * @generated
 	 */
 	Constraint getOwningConstraint();

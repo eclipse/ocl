@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.CollectionItem#getItem <em>Item</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.CollectionItem#getOwnedItem <em>Owned Item</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,29 +33,29 @@ public interface CollectionItem
 		extends CollectionLiteralPart {
 
 	/**
-	 * Returns the value of the '<em><b>Item</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Item</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Item</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Item</em>' containment reference.
-	 * @see #setItem(OCLExpression)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getCollectionItem_Item()
+	 * @return the value of the '<em>Owned Item</em>' containment reference.
+	 * @see #setOwnedItem(OCLExpression)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getCollectionItem_OwnedItem()
 	 * @generated
 	 */
-	OCLExpression getItem();
+	OCLExpression getOwnedItem();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.CollectionItem#getItem <em>Item</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.CollectionItem#getOwnedItem <em>Owned Item</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Item</em>' containment reference.
-	 * @see #getItem()
+	 * @param value the new value of the '<em>Owned Item</em>' containment reference.
+	 * @see #getOwnedItem()
 	 * @generated
 	 */
-	void setItem(OCLExpression value);
+	void setOwnedItem(OCLExpression value);
 
 	/**
 	 * <!-- begin-user-doc -->

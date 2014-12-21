@@ -30,7 +30,7 @@ public class PrecedenceTests extends XtextTestCase
 		Precedence precedence = PivotFactory.eINSTANCE.createPrecedence();
 		precedence.setName(name);
 		precedence.setAssociativity(associativity);
-		library1.getOwnedPrecedence().add(precedence);
+		library1.getOwnedPrecedences().add(precedence);
 		return precedence;
 	}
 

@@ -25,10 +25,10 @@ import java.util.List;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.Region#getExtendedRegion <em>Extended Region</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Region#getState <em>State</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Region#getStateMachine <em>State Machine</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Region#getSubvertex <em>Subvertex</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Region#getTransition <em>Transition</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Region#getOwnedSubvertexes <em>Owned Subvertexes</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Region#getOwnedTransitions <em>Owned Transitions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Region#getOwningState <em>Owning State</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Region#getOwningStateMachine <em>Owning State Machine</em>}</li>
  * </ul>
  * </p>
  *
@@ -37,90 +37,6 @@ import java.util.List;
  */
 public interface Region extends Namespace
 {
-	/**
-	 * Returns the value of the '<em><b>Subvertex</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.pivot.Vertex}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Vertex#getContainer <em>Container</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The set of vertices that are owned by this region.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Subvertex</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getRegion_Subvertex()
-	 * @see org.eclipse.ocl.pivot.Vertex#getContainer
-	 * @generated
-	 */
-	List<Vertex> getSubvertex();
-
-	/**
-	 * Returns the value of the '<em><b>Transition</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.pivot.Transition}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Transition#getContainer <em>Container</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The set of transitions owned by the region. Note that internal transitions are owned by a region, but applies to the source state.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Transition</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getRegion_Transition()
-	 * @see org.eclipse.ocl.pivot.Transition#getContainer
-	 * @generated
-	 */
-	List<Transition> getTransition();
-
-	/**
-	 * Returns the value of the '<em><b>State Machine</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.StateMachine#getRegion <em>Region</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The StateMachine that owns the Region. If a Region is owned by a StateMachine, then it cannot also be owned by a State.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>State Machine</em>' container reference.
-	 * @see #setStateMachine(StateMachine)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getRegion_StateMachine()
-	 * @see org.eclipse.ocl.pivot.StateMachine#getRegion
-	 * @generated
-	 */
-	StateMachine getStateMachine();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Region#getStateMachine <em>State Machine</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>State Machine</em>' container reference.
-	 * @see #getStateMachine()
-	 * @generated
-	 */
-	void setStateMachine(StateMachine value);
-
-	/**
-	 * Returns the value of the '<em><b>State</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.State#getRegion <em>Region</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The State that owns the Region. If a Region is owned by a State, then it cannot also be owned by a StateMachine.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>State</em>' container reference.
-	 * @see #setState(State)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getRegion_State()
-	 * @see org.eclipse.ocl.pivot.State#getRegion
-	 * @generated
-	 */
-	State getState();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Region#getState <em>State</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>State</em>' container reference.
-	 * @see #getState()
-	 * @generated
-	 */
-	void setState(State value);
-
 	/**
 	 * Returns the value of the '<em><b>Extended Region</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -144,5 +60,89 @@ public interface Region extends Namespace
 	 * @generated
 	 */
 	void setExtendedRegion(Region value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Subvertexes</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.pivot.Vertex}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Vertex#getOwningRegion <em>Owning Region</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The set of vertices that are owned by this region.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Subvertexes</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getRegion_OwnedSubvertexes()
+	 * @see org.eclipse.ocl.pivot.Vertex#getOwningRegion
+	 * @generated
+	 */
+	List<Vertex> getOwnedSubvertexes();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Transitions</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.pivot.Transition}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Transition#getOwningRegion <em>Owning Region</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The set of transitions owned by the region. Note that internal transitions are owned by a region, but applies to the source state.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Transitions</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getRegion_OwnedTransitions()
+	 * @see org.eclipse.ocl.pivot.Transition#getOwningRegion
+	 * @generated
+	 */
+	List<Transition> getOwnedTransitions();
+
+	/**
+	 * Returns the value of the '<em><b>Owning State</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.State#getOwnedRegions <em>Owned Regions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The State that owns the Region. If a Region is owned by a State, then it cannot also be owned by a StateMachine.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owning State</em>' container reference.
+	 * @see #setOwningState(State)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getRegion_OwningState()
+	 * @see org.eclipse.ocl.pivot.State#getOwnedRegions
+	 * @generated
+	 */
+	State getOwningState();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Region#getOwningState <em>Owning State</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning State</em>' container reference.
+	 * @see #getOwningState()
+	 * @generated
+	 */
+	void setOwningState(State value);
+
+	/**
+	 * Returns the value of the '<em><b>Owning State Machine</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.StateMachine#getOwnedRegions <em>Owned Regions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The StateMachine that owns the Region. If a Region is owned by a StateMachine, then it cannot also be owned by a State.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owning State Machine</em>' container reference.
+	 * @see #setOwningStateMachine(StateMachine)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getRegion_OwningStateMachine()
+	 * @see org.eclipse.ocl.pivot.StateMachine#getOwnedRegions
+	 * @generated
+	 */
+	StateMachine getOwningStateMachine();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Region#getOwningStateMachine <em>Owning State Machine</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning State Machine</em>' container reference.
+	 * @see #getOwningStateMachine()
+	 * @generated
+	 */
+	void setOwningStateMachine(StateMachine value);
 
 } // Region

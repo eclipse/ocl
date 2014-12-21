@@ -166,7 +166,7 @@ public class BaseCSPostOrderVisitor extends AbstractExtendingBaseCSVisitor<Conti
 			context.handleVisitNamedElement(csDetail, pivotElement);
 //			refreshPivotList(Detail.class, pivotElement.getOwnedDetail(), csDocumentation.getOwnedDetail());
 			List<String> newValues = csDetail.getValues();
-			List<String> pivotValues = pivotElement.getValue();
+			List<String> pivotValues = pivotElement.getValues();
 			pivotValues.clear();
 			pivotValues.addAll(newValues);
 		}
@@ -240,7 +240,7 @@ public class BaseCSPostOrderVisitor extends AbstractExtendingBaseCSVisitor<Conti
 	public Continuation<?> visitOperationCS(@NonNull OperationCS csElement) {
 		Operation pivotOperation = PivotUtil.getPivot(Operation.class, csElement);
 		if (pivotOperation != null) {
-			context.refreshList(Type.class, pivotOperation.getRaisedException(), csElement.getOwnedExceptions());
+			context.refreshList(Type.class, pivotOperation.getRaisedExceptions(), csElement.getOwnedExceptions());
 			TypedRefCS ownedType = csElement.getOwnedType();
 			boolean isTypeof = false;
 			if (ownedType  instanceof TypedTypeRefCS) {

@@ -35,7 +35,7 @@ public class OperationContext extends ClassContext
 	@Override
 	public void initialize(@NonNull Base2ASConversion conversion, @NonNull ExpressionInOCL expression) {
 		super.initialize(conversion, expression);
-		conversion.setParameterVariables(expression, ClassUtil.nonNullEMF(operationContext.getOwnedParameter()));
+		conversion.setParameterVariables(expression, ClassUtil.nonNullEMF(operationContext.getOwnedParameters()));
 		String resultVariableName2 = resultVariableName;
 		if (resultVariableName2 != null) {
 			conversion.setResultVariable(expression, operationContext, resultVariableName2);

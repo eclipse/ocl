@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.EnumLiteralExp#getReferredEnumLiteral <em>Referred Enum Literal</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.EnumLiteralExp#getReferredLiteral <em>Referred Literal</em>}</li>
  * </ul>
  * </p>
  *
@@ -34,29 +34,29 @@ public interface EnumLiteralExp
 		extends LiteralExp {
 
 	/**
-	 * Returns the value of the '<em><b>Referred Enum Literal</b></em>' reference.
+	 * Returns the value of the '<em><b>Referred Literal</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Referred Enum Literal</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Referred Enum Literal</em>' reference.
-	 * @see #setReferredEnumLiteral(EnumerationLiteral)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getEnumLiteralExp_ReferredEnumLiteral()
+	 * @return the value of the '<em>Referred Literal</em>' reference.
+	 * @see #setReferredLiteral(EnumerationLiteral)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getEnumLiteralExp_ReferredLiteral()
 	 * @generated
 	 */
-	EnumerationLiteral getReferredEnumLiteral();
+	EnumerationLiteral getReferredLiteral();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.EnumLiteralExp#getReferredEnumLiteral <em>Referred Enum Literal</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.EnumLiteralExp#getReferredLiteral <em>Referred Literal</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Referred Enum Literal</em>' reference.
-	 * @see #getReferredEnumLiteral()
+	 * @param value the new value of the '<em>Referred Literal</em>' reference.
+	 * @see #getReferredLiteral()
 	 * @generated
 	 */
-	void setReferredEnumLiteral(EnumerationLiteral value);
+	void setReferredLiteral(EnumerationLiteral value);
 
 	/**
 	 * <!-- begin-user-doc -->

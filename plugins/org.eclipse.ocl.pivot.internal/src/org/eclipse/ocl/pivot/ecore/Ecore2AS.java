@@ -507,7 +507,7 @@ public class Ecore2AS extends AbstractEcore2AS
 
 	protected void installImports() {
 		URI baseURI = getBaseURI(ecoreResource);
-		List<Import> allImports = pivotModel.getImports();
+		List<Import> allImports = pivotModel.getOwnedImports();
 		for (EObject eContent : ecoreResource.getContents()) {
 			if (eContent instanceof EModelElement) {
 				EAnnotation importAnnotation = ((EModelElement)eContent).getEAnnotation(PivotConstants.IMPORT_ANNOTATION_SOURCE);

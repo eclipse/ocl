@@ -76,7 +76,7 @@ public class StereotypeProperty extends ConstrainedProperty
 				if (!gotIt && (elementExtension.isApplied() || elementExtension.isRequired())) {
 					Property theProperty = ClassUtil.getNamedElement(elementExtension.getStereotype().getOwnedProperties(), propertyName);
 					defaultValue = theProperty.getDefaultValue();
-					defaultExpression = theProperty.getDefaultExpression();
+					defaultExpression = theProperty.getOwnedExpression();
 					gotIt = true;
 				}
 				extensionProperty = PivotFactory.eINSTANCE.createProperty();
@@ -85,7 +85,7 @@ public class StereotypeProperty extends ConstrainedProperty
 				extensionProperty.setIsStatic(property.isStatic());
 				extensionProperty.setType(property.getType());
 				extensionProperty.setDefaultValue(defaultValue);
-				extensionProperty.setDefaultExpression(defaultExpression);
+				extensionProperty.setOwnedExpression(defaultExpression);
 				elementExtension.getOwnedProperties().add(extensionProperty);
 			}
 /*			Property extensionProperty = ClassUtil.getNamedElement(elementExtension.getOwnedAttribute(), propertyName);
@@ -110,7 +110,7 @@ public class StereotypeProperty extends ConstrainedProperty
 //				return super.evaluate(evaluator, returnTypeId, sourceValue);
 //			}
 			Object defaultValue = extensionProperty.getDefaultValue();
-			LanguageExpression defaultExpression = extensionProperty.getDefaultExpression();
+			LanguageExpression defaultExpression = extensionProperty.getOwnedExpression();
 			if (!extensionProperty.isDerived()) {
 				boxedValue = defaultValue; //idResolver.createInstance(property.getTypeId(), defaultValueLiteral);
 			}
@@ -120,7 +120,7 @@ public class StereotypeProperty extends ConstrainedProperty
 					try {
 						MetaModelManager metaModelManager = ((EvaluationVisitorImpl)evaluator).getMetaModelManager();
 						ExpressionInOCL expr = metaModelManager.getQueryOrThrow(defaultExpression);
-						OCLExpression bodyExpression = expr.getBodyExpression();
+						OCLExpression bodyExpression = expr.getOwnedBody();
 						if (bodyExpression != null) {
 							boxedValue = evaluator.evaluate(bodyExpression);		// FIXME errors
 						}

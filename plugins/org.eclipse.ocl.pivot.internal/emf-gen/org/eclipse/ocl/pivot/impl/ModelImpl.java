@@ -41,7 +41,7 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ModelImpl#getExternalURI <em>External URI</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.ModelImpl#getImports <em>Imports</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.ModelImpl#getOwnedImports <em>Owned Imports</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ModelImpl#getOwnedPackages <em>Owned Packages</em>}</li>
  * </ul>
  * </p>
@@ -71,14 +71,14 @@ public class ModelImpl extends NamespaceImpl implements Model
 	protected String externalURI = EXTERNAL_URI_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getImports() <em>Imports</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedImports() <em>Owned Imports</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getImports()
+	 * @see #getOwnedImports()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Import> imports;
+	protected EList<Import> ownedImports;
 	/**
 	 * The cached value of the '{@link #getOwnedPackages() <em>Owned Packages</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -165,38 +165,22 @@ public class ModelImpl extends NamespaceImpl implements Model
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("null")
-	public @NonNull List<Import> getImports()
-	{
-		if (imports == null)
-		{
-			imports = new EObjectContainmentEList<Import>(Import.class, this, PivotPackage.MODEL__IMPORTS);
-		}
-		return imports;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{
-			case PivotPackage.MODEL__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.MODEL__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.MODEL__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.MODEL__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.MODEL__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
-			case PivotPackage.MODEL__IMPORTS:
-				return ((InternalEList<?>)getImports()).basicRemove(otherEnd, msgs);
+			case PivotPackage.MODEL__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.MODEL__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.MODEL__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.MODEL__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.MODEL__OWNED_CONSTRAINTS:
+				return ((InternalEList<?>)getOwnedConstraints()).basicRemove(otherEnd, msgs);
+			case PivotPackage.MODEL__OWNED_IMPORTS:
+				return ((InternalEList<?>)getOwnedImports()).basicRemove(otherEnd, msgs);
 			case PivotPackage.MODEL__OWNED_PACKAGES:
 				return ((InternalEList<?>)getOwnedPackages()).basicRemove(otherEnd, msgs);
 		}
@@ -213,22 +197,22 @@ public class ModelImpl extends NamespaceImpl implements Model
 	{
 		switch (featureID)
 		{
-			case PivotPackage.MODEL__COMMENT:
-				return getComment();
-			case PivotPackage.MODEL__EXTENSION:
-				return getExtension();
-			case PivotPackage.MODEL__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.MODEL__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.MODEL__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.MODEL__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.MODEL__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.MODEL__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.MODEL__NAME:
 				return getName();
-			case PivotPackage.MODEL__OWNED_RULE:
-				return getOwnedRule();
+			case PivotPackage.MODEL__OWNED_CONSTRAINTS:
+				return getOwnedConstraints();
 			case PivotPackage.MODEL__EXTERNAL_URI:
 				return getExternalURI();
-			case PivotPackage.MODEL__IMPORTS:
-				return getImports();
+			case PivotPackage.MODEL__OWNED_IMPORTS:
+				return getOwnedImports();
 			case PivotPackage.MODEL__OWNED_PACKAGES:
 				return getOwnedPackages();
 		}
@@ -246,35 +230,35 @@ public class ModelImpl extends NamespaceImpl implements Model
 	{
 		switch (featureID)
 		{
-			case PivotPackage.MODEL__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.MODEL__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.MODEL__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.MODEL__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.MODEL__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.MODEL__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.MODEL__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.MODEL__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.MODEL__NAME:
 				setName((String)newValue);
 				return;
-			case PivotPackage.MODEL__OWNED_RULE:
-				getOwnedRule().clear();
-				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
+			case PivotPackage.MODEL__OWNED_CONSTRAINTS:
+				getOwnedConstraints().clear();
+				getOwnedConstraints().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.MODEL__EXTERNAL_URI:
 				setExternalURI((String)newValue);
 				return;
-			case PivotPackage.MODEL__IMPORTS:
-				getImports().clear();
-				getImports().addAll((Collection<? extends Import>)newValue);
+			case PivotPackage.MODEL__OWNED_IMPORTS:
+				getOwnedImports().clear();
+				getOwnedImports().addAll((Collection<? extends Import>)newValue);
 				return;
 			case PivotPackage.MODEL__OWNED_PACKAGES:
 				getOwnedPackages().clear();
@@ -294,29 +278,29 @@ public class ModelImpl extends NamespaceImpl implements Model
 	{
 		switch (featureID)
 		{
-			case PivotPackage.MODEL__COMMENT:
-				getComment().clear();
+			case PivotPackage.MODEL__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.MODEL__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.MODEL__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.MODEL__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.MODEL__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.MODEL__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.MODEL__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.MODEL__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case PivotPackage.MODEL__OWNED_RULE:
-				getOwnedRule().clear();
+			case PivotPackage.MODEL__OWNED_CONSTRAINTS:
+				getOwnedConstraints().clear();
 				return;
 			case PivotPackage.MODEL__EXTERNAL_URI:
 				setExternalURI(EXTERNAL_URI_EDEFAULT);
 				return;
-			case PivotPackage.MODEL__IMPORTS:
-				getImports().clear();
+			case PivotPackage.MODEL__OWNED_IMPORTS:
+				getOwnedImports().clear();
 				return;
 			case PivotPackage.MODEL__OWNED_PACKAGES:
 				getOwnedPackages().clear();
@@ -335,22 +319,22 @@ public class ModelImpl extends NamespaceImpl implements Model
 	{
 		switch (featureID)
 		{
-			case PivotPackage.MODEL__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.MODEL__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.MODEL__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.MODEL__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.MODEL__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.MODEL__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.MODEL__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.MODEL__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.MODEL__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.MODEL__OWNED_RULE:
-				return ownedRule != null && !ownedRule.isEmpty();
+			case PivotPackage.MODEL__OWNED_CONSTRAINTS:
+				return ownedConstraints != null && !ownedConstraints.isEmpty();
 			case PivotPackage.MODEL__EXTERNAL_URI:
 				return EXTERNAL_URI_EDEFAULT == null ? externalURI != null : !EXTERNAL_URI_EDEFAULT.equals(externalURI);
-			case PivotPackage.MODEL__IMPORTS:
-				return imports != null && !imports.isEmpty();
+			case PivotPackage.MODEL__OWNED_IMPORTS:
+				return ownedImports != null && !ownedImports.isEmpty();
 			case PivotPackage.MODEL__OWNED_PACKAGES:
 				return ownedPackages != null && !ownedPackages.isEmpty();
 		}
@@ -409,6 +393,22 @@ public class ModelImpl extends NamespaceImpl implements Model
 			newName = null;
 		}
 		super.setName(newName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("null")
+	@Override
+	public @NonNull List<Import> getOwnedImports()
+	{
+		if (ownedImports == null)
+		{
+			ownedImports = new EObjectContainmentEList<Import>(Import.class, this, PivotPackage.MODEL__OWNED_IMPORTS);
+		}
+		return ownedImports;
 	}
 
 	@Override

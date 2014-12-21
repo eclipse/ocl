@@ -110,9 +110,9 @@ public class OCLstdlibCSContainmentVisitor extends AbstractOCLstdlibCSContainmen
 		pivotElement.setIsInvalidating(csElement.isIsInvalidating());
 		pivotElement.setIsValidating(csElement.isIsValidating());
 		context.refreshTemplateSignature(csElement, pivotElement);
-		context.refreshPivotList(Parameter.class, pivotElement.getOwnedIterator(), csElement.getOwnedIterators());
-		context.refreshPivotList(Parameter.class, pivotElement.getOwnedAccumulator(), csElement.getOwnedAccumulators());
-		context.refreshPivotList(Parameter.class, pivotElement.getOwnedParameter(), csElement.getOwnedParameters());
+		context.refreshPivotList(Parameter.class, pivotElement.getOwnedIterators(), csElement.getOwnedIterators());
+		context.refreshPivotList(Parameter.class, pivotElement.getOwnedAccumulators(), csElement.getOwnedAccumulators());
+		context.refreshPivotList(Parameter.class, pivotElement.getOwnedParameters(), csElement.getOwnedParameters());
 		return null;
 	}
 
@@ -130,7 +130,7 @@ public class OCLstdlibCSContainmentVisitor extends AbstractOCLstdlibCSContainmen
 	@Override
 	public Continuation<?> visitLibPackageCS(@NonNull LibPackageCS csElement) {
 		Library pivotElement = refreshPackage(Library.class, PivotPackage.Literals.LIBRARY, csElement);		
-		context.refreshPivotList(Precedence.class, pivotElement.getOwnedPrecedence(), csElement.getOwnedPrecedences());
+		context.refreshPivotList(Precedence.class, pivotElement.getOwnedPrecedences(), csElement.getOwnedPrecedences());
 		return null;
 	}
 

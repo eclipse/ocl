@@ -29,25 +29,25 @@ public class IterateExpAttribution extends AbstractAttribution
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		IterateExp targetExpression = (IterateExp)target;
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
-		if (containmentFeature == PivotPackage.Literals.LOOP_EXP__BODY) {
-			OCLExpression source = targetExpression.getSource();
+		if (containmentFeature == PivotPackage.Literals.LOOP_EXP__OWNED_BODY) {
+			OCLExpression source = targetExpression.getOwnedSource();
 			environmentView.addElementsOfScope(source.getType(), scopeView);
-			environmentView.addElements(targetExpression.getIterator());
-			Variable result = targetExpression.getResult();
+			environmentView.addElements(targetExpression.getOwnedIterators());
+			Variable result = targetExpression.getOwnedResult();
 			if (result != null) {
 				environmentView.addNamedElement(result);
 			}
 		}
-		else if (containmentFeature == PivotPackage.Literals.ITERATE_EXP__RESULT) {
-			OCLExpression source = targetExpression.getSource();
-			environmentView.addElements(targetExpression.getIterator());
+		else if (containmentFeature == PivotPackage.Literals.ITERATE_EXP__OWNED_RESULT) {
+			OCLExpression source = targetExpression.getOwnedSource();
+			environmentView.addElements(targetExpression.getOwnedIterators());
 			environmentView.addElementsOfScope(source.getType(), scopeView);
 		}
-		else if (containmentFeature == PivotPackage.Literals.LOOP_EXP__ITERATOR) {
-			OCLExpression source = targetExpression.getSource();
+		else if (containmentFeature == PivotPackage.Literals.LOOP_EXP__OWNED_ITERATORS) {
+			OCLExpression source = targetExpression.getOwnedSource();
 			environmentView.addElementsOfScope(source.getType(), scopeView);
 			EObject child = scopeView.getChild();
-			for (Variable iterator : targetExpression.getIterator()) {
+			for (Variable iterator : targetExpression.getOwnedIterators()) {
 				if (iterator != null) {
 					environmentView.addNamedElement(iterator);
 					if (iterator == child) {

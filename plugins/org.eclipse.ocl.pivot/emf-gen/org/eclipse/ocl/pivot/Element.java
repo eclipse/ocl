@@ -28,10 +28,10 @@ import org.eclipse.ocl.pivot.util.Visitable;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.Element#getComment <em>Comment</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Element#getExtension <em>Extension</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Element#getOwnedAnnotation <em>Owned Annotation</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Element#getOwnedComment <em>Owned Comment</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Element#getAnnotatingComments <em>Annotating Comments</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Element#getOwnedAnnotations <em>Owned Annotations</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Element#getOwnedComments <em>Owned Comments</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Element#getOwnedExtensions <em>Owned Extensions</em>}</li>
  * </ul>
  * </p>
  *
@@ -41,40 +41,24 @@ import org.eclipse.ocl.pivot.util.Visitable;
 public interface Element extends EObject, Visitable {
 
 	/**
-	 * Returns the value of the '<em><b>Comment</b></em>' reference list.
+	 * Returns the value of the '<em><b>Annotating Comments</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.Comment}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Comment#getAnnotatedElement <em>Annotated Element</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Comment#getAnnotatedElements <em>Annotated Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Comment</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Annotating Comments</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Comment</em>' reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getElement_Comment()
-	 * @see org.eclipse.ocl.pivot.Comment#getAnnotatedElement
+	 * @return the value of the '<em>Annotating Comments</em>' reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getElement_AnnotatingComments()
+	 * @see org.eclipse.ocl.pivot.Comment#getAnnotatedElements
 	 * @generated
 	 */
-	List<Comment> getComment();
+	List<Comment> getAnnotatingComments();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.pivot.Comment}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Comment#getOwningElement <em>Owning Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The Comments owned by this element.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Comment</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getElement_OwnedComment()
-	 * @see org.eclipse.ocl.pivot.Comment#getOwningElement
-	 * @generated
-	 */
-	@NonNull List<Comment> getOwnedComment();
-
-	/**
-	 * Returns the value of the '<em><b>Extension</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Extensions</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.ElementExtension}.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.ElementExtension#getBase <em>Base</em>}'.
 	 * <!-- begin-user-doc -->
@@ -83,15 +67,15 @@ public interface Element extends EObject, Visitable {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Extension</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getElement_Extension()
+	 * @return the value of the '<em>Owned Extensions</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getElement_OwnedExtensions()
 	 * @see org.eclipse.ocl.pivot.ElementExtension#getBase
 	 * @generated
 	 */
-	@NonNull List<ElementExtension> getExtension();
+	@NonNull List<ElementExtension> getOwnedExtensions();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.Element}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -99,11 +83,27 @@ public interface Element extends EObject, Visitable {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Annotation</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getElement_OwnedAnnotation()
+	 * @return the value of the '<em>Owned Annotations</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getElement_OwnedAnnotations()
 	 * @generated
 	 */
-	@NonNull List<Element> getOwnedAnnotation();
+	@NonNull List<Element> getOwnedAnnotations();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Comments</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.pivot.Comment}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Comment#getOwningElement <em>Owning Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The Comments owned by this element.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Comments</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getElement_OwnedComments()
+	 * @see org.eclipse.ocl.pivot.Comment#getOwningElement
+	 * @generated
+	 */
+	List<Comment> getOwnedComments();
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -38,6 +38,6 @@ public abstract class CallExpStepper extends PostStepper
 
 	@Override
 	public @Nullable Element getFirstElement(@NonNull Element element) {
-		return element instanceof CallExp ? ((CallExp)element).getSource() : element;
+		return element instanceof CallExp ? ((CallExp)element).getOwnedSource() : element;
 	}
 }

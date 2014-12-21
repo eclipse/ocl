@@ -22,7 +22,7 @@ public class ExpressionInOCLStepper extends AbstractStepper
 
 	@Override
 	public @Nullable Element getFirstElement(@NonNull Element element) {
-		return element instanceof ExpressionInOCL ? ((ExpressionInOCL)element).getBodyExpression() : element;
+		return element instanceof ExpressionInOCL ? ((ExpressionInOCL)element).getOwnedBody() : element;
 	}
 
 	@Override

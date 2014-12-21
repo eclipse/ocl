@@ -258,7 +258,7 @@ public class ModelAnalysis
 		//	Create the closure of all profiles to each package for which any profile is applied
 		//
 		for (ProfileApplication asProfileApplication : asProfileApplications) {
-			org.eclipse.ocl.pivot.Package asPackage = asProfileApplication.getApplyingPackage();
+			org.eclipse.ocl.pivot.Package asPackage = asProfileApplication.getOwningPackage();
 			if (asPackage != null) {
 				Profile asProfile = asProfileApplication.getAppliedProfile();
 				if (asProfile != null) {
@@ -283,7 +283,7 @@ public class ModelAnalysis
 					computeProfileClosure(allProfiles, (Profile) asNestedPackage);
 				}
 			}
-			for (org.eclipse.ocl.pivot.Package asImportedPackage : asProfile.getImportedPackage()) {
+			for (org.eclipse.ocl.pivot.Package asImportedPackage : asProfile.getImportedPackages()) {
 				if (asImportedPackage instanceof Profile) {
 					computeProfileClosure(allProfiles, (Profile) asImportedPackage);
 				}
@@ -320,7 +320,7 @@ public class ModelAnalysis
 		for (@SuppressWarnings("null")@NonNull Element asElement : element2stereotype2extension.keySet()) {
 			Map<Stereotype, ElementExtension> stereotype2extension = element2stereotype2extension.get(asElement);
 			List<ElementExtension> newElementExtensions = new ArrayList<ElementExtension>(stereotype2extension.values());
-			List<ElementExtension> oldElementExtensions = asElement.getExtension();
+			List<ElementExtension> oldElementExtensions = asElement.getOwnedExtensions();
 			converter.refreshList(oldElementExtensions, newElementExtensions);
 		}
 /*		if (UML2AS.ADD_ELEMENT_EXTENSION.isActive()) {
@@ -404,7 +404,7 @@ public class ModelAnalysis
 	private @NonNull Map<Stereotype, ElementExtension> installExtensions(@NonNull Element asElement, @NonNull Set<TypeExtension> typeExtensions) {
 		Map<Stereotype, ElementExtension> stereotype2extension = new HashMap<Stereotype, ElementExtension>();
 		for (TypeExtension typeExtension : typeExtensions) {
-			Stereotype stereotype = typeExtension.getStereotype();
+			Stereotype stereotype = typeExtension.getOwningStereotype();
 			if (stereotype != null) {
 				ElementExtension elementExtension = metaModelManager.getElementExtension(asElement, stereotype);
 				elementExtension.setIsRequired(true);
@@ -430,7 +430,7 @@ public class ModelAnalysis
 					Set<TypeExtension> typeExtensions = metatype2typeExtensions.get(metatype);
 					List<Stereotype> stereotypes = new ArrayList<Stereotype>();
 					for (TypeExtension typeExtension : typeExtensions) {
-						stereotypes.add(typeExtension.getStereotype());
+						stereotypes.add(typeExtension.getOwningStereotype());
 					}
 					Collections.sort(stereotypes, PivotUtil.NAMEABLE_COMPARATOR);
 					for (Stereotype stereotype : stereotypes) {

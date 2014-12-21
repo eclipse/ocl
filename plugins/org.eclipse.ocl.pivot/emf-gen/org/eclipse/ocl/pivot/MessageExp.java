@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.jdt.annotation.NonNull;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,10 +24,10 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.MessageExp#getArgument <em>Argument</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.MessageExp#getCalledOperation <em>Called Operation</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.MessageExp#getSentSignal <em>Sent Signal</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.MessageExp#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.MessageExp#getOwnedArguments <em>Owned Arguments</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.MessageExp#getOwnedCalledOperation <em>Owned Called Operation</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.MessageExp#getOwnedSentSignal <em>Owned Sent Signal</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.MessageExp#getOwnedTarget <em>Owned Target</em>}</li>
  * </ul>
  * </p>
  *
@@ -37,32 +38,32 @@ public interface MessageExp
 		extends OCLExpression {
 
 	/**
-	 * Returns the value of the '<em><b>Target</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Target</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Target</em>' containment reference.
-	 * @see #setTarget(OCLExpression)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getMessageExp_Target()
+	 * @return the value of the '<em>Owned Target</em>' containment reference.
+	 * @see #setOwnedTarget(OCLExpression)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getMessageExp_OwnedTarget()
 	 * @generated
 	 */
-	OCLExpression getTarget();
+	OCLExpression getOwnedTarget();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.MessageExp#getTarget <em>Target</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.MessageExp#getOwnedTarget <em>Owned Target</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target</em>' containment reference.
-	 * @see #getTarget()
+	 * @param value the new value of the '<em>Owned Target</em>' containment reference.
+	 * @see #getOwnedTarget()
 	 * @generated
 	 */
-	void setTarget(OCLExpression value);
+	void setOwnedTarget(OCLExpression value);
 
 	/**
-	 * Returns the value of the '<em><b>Argument</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Arguments</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.OCLExpression}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -70,61 +71,61 @@ public interface MessageExp
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Argument</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getMessageExp_Argument()
+	 * @return the value of the '<em>Owned Arguments</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getMessageExp_OwnedArguments()
 	 * @generated
 	 */
-	List<OCLExpression> getArgument();
+	@NonNull List<OCLExpression> getOwnedArguments();
 
 	/**
-	 * Returns the value of the '<em><b>Called Operation</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Called Operation</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Called Operation</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Called Operation</em>' containment reference.
-	 * @see #setCalledOperation(CallOperationAction)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getMessageExp_CalledOperation()
+	 * @return the value of the '<em>Owned Called Operation</em>' containment reference.
+	 * @see #setOwnedCalledOperation(CallOperationAction)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getMessageExp_OwnedCalledOperation()
 	 * @generated
 	 */
-	CallOperationAction getCalledOperation();
+	CallOperationAction getOwnedCalledOperation();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.MessageExp#getCalledOperation <em>Called Operation</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.MessageExp#getOwnedCalledOperation <em>Owned Called Operation</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Called Operation</em>' containment reference.
-	 * @see #getCalledOperation()
+	 * @param value the new value of the '<em>Owned Called Operation</em>' containment reference.
+	 * @see #getOwnedCalledOperation()
 	 * @generated
 	 */
-	void setCalledOperation(CallOperationAction value);
+	void setOwnedCalledOperation(CallOperationAction value);
 
 	/**
-	 * Returns the value of the '<em><b>Sent Signal</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Sent Signal</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Sent Signal</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sent Signal</em>' containment reference.
-	 * @see #setSentSignal(SendSignalAction)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getMessageExp_SentSignal()
+	 * @return the value of the '<em>Owned Sent Signal</em>' containment reference.
+	 * @see #setOwnedSentSignal(SendSignalAction)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getMessageExp_OwnedSentSignal()
 	 * @generated
 	 */
-	SendSignalAction getSentSignal();
+	SendSignalAction getOwnedSentSignal();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.MessageExp#getSentSignal <em>Sent Signal</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.MessageExp#getOwnedSentSignal <em>Owned Sent Signal</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Sent Signal</em>' containment reference.
-	 * @see #getSentSignal()
+	 * @param value the new value of the '<em>Owned Sent Signal</em>' containment reference.
+	 * @see #getOwnedSentSignal()
 	 * @generated
 	 */
-	void setSentSignal(SendSignalAction value);
+	void setOwnedSentSignal(SendSignalAction value);
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -70,8 +70,8 @@ public abstract class GenerateTextileForLibraryUtils extends GenerateTextileForL
 			if (m2 == null) m2 = "";
 			int diff = m1.compareTo(m2);
 			if (diff != 0) return diff;
-			int s1 = o1.getOwnedIterator().size();
-			int s2 = o2.getOwnedIterator().size();
+			int s1 = o1.getOwnedIterators().size();
+			int s2 = o2.getOwnedIterators().size();
 			return s1 - s2;
 		}
 	};
@@ -101,8 +101,8 @@ public abstract class GenerateTextileForLibraryUtils extends GenerateTextileForL
 			if (k2 != null) m2 = k2;
 			int diff = m1.compareTo(m2);
 			if (diff != 0) return diff;
-			int s1 = o1.getOwnedParameter().size();
-			int s2 = o2.getOwnedParameter().size();
+			int s1 = o1.getOwnedParameters().size();
+			int s2 = o2.getOwnedParameters().size();
 			return s1 - s2;
 		}
 	}
@@ -252,7 +252,7 @@ public abstract class GenerateTextileForLibraryUtils extends GenerateTextileForL
 
 	protected @NonNull List<Constraint> getSortedConstraints(@NonNull Operation asOperation) {
 		Set<Constraint> allElements = new HashSet<Constraint>();
-		for (Constraint asConstraint : asOperation.getOwnedRule()) {
+		for (Constraint asConstraint : asOperation.getOwnedConstraints()) {
 			allElements.add(asConstraint);
 		}
 		List<Constraint> sortedElements = new ArrayList<Constraint>(allElements);
@@ -285,14 +285,14 @@ public abstract class GenerateTextileForLibraryUtils extends GenerateTextileForL
 	}
 
 	protected @NonNull List<Constraint> getSortedPostconditions(@NonNull Operation asOperation) {
-		Set<Constraint> allElements = new HashSet<Constraint>(asOperation.getPostcondition());
+		Set<Constraint> allElements = new HashSet<Constraint>(asOperation.getOwnedPostconditions());
 		List<Constraint> sortedElements = new ArrayList<Constraint>(allElements);
 		Collections.sort(sortedElements, nameableComparator);
 		return sortedElements;
 	}
 
 	protected @NonNull List<Constraint> getSortedPreconditions(@NonNull Operation asOperation) {
-		Set<Constraint> allElements = new HashSet<Constraint>(asOperation.getPrecondition());
+		Set<Constraint> allElements = new HashSet<Constraint>(asOperation.getOwnedPreconditions());
 		List<Constraint> sortedElements = new ArrayList<Constraint>(allElements);
 		Collections.sort(sortedElements, nameableComparator);
 		return sortedElements;

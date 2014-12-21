@@ -37,7 +37,7 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.impl.VariableExpImpl#isImplicit <em>Implicit</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.VariableExpImpl#isImplicit <em>Is Implicit</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.VariableExpImpl#getReferredVariable <em>Referred Variable</em>}</li>
  * </ul>
  * </p>
@@ -49,24 +49,23 @@ public class VariableExpImpl
 		implements VariableExp {
 
 	/**
-	 * The default value of the '{@link #isImplicit() <em>Implicit</em>}' attribute.
+	 * The default value of the '{@link #isImplicit() <em>Is Implicit</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #isImplicit()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IMPLICIT_EDEFAULT = false;
+	protected static final boolean IS_IMPLICIT_EDEFAULT = false;
 	/**
-	 * The flag representing the value of the '{@link #isImplicit() <em>Implicit</em>}' attribute.
+	 * The flag representing the value of the '{@link #isImplicit() <em>Is Implicit</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #isImplicit()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IMPLICIT_EFLAG = 1 << 9;
-
+	protected static final int IS_IMPLICIT_EFLAG = 1 << 9;
 	/**
 	 * The cached value of the '{@link #getReferredVariable() <em>Referred Variable</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -146,7 +145,7 @@ public class VariableExpImpl
 	@Override
 	public boolean isImplicit()
 	{
-		return (eFlags & IMPLICIT_EFLAG) != 0;
+		return (eFlags & IS_IMPLICIT_EFLAG) != 0;
 	}
 
 	/**
@@ -155,12 +154,12 @@ public class VariableExpImpl
 	 * @generated
 	 */
 	@Override
-	public void setImplicit(boolean newImplicit)
+	public void setIsImplicit(boolean newIsImplicit)
 	{
-		boolean oldImplicit = (eFlags & IMPLICIT_EFLAG) != 0;
-		if (newImplicit) eFlags |= IMPLICIT_EFLAG; else eFlags &= ~IMPLICIT_EFLAG;
+		boolean oldIsImplicit = (eFlags & IS_IMPLICIT_EFLAG) != 0;
+		if (newIsImplicit) eFlags |= IS_IMPLICIT_EFLAG; else eFlags &= ~IS_IMPLICIT_EFLAG;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.VARIABLE_EXP__IMPLICIT, oldImplicit, newImplicit));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.VARIABLE_EXP__IS_IMPLICIT, oldIsImplicit, newIsImplicit));
 	}
 
 	/**
@@ -172,14 +171,14 @@ public class VariableExpImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case PivotPackage.VARIABLE_EXP__COMMENT:
-				return getComment();
-			case PivotPackage.VARIABLE_EXP__EXTENSION:
-				return getExtension();
-			case PivotPackage.VARIABLE_EXP__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.VARIABLE_EXP__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.VARIABLE_EXP__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.VARIABLE_EXP__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.VARIABLE_EXP__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.VARIABLE_EXP__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.VARIABLE_EXP__NAME:
 				return getName();
 			case PivotPackage.VARIABLE_EXP__IS_MANY:
@@ -191,7 +190,7 @@ public class VariableExpImpl
 				return basicGetType();
 			case PivotPackage.VARIABLE_EXP__TYPE_VALUE:
 				return getTypeValue();
-			case PivotPackage.VARIABLE_EXP__IMPLICIT:
+			case PivotPackage.VARIABLE_EXP__IS_IMPLICIT:
 				return isImplicit();
 			case PivotPackage.VARIABLE_EXP__REFERRED_VARIABLE:
 				if (resolve) return getReferredVariable();
@@ -210,21 +209,21 @@ public class VariableExpImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case PivotPackage.VARIABLE_EXP__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.VARIABLE_EXP__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.VARIABLE_EXP__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.VARIABLE_EXP__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.VARIABLE_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.VARIABLE_EXP__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.VARIABLE_EXP__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.VARIABLE_EXP__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.VARIABLE_EXP__NAME:
 				setName((String)newValue);
@@ -238,8 +237,8 @@ public class VariableExpImpl
 			case PivotPackage.VARIABLE_EXP__TYPE_VALUE:
 				setTypeValue((Type)newValue);
 				return;
-			case PivotPackage.VARIABLE_EXP__IMPLICIT:
-				setImplicit((Boolean)newValue);
+			case PivotPackage.VARIABLE_EXP__IS_IMPLICIT:
+				setIsImplicit((Boolean)newValue);
 				return;
 			case PivotPackage.VARIABLE_EXP__REFERRED_VARIABLE:
 				setReferredVariable((VariableDeclaration)newValue);
@@ -257,17 +256,17 @@ public class VariableExpImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.VARIABLE_EXP__COMMENT:
-				getComment().clear();
+			case PivotPackage.VARIABLE_EXP__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.VARIABLE_EXP__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.VARIABLE_EXP__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.VARIABLE_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.VARIABLE_EXP__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.VARIABLE_EXP__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.VARIABLE_EXP__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.VARIABLE_EXP__NAME:
 				setName(NAME_EDEFAULT);
@@ -281,8 +280,8 @@ public class VariableExpImpl
 			case PivotPackage.VARIABLE_EXP__TYPE_VALUE:
 				setTypeValue((Type)null);
 				return;
-			case PivotPackage.VARIABLE_EXP__IMPLICIT:
-				setImplicit(IMPLICIT_EDEFAULT);
+			case PivotPackage.VARIABLE_EXP__IS_IMPLICIT:
+				setIsImplicit(IS_IMPLICIT_EDEFAULT);
 				return;
 			case PivotPackage.VARIABLE_EXP__REFERRED_VARIABLE:
 				setReferredVariable((VariableDeclaration)null);
@@ -300,14 +299,14 @@ public class VariableExpImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.VARIABLE_EXP__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.VARIABLE_EXP__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.VARIABLE_EXP__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.VARIABLE_EXP__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.VARIABLE_EXP__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.VARIABLE_EXP__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.VARIABLE_EXP__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.VARIABLE_EXP__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.VARIABLE_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.VARIABLE_EXP__IS_MANY:
@@ -318,8 +317,8 @@ public class VariableExpImpl
 				return type != null;
 			case PivotPackage.VARIABLE_EXP__TYPE_VALUE:
 				return typeValue != null;
-			case PivotPackage.VARIABLE_EXP__IMPLICIT:
-				return ((eFlags & IMPLICIT_EFLAG) != 0) != IMPLICIT_EDEFAULT;
+			case PivotPackage.VARIABLE_EXP__IS_IMPLICIT:
+				return ((eFlags & IS_IMPLICIT_EFLAG) != 0) != IS_IMPLICIT_EDEFAULT;
 			case PivotPackage.VARIABLE_EXP__REFERRED_VARIABLE:
 				return referredVariable != null;
 		}

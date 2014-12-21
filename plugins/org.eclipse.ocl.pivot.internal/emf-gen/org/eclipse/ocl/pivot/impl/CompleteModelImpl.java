@@ -117,12 +117,12 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	{
 		switch (featureID)
 		{
-			case PivotPackage.COMPLETE_MODEL__COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.COMPLETE_MODEL__EXTENSION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
-			case PivotPackage.COMPLETE_MODEL__OWNED_COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
+			case PivotPackage.COMPLETE_MODEL__ANNOTATING_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAnnotatingComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.COMPLETE_MODEL__OWNED_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.COMPLETE_MODEL__OWNED_EXTENSIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedExtensions()).basicAdd(otherEnd, msgs);
 			case PivotPackage.COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedCompletePackages()).basicAdd(otherEnd, msgs);
 			case PivotPackage.COMPLETE_MODEL__OWNING_COMPLETE_ENVIRONMENT:
@@ -143,14 +143,14 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	{
 		switch (featureID)
 		{
-			case PivotPackage.COMPLETE_MODEL__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.COMPLETE_MODEL__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.COMPLETE_MODEL__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.COMPLETE_MODEL__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
+			case PivotPackage.COMPLETE_MODEL__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.COMPLETE_MODEL__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.COMPLETE_MODEL__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.COMPLETE_MODEL__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
 			case PivotPackage.COMPLETE_MODEL__OWNED_COMPLETE_PACKAGES:
 				return ((InternalEList<?>)getOwnedCompletePackages()).basicRemove(otherEnd, msgs);
 			case PivotPackage.COMPLETE_MODEL__OWNING_COMPLETE_ENVIRONMENT:
@@ -185,14 +185,14 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	{
 		switch (featureID)
 		{
-			case PivotPackage.COMPLETE_MODEL__COMMENT:
-				return getComment();
-			case PivotPackage.COMPLETE_MODEL__EXTENSION:
-				return getExtension();
-			case PivotPackage.COMPLETE_MODEL__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.COMPLETE_MODEL__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.COMPLETE_MODEL__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.COMPLETE_MODEL__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.COMPLETE_MODEL__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.COMPLETE_MODEL__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.COMPLETE_MODEL__NAME:
 				return getName();
 			case PivotPackage.COMPLETE_MODEL__ORPHAN_COMPLETE_PACKAGE:
@@ -220,21 +220,21 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	{
 		switch (featureID)
 		{
-			case PivotPackage.COMPLETE_MODEL__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.COMPLETE_MODEL__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.COMPLETE_MODEL__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.COMPLETE_MODEL__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.COMPLETE_MODEL__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.COMPLETE_MODEL__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.COMPLETE_MODEL__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.COMPLETE_MODEL__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.COMPLETE_MODEL__NAME:
 				setName((String)newValue);
@@ -264,17 +264,17 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	{
 		switch (featureID)
 		{
-			case PivotPackage.COMPLETE_MODEL__COMMENT:
-				getComment().clear();
+			case PivotPackage.COMPLETE_MODEL__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.COMPLETE_MODEL__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.COMPLETE_MODEL__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.COMPLETE_MODEL__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.COMPLETE_MODEL__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.COMPLETE_MODEL__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.COMPLETE_MODEL__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.COMPLETE_MODEL__NAME:
 				setName(NAME_EDEFAULT);
@@ -302,14 +302,14 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	{
 		switch (featureID)
 		{
-			case PivotPackage.COMPLETE_MODEL__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.COMPLETE_MODEL__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.COMPLETE_MODEL__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.COMPLETE_MODEL__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.COMPLETE_MODEL__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.COMPLETE_MODEL__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.COMPLETE_MODEL__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.COMPLETE_MODEL__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.COMPLETE_MODEL__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.COMPLETE_MODEL__ORPHAN_COMPLETE_PACKAGE:
@@ -712,17 +712,17 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 
 	@Override
 	public void resolveSuperClasses(@NonNull org.eclipse.ocl.pivot.Class specializedClass, @NonNull org.eclipse.ocl.pivot.Class unspecializedClass) {
-		List<TemplateBinding> specializedTemplateBindings = specializedClass.getOwnedTemplateBindings();
+		List<TemplateBinding> specializedTemplateBindings = specializedClass.getOwnedBindings();
 		for (org.eclipse.ocl.pivot.Class superClass : unspecializedClass.getSuperClasses()) {
-			List<TemplateBinding> superTemplateBindings = superClass.getOwnedTemplateBindings();
+			List<TemplateBinding> superTemplateBindings = superClass.getOwnedBindings();
 			if (superTemplateBindings.size() > 0) {
 				List<TemplateParameterSubstitution> superSpecializedTemplateParameterSubstitutions = new ArrayList<TemplateParameterSubstitution>();
 				for (TemplateBinding superTemplateBinding : superTemplateBindings) {
-					for (TemplateParameterSubstitution superParameterSubstitution : superTemplateBinding.getOwnedTemplateParameterSubstitutions()) {
+					for (TemplateParameterSubstitution superParameterSubstitution : superTemplateBinding.getOwnedSubstitutions()) {
 						TemplateParameterSubstitution superSpecializedTemplateParameterSubstitution = null;
 						Type superActual = superParameterSubstitution.getActual();
 						for (TemplateBinding specializedTemplateBinding : specializedTemplateBindings) {
-							for (TemplateParameterSubstitution specializedParameterSubstitution : specializedTemplateBinding.getOwnedTemplateParameterSubstitutions()) {
+							for (TemplateParameterSubstitution specializedParameterSubstitution : specializedTemplateBinding.getOwnedSubstitutions()) {
 								if (specializedParameterSubstitution.getFormal() == superActual) {
 									Type specializedActual = ClassUtil.nonNullModel(specializedParameterSubstitution.getActual());
 									TemplateParameter superFormal = ClassUtil.nonNullModel(superParameterSubstitution.getFormal());

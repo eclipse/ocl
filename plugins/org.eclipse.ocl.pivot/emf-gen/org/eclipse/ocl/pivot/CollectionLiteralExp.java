@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.jdt.annotation.NonNull;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,7 +25,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.CollectionLiteralExp#getKind <em>Kind</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.CollectionLiteralExp#getPart <em>Part</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.CollectionLiteralExp#getOwnedParts <em>Owned Parts</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,7 +64,7 @@ public interface CollectionLiteralExp
 	void setKind(CollectionKind value);
 
 	/**
-	 * Returns the value of the '<em><b>Part</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Parts</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.CollectionLiteralPart}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -71,11 +72,11 @@ public interface CollectionLiteralExp
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Part</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getCollectionLiteralExp_Part()
+	 * @return the value of the '<em>Owned Parts</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getCollectionLiteralExp_OwnedParts()
 	 * @generated
 	 */
-	List<CollectionLiteralPart> getPart();
+	@NonNull List<CollectionLiteralPart> getOwnedParts();
 
 	/**
 	 * <!-- begin-user-doc -->

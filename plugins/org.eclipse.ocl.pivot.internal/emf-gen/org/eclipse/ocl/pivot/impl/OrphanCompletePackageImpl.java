@@ -89,11 +89,11 @@ public class OrphanCompletePackageImpl extends CompletePackageImpl implements Or
 
 	public @NonNull <T extends CollectionType> T getCollectionType(@NonNull T containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		assert containerType == PivotUtil.getUnspecializedTemplateableElement(containerType);
-		TemplateSignature templateSignature = containerType.getOwnedTemplateSignature();
+		TemplateSignature templateSignature = containerType.getOwnedSignature();
 		if (templateSignature == null) {
 			throw new IllegalArgumentException("Collection type must have a template signature");
 		}
-		List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
+		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
 		if (templateParameters.size() != 1) {
 			throw new IllegalArgumentException("Collection type must have exactly one template parameter");
 		}

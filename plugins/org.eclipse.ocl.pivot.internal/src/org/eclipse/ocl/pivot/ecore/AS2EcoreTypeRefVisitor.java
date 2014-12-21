@@ -100,7 +100,7 @@ public class AS2EcoreTypeRefVisitor
 
 	@Override
 	public EObject visitClass(@NonNull org.eclipse.ocl.pivot.Class pivotType) {
-		if (pivotType.getOwnedTemplateBindings().size() == 0) {
+		if (pivotType.getOwnedBindings().size() == 0) {
 			EClassifier eClassifier = context.getCreated(EClassifier.class, pivotType);
 			if (eClassifier != null) {
 				return eClassifier;
@@ -125,12 +125,12 @@ public class AS2EcoreTypeRefVisitor
 			}
 			return null;	// FIXME may be null if not from Ecore
 		}
-		List<TemplateBinding> templateBindings = ((TemplateableElement)pivotType).getOwnedTemplateBindings();
+		List<TemplateBinding> templateBindings = ((TemplateableElement)pivotType).getOwnedBindings();
 		EGenericType eGenericType = EcoreFactory.eINSTANCE.createEGenericType();
 		EObject rawType = safeVisit(PivotUtil.getUnspecializedTemplateableElement((TemplateableElement)pivotType));
 		eGenericType.setEClassifier((EClassifier) rawType);
 		// FIXME signature ordering, multiple bindings
-		safeVisitAll(eGenericType.getETypeArguments(), templateBindings.get(0).getOwnedTemplateParameterSubstitutions());
+		safeVisitAll(eGenericType.getETypeArguments(), templateBindings.get(0).getOwnedSubstitutions());
 		return eGenericType;
 	}
 
@@ -139,7 +139,7 @@ public class AS2EcoreTypeRefVisitor
 		EGenericType eGenericType = EcoreFactory.eINSTANCE.createEGenericType();
 		EClassifier eClassifier = LabelUtil.getNamedElement(OCLstdlibPackage.eINSTANCE.getEClassifiers(), object.getName());
 		eGenericType.setEClassifier(eClassifier);
-		safeVisitAll(eGenericType.getETypeArguments(), object.getOwnedTemplateBindings().get(0).getOwnedTemplateParameterSubstitutions());
+		safeVisitAll(eGenericType.getETypeArguments(), object.getOwnedBindings().get(0).getOwnedSubstitutions());
 		// FIXME bounds, supers
 		return eGenericType;
 	}

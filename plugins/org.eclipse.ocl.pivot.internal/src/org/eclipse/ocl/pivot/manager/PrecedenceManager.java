@@ -70,7 +70,7 @@ public class PrecedenceManager
 		infixToPrecedenceNameMap = new HashMap<String, String>();
 		prefixToPrecedenceNameMap = new HashMap<String, String>();
 		for (Library library : libraries) {
-			List<Precedence> precedences = library.getOwnedPrecedence();
+			List<Precedence> precedences = library.getOwnedPrecedences();
 			if (precedences.size() > 0) {
 				compilePrecedencePackage(errors, library);
 				int prevIndex = -1;
@@ -124,7 +124,7 @@ public class PrecedenceManager
 	protected void compilePrecedenceOperation(@NonNull List<String> errors, @NonNull Operation operation) {
 		Precedence precedence = operation.getPrecedence();
 		if (precedence != null) {
-			List<Parameter> parameters = operation.getOwnedParameter();
+			List<Parameter> parameters = operation.getOwnedParameters();
 			if (parameters.size() == 0) {
 				String newName = precedence.getName();
 				String operatorName = operation.getName();

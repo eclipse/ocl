@@ -48,7 +48,7 @@ public class EObjectOperation extends AbstractOperation
 
 	@Override
 	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
-		if (specification.getBodyExpression() == null) {		
+		if (specification.getOwnedBody() == null) {		
 			try {
 				EvaluationVisitor evaluationVisitor = (EvaluationVisitor)evaluator;
 				MetaModelManager metaModelManager = evaluationVisitor.getMetaModelManager();
@@ -58,7 +58,7 @@ public class EObjectOperation extends AbstractOperation
 			}
 		}
 		ExpressionInOCL query = specification;
-		List<? extends OCLExpression> arguments = callExp.getArgument();
+		List<? extends OCLExpression> arguments = callExp.getOwnedArguments();
 		Object[] argumentValues = new Object[arguments.size()];
 		for (int i = 0; i < arguments.size(); i++) {
 			OCLExpression argument = arguments.get(i);
@@ -73,14 +73,14 @@ public class EObjectOperation extends AbstractOperation
 			nestedEvaluator = evaluator.createNestedEvaluator();
 		}
 		DomainEvaluationEnvironment nestedEvaluationEnvironment = nestedEvaluator.getEvaluationEnvironment();
-		nestedEvaluationEnvironment.add(ClassUtil.nonNullModel(query.getContextVariable()), sourceValue);
-		List<Variable> parameterVariables = query.getParameterVariable();
+		nestedEvaluationEnvironment.add(ClassUtil.nonNullModel(query.getOwnedContext()), sourceValue);
+		List<Variable> parameterVariables = query.getOwnedParameters();
 		int iMax = Math.min(parameterVariables.size(), argumentValues.length);
 		for (int i = 0; i < iMax; i++) {
 			nestedEvaluationEnvironment.add(ClassUtil.nonNullModel(parameterVariables.get(i)), argumentValues[i]);
 		}
 		try {
-			return nestedEvaluator.evaluate(ClassUtil.nonNullPivot(query.getBodyExpression()));
+			return nestedEvaluator.evaluate(ClassUtil.nonNullPivot(query.getOwnedBody()));
 		}
 		finally {
 			nestedEvaluator.dispose();

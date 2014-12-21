@@ -34,7 +34,7 @@ public class BooleanOrOperation extends AbstractSimpleBinaryOperation
 		if (sourceValue == Boolean.TRUE) {
 			return TRUE_VALUE;
 		}
-		List<? extends OCLExpression> arguments = callExp.getArgument();
+		List<? extends OCLExpression> arguments = callExp.getOwnedArguments();
 		OCLExpression argument0 = arguments.get(0);
 		assert argument0 != null;
 		Object firstArgument;

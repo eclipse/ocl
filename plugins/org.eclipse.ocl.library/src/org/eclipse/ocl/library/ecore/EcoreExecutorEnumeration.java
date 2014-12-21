@@ -65,7 +65,7 @@ public class EcoreExecutorEnumeration extends EcoreExecutorType implements Enume
 	}
 
 	@Override
-	public @NonNull List<EnumerationLiteral> getOwnedLiteral() {
+	public @NonNull List<EnumerationLiteral> getOwnedLiterals() {
 		assert literals != null;
 		return literals;
 	}

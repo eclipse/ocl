@@ -613,7 +613,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
     	assertQueryResults(null, "Set{false,true}", "Boolean.allInstances()");
     	assertQueryResults(null, "Set{false,true}", "true.oclType().allInstances()");
     	assertQueryResults(null, "Set{}", "Boolean.oclType().allInstances()");
-    	assertQueryEquals(null, 1, "true.oclType().ownedOperations->select(name = 'xor')->any(true).ownedParameter->size()");
+    	assertQueryEquals(null, 1, "true.oclType().ownedOperations->select(name = 'xor')->any(true).ownedParameters->size()");
     }
 
     /**
@@ -720,7 +720,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
     	assertQueryInvalid(null, "OclInvalid.allInstances()");
     	assertQueryInvalid(null, "invalid.oclType().allInstances()");
     	assertQueryResults(null, "Set{}", "OclInvalid.oclType().allInstances()");
-    	assertQueryInvalid(null, "invalid.oclType().ownedOperations->select(name = '=')->any(true).ownedParameter->size()");
+    	assertQueryInvalid(null, "invalid.oclType().ownedOperations->select(name = '=')->any(true).ownedParameters->size()");
     }
 
     /**
@@ -737,7 +737,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
     	assertQueryResults(null, "Set{null}", "OclVoid.allInstances()");
     	assertQueryResults(null, "Set{null}", "null.oclType().allInstances()");
     	assertQueryResults(null, "Set{}", "OclVoid.oclType().allInstances()");
-    	assertQueryEquals(null, 1, "null.oclType().ownedOperations->select(name = '=')->any(true).ownedParameter->size()");
+    	assertQueryEquals(null, 1, "null.oclType().ownedOperations->select(name = '=')->any(true).ownedParameters->size()");
     }
 
     /**

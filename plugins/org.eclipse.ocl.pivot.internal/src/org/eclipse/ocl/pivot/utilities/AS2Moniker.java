@@ -193,15 +193,15 @@ public class AS2Moniker implements PivotConstants
 		String prefix = ""; //$NON-NLS-1$
 		if (operation instanceof Iteration) {
 			Iteration iteration = (Iteration)operation;
-			for (Parameter parameter : iteration.getOwnedIterator()) {
+			for (Parameter parameter : iteration.getOwnedIterators()) {
 				s.append(prefix);
 				appendElement(parameter.getType(), templateBindings);
 //				appendMultiplicity(parameter);
 				prefix = PARAMETER_SEPARATOR;
 			}
-			if (iteration.getOwnedAccumulator().size() > 0) {
+			if (iteration.getOwnedAccumulators().size() > 0) {
 				prefix = ITERATOR_SEPARATOR;
-				for (Parameter parameter : iteration.getOwnedAccumulator()) {
+				for (Parameter parameter : iteration.getOwnedAccumulators()) {
 					s.append(prefix);
 					appendElement(parameter.getType(), templateBindings);
 //					appendMultiplicity(parameter);
@@ -210,7 +210,7 @@ public class AS2Moniker implements PivotConstants
 			}
 			prefix = ACCUMULATOR_SEPARATOR;
 		}
-		for (Parameter parameter : operation.getOwnedParameter()) {
+		for (Parameter parameter : operation.getOwnedParameters()) {
 			s.append(prefix);
 			appendElement(parameter.getType(), templateBindings);
 //			appendMultiplicity(parameter);
@@ -231,9 +231,9 @@ public class AS2Moniker implements PivotConstants
 			if (parent instanceof Element) {
 				appendElement((Element) parent);
 				if (parent instanceof TemplateableElement) {
-					TemplateSignature ownedTemplateSignature = ((TemplateableElement)parent).getOwnedTemplateSignature();
+					TemplateSignature ownedTemplateSignature = ((TemplateableElement)parent).getOwnedSignature();
 					if (ownedTemplateSignature != null) {
-						for (TemplateParameter templateParameter : ownedTemplateSignature.getOwnedTemplateParameters()) {
+						for (TemplateParameter templateParameter : ownedTemplateSignature.getOwnedParameters()) {
 							emittedTemplateParameter(templateParameter);
 					}
 					}
@@ -280,14 +280,14 @@ public class AS2Moniker implements PivotConstants
 	}
 	
 	public void appendTemplateBindings(TemplateableElement templateableElement, Map<TemplateParameter, Type> bindings) {
-		List<TemplateBinding> templateBindings = templateableElement.getOwnedTemplateBindings();
+		List<TemplateBinding> templateBindings = templateableElement.getOwnedBindings();
 		if (!templateBindings.isEmpty()) {
 			boolean isSpecialized = isSpecialized(templateBindings, bindings);
 			if (!isSpecialized) {			
 				s.append(TEMPLATE_SIGNATURE_PREFIX);
 				String prefix = ""; //$NON-NLS-1$
 				for (TemplateBinding templateBinding : templateBindings) {
-					List<TemplateParameterSubstitution> parameterSubstitutions = templateBinding.getOwnedTemplateParameterSubstitutions();
+					List<TemplateParameterSubstitution> parameterSubstitutions = templateBinding.getOwnedSubstitutions();
 					if (parameterSubstitutions.size() > 1) {
 						parameterSubstitutions = new ArrayList<TemplateParameterSubstitution>(parameterSubstitutions);
 						Collections.sort(parameterSubstitutions, PivotUtil.TemplateParameterSubstitutionComparator.INSTANCE);
@@ -304,7 +304,7 @@ public class AS2Moniker implements PivotConstants
 				s.append(TEMPLATE_BINDING_PREFIX);
 				String prefix = ""; //$NON-NLS-1$
 				for (TemplateBinding templateBinding : templateBindings) {
-					List<TemplateParameterSubstitution> parameterSubstitutions = templateBinding.getOwnedTemplateParameterSubstitutions();
+					List<TemplateParameterSubstitution> parameterSubstitutions = templateBinding.getOwnedSubstitutions();
 					if (parameterSubstitutions.size() > 1) {
 						parameterSubstitutions = new ArrayList<TemplateParameterSubstitution>(parameterSubstitutions);
 						Collections.sort(parameterSubstitutions, PivotUtil.TemplateParameterSubstitutionComparator.INSTANCE);
@@ -321,9 +321,9 @@ public class AS2Moniker implements PivotConstants
 	}
 
 	public void appendTemplateParameters(TemplateableElement templateableElement) {
-		TemplateSignature templateSignature = templateableElement.getOwnedTemplateSignature();
+		TemplateSignature templateSignature = templateableElement.getOwnedSignature();
 		if (templateSignature != null) {
-			List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
+			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
 			if (!templateParameters.isEmpty()) {
 				s.append(TEMPLATE_SIGNATURE_PREFIX);
 				String prefix = ""; //$NON-NLS-1$
@@ -390,7 +390,7 @@ public class AS2Moniker implements PivotConstants
 			return true;
 		}
 		for (TemplateBinding templateBinding : templateBindings) {
-			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedTemplateParameterSubstitutions()) {
+			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedSubstitutions()) {
 				Type actual = templateParameterSubstitution.getActual();
 				if (actual == null) {
 					return true;

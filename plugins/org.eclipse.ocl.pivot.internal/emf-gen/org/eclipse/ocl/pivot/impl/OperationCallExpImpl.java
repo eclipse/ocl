@@ -66,7 +66,7 @@ import org.eclipse.osgi.util.NLS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.impl.OperationCallExpImpl#getArgument <em>Argument</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.OperationCallExpImpl#getOwnedArguments <em>Owned Arguments</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.OperationCallExpImpl#getReferredOperation <em>Referred Operation</em>}</li>
  * </ul>
  * </p>
@@ -78,14 +78,14 @@ public class OperationCallExpImpl
 		implements OperationCallExp {
 
 	/**
-	 * The cached value of the '{@link #getArgument() <em>Argument</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedArguments() <em>Owned Arguments</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getArgument()
+	 * @see #getOwnedArguments()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<OCLExpression> argument;
+	protected EList<OCLExpression> ownedArguments;
 
 	/**
 	 * The cached value of the '{@link #getReferredOperation() <em>Referred Operation</em>}' reference.
@@ -123,13 +123,13 @@ public class OperationCallExpImpl
 	 */
 	@Override
 	@SuppressWarnings("null")
-	public @NonNull List<OCLExpression> getArgument()
+	public @NonNull List<OCLExpression> getOwnedArguments()
 	{
-		if (argument == null)
+		if (ownedArguments == null)
 		{
-			argument = new EObjectContainmentEList<OCLExpression>(OCLExpression.class, this, PivotPackage.OPERATION_CALL_EXP__ARGUMENT);
+			ownedArguments = new EObjectContainmentEList<OCLExpression>(OCLExpression.class, this, PivotPackage.OPERATION_CALL_EXP__OWNED_ARGUMENTS);
 		}
-		return argument;
+		return ownedArguments;
 	}
 
 	/**
@@ -184,18 +184,18 @@ public class OperationCallExpImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case PivotPackage.OPERATION_CALL_EXP__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.OPERATION_CALL_EXP__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.OPERATION_CALL_EXP__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.OPERATION_CALL_EXP__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.OPERATION_CALL_EXP__SOURCE:
-				return basicSetSource(null, msgs);
-			case PivotPackage.OPERATION_CALL_EXP__ARGUMENT:
-				return ((InternalEList<?>)getArgument()).basicRemove(otherEnd, msgs);
+			case PivotPackage.OPERATION_CALL_EXP__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.OPERATION_CALL_EXP__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.OPERATION_CALL_EXP__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.OPERATION_CALL_EXP__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.OPERATION_CALL_EXP__OWNED_SOURCE:
+				return basicSetOwnedSource(null, msgs);
+			case PivotPackage.OPERATION_CALL_EXP__OWNED_ARGUMENTS:
+				return ((InternalEList<?>)getOwnedArguments()).basicRemove(otherEnd, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -209,14 +209,14 @@ public class OperationCallExpImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case PivotPackage.OPERATION_CALL_EXP__COMMENT:
-				return getComment();
-			case PivotPackage.OPERATION_CALL_EXP__EXTENSION:
-				return getExtension();
-			case PivotPackage.OPERATION_CALL_EXP__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.OPERATION_CALL_EXP__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.OPERATION_CALL_EXP__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.OPERATION_CALL_EXP__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.OPERATION_CALL_EXP__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.OPERATION_CALL_EXP__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.OPERATION_CALL_EXP__NAME:
 				return getName();
 			case PivotPackage.OPERATION_CALL_EXP__IS_MANY:
@@ -228,14 +228,14 @@ public class OperationCallExpImpl
 				return basicGetType();
 			case PivotPackage.OPERATION_CALL_EXP__TYPE_VALUE:
 				return getTypeValue();
-			case PivotPackage.OPERATION_CALL_EXP__IMPLICIT:
+			case PivotPackage.OPERATION_CALL_EXP__IS_IMPLICIT:
 				return isImplicit();
-			case PivotPackage.OPERATION_CALL_EXP__SOURCE:
-				return getSource();
+			case PivotPackage.OPERATION_CALL_EXP__OWNED_SOURCE:
+				return getOwnedSource();
 			case PivotPackage.OPERATION_CALL_EXP__IS_PRE:
 				return isPre();
-			case PivotPackage.OPERATION_CALL_EXP__ARGUMENT:
-				return getArgument();
+			case PivotPackage.OPERATION_CALL_EXP__OWNED_ARGUMENTS:
+				return getOwnedArguments();
 			case PivotPackage.OPERATION_CALL_EXP__REFERRED_OPERATION:
 				if (resolve) return getReferredOperation();
 				return basicGetReferredOperation();
@@ -253,21 +253,21 @@ public class OperationCallExpImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case PivotPackage.OPERATION_CALL_EXP__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.OPERATION_CALL_EXP__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.OPERATION_CALL_EXP__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.OPERATION_CALL_EXP__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.OPERATION_CALL_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.OPERATION_CALL_EXP__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.OPERATION_CALL_EXP__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.OPERATION_CALL_EXP__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.OPERATION_CALL_EXP__NAME:
 				setName((String)newValue);
@@ -281,18 +281,18 @@ public class OperationCallExpImpl
 			case PivotPackage.OPERATION_CALL_EXP__TYPE_VALUE:
 				setTypeValue((Type)newValue);
 				return;
-			case PivotPackage.OPERATION_CALL_EXP__IMPLICIT:
-				setImplicit((Boolean)newValue);
+			case PivotPackage.OPERATION_CALL_EXP__IS_IMPLICIT:
+				setIsImplicit((Boolean)newValue);
 				return;
-			case PivotPackage.OPERATION_CALL_EXP__SOURCE:
-				setSource((OCLExpression)newValue);
+			case PivotPackage.OPERATION_CALL_EXP__OWNED_SOURCE:
+				setOwnedSource((OCLExpression)newValue);
 				return;
 			case PivotPackage.OPERATION_CALL_EXP__IS_PRE:
 				setIsPre((Boolean)newValue);
 				return;
-			case PivotPackage.OPERATION_CALL_EXP__ARGUMENT:
-				getArgument().clear();
-				getArgument().addAll((Collection<? extends OCLExpression>)newValue);
+			case PivotPackage.OPERATION_CALL_EXP__OWNED_ARGUMENTS:
+				getOwnedArguments().clear();
+				getOwnedArguments().addAll((Collection<? extends OCLExpression>)newValue);
 				return;
 			case PivotPackage.OPERATION_CALL_EXP__REFERRED_OPERATION:
 				setReferredOperation((Operation)newValue);
@@ -310,17 +310,17 @@ public class OperationCallExpImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.OPERATION_CALL_EXP__COMMENT:
-				getComment().clear();
+			case PivotPackage.OPERATION_CALL_EXP__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.OPERATION_CALL_EXP__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.OPERATION_CALL_EXP__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.OPERATION_CALL_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.OPERATION_CALL_EXP__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.OPERATION_CALL_EXP__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.OPERATION_CALL_EXP__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.OPERATION_CALL_EXP__NAME:
 				setName(NAME_EDEFAULT);
@@ -334,17 +334,17 @@ public class OperationCallExpImpl
 			case PivotPackage.OPERATION_CALL_EXP__TYPE_VALUE:
 				setTypeValue((Type)null);
 				return;
-			case PivotPackage.OPERATION_CALL_EXP__IMPLICIT:
-				setImplicit(IMPLICIT_EDEFAULT);
+			case PivotPackage.OPERATION_CALL_EXP__IS_IMPLICIT:
+				setIsImplicit(IS_IMPLICIT_EDEFAULT);
 				return;
-			case PivotPackage.OPERATION_CALL_EXP__SOURCE:
-				setSource((OCLExpression)null);
+			case PivotPackage.OPERATION_CALL_EXP__OWNED_SOURCE:
+				setOwnedSource((OCLExpression)null);
 				return;
 			case PivotPackage.OPERATION_CALL_EXP__IS_PRE:
 				setIsPre(IS_PRE_EDEFAULT);
 				return;
-			case PivotPackage.OPERATION_CALL_EXP__ARGUMENT:
-				getArgument().clear();
+			case PivotPackage.OPERATION_CALL_EXP__OWNED_ARGUMENTS:
+				getOwnedArguments().clear();
 				return;
 			case PivotPackage.OPERATION_CALL_EXP__REFERRED_OPERATION:
 				setReferredOperation((Operation)null);
@@ -362,14 +362,14 @@ public class OperationCallExpImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.OPERATION_CALL_EXP__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.OPERATION_CALL_EXP__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.OPERATION_CALL_EXP__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.OPERATION_CALL_EXP__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.OPERATION_CALL_EXP__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.OPERATION_CALL_EXP__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.OPERATION_CALL_EXP__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.OPERATION_CALL_EXP__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.OPERATION_CALL_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.OPERATION_CALL_EXP__IS_MANY:
@@ -380,14 +380,14 @@ public class OperationCallExpImpl
 				return type != null;
 			case PivotPackage.OPERATION_CALL_EXP__TYPE_VALUE:
 				return typeValue != null;
-			case PivotPackage.OPERATION_CALL_EXP__IMPLICIT:
-				return ((eFlags & IMPLICIT_EFLAG) != 0) != IMPLICIT_EDEFAULT;
-			case PivotPackage.OPERATION_CALL_EXP__SOURCE:
-				return source != null;
+			case PivotPackage.OPERATION_CALL_EXP__IS_IMPLICIT:
+				return ((eFlags & IS_IMPLICIT_EFLAG) != 0) != IS_IMPLICIT_EDEFAULT;
+			case PivotPackage.OPERATION_CALL_EXP__OWNED_SOURCE:
+				return ownedSource != null;
 			case PivotPackage.OPERATION_CALL_EXP__IS_PRE:
 				return ((eFlags & IS_PRE_EFLAG) != 0) != IS_PRE_EDEFAULT;
-			case PivotPackage.OPERATION_CALL_EXP__ARGUMENT:
-				return argument != null && !argument.isEmpty();
+			case PivotPackage.OPERATION_CALL_EXP__OWNED_ARGUMENTS:
+				return ownedArguments != null && !ownedArguments.isEmpty();
 			case PivotPackage.OPERATION_CALL_EXP__REFERRED_OPERATION:
 				return referredOperation != null;
 		}
@@ -471,14 +471,14 @@ public class OperationCallExpImpl
 		 * inv ArgumentTypeIsConformant:
 		 *   let operation : Operation = self.referredOperation
 		 *   in
-		 *     let parameters : OrderedSet(Parameter) = operation.ownedParameter
+		 *     let parameters : OrderedSet(Parameter) = operation.ownedParameters
 		 *     in
 		 *       let selfType : Type = operation.owningClass
 		 *       in
-		 *         Sequence{1..argument->size()
+		 *         Sequence{1..ownedArguments->size()
 		 *         }
 		 *         ->forAll(i |
-		 *           let argument : OCLExpression = argument->at(i)
+		 *           let argument : OCLExpression = ownedArguments->at(i)
 		 *           in
 		 *             let parameter : Parameter = parameters->at(i)
 		 *             in
@@ -495,15 +495,15 @@ public class OperationCallExpImpl
 		try {
 		    final @Nullable /*@Thrown*/ Operation operation = this.getReferredOperation();
 		    if (operation == null) {
-		        throw new InvalidValueException("Null source for \'pivot::Operation::ownedParameter\'");
+		        throw new InvalidValueException("Null source for \'pivot::Operation::ownedParameters\'");
 		    }
-		    final @NonNull /*@Thrown*/ List<Parameter> parameters = operation.getOwnedParameter();
+		    final @NonNull /*@Thrown*/ List<Parameter> parameters = operation.getOwnedParameters();
 		    final @Nullable /*@Thrown*/ org.eclipse.ocl.pivot.Class selfType_1 = operation.getOwningClass();
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		    final @NonNull /*@Thrown*/ List<OCLExpression> argument = this.getArgument();
-		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_argument = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_OCLExpression, argument);
-		    final @NonNull /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(BOXED_argument);
+		    final @NonNull /*@Thrown*/ List<OCLExpression> ownedArguments = this.getOwnedArguments();
+		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedArguments = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_OCLExpression, ownedArguments);
+		    final @NonNull /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(BOXED_ownedArguments);
 		    final @NonNull /*@Thrown*/ IntegerRange RNG = ValueUtil.createRange(PivotTables.INT_1, size);
 		    final @NonNull /*@Thrown*/ SequenceValue Sequence = ValueUtil.createSequenceRange(PivotTables.SEQ_PRIMid_Integer, RNG);
 		    @NonNull /*@Thrown*/ Object accumulator = ValueUtil.TRUE_VALUE;
@@ -522,7 +522,7 @@ public class OperationCallExpImpl
 		        @Nullable /*@NonInvalid*/ IntegerValue i = (IntegerValue)ITERATOR_i.next();
 		        /**
 		         * 
-		         * let argument : OCLExpression = argument->at(i)
+		         * let argument : OCLExpression = ownedArguments->at(i)
 		         * in
 		         *   let parameter : Parameter = parameters->at(i)
 		         *   in
@@ -537,7 +537,7 @@ public class OperationCallExpImpl
 		         */
 		        @NonNull /*@Caught*/ Object CAUGHT_conformsTo;
 		        try {
-		            final @Nullable /*@Thrown*/ OCLExpression argument_1 = (OCLExpression)OrderedCollectionAtOperation.INSTANCE.evaluate(BOXED_argument, i);
+		            final @Nullable /*@Thrown*/ OCLExpression argument = (OCLExpression)OrderedCollectionAtOperation.INSTANCE.evaluate(BOXED_ownedArguments, i);
 		            final @NonNull /*@Thrown*/ OrderedSetValue BOXED_parameters = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Parameter, parameters);
 		            final @Nullable /*@Thrown*/ Parameter parameter = (Parameter)OrderedCollectionAtOperation.INSTANCE.evaluate(BOXED_parameters, i);
 		            if (parameter == null) {
@@ -560,10 +560,10 @@ public class OperationCallExpImpl
 		                final @NonNull /*@Thrown*/ Type specializeIn = parameterType.specializeIn(this, selfType_1);
 		                requiredType = specializeIn;
 		            }
-		            if (argument_1 == null) {
+		            if (argument == null) {
 		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		            }
-		            final @Nullable /*@Thrown*/ Type type = argument_1.getType();
+		            final @Nullable /*@Thrown*/ Type type = argument.getType();
 		            final /*@Thrown*/ boolean conformsTo = OclTypeConformsToOperation.INSTANCE.evaluate(evaluator, type, requiredType).booleanValue();
 		            CAUGHT_conformsTo = conformsTo;
 		        }
@@ -610,22 +610,24 @@ public class OperationCallExpImpl
 	public boolean validateArgumentCount(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv ArgumentCount: argument->size() = referredOperation.ownedParameter->size()
+		 * inv ArgumentCount:
+		 *   ownedArguments->size() =
+		 *   referredOperation.ownedParameters->size()
 		 */
 		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		@NonNull /*@Caught*/ Object CAUGHT_eq;
 		try {
-		    final @NonNull /*@Thrown*/ List<OCLExpression> argument = this.getArgument();
-		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_argument = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_OCLExpression, argument);
-		    final @NonNull /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(BOXED_argument);
+		    final @NonNull /*@Thrown*/ List<OCLExpression> ownedArguments = this.getOwnedArguments();
+		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedArguments = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_OCLExpression, ownedArguments);
+		    final @NonNull /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(BOXED_ownedArguments);
 		    final @Nullable /*@Thrown*/ Operation referredOperation = this.getReferredOperation();
 		    if (referredOperation == null) {
-		        throw new InvalidValueException("Null source for \'pivot::Operation::ownedParameter\'");
+		        throw new InvalidValueException("Null source for \'pivot::Operation::ownedParameters\'");
 		    }
-		    final @NonNull /*@Thrown*/ List<Parameter> ownedParameter = referredOperation.getOwnedParameter();
-		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedParameter = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Parameter, ownedParameter);
-		    final @NonNull /*@Thrown*/ IntegerValue size_0 = CollectionSizeOperation.INSTANCE.evaluate(BOXED_ownedParameter);
+		    final @NonNull /*@Thrown*/ List<Parameter> ownedParameters = referredOperation.getOwnedParameters();
+		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedParameters = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Parameter, ownedParameters);
+		    final @NonNull /*@Thrown*/ IntegerValue size_0 = CollectionSizeOperation.INSTANCE.evaluate(BOXED_ownedParameters);
 		    final /*@Thrown*/ boolean eq = size.equals(size_0);
 		    CAUGHT_eq = eq;
 		}

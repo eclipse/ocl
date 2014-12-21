@@ -39,8 +39,8 @@ import org.eclipse.ocl.pivot.ValueSpecification;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.SlotImpl#getDefiningProperty <em>Defining Property</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.SlotImpl#getOwnedValues <em>Owned Values</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.SlotImpl#getOwningInstance <em>Owning Instance</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.SlotImpl#getValues <em>Values</em>}</li>
  * </ul>
  * </p>
  *
@@ -59,14 +59,14 @@ public class SlotImpl extends ElementImpl implements Slot
 	protected Property definingProperty;
 
 	/**
-	 * The cached value of the '{@link #getValues() <em>Values</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedValues() <em>Owned Values</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getValues()
+	 * @see #getOwnedValues()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ValueSpecification> values;
+	protected EList<ValueSpecification> ownedValues;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -140,6 +140,21 @@ public class SlotImpl extends ElementImpl implements Slot
 	 * @generated
 	 */
 	@Override
+	public List<ValueSpecification> getOwnedValues()
+	{
+		if (ownedValues == null)
+		{
+			ownedValues = new EObjectContainmentEList<ValueSpecification>(ValueSpecification.class, this, PivotPackage.SLOT__OWNED_VALUES);
+		}
+		return ownedValues;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public InstanceSpecification getOwningInstance()
 	{
 		if (eContainerFeatureID() != PivotPackage.SLOT__OWNING_INSTANCE) return null;
@@ -173,27 +188,12 @@ public class SlotImpl extends ElementImpl implements Slot
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newOwningInstance != null)
-				msgs = ((InternalEObject)newOwningInstance).eInverseAdd(this, PivotPackage.INSTANCE_SPECIFICATION__SLOTS, InstanceSpecification.class, msgs);
+				msgs = ((InternalEObject)newOwningInstance).eInverseAdd(this, PivotPackage.INSTANCE_SPECIFICATION__OWNED_SLOTS, InstanceSpecification.class, msgs);
 			msgs = basicSetOwningInstance(newOwningInstance, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.SLOT__OWNING_INSTANCE, newOwningInstance, newOwningInstance));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public List<ValueSpecification> getValues()
-	{
-		if (values == null)
-		{
-			values = new EObjectContainmentEList<ValueSpecification>(ValueSpecification.class, this, PivotPackage.SLOT__VALUES);
-		}
-		return values;
 	}
 
 	/**
@@ -207,12 +207,12 @@ public class SlotImpl extends ElementImpl implements Slot
 	{
 		switch (featureID)
 		{
-			case PivotPackage.SLOT__COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.SLOT__EXTENSION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
-			case PivotPackage.SLOT__OWNED_COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
+			case PivotPackage.SLOT__ANNOTATING_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAnnotatingComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.SLOT__OWNED_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.SLOT__OWNED_EXTENSIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedExtensions()).basicAdd(otherEnd, msgs);
 			case PivotPackage.SLOT__OWNING_INSTANCE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -231,18 +231,18 @@ public class SlotImpl extends ElementImpl implements Slot
 	{
 		switch (featureID)
 		{
-			case PivotPackage.SLOT__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.SLOT__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.SLOT__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.SLOT__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
+			case PivotPackage.SLOT__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.SLOT__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.SLOT__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.SLOT__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.SLOT__OWNED_VALUES:
+				return ((InternalEList<?>)getOwnedValues()).basicRemove(otherEnd, msgs);
 			case PivotPackage.SLOT__OWNING_INSTANCE:
 				return basicSetOwningInstance(null, msgs);
-			case PivotPackage.SLOT__VALUES:
-				return ((InternalEList<?>)getValues()).basicRemove(otherEnd, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -258,7 +258,7 @@ public class SlotImpl extends ElementImpl implements Slot
 		switch (eContainerFeatureID())
 		{
 			case PivotPackage.SLOT__OWNING_INSTANCE:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.INSTANCE_SPECIFICATION__SLOTS, InstanceSpecification.class, msgs);
+				return eInternalContainer().eInverseRemove(this, PivotPackage.INSTANCE_SPECIFICATION__OWNED_SLOTS, InstanceSpecification.class, msgs);
 		}
 		return eDynamicBasicRemoveFromContainer(msgs);
 	}
@@ -273,21 +273,21 @@ public class SlotImpl extends ElementImpl implements Slot
 	{
 		switch (featureID)
 		{
-			case PivotPackage.SLOT__COMMENT:
-				return getComment();
-			case PivotPackage.SLOT__EXTENSION:
-				return getExtension();
-			case PivotPackage.SLOT__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.SLOT__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.SLOT__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.SLOT__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.SLOT__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.SLOT__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.SLOT__DEFINING_PROPERTY:
 				if (resolve) return getDefiningProperty();
 				return basicGetDefiningProperty();
+			case PivotPackage.SLOT__OWNED_VALUES:
+				return getOwnedValues();
 			case PivotPackage.SLOT__OWNING_INSTANCE:
 				return getOwningInstance();
-			case PivotPackage.SLOT__VALUES:
-				return getValues();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -303,31 +303,31 @@ public class SlotImpl extends ElementImpl implements Slot
 	{
 		switch (featureID)
 		{
-			case PivotPackage.SLOT__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.SLOT__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.SLOT__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.SLOT__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.SLOT__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.SLOT__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.SLOT__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.SLOT__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.SLOT__DEFINING_PROPERTY:
 				setDefiningProperty((Property)newValue);
 				return;
+			case PivotPackage.SLOT__OWNED_VALUES:
+				getOwnedValues().clear();
+				getOwnedValues().addAll((Collection<? extends ValueSpecification>)newValue);
+				return;
 			case PivotPackage.SLOT__OWNING_INSTANCE:
 				setOwningInstance((InstanceSpecification)newValue);
-				return;
-			case PivotPackage.SLOT__VALUES:
-				getValues().clear();
-				getValues().addAll((Collection<? extends ValueSpecification>)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -343,26 +343,26 @@ public class SlotImpl extends ElementImpl implements Slot
 	{
 		switch (featureID)
 		{
-			case PivotPackage.SLOT__COMMENT:
-				getComment().clear();
+			case PivotPackage.SLOT__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.SLOT__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.SLOT__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.SLOT__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.SLOT__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.SLOT__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.SLOT__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.SLOT__DEFINING_PROPERTY:
 				setDefiningProperty((Property)null);
 				return;
+			case PivotPackage.SLOT__OWNED_VALUES:
+				getOwnedValues().clear();
+				return;
 			case PivotPackage.SLOT__OWNING_INSTANCE:
 				setOwningInstance((InstanceSpecification)null);
-				return;
-			case PivotPackage.SLOT__VALUES:
-				getValues().clear();
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -378,20 +378,20 @@ public class SlotImpl extends ElementImpl implements Slot
 	{
 		switch (featureID)
 		{
-			case PivotPackage.SLOT__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.SLOT__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.SLOT__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.SLOT__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.SLOT__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.SLOT__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.SLOT__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.SLOT__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.SLOT__DEFINING_PROPERTY:
 				return definingProperty != null;
+			case PivotPackage.SLOT__OWNED_VALUES:
+				return ownedValues != null && !ownedValues.isEmpty();
 			case PivotPackage.SLOT__OWNING_INSTANCE:
 				return getOwningInstance() != null;
-			case PivotPackage.SLOT__VALUES:
-				return values != null && !values.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
 	}

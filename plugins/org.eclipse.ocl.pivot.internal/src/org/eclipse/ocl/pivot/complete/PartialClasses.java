@@ -202,7 +202,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 		}
 		extensionProperty.setType(stereotype);
 		boolean isRequired = false;
-		for (TypeExtension typeExtension : stereotype.getExtensionOfs()) {
+		for (TypeExtension typeExtension : stereotype.getOwnedExtensionOfs()) {
 			Type metatype = typeExtension.getType();
 			if ((metatype != null) && baseType.conformsTo(getStandardLibrary(), metatype)) {
 				isRequired = true;
@@ -217,8 +217,8 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 	protected @NonNull org.eclipse.ocl.pivot.Class createSpecialization(@NonNull DomainTypeParameters templateArguments) {
 		org.eclipse.ocl.pivot.Class unspecializedType = getCompleteClass().getPivotClass();
 		String typeName = unspecializedType.getName();
-		TemplateSignature templateSignature = unspecializedType.getOwnedTemplateSignature();
-		List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
+		TemplateSignature templateSignature = unspecializedType.getOwnedSignature();
+		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
 		EClass eClass = unspecializedType.eClass();
 		EFactory eFactoryInstance = eClass.getEPackage().getEFactoryInstance();
 		org.eclipse.ocl.pivot.Class specializedType = (org.eclipse.ocl.pivot.Class) eFactoryInstance.create(eClass);		
@@ -231,11 +231,11 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 				if (templateArgument instanceof Type) {
 					Type actualType = (Type) templateArgument;
 					TemplateParameterSubstitution templateParameterSubstitution = CompleteInheritanceImpl.createTemplateParameterSubstitution(formalParameter, actualType);
-					templateBinding.getOwnedTemplateParameterSubstitutions().add(templateParameterSubstitution);
+					templateBinding.getOwnedSubstitutions().add(templateParameterSubstitution);
 				}
 			}
 		}
-		specializedType.getOwnedTemplateBindings().add(templateBinding);
+		specializedType.getOwnedBindings().add(templateBinding);
 		getCompleteModel().resolveSuperClasses(specializedType, unspecializedType);
 //		if (specializedType instanceof Metaclass) {
 //			Type instanceType = (Type) templateArguments.get(0);
@@ -366,8 +366,8 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 	}
 
 	public synchronized @Nullable Type findSpecializedType(@NonNull DomainTypeParameters templateArguments) {
-		TemplateSignature templateSignature = getCompleteClass().getPivotClass().getOwnedTemplateSignature();
-		List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
+		TemplateSignature templateSignature = getCompleteClass().getPivotClass().getOwnedSignature();
+		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
 		int iMax = templateParameters.size();
 		if (templateArguments.parametersSize() != iMax) {
 			return null;
@@ -671,8 +671,8 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 	}
 
 	public synchronized @NonNull org.eclipse.ocl.pivot.Class getSpecializedType(@NonNull DomainTypeParameters templateArguments) {
-		TemplateSignature templateSignature = getCompleteClass().getPivotClass().getOwnedTemplateSignature();
-		List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
+		TemplateSignature templateSignature = getCompleteClass().getPivotClass().getOwnedSignature();
+		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
 		int iMax = templateParameters.size();
 		if (templateArguments.parametersSize() != iMax) {
 			throw new IllegalArgumentException("Incompatible template argument count");
@@ -819,14 +819,14 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 								extendingStereotypes = new HashSet<Stereotype>();
 							}
 							for (TypeExtension typeExtension : extendedBys) {
-								Stereotype stereotype = typeExtension.getStereotype();
+								Stereotype stereotype = typeExtension.getOwningStereotype();
 								if (stereotype != null) {
 									extendingStereotypes.add(stereotype);
 								}
 							}
 						}
 						if (unspecializedType instanceof Stereotype) {
-							List<TypeExtension> extensionOfs = ((Stereotype)unspecializedType).getExtensionOfs();
+							List<TypeExtension> extensionOfs = ((Stereotype)unspecializedType).getOwnedExtensionOfs();
 							if (extensionOfs.size() > 0) {
 								if (extendedTypes == null) {
 									extendedTypes = new HashSet<Type>();
@@ -842,7 +842,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 						CompleteClass unspecializedCompleteClass = getCompleteModel().getCompleteClass(unspecializedType);
 						for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Class unspecializedPartialType : unspecializedCompleteClass.getPartialClasses()) {
 							initMemberPropertiesFrom(unspecializedPartialType);
-							List<ElementExtension> extensions = unspecializedPartialType.getExtension();
+							List<ElementExtension> extensions = unspecializedPartialType.getOwnedExtensions();
 							if (extensions.size() > 0) {
 								if (allExtensions == null) {
 									allExtensions = new ArrayList<ElementExtension>();
@@ -895,7 +895,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 		if (INIT_MEMBER_PROPERTIES.isActive()) {
 			INIT_MEMBER_PROPERTIES.println(this + " from " + asPrimaryType + " " + ClassUtil.debugSimpleName(asPrimaryType));
 		}
-		for (ElementExtension extension : asPrimaryType.getExtension()) {
+		for (ElementExtension extension : asPrimaryType.getOwnedExtensions()) {
 			assert extension != null;
 //			initStereotypePropertiesFrom((Type)asPrimaryType, extension);
 		}
@@ -914,9 +914,9 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 			if (superCompleteClass != null) {
 				for (org.eclipse.ocl.pivot.Class superPartialClass : superCompleteClass.getPartialClasses()) {
 					assert superPartialClass != null;
-					for (Behavior behavior : superPartialClass.getOwnedBehavior()) {
+					for (Behavior behavior : superPartialClass.getOwnedBehaviors()) {
 						if (behavior instanceof StateMachine) {
-							@SuppressWarnings("null")@NonNull List<Region> regions = ((StateMachine)behavior).getRegion();
+							@SuppressWarnings("null")@NonNull List<Region> regions = ((StateMachine)behavior).getOwnedRegions();
 							initStatesForRegions(name2states, regions);
 						}
 					}
@@ -927,11 +927,11 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 	}
 	protected void initStatesForRegions(@NonNull Map<String, State> name2states, @NonNull List<Region> regions) {
 		for (Region region : regions) {
-			for (Vertex vertex : region.getSubvertex()) {
+			for (Vertex vertex : region.getOwnedSubvertexes()) {
 				if (vertex instanceof State) {
 					State state = (State) vertex;
 					name2states.put(vertex.getName(), state);
-					@SuppressWarnings("null")@NonNull List<Region> nestedRegions = state.getRegion();
+					@SuppressWarnings("null")@NonNull List<Region> nestedRegions = state.getOwnedRegions();
 					initStatesForRegions(name2states, nestedRegions);
 				}
 			}

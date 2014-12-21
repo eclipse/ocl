@@ -75,12 +75,7 @@ public class ExecutorOperation extends AbstractExecutorOperation
 	}
 	
 	@Override
-	public @NonNull List<Parameter> getOwnedParameter() {
-		return getParameterTypes().getParameters();
-	}
-
-	@Override
-	public @NonNull List<Constraint> getOwnedRule() {
+	public @NonNull List<Constraint> getOwnedConstraints() {
 		throw new UnsupportedOperationException();			// FIXME
 	}
 
@@ -88,6 +83,23 @@ public class ExecutorOperation extends AbstractExecutorOperation
 //	public @NonNull DomainClass getOwningClass() {
 //		throw new UnsupportedOperationException();			// FIXME
 //	}
+
+	@Override
+	public @NonNull List<Parameter> getOwnedParameters() {
+		return getParameterTypes().getParameters();
+	}
+
+	@Override
+	public @NonNull List<Constraint> getOwnedPostconditions() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException(); // WIP FIXME
+	}
+
+	@Override
+	public @NonNull List<Constraint> getOwnedPreconditions() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException(); // WIP FIXME
+	}
 
 	@Override
 	public @NonNull ParametersId getParametersId() {
@@ -100,17 +112,7 @@ public class ExecutorOperation extends AbstractExecutorOperation
 	}
 
 	
-	@Override
-	public @NonNull List<Constraint> getPostcondition() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException(); // WIP FIXME
-	}
-
-	@Override
-	public @NonNull List<Constraint> getPrecondition() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException(); // WIP FIXME
-	}
+	
 
 //	@Override
 //	public @NonNull DomainType getType() {

@@ -138,7 +138,7 @@ public class EnvironmentView
 		}
 
 		protected boolean isRedefinitionOf(@NonNull Operation operation1, @NonNull Operation operation2) {
-			List<Operation> redefinedOperations = operation1.getRedefinedOperation();
+			List<Operation> redefinedOperations = operation1.getRedefinedOperations();
 			for (Operation redefinedOperation : redefinedOperations) {
 				if (redefinedOperation != null) {
 					if (redefinedOperation == operation2) {
@@ -180,7 +180,7 @@ public class EnvironmentView
 		}
 
 		protected boolean isRedefinitionOf(@NonNull Property property1, @NonNull Property property2) {
-			List<Property> redefinedProperties = property1.getRedefinedProperty();
+			List<Property> redefinedProperties = property1.getRedefinedProperties();
 			for (Property redefinedProperty : redefinedProperties) {
 				if (redefinedProperty != null) {
 					if (redefinedProperty == property2) {
@@ -281,14 +281,14 @@ public class EnvironmentView
 		if (accepts(PivotPackage.Literals.ENUMERATION_LITERAL)) {
 			String name2 = name;
 			if (name2 != null) {
-				for (EnumerationLiteral literal : pivot.getOwnedLiteral()) {
+				for (EnumerationLiteral literal : pivot.getOwnedLiterals()) {
 					if ((literal != null) && name2.equals(literal.getName())) {
 						addElement(name2, literal);
 					}
 				}
 			}
 			else {
-				for (EnumerationLiteral literal : pivot.getOwnedLiteral()) {
+				for (EnumerationLiteral literal : pivot.getOwnedLiterals()) {
 					if (literal != null) {
 						addNamedElement(literal);
 					}
@@ -365,14 +365,14 @@ public class EnvironmentView
 		if (accepts(PivotPackage.Literals.PARAMETER)) {
 			String name2 = name;
 			if (name2 != null) {
-				for (Parameter parameter : pivot.getOwnedParameter()) {
+				for (Parameter parameter : pivot.getOwnedParameters()) {
 					if (name2.equals(parameter.getName())) {
 						addElement(name2, parameter);
 					}
 				}
 			}
 			else {
-				for (Parameter parameter : pivot.getOwnedParameter()) {
+				for (Parameter parameter : pivot.getOwnedParameters()) {
 					if (parameter != null) {
 						addNamedElement(parameter);
 					}
@@ -385,14 +385,14 @@ public class EnvironmentView
 		if (accepts(PivotPackage.Literals.PRECEDENCE)) {
 			String name2 = name;
 			if (name2 != null) {
-				for (Precedence precedence : pivot.getOwnedPrecedence()) {
+				for (Precedence precedence : pivot.getOwnedPrecedences()) {
 					if (name2.equals(precedence.getName())) {
 						addElement(name2, precedence);
 					}
 				}
 			}
 			else {
-				for (Precedence precedence : pivot.getOwnedPrecedence()) {
+				for (Precedence precedence : pivot.getOwnedPrecedences()) {
 					if (precedence != null) {
 						addNamedElement(precedence);
 					}
@@ -448,10 +448,10 @@ public class EnvironmentView
 
 	public void addAllTemplateParameters(@NonNull TemplateableElement pivot) {
 		if (accepts(PivotPackage.Literals.TYPE)) {
-			TemplateSignature templateSignature = pivot.getOwnedTemplateSignature();
+			TemplateSignature templateSignature = pivot.getOwnedSignature();
 			if (templateSignature != null) {
 				String name2 = name;
-				List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
+				List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
 				if (name2 != null) {
 					for (TemplateParameter templateParameter : templateParameters) {
 						if ((templateParameter != null) && name2.equals(templateParameter.getName())) {

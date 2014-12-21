@@ -1049,7 +1049,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		TypeDescriptor requiredTypeDescriptor = context.getUnboxedDescriptor(ClassUtil.nonNullState(cgTypeId.getElementId()));
 		CGValuedElement source = getExpression(cgOperationCallExp.getSource());
 		List<CGValuedElement> cgArguments = cgOperationCallExp.getArguments();
-		List<Parameter> pParameters = pOperation.getOwnedParameter();
+		List<Parameter> pParameters = pOperation.getOwnedParameters();
 		//
 		if (!js.appendLocalStatements(source)) {
 			return false;
@@ -1220,7 +1220,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		Operation pOperation = cgOperationCallExp.getReferredOperation();
 		CGValuedElement source = getExpression(cgOperationCallExp.getSource());
 		List<CGValuedElement> cgArguments = cgOperationCallExp.getArguments();
-		List<Parameter> pParameters = pOperation.getOwnedParameter();
+		List<Parameter> pParameters = pOperation.getOwnedParameters();
 		//
 		if (!js.appendLocalStatements(source)) {
 			return false;
@@ -1703,7 +1703,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		Operation pOperation = cgOperationCallExp.getReferredOperation();
 		CGValuedElement source = getExpression(cgOperationCallExp.getSource());
 		List<CGValuedElement> cgArguments = cgOperationCallExp.getArguments();
-		List<Parameter> pParameters = pOperation.getOwnedParameter();
+		List<Parameter> pParameters = pOperation.getOwnedParameters();
 		//
 		if (!js.appendLocalStatements(source)) {
 			return false;

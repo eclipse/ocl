@@ -183,7 +183,7 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 		appendName(s, operation);
 		s.append("(");
 		String prefix = "";
-		for (Parameter parameter : operation.getOwnedParameter()) {
+		for (Parameter parameter : operation.getOwnedParameters()) {
 			s.append(prefix);
 //			appendName(s, csParameter);
 //			s.append(" : ");

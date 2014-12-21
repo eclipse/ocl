@@ -140,8 +140,8 @@ public class PivotUtil extends ClassUtil
 		public int compare(TemplateParameterSubstitution o1, TemplateParameterSubstitution o2) {
 			TemplateParameter f1 = o1.getFormal();
 			TemplateParameter f2 = o2.getFormal();
-			int i1 = f1.getOwningTemplateSignature().getOwnedTemplateParameters().indexOf(f1);
-			int i2 = f2.getOwningTemplateSignature().getOwnedTemplateParameters().indexOf(f2);
+			int i1 = f1.getOwningSignature().getOwnedParameters().indexOf(f1);
+			int i2 = f2.getOwningSignature().getOwnedParameters().indexOf(f2);
 			return i1 - i2;
 		}
 	}
@@ -179,9 +179,9 @@ public class PivotUtil extends ClassUtil
 	 * if expressionInOCL has no contextVariable and has a StringLiteralExp bodyExpression.
 	 */
 	public static void checkExpression(@NonNull ExpressionInOCL expressionInOCL) {
-		Variable contextVariable = expressionInOCL.getContextVariable();
+		Variable contextVariable = expressionInOCL.getOwnedContext();
 		if (contextVariable == null) {
-			OCLExpression bodyExpression = expressionInOCL.getBodyExpression();
+			OCLExpression bodyExpression = expressionInOCL.getOwnedBody();
 			if (bodyExpression instanceof StringLiteralExp) {
 				throw new InvalidValueException(((StringLiteralExp)bodyExpression).getStringSymbol());
 			}
@@ -341,13 +341,13 @@ public class PivotUtil extends ClassUtil
 	 */
 	public static @NonNull ExpressionInOCL createExpressionInOCL(@Nullable Variable asContextVariable, @NonNull OCLExpression asExpression, /*@NonNUll*/ Variable... asParameterVariables) {
 		ExpressionInOCL asExpressionInOCL = PivotFactory.eINSTANCE.createExpressionInOCL();
-		asExpressionInOCL.setContextVariable(asContextVariable);
+		asExpressionInOCL.setOwnedContext(asContextVariable);
 		if (asParameterVariables != null) {
 			for (Variable asParameterVariable : asParameterVariables) {
-				asExpressionInOCL.getParameterVariable().add(asParameterVariable);
+				asExpressionInOCL.getOwnedParameters().add(asParameterVariable);
 			}
 		}
-		asExpressionInOCL.setBodyExpression(asExpression);
+		asExpressionInOCL.setOwnedBody(asExpression);
 		asExpressionInOCL.setType(asExpression.getType());
 		asExpressionInOCL.setIsRequired(asExpression.isRequired());
 		return asExpressionInOCL;
@@ -357,7 +357,7 @@ public class PivotUtil extends ClassUtil
 		@SuppressWarnings("null")@NonNull ExpressionInOCL expressionInOCL = PivotFactory.eINSTANCE.createExpressionInOCL();
 		StringLiteralExp stringLiteral = PivotFactory.eINSTANCE.createStringLiteralExp();
 		stringLiteral.setStringSymbol(string); //createTupleValuedConstraint("false", null, string));
-		expressionInOCL.setBodyExpression(stringLiteral);
+		expressionInOCL.setOwnedBody(stringLiteral);
 		expressionInOCL.setType(stringLiteral.getType());
 		return expressionInOCL;
 	}
@@ -397,10 +397,10 @@ public class PivotUtil extends ClassUtil
 	 */
 	public static @NonNull LetExp createLetExp(@NonNull Variable asVariable, @NonNull OCLExpression asIn) {
 		LetExp asLetExp = PivotFactory.eINSTANCE.createLetExp();
-		asLetExp.setIn(asIn);
+		asLetExp.setOwnedIn(asIn);
 		asLetExp.setType(asIn.getType());
 		asLetExp.setIsRequired(asIn.isRequired());
-		asLetExp.setVariable(asVariable);
+		asLetExp.setOwnedVariable(asVariable);
 		return asLetExp;
 	}
 
@@ -454,9 +454,9 @@ public class PivotUtil extends ClassUtil
 	public static @NonNull OperationCallExp createOperationCallExp(@NonNull OCLExpression asSource, @NonNull Operation asOperation, /*@NonNull*/ OCLExpression... asArguments) {
 		OperationCallExp asCallExp = PivotFactory.eINSTANCE.createOperationCallExp();
 		asCallExp.setReferredOperation(asOperation);
-		asCallExp.setSource(asSource);
+		asCallExp.setOwnedSource(asSource);
 		if (asArguments != null) {
-			List<OCLExpression> asCallArguments = asCallExp.getArgument();
+			List<OCLExpression> asCallArguments = asCallExp.getOwnedArguments();
 			for (OCLExpression asArgument : asArguments) {
 				asCallArguments.add(ClassUtil.nonNullState(asArgument));
 			}
@@ -556,7 +556,7 @@ public class PivotUtil extends ClassUtil
 	 */
 	public static @NonNull PropertyCallExp createPropertyCallExp(@NonNull OCLExpression asSource, @NonNull Property asProperty) {
 		PropertyCallExp asChild = PivotFactory.eINSTANCE.createPropertyCallExp();
-		asChild.setSource(asSource);
+		asChild.setOwnedSource(asSource);
 		asChild.setReferredProperty(asProperty);
 		asChild.setType(asProperty.getType());
 		asChild.setIsRequired(asProperty.isRequired());
@@ -591,7 +591,7 @@ public class PivotUtil extends ClassUtil
 	 */
 	public static @NonNull TemplateBinding createTemplateBinding(TemplateParameterSubstitution... templateParameterSubstitutions) {
 		TemplateBinding pivotTemplateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
-		List<TemplateParameterSubstitution> parameterSubstitutions = pivotTemplateBinding.getOwnedTemplateParameterSubstitutions();
+		List<TemplateParameterSubstitution> parameterSubstitutions = pivotTemplateBinding.getOwnedSubstitutions();
 		for (TemplateParameterSubstitution templateParameterSubstitution : templateParameterSubstitutions) {
 			parameterSubstitutions.add(templateParameterSubstitution);
 		}
@@ -624,11 +624,11 @@ public class PivotUtil extends ClassUtil
 	 */
 	public static @NonNull TemplateSignature createTemplateSignature(@NonNull TemplateableElement templateableElement, TemplateParameter... templateParameters) {
 		TemplateSignature pivotTemplateSignature = PivotFactory.eINSTANCE.createTemplateSignature();
-		List<TemplateParameter> parameters = pivotTemplateSignature.getOwnedTemplateParameters();
+		List<TemplateParameter> parameters = pivotTemplateSignature.getOwnedParameters();
 		for (TemplateParameter templateParameter : templateParameters) {
 			parameters.add(templateParameter);
 		}
-		pivotTemplateSignature.setOwningTemplateableElement(templateableElement);
+		pivotTemplateSignature.setOwningElement(templateableElement);
 		return pivotTemplateSignature;
 	}
 	
@@ -671,7 +671,7 @@ public class PivotUtil extends ClassUtil
 		asVariable.setName(name);
 		asVariable.setType(asInitExpression.getType());
 		asVariable.setIsRequired(asInitExpression.isRequired());
-		asVariable.setInitExpression(asInitExpression);
+		asVariable.setOwnedInit(asInitExpression);
 		return asVariable;
 	}
 
@@ -683,7 +683,7 @@ public class PivotUtil extends ClassUtil
 		asVariable.setName(name);
 		asVariable.setType(asType);
 		asVariable.setIsRequired(isRequired);
-		asVariable.setInitExpression(asInitExpression);
+		asVariable.setOwnedInit(asInitExpression);
 		return asVariable;
 	}
 
@@ -1062,7 +1062,7 @@ public class PivotUtil extends ClassUtil
 				EObject eContainer = eObject.eContainer();
 				if (eContainer == null) {
 					if (eObject instanceof ExpressionInOCL) {
-						return ((ExpressionInOCL)eObject).getContextVariable().getType();
+						return ((ExpressionInOCL)eObject).getOwnedContext().getType();
 					}
 					break;
 				}
@@ -1333,19 +1333,19 @@ public class PivotUtil extends ClassUtil
 
 	public static String getSpecificationRole(@NonNull LanguageExpression specification) {
 		EReference eContainmentFeature = specification.eContainmentFeature();
-		if (eContainmentFeature == PivotPackage.Literals.NAMESPACE__OWNED_RULE) {
-			return PivotConstants.OWNED_RULE_ROLE;
+		if (eContainmentFeature == PivotPackage.Literals.NAMESPACE__OWNED_CONSTRAINTS) {
+			return PivotConstants.OWNED_CONSTRAINT_ROLE;
 		}
-		else if (eContainmentFeature == PivotPackage.Literals.PROPERTY__DEFAULT_EXPRESSION) {
+		else if (eContainmentFeature == PivotPackage.Literals.PROPERTY__OWNED_EXPRESSION) {
 			return PivotConstants.DEFAULT_EXPRESSION_ROLE;
 		}
 		else if (eContainmentFeature == PivotPackage.Literals.OPERATION__BODY_EXPRESSION) {
 			return PivotConstants.BODY_EXPRESSION_ROLE;
 		}
-		else if (eContainmentFeature == PivotPackage.Literals.OPERATION__PRECONDITION) {
+		else if (eContainmentFeature == PivotPackage.Literals.OPERATION__OWNED_PRECONDITIONS) {
 			return PivotConstants.PRECONDITION_ROLE;
 		}
-		else if (eContainmentFeature == PivotPackage.Literals.OPERATION__POSTCONDITION) {
+		else if (eContainmentFeature == PivotPackage.Literals.OPERATION__OWNED_POSTCONDITIONS) {
 			return PivotConstants.POSTCONDITION_ROLE;
 		}
 		else {
@@ -1361,13 +1361,13 @@ public class PivotUtil extends ClassUtil
 		else if (eContainingFeature == PivotPackage.Literals.OPERATION__BODY_EXPRESSION) {
 			return UMLReflection.BODY;
 		}
-		else if (eContainingFeature == PivotPackage.Literals.OPERATION__POSTCONDITION) {
+		else if (eContainingFeature == PivotPackage.Literals.OPERATION__OWNED_POSTCONDITIONS) {
 			return UMLReflection.POSTCONDITION;
 		}
-		else if (eContainingFeature == PivotPackage.Literals.OPERATION__PRECONDITION) {
+		else if (eContainingFeature == PivotPackage.Literals.OPERATION__OWNED_PRECONDITIONS) {
 			return UMLReflection.PRECONDITION;
 		}
-		else if (eContainingFeature == PivotPackage.Literals.PROPERTY__DEFAULT_EXPRESSION) {
+		else if (eContainingFeature == PivotPackage.Literals.PROPERTY__OWNED_EXPRESSION) {
 			return UMLReflection.DERIVATION;
 		}
 		return "";
@@ -1384,7 +1384,7 @@ public class PivotUtil extends ClassUtil
 		type = getType(type);
 		if (type instanceof SelfType) {
 			if (typedElement instanceof Parameter) {
-				Operation operation = ((Parameter)typedElement).getOperation();
+				Operation operation = ((Parameter)typedElement).getOwningOperation();
 				if (operation != null) {
 					org.eclipse.ocl.pivot.Class selfType = operation.getOwningClass();
 					if (selfType != null) {
@@ -1429,12 +1429,12 @@ public class PivotUtil extends ClassUtil
 	 * @since 3.5
 	 */
 	public static @NonNull Operation initOperation(@NonNull Operation asOperation, @NonNull ExpressionInOCL asExpressionInOCL) {
-		for (Variable asParameterVariable : asExpressionInOCL.getParameterVariable()) {
+		for (Variable asParameterVariable : asExpressionInOCL.getOwnedParameters()) {
 			String parameterName = ClassUtil.nonNullState(asParameterVariable.getName());
 			Type parameterType = ClassUtil.nonNullState(asParameterVariable.getType());
 			Parameter asParameter = createParameter(parameterName, parameterType, asParameterVariable.isRequired());
 			asParameterVariable.setRepresentedParameter(asParameter);
-			asOperation.getOwnedParameter().add(asParameter);
+			asOperation.getOwnedParameters().add(asParameter);
 		}
 		asOperation.setBodyExpression(asExpressionInOCL);
 		asOperation.setType(asExpressionInOCL.getType());
@@ -1458,7 +1458,7 @@ public class PivotUtil extends ClassUtil
 			return false;			
 		}
 		else if (type instanceof TemplateableElement){
-			return ((TemplateableElement)type).getOwnedTemplateBindings().isEmpty();			
+			return ((TemplateableElement)type).getOwnedBindings().isEmpty();			
 		}
 		else {
 			return false;
@@ -1589,7 +1589,7 @@ public class PivotUtil extends ClassUtil
 	 */
 	public static void setBody(@NonNull ExpressionInOCL expressionInOCL, @Nullable OCLExpression oclExpression, @Nullable String stringExpression) {
 		setBody(expressionInOCL, stringExpression);
-		expressionInOCL.setBodyExpression(oclExpression);
+		expressionInOCL.setOwnedBody(oclExpression);
 	}
 
 	/**

@@ -108,12 +108,12 @@ public class OCLQueryDelegate implements QueryDelegate
 			IdResolver idResolver = metaModelManager.getIdResolver();
 			Object targetValue = idResolver.boxedValueOf(target);
 			org.eclipse.ocl.pivot.Class targetType = idResolver.getStaticTypeOf(targetValue);
-			Type requiredType = nonNullSpecification.getContextVariable().getType();
+			Type requiredType = nonNullSpecification.getOwnedContext().getType();
 			if ((requiredType == null) || !targetType.conformsTo(metaModelManager.getStandardLibrary(), requiredType)) {
 				String message = ClassUtil.bind(OCLMessages.WrongContextClassifier_ERROR_, targetType, requiredType);
 				throw new OCLDelegateException(new SemanticException(message));
 			}
-			List<Variable> parameterVariables = nonNullSpecification.getParameterVariable();
+			List<Variable> parameterVariables = nonNullSpecification.getOwnedParameters();
 			int argCount = arguments != null ? arguments.size() : 0;
 			if (parameterVariables.size() != argCount) {
 				String message = ClassUtil.bind(OCLMessages.MismatchedArgumentCount_ERROR_, argCount, parameterVariables.size());
@@ -189,7 +189,7 @@ public class OCLQueryDelegate implements QueryDelegate
 	@Override
 	public String toString() {
 		ExpressionInOCL specification2 = specification;
-		OCLExpression bodyExpression = specification2 != null ? specification2.getBodyExpression() : null;
+		OCLExpression bodyExpression = specification2 != null ? specification2.getOwnedBody() : null;
 		if (bodyExpression != null) {
 			return "<" + delegateDomain.getURI() + ":query> " + bodyExpression; //$NON-NLS-1$ //$NON-NLS-2$
 		}

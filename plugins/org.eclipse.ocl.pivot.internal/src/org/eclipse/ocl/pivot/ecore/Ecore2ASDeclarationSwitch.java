@@ -121,7 +121,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 			if ((details.size() != 1) || !isDocumentationKey(source, key)) {
 				Detail pivotDetail = PivotFactory.eINSTANCE.createDetail();
 				pivotDetail.setName(key);
-				pivotDetail.getValue().add(entry.getValue());
+				pivotDetail.getValues().add(entry.getValue());
 				pivotElement.getOwnedDetails().add(pivotDetail);	// FIXME refreshList
 			}
 		}
@@ -355,7 +355,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 		}
 		pivotElement.setName(newName);
 		copyDataTypeOrEnum(pivotElement, eObject2);
-		doSwitchAll(pivotElement.getOwnedLiteral(), eObject2.getELiterals());
+		doSwitchAll(pivotElement.getOwnedLiterals(), eObject2.getELiterals());
 //		pivotElement.getSuperClass().add(metaModelManager.getOclAnyType());
 		pivotElement.getSuperClasses().add(metaModelManager.getStandardLibrary().getEnumerationType());
 		return pivotElement;
@@ -560,12 +560,12 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 		if (value != null) {
 			specification.setBody(value);
 		}
-		constraint.setSpecification(specification);
+		constraint.setOwnedSpecification(specification);
 		String commentBody = EcoreUtil.getAnnotation(eOperation, PivotConstants.DOCUMENTATION_ANNOTATION_SOURCE, PivotConstants.DOCUMENTATION_ANNOTATION_KEY);
 		if (commentBody != null) {
 			Comment pivotComment = PivotFactory.eINSTANCE.createComment();
 			pivotComment.setBody(commentBody.replaceAll("\\r", ""));
-			constraint.getOwnedComment().add(pivotComment);
+			constraint.getOwnedComments().add(pivotComment);
 		}				
 		converter.addMapping(eOperation, constraint);
 		return constraint;
@@ -575,7 +575,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 		Operation pivotElement = converter.refreshNamedElement(Operation.class, PivotPackage.Literals.OPERATION, eOperation);
 		List<EAnnotation> excludedAnnotations = convertEOperationEAnnotations(pivotElement, eOperation);
 		copyTypedElement(pivotElement, eOperation, excludedAnnotations);
-		doSwitchAll(pivotElement.getOwnedParameter(), eOperation.getEParameters());
+		doSwitchAll(pivotElement.getOwnedParameters(), eOperation.getEParameters());
 		@SuppressWarnings("null") @NonNull List<ETypeParameter> eTypeParameters = eOperation.getETypeParameters();
 		copyTemplateSignature(pivotElement,eTypeParameters);
 		doSwitchAll(eOperation.getEGenericExceptions());
@@ -647,13 +647,13 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 				}
 				else {
 					Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
-					constraint.setSpecification(specification);
+					constraint.setOwnedSpecification(specification);
 					if (preName != null) {
-						pivotElement.getPrecondition().add(constraint);
+						pivotElement.getOwnedPreconditions().add(constraint);
 						constraint.setName(preName);
 					}
 					else {
-						pivotElement.getPostcondition().add(constraint);
+						pivotElement.getOwnedPostconditions().add(constraint);
 						constraint.setName(postName);
 					}
 					copyAnnotationComment(constraint, oclAnnotation, key);
@@ -685,8 +685,8 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 	protected void copyTemplateSignature(@NonNull TemplateableElement pivotElement, @NonNull List<ETypeParameter> eTypeParameters) {
 		if (!eTypeParameters.isEmpty()) {
 			TemplateSignature pivotTemplateSignature = PivotFactory.eINSTANCE.createTemplateSignature();
-			pivotElement.setOwnedTemplateSignature(pivotTemplateSignature);
-			doSwitchAll(pivotTemplateSignature.getOwnedTemplateParameters(), eTypeParameters);
+			pivotElement.setOwnedSignature(pivotTemplateSignature);
+			doSwitchAll(pivotTemplateSignature.getOwnedParameters(), eTypeParameters);
 		}
 	}
 
@@ -697,7 +697,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 	 */
 	protected void copyAnnotatedElement(@NonNull NamedElement pivotElement,
 			@NonNull EModelElement eModelElement, List<EAnnotation> excludedAnnotations) {
-		List<Element> pivotAnnotations = pivotElement.getOwnedAnnotation();
+		List<Element> pivotAnnotations = pivotElement.getOwnedAnnotations();
 		for (EAnnotation eAnnotation : eModelElement.getEAnnotations()) {
 			if ((excludedAnnotations == null) || !excludedAnnotations.contains(eAnnotation)) {
 				String source = eAnnotation.getSource();
@@ -705,7 +705,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 				if (hasDocumentationKey(source, details)) {
 					Comment pivotComment = PivotFactory.eINSTANCE.createComment();
 					pivotComment.setBody(details.get(PivotConstants.DOCUMENTATION_ANNOTATION_KEY));
-					pivotElement.getOwnedComment().add(pivotComment);
+					pivotElement.getOwnedComments().add(pivotComment);
 				}				
 				else if (hasImportKey(source, details)) {
 				}				
@@ -726,12 +726,12 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 	 * Import EAnnotations are excluded here and processed at the root.
 	 */
 	protected void copyAnnotationComment(@NonNull Constraint pivotElement, @NonNull EAnnotation eModelElement, @NonNull String key) {
-		pivotElement.getOwnedComment().clear();
+		pivotElement.getOwnedComments().clear();
 		String comment = EcoreUtil.getAnnotation(eModelElement, PivotConstants.DOCUMENTATION_ANNOTATION_SOURCE, key);
 		if (comment != null) {
 			Comment pivotComment = PivotFactory.eINSTANCE.createComment();
 			pivotComment.setBody(comment);
-			pivotElement.getOwnedComment().add(pivotComment);
+			pivotElement.getOwnedComments().add(pivotComment);
 		}
 	}
 
@@ -781,7 +781,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 				ExpressionInOCL specification = PivotFactory.eINSTANCE.createExpressionInOCL();
 				specification.setBody(value);
 //					constraint.setExprString(entry.getValue());
-				pivotElement.setDefaultExpression(specification);
+				pivotElement.setOwnedExpression(specification);
 				pivotElement.setImplementation(new EObjectProperty(eObject, specification));
 			}
 			else {
@@ -898,7 +898,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 						invariant.setName(invariantName);
 					}
 					else {
-						specification = invariant.getSpecification();
+						specification = invariant.getOwnedSpecification();
 					}
 					ExpressionInOCL expression;
 					if (specification instanceof ExpressionInOCL) {
@@ -906,7 +906,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 					}
 					else {
 						expression = PivotFactory.eINSTANCE.createExpressionInOCL();
-						invariant.setSpecification(expression);
+						invariant.setOwnedSpecification(expression);
 					}
 					String value = entry.getValue();
 					// Rescue any deprecated format message expressions
@@ -950,7 +950,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 							invariant.setName(invariantName);
 						}
 						ExpressionInOCL specification = PivotFactory.eINSTANCE.createExpressionInOCL();
-						invariant.setSpecification(specification);
+						invariant.setOwnedSpecification(specification);
 						if (newInvariants == null) {
 							newInvariants = new ArrayList<Constraint>();
 						}

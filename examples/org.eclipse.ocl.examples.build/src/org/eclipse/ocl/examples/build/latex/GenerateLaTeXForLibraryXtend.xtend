@@ -75,9 +75,9 @@ public class GenerateLaTeXForLibraryXtend extends GenerateLaTeXForLibrary
 	}
 
 	protected def emitComment(Element asElement, Namespace asNamespace) {
-		if (asElement.getOwnedComment().size() > 0) {
+		if (asElement.getOwnedComments().size() > 0) {
 		'''
-			«FOR asComment : asElement.getOwnedComment()»
+			«FOR asComment : asElement.getOwnedComments()»
 			
 			«prettyPrint(asComment, asNamespace)»
 			«ENDFOR»

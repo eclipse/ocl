@@ -40,22 +40,22 @@ public class AbstractExecutorOperation extends AbstractExecutorFeature implement
 
 	@Override
 	@NonNull
-	public List<Constraint> getOwnedRule() {
+	public List<Constraint> getOwnedConstraints() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public List<TemplateBinding> getOwnedTemplateBindings() {
+	public List<TemplateBinding> getOwnedBindings() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public TemplateSignature getOwnedTemplateSignature() {
+	public TemplateSignature getOwnedSignature() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void setOwnedTemplateSignature(TemplateSignature value) {
+	public void setOwnedSignature(TemplateSignature value) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -71,13 +71,13 @@ public class AbstractExecutorOperation extends AbstractExecutorFeature implement
 
 	@Override
 	@NonNull
-	public List<Type> getRaisedException() {
+	public List<Type> getRaisedExceptions() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	@NonNull
-	public List<Parameter> getOwnedParameter() {
+	public List<Parameter> getOwnedParameters() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -93,19 +93,19 @@ public class AbstractExecutorOperation extends AbstractExecutorFeature implement
 
 	@Override
 	@NonNull
-	public List<Operation> getRedefinedOperation() {
+	public List<Operation> getRedefinedOperations() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	@NonNull
-	public List<Constraint> getPrecondition() {
+	public List<Constraint> getOwnedPreconditions() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	@NonNull
-	public List<Constraint> getPostcondition() {
+	public List<Constraint> getOwnedPostconditions() {
 		throw new UnsupportedOperationException();
 	}
 

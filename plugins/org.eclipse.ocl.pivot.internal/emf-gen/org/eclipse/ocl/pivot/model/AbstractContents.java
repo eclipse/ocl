@@ -98,23 +98,23 @@ public class AbstractContents extends PivotUtil
 
 	protected <T extends CollectionType> void initTemplateParameter(@NonNull TemplateableElement pivotType, @NonNull TemplateParameter templateParameter) {
 		TemplateSignature templateSignature = PivotFactory.eINSTANCE.createTemplateSignature();
-		templateSignature.getOwnedTemplateParameters().add(templateParameter);
-		pivotType.setOwnedTemplateSignature(templateSignature);
+		templateSignature.getOwnedParameters().add(templateParameter);
+		pivotType.setOwnedSignature(templateSignature);
 	}
 
 	protected <T extends CollectionType> void initTemplateParameters(@NonNull TemplateableElement pivotType, TemplateParameter... templateParameters) {
 		if ((templateParameters != null) && (templateParameters.length > 0)) {
 			TemplateSignature templateSignature = PivotFactory.eINSTANCE.createTemplateSignature();
 			for (TemplateParameter templateParameter : templateParameters) {
-				templateSignature.getOwnedTemplateParameters().add(templateParameter);
+				templateSignature.getOwnedParameters().add(templateParameter);
 			}
-			pivotType.setOwnedTemplateSignature(templateSignature);
+			pivotType.setOwnedSignature(templateSignature);
 		}
 	}
 
 	protected void installComment(Element element, @NonNull String body) {
 		Comment pivotComment = PivotFactory.eINSTANCE.createComment();
 		pivotComment.setBody(body);
-		element.getOwnedComment().add(pivotComment);
+		element.getOwnedComments().add(pivotComment);
 	}
 }

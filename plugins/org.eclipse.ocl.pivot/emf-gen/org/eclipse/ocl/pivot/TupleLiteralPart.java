@@ -20,7 +20,7 @@ import org.eclipse.ocl.pivot.ids.TuplePartId;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.TupleLiteralPart#getInitExpression <em>Init Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.TupleLiteralPart#getOwnedInit <em>Owned Init</em>}</li>
  * </ul>
  * </p>
  *
@@ -31,29 +31,29 @@ public interface TupleLiteralPart
 		extends VariableDeclaration {
 
 	/**
-	 * Returns the value of the '<em><b>Init Expression</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Init</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Init Expression</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Init Expression</em>' containment reference.
-	 * @see #setInitExpression(OCLExpression)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getTupleLiteralPart_InitExpression()
+	 * @return the value of the '<em>Owned Init</em>' containment reference.
+	 * @see #setOwnedInit(OCLExpression)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getTupleLiteralPart_OwnedInit()
 	 * @generated
 	 */
-	OCLExpression getInitExpression();
+	OCLExpression getOwnedInit();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.TupleLiteralPart#getInitExpression <em>Init Expression</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.TupleLiteralPart#getOwnedInit <em>Owned Init</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Init Expression</em>' containment reference.
-	 * @see #getInitExpression()
+	 * @param value the new value of the '<em>Owned Init</em>' containment reference.
+	 * @see #getOwnedInit()
 	 * @generated
 	 */
-	void setInitExpression(OCLExpression value);
+	void setOwnedInit(OCLExpression value);
 
 	TuplePartId getPartId();
 } // TupleLiteralPart

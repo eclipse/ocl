@@ -80,9 +80,9 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		visitor.analyzeType(candidateOperation.getOwningClass(), sourceType);
 		for (EObject eObject = candidateOperation; eObject != null; eObject = eObject.eContainer()) {
 			if (eObject instanceof TemplateableElement) {
-				TemplateSignature templateSignature = ((TemplateableElement)eObject).getOwnedTemplateSignature();
+				TemplateSignature templateSignature = ((TemplateableElement)eObject).getOwnedSignature();
 				if (templateSignature != null) {
-					List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
+					List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
 					int iSize = templateParameters.size();
 					if (iSize > 0) {
 						return visitor;
@@ -302,11 +302,11 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 			//
 			org.eclipse.ocl.pivot.Class partiallySpecializedType = (org.eclipse.ocl.pivot.Class)type;
 			org.eclipse.ocl.pivot.Class unspecializedType = PivotUtil.getUnspecializedTemplateableElement(partiallySpecializedType);
-			List<TemplateBinding> ownedTemplateBindings = partiallySpecializedType.getOwnedTemplateBindings();
+			List<TemplateBinding> ownedTemplateBindings = partiallySpecializedType.getOwnedBindings();
 			if (ownedTemplateBindings.size() > 0) {
 				List<Type> templateArguments = new ArrayList<Type>();
 				for (TemplateBinding ownedTemplateBinding : ownedTemplateBindings) {
-					for (TemplateParameterSubstitution ownedTemplateParameterSubstitution : ownedTemplateBinding.getOwnedTemplateParameterSubstitutions()) {
+					for (TemplateParameterSubstitution ownedTemplateParameterSubstitution : ownedTemplateBinding.getOwnedSubstitutions()) {
 						Type actualType = ownedTemplateParameterSubstitution.getActual();
 						if (actualType != null) {
 							actualType = specializeType(actualType);
@@ -316,10 +316,10 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 				}
 				return metaModelManager.getLibraryType(unspecializedType, templateArguments);
 			}
-			TemplateSignature ownedTemplateSignature = partiallySpecializedType.getOwnedTemplateSignature();
+			TemplateSignature ownedTemplateSignature = partiallySpecializedType.getOwnedSignature();
 			if (ownedTemplateSignature != null) {
 				List<Type> templateArguments = new ArrayList<Type>();
-				for (@SuppressWarnings("null")@NonNull TemplateParameter ownedTemplateParameter : ownedTemplateSignature.getOwnedTemplateParameters()) {
+				for (@SuppressWarnings("null")@NonNull TemplateParameter ownedTemplateParameter : ownedTemplateSignature.getOwnedParameters()) {
 					Type actualType = specializeType(ownedTemplateParameter);
 					templateArguments.add(actualType);
 				}
@@ -354,8 +354,8 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 
 	@Override
 	public @Nullable Object visitClass(@NonNull org.eclipse.ocl.pivot.Class object) {
-		for (TemplateBinding templateBinding : object.getOwnedTemplateBindings()) {
-			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedTemplateParameterSubstitutions()) {
+		for (TemplateBinding templateBinding : object.getOwnedBindings()) {
+			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedSubstitutions()) {
 				safeVisit(templateParameterSubstitution.getActual());
 			}
 		}
@@ -376,10 +376,10 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	public @Nullable Object visitIterateExp(@NonNull IterateExp object) {
 		Iteration referredIteration = object.getReferredIteration();
 		analyzeTypedElement(referredIteration, object);
-		analyzeFeature(referredIteration, object.getSource());
-		analyzeTypedElements(referredIteration.getOwnedIterator(), object.getIterator());
-		analyzeTypedElements(referredIteration.getOwnedAccumulator(), Collections.singletonList(object.getResult()));
-		analyzeTypedElements(referredIteration.getOwnedParameter(), Collections.singletonList(object.getBody()));
+		analyzeFeature(referredIteration, object.getOwnedSource());
+		analyzeTypedElements(referredIteration.getOwnedIterators(), object.getOwnedIterators());
+		analyzeTypedElements(referredIteration.getOwnedAccumulators(), Collections.singletonList(object.getOwnedResult()));
+		analyzeTypedElements(referredIteration.getOwnedParameters(), Collections.singletonList(object.getOwnedBody()));
 		return null;
 	}
 
@@ -387,9 +387,9 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	public @Nullable Object visitIteratorExp(@NonNull IteratorExp object) {
 		Iteration referredIteration = object.getReferredIteration();
 		analyzeTypedElement(referredIteration, object);
-		analyzeFeature(referredIteration, object.getSource());
-		analyzeTypedElements(referredIteration.getOwnedIterator(), object.getIterator());
-		analyzeTypedElements(referredIteration.getOwnedParameter(), Collections.singletonList(object.getBody()));
+		analyzeFeature(referredIteration, object.getOwnedSource());
+		analyzeTypedElements(referredIteration.getOwnedIterators(), object.getOwnedIterators());
+		analyzeTypedElements(referredIteration.getOwnedParameters(), Collections.singletonList(object.getOwnedBody()));
 		return null;
 	}
 
@@ -412,11 +412,11 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		Operation referredOperation = object.getReferredOperation();
 //		visit(referredOperation, object);
 		analyzeType(referredOperation.getType(), object.getType());
-		OCLExpression source = object.getSource();
+		OCLExpression source = object.getOwnedSource();
 		if (source != null) {
 			analyzeType(referredOperation.getOwningClass(), source.getType());
 		}
-		analyzeTypedElements(referredOperation.getOwnedParameter(), object.getArgument());
+		analyzeTypedElements(referredOperation.getOwnedParameters(), object.getOwnedArguments());
 		//
 		//	FIXME More general processing for T2 < T1
 		//
@@ -437,7 +437,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		if (referredOppositeProperty != null) {
 			Property referredProperty = referredOppositeProperty.getOpposite();
 			if (referredProperty != null) {
-				analyzeFeature(referredProperty, object.getSource());
+				analyzeFeature(referredProperty, object.getOwnedSource());
 				analyzeTypedElement(referredProperty, object);
 			}
 		}
@@ -464,7 +464,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	public @Nullable Object visitPropertyCallExp(@NonNull PropertyCallExp object) {
 		Property referredProperty = object.getReferredProperty();
 		if (referredProperty != null) {
-			OCLExpression source = object.getSource();
+			OCLExpression source = object.getOwnedSource();
 			if (source != null) {
 				Type sourceType = source.getType();
 				analyzeType(referredProperty.getOwningClass(), sourceType);

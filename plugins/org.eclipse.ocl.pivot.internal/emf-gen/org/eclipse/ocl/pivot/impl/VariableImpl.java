@@ -53,8 +53,8 @@ import org.eclipse.osgi.util.NLS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.impl.VariableImpl#isImplicit <em>Implicit</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.VariableImpl#getInitExpression <em>Init Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.VariableImpl#isImplicit <em>Is Implicit</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.VariableImpl#getOwnedInit <em>Owned Init</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.VariableImpl#getRepresentedParameter <em>Represented Parameter</em>}</li>
  * </ul>
  * </p>
@@ -66,34 +66,34 @@ public class VariableImpl
 		implements Variable {
 
 	/**
-	 * The default value of the '{@link #isImplicit() <em>Implicit</em>}' attribute.
+	 * The default value of the '{@link #isImplicit() <em>Is Implicit</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #isImplicit()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IMPLICIT_EDEFAULT = false;
+	protected static final boolean IS_IMPLICIT_EDEFAULT = false;
 
 	/**
-	 * The flag representing the value of the '{@link #isImplicit() <em>Implicit</em>}' attribute.
+	 * The flag representing the value of the '{@link #isImplicit() <em>Is Implicit</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #isImplicit()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IMPLICIT_EFLAG = 1 << 9;
+	protected static final int IS_IMPLICIT_EFLAG = 1 << 9;
 
 	/**
-	 * The cached value of the '{@link #getInitExpression() <em>Init Expression</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedInit() <em>Owned Init</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getInitExpression()
+	 * @see #getOwnedInit()
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLExpression initExpression;
+	protected OCLExpression ownedInit;
 
 	/**
 	 * The cached value of the '{@link #getRepresentedParameter() <em>Represented Parameter</em>}' reference.
@@ -130,8 +130,8 @@ public class VariableImpl
 	 * @generated
 	 */
 	@Override
-	public OCLExpression getInitExpression() {
-		return initExpression;
+	public OCLExpression getOwnedInit() {
+		return ownedInit;
 	}
 
 	/**
@@ -139,13 +139,13 @@ public class VariableImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInitExpression(
-			OCLExpression newInitExpression, NotificationChain msgs) {
-		OCLExpression oldInitExpression = initExpression;
-		initExpression = newInitExpression;
+	public NotificationChain basicSetOwnedInit(OCLExpression newOwnedInit, NotificationChain msgs)
+	{
+		OCLExpression oldOwnedInit = ownedInit;
+		ownedInit = newOwnedInit;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.VARIABLE__INIT_EXPRESSION, oldInitExpression, newInitExpression);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.VARIABLE__OWNED_INIT, oldOwnedInit, newOwnedInit);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -157,19 +157,19 @@ public class VariableImpl
 	 * @generated
 	 */
 	@Override
-	public void setInitExpression(OCLExpression newInitExpression) {
-		if (newInitExpression != initExpression)
+	public void setOwnedInit(OCLExpression newOwnedInit) {
+		if (newOwnedInit != ownedInit)
 		{
 			NotificationChain msgs = null;
-			if (initExpression != null)
-				msgs = ((InternalEObject)initExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.VARIABLE__INIT_EXPRESSION, null, msgs);
-			if (newInitExpression != null)
-				msgs = ((InternalEObject)newInitExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.VARIABLE__INIT_EXPRESSION, null, msgs);
-			msgs = basicSetInitExpression(newInitExpression, msgs);
+			if (ownedInit != null)
+				msgs = ((InternalEObject)ownedInit).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.VARIABLE__OWNED_INIT, null, msgs);
+			if (newOwnedInit != null)
+				msgs = ((InternalEObject)newOwnedInit).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.VARIABLE__OWNED_INIT, null, msgs);
+			msgs = basicSetOwnedInit(newOwnedInit, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.VARIABLE__INIT_EXPRESSION, newInitExpression, newInitExpression));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.VARIABLE__OWNED_INIT, newOwnedInit, newOwnedInit));
 	}
 
 	/**
@@ -223,16 +223,15 @@ public class VariableImpl
 	public boolean validateCompatibleInitialiserType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * 
-		 * inv CompatibleInitialiserType: initExpression <> null implies
-		 *   initExpression.type.conformsTo(type)
+		 * inv CompatibleInitialiserType: ownedInit <> null implies
+		 *   ownedInit.type.conformsTo(type)
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
 		try {
 		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		    try {
-		        final @Nullable /*@Thrown*/ OCLExpression initExpression = this.getInitExpression();
-		        final /*@Thrown*/ boolean self_71 = initExpression != null;
+		        final @Nullable /*@Thrown*/ OCLExpression ownedInit = this.getOwnedInit();
+		        final /*@Thrown*/ boolean self_71 = ownedInit != null;
 		        CAUGHT_self_71 = self_71;
 		    }
 		    catch (Exception e) {
@@ -241,11 +240,11 @@ public class VariableImpl
 		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
-		        final @Nullable /*@Thrown*/ OCLExpression initExpression_0 = this.getInitExpression();
-		        if (initExpression_0 == null) {
+		        final @Nullable /*@Thrown*/ OCLExpression ownedInit_0 = this.getOwnedInit();
+		        if (ownedInit_0 == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
-		        final @Nullable /*@Thrown*/ Type type = initExpression_0.getType();
+		        final @Nullable /*@Thrown*/ Type type = ownedInit_0.getType();
 		        final @Nullable /*@Thrown*/ Type type_0 = this.getType();
 		        final /*@Thrown*/ boolean b = OclTypeConformsToOperation.INSTANCE.evaluate(evaluator, type, type_0).booleanValue();
 		        CAUGHT_b = b;
@@ -335,7 +334,7 @@ public class VariableImpl
 	@Override
 	public boolean isImplicit()
 	{
-		return (eFlags & IMPLICIT_EFLAG) != 0;
+		return (eFlags & IS_IMPLICIT_EFLAG) != 0;
 	}
 
 	/**
@@ -344,12 +343,12 @@ public class VariableImpl
 	 * @generated
 	 */
 	@Override
-	public void setImplicit(boolean newImplicit)
+	public void setIsImplicit(boolean newIsImplicit)
 	{
-		boolean oldImplicit = (eFlags & IMPLICIT_EFLAG) != 0;
-		if (newImplicit) eFlags |= IMPLICIT_EFLAG; else eFlags &= ~IMPLICIT_EFLAG;
+		boolean oldIsImplicit = (eFlags & IS_IMPLICIT_EFLAG) != 0;
+		if (newIsImplicit) eFlags |= IS_IMPLICIT_EFLAG; else eFlags &= ~IS_IMPLICIT_EFLAG;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.VARIABLE__IMPLICIT, oldImplicit, newImplicit));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.VARIABLE__IS_IMPLICIT, oldIsImplicit, newIsImplicit));
 	}
 
 	/**
@@ -362,16 +361,16 @@ public class VariableImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case PivotPackage.VARIABLE__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.VARIABLE__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.VARIABLE__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.VARIABLE__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.VARIABLE__INIT_EXPRESSION:
-				return basicSetInitExpression(null, msgs);
+			case PivotPackage.VARIABLE__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.VARIABLE__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.VARIABLE__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.VARIABLE__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.VARIABLE__OWNED_INIT:
+				return basicSetOwnedInit(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -385,14 +384,14 @@ public class VariableImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case PivotPackage.VARIABLE__COMMENT:
-				return getComment();
-			case PivotPackage.VARIABLE__EXTENSION:
-				return getExtension();
-			case PivotPackage.VARIABLE__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.VARIABLE__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.VARIABLE__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.VARIABLE__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.VARIABLE__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.VARIABLE__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.VARIABLE__NAME:
 				return getName();
 			case PivotPackage.VARIABLE__IS_MANY:
@@ -404,10 +403,10 @@ public class VariableImpl
 				return basicGetType();
 			case PivotPackage.VARIABLE__TYPE_VALUE:
 				return getTypeValue();
-			case PivotPackage.VARIABLE__IMPLICIT:
+			case PivotPackage.VARIABLE__IS_IMPLICIT:
 				return isImplicit();
-			case PivotPackage.VARIABLE__INIT_EXPRESSION:
-				return getInitExpression();
+			case PivotPackage.VARIABLE__OWNED_INIT:
+				return getOwnedInit();
 			case PivotPackage.VARIABLE__REPRESENTED_PARAMETER:
 				if (resolve) return getRepresentedParameter();
 				return basicGetRepresentedParameter();
@@ -425,21 +424,21 @@ public class VariableImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case PivotPackage.VARIABLE__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.VARIABLE__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.VARIABLE__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.VARIABLE__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.VARIABLE__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.VARIABLE__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.VARIABLE__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.VARIABLE__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.VARIABLE__NAME:
 				setName((String)newValue);
@@ -453,11 +452,11 @@ public class VariableImpl
 			case PivotPackage.VARIABLE__TYPE_VALUE:
 				setTypeValue((Type)newValue);
 				return;
-			case PivotPackage.VARIABLE__IMPLICIT:
-				setImplicit((Boolean)newValue);
+			case PivotPackage.VARIABLE__IS_IMPLICIT:
+				setIsImplicit((Boolean)newValue);
 				return;
-			case PivotPackage.VARIABLE__INIT_EXPRESSION:
-				setInitExpression((OCLExpression)newValue);
+			case PivotPackage.VARIABLE__OWNED_INIT:
+				setOwnedInit((OCLExpression)newValue);
 				return;
 			case PivotPackage.VARIABLE__REPRESENTED_PARAMETER:
 				setRepresentedParameter((Parameter)newValue);
@@ -475,17 +474,17 @@ public class VariableImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.VARIABLE__COMMENT:
-				getComment().clear();
+			case PivotPackage.VARIABLE__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.VARIABLE__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.VARIABLE__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.VARIABLE__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.VARIABLE__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.VARIABLE__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.VARIABLE__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.VARIABLE__NAME:
 				setName(NAME_EDEFAULT);
@@ -499,11 +498,11 @@ public class VariableImpl
 			case PivotPackage.VARIABLE__TYPE_VALUE:
 				setTypeValue((Type)null);
 				return;
-			case PivotPackage.VARIABLE__IMPLICIT:
-				setImplicit(IMPLICIT_EDEFAULT);
+			case PivotPackage.VARIABLE__IS_IMPLICIT:
+				setIsImplicit(IS_IMPLICIT_EDEFAULT);
 				return;
-			case PivotPackage.VARIABLE__INIT_EXPRESSION:
-				setInitExpression((OCLExpression)null);
+			case PivotPackage.VARIABLE__OWNED_INIT:
+				setOwnedInit((OCLExpression)null);
 				return;
 			case PivotPackage.VARIABLE__REPRESENTED_PARAMETER:
 				setRepresentedParameter((Parameter)null);
@@ -521,14 +520,14 @@ public class VariableImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.VARIABLE__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.VARIABLE__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.VARIABLE__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.VARIABLE__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.VARIABLE__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.VARIABLE__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.VARIABLE__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.VARIABLE__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.VARIABLE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.VARIABLE__IS_MANY:
@@ -539,10 +538,10 @@ public class VariableImpl
 				return type != null;
 			case PivotPackage.VARIABLE__TYPE_VALUE:
 				return typeValue != null;
-			case PivotPackage.VARIABLE__IMPLICIT:
-				return ((eFlags & IMPLICIT_EFLAG) != 0) != IMPLICIT_EDEFAULT;
-			case PivotPackage.VARIABLE__INIT_EXPRESSION:
-				return initExpression != null;
+			case PivotPackage.VARIABLE__IS_IMPLICIT:
+				return ((eFlags & IS_IMPLICIT_EFLAG) != 0) != IS_IMPLICIT_EDEFAULT;
+			case PivotPackage.VARIABLE__OWNED_INIT:
+				return ownedInit != null;
 			case PivotPackage.VARIABLE__REPRESENTED_PARAMETER:
 				return representedParameter != null;
 		}

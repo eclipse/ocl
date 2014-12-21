@@ -37,7 +37,7 @@ public class EnumerationOwnedLiteralProperty extends AbstractProperty
 		IdResolver idResolver = evaluator.getIdResolver();
 		Type sourceType = asType(sourceValue);
 		Set<Object> results = new OrderedSetImpl<Object>();
-		for (Element instance : ((Enumeration)sourceType).getOwnedLiteral()) {
+		for (Element instance : ((Enumeration)sourceType).getOwnedLiterals()) {
 			if (instance != null) {
 				results.add(idResolver.boxedValueOf(instance));
 			}

@@ -32,13 +32,12 @@ import org.eclipse.ocl.pivot.ids.PropertyId;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.Property#getAssociationClass <em>Association Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Property#getDefaultExpression <em>Default Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Property#getDefaultValue <em>Default Value</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Property#getDefaultValueString <em>Default Value String</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Property#isImplicit <em>Implicit</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Property#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Property#isDerived <em>Is Derived</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Property#isID <em>Is ID</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Property#isImplicit <em>Is Implicit</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Property#isReadOnly <em>Is Read Only</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Property#isResolveProxies <em>Is Resolve Proxies</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Property#isTransient <em>Is Transient</em>}</li>
@@ -46,8 +45,9 @@ import org.eclipse.ocl.pivot.ids.PropertyId;
  *   <li>{@link org.eclipse.ocl.pivot.Property#isVolatile <em>Is Volatile</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Property#getKeys <em>Keys</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Property#getOpposite <em>Opposite</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Property#getOwnedExpression <em>Owned Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Property#getOwningClass <em>Owning Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Property#getRedefinedProperty <em>Redefined Property</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Property#getRedefinedProperties <em>Redefined Properties</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Property#getReferredProperty <em>Referred Property</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Property#getSubsettedProperty <em>Subsetted Property</em>}</li>
  * </ul>
@@ -185,7 +185,32 @@ public interface Property extends Feature {
 	void setOpposite(Property value);
 
 	/**
-	 * Returns the value of the '<em><b>Implicit</b></em>' attribute.
+	 * Returns the value of the '<em><b>Owned Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Expression</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Expression</em>' containment reference.
+	 * @see #setOwnedExpression(LanguageExpression)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_OwnedExpression()
+	 * @generated
+	 */
+	LanguageExpression getOwnedExpression();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Property#getOwnedExpression <em>Owned Expression</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Expression</em>' containment reference.
+	 * @see #getOwnedExpression()
+	 * @generated
+	 */
+	void setOwnedExpression(LanguageExpression value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Implicit</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -193,47 +218,22 @@ public interface Property extends Feature {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Implicit</em>' attribute.
-	 * @see #setImplicit(boolean)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_Implicit()
+	 * @return the value of the '<em>Is Implicit</em>' attribute.
+	 * @see #setIsImplicit(boolean)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_IsImplicit()
 	 * @generated
 	 */
 	boolean isImplicit();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Property#isImplicit <em>Implicit</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Property#isImplicit <em>Is Implicit</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Implicit</em>' attribute.
+	 * @param value the new value of the '<em>Is Implicit</em>' attribute.
 	 * @see #isImplicit()
 	 * @generated
 	 */
-	void setImplicit(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Default Expression</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Default Expression</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Default Expression</em>' containment reference.
-	 * @see #setDefaultExpression(LanguageExpression)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_DefaultExpression()
-	 * @generated
-	 */
-	LanguageExpression getDefaultExpression();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Property#getDefaultExpression <em>Default Expression</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Default Expression</em>' containment reference.
-	 * @see #getDefaultExpression()
-	 * @generated
-	 */
-	void setDefaultExpression(LanguageExpression value);
+	void setIsImplicit(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Default Value</b></em>' attribute.
@@ -429,21 +429,6 @@ public interface Property extends Feature {
 	void setIsVolatile(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Redefined Property</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.pivot.Property}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Redefined Property</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Redefined Property</em>' reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_RedefinedProperty()
-	 * @generated
-	 */
-	List<Property> getRedefinedProperty();
-
-	/**
 	 * Returns the value of the '<em><b>Subsetted Property</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.Property}.
 	 * <!-- begin-user-doc -->
@@ -523,6 +508,21 @@ public interface Property extends Feature {
 	 * @generated
 	 */
 	void setOwningClass(org.eclipse.ocl.pivot.Class value);
+
+	/**
+	 * Returns the value of the '<em><b>Redefined Properties</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.pivot.Property}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Redefined Properties</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Redefined Properties</em>' reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_RedefinedProperties()
+	 * @generated
+	 */
+	List<Property> getRedefinedProperties();
 
 	@NonNull PropertyId getPropertyId();
 

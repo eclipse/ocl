@@ -99,7 +99,7 @@ public class PrettyPrintVisitor extends AbstractExtendingVisitor<Object,PrettyPr
 			return super.visitExpressionInOCL(object);
 		}
 		else {
-			context.appendElement(object.getBodyExpression());
+			context.appendElement(object.getOwnedBody());
 			return null;
 		}
 	}
@@ -156,14 +156,14 @@ public class PrettyPrintVisitor extends AbstractExtendingVisitor<Object,PrettyPr
 			String prefix = ""; //$NON-NLS-1$
 			if (object instanceof Iteration) {
 				Iteration iteration = (Iteration)object;
-				for (Parameter parameter : iteration.getOwnedIterator()) {
+				for (Parameter parameter : iteration.getOwnedIterators()) {
 					context.append(prefix);
 					context.appendTypedMultiplicity(parameter);
 					prefix = ",";
 				}
-				if (iteration.getOwnedAccumulator().size() > 0) {
+				if (iteration.getOwnedAccumulators().size() > 0) {
 					prefix = ";";
-					for (Parameter parameter : iteration.getOwnedAccumulator()) {
+					for (Parameter parameter : iteration.getOwnedAccumulators()) {
 						context.append(prefix);
 						context.appendTypedMultiplicity(parameter);
 						prefix = ",";
@@ -171,7 +171,7 @@ public class PrettyPrintVisitor extends AbstractExtendingVisitor<Object,PrettyPr
 				}
 				prefix = "|";
 			}
-			for (Parameter parameter : object.getOwnedParameter()) {
+			for (Parameter parameter : object.getOwnedParameters()) {
 				context.append(prefix);
 				context.appendTypedMultiplicity(parameter);
 				prefix = ",";

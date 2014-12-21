@@ -36,8 +36,8 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.impl.TriggerImpl#getState <em>State</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.TriggerImpl#getTransition <em>Transition</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.TriggerImpl#getOwningState <em>Owning State</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.TriggerImpl#getOwningTransition <em>Owning Transition</em>}</li>
  * </ul>
  * </p>
  *
@@ -72,9 +72,9 @@ public class TriggerImpl extends NamedElementImpl implements Trigger
 	 * @generated
 	 */
 	@Override
-	public State getState()
+	public State getOwningState()
 	{
-		if (eContainerFeatureID() != PivotPackage.TRIGGER__STATE) return null;
+		if (eContainerFeatureID() != PivotPackage.TRIGGER__OWNING_STATE) return null;
 		return (State)eInternalContainer();
 	}
 
@@ -83,9 +83,9 @@ public class TriggerImpl extends NamedElementImpl implements Trigger
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetState(State newState, NotificationChain msgs)
+	public NotificationChain basicSetOwningState(State newOwningState, NotificationChain msgs)
 	{
-		msgs = eBasicSetContainer((InternalEObject)newState, PivotPackage.TRIGGER__STATE, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newOwningState, PivotPackage.TRIGGER__OWNING_STATE, msgs);
 		return msgs;
 	}
 
@@ -95,22 +95,22 @@ public class TriggerImpl extends NamedElementImpl implements Trigger
 	 * @generated
 	 */
 	@Override
-	public void setState(State newState)
+	public void setOwningState(State newOwningState)
 	{
-		if (newState != eInternalContainer() || (eContainerFeatureID() != PivotPackage.TRIGGER__STATE && newState != null))
+		if (newOwningState != eInternalContainer() || (eContainerFeatureID() != PivotPackage.TRIGGER__OWNING_STATE && newOwningState != null))
 		{
-			if (EcoreUtil.isAncestor(this, newState))
+			if (EcoreUtil.isAncestor(this, newOwningState))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newState != null)
-				msgs = ((InternalEObject)newState).eInverseAdd(this, PivotPackage.STATE__DEFERRABLE_TRIGGER, State.class, msgs);
-			msgs = basicSetState(newState, msgs);
+			if (newOwningState != null)
+				msgs = ((InternalEObject)newOwningState).eInverseAdd(this, PivotPackage.STATE__OWNED_DEFERRABLE_TRIGGERS, State.class, msgs);
+			msgs = basicSetOwningState(newOwningState, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TRIGGER__STATE, newState, newState));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TRIGGER__OWNING_STATE, newOwningState, newOwningState));
 	}
 
 	/**
@@ -119,9 +119,9 @@ public class TriggerImpl extends NamedElementImpl implements Trigger
 	 * @generated
 	 */
 	@Override
-	public Transition getTransition()
+	public Transition getOwningTransition()
 	{
-		if (eContainerFeatureID() != PivotPackage.TRIGGER__TRANSITION) return null;
+		if (eContainerFeatureID() != PivotPackage.TRIGGER__OWNING_TRANSITION) return null;
 		return (Transition)eInternalContainer();
 	}
 
@@ -130,9 +130,9 @@ public class TriggerImpl extends NamedElementImpl implements Trigger
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTransition(Transition newTransition, NotificationChain msgs)
+	public NotificationChain basicSetOwningTransition(Transition newOwningTransition, NotificationChain msgs)
 	{
-		msgs = eBasicSetContainer((InternalEObject)newTransition, PivotPackage.TRIGGER__TRANSITION, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newOwningTransition, PivotPackage.TRIGGER__OWNING_TRANSITION, msgs);
 		return msgs;
 	}
 
@@ -142,22 +142,22 @@ public class TriggerImpl extends NamedElementImpl implements Trigger
 	 * @generated
 	 */
 	@Override
-	public void setTransition(Transition newTransition)
+	public void setOwningTransition(Transition newOwningTransition)
 	{
-		if (newTransition != eInternalContainer() || (eContainerFeatureID() != PivotPackage.TRIGGER__TRANSITION && newTransition != null))
+		if (newOwningTransition != eInternalContainer() || (eContainerFeatureID() != PivotPackage.TRIGGER__OWNING_TRANSITION && newOwningTransition != null))
 		{
-			if (EcoreUtil.isAncestor(this, newTransition))
+			if (EcoreUtil.isAncestor(this, newOwningTransition))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newTransition != null)
-				msgs = ((InternalEObject)newTransition).eInverseAdd(this, PivotPackage.TRANSITION__TRIGGER, Transition.class, msgs);
-			msgs = basicSetTransition(newTransition, msgs);
+			if (newOwningTransition != null)
+				msgs = ((InternalEObject)newOwningTransition).eInverseAdd(this, PivotPackage.TRANSITION__OWNED_TRIGGERS, Transition.class, msgs);
+			msgs = basicSetOwningTransition(newOwningTransition, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TRIGGER__TRANSITION, newTransition, newTransition));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TRIGGER__OWNING_TRANSITION, newOwningTransition, newOwningTransition));
 	}
 
 	/**
@@ -171,20 +171,20 @@ public class TriggerImpl extends NamedElementImpl implements Trigger
 	{
 		switch (featureID)
 		{
-			case PivotPackage.TRIGGER__COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.TRIGGER__EXTENSION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
-			case PivotPackage.TRIGGER__OWNED_COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.TRIGGER__STATE:
+			case PivotPackage.TRIGGER__ANNOTATING_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAnnotatingComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.TRIGGER__OWNED_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.TRIGGER__OWNED_EXTENSIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedExtensions()).basicAdd(otherEnd, msgs);
+			case PivotPackage.TRIGGER__OWNING_STATE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetState((State)otherEnd, msgs);
-			case PivotPackage.TRIGGER__TRANSITION:
+				return basicSetOwningState((State)otherEnd, msgs);
+			case PivotPackage.TRIGGER__OWNING_TRANSITION:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetTransition((Transition)otherEnd, msgs);
+				return basicSetOwningTransition((Transition)otherEnd, msgs);
 		}
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -199,18 +199,18 @@ public class TriggerImpl extends NamedElementImpl implements Trigger
 	{
 		switch (featureID)
 		{
-			case PivotPackage.TRIGGER__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.TRIGGER__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.TRIGGER__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.TRIGGER__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.TRIGGER__STATE:
-				return basicSetState(null, msgs);
-			case PivotPackage.TRIGGER__TRANSITION:
-				return basicSetTransition(null, msgs);
+			case PivotPackage.TRIGGER__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.TRIGGER__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.TRIGGER__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.TRIGGER__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.TRIGGER__OWNING_STATE:
+				return basicSetOwningState(null, msgs);
+			case PivotPackage.TRIGGER__OWNING_TRANSITION:
+				return basicSetOwningTransition(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -225,10 +225,10 @@ public class TriggerImpl extends NamedElementImpl implements Trigger
 	{
 		switch (eContainerFeatureID())
 		{
-			case PivotPackage.TRIGGER__STATE:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.STATE__DEFERRABLE_TRIGGER, State.class, msgs);
-			case PivotPackage.TRIGGER__TRANSITION:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.TRANSITION__TRIGGER, Transition.class, msgs);
+			case PivotPackage.TRIGGER__OWNING_STATE:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.STATE__OWNED_DEFERRABLE_TRIGGERS, State.class, msgs);
+			case PivotPackage.TRIGGER__OWNING_TRANSITION:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.TRANSITION__OWNED_TRIGGERS, Transition.class, msgs);
 		}
 		return eDynamicBasicRemoveFromContainer(msgs);
 	}
@@ -243,20 +243,20 @@ public class TriggerImpl extends NamedElementImpl implements Trigger
 	{
 		switch (featureID)
 		{
-			case PivotPackage.TRIGGER__COMMENT:
-				return getComment();
-			case PivotPackage.TRIGGER__EXTENSION:
-				return getExtension();
-			case PivotPackage.TRIGGER__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.TRIGGER__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.TRIGGER__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.TRIGGER__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.TRIGGER__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.TRIGGER__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.TRIGGER__NAME:
 				return getName();
-			case PivotPackage.TRIGGER__STATE:
-				return getState();
-			case PivotPackage.TRIGGER__TRANSITION:
-				return getTransition();
+			case PivotPackage.TRIGGER__OWNING_STATE:
+				return getOwningState();
+			case PivotPackage.TRIGGER__OWNING_TRANSITION:
+				return getOwningTransition();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -272,30 +272,30 @@ public class TriggerImpl extends NamedElementImpl implements Trigger
 	{
 		switch (featureID)
 		{
-			case PivotPackage.TRIGGER__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.TRIGGER__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.TRIGGER__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.TRIGGER__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.TRIGGER__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.TRIGGER__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.TRIGGER__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.TRIGGER__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.TRIGGER__NAME:
 				setName((String)newValue);
 				return;
-			case PivotPackage.TRIGGER__STATE:
-				setState((State)newValue);
+			case PivotPackage.TRIGGER__OWNING_STATE:
+				setOwningState((State)newValue);
 				return;
-			case PivotPackage.TRIGGER__TRANSITION:
-				setTransition((Transition)newValue);
+			case PivotPackage.TRIGGER__OWNING_TRANSITION:
+				setOwningTransition((Transition)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -311,26 +311,26 @@ public class TriggerImpl extends NamedElementImpl implements Trigger
 	{
 		switch (featureID)
 		{
-			case PivotPackage.TRIGGER__COMMENT:
-				getComment().clear();
+			case PivotPackage.TRIGGER__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.TRIGGER__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.TRIGGER__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.TRIGGER__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.TRIGGER__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.TRIGGER__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.TRIGGER__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.TRIGGER__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case PivotPackage.TRIGGER__STATE:
-				setState((State)null);
+			case PivotPackage.TRIGGER__OWNING_STATE:
+				setOwningState((State)null);
 				return;
-			case PivotPackage.TRIGGER__TRANSITION:
-				setTransition((Transition)null);
+			case PivotPackage.TRIGGER__OWNING_TRANSITION:
+				setOwningTransition((Transition)null);
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -346,20 +346,20 @@ public class TriggerImpl extends NamedElementImpl implements Trigger
 	{
 		switch (featureID)
 		{
-			case PivotPackage.TRIGGER__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.TRIGGER__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.TRIGGER__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.TRIGGER__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.TRIGGER__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.TRIGGER__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.TRIGGER__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.TRIGGER__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.TRIGGER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.TRIGGER__STATE:
-				return getState() != null;
-			case PivotPackage.TRIGGER__TRANSITION:
-				return getTransition() != null;
+			case PivotPackage.TRIGGER__OWNING_STATE:
+				return getOwningState() != null;
+			case PivotPackage.TRIGGER__OWNING_TRANSITION:
+				return getOwningTransition() != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

@@ -33,7 +33,7 @@ public interface Precedence
 
 	/**
 	 * Returns the value of the '<em><b>Associativity</b></em>' attribute.
-	 * The default value is <code>"Left"</code>.
+	 * The default value is <code>"left"</code>.
 	 * The literals are from the enumeration {@link org.eclipse.ocl.pivot.AssociativityKind}.
 	 * <!-- begin-user-doc -->
 	 * <p>

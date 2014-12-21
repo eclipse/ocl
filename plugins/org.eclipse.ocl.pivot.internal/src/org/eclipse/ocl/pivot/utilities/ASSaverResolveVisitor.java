@@ -127,7 +127,7 @@ public class ASSaverResolveVisitor extends AbstractExtendingVisitor<Object, ASSa
 
 	@Override
 	public Object visitTemplateParameter(@NonNull TemplateParameter object) {
-		List<org.eclipse.ocl.pivot.Class> constrainingTypes = object.getConstrainingClass();
+		List<org.eclipse.ocl.pivot.Class> constrainingTypes = object.getConstrainingClasses();
 		for (int i = 0; i < constrainingTypes.size(); i++) {
 			org.eclipse.ocl.pivot.Class referredType = constrainingTypes.get(i);
 			if (referredType != null) {

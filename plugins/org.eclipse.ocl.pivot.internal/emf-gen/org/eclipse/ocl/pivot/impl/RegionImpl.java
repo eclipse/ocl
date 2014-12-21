@@ -43,10 +43,10 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.RegionImpl#getExtendedRegion <em>Extended Region</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.RegionImpl#getState <em>State</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.RegionImpl#getStateMachine <em>State Machine</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.RegionImpl#getSubvertex <em>Subvertex</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.RegionImpl#getTransition <em>Transition</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.RegionImpl#getOwnedSubvertexes <em>Owned Subvertexes</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.RegionImpl#getOwnedTransitions <em>Owned Transitions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.RegionImpl#getOwningState <em>Owning State</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.RegionImpl#getOwningStateMachine <em>Owning State Machine</em>}</li>
  * </ul>
  * </p>
  *
@@ -65,24 +65,24 @@ public class RegionImpl extends NamespaceImpl implements Region
 	protected Region extendedRegion;
 
 	/**
-	 * The cached value of the '{@link #getSubvertex() <em>Subvertex</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedSubvertexes() <em>Owned Subvertexes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSubvertex()
+	 * @see #getOwnedSubvertexes()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Vertex> subvertex;
+	protected EList<Vertex> ownedSubvertexes;
 
 	/**
-	 * The cached value of the '{@link #getTransition() <em>Transition</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedTransitions() <em>Owned Transitions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTransition()
+	 * @see #getOwnedTransitions()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Transition> transition;
+	protected EList<Transition> ownedTransitions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -110,156 +110,32 @@ public class RegionImpl extends NamespaceImpl implements Region
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public List<Vertex> getSubvertex()
-	{
-		if (subvertex == null)
-		{
-			subvertex = new EObjectContainmentWithInverseEList<Vertex>(Vertex.class, this, PivotPackage.REGION__SUBVERTEX, PivotPackage.VERTEX__CONTAINER);
-		}
-		return subvertex;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{
-			case PivotPackage.REGION__COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.REGION__EXTENSION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
-			case PivotPackage.REGION__OWNED_COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.REGION__STATE:
+			case PivotPackage.REGION__ANNOTATING_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAnnotatingComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.REGION__OWNED_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.REGION__OWNED_EXTENSIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedExtensions()).basicAdd(otherEnd, msgs);
+			case PivotPackage.REGION__OWNED_SUBVERTEXES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedSubvertexes()).basicAdd(otherEnd, msgs);
+			case PivotPackage.REGION__OWNED_TRANSITIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedTransitions()).basicAdd(otherEnd, msgs);
+			case PivotPackage.REGION__OWNING_STATE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetState((State)otherEnd, msgs);
-			case PivotPackage.REGION__STATE_MACHINE:
+				return basicSetOwningState((State)otherEnd, msgs);
+			case PivotPackage.REGION__OWNING_STATE_MACHINE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetStateMachine((StateMachine)otherEnd, msgs);
-			case PivotPackage.REGION__SUBVERTEX:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSubvertex()).basicAdd(otherEnd, msgs);
-			case PivotPackage.REGION__TRANSITION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTransition()).basicAdd(otherEnd, msgs);
+				return basicSetOwningStateMachine((StateMachine)otherEnd, msgs);
 		}
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public List<Transition> getTransition()
-	{
-		if (transition == null)
-		{
-			transition = new EObjectContainmentWithInverseEList<Transition>(Transition.class, this, PivotPackage.REGION__TRANSITION, PivotPackage.TRANSITION__CONTAINER);
-		}
-		return transition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public StateMachine getStateMachine()
-	{
-		if (eContainerFeatureID() != PivotPackage.REGION__STATE_MACHINE) return null;
-		return (StateMachine)eInternalContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetStateMachine(StateMachine newStateMachine, NotificationChain msgs)
-	{
-		msgs = eBasicSetContainer((InternalEObject)newStateMachine, PivotPackage.REGION__STATE_MACHINE, msgs);
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setStateMachine(StateMachine newStateMachine)
-	{
-		if (newStateMachine != eInternalContainer() || (eContainerFeatureID() != PivotPackage.REGION__STATE_MACHINE && newStateMachine != null))
-		{
-			if (EcoreUtil.isAncestor(this, newStateMachine))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newStateMachine != null)
-				msgs = ((InternalEObject)newStateMachine).eInverseAdd(this, PivotPackage.STATE_MACHINE__REGION, StateMachine.class, msgs);
-			msgs = basicSetStateMachine(newStateMachine, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.REGION__STATE_MACHINE, newStateMachine, newStateMachine));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public State getState()
-	{
-		if (eContainerFeatureID() != PivotPackage.REGION__STATE) return null;
-		return (State)eInternalContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetState(State newState, NotificationChain msgs)
-	{
-		msgs = eBasicSetContainer((InternalEObject)newState, PivotPackage.REGION__STATE, msgs);
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setState(State newState)
-	{
-		if (newState != eInternalContainer() || (eContainerFeatureID() != PivotPackage.REGION__STATE && newState != null))
-		{
-			if (EcoreUtil.isAncestor(this, newState))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newState != null)
-				msgs = ((InternalEObject)newState).eInverseAdd(this, PivotPackage.STATE__REGION, State.class, msgs);
-			msgs = basicSetState(newState, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.REGION__STATE, newState, newState));
 	}
 
 	/**
@@ -313,28 +189,152 @@ public class RegionImpl extends NamespaceImpl implements Region
 	 * @generated
 	 */
 	@Override
+	public List<Vertex> getOwnedSubvertexes()
+	{
+		if (ownedSubvertexes == null)
+		{
+			ownedSubvertexes = new EObjectContainmentWithInverseEList<Vertex>(Vertex.class, this, PivotPackage.REGION__OWNED_SUBVERTEXES, PivotPackage.VERTEX__OWNING_REGION);
+		}
+		return ownedSubvertexes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public List<Transition> getOwnedTransitions()
+	{
+		if (ownedTransitions == null)
+		{
+			ownedTransitions = new EObjectContainmentWithInverseEList<Transition>(Transition.class, this, PivotPackage.REGION__OWNED_TRANSITIONS, PivotPackage.TRANSITION__OWNING_REGION);
+		}
+		return ownedTransitions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public State getOwningState()
+	{
+		if (eContainerFeatureID() != PivotPackage.REGION__OWNING_STATE) return null;
+		return (State)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwningState(State newOwningState, NotificationChain msgs)
+	{
+		msgs = eBasicSetContainer((InternalEObject)newOwningState, PivotPackage.REGION__OWNING_STATE, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwningState(State newOwningState)
+	{
+		if (newOwningState != eInternalContainer() || (eContainerFeatureID() != PivotPackage.REGION__OWNING_STATE && newOwningState != null))
+		{
+			if (EcoreUtil.isAncestor(this, newOwningState))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwningState != null)
+				msgs = ((InternalEObject)newOwningState).eInverseAdd(this, PivotPackage.STATE__OWNED_REGIONS, State.class, msgs);
+			msgs = basicSetOwningState(newOwningState, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.REGION__OWNING_STATE, newOwningState, newOwningState));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public StateMachine getOwningStateMachine()
+	{
+		if (eContainerFeatureID() != PivotPackage.REGION__OWNING_STATE_MACHINE) return null;
+		return (StateMachine)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwningStateMachine(StateMachine newOwningStateMachine, NotificationChain msgs)
+	{
+		msgs = eBasicSetContainer((InternalEObject)newOwningStateMachine, PivotPackage.REGION__OWNING_STATE_MACHINE, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwningStateMachine(StateMachine newOwningStateMachine)
+	{
+		if (newOwningStateMachine != eInternalContainer() || (eContainerFeatureID() != PivotPackage.REGION__OWNING_STATE_MACHINE && newOwningStateMachine != null))
+		{
+			if (EcoreUtil.isAncestor(this, newOwningStateMachine))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwningStateMachine != null)
+				msgs = ((InternalEObject)newOwningStateMachine).eInverseAdd(this, PivotPackage.STATE_MACHINE__OWNED_REGIONS, StateMachine.class, msgs);
+			msgs = basicSetOwningStateMachine(newOwningStateMachine, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.REGION__OWNING_STATE_MACHINE, newOwningStateMachine, newOwningStateMachine));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{
-			case PivotPackage.REGION__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.REGION__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.REGION__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.REGION__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.REGION__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
-			case PivotPackage.REGION__STATE:
-				return basicSetState(null, msgs);
-			case PivotPackage.REGION__STATE_MACHINE:
-				return basicSetStateMachine(null, msgs);
-			case PivotPackage.REGION__SUBVERTEX:
-				return ((InternalEList<?>)getSubvertex()).basicRemove(otherEnd, msgs);
-			case PivotPackage.REGION__TRANSITION:
-				return ((InternalEList<?>)getTransition()).basicRemove(otherEnd, msgs);
+			case PivotPackage.REGION__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.REGION__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.REGION__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.REGION__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.REGION__OWNED_CONSTRAINTS:
+				return ((InternalEList<?>)getOwnedConstraints()).basicRemove(otherEnd, msgs);
+			case PivotPackage.REGION__OWNED_SUBVERTEXES:
+				return ((InternalEList<?>)getOwnedSubvertexes()).basicRemove(otherEnd, msgs);
+			case PivotPackage.REGION__OWNED_TRANSITIONS:
+				return ((InternalEList<?>)getOwnedTransitions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.REGION__OWNING_STATE:
+				return basicSetOwningState(null, msgs);
+			case PivotPackage.REGION__OWNING_STATE_MACHINE:
+				return basicSetOwningStateMachine(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -349,10 +349,10 @@ public class RegionImpl extends NamespaceImpl implements Region
 	{
 		switch (eContainerFeatureID())
 		{
-			case PivotPackage.REGION__STATE:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.STATE__REGION, State.class, msgs);
-			case PivotPackage.REGION__STATE_MACHINE:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.STATE_MACHINE__REGION, StateMachine.class, msgs);
+			case PivotPackage.REGION__OWNING_STATE:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.STATE__OWNED_REGIONS, State.class, msgs);
+			case PivotPackage.REGION__OWNING_STATE_MACHINE:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.STATE_MACHINE__OWNED_REGIONS, StateMachine.class, msgs);
 		}
 		return eDynamicBasicRemoveFromContainer(msgs);
 	}
@@ -367,29 +367,29 @@ public class RegionImpl extends NamespaceImpl implements Region
 	{
 		switch (featureID)
 		{
-			case PivotPackage.REGION__COMMENT:
-				return getComment();
-			case PivotPackage.REGION__EXTENSION:
-				return getExtension();
-			case PivotPackage.REGION__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.REGION__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.REGION__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.REGION__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.REGION__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.REGION__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.REGION__NAME:
 				return getName();
-			case PivotPackage.REGION__OWNED_RULE:
-				return getOwnedRule();
+			case PivotPackage.REGION__OWNED_CONSTRAINTS:
+				return getOwnedConstraints();
 			case PivotPackage.REGION__EXTENDED_REGION:
 				if (resolve) return getExtendedRegion();
 				return basicGetExtendedRegion();
-			case PivotPackage.REGION__STATE:
-				return getState();
-			case PivotPackage.REGION__STATE_MACHINE:
-				return getStateMachine();
-			case PivotPackage.REGION__SUBVERTEX:
-				return getSubvertex();
-			case PivotPackage.REGION__TRANSITION:
-				return getTransition();
+			case PivotPackage.REGION__OWNED_SUBVERTEXES:
+				return getOwnedSubvertexes();
+			case PivotPackage.REGION__OWNED_TRANSITIONS:
+				return getOwnedTransitions();
+			case PivotPackage.REGION__OWNING_STATE:
+				return getOwningState();
+			case PivotPackage.REGION__OWNING_STATE_MACHINE:
+				return getOwningStateMachine();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -405,45 +405,45 @@ public class RegionImpl extends NamespaceImpl implements Region
 	{
 		switch (featureID)
 		{
-			case PivotPackage.REGION__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.REGION__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.REGION__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.REGION__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.REGION__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.REGION__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.REGION__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.REGION__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.REGION__NAME:
 				setName((String)newValue);
 				return;
-			case PivotPackage.REGION__OWNED_RULE:
-				getOwnedRule().clear();
-				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
+			case PivotPackage.REGION__OWNED_CONSTRAINTS:
+				getOwnedConstraints().clear();
+				getOwnedConstraints().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.REGION__EXTENDED_REGION:
 				setExtendedRegion((Region)newValue);
 				return;
-			case PivotPackage.REGION__STATE:
-				setState((State)newValue);
+			case PivotPackage.REGION__OWNED_SUBVERTEXES:
+				getOwnedSubvertexes().clear();
+				getOwnedSubvertexes().addAll((Collection<? extends Vertex>)newValue);
 				return;
-			case PivotPackage.REGION__STATE_MACHINE:
-				setStateMachine((StateMachine)newValue);
+			case PivotPackage.REGION__OWNED_TRANSITIONS:
+				getOwnedTransitions().clear();
+				getOwnedTransitions().addAll((Collection<? extends Transition>)newValue);
 				return;
-			case PivotPackage.REGION__SUBVERTEX:
-				getSubvertex().clear();
-				getSubvertex().addAll((Collection<? extends Vertex>)newValue);
+			case PivotPackage.REGION__OWNING_STATE:
+				setOwningState((State)newValue);
 				return;
-			case PivotPackage.REGION__TRANSITION:
-				getTransition().clear();
-				getTransition().addAll((Collection<? extends Transition>)newValue);
+			case PivotPackage.REGION__OWNING_STATE_MACHINE:
+				setOwningStateMachine((StateMachine)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -459,38 +459,38 @@ public class RegionImpl extends NamespaceImpl implements Region
 	{
 		switch (featureID)
 		{
-			case PivotPackage.REGION__COMMENT:
-				getComment().clear();
+			case PivotPackage.REGION__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.REGION__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.REGION__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.REGION__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.REGION__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.REGION__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.REGION__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.REGION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case PivotPackage.REGION__OWNED_RULE:
-				getOwnedRule().clear();
+			case PivotPackage.REGION__OWNED_CONSTRAINTS:
+				getOwnedConstraints().clear();
 				return;
 			case PivotPackage.REGION__EXTENDED_REGION:
 				setExtendedRegion((Region)null);
 				return;
-			case PivotPackage.REGION__STATE:
-				setState((State)null);
+			case PivotPackage.REGION__OWNED_SUBVERTEXES:
+				getOwnedSubvertexes().clear();
 				return;
-			case PivotPackage.REGION__STATE_MACHINE:
-				setStateMachine((StateMachine)null);
+			case PivotPackage.REGION__OWNED_TRANSITIONS:
+				getOwnedTransitions().clear();
 				return;
-			case PivotPackage.REGION__SUBVERTEX:
-				getSubvertex().clear();
+			case PivotPackage.REGION__OWNING_STATE:
+				setOwningState((State)null);
 				return;
-			case PivotPackage.REGION__TRANSITION:
-				getTransition().clear();
+			case PivotPackage.REGION__OWNING_STATE_MACHINE:
+				setOwningStateMachine((StateMachine)null);
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -506,28 +506,28 @@ public class RegionImpl extends NamespaceImpl implements Region
 	{
 		switch (featureID)
 		{
-			case PivotPackage.REGION__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.REGION__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.REGION__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.REGION__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.REGION__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.REGION__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.REGION__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.REGION__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.REGION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.REGION__OWNED_RULE:
-				return ownedRule != null && !ownedRule.isEmpty();
+			case PivotPackage.REGION__OWNED_CONSTRAINTS:
+				return ownedConstraints != null && !ownedConstraints.isEmpty();
 			case PivotPackage.REGION__EXTENDED_REGION:
 				return extendedRegion != null;
-			case PivotPackage.REGION__STATE:
-				return getState() != null;
-			case PivotPackage.REGION__STATE_MACHINE:
-				return getStateMachine() != null;
-			case PivotPackage.REGION__SUBVERTEX:
-				return subvertex != null && !subvertex.isEmpty();
-			case PivotPackage.REGION__TRANSITION:
-				return transition != null && !transition.isEmpty();
+			case PivotPackage.REGION__OWNED_SUBVERTEXES:
+				return ownedSubvertexes != null && !ownedSubvertexes.isEmpty();
+			case PivotPackage.REGION__OWNED_TRANSITIONS:
+				return ownedTransitions != null && !ownedTransitions.isEmpty();
+			case PivotPackage.REGION__OWNING_STATE:
+				return getOwningState() != null;
+			case PivotPackage.REGION__OWNING_STATE_MACHINE:
+				return getOwningStateMachine() != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

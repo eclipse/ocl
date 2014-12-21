@@ -872,7 +872,7 @@ public abstract class PivotTestSuite extends PivotTestCase
         
     	ExpressionInOCL constraint = aHelper.createInvariant(expression);
 //		DomainStandardLibrary stdlib = ocl.getEnvironment().getOCLStandardLibrary();
-		if (constraint.getBodyExpression().getType() != metaModelManager.getStandardLibrary().getBooleanType()) {
+		if (constraint.getOwnedBody().getType() != metaModelManager.getStandardLibrary().getBooleanType()) {
 			throw new IllegalArgumentException("constraint is not boolean"); //$NON-NLS-1$
 		}
 		try {
@@ -998,7 +998,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	protected EnumerationLiteral createOwnedLiteral(Enumeration anEnumeration, String name) {
 		EnumerationLiteral eLiteral = PivotFactory.eINSTANCE.createEnumerationLiteral();
 		eLiteral.setName(name);
-		anEnumeration.getOwnedLiteral().add(eLiteral);
+		anEnumeration.getOwnedLiterals().add(eLiteral);
 		return eLiteral;
 	}
 
@@ -1019,7 +1019,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		Parameter eParameter = PivotFactory.eINSTANCE.createParameter();
 		eParameter.setName(name);
 		eParameter.setType(type);
-		eOperation.getOwnedParameter().add(eParameter);
+		eOperation.getOwnedParameters().add(eParameter);
 		return eParameter;
 	}
 
@@ -1648,7 +1648,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 				Constraint eContainerContainer = (Constraint) eContainer.eContainer();
 				validate(eContainerContainer);
 			} else {
-				ocl.validate(expr.getBodyExpression());
+				ocl.validate(expr.getOwnedBody());
 			}
 		} catch (SemanticException e) {
 			fail("Validation failed: " + e.getLocalizedMessage());

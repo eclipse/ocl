@@ -25,7 +25,7 @@ package org.eclipse.ocl.pivot;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.Parameter#isTypeof <em>Is Typeof</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Parameter#getOperation <em>Operation</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Parameter#getOwningOperation <em>Owning Operation</em>}</li>
  * </ul>
  * </p>
  *
@@ -61,29 +61,29 @@ public interface Parameter extends VariableDeclaration {
 	void setIsTypeof(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Operation</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Operation#getOwnedParameter <em>Owned Parameter</em>}'.
+	 * Returns the value of the '<em><b>Owning Operation</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Operation#getOwnedParameters <em>Owned Parameters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The operation that owns the parameter.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Operation</em>' container reference.
-	 * @see #setOperation(Operation)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getParameter_Operation()
-	 * @see org.eclipse.ocl.pivot.Operation#getOwnedParameter
+	 * @return the value of the '<em>Owning Operation</em>' container reference.
+	 * @see #setOwningOperation(Operation)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getParameter_OwningOperation()
+	 * @see org.eclipse.ocl.pivot.Operation#getOwnedParameters
 	 * @generated
 	 */
-	Operation getOperation();
+	Operation getOwningOperation();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Parameter#getOperation <em>Operation</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Parameter#getOwningOperation <em>Owning Operation</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Operation</em>' container reference.
-	 * @see #getOperation()
+	 * @param value the new value of the '<em>Owning Operation</em>' container reference.
+	 * @see #getOwningOperation()
 	 * @generated
 	 */
-	void setOperation(Operation value);
+	void setOwningOperation(Operation value);
 
 } // Parameter

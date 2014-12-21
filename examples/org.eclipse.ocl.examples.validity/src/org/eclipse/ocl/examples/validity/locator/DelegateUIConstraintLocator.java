@@ -264,7 +264,7 @@ public class DelegateUIConstraintLocator extends DelegateConstraintLocator imple
 			throw new IllegalStateException("no Pivot Constraint");
 //			return false;
 		}
-		LanguageExpression specification = asConstraint.getSpecification();
+		LanguageExpression specification = asConstraint.getOwnedSpecification();
 		String expression = specification != null ? PrettyPrinter.print(specification) : "";
 		
 		ValidatableNode parent = resultConstrainingNode.getResultValidatableNode().getParent();

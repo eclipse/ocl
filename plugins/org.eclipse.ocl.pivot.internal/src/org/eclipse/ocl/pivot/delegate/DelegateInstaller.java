@@ -78,10 +78,10 @@ public class DelegateInstaller
 				return name;
 			}
 		}
-		else if (eContainingFeature == PivotPackage.Literals.OPERATION__PRECONDITION) {
+		else if (eContainingFeature == PivotPackage.Literals.OPERATION__OWNED_PRECONDITIONS) {
 			return name != null ? "pre_" + name : "pre";
 		}
-		else if (eContainingFeature == PivotPackage.Literals.OPERATION__POSTCONDITION) {
+		else if (eContainingFeature == PivotPackage.Literals.OPERATION__OWNED_POSTCONDITIONS) {
 			return name != null ? "post_" + name : "post";
 		}
 		else {
@@ -216,7 +216,7 @@ public class DelegateInstaller
 	}
 	
 	public @Nullable EAnnotation createConstraintDelegate(@NonNull EModelElement eModelElement, @NonNull Constraint pivotConstraint, @Nullable URI ecoreURI) {
-		LanguageExpression specification = pivotConstraint.getSpecification();
+		LanguageExpression specification = pivotConstraint.getOwnedSpecification();
 		if (specification == null) {
 			return null;
 		}
@@ -233,7 +233,7 @@ public class DelegateInstaller
 	protected @Nullable String createExpression(@NonNull LanguageExpression specification, @Nullable URI ecoreURI) {
 		String exprString = specification.getBody();
 		if ((exprString == null) && (specification instanceof ExpressionInOCL)) {
-			OCLExpression bodyExpression2 = ((ExpressionInOCL)specification).getBodyExpression();
+			OCLExpression bodyExpression2 = ((ExpressionInOCL)specification).getOwnedBody();
 			if (bodyExpression2 != null) {
 				exprString = createExpression(bodyExpression2, ecoreURI);
 			}

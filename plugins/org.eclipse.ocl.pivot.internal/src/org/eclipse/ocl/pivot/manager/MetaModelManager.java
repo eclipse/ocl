@@ -481,7 +481,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 	public int compareOperationMatches(@NonNull Operation reference, @NonNull TemplateParameterSubstitutions referenceBindings,
 			@NonNull Operation candidate, @NonNull TemplateParameterSubstitutions candidateBindings) {
 		if ((reference instanceof Iteration) && (candidate instanceof Iteration)) {
-			int iteratorCountDelta = ((Iteration)candidate).getOwnedIterator().size() - ((Iteration)reference).getOwnedIterator().size();
+			int iteratorCountDelta = ((Iteration)candidate).getOwnedIterators().size() - ((Iteration)reference).getOwnedIterators().size();
 			if (iteratorCountDelta != 0) {
 				return iteratorCountDelta;
 			}
@@ -500,8 +500,8 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 				}
 			}
 		}
-		List<Parameter> candidateParameters = candidate.getOwnedParameter();
-		List<Parameter> referenceParameters = reference.getOwnedParameter();
+		List<Parameter> candidateParameters = candidate.getOwnedParameters();
+		List<Parameter> referenceParameters = reference.getOwnedParameters();
 		int parameterCountDelta = candidateParameters.size() - referenceParameters.size();
 		if (parameterCountDelta != 0) {
 			return parameterCountDelta;
@@ -594,9 +594,9 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		Type commonType = getCommonType(ClassUtil.nonNullState(asThen.getType()), TemplateParameterSubstitutions.EMPTY,
 			ClassUtil.nonNullState(asElse.getType()), TemplateParameterSubstitutions.EMPTY);
 		IfExp asIf = PivotFactory.eINSTANCE.createIfExp();
-		asIf.setCondition(asCondition);
-		asIf.setThenExpression(asThen);
-		asIf.setElseExpression(asElse);
+		asIf.setOwnedCondition(asCondition);
+		asIf.setOwnedThen(asThen);
+		asIf.setOwnedElse(asElse);
 		asIf.setType(commonType);
 		asIf.setIsRequired(true);
 		return asIf;
@@ -998,7 +998,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 	public @Nullable ExpressionInOCL getDefaultExpression(@NonNull Property property) {
 		ExpressionInOCL defaultExpression = null;
 		for (@SuppressWarnings("null")@NonNull Property domainProperty : getAllProperties(property)) {
-			LanguageExpression anExpression = domainProperty.getDefaultExpression();
+			LanguageExpression anExpression = domainProperty.getOwnedExpression();
 			if (anExpression != null) {
 				if (defaultExpression != null) {
 					throw new IllegalStateException("Multiple derivations for " + property);
@@ -1048,7 +1048,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 	 * Return an ElementExtension for asStereotype reusing any that already exist in asElementExtensions.
 	 */
 	public @NonNull ElementExtension getElementExtension(@NonNull Element asStereotypedElement, @NonNull Stereotype asStereotype) {
-		List<ElementExtension> extensions = asStereotypedElement.getExtension();
+		List<ElementExtension> extensions = asStereotypedElement.getOwnedExtensions();
 		for (ElementExtension asElementExtension : extensions) {
 			if (asElementExtension.getStereotype() == asStereotype) {
 				return asElementExtension;
@@ -1261,8 +1261,8 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 	public @NonNull <T extends org.eclipse.ocl.pivot.Class> T getLibraryType(@NonNull T libraryType, @NonNull List<? extends Type> templateArguments) {
 //		assert !(libraryType instanceof CollectionType);
 		assert libraryType == PivotUtil.getUnspecializedTemplateableElement(libraryType);
-		TemplateSignature templateSignature = libraryType.getOwnedTemplateSignature();
-		List<TemplateParameter> templateParameters = templateSignature != null ? templateSignature.getOwnedTemplateParameters() : EMPTY_TEMPLATE_PARAMETER_LIST;
+		TemplateSignature templateSignature = libraryType.getOwnedSignature();
+		List<TemplateParameter> templateParameters = templateSignature != null ? templateSignature.getOwnedParameters() : EMPTY_TEMPLATE_PARAMETER_LIST;
 		if (templateParameters.isEmpty()) {
 			return libraryType;
 		}
@@ -1474,7 +1474,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 				if (pivotContainerContainer instanceof Operation) {				
 					Operation pivotOperation = (Operation) pivotContainerContainer;
 					String resultName = null;
-					if (pivotOperation.getPostcondition().contains(pivotContainer)) {
+					if (pivotOperation.getOwnedPostconditions().contains(pivotContainer)) {
 						Type resultType = pivotOperation.getType();
 						if ((resultType != null) && !(resultType instanceof VoidType)) {
 							resultName = Environment.RESULT_VARIABLE_NAME;
@@ -1505,7 +1505,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 			if (pivotContainer instanceof Operation) {
 				Operation pivotOperation = (Operation) pivotContainer;
 				String resultName = null;
-				if (pivotOperation.getPostcondition().contains(pivotElement)) {
+				if (pivotOperation.getOwnedPostconditions().contains(pivotElement)) {
 					Type resultType = pivotOperation.getType();
 					if ((resultType != null) && !(resultType instanceof VoidType)) {
 						resultName = Environment.RESULT_VARIABLE_NAME;
@@ -1840,7 +1840,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return getQueryOrThrow(contextElement, specification);
 	}
 	public @NonNull ExpressionInOCL getQueryOrThrow(@NonNull EObject contextElement, @NonNull LanguageExpression specification) throws ParserException {
-		if ((specification instanceof ExpressionInOCL) && ((ExpressionInOCL)specification).getBodyExpression() != null) {
+		if ((specification instanceof ExpressionInOCL) && ((ExpressionInOCL)specification).getOwnedBody() != null) {
 			return (ExpressionInOCL)specification;
 		}
 		String expression = specification.getBody();
@@ -1961,7 +1961,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		// If there is no implicit property with the implicit name, create one
 		//   result a pair of mutual opposites		
 		Property newOpposite = PivotFactory.eINSTANCE.createProperty();
-		newOpposite.setImplicit(true);
+		newOpposite.setIsImplicit(true);
 		newOpposite.setName(name);
 		if (thisProperty.isComposite()) {
 			newOpposite.setType(thisClass);

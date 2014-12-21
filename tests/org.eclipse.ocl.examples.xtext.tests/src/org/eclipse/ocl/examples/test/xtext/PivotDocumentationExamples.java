@@ -201,7 +201,7 @@ public class PivotDocumentationExamples extends XtextTestCase
 					if (name != null) {
 						constraintMap.put(name, expressionInOCL);
 						debugPrintf("%s: %s%n\n", name,
-				        	expressionInOCL.getBodyExpression());
+				        	expressionInOCL.getOwnedBody());
 					}
 				}
 	    	}

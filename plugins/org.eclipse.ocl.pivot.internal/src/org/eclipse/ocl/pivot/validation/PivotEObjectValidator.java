@@ -143,7 +143,7 @@ public class PivotEObjectValidator implements EValidator
 		 * Returns null for no problem or a warning/error severity diagnostic for a problem.
 		 */
 		public @Nullable Diagnostic validate(final @NonNull Constraint constraint, final @Nullable Object object, final @Nullable Map<Object, Object> context) {
-			LanguageExpression specification = constraint.getSpecification();
+			LanguageExpression specification = constraint.getOwnedSpecification();
 			if (specification == null) {
 				return null;
 			}
@@ -160,7 +160,7 @@ public class PivotEObjectValidator implements EValidator
 				String message = e.getLocalizedMessage();
 				return new BasicDiagnostic(Diagnostic.ERROR, EObjectValidator.DIAGNOSTIC_SOURCE, 0, message, new Object [] { object });
 			}
-			Variable contextVariable = query.getContextVariable();
+			Variable contextVariable = query.getOwnedContext();
 			if (contextVariable == null) {
 				return null;
 			}

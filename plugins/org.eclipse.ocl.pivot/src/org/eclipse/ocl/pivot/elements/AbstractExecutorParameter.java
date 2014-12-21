@@ -45,12 +45,12 @@ public final class AbstractExecutorParameter extends AbstractExecutorTypedElemen
 	}
 
 	@Override
-	public Operation getOperation() {
+	public Operation getOwningOperation() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void setOperation(Operation value) {
+	public void setOwningOperation(Operation value) {
 		throw new UnsupportedOperationException();
 	}
 }

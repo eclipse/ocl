@@ -12,8 +12,6 @@ package org.eclipse.ocl.pivot;
 
 import java.util.List;
 
-import org.eclipse.jdt.annotation.NonNull;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Stereotype</b></em>'.
@@ -22,7 +20,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.Stereotype#getExtensionOfs <em>Extension Ofs</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Stereotype#getOwnedExtensionOfs <em>Owned Extension Ofs</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,19 +31,19 @@ public interface Stereotype extends org.eclipse.ocl.pivot.Class
 {
 
 	/**
-	 * Returns the value of the '<em><b>Extension Ofs</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Extension Ofs</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.TypeExtension}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.TypeExtension#getStereotype <em>Stereotype</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.TypeExtension#getOwningStereotype <em>Owning Stereotype</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Extension Ofs</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Owned Extension Ofs</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Extension Ofs</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getStereotype_ExtensionOfs()
-	 * @see org.eclipse.ocl.pivot.TypeExtension#getStereotype
+	 * @return the value of the '<em>Owned Extension Ofs</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getStereotype_OwnedExtensionOfs()
+	 * @see org.eclipse.ocl.pivot.TypeExtension#getOwningStereotype
 	 * @generated
 	 */
-	@NonNull List<TypeExtension> getExtensionOfs();
+	List<TypeExtension> getOwnedExtensionOfs();
 } // Stereotype

@@ -48,7 +48,7 @@ public class PackageAttribution extends AbstractAttribution
 		org.eclipse.ocl.pivot.Package primaryPackage = metaModelManager.getPrimaryElement(targetPackage);
 		if (allPackages.add(primaryPackage)) {
 			for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Package partialPackage : metaModelManager.getPartialPackages(primaryPackage, false)) {
-				for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Package importedPackage : partialPackage.getImportedPackage()) {
+				for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Package importedPackage : partialPackage.getImportedPackages()) {
 					gatherAllPackages(metaModelManager, allPackages, importedPackage);
 				}
 			}

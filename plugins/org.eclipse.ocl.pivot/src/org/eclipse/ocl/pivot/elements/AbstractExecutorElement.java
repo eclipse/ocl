@@ -144,7 +144,7 @@ public class AbstractExecutorElement implements Element
 	}
 
 	@Override
-	public List<Comment> getComment() {
+	public List<Comment> getAnnotatingComments() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -155,19 +155,19 @@ public class AbstractExecutorElement implements Element
 
 	@Override
 	@NonNull
-	public List<ElementExtension> getExtension() {
+	public List<ElementExtension> getOwnedExtensions() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	@NonNull
-	public List<Element> getOwnedAnnotation() {
+	public List<Element> getOwnedAnnotations() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	@NonNull
-	public List<Comment> getOwnedComment() {
+	public List<Comment> getOwnedComments() {
 		throw new UnsupportedOperationException();
 	}
 

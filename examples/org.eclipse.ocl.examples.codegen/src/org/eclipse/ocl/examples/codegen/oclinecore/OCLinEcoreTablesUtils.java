@@ -421,7 +421,7 @@ public class OCLinEcoreTablesUtils
 
 		@Override
 		public @Nullable Object visitTemplateParameter(@NonNull TemplateParameter type) {
-			TemplateableElement template = type.getOwningTemplateSignature().getOwningTemplateableElement();
+			TemplateableElement template = type.getOwningSignature().getOwningElement();
 			if (template instanceof org.eclipse.ocl.pivot.Class) {
 				org.eclipse.ocl.pivot.Class containerType = (org.eclipse.ocl.pivot.Class) template;
 				assert containerType != null;
@@ -499,7 +499,7 @@ public class OCLinEcoreTablesUtils
 
 		@Override
 		public @Nullable Object visitEnumerationLiteral(@NonNull EnumerationLiteral enumerationLiteral) {
-			Enumeration enumeration = ClassUtil.nonNullModel(enumerationLiteral.getEnumeration());
+			Enumeration enumeration = ClassUtil.nonNullModel(enumerationLiteral.getOwningEnumeration());
 //			s.appendClassReference(getQualifiedTablesClassName(enumeration));
 			s.append("EnumerationLiterals.");
 			s.appendScopedTypeName(enumeration);
@@ -575,7 +575,7 @@ public class OCLinEcoreTablesUtils
 
 		@Override
 		public @Nullable Object visitEnumerationLiteral(@NonNull EnumerationLiteral enumerationLiteral) {
-			Enumeration enumeration = ClassUtil.nonNullModel(enumerationLiteral.getEnumeration());
+			Enumeration enumeration = ClassUtil.nonNullModel(enumerationLiteral.getOwningEnumeration());
 			s.appendClassReference(getQualifiedTablesClassName(enumeration));
 			s.append(".EnumerationLiterals.");
 			s.appendScopedTypeName(enumeration);
@@ -1023,7 +1023,7 @@ public class OCLinEcoreTablesUtils
 	private void getTemplateBindingsName(@NonNull StringBuilder s, @NonNull Type element) {
 		TemplateParameter templateParameter = element.isTemplateParameter();
 		if (templateParameter != null) {
-			TemplateableElement template = templateParameter.getOwningTemplateSignature().getOwningTemplateableElement();
+			TemplateableElement template = templateParameter.getOwningSignature().getOwningElement();
 			if (template instanceof Operation) {
 				s.append(AbstractGenModelHelper.encodeName(ClassUtil.nonNullModel(((Operation) template).getOwningClass())));
 				s.append("_");
@@ -1033,11 +1033,11 @@ public class OCLinEcoreTablesUtils
 		}
 		s.append(AbstractGenModelHelper.encodeName(element));
 		if (element instanceof TemplateableElement) {
-			List<TemplateBinding> templateBindings = ((TemplateableElement)element).getOwnedTemplateBindings();
+			List<TemplateBinding> templateBindings = ((TemplateableElement)element).getOwnedBindings();
 			if (templateBindings.size() > 0) {
 				s.append("_");
 				for (TemplateBinding templateBinding : templateBindings) {
-					for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedTemplateParameterSubstitutions()) {
+					for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedSubstitutions()) {
 						s.append("_");
 						getTemplateBindingsName(s, ClassUtil.nonNullModel(templateParameterSubstitution.getActual()));
 					}

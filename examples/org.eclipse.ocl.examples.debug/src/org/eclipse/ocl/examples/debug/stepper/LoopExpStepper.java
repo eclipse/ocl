@@ -32,7 +32,7 @@ public class LoopExpStepper extends CallExpStepper
 		if (parentElement instanceof LoopExp) {
 			LoopExp loopExp = (LoopExp)parentElement;
 			vmEvaluationVisitor.postIterate(loopExp);
-			OCLExpression body = loopExp.getBody();
+			OCLExpression body = loopExp.getOwnedBody();
 			if (body != null) {
 				return getFirstElement(vmEvaluationVisitor, body);
 			}

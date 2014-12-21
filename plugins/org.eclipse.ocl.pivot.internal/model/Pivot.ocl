@@ -49,20 +49,20 @@ let container : ocl::OclElement = oclContainer() in container.oclIsKindOf(Class)
 
 --inv CompatibleInitialiser: isDerived implies defaultExpression <> null
 
-inv CompatibleDefaultExpression: defaultExpression <> null and defaultExpression.oclAsType(ExpressionInOCL).bodyExpression <> null implies CompatibleBody(defaultExpression)
+inv CompatibleDefaultExpression: ownedExpression <> null and ownedExpression.oclAsType(ExpressionInOCL).ownedBody <> null implies CompatibleBody(ownedExpression)
 
 context Operation
-inv CompatibleReturn: bodyExpression <> null and bodyExpression.oclAsType(ExpressionInOCL).bodyExpression <> null implies CompatibleBody(bodyExpression)
+inv CompatibleReturn: bodyExpression <> null and bodyExpression.oclAsType(ExpressionInOCL).ownedBody <> null implies CompatibleBody(bodyExpression)
 inv LoadableImplementation:
 	true
-inv UniquePreconditionName: precondition->isUnique(name)
-inv UniquePostconditionName: postcondition->isUnique(name)
+inv UniquePreconditionName: ownedPreconditions->isUnique(name)
+inv UniquePostconditionName: ownedPostconditions->isUnique(name)
 
 context Class
 inv UniqueInvariantName: ownedInvariants->isUnique(name)
 
 context Variable
-inv CompatibleInitialiserType: initExpression <> null implies initExpression.type.conformsTo(type)
+inv CompatibleInitialiserType: ownedInit <> null implies ownedInit.type.conformsTo(type)
 
 context IteratorExp
 inv ClosureBodyTypeIsConformanttoIteratorType:
@@ -116,7 +116,7 @@ No additional well-formedness rules. */
 
 context CollectionItem
 /** The type of a CollectionItem is the type of the item expression. */
-inv TypeIsItemType: type = item.type
+inv TypeIsItemType: type = ownedItem.type
 
 --context CollectionRange
 /** The type of a CollectionRange is the common supertype of the expressions taking part in the range. */
@@ -124,11 +124,11 @@ inv TypeIsItemType: type = item.type
 
 context EnumLiteralExp
 /** The type of an enum Literal expression is the type of the referred literal. */
-inv TypeIsEnumerationType: self.type = referredEnumLiteral.enumeration
+inv TypeIsEnumerationType: self.type = referredLiteral.owningEnumeration
 
 context IfExp
 /** The type of the condition of an if expression must be Boolean. */
-inv ConditionTypeIsBoolean: self.condition.type = Boolean
+inv ConditionTypeIsBoolean: self.ownedCondition.type = Boolean
 
 /* The type of the if expression is the most common supertype of the else and then expressions. */
 --context IfExp
@@ -140,25 +140,25 @@ inv TypeIsInteger: self.type = Integer
 
 context IteratorExp
 /** There is exactly one iterator. */
-inv AnyHasOneIterator: name = 'any' implies iterator->size() = 1
+inv AnyHasOneIterator: name = 'any' implies ownedIterators->size() = 1
 
 context IteratorExp
 /** The type is the same as the source element type */
-inv AnyTypeIsSourceElementType: name = 'any' implies type = source.type.oclAsType(CollectionType).elementType
+inv AnyTypeIsSourceElementType: name = 'any' implies type = ownedSource.type.oclAsType(CollectionType).elementType
 
 context IteratorExp
 /** The type of the body must be Boolean. */
-inv AnyBodyTypeIsBoolean: name = 'any' implies _'body'.type = 'Boolean'
+inv AnyBodyTypeIsBoolean: name = 'any' implies ownedBody.type = 'Boolean'
 
 context IteratorExp
 /** There is exactly one iterator. */ 
-inv ClosureHasOneIterator: name = 'closure' implies iterator->size() = 1
+inv ClosureHasOneIterator: name = 'closure' implies ownedIterators->size() = 1
 
 context IteratorExp
 /** The collection type for an OrderedSet or a Sequence source type is OrderedSet.
  * For any other source the collection type is Set. */
 inv ClosureTypeIsUniqueCollection: name = 'closure' implies
-if source.type.oclIsKindOf(SequenceType) or source.type.oclIsKindOf(OrderedSetType) then
+if ownedSource.type.oclIsKindOf(SequenceType) or ownedSource.type.oclIsKindOf(OrderedSetType) then
 type.oclIsKindOf(OrderedSetType)
 else
 type.oclIsKindOf(SetType)
@@ -167,28 +167,28 @@ endif
 context IteratorExp
 /** The source element type is the same as type of the body elements or element. */
 inv ClosureSourceElementTypeIsBodyElementType: name = 'closure' implies
-source.type.oclAsType(CollectionType).elementType =
-if _'body'.type.oclIsKindOf(CollectionType)
-then _'body'.type.oclAsType(CollectionType).elementType
-else _'body'.type
+ownedSource.type.oclAsType(CollectionType).elementType =
+if ownedBody.type.oclIsKindOf(CollectionType)
+then ownedBody.type.oclAsType(CollectionType).elementType
+else ownedBody.type
 endif
 
 context IteratorExp
 /** The element type is the same as the source element type. */
 inv ClosureElementTypeIsSourceElementType: name = 'closure' implies
 type.oclAsType(CollectionType).elementType
-= source.type.oclAsType(CollectionType).elementType
+= ownedSource.type.oclAsType(CollectionType).elementType
 
 context IteratorExp
 /** There is exactly one iterator. */
-inv CollectHasOneIterator: name = 'collect' implies iterator->size() = 1
+inv CollectHasOneIterator: name = 'collect' implies ownedIterators->size() = 1
 
 context IteratorExp
 /* The collection type for an OrderedSet or a Sequence type is a Sequence,
  * the result type for any other collection type is a Bag.
 */
 inv CollectTypeIsUnordered: name = 'collect' implies
-if source.type.oclIsKindOf(SequenceType) or source.type.oclIsKindOf(OrderedSetType) then
+if ownedSource.type.oclIsKindOf(SequenceType) or ownedSource.type.oclIsKindOf(OrderedSetType) then
 type.oclIsKindOf(SequenceType)
 else
 type.oclIsKindOf(BagType)
@@ -197,11 +197,11 @@ endif
 context IteratorExp
 /** The element type is the flattened type of the body elements. */
 inv CollectElementTypeIsFlattenedBodyType: name = 'collect' implies
-type.oclAsType(CollectionType).elementType = _'body'.type.flattenedType()
+type.oclAsType(CollectionType).elementType = ownedBody.type.flattenedType()
 
 context IteratorExp
 /** There is exactly one iterator. */
-inv CollectNestedHasOneIterator: name = 'collectNested' implies iterator->size() = 1
+inv CollectNestedHasOneIterator: name = 'collectNested' implies ownedIterators->size() = 1
 
 context IteratorExp
 /** The type is a Bag. */
@@ -209,7 +209,7 @@ inv CollectNestedTypeIsBag: name = 'collectNested' implies type.oclIsKindOf(BagT
 
 context IteratorExp
 /** The type is the type of source. */
-inv CollectNestedTypeIsBodyType: name = 'collectNested' implies type = _'body'.type
+inv CollectNestedTypeIsBodyType: name = 'collectNested' implies type = ownedBody.type
 
 context IteratorExp
 /** The type must be Boolean. */
@@ -217,7 +217,7 @@ inv ExistsTypeIsBoolean: name = 'exists' implies type = Boolean
 
 context IteratorExp
 /** The type of the body must be Boolean. */
-inv ExistsBodyTypeIsBoolean: name = 'exists' implies _'body'.type = Boolean
+inv ExistsBodyTypeIsBoolean: name = 'exists' implies ownedBody.type = Boolean
 
 context IteratorExp
 /** The type must be Boolean. */
@@ -225,11 +225,11 @@ inv ForAllTypeIsBoolean: name = 'forAll' implies type = Boolean
 
 context IteratorExp
 /** The type of the body must be Boolean. */
-inv ForAllBodyTypeIsBoolean: name = 'forAll' implies _'body'.type = Boolean
+inv ForAllBodyTypeIsBoolean: name = 'forAll' implies ownedBody.type = Boolean
 
 context IteratorExp
 /** There is exactly one iterator. */
-inv IsUniqueHasOneIterator: name = 'isUnique' implies iterator->size() = 1
+inv IsUniqueHasOneIterator: name = 'isUnique' implies ownedIterators->size() = 1
 
 context IteratorExp
 /** The type must be Boolean. */
@@ -237,7 +237,7 @@ inv IsUniqueTypeIsBoolean: name = 'isUnique' implies type = Boolean
 
 context IteratorExp
 /** There is exactly one iterator. */
-inv OneHasOneIterator: name = 'one' implies iterator->size() = 1
+inv OneHasOneIterator: name = 'one' implies ownedIterators->size() = 1
 
 context IteratorExp
 /** The type is Boolean */
@@ -245,15 +245,15 @@ inv OneTypeIsBoolean: name = 'one' implies type = Boolean
 
 context IteratorExp
 /** The type of the body must be Boolean. */
-inv OneBodyTypeIsBoolean: name = 'one' implies _'body'.type = Boolean
+inv OneBodyTypeIsBoolean: name = 'one' implies ownedBody.type = Boolean
 
 context IteratorExp
 /** There is exactly one iterator. */
-inv RejectOrSelectHasOneIterator: name = 'reject' or name = 'select' implies iterator->size() = 1
+inv RejectOrSelectHasOneIterator: name = 'reject' or name = 'select' implies ownedIterators->size() = 1
 
 context IteratorExp
 /** The type is the same as the source. */
-inv RejectOrSelectTypeIsSourceType: name = 'reject' or name = 'select' implies type = source.type
+inv RejectOrSelectTypeIsSourceType: name = 'reject' or name = 'select' implies type = ownedSource.type
 
 context IteratorExp
 /** The type of the body must be Boolean. */
@@ -261,12 +261,12 @@ inv RejectOrSelectTypeIsBoolean: name = 'reject' or name = 'select' implies type
 
 context IteratorExp
 /** There is exactly one iterator. */
-inv SortedByHasOneIterator: name = 'sortedBy' implies iterator->size() = 1
+inv SortedByHasOneIterator: name = 'sortedBy' implies ownedIterators->size() = 1
 
 context IteratorExp
 /** The collection type for an OrderedSet or a Sequence type is a Sequence, the result type for any other collection type is Bag. */
 inv SortedByIsOrderedIfSourceIsOrdered: name = 'sortedBy' implies
-if source.type.oclIsKindOf(SequenceType) or source.type.oclIsKindOf(BagType) then
+if ownedSource.type.oclIsKindOf(SequenceType) or ownedSource.type.oclIsKindOf(BagType) then
 type.oclIsKindOf(SequenceType)
 else
 type.oclIsKindOf(OrderedSetType)
@@ -276,39 +276,39 @@ context IteratorExp
 /** The element type is the type of the body elements. */
 inv SortedByElementTypeIsSourceElementType: name = 'sortedBy' implies
 type.oclAsType(CollectionType).elementType =
-_'body'.type.oclAsType(CollectionType).elementType
+ownedBody.type.oclAsType(CollectionType).elementType
 
 context IterateExp
 /** The type of the iterate is the type of the result variable. */
-inv TypeIsResultType: type = result.type
+inv TypeIsResultType: type = ownedResult.type
 
 context IterateExp
 /** The type of the body expression must conform to the declared type of the result variable. */
-inv BodyTypeConformsToResultType: _'body'.type.conformsTo(result.type)
+inv BodyTypeConformsToResultType: ownedBody.type.conformsTo(ownedResult.type)
 
 context IterateExp
 /** A result variable must have an init expression. */
-inv OneInitializer: self.result.initExpression->size() = 1
+inv OneInitializer: self.ownedResult.ownedInit->size() = 1
 
 /*------------- unescaped in */
 context LetExp
 /** The type of a Let expression is the type of the in expression. */
-inv TypeIsInType: type = _'in'.type
+inv TypeIsInType: type = ownedIn.type
 
 /** LiteralExp
 No additional well-formedness rules. */
 
 context LoopExp
 /** The type of the source expression must be a collection. */
-inv SourceIsCollection: source.type.oclIsKindOf (CollectionType)
+inv SourceIsCollection: ownedSource.type.oclIsKindOf (CollectionType)
 
 context LoopExp
 /** The loop variable of an iterator expression has no init expression. */
-inv NoInitializers: self.iterator->forAll(initExpression->isEmpty())
+inv NoInitializers: self.ownedIterators->forAll(ownedInit->isEmpty())
 
 context IteratorExp
 /** The type of each iterator variable must be the type of the elements of the source collection. */
-inv IteratorTypeIsSourceElementType: self.iterator->forAll(source.type.oclAsType (CollectionType).elementType.conformsTo(type))
+inv IteratorTypeIsSourceElementType: self.ownedIterators->forAll(ownedSource.type.oclAsType (CollectionType).elementType.conformsTo(type))
 
 /** FeatureCallExp
 No additional well-formedness rules. */
@@ -340,21 +340,21 @@ No additional well-formedness rules. */
 
 context MessageExp
 /** An OCL message has either a called operation or a sent signal. */
-inv OneCallOrOneSend: calledOperation->size() + sentSignal->size() = 1
+inv OneCallOrOneSend: ownedCalledOperation->size() + ownedSentSignal->size() = 1
 
 context MessageExp
 /** The target of an OCL message cannot be a collection. */
-inv TargetIsNotACollection: not target.type.oclIsKindOf (CollectionType)
+inv TargetIsNotACollection: not ownedTarget.type.oclIsKindOf (CollectionType)
 
 /*------------- spelling: arguments */
 context OperationCallExp
 /** All the arguments must conform to the parameters of the referred operation. */
 inv ArgumentTypeIsConformant:
 	let operation : Operation = self.referredOperation in
-	let parameters : OrderedSet(Parameter) = operation.ownedParameter in
+	let parameters : OrderedSet(Parameter) = operation.ownedParameters in
 	let selfType : Type = operation.owningClass in
-	Sequence{1..argument->size()}->forAll (i | 
-		let argument : OCLExpression = argument->at(i) in
+	Sequence{1..ownedArguments->size()}->forAll (i | 
+		let argument : OCLExpression = ownedArguments->at(i) in
 		let parameter : Parameter = parameters->at(i) in
 		let parameterType : Type = parameter.type in
 		let requiredType : Type = if parameter.isTypeof then Class else parameterType.specializeIn(self, selfType) endif in
@@ -363,7 +363,7 @@ inv ArgumentTypeIsConformant:
 /*------------- spelling: arguments */
 context OperationCallExp
 /** There must be exactly as many arguments as the referred operation has parameters. */
-inv ArgumentCount: argument->size() = referredOperation.ownedParameter->size()
+inv ArgumentCount: ownedArguments->size() = referredOperation.ownedParameters->size()
 
 --inv StaticSourceIsNull: referredOperation.isStatic implies source = null
 
@@ -382,7 +382,7 @@ def: getSpecializedReferredPropertyOwningType() : Class = referredProperty.ownin
 def: getSpecializedReferredPropertyType() : Class = referredProperty.type.oclAsType(Class) -- extended in Java code
 /** The type of the source conforms to the owning type of the property. */
 inv NonStaticSourceTypeIsConformant: not referredProperty.isStatic implies 
-	source.type.conformsTo(getSpecializedReferredPropertyOwningType())
+	ownedSource.type.conformsTo(getSpecializedReferredPropertyOwningType())
 /** The type of the call expression is the type of the referred property. */
 inv CompatibleResultType: type = getSpecializedReferredPropertyType()
 

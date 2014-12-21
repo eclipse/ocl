@@ -429,8 +429,8 @@ public class ImportTests extends XtextTestCase
 		
 		ASResource resource = doLoadASResourceFromString(new MetaModelManager(), "importer.ocl", testFile);
 		Model root = (Model) resource.getContents().get(0);
-		assertEquals(1, root.getImports().size());
-		assertNotNull(root.getImports().get(0));
+		assertEquals(1, root.getOwnedImports().size());
+		assertNotNull(root.getOwnedImports().get(0));
 
 	}
 }

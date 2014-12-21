@@ -95,7 +95,7 @@ public class AS2EcoreDeclarationVisitor
 			if (aConstraint == null) {
 				return false;
 			}
-			if (aConstraint.getRedefinedConstraint().size() == 0) {
+			if (aConstraint.getRedefinedConstraints().size() == 0) {
 				return false;
 			}
 			return true;
@@ -109,7 +109,7 @@ public class AS2EcoreDeclarationVisitor
 			if (anOperation == null) {
 				return false;
 			}
-			if (anOperation.getRedefinedOperation().size() == 0) {
+			if (anOperation.getRedefinedOperations().size() == 0) {
 				return false;
 			}
 			if ("containingActivity".equals(anOperation.getName()) && "ActivityNode".equals(anOperation.getOwningClass().getName())) {
@@ -127,10 +127,10 @@ public class AS2EcoreDeclarationVisitor
 			if (aProperty == null) {
 				return false;
 			}
-			if (aProperty.getRedefinedProperty().size() == 0) {
+			if (aProperty.getRedefinedProperties().size() == 0) {
 				return false;
 			}
-			return ClassUtil.safeEquals(aProperty.getName(), aProperty.getRedefinedProperty().get(0).getName());
+			return ClassUtil.safeEquals(aProperty.getName(), aProperty.getRedefinedProperties().get(0).getName());
 		}
 	}
 
@@ -141,7 +141,7 @@ public class AS2EcoreDeclarationVisitor
 			if (aConstraint == null) {
 				return false;
 			}
-			if (aConstraint.getRedefinedConstraint().size() == 0) {
+			if (aConstraint.getRedefinedConstraints().size() == 0) {
 				return true;
 			}
 			return false;
@@ -155,7 +155,7 @@ public class AS2EcoreDeclarationVisitor
 			if (anOperation == null) {
 				return false;
 			}
-			if (anOperation.getRedefinedOperation().size() == 0) {
+			if (anOperation.getRedefinedOperations().size() == 0) {
 				return true;
 			}
 			if ("containingActivity".equals(anOperation.getName()) && "ActivityNode".equals(anOperation.getOwningClass().getName())) {
@@ -173,10 +173,10 @@ public class AS2EcoreDeclarationVisitor
 			if (aProperty == null) {
 				return false;
 			}
-			if (aProperty.getRedefinedProperty().size() == 0) {
+			if (aProperty.getRedefinedProperties().size() == 0) {
 				return true;
 			}
-			return !ClassUtil.safeEquals(aProperty.getName(), aProperty.getRedefinedProperty().get(0).getName());
+			return !ClassUtil.safeEquals(aProperty.getName(), aProperty.getRedefinedProperties().get(0).getName());
 //			return (aProperty != null) && (aProperty.getRedefinedProperty().size() == 0);
 		}
 	}
@@ -193,7 +193,7 @@ public class AS2EcoreDeclarationVisitor
 		@SuppressWarnings("null")@NonNull List<ETypeParameter> eTypeParameters = eClassifier.getETypeParameters();
 		copyTemplateSignature(eTypeParameters, pivotType);
 		@SuppressWarnings("null")@NonNull List<EAnnotation> eAnnotations = eClassifier.getEAnnotations();
-		safeVisitAll(eAnnotations, pivotType.getOwnedAnnotation());
+		safeVisitAll(eAnnotations, pivotType.getOwnedAnnotations());
 		if (pivotType.eIsSet(PivotPackage.Literals.CLASS__INSTANCE_CLASS_NAME)) {
 			eClassifier.setInstanceClassName(pivotType.getInstanceClassName());
 		}
@@ -230,10 +230,10 @@ public class AS2EcoreDeclarationVisitor
 	protected void copyDetails(@NonNull EAnnotation eAnnotation, @NonNull Annotation pivotAnnotation) {
 		copyModelElement(eAnnotation, pivotAnnotation);
 		@SuppressWarnings("null")@NonNull List<EAnnotation> eAnnotations = eAnnotation.getEAnnotations();
-		safeVisitAll(eAnnotations, pivotAnnotation.getOwnedAnnotation());
+		safeVisitAll(eAnnotations, pivotAnnotation.getOwnedAnnotations());
 		for (Detail pivotDetail : pivotAnnotation.getOwnedDetails()) {
 			String name = pivotDetail.getName();
-			String value = StringUtil.splice(pivotDetail.getValue(), "");
+			String value = StringUtil.splice(pivotDetail.getValues(), "");
 			eAnnotation.getDetails().put(name, value);
 		}
 	}
@@ -262,9 +262,9 @@ public class AS2EcoreDeclarationVisitor
 	}
 
 	protected void copyTemplateSignature(@NonNull List<ETypeParameter> eTypeParameters, TemplateableElement pivotElement) {
-		TemplateSignature templateSignature = pivotElement.getOwnedTemplateSignature();
+		TemplateSignature templateSignature = pivotElement.getOwnedSignature();
 		if (templateSignature != null) {
-			List<TemplateParameter> parameters = templateSignature.getOwnedTemplateParameters();
+			List<TemplateParameter> parameters = templateSignature.getOwnedParameters();
 			safeVisitAll(eTypeParameters, parameters);
 		}
 	}
@@ -272,7 +272,7 @@ public class AS2EcoreDeclarationVisitor
 	protected void copyTypedElement(@NonNull ETypedElement eTypedElement, @NonNull TypedElement pivotTypedElement) {
 		copyNamedElement(eTypedElement, pivotTypedElement);
 		@SuppressWarnings("null")@NonNull List<EAnnotation> eAnnotations = eTypedElement.getEAnnotations();
-		safeVisitAll(eAnnotations, pivotTypedElement.getOwnedAnnotation());
+		safeVisitAll(eAnnotations, pivotTypedElement.getOwnedAnnotations());
 		context.defer(pivotTypedElement);		// Defer type/multiplicity setting
 	}
 
@@ -388,7 +388,7 @@ public class AS2EcoreDeclarationVisitor
 
 	@Override
 	public EObject visitClass(@NonNull Class pivotClass) {
-		if (pivotClass.getOwnedTemplateBindings().size() > 0) {
+		if (pivotClass.getOwnedBindings().size() > 0) {
 			return null;
 		}
 		@SuppressWarnings("null")
@@ -478,7 +478,7 @@ public class AS2EcoreDeclarationVisitor
 
 	@Override
 	public EObject visitDataType(@NonNull DataType pivotDataType) {
-		if (pivotDataType.getOwnedTemplateBindings().size() > 0) {
+		if (pivotDataType.getOwnedBindings().size() > 0) {
 			return null;
 		}
 		@SuppressWarnings("null")
@@ -489,14 +489,14 @@ public class AS2EcoreDeclarationVisitor
 
 	@Override
 	public EObject visitEnumeration(@NonNull Enumeration pivotEnumeration) {
-		if (pivotEnumeration.getOwnedTemplateBindings().size() > 0) {
+		if (pivotEnumeration.getOwnedBindings().size() > 0) {
 			return null;
 		}
 		@SuppressWarnings("null")
 		@NonNull EEnum eEnum = EcoreFactory.eINSTANCE.createEEnum();
 		copyDataTypeOrEnum(eEnum, pivotEnumeration);
 		@SuppressWarnings("null")@NonNull List<EEnumLiteral> eLiterals = eEnum.getELiterals();
-		safeVisitAll(eLiterals, pivotEnumeration.getOwnedLiteral());
+		safeVisitAll(eLiterals, pivotEnumeration.getOwnedLiterals());
 		return eEnum;
 	}
 
@@ -529,7 +529,7 @@ public class AS2EcoreDeclarationVisitor
 				}
 			}
 		}
-		List<Import> imports = pivotModel.getImports();
+		List<Import> imports = pivotModel.getOwnedImports();
 		if (imports.size() > 0) {
 			if (imports.size() > 0) {
 				imports = new ArrayList<Import>(imports);
@@ -587,7 +587,7 @@ public class AS2EcoreDeclarationVisitor
 
 	@Override
 	public EObject visitOperation(@NonNull Operation pivotOperation) {
-		if (pivotOperation.getOwnedTemplateBindings().size() > 0) {
+		if (pivotOperation.getOwnedBindings().size() > 0) {
 			return null;
 		}
 		@SuppressWarnings("null")
@@ -596,7 +596,7 @@ public class AS2EcoreDeclarationVisitor
 		@SuppressWarnings("null")@NonNull List<ETypeParameter> eTypeParameters = eOperation.getETypeParameters();
 		copyTemplateSignature(eTypeParameters, pivotOperation);
 		@SuppressWarnings("null")@NonNull List<EParameter> eParameters = eOperation.getEParameters();
-		safeVisitAll(eParameters, pivotOperation.getOwnedParameter());
+		safeVisitAll(eParameters, pivotOperation.getOwnedParameters());
 //		safeVisitAll(eOperation.getEGenericExceptions(), pivotOperation.getRaisedException());
 		LanguageExpression bodyExpression = pivotOperation.getBodyExpression();
 		if (bodyExpression != null) {
@@ -605,10 +605,10 @@ public class AS2EcoreDeclarationVisitor
 //				AS2Ecore.copyComments(eBodyConstraint, bodyExpression);
 			}
 		}
-		for (Constraint pivotConstraint : pivotOperation.getPrecondition()) {
+		for (Constraint pivotConstraint : pivotOperation.getOwnedPreconditions()) {
 			safeVisit(pivotConstraint);		// Results are inserted directly
 		}
-		for (Constraint pivotConstraint : pivotOperation.getPostcondition()) {
+		for (Constraint pivotConstraint : pivotOperation.getOwnedPostconditions()) {
 			safeVisit(pivotConstraint);		// Results are inserted directly
 		}
 		return eOperation;
@@ -620,7 +620,7 @@ public class AS2EcoreDeclarationVisitor
 		@NonNull EPackage ePackage = EcoreFactory.eINSTANCE.createEPackage();
 		copyNamedElement(ePackage, pivotPackage);
 		@SuppressWarnings("null")@NonNull List<EAnnotation> eAnnotations = ePackage.getEAnnotations();
-		safeVisitAll(eAnnotations, pivotPackage.getOwnedAnnotation());
+		safeVisitAll(eAnnotations, pivotPackage.getOwnedAnnotations());
 		context.defer(pivotPackage);		// Defer delegate annotation analysis
 		if (pivotPackage.eIsSet(PivotPackage.Literals.PACKAGE__NS_PREFIX)) {
 			ePackage.setNsPrefix(pivotPackage.getNsPrefix());
@@ -726,7 +726,7 @@ public class AS2EcoreDeclarationVisitor
 		else {
 			eStructuralFeature.eUnset(EcorePackage.Literals.ESTRUCTURAL_FEATURE__DEFAULT_VALUE_LITERAL);
 		}
-		LanguageExpression defaultExpression = pivotProperty.getDefaultExpression();
+		LanguageExpression defaultExpression = pivotProperty.getOwnedExpression();
 		if (defaultExpression != null) {
 			delegateInstaller.createPropertyDelegate(eStructuralFeature, defaultExpression, context.getEcoreURI());
 		}
@@ -743,7 +743,7 @@ public class AS2EcoreDeclarationVisitor
 		ETypeParameter eTypeParameter = EcoreFactory.eINSTANCE.createETypeParameter();
 		eTypeParameter.setName(pivotTemplateParameter.getName());
 		context.putCreated(pivotTemplateParameter, eTypeParameter);
-		if (!pivotTemplateParameter.getConstrainingClass().isEmpty()) {
+		if (!pivotTemplateParameter.getConstrainingClasses().isEmpty()) {
 			context.defer(pivotTemplateParameter);
 		}
 		return eTypeParameter;

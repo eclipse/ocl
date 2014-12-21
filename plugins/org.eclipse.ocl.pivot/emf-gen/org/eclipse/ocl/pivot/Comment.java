@@ -24,7 +24,7 @@ import java.util.List;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.Comment#getAnnotatedElement <em>Annotated Element</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Comment#getAnnotatedElements <em>Annotated Elements</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Comment#getBody <em>Body</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Comment#getOwningElement <em>Owning Element</em>}</li>
  * </ul>
@@ -35,6 +35,22 @@ import java.util.List;
  */
 public interface Comment
 		extends Element {
+
+	/**
+	 * Returns the value of the '<em><b>Annotated Elements</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.pivot.Element}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Element#getAnnotatingComments <em>Annotating Comments</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * References the Element(s) being commented.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Annotated Elements</em>' reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getComment_AnnotatedElements()
+	 * @see org.eclipse.ocl.pivot.Element#getAnnotatingComments
+	 * @generated
+	 */
+	List<Element> getAnnotatedElements();
 
 	/**
 	 * Returns the value of the '<em><b>Body</b></em>' attribute.
@@ -62,7 +78,7 @@ public interface Comment
 
 	/**
 	 * Returns the value of the '<em><b>Owning Element</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Element#getOwnedComment <em>Owned Comment</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Element#getOwnedComments <em>Owned Comments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Element</em>' container reference isn't clear,
@@ -72,7 +88,7 @@ public interface Comment
 	 * @return the value of the '<em>Owning Element</em>' container reference.
 	 * @see #setOwningElement(Element)
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getComment_OwningElement()
-	 * @see org.eclipse.ocl.pivot.Element#getOwnedComment
+	 * @see org.eclipse.ocl.pivot.Element#getOwnedComments
 	 * @generated
 	 */
 	Element getOwningElement();
@@ -86,21 +102,5 @@ public interface Comment
 	 * @generated
 	 */
 	void setOwningElement(Element value);
-
-	/**
-	 * Returns the value of the '<em><b>Annotated Element</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.pivot.Element}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Element#getComment <em>Comment</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * References the Element(s) being commented.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Annotated Element</em>' reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getComment_AnnotatedElement()
-	 * @see org.eclipse.ocl.pivot.Element#getComment
-	 * @generated
-	 */
-	List<Element> getAnnotatedElement();
 
 } // Comment

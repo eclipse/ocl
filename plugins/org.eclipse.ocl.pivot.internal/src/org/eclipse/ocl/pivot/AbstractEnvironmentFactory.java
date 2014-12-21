@@ -103,7 +103,7 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactory, 
 			((AbstractEnvironment) result).setContextOperation(operation);
 		}
 		PivotFactory oclFactory = parent.getOCLFactory();		
-        for (Parameter next : operation.getOwnedParameter()) {
+        for (Parameter next : operation.getOwnedParameters()) {
 			// ensure that we use the OCL primitive types wherever possible
 			Variable var = oclFactory.createVariable();
 			var.setName(next.getName());
@@ -138,13 +138,13 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactory, 
 		// variable of the expression, to account for stereotype constraints
 //		context = HelperUtil.getConstraintContext(rootEnvironment, context, expression);
 		EvaluationEnvironment evaluationEnvironment = createEvaluationEnvironment();
-		Variable contextVariable = expression.getContextVariable();
+		Variable contextVariable = expression.getOwnedContext();
 		if (contextVariable != null) {
 			PivotIdResolver idResolver = evaluationEnvironment.getMetaModelManager().getIdResolver();
 			Object value = idResolver.boxedValueOf(context);
 			evaluationEnvironment.add(contextVariable, value);
 		}
-		for (Variable parameterVariable : expression.getParameterVariable()) {
+		for (Variable parameterVariable : expression.getOwnedParameters()) {
 			if (parameterVariable != null) {
 				evaluationEnvironment.add(parameterVariable, null);
 			}

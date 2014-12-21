@@ -98,8 +98,8 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 		EvaluationEnvironment env = query.getEvaluationEnvironment();
 		Object object = target;
 		Object value = idResolver.boxedValueOf(target);
-		env.add(ClassUtil.nonNullModel( query2.getContextVariable()), value);
-		List<Variable> parms =  query2.getParameterVariable();
+		env.add(ClassUtil.nonNullModel( query2.getOwnedContext()), value);
+		List<Variable> parms =  query2.getOwnedParameters();
 		if (!parms.isEmpty()) {
 			// bind arguments to parameter names
 			for (int i = 0; i < parms.size(); i++) {
@@ -132,7 +132,7 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 	}
 
 	public @NonNull ExpressionInOCL getQueryOrThrow(@NonNull MetaModelManager metaModelManager, @NonNull Constraint constraint) {
-		LanguageExpression specification = constraint.getSpecification();
+		LanguageExpression specification = constraint.getOwnedSpecification();
 		if (specification == null) {
 			throw new OCLDelegateException(new SemanticException(OCLMessages.MissingSpecificationBody_ERROR_, constraint.getContext(), PivotConstants.BODY_EXPRESSION_ROLE));
 		}

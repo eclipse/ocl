@@ -39,7 +39,7 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.impl.TupleLiteralPartImpl#getInitExpression <em>Init Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.TupleLiteralPartImpl#getOwnedInit <em>Owned Init</em>}</li>
  * </ul>
  * </p>
  *
@@ -50,14 +50,14 @@ public class TupleLiteralPartImpl
 		implements TupleLiteralPart {
 
 	/**
-	 * The cached value of the '{@link #getInitExpression() <em>Init Expression</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedInit() <em>Owned Init</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getInitExpression()
+	 * @see #getOwnedInit()
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLExpression initExpression;
+	protected OCLExpression ownedInit;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -83,9 +83,9 @@ public class TupleLiteralPartImpl
 	 * @generated
 	 */
 	@Override
-	public OCLExpression getInitExpression()
+	public OCLExpression getOwnedInit()
 	{
-		return initExpression;
+		return ownedInit;
 	}
 
 	/**
@@ -93,13 +93,13 @@ public class TupleLiteralPartImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInitExpression(OCLExpression newInitExpression, NotificationChain msgs)
+	public NotificationChain basicSetOwnedInit(OCLExpression newOwnedInit, NotificationChain msgs)
 	{
-		OCLExpression oldInitExpression = initExpression;
-		initExpression = newInitExpression;
+		OCLExpression oldOwnedInit = ownedInit;
+		ownedInit = newOwnedInit;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.TUPLE_LITERAL_PART__INIT_EXPRESSION, oldInitExpression, newInitExpression);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.TUPLE_LITERAL_PART__OWNED_INIT, oldOwnedInit, newOwnedInit);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -111,20 +111,20 @@ public class TupleLiteralPartImpl
 	 * @generated
 	 */
 	@Override
-	public void setInitExpression(OCLExpression newInitExpression)
+	public void setOwnedInit(OCLExpression newOwnedInit)
 	{
-		if (newInitExpression != initExpression)
+		if (newOwnedInit != ownedInit)
 		{
 			NotificationChain msgs = null;
-			if (initExpression != null)
-				msgs = ((InternalEObject)initExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TUPLE_LITERAL_PART__INIT_EXPRESSION, null, msgs);
-			if (newInitExpression != null)
-				msgs = ((InternalEObject)newInitExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TUPLE_LITERAL_PART__INIT_EXPRESSION, null, msgs);
-			msgs = basicSetInitExpression(newInitExpression, msgs);
+			if (ownedInit != null)
+				msgs = ((InternalEObject)ownedInit).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TUPLE_LITERAL_PART__OWNED_INIT, null, msgs);
+			if (newOwnedInit != null)
+				msgs = ((InternalEObject)newOwnedInit).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TUPLE_LITERAL_PART__OWNED_INIT, null, msgs);
+			msgs = basicSetOwnedInit(newOwnedInit, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TUPLE_LITERAL_PART__INIT_EXPRESSION, newInitExpression, newInitExpression));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TUPLE_LITERAL_PART__OWNED_INIT, newOwnedInit, newOwnedInit));
 	}
 
 	/**
@@ -137,16 +137,16 @@ public class TupleLiteralPartImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case PivotPackage.TUPLE_LITERAL_PART__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.TUPLE_LITERAL_PART__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.TUPLE_LITERAL_PART__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.TUPLE_LITERAL_PART__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.TUPLE_LITERAL_PART__INIT_EXPRESSION:
-				return basicSetInitExpression(null, msgs);
+			case PivotPackage.TUPLE_LITERAL_PART__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_INIT:
+				return basicSetOwnedInit(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -160,14 +160,14 @@ public class TupleLiteralPartImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case PivotPackage.TUPLE_LITERAL_PART__COMMENT:
-				return getComment();
-			case PivotPackage.TUPLE_LITERAL_PART__EXTENSION:
-				return getExtension();
-			case PivotPackage.TUPLE_LITERAL_PART__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.TUPLE_LITERAL_PART__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.TUPLE_LITERAL_PART__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.TUPLE_LITERAL_PART__NAME:
 				return getName();
 			case PivotPackage.TUPLE_LITERAL_PART__IS_MANY:
@@ -179,8 +179,8 @@ public class TupleLiteralPartImpl
 				return basicGetType();
 			case PivotPackage.TUPLE_LITERAL_PART__TYPE_VALUE:
 				return getTypeValue();
-			case PivotPackage.TUPLE_LITERAL_PART__INIT_EXPRESSION:
-				return getInitExpression();
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_INIT:
+				return getOwnedInit();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -195,21 +195,21 @@ public class TupleLiteralPartImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case PivotPackage.TUPLE_LITERAL_PART__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.TUPLE_LITERAL_PART__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.TUPLE_LITERAL_PART__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.TUPLE_LITERAL_PART__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.TUPLE_LITERAL_PART__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.TUPLE_LITERAL_PART__NAME:
 				setName((String)newValue);
@@ -223,8 +223,8 @@ public class TupleLiteralPartImpl
 			case PivotPackage.TUPLE_LITERAL_PART__TYPE_VALUE:
 				setTypeValue((Type)newValue);
 				return;
-			case PivotPackage.TUPLE_LITERAL_PART__INIT_EXPRESSION:
-				setInitExpression((OCLExpression)newValue);
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_INIT:
+				setOwnedInit((OCLExpression)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -239,17 +239,17 @@ public class TupleLiteralPartImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.TUPLE_LITERAL_PART__COMMENT:
-				getComment().clear();
+			case PivotPackage.TUPLE_LITERAL_PART__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.TUPLE_LITERAL_PART__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.TUPLE_LITERAL_PART__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.TUPLE_LITERAL_PART__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.TUPLE_LITERAL_PART__NAME:
 				setName(NAME_EDEFAULT);
@@ -263,8 +263,8 @@ public class TupleLiteralPartImpl
 			case PivotPackage.TUPLE_LITERAL_PART__TYPE_VALUE:
 				setTypeValue((Type)null);
 				return;
-			case PivotPackage.TUPLE_LITERAL_PART__INIT_EXPRESSION:
-				setInitExpression((OCLExpression)null);
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_INIT:
+				setOwnedInit((OCLExpression)null);
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -279,14 +279,14 @@ public class TupleLiteralPartImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.TUPLE_LITERAL_PART__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.TUPLE_LITERAL_PART__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.TUPLE_LITERAL_PART__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.TUPLE_LITERAL_PART__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.TUPLE_LITERAL_PART__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.TUPLE_LITERAL_PART__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.TUPLE_LITERAL_PART__IS_MANY:
@@ -297,8 +297,8 @@ public class TupleLiteralPartImpl
 				return type != null;
 			case PivotPackage.TUPLE_LITERAL_PART__TYPE_VALUE:
 				return typeValue != null;
-			case PivotPackage.TUPLE_LITERAL_PART__INIT_EXPRESSION:
-				return initExpression != null;
+			case PivotPackage.TUPLE_LITERAL_PART__OWNED_INIT:
+				return ownedInit != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

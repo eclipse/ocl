@@ -25,7 +25,7 @@ package org.eclipse.ocl.pivot;
  *   <li>{@link org.eclipse.ocl.pivot.TemplateParameterSubstitution#getActual <em>Actual</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.TemplateParameterSubstitution#getFormal <em>Formal</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.TemplateParameterSubstitution#getOwnedWildcard <em>Owned Wildcard</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.TemplateParameterSubstitution#getOwningTemplateBinding <em>Owning Template Binding</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.TemplateParameterSubstitution#getOwningBinding <em>Owning Binding</em>}</li>
  * </ul>
  * </p>
  *
@@ -108,29 +108,29 @@ public interface TemplateParameterSubstitution
 	void setActual(Type value);
 
 	/**
-	 * Returns the value of the '<em><b>Owning Template Binding</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.TemplateBinding#getOwnedTemplateParameterSubstitutions <em>Owned Template Parameter Substitutions</em>}'.
+	 * Returns the value of the '<em><b>Owning Binding</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.TemplateBinding#getOwnedSubstitutions <em>Owned Substitutions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The optional bindings from this element to templates.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owning Template Binding</em>' container reference.
-	 * @see #setOwningTemplateBinding(TemplateBinding)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateParameterSubstitution_OwningTemplateBinding()
-	 * @see org.eclipse.ocl.pivot.TemplateBinding#getOwnedTemplateParameterSubstitutions
+	 * @return the value of the '<em>Owning Binding</em>' container reference.
+	 * @see #setOwningBinding(TemplateBinding)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateParameterSubstitution_OwningBinding()
+	 * @see org.eclipse.ocl.pivot.TemplateBinding#getOwnedSubstitutions
 	 * @generated
 	 */
-	TemplateBinding getOwningTemplateBinding();
+	TemplateBinding getOwningBinding();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.TemplateParameterSubstitution#getOwningTemplateBinding <em>Owning Template Binding</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.TemplateParameterSubstitution#getOwningBinding <em>Owning Binding</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Template Binding</em>' container reference.
-	 * @see #getOwningTemplateBinding()
+	 * @param value the new value of the '<em>Owning Binding</em>' container reference.
+	 * @see #getOwningBinding()
 	 * @generated
 	 */
-	void setOwningTemplateBinding(TemplateBinding value);
+	void setOwningBinding(TemplateBinding value);
 
 } // TemplateParameterSubstitution

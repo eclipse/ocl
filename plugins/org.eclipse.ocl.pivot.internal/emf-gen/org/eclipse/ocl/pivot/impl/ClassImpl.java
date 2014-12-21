@@ -78,15 +78,15 @@ import org.eclipse.osgi.util.NLS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.impl.ClassImpl#getOwnedRule <em>Owned Rule</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.ClassImpl#getOwnedTemplateBindings <em>Owned Template Bindings</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.ClassImpl#getOwnedTemplateSignature <em>Owned Template Signature</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.ClassImpl#getOwnedConstraints <em>Owned Constraints</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.ClassImpl#getOwnedBindings <em>Owned Bindings</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.ClassImpl#getOwnedSignature <em>Owned Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ClassImpl#getUnspecializedElement <em>Unspecialized Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ClassImpl#getInstanceClassName <em>Instance Class Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ClassImpl#isAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ClassImpl#isActive <em>Is Active</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ClassImpl#isInterface <em>Is Interface</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.ClassImpl#getOwnedBehavior <em>Owned Behavior</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.ClassImpl#getOwnedBehaviors <em>Owned Behaviors</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ClassImpl#getOwnedInvariants <em>Owned Invariants</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ClassImpl#getOwnedOperations <em>Owned Operations</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ClassImpl#getOwnedProperties <em>Owned Properties</em>}</li>
@@ -102,34 +102,34 @@ public class ClassImpl
 		implements org.eclipse.ocl.pivot.Class {
 
 	/**
-	 * The cached value of the '{@link #getOwnedRule() <em>Owned Rule</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedConstraints() <em>Owned Constraints</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedRule()
+	 * @see #getOwnedConstraints()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Constraint> ownedRule;
+	protected EList<Constraint> ownedConstraints;
 
 	/**
-	 * The cached value of the '{@link #getOwnedTemplateBindings() <em>Owned Template Bindings</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedBindings() <em>Owned Bindings</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedTemplateBindings()
+	 * @see #getOwnedBindings()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TemplateBinding> ownedTemplateBindings;
+	protected EList<TemplateBinding> ownedBindings;
 
 	/**
-	 * The cached value of the '{@link #getOwnedTemplateSignature() <em>Owned Template Signature</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedSignature() <em>Owned Signature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedTemplateSignature()
+	 * @see #getOwnedSignature()
 	 * @generated
 	 * @ordered
 	 */
-	protected TemplateSignature ownedTemplateSignature;
+	protected TemplateSignature ownedSignature;
 
 	/**
 	 * The cached value of the '{@link #getUnspecializedElement() <em>Unspecialized Element</em>}' reference.
@@ -222,14 +222,14 @@ public class ClassImpl
 	protected static final int IS_INTERFACE_EFLAG = 1 << 10;
 
 	/**
-	 * The cached value of the '{@link #getOwnedBehavior() <em>Owned Behavior</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedBehaviors() <em>Owned Behaviors</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedBehavior()
+	 * @see #getOwnedBehaviors()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Behavior> ownedBehavior;
+	protected EList<Behavior> ownedBehaviors;
 
 	/**
 	 * The cached value of the '{@link #getOwnedInvariants() <em>Owned Invariants</em>}' containment reference list.
@@ -297,13 +297,13 @@ public class ClassImpl
 	 */
 	@Override
 	@SuppressWarnings("null")
-	public @NonNull List<Constraint> getOwnedRule()
+	public @NonNull List<Constraint> getOwnedConstraints()
 	{
-		if (ownedRule == null)
+		if (ownedConstraints == null)
 		{
-			ownedRule = new EObjectContainmentEList<Constraint>(Constraint.class, this, PivotPackage.CLASS__OWNED_RULE);
+			ownedConstraints = new EObjectContainmentEList<Constraint>(Constraint.class, this, PivotPackage.CLASS__OWNED_CONSTRAINTS);
 		}
-		return ownedRule;
+		return ownedConstraints;
 	}
 
 	/**
@@ -312,9 +312,9 @@ public class ClassImpl
 	 * @generated
 	 */
 	@Override
-	public TemplateSignature getOwnedTemplateSignature()
+	public TemplateSignature getOwnedSignature()
 	{
-		return ownedTemplateSignature;
+		return ownedSignature;
 	}
 
 	/**
@@ -322,13 +322,13 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwnedTemplateSignature(TemplateSignature newOwnedTemplateSignature, NotificationChain msgs)
+	public NotificationChain basicSetOwnedSignature(TemplateSignature newOwnedSignature, NotificationChain msgs)
 	{
-		TemplateSignature oldOwnedTemplateSignature = ownedTemplateSignature;
-		ownedTemplateSignature = newOwnedTemplateSignature;
+		TemplateSignature oldOwnedSignature = ownedSignature;
+		ownedSignature = newOwnedSignature;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE, oldOwnedTemplateSignature, newOwnedTemplateSignature);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.CLASS__OWNED_SIGNATURE, oldOwnedSignature, newOwnedSignature);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -340,20 +340,20 @@ public class ClassImpl
 	 * @generated
 	 */
 	@Override
-	public void setOwnedTemplateSignature(TemplateSignature newOwnedTemplateSignature)
+	public void setOwnedSignature(TemplateSignature newOwnedSignature)
 	{
-		if (newOwnedTemplateSignature != ownedTemplateSignature)
+		if (newOwnedSignature != ownedSignature)
 		{
 			NotificationChain msgs = null;
-			if (ownedTemplateSignature != null)
-				msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, PivotPackage.TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT, TemplateSignature.class, msgs);
-			if (newOwnedTemplateSignature != null)
-				msgs = ((InternalEObject)newOwnedTemplateSignature).eInverseAdd(this, PivotPackage.TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT, TemplateSignature.class, msgs);
-			msgs = basicSetOwnedTemplateSignature(newOwnedTemplateSignature, msgs);
+			if (ownedSignature != null)
+				msgs = ((InternalEObject)ownedSignature).eInverseRemove(this, PivotPackage.TEMPLATE_SIGNATURE__OWNING_ELEMENT, TemplateSignature.class, msgs);
+			if (newOwnedSignature != null)
+				msgs = ((InternalEObject)newOwnedSignature).eInverseAdd(this, PivotPackage.TEMPLATE_SIGNATURE__OWNING_ELEMENT, TemplateSignature.class, msgs);
+			msgs = basicSetOwnedSignature(newOwnedSignature, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE, newOwnedTemplateSignature, newOwnedTemplateSignature));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CLASS__OWNED_SIGNATURE, newOwnedSignature, newOwnedSignature));
 	}
 
 	/**
@@ -362,13 +362,13 @@ public class ClassImpl
 	 * @generated
 	 */
 	@Override
-	public List<TemplateBinding> getOwnedTemplateBindings()
+	public List<TemplateBinding> getOwnedBindings()
 	{
-		if (ownedTemplateBindings == null)
+		if (ownedBindings == null)
 		{
-			ownedTemplateBindings = new EObjectContainmentWithInverseEList<TemplateBinding>(TemplateBinding.class, this, PivotPackage.CLASS__OWNED_TEMPLATE_BINDINGS, PivotPackage.TEMPLATE_BINDING__OWNING_TEMPLATEABLE_ELEMENT);
+			ownedBindings = new EObjectContainmentWithInverseEList<TemplateBinding>(TemplateBinding.class, this, PivotPackage.CLASS__OWNED_BINDINGS, PivotPackage.TEMPLATE_BINDING__OWNING_ELEMENT);
 		}
-		return ownedTemplateBindings;
+		return ownedBindings;
 	}
 
 	/**
@@ -465,22 +465,6 @@ public class ClassImpl
 	 */
 	@Override
 	@SuppressWarnings("null")
-	public @NonNull List<Behavior> getOwnedBehavior()
-	{
-		if (ownedBehavior == null)
-		{
-			ownedBehavior = new EObjectContainmentEList<Behavior>(Behavior.class, this, PivotPackage.CLASS__OWNED_BEHAVIOR);
-		}
-		return ownedBehavior;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	@SuppressWarnings("null")
 	public @NonNull List<Constraint> getOwnedInvariants()
 	{
 		if (ownedInvariants == null)
@@ -548,20 +532,20 @@ public class ClassImpl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.CLASS__COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.CLASS__EXTENSION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
-			case PivotPackage.CLASS__OWNED_COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
+			case PivotPackage.CLASS__ANNOTATING_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAnnotatingComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.CLASS__OWNED_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.CLASS__OWNED_EXTENSIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedExtensions()).basicAdd(otherEnd, msgs);
 			case PivotPackage.CLASS__EXTENDED_BYS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtendedBys()).basicAdd(otherEnd, msgs);
-			case PivotPackage.CLASS__OWNED_TEMPLATE_BINDINGS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedTemplateBindings()).basicAdd(otherEnd, msgs);
-			case PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE:
-				if (ownedTemplateSignature != null)
-					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE, null, msgs);
-				return basicSetOwnedTemplateSignature((TemplateSignature)otherEnd, msgs);
+			case PivotPackage.CLASS__OWNED_BINDINGS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedBindings()).basicAdd(otherEnd, msgs);
+			case PivotPackage.CLASS__OWNED_SIGNATURE:
+				if (ownedSignature != null)
+					msgs = ((InternalEObject)ownedSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.CLASS__OWNED_SIGNATURE, null, msgs);
+				return basicSetOwnedSignature((TemplateSignature)otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_OPERATIONS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedOperations()).basicAdd(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_PROPERTIES:
@@ -584,24 +568,24 @@ public class ClassImpl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.CLASS__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.CLASS__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.CLASS__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.CLASS__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
+			case PivotPackage.CLASS__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.CLASS__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.CLASS__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.CLASS__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__EXTENDED_BYS:
 				return ((InternalEList<?>)getExtendedBys()).basicRemove(otherEnd, msgs);
-			case PivotPackage.CLASS__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
-			case PivotPackage.CLASS__OWNED_TEMPLATE_BINDINGS:
-				return ((InternalEList<?>)getOwnedTemplateBindings()).basicRemove(otherEnd, msgs);
-			case PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE:
-				return basicSetOwnedTemplateSignature(null, msgs);
-			case PivotPackage.CLASS__OWNED_BEHAVIOR:
-				return ((InternalEList<?>)getOwnedBehavior()).basicRemove(otherEnd, msgs);
+			case PivotPackage.CLASS__OWNED_CONSTRAINTS:
+				return ((InternalEList<?>)getOwnedConstraints()).basicRemove(otherEnd, msgs);
+			case PivotPackage.CLASS__OWNED_BINDINGS:
+				return ((InternalEList<?>)getOwnedBindings()).basicRemove(otherEnd, msgs);
+			case PivotPackage.CLASS__OWNED_SIGNATURE:
+				return basicSetOwnedSignature(null, msgs);
+			case PivotPackage.CLASS__OWNED_BEHAVIORS:
+				return ((InternalEList<?>)getOwnedBehaviors()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_INVARIANTS:
 				return ((InternalEList<?>)getOwnedInvariants()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CLASS__OWNED_OPERATIONS:
@@ -718,28 +702,44 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("null")
+	@Override
+	public @NonNull List<Behavior> getOwnedBehaviors()
+	{
+		if (ownedBehaviors == null)
+		{
+			ownedBehaviors = new EObjectContainmentEList<Behavior>(Behavior.class, this, PivotPackage.CLASS__OWNED_BEHAVIORS);
+		}
+		return ownedBehaviors;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case PivotPackage.CLASS__COMMENT:
-				return getComment();
-			case PivotPackage.CLASS__EXTENSION:
-				return getExtension();
-			case PivotPackage.CLASS__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.CLASS__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.CLASS__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.CLASS__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.CLASS__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.CLASS__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.CLASS__NAME:
 				return getName();
 			case PivotPackage.CLASS__EXTENDED_BYS:
 				return getExtendedBys();
-			case PivotPackage.CLASS__OWNED_RULE:
-				return getOwnedRule();
-			case PivotPackage.CLASS__OWNED_TEMPLATE_BINDINGS:
-				return getOwnedTemplateBindings();
-			case PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE:
-				return getOwnedTemplateSignature();
+			case PivotPackage.CLASS__OWNED_CONSTRAINTS:
+				return getOwnedConstraints();
+			case PivotPackage.CLASS__OWNED_BINDINGS:
+				return getOwnedBindings();
+			case PivotPackage.CLASS__OWNED_SIGNATURE:
+				return getOwnedSignature();
 			case PivotPackage.CLASS__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
 			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
@@ -750,8 +750,8 @@ public class ClassImpl
 				return isActive();
 			case PivotPackage.CLASS__IS_INTERFACE:
 				return isInterface();
-			case PivotPackage.CLASS__OWNED_BEHAVIOR:
-				return getOwnedBehavior();
+			case PivotPackage.CLASS__OWNED_BEHAVIORS:
+				return getOwnedBehaviors();
 			case PivotPackage.CLASS__OWNED_INVARIANTS:
 				return getOwnedInvariants();
 			case PivotPackage.CLASS__OWNED_OPERATIONS:
@@ -776,21 +776,21 @@ public class ClassImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case PivotPackage.CLASS__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.CLASS__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.CLASS__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.CLASS__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.CLASS__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.CLASS__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.CLASS__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.CLASS__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.CLASS__NAME:
 				setName((String)newValue);
@@ -799,16 +799,16 @@ public class ClassImpl
 				getExtendedBys().clear();
 				getExtendedBys().addAll((Collection<? extends TypeExtension>)newValue);
 				return;
-			case PivotPackage.CLASS__OWNED_RULE:
-				getOwnedRule().clear();
-				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
+			case PivotPackage.CLASS__OWNED_CONSTRAINTS:
+				getOwnedConstraints().clear();
+				getOwnedConstraints().addAll((Collection<? extends Constraint>)newValue);
 				return;
-			case PivotPackage.CLASS__OWNED_TEMPLATE_BINDINGS:
-				getOwnedTemplateBindings().clear();
-				getOwnedTemplateBindings().addAll((Collection<? extends TemplateBinding>)newValue);
+			case PivotPackage.CLASS__OWNED_BINDINGS:
+				getOwnedBindings().clear();
+				getOwnedBindings().addAll((Collection<? extends TemplateBinding>)newValue);
 				return;
-			case PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE:
-				setOwnedTemplateSignature((TemplateSignature)newValue);
+			case PivotPackage.CLASS__OWNED_SIGNATURE:
+				setOwnedSignature((TemplateSignature)newValue);
 				return;
 			case PivotPackage.CLASS__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
@@ -825,9 +825,9 @@ public class ClassImpl
 			case PivotPackage.CLASS__IS_INTERFACE:
 				setIsInterface((Boolean)newValue);
 				return;
-			case PivotPackage.CLASS__OWNED_BEHAVIOR:
-				getOwnedBehavior().clear();
-				getOwnedBehavior().addAll((Collection<? extends Behavior>)newValue);
+			case PivotPackage.CLASS__OWNED_BEHAVIORS:
+				getOwnedBehaviors().clear();
+				getOwnedBehaviors().addAll((Collection<? extends Behavior>)newValue);
 				return;
 			case PivotPackage.CLASS__OWNED_INVARIANTS:
 				getOwnedInvariants().clear();
@@ -861,17 +861,17 @@ public class ClassImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.CLASS__COMMENT:
-				getComment().clear();
+			case PivotPackage.CLASS__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.CLASS__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.CLASS__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.CLASS__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.CLASS__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.CLASS__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.CLASS__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.CLASS__NAME:
 				setName(NAME_EDEFAULT);
@@ -879,14 +879,14 @@ public class ClassImpl
 			case PivotPackage.CLASS__EXTENDED_BYS:
 				getExtendedBys().clear();
 				return;
-			case PivotPackage.CLASS__OWNED_RULE:
-				getOwnedRule().clear();
+			case PivotPackage.CLASS__OWNED_CONSTRAINTS:
+				getOwnedConstraints().clear();
 				return;
-			case PivotPackage.CLASS__OWNED_TEMPLATE_BINDINGS:
-				getOwnedTemplateBindings().clear();
+			case PivotPackage.CLASS__OWNED_BINDINGS:
+				getOwnedBindings().clear();
 				return;
-			case PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE:
-				setOwnedTemplateSignature((TemplateSignature)null);
+			case PivotPackage.CLASS__OWNED_SIGNATURE:
+				setOwnedSignature((TemplateSignature)null);
 				return;
 			case PivotPackage.CLASS__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
@@ -903,8 +903,8 @@ public class ClassImpl
 			case PivotPackage.CLASS__IS_INTERFACE:
 				setIsInterface(IS_INTERFACE_EDEFAULT);
 				return;
-			case PivotPackage.CLASS__OWNED_BEHAVIOR:
-				getOwnedBehavior().clear();
+			case PivotPackage.CLASS__OWNED_BEHAVIORS:
+				getOwnedBehaviors().clear();
 				return;
 			case PivotPackage.CLASS__OWNED_INVARIANTS:
 				getOwnedInvariants().clear();
@@ -934,24 +934,24 @@ public class ClassImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.CLASS__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.CLASS__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.CLASS__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.CLASS__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.CLASS__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.CLASS__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.CLASS__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.CLASS__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.CLASS__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.CLASS__EXTENDED_BYS:
 				return extendedBys != null && !extendedBys.isEmpty();
-			case PivotPackage.CLASS__OWNED_RULE:
-				return ownedRule != null && !ownedRule.isEmpty();
-			case PivotPackage.CLASS__OWNED_TEMPLATE_BINDINGS:
-				return ownedTemplateBindings != null && !ownedTemplateBindings.isEmpty();
-			case PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE:
-				return ownedTemplateSignature != null;
+			case PivotPackage.CLASS__OWNED_CONSTRAINTS:
+				return ownedConstraints != null && !ownedConstraints.isEmpty();
+			case PivotPackage.CLASS__OWNED_BINDINGS:
+				return ownedBindings != null && !ownedBindings.isEmpty();
+			case PivotPackage.CLASS__OWNED_SIGNATURE:
+				return ownedSignature != null;
 			case PivotPackage.CLASS__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
 			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
@@ -962,8 +962,8 @@ public class ClassImpl
 				return ((eFlags & IS_ACTIVE_EFLAG) != 0) != IS_ACTIVE_EDEFAULT;
 			case PivotPackage.CLASS__IS_INTERFACE:
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
-			case PivotPackage.CLASS__OWNED_BEHAVIOR:
-				return ownedBehavior != null && !ownedBehavior.isEmpty();
+			case PivotPackage.CLASS__OWNED_BEHAVIORS:
+				return ownedBehaviors != null && !ownedBehaviors.isEmpty();
 			case PivotPackage.CLASS__OWNED_INVARIANTS:
 				return ownedInvariants != null && !ownedInvariants.isEmpty();
 			case PivotPackage.CLASS__OWNED_OPERATIONS:
@@ -990,7 +990,7 @@ public class ClassImpl
 		{
 			switch (derivedFeatureID)
 			{
-				case PivotPackage.CLASS__OWNED_RULE: return PivotPackage.NAMESPACE__OWNED_RULE;
+				case PivotPackage.CLASS__OWNED_CONSTRAINTS: return PivotPackage.NAMESPACE__OWNED_CONSTRAINTS;
 				default: return -1;
 			}
 		}
@@ -998,8 +998,8 @@ public class ClassImpl
 		{
 			switch (derivedFeatureID)
 			{
-				case PivotPackage.CLASS__OWNED_TEMPLATE_BINDINGS: return PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_BINDINGS;
-				case PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE: return PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE;
+				case PivotPackage.CLASS__OWNED_BINDINGS: return PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_BINDINGS;
+				case PivotPackage.CLASS__OWNED_SIGNATURE: return PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_SIGNATURE;
 				case PivotPackage.CLASS__UNSPECIALIZED_ELEMENT: return PivotPackage.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT;
 				default: return -1;
 			}
@@ -1019,7 +1019,7 @@ public class ClassImpl
 		{
 			switch (baseFeatureID)
 			{
-				case PivotPackage.NAMESPACE__OWNED_RULE: return PivotPackage.CLASS__OWNED_RULE;
+				case PivotPackage.NAMESPACE__OWNED_CONSTRAINTS: return PivotPackage.CLASS__OWNED_CONSTRAINTS;
 				default: return -1;
 			}
 		}
@@ -1027,8 +1027,8 @@ public class ClassImpl
 		{
 			switch (baseFeatureID)
 			{
-				case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_BINDINGS: return PivotPackage.CLASS__OWNED_TEMPLATE_BINDINGS;
-				case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE: return PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE;
+				case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_BINDINGS: return PivotPackage.CLASS__OWNED_BINDINGS;
+				case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_SIGNATURE: return PivotPackage.CLASS__OWNED_SIGNATURE;
 				case PivotPackage.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT: return PivotPackage.CLASS__UNSPECIALIZED_ELEMENT;
 				default: return -1;
 			}
@@ -1236,17 +1236,17 @@ public class ClassImpl
 
 	@Override
 	public @NonNull DomainTypeParameters getTypeParameters() {
-		return TemplateSignatureImpl.getTypeParameters(getOwnedTemplateSignature());
+		return TemplateSignatureImpl.getTypeParameters(getOwnedSignature());
 	}
 
 	@Override
 	public TemplateableElement getUnspecializedElement()
 	{
 		if (unspecializedElement == null) {
-			for (TemplateBinding templateBinding : getOwnedTemplateBindings()) {
+			for (TemplateBinding templateBinding : getOwnedBindings()) {
 				TemplateSignature signature = templateBinding.getTemplateSignature();
 				if (signature != null) {
-					unspecializedElement = signature.getOwningTemplateableElement();
+					unspecializedElement = signature.getOwningElement();
 					if (unspecializedElement != null) {
 						break;
 					}
@@ -1311,12 +1311,12 @@ public class ClassImpl
 	@Override
 	public @NonNull Type specializeIn(@NonNull CallExp callExpr, @Nullable Type selfType) {
 		if (selfType != null) {
-			TemplateSignature templateSignature = getOwnedTemplateSignature();
+			TemplateSignature templateSignature = getOwnedSignature();
 			if (templateSignature != null) {
 				MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(ClassUtil.nonNullState(callExpr.eResource()));
 				return metaModelManager.specializeType(this, callExpr, selfType, null);
 			}
-			List<TemplateBinding> templateBindings = getOwnedTemplateBindings();
+			List<TemplateBinding> templateBindings = getOwnedBindings();
 			if ((templateBindings != null) && !templateBindings.isEmpty()) {
 				MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(ClassUtil.nonNullState(callExpr.eResource()));
 				return metaModelManager.specializeType(this, callExpr, selfType, null);

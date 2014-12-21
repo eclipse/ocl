@@ -59,13 +59,13 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 			if ((asConstraint != null) && (csStatusSpecification != null)) {
 				ExpCS csStatusExpression = csStatusSpecification.getOwnedExpression();
 				if (csStatusExpression != null) {
-					@SuppressWarnings("null")@NonNull ExpressionInOCL asSpecification = (ExpressionInOCL) asConstraint.getSpecification();
+					@SuppressWarnings("null")@NonNull ExpressionInOCL asSpecification = (ExpressionInOCL) asConstraint.getOwnedSpecification();
 					context.refreshContextVariable(asSpecification);
 					ExpSpecificationCS csMessageSpecification = (ExpSpecificationCS)csElement.getOwnedMessageSpecification();
 					String statusText = ElementUtil.getExpressionText(csStatusExpression);
 					if (csMessageSpecification == null) {
 						OCLExpression asExpression = context.visitLeft2Right(OCLExpression.class, csStatusExpression);
-						asSpecification.setBodyExpression(asExpression);
+						asSpecification.setOwnedBody(asExpression);
 						boolean isRequired = (asExpression != null) && asExpression.isRequired();
 						context.setType(asSpecification, asExpression != null ? asExpression.getType() : null, isRequired);
 						PivotUtil.setBody(asSpecification, asExpression, statusText);
@@ -73,12 +73,12 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 					else {
 						TupleLiteralPart asStatusTuplePart = PivotUtil.getNonNullAst(TupleLiteralPart.class, csStatusSpecification);
 						OCLExpression asStatusExpression = context.visitLeft2Right(OCLExpression.class, csStatusExpression);
-						asStatusTuplePart.setInitExpression(asStatusExpression);
+						asStatusTuplePart.setOwnedInit(asStatusExpression);
 						TupleLiteralPart asMessageTuplePart = PivotUtil.getNonNullAst(TupleLiteralPart.class, csMessageSpecification);
 						ExpCS csMessageExpression = csMessageSpecification.getOwnedExpression();
 						OCLExpression asMessageExpression = csMessageExpression != null ? context.visitLeft2Right(OCLExpression.class, csMessageExpression) : null;
-						asMessageTuplePart.setInitExpression(asMessageExpression);
-						@SuppressWarnings("null")@NonNull OCLExpression asTuplePartExp = asSpecification.getBodyExpression();
+						asMessageTuplePart.setOwnedInit(asMessageExpression);
+						@SuppressWarnings("null")@NonNull OCLExpression asTuplePartExp = asSpecification.getOwnedBody();
 						context.setType(asSpecification, asTuplePartExp.getType(), true);
 						String messageText = csMessageExpression != null ? ElementUtil.getExpressionText(csMessageExpression) : "null";
 						String tupleText = PivotUtil.createTupleValuedConstraint(statusText, null, messageText);
@@ -86,7 +86,7 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 					}
 				}
 				else {
-					@SuppressWarnings("null")@NonNull LanguageExpression asSpecification = asConstraint.getSpecification();
+					@SuppressWarnings("null")@NonNull LanguageExpression asSpecification = asConstraint.getOwnedSpecification();
 					asSpecification.setBody(csStatusSpecification.getExprString());					
 				}
 			}

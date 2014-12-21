@@ -195,9 +195,9 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 	}
 
 	protected def emitComment(@NonNull Element asElement, @NonNull Namespace asNamespace) {
-		if (asElement.getOwnedComment().size() > 0) {
+		if (asElement.getOwnedComments().size() > 0) {
 		'''
-			«FOR asComment : asElement.getOwnedComment()»
+			«FOR asComment : asElement.getOwnedComments()»
 			
 			«prettyPrint(asComment, asNamespace)»
 			«ENDFOR»

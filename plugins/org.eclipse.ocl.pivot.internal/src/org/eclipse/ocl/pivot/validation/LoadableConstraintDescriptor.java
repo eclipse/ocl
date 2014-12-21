@@ -186,7 +186,7 @@ public abstract class LoadableConstraintDescriptor<T> extends AbstractConstraint
 			if (contextElement == null) {
 				return ctx.createFailureStatus(target);
 			}
-			LanguageExpression specification = constraint.getSpecification();
+			LanguageExpression specification = constraint.getOwnedSpecification();
 			if (specification == null) {
 				return ctx.createFailureStatus(target);
 			}

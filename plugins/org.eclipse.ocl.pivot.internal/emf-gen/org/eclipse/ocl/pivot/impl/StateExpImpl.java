@@ -123,14 +123,14 @@ public class StateExpImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case PivotPackage.STATE_EXP__COMMENT:
-				return getComment();
-			case PivotPackage.STATE_EXP__EXTENSION:
-				return getExtension();
-			case PivotPackage.STATE_EXP__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.STATE_EXP__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.STATE_EXP__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.STATE_EXP__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.STATE_EXP__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.STATE_EXP__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.STATE_EXP__NAME:
 				return getName();
 			case PivotPackage.STATE_EXP__IS_MANY:
@@ -159,21 +159,21 @@ public class StateExpImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case PivotPackage.STATE_EXP__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.STATE_EXP__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.STATE_EXP__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.STATE_EXP__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.STATE_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.STATE_EXP__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.STATE_EXP__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.STATE_EXP__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.STATE_EXP__NAME:
 				setName((String)newValue);
@@ -203,17 +203,17 @@ public class StateExpImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.STATE_EXP__COMMENT:
-				getComment().clear();
+			case PivotPackage.STATE_EXP__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.STATE_EXP__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.STATE_EXP__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.STATE_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.STATE_EXP__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.STATE_EXP__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.STATE_EXP__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.STATE_EXP__NAME:
 				setName(NAME_EDEFAULT);
@@ -243,14 +243,14 @@ public class StateExpImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.STATE_EXP__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.STATE_EXP__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.STATE_EXP__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.STATE_EXP__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.STATE_EXP__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.STATE_EXP__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.STATE_EXP__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.STATE_EXP__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.STATE_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.STATE_EXP__IS_MANY:

@@ -103,7 +103,7 @@ public class UML2ASReferenceSwitch extends UMLSwitch<Object>
 				Type asMetaclass = converter.getCreated(Type.class, umlMetaclass);
 				Stereotype asStereotype = converter.getCreated(Stereotype.class, umlStereotype);
 				if ((asMetaclass != null) && (asStereotype != null)) {
-					asTypeExtension.setStereotype(asStereotype);
+					asTypeExtension.setOwningStereotype(asStereotype);
 					asTypeExtension.setType(asMetaclass);
 					if (UML2AS.ADD_TYPE_EXTENSION.isActive()) {
 						UML2AS.ADD_TYPE_EXTENSION.println(asTypeExtension.toString());
@@ -160,7 +160,7 @@ public class UML2ASReferenceSwitch extends UMLSwitch<Object>
 			org.eclipse.uml2.uml.Association umlAssociation = umlProperty.getAssociation();
 			if (umlAssociation != null) {
 				if (umlProperty.getOwningAssociation() != null) {
-					asProperty.setImplicit(true);
+					asProperty.setIsImplicit(true);
 				}
 				org.eclipse.uml2.uml.Property opposite = getOtherEnd(umlProperty);
 				if (opposite != null) {

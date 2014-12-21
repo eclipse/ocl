@@ -22,7 +22,7 @@ public class VariableStepper extends AbstractStepper
 
 	@Override
 	public @Nullable Element getFirstElement(@NonNull Element element) {
-		return element instanceof Variable ? ((Variable)element).getInitExpression() : element;
+		return element instanceof Variable ? ((Variable)element).getOwnedInit() : element;
 	}
 
 	@Override

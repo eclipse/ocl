@@ -78,13 +78,12 @@ import org.eclipse.osgi.util.NLS;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyImpl#getAssociationClass <em>Association Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyImpl#getDefaultExpression <em>Default Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyImpl#getDefaultValue <em>Default Value</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyImpl#getDefaultValueString <em>Default Value String</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyImpl#isImplicit <em>Implicit</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyImpl#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyImpl#isDerived <em>Is Derived</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyImpl#isID <em>Is ID</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyImpl#isImplicit <em>Is Implicit</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyImpl#isReadOnly <em>Is Read Only</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyImpl#isResolveProxies <em>Is Resolve Proxies</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyImpl#isTransient <em>Is Transient</em>}</li>
@@ -92,8 +91,9 @@ import org.eclipse.osgi.util.NLS;
  *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyImpl#isVolatile <em>Is Volatile</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyImpl#getKeys <em>Keys</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyImpl#getOpposite <em>Opposite</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyImpl#getOwnedExpression <em>Owned Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyImpl#getOwningClass <em>Owning Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyImpl#getRedefinedProperty <em>Redefined Property</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyImpl#getRedefinedProperties <em>Redefined Properties</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyImpl#getReferredProperty <em>Referred Property</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyImpl#getSubsettedProperty <em>Subsetted Property</em>}</li>
  * </ul>
@@ -115,16 +115,6 @@ public class PropertyImpl
 	 * @ordered
 	 */
 	protected AssociationClass associationClass;
-
-	/**
-	 * The cached value of the '{@link #getDefaultExpression() <em>Default Expression</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDefaultExpression()
-	 * @generated
-	 * @ordered
-	 */
-	protected LanguageExpression defaultExpression;
 
 	/**
 	 * The default value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.
@@ -167,26 +157,6 @@ public class PropertyImpl
 	protected String defaultValueString = DEFAULT_VALUE_STRING_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isImplicit() <em>Implicit</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isImplicit()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean IMPLICIT_EDEFAULT = false;
-
-	/**
-	 * The flag representing the value of the '{@link #isImplicit() <em>Implicit</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isImplicit()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int IMPLICIT_EFLAG = 1 << 10;
-
-	/**
 	 * The default value of the '{@link #isComposite() <em>Is Composite</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -204,7 +174,7 @@ public class PropertyImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IS_COMPOSITE_EFLAG = 1 << 11;
+	protected static final int IS_COMPOSITE_EFLAG = 1 << 10;
 
 	/**
 	 * The default value of the '{@link #isDerived() <em>Is Derived</em>}' attribute.
@@ -224,7 +194,7 @@ public class PropertyImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IS_DERIVED_EFLAG = 1 << 12;
+	protected static final int IS_DERIVED_EFLAG = 1 << 11;
 
 	/**
 	 * The default value of the '{@link #isID() <em>Is ID</em>}' attribute.
@@ -244,7 +214,27 @@ public class PropertyImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int IS_ID_EFLAG = 1 << 13;
+	protected static final int IS_ID_EFLAG = 1 << 12;
+
+	/**
+	 * The default value of the '{@link #isImplicit() <em>Is Implicit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImplicit()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_IMPLICIT_EDEFAULT = false;
+
+	/**
+	 * The flag representing the value of the '{@link #isImplicit() <em>Is Implicit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImplicit()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int IS_IMPLICIT_EFLAG = 1 << 13;
 
 	/**
 	 * The default value of the '{@link #isReadOnly() <em>Is Read Only</em>}' attribute.
@@ -367,14 +357,24 @@ public class PropertyImpl
 	protected Property opposite;
 
 	/**
-	 * The cached value of the '{@link #getRedefinedProperty() <em>Redefined Property</em>}' reference list.
+	 * The cached value of the '{@link #getOwnedExpression() <em>Owned Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRedefinedProperty()
+	 * @see #getOwnedExpression()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Property> redefinedProperty;
+	protected LanguageExpression ownedExpression;
+
+	/**
+	 * The cached value of the '{@link #getRedefinedProperties() <em>Redefined Properties</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRedefinedProperties()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Property> redefinedProperties;
 
 	/**
 	 * The cached value of the '{@link #getReferredProperty() <em>Referred Property</em>}' reference.
@@ -603,9 +603,9 @@ public class PropertyImpl
 	 * @generated
 	 */
 	@Override
-	public boolean isImplicit()
+	public LanguageExpression getOwnedExpression()
 	{
-		return (eFlags & IMPLICIT_EFLAG) != 0;
+		return ownedExpression;
 	}
 
 	/**
@@ -613,38 +613,13 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setImplicit(boolean newImplicit)
+	public NotificationChain basicSetOwnedExpression(LanguageExpression newOwnedExpression, NotificationChain msgs)
 	{
-		boolean oldImplicit = (eFlags & IMPLICIT_EFLAG) != 0;
-		if (newImplicit) eFlags |= IMPLICIT_EFLAG; else eFlags &= ~IMPLICIT_EFLAG;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__IMPLICIT, oldImplicit, newImplicit));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public LanguageExpression getDefaultExpression()
-	{
-		return defaultExpression;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetDefaultExpression(LanguageExpression newDefaultExpression, NotificationChain msgs)
-	{
-		LanguageExpression oldDefaultExpression = defaultExpression;
-		defaultExpression = newDefaultExpression;
+		LanguageExpression oldOwnedExpression = ownedExpression;
+		ownedExpression = newOwnedExpression;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__DEFAULT_EXPRESSION, oldDefaultExpression, newDefaultExpression);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__OWNED_EXPRESSION, oldOwnedExpression, newOwnedExpression);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -656,20 +631,45 @@ public class PropertyImpl
 	 * @generated
 	 */
 	@Override
-	public void setDefaultExpression(LanguageExpression newDefaultExpression)
+	public void setOwnedExpression(LanguageExpression newOwnedExpression)
 	{
-		if (newDefaultExpression != defaultExpression)
+		if (newOwnedExpression != ownedExpression)
 		{
 			NotificationChain msgs = null;
-			if (defaultExpression != null)
-				msgs = ((InternalEObject)defaultExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.PROPERTY__DEFAULT_EXPRESSION, null, msgs);
-			if (newDefaultExpression != null)
-				msgs = ((InternalEObject)newDefaultExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.PROPERTY__DEFAULT_EXPRESSION, null, msgs);
-			msgs = basicSetDefaultExpression(newDefaultExpression, msgs);
+			if (ownedExpression != null)
+				msgs = ((InternalEObject)ownedExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.PROPERTY__OWNED_EXPRESSION, null, msgs);
+			if (newOwnedExpression != null)
+				msgs = ((InternalEObject)newOwnedExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.PROPERTY__OWNED_EXPRESSION, null, msgs);
+			msgs = basicSetOwnedExpression(newOwnedExpression, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__DEFAULT_EXPRESSION, newDefaultExpression, newDefaultExpression));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__OWNED_EXPRESSION, newOwnedExpression, newOwnedExpression));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isImplicit()
+	{
+		return (eFlags & IS_IMPLICIT_EFLAG) != 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsImplicit(boolean newIsImplicit)
+	{
+		boolean oldIsImplicit = (eFlags & IS_IMPLICIT_EFLAG) != 0;
+		if (newIsImplicit) eFlags |= IS_IMPLICIT_EFLAG; else eFlags &= ~IS_IMPLICIT_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__IS_IMPLICIT, oldIsImplicit, newIsImplicit));
 	}
 
 	/**
@@ -684,7 +684,7 @@ public class PropertyImpl
 		if ((defaultValue == null) && (defaultValueString2 != null)) {
 			TypeId typeId = getTypeId();
 			if (typeId instanceof EnumerationId) {
-				defaultValue = ClassUtil.getNamedElement(((Enumeration)type).getOwnedLiteral(), defaultValueString2);
+				defaultValue = ClassUtil.getNamedElement(((Enumeration)type).getOwnedLiterals(), defaultValueString2);
 				if (defaultValue == null) {
 					throw new IllegalStateException("Unknown enumeration literal'" + defaultValueString2 + "' for '" + typeId + "'");
 				}
@@ -927,21 +927,6 @@ public class PropertyImpl
 	 * @generated
 	 */
 	@Override
-	public List<Property> getRedefinedProperty()
-	{
-		if (redefinedProperty == null)
-		{
-			redefinedProperty = new EObjectResolvingEList<Property>(Property.class, this, PivotPackage.PROPERTY__REDEFINED_PROPERTY);
-		}
-		return redefinedProperty;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public List<Property> getSubsettedProperty()
 	{
 		if (subsettedProperty == null)
@@ -1128,9 +1113,9 @@ public class PropertyImpl
 	{
 		/**
 		 * 
-		 * inv CompatibleDefaultExpression: defaultExpression <> null and
-		 *   defaultExpression.oclAsType(ExpressionInOCL).bodyExpression <> null implies
-		 *   CompatibleBody(defaultExpression)
+		 * inv CompatibleDefaultExpression: ownedExpression <> null and
+		 *   ownedExpression.oclAsType(ExpressionInOCL).ownedBody <> null implies
+		 *   CompatibleBody(ownedExpression)
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_17;
 		try {
@@ -1138,8 +1123,8 @@ public class PropertyImpl
 		    try {
 		        @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		        try {
-		            final @Nullable /*@Thrown*/ LanguageExpression defaultExpression = this.getDefaultExpression();
-		            final /*@Thrown*/ boolean self_71 = defaultExpression != null;
+		            final @Nullable /*@Thrown*/ LanguageExpression ownedExpression = this.getOwnedExpression();
+		            final /*@Thrown*/ boolean self_71 = ownedExpression != null;
 		            CAUGHT_self_71 = self_71;
 		        }
 		        catch (Exception e) {
@@ -1150,13 +1135,13 @@ public class PropertyImpl
 		        @NonNull /*@Caught*/ Object CAUGHT_b;
 		        try {
 		            final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pivot_c_c_ExpressionInOCL_0 = idResolver.getClass(PivotTables.CLSSid_ExpressionInOCL, null);
-		            final @Nullable /*@Thrown*/ LanguageExpression defaultExpression_0 = this.getDefaultExpression();
-		            final @Nullable /*@Thrown*/ ExpressionInOCL oclAsType = (ExpressionInOCL)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, defaultExpression_0, TYP_pivot_c_c_ExpressionInOCL_0);
+		            final @Nullable /*@Thrown*/ LanguageExpression ownedExpression_0 = this.getOwnedExpression();
+		            final @Nullable /*@Thrown*/ ExpressionInOCL oclAsType = (ExpressionInOCL)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, ownedExpression_0, TYP_pivot_c_c_ExpressionInOCL_0);
 		            if (oclAsType == null) {
-		                throw new InvalidValueException("Null source for \'pivot::ExpressionInOCL::bodyExpression\'");
+		                throw new InvalidValueException("Null source for \'pivot::ExpressionInOCL::ownedBody\'");
 		            }
-		            final @Nullable /*@Thrown*/ OCLExpression bodyExpression = oclAsType.getBodyExpression();
-		            final /*@Thrown*/ boolean b = bodyExpression != null;
+		            final @Nullable /*@Thrown*/ OCLExpression ownedBody = oclAsType.getOwnedBody();
+		            final /*@Thrown*/ boolean b = ownedBody != null;
 		            CAUGHT_b = b;
 		        }
 		        catch (Exception e) {
@@ -1232,8 +1217,8 @@ public class PropertyImpl
 		    }
 		    @NonNull /*@Caught*/ Object CAUGHT_b_0;
 		    try {
-		        final @Nullable /*@Thrown*/ LanguageExpression defaultExpression_1 = this.getDefaultExpression();
-		        final /*@Thrown*/ boolean b_0 = this.CompatibleBody((ValueSpecification)defaultExpression_1);
+		        final @Nullable /*@Thrown*/ LanguageExpression ownedExpression_1 = this.getOwnedExpression();
+		        final /*@Thrown*/ boolean b_0 = this.CompatibleBody((ValueSpecification)ownedExpression_1);
 		        CAUGHT_b_0 = b_0;
 		    }
 		    catch (Exception e) {
@@ -1324,12 +1309,12 @@ public class PropertyImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case PivotPackage.PROPERTY__COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.PROPERTY__EXTENSION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
-			case PivotPackage.PROPERTY__OWNED_COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
+			case PivotPackage.PROPERTY__ANNOTATING_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAnnotatingComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.PROPERTY__OWNED_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.PROPERTY__OWNED_EXTENSIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedExtensions()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PROPERTY__ASSOCIATION_CLASS:
 				if (associationClass != null)
 					msgs = ((InternalEObject)associationClass).eInverseRemove(this, PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTES, AssociationClass.class, msgs);
@@ -1352,18 +1337,18 @@ public class PropertyImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case PivotPackage.PROPERTY__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.PROPERTY__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.PROPERTY__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.PROPERTY__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PROPERTY__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PROPERTY__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PROPERTY__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PROPERTY__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PROPERTY__ASSOCIATION_CLASS:
 				return basicSetAssociationClass(null, msgs);
-			case PivotPackage.PROPERTY__DEFAULT_EXPRESSION:
-				return basicSetDefaultExpression(null, msgs);
+			case PivotPackage.PROPERTY__OWNED_EXPRESSION:
+				return basicSetOwnedExpression(null, msgs);
 			case PivotPackage.PROPERTY__OWNING_CLASS:
 				return basicSetOwningClass(null, msgs);
 		}
@@ -1395,14 +1380,14 @@ public class PropertyImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case PivotPackage.PROPERTY__COMMENT:
-				return getComment();
-			case PivotPackage.PROPERTY__EXTENSION:
-				return getExtension();
-			case PivotPackage.PROPERTY__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.PROPERTY__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.PROPERTY__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.PROPERTY__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.PROPERTY__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.PROPERTY__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.PROPERTY__NAME:
 				return getName();
 			case PivotPackage.PROPERTY__IS_MANY:
@@ -1421,20 +1406,18 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__ASSOCIATION_CLASS:
 				if (resolve) return getAssociationClass();
 				return basicGetAssociationClass();
-			case PivotPackage.PROPERTY__DEFAULT_EXPRESSION:
-				return getDefaultExpression();
 			case PivotPackage.PROPERTY__DEFAULT_VALUE:
 				return getDefaultValue();
 			case PivotPackage.PROPERTY__DEFAULT_VALUE_STRING:
 				return getDefaultValueString();
-			case PivotPackage.PROPERTY__IMPLICIT:
-				return isImplicit();
 			case PivotPackage.PROPERTY__IS_COMPOSITE:
 				return isComposite();
 			case PivotPackage.PROPERTY__IS_DERIVED:
 				return isDerived();
 			case PivotPackage.PROPERTY__IS_ID:
 				return isID();
+			case PivotPackage.PROPERTY__IS_IMPLICIT:
+				return isImplicit();
 			case PivotPackage.PROPERTY__IS_READ_ONLY:
 				return isReadOnly();
 			case PivotPackage.PROPERTY__IS_RESOLVE_PROXIES:
@@ -1450,10 +1433,12 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__OPPOSITE:
 				if (resolve) return getOpposite();
 				return basicGetOpposite();
+			case PivotPackage.PROPERTY__OWNED_EXPRESSION:
+				return getOwnedExpression();
 			case PivotPackage.PROPERTY__OWNING_CLASS:
 				return getOwningClass();
-			case PivotPackage.PROPERTY__REDEFINED_PROPERTY:
-				return getRedefinedProperty();
+			case PivotPackage.PROPERTY__REDEFINED_PROPERTIES:
+				return getRedefinedProperties();
 			case PivotPackage.PROPERTY__REFERRED_PROPERTY:
 				if (resolve) return getReferredProperty();
 				return basicGetReferredProperty();
@@ -1473,21 +1458,21 @@ public class PropertyImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case PivotPackage.PROPERTY__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.PROPERTY__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.PROPERTY__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.PROPERTY__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.PROPERTY__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.PROPERTY__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.PROPERTY__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.PROPERTY__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.PROPERTY__NAME:
 				setName((String)newValue);
@@ -1510,17 +1495,11 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__ASSOCIATION_CLASS:
 				setAssociationClass((AssociationClass)newValue);
 				return;
-			case PivotPackage.PROPERTY__DEFAULT_EXPRESSION:
-				setDefaultExpression((LanguageExpression)newValue);
-				return;
 			case PivotPackage.PROPERTY__DEFAULT_VALUE:
 				setDefaultValue(newValue);
 				return;
 			case PivotPackage.PROPERTY__DEFAULT_VALUE_STRING:
 				setDefaultValueString((String)newValue);
-				return;
-			case PivotPackage.PROPERTY__IMPLICIT:
-				setImplicit((Boolean)newValue);
 				return;
 			case PivotPackage.PROPERTY__IS_COMPOSITE:
 				setIsComposite((Boolean)newValue);
@@ -1530,6 +1509,9 @@ public class PropertyImpl
 				return;
 			case PivotPackage.PROPERTY__IS_ID:
 				setIsID((Boolean)newValue);
+				return;
+			case PivotPackage.PROPERTY__IS_IMPLICIT:
+				setIsImplicit((Boolean)newValue);
 				return;
 			case PivotPackage.PROPERTY__IS_READ_ONLY:
 				setIsReadOnly((Boolean)newValue);
@@ -1553,12 +1535,15 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__OPPOSITE:
 				setOpposite((Property)newValue);
 				return;
+			case PivotPackage.PROPERTY__OWNED_EXPRESSION:
+				setOwnedExpression((LanguageExpression)newValue);
+				return;
 			case PivotPackage.PROPERTY__OWNING_CLASS:
 				setOwningClass((org.eclipse.ocl.pivot.Class)newValue);
 				return;
-			case PivotPackage.PROPERTY__REDEFINED_PROPERTY:
-				getRedefinedProperty().clear();
-				getRedefinedProperty().addAll((Collection<? extends Property>)newValue);
+			case PivotPackage.PROPERTY__REDEFINED_PROPERTIES:
+				getRedefinedProperties().clear();
+				getRedefinedProperties().addAll((Collection<? extends Property>)newValue);
 				return;
 			case PivotPackage.PROPERTY__REFERRED_PROPERTY:
 				setReferredProperty((Property)newValue);
@@ -1580,17 +1565,17 @@ public class PropertyImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.PROPERTY__COMMENT:
-				getComment().clear();
+			case PivotPackage.PROPERTY__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.PROPERTY__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.PROPERTY__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.PROPERTY__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.PROPERTY__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.PROPERTY__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.PROPERTY__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.PROPERTY__NAME:
 				setName(NAME_EDEFAULT);
@@ -1613,17 +1598,11 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__ASSOCIATION_CLASS:
 				setAssociationClass((AssociationClass)null);
 				return;
-			case PivotPackage.PROPERTY__DEFAULT_EXPRESSION:
-				setDefaultExpression((LanguageExpression)null);
-				return;
 			case PivotPackage.PROPERTY__DEFAULT_VALUE:
 				setDefaultValue(DEFAULT_VALUE_EDEFAULT);
 				return;
 			case PivotPackage.PROPERTY__DEFAULT_VALUE_STRING:
 				setDefaultValueString(DEFAULT_VALUE_STRING_EDEFAULT);
-				return;
-			case PivotPackage.PROPERTY__IMPLICIT:
-				setImplicit(IMPLICIT_EDEFAULT);
 				return;
 			case PivotPackage.PROPERTY__IS_COMPOSITE:
 				setIsComposite(IS_COMPOSITE_EDEFAULT);
@@ -1633,6 +1612,9 @@ public class PropertyImpl
 				return;
 			case PivotPackage.PROPERTY__IS_ID:
 				setIsID(IS_ID_EDEFAULT);
+				return;
+			case PivotPackage.PROPERTY__IS_IMPLICIT:
+				setIsImplicit(IS_IMPLICIT_EDEFAULT);
 				return;
 			case PivotPackage.PROPERTY__IS_READ_ONLY:
 				setIsReadOnly(IS_READ_ONLY_EDEFAULT);
@@ -1655,11 +1637,14 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__OPPOSITE:
 				setOpposite((Property)null);
 				return;
+			case PivotPackage.PROPERTY__OWNED_EXPRESSION:
+				setOwnedExpression((LanguageExpression)null);
+				return;
 			case PivotPackage.PROPERTY__OWNING_CLASS:
 				setOwningClass((org.eclipse.ocl.pivot.Class)null);
 				return;
-			case PivotPackage.PROPERTY__REDEFINED_PROPERTY:
-				getRedefinedProperty().clear();
+			case PivotPackage.PROPERTY__REDEFINED_PROPERTIES:
+				getRedefinedProperties().clear();
 				return;
 			case PivotPackage.PROPERTY__REFERRED_PROPERTY:
 				setReferredProperty((Property)null);
@@ -1680,14 +1665,14 @@ public class PropertyImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.PROPERTY__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.PROPERTY__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.PROPERTY__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.PROPERTY__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.PROPERTY__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.PROPERTY__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.PROPERTY__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.PROPERTY__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.PROPERTY__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.PROPERTY__IS_MANY:
@@ -1704,20 +1689,18 @@ public class PropertyImpl
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.PROPERTY__ASSOCIATION_CLASS:
 				return associationClass != null;
-			case PivotPackage.PROPERTY__DEFAULT_EXPRESSION:
-				return defaultExpression != null;
 			case PivotPackage.PROPERTY__DEFAULT_VALUE:
 				return DEFAULT_VALUE_EDEFAULT == null ? defaultValue != null : !DEFAULT_VALUE_EDEFAULT.equals(defaultValue);
 			case PivotPackage.PROPERTY__DEFAULT_VALUE_STRING:
 				return DEFAULT_VALUE_STRING_EDEFAULT == null ? defaultValueString != null : !DEFAULT_VALUE_STRING_EDEFAULT.equals(defaultValueString);
-			case PivotPackage.PROPERTY__IMPLICIT:
-				return ((eFlags & IMPLICIT_EFLAG) != 0) != IMPLICIT_EDEFAULT;
 			case PivotPackage.PROPERTY__IS_COMPOSITE:
 				return ((eFlags & IS_COMPOSITE_EFLAG) != 0) != IS_COMPOSITE_EDEFAULT;
 			case PivotPackage.PROPERTY__IS_DERIVED:
 				return ((eFlags & IS_DERIVED_EFLAG) != 0) != IS_DERIVED_EDEFAULT;
 			case PivotPackage.PROPERTY__IS_ID:
 				return ((eFlags & IS_ID_EFLAG) != 0) != IS_ID_EDEFAULT;
+			case PivotPackage.PROPERTY__IS_IMPLICIT:
+				return ((eFlags & IS_IMPLICIT_EFLAG) != 0) != IS_IMPLICIT_EDEFAULT;
 			case PivotPackage.PROPERTY__IS_READ_ONLY:
 				return ((eFlags & IS_READ_ONLY_EFLAG) != 0) != IS_READ_ONLY_EDEFAULT;
 			case PivotPackage.PROPERTY__IS_RESOLVE_PROXIES:
@@ -1732,10 +1715,12 @@ public class PropertyImpl
 				return keys != null && !keys.isEmpty();
 			case PivotPackage.PROPERTY__OPPOSITE:
 				return opposite != null;
+			case PivotPackage.PROPERTY__OWNED_EXPRESSION:
+				return ownedExpression != null;
 			case PivotPackage.PROPERTY__OWNING_CLASS:
 				return getOwningClass() != null;
-			case PivotPackage.PROPERTY__REDEFINED_PROPERTY:
-				return redefinedProperty != null && !redefinedProperty.isEmpty();
+			case PivotPackage.PROPERTY__REDEFINED_PROPERTIES:
+				return redefinedProperties != null && !redefinedProperties.isEmpty();
 			case PivotPackage.PROPERTY__REFERRED_PROPERTY:
 				return referredProperty != null;
 			case PivotPackage.PROPERTY__SUBSETTED_PROPERTY:
@@ -1830,6 +1815,21 @@ public class PropertyImpl
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__OWNING_CLASS, newOwningClass, newOwningClass));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public List<Property> getRedefinedProperties()
+	{
+		if (redefinedProperties == null)
+		{
+			redefinedProperties = new EObjectResolvingEList<Property>(Property.class, this, PivotPackage.PROPERTY__REDEFINED_PROPERTIES);
+		}
+		return redefinedProperties;
 	}
 
 	@Override

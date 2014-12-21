@@ -12,8 +12,6 @@ package org.eclipse.ocl.pivot;
 
 import java.util.List;
 
-import org.eclipse.jdt.annotation.NonNull;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Tuple Literal Exp</b></em>'.
@@ -22,7 +20,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.TupleLiteralExp#getPart <em>Part</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.TupleLiteralExp#getOwnedParts <em>Owned Parts</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,18 +31,18 @@ public interface TupleLiteralExp
 		extends LiteralExp {
 
 	/**
-	 * Returns the value of the '<em><b>Part</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Parts</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.TupleLiteralPart}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Part</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Owned Parts</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Part</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getTupleLiteralExp_Part()
+	 * @return the value of the '<em>Owned Parts</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getTupleLiteralExp_OwnedParts()
 	 * @generated
 	 */
-	@NonNull List<TupleLiteralPart> getPart();
+	List<TupleLiteralPart> getOwnedParts();
 
 } // TupleLiteralExp

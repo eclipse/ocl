@@ -283,7 +283,7 @@ public class UMLUIConstraintLocator extends UMLConstraintLocator implements Cons
 		
 //		URI constraintURI = EcoreUtil.getURI(constraint);
 //        Path path = new Path(constraintURI.toPlatformString(true));
-		LanguageExpression specification = constraint.getSpecification();
+		LanguageExpression specification = constraint.getOwnedSpecification();
 		String expression = specification != null ? PrettyPrinter.print(specification) : "";
 		
 		ValidatableNode parent = resultConstrainingNode.getResultValidatableNode().getParent();

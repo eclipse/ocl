@@ -204,14 +204,14 @@ public abstract class FeatureImpl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.FEATURE__COMMENT:
-				return getComment();
-			case PivotPackage.FEATURE__EXTENSION:
-				return getExtension();
-			case PivotPackage.FEATURE__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.FEATURE__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.FEATURE__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.FEATURE__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.FEATURE__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.FEATURE__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.FEATURE__NAME:
 				return getName();
 			case PivotPackage.FEATURE__IS_MANY:
@@ -242,21 +242,21 @@ public abstract class FeatureImpl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.FEATURE__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.FEATURE__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.FEATURE__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.FEATURE__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.FEATURE__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.FEATURE__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.FEATURE__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.FEATURE__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.FEATURE__NAME:
 				setName((String)newValue);
@@ -290,17 +290,17 @@ public abstract class FeatureImpl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.FEATURE__COMMENT:
-				getComment().clear();
+			case PivotPackage.FEATURE__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.FEATURE__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.FEATURE__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.FEATURE__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.FEATURE__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.FEATURE__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.FEATURE__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.FEATURE__NAME:
 				setName(NAME_EDEFAULT);
@@ -334,14 +334,14 @@ public abstract class FeatureImpl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.FEATURE__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.FEATURE__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.FEATURE__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.FEATURE__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.FEATURE__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.FEATURE__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.FEATURE__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.FEATURE__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.FEATURE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.FEATURE__IS_MANY:

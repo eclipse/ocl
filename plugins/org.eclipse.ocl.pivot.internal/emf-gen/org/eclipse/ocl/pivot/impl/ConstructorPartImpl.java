@@ -36,7 +36,7 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.impl.ConstructorPartImpl#getInitExpression <em>Init Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.ConstructorPartImpl#getOwnedInit <em>Owned Init</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ConstructorPartImpl#getReferredProperty <em>Referred Property</em>}</li>
  * </ul>
  * </p>
@@ -46,14 +46,14 @@ import org.eclipse.ocl.pivot.util.Visitor;
 public class ConstructorPartImpl extends TypedElementImpl implements ConstructorPart
 {
 	/**
-	 * The cached value of the '{@link #getInitExpression() <em>Init Expression</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedInit() <em>Owned Init</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getInitExpression()
+	 * @see #getOwnedInit()
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLExpression initExpression;
+	protected OCLExpression ownedInit;
 
 	/**
 	 * The cached value of the '{@link #getReferredProperty() <em>Referred Property</em>}' reference.
@@ -137,9 +137,9 @@ public class ConstructorPartImpl extends TypedElementImpl implements Constructor
 	 * @generated
 	 */
 	@Override
-	public OCLExpression getInitExpression()
+	public OCLExpression getOwnedInit()
 	{
-		return initExpression;
+		return ownedInit;
 	}
 
 	/**
@@ -147,13 +147,13 @@ public class ConstructorPartImpl extends TypedElementImpl implements Constructor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInitExpression(OCLExpression newInitExpression, NotificationChain msgs)
+	public NotificationChain basicSetOwnedInit(OCLExpression newOwnedInit, NotificationChain msgs)
 	{
-		OCLExpression oldInitExpression = initExpression;
-		initExpression = newInitExpression;
+		OCLExpression oldOwnedInit = ownedInit;
+		ownedInit = newOwnedInit;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.CONSTRUCTOR_PART__INIT_EXPRESSION, oldInitExpression, newInitExpression);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.CONSTRUCTOR_PART__OWNED_INIT, oldOwnedInit, newOwnedInit);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -165,20 +165,20 @@ public class ConstructorPartImpl extends TypedElementImpl implements Constructor
 	 * @generated
 	 */
 	@Override
-	public void setInitExpression(OCLExpression newInitExpression)
+	public void setOwnedInit(OCLExpression newOwnedInit)
 	{
-		if (newInitExpression != initExpression)
+		if (newOwnedInit != ownedInit)
 		{
 			NotificationChain msgs = null;
-			if (initExpression != null)
-				msgs = ((InternalEObject)initExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.CONSTRUCTOR_PART__INIT_EXPRESSION, null, msgs);
-			if (newInitExpression != null)
-				msgs = ((InternalEObject)newInitExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.CONSTRUCTOR_PART__INIT_EXPRESSION, null, msgs);
-			msgs = basicSetInitExpression(newInitExpression, msgs);
+			if (ownedInit != null)
+				msgs = ((InternalEObject)ownedInit).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.CONSTRUCTOR_PART__OWNED_INIT, null, msgs);
+			if (newOwnedInit != null)
+				msgs = ((InternalEObject)newOwnedInit).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.CONSTRUCTOR_PART__OWNED_INIT, null, msgs);
+			msgs = basicSetOwnedInit(newOwnedInit, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CONSTRUCTOR_PART__INIT_EXPRESSION, newInitExpression, newInitExpression));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CONSTRUCTOR_PART__OWNED_INIT, newOwnedInit, newOwnedInit));
 	}
 
 	/**
@@ -191,16 +191,16 @@ public class ConstructorPartImpl extends TypedElementImpl implements Constructor
 	{
 		switch (featureID)
 		{
-			case PivotPackage.CONSTRUCTOR_PART__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.CONSTRUCTOR_PART__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.CONSTRUCTOR_PART__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.CONSTRUCTOR_PART__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.CONSTRUCTOR_PART__INIT_EXPRESSION:
-				return basicSetInitExpression(null, msgs);
+			case PivotPackage.CONSTRUCTOR_PART__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.CONSTRUCTOR_PART__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.CONSTRUCTOR_PART__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.CONSTRUCTOR_PART__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.CONSTRUCTOR_PART__OWNED_INIT:
+				return basicSetOwnedInit(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -215,14 +215,14 @@ public class ConstructorPartImpl extends TypedElementImpl implements Constructor
 	{
 		switch (featureID)
 		{
-			case PivotPackage.CONSTRUCTOR_PART__COMMENT:
-				return getComment();
-			case PivotPackage.CONSTRUCTOR_PART__EXTENSION:
-				return getExtension();
-			case PivotPackage.CONSTRUCTOR_PART__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.CONSTRUCTOR_PART__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.CONSTRUCTOR_PART__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.CONSTRUCTOR_PART__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.CONSTRUCTOR_PART__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.CONSTRUCTOR_PART__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.CONSTRUCTOR_PART__NAME:
 				return getName();
 			case PivotPackage.CONSTRUCTOR_PART__IS_MANY:
@@ -232,8 +232,8 @@ public class ConstructorPartImpl extends TypedElementImpl implements Constructor
 			case PivotPackage.CONSTRUCTOR_PART__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
-			case PivotPackage.CONSTRUCTOR_PART__INIT_EXPRESSION:
-				return getInitExpression();
+			case PivotPackage.CONSTRUCTOR_PART__OWNED_INIT:
+				return getOwnedInit();
 			case PivotPackage.CONSTRUCTOR_PART__REFERRED_PROPERTY:
 				if (resolve) return getReferredProperty();
 				return basicGetReferredProperty();
@@ -252,21 +252,21 @@ public class ConstructorPartImpl extends TypedElementImpl implements Constructor
 	{
 		switch (featureID)
 		{
-			case PivotPackage.CONSTRUCTOR_PART__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.CONSTRUCTOR_PART__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.CONSTRUCTOR_PART__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.CONSTRUCTOR_PART__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.CONSTRUCTOR_PART__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.CONSTRUCTOR_PART__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.CONSTRUCTOR_PART__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.CONSTRUCTOR_PART__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.CONSTRUCTOR_PART__NAME:
 				setName((String)newValue);
@@ -277,8 +277,8 @@ public class ConstructorPartImpl extends TypedElementImpl implements Constructor
 			case PivotPackage.CONSTRUCTOR_PART__TYPE:
 				setType((Type)newValue);
 				return;
-			case PivotPackage.CONSTRUCTOR_PART__INIT_EXPRESSION:
-				setInitExpression((OCLExpression)newValue);
+			case PivotPackage.CONSTRUCTOR_PART__OWNED_INIT:
+				setOwnedInit((OCLExpression)newValue);
 				return;
 			case PivotPackage.CONSTRUCTOR_PART__REFERRED_PROPERTY:
 				setReferredProperty((Property)newValue);
@@ -297,17 +297,17 @@ public class ConstructorPartImpl extends TypedElementImpl implements Constructor
 	{
 		switch (featureID)
 		{
-			case PivotPackage.CONSTRUCTOR_PART__COMMENT:
-				getComment().clear();
+			case PivotPackage.CONSTRUCTOR_PART__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.CONSTRUCTOR_PART__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.CONSTRUCTOR_PART__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.CONSTRUCTOR_PART__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.CONSTRUCTOR_PART__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.CONSTRUCTOR_PART__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.CONSTRUCTOR_PART__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.CONSTRUCTOR_PART__NAME:
 				setName(NAME_EDEFAULT);
@@ -318,8 +318,8 @@ public class ConstructorPartImpl extends TypedElementImpl implements Constructor
 			case PivotPackage.CONSTRUCTOR_PART__TYPE:
 				setType((Type)null);
 				return;
-			case PivotPackage.CONSTRUCTOR_PART__INIT_EXPRESSION:
-				setInitExpression((OCLExpression)null);
+			case PivotPackage.CONSTRUCTOR_PART__OWNED_INIT:
+				setOwnedInit((OCLExpression)null);
 				return;
 			case PivotPackage.CONSTRUCTOR_PART__REFERRED_PROPERTY:
 				setReferredProperty((Property)null);
@@ -338,14 +338,14 @@ public class ConstructorPartImpl extends TypedElementImpl implements Constructor
 	{
 		switch (featureID)
 		{
-			case PivotPackage.CONSTRUCTOR_PART__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.CONSTRUCTOR_PART__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.CONSTRUCTOR_PART__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.CONSTRUCTOR_PART__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.CONSTRUCTOR_PART__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.CONSTRUCTOR_PART__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.CONSTRUCTOR_PART__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.CONSTRUCTOR_PART__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.CONSTRUCTOR_PART__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.CONSTRUCTOR_PART__IS_MANY:
@@ -354,8 +354,8 @@ public class ConstructorPartImpl extends TypedElementImpl implements Constructor
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.CONSTRUCTOR_PART__TYPE:
 				return type != null;
-			case PivotPackage.CONSTRUCTOR_PART__INIT_EXPRESSION:
-				return initExpression != null;
+			case PivotPackage.CONSTRUCTOR_PART__OWNED_INIT:
+				return ownedInit != null;
 			case PivotPackage.CONSTRUCTOR_PART__REFERRED_PROPERTY:
 				return referredProperty != null;
 		}

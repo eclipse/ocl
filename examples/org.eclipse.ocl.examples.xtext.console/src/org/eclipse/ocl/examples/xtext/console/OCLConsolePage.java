@@ -218,7 +218,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 				PivotEnvironment environment = envFactory.createEnvironment();
 				EvaluationEnvironment evaluationEnvironment = envFactory.createEvaluationEnvironment();
 				Object contextValue = metaModelManager.getIdResolver().boxedValueOf(contextObject);
-				evaluationEnvironment.add(ClassUtil.nonNullModel(expressionInOCL.getContextVariable()), contextValue);
+				evaluationEnvironment.add(ClassUtil.nonNullModel(expressionInOCL.getOwnedContext()), contextValue);
 	//			if (modelManager == null) {
 					// let the evaluation environment create one
 					@NonNull DomainModelManager modelManager2 = modelManager = evaluationEnvironment.createModelManager(contextObject);

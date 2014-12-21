@@ -57,7 +57,7 @@ public abstract class AbstractImplicitSourceNamedElementIterator<T extends Named
 		if (csParent instanceof ContextCS) {
 			ExpressionInOCL asContext = PivotUtil.getPivot(ExpressionInOCL.class, (ContextCS)csParent);
 			if (asContext != null) {
-				Variable asVariable = asContext.getContextVariable();
+				Variable asVariable = asContext.getOwnedContext();
 				if (asVariable != null) {
 					setNext(asVariable);
 				}
@@ -67,9 +67,9 @@ public abstract class AbstractImplicitSourceNamedElementIterator<T extends Named
 		else if (csParent instanceof ConstraintCS) {
 			Constraint asConstraint = PivotUtil.getPivot(Constraint.class, (ConstraintCS)csParent);
 			if (asConstraint != null) {
-				LanguageExpression asContext = asConstraint.getSpecification();
+				LanguageExpression asContext = asConstraint.getOwnedSpecification();
 				if (asContext instanceof ExpressionInOCL) {
-					Variable asVariable = ((ExpressionInOCL)asContext).getContextVariable();
+					Variable asVariable = ((ExpressionInOCL)asContext).getOwnedContext();
 					if (asVariable != null) {
 						setNext(asVariable);
 					}
@@ -80,7 +80,7 @@ public abstract class AbstractImplicitSourceNamedElementIterator<T extends Named
 		else if (csParent instanceof ExpSpecificationCS) {
 			Element element = ((ExpSpecificationCS)csParent).getPivot();
 			if (element instanceof ExpressionInOCL) {
-				Variable asVariable = ((ExpressionInOCL)element).getContextVariable();
+				Variable asVariable = ((ExpressionInOCL)element).getOwnedContext();
 				if (asVariable != null) {
 					setNext(asVariable);
 				}
@@ -89,7 +89,7 @@ public abstract class AbstractImplicitSourceNamedElementIterator<T extends Named
 		else if ((csParent instanceof NameExpCS) && (((NameExpCS)csParent).getOwnedRoundBracketedClause() != null)){
 			OCLExpression asCallExp = PivotUtil.getPivot(OCLExpression.class, (NameExpCS)csParent);
 			if (asCallExp instanceof LoopExp) {
-				List<Variable> asIterators = ((LoopExp)asCallExp).getIterator();
+				List<Variable> asIterators = ((LoopExp)asCallExp).getOwnedIterators();
 				if (asIterators.size() == 1) {
 					Variable iterator = asIterators.get(0);
 					if ((iterator != null) && iterator.isImplicit()) {

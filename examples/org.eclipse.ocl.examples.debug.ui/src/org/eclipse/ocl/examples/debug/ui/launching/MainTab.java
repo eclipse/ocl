@@ -285,7 +285,7 @@ public class MainTab extends AbstractMainTab implements OCLLaunchConstants
 	}
 
 	protected String getDisplayString(@NonNull ExpressionInOCL expressionInOCL) {
-		String typeString = expressionInOCL.getContextVariable().getType().toString();
+		String typeString = expressionInOCL.getOwnedContext().getType().toString();
 		String expressionString = expressionInOCL.toString();
 		String displayString = typeString + ": " + expressionString;
 		return displayString;
@@ -308,7 +308,7 @@ public class MainTab extends AbstractMainTab implements OCLLaunchConstants
 				oclPath.setText(oclNonASURI.toString());
 				EObject eObject = getMetaModelManager().getASResourceSet().getEObject(constraintURI, true);
 				if (eObject instanceof Constraint) {
-					LanguageExpression specification = ((Constraint) eObject).getSpecification();
+					LanguageExpression specification = ((Constraint) eObject).getOwnedSpecification();
 					if (specification != null) {
 						try {
 							ExpressionInOCL query = getMetaModelManager().getQueryOrThrow(specification);

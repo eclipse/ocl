@@ -24,8 +24,8 @@ import org.eclipse.jdt.annotation.NonNull;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.LoopExp#getBody <em>Body</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.LoopExp#getIterator <em>Iterator</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.LoopExp#getOwnedBody <em>Owned Body</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.LoopExp#getOwnedIterators <em>Owned Iterators</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.LoopExp#getReferredIteration <em>Referred Iteration</em>}</li>
  * </ul>
  * </p>
@@ -37,32 +37,32 @@ public interface LoopExp
 		extends CallExp {
 
 	/**
-	 * Returns the value of the '<em><b>Body</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Body</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Body</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Body</em>' containment reference.
-	 * @see #setBody(OCLExpression)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getLoopExp_Body()
+	 * @return the value of the '<em>Owned Body</em>' containment reference.
+	 * @see #setOwnedBody(OCLExpression)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getLoopExp_OwnedBody()
 	 * @generated
 	 */
-	OCLExpression getBody();
+	OCLExpression getOwnedBody();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.LoopExp#getBody <em>Body</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.LoopExp#getOwnedBody <em>Owned Body</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Body</em>' containment reference.
-	 * @see #getBody()
+	 * @param value the new value of the '<em>Owned Body</em>' containment reference.
+	 * @see #getOwnedBody()
 	 * @generated
 	 */
-	void setBody(OCLExpression value);
+	void setOwnedBody(OCLExpression value);
 
 	/**
-	 * Returns the value of the '<em><b>Iterator</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Iterators</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.Variable}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -70,11 +70,11 @@ public interface LoopExp
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Iterator</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getLoopExp_Iterator()
+	 * @return the value of the '<em>Owned Iterators</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getLoopExp_OwnedIterators()
 	 * @generated
 	 */
-	@NonNull List<Variable> getIterator();
+	@NonNull List<Variable> getOwnedIterators();
 
 	/**
 	 * Returns the value of the '<em><b>Referred Iteration</b></em>' reference.

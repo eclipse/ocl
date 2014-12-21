@@ -161,12 +161,12 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	{
 		switch (featureID)
 		{
-			case PivotPackage.STANDARD_LIBRARY__COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.STANDARD_LIBRARY__EXTENSION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
-			case PivotPackage.STANDARD_LIBRARY__OWNED_COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
+			case PivotPackage.STANDARD_LIBRARY__ANNOTATING_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAnnotatingComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.STANDARD_LIBRARY__OWNED_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.STANDARD_LIBRARY__OWNED_EXTENSIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedExtensions()).basicAdd(otherEnd, msgs);
 			case PivotPackage.STANDARD_LIBRARY__OWNING_COMPLETE_ENVIRONMENT:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -185,14 +185,14 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	{
 		switch (featureID)
 		{
-			case PivotPackage.STANDARD_LIBRARY__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.STANDARD_LIBRARY__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.STANDARD_LIBRARY__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.STANDARD_LIBRARY__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STANDARD_LIBRARY__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STANDARD_LIBRARY__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STANDARD_LIBRARY__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STANDARD_LIBRARY__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STANDARD_LIBRARY__OWNING_COMPLETE_ENVIRONMENT:
 				return basicSetOwningCompleteEnvironment(null, msgs);
 		}
@@ -225,14 +225,14 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	{
 		switch (featureID)
 		{
-			case PivotPackage.STANDARD_LIBRARY__COMMENT:
-				return getComment();
-			case PivotPackage.STANDARD_LIBRARY__EXTENSION:
-				return getExtension();
-			case PivotPackage.STANDARD_LIBRARY__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.STANDARD_LIBRARY__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.STANDARD_LIBRARY__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.STANDARD_LIBRARY__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.STANDARD_LIBRARY__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.STANDARD_LIBRARY__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.STANDARD_LIBRARY__OWNING_COMPLETE_ENVIRONMENT:
 				return getOwningCompleteEnvironment();
 		}
@@ -250,21 +250,21 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	{
 		switch (featureID)
 		{
-			case PivotPackage.STANDARD_LIBRARY__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.STANDARD_LIBRARY__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.STANDARD_LIBRARY__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.STANDARD_LIBRARY__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.STANDARD_LIBRARY__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.STANDARD_LIBRARY__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.STANDARD_LIBRARY__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.STANDARD_LIBRARY__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.STANDARD_LIBRARY__OWNING_COMPLETE_ENVIRONMENT:
 				setOwningCompleteEnvironment((CompleteEnvironment)newValue);
@@ -283,17 +283,17 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	{
 		switch (featureID)
 		{
-			case PivotPackage.STANDARD_LIBRARY__COMMENT:
-				getComment().clear();
+			case PivotPackage.STANDARD_LIBRARY__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.STANDARD_LIBRARY__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.STANDARD_LIBRARY__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.STANDARD_LIBRARY__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.STANDARD_LIBRARY__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.STANDARD_LIBRARY__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.STANDARD_LIBRARY__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.STANDARD_LIBRARY__OWNING_COMPLETE_ENVIRONMENT:
 				setOwningCompleteEnvironment((CompleteEnvironment)null);
@@ -312,14 +312,14 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	{
 		switch (featureID)
 		{
-			case PivotPackage.STANDARD_LIBRARY__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.STANDARD_LIBRARY__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.STANDARD_LIBRARY__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.STANDARD_LIBRARY__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.STANDARD_LIBRARY__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.STANDARD_LIBRARY__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.STANDARD_LIBRARY__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.STANDARD_LIBRARY__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.STANDARD_LIBRARY__OWNING_COMPLETE_ENVIRONMENT:
 				return getOwningCompleteEnvironment() != null;
 		}
@@ -872,10 +872,10 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	protected @NonNull <T extends TemplateableElement> T resolveRequiredTemplateableType(@NonNull Class<T> requiredClassType, @NonNull String name, int parameterCount) {
 		org.eclipse.ocl.pivot.Class type = getRequiredLibraryType(name);
 		if (requiredClassType.isAssignableFrom(type.getClass())) {
-			if (type.getOwnedTemplateSignature() == null) {
+			if (type.getOwnedSignature() == null) {
 				throw new IllegalLibraryException(name + " is not a templated type");
 			}
-			else if (type.getOwnedTemplateSignature().getOwnedTemplateParameters().size() != parameterCount) {
+			else if (type.getOwnedSignature().getOwnedParameters().size() != parameterCount) {
 				throw new IllegalLibraryException(name + " is not a templated type with " + parameterCount + " argument" + (parameterCount != 1 ? "s" : ""));
 			}
 			@SuppressWarnings("unchecked")

@@ -173,7 +173,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 			if (astOperation != null) {
 				LanguageExpression specification = ClassUtil.nonNullState(astOperation.getBodyExpression());
 				ExpressionInOCL expressionInOCL = metaModelManager.getQueryOrThrow(specification);
-				OCLExpression oclExpression = expressionInOCL.getBodyExpression();
+				OCLExpression oclExpression = expressionInOCL.getOwnedBody();
 				if (oclExpression instanceof ConstructorExp) {
 					hasCS2ASmappingOperation = true;
 					ConstructorExp constructorExp = (ConstructorExp) oclExpression;
@@ -185,7 +185,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 					cgBody.setAst(astOperation);
 //					cgBody.setTypeId(getAnalyzer().getTypeId(astOperation.getTypeId()));
 					cgOperation.setBody(cgBody);
-					Variable contextVariable = expressionInOCL.getContextVariable();
+					Variable contextVariable = expressionInOCL.getOwnedContext();
 					if (contextVariable != null) {
 						List<CGParameter> cgParameters = cgOperation.getParameters();
 						CGParameter cgContext = as2cgVisitor.getParameter(contextVariable);
@@ -196,13 +196,13 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 					org.eclipse.ocl.pivot.Class constructorType = ClassUtil.nonNullState(constructorExp.getType());
 					GenClass genClass = ClassUtil.nonNullState((GenClass) genModelHelper.getGenClassifier(constructorType));
 					EClass eClass = ClassUtil.nonNullState(genClass.getEcoreClass());
-					for (ConstructorPart constructorPart : constructorExp.getPart()) {
+					for (ConstructorPart constructorPart : constructorExp.getOwnedParts()) {
 						CGContainmentPart cgPart = AutoCGModelFactory.eINSTANCE.createCGContainmentPart();
 						String name = constructorPart.getName();
 						cgPart.setName(name);
 						cgPart.setAst(constructorPart);
 						cgPart.setEStructuralFeature(ClassUtil.nonNullState(eClass.getEStructuralFeature(name)));
-						cgPart.setInit((CGValuedElement) constructorPart.getInitExpression().accept(as2cgVisitor));
+						cgPart.setInit((CGValuedElement) constructorPart.getOwnedInit().accept(as2cgVisitor));
 						cgBody.getParts().add(cgPart);
 					}
 					cgClass.getOperations().add(cgOperation);					

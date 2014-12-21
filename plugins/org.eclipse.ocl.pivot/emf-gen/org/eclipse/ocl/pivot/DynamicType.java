@@ -12,6 +12,8 @@ package org.eclipse.ocl.pivot;
 
 import java.util.List;
 
+import org.eclipse.jdt.annotation.NonNull;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Dynamic Type</b></em>'.
@@ -20,7 +22,7 @@ import java.util.List;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.DynamicType#getOwnedProperty <em>Owned Property</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.DynamicType#getOwnedDynamicProperties <em>Owned Dynamic Properties</em>}</li>
  * </ul>
  * </p>
  *
@@ -30,7 +32,7 @@ import java.util.List;
 public interface DynamicType extends org.eclipse.ocl.pivot.Class, DynamicElement
 {
 	/**
-	 * Returns the value of the '<em><b>Owned Property</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Dynamic Properties</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.DynamicProperty}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -38,10 +40,10 @@ public interface DynamicType extends org.eclipse.ocl.pivot.Class, DynamicElement
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Property</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getDynamicType_OwnedProperty()
+	 * @return the value of the '<em>Owned Dynamic Properties</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getDynamicType_OwnedDynamicProperties()
 	 * @generated
 	 */
-	List<DynamicProperty> getOwnedProperty();
+	@NonNull List<DynamicProperty> getOwnedDynamicProperties();
 
 } // DynamicType

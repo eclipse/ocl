@@ -53,9 +53,9 @@ import org.eclipse.osgi.util.NLS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.impl.IfExpImpl#getCondition <em>Condition</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.IfExpImpl#getElseExpression <em>Else Expression</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.IfExpImpl#getThenExpression <em>Then Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.IfExpImpl#getOwnedCondition <em>Owned Condition</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.IfExpImpl#getOwnedElse <em>Owned Else</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.IfExpImpl#getOwnedThen <em>Owned Then</em>}</li>
  * </ul>
  * </p>
  *
@@ -66,34 +66,34 @@ public class IfExpImpl
 		implements IfExp {
 
 	/**
-	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedCondition() <em>Owned Condition</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCondition()
+	 * @see #getOwnedCondition()
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLExpression condition;
+	protected OCLExpression ownedCondition;
 
 	/**
-	 * The cached value of the '{@link #getElseExpression() <em>Else Expression</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedElse() <em>Owned Else</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getElseExpression()
+	 * @see #getOwnedElse()
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLExpression elseExpression;
+	protected OCLExpression ownedElse;
 
 	/**
-	 * The cached value of the '{@link #getThenExpression() <em>Then Expression</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedThen() <em>Owned Then</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getThenExpression()
+	 * @see #getOwnedThen()
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLExpression thenExpression;
+	protected OCLExpression ownedThen;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -120,8 +120,8 @@ public class IfExpImpl
 	 * @generated
 	 */
 	@Override
-	public OCLExpression getCondition() {
-		return condition;
+	public OCLExpression getOwnedCondition() {
+		return ownedCondition;
 	}
 
 	/**
@@ -129,13 +129,13 @@ public class IfExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetCondition(OCLExpression newCondition,
-			NotificationChain msgs) {
-		OCLExpression oldCondition = condition;
-		condition = newCondition;
+	public NotificationChain basicSetOwnedCondition(OCLExpression newOwnedCondition, NotificationChain msgs)
+	{
+		OCLExpression oldOwnedCondition = ownedCondition;
+		ownedCondition = newOwnedCondition;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.IF_EXP__CONDITION, oldCondition, newCondition);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.IF_EXP__OWNED_CONDITION, oldOwnedCondition, newOwnedCondition);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -147,19 +147,19 @@ public class IfExpImpl
 	 * @generated
 	 */
 	@Override
-	public void setCondition(OCLExpression newCondition) {
-		if (newCondition != condition)
+	public void setOwnedCondition(OCLExpression newOwnedCondition) {
+		if (newOwnedCondition != ownedCondition)
 		{
 			NotificationChain msgs = null;
-			if (condition != null)
-				msgs = ((InternalEObject)condition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.IF_EXP__CONDITION, null, msgs);
-			if (newCondition != null)
-				msgs = ((InternalEObject)newCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.IF_EXP__CONDITION, null, msgs);
-			msgs = basicSetCondition(newCondition, msgs);
+			if (ownedCondition != null)
+				msgs = ((InternalEObject)ownedCondition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.IF_EXP__OWNED_CONDITION, null, msgs);
+			if (newOwnedCondition != null)
+				msgs = ((InternalEObject)newOwnedCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.IF_EXP__OWNED_CONDITION, null, msgs);
+			msgs = basicSetOwnedCondition(newOwnedCondition, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.IF_EXP__CONDITION, newCondition, newCondition));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.IF_EXP__OWNED_CONDITION, newOwnedCondition, newOwnedCondition));
 	}
 
 	/**
@@ -168,8 +168,8 @@ public class IfExpImpl
 	 * @generated
 	 */
 	@Override
-	public OCLExpression getThenExpression() {
-		return thenExpression;
+	public OCLExpression getOwnedThen() {
+		return ownedThen;
 	}
 
 	/**
@@ -177,13 +177,13 @@ public class IfExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetThenExpression(
-			OCLExpression newThenExpression, NotificationChain msgs) {
-		OCLExpression oldThenExpression = thenExpression;
-		thenExpression = newThenExpression;
+	public NotificationChain basicSetOwnedThen(OCLExpression newOwnedThen, NotificationChain msgs)
+	{
+		OCLExpression oldOwnedThen = ownedThen;
+		ownedThen = newOwnedThen;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.IF_EXP__THEN_EXPRESSION, oldThenExpression, newThenExpression);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.IF_EXP__OWNED_THEN, oldOwnedThen, newOwnedThen);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -195,19 +195,19 @@ public class IfExpImpl
 	 * @generated
 	 */
 	@Override
-	public void setThenExpression(OCLExpression newThenExpression) {
-		if (newThenExpression != thenExpression)
+	public void setOwnedThen(OCLExpression newOwnedThen) {
+		if (newOwnedThen != ownedThen)
 		{
 			NotificationChain msgs = null;
-			if (thenExpression != null)
-				msgs = ((InternalEObject)thenExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.IF_EXP__THEN_EXPRESSION, null, msgs);
-			if (newThenExpression != null)
-				msgs = ((InternalEObject)newThenExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.IF_EXP__THEN_EXPRESSION, null, msgs);
-			msgs = basicSetThenExpression(newThenExpression, msgs);
+			if (ownedThen != null)
+				msgs = ((InternalEObject)ownedThen).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.IF_EXP__OWNED_THEN, null, msgs);
+			if (newOwnedThen != null)
+				msgs = ((InternalEObject)newOwnedThen).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.IF_EXP__OWNED_THEN, null, msgs);
+			msgs = basicSetOwnedThen(newOwnedThen, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.IF_EXP__THEN_EXPRESSION, newThenExpression, newThenExpression));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.IF_EXP__OWNED_THEN, newOwnedThen, newOwnedThen));
 	}
 
 	/**
@@ -216,8 +216,8 @@ public class IfExpImpl
 	 * @generated
 	 */
 	@Override
-	public OCLExpression getElseExpression() {
-		return elseExpression;
+	public OCLExpression getOwnedElse() {
+		return ownedElse;
 	}
 
 	/**
@@ -225,13 +225,13 @@ public class IfExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetElseExpression(
-			OCLExpression newElseExpression, NotificationChain msgs) {
-		OCLExpression oldElseExpression = elseExpression;
-		elseExpression = newElseExpression;
+	public NotificationChain basicSetOwnedElse(OCLExpression newOwnedElse, NotificationChain msgs)
+	{
+		OCLExpression oldOwnedElse = ownedElse;
+		ownedElse = newOwnedElse;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.IF_EXP__ELSE_EXPRESSION, oldElseExpression, newElseExpression);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.IF_EXP__OWNED_ELSE, oldOwnedElse, newOwnedElse);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -243,19 +243,19 @@ public class IfExpImpl
 	 * @generated
 	 */
 	@Override
-	public void setElseExpression(OCLExpression newElseExpression) {
-		if (newElseExpression != elseExpression)
+	public void setOwnedElse(OCLExpression newOwnedElse) {
+		if (newOwnedElse != ownedElse)
 		{
 			NotificationChain msgs = null;
-			if (elseExpression != null)
-				msgs = ((InternalEObject)elseExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.IF_EXP__ELSE_EXPRESSION, null, msgs);
-			if (newElseExpression != null)
-				msgs = ((InternalEObject)newElseExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.IF_EXP__ELSE_EXPRESSION, null, msgs);
-			msgs = basicSetElseExpression(newElseExpression, msgs);
+			if (ownedElse != null)
+				msgs = ((InternalEObject)ownedElse).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.IF_EXP__OWNED_ELSE, null, msgs);
+			if (newOwnedElse != null)
+				msgs = ((InternalEObject)newOwnedElse).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.IF_EXP__OWNED_ELSE, null, msgs);
+			msgs = basicSetOwnedElse(newOwnedElse, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.IF_EXP__ELSE_EXPRESSION, newElseExpression, newElseExpression));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.IF_EXP__OWNED_ELSE, newOwnedElse, newOwnedElse));
 	}
 
 	/**
@@ -268,18 +268,18 @@ public class IfExpImpl
 	{
 		/**
 		 * 
-		 * inv ConditionTypeIsBoolean: self.condition.type = Boolean
+		 * inv ConditionTypeIsBoolean: self.ownedCondition.type = Boolean
 		 */
 		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		@NonNull /*@Caught*/ Object CAUGHT_eq;
 		try {
 		    final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Boolean_0 = idResolver.getClass(TypeId.BOOLEAN, null);
-		    final @Nullable /*@Thrown*/ OCLExpression condition = this.getCondition();
-		    if (condition == null) {
+		    final @Nullable /*@Thrown*/ OCLExpression ownedCondition = this.getOwnedCondition();
+		    if (ownedCondition == null) {
 		        throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		    }
-		    final @Nullable /*@Thrown*/ Type type = condition.getType();
+		    final @Nullable /*@Thrown*/ Type type = ownedCondition.getType();
 		    final /*@Thrown*/ boolean eq = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : ValueUtil.throwBooleanInvalidValueException("null equal input");
 		    ;
 		    CAUGHT_eq = eq;
@@ -308,20 +308,20 @@ public class IfExpImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case PivotPackage.IF_EXP__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.IF_EXP__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.IF_EXP__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.IF_EXP__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.IF_EXP__CONDITION:
-				return basicSetCondition(null, msgs);
-			case PivotPackage.IF_EXP__ELSE_EXPRESSION:
-				return basicSetElseExpression(null, msgs);
-			case PivotPackage.IF_EXP__THEN_EXPRESSION:
-				return basicSetThenExpression(null, msgs);
+			case PivotPackage.IF_EXP__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.IF_EXP__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.IF_EXP__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.IF_EXP__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.IF_EXP__OWNED_CONDITION:
+				return basicSetOwnedCondition(null, msgs);
+			case PivotPackage.IF_EXP__OWNED_ELSE:
+				return basicSetOwnedElse(null, msgs);
+			case PivotPackage.IF_EXP__OWNED_THEN:
+				return basicSetOwnedThen(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -335,14 +335,14 @@ public class IfExpImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case PivotPackage.IF_EXP__COMMENT:
-				return getComment();
-			case PivotPackage.IF_EXP__EXTENSION:
-				return getExtension();
-			case PivotPackage.IF_EXP__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.IF_EXP__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.IF_EXP__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.IF_EXP__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.IF_EXP__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.IF_EXP__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.IF_EXP__NAME:
 				return getName();
 			case PivotPackage.IF_EXP__IS_MANY:
@@ -354,12 +354,12 @@ public class IfExpImpl
 				return basicGetType();
 			case PivotPackage.IF_EXP__TYPE_VALUE:
 				return getTypeValue();
-			case PivotPackage.IF_EXP__CONDITION:
-				return getCondition();
-			case PivotPackage.IF_EXP__ELSE_EXPRESSION:
-				return getElseExpression();
-			case PivotPackage.IF_EXP__THEN_EXPRESSION:
-				return getThenExpression();
+			case PivotPackage.IF_EXP__OWNED_CONDITION:
+				return getOwnedCondition();
+			case PivotPackage.IF_EXP__OWNED_ELSE:
+				return getOwnedElse();
+			case PivotPackage.IF_EXP__OWNED_THEN:
+				return getOwnedThen();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -374,21 +374,21 @@ public class IfExpImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case PivotPackage.IF_EXP__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.IF_EXP__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.IF_EXP__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.IF_EXP__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.IF_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.IF_EXP__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.IF_EXP__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.IF_EXP__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.IF_EXP__NAME:
 				setName((String)newValue);
@@ -402,14 +402,14 @@ public class IfExpImpl
 			case PivotPackage.IF_EXP__TYPE_VALUE:
 				setTypeValue((Type)newValue);
 				return;
-			case PivotPackage.IF_EXP__CONDITION:
-				setCondition((OCLExpression)newValue);
+			case PivotPackage.IF_EXP__OWNED_CONDITION:
+				setOwnedCondition((OCLExpression)newValue);
 				return;
-			case PivotPackage.IF_EXP__ELSE_EXPRESSION:
-				setElseExpression((OCLExpression)newValue);
+			case PivotPackage.IF_EXP__OWNED_ELSE:
+				setOwnedElse((OCLExpression)newValue);
 				return;
-			case PivotPackage.IF_EXP__THEN_EXPRESSION:
-				setThenExpression((OCLExpression)newValue);
+			case PivotPackage.IF_EXP__OWNED_THEN:
+				setOwnedThen((OCLExpression)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -424,17 +424,17 @@ public class IfExpImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.IF_EXP__COMMENT:
-				getComment().clear();
+			case PivotPackage.IF_EXP__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.IF_EXP__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.IF_EXP__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.IF_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.IF_EXP__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.IF_EXP__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.IF_EXP__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.IF_EXP__NAME:
 				setName(NAME_EDEFAULT);
@@ -448,14 +448,14 @@ public class IfExpImpl
 			case PivotPackage.IF_EXP__TYPE_VALUE:
 				setTypeValue((Type)null);
 				return;
-			case PivotPackage.IF_EXP__CONDITION:
-				setCondition((OCLExpression)null);
+			case PivotPackage.IF_EXP__OWNED_CONDITION:
+				setOwnedCondition((OCLExpression)null);
 				return;
-			case PivotPackage.IF_EXP__ELSE_EXPRESSION:
-				setElseExpression((OCLExpression)null);
+			case PivotPackage.IF_EXP__OWNED_ELSE:
+				setOwnedElse((OCLExpression)null);
 				return;
-			case PivotPackage.IF_EXP__THEN_EXPRESSION:
-				setThenExpression((OCLExpression)null);
+			case PivotPackage.IF_EXP__OWNED_THEN:
+				setOwnedThen((OCLExpression)null);
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -470,14 +470,14 @@ public class IfExpImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.IF_EXP__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.IF_EXP__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.IF_EXP__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.IF_EXP__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.IF_EXP__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.IF_EXP__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.IF_EXP__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.IF_EXP__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.IF_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.IF_EXP__IS_MANY:
@@ -488,12 +488,12 @@ public class IfExpImpl
 				return type != null;
 			case PivotPackage.IF_EXP__TYPE_VALUE:
 				return typeValue != null;
-			case PivotPackage.IF_EXP__CONDITION:
-				return condition != null;
-			case PivotPackage.IF_EXP__ELSE_EXPRESSION:
-				return elseExpression != null;
-			case PivotPackage.IF_EXP__THEN_EXPRESSION:
-				return thenExpression != null;
+			case PivotPackage.IF_EXP__OWNED_CONDITION:
+				return ownedCondition != null;
+			case PivotPackage.IF_EXP__OWNED_ELSE:
+				return ownedElse != null;
+			case PivotPackage.IF_EXP__OWNED_THEN:
+				return ownedThen != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

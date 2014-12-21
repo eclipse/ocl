@@ -488,7 +488,7 @@ public class XtextTestCase extends PivotTestCase
 				return false;
 			}
 		}
-		if ((pivotElement instanceof TemplateableElement) && (((TemplateableElement)pivotElement).getOwnedTemplateBindings().size() > 0)) {
+		if ((pivotElement instanceof TemplateableElement) && (((TemplateableElement)pivotElement).getOwnedBindings().size() > 0)) {
 			return false;
 		}
 		if (pivotElement instanceof LambdaType) {

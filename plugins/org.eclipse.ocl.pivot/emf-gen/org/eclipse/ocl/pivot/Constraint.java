@@ -27,15 +27,15 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.Constraint#getConstrainedElement <em>Constrained Element</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Constraint#getConstrainedElements <em>Constrained Elements</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Constraint#getContext <em>Context</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Constraint#isCallable <em>Is Callable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Constraint#getOwnedSpecification <em>Owned Specification</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Constraint#getOwningPostContext <em>Owning Post Context</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Constraint#getOwningPreContext <em>Owning Pre Context</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Constraint#getOwningState <em>Owning State</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Constraint#getPostContext <em>Post Context</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Constraint#getPreContext <em>Pre Context</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Constraint#getRedefinedConstraint <em>Redefined Constraint</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Constraint#getSpecification <em>Specification</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Constraint#getTransition <em>Transition</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Constraint#getOwningTransition <em>Owning Transition</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Constraint#getRedefinedConstraints <em>Redefined Constraints</em>}</li>
  * </ul>
  * </p>
  *
@@ -46,71 +46,98 @@ public interface Constraint
 		extends NamedElement {
 
 	/**
-	 * Returns the value of the '<em><b>Constrained Element</b></em>' reference list.
+	 * Returns the value of the '<em><b>Constrained Elements</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.Element}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The ordered set of Elements referenced by this Constraint.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Constrained Element</em>' reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getConstraint_ConstrainedElement()
+	 * @return the value of the '<em>Constrained Elements</em>' reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getConstraint_ConstrainedElements()
 	 * @generated
 	 */
-	List<Element> getConstrainedElement();
+	List<Element> getConstrainedElements();
 
 	/**
-	 * Returns the value of the '<em><b>Specification</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Specification</b></em>' containment reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.LanguageExpression#getOwningConstraint <em>Owning Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * A condition that must be true when evaluated in order for the constraint to be satisfied.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Specification</em>' containment reference.
-	 * @see #setSpecification(LanguageExpression)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getConstraint_Specification()
+	 * @return the value of the '<em>Owned Specification</em>' containment reference.
+	 * @see #setOwnedSpecification(LanguageExpression)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getConstraint_OwnedSpecification()
 	 * @see org.eclipse.ocl.pivot.LanguageExpression#getOwningConstraint
 	 * @generated
 	 */
-	LanguageExpression getSpecification();
+	LanguageExpression getOwnedSpecification();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Constraint#getSpecification <em>Specification</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Constraint#getOwnedSpecification <em>Owned Specification</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Specification</em>' containment reference.
-	 * @see #getSpecification()
+	 * @param value the new value of the '<em>Owned Specification</em>' containment reference.
+	 * @see #getOwnedSpecification()
 	 * @generated
 	 */
-	void setSpecification(LanguageExpression value);
+	void setOwnedSpecification(LanguageExpression value);
 
 	/**
-	 * Returns the value of the '<em><b>Transition</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Transition#getGuard <em>Guard</em>}'.
+	 * Returns the value of the '<em><b>Owning Post Context</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Operation#getOwnedPostconditions <em>Owned Postconditions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Transition</em>' container reference isn't clear,
+	 * If the meaning of the '<em>Owning Post Context</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Transition</em>' container reference.
-	 * @see #setTransition(Transition)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getConstraint_Transition()
-	 * @see org.eclipse.ocl.pivot.Transition#getGuard
+	 * @return the value of the '<em>Owning Post Context</em>' container reference.
+	 * @see #setOwningPostContext(Operation)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getConstraint_OwningPostContext()
+	 * @see org.eclipse.ocl.pivot.Operation#getOwnedPostconditions
 	 * @generated
 	 */
-	Transition getTransition();
+	Operation getOwningPostContext();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Constraint#getTransition <em>Transition</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Constraint#getOwningPostContext <em>Owning Post Context</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Transition</em>' container reference.
-	 * @see #getTransition()
+	 * @param value the new value of the '<em>Owning Post Context</em>' container reference.
+	 * @see #getOwningPostContext()
 	 * @generated
 	 */
-	void setTransition(Transition value);
+	void setOwningPostContext(Operation value);
+
+	/**
+	 * Returns the value of the '<em><b>Owning Pre Context</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Operation#getOwnedPreconditions <em>Owned Preconditions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owning Pre Context</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owning Pre Context</em>' container reference.
+	 * @see #setOwningPreContext(Operation)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getConstraint_OwningPreContext()
+	 * @see org.eclipse.ocl.pivot.Operation#getOwnedPreconditions
+	 * @generated
+	 */
+	Operation getOwningPreContext();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Constraint#getOwningPreContext <em>Owning Pre Context</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Pre Context</em>' container reference.
+	 * @see #getOwningPreContext()
+	 * @generated
+	 */
+	void setOwningPreContext(Operation value);
 
 	/**
 	 * Returns the value of the '<em><b>Context</b></em>' reference.
@@ -154,7 +181,7 @@ public interface Constraint
 
 	/**
 	 * Returns the value of the '<em><b>Owning State</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.State#getStateInvariant <em>State Invariant</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.State#getOwnedStateInvariant <em>Owned State Invariant</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning State</em>' container reference isn't clear,
@@ -164,7 +191,7 @@ public interface Constraint
 	 * @return the value of the '<em>Owning State</em>' container reference.
 	 * @see #setOwningState(State)
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getConstraint_OwningState()
-	 * @see org.eclipse.ocl.pivot.State#getStateInvariant
+	 * @see org.eclipse.ocl.pivot.State#getOwnedStateInvariant
 	 * @generated
 	 */
 	State getOwningState();
@@ -180,73 +207,46 @@ public interface Constraint
 	void setOwningState(State value);
 
 	/**
-	 * Returns the value of the '<em><b>Post Context</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Operation#getPostcondition <em>Postcondition</em>}'.
+	 * Returns the value of the '<em><b>Owning Transition</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Transition#getOwnedGuard <em>Owned Guard</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Post Context</em>' container reference isn't clear,
+	 * If the meaning of the '<em>Owning Transition</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Post Context</em>' container reference.
-	 * @see #setPostContext(Operation)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getConstraint_PostContext()
-	 * @see org.eclipse.ocl.pivot.Operation#getPostcondition
+	 * @return the value of the '<em>Owning Transition</em>' container reference.
+	 * @see #setOwningTransition(Transition)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getConstraint_OwningTransition()
+	 * @see org.eclipse.ocl.pivot.Transition#getOwnedGuard
 	 * @generated
 	 */
-	Operation getPostContext();
+	Transition getOwningTransition();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Constraint#getPostContext <em>Post Context</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Constraint#getOwningTransition <em>Owning Transition</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Post Context</em>' container reference.
-	 * @see #getPostContext()
+	 * @param value the new value of the '<em>Owning Transition</em>' container reference.
+	 * @see #getOwningTransition()
 	 * @generated
 	 */
-	void setPostContext(Operation value);
+	void setOwningTransition(Transition value);
 
 	/**
-	 * Returns the value of the '<em><b>Pre Context</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Operation#getPrecondition <em>Precondition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Pre Context</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Pre Context</em>' container reference.
-	 * @see #setPreContext(Operation)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getConstraint_PreContext()
-	 * @see org.eclipse.ocl.pivot.Operation#getPrecondition
-	 * @generated
-	 */
-	Operation getPreContext();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Constraint#getPreContext <em>Pre Context</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Pre Context</em>' container reference.
-	 * @see #getPreContext()
-	 * @generated
-	 */
-	void setPreContext(Operation value);
-
-	/**
-	 * Returns the value of the '<em><b>Redefined Constraint</b></em>' reference list.
+	 * Returns the value of the '<em><b>Redefined Constraints</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.Constraint}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Redefined Constraint</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Redefined Constraints</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Redefined Constraint</em>' reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getConstraint_RedefinedConstraint()
+	 * @return the value of the '<em>Redefined Constraints</em>' reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getConstraint_RedefinedConstraints()
 	 * @generated
 	 */
-	List<Constraint> getRedefinedConstraint();
+	List<Constraint> getRedefinedConstraints();
 
 	/**
 	 * <!-- begin-user-doc -->

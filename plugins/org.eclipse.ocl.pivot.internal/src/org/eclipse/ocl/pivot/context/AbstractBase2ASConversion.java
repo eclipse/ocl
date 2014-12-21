@@ -84,12 +84,12 @@ public abstract class AbstractBase2ASConversion extends AbstractConversion imple
 
 	@Override
 	public void setContextVariable(@NonNull ExpressionInOCL pivotSpecification, @NonNull String selfVariableName, @Nullable Type contextType, @Nullable Type contextInstance) {
-		Variable contextVariable = pivotSpecification.getContextVariable();
+		Variable contextVariable = pivotSpecification.getOwnedContext();
 		if (contextVariable == null) {
 			@SuppressWarnings("null")
 			@NonNull Variable nonNullContextVariable = PivotFactory.eINSTANCE.createVariable();
 			contextVariable = nonNullContextVariable;
-			pivotSpecification.setContextVariable(contextVariable);
+			pivotSpecification.setOwnedContext(contextVariable);
 		}
 		refreshName(contextVariable, selfVariableName);
 		setType(contextVariable, contextType, contextVariable.isRequired(), contextInstance);
@@ -97,7 +97,7 @@ public abstract class AbstractBase2ASConversion extends AbstractConversion imple
 
 	@Override
 	public void setClassifierContext(@NonNull ExpressionInOCL pivotSpecification, @NonNull Type contextType) {
-		Variable contextVariable = pivotSpecification.getContextVariable();
+		Variable contextVariable = pivotSpecification.getOwnedContext();
 		if (contextVariable != null) {
 			if (contextType.eIsProxy()) {
 				setType(contextVariable, null, false);
@@ -109,11 +109,11 @@ public abstract class AbstractBase2ASConversion extends AbstractConversion imple
 	}
 
 	public void setOperationContext(@NonNull ExpressionInOCL pivotSpecification, @NonNull Operation contextOperation, @Nullable String resultName) {
-		Variable contextVariable = pivotSpecification.getContextVariable();
+		Variable contextVariable = pivotSpecification.getOwnedContext();
 //		pivotSpecification.getParameterVariable().clear();
 		if ((contextVariable != null) && !contextOperation.eIsProxy()) {
 			setType(contextVariable, contextOperation.getOwningClass(), true);
-			setParameterVariables(pivotSpecification, ClassUtil.nonNullEMF(contextOperation.getOwnedParameter()));
+			setParameterVariables(pivotSpecification, ClassUtil.nonNullEMF(contextOperation.getOwnedParameters()));
 		}
 		if (resultName != null) {
 			setResultVariable(pivotSpecification, contextOperation, resultName);
@@ -122,7 +122,7 @@ public abstract class AbstractBase2ASConversion extends AbstractConversion imple
 
 	@Override
 	public void setParameterVariables(@NonNull ExpressionInOCL pivotSpecification, @NonNull List<Parameter> parameters) {
-		List<Variable> oldVariables = new ArrayList<Variable>(pivotSpecification.getParameterVariable());
+		List<Variable> oldVariables = new ArrayList<Variable>(pivotSpecification.getOwnedParameters());
 		List<Variable> newVariables = new ArrayList<Variable>();
 		for (Parameter parameter : parameters) {
 		    String name = parameter.getName();
@@ -138,12 +138,12 @@ public abstract class AbstractBase2ASConversion extends AbstractConversion imple
 		    param.setRepresentedParameter(parameter);
 		    newVariables.add(param);
 		}
-		refreshList(ClassUtil.nonNullModel(pivotSpecification.getParameterVariable()), newVariables);
+		refreshList(ClassUtil.nonNullModel(pivotSpecification.getOwnedParameters()), newVariables);
 	}
 
 	@Override
 	public void setParameterVariables(@NonNull ExpressionInOCL pivotSpecification, @NonNull Map<String, Type> parameters) {
-		List<Variable> oldVariables = new ArrayList<Variable>(pivotSpecification.getParameterVariable());
+		List<Variable> oldVariables = new ArrayList<Variable>(pivotSpecification.getOwnedParameters());
 		List<Variable> newVariables = new ArrayList<Variable>();
 		for (String name : parameters.keySet()) {
 		    Type type = parameters.get(name);
@@ -159,11 +159,11 @@ public abstract class AbstractBase2ASConversion extends AbstractConversion imple
 //		    param.setRepresentedParameter(parameter);
 		    newVariables.add(param);
 		}
-		refreshList(ClassUtil.nonNullModel(pivotSpecification.getParameterVariable()), newVariables);
+		refreshList(ClassUtil.nonNullModel(pivotSpecification.getOwnedParameters()), newVariables);
 	}
 
 	public void setPropertyContext(@NonNull ExpressionInOCL pivotSpecification, @NonNull Property contextProperty) {
-		Variable contextVariable = pivotSpecification.getContextVariable();
+		Variable contextVariable = pivotSpecification.getOwnedContext();
 		if ((contextVariable != null) && !contextProperty.eIsProxy()) {
 			setType(contextVariable, contextProperty.getOwningClass(), true);
 		}
@@ -173,16 +173,16 @@ public abstract class AbstractBase2ASConversion extends AbstractConversion imple
 	public void setResultVariable(@NonNull ExpressionInOCL pivotSpecification, @NonNull Operation contextOperation, @NonNull String resultName) {
 		Type returnType = contextOperation.getType();
 		if (returnType != null) {					// FIXME BUG 385711 Use OclVoid rather than null
-			Variable resultVariable = pivotSpecification.getResultVariable();
+			Variable resultVariable = pivotSpecification.getOwnedResult();
 			if (resultVariable == null) {
 				resultVariable = PivotFactory.eINSTANCE.createVariable();
 			}
 			resultVariable.setName(resultName);
 			setBehavioralType(resultVariable, contextOperation);
-			pivotSpecification.setResultVariable(resultVariable);
+			pivotSpecification.setOwnedResult(resultVariable);
 		}
 		else {
-			pivotSpecification.setResultVariable(null);
+			pivotSpecification.setOwnedResult(null);
 		}
 	}
 

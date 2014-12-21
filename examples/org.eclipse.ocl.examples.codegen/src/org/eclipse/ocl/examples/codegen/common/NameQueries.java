@@ -175,7 +175,7 @@ public class NameQueries
 					StringBuilder s = new StringBuilder();
 					appendJavaCharacters(s, operation.getOwningClass().getName());
 					s.append('_');
-					int arity = operation.getOwnedParameter().size();
+					int arity = operation.getOwnedParameters().size();
 					String string = operation.getName();
 					for (int i = 0; i < string.length(); i++) {
 						char c = string.charAt(i);

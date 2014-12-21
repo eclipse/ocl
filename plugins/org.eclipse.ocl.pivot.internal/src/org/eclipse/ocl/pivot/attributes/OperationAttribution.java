@@ -29,7 +29,7 @@ public class OperationAttribution extends AbstractAttribution
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 //		TypeBindingsCS bindings = scopeView.getBindings();
 //		Operation target = getTarget();
-		if (containmentFeature == PivotPackage.Literals.OPERATION__OWNED_PARAMETER) {
+		if (containmentFeature == PivotPackage.Literals.OPERATION__OWNED_PARAMETERS) {
 		}
 		else {
 			environmentView.addAllParameters(targetOperation);

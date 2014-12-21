@@ -27,7 +27,7 @@ public abstract class ExecutorEnumerationLiteral extends AbstractExecutorEnumera
 	}
 
 	@Override
-	public @NonNull Enumeration getEnumeration() {
+	public @NonNull Enumeration getOwningEnumeration() {
 		return enumeration;
 	}
 

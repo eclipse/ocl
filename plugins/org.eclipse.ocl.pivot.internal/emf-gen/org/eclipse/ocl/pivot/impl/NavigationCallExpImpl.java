@@ -38,7 +38,7 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.NavigationCallExpImpl#getNavigationSource <em>Navigation Source</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.NavigationCallExpImpl#getQualifier <em>Qualifier</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.NavigationCallExpImpl#getQualifiers <em>Qualifiers</em>}</li>
  * </ul>
  * </p>
  *
@@ -59,14 +59,14 @@ public abstract class NavigationCallExpImpl
 	protected Property navigationSource;
 
 	/**
-	 * The cached value of the '{@link #getQualifier() <em>Qualifier</em>}' reference list.
+	 * The cached value of the '{@link #getQualifiers() <em>Qualifiers</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getQualifier()
+	 * @see #getQualifiers()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<OCLExpression> qualifier;
+	protected EList<OCLExpression> qualifiers;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -92,14 +92,15 @@ public abstract class NavigationCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("null")
 	@Override
-	public List<OCLExpression> getQualifier()
+	public @NonNull List<OCLExpression> getQualifiers()
 	{
-		if (qualifier == null)
+		if (qualifiers == null)
 		{
-			qualifier = new EObjectResolvingEList<OCLExpression>(OCLExpression.class, this, PivotPackage.NAVIGATION_CALL_EXP__QUALIFIER);
+			qualifiers = new EObjectResolvingEList<OCLExpression>(OCLExpression.class, this, PivotPackage.NAVIGATION_CALL_EXP__QUALIFIERS);
 		}
-		return qualifier;
+		return qualifiers;
 	}
 
 	/**
@@ -153,14 +154,14 @@ public abstract class NavigationCallExpImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case PivotPackage.NAVIGATION_CALL_EXP__COMMENT:
-				return getComment();
-			case PivotPackage.NAVIGATION_CALL_EXP__EXTENSION:
-				return getExtension();
-			case PivotPackage.NAVIGATION_CALL_EXP__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.NAVIGATION_CALL_EXP__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.NAVIGATION_CALL_EXP__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.NAVIGATION_CALL_EXP__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.NAVIGATION_CALL_EXP__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.NAVIGATION_CALL_EXP__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.NAVIGATION_CALL_EXP__NAME:
 				return getName();
 			case PivotPackage.NAVIGATION_CALL_EXP__IS_MANY:
@@ -172,17 +173,17 @@ public abstract class NavigationCallExpImpl
 				return basicGetType();
 			case PivotPackage.NAVIGATION_CALL_EXP__TYPE_VALUE:
 				return getTypeValue();
-			case PivotPackage.NAVIGATION_CALL_EXP__IMPLICIT:
+			case PivotPackage.NAVIGATION_CALL_EXP__IS_IMPLICIT:
 				return isImplicit();
-			case PivotPackage.NAVIGATION_CALL_EXP__SOURCE:
-				return getSource();
+			case PivotPackage.NAVIGATION_CALL_EXP__OWNED_SOURCE:
+				return getOwnedSource();
 			case PivotPackage.NAVIGATION_CALL_EXP__IS_PRE:
 				return isPre();
 			case PivotPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE:
 				if (resolve) return getNavigationSource();
 				return basicGetNavigationSource();
-			case PivotPackage.NAVIGATION_CALL_EXP__QUALIFIER:
-				return getQualifier();
+			case PivotPackage.NAVIGATION_CALL_EXP__QUALIFIERS:
+				return getQualifiers();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -197,21 +198,21 @@ public abstract class NavigationCallExpImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case PivotPackage.NAVIGATION_CALL_EXP__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.NAVIGATION_CALL_EXP__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.NAVIGATION_CALL_EXP__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.NAVIGATION_CALL_EXP__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.NAVIGATION_CALL_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.NAVIGATION_CALL_EXP__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.NAVIGATION_CALL_EXP__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.NAVIGATION_CALL_EXP__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.NAVIGATION_CALL_EXP__NAME:
 				setName((String)newValue);
@@ -225,11 +226,11 @@ public abstract class NavigationCallExpImpl
 			case PivotPackage.NAVIGATION_CALL_EXP__TYPE_VALUE:
 				setTypeValue((Type)newValue);
 				return;
-			case PivotPackage.NAVIGATION_CALL_EXP__IMPLICIT:
-				setImplicit((Boolean)newValue);
+			case PivotPackage.NAVIGATION_CALL_EXP__IS_IMPLICIT:
+				setIsImplicit((Boolean)newValue);
 				return;
-			case PivotPackage.NAVIGATION_CALL_EXP__SOURCE:
-				setSource((OCLExpression)newValue);
+			case PivotPackage.NAVIGATION_CALL_EXP__OWNED_SOURCE:
+				setOwnedSource((OCLExpression)newValue);
 				return;
 			case PivotPackage.NAVIGATION_CALL_EXP__IS_PRE:
 				setIsPre((Boolean)newValue);
@@ -237,9 +238,9 @@ public abstract class NavigationCallExpImpl
 			case PivotPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE:
 				setNavigationSource((Property)newValue);
 				return;
-			case PivotPackage.NAVIGATION_CALL_EXP__QUALIFIER:
-				getQualifier().clear();
-				getQualifier().addAll((Collection<? extends OCLExpression>)newValue);
+			case PivotPackage.NAVIGATION_CALL_EXP__QUALIFIERS:
+				getQualifiers().clear();
+				getQualifiers().addAll((Collection<? extends OCLExpression>)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -254,17 +255,17 @@ public abstract class NavigationCallExpImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.NAVIGATION_CALL_EXP__COMMENT:
-				getComment().clear();
+			case PivotPackage.NAVIGATION_CALL_EXP__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.NAVIGATION_CALL_EXP__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.NAVIGATION_CALL_EXP__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.NAVIGATION_CALL_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.NAVIGATION_CALL_EXP__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.NAVIGATION_CALL_EXP__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.NAVIGATION_CALL_EXP__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.NAVIGATION_CALL_EXP__NAME:
 				setName(NAME_EDEFAULT);
@@ -278,11 +279,11 @@ public abstract class NavigationCallExpImpl
 			case PivotPackage.NAVIGATION_CALL_EXP__TYPE_VALUE:
 				setTypeValue((Type)null);
 				return;
-			case PivotPackage.NAVIGATION_CALL_EXP__IMPLICIT:
-				setImplicit(IMPLICIT_EDEFAULT);
+			case PivotPackage.NAVIGATION_CALL_EXP__IS_IMPLICIT:
+				setIsImplicit(IS_IMPLICIT_EDEFAULT);
 				return;
-			case PivotPackage.NAVIGATION_CALL_EXP__SOURCE:
-				setSource((OCLExpression)null);
+			case PivotPackage.NAVIGATION_CALL_EXP__OWNED_SOURCE:
+				setOwnedSource((OCLExpression)null);
 				return;
 			case PivotPackage.NAVIGATION_CALL_EXP__IS_PRE:
 				setIsPre(IS_PRE_EDEFAULT);
@@ -290,8 +291,8 @@ public abstract class NavigationCallExpImpl
 			case PivotPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE:
 				setNavigationSource((Property)null);
 				return;
-			case PivotPackage.NAVIGATION_CALL_EXP__QUALIFIER:
-				getQualifier().clear();
+			case PivotPackage.NAVIGATION_CALL_EXP__QUALIFIERS:
+				getQualifiers().clear();
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -306,14 +307,14 @@ public abstract class NavigationCallExpImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.NAVIGATION_CALL_EXP__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.NAVIGATION_CALL_EXP__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.NAVIGATION_CALL_EXP__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.NAVIGATION_CALL_EXP__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.NAVIGATION_CALL_EXP__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.NAVIGATION_CALL_EXP__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.NAVIGATION_CALL_EXP__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.NAVIGATION_CALL_EXP__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.NAVIGATION_CALL_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.NAVIGATION_CALL_EXP__IS_MANY:
@@ -324,16 +325,16 @@ public abstract class NavigationCallExpImpl
 				return type != null;
 			case PivotPackage.NAVIGATION_CALL_EXP__TYPE_VALUE:
 				return typeValue != null;
-			case PivotPackage.NAVIGATION_CALL_EXP__IMPLICIT:
-				return ((eFlags & IMPLICIT_EFLAG) != 0) != IMPLICIT_EDEFAULT;
-			case PivotPackage.NAVIGATION_CALL_EXP__SOURCE:
-				return source != null;
+			case PivotPackage.NAVIGATION_CALL_EXP__IS_IMPLICIT:
+				return ((eFlags & IS_IMPLICIT_EFLAG) != 0) != IS_IMPLICIT_EDEFAULT;
+			case PivotPackage.NAVIGATION_CALL_EXP__OWNED_SOURCE:
+				return ownedSource != null;
 			case PivotPackage.NAVIGATION_CALL_EXP__IS_PRE:
 				return ((eFlags & IS_PRE_EFLAG) != 0) != IS_PRE_EDEFAULT;
 			case PivotPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE:
 				return navigationSource != null;
-			case PivotPackage.NAVIGATION_CALL_EXP__QUALIFIER:
-				return qualifier != null && !qualifier.isEmpty();
+			case PivotPackage.NAVIGATION_CALL_EXP__QUALIFIERS:
+				return qualifiers != null && !qualifiers.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
 	}

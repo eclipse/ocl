@@ -21,7 +21,7 @@ import java.util.List;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.Library#getOwnedPrecedence <em>Owned Precedence</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Library#getOwnedPrecedences <em>Owned Precedences</em>}</li>
  * </ul>
  * </p>
  *
@@ -32,17 +32,17 @@ public interface Library extends org.eclipse.ocl.pivot.Package
 {
 
 	/**
-	 * Returns the value of the '<em><b>Owned Precedence</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Precedences</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.Precedence}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owned Precedence</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Owned Precedences</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Precedence</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getLibrary_OwnedPrecedence()
+	 * @return the value of the '<em>Owned Precedences</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getLibrary_OwnedPrecedences()
 	 * @generated
 	 */
-	List<Precedence> getOwnedPrecedence();
+	List<Precedence> getOwnedPrecedences();
 } // Library

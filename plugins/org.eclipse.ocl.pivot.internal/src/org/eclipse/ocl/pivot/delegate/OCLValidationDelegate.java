@@ -286,14 +286,14 @@ public class OCLValidationDelegate implements ValidationDelegate
 		Type type = delegateDomain.getPivot(Type.class, eClassifier);
 		Constraint constraint = ValidationBehavior.INSTANCE.getConstraint(metaModelManager, eClassifier, constraintName);
 		if (constraint == null) {
-			throw new OCLDelegateException(new SemanticException(OCLMessages.MissingSpecificationBody_ERROR_, type, PivotConstants.OWNED_RULE_ROLE));
+			throw new OCLDelegateException(new SemanticException(OCLMessages.MissingSpecificationBody_ERROR_, type, PivotConstants.OWNED_CONSTRAINT_ROLE));
 		}
 		ExpressionInOCL query = null;
 		if (type != null) {
 			query = ValidationBehavior.INSTANCE.getQueryOrThrow(metaModelManager, constraint);
 		}
 		if (query == null) {
-			throw new OCLDelegateException(new SemanticException(OCLMessages.MissingSpecificationBody_ERROR_, type, PivotConstants.OWNED_RULE_ROLE));
+			throw new OCLDelegateException(new SemanticException(OCLMessages.MissingSpecificationBody_ERROR_, type, PivotConstants.OWNED_CONSTRAINT_ROLE));
 		}
 		return validateExpressionInOCL(eClassifier, value, diagnostics, context,
 			constraintName, source, code, query);

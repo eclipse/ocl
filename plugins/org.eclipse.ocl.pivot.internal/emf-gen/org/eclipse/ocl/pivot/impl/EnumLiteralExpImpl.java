@@ -48,7 +48,7 @@ import org.eclipse.osgi.util.NLS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.impl.EnumLiteralExpImpl#getReferredEnumLiteral <em>Referred Enum Literal</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.EnumLiteralExpImpl#getReferredLiteral <em>Referred Literal</em>}</li>
  * </ul>
  * </p>
  *
@@ -59,15 +59,14 @@ public class EnumLiteralExpImpl
 		implements EnumLiteralExp {
 
 	/**
-	 * The cached value of the '{@link #getReferredEnumLiteral() <em>Referred Enum Literal</em>}' reference.
+	 * The cached value of the '{@link #getReferredLiteral() <em>Referred Literal</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getReferredEnumLiteral()
+	 * @see #getReferredLiteral()
 	 * @generated
 	 * @ordered
 	 */
-	protected EnumerationLiteral referredEnumLiteral;
-
+	protected EnumerationLiteral referredLiteral;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -93,18 +92,18 @@ public class EnumLiteralExpImpl
 	 * @generated
 	 */
 	@Override
-	public EnumerationLiteral getReferredEnumLiteral() {
-		if (referredEnumLiteral != null && referredEnumLiteral.eIsProxy())
+	public EnumerationLiteral getReferredLiteral() {
+		if (referredLiteral != null && referredLiteral.eIsProxy())
 		{
-			InternalEObject oldReferredEnumLiteral = (InternalEObject)referredEnumLiteral;
-			referredEnumLiteral = (EnumerationLiteral)eResolveProxy(oldReferredEnumLiteral);
-			if (referredEnumLiteral != oldReferredEnumLiteral)
+			InternalEObject oldReferredLiteral = (InternalEObject)referredLiteral;
+			referredLiteral = (EnumerationLiteral)eResolveProxy(oldReferredLiteral);
+			if (referredLiteral != oldReferredLiteral)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL, oldReferredEnumLiteral, referredEnumLiteral));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.ENUM_LITERAL_EXP__REFERRED_LITERAL, oldReferredLiteral, referredLiteral));
 			}
 		}
-		return referredEnumLiteral;
+		return referredLiteral;
 	}
 
 	/**
@@ -112,8 +111,9 @@ public class EnumLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EnumerationLiteral basicGetReferredEnumLiteral() {
-		return referredEnumLiteral;
+	public EnumerationLiteral basicGetReferredLiteral()
+	{
+		return referredLiteral;
 	}
 
 	/**
@@ -122,11 +122,11 @@ public class EnumLiteralExpImpl
 	 * @generated
 	 */
 	@Override
-	public void setReferredEnumLiteral(EnumerationLiteral newReferredEnumLiteral) {
-		EnumerationLiteral oldReferredEnumLiteral = referredEnumLiteral;
-		referredEnumLiteral = newReferredEnumLiteral;
+	public void setReferredLiteral(EnumerationLiteral newReferredLiteral) {
+		EnumerationLiteral oldReferredLiteral = referredLiteral;
+		referredLiteral = newReferredLiteral;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL, oldReferredEnumLiteral, referredEnumLiteral));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.ENUM_LITERAL_EXP__REFERRED_LITERAL, oldReferredLiteral, referredLiteral));
 	}
 
 	/**
@@ -138,17 +138,17 @@ public class EnumLiteralExpImpl
 	public boolean validateTypeIsEnumerationType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv TypeIsEnumerationType: self.type = referredEnumLiteral.enumeration
+		 * inv TypeIsEnumerationType: self.type = referredLiteral.owningEnumeration
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_eq;
 		try {
 		    final @Nullable /*@Thrown*/ Type type = this.getType();
-		    final @Nullable /*@Thrown*/ EnumerationLiteral referredEnumLiteral = this.getReferredEnumLiteral();
-		    if (referredEnumLiteral == null) {
-		        throw new InvalidValueException("Null source for \'pivot::EnumerationLiteral::enumeration\'");
+		    final @Nullable /*@Thrown*/ EnumerationLiteral referredLiteral = this.getReferredLiteral();
+		    if (referredLiteral == null) {
+		        throw new InvalidValueException("Null source for \'pivot::EnumerationLiteral::owningEnumeration\'");
 		    }
-		    final @Nullable /*@Thrown*/ Enumeration enumeration = referredEnumLiteral.getEnumeration();
-		    final /*@Thrown*/ boolean eq = (type != null) && (enumeration != null) ? (type.getTypeId() == enumeration.getTypeId()) : ValueUtil.throwBooleanInvalidValueException("null equal input");
+		    final @Nullable /*@Thrown*/ Enumeration owningEnumeration = referredLiteral.getOwningEnumeration();
+		    final /*@Thrown*/ boolean eq = (type != null) && (owningEnumeration != null) ? (type.getTypeId() == owningEnumeration.getTypeId()) : ValueUtil.throwBooleanInvalidValueException("null equal input");
 		    ;
 		    CAUGHT_eq = eq;
 		}
@@ -175,14 +175,14 @@ public class EnumLiteralExpImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case PivotPackage.ENUM_LITERAL_EXP__COMMENT:
-				return getComment();
-			case PivotPackage.ENUM_LITERAL_EXP__EXTENSION:
-				return getExtension();
-			case PivotPackage.ENUM_LITERAL_EXP__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.ENUM_LITERAL_EXP__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.ENUM_LITERAL_EXP__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.ENUM_LITERAL_EXP__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.ENUM_LITERAL_EXP__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.ENUM_LITERAL_EXP__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.ENUM_LITERAL_EXP__NAME:
 				return getName();
 			case PivotPackage.ENUM_LITERAL_EXP__IS_MANY:
@@ -194,9 +194,9 @@ public class EnumLiteralExpImpl
 				return basicGetType();
 			case PivotPackage.ENUM_LITERAL_EXP__TYPE_VALUE:
 				return getTypeValue();
-			case PivotPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL:
-				if (resolve) return getReferredEnumLiteral();
-				return basicGetReferredEnumLiteral();
+			case PivotPackage.ENUM_LITERAL_EXP__REFERRED_LITERAL:
+				if (resolve) return getReferredLiteral();
+				return basicGetReferredLiteral();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -211,21 +211,21 @@ public class EnumLiteralExpImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case PivotPackage.ENUM_LITERAL_EXP__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.ENUM_LITERAL_EXP__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.ENUM_LITERAL_EXP__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.ENUM_LITERAL_EXP__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.ENUM_LITERAL_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.ENUM_LITERAL_EXP__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.ENUM_LITERAL_EXP__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.ENUM_LITERAL_EXP__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.ENUM_LITERAL_EXP__NAME:
 				setName((String)newValue);
@@ -239,8 +239,8 @@ public class EnumLiteralExpImpl
 			case PivotPackage.ENUM_LITERAL_EXP__TYPE_VALUE:
 				setTypeValue((Type)newValue);
 				return;
-			case PivotPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL:
-				setReferredEnumLiteral((EnumerationLiteral)newValue);
+			case PivotPackage.ENUM_LITERAL_EXP__REFERRED_LITERAL:
+				setReferredLiteral((EnumerationLiteral)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -255,17 +255,17 @@ public class EnumLiteralExpImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.ENUM_LITERAL_EXP__COMMENT:
-				getComment().clear();
+			case PivotPackage.ENUM_LITERAL_EXP__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.ENUM_LITERAL_EXP__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.ENUM_LITERAL_EXP__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.ENUM_LITERAL_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.ENUM_LITERAL_EXP__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.ENUM_LITERAL_EXP__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.ENUM_LITERAL_EXP__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.ENUM_LITERAL_EXP__NAME:
 				setName(NAME_EDEFAULT);
@@ -279,8 +279,8 @@ public class EnumLiteralExpImpl
 			case PivotPackage.ENUM_LITERAL_EXP__TYPE_VALUE:
 				setTypeValue((Type)null);
 				return;
-			case PivotPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL:
-				setReferredEnumLiteral((EnumerationLiteral)null);
+			case PivotPackage.ENUM_LITERAL_EXP__REFERRED_LITERAL:
+				setReferredLiteral((EnumerationLiteral)null);
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -295,14 +295,14 @@ public class EnumLiteralExpImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.ENUM_LITERAL_EXP__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.ENUM_LITERAL_EXP__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.ENUM_LITERAL_EXP__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.ENUM_LITERAL_EXP__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.ENUM_LITERAL_EXP__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.ENUM_LITERAL_EXP__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.ENUM_LITERAL_EXP__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.ENUM_LITERAL_EXP__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.ENUM_LITERAL_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.ENUM_LITERAL_EXP__IS_MANY:
@@ -313,8 +313,8 @@ public class EnumLiteralExpImpl
 				return type != null;
 			case PivotPackage.ENUM_LITERAL_EXP__TYPE_VALUE:
 				return typeValue != null;
-			case PivotPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL:
-				return referredEnumLiteral != null;
+			case PivotPackage.ENUM_LITERAL_EXP__REFERRED_LITERAL:
+				return referredLiteral != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

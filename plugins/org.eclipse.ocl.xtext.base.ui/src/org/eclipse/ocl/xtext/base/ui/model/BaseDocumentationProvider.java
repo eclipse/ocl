@@ -22,7 +22,7 @@ public class BaseDocumentationProvider extends MultiLineCommentDocumentationProv
 	@Override
 	protected String findComment(EObject o) {
 		if (o instanceof Element) {
-			List<Comment> comments = ((Element)o).getOwnedComment();
+			List<Comment> comments = ((Element)o).getOwnedComments();
 			if (comments.size() > 0) {
 				StringBuilder s = new StringBuilder();
 				for (Comment comment : comments) {

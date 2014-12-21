@@ -50,8 +50,8 @@ public abstract class AbstractOperationMatcher
 			if (diff != 0) {
 				return diff;
 			}
-			List<Parameter> ownedParameters1 = o1.getOwnedParameter();
-			List<Parameter> ownedParameters2 = o2.getOwnedParameter();
+			List<Parameter> ownedParameters1 = o1.getOwnedParameters();
+			List<Parameter> ownedParameters2 = o2.getOwnedParameters();
 			int s1 = ownedParameters1.size();
 			int s2 = ownedParameters2.size();
 			diff = s1 - s2;
@@ -107,7 +107,7 @@ public abstract class AbstractOperationMatcher
 		Type specializedReferenceType = referenceType != null ? completeModel.getSpecializedType(referenceType, referenceBindings) : null;
 		Type specializedCandidateType = candidateType != null ? completeModel.getSpecializedType(candidateType, candidateBindings) : null;
 		if ((reference instanceof Iteration) && (candidate instanceof Iteration) && (specializedReferenceType != null) && (specializedCandidateType != null)) {
-			int iteratorCountDelta = ((Iteration)candidate).getOwnedIterator().size() - ((Iteration)reference).getOwnedIterator().size();
+			int iteratorCountDelta = ((Iteration)candidate).getOwnedIterators().size() - ((Iteration)reference).getOwnedIterators().size();
 			if (iteratorCountDelta != 0) {
 				return iteratorCountDelta;
 			}
@@ -132,8 +132,8 @@ public abstract class AbstractOperationMatcher
 		if (comparedSourceType != specializedCandidateType) {
 			candidateConversions++;
 		}
-		List<Parameter> candidateParameters = candidate.getOwnedParameter();
-		List<Parameter> referenceParameters = reference.getOwnedParameter();
+		List<Parameter> candidateParameters = candidate.getOwnedParameters();
+		List<Parameter> referenceParameters = reference.getOwnedParameters();
 		for (int i = 0; i < candidateParameters.size(); i++) {
 			OCLExpression pivotArgument = getArgument(i);
 			if (pivotArgument == null) {
@@ -249,7 +249,7 @@ public abstract class AbstractOperationMatcher
 	}
 
 	protected boolean isRedefinitionOf(@NonNull Operation operation1, @NonNull Operation operation2) {
-		List<Operation> redefinedOperations = operation1.getRedefinedOperation();
+		List<Operation> redefinedOperations = operation1.getRedefinedOperations();
 		for (Operation redefinedOperation : redefinedOperations) {
 			if (redefinedOperation != null) {
 				if (redefinedOperation == operation2) {
@@ -264,7 +264,7 @@ public abstract class AbstractOperationMatcher
 	}
 
 	protected @Nullable TemplateParameterSubstitutions matches(@NonNull Operation candidateOperation, boolean useCoercions) {
-		List<Parameter> candidateParameters = candidateOperation.getOwnedParameter();
+		List<Parameter> candidateParameters = candidateOperation.getOwnedParameters();
 		int iSize = getArgumentCount();
 		if (iSize != candidateParameters.size()) {
 			return null;

@@ -164,7 +164,7 @@ public class ASSaver
 	protected boolean isOrphanOperation(@NonNull Operation operation) {		// FIXME Non-static PivotUtils
 		// FIXME surely an orphan is one for which eResource() is null,
 		//  or one that is in the orphanage.
-		if (operation.getOwnedTemplateBindings().size() > 0) {
+		if (operation.getOwnedBindings().size() > 0) {
 			return true;
 		}
 		return false;

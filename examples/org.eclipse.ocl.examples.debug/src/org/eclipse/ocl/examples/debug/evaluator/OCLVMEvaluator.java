@@ -53,7 +53,7 @@ public class OCLVMEvaluator implements IVMEvaluator
         if (!(eObject instanceof Constraint)) {
             throw new IOException("Constraint rather than " + eObject.eClass().getName() + " expected as '" + constraintURI + "'");
         }
-        LanguageExpression specification = ((Constraint)eObject).getSpecification();
+        LanguageExpression specification = ((Constraint)eObject).getOwnedSpecification();
     	if (specification == null) {
             throw new IOException("Missing OCL expression " + eObject.eClass().getName() + " expected as '" + constraintURI + "'");
     	}
@@ -92,7 +92,7 @@ public class OCLVMEvaluator implements IVMEvaluator
 	public Object execute() {
         ExpressionInOCL expressionInOCL = getExpressionInOCL();
 		IOCLVMEvaluationEnvironment evalEnv = envFactory.createEvaluationEnvironment(modelManager, expressionInOCL);
-		Variable contextVariable = expressionInOCL.getContextVariable();
+		Variable contextVariable = expressionInOCL.getOwnedContext();
 		if (contextVariable != null) {
 			evalEnv.add(contextVariable, context);
 		}

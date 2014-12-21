@@ -26,7 +26,7 @@ public class ClassAttribution extends AbstractAttribution
 	@Override
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		org.eclipse.ocl.pivot.Class targetClass = (org.eclipse.ocl.pivot.Class) target;
-		if (targetClass.getOwnedTemplateBindings().size() == 0) {
+		if (targetClass.getOwnedBindings().size() == 0) {
 			EObject scopeTarget = scopeView.getTarget();
 			if (scopeTarget instanceof Pivotable) {
 				Element pivot = ((Pivotable)scopeTarget).getPivot();

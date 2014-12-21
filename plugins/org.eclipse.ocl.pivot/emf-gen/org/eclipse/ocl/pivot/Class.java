@@ -37,7 +37,7 @@ import org.eclipse.ocl.pivot.library.LibraryFeature;
  *   <li>{@link org.eclipse.ocl.pivot.Class#isAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Class#isActive <em>Is Active</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Class#isInterface <em>Is Interface</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Class#getOwnedBehavior <em>Owned Behavior</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Class#getOwnedBehaviors <em>Owned Behaviors</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Class#getOwnedInvariants <em>Owned Invariants</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Class#getOwnedOperations <em>Owned Operations</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Class#getOwnedProperties <em>Owned Properties</em>}</li>
@@ -126,21 +126,6 @@ public interface Class
 	 * @generated
 	 */
 	void setIsActive(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Owned Behavior</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.pivot.Behavior}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Behavior</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Behavior</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getClass_OwnedBehavior()
-	 * @generated
-	 */
-	@NonNull List<Behavior> getOwnedBehavior();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Invariants</b></em>' containment reference list.
@@ -245,6 +230,21 @@ public interface Class
 	 * @generated
 	 */
 	void setIsInterface(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Behaviors</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.pivot.Behavior}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Behaviors</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Behaviors</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getClass_OwnedBehaviors()
+	 * @generated
+	 */
+	@NonNull List<Behavior> getOwnedBehaviors();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Properties</b></em>' containment reference list.

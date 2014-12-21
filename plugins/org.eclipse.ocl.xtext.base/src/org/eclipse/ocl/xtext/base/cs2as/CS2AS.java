@@ -555,7 +555,7 @@ public abstract class CS2AS extends AbstractConversion implements MetaModelManag
 	}
 
 	public @Nullable VariableDeclaration lookupSelf(@NonNull ElementCS csElement) {
-		@SuppressWarnings("null") @NonNull EReference eReference = PivotPackage.Literals.EXPRESSION_IN_OCL__CONTEXT_VARIABLE;
+		@SuppressWarnings("null") @NonNull EReference eReference = PivotPackage.Literals.EXPRESSION_IN_OCL__OWNED_CONTEXT;
 		EnvironmentView environmentView = new EnvironmentView(metaModelManager, eReference, Environment.SELF_VARIABLE_NAME);
 		ScopeView baseScopeView = BaseScopeView.getScopeView(metaModelManager, csElement, eReference);
 		environmentView.computeLookups(baseScopeView);

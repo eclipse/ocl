@@ -24,13 +24,13 @@ import java.util.List;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.Transition#getContainer <em>Container</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Transition#getEffect <em>Effect</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Transition#getGuard <em>Guard</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Transition#getKind <em>Kind</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Transition#getOwnedEffect <em>Owned Effect</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Transition#getOwnedGuard <em>Owned Guard</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Transition#getOwnedTriggers <em>Owned Triggers</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Transition#getOwningRegion <em>Owning Region</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Transition#getSource <em>Source</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Transition#getTarget <em>Target</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Transition#getTrigger <em>Trigger</em>}</li>
  * </ul>
  * </p>
  *
@@ -68,34 +68,102 @@ public interface Transition extends Namespace
 	void setKind(TransitionKind value);
 
 	/**
-	 * Returns the value of the '<em><b>Container</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Region#getTransition <em>Transition</em>}'.
+	 * Returns the value of the '<em><b>Owned Effect</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Behavior#getOwningTransition <em>Owning Transition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Specifies an optional behavior to be performed when the transition fires.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Effect</em>' containment reference.
+	 * @see #setOwnedEffect(Behavior)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getTransition_OwnedEffect()
+	 * @see org.eclipse.ocl.pivot.Behavior#getOwningTransition
+	 * @generated
+	 */
+	Behavior getOwnedEffect();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Transition#getOwnedEffect <em>Owned Effect</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Effect</em>' containment reference.
+	 * @see #getOwnedEffect()
+	 * @generated
+	 */
+	void setOwnedEffect(Behavior value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Guard</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Constraint#getOwningTransition <em>Owning Transition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A guard is a constraint that provides a fine-grained control over the firing of the transition. The guard is evaluated when an event occurrence is dispatched by the state machine. If the guard is true at that time, the transition may be enabled, otherwise, it is disabled. Guards should be pure expressions without side effects. Guard expressions with side effects are ill formed.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Guard</em>' containment reference.
+	 * @see #setOwnedGuard(Constraint)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getTransition_OwnedGuard()
+	 * @see org.eclipse.ocl.pivot.Constraint#getOwningTransition
+	 * @generated
+	 */
+	Constraint getOwnedGuard();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Transition#getOwnedGuard <em>Owned Guard</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Guard</em>' containment reference.
+	 * @see #getOwnedGuard()
+	 * @generated
+	 */
+	void setOwnedGuard(Constraint value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Triggers</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.pivot.Trigger}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Trigger#getOwningTransition <em>Owning Transition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Specifies the triggers that may fire the transition.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Triggers</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getTransition_OwnedTriggers()
+	 * @see org.eclipse.ocl.pivot.Trigger#getOwningTransition
+	 * @generated
+	 */
+	List<Trigger> getOwnedTriggers();
+
+	/**
+	 * Returns the value of the '<em><b>Owning Region</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Region#getOwnedTransitions <em>Owned Transitions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * Designates the region that owns this transition.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Container</em>' container reference.
-	 * @see #setContainer(Region)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getTransition_Container()
-	 * @see org.eclipse.ocl.pivot.Region#getTransition
+	 * @return the value of the '<em>Owning Region</em>' container reference.
+	 * @see #setOwningRegion(Region)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getTransition_OwningRegion()
+	 * @see org.eclipse.ocl.pivot.Region#getOwnedTransitions
 	 * @generated
 	 */
-	Region getContainer();
+	Region getOwningRegion();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Transition#getContainer <em>Container</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Transition#getOwningRegion <em>Owning Region</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Container</em>' container reference.
-	 * @see #getContainer()
+	 * @param value the new value of the '<em>Owning Region</em>' container reference.
+	 * @see #getOwningRegion()
 	 * @generated
 	 */
-	void setContainer(Region value);
+	void setOwningRegion(Region value);
 
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Vertex#getOutgoing <em>Outgoing</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Vertex#getOutgoingTransitions <em>Outgoing Transitions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -104,7 +172,7 @@ public interface Transition extends Namespace
 	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(Vertex)
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getTransition_Source()
-	 * @see org.eclipse.ocl.pivot.Vertex#getOutgoing
+	 * @see org.eclipse.ocl.pivot.Vertex#getOutgoingTransitions
 	 * @generated
 	 */
 	Vertex getSource();
@@ -121,7 +189,7 @@ public interface Transition extends Namespace
 
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Vertex#getIncoming <em>Incoming</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Vertex#getIncomingTransitions <em>Incoming Transitions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -130,7 +198,7 @@ public interface Transition extends Namespace
 	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(Vertex)
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getTransition_Target()
-	 * @see org.eclipse.ocl.pivot.Vertex#getIncoming
+	 * @see org.eclipse.ocl.pivot.Vertex#getIncomingTransitions
 	 * @generated
 	 */
 	Vertex getTarget();
@@ -144,73 +212,5 @@ public interface Transition extends Namespace
 	 * @generated
 	 */
 	void setTarget(Vertex value);
-
-	/**
-	 * Returns the value of the '<em><b>Guard</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Constraint#getTransition <em>Transition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * A guard is a constraint that provides a fine-grained control over the firing of the transition. The guard is evaluated when an event occurrence is dispatched by the state machine. If the guard is true at that time, the transition may be enabled, otherwise, it is disabled. Guards should be pure expressions without side effects. Guard expressions with side effects are ill formed.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Guard</em>' containment reference.
-	 * @see #setGuard(Constraint)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getTransition_Guard()
-	 * @see org.eclipse.ocl.pivot.Constraint#getTransition
-	 * @generated
-	 */
-	Constraint getGuard();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Transition#getGuard <em>Guard</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Guard</em>' containment reference.
-	 * @see #getGuard()
-	 * @generated
-	 */
-	void setGuard(Constraint value);
-
-	/**
-	 * Returns the value of the '<em><b>Effect</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Behavior#getTransition <em>Transition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Specifies an optional behavior to be performed when the transition fires.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Effect</em>' containment reference.
-	 * @see #setEffect(Behavior)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getTransition_Effect()
-	 * @see org.eclipse.ocl.pivot.Behavior#getTransition
-	 * @generated
-	 */
-	Behavior getEffect();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Transition#getEffect <em>Effect</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Effect</em>' containment reference.
-	 * @see #getEffect()
-	 * @generated
-	 */
-	void setEffect(Behavior value);
-
-	/**
-	 * Returns the value of the '<em><b>Trigger</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.pivot.Trigger}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Trigger#getTransition <em>Transition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Specifies the triggers that may fire the transition.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Trigger</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getTransition_Trigger()
-	 * @see org.eclipse.ocl.pivot.Trigger#getTransition
-	 * @generated
-	 */
-	List<Trigger> getTrigger();
 
 } // Transition

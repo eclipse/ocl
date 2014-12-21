@@ -34,6 +34,11 @@ public class AbstractExecutorEnumerationLiteral extends AbstractExecutorNamedEle
 	}
 
 	@Override
+	public List<Slot> getOwnedSlots() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
 	public Package getOwningPackage() {
 		throw new UnsupportedOperationException();
 	}
@@ -44,27 +49,22 @@ public class AbstractExecutorEnumerationLiteral extends AbstractExecutorNamedEle
 	}
 
 	@Override
-	public List<Slot> getSlots() {
+	public LanguageExpression getOwnedSpecification() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public LanguageExpression getSpecification() {
+	public void setOwnedSpecification(LanguageExpression value) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void setSpecification(LanguageExpression value) {
+	public Enumeration getOwningEnumeration() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public Enumeration getEnumeration() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public void setEnumeration(Enumeration value) {
+	public void setOwningEnumeration(Enumeration value) {
 		throw new UnsupportedOperationException();
 	}
 

@@ -17,7 +17,7 @@ def : ast() : ocl::Model =
 	let modelPackages = ownedPackages.referredPackage->asSet()->union(ownedContexts.referredPackage()) in
 	ocl::Model {
 		name = name,
-		imports = ownedIncludes.ast(),
+		ownedImports = ownedIncludes.ast(),
 		ownedPackages = modelPackages->sortedBy(name)->collect(p | contextPackage(p, ownedPackages->select(referredPackage = p), ownedContexts->select(referredPackage() = p)))
 	}
 def : contextClass(modelClass : ocl::Class, contextDecls : OrderedSet(ContextDeclCS)) : ocl::Class =
@@ -40,11 +40,11 @@ def : contextOperation(operationContext : OperationContextDeclCS) : ocl::Operati
 		name = modelOperation.name,
 		type = modelOperation.type,
 		isRequired = modelOperation.isRequired,
-		ownedParameter = modelOperation.ownedParameter,
+		ownedParameters = modelOperation.ownedParameters,
 		isStatic = modelOperation.isStatic,
 		bodyExpression = if operationContext.ownedBodies->notEmpty() then operationContext.ownedBodies->first().ast() else null endif,
-		postcondition = operationContext.ownedPostconditions.ast(),
-		precondition = operationContext.ownedPreconditions.ast()
+		ownedPostconditions = operationContext.ownedPostconditions.ast(),
+		ownedPreconditions = operationContext.ownedPreconditions.ast()
 	}
 def : contextPackage(modelPackage : ocl::Package, packageDecls : OrderedSet(PackageDeclarationCS), contextDecls : OrderedSet(ContextDeclCS)) : ocl::Package =
 	let packageInvariants = packageDecls.ownedInvariants in
@@ -64,7 +64,7 @@ def : contextProperty(propertyContext : PropertyContextDeclCS) : ocl::Property =
 		type = modelProperty.type,
 		isRequired = modelProperty.isRequired,
 		isStatic = modelProperty.isStatic,
-		defaultExpression = if propertyContext.ownedDefaultExpressions->notEmpty() then propertyContext.ownedDefaultExpressions->first().ast() else null endif
+		ownedExpression = if propertyContext.ownedDefaultExpressions->notEmpty() then propertyContext.ownedDefaultExpressions->first().ast() else null endif
 	}
 	
 context ContextDeclCS
@@ -81,7 +81,7 @@ def : ast() : ocl::Operation =
 		name = name,
 		type = ownedType.ast(),
 		isStatic = isStatic,
-		ownedParameter = ownedParameters.ast(),
+		ownedParameters = ownedParameters.ast(),
 		bodyExpression = ownedSpecification.ast()
 --		postcondition = ownedSpecification.ast()
 --		precondition = ownedSpecification.ast()
@@ -94,14 +94,14 @@ def : ast() : ocl::Property =
 		type = ownedType.ast(),
 --		isRequired = ownedType.isRequired,
 		isStatic = isStatic,
-		defaultExpression = ownedSpecification.ast()
+		ownedExpression = ownedSpecification.ast()
 	}
 	
 context OperationContextDeclCS
 /* An OperationContextDeclCS has no unique AS element since multiple OperationContextDeclCS are merged */
 def : ast() : ocl::Operation = invalid
 def : referredClass() : ocl::Class = referredOperation.owningClass
-inv ConsistentParameters: ownedParameters = referredOperation.ownedParameter
+inv ConsistentParameters: ownedParameters = referredOperation.ownedParameters
 --inv ConsistentRequired: ownedType.isRequired = referredOperation.isRequired
 inv ConsistentType: ownedType.ast() = referredOperation.type
 inv AtMostOneBody: ownedBodies->size() <= 1

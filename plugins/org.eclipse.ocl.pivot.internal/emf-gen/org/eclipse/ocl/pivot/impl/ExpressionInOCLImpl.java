@@ -41,10 +41,10 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.impl.ExpressionInOCLImpl#getBodyExpression <em>Body Expression</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.ExpressionInOCLImpl#getContextVariable <em>Context Variable</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.ExpressionInOCLImpl#getParameterVariable <em>Parameter Variable</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.ExpressionInOCLImpl#getResultVariable <em>Result Variable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.ExpressionInOCLImpl#getOwnedBody <em>Owned Body</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.ExpressionInOCLImpl#getOwnedContext <em>Owned Context</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.ExpressionInOCLImpl#getOwnedParameters <em>Owned Parameters</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.ExpressionInOCLImpl#getOwnedResult <em>Owned Result</em>}</li>
  * </ul>
  * </p>
  *
@@ -55,44 +55,44 @@ public class ExpressionInOCLImpl
 		implements ExpressionInOCL {
 
 	/**
-	 * The cached value of the '{@link #getBodyExpression() <em>Body Expression</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedBody() <em>Owned Body</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBodyExpression()
+	 * @see #getOwnedBody()
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLExpression bodyExpression;
+	protected OCLExpression ownedBody;
 
 	/**
-	 * The cached value of the '{@link #getContextVariable() <em>Context Variable</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedContext() <em>Owned Context</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getContextVariable()
+	 * @see #getOwnedContext()
 	 * @generated
 	 * @ordered
 	 */
-	protected Variable contextVariable;
+	protected Variable ownedContext;
 
 	/**
-	 * The cached value of the '{@link #getParameterVariable() <em>Parameter Variable</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedParameters() <em>Owned Parameters</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getParameterVariable()
+	 * @see #getOwnedParameters()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Variable> parameterVariable;
+	protected EList<Variable> ownedParameters;
 
 	/**
-	 * The cached value of the '{@link #getResultVariable() <em>Result Variable</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedResult() <em>Owned Result</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getResultVariable()
+	 * @see #getOwnedResult()
 	 * @generated
 	 * @ordered
 	 */
-	protected Variable resultVariable;
+	protected Variable ownedResult;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -119,8 +119,8 @@ public class ExpressionInOCLImpl
 	 * @generated
 	 */
 	@Override
-	public OCLExpression getBodyExpression() {
-		return bodyExpression;
+	public OCLExpression getOwnedBody() {
+		return ownedBody;
 	}
 
 	/**
@@ -128,13 +128,13 @@ public class ExpressionInOCLImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetBodyExpression(
-			OCLExpression newBodyExpression, NotificationChain msgs) {
-		OCLExpression oldBodyExpression = bodyExpression;
-		bodyExpression = newBodyExpression;
+	public NotificationChain basicSetOwnedBody(OCLExpression newOwnedBody, NotificationChain msgs)
+	{
+		OCLExpression oldOwnedBody = ownedBody;
+		ownedBody = newOwnedBody;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION, oldBodyExpression, newBodyExpression);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.EXPRESSION_IN_OCL__OWNED_BODY, oldOwnedBody, newOwnedBody);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -146,19 +146,19 @@ public class ExpressionInOCLImpl
 	 * @generated
 	 */
 	@Override
-	public void setBodyExpression(OCLExpression newBodyExpression) {
-		if (newBodyExpression != bodyExpression)
+	public void setOwnedBody(OCLExpression newOwnedBody) {
+		if (newOwnedBody != ownedBody)
 		{
 			NotificationChain msgs = null;
-			if (bodyExpression != null)
-				msgs = ((InternalEObject)bodyExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION, null, msgs);
-			if (newBodyExpression != null)
-				msgs = ((InternalEObject)newBodyExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION, null, msgs);
-			msgs = basicSetBodyExpression(newBodyExpression, msgs);
+			if (ownedBody != null)
+				msgs = ((InternalEObject)ownedBody).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.EXPRESSION_IN_OCL__OWNED_BODY, null, msgs);
+			if (newOwnedBody != null)
+				msgs = ((InternalEObject)newOwnedBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.EXPRESSION_IN_OCL__OWNED_BODY, null, msgs);
+			msgs = basicSetOwnedBody(newOwnedBody, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION, newBodyExpression, newBodyExpression));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.EXPRESSION_IN_OCL__OWNED_BODY, newOwnedBody, newOwnedBody));
 	}
 
 	/**
@@ -167,8 +167,8 @@ public class ExpressionInOCLImpl
 	 * @generated
 	 */
 	@Override
-	public Variable getContextVariable() {
-		return contextVariable;
+	public Variable getOwnedContext() {
+		return ownedContext;
 	}
 
 	/**
@@ -176,13 +176,13 @@ public class ExpressionInOCLImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetContextVariable(
-			Variable newContextVariable, NotificationChain msgs) {
-		Variable oldContextVariable = contextVariable;
-		contextVariable = newContextVariable;
+	public NotificationChain basicSetOwnedContext(Variable newOwnedContext, NotificationChain msgs)
+	{
+		Variable oldOwnedContext = ownedContext;
+		ownedContext = newOwnedContext;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE, oldContextVariable, newContextVariable);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.EXPRESSION_IN_OCL__OWNED_CONTEXT, oldOwnedContext, newOwnedContext);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -194,19 +194,19 @@ public class ExpressionInOCLImpl
 	 * @generated
 	 */
 	@Override
-	public void setContextVariable(Variable newContextVariable) {
-		if (newContextVariable != contextVariable)
+	public void setOwnedContext(Variable newOwnedContext) {
+		if (newOwnedContext != ownedContext)
 		{
 			NotificationChain msgs = null;
-			if (contextVariable != null)
-				msgs = ((InternalEObject)contextVariable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE, null, msgs);
-			if (newContextVariable != null)
-				msgs = ((InternalEObject)newContextVariable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE, null, msgs);
-			msgs = basicSetContextVariable(newContextVariable, msgs);
+			if (ownedContext != null)
+				msgs = ((InternalEObject)ownedContext).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.EXPRESSION_IN_OCL__OWNED_CONTEXT, null, msgs);
+			if (newOwnedContext != null)
+				msgs = ((InternalEObject)newOwnedContext).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.EXPRESSION_IN_OCL__OWNED_CONTEXT, null, msgs);
+			msgs = basicSetOwnedContext(newOwnedContext, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE, newContextVariable, newContextVariable));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.EXPRESSION_IN_OCL__OWNED_CONTEXT, newOwnedContext, newOwnedContext));
 	}
 
 	/**
@@ -215,8 +215,8 @@ public class ExpressionInOCLImpl
 	 * @generated
 	 */
 	@Override
-	public Variable getResultVariable() {
-		return resultVariable;
+	public Variable getOwnedResult() {
+		return ownedResult;
 	}
 
 	/**
@@ -224,13 +224,13 @@ public class ExpressionInOCLImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetResultVariable(Variable newResultVariable,
-			NotificationChain msgs) {
-		Variable oldResultVariable = resultVariable;
-		resultVariable = newResultVariable;
+	public NotificationChain basicSetOwnedResult(Variable newOwnedResult, NotificationChain msgs)
+	{
+		Variable oldOwnedResult = ownedResult;
+		ownedResult = newOwnedResult;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE, oldResultVariable, newResultVariable);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.EXPRESSION_IN_OCL__OWNED_RESULT, oldOwnedResult, newOwnedResult);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -242,19 +242,19 @@ public class ExpressionInOCLImpl
 	 * @generated
 	 */
 	@Override
-	public void setResultVariable(Variable newResultVariable) {
-		if (newResultVariable != resultVariable)
+	public void setOwnedResult(Variable newOwnedResult) {
+		if (newOwnedResult != ownedResult)
 		{
 			NotificationChain msgs = null;
-			if (resultVariable != null)
-				msgs = ((InternalEObject)resultVariable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE, null, msgs);
-			if (newResultVariable != null)
-				msgs = ((InternalEObject)newResultVariable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE, null, msgs);
-			msgs = basicSetResultVariable(newResultVariable, msgs);
+			if (ownedResult != null)
+				msgs = ((InternalEObject)ownedResult).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.EXPRESSION_IN_OCL__OWNED_RESULT, null, msgs);
+			if (newOwnedResult != null)
+				msgs = ((InternalEObject)newOwnedResult).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.EXPRESSION_IN_OCL__OWNED_RESULT, null, msgs);
+			msgs = basicSetOwnedResult(newOwnedResult, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE, newResultVariable, newResultVariable));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.EXPRESSION_IN_OCL__OWNED_RESULT, newOwnedResult, newOwnedResult));
 	}
 
 	/**
@@ -264,13 +264,13 @@ public class ExpressionInOCLImpl
 	 */
 	@Override
 	@SuppressWarnings("null")
-	public @NonNull List<Variable> getParameterVariable()
+	public @NonNull List<Variable> getOwnedParameters()
 	{
-		if (parameterVariable == null)
+		if (ownedParameters == null)
 		{
-			parameterVariable = new EObjectContainmentEList<Variable>(Variable.class, this, PivotPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE);
+			ownedParameters = new EObjectContainmentEList<Variable>(Variable.class, this, PivotPackage.EXPRESSION_IN_OCL__OWNED_PARAMETERS);
 		}
-		return parameterVariable;
+		return ownedParameters;
 	}
 
 	/**
@@ -283,24 +283,24 @@ public class ExpressionInOCLImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case PivotPackage.EXPRESSION_IN_OCL__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.EXPRESSION_IN_OCL__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.EXPRESSION_IN_OCL__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.EXPRESSION_IN_OCL__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
+			case PivotPackage.EXPRESSION_IN_OCL__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
 			case PivotPackage.EXPRESSION_IN_OCL__OWNING_CONSTRAINT:
 				return basicSetOwningConstraint(null, msgs);
-			case PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
-				return basicSetBodyExpression(null, msgs);
-			case PivotPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE:
-				return basicSetContextVariable(null, msgs);
-			case PivotPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE:
-				return ((InternalEList<?>)getParameterVariable()).basicRemove(otherEnd, msgs);
-			case PivotPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE:
-				return basicSetResultVariable(null, msgs);
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_BODY:
+				return basicSetOwnedBody(null, msgs);
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_CONTEXT:
+				return basicSetOwnedContext(null, msgs);
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_PARAMETERS:
+				return ((InternalEList<?>)getOwnedParameters()).basicRemove(otherEnd, msgs);
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_RESULT:
+				return basicSetOwnedResult(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -314,14 +314,14 @@ public class ExpressionInOCLImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case PivotPackage.EXPRESSION_IN_OCL__COMMENT:
-				return getComment();
-			case PivotPackage.EXPRESSION_IN_OCL__EXTENSION:
-				return getExtension();
-			case PivotPackage.EXPRESSION_IN_OCL__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.EXPRESSION_IN_OCL__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.EXPRESSION_IN_OCL__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.EXPRESSION_IN_OCL__NAME:
 				return getName();
 			case PivotPackage.EXPRESSION_IN_OCL__IS_MANY:
@@ -337,14 +337,14 @@ public class ExpressionInOCLImpl
 				return getLanguage();
 			case PivotPackage.EXPRESSION_IN_OCL__OWNING_CONSTRAINT:
 				return getOwningConstraint();
-			case PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
-				return getBodyExpression();
-			case PivotPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE:
-				return getContextVariable();
-			case PivotPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE:
-				return getParameterVariable();
-			case PivotPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE:
-				return getResultVariable();
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_BODY:
+				return getOwnedBody();
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_CONTEXT:
+				return getOwnedContext();
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_PARAMETERS:
+				return getOwnedParameters();
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_RESULT:
+				return getOwnedResult();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -359,21 +359,21 @@ public class ExpressionInOCLImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case PivotPackage.EXPRESSION_IN_OCL__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.EXPRESSION_IN_OCL__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.EXPRESSION_IN_OCL__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.EXPRESSION_IN_OCL__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.EXPRESSION_IN_OCL__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__NAME:
 				setName((String)newValue);
@@ -390,18 +390,18 @@ public class ExpressionInOCLImpl
 			case PivotPackage.EXPRESSION_IN_OCL__OWNING_CONSTRAINT:
 				setOwningConstraint((Constraint)newValue);
 				return;
-			case PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
-				setBodyExpression((OCLExpression)newValue);
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_BODY:
+				setOwnedBody((OCLExpression)newValue);
 				return;
-			case PivotPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE:
-				setContextVariable((Variable)newValue);
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_CONTEXT:
+				setOwnedContext((Variable)newValue);
 				return;
-			case PivotPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE:
-				getParameterVariable().clear();
-				getParameterVariable().addAll((Collection<? extends Variable>)newValue);
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_PARAMETERS:
+				getOwnedParameters().clear();
+				getOwnedParameters().addAll((Collection<? extends Variable>)newValue);
 				return;
-			case PivotPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE:
-				setResultVariable((Variable)newValue);
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_RESULT:
+				setOwnedResult((Variable)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -416,17 +416,17 @@ public class ExpressionInOCLImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.EXPRESSION_IN_OCL__COMMENT:
-				getComment().clear();
+			case PivotPackage.EXPRESSION_IN_OCL__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.EXPRESSION_IN_OCL__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.EXPRESSION_IN_OCL__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.EXPRESSION_IN_OCL__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__NAME:
 				setName(NAME_EDEFAULT);
@@ -443,17 +443,17 @@ public class ExpressionInOCLImpl
 			case PivotPackage.EXPRESSION_IN_OCL__OWNING_CONSTRAINT:
 				setOwningConstraint((Constraint)null);
 				return;
-			case PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
-				setBodyExpression((OCLExpression)null);
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_BODY:
+				setOwnedBody((OCLExpression)null);
 				return;
-			case PivotPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE:
-				setContextVariable((Variable)null);
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_CONTEXT:
+				setOwnedContext((Variable)null);
 				return;
-			case PivotPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE:
-				getParameterVariable().clear();
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_PARAMETERS:
+				getOwnedParameters().clear();
 				return;
-			case PivotPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE:
-				setResultVariable((Variable)null);
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_RESULT:
+				setOwnedResult((Variable)null);
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -468,14 +468,14 @@ public class ExpressionInOCLImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.EXPRESSION_IN_OCL__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.EXPRESSION_IN_OCL__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.EXPRESSION_IN_OCL__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.EXPRESSION_IN_OCL__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.EXPRESSION_IN_OCL__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.EXPRESSION_IN_OCL__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.EXPRESSION_IN_OCL__IS_MANY:
@@ -490,14 +490,14 @@ public class ExpressionInOCLImpl
 				return LANGUAGE_EDEFAULT == null ? getLanguage() != null : !LANGUAGE_EDEFAULT.equals(getLanguage());
 			case PivotPackage.EXPRESSION_IN_OCL__OWNING_CONSTRAINT:
 				return getOwningConstraint() != null;
-			case PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
-				return bodyExpression != null;
-			case PivotPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE:
-				return contextVariable != null;
-			case PivotPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE:
-				return parameterVariable != null && !parameterVariable.isEmpty();
-			case PivotPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE:
-				return resultVariable != null;
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_BODY:
+				return ownedBody != null;
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_CONTEXT:
+				return ownedContext != null;
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_PARAMETERS:
+				return ownedParameters != null && !ownedParameters.isEmpty();
+			case PivotPackage.EXPRESSION_IN_OCL__OWNED_RESULT:
+				return ownedResult != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

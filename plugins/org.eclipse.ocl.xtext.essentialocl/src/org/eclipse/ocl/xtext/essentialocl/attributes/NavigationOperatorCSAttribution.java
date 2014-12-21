@@ -30,7 +30,7 @@ public class NavigationOperatorCSAttribution extends AbstractAttribution
 		if (environmentView.isQualifier()) {
 			return scopeView.getParent();
 		}
-		assert scopeView.getContainmentFeature() != PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT;		// Arguments must leapfrog to parent.
+		assert scopeView.getContainmentFeature() != PivotPackage.Literals.OPERATION_CALL_EXP__OWNED_ARGUMENTS;		// Arguments must leapfrog to parent.
 		if (NavigationUtil.isNavigationInfixExp(target)) {
 			InfixExpCS targetElement = (InfixExpCS)target;
 			EObject child = scopeView.getChild();

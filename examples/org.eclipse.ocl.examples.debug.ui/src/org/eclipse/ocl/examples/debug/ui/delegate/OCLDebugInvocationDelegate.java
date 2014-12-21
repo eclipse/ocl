@@ -45,8 +45,8 @@ public class OCLDebugInvocationDelegate extends OCLInvocationDelegate
 		EvaluationEnvironment env = query2.getEvaluationEnvironment();
 		Object object = target;
 		Object value = idResolver.boxedValueOf(target);
-		env.add(ClassUtil.nonNullModel(query.getContextVariable()), value);
-		List<Variable> parms = query.getParameterVariable();
+		env.add(ClassUtil.nonNullModel(query.getOwnedContext()), value);
+		List<Variable> parms = query.getOwnedParameters();
 		if (!parms.isEmpty()) {
 			// bind arguments to parameter names
 			for (int i = 0; i < parms.size(); i++) {

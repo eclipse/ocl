@@ -22,8 +22,8 @@ import org.eclipse.jdt.annotation.NonNull;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.Iteration#getOwnedAccumulator <em>Owned Accumulator</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Iteration#getOwnedIterator <em>Owned Iterator</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Iteration#getOwnedAccumulators <em>Owned Accumulators</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Iteration#getOwnedIterators <em>Owned Iterators</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,7 +33,7 @@ import org.eclipse.jdt.annotation.NonNull;
 public interface Iteration extends Operation
 {
 	/**
-	 * Returns the value of the '<em><b>Owned Iterator</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Iterators</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.Parameter}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -41,14 +41,14 @@ public interface Iteration extends Operation
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Iterator</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getIteration_OwnedIterator()
+	 * @return the value of the '<em>Owned Iterators</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getIteration_OwnedIterators()
 	 * @generated
 	 */
-	@NonNull List<Parameter> getOwnedIterator();
+	@NonNull List<Parameter> getOwnedIterators();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Accumulator</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Accumulators</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.Parameter}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -56,10 +56,10 @@ public interface Iteration extends Operation
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Accumulator</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getIteration_OwnedAccumulator()
+	 * @return the value of the '<em>Owned Accumulators</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getIteration_OwnedAccumulators()
 	 * @generated
 	 */
-	@NonNull List<Parameter> getOwnedAccumulator();
+	@NonNull List<Parameter> getOwnedAccumulators();
 
 } // Iteration

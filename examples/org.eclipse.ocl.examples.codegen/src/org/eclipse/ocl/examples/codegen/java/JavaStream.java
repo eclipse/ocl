@@ -72,8 +72,8 @@ public class JavaStream
 					scope = (Namespace) eObject;
 					break;
 				}
-				if ((eObject instanceof ExpressionInOCL) && (((ExpressionInOCL)eObject).getContextVariable() != null)) {
-					eObject = ((ExpressionInOCL)eObject).getContextVariable().getType();
+				if ((eObject instanceof ExpressionInOCL) && (((ExpressionInOCL)eObject).getOwnedContext() != null)) {
+					eObject = ((ExpressionInOCL)eObject).getOwnedContext().getType();
 				}
 				else {
 					eObject = eObject.eContainer();

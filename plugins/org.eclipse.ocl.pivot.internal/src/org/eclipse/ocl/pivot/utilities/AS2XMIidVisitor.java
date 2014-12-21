@@ -140,7 +140,7 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 	protected void appendOperation(Operation object) {
 		appendParent(object);
 		appendName(object.getName());
-		List<Parameter> parameters = object instanceof Iteration ? ((Iteration)object).getOwnedIterator() : object.getOwnedParameter();
+		List<Parameter> parameters = object instanceof Iteration ? ((Iteration)object).getOwnedIterators() : object.getOwnedParameters();
 		for (Parameter parameter : parameters) {
 			s.append(OPERATION_PARAMETER_SEPARATOR);
 			appendType(parameter.getType());
@@ -218,7 +218,7 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 
 	@Override
 	public @Nullable Boolean visitCollectionType(@NonNull CollectionType object) {
-		if (object.getOwnedTemplateBindings().isEmpty()) {
+		if (object.getOwnedBindings().isEmpty()) {
 			appendName(object.getName());
 			return true;
 		}
@@ -232,13 +232,13 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 		String name = object.getName();
 		if ((name != null) && !"".equals(name)) {
 			EReference eContainmentFeature = object.eContainmentFeature();
-			if (eContainmentFeature == PivotPackage.Literals.OPERATION__PRECONDITION) {
+			if (eContainmentFeature == PivotPackage.Literals.OPERATION__OWNED_PRECONDITIONS) {
 				s.append(PRECONDITION_PREFIX);
 			}
 			else if (eContainmentFeature == PivotPackage.Literals.OPERATION__BODY_EXPRESSION) {
 				s.append(BODYCONDITION_PREFIX);
 			}
-			else if (eContainmentFeature == PivotPackage.Literals.OPERATION__POSTCONDITION) {
+			else if (eContainmentFeature == PivotPackage.Literals.OPERATION__OWNED_POSTCONDITIONS) {
 				s.append(POSTCONDITION_PREFIX);
 			}
 			else {
@@ -297,20 +297,20 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 	@Override
 	public @Nullable Boolean visitParameter(@NonNull Parameter object) {
 		Operation operation = (Operation)object.eContainer();
-		int index = operation.getOwnedParameter().indexOf(object);
+		int index = operation.getOwnedParameters().indexOf(object);
 		if (index >= 0) {
 			s.append(PARAMETER_PREFIX);
 			s.append(index);
 		}
 		else if (operation instanceof Iteration) {
 			Iteration iteration = (Iteration)operation;
-			index = iteration.getOwnedIterator().indexOf(object);
+			index = iteration.getOwnedIterators().indexOf(object);
 			if (index >= 0) {
 				s.append(ITERATOR_PREFIX);
 				s.append(index);
 			}
 			else {
-				index = iteration.getOwnedAccumulator().indexOf(object);
+				index = iteration.getOwnedAccumulators().indexOf(object);
 				if (index >= 0) {
 					s.append(ACCUMULATOR_PREFIX);
 					s.append(index);
@@ -362,7 +362,7 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 
 	@Override
 	public @Nullable Boolean visitTemplateParameter(@NonNull TemplateParameter object) {
-		NamedElement template = (NamedElement) object.getOwningTemplateSignature().getOwningTemplateableElement();
+		NamedElement template = (NamedElement) object.getOwningSignature().getOwningElement();
 		if ((template instanceof org.eclipse.ocl.pivot.Class) && Orphanage.isTypeOrphanage(((org.eclipse.ocl.pivot.Class)template).getOwningPackage())) {
 			return false;
 		}
@@ -377,7 +377,7 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 	@Override
 	public @Nullable Boolean visitTemplateSignature(@NonNull TemplateSignature object) {
 		s.append(TEMPLATE_SIGNATURE_PREFIX);
-		TemplateableElement template = object.getOwningTemplateableElement();
+		TemplateableElement template = object.getOwningElement();
 		template.accept(this);
 		return true;
 	}

@@ -23,7 +23,7 @@ public class LetExpStepper extends AbstractStepper
 
 	@Override
 	public @Nullable Element getFirstElement(@NonNull Element element) {
-		return element instanceof LetExp ? ((LetExp)element).getVariable() : element;
+		return element instanceof LetExp ? ((LetExp)element).getOwnedVariable() : element;
 	}
 
 	@Override
@@ -31,8 +31,8 @@ public class LetExpStepper extends AbstractStepper
 		EObject parentElement = childElement.eContainer();
 		if (parentElement instanceof LetExp) {
 			LetExp letExp = (LetExp)parentElement;
-			if (childElement == letExp.getVariable()) {
-				return getFirstElement(vmEvaluationVisitor, letExp.getIn());
+			if (childElement == letExp.getOwnedVariable()) {
+				return getFirstElement(vmEvaluationVisitor, letExp.getOwnedIn());
 			}
 			return letExp;
 		}

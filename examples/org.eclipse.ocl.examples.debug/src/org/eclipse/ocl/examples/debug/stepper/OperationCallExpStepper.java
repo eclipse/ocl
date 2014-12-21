@@ -29,7 +29,7 @@ public class OperationCallExpStepper extends CallExpStepper
 		EObject parentElement = childElement.eContainer();
 		if (parentElement instanceof OperationCallExp) {
 			OperationCallExp callExp = (OperationCallExp)parentElement;
-			List<OCLExpression> arguments = callExp.getArgument();
+			List<OCLExpression> arguments = callExp.getOwnedArguments();
 			int size = arguments.size();
 			if (size <= 0) {									// No arguments so just done source
 				return callExp;

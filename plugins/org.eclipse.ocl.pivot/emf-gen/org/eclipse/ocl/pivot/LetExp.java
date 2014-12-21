@@ -22,8 +22,8 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.LetExp#getIn <em>In</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.LetExp#getVariable <em>Variable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.LetExp#getOwnedIn <em>Owned In</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.LetExp#getOwnedVariable <em>Owned Variable</em>}</li>
  * </ul>
  * </p>
  *
@@ -34,54 +34,54 @@ public interface LetExp
 		extends OCLExpression {
 
 	/**
-	 * Returns the value of the '<em><b>In</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned In</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>In</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>In</em>' containment reference.
-	 * @see #setIn(OCLExpression)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getLetExp_In()
+	 * @return the value of the '<em>Owned In</em>' containment reference.
+	 * @see #setOwnedIn(OCLExpression)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getLetExp_OwnedIn()
 	 * @generated
 	 */
-	OCLExpression getIn();
+	OCLExpression getOwnedIn();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.LetExp#getIn <em>In</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.LetExp#getOwnedIn <em>Owned In</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>In</em>' containment reference.
-	 * @see #getIn()
+	 * @param value the new value of the '<em>Owned In</em>' containment reference.
+	 * @see #getOwnedIn()
 	 * @generated
 	 */
-	void setIn(OCLExpression value);
+	void setOwnedIn(OCLExpression value);
 
 	/**
-	 * Returns the value of the '<em><b>Variable</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Variable</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Variable</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Variable</em>' containment reference.
-	 * @see #setVariable(Variable)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getLetExp_Variable()
+	 * @return the value of the '<em>Owned Variable</em>' containment reference.
+	 * @see #setOwnedVariable(Variable)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getLetExp_OwnedVariable()
 	 * @generated
 	 */
-	Variable getVariable();
+	Variable getOwnedVariable();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.LetExp#getVariable <em>Variable</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.LetExp#getOwnedVariable <em>Owned Variable</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Variable</em>' containment reference.
-	 * @see #getVariable()
+	 * @param value the new value of the '<em>Owned Variable</em>' containment reference.
+	 * @see #getOwnedVariable()
 	 * @generated
 	 */
-	void setVariable(Variable value);
+	void setOwnedVariable(Variable value);
 
 	/**
 	 * <!-- begin-user-doc -->

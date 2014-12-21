@@ -24,7 +24,7 @@ def : _env(child : Element) : env::Environment =
 		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
 		.addElements(superClasses.ownedProperties->select(not isStatic))
 		.addElements(superClasses.ownedOperations->select(not isStatic))
-		.addElements(self.ownedBehavior)
+		.addElements(self.ownedBehaviors)
 
 context DataType
 def : _env(child : Element) : env::Environment =
@@ -40,43 +40,43 @@ context Enumeration
 def : _env(child : Element) : env::Environment =
 	parentEnv().nestedEnv()
 		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
-		.addElements(self.ownedLiteral)
+		.addElements(self.ownedLiterals)
 		.addElements(self.ownedProperties->select(not isStatic))
 		.addElements(self.ownedOperations->select(not isStatic))
-		.addElements(self.ownedBehavior)
+		.addElements(self.ownedBehaviors)
 		
 
 
 context ExpressionInOCL
 def : _env(child : Element) : env::Environment =
 	parentEnv().nestedEnv()
-		.addElement(self.contextVariable)
-		.addElements(self.parameterVariable)
-		.addElement(self.resultVariable)
+		.addElement(self.ownedContext)
+		.addElements(self.ownedParameters)
+		.addElement(self.ownedResult)
 
 context IterateExp
 def : _env(child : Element) : env::Environment =
-	if child = result
-	    then parentEnv().nestedEnv().addElements(self.iterator)
-	    else let index = iterator->indexOf(child) in
+	if child = ownedResult
+	    then parentEnv().nestedEnv().addElements(self.ownedIterators)
+	    else let index = ownedIterators->indexOf(child) in
 		    if index > 1 
-		        then parentEnv().nestedEnv().addElements(self.iterator->subOrderedSet(1, index-1))
-		        else parentEnv().nestedEnv().addElements(self.iterator).addElement(result)
+		        then parentEnv().nestedEnv().addElements(self.ownedIterators->subOrderedSet(1, index-1))
+		        else parentEnv().nestedEnv().addElements(self.ownedIterators).addElement(ownedResult)
 		    endif
 	endif
 
 context IteratorExp
 def : _env(child : Element) : env::Environment =
-	let index = iterator->indexOf(child) in
+	let index = ownedIterators->indexOf(child) in
 	if index > 1 
-        then parentEnv().nestedEnv().addElements(self.iterator->subOrderedSet(1, index-1))
-        else parentEnv().nestedEnv().addElements(self.iterator)
+        then parentEnv().nestedEnv().addElements(self.ownedIterators->subOrderedSet(1, index-1))
+        else parentEnv().nestedEnv().addElements(self.ownedIterators)
     endif
 
 context LetExp
 def : _env(child : Element) : env::Environment =
-	if child = _'in'
-		then parentEnv().nestedEnv().addElement(self.variable)
+	if child = ownedIn
+		then parentEnv().nestedEnv().addElement(self.ownedVariable)
 		else parentEnv()
 	endif
 
@@ -85,15 +85,15 @@ def : _env(child : Element) : env::Environment =
 	parentEnv().nestedEnv()
 		.addElements(self.ownedPackages)
 		.addElements(self.ownedClasses)
-		.addElements(self.ownedPrecedence)
+		.addElements(self.ownedPrecedences)
 
 context Operation
 def : _env(child : Element) : env::Environment =
-	if ownedParameter->includes(child)
+	if ownedParameters->includes(child)
 		then parentEnv().nestedEnv()
 		 	-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
 		else parentEnv().nestedEnv()
-			.addElements(self.ownedParameter)
+			.addElements(self.ownedParameters)
 			-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
 	endif
 
@@ -106,7 +106,7 @@ def : _env(child : Element) : env::Environment =
 context Model
 def : _env(child : Element) : env::Environment =
 	parentEnv()
-		.addElements(self.imports)
+		.addElements(self.ownedImports)
 		.addElements(self.ownedPackages)
 
 endpackage

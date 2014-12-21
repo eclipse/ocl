@@ -76,14 +76,14 @@
             <body>An operation is owned by a class and may be invoked in the context of objects that are instances of that class. It is a typed element and a multiplicity element.</body>
           </ownedComment>
           <generalization xmi:id="_XpKnNX7VEeOu79LxSz8Ylw" general="Core-Basic-TypedElement"/>
-          <ownedAttribute xmi:id="Core-Basic-Operation-raisedException" name="raisedException" type="Core-Basic-Type" association="Core-Basic-A_raisedException_operation">
+          <ownedAttribute xmi:id="Core-Basic-Operation-raisedException" name="raisedExceptions" type="Core-Basic-Type" association="Core-Basic-A_raisedException_operation">
             <ownedComment xmi:id="Core-Basic-Operation-raisedException-_ownedComment.0" annotatedElement="Core-Basic-Operation-raisedException">
               <body>The exceptions that are declared as possible during an invocation of the operation.</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XobAOn7VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XobAO37VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="Core-Basic-Operation-ownedParameter" name="ownedParameter" type="Core-Basic-Parameter" isOrdered="true" aggregation="composite" association="Core-Basic-A_ownedParameter_operation">
+          <ownedAttribute xmi:id="Core-Basic-Operation-ownedParameter" name="ownedParameters" type="Core-Basic-Parameter" isOrdered="true" aggregation="composite" association="Core-Basic-A_ownedParameter_operation">
             <ownedComment xmi:id="Core-Basic-Operation-ownedParameter-_ownedComment.0" annotatedElement="Core-Basic-Operation-ownedParameter">
               <body>The parameters to the operation.</body>
             </ownedComment>
@@ -102,7 +102,7 @@
             <body>A parameter is a typed element that represents a parameter of an operation.</body>
           </ownedComment>
           <generalization xmi:id="_XpKnNn7VEeOu79LxSz8Ylw" general="Core-Basic-TypedElement"/>
-          <ownedAttribute xmi:id="Core-Basic-Parameter-operation" name="operation" type="Core-Basic-Operation" association="Core-Basic-A_ownedParameter_operation">
+          <ownedAttribute xmi:id="Core-Basic-Parameter-operation" name="owningOperation" type="Core-Basic-Operation" association="Core-Basic-A_ownedParameter_operation">
             <ownedComment xmi:id="Core-Basic-Parameter-operation-_ownedComment.0" annotatedElement="Core-Basic-Parameter-operation">
               <body>The operation that owns the parameter.</body>
             </ownedComment>
@@ -192,7 +192,7 @@
             <body>An enumeration defines a set of literals that can be used as its values.</body>
           </ownedComment>
           <generalization xmi:id="_XpKnO37VEeOu79LxSz8Ylw" general="Core-Basic-DataType"/>
-          <ownedAttribute xmi:id="Core-Basic-Enumeration-ownedLiteral" name="ownedLiteral" type="Core-Basic-EnumerationLiteral" isOrdered="true" aggregation="composite" association="Core-Basic-A_ownedLiteral_enumeration">
+          <ownedAttribute xmi:id="Core-Basic-Enumeration-ownedLiteral" name="ownedLiterals" type="Core-Basic-EnumerationLiteral" isOrdered="true" aggregation="composite" association="Core-Basic-A_ownedLiteral_enumeration">
             <ownedComment xmi:id="Core-Basic-Enumeration-ownedLiteral-_ownedComment.0" annotatedElement="Core-Basic-Enumeration-ownedLiteral">
               <body>The ordered set of literals for this Enumeration.</body>
             </ownedComment>
@@ -205,7 +205,7 @@
             <body>An enumeration literal is a value of an enumeration.</body>
           </ownedComment>
           <generalization xmi:id="_XpKnPH7VEeOu79LxSz8Ylw" general="Core-Basic-NamedElement"/>
-          <ownedAttribute xmi:id="Core-Basic-EnumerationLiteral-enumeration" name="enumeration" type="Core-Basic-Enumeration" association="Core-Basic-A_ownedLiteral_enumeration">
+          <ownedAttribute xmi:id="Core-Basic-EnumerationLiteral-enumeration" name="owningEnumeration" type="Core-Basic-Enumeration" association="Core-Basic-A_ownedLiteral_enumeration">
             <ownedComment xmi:id="Core-Basic-EnumerationLiteral-enumeration-_ownedComment.0" annotatedElement="Core-Basic-EnumerationLiteral-enumeration">
               <body>The Enumeration that this EnumerationLiteral is a member of.</body>
             </ownedComment>
@@ -254,14 +254,14 @@
           <ownedComment xmi:id="Core-Basic-Element-_ownedComment.0" annotatedElement="Core-Basic-Element">
             <body>An element is a constituent of a model.</body>
           </ownedComment>
-          <ownedAttribute xmi:id="Core-Basic-Element-ownedComment" name="ownedComment" type="Core-Basic-Comment" aggregation="composite" association="Core-Basic-A_ownedComment_owningElement">
+          <ownedAttribute xmi:id="Core-Basic-Element-ownedComment" name="ownedComments" type="Core-Basic-Comment" aggregation="composite" association="Core-Basic-A_ownedComment_owningElement">
             <ownedComment xmi:id="Core-Basic-Element-ownedComment-_ownedComment.0" annotatedElement="Core-Basic-Element-ownedComment">
               <body>The Comments owned by this element.</body>
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XobAUX7VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XobAUn7VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="Core-Basic-A_annotatedElement_comment-comment" name="comment" type="Core-Basic-Comment" association="Core-Basic-A_annotatedElement_comment">
+          <ownedAttribute xmi:id="Core-Basic-A_annotatedElement_comment-comment" name="annotatingComments" type="Core-Basic-Comment" association="Core-Basic-A_annotatedElement_comment">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XobAXX7VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XobAXn7VEeOu79LxSz8Ylw" value="*"/>
           </ownedAttribute>
@@ -277,7 +277,7 @@
             </ownedComment>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XobAU37VEeOu79LxSz8Ylw"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="Core-Basic-Comment-annotatedElement" name="annotatedElement" type="Core-Basic-Element" association="Core-Basic-A_annotatedElement_comment">
+          <ownedAttribute xmi:id="Core-Basic-Comment-annotatedElement" name="annotatedElements" type="Core-Basic-Element" association="Core-Basic-A_annotatedElement_comment">
             <ownedComment xmi:id="Core-Basic-Comment-annotatedElement-_ownedComment.0" annotatedElement="Core-Basic-Comment-annotatedElement">
               <body>References the Element(s) being commented.</body>
             </ownedComment>
@@ -288,7 +288,7 @@
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XobAX37VEeOu79LxSz8Ylw"/>
           </ownedAttribute>
         </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_raisedException_operation" name="A_raisedException_operation" memberEnd="Core-Basic-Operation-raisedException Core-Basic-A_raisedException_operation-operation">
+        <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_raisedException_operation" name="A_raisedExceptions_operation" memberEnd="Core-Basic-Operation-raisedException Core-Basic-A_raisedException_operation-operation">
           <ownedEnd xmi:id="Core-Basic-A_raisedException_operation-operation" name="operation" type="Core-Basic-Operation" association="Core-Basic-A_raisedException_operation">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XobAVn7VEeOu79LxSz8Ylw"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XobAV37VEeOu79LxSz8Ylw" value="*"/>
@@ -300,7 +300,7 @@
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XobAWH7VEeOu79LxSz8Ylw"/>
           </ownedEnd>
         </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_ownedParameter_operation" name="A_ownedParameter_operation" memberEnd="Core-Basic-Operation-ownedParameter Core-Basic-Parameter-operation"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_ownedParameter_operation" name="A_ownedParameters_owningOperation" memberEnd="Core-Basic-Operation-ownedParameter Core-Basic-Parameter-operation"/>
         <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_ownedOperation_class" name="A_ownedOperations_owningClass" memberEnd="Core-Basic-Class-ownedOperation Core-Basic-Operation-class"/>
         <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_superClass_class" name="A_superClasses_subClasses" memberEnd="Core-Basic-Class-superClass Core-Basic-A_superClass_class-class">
           <ownedEnd xmi:id="Core-Basic-A_superClass_class-class" name="subClasses" type="Core-Basic-Class" association="Core-Basic-A_superClass_class">
@@ -314,11 +314,11 @@
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XobAXH7VEeOu79LxSz8Ylw" value="*"/>
           </ownedEnd>
         </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_ownedLiteral_enumeration" name="A_ownedLiteral_enumeration" memberEnd="Core-Basic-Enumeration-ownedLiteral Core-Basic-EnumerationLiteral-enumeration"/>
-        <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_nestedPackage_nestingPackage" name="A_nestedPackage_nestingPackage" memberEnd="Core-Basic-Package-nestedPackage Core-Basic-Package-nestingPackage"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_ownedLiteral_enumeration" name="A_ownedLiterals_owningEnumeration" memberEnd="Core-Basic-Enumeration-ownedLiteral Core-Basic-EnumerationLiteral-enumeration"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_nestedPackage_nestingPackage" name="A_ownedPackages_owningPackage" memberEnd="Core-Basic-Package-nestedPackage Core-Basic-Package-nestingPackage"/>
         <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_ownedType_package" name="A_ownedClasses_owningPackage" memberEnd="Core-Basic-Package-ownedType Core-Basic-Type-package"/>
-        <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_annotatedElement_comment" name="A_annotatedElement_comment" memberEnd="Core-Basic-Comment-annotatedElement Core-Basic-A_annotatedElement_comment-comment"/>
-        <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_ownedComment_owningElement" name="A_ownedComment_owningElement" memberEnd="Core-Basic-Element-ownedComment Core-Basic-A_ownedComment_owningElement-owningElement"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_annotatedElement_comment" name="A_annotatedElements_annotatingComment" memberEnd="Core-Basic-Comment-annotatedElement Core-Basic-A_annotatedElement_comment-comment"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="Core-Basic-A_ownedComment_owningElement" name="A_ownedComments_owningElement" memberEnd="Core-Basic-Element-ownedComment Core-Basic-A_ownedComment_owningElement-owningElement"/>
         <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_QtXDwIdLEeSCCeYhTarOBg" name="Object"/>
         <profileApplication xmi:id="_MLY08IdtEeSCCeYhTarOBg">
           <eAnnotations xmi:id="_MLY08YdtEeSCCeYhTarOBg" source="http://www.eclipse.org/uml2/2.0.0/UML">

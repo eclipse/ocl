@@ -19,7 +19,7 @@ package org.eclipse.ocl.pivot;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.Behavior#getTransition <em>Transition</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Behavior#getOwningTransition <em>Owning Transition</em>}</li>
  * </ul>
  * </p>
  *
@@ -30,29 +30,29 @@ public interface Behavior extends org.eclipse.ocl.pivot.Class
 {
 
 	/**
-	 * Returns the value of the '<em><b>Transition</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Transition#getEffect <em>Effect</em>}'.
+	 * Returns the value of the '<em><b>Owning Transition</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Transition#getOwnedEffect <em>Owned Effect</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Transition</em>' container reference isn't clear,
+	 * If the meaning of the '<em>Owning Transition</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Transition</em>' container reference.
-	 * @see #setTransition(Transition)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getBehavior_Transition()
-	 * @see org.eclipse.ocl.pivot.Transition#getEffect
+	 * @return the value of the '<em>Owning Transition</em>' container reference.
+	 * @see #setOwningTransition(Transition)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getBehavior_OwningTransition()
+	 * @see org.eclipse.ocl.pivot.Transition#getOwnedEffect
 	 * @generated
 	 */
-	Transition getTransition();
+	Transition getOwningTransition();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Behavior#getTransition <em>Transition</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Behavior#getOwningTransition <em>Owning Transition</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Transition</em>' container reference.
-	 * @see #getTransition()
+	 * @param value the new value of the '<em>Owning Transition</em>' container reference.
+	 * @see #getOwningTransition()
 	 * @generated
 	 */
-	void setTransition(Transition value);
+	void setOwningTransition(Transition value);
 } // Behavior

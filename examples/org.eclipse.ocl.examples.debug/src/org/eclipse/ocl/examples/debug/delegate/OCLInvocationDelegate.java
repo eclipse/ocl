@@ -89,8 +89,8 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 			EvaluationEnvironment env = query.getEvaluationEnvironment();
 			Object object = target;
 			Object value = idResolver.boxedValueOf(target);
-			env.add(ClassUtil.nonNullModel(specification2.getContextVariable()), value);
-			List<Variable> parms = specification2.getParameterVariable();
+			env.add(ClassUtil.nonNullModel(specification2.getOwnedContext()), value);
+			List<Variable> parms = specification2.getOwnedParameters();
 			if (!parms.isEmpty()) {
 				// bind arguments to parameter names
 				for (int i = 0; i < parms.size(); i++) {

@@ -83,7 +83,7 @@ public class TemplateSpecialisation
 			return false;
 		}
 		if (referencedType instanceof org.eclipse.ocl.pivot.Class) {
-			TemplateSignature templateSignature = ((org.eclipse.ocl.pivot.Class)referencedType).getOwnedTemplateSignature();
+			TemplateSignature templateSignature = ((org.eclipse.ocl.pivot.Class)referencedType).getOwnedSignature();
 			if (templateSignature != null) {
 				return true;
 			}

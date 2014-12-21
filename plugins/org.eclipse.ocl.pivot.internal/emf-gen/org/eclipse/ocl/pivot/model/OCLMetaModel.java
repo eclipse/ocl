@@ -74,14 +74,14 @@ public class OCLMetaModel extends ASResourceImpl
 		protected final @NonNull Model root;
 		protected final @NonNull Package metamodel;
 		private final @NonNull BagType _Bag = standardLibrary.getBagType();
-		@SuppressWarnings("null") private final @NonNull TemplateSignature _Bag_ = _Bag.getOwnedTemplateSignature();
-		@SuppressWarnings("null") private final @NonNull TemplateParameter _Bag_T = _Bag_.getOwnedTemplateParameters().get(0);
+		@SuppressWarnings("null") private final @NonNull TemplateSignature _Bag_ = _Bag.getOwnedSignature();
+		@SuppressWarnings("null") private final @NonNull TemplateParameter _Bag_T = _Bag_.getOwnedParameters().get(0);
 		
 		private final @NonNull PrimitiveType _Boolean = standardLibrary.getBooleanType();
 		
 		private final @NonNull CollectionType _Collection = standardLibrary.getCollectionType();
-		@SuppressWarnings("null") private final @NonNull TemplateSignature _Collection_ = _Collection.getOwnedTemplateSignature();
-		@SuppressWarnings("null") private final @NonNull TemplateParameter _Collection_T = _Collection_.getOwnedTemplateParameters().get(0);
+		@SuppressWarnings("null") private final @NonNull TemplateSignature _Collection_ = _Collection.getOwnedSignature();
+		@SuppressWarnings("null") private final @NonNull TemplateParameter _Collection_T = _Collection_.getOwnedParameters().get(0);
 		
 		private final @NonNull PrimitiveType _Integer = standardLibrary.getIntegerType();
 		
@@ -89,30 +89,30 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Class _OclElement = standardLibrary.getOclElementType();
 		
 		private final @NonNull CollectionType _OrderedCollection = standardLibrary.getOrderedCollectionType();
-		@SuppressWarnings("null") private final @NonNull TemplateSignature _OrderedCollection_ = _OrderedCollection.getOwnedTemplateSignature();
-		@SuppressWarnings("null") private final @NonNull TemplateParameter _OrderedCollection_T = _OrderedCollection_.getOwnedTemplateParameters().get(0);
+		@SuppressWarnings("null") private final @NonNull TemplateSignature _OrderedCollection_ = _OrderedCollection.getOwnedSignature();
+		@SuppressWarnings("null") private final @NonNull TemplateParameter _OrderedCollection_T = _OrderedCollection_.getOwnedParameters().get(0);
 		
 		private final @NonNull OrderedSetType _OrderedSet = standardLibrary.getOrderedSetType();
-		@SuppressWarnings("null") private final @NonNull TemplateSignature _OrderedSet_ = _OrderedSet.getOwnedTemplateSignature();
-		@SuppressWarnings("null") private final @NonNull TemplateParameter _OrderedSet_T = _OrderedSet_.getOwnedTemplateParameters().get(0);
+		@SuppressWarnings("null") private final @NonNull TemplateSignature _OrderedSet_ = _OrderedSet.getOwnedSignature();
+		@SuppressWarnings("null") private final @NonNull TemplateParameter _OrderedSet_T = _OrderedSet_.getOwnedParameters().get(0);
 		
 		private final @NonNull PrimitiveType _Real = standardLibrary.getRealType();
 		
 		private final @NonNull SequenceType _Sequence = standardLibrary.getSequenceType();
-		@SuppressWarnings("null") private final @NonNull TemplateSignature _Sequence_ = _Sequence.getOwnedTemplateSignature();
-		@SuppressWarnings("null") private final @NonNull TemplateParameter _Sequence_T = _Sequence_.getOwnedTemplateParameters().get(0);
+		@SuppressWarnings("null") private final @NonNull TemplateSignature _Sequence_ = _Sequence.getOwnedSignature();
+		@SuppressWarnings("null") private final @NonNull TemplateParameter _Sequence_T = _Sequence_.getOwnedParameters().get(0);
 		
 		private final @NonNull SetType _Set = standardLibrary.getSetType();
-		@SuppressWarnings("null") private final @NonNull TemplateSignature _Set_ = _Set.getOwnedTemplateSignature();
-		@SuppressWarnings("null") private final @NonNull TemplateParameter _Set_T = _Set_.getOwnedTemplateParameters().get(0);
+		@SuppressWarnings("null") private final @NonNull TemplateSignature _Set_ = _Set.getOwnedSignature();
+		@SuppressWarnings("null") private final @NonNull TemplateParameter _Set_T = _Set_.getOwnedParameters().get(0);
 		
 		private final @NonNull PrimitiveType _String = standardLibrary.getStringType();
 		
 		private final @NonNull PrimitiveType _UnlimitedNatural = standardLibrary.getUnlimitedNaturalType();
 		
 		private final @NonNull CollectionType _UniqueCollection = standardLibrary.getUniqueCollectionType();
-		@SuppressWarnings("null") private final @NonNull TemplateSignature _UniqueCollection_ = _UniqueCollection.getOwnedTemplateSignature();
-		@SuppressWarnings("null") private final @NonNull TemplateParameter _UniqueCollection_T = _UniqueCollection_.getOwnedTemplateParameters().get(0);
+		@SuppressWarnings("null") private final @NonNull TemplateSignature _UniqueCollection_ = _UniqueCollection.getOwnedSignature();
+		@SuppressWarnings("null") private final @NonNull TemplateParameter _UniqueCollection_T = _UniqueCollection_.getOwnedParameters().get(0);
 
 		protected Contents(@NonNull StandardLibraryInternal standardLibrary, @NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
 			super(standardLibrary);
@@ -264,8 +264,8 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Class _WildcardType = createClass(PivotPackage.Literals.WILDCARD_TYPE);
 
 		private final @NonNull Enumeration _AssociativityKind = createEnumeration(PivotPackage.Literals.ASSOCIATIVITY_KIND);
-		private final @NonNull EnumerationLiteral el__AssociativityKind_Left = createEnumerationLiteral(PivotPackage.Literals.ASSOCIATIVITY_KIND.getEEnumLiteral(AssociativityKind.LEFT_VALUE));
-		private final @NonNull EnumerationLiteral el__AssociativityKind_Right = createEnumerationLiteral(PivotPackage.Literals.ASSOCIATIVITY_KIND.getEEnumLiteral(AssociativityKind.RIGHT_VALUE));
+		private final @NonNull EnumerationLiteral el__AssociativityKind_left = createEnumerationLiteral(PivotPackage.Literals.ASSOCIATIVITY_KIND.getEEnumLiteral(AssociativityKind.LEFT_VALUE));
+		private final @NonNull EnumerationLiteral el__AssociativityKind_right = createEnumerationLiteral(PivotPackage.Literals.ASSOCIATIVITY_KIND.getEEnumLiteral(AssociativityKind.RIGHT_VALUE));
 		private final @NonNull Enumeration _CollectionKind = createEnumeration(PivotPackage.Literals.COLLECTION_KIND);
 		private final @NonNull EnumerationLiteral el__CollectionKind_Collection = createEnumerationLiteral(PivotPackage.Literals.COLLECTION_KIND.getEEnumLiteral(CollectionKind.COLLECTION_VALUE));
 		private final @NonNull EnumerationLiteral el__CollectionKind_Set = createEnumerationLiteral(PivotPackage.Literals.COLLECTION_KIND.getEEnumLiteral(CollectionKind.SET_VALUE));
@@ -904,12 +904,12 @@ public class OCLMetaModel extends ASResourceImpl
 			Enumeration type;
 			List<EnumerationLiteral> enumerationLiterals;
 			ownedTypes.add(type = _AssociativityKind);
-			enumerationLiterals = type.getOwnedLiteral();
-			enumerationLiterals.add(el__AssociativityKind_Left);
-			enumerationLiterals.add(el__AssociativityKind_Right);
+			enumerationLiterals = type.getOwnedLiterals();
+			enumerationLiterals.add(el__AssociativityKind_left);
+			enumerationLiterals.add(el__AssociativityKind_right);
 			type.getSuperClasses().add(_Enumeration);
 			ownedTypes.add(type = _CollectionKind);
-			enumerationLiterals = type.getOwnedLiteral();
+			enumerationLiterals = type.getOwnedLiterals();
 			enumerationLiterals.add(el__CollectionKind_Collection);
 			enumerationLiterals.add(el__CollectionKind_Set);
 			enumerationLiterals.add(el__CollectionKind_OrderedSet);
@@ -917,7 +917,7 @@ public class OCLMetaModel extends ASResourceImpl
 			enumerationLiterals.add(el__CollectionKind_Sequence);
 			type.getSuperClasses().add(_Enumeration);
 			ownedTypes.add(type = _PseudostateKind);
-			enumerationLiterals = type.getOwnedLiteral();
+			enumerationLiterals = type.getOwnedLiterals();
 			enumerationLiterals.add(el__PseudostateKind_initial);
 			enumerationLiterals.add(el__PseudostateKind_deepHistory);
 			enumerationLiterals.add(el__PseudostateKind_shallowHistory);
@@ -930,7 +930,7 @@ public class OCLMetaModel extends ASResourceImpl
 			enumerationLiterals.add(el__PseudostateKind_terminate);
 			type.getSuperClasses().add(_Enumeration);
 			ownedTypes.add(type = _TransitionKind);
-			enumerationLiterals = type.getOwnedLiteral();
+			enumerationLiterals = type.getOwnedLiterals();
 			enumerationLiterals.add(el__TransitionKind_internal);
 			enumerationLiterals.add(el__TransitionKind_local);
 			enumerationLiterals.add(el__TransitionKind_external);
@@ -1601,12 +1601,12 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedOperations = _CompleteModel.getOwnedOperations();
 			ownedOperations.add(operation = op_CompleteModel_getOwnedCompletePackage);
 			operation.setIsRequired(false);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("name", _String, false));
 			ownedOperations = _CompletePackage.getOwnedOperations();
 			ownedOperations.add(operation = op_CompletePackage_getOwnedCompleteClass);
 			operation.setIsRequired(false);
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("name", _String, false));
 			ownedOperations = _Element.getOwnedOperations();
 			ownedOperations.add(operation = op_Element_allOwnedElements);
@@ -1614,13 +1614,13 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedOperations.add(operation = op_Element_getValue);
 			operation.setIsRequired(false);
 			operation.setBodyExpression(createExpressionInOCL(_Element, "null"));
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("stereotype", _Type, true));
 			ownedParameters.add(parameter = createParameter("propertyName", _String, true));
 			ownedOperations = _Property.getOwnedOperations();
 			ownedOperations.add(operation = op_Property_isAttribute);
 			operation.setBodyExpression(createExpressionInOCL(_Boolean, "--Type.allInstances()->exists(c| c.ownedAttribute->includes(p))\nlet container : ocl::OclElement = oclContainer() in container.oclIsKindOf(Class) and container.oclAsType(Class).ownedProperties->includes(self)"));
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("p", _Property, true));
 			ownedOperations = _PropertyCallExp.getOwnedOperations();
 			ownedOperations.add(operation = op_PropertyCallExp_getSpecializedReferredPropertyOwningType);
@@ -1632,7 +1632,7 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedOperations = _SelfType.getOwnedOperations();
 			ownedOperations.add(operation = op_SelfType_specializeIn);
 			operation.setBodyExpression(createExpressionInOCL(_Type, "selfType"));
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("expr", _OCLExpression, true));
 			ownedParameters.add(parameter = createParameter("selfType", _Type, true));
 			ownedOperations = _Type.getOwnedOperations();
@@ -1645,13 +1645,13 @@ public class OCLMetaModel extends ASResourceImpl
 			operation.setIsRequired(false);
 			ownedOperations.add(operation = op_Type_specializeIn);
 			operation.setBodyExpression(createExpressionInOCL(_Type, "self"));
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("expr", _OCLExpression, true));
 			ownedParameters.add(parameter = createParameter("selfType", _Type, true));
 			ownedOperations = _TypedElement.getOwnedOperations();
 			ownedOperations.add(operation = op_TypedElement_CompatibleBody);
 			operation.setBodyExpression(createExpressionInOCL(_Boolean, "bodySpecification.type.conformsTo(self.type)"));
-			ownedParameters = operation.getOwnedParameter();
+			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("bodySpecification", _ValueSpecification, true));
 			ownedOperations.add(operation = op_TypedElement_makeParameter);
 			operation.setBodyExpression(createExpressionInOCL(_Parameter, "Parameter{name=\'name\'}"));
@@ -1677,21 +1677,21 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_AssociationClass_unownedAttributes = createProperty(PivotPackage.Literals.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTES, _Set_Property);
 		private final @NonNull Property pr_AssociationClass_AssociationClassCallExp_referredAssociationClass = createProperty("AssociationClassCallExp", _Bag_AssociationClassCallExp);
 		private final @NonNull Property pr_AssociationClassCallExp_referredAssociationClass = createProperty(PivotPackage.Literals.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS, _AssociationClass);
-		private final @NonNull Property pr_Behavior_transition = createProperty(PivotPackage.Literals.BEHAVIOR__TRANSITION, _Transition);
-		private final @NonNull Property pr_Behavior_Class_ownedBehavior = createProperty("Class", _Class);
-		private final @NonNull Property pr_Behavior_State_doActivity = createProperty("State", _State);
-		private final @NonNull Property pr_Behavior_State_entry = createProperty("State", _State);
-		private final @NonNull Property pr_Behavior_State_exit = createProperty("State", _State);
+		private final @NonNull Property pr_Behavior_owningTransition = createProperty(PivotPackage.Literals.BEHAVIOR__OWNING_TRANSITION, _Transition);
+		private final @NonNull Property pr_Behavior_Class_ownedBehaviors = createProperty("Class", _Class);
+		private final @NonNull Property pr_Behavior_State_ownedDoActivity = createProperty("State", _State);
+		private final @NonNull Property pr_Behavior_State_ownedEntry = createProperty("State", _State);
+		private final @NonNull Property pr_Behavior_State_ownedExit = createProperty("State", _State);
 		private final @NonNull Property pr_BooleanLiteralExp_booleanSymbol = createProperty(PivotPackage.Literals.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL, _Boolean);
-		private final @NonNull Property pr_CallExp_implicit = createProperty(PivotPackage.Literals.CALL_EXP__IMPLICIT, _Boolean);
-		private final @NonNull Property pr_CallExp_source = createProperty(PivotPackage.Literals.CALL_EXP__SOURCE, _OCLExpression);
+		private final @NonNull Property pr_CallExp_isImplicit = createProperty(PivotPackage.Literals.CALL_EXP__IS_IMPLICIT, _Boolean);
+		private final @NonNull Property pr_CallExp_ownedSource = createProperty(PivotPackage.Literals.CALL_EXP__OWNED_SOURCE, _OCLExpression);
 		private final @NonNull Property pr_CallOperationAction_operation = createProperty(PivotPackage.Literals.CALL_OPERATION_ACTION__OPERATION, _Operation);
-		private final @NonNull Property pr_CallOperationAction_MessageExp_calledOperation = createProperty("MessageExp", _MessageExp);
+		private final @NonNull Property pr_CallOperationAction_MessageExp_ownedCalledOperation = createProperty("MessageExp", _MessageExp);
 		private final @NonNull Property pr_Class_instanceClassName = createProperty(PivotPackage.Literals.CLASS__INSTANCE_CLASS_NAME, _String);
 		private final @NonNull Property pr_Class_isAbstract = createProperty(PivotPackage.Literals.CLASS__IS_ABSTRACT, _Boolean);
 		private final @NonNull Property pr_Class_isActive = createProperty(PivotPackage.Literals.CLASS__IS_ACTIVE, _Boolean);
 		private final @NonNull Property pr_Class_isInterface = createProperty(PivotPackage.Literals.CLASS__IS_INTERFACE, _Boolean);
-		private final @NonNull Property pr_Class_ownedBehavior = createProperty(PivotPackage.Literals.CLASS__OWNED_BEHAVIOR, _Set_Behavior);
+		private final @NonNull Property pr_Class_ownedBehaviors = createProperty(PivotPackage.Literals.CLASS__OWNED_BEHAVIORS, _Set_Behavior);
 		private final @NonNull Property pr_Class_ownedInvariants = createProperty(PivotPackage.Literals.CLASS__OWNED_INVARIANTS, _Set_Constraint);
 		private final @NonNull Property pr_Class_ownedOperations = createProperty(PivotPackage.Literals.CLASS__OWNED_OPERATIONS, _OrderedSet_Operation);
 		private final @NonNull Property pr_Class_ownedProperties = createProperty(PivotPackage.Literals.CLASS__OWNED_PROPERTIES, _OrderedSet_Property);
@@ -1699,19 +1699,19 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_Class_superClasses = createProperty(PivotPackage.Literals.CLASS__SUPER_CLASSES, _Set_Class);
 		private final @NonNull Property pr_Class_CompleteClass_partialClasses = createProperty("CompleteClass", _Bag_CompleteClass);
 		private final @NonNull Property pr_Class_DataType_behavioralClass = createProperty("DataType", _Bag_DataType);
-		private final @NonNull Property pr_Class_TemplateParameter_constrainingClass = createProperty("TemplateParameter", _Bag_TemplateParameter);
+		private final @NonNull Property pr_Class_TemplateParameter_constrainingClasses = createProperty("TemplateParameter", _Bag_TemplateParameter);
 		private final @NonNull Property pr_Class_instanceSpecification_classes = createProperty("instanceSpecification", _InstanceSpecification);
 		private final @NonNull Property pr_Class_subClasses_superClasses = createProperty("subClasses", _Class);
-		private final @NonNull Property pr_CollectionItem_item = createProperty(PivotPackage.Literals.COLLECTION_ITEM__ITEM, _OCLExpression);
+		private final @NonNull Property pr_CollectionItem_ownedItem = createProperty(PivotPackage.Literals.COLLECTION_ITEM__OWNED_ITEM, _OCLExpression);
 		private final @NonNull Property pr_CollectionLiteralExp_kind = createProperty(PivotPackage.Literals.COLLECTION_LITERAL_EXP__KIND, _CollectionKind);
-		private final @NonNull Property pr_CollectionLiteralExp_part = createProperty(PivotPackage.Literals.COLLECTION_LITERAL_EXP__PART, _OrderedSet_CollectionLiteralPart);
-		private final @NonNull Property pr_CollectionLiteralPart_CollectionLiteralExp_part = createProperty("CollectionLiteralExp", _CollectionLiteralExp);
-		private final @NonNull Property pr_CollectionRange_first = createProperty(PivotPackage.Literals.COLLECTION_RANGE__FIRST, _OCLExpression);
-		private final @NonNull Property pr_CollectionRange_last = createProperty(PivotPackage.Literals.COLLECTION_RANGE__LAST, _OCLExpression);
+		private final @NonNull Property pr_CollectionLiteralExp_ownedParts = createProperty(PivotPackage.Literals.COLLECTION_LITERAL_EXP__OWNED_PARTS, _OrderedSet_CollectionLiteralPart);
+		private final @NonNull Property pr_CollectionLiteralPart_CollectionLiteralExp_ownedParts = createProperty("CollectionLiteralExp", _CollectionLiteralExp);
+		private final @NonNull Property pr_CollectionRange_ownedFirst = createProperty(PivotPackage.Literals.COLLECTION_RANGE__OWNED_FIRST, _OCLExpression);
+		private final @NonNull Property pr_CollectionRange_ownedLast = createProperty(PivotPackage.Literals.COLLECTION_RANGE__OWNED_LAST, _OCLExpression);
 		private final @NonNull Property pr_CollectionType_elementType = createProperty(PivotPackage.Literals.COLLECTION_TYPE__ELEMENT_TYPE, _Type);
 		private final @NonNull Property pr_CollectionType_lower = createProperty(PivotPackage.Literals.COLLECTION_TYPE__LOWER, _Integer);
 		private final @NonNull Property pr_CollectionType_upper = createProperty(PivotPackage.Literals.COLLECTION_TYPE__UPPER, _UnlimitedNatural);
-		private final @NonNull Property pr_Comment_annotatedElement = createProperty(PivotPackage.Literals.COMMENT__ANNOTATED_ELEMENT, _Set_Element);
+		private final @NonNull Property pr_Comment_annotatedElements = createProperty(PivotPackage.Literals.COMMENT__ANNOTATED_ELEMENTS, _Set_Element);
 		private final @NonNull Property pr_Comment_body = createProperty(PivotPackage.Literals.COMMENT__BODY, _String);
 		private final @NonNull Property pr_Comment_owningElement = createProperty(PivotPackage.Literals.COMMENT__OWNING_ELEMENT, _Element);
 		private final @NonNull Property pr_CompleteClass_owningCompletePackage = createProperty(PivotPackage.Literals.COMPLETE_CLASS__OWNING_COMPLETE_PACKAGE, _CompletePackage);
@@ -1728,73 +1728,73 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_CompletePackage_owningCompleteModel = createProperty(PivotPackage.Literals.COMPLETE_PACKAGE__OWNING_COMPLETE_MODEL, _CompleteModel);
 		private final @NonNull Property pr_CompletePackage_owningCompletePackage = createProperty(PivotPackage.Literals.COMPLETE_PACKAGE__OWNING_COMPLETE_PACKAGE, _CompletePackage);
 		private final @NonNull Property pr_CompletePackage_partialPackages = createProperty(PivotPackage.Literals.COMPLETE_PACKAGE__PARTIAL_PACKAGES, _Set_Package);
-		private final @NonNull Property pr_ConnectionPointReference_entry = createProperty(PivotPackage.Literals.CONNECTION_POINT_REFERENCE__ENTRY, _Set_Pseudostate);
-		private final @NonNull Property pr_ConnectionPointReference_exit = createProperty(PivotPackage.Literals.CONNECTION_POINT_REFERENCE__EXIT, _Set_Pseudostate);
-		private final @NonNull Property pr_ConnectionPointReference_state = createProperty(PivotPackage.Literals.CONNECTION_POINT_REFERENCE__STATE, _State);
-		private final @NonNull Property pr_Constraint_constrainedElement = createProperty(PivotPackage.Literals.CONSTRAINT__CONSTRAINED_ELEMENT, _OrderedSet_Element);
+		private final @NonNull Property pr_ConnectionPointReference_entries = createProperty(PivotPackage.Literals.CONNECTION_POINT_REFERENCE__ENTRIES, _Set_Pseudostate);
+		private final @NonNull Property pr_ConnectionPointReference_exits = createProperty(PivotPackage.Literals.CONNECTION_POINT_REFERENCE__EXITS, _Set_Pseudostate);
+		private final @NonNull Property pr_ConnectionPointReference_owningState = createProperty(PivotPackage.Literals.CONNECTION_POINT_REFERENCE__OWNING_STATE, _State);
+		private final @NonNull Property pr_Constraint_constrainedElements = createProperty(PivotPackage.Literals.CONSTRAINT__CONSTRAINED_ELEMENTS, _OrderedSet_Element);
 		private final @NonNull Property pr_Constraint_context = createProperty(PivotPackage.Literals.CONSTRAINT__CONTEXT, _Namespace);
 		private final @NonNull Property pr_Constraint_isCallable = createProperty(PivotPackage.Literals.CONSTRAINT__IS_CALLABLE, _Boolean);
+		private final @NonNull Property pr_Constraint_ownedSpecification = createProperty(PivotPackage.Literals.CONSTRAINT__OWNED_SPECIFICATION, _LanguageExpression);
+		private final @NonNull Property pr_Constraint_owningPostContext = createProperty(PivotPackage.Literals.CONSTRAINT__OWNING_POST_CONTEXT, _Operation);
+		private final @NonNull Property pr_Constraint_owningPreContext = createProperty(PivotPackage.Literals.CONSTRAINT__OWNING_PRE_CONTEXT, _Operation);
 		private final @NonNull Property pr_Constraint_owningState = createProperty(PivotPackage.Literals.CONSTRAINT__OWNING_STATE, _State);
-		private final @NonNull Property pr_Constraint_postContext = createProperty(PivotPackage.Literals.CONSTRAINT__POST_CONTEXT, _Operation);
-		private final @NonNull Property pr_Constraint_preContext = createProperty(PivotPackage.Literals.CONSTRAINT__PRE_CONTEXT, _Operation);
-		private final @NonNull Property pr_Constraint_redefinedConstraint = createProperty(PivotPackage.Literals.CONSTRAINT__REDEFINED_CONSTRAINT, _Set_Constraint);
-		private final @NonNull Property pr_Constraint_specification = createProperty(PivotPackage.Literals.CONSTRAINT__SPECIFICATION, _LanguageExpression);
-		private final @NonNull Property pr_Constraint_transition = createProperty(PivotPackage.Literals.CONSTRAINT__TRANSITION, _Transition);
+		private final @NonNull Property pr_Constraint_owningTransition = createProperty(PivotPackage.Literals.CONSTRAINT__OWNING_TRANSITION, _Transition);
+		private final @NonNull Property pr_Constraint_redefinedConstraints = createProperty(PivotPackage.Literals.CONSTRAINT__REDEFINED_CONSTRAINTS, _Set_Constraint);
 		private final @NonNull Property pr_Constraint_Class_ownedInvariants = createProperty("Class", _Class);
-		private final @NonNull Property pr_Constraint_Namespace_ownedRule = createProperty("Namespace", _Namespace);
-		private final @NonNull Property pr_Constraint_constraint_redefinedConstraint = createProperty("constraint", _Constraint);
-		private final @NonNull Property pr_ConstructorExp_part = createProperty(PivotPackage.Literals.CONSTRUCTOR_EXP__PART, _OrderedSet_ConstructorPart);
+		private final @NonNull Property pr_Constraint_Namespace_ownedConstraints = createProperty("Namespace", _Namespace);
+		private final @NonNull Property pr_Constraint_constraint_redefinedConstraints = createProperty("constraint", _Constraint);
+		private final @NonNull Property pr_ConstructorExp_ownedParts = createProperty(PivotPackage.Literals.CONSTRUCTOR_EXP__OWNED_PARTS, _OrderedSet_ConstructorPart);
 		private final @NonNull Property pr_ConstructorExp_value = createProperty(PivotPackage.Literals.CONSTRUCTOR_EXP__VALUE, _String);
-		private final @NonNull Property pr_ConstructorPart_initExpression = createProperty(PivotPackage.Literals.CONSTRUCTOR_PART__INIT_EXPRESSION, _OCLExpression);
+		private final @NonNull Property pr_ConstructorPart_ownedInit = createProperty(PivotPackage.Literals.CONSTRUCTOR_PART__OWNED_INIT, _OCLExpression);
 		private final @NonNull Property pr_ConstructorPart_referredProperty = createProperty(PivotPackage.Literals.CONSTRUCTOR_PART__REFERRED_PROPERTY, _Property);
-		private final @NonNull Property pr_ConstructorPart_ConstructorExp_part = createProperty("ConstructorExp", _ConstructorExp);
+		private final @NonNull Property pr_ConstructorPart_ConstructorExp_ownedParts = createProperty("ConstructorExp", _ConstructorExp);
 		private final @NonNull Property pr_DataType_behavioralClass = createProperty(PivotPackage.Literals.DATA_TYPE__BEHAVIORAL_CLASS, _Class);
 		private final @NonNull Property pr_DataType_isSerializable = createProperty(PivotPackage.Literals.DATA_TYPE__IS_SERIALIZABLE, _Boolean);
-		private final @NonNull Property pr_Detail_value = createProperty(PivotPackage.Literals.DETAIL__VALUE, _Set_String);
+		private final @NonNull Property pr_Detail_values = createProperty(PivotPackage.Literals.DETAIL__VALUES, _Set_String);
 		private final @NonNull Property pr_Detail_Annotation_ownedDetails = createProperty("Annotation", _Annotation);
 		private final @NonNull Property pr_DynamicElement_metaType = createProperty(PivotPackage.Literals.DYNAMIC_ELEMENT__META_TYPE, _Type);
 		private final @NonNull Property pr_DynamicProperty_default = createProperty(PivotPackage.Literals.DYNAMIC_PROPERTY__DEFAULT, _String);
 		private final @NonNull Property pr_DynamicProperty_referredProperty = createProperty(PivotPackage.Literals.DYNAMIC_PROPERTY__REFERRED_PROPERTY, _Property);
-		private final @NonNull Property pr_DynamicProperty_DynamicType_ownedProperty = createProperty("DynamicType", _DynamicType);
-		private final @NonNull Property pr_DynamicType_ownedProperty = createProperty(PivotPackage.Literals.DYNAMIC_TYPE__OWNED_PROPERTY, _Set_DynamicProperty);
-		private final @NonNull Property pr_Element_comment = createProperty(PivotPackage.Literals.ELEMENT__COMMENT, _Set_Comment);
-		private final @NonNull Property pr_Element_extension = createProperty(PivotPackage.Literals.ELEMENT__EXTENSION, _Set_ElementExtension);
-		private final @NonNull Property pr_Element_ownedAnnotation = createProperty(PivotPackage.Literals.ELEMENT__OWNED_ANNOTATION, _OrderedSet_Element);
-		private final @NonNull Property pr_Element_ownedComment = createProperty(PivotPackage.Literals.ELEMENT__OWNED_COMMENT, _Set_Comment);
+		private final @NonNull Property pr_DynamicProperty_DynamicType_ownedDynamicProperties = createProperty("DynamicType", _DynamicType);
+		private final @NonNull Property pr_DynamicType_ownedDynamicProperties = createProperty(PivotPackage.Literals.DYNAMIC_TYPE__OWNED_DYNAMIC_PROPERTIES, _Set_DynamicProperty);
+		private final @NonNull Property pr_Element_annotatingComments = createProperty(PivotPackage.Literals.ELEMENT__ANNOTATING_COMMENTS, _Set_Comment);
+		private final @NonNull Property pr_Element_ownedAnnotations = createProperty(PivotPackage.Literals.ELEMENT__OWNED_ANNOTATIONS, _OrderedSet_Element);
+		private final @NonNull Property pr_Element_ownedComments = createProperty(PivotPackage.Literals.ELEMENT__OWNED_COMMENTS, _Set_Comment);
+		private final @NonNull Property pr_Element_ownedExtensions = createProperty(PivotPackage.Literals.ELEMENT__OWNED_EXTENSIONS, _Set_ElementExtension);
 		private final @NonNull Property pr_Element_Annotation_ownedContents = createProperty("Annotation", _Annotation);
 		private final @NonNull Property pr_Element_Annotation_references = createProperty("Annotation", _Bag_Annotation);
-		private final @NonNull Property pr_Element_Constraint_constrainedElement = createProperty("Constraint", _Bag_Constraint);
-		private final @NonNull Property pr_Element_Element_ownedAnnotation = createProperty("Element", _Element);
+		private final @NonNull Property pr_Element_Constraint_constrainedElements = createProperty("Constraint", _Bag_Constraint);
+		private final @NonNull Property pr_Element_Element_ownedAnnotations = createProperty("Element", _Element);
 		private final @NonNull Property pr_ElementExtension_base = createProperty(PivotPackage.Literals.ELEMENT_EXTENSION__BASE, _Element);
 		private final @NonNull Property pr_ElementExtension_isApplied = createProperty(PivotPackage.Literals.ELEMENT_EXTENSION__IS_APPLIED, _Boolean);
 		private final @NonNull Property pr_ElementExtension_isRequired = createProperty(PivotPackage.Literals.ELEMENT_EXTENSION__IS_REQUIRED, _Boolean);
 		private final @NonNull Property pr_ElementExtension_stereotype = createProperty(PivotPackage.Literals.ELEMENT_EXTENSION__STEREOTYPE, _Stereotype);
-		private final @NonNull Property pr_EnumLiteralExp_referredEnumLiteral = createProperty(PivotPackage.Literals.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL, _EnumerationLiteral);
-		private final @NonNull Property pr_Enumeration_ownedLiteral = createProperty(PivotPackage.Literals.ENUMERATION__OWNED_LITERAL, _OrderedSet_EnumerationLiteral);
-		private final @NonNull Property pr_EnumerationLiteral_enumeration = createProperty(PivotPackage.Literals.ENUMERATION_LITERAL__ENUMERATION, _Enumeration);
+		private final @NonNull Property pr_EnumLiteralExp_referredLiteral = createProperty(PivotPackage.Literals.ENUM_LITERAL_EXP__REFERRED_LITERAL, _EnumerationLiteral);
+		private final @NonNull Property pr_Enumeration_ownedLiterals = createProperty(PivotPackage.Literals.ENUMERATION__OWNED_LITERALS, _OrderedSet_EnumerationLiteral);
+		private final @NonNull Property pr_EnumerationLiteral_owningEnumeration = createProperty(PivotPackage.Literals.ENUMERATION_LITERAL__OWNING_ENUMERATION, _Enumeration);
 		private final @NonNull Property pr_EnumerationLiteral_value = createProperty(PivotPackage.Literals.ENUMERATION_LITERAL__VALUE, _Integer);
-		private final @NonNull Property pr_EnumerationLiteral_EnumLiteralExp_referredEnumLiteral = createProperty("EnumLiteralExp", _Bag_EnumLiteralExp);
-		private final @NonNull Property pr_ExpressionInOCL_bodyExpression = createProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__BODY_EXPRESSION, _OCLExpression);
-		private final @NonNull Property pr_ExpressionInOCL_contextVariable = createProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__CONTEXT_VARIABLE, _Variable);
-		private final @NonNull Property pr_ExpressionInOCL_parameterVariable = createProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__PARAMETER_VARIABLE, _OrderedSet_Variable);
-		private final @NonNull Property pr_ExpressionInOCL_resultVariable = createProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__RESULT_VARIABLE, _Variable);
+		private final @NonNull Property pr_EnumerationLiteral_EnumLiteralExp_referredLiteral = createProperty("EnumLiteralExp", _Bag_EnumLiteralExp);
+		private final @NonNull Property pr_ExpressionInOCL_ownedBody = createProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__OWNED_BODY, _OCLExpression);
+		private final @NonNull Property pr_ExpressionInOCL_ownedContext = createProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__OWNED_CONTEXT, _Variable);
+		private final @NonNull Property pr_ExpressionInOCL_ownedParameters = createProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__OWNED_PARAMETERS, _OrderedSet_Variable);
+		private final @NonNull Property pr_ExpressionInOCL_ownedResult = createProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__OWNED_RESULT, _Variable);
 		private final @NonNull Property pr_Feature_implementation = createProperty(PivotPackage.Literals.FEATURE__IMPLEMENTATION, _LibraryFeature);
 		private final @NonNull Property pr_Feature_implementationClass = createProperty(PivotPackage.Literals.FEATURE__IMPLEMENTATION_CLASS, _String);
 		private final @NonNull Property pr_Feature_isStatic = createProperty(PivotPackage.Literals.FEATURE__IS_STATIC, _Boolean);
 		private final @NonNull Property pr_FeatureCallExp_isPre = createProperty(PivotPackage.Literals.FEATURE_CALL_EXP__IS_PRE, _Boolean);
-		private final @NonNull Property pr_IfExp_condition = createProperty(PivotPackage.Literals.IF_EXP__CONDITION, _OCLExpression);
-		private final @NonNull Property pr_IfExp_elseExpression = createProperty(PivotPackage.Literals.IF_EXP__ELSE_EXPRESSION, _OCLExpression);
-		private final @NonNull Property pr_IfExp_thenExpression = createProperty(PivotPackage.Literals.IF_EXP__THEN_EXPRESSION, _OCLExpression);
+		private final @NonNull Property pr_IfExp_ownedCondition = createProperty(PivotPackage.Literals.IF_EXP__OWNED_CONDITION, _OCLExpression);
+		private final @NonNull Property pr_IfExp_ownedElse = createProperty(PivotPackage.Literals.IF_EXP__OWNED_ELSE, _OCLExpression);
+		private final @NonNull Property pr_IfExp_ownedThen = createProperty(PivotPackage.Literals.IF_EXP__OWNED_THEN, _OCLExpression);
 		private final @NonNull Property pr_Import_importedNamespace = createProperty(PivotPackage.Literals.IMPORT__IMPORTED_NAMESPACE, _Namespace);
-		private final @NonNull Property pr_Import_Model_imports = createProperty("Model", _Model);
+		private final @NonNull Property pr_Import_Model_ownedImports = createProperty("Model", _Model);
 		private final @NonNull Property pr_InstanceSpecification_classes = createProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__CLASSES, _Set_Class);
+		private final @NonNull Property pr_InstanceSpecification_ownedSlots = createProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__OWNED_SLOTS, _Set_Slot);
+		private final @NonNull Property pr_InstanceSpecification_ownedSpecification = createProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__OWNED_SPECIFICATION, _LanguageExpression);
 		private final @NonNull Property pr_InstanceSpecification_owningPackage = createProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__OWNING_PACKAGE, _Package);
-		private final @NonNull Property pr_InstanceSpecification_slots = createProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__SLOTS, _Set_Slot);
-		private final @NonNull Property pr_InstanceSpecification_specification = createProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__SPECIFICATION, _LanguageExpression);
 		private final @NonNull Property pr_IntegerLiteralExp_integerSymbol = createProperty(PivotPackage.Literals.INTEGER_LITERAL_EXP__INTEGER_SYMBOL, _Integer);
-		private final @NonNull Property pr_IterateExp_result = createProperty(PivotPackage.Literals.ITERATE_EXP__RESULT, _Variable);
-		private final @NonNull Property pr_Iteration_ownedAccumulator = createProperty(PivotPackage.Literals.ITERATION__OWNED_ACCUMULATOR, _OrderedSet_Parameter);
-		private final @NonNull Property pr_Iteration_ownedIterator = createProperty(PivotPackage.Literals.ITERATION__OWNED_ITERATOR, _OrderedSet_Parameter);
+		private final @NonNull Property pr_IterateExp_ownedResult = createProperty(PivotPackage.Literals.ITERATE_EXP__OWNED_RESULT, _Variable);
+		private final @NonNull Property pr_Iteration_ownedAccumulators = createProperty(PivotPackage.Literals.ITERATION__OWNED_ACCUMULATORS, _OrderedSet_Parameter);
+		private final @NonNull Property pr_Iteration_ownedIterators = createProperty(PivotPackage.Literals.ITERATION__OWNED_ITERATORS, _OrderedSet_Parameter);
 		private final @NonNull Property pr_Iteration_LoopExp_referredIteration = createProperty("LoopExp", _Bag_LoopExp);
 		private final @NonNull Property pr_LambdaType_contextType = createProperty(PivotPackage.Literals.LAMBDA_TYPE__CONTEXT_TYPE, _Type);
 		private final @NonNull Property pr_LambdaType_parameterType = createProperty(PivotPackage.Literals.LAMBDA_TYPE__PARAMETER_TYPE, _Sequence_Type);
@@ -1803,102 +1803,101 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_LanguageExpression_language = createProperty(PivotPackage.Literals.LANGUAGE_EXPRESSION__LANGUAGE, _String);
 		private final @NonNull Property pr_LanguageExpression_owningConstraint = createProperty(PivotPackage.Literals.LANGUAGE_EXPRESSION__OWNING_CONSTRAINT, _Constraint);
 		private final @NonNull Property pr_LanguageExpression_Operation_bodyExpression = createProperty("Operation", _Operation);
-		private final @NonNull Property pr_LanguageExpression_Property_defaultExpression = createProperty("Property", _Property);
-		private final @NonNull Property pr_LanguageExpression_owningInstanceSpec_specification = createProperty("owningInstanceSpec", _InstanceSpecification);
-		private final @NonNull Property pr_LetExp_in = createProperty(PivotPackage.Literals.LET_EXP__IN, _OCLExpression);
-		private final @NonNull Property pr_LetExp_variable = createProperty(PivotPackage.Literals.LET_EXP__VARIABLE, _Variable);
-		private final @NonNull Property pr_Library_ownedPrecedence = createProperty(PivotPackage.Literals.LIBRARY__OWNED_PRECEDENCE, _OrderedSet_Precedence);
-		private final @NonNull Property pr_LoopExp_body = createProperty(PivotPackage.Literals.LOOP_EXP__BODY, _OCLExpression);
-		private final @NonNull Property pr_LoopExp_iterator = createProperty(PivotPackage.Literals.LOOP_EXP__ITERATOR, _OrderedSet_Variable);
+		private final @NonNull Property pr_LanguageExpression_Property_ownedExpression = createProperty("Property", _Property);
+		private final @NonNull Property pr_LanguageExpression_owningInstanceSpec_ownedSpecification = createProperty("owningInstanceSpec", _InstanceSpecification);
+		private final @NonNull Property pr_LetExp_ownedIn = createProperty(PivotPackage.Literals.LET_EXP__OWNED_IN, _OCLExpression);
+		private final @NonNull Property pr_LetExp_ownedVariable = createProperty(PivotPackage.Literals.LET_EXP__OWNED_VARIABLE, _Variable);
+		private final @NonNull Property pr_Library_ownedPrecedences = createProperty(PivotPackage.Literals.LIBRARY__OWNED_PRECEDENCES, _OrderedSet_Precedence);
+		private final @NonNull Property pr_LoopExp_ownedBody = createProperty(PivotPackage.Literals.LOOP_EXP__OWNED_BODY, _OCLExpression);
+		private final @NonNull Property pr_LoopExp_ownedIterators = createProperty(PivotPackage.Literals.LOOP_EXP__OWNED_ITERATORS, _OrderedSet_Variable);
 		private final @NonNull Property pr_LoopExp_referredIteration = createProperty(PivotPackage.Literals.LOOP_EXP__REFERRED_ITERATION, _Iteration);
-		private final @NonNull Property pr_MessageExp_argument = createProperty(PivotPackage.Literals.MESSAGE_EXP__ARGUMENT, _OrderedSet_OCLExpression);
-		private final @NonNull Property pr_MessageExp_calledOperation = createProperty(PivotPackage.Literals.MESSAGE_EXP__CALLED_OPERATION, _CallOperationAction);
-		private final @NonNull Property pr_MessageExp_sentSignal = createProperty(PivotPackage.Literals.MESSAGE_EXP__SENT_SIGNAL, _SendSignalAction);
-		private final @NonNull Property pr_MessageExp_target = createProperty(PivotPackage.Literals.MESSAGE_EXP__TARGET, _OCLExpression);
+		private final @NonNull Property pr_MessageExp_ownedArguments = createProperty(PivotPackage.Literals.MESSAGE_EXP__OWNED_ARGUMENTS, _OrderedSet_OCLExpression);
+		private final @NonNull Property pr_MessageExp_ownedCalledOperation = createProperty(PivotPackage.Literals.MESSAGE_EXP__OWNED_CALLED_OPERATION, _CallOperationAction);
+		private final @NonNull Property pr_MessageExp_ownedSentSignal = createProperty(PivotPackage.Literals.MESSAGE_EXP__OWNED_SENT_SIGNAL, _SendSignalAction);
+		private final @NonNull Property pr_MessageExp_ownedTarget = createProperty(PivotPackage.Literals.MESSAGE_EXP__OWNED_TARGET, _OCLExpression);
 		private final @NonNull Property pr_MessageType_referredOperation = createProperty(PivotPackage.Literals.MESSAGE_TYPE__REFERRED_OPERATION, _Operation);
 		private final @NonNull Property pr_MessageType_referredSignal = createProperty(PivotPackage.Literals.MESSAGE_TYPE__REFERRED_SIGNAL, _Signal);
 		private final @NonNull Property pr_Model_externalURI = createProperty(PivotPackage.Literals.MODEL__EXTERNAL_URI, _String);
-		private final @NonNull Property pr_Model_imports = createProperty(PivotPackage.Literals.MODEL__IMPORTS, _OrderedSet_Import);
+		private final @NonNull Property pr_Model_ownedImports = createProperty(PivotPackage.Literals.MODEL__OWNED_IMPORTS, _OrderedSet_Import);
 		private final @NonNull Property pr_Model_ownedPackages = createProperty(PivotPackage.Literals.MODEL__OWNED_PACKAGES, _Set_Package);
 		private final @NonNull Property pr_Model_CompleteModel_partialModels = createProperty("CompleteModel", _Bag_CompleteModel);
 		private final @NonNull Property pr_NamedElement_name = createProperty(PivotPackage.Literals.NAMED_ELEMENT__NAME, _String);
-		private final @NonNull Property pr_Namespace_ownedRule = createProperty(PivotPackage.Literals.NAMESPACE__OWNED_RULE, _Set_Constraint);
+		private final @NonNull Property pr_Namespace_ownedConstraints = createProperty(PivotPackage.Literals.NAMESPACE__OWNED_CONSTRAINTS, _Set_Constraint);
 		private final @NonNull Property pr_Namespace_Constraint_context = createProperty("Constraint", _Bag_Constraint);
 		private final @NonNull Property pr_Namespace_Import_importedNamespace = createProperty("Import", _Bag_Import);
 		private final @NonNull Property pr_NavigationCallExp_navigationSource = createProperty(PivotPackage.Literals.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE, _Property);
-		private final @NonNull Property pr_NavigationCallExp_qualifier = createProperty(PivotPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER, _OrderedSet_OCLExpression);
+		private final @NonNull Property pr_NavigationCallExp_qualifiers = createProperty(PivotPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIERS, _OrderedSet_OCLExpression);
 		private final @NonNull Property pr_OCLExpression_typeValue = createProperty(PivotPackage.Literals.OCL_EXPRESSION__TYPE_VALUE, _Type);
-		private final @NonNull Property pr_OCLExpression_CallExp_source = createProperty("CallExp", _CallExp);
-		private final @NonNull Property pr_OCLExpression_CollectionItem_item = createProperty("CollectionItem", _CollectionItem);
-		private final @NonNull Property pr_OCLExpression_CollectionRange_first = createProperty("CollectionRange", _CollectionRange);
-		private final @NonNull Property pr_OCLExpression_CollectionRange_last = createProperty("CollectionRange", _CollectionRange);
-		private final @NonNull Property pr_OCLExpression_ConstructorPart_initExpression = createProperty("ConstructorPart", _ConstructorPart);
-		private final @NonNull Property pr_OCLExpression_ExpressionInOCL_bodyExpression = createProperty("ExpressionInOCL", _ExpressionInOCL);
-		private final @NonNull Property pr_OCLExpression_IfExp_condition = createProperty("IfExp", _IfExp);
-		private final @NonNull Property pr_OCLExpression_IfExp_elseExpression = createProperty("IfExp", _IfExp);
-		private final @NonNull Property pr_OCLExpression_IfExp_thenExpression = createProperty("IfExp", _IfExp);
-		private final @NonNull Property pr_OCLExpression_LetExp_in = createProperty("LetExp", _LetExp);
-		private final @NonNull Property pr_OCLExpression_LoopExp_body = createProperty("LoopExp", _LoopExp);
-		private final @NonNull Property pr_OCLExpression_MessageExp_argument = createProperty("MessageExp", _MessageExp);
-		private final @NonNull Property pr_OCLExpression_MessageExp_target = createProperty("MessageExp", _MessageExp);
-		private final @NonNull Property pr_OCLExpression_NavigationCallExp_qualifier = createProperty("NavigationCallExp", _Bag_NavigationCallExp);
-		private final @NonNull Property pr_OCLExpression_OperationCallExp_argument = createProperty("OperationCallExp", _OperationCallExp);
-		private final @NonNull Property pr_OCLExpression_TupleLiteralPart_initExpression = createProperty("TupleLiteralPart", _TupleLiteralPart);
-		private final @NonNull Property pr_OCLExpression_Variable_initExpression = createProperty("Variable", _Variable);
+		private final @NonNull Property pr_OCLExpression_CallExp_ownedSource = createProperty("CallExp", _CallExp);
+		private final @NonNull Property pr_OCLExpression_CollectionItem_ownedItem = createProperty("CollectionItem", _CollectionItem);
+		private final @NonNull Property pr_OCLExpression_CollectionRange_ownedFirst = createProperty("CollectionRange", _CollectionRange);
+		private final @NonNull Property pr_OCLExpression_CollectionRange_ownedLast = createProperty("CollectionRange", _CollectionRange);
+		private final @NonNull Property pr_OCLExpression_ConstructorPart_ownedInit = createProperty("ConstructorPart", _ConstructorPart);
+		private final @NonNull Property pr_OCLExpression_ExpressionInOCL_ownedBody = createProperty("ExpressionInOCL", _ExpressionInOCL);
+		private final @NonNull Property pr_OCLExpression_IfExp_ownedCondition = createProperty("IfExp", _IfExp);
+		private final @NonNull Property pr_OCLExpression_IfExp_ownedElse = createProperty("IfExp", _IfExp);
+		private final @NonNull Property pr_OCLExpression_IfExp_ownedThen = createProperty("IfExp", _IfExp);
+		private final @NonNull Property pr_OCLExpression_LetExp_ownedIn = createProperty("LetExp", _LetExp);
+		private final @NonNull Property pr_OCLExpression_LoopExp_ownedBody = createProperty("LoopExp", _LoopExp);
+		private final @NonNull Property pr_OCLExpression_MessageExp_ownedArguments = createProperty("MessageExp", _MessageExp);
+		private final @NonNull Property pr_OCLExpression_MessageExp_ownedTarget = createProperty("MessageExp", _MessageExp);
+		private final @NonNull Property pr_OCLExpression_NavigationCallExp_qualifiers = createProperty("NavigationCallExp", _Bag_NavigationCallExp);
+		private final @NonNull Property pr_OCLExpression_OperationCallExp_ownedArguments = createProperty("OperationCallExp", _OperationCallExp);
+		private final @NonNull Property pr_OCLExpression_TupleLiteralPart_ownedInit = createProperty("TupleLiteralPart", _TupleLiteralPart);
+		private final @NonNull Property pr_OCLExpression_Variable_ownedInit = createProperty("Variable", _Variable);
 		private final @NonNull Property pr_Operation_bodyExpression = createProperty(PivotPackage.Literals.OPERATION__BODY_EXPRESSION, _LanguageExpression);
 		private final @NonNull Property pr_Operation_isInvalidating = createProperty(PivotPackage.Literals.OPERATION__IS_INVALIDATING, _Boolean);
 		private final @NonNull Property pr_Operation_isTypeof = createProperty(PivotPackage.Literals.OPERATION__IS_TYPEOF, _Boolean);
 		private final @NonNull Property pr_Operation_isValidating = createProperty(PivotPackage.Literals.OPERATION__IS_VALIDATING, _Boolean);
-		private final @NonNull Property pr_Operation_ownedParameter = createProperty(PivotPackage.Literals.OPERATION__OWNED_PARAMETER, _OrderedSet_Parameter);
+		private final @NonNull Property pr_Operation_ownedParameters = createProperty(PivotPackage.Literals.OPERATION__OWNED_PARAMETERS, _OrderedSet_Parameter);
+		private final @NonNull Property pr_Operation_ownedPostconditions = createProperty(PivotPackage.Literals.OPERATION__OWNED_POSTCONDITIONS, _Set_Constraint);
+		private final @NonNull Property pr_Operation_ownedPreconditions = createProperty(PivotPackage.Literals.OPERATION__OWNED_PRECONDITIONS, _Set_Constraint);
 		private final @NonNull Property pr_Operation_owningClass = createProperty(PivotPackage.Literals.OPERATION__OWNING_CLASS, _Class);
-		private final @NonNull Property pr_Operation_postcondition = createProperty(PivotPackage.Literals.OPERATION__POSTCONDITION, _Set_Constraint);
 		private final @NonNull Property pr_Operation_precedence = createProperty(PivotPackage.Literals.OPERATION__PRECEDENCE, _Precedence);
-		private final @NonNull Property pr_Operation_precondition = createProperty(PivotPackage.Literals.OPERATION__PRECONDITION, _Set_Constraint);
-		private final @NonNull Property pr_Operation_raisedException = createProperty(PivotPackage.Literals.OPERATION__RAISED_EXCEPTION, _Set_Type);
-		private final @NonNull Property pr_Operation_redefinedOperation = createProperty(PivotPackage.Literals.OPERATION__REDEFINED_OPERATION, _Set_Operation);
+		private final @NonNull Property pr_Operation_raisedExceptions = createProperty(PivotPackage.Literals.OPERATION__RAISED_EXCEPTIONS, _Set_Type);
+		private final @NonNull Property pr_Operation_redefinedOperations = createProperty(PivotPackage.Literals.OPERATION__REDEFINED_OPERATIONS, _Set_Operation);
 		private final @NonNull Property pr_Operation_CallOperationAction_operation = createProperty("CallOperationAction", _Bag_CallOperationAction);
 		private final @NonNull Property pr_Operation_MessageType_referredOperation = createProperty("MessageType", _Bag_MessageType);
 		private final @NonNull Property pr_Operation_OperationCallExp_referredOperation = createProperty("OperationCallExp", _Bag_OperationCallExp);
 		private final @NonNull Property pr_Operation_PrimitiveType_coercions = createProperty("PrimitiveType", _Bag_PrimitiveType);
-		private final @NonNull Property pr_Operation_operation_redefinedOperation = createProperty("operation", _Operation);
-		private final @NonNull Property pr_OperationCallExp_argument = createProperty(PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT, _OrderedSet_OCLExpression);
+		private final @NonNull Property pr_Operation_operation_redefinedOperations = createProperty("operation", _Operation);
+		private final @NonNull Property pr_OperationCallExp_ownedArguments = createProperty(PivotPackage.Literals.OPERATION_CALL_EXP__OWNED_ARGUMENTS, _OrderedSet_OCLExpression);
 		private final @NonNull Property pr_OperationCallExp_referredOperation = createProperty(PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION, _Operation);
 		private final @NonNull Property pr_OppositePropertyCallExp_referredProperty = createProperty(PivotPackage.Literals.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_PROPERTY, _Property);
 		private final @NonNull Property pr_OrphanCompletePackage_CompleteModel_orphanCompletePackage = createProperty("CompleteModel", _Bag_CompleteModel);
 		private final @NonNull Property pr_Package_URI = createProperty(PivotPackage.Literals.PACKAGE__URI, _String);
-		private final @NonNull Property pr_Package_importedPackage = createProperty(PivotPackage.Literals.PACKAGE__IMPORTED_PACKAGE, _Set_Package);
+		private final @NonNull Property pr_Package_importedPackages = createProperty(PivotPackage.Literals.PACKAGE__IMPORTED_PACKAGES, _Set_Package);
 		private final @NonNull Property pr_Package_nsPrefix = createProperty(PivotPackage.Literals.PACKAGE__NS_PREFIX, _String);
 		private final @NonNull Property pr_Package_ownedClasses = createProperty(PivotPackage.Literals.PACKAGE__OWNED_CLASSES, _Set_Class);
 		private final @NonNull Property pr_Package_ownedInstances = createProperty(PivotPackage.Literals.PACKAGE__OWNED_INSTANCES, _Set_InstanceSpecification);
 		private final @NonNull Property pr_Package_ownedPackages = createProperty(PivotPackage.Literals.PACKAGE__OWNED_PACKAGES, _Set_Package);
+		private final @NonNull Property pr_Package_ownedProfileApplications = createProperty(PivotPackage.Literals.PACKAGE__OWNED_PROFILE_APPLICATIONS, _Set_ProfileApplication);
 		private final @NonNull Property pr_Package_owningPackage = createProperty(PivotPackage.Literals.PACKAGE__OWNING_PACKAGE, _Package);
-		private final @NonNull Property pr_Package_profileApplication = createProperty(PivotPackage.Literals.PACKAGE__PROFILE_APPLICATION, _Set_ProfileApplication);
 		private final @NonNull Property pr_Package_CompletePackage_partialPackages = createProperty("CompletePackage", _Bag_CompletePackage);
 		private final @NonNull Property pr_Package_Model_ownedPackages = createProperty("Model", _Model);
-		private final @NonNull Property pr_Package_Package_importedPackage = createProperty("Package", _Bag_Package);
+		private final @NonNull Property pr_Package_Package_importedPackages = createProperty("Package", _Bag_Package);
 		private final @NonNull Property pr_Parameter_isTypeof = createProperty(PivotPackage.Literals.PARAMETER__IS_TYPEOF, _Boolean);
-		private final @NonNull Property pr_Parameter_operation = createProperty(PivotPackage.Literals.PARAMETER__OPERATION, _Operation);
-		private final @NonNull Property pr_Parameter_Iteration_ownedAccumulator = createProperty("Iteration", _Iteration);
-		private final @NonNull Property pr_Parameter_Iteration_ownedIterator = createProperty("Iteration", _Iteration);
+		private final @NonNull Property pr_Parameter_owningOperation = createProperty(PivotPackage.Literals.PARAMETER__OWNING_OPERATION, _Operation);
+		private final @NonNull Property pr_Parameter_Iteration_ownedAccumulators = createProperty("Iteration", _Iteration);
+		private final @NonNull Property pr_Parameter_Iteration_ownedIterators = createProperty("Iteration", _Iteration);
 		private final @NonNull Property pr_Parameter_Variable_representedParameter = createProperty("Variable", _Bag_Variable);
 		private final @NonNull Property pr_Precedence_associativity = createProperty(PivotPackage.Literals.PRECEDENCE__ASSOCIATIVITY, _AssociativityKind);
 		private final @NonNull Property pr_Precedence_order = createProperty(PivotPackage.Literals.PRECEDENCE__ORDER, _Integer);
-		private final @NonNull Property pr_Precedence_Library_ownedPrecedence = createProperty("Library", _Library);
+		private final @NonNull Property pr_Precedence_Library_ownedPrecedences = createProperty("Library", _Library);
 		private final @NonNull Property pr_Precedence_Operation_precedence = createProperty("Operation", _Bag_Operation);
 		private final @NonNull Property pr_PrimitiveCompletePackage_CompleteModel_primitiveCompletePackage = createProperty("CompleteModel", _Bag_CompleteModel);
 		private final @NonNull Property pr_PrimitiveType_coercions = createProperty(PivotPackage.Literals.PRIMITIVE_TYPE__COERCIONS, _OrderedSet_Operation);
-		private final @NonNull Property pr_Profile_application = createProperty(PivotPackage.Literals.PROFILE__APPLICATION, _Set_ProfileApplication);
+		private final @NonNull Property pr_Profile_profileApplications = createProperty(PivotPackage.Literals.PROFILE__PROFILE_APPLICATIONS, _Set_ProfileApplication);
 		private final @NonNull Property pr_ProfileApplication_appliedProfile = createProperty(PivotPackage.Literals.PROFILE_APPLICATION__APPLIED_PROFILE, _Profile);
-		private final @NonNull Property pr_ProfileApplication_applyingPackage = createProperty(PivotPackage.Literals.PROFILE_APPLICATION__APPLYING_PACKAGE, _Package);
 		private final @NonNull Property pr_ProfileApplication_isStrict = createProperty(PivotPackage.Literals.PROFILE_APPLICATION__IS_STRICT, _Boolean);
+		private final @NonNull Property pr_ProfileApplication_owningPackage = createProperty(PivotPackage.Literals.PROFILE_APPLICATION__OWNING_PACKAGE, _Package);
 		private final @NonNull Property pr_Property_associationClass = createProperty(PivotPackage.Literals.PROPERTY__ASSOCIATION_CLASS, _AssociationClass);
-		private final @NonNull Property pr_Property_defaultExpression = createProperty(PivotPackage.Literals.PROPERTY__DEFAULT_EXPRESSION, _LanguageExpression);
 		private final @NonNull Property pr_Property_defaultValue = createProperty(PivotPackage.Literals.PROPERTY__DEFAULT_VALUE, _Object);
 		private final @NonNull Property pr_Property_defaultValueString = createProperty(PivotPackage.Literals.PROPERTY__DEFAULT_VALUE_STRING, _String);
-		private final @NonNull Property pr_Property_implicit = createProperty(PivotPackage.Literals.PROPERTY__IMPLICIT, _Boolean);
 		private final @NonNull Property pr_Property_isComposite = createProperty(PivotPackage.Literals.PROPERTY__IS_COMPOSITE, _Boolean);
 		private final @NonNull Property pr_Property_isDerived = createProperty(PivotPackage.Literals.PROPERTY__IS_DERIVED, _Boolean);
 		private final @NonNull Property pr_Property_isID = createProperty(PivotPackage.Literals.PROPERTY__IS_ID, _Boolean);
+		private final @NonNull Property pr_Property_isImplicit = createProperty(PivotPackage.Literals.PROPERTY__IS_IMPLICIT, _Boolean);
 		private final @NonNull Property pr_Property_isReadOnly = createProperty(PivotPackage.Literals.PROPERTY__IS_READ_ONLY, _Boolean);
 		private final @NonNull Property pr_Property_isResolveProxies = createProperty(PivotPackage.Literals.PROPERTY__IS_RESOLVE_PROXIES, _Boolean);
 		private final @NonNull Property pr_Property_isTransient = createProperty(PivotPackage.Literals.PROPERTY__IS_TRANSIENT, _Boolean);
@@ -1906,8 +1905,9 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_Property_isVolatile = createProperty(PivotPackage.Literals.PROPERTY__IS_VOLATILE, _Boolean);
 		private final @NonNull Property pr_Property_keys = createProperty(PivotPackage.Literals.PROPERTY__KEYS, _Set_Property);
 		private final @NonNull Property pr_Property_opposite = createProperty(PivotPackage.Literals.PROPERTY__OPPOSITE, _Property);
+		private final @NonNull Property pr_Property_ownedExpression = createProperty(PivotPackage.Literals.PROPERTY__OWNED_EXPRESSION, _LanguageExpression);
 		private final @NonNull Property pr_Property_owningClass = createProperty(PivotPackage.Literals.PROPERTY__OWNING_CLASS, _Class);
-		private final @NonNull Property pr_Property_redefinedProperty = createProperty(PivotPackage.Literals.PROPERTY__REDEFINED_PROPERTY, _Set_Property);
+		private final @NonNull Property pr_Property_redefinedProperties = createProperty(PivotPackage.Literals.PROPERTY__REDEFINED_PROPERTIES, _Set_Property);
 		private final @NonNull Property pr_Property_referredProperty = createProperty(PivotPackage.Literals.PROPERTY__REFERRED_PROPERTY, _Property);
 		private final @NonNull Property pr_Property_subsettedProperty = createProperty(PivotPackage.Literals.PROPERTY__SUBSETTED_PROPERTY, _Set_Property);
 		private final @NonNull Property pr_Property_ConstructorPart_referredProperty = createProperty("ConstructorPart", _Bag_ConstructorPart);
@@ -1918,85 +1918,85 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_Property_Property_referredProperty = createProperty("Property", _Bag_Property);
 		private final @NonNull Property pr_Property_PropertyCallExp_referredProperty = createProperty("PropertyCallExp", _Bag_PropertyCallExp);
 		private final @NonNull Property pr_Property_property_opposite = createProperty("property", _Property);
-		private final @NonNull Property pr_Property_property_redefinedProperty = createProperty("property", _Property);
+		private final @NonNull Property pr_Property_property_redefinedProperties = createProperty("property", _Property);
 		private final @NonNull Property pr_Property_property_subsettedProperty = createProperty("property", _Property);
 		private final @NonNull Property pr_Property_slot_definingProperty = createProperty("slot", _Slot);
 		private final @NonNull Property pr_PropertyCallExp_referredProperty = createProperty(PivotPackage.Literals.PROPERTY_CALL_EXP__REFERRED_PROPERTY, _Property);
 		private final @NonNull Property pr_Pseudostate_kind = createProperty(PivotPackage.Literals.PSEUDOSTATE__KIND, _PseudostateKind);
-		private final @NonNull Property pr_Pseudostate_state = createProperty(PivotPackage.Literals.PSEUDOSTATE__STATE, _State);
-		private final @NonNull Property pr_Pseudostate_stateMachine = createProperty(PivotPackage.Literals.PSEUDOSTATE__STATE_MACHINE, _StateMachine);
-		private final @NonNull Property pr_Pseudostate_connectionPointReference_entry = createProperty("connectionPointReference", _ConnectionPointReference);
-		private final @NonNull Property pr_Pseudostate_connectionPointReference_exit = createProperty("connectionPointReference", _ConnectionPointReference);
+		private final @NonNull Property pr_Pseudostate_owningState = createProperty(PivotPackage.Literals.PSEUDOSTATE__OWNING_STATE, _State);
+		private final @NonNull Property pr_Pseudostate_owningStateMachine = createProperty(PivotPackage.Literals.PSEUDOSTATE__OWNING_STATE_MACHINE, _StateMachine);
+		private final @NonNull Property pr_Pseudostate_connectionPointReference_entries = createProperty("connectionPointReference", _ConnectionPointReference);
+		private final @NonNull Property pr_Pseudostate_connectionPointReference_exits = createProperty("connectionPointReference", _ConnectionPointReference);
 		private final @NonNull Property pr_RealLiteralExp_realSymbol = createProperty(PivotPackage.Literals.REAL_LITERAL_EXP__REAL_SYMBOL, _Real);
 		private final @NonNull Property pr_Region_extendedRegion = createProperty(PivotPackage.Literals.REGION__EXTENDED_REGION, _Region);
-		private final @NonNull Property pr_Region_state = createProperty(PivotPackage.Literals.REGION__STATE, _State);
-		private final @NonNull Property pr_Region_stateMachine = createProperty(PivotPackage.Literals.REGION__STATE_MACHINE, _StateMachine);
-		private final @NonNull Property pr_Region_subvertex = createProperty(PivotPackage.Literals.REGION__SUBVERTEX, _Set_Vertex);
-		private final @NonNull Property pr_Region_transition = createProperty(PivotPackage.Literals.REGION__TRANSITION, _Set_Transition);
+		private final @NonNull Property pr_Region_ownedSubvertexes = createProperty(PivotPackage.Literals.REGION__OWNED_SUBVERTEXES, _Set_Vertex);
+		private final @NonNull Property pr_Region_ownedTransitions = createProperty(PivotPackage.Literals.REGION__OWNED_TRANSITIONS, _Set_Transition);
+		private final @NonNull Property pr_Region_owningState = createProperty(PivotPackage.Literals.REGION__OWNING_STATE, _State);
+		private final @NonNull Property pr_Region_owningStateMachine = createProperty(PivotPackage.Literals.REGION__OWNING_STATE_MACHINE, _StateMachine);
 		private final @NonNull Property pr_Region_Region_extendedRegion = createProperty("Region", _Bag_Region);
 		private final @NonNull Property pr_SendSignalAction_signal = createProperty(PivotPackage.Literals.SEND_SIGNAL_ACTION__SIGNAL, _Signal);
-		private final @NonNull Property pr_SendSignalAction_MessageExp_sentSignal = createProperty("MessageExp", _MessageExp);
+		private final @NonNull Property pr_SendSignalAction_MessageExp_ownedSentSignal = createProperty("MessageExp", _MessageExp);
 		private final @NonNull Property pr_Signal_MessageType_referredSignal = createProperty("MessageType", _Bag_MessageType);
 		private final @NonNull Property pr_Signal_SendSignalAction_signal = createProperty("SendSignalAction", _Bag_SendSignalAction);
 		private final @NonNull Property pr_Slot_definingProperty = createProperty(PivotPackage.Literals.SLOT__DEFINING_PROPERTY, _Property);
+		private final @NonNull Property pr_Slot_ownedValues = createProperty(PivotPackage.Literals.SLOT__OWNED_VALUES, _OrderedSet_ValueSpecification);
 		private final @NonNull Property pr_Slot_owningInstance = createProperty(PivotPackage.Literals.SLOT__OWNING_INSTANCE, _InstanceSpecification);
-		private final @NonNull Property pr_Slot_values = createProperty(PivotPackage.Literals.SLOT__VALUES, _OrderedSet_ValueSpecification);
 		private final @NonNull Property pr_StandardLibrary_owningCompleteEnvironment = createProperty(PivotPackage.Literals.STANDARD_LIBRARY__OWNING_COMPLETE_ENVIRONMENT, _CompleteEnvironment);
-		private final @NonNull Property pr_State_connection = createProperty(PivotPackage.Literals.STATE__CONNECTION, _Set_ConnectionPointReference);
-		private final @NonNull Property pr_State_connectionPoint = createProperty(PivotPackage.Literals.STATE__CONNECTION_POINT, _Set_Pseudostate);
-		private final @NonNull Property pr_State_deferrableTrigger = createProperty(PivotPackage.Literals.STATE__DEFERRABLE_TRIGGER, _Set_Trigger);
-		private final @NonNull Property pr_State_doActivity = createProperty(PivotPackage.Literals.STATE__DO_ACTIVITY, _Behavior);
-		private final @NonNull Property pr_State_entry = createProperty(PivotPackage.Literals.STATE__ENTRY, _Behavior);
-		private final @NonNull Property pr_State_exit = createProperty(PivotPackage.Literals.STATE__EXIT, _Behavior);
 		private final @NonNull Property pr_State_isComposite = createProperty(PivotPackage.Literals.STATE__IS_COMPOSITE, _Boolean);
 		private final @NonNull Property pr_State_isOrthogonal = createProperty(PivotPackage.Literals.STATE__IS_ORTHOGONAL, _Boolean);
 		private final @NonNull Property pr_State_isSimple = createProperty(PivotPackage.Literals.STATE__IS_SIMPLE, _Boolean);
 		private final @NonNull Property pr_State_isSubmachineState = createProperty(PivotPackage.Literals.STATE__IS_SUBMACHINE_STATE, _Boolean);
+		private final @NonNull Property pr_State_ownedConnectionPoints = createProperty(PivotPackage.Literals.STATE__OWNED_CONNECTION_POINTS, _Set_Pseudostate);
+		private final @NonNull Property pr_State_ownedConnections = createProperty(PivotPackage.Literals.STATE__OWNED_CONNECTIONS, _Set_ConnectionPointReference);
+		private final @NonNull Property pr_State_ownedDeferrableTriggers = createProperty(PivotPackage.Literals.STATE__OWNED_DEFERRABLE_TRIGGERS, _Set_Trigger);
+		private final @NonNull Property pr_State_ownedDoActivity = createProperty(PivotPackage.Literals.STATE__OWNED_DO_ACTIVITY, _Behavior);
+		private final @NonNull Property pr_State_ownedEntry = createProperty(PivotPackage.Literals.STATE__OWNED_ENTRY, _Behavior);
+		private final @NonNull Property pr_State_ownedExit = createProperty(PivotPackage.Literals.STATE__OWNED_EXIT, _Behavior);
+		private final @NonNull Property pr_State_ownedRegions = createProperty(PivotPackage.Literals.STATE__OWNED_REGIONS, _Set_Region);
+		private final @NonNull Property pr_State_ownedStateInvariant = createProperty(PivotPackage.Literals.STATE__OWNED_STATE_INVARIANT, _Constraint);
 		private final @NonNull Property pr_State_redefinedState = createProperty(PivotPackage.Literals.STATE__REDEFINED_STATE, _State);
-		private final @NonNull Property pr_State_region = createProperty(PivotPackage.Literals.STATE__REGION, _Set_Region);
-		private final @NonNull Property pr_State_stateInvariant = createProperty(PivotPackage.Literals.STATE__STATE_INVARIANT, _Constraint);
-		private final @NonNull Property pr_State_submachine = createProperty(PivotPackage.Literals.STATE__SUBMACHINE, _StateMachine);
+		private final @NonNull Property pr_State_submachines = createProperty(PivotPackage.Literals.STATE__SUBMACHINES, _StateMachine);
 		private final @NonNull Property pr_State_State_redefinedState = createProperty("State", _Bag_State);
 		private final @NonNull Property pr_State_StateExp_referredState = createProperty("StateExp", _Bag_StateExp);
 		private final @NonNull Property pr_StateExp_referredState = createProperty(PivotPackage.Literals.STATE_EXP__REFERRED_STATE, _State);
-		private final @NonNull Property pr_StateMachine_connectionPoint = createProperty(PivotPackage.Literals.STATE_MACHINE__CONNECTION_POINT, _Set_Pseudostate);
-		private final @NonNull Property pr_StateMachine_extendedStateMachine = createProperty(PivotPackage.Literals.STATE_MACHINE__EXTENDED_STATE_MACHINE, _Set_StateMachine);
-		private final @NonNull Property pr_StateMachine_region = createProperty(PivotPackage.Literals.STATE_MACHINE__REGION, _Set_Region_1);
-		private final @NonNull Property pr_StateMachine_submachineState = createProperty(PivotPackage.Literals.STATE_MACHINE__SUBMACHINE_STATE, _Set_State);
-		private final @NonNull Property pr_StateMachine_StateMachine_extendedStateMachine = createProperty("StateMachine", _Bag_StateMachine);
-		private final @NonNull Property pr_Stereotype_extensionOfs = createProperty(PivotPackage.Literals.STEREOTYPE__EXTENSION_OFS, _Set_TypeExtension);
+		private final @NonNull Property pr_StateMachine_extendedStateMachines = createProperty(PivotPackage.Literals.STATE_MACHINE__EXTENDED_STATE_MACHINES, _Set_StateMachine);
+		private final @NonNull Property pr_StateMachine_ownedConnectionPoints = createProperty(PivotPackage.Literals.STATE_MACHINE__OWNED_CONNECTION_POINTS, _Set_Pseudostate);
+		private final @NonNull Property pr_StateMachine_ownedRegions = createProperty(PivotPackage.Literals.STATE_MACHINE__OWNED_REGIONS, _Set_Region_1);
+		private final @NonNull Property pr_StateMachine_submachineStates = createProperty(PivotPackage.Literals.STATE_MACHINE__SUBMACHINE_STATES, _Set_State);
+		private final @NonNull Property pr_StateMachine_StateMachine_extendedStateMachines = createProperty("StateMachine", _Bag_StateMachine);
+		private final @NonNull Property pr_Stereotype_ownedExtensionOfs = createProperty(PivotPackage.Literals.STEREOTYPE__OWNED_EXTENSION_OFS, _Set_TypeExtension);
 		private final @NonNull Property pr_Stereotype_ElementExtension_stereotype = createProperty("ElementExtension", _Bag_ElementExtension);
 		private final @NonNull Property pr_StringLiteralExp_stringSymbol = createProperty(PivotPackage.Literals.STRING_LITERAL_EXP__STRING_SYMBOL, _String);
-		private final @NonNull Property pr_TemplateBinding_ownedTemplateParameterSubstitutions = createProperty(PivotPackage.Literals.TEMPLATE_BINDING__OWNED_TEMPLATE_PARAMETER_SUBSTITUTIONS, _Set_TemplateParameterSubstitution);
-		private final @NonNull Property pr_TemplateBinding_owningTemplateableElement = createProperty(PivotPackage.Literals.TEMPLATE_BINDING__OWNING_TEMPLATEABLE_ELEMENT, _TemplateableElement);
+		private final @NonNull Property pr_TemplateBinding_ownedSubstitutions = createProperty(PivotPackage.Literals.TEMPLATE_BINDING__OWNED_SUBSTITUTIONS, _Set_TemplateParameterSubstitution);
+		private final @NonNull Property pr_TemplateBinding_owningElement = createProperty(PivotPackage.Literals.TEMPLATE_BINDING__OWNING_ELEMENT, _TemplateableElement);
 		private final @NonNull Property pr_TemplateBinding_templateSignature = createProperty(PivotPackage.Literals.TEMPLATE_BINDING__TEMPLATE_SIGNATURE, _TemplateSignature);
-		private final @NonNull Property pr_TemplateParameter_constrainingClass = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__CONSTRAINING_CLASS, _Set_Class);
+		private final @NonNull Property pr_TemplateParameter_constrainingClasses = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__CONSTRAINING_CLASSES, _Set_Class);
 		private final @NonNull Property pr_TemplateParameter_lowerBound = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__LOWER_BOUND, _Type);
-		private final @NonNull Property pr_TemplateParameter_owningTemplateSignature = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__OWNING_TEMPLATE_SIGNATURE, _TemplateSignature);
+		private final @NonNull Property pr_TemplateParameter_owningSignature = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__OWNING_SIGNATURE, _TemplateSignature);
 		private final @NonNull Property pr_TemplateParameter_upperBound = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__UPPER_BOUND, _Type);
 		private final @NonNull Property pr_TemplateParameter_TemplateParameterSubstitution_formal = createProperty("TemplateParameterSubstitution", _Bag_TemplateParameterSubstitution);
 		private final @NonNull Property pr_TemplateParameterSubstitution_actual = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL, _Type);
 		private final @NonNull Property pr_TemplateParameterSubstitution_formal = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL, _TemplateParameter);
 		private final @NonNull Property pr_TemplateParameterSubstitution_ownedWildcard = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_WILDCARD, _WildcardType);
-		private final @NonNull Property pr_TemplateParameterSubstitution_owningTemplateBinding = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__OWNING_TEMPLATE_BINDING, _TemplateBinding);
-		private final @NonNull Property pr_TemplateSignature_ownedTemplateParameters = createProperty(PivotPackage.Literals.TEMPLATE_SIGNATURE__OWNED_TEMPLATE_PARAMETERS, _OrderedSet_TemplateParameter);
-		private final @NonNull Property pr_TemplateSignature_owningTemplateableElement = createProperty(PivotPackage.Literals.TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT, _TemplateableElement);
+		private final @NonNull Property pr_TemplateParameterSubstitution_owningBinding = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__OWNING_BINDING, _TemplateBinding);
+		private final @NonNull Property pr_TemplateSignature_ownedParameters = createProperty(PivotPackage.Literals.TEMPLATE_SIGNATURE__OWNED_PARAMETERS, _OrderedSet_TemplateParameter);
+		private final @NonNull Property pr_TemplateSignature_owningElement = createProperty(PivotPackage.Literals.TEMPLATE_SIGNATURE__OWNING_ELEMENT, _TemplateableElement);
 		private final @NonNull Property pr_TemplateSignature_TemplateBinding_templateSignature = createProperty("TemplateBinding", _Bag_TemplateBinding);
-		private final @NonNull Property pr_TemplateableElement_ownedTemplateBindings = createProperty(PivotPackage.Literals.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_BINDINGS, _Set_TemplateBinding);
-		private final @NonNull Property pr_TemplateableElement_ownedTemplateSignature = createProperty(PivotPackage.Literals.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE, _TemplateSignature);
+		private final @NonNull Property pr_TemplateableElement_ownedBindings = createProperty(PivotPackage.Literals.TEMPLATEABLE_ELEMENT__OWNED_BINDINGS, _Set_TemplateBinding);
+		private final @NonNull Property pr_TemplateableElement_ownedSignature = createProperty(PivotPackage.Literals.TEMPLATEABLE_ELEMENT__OWNED_SIGNATURE, _TemplateSignature);
 		private final @NonNull Property pr_TemplateableElement_unspecializedElement = createProperty(PivotPackage.Literals.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT, _TemplateableElement);
-		private final @NonNull Property pr_Transition_container = createProperty(PivotPackage.Literals.TRANSITION__CONTAINER, _Region);
-		private final @NonNull Property pr_Transition_effect = createProperty(PivotPackage.Literals.TRANSITION__EFFECT, _Behavior);
-		private final @NonNull Property pr_Transition_guard = createProperty(PivotPackage.Literals.TRANSITION__GUARD, _Constraint);
 		private final @NonNull Property pr_Transition_kind = createProperty(PivotPackage.Literals.TRANSITION__KIND, _TransitionKind);
+		private final @NonNull Property pr_Transition_ownedEffect = createProperty(PivotPackage.Literals.TRANSITION__OWNED_EFFECT, _Behavior);
+		private final @NonNull Property pr_Transition_ownedGuard = createProperty(PivotPackage.Literals.TRANSITION__OWNED_GUARD, _Constraint);
+		private final @NonNull Property pr_Transition_ownedTriggers = createProperty(PivotPackage.Literals.TRANSITION__OWNED_TRIGGERS, _Set_Trigger);
+		private final @NonNull Property pr_Transition_owningRegion = createProperty(PivotPackage.Literals.TRANSITION__OWNING_REGION, _Region);
 		private final @NonNull Property pr_Transition_source = createProperty(PivotPackage.Literals.TRANSITION__SOURCE, _Vertex);
 		private final @NonNull Property pr_Transition_target = createProperty(PivotPackage.Literals.TRANSITION__TARGET, _Vertex);
-		private final @NonNull Property pr_Transition_trigger = createProperty(PivotPackage.Literals.TRANSITION__TRIGGER, _Set_Trigger);
-		private final @NonNull Property pr_Trigger_state = createProperty(PivotPackage.Literals.TRIGGER__STATE, _State);
-		private final @NonNull Property pr_Trigger_transition = createProperty(PivotPackage.Literals.TRIGGER__TRANSITION, _Transition);
-		private final @NonNull Property pr_TupleLiteralExp_part = createProperty(PivotPackage.Literals.TUPLE_LITERAL_EXP__PART, _OrderedSet_TupleLiteralPart);
-		private final @NonNull Property pr_TupleLiteralPart_initExpression = createProperty(PivotPackage.Literals.TUPLE_LITERAL_PART__INIT_EXPRESSION, _OCLExpression);
-		private final @NonNull Property pr_TupleLiteralPart_TupleLiteralExp_part = createProperty("TupleLiteralExp", _TupleLiteralExp);
+		private final @NonNull Property pr_Trigger_owningState = createProperty(PivotPackage.Literals.TRIGGER__OWNING_STATE, _State);
+		private final @NonNull Property pr_Trigger_owningTransition = createProperty(PivotPackage.Literals.TRIGGER__OWNING_TRANSITION, _Transition);
+		private final @NonNull Property pr_TupleLiteralExp_ownedParts = createProperty(PivotPackage.Literals.TUPLE_LITERAL_EXP__OWNED_PARTS, _OrderedSet_TupleLiteralPart);
+		private final @NonNull Property pr_TupleLiteralPart_ownedInit = createProperty(PivotPackage.Literals.TUPLE_LITERAL_PART__OWNED_INIT, _OCLExpression);
+		private final @NonNull Property pr_TupleLiteralPart_TupleLiteralExp_ownedParts = createProperty("TupleLiteralExp", _TupleLiteralExp);
 		private final @NonNull Property pr_Type_extendedBys = createProperty(PivotPackage.Literals.TYPE__EXTENDED_BYS, _Set_TypeExtension);
 		private final @NonNull Property pr_Type_CollectionType_elementType = createProperty("CollectionType", _Bag_CollectionType);
 		private final @NonNull Property pr_Type_DynamicElement_metaType = createProperty("DynamicElement", _Bag_DynamicElement);
@@ -2009,33 +2009,33 @@ public class OCLMetaModel extends ASResourceImpl
 		private final @NonNull Property pr_Type_TypeExp_referredType = createProperty("TypeExp", _Bag_TypeExp);
 		private final @NonNull Property pr_Type_WildcardType_lowerBound = createProperty("WildcardType", _Bag_WildcardType);
 		private final @NonNull Property pr_Type_WildcardType_upperBound = createProperty("WildcardType", _Bag_WildcardType);
-		private final @NonNull Property pr_Type_operation_raisedException = createProperty("operation", _Operation);
+		private final @NonNull Property pr_Type_operation_raisedExceptions = createProperty("operation", _Operation);
 		private final @NonNull Property pr_Type_typedElement_type = createProperty("typedElement", _TypedElement);
 		private final @NonNull Property pr_TypeExp_referredType = createProperty(PivotPackage.Literals.TYPE_EXP__REFERRED_TYPE, _Type);
 		private final @NonNull Property pr_TypeExtension_isRequired = createProperty(PivotPackage.Literals.TYPE_EXTENSION__IS_REQUIRED, _Boolean);
-		private final @NonNull Property pr_TypeExtension_stereotype = createProperty(PivotPackage.Literals.TYPE_EXTENSION__STEREOTYPE, _Stereotype);
+		private final @NonNull Property pr_TypeExtension_owningStereotype = createProperty(PivotPackage.Literals.TYPE_EXTENSION__OWNING_STEREOTYPE, _Stereotype);
 		private final @NonNull Property pr_TypeExtension_type = createProperty(PivotPackage.Literals.TYPE_EXTENSION__TYPE, _Type);
 		private final @NonNull Property pr_TypedElement_isMany = createProperty(PivotPackage.Literals.TYPED_ELEMENT__IS_MANY, _Boolean);
 		private final @NonNull Property pr_TypedElement_isRequired = createProperty(PivotPackage.Literals.TYPED_ELEMENT__IS_REQUIRED, _Boolean);
 		private final @NonNull Property pr_TypedElement_type = createProperty(PivotPackage.Literals.TYPED_ELEMENT__TYPE, _Type);
 		private final @NonNull Property pr_UnlimitedNaturalLiteralExp_unlimitedNaturalSymbol = createProperty(PivotPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL, _UnlimitedNatural);
-		private final @NonNull Property pr_ValueSpecification_owningSlot_values = createProperty("owningSlot", _Slot);
-		private final @NonNull Property pr_Variable_implicit = createProperty(PivotPackage.Literals.VARIABLE__IMPLICIT, _Boolean);
-		private final @NonNull Property pr_Variable_initExpression = createProperty(PivotPackage.Literals.VARIABLE__INIT_EXPRESSION, _OCLExpression);
+		private final @NonNull Property pr_ValueSpecification_owningSlot_ownedValues = createProperty("owningSlot", _Slot);
+		private final @NonNull Property pr_Variable_isImplicit = createProperty(PivotPackage.Literals.VARIABLE__IS_IMPLICIT, _Boolean);
+		private final @NonNull Property pr_Variable_ownedInit = createProperty(PivotPackage.Literals.VARIABLE__OWNED_INIT, _OCLExpression);
 		private final @NonNull Property pr_Variable_representedParameter = createProperty(PivotPackage.Literals.VARIABLE__REPRESENTED_PARAMETER, _Parameter);
-		private final @NonNull Property pr_Variable_ExpressionInOCL_contextVariable = createProperty("ExpressionInOCL", _ExpressionInOCL);
-		private final @NonNull Property pr_Variable_ExpressionInOCL_parameterVariable = createProperty("ExpressionInOCL", _ExpressionInOCL);
-		private final @NonNull Property pr_Variable_ExpressionInOCL_resultVariable = createProperty("ExpressionInOCL", _ExpressionInOCL);
-		private final @NonNull Property pr_Variable_IterateExp_result = createProperty("IterateExp", _IterateExp);
-		private final @NonNull Property pr_Variable_LetExp_variable = createProperty("LetExp", _LetExp);
-		private final @NonNull Property pr_Variable_LoopExp_iterator = createProperty("LoopExp", _LoopExp);
+		private final @NonNull Property pr_Variable_ExpressionInOCL_ownedContext = createProperty("ExpressionInOCL", _ExpressionInOCL);
+		private final @NonNull Property pr_Variable_ExpressionInOCL_ownedParameters = createProperty("ExpressionInOCL", _ExpressionInOCL);
+		private final @NonNull Property pr_Variable_ExpressionInOCL_ownedResult = createProperty("ExpressionInOCL", _ExpressionInOCL);
+		private final @NonNull Property pr_Variable_IterateExp_ownedResult = createProperty("IterateExp", _IterateExp);
+		private final @NonNull Property pr_Variable_LetExp_ownedVariable = createProperty("LetExp", _LetExp);
+		private final @NonNull Property pr_Variable_LoopExp_ownedIterators = createProperty("LoopExp", _LoopExp);
 		private final @NonNull Property pr_VariableDeclaration_typeValue = createProperty(PivotPackage.Literals.VARIABLE_DECLARATION__TYPE_VALUE, _Type);
 		private final @NonNull Property pr_VariableDeclaration_VariableExp_referredVariable = createProperty("VariableExp", _Bag_VariableExp);
-		private final @NonNull Property pr_VariableExp_implicit = createProperty(PivotPackage.Literals.VARIABLE_EXP__IMPLICIT, _Boolean);
+		private final @NonNull Property pr_VariableExp_isImplicit = createProperty(PivotPackage.Literals.VARIABLE_EXP__IS_IMPLICIT, _Boolean);
 		private final @NonNull Property pr_VariableExp_referredVariable = createProperty(PivotPackage.Literals.VARIABLE_EXP__REFERRED_VARIABLE, _VariableDeclaration);
-		private final @NonNull Property pr_Vertex_container = createProperty(PivotPackage.Literals.VERTEX__CONTAINER, _Region);
-		private final @NonNull Property pr_Vertex_incoming = createProperty(PivotPackage.Literals.VERTEX__INCOMING, _Set_Transition);
-		private final @NonNull Property pr_Vertex_outgoing = createProperty(PivotPackage.Literals.VERTEX__OUTGOING, _Set_Transition);
+		private final @NonNull Property pr_Vertex_incomingTransitions = createProperty(PivotPackage.Literals.VERTEX__INCOMING_TRANSITIONS, _Set_Transition);
+		private final @NonNull Property pr_Vertex_outgoingTransitions = createProperty(PivotPackage.Literals.VERTEX__OUTGOING_TRANSITIONS, _Set_Transition);
+		private final @NonNull Property pr_Vertex_owningRegion = createProperty(PivotPackage.Literals.VERTEX__OWNING_REGION, _Region);
 		private final @NonNull Property pr_WildcardType_lowerBound = createProperty(PivotPackage.Literals.WILDCARD_TYPE__LOWER_BOUND, _Type);
 		private final @NonNull Property pr_WildcardType_upperBound = createProperty(PivotPackage.Literals.WILDCARD_TYPE__UPPER_BOUND, _Type);
 		private final @NonNull Property pr_WildcardType_TemplateParameterSubstitution_ownedWildcard = createProperty("TemplateParameterSubstitution", _TemplateParameterSubstitution);
@@ -2060,7 +2060,7 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Property_associationClass);
 			ownedProperties.add(property = pr_AssociationClass_AssociationClassCallExp_referredAssociationClass);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_AssociationClassCallExp_referredAssociationClass);
 			ownedProperties = _AssociationClassCallExp.getOwnedProperties();
@@ -2069,52 +2069,52 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_AssociationClass_AssociationClassCallExp_referredAssociationClass);
 			ownedProperties = _Behavior.getOwnedProperties();
-			ownedProperties.add(property = pr_Behavior_transition);
+			ownedProperties.add(property = pr_Behavior_owningTransition);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Transition_effect);
-			ownedProperties.add(property = pr_Behavior_Class_ownedBehavior);
-			property.setImplicit(true);
+			property.setOpposite(pr_Transition_ownedEffect);
+			ownedProperties.add(property = pr_Behavior_Class_ownedBehaviors);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Class_ownedBehavior);
-			ownedProperties.add(property = pr_Behavior_State_doActivity);
-			property.setImplicit(true);
+			property.setOpposite(pr_Class_ownedBehaviors);
+			ownedProperties.add(property = pr_Behavior_State_ownedDoActivity);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_State_doActivity);
-			ownedProperties.add(property = pr_Behavior_State_entry);
-			property.setImplicit(true);
+			property.setOpposite(pr_State_ownedDoActivity);
+			ownedProperties.add(property = pr_Behavior_State_ownedEntry);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_State_entry);
-			ownedProperties.add(property = pr_Behavior_State_exit);
-			property.setImplicit(true);
+			property.setOpposite(pr_State_ownedEntry);
+			ownedProperties.add(property = pr_Behavior_State_ownedExit);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_State_exit);
+			property.setOpposite(pr_State_ownedExit);
 			ownedProperties = _BooleanLiteralExp.getOwnedProperties();
 			ownedProperties.add(property = pr_BooleanLiteralExp_booleanSymbol);
 			property.setIsResolveProxies(true);
 			property.setIsUnsettable(true);
 			ownedProperties = _CallExp.getOwnedProperties();
-			ownedProperties.add(property = pr_CallExp_implicit);
+			ownedProperties.add(property = pr_CallExp_isImplicit);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			ownedProperties.add(property = pr_CallExp_source);
+			ownedProperties.add(property = pr_CallExp_ownedSource);
 			property.setIsComposite(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_OCLExpression_CallExp_source);
+			property.setOpposite(pr_OCLExpression_CallExp_ownedSource);
 			ownedProperties = _CallOperationAction.getOwnedProperties();
 			ownedProperties.add(property = pr_CallOperationAction_operation);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Operation_CallOperationAction_operation);
-			ownedProperties.add(property = pr_CallOperationAction_MessageExp_calledOperation);
-			property.setImplicit(true);
+			ownedProperties.add(property = pr_CallOperationAction_MessageExp_ownedCalledOperation);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_MessageExp_calledOperation);
+			property.setOpposite(pr_MessageExp_ownedCalledOperation);
 			ownedProperties = _Class.getOwnedProperties();
 			ownedProperties.add(property = pr_Class_instanceClassName);
 			property.setIsRequired(false);
@@ -2125,10 +2125,10 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_Class_isInterface);
 			property.setIsResolveProxies(true);
-			ownedProperties.add(property = pr_Class_ownedBehavior);
+			ownedProperties.add(property = pr_Class_ownedBehaviors);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Behavior_Class_ownedBehavior);
+			property.setOpposite(pr_Behavior_Class_ownedBehaviors);
 			ownedProperties.add(property = pr_Class_ownedInvariants);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
@@ -2149,54 +2149,54 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Class_subClasses_superClasses);
 			ownedProperties.add(property = pr_Class_CompleteClass_partialClasses);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_CompleteClass_partialClasses);
 			ownedProperties.add(property = pr_Class_DataType_behavioralClass);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_DataType_behavioralClass);
-			ownedProperties.add(property = pr_Class_TemplateParameter_constrainingClass);
-			property.setImplicit(true);
+			ownedProperties.add(property = pr_Class_TemplateParameter_constrainingClasses);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_TemplateParameter_constrainingClass);
+			property.setOpposite(pr_TemplateParameter_constrainingClasses);
 			ownedProperties.add(property = pr_Class_instanceSpecification_classes);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_InstanceSpecification_classes);
 			ownedProperties.add(property = pr_Class_subClasses_superClasses);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Class_superClasses);
 			ownedProperties = _CollectionItem.getOwnedProperties();
-			ownedProperties.add(property = pr_CollectionItem_item);
+			ownedProperties.add(property = pr_CollectionItem_ownedItem);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_OCLExpression_CollectionItem_item);
+			property.setOpposite(pr_OCLExpression_CollectionItem_ownedItem);
 			ownedProperties = _CollectionLiteralExp.getOwnedProperties();
 			ownedProperties.add(property = pr_CollectionLiteralExp_kind);
 			property.setIsResolveProxies(true);
-			ownedProperties.add(property = pr_CollectionLiteralExp_part);
+			ownedProperties.add(property = pr_CollectionLiteralExp_ownedParts);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_CollectionLiteralPart_CollectionLiteralExp_part);
+			property.setOpposite(pr_CollectionLiteralPart_CollectionLiteralExp_ownedParts);
 			ownedProperties = _CollectionLiteralPart.getOwnedProperties();
-			ownedProperties.add(property = pr_CollectionLiteralPart_CollectionLiteralExp_part);
-			property.setImplicit(true);
+			ownedProperties.add(property = pr_CollectionLiteralPart_CollectionLiteralExp_ownedParts);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_CollectionLiteralExp_part);
+			property.setOpposite(pr_CollectionLiteralExp_ownedParts);
 			ownedProperties = _CollectionRange.getOwnedProperties();
-			ownedProperties.add(property = pr_CollectionRange_first);
+			ownedProperties.add(property = pr_CollectionRange_ownedFirst);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_OCLExpression_CollectionRange_first);
-			ownedProperties.add(property = pr_CollectionRange_last);
+			property.setOpposite(pr_OCLExpression_CollectionRange_ownedFirst);
+			ownedProperties.add(property = pr_CollectionRange_ownedLast);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_OCLExpression_CollectionRange_last);
+			property.setOpposite(pr_OCLExpression_CollectionRange_ownedLast);
 			ownedProperties = _CollectionType.getOwnedProperties();
 			ownedProperties.add(property = pr_CollectionType_elementType);
 			property.setIsResolveProxies(true);
@@ -2206,16 +2206,16 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties.add(property = pr_CollectionType_upper);
 			property.setIsResolveProxies(true);
 			ownedProperties = _Comment.getOwnedProperties();
-			ownedProperties.add(property = pr_Comment_annotatedElement);
+			ownedProperties.add(property = pr_Comment_annotatedElements);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Element_comment);
+			property.setOpposite(pr_Element_annotatingComments);
 			ownedProperties.add(property = pr_Comment_body);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_Comment_owningElement);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Element_ownedComment);
+			property.setOpposite(pr_Element_ownedComments);
 			ownedProperties = _CompleteClass.getOwnedProperties();
 			ownedProperties.add(property = pr_CompleteClass_owningCompletePackage);
 			property.setIsRequired(false);
@@ -2278,20 +2278,20 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Package_CompletePackage_partialPackages);
 			ownedProperties = _ConnectionPointReference.getOwnedProperties();
-			ownedProperties.add(property = pr_ConnectionPointReference_entry);
+			ownedProperties.add(property = pr_ConnectionPointReference_entries);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Pseudostate_connectionPointReference_entry);
-			ownedProperties.add(property = pr_ConnectionPointReference_exit);
+			property.setOpposite(pr_Pseudostate_connectionPointReference_entries);
+			ownedProperties.add(property = pr_ConnectionPointReference_exits);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Pseudostate_connectionPointReference_exit);
-			ownedProperties.add(property = pr_ConnectionPointReference_state);
+			property.setOpposite(pr_Pseudostate_connectionPointReference_exits);
+			ownedProperties.add(property = pr_ConnectionPointReference_owningState);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_State_connection);
+			property.setOpposite(pr_State_ownedConnections);
 			ownedProperties = _Constraint.getOwnedProperties();
-			ownedProperties.add(property = pr_Constraint_constrainedElement);
+			ownedProperties.add(property = pr_Constraint_constrainedElements);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Element_Constraint_constrainedElement);
+			property.setOpposite(pr_Element_Constraint_constrainedElements);
 			ownedProperties.add(property = pr_Constraint_context);
 			property.setIsDerived(true);
 			property.setIsReadOnly(true);
@@ -2301,65 +2301,65 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setOpposite(pr_Namespace_Constraint_context);
 			ownedProperties.add(property = pr_Constraint_isCallable);
 			property.setIsResolveProxies(true);
-			ownedProperties.add(property = pr_Constraint_owningState);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_State_stateInvariant);
-			ownedProperties.add(property = pr_Constraint_postContext);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Operation_postcondition);
-			ownedProperties.add(property = pr_Constraint_preContext);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Operation_precondition);
-			ownedProperties.add(property = pr_Constraint_redefinedConstraint);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Constraint_constraint_redefinedConstraint);
-			ownedProperties.add(property = pr_Constraint_specification);
+			ownedProperties.add(property = pr_Constraint_ownedSpecification);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_LanguageExpression_owningConstraint);
-			ownedProperties.add(property = pr_Constraint_transition);
+			ownedProperties.add(property = pr_Constraint_owningPostContext);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Transition_guard);
+			property.setOpposite(pr_Operation_ownedPostconditions);
+			ownedProperties.add(property = pr_Constraint_owningPreContext);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Operation_ownedPreconditions);
+			ownedProperties.add(property = pr_Constraint_owningState);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_State_ownedStateInvariant);
+			ownedProperties.add(property = pr_Constraint_owningTransition);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Transition_ownedGuard);
+			ownedProperties.add(property = pr_Constraint_redefinedConstraints);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Constraint_constraint_redefinedConstraints);
 			ownedProperties.add(property = pr_Constraint_Class_ownedInvariants);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Class_ownedInvariants);
-			ownedProperties.add(property = pr_Constraint_Namespace_ownedRule);
-			property.setImplicit(true);
+			ownedProperties.add(property = pr_Constraint_Namespace_ownedConstraints);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Namespace_ownedRule);
-			ownedProperties.add(property = pr_Constraint_constraint_redefinedConstraint);
-			property.setImplicit(true);
+			property.setOpposite(pr_Namespace_ownedConstraints);
+			ownedProperties.add(property = pr_Constraint_constraint_redefinedConstraints);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Constraint_redefinedConstraint);
+			property.setOpposite(pr_Constraint_redefinedConstraints);
 			ownedProperties = _ConstructorExp.getOwnedProperties();
-			ownedProperties.add(property = pr_ConstructorExp_part);
+			ownedProperties.add(property = pr_ConstructorExp_ownedParts);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_ConstructorPart_ConstructorExp_part);
+			property.setOpposite(pr_ConstructorPart_ConstructorExp_ownedParts);
 			ownedProperties.add(property = pr_ConstructorExp_value);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			ownedProperties = _ConstructorPart.getOwnedProperties();
-			ownedProperties.add(property = pr_ConstructorPart_initExpression);
+			ownedProperties.add(property = pr_ConstructorPart_ownedInit);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_OCLExpression_ConstructorPart_initExpression);
+			property.setOpposite(pr_OCLExpression_ConstructorPart_ownedInit);
 			ownedProperties.add(property = pr_ConstructorPart_referredProperty);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Property_ConstructorPart_referredProperty);
-			ownedProperties.add(property = pr_ConstructorPart_ConstructorExp_part);
-			property.setImplicit(true);
+			ownedProperties.add(property = pr_ConstructorPart_ConstructorExp_ownedParts);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_ConstructorExp_part);
+			property.setOpposite(pr_ConstructorExp_ownedParts);
 			ownedProperties = _DataType.getOwnedProperties();
 			ownedProperties.add(property = pr_DataType_behavioralClass);
 			property.setIsRequired(false);
@@ -2368,10 +2368,10 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties.add(property = pr_DataType_isSerializable);
 			property.setIsResolveProxies(true);
 			ownedProperties = _Detail.getOwnedProperties();
-			ownedProperties.add(property = pr_Detail_value);
+			ownedProperties.add(property = pr_Detail_values);
 			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_Detail_Annotation_ownedDetails);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Annotation_ownedDetails);
@@ -2386,54 +2386,54 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties.add(property = pr_DynamicProperty_referredProperty);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Property_DynamicProperty_referredProperty);
-			ownedProperties.add(property = pr_DynamicProperty_DynamicType_ownedProperty);
-			property.setImplicit(true);
+			ownedProperties.add(property = pr_DynamicProperty_DynamicType_ownedDynamicProperties);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_DynamicType_ownedProperty);
+			property.setOpposite(pr_DynamicType_ownedDynamicProperties);
 			ownedProperties = _DynamicType.getOwnedProperties();
-			ownedProperties.add(property = pr_DynamicType_ownedProperty);
+			ownedProperties.add(property = pr_DynamicType_ownedDynamicProperties);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_DynamicProperty_DynamicType_ownedProperty);
+			property.setOpposite(pr_DynamicProperty_DynamicType_ownedDynamicProperties);
 			ownedProperties = _Element.getOwnedProperties();
-			ownedProperties.add(property = pr_Element_comment);
+			ownedProperties.add(property = pr_Element_annotatingComments);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Comment_annotatedElement);
-			ownedProperties.add(property = pr_Element_extension);
+			property.setOpposite(pr_Comment_annotatedElements);
+			ownedProperties.add(property = pr_Element_ownedAnnotations);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_ElementExtension_base);
-			ownedProperties.add(property = pr_Element_ownedAnnotation);
-			property.setIsComposite(true);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Element_Element_ownedAnnotation);
-			ownedProperties.add(property = pr_Element_ownedComment);
+			property.setOpposite(pr_Element_Element_ownedAnnotations);
+			ownedProperties.add(property = pr_Element_ownedComments);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Comment_owningElement);
+			ownedProperties.add(property = pr_Element_ownedExtensions);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_ElementExtension_base);
 			ownedProperties.add(property = pr_Element_Annotation_ownedContents);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Annotation_ownedContents);
 			ownedProperties.add(property = pr_Element_Annotation_references);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Annotation_references);
-			ownedProperties.add(property = pr_Element_Constraint_constrainedElement);
-			property.setImplicit(true);
+			ownedProperties.add(property = pr_Element_Constraint_constrainedElements);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Constraint_constrainedElement);
-			ownedProperties.add(property = pr_Element_Element_ownedAnnotation);
-			property.setImplicit(true);
+			property.setOpposite(pr_Constraint_constrainedElements);
+			ownedProperties.add(property = pr_Element_Element_ownedAnnotations);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Element_ownedAnnotation);
+			property.setOpposite(pr_Element_ownedAnnotations);
 			ownedProperties = _ElementExtension.getOwnedProperties();
 			ownedProperties.add(property = pr_ElementExtension_base);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Element_extension);
+			property.setOpposite(pr_Element_ownedExtensions);
 			ownedProperties.add(property = pr_ElementExtension_isApplied);
 			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_ElementExtension_isRequired);
@@ -2442,46 +2442,46 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Stereotype_ElementExtension_stereotype);
 			ownedProperties = _EnumLiteralExp.getOwnedProperties();
-			ownedProperties.add(property = pr_EnumLiteralExp_referredEnumLiteral);
+			ownedProperties.add(property = pr_EnumLiteralExp_referredLiteral);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_EnumerationLiteral_EnumLiteralExp_referredEnumLiteral);
+			property.setOpposite(pr_EnumerationLiteral_EnumLiteralExp_referredLiteral);
 			ownedProperties = _Enumeration.getOwnedProperties();
-			ownedProperties.add(property = pr_Enumeration_ownedLiteral);
+			ownedProperties.add(property = pr_Enumeration_ownedLiterals);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_EnumerationLiteral_enumeration);
+			property.setOpposite(pr_EnumerationLiteral_owningEnumeration);
 			ownedProperties = _EnumerationLiteral.getOwnedProperties();
-			ownedProperties.add(property = pr_EnumerationLiteral_enumeration);
+			ownedProperties.add(property = pr_EnumerationLiteral_owningEnumeration);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Enumeration_ownedLiteral);
+			property.setOpposite(pr_Enumeration_ownedLiterals);
 			ownedProperties.add(property = pr_EnumerationLiteral_value);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			ownedProperties.add(property = pr_EnumerationLiteral_EnumLiteralExp_referredEnumLiteral);
-			property.setImplicit(true);
+			ownedProperties.add(property = pr_EnumerationLiteral_EnumLiteralExp_referredLiteral);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_EnumLiteralExp_referredEnumLiteral);
+			property.setOpposite(pr_EnumLiteralExp_referredLiteral);
 			ownedProperties = _ExpressionInOCL.getOwnedProperties();
-			ownedProperties.add(property = pr_ExpressionInOCL_bodyExpression);
+			ownedProperties.add(property = pr_ExpressionInOCL_ownedBody);
 			property.setIsComposite(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_OCLExpression_ExpressionInOCL_bodyExpression);
-			ownedProperties.add(property = pr_ExpressionInOCL_contextVariable);
+			property.setOpposite(pr_OCLExpression_ExpressionInOCL_ownedBody);
+			ownedProperties.add(property = pr_ExpressionInOCL_ownedContext);
 			property.setIsComposite(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Variable_ExpressionInOCL_contextVariable);
-			ownedProperties.add(property = pr_ExpressionInOCL_parameterVariable);
+			property.setOpposite(pr_Variable_ExpressionInOCL_ownedContext);
+			ownedProperties.add(property = pr_ExpressionInOCL_ownedParameters);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Variable_ExpressionInOCL_parameterVariable);
-			ownedProperties.add(property = pr_ExpressionInOCL_resultVariable);
+			property.setOpposite(pr_Variable_ExpressionInOCL_ownedParameters);
+			ownedProperties.add(property = pr_ExpressionInOCL_ownedResult);
 			property.setIsComposite(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Variable_ExpressionInOCL_resultVariable);
+			property.setOpposite(pr_Variable_ExpressionInOCL_ownedResult);
 			ownedProperties = _Feature.getOwnedProperties();
 			ownedProperties.add(property = pr_Feature_implementation);
 			property.setIsRequired(false);
@@ -2496,64 +2496,64 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties.add(property = pr_FeatureCallExp_isPre);
 			property.setIsResolveProxies(true);
 			ownedProperties = _IfExp.getOwnedProperties();
-			ownedProperties.add(property = pr_IfExp_condition);
+			ownedProperties.add(property = pr_IfExp_ownedCondition);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_OCLExpression_IfExp_condition);
-			ownedProperties.add(property = pr_IfExp_elseExpression);
+			property.setOpposite(pr_OCLExpression_IfExp_ownedCondition);
+			ownedProperties.add(property = pr_IfExp_ownedElse);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_OCLExpression_IfExp_elseExpression);
-			ownedProperties.add(property = pr_IfExp_thenExpression);
+			property.setOpposite(pr_OCLExpression_IfExp_ownedElse);
+			ownedProperties.add(property = pr_IfExp_ownedThen);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_OCLExpression_IfExp_thenExpression);
+			property.setOpposite(pr_OCLExpression_IfExp_ownedThen);
 			ownedProperties = _Import.getOwnedProperties();
 			ownedProperties.add(property = pr_Import_importedNamespace);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Namespace_Import_importedNamespace);
-			ownedProperties.add(property = pr_Import_Model_imports);
-			property.setImplicit(true);
+			ownedProperties.add(property = pr_Import_Model_ownedImports);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Model_imports);
+			property.setOpposite(pr_Model_ownedImports);
 			ownedProperties = _InstanceSpecification.getOwnedProperties();
 			ownedProperties.add(property = pr_InstanceSpecification_classes);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Class_instanceSpecification_classes);
+			ownedProperties.add(property = pr_InstanceSpecification_ownedSlots);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Slot_owningInstance);
+			ownedProperties.add(property = pr_InstanceSpecification_ownedSpecification);
+			property.setIsComposite(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_LanguageExpression_owningInstanceSpec_ownedSpecification);
 			ownedProperties.add(property = pr_InstanceSpecification_owningPackage);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Package_ownedInstances);
-			ownedProperties.add(property = pr_InstanceSpecification_slots);
-			property.setIsComposite(true);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Slot_owningInstance);
-			ownedProperties.add(property = pr_InstanceSpecification_specification);
-			property.setIsComposite(true);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_LanguageExpression_owningInstanceSpec_specification);
 			ownedProperties = _IntegerLiteralExp.getOwnedProperties();
 			ownedProperties.add(property = pr_IntegerLiteralExp_integerSymbol);
 			property.setIsResolveProxies(true);
 			ownedProperties = _IterateExp.getOwnedProperties();
-			ownedProperties.add(property = pr_IterateExp_result);
+			ownedProperties.add(property = pr_IterateExp_ownedResult);
 			property.setIsComposite(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Variable_IterateExp_result);
+			property.setOpposite(pr_Variable_IterateExp_ownedResult);
 			ownedProperties = _Iteration.getOwnedProperties();
-			ownedProperties.add(property = pr_Iteration_ownedAccumulator);
+			ownedProperties.add(property = pr_Iteration_ownedAccumulators);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Parameter_Iteration_ownedAccumulator);
-			ownedProperties.add(property = pr_Iteration_ownedIterator);
+			property.setOpposite(pr_Parameter_Iteration_ownedAccumulators);
+			ownedProperties.add(property = pr_Iteration_ownedIterators);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Parameter_Iteration_ownedIterator);
+			property.setOpposite(pr_Parameter_Iteration_ownedIterators);
 			ownedProperties.add(property = pr_Iteration_LoopExp_referredIteration);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_LoopExp_referredIteration);
 			ownedProperties = _LambdaType.getOwnedProperties();
@@ -2579,68 +2579,68 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties.add(property = pr_LanguageExpression_owningConstraint);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Constraint_specification);
+			property.setOpposite(pr_Constraint_ownedSpecification);
 			ownedProperties.add(property = pr_LanguageExpression_Operation_bodyExpression);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Operation_bodyExpression);
-			ownedProperties.add(property = pr_LanguageExpression_Property_defaultExpression);
-			property.setImplicit(true);
+			ownedProperties.add(property = pr_LanguageExpression_Property_ownedExpression);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Property_defaultExpression);
-			ownedProperties.add(property = pr_LanguageExpression_owningInstanceSpec_specification);
-			property.setImplicit(true);
+			property.setOpposite(pr_Property_ownedExpression);
+			ownedProperties.add(property = pr_LanguageExpression_owningInstanceSpec_ownedSpecification);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_InstanceSpecification_specification);
+			property.setOpposite(pr_InstanceSpecification_ownedSpecification);
 			ownedProperties = _LetExp.getOwnedProperties();
-			ownedProperties.add(property = pr_LetExp_in);
+			ownedProperties.add(property = pr_LetExp_ownedIn);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_OCLExpression_LetExp_in);
-			ownedProperties.add(property = pr_LetExp_variable);
+			property.setOpposite(pr_OCLExpression_LetExp_ownedIn);
+			ownedProperties.add(property = pr_LetExp_ownedVariable);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Variable_LetExp_variable);
+			property.setOpposite(pr_Variable_LetExp_ownedVariable);
 			ownedProperties = _Library.getOwnedProperties();
-			ownedProperties.add(property = pr_Library_ownedPrecedence);
+			ownedProperties.add(property = pr_Library_ownedPrecedences);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Precedence_Library_ownedPrecedence);
+			property.setOpposite(pr_Precedence_Library_ownedPrecedences);
 			ownedProperties = _LoopExp.getOwnedProperties();
-			ownedProperties.add(property = pr_LoopExp_body);
+			ownedProperties.add(property = pr_LoopExp_ownedBody);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_OCLExpression_LoopExp_body);
-			ownedProperties.add(property = pr_LoopExp_iterator);
+			property.setOpposite(pr_OCLExpression_LoopExp_ownedBody);
+			ownedProperties.add(property = pr_LoopExp_ownedIterators);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Variable_LoopExp_iterator);
+			property.setOpposite(pr_Variable_LoopExp_ownedIterators);
 			ownedProperties.add(property = pr_LoopExp_referredIteration);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Iteration_LoopExp_referredIteration);
 			ownedProperties = _MessageExp.getOwnedProperties();
-			ownedProperties.add(property = pr_MessageExp_argument);
+			ownedProperties.add(property = pr_MessageExp_ownedArguments);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_OCLExpression_MessageExp_argument);
-			ownedProperties.add(property = pr_MessageExp_calledOperation);
-			property.setIsComposite(true);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_CallOperationAction_MessageExp_calledOperation);
-			ownedProperties.add(property = pr_MessageExp_sentSignal);
+			property.setOpposite(pr_OCLExpression_MessageExp_ownedArguments);
+			ownedProperties.add(property = pr_MessageExp_ownedCalledOperation);
 			property.setIsComposite(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_SendSignalAction_MessageExp_sentSignal);
-			ownedProperties.add(property = pr_MessageExp_target);
+			property.setOpposite(pr_CallOperationAction_MessageExp_ownedCalledOperation);
+			ownedProperties.add(property = pr_MessageExp_ownedSentSignal);
+			property.setIsComposite(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_SendSignalAction_MessageExp_ownedSentSignal);
+			ownedProperties.add(property = pr_MessageExp_ownedTarget);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_OCLExpression_MessageExp_target);
+			property.setOpposite(pr_OCLExpression_MessageExp_ownedTarget);
 			ownedProperties = _MessageType.getOwnedProperties();
 			ownedProperties.add(property = pr_MessageType_referredOperation);
 			property.setIsRequired(false);
@@ -2654,16 +2654,16 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties.add(property = pr_Model_externalURI);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			ownedProperties.add(property = pr_Model_imports);
+			ownedProperties.add(property = pr_Model_ownedImports);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Import_Model_imports);
+			property.setOpposite(pr_Import_Model_ownedImports);
 			ownedProperties.add(property = pr_Model_ownedPackages);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Package_Model_ownedPackages);
 			ownedProperties.add(property = pr_Model_CompleteModel_partialModels);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_CompleteModel_partialModels);
 			ownedProperties = _NamedElement.getOwnedProperties();
@@ -2671,16 +2671,16 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			ownedProperties = _Namespace.getOwnedProperties();
-			ownedProperties.add(property = pr_Namespace_ownedRule);
+			ownedProperties.add(property = pr_Namespace_ownedConstraints);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Constraint_Namespace_ownedRule);
+			property.setOpposite(pr_Constraint_Namespace_ownedConstraints);
 			ownedProperties.add(property = pr_Namespace_Constraint_context);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Constraint_context);
 			ownedProperties.add(property = pr_Namespace_Import_importedNamespace);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Import_importedNamespace);
 			ownedProperties = _NavigationCallExp.getOwnedProperties();
@@ -2688,97 +2688,97 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Property_NavigationCallExp_navigationSource);
-			ownedProperties.add(property = pr_NavigationCallExp_qualifier);
+			ownedProperties.add(property = pr_NavigationCallExp_qualifiers);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_OCLExpression_NavigationCallExp_qualifier);
+			property.setOpposite(pr_OCLExpression_NavigationCallExp_qualifiers);
 			ownedProperties = _OCLExpression.getOwnedProperties();
 			ownedProperties.add(property = pr_OCLExpression_typeValue);
 			property.setIsRequired(false);
 			property.setIsTransient(true);
-			ownedProperties.add(property = pr_OCLExpression_CallExp_source);
-			property.setImplicit(true);
+			ownedProperties.add(property = pr_OCLExpression_CallExp_ownedSource);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_CallExp_source);
-			ownedProperties.add(property = pr_OCLExpression_CollectionItem_item);
-			property.setImplicit(true);
+			property.setOpposite(pr_CallExp_ownedSource);
+			ownedProperties.add(property = pr_OCLExpression_CollectionItem_ownedItem);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_CollectionItem_item);
-			ownedProperties.add(property = pr_OCLExpression_CollectionRange_first);
-			property.setImplicit(true);
+			property.setOpposite(pr_CollectionItem_ownedItem);
+			ownedProperties.add(property = pr_OCLExpression_CollectionRange_ownedFirst);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_CollectionRange_first);
-			ownedProperties.add(property = pr_OCLExpression_CollectionRange_last);
-			property.setImplicit(true);
+			property.setOpposite(pr_CollectionRange_ownedFirst);
+			ownedProperties.add(property = pr_OCLExpression_CollectionRange_ownedLast);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_CollectionRange_last);
-			ownedProperties.add(property = pr_OCLExpression_ConstructorPart_initExpression);
-			property.setImplicit(true);
+			property.setOpposite(pr_CollectionRange_ownedLast);
+			ownedProperties.add(property = pr_OCLExpression_ConstructorPart_ownedInit);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_ConstructorPart_initExpression);
-			ownedProperties.add(property = pr_OCLExpression_ExpressionInOCL_bodyExpression);
-			property.setImplicit(true);
+			property.setOpposite(pr_ConstructorPart_ownedInit);
+			ownedProperties.add(property = pr_OCLExpression_ExpressionInOCL_ownedBody);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_ExpressionInOCL_bodyExpression);
-			ownedProperties.add(property = pr_OCLExpression_IfExp_condition);
-			property.setImplicit(true);
+			property.setOpposite(pr_ExpressionInOCL_ownedBody);
+			ownedProperties.add(property = pr_OCLExpression_IfExp_ownedCondition);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_IfExp_condition);
-			ownedProperties.add(property = pr_OCLExpression_IfExp_elseExpression);
-			property.setImplicit(true);
+			property.setOpposite(pr_IfExp_ownedCondition);
+			ownedProperties.add(property = pr_OCLExpression_IfExp_ownedElse);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_IfExp_elseExpression);
-			ownedProperties.add(property = pr_OCLExpression_IfExp_thenExpression);
-			property.setImplicit(true);
+			property.setOpposite(pr_IfExp_ownedElse);
+			ownedProperties.add(property = pr_OCLExpression_IfExp_ownedThen);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_IfExp_thenExpression);
-			ownedProperties.add(property = pr_OCLExpression_LetExp_in);
-			property.setImplicit(true);
+			property.setOpposite(pr_IfExp_ownedThen);
+			ownedProperties.add(property = pr_OCLExpression_LetExp_ownedIn);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_LetExp_in);
-			ownedProperties.add(property = pr_OCLExpression_LoopExp_body);
-			property.setImplicit(true);
+			property.setOpposite(pr_LetExp_ownedIn);
+			ownedProperties.add(property = pr_OCLExpression_LoopExp_ownedBody);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_LoopExp_body);
-			ownedProperties.add(property = pr_OCLExpression_MessageExp_argument);
-			property.setImplicit(true);
+			property.setOpposite(pr_LoopExp_ownedBody);
+			ownedProperties.add(property = pr_OCLExpression_MessageExp_ownedArguments);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_MessageExp_argument);
-			ownedProperties.add(property = pr_OCLExpression_MessageExp_target);
-			property.setImplicit(true);
+			property.setOpposite(pr_MessageExp_ownedArguments);
+			ownedProperties.add(property = pr_OCLExpression_MessageExp_ownedTarget);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_MessageExp_target);
-			ownedProperties.add(property = pr_OCLExpression_NavigationCallExp_qualifier);
-			property.setImplicit(true);
+			property.setOpposite(pr_MessageExp_ownedTarget);
+			ownedProperties.add(property = pr_OCLExpression_NavigationCallExp_qualifiers);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_NavigationCallExp_qualifier);
-			ownedProperties.add(property = pr_OCLExpression_OperationCallExp_argument);
-			property.setImplicit(true);
+			property.setOpposite(pr_NavigationCallExp_qualifiers);
+			ownedProperties.add(property = pr_OCLExpression_OperationCallExp_ownedArguments);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_OperationCallExp_argument);
-			ownedProperties.add(property = pr_OCLExpression_TupleLiteralPart_initExpression);
-			property.setImplicit(true);
+			property.setOpposite(pr_OperationCallExp_ownedArguments);
+			ownedProperties.add(property = pr_OCLExpression_TupleLiteralPart_ownedInit);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_TupleLiteralPart_initExpression);
-			ownedProperties.add(property = pr_OCLExpression_Variable_initExpression);
-			property.setImplicit(true);
+			property.setOpposite(pr_TupleLiteralPart_ownedInit);
+			ownedProperties.add(property = pr_OCLExpression_Variable_ownedInit);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Variable_initExpression);
+			property.setOpposite(pr_Variable_ownedInit);
 			ownedProperties = _Operation.getOwnedProperties();
 			ownedProperties.add(property = pr_Operation_bodyExpression);
 			property.setIsComposite(true);
@@ -2791,58 +2791,58 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_Operation_isValidating);
 			property.setIsResolveProxies(true);
-			ownedProperties.add(property = pr_Operation_ownedParameter);
+			ownedProperties.add(property = pr_Operation_ownedParameters);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Parameter_operation);
+			property.setOpposite(pr_Parameter_owningOperation);
+			ownedProperties.add(property = pr_Operation_ownedPostconditions);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Constraint_owningPostContext);
+			ownedProperties.add(property = pr_Operation_ownedPreconditions);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Constraint_owningPreContext);
 			ownedProperties.add(property = pr_Operation_owningClass);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Class_ownedOperations);
-			ownedProperties.add(property = pr_Operation_postcondition);
-			property.setIsComposite(true);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Constraint_postContext);
 			ownedProperties.add(property = pr_Operation_precedence);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Precedence_Operation_precedence);
-			ownedProperties.add(property = pr_Operation_precondition);
-			property.setIsComposite(true);
+			ownedProperties.add(property = pr_Operation_raisedExceptions);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Constraint_preContext);
-			ownedProperties.add(property = pr_Operation_raisedException);
+			property.setOpposite(pr_Type_operation_raisedExceptions);
+			ownedProperties.add(property = pr_Operation_redefinedOperations);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Type_operation_raisedException);
-			ownedProperties.add(property = pr_Operation_redefinedOperation);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Operation_operation_redefinedOperation);
+			property.setOpposite(pr_Operation_operation_redefinedOperations);
 			ownedProperties.add(property = pr_Operation_CallOperationAction_operation);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_CallOperationAction_operation);
 			ownedProperties.add(property = pr_Operation_MessageType_referredOperation);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_MessageType_referredOperation);
 			ownedProperties.add(property = pr_Operation_OperationCallExp_referredOperation);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_OperationCallExp_referredOperation);
 			ownedProperties.add(property = pr_Operation_PrimitiveType_coercions);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_PrimitiveType_coercions);
-			ownedProperties.add(property = pr_Operation_operation_redefinedOperation);
-			property.setImplicit(true);
+			ownedProperties.add(property = pr_Operation_operation_redefinedOperations);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Operation_redefinedOperation);
+			property.setOpposite(pr_Operation_redefinedOperations);
 			ownedProperties = _OperationCallExp.getOwnedProperties();
-			ownedProperties.add(property = pr_OperationCallExp_argument);
+			ownedProperties.add(property = pr_OperationCallExp_ownedArguments);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_OCLExpression_OperationCallExp_argument);
+			property.setOpposite(pr_OCLExpression_OperationCallExp_ownedArguments);
 			ownedProperties.add(property = pr_OperationCallExp_referredOperation);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
@@ -2854,16 +2854,16 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setOpposite(pr_Property_OppositePropertyCallExp_referredProperty);
 			ownedProperties = _OrphanCompletePackage.getOwnedProperties();
 			ownedProperties.add(property = pr_OrphanCompletePackage_CompleteModel_orphanCompletePackage);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_CompleteModel_orphanCompletePackage);
 			ownedProperties = _Package.getOwnedProperties();
 			ownedProperties.add(property = pr_Package_URI);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			ownedProperties.add(property = pr_Package_importedPackage);
+			ownedProperties.add(property = pr_Package_importedPackages);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Package_Package_importedPackage);
+			property.setOpposite(pr_Package_Package_importedPackages);
 			ownedProperties.add(property = pr_Package_nsPrefix);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
@@ -2879,46 +2879,46 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Package_owningPackage);
+			ownedProperties.add(property = pr_Package_ownedProfileApplications);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_ProfileApplication_owningPackage);
 			ownedProperties.add(property = pr_Package_owningPackage);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Package_ownedPackages);
-			ownedProperties.add(property = pr_Package_profileApplication);
-			property.setIsComposite(true);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_ProfileApplication_applyingPackage);
 			ownedProperties.add(property = pr_Package_CompletePackage_partialPackages);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_CompletePackage_partialPackages);
 			ownedProperties.add(property = pr_Package_Model_ownedPackages);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Model_ownedPackages);
-			ownedProperties.add(property = pr_Package_Package_importedPackage);
-			property.setImplicit(true);
+			ownedProperties.add(property = pr_Package_Package_importedPackages);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Package_importedPackage);
+			property.setOpposite(pr_Package_importedPackages);
 			ownedProperties = _Parameter.getOwnedProperties();
 			ownedProperties.add(property = pr_Parameter_isTypeof);
 			property.setIsResolveProxies(true);
-			ownedProperties.add(property = pr_Parameter_operation);
+			ownedProperties.add(property = pr_Parameter_owningOperation);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Operation_ownedParameter);
-			ownedProperties.add(property = pr_Parameter_Iteration_ownedAccumulator);
-			property.setImplicit(true);
+			property.setOpposite(pr_Operation_ownedParameters);
+			ownedProperties.add(property = pr_Parameter_Iteration_ownedAccumulators);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Iteration_ownedAccumulator);
-			ownedProperties.add(property = pr_Parameter_Iteration_ownedIterator);
-			property.setImplicit(true);
+			property.setOpposite(pr_Iteration_ownedAccumulators);
+			ownedProperties.add(property = pr_Parameter_Iteration_ownedIterators);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Iteration_ownedIterator);
+			property.setOpposite(pr_Iteration_ownedIterators);
 			ownedProperties.add(property = pr_Parameter_Variable_representedParameter);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Variable_representedParameter);
 			ownedProperties = _Precedence.getOwnedProperties();
@@ -2927,18 +2927,18 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_Precedence_order);
 			property.setIsResolveProxies(true);
-			ownedProperties.add(property = pr_Precedence_Library_ownedPrecedence);
-			property.setImplicit(true);
+			ownedProperties.add(property = pr_Precedence_Library_ownedPrecedences);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Library_ownedPrecedence);
+			property.setOpposite(pr_Library_ownedPrecedences);
 			ownedProperties.add(property = pr_Precedence_Operation_precedence);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Operation_precedence);
 			ownedProperties = _PrimitiveCompletePackage.getOwnedProperties();
 			ownedProperties.add(property = pr_PrimitiveCompletePackage_CompleteModel_primitiveCompletePackage);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_CompleteModel_primitiveCompletePackage);
 			ownedProperties = _PrimitiveType.getOwnedProperties();
@@ -2946,28 +2946,23 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Operation_PrimitiveType_coercions);
 			ownedProperties = _Profile.getOwnedProperties();
-			ownedProperties.add(property = pr_Profile_application);
+			ownedProperties.add(property = pr_Profile_profileApplications);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_ProfileApplication_appliedProfile);
 			ownedProperties = _ProfileApplication.getOwnedProperties();
 			ownedProperties.add(property = pr_ProfileApplication_appliedProfile);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Profile_application);
-			ownedProperties.add(property = pr_ProfileApplication_applyingPackage);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Package_profileApplication);
+			property.setOpposite(pr_Profile_profileApplications);
 			ownedProperties.add(property = pr_ProfileApplication_isStrict);
 			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_ProfileApplication_owningPackage);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Package_ownedProfileApplications);
 			ownedProperties = _Property.getOwnedProperties();
 			ownedProperties.add(property = pr_Property_associationClass);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_AssociationClass_unownedAttributes);
-			ownedProperties.add(property = pr_Property_defaultExpression);
-			property.setIsComposite(true);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_LanguageExpression_Property_defaultExpression);
 			ownedProperties.add(property = pr_Property_defaultValue);
 			property.setIsDerived(true);
 			property.setIsRequired(false);
@@ -2976,14 +2971,14 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties.add(property = pr_Property_defaultValueString);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			ownedProperties.add(property = pr_Property_implicit);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_Property_isComposite);
 			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_Property_isDerived);
 			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_Property_isID);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_Property_isImplicit);
+			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_Property_isReadOnly);
 			property.setIsResolveProxies(true);
@@ -3002,13 +2997,18 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Property_property_opposite);
+			ownedProperties.add(property = pr_Property_ownedExpression);
+			property.setIsComposite(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_LanguageExpression_Property_ownedExpression);
 			ownedProperties.add(property = pr_Property_owningClass);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Class_ownedProperties);
-			ownedProperties.add(property = pr_Property_redefinedProperty);
+			ownedProperties.add(property = pr_Property_redefinedProperties);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Property_property_redefinedProperty);
+			property.setOpposite(pr_Property_property_redefinedProperties);
 			ownedProperties.add(property = pr_Property_referredProperty);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
@@ -3017,50 +3017,50 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Property_property_subsettedProperty);
 			ownedProperties.add(property = pr_Property_ConstructorPart_referredProperty);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_ConstructorPart_referredProperty);
 			ownedProperties.add(property = pr_Property_DynamicProperty_referredProperty);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_DynamicProperty_referredProperty);
 			ownedProperties.add(property = pr_Property_NavigationCallExp_navigationSource);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_NavigationCallExp_navigationSource);
 			ownedProperties.add(property = pr_Property_OppositePropertyCallExp_referredProperty);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_OppositePropertyCallExp_referredProperty);
 			ownedProperties.add(property = pr_Property_Property_keys);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Property_keys);
 			ownedProperties.add(property = pr_Property_Property_referredProperty);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Property_referredProperty);
 			ownedProperties.add(property = pr_Property_PropertyCallExp_referredProperty);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_PropertyCallExp_referredProperty);
 			ownedProperties.add(property = pr_Property_property_opposite);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Property_opposite);
-			ownedProperties.add(property = pr_Property_property_redefinedProperty);
-			property.setImplicit(true);
+			ownedProperties.add(property = pr_Property_property_redefinedProperties);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Property_redefinedProperty);
+			property.setOpposite(pr_Property_redefinedProperties);
 			ownedProperties.add(property = pr_Property_property_subsettedProperty);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Property_subsettedProperty);
 			ownedProperties.add(property = pr_Property_slot_definingProperty);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Slot_definingProperty);
@@ -3072,24 +3072,24 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties = _Pseudostate.getOwnedProperties();
 			ownedProperties.add(property = pr_Pseudostate_kind);
 			property.setIsResolveProxies(true);
-			ownedProperties.add(property = pr_Pseudostate_state);
+			ownedProperties.add(property = pr_Pseudostate_owningState);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_State_connectionPoint);
-			ownedProperties.add(property = pr_Pseudostate_stateMachine);
+			property.setOpposite(pr_State_ownedConnectionPoints);
+			ownedProperties.add(property = pr_Pseudostate_owningStateMachine);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_StateMachine_connectionPoint);
-			ownedProperties.add(property = pr_Pseudostate_connectionPointReference_entry);
-			property.setImplicit(true);
+			property.setOpposite(pr_StateMachine_ownedConnectionPoints);
+			ownedProperties.add(property = pr_Pseudostate_connectionPointReference_entries);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_ConnectionPointReference_entry);
-			ownedProperties.add(property = pr_Pseudostate_connectionPointReference_exit);
-			property.setImplicit(true);
+			property.setOpposite(pr_ConnectionPointReference_entries);
+			ownedProperties.add(property = pr_Pseudostate_connectionPointReference_exits);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_ConnectionPointReference_exit);
+			property.setOpposite(pr_ConnectionPointReference_exits);
 			ownedProperties = _RealLiteralExp.getOwnedProperties();
 			ownedProperties.add(property = pr_RealLiteralExp_realSymbol);
 			property.setIsResolveProxies(true);
@@ -3098,88 +3098,61 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Region_Region_extendedRegion);
-			ownedProperties.add(property = pr_Region_state);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_State_region);
-			ownedProperties.add(property = pr_Region_stateMachine);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_StateMachine_region);
-			ownedProperties.add(property = pr_Region_subvertex);
+			ownedProperties.add(property = pr_Region_ownedSubvertexes);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Vertex_container);
-			ownedProperties.add(property = pr_Region_transition);
+			property.setOpposite(pr_Vertex_owningRegion);
+			ownedProperties.add(property = pr_Region_ownedTransitions);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Transition_container);
+			property.setOpposite(pr_Transition_owningRegion);
+			ownedProperties.add(property = pr_Region_owningState);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_State_ownedRegions);
+			ownedProperties.add(property = pr_Region_owningStateMachine);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_StateMachine_ownedRegions);
 			ownedProperties.add(property = pr_Region_Region_extendedRegion);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Region_extendedRegion);
 			ownedProperties = _SendSignalAction.getOwnedProperties();
 			ownedProperties.add(property = pr_SendSignalAction_signal);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Signal_SendSignalAction_signal);
-			ownedProperties.add(property = pr_SendSignalAction_MessageExp_sentSignal);
-			property.setImplicit(true);
+			ownedProperties.add(property = pr_SendSignalAction_MessageExp_ownedSentSignal);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_MessageExp_sentSignal);
+			property.setOpposite(pr_MessageExp_ownedSentSignal);
 			ownedProperties = _Signal.getOwnedProperties();
 			ownedProperties.add(property = pr_Signal_MessageType_referredSignal);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_MessageType_referredSignal);
 			ownedProperties.add(property = pr_Signal_SendSignalAction_signal);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_SendSignalAction_signal);
 			ownedProperties = _Slot.getOwnedProperties();
 			ownedProperties.add(property = pr_Slot_definingProperty);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Property_slot_definingProperty);
-			ownedProperties.add(property = pr_Slot_owningInstance);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_InstanceSpecification_slots);
-			ownedProperties.add(property = pr_Slot_values);
+			ownedProperties.add(property = pr_Slot_ownedValues);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_ValueSpecification_owningSlot_values);
+			property.setOpposite(pr_ValueSpecification_owningSlot_ownedValues);
+			ownedProperties.add(property = pr_Slot_owningInstance);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_InstanceSpecification_ownedSlots);
 			ownedProperties = _StandardLibrary.getOwnedProperties();
 			ownedProperties.add(property = pr_StandardLibrary_owningCompleteEnvironment);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_CompleteEnvironment_ownedStandardLibrary);
 			ownedProperties = _State.getOwnedProperties();
-			ownedProperties.add(property = pr_State_connection);
-			property.setIsComposite(true);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_ConnectionPointReference_state);
-			ownedProperties.add(property = pr_State_connectionPoint);
-			property.setIsComposite(true);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Pseudostate_state);
-			ownedProperties.add(property = pr_State_deferrableTrigger);
-			property.setIsComposite(true);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Trigger_state);
-			ownedProperties.add(property = pr_State_doActivity);
-			property.setIsComposite(true);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Behavior_State_doActivity);
-			ownedProperties.add(property = pr_State_entry);
-			property.setIsComposite(true);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Behavior_State_entry);
-			ownedProperties.add(property = pr_State_exit);
-			property.setIsComposite(true);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Behavior_State_exit);
 			ownedProperties.add(property = pr_State_isComposite);
 			property.setIsDerived(true);
 			property.setIsReadOnly(true);
@@ -3204,29 +3177,56 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setIsTransient(true);
 			property.setIsVolatile(true);
-			ownedProperties.add(property = pr_State_redefinedState);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_State_State_redefinedState);
-			ownedProperties.add(property = pr_State_region);
+			ownedProperties.add(property = pr_State_ownedConnectionPoints);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Region_state);
-			ownedProperties.add(property = pr_State_stateInvariant);
+			property.setOpposite(pr_Pseudostate_owningState);
+			ownedProperties.add(property = pr_State_ownedConnections);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_ConnectionPointReference_owningState);
+			ownedProperties.add(property = pr_State_ownedDeferrableTriggers);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Trigger_owningState);
+			ownedProperties.add(property = pr_State_ownedDoActivity);
+			property.setIsComposite(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Behavior_State_ownedDoActivity);
+			ownedProperties.add(property = pr_State_ownedEntry);
+			property.setIsComposite(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Behavior_State_ownedEntry);
+			ownedProperties.add(property = pr_State_ownedExit);
+			property.setIsComposite(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Behavior_State_ownedExit);
+			ownedProperties.add(property = pr_State_ownedRegions);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Region_owningState);
+			ownedProperties.add(property = pr_State_ownedStateInvariant);
 			property.setIsComposite(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Constraint_owningState);
-			ownedProperties.add(property = pr_State_submachine);
+			ownedProperties.add(property = pr_State_redefinedState);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_StateMachine_submachineState);
+			property.setOpposite(pr_State_State_redefinedState);
+			ownedProperties.add(property = pr_State_submachines);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_StateMachine_submachineStates);
 			ownedProperties.add(property = pr_State_State_redefinedState);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_State_redefinedState);
 			ownedProperties.add(property = pr_State_StateExp_referredState);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_StateExp_referredState);
 			ownedProperties = _StateExp.getOwnedProperties();
@@ -3235,44 +3235,44 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_State_StateExp_referredState);
 			ownedProperties = _StateMachine.getOwnedProperties();
-			ownedProperties.add(property = pr_StateMachine_connectionPoint);
+			ownedProperties.add(property = pr_StateMachine_extendedStateMachines);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_StateMachine_StateMachine_extendedStateMachines);
+			ownedProperties.add(property = pr_StateMachine_ownedConnectionPoints);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Pseudostate_stateMachine);
-			ownedProperties.add(property = pr_StateMachine_extendedStateMachine);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_StateMachine_StateMachine_extendedStateMachine);
-			ownedProperties.add(property = pr_StateMachine_region);
+			property.setOpposite(pr_Pseudostate_owningStateMachine);
+			ownedProperties.add(property = pr_StateMachine_ownedRegions);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Region_stateMachine);
-			ownedProperties.add(property = pr_StateMachine_submachineState);
+			property.setOpposite(pr_Region_owningStateMachine);
+			ownedProperties.add(property = pr_StateMachine_submachineStates);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_State_submachine);
-			ownedProperties.add(property = pr_StateMachine_StateMachine_extendedStateMachine);
-			property.setImplicit(true);
+			property.setOpposite(pr_State_submachines);
+			ownedProperties.add(property = pr_StateMachine_StateMachine_extendedStateMachines);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_StateMachine_extendedStateMachine);
+			property.setOpposite(pr_StateMachine_extendedStateMachines);
 			ownedProperties = _Stereotype.getOwnedProperties();
-			ownedProperties.add(property = pr_Stereotype_extensionOfs);
+			ownedProperties.add(property = pr_Stereotype_ownedExtensionOfs);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_TypeExtension_stereotype);
+			property.setOpposite(pr_TypeExtension_owningStereotype);
 			ownedProperties.add(property = pr_Stereotype_ElementExtension_stereotype);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_ElementExtension_stereotype);
 			ownedProperties = _StringLiteralExp.getOwnedProperties();
 			ownedProperties.add(property = pr_StringLiteralExp_stringSymbol);
 			property.setIsResolveProxies(true);
 			ownedProperties = _TemplateBinding.getOwnedProperties();
-			ownedProperties.add(property = pr_TemplateBinding_ownedTemplateParameterSubstitutions);
+			ownedProperties.add(property = pr_TemplateBinding_ownedSubstitutions);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_TemplateParameterSubstitution_owningTemplateBinding);
-			ownedProperties.add(property = pr_TemplateBinding_owningTemplateableElement);
+			property.setOpposite(pr_TemplateParameterSubstitution_owningBinding);
+			ownedProperties.add(property = pr_TemplateBinding_owningElement);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_TemplateableElement_ownedTemplateBindings);
+			property.setOpposite(pr_TemplateableElement_ownedBindings);
 			ownedProperties.add(property = pr_TemplateBinding_templateSignature);
 			property.setIsDerived(true);
 			property.setIsReadOnly(true);
@@ -3280,22 +3280,22 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsVolatile(true);
 			property.setOpposite(pr_TemplateSignature_TemplateBinding_templateSignature);
 			ownedProperties = _TemplateParameter.getOwnedProperties();
-			ownedProperties.add(property = pr_TemplateParameter_constrainingClass);
+			ownedProperties.add(property = pr_TemplateParameter_constrainingClasses);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Class_TemplateParameter_constrainingClass);
+			property.setOpposite(pr_Class_TemplateParameter_constrainingClasses);
 			ownedProperties.add(property = pr_TemplateParameter_lowerBound);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Type_TemplateParameter_lowerBound);
-			ownedProperties.add(property = pr_TemplateParameter_owningTemplateSignature);
+			ownedProperties.add(property = pr_TemplateParameter_owningSignature);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_TemplateSignature_ownedTemplateParameters);
+			property.setOpposite(pr_TemplateSignature_ownedParameters);
 			ownedProperties.add(property = pr_TemplateParameter_upperBound);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Type_TemplateParameter_upperBound);
 			ownedProperties.add(property = pr_TemplateParameter_TemplateParameterSubstitution_formal);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TemplateParameterSubstitution_formal);
 			ownedProperties = _TemplateParameterSubstitution.getOwnedProperties();
@@ -3310,140 +3310,140 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_WildcardType_TemplateParameterSubstitution_ownedWildcard);
-			ownedProperties.add(property = pr_TemplateParameterSubstitution_owningTemplateBinding);
+			ownedProperties.add(property = pr_TemplateParameterSubstitution_owningBinding);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_TemplateBinding_ownedTemplateParameterSubstitutions);
+			property.setOpposite(pr_TemplateBinding_ownedSubstitutions);
 			ownedProperties = _TemplateSignature.getOwnedProperties();
-			ownedProperties.add(property = pr_TemplateSignature_ownedTemplateParameters);
+			ownedProperties.add(property = pr_TemplateSignature_ownedParameters);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_TemplateParameter_owningTemplateSignature);
-			ownedProperties.add(property = pr_TemplateSignature_owningTemplateableElement);
+			property.setOpposite(pr_TemplateParameter_owningSignature);
+			ownedProperties.add(property = pr_TemplateSignature_owningElement);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_TemplateableElement_ownedTemplateSignature);
+			property.setOpposite(pr_TemplateableElement_ownedSignature);
 			ownedProperties.add(property = pr_TemplateSignature_TemplateBinding_templateSignature);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TemplateBinding_templateSignature);
 			ownedProperties = _TemplateableElement.getOwnedProperties();
-			ownedProperties.add(property = pr_TemplateableElement_ownedTemplateBindings);
+			ownedProperties.add(property = pr_TemplateableElement_ownedBindings);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_TemplateBinding_owningTemplateableElement);
-			ownedProperties.add(property = pr_TemplateableElement_ownedTemplateSignature);
+			property.setOpposite(pr_TemplateBinding_owningElement);
+			ownedProperties.add(property = pr_TemplateableElement_ownedSignature);
 			property.setIsComposite(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_TemplateSignature_owningTemplateableElement);
+			property.setOpposite(pr_TemplateSignature_owningElement);
 			ownedProperties.add(property = pr_TemplateableElement_unspecializedElement);
 			property.setIsRequired(false);
 			property.setIsTransient(true);
 			ownedProperties = _Transition.getOwnedProperties();
-			ownedProperties.add(property = pr_Transition_container);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Region_transition);
-			ownedProperties.add(property = pr_Transition_effect);
-			property.setIsComposite(true);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Behavior_transition);
-			ownedProperties.add(property = pr_Transition_guard);
-			property.setIsComposite(true);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Constraint_transition);
 			ownedProperties.add(property = pr_Transition_kind);
 			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_Transition_ownedEffect);
+			property.setIsComposite(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Behavior_owningTransition);
+			ownedProperties.add(property = pr_Transition_ownedGuard);
+			property.setIsComposite(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Constraint_owningTransition);
+			ownedProperties.add(property = pr_Transition_ownedTriggers);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Trigger_owningTransition);
+			ownedProperties.add(property = pr_Transition_owningRegion);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Region_ownedTransitions);
 			ownedProperties.add(property = pr_Transition_source);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Vertex_outgoing);
+			property.setOpposite(pr_Vertex_outgoingTransitions);
 			ownedProperties.add(property = pr_Transition_target);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Vertex_incoming);
-			ownedProperties.add(property = pr_Transition_trigger);
-			property.setIsComposite(true);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Trigger_transition);
+			property.setOpposite(pr_Vertex_incomingTransitions);
 			ownedProperties = _Trigger.getOwnedProperties();
-			ownedProperties.add(property = pr_Trigger_state);
+			ownedProperties.add(property = pr_Trigger_owningState);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_State_deferrableTrigger);
-			ownedProperties.add(property = pr_Trigger_transition);
+			property.setOpposite(pr_State_ownedDeferrableTriggers);
+			ownedProperties.add(property = pr_Trigger_owningTransition);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Transition_trigger);
+			property.setOpposite(pr_Transition_ownedTriggers);
 			ownedProperties = _TupleLiteralExp.getOwnedProperties();
-			ownedProperties.add(property = pr_TupleLiteralExp_part);
+			ownedProperties.add(property = pr_TupleLiteralExp_ownedParts);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_TupleLiteralPart_TupleLiteralExp_part);
+			property.setOpposite(pr_TupleLiteralPart_TupleLiteralExp_ownedParts);
 			ownedProperties = _TupleLiteralPart.getOwnedProperties();
-			ownedProperties.add(property = pr_TupleLiteralPart_initExpression);
+			ownedProperties.add(property = pr_TupleLiteralPart_ownedInit);
 			property.setIsComposite(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_OCLExpression_TupleLiteralPart_initExpression);
-			ownedProperties.add(property = pr_TupleLiteralPart_TupleLiteralExp_part);
-			property.setImplicit(true);
+			property.setOpposite(pr_OCLExpression_TupleLiteralPart_ownedInit);
+			ownedProperties.add(property = pr_TupleLiteralPart_TupleLiteralExp_ownedParts);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_TupleLiteralExp_part);
+			property.setOpposite(pr_TupleLiteralExp_ownedParts);
 			ownedProperties = _Type.getOwnedProperties();
 			ownedProperties.add(property = pr_Type_extendedBys);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TypeExtension_type);
 			ownedProperties.add(property = pr_Type_CollectionType_elementType);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_CollectionType_elementType);
 			ownedProperties.add(property = pr_Type_DynamicElement_metaType);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_DynamicElement_metaType);
 			ownedProperties.add(property = pr_Type_LambdaType_contextType);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_LambdaType_contextType);
 			ownedProperties.add(property = pr_Type_LambdaType_parameterType);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_LambdaType_parameterType);
 			ownedProperties.add(property = pr_Type_LambdaType_resultType);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_LambdaType_resultType);
 			ownedProperties.add(property = pr_Type_TemplateParameter_lowerBound);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TemplateParameter_lowerBound);
 			ownedProperties.add(property = pr_Type_TemplateParameter_upperBound);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TemplateParameter_upperBound);
 			ownedProperties.add(property = pr_Type_TemplateParameterSubstitution_actual);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TemplateParameterSubstitution_actual);
 			ownedProperties.add(property = pr_Type_TypeExp_referredType);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TypeExp_referredType);
 			ownedProperties.add(property = pr_Type_WildcardType_lowerBound);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_WildcardType_lowerBound);
 			ownedProperties.add(property = pr_Type_WildcardType_upperBound);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_WildcardType_upperBound);
-			ownedProperties.add(property = pr_Type_operation_raisedException);
-			property.setImplicit(true);
+			ownedProperties.add(property = pr_Type_operation_raisedExceptions);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Operation_raisedException);
+			property.setOpposite(pr_Operation_raisedExceptions);
 			ownedProperties.add(property = pr_Type_typedElement_type);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TypedElement_type);
@@ -3455,9 +3455,9 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties = _TypeExtension.getOwnedProperties();
 			ownedProperties.add(property = pr_TypeExtension_isRequired);
 			property.setIsResolveProxies(true);
-			ownedProperties.add(property = pr_TypeExtension_stereotype);
+			ownedProperties.add(property = pr_TypeExtension_owningStereotype);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Stereotype_extensionOfs);
+			property.setOpposite(pr_Stereotype_ownedExtensionOfs);
 			ownedProperties.add(property = pr_TypeExtension_type);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Type_extendedBys);
@@ -3478,64 +3478,64 @@ public class OCLMetaModel extends ASResourceImpl
 			ownedProperties.add(property = pr_UnlimitedNaturalLiteralExp_unlimitedNaturalSymbol);
 			property.setIsResolveProxies(true);
 			ownedProperties = _ValueSpecification.getOwnedProperties();
-			ownedProperties.add(property = pr_ValueSpecification_owningSlot_values);
-			property.setImplicit(true);
+			ownedProperties.add(property = pr_ValueSpecification_owningSlot_ownedValues);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Slot_values);
+			property.setOpposite(pr_Slot_ownedValues);
 			ownedProperties = _Variable.getOwnedProperties();
-			ownedProperties.add(property = pr_Variable_implicit);
+			ownedProperties.add(property = pr_Variable_isImplicit);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			ownedProperties.add(property = pr_Variable_initExpression);
+			ownedProperties.add(property = pr_Variable_ownedInit);
 			property.setIsComposite(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_OCLExpression_Variable_initExpression);
+			property.setOpposite(pr_OCLExpression_Variable_ownedInit);
 			ownedProperties.add(property = pr_Variable_representedParameter);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Parameter_Variable_representedParameter);
-			ownedProperties.add(property = pr_Variable_ExpressionInOCL_contextVariable);
-			property.setImplicit(true);
+			ownedProperties.add(property = pr_Variable_ExpressionInOCL_ownedContext);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_ExpressionInOCL_contextVariable);
-			ownedProperties.add(property = pr_Variable_ExpressionInOCL_parameterVariable);
-			property.setImplicit(true);
+			property.setOpposite(pr_ExpressionInOCL_ownedContext);
+			ownedProperties.add(property = pr_Variable_ExpressionInOCL_ownedParameters);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_ExpressionInOCL_parameterVariable);
-			ownedProperties.add(property = pr_Variable_ExpressionInOCL_resultVariable);
-			property.setImplicit(true);
+			property.setOpposite(pr_ExpressionInOCL_ownedParameters);
+			ownedProperties.add(property = pr_Variable_ExpressionInOCL_ownedResult);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_ExpressionInOCL_resultVariable);
-			ownedProperties.add(property = pr_Variable_IterateExp_result);
-			property.setImplicit(true);
+			property.setOpposite(pr_ExpressionInOCL_ownedResult);
+			ownedProperties.add(property = pr_Variable_IterateExp_ownedResult);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_IterateExp_result);
-			ownedProperties.add(property = pr_Variable_LetExp_variable);
-			property.setImplicit(true);
+			property.setOpposite(pr_IterateExp_ownedResult);
+			ownedProperties.add(property = pr_Variable_LetExp_ownedVariable);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_LetExp_variable);
-			ownedProperties.add(property = pr_Variable_LoopExp_iterator);
-			property.setImplicit(true);
+			property.setOpposite(pr_LetExp_ownedVariable);
+			ownedProperties.add(property = pr_Variable_LoopExp_ownedIterators);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_LoopExp_iterator);
+			property.setOpposite(pr_LoopExp_ownedIterators);
 			ownedProperties = _VariableDeclaration.getOwnedProperties();
 			ownedProperties.add(property = pr_VariableDeclaration_typeValue);
 			property.setIsRequired(false);
 			property.setIsTransient(true);
 			ownedProperties.add(property = pr_VariableDeclaration_VariableExp_referredVariable);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_VariableExp_referredVariable);
 			ownedProperties = _VariableExp.getOwnedProperties();
-			ownedProperties.add(property = pr_VariableExp_implicit);
+			ownedProperties.add(property = pr_VariableExp_isImplicit);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_VariableExp_referredVariable);
@@ -3543,18 +3543,18 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_VariableDeclaration_VariableExp_referredVariable);
 			ownedProperties = _Vertex.getOwnedProperties();
-			ownedProperties.add(property = pr_Vertex_container);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_Region_subvertex);
-			ownedProperties.add(property = pr_Vertex_incoming);
+			ownedProperties.add(property = pr_Vertex_incomingTransitions);
 			property.setIsReadOnly(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Transition_target);
-			ownedProperties.add(property = pr_Vertex_outgoing);
+			ownedProperties.add(property = pr_Vertex_outgoingTransitions);
 			property.setIsReadOnly(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Transition_source);
+			ownedProperties.add(property = pr_Vertex_owningRegion);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Region_ownedSubvertexes);
 			ownedProperties = _WildcardType.getOwnedProperties();
 			ownedProperties.add(property = pr_WildcardType_lowerBound);
 			property.setIsRequired(false);
@@ -3565,418 +3565,418 @@ public class OCLMetaModel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Type_WildcardType_upperBound);
 			ownedProperties.add(property = pr_WildcardType_TemplateParameterSubstitution_ownedWildcard);
-			property.setImplicit(true);
+			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TemplateParameterSubstitution_ownedWildcard);
 		}
 
 		private void installTemplateBindings() {
-			_Bag_Annotation.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_Annotation.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _Annotation)));
-			_Bag_AssociationClassCallExp.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_AssociationClassCallExp.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _AssociationClassCallExp)));
-			_Bag_CallOperationAction.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_CallOperationAction.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _CallOperationAction)));
-			_Bag_CollectionType.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_CollectionType.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _CollectionType)));
-			_Bag_CompleteClass.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_CompleteClass.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _CompleteClass)));
-			_Bag_CompleteModel.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_CompleteModel.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _CompleteModel)));
-			_Bag_CompletePackage.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_CompletePackage.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _CompletePackage)));
-			_Bag_Constraint.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_Constraint.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _Constraint)));
-			_Bag_ConstructorPart.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_ConstructorPart.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _ConstructorPart)));
-			_Bag_DataType.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_DataType.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _DataType)));
-			_Bag_DynamicElement.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_DynamicElement.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _DynamicElement)));
-			_Bag_DynamicProperty.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_DynamicProperty.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _DynamicProperty)));
-			_Bag_ElementExtension.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_ElementExtension.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _ElementExtension)));
-			_Bag_EnumLiteralExp.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_EnumLiteralExp.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _EnumLiteralExp)));
-			_Bag_Import.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_Import.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _Import)));
-			_Bag_LambdaType.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_LambdaType.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _LambdaType)));
-			_Bag_LoopExp.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_LoopExp.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _LoopExp)));
-			_Bag_MessageType.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_MessageType.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _MessageType)));
-			_Bag_NavigationCallExp.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_NavigationCallExp.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _NavigationCallExp)));
-			_Bag_OperationCallExp.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_OperationCallExp.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _OperationCallExp)));
-			_Bag_Operation.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_Operation.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _Operation)));
-			_Bag_OppositePropertyCallExp.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_OppositePropertyCallExp.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _OppositePropertyCallExp)));
-			_Bag_Package.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_Package.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _Package)));
-			_Bag_PrimitiveType.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_PrimitiveType.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _PrimitiveType)));
-			_Bag_PropertyCallExp.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_PropertyCallExp.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _PropertyCallExp)));
-			_Bag_Property.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_Property.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _Property)));
-			_Bag_Region.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_Region.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _Region)));
-			_Bag_SendSignalAction.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_SendSignalAction.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _SendSignalAction)));
-			_Bag_StateExp.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_StateExp.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _StateExp)));
-			_Bag_StateMachine.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_StateMachine.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _StateMachine)));
-			_Bag_State.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_State.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _State)));
-			_Bag_TemplateBinding.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_TemplateBinding.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _TemplateBinding)));
-			_Bag_TemplateParameterSubstitution.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_TemplateParameterSubstitution.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _TemplateParameterSubstitution)));
-			_Bag_TemplateParameter.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_TemplateParameter.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _TemplateParameter)));
-			_Bag_TypeExp.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_TypeExp.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _TypeExp)));
-			_Bag_VariableExp.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_VariableExp.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _VariableExp)));
-			_Bag_Variable.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_Variable.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _Variable)));
-			_Bag_WildcardType.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Bag_WildcardType.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _WildcardType)));
-			_Collection_String.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_String.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _String)));
-			_Collection_Annotation.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Annotation.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _Annotation)));
-			_Collection_AssociationClassCallExp.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_AssociationClassCallExp.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _AssociationClassCallExp)));
-			_Collection_Behavior.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Behavior.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _Behavior)));
-			_Collection_CallOperationAction.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_CallOperationAction.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _CallOperationAction)));
-			_Collection_Class.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Class.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _Class)));
-			_Collection_CollectionLiteralPart.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_CollectionLiteralPart.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _CollectionLiteralPart)));
-			_Collection_CollectionType.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_CollectionType.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _CollectionType)));
-			_Collection_Comment.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Comment.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _Comment)));
-			_Collection_CompleteClass.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_CompleteClass.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _CompleteClass)));
-			_Collection_CompleteModel.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_CompleteModel.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _CompleteModel)));
-			_Collection_CompletePackage.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_CompletePackage.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _CompletePackage)));
-			_Collection_ConnectionPointReference.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_ConnectionPointReference.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _ConnectionPointReference)));
-			_Collection_Constraint.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Constraint.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _Constraint)));
-			_Collection_ConstructorPart.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_ConstructorPart.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _ConstructorPart)));
-			_Collection_DataType.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_DataType.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _DataType)));
-			_Collection_Detail.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Detail.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _Detail)));
-			_Collection_DynamicElement.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_DynamicElement.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _DynamicElement)));
-			_Collection_DynamicProperty.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_DynamicProperty.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _DynamicProperty)));
-			_Collection_ElementExtension.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_ElementExtension.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _ElementExtension)));
-			_Collection_Element.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Element.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _Element)));
-			_Collection_EnumLiteralExp.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_EnumLiteralExp.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _EnumLiteralExp)));
-			_Collection_EnumerationLiteral.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_EnumerationLiteral.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _EnumerationLiteral)));
-			_Collection_Import.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Import.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _Import)));
-			_Collection_InstanceSpecification.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_InstanceSpecification.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _InstanceSpecification)));
-			_Collection_LambdaType.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_LambdaType.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _LambdaType)));
-			_Collection_LoopExp.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_LoopExp.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _LoopExp)));
-			_Collection_MessageType.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_MessageType.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _MessageType)));
-			_Collection_Model.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Model.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _Model)));
-			_Collection_NavigationCallExp.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_NavigationCallExp.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _NavigationCallExp)));
-			_Collection_OCLExpression.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_OCLExpression.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _OCLExpression)));
-			_Collection_OperationCallExp.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_OperationCallExp.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _OperationCallExp)));
-			_Collection_Operation.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Operation.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _Operation)));
-			_Collection_OppositePropertyCallExp.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_OppositePropertyCallExp.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _OppositePropertyCallExp)));
-			_Collection_Package.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Package.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _Package)));
-			_Collection_Parameter.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Parameter.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _Parameter)));
-			_Collection_Precedence.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Precedence.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _Precedence)));
-			_Collection_PrimitiveType.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_PrimitiveType.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _PrimitiveType)));
-			_Collection_ProfileApplication.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_ProfileApplication.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _ProfileApplication)));
-			_Collection_PropertyCallExp.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_PropertyCallExp.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _PropertyCallExp)));
-			_Collection_Property.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Property.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _Property)));
-			_Collection_Pseudostate.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Pseudostate.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _Pseudostate)));
-			_Collection_Region.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Region.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _Region)));
-			_Collection_SendSignalAction.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_SendSignalAction.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _SendSignalAction)));
-			_Collection_Slot.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Slot.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _Slot)));
-			_Collection_StateExp.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_StateExp.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _StateExp)));
-			_Collection_StateMachine.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_StateMachine.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _StateMachine)));
-			_Collection_State.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_State.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _State)));
-			_Collection_TemplateBinding.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_TemplateBinding.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _TemplateBinding)));
-			_Collection_TemplateParameterSubstitution.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_TemplateParameterSubstitution.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _TemplateParameterSubstitution)));
-			_Collection_TemplateParameter.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_TemplateParameter.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _TemplateParameter)));
-			_Collection_Transition.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Transition.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _Transition)));
-			_Collection_Trigger.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Trigger.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _Trigger)));
-			_Collection_TupleLiteralPart.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_TupleLiteralPart.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _TupleLiteralPart)));
-			_Collection_TypeExp.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_TypeExp.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _TypeExp)));
-			_Collection_TypeExtension.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_TypeExtension.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _TypeExtension)));
-			_Collection_Type.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Type.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _Type)));
-			_Collection_ValueSpecification.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_ValueSpecification.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _ValueSpecification)));
-			_Collection_VariableExp.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_VariableExp.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _VariableExp)));
-			_Collection_Variable.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Variable.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _Variable)));
-			_Collection_Vertex.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_Vertex.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _Vertex)));
-			_Collection_WildcardType.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Collection_WildcardType.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _WildcardType)));
-			_OrderedCollection_CollectionLiteralPart.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_CollectionLiteralPart.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedCollection_T, _CollectionLiteralPart)));
-			_OrderedCollection_ConstructorPart.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_ConstructorPart.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedCollection_T, _ConstructorPart)));
-			_OrderedCollection_Detail.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_Detail.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedCollection_T, _Detail)));
-			_OrderedCollection_Element.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_Element.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedCollection_T, _Element)));
-			_OrderedCollection_EnumerationLiteral.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_EnumerationLiteral.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedCollection_T, _EnumerationLiteral)));
-			_OrderedCollection_Import.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_Import.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedCollection_T, _Import)));
-			_OrderedCollection_OCLExpression.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_OCLExpression.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedCollection_T, _OCLExpression)));
-			_OrderedCollection_Operation.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_Operation.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedCollection_T, _Operation)));
-			_OrderedCollection_Parameter.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_Parameter.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedCollection_T, _Parameter)));
-			_OrderedCollection_Precedence.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_Precedence.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedCollection_T, _Precedence)));
-			_OrderedCollection_Property.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_Property.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedCollection_T, _Property)));
-			_OrderedCollection_TemplateParameter.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_TemplateParameter.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedCollection_T, _TemplateParameter)));
-			_OrderedCollection_TupleLiteralPart.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_TupleLiteralPart.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedCollection_T, _TupleLiteralPart)));
-			_OrderedCollection_Type.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_Type.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedCollection_T, _Type)));
-			_OrderedCollection_ValueSpecification.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_ValueSpecification.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedCollection_T, _ValueSpecification)));
-			_OrderedCollection_Variable.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedCollection_Variable.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedCollection_T, _Variable)));
-			_OrderedSet_CollectionLiteralPart.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedSet_CollectionLiteralPart.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedSet_T, _CollectionLiteralPart)));
-			_OrderedSet_ConstructorPart.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedSet_ConstructorPart.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedSet_T, _ConstructorPart)));
-			_OrderedSet_Detail.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedSet_Detail.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedSet_T, _Detail)));
-			_OrderedSet_Element.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedSet_Element.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedSet_T, _Element)));
-			_OrderedSet_EnumerationLiteral.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedSet_EnumerationLiteral.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedSet_T, _EnumerationLiteral)));
-			_OrderedSet_Import.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedSet_Import.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedSet_T, _Import)));
-			_OrderedSet_OCLExpression.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedSet_OCLExpression.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedSet_T, _OCLExpression)));
-			_OrderedSet_Operation.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedSet_Operation.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedSet_T, _Operation)));
-			_OrderedSet_Parameter.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedSet_Parameter.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedSet_T, _Parameter)));
-			_OrderedSet_Precedence.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedSet_Precedence.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedSet_T, _Precedence)));
-			_OrderedSet_Property.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedSet_Property.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedSet_T, _Property)));
-			_OrderedSet_TemplateParameter.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedSet_TemplateParameter.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedSet_T, _TemplateParameter)));
-			_OrderedSet_TupleLiteralPart.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedSet_TupleLiteralPart.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedSet_T, _TupleLiteralPart)));
-			_OrderedSet_ValueSpecification.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedSet_ValueSpecification.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedSet_T, _ValueSpecification)));
-			_OrderedSet_Variable.getOwnedTemplateBindings().add(createTemplateBinding(
+			_OrderedSet_Variable.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedSet_T, _Variable)));
-			_Sequence_Type.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Sequence_Type.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Sequence_T, _Type)));
-			_Set_String.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_String.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _String)));
-			_Set_Behavior.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_Behavior.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _Behavior)));
-			_Set_Class.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_Class.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _Class)));
-			_Set_Comment.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_Comment.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _Comment)));
-			_Set_CompleteClass.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_CompleteClass.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _CompleteClass)));
-			_Set_CompletePackage.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_CompletePackage.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _CompletePackage)));
-			_Set_ConnectionPointReference.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_ConnectionPointReference.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _ConnectionPointReference)));
-			_Set_Constraint.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_Constraint.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _Constraint)));
-			_Set_DynamicProperty.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_DynamicProperty.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _DynamicProperty)));
-			_Set_ElementExtension.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_ElementExtension.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _ElementExtension)));
-			_Set_Element.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_Element.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _Element)));
-			_Set_InstanceSpecification.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_InstanceSpecification.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _InstanceSpecification)));
-			_Set_Model.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_Model.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _Model)));
-			_Set_Operation.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_Operation.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _Operation)));
-			_Set_Package.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_Package.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _Package)));
-			_Set_ProfileApplication.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_ProfileApplication.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _ProfileApplication)));
-			_Set_Property.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_Property.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _Property)));
-			_Set_Pseudostate.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_Pseudostate.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _Pseudostate)));
-			_Set_Region.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_Region.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _Region)));
-			_Set_Region_1.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_Region_1.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _Region)));
-			_Set_Slot.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_Slot.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _Slot)));
-			_Set_StateMachine.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_StateMachine.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _StateMachine)));
-			_Set_State.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_State.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _State)));
-			_Set_TemplateBinding.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_TemplateBinding.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _TemplateBinding)));
-			_Set_TemplateParameterSubstitution.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_TemplateParameterSubstitution.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _TemplateParameterSubstitution)));
-			_Set_Transition.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_Transition.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _Transition)));
-			_Set_Trigger.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_Trigger.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _Trigger)));
-			_Set_TypeExtension.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_TypeExtension.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _TypeExtension)));
-			_Set_Type.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_Type.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _Type)));
-			_Set_Vertex.getOwnedTemplateBindings().add(createTemplateBinding(
+			_Set_Vertex.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _Vertex)));
-			_UniqueCollection_String.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_String.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _String)));
-			_UniqueCollection_Behavior.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_Behavior.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Behavior)));
-			_UniqueCollection_Class.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_Class.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Class)));
-			_UniqueCollection_CollectionLiteralPart.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_CollectionLiteralPart.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _CollectionLiteralPart)));
-			_UniqueCollection_Comment.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_Comment.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Comment)));
-			_UniqueCollection_CompleteClass.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_CompleteClass.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _CompleteClass)));
-			_UniqueCollection_CompletePackage.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_CompletePackage.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _CompletePackage)));
-			_UniqueCollection_ConnectionPointReference.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_ConnectionPointReference.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _ConnectionPointReference)));
-			_UniqueCollection_Constraint.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_Constraint.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Constraint)));
-			_UniqueCollection_ConstructorPart.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_ConstructorPart.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _ConstructorPart)));
-			_UniqueCollection_Detail.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_Detail.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Detail)));
-			_UniqueCollection_DynamicProperty.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_DynamicProperty.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _DynamicProperty)));
-			_UniqueCollection_ElementExtension.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_ElementExtension.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _ElementExtension)));
-			_UniqueCollection_Element.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_Element.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Element)));
-			_UniqueCollection_EnumerationLiteral.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_EnumerationLiteral.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _EnumerationLiteral)));
-			_UniqueCollection_Import.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_Import.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Import)));
-			_UniqueCollection_InstanceSpecification.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_InstanceSpecification.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _InstanceSpecification)));
-			_UniqueCollection_Model.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_Model.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Model)));
-			_UniqueCollection_OCLExpression.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_OCLExpression.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _OCLExpression)));
-			_UniqueCollection_Operation.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_Operation.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Operation)));
-			_UniqueCollection_Package.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_Package.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Package)));
-			_UniqueCollection_Parameter.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_Parameter.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Parameter)));
-			_UniqueCollection_Precedence.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_Precedence.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Precedence)));
-			_UniqueCollection_ProfileApplication.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_ProfileApplication.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _ProfileApplication)));
-			_UniqueCollection_Property.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_Property.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Property)));
-			_UniqueCollection_Pseudostate.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_Pseudostate.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Pseudostate)));
-			_UniqueCollection_Region.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_Region.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Region)));
-			_UniqueCollection_Slot.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_Slot.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Slot)));
-			_UniqueCollection_StateMachine.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_StateMachine.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _StateMachine)));
-			_UniqueCollection_State.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_State.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _State)));
-			_UniqueCollection_TemplateBinding.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_TemplateBinding.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _TemplateBinding)));
-			_UniqueCollection_TemplateParameterSubstitution.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_TemplateParameterSubstitution.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _TemplateParameterSubstitution)));
-			_UniqueCollection_TemplateParameter.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_TemplateParameter.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _TemplateParameter)));
-			_UniqueCollection_Transition.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_Transition.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Transition)));
-			_UniqueCollection_Trigger.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_Trigger.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Trigger)));
-			_UniqueCollection_TupleLiteralPart.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_TupleLiteralPart.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _TupleLiteralPart)));
-			_UniqueCollection_TypeExtension.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_TypeExtension.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _TypeExtension)));
-			_UniqueCollection_Type.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_Type.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Type)));
-			_UniqueCollection_ValueSpecification.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_ValueSpecification.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _ValueSpecification)));
-			_UniqueCollection_Variable.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_Variable.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Variable)));
-			_UniqueCollection_Vertex.getOwnedTemplateBindings().add(createTemplateBinding(
+			_UniqueCollection_Vertex.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Vertex)));
 		}
 
@@ -3989,44 +3989,44 @@ public class OCLMetaModel extends ASResourceImpl
 			installComment(pr_Class_owningPackage, "Specifies the owning package of this classifier, if any.");
 			installComment(pr_Class_superClasses, "The immediate superclasses of a class, from which the class inherits.");
 			installComment(_Comment, "A comment is a textual annotation that can be attached to a set of elements.");
-			installComment(pr_Comment_annotatedElement, "References the Element(s) being commented.");
+			installComment(pr_Comment_annotatedElements, "References the Element(s) being commented.");
 			installComment(pr_Comment_body, "Specifies a string that is the comment.");
 			installComment(_ConnectionPointReference, "A connection point reference represents a usage (as part of a submachine state) of an entry/exit point defined in the statemachine reference by the submachine state.");
-			installComment(pr_ConnectionPointReference_entry, "The entryPoint kind pseudo states corresponding to this connection point.");
-			installComment(pr_ConnectionPointReference_exit, "The exitPoints kind pseudo states corresponding to this connection point.");
-			installComment(pr_ConnectionPointReference_state, "The State in which the connection point refreshens are defined.");
+			installComment(pr_ConnectionPointReference_entries, "The entryPoint kind pseudo states corresponding to this connection point.");
+			installComment(pr_ConnectionPointReference_exits, "The exitPoints kind pseudo states corresponding to this connection point.");
+			installComment(pr_ConnectionPointReference_owningState, "The State in which the connection point refreshens are defined.");
 			installComment(_Constraint, "A constraint is a condition or restriction expressed in natural language text or in a machine readable language for the purpose of declaring some of the semantics of an element.");
-			installComment(pr_Constraint_constrainedElement, "The ordered set of Elements referenced by this Constraint.");
-			installComment(pr_Constraint_specification, "A condition that must be true when evaluated in order for the constraint to be satisfied.");
+			installComment(pr_Constraint_constrainedElements, "The ordered set of Elements referenced by this Constraint.");
+			installComment(pr_Constraint_ownedSpecification, "A condition that must be true when evaluated in order for the constraint to be satisfied.");
 			installComment(_DataType, "DataType is an abstract class that acts as a common superclass for different kinds of data types.");
 			installComment(_Element, "An element is a constituent of a model.");
-			installComment(pr_Element_ownedComment, "The Comments owned by this element.");
+			installComment(pr_Element_ownedComments, "The Comments owned by this element.");
 			installComment(_Enumeration, "An enumeration defines a set of literals that can be used as its values.");
-			installComment(pr_Enumeration_ownedLiteral, "The ordered set of literals for this Enumeration.");
+			installComment(pr_Enumeration_ownedLiterals, "The ordered set of literals for this Enumeration.");
 			installComment(_EnumerationLiteral, "An enumeration literal is a value of an enumeration.");
-			installComment(pr_EnumerationLiteral_enumeration, "The Enumeration that this EnumerationLiteral is a member of.");
+			installComment(pr_EnumerationLiteral_owningEnumeration, "The Enumeration that this EnumerationLiteral is a member of.");
 			installComment(_ExpressionInOCL, "An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context.");
 			installComment(_FinalState, "A special kind of state signifying that the enclosing region is completed. If the enclosing region is directly contained in a state machine and all other regions in the state machine also are completed, then it means that the entire state machine is completed.");
 			installComment(_InstanceSpecification, "An instance specification is a model element that represents an instance in a modeled system.");
 			installComment(pr_InstanceSpecification_classes, "The classifier or classifiers of the represented instance. If multiple classifiers are specified, the instance is classified by all of them.");
-			installComment(pr_InstanceSpecification_slots, "A slot giving the value or values of a structural feature of the instance. An instance specification can have one slot per structural feature of its classifiers, including inherited features. It is not necessary to model a slot for each structural feature, in which case the instance specification is a partial description.");
-			installComment(pr_InstanceSpecification_specification, "A specification of how to compute, derive, or construct the instance.");
+			installComment(pr_InstanceSpecification_ownedSlots, "A slot giving the value or values of a structural feature of the instance. An instance specification can have one slot per structural feature of its classifiers, including inherited features. It is not necessary to model a slot for each structural feature, in which case the instance specification is a partial description.");
+			installComment(pr_InstanceSpecification_ownedSpecification, "A specification of how to compute, derive, or construct the instance.");
 			installComment(_LanguageExpression, "An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context.");
 			installComment(pr_LanguageExpression_body, "The text of the expression, possibly in multiple languages.");
 			installComment(pr_LanguageExpression_language, "Specifies the languages in which the expression is stated. The interpretation of the expression body depends on the languages. If the languages are unspecified, they might be implicit from the expression body or the context. Languages are matched to body strings by order.");
 			installComment(_NamedElement, "A named element represents an element with a name.");
 			installComment(pr_NamedElement_name, "The name of the NamedElement.");
 			installComment(_Operation, "An operation is owned by a class and may be invoked in the context of objects that are instances of that class. It is a typed element and a multiplicity element.\nOperation specializes TemplateableElement in order to support specification of template operations and bound operations. Operation specializes ParameterableElement to specify that an operation can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.");
-			installComment(pr_Operation_ownedParameter, "The parameters to the operation.");
+			installComment(pr_Operation_ownedParameters, "The parameters to the operation.");
 			installComment(pr_Operation_owningClass, "The class that owns the operation.");
-			installComment(pr_Operation_raisedException, "The exceptions that are declared as possible during an invocation of the operation.");
+			installComment(pr_Operation_raisedExceptions, "The exceptions that are declared as possible during an invocation of the operation.");
 			installComment(_Package, "A package is a container for types and other packages.");
 			installComment(pr_Package_ownedClasses, "The set of contained types.");
 			installComment(pr_Package_ownedInstances, "The instance specification that owns this slot.");
 			installComment(pr_Package_ownedPackages, "The set of contained packages.");
 			installComment(pr_Package_owningPackage, "The containing package.");
 			installComment(_Parameter, "A parameter is a typed element that represents a parameter of an operation.");
-			installComment(pr_Parameter_operation, "The operation that owns the parameter.");
+			installComment(pr_Parameter_owningOperation, "The operation that owns the parameter.");
 			installComment(_PrimitiveType, "A primitive type is a data type implemented by the underlying infrastructure and made available for modeling.");
 			installComment(_Property, "A property is a typed element that represents an attribute of a class.");
 			installComment(pr_Property_defaultValue, "An object that defines the initial value for the property when an object of the owning class is instantiated. The value is derived by interpreting the defaultValueString in accordance with the property type.");
@@ -4038,8 +4038,8 @@ public class OCLMetaModel extends ASResourceImpl
 			installComment(pr_Property_owningClass, "The class that owns the property, and of which the property is an attribute.");
 			installComment(_Pseudostate, "A pseudostate is an abstraction that encompasses different types of transient vertices in the state machine graph.");
 			installComment(pr_Pseudostate_kind, "Determines the precise type of the Pseudostate and can be one of: entryPoint, exitPoint, initial, deepHistory, shallowHistory, join, fork, junction, terminate or choice.");
-			installComment(pr_Pseudostate_state, "The State that owns this pseudostate and in which it appears.");
-			installComment(pr_Pseudostate_stateMachine, "The StateMachine in which this Pseudostate is defined. This only applies to Pseudostates of the kind entryPoint or exitPoint.");
+			installComment(pr_Pseudostate_owningState, "The State that owns this pseudostate and in which it appears.");
+			installComment(pr_Pseudostate_owningStateMachine, "The StateMachine in which this Pseudostate is defined. This only applies to Pseudostates of the kind entryPoint or exitPoint.");
 			installComment(el__PseudostateKind_choice, "Choice vertices which, when reached, result in the dynamic evaluation of the guards of the triggers of its outgoing transitions. This realizes a dynamic conditional branch. It allows splitting of transitions into multiple outgoing paths such that the decision on which path to take may be a function of the results of prior actions performed in the same run-tocompletion step. If more than one of the guards evaluates to true, an arbitrary one is selected. If none of the guards evaluates to true, then the model is considered ill-formed. (To avoid this, it is recommended to define one outgoing transition with the predefined else guard for every choice vertex.) Choice vertices should be distinguished from static branch points that are based on junction points (described above).");
 			installComment(el__PseudostateKind_deepHistory, "DeepHistory represents the most recent active configuration of the composite state that directly contains this pseudostate; e.g. the state configuration that was active when the composite state was last exited. A composite state can have at most one deep history vertex. At most one transition may originate from the history connector to the default deep history state. This transition is taken in case the composite state had never been active before. Entry actions of states entered on the path to the state represented by a deep history are performed.");
 			installComment(el__PseudostateKind_entryPoint, "An entry point pseudostate is an entry point of a state machine or composite state. In each region of the state machine or composite state it has a single transition to a vertex within the same region.");
@@ -4052,62 +4052,62 @@ public class OCLMetaModel extends ASResourceImpl
 			installComment(el__PseudostateKind_terminate, "Entering a terminate pseudostate implies that the execution of this state machine by means of its context object is terminated. The state machine does not exit any states nor does it perform any exit actions other than those associated with the transition leading to the terminate pseudostate. Entering a terminate pseudostate is equivalent to invoking a DestroyObjectAction.");
 			installComment(_Region, "A region is an orthogonal part of either a composite state or a state machine. It contains states and transitions.");
 			installComment(pr_Region_extendedRegion, "The region of which this region is an extension.");
-			installComment(pr_Region_state, "The State that owns the Region. If a Region is owned by a State, then it cannot also be owned by a StateMachine.");
-			installComment(pr_Region_stateMachine, "The StateMachine that owns the Region. If a Region is owned by a StateMachine, then it cannot also be owned by a State.");
-			installComment(pr_Region_subvertex, "The set of vertices that are owned by this region.");
-			installComment(pr_Region_transition, "The set of transitions owned by the region. Note that internal transitions are owned by a region, but applies to the source state.");
+			installComment(pr_Region_ownedSubvertexes, "The set of vertices that are owned by this region.");
+			installComment(pr_Region_ownedTransitions, "The set of transitions owned by the region. Note that internal transitions are owned by a region, but applies to the source state.");
+			installComment(pr_Region_owningState, "The State that owns the Region. If a Region is owned by a State, then it cannot also be owned by a StateMachine.");
+			installComment(pr_Region_owningStateMachine, "The StateMachine that owns the Region. If a Region is owned by a StateMachine, then it cannot also be owned by a State.");
 			installComment(_Slot, "A slot specifies that an entity modeled by an instance specification has a value or values for a specific structural feature.");
 			installComment(pr_Slot_definingProperty, "The structural feature that specifies the values that may be held by the slot.");
+			installComment(pr_Slot_ownedValues, "The value or values corresponding to the defining feature for the owning instance specification.");
 			installComment(pr_Slot_owningInstance, "The instance specification that owns this slot.");
-			installComment(pr_Slot_values, "The value or values corresponding to the defining feature for the owning instance specification.");
 			installComment(_State, "A state models a situation during which some (usually implicit) invariant condition holds.");
-			installComment(pr_State_connection, "The entry and exit connection points used in conjunction with this (submachine) state, i.e. as targets and sources, respectively, in the region with the submachine state. A connection point reference references the corresponding definition of a connection point pseudostate in the statemachine referenced by the submachinestate.");
-			installComment(pr_State_connectionPoint, "The entry and exit pseudostates of a composite state. These can only be entry or exit Pseudostates, and they must have different names. They can only be defined for composite states.");
-			installComment(pr_State_deferrableTrigger, "A list of triggers that are candidates to be retained by the state machine if they trigger no transitions out of the state (not consumed). A deferred trigger is retained until the state machine reaches a state configuration where it is no longer deferred.");
-			installComment(pr_State_doActivity, "An optional behavior that is executed while being in the state. The execution starts when this state is entered, and stops either by itself, or when the state is exited, whichever comes first.");
-			installComment(pr_State_entry, "An optional behavior that is executed whenever this state is entered regardless of the transition taken to reach the state. If defined, entry actions are always executed to completion prior to any internal behavior or transitions performed within the state.");
-			installComment(pr_State_exit, "An optional behavior that is executed whenever this state is exited regardless of which transition was taken out of the state. If defined, exit actions are always executed to completion only after all internal activities and transition actions have completed execution.");
 			installComment(pr_State_isComposite, "A state with isComposite=true is said to be a composite state. A composite state is a state that contains at least one region.");
 			installComment(pr_State_isOrthogonal, "A state with isOrthogonal=true is said to be an orthogonal composite state. An orthogonal composite state contains two or more regions.");
 			installComment(pr_State_isSimple, "A state with isSimple=true is said to be a simple state. A simple state does not have any regions and it does not refer to any submachine state machine.");
 			installComment(pr_State_isSubmachineState, "A state with isSubmachineState=true is said to be a submachine state. Such a state refers to a state machine (submachine).");
+			installComment(pr_State_ownedConnectionPoints, "The entry and exit pseudostates of a composite state. These can only be entry or exit Pseudostates, and they must have different names. They can only be defined for composite states.");
+			installComment(pr_State_ownedConnections, "The entry and exit connection points used in conjunction with this (submachine) state, i.e. as targets and sources, respectively, in the region with the submachine state. A connection point reference references the corresponding definition of a connection point pseudostate in the statemachine referenced by the submachinestate.");
+			installComment(pr_State_ownedDeferrableTriggers, "A list of triggers that are candidates to be retained by the state machine if they trigger no transitions out of the state (not consumed). A deferred trigger is retained until the state machine reaches a state configuration where it is no longer deferred.");
+			installComment(pr_State_ownedDoActivity, "An optional behavior that is executed while being in the state. The execution starts when this state is entered, and stops either by itself, or when the state is exited, whichever comes first.");
+			installComment(pr_State_ownedEntry, "An optional behavior that is executed whenever this state is entered regardless of the transition taken to reach the state. If defined, entry actions are always executed to completion prior to any internal behavior or transitions performed within the state.");
+			installComment(pr_State_ownedExit, "An optional behavior that is executed whenever this state is exited regardless of which transition was taken out of the state. If defined, exit actions are always executed to completion only after all internal activities and transition actions have completed execution.");
+			installComment(pr_State_ownedRegions, "The regions owned directly by the state.");
+			installComment(pr_State_ownedStateInvariant, "Specifies conditions that are always true when this state is the current state. In protocol state machines, state invariants are additional conditions to the preconditions of the outgoing transitions, and to the postcondition of the incoming transitions.");
 			installComment(pr_State_redefinedState, "The state of which this state is a redefinition.");
-			installComment(pr_State_region, "The regions owned directly by the state.");
-			installComment(pr_State_stateInvariant, "Specifies conditions that are always true when this state is the current state. In protocol state machines, state invariants are additional conditions to the preconditions of the outgoing transitions, and to the postcondition of the incoming transitions.");
-			installComment(pr_State_submachine, "The state machine that is to be inserted in place of the (submachine) state.");
+			installComment(pr_State_submachines, "The state machine that is to be inserted in place of the (submachine) state.");
 			installComment(_StateMachine, "State machines can be used to express the behavior of part of a system. Behavior is modeled as a traversal of a graph of state nodes interconnected by one or more joined transition arcs that are triggered by the dispatching of series of (event) occurrences. During this traversal, the state machine executes a series of activities associated with various elements of the state machine.");
-			installComment(pr_StateMachine_connectionPoint, "The connection points defined for this state machine. They represent the interface of the state machine when used as part of submachine state.");
-			installComment(pr_StateMachine_extendedStateMachine, "The state machines of which this is an extension.");
-			installComment(pr_StateMachine_region, "The regions owned directly by the state machine.");
-			installComment(pr_StateMachine_submachineState, "References the submachine(s) in case of a submachine state. Multiple machines are referenced in case of a concurrent state.");
+			installComment(pr_StateMachine_extendedStateMachines, "The state machines of which this is an extension.");
+			installComment(pr_StateMachine_ownedConnectionPoints, "The connection points defined for this state machine. They represent the interface of the state machine when used as part of submachine state.");
+			installComment(pr_StateMachine_ownedRegions, "The regions owned directly by the state machine.");
+			installComment(pr_StateMachine_submachineStates, "References the submachine(s) in case of a submachine state. Multiple machines are referenced in case of a concurrent state.");
 			installComment(_TemplateBinding, "A template binding represents a relationship between a templateable element and a template. A template binding specifies the substitutions of actual parameters for the formal parameters of the template.");
-			installComment(pr_TemplateBinding_ownedTemplateParameterSubstitutions, "The parameter substitutions owned by this template binding.");
-			installComment(pr_TemplateBinding_owningTemplateableElement, "The element that is bound by this binding.");
+			installComment(pr_TemplateBinding_ownedSubstitutions, "The parameter substitutions owned by this template binding.");
+			installComment(pr_TemplateBinding_owningElement, "The element that is bound by this binding.");
 			installComment(pr_TemplateBinding_templateSignature, "The template signature for the template that is the target of the binding.");
 			installComment(_TemplateParameter, "A template parameter exposes a parameterable element as a formal template parameter of a template.");
-			installComment(pr_TemplateParameter_constrainingClass, "The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument.");
+			installComment(pr_TemplateParameter_constrainingClasses, "The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument.");
 			installComment(pr_TemplateParameter_lowerBound, "The element that is the default for this formal template parameter.");
-			installComment(pr_TemplateParameter_owningTemplateSignature, "The template signature that owns this template parameter.");
+			installComment(pr_TemplateParameter_owningSignature, "The template signature that owns this template parameter.");
 			installComment(pr_TemplateParameter_upperBound, "The element that is the default for this formal template parameter.");
 			installComment(_TemplateParameterSubstitution, "A template parameter substitution relates the actual parameter to a formal template parameter as part of a template binding.");
 			installComment(pr_TemplateParameterSubstitution_actual, "The element that is the actual parameter for this substitution.");
 			installComment(pr_TemplateParameterSubstitution_formal, "The formal template parameter that is associated with this substitution.");
 			installComment(pr_TemplateParameterSubstitution_ownedWildcard, "The element that is the actual parameter for this substitution.");
-			installComment(pr_TemplateParameterSubstitution_owningTemplateBinding, "The optional bindings from this element to templates.");
+			installComment(pr_TemplateParameterSubstitution_owningBinding, "The optional bindings from this element to templates.");
 			installComment(_TemplateSignature, "A template signature bundles the set of formal template parameters for a templated element.");
-			installComment(pr_TemplateSignature_ownedTemplateParameters, "The formal template parameters that are owned by this template signature.");
-			installComment(pr_TemplateSignature_owningTemplateableElement, "The element that owns this template signature.");
+			installComment(pr_TemplateSignature_ownedParameters, "The formal template parameters that are owned by this template signature.");
+			installComment(pr_TemplateSignature_owningElement, "The element that owns this template signature.");
 			installComment(_TemplateableElement, "A templateable element is an element that can optionally be defined as a template and bound to other templates.");
-			installComment(pr_TemplateableElement_ownedTemplateBindings, "The optional bindings from this element to templates.");
-			installComment(pr_TemplateableElement_ownedTemplateSignature, "The optional template signature specifying the formal template parameters.");
+			installComment(pr_TemplateableElement_ownedBindings, "The optional bindings from this element to templates.");
+			installComment(pr_TemplateableElement_ownedSignature, "The optional template signature specifying the formal template parameters.");
 			installComment(_Transition, "A transition is a directed relationship between a source vertex and a target vertex. It may be part of a compound transition, which takes the state machine from one state configuration to another, representing the complete response of the state machine to an occurrence of an event of a particular type.");
-			installComment(pr_Transition_container, "Designates the region that owns this transition.");
-			installComment(pr_Transition_effect, "Specifies an optional behavior to be performed when the transition fires.");
-			installComment(pr_Transition_guard, "A guard is a constraint that provides a fine-grained control over the firing of the transition. The guard is evaluated when an event occurrence is dispatched by the state machine. If the guard is true at that time, the transition may be enabled, otherwise, it is disabled. Guards should be pure expressions without side effects. Guard expressions with side effects are ill formed.");
 			installComment(pr_Transition_kind, "Indicates  the precise type of the transition.");
+			installComment(pr_Transition_ownedEffect, "Specifies an optional behavior to be performed when the transition fires.");
+			installComment(pr_Transition_ownedGuard, "A guard is a constraint that provides a fine-grained control over the firing of the transition. The guard is evaluated when an event occurrence is dispatched by the state machine. If the guard is true at that time, the transition may be enabled, otherwise, it is disabled. Guards should be pure expressions without side effects. Guard expressions with side effects are ill formed.");
+			installComment(pr_Transition_ownedTriggers, "Specifies the triggers that may fire the transition.");
+			installComment(pr_Transition_owningRegion, "Designates the region that owns this transition.");
 			installComment(pr_Transition_source, "Designates the originating vertex (state or pseudostate) of the transition.");
 			installComment(pr_Transition_target, "Designates the target vertex that is reached when the transition is taken.");
-			installComment(pr_Transition_trigger, "Specifies the triggers that may fire the transition.");
 			installComment(el__TransitionKind_external, "Implies that the transition, if triggered, will exit the composite (source) state.");
 			installComment(el__TransitionKind_internal, "Implies that the transition, if triggered, occurs without exiting or entering the source state. Thus, it does not cause a state change. This means that the entry or exit condition of the source state will not be invoked. An internal transition can be taken even if the state machine is in one or more regions nested within this state.");
 			installComment(el__TransitionKind_local, "Implies that the transition, if triggered, will not exit the composite (source) state, but it will apply to any state within the composite state, and these will be exited and entered.");
@@ -4122,9 +4122,9 @@ public class OCLMetaModel extends ASResourceImpl
 			installComment(op_ValueSpecification_stringValue, "The query stringValue() gives a single String value when one can be computed.");
 			installComment(op_ValueSpecification_unlimitedValue, "The query unlimitedValue() gives a single UnlimitedNatural value when one can be computed.");
 			installComment(_Vertex, "A vertex is an abstraction of a node in a state machine graph. In general, it can be the source or destination of any number of transitions.");
-			installComment(pr_Vertex_container, "The region that contains this vertex.");
-			installComment(pr_Vertex_incoming, "Specifies the transitions entering this vertex.");
-			installComment(pr_Vertex_outgoing, "Specifies the transitions departing from this vertex.");
+			installComment(pr_Vertex_incomingTransitions, "Specifies the transitions entering this vertex.");
+			installComment(pr_Vertex_outgoingTransitions, "Specifies the transitions departing from this vertex.");
+			installComment(pr_Vertex_owningRegion, "The region that contains this vertex.");
 			installComment(pr_WildcardType_lowerBound, "The element that is the default for this formal template parameter.");
 			installComment(pr_WildcardType_upperBound, "The element that is the default for this formal template parameter.");
 		}

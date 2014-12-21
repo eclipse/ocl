@@ -38,7 +38,7 @@ public class EcoreReflectiveEnumeration extends EcoreReflectiveType implements E
 		Map<String, EnumerationLiteral> name2literal2 = name2literal;
 		if (name2literal2 == null) {
 			name2literal = name2literal2 = new HashMap<String, EnumerationLiteral>();
-			for (EnumerationLiteral enumerationLiteral : getOwnedLiteral()) {
+			for (EnumerationLiteral enumerationLiteral : getOwnedLiterals()) {
 				name2literal2.put(enumerationLiteral.getName(), enumerationLiteral);
 			}
 		}
@@ -51,7 +51,7 @@ public class EcoreReflectiveEnumeration extends EcoreReflectiveType implements E
 	}
 
 	@Override
-	public @NonNull List<EnumerationLiteral> getOwnedLiteral() {
+	public @NonNull List<EnumerationLiteral> getOwnedLiterals() {
 		List<EnumerationLiteral> literals2 = literals;
 		if (literals2 == null) {
 			literals = literals2 = new ArrayList<EnumerationLiteral>();

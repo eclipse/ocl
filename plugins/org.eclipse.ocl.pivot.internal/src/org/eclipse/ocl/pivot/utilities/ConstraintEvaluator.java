@@ -46,12 +46,12 @@ public abstract class ConstraintEvaluator<T>
 	 * evaluation to compute the enriched Tuple of invariant results.
 	 */
 	private static @NonNull OCLExpression getConstraintExpression(@NonNull ExpressionInOCL query) {
-		OCLExpression body = query.getBodyExpression();
+		OCLExpression body = query.getOwnedBody();
 		if (body instanceof PropertyCallExp) {
 			PropertyCallExp propertyCallExp = (PropertyCallExp)body;
 			Property referredProperty = propertyCallExp.getReferredProperty();
 			if ((referredProperty != null) && (referredProperty.getOwningClass() instanceof TupleType) && PivotConstants.STATUS_PART_NAME.equals(referredProperty.getName())) {
-				body = propertyCallExp.getSource();
+				body = propertyCallExp.getOwnedSource();
 			}
 		}
 		return ClassUtil.nonNullState(body);
@@ -73,7 +73,7 @@ public abstract class ConstraintEvaluator<T>
 	 * invoking one of handleSuccessResult, handleFailureResult, handleInvalidResult or handleExceptionResult to provide the return value.
 	 */
 	public T evaluate(@NonNull EvaluationVisitor evaluationVisitor) {
-		if ((query.getContextVariable() == null) && (body instanceof StringLiteralExp)) {
+		if ((query.getOwnedContext() == null) && (body instanceof StringLiteralExp)) {
 			@SuppressWarnings("null")@NonNull String stringSymbol = ((StringLiteralExp)body).getStringSymbol();
 			return handleInvalidExpression(stringSymbol);
 		}

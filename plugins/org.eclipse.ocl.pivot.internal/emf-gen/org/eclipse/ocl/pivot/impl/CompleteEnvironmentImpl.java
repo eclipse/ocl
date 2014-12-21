@@ -189,12 +189,12 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 	{
 		switch (featureID)
 		{
-			case PivotPackage.COMPLETE_ENVIRONMENT__COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.COMPLETE_ENVIRONMENT__EXTENSION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
-			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
+			case PivotPackage.COMPLETE_ENVIRONMENT__ANNOTATING_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAnnotatingComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_EXTENSIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedExtensions()).basicAdd(otherEnd, msgs);
 			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMPLETE_MODEL:
 				if (ownedCompleteModel != null)
 					msgs = ((InternalEObject)ownedCompleteModel).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMPLETE_MODEL, null, msgs);
@@ -217,14 +217,14 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 	{
 		switch (featureID)
 		{
-			case PivotPackage.COMPLETE_ENVIRONMENT__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.COMPLETE_ENVIRONMENT__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
+			case PivotPackage.COMPLETE_ENVIRONMENT__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
 			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMPLETE_MODEL:
 				return basicSetOwnedCompleteModel(null, msgs);
 			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_STANDARD_LIBRARY:
@@ -243,14 +243,14 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 	{
 		switch (featureID)
 		{
-			case PivotPackage.COMPLETE_ENVIRONMENT__COMMENT:
-				return getComment();
-			case PivotPackage.COMPLETE_ENVIRONMENT__EXTENSION:
-				return getExtension();
-			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.COMPLETE_ENVIRONMENT__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMPLETE_MODEL:
 				return getOwnedCompleteModel();
 			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_STANDARD_LIBRARY:
@@ -270,21 +270,21 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 	{
 		switch (featureID)
 		{
-			case PivotPackage.COMPLETE_ENVIRONMENT__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.COMPLETE_ENVIRONMENT__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.COMPLETE_ENVIRONMENT__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMPLETE_MODEL:
 				setOwnedCompleteModel((CompleteModel)newValue);
@@ -306,17 +306,17 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 	{
 		switch (featureID)
 		{
-			case PivotPackage.COMPLETE_ENVIRONMENT__COMMENT:
-				getComment().clear();
+			case PivotPackage.COMPLETE_ENVIRONMENT__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.COMPLETE_ENVIRONMENT__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMPLETE_MODEL:
 				setOwnedCompleteModel((CompleteModel)null);
@@ -338,14 +338,14 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 	{
 		switch (featureID)
 		{
-			case PivotPackage.COMPLETE_ENVIRONMENT__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.COMPLETE_ENVIRONMENT__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.COMPLETE_ENVIRONMENT__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_COMPLETE_MODEL:
 				return ownedCompleteModel != null;
 			case PivotPackage.COMPLETE_ENVIRONMENT__OWNED_STANDARD_LIBRARY:
@@ -590,11 +590,11 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 	@Override
 	public @NonNull <T extends CollectionType> T getCollectionType(@NonNull T containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		assert containerType == PivotUtil.getUnspecializedTemplateableElement(containerType);
-		TemplateSignature templateSignature = containerType.getOwnedTemplateSignature();
+		TemplateSignature templateSignature = containerType.getOwnedSignature();
 		if (templateSignature == null) {
 			throw new IllegalArgumentException("Collection type must have a template signature");
 		}
-		List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
+		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
 		if (templateParameters.size() != 1) {
 			throw new IllegalArgumentException("Collection type must have exactly one template parameter");
 		}
@@ -716,7 +716,7 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 			CollectionType collectionType = (CollectionType)type;
 			CollectionType unspecializedType = PivotUtil.getUnspecializedTemplateableElement(collectionType);
 			if (!substitutions.isEmpty()) {
-				TemplateParameter templateParameter = unspecializedType.getOwnedTemplateSignature().getOwnedTemplateParameters().get(0);
+				TemplateParameter templateParameter = unspecializedType.getOwnedSignature().getOwnedParameters().get(0);
 				Type templateArgument = substitutions.get(templateParameter);
 				if (templateArgument == null) {
 					templateArgument = templateParameter;
@@ -746,9 +746,9 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 			//
 			//	Prepare the template argument list, one template argument per template parameter.
 			//
-			TemplateSignature templateSignature = unspecializedType.getOwnedTemplateSignature();
+			TemplateSignature templateSignature = unspecializedType.getOwnedSignature();
 			if (templateSignature != null) {
-				List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
+				List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
 				List<Type> templateArguments = new ArrayList<Type>(templateParameters.size());
 				for (TemplateParameter templateParameter : templateParameters) {
 					Type templateArgument = substitutions.get(templateParameter);

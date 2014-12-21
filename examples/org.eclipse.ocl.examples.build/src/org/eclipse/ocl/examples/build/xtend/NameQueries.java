@@ -58,7 +58,7 @@ public class NameQueries
 	} */
 	
 	public static @NonNull String getEcoreLiteral(@NonNull EnumerationLiteral enumerationLiteral) {
-		Enumeration enumeration = enumerationLiteral.getEnumeration();
+		Enumeration enumeration = enumerationLiteral.getOwningEnumeration();
 		String nsURI = ClassUtil.nonNullModel(enumeration.getOwningPackage().getURI());
 		GenPackage genPackage = ClassUtil.nonNullState(metaModelManager).getGenPackage(nsURI);
 		if (genPackage != null) {

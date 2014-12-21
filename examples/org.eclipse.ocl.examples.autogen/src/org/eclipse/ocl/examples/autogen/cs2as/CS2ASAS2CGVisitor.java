@@ -32,7 +32,7 @@ public class CS2ASAS2CGVisitor extends AS2CGVisitor
 	CGValuedElement visitOperationCallExp(@NonNull OperationCallExp element) {
 		Operation asOperation = ClassUtil.nonNullState(element.getReferredOperation());
 		if ("ast".equals(asOperation.getName())) {
-			OCLExpression pSource = element.getSource();
+			OCLExpression pSource = element.getOwnedSource();
 			CGValuedElement cgSource = pSource != null ? doVisit(CGValuedElement.class, pSource) : null;
 			CGASTCallExp cgASTCallExp = AutoCGModelFactory.eINSTANCE.createCGASTCallExp();
 			cgASTCallExp.setSource(cgSource);

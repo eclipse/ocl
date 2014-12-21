@@ -105,14 +105,14 @@ public abstract class OCLExpressionImpl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.OCL_EXPRESSION__COMMENT:
-				return getComment();
-			case PivotPackage.OCL_EXPRESSION__EXTENSION:
-				return getExtension();
-			case PivotPackage.OCL_EXPRESSION__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.OCL_EXPRESSION__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.OCL_EXPRESSION__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.OCL_EXPRESSION__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.OCL_EXPRESSION__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.OCL_EXPRESSION__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.OCL_EXPRESSION__NAME:
 				return getName();
 			case PivotPackage.OCL_EXPRESSION__IS_MANY:
@@ -139,21 +139,21 @@ public abstract class OCLExpressionImpl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.OCL_EXPRESSION__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.OCL_EXPRESSION__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.OCL_EXPRESSION__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.OCL_EXPRESSION__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.OCL_EXPRESSION__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.OCL_EXPRESSION__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.OCL_EXPRESSION__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.OCL_EXPRESSION__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.OCL_EXPRESSION__NAME:
 				setName((String)newValue);
@@ -181,17 +181,17 @@ public abstract class OCLExpressionImpl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.OCL_EXPRESSION__COMMENT:
-				getComment().clear();
+			case PivotPackage.OCL_EXPRESSION__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.OCL_EXPRESSION__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.OCL_EXPRESSION__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.OCL_EXPRESSION__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.OCL_EXPRESSION__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.OCL_EXPRESSION__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.OCL_EXPRESSION__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.OCL_EXPRESSION__NAME:
 				setName(NAME_EDEFAULT);
@@ -219,14 +219,14 @@ public abstract class OCLExpressionImpl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.OCL_EXPRESSION__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.OCL_EXPRESSION__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.OCL_EXPRESSION__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.OCL_EXPRESSION__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.OCL_EXPRESSION__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.OCL_EXPRESSION__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.OCL_EXPRESSION__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.OCL_EXPRESSION__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.OCL_EXPRESSION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.OCL_EXPRESSION__IS_MANY:

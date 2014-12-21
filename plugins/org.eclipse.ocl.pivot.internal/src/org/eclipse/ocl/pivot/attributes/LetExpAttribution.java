@@ -25,7 +25,7 @@ public class LetExpAttribution extends AbstractAttribution
 	@Override
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		LetExp targetExpression = (LetExp)target;
-		Variable variable = targetExpression.getVariable();
+		Variable variable = targetExpression.getOwnedVariable();
 		if (variable != null) {
 			environmentView.addNamedElement(variable);
 		}

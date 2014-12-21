@@ -42,7 +42,7 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.impl.StereotypeImpl#getExtensionOfs <em>Extension Ofs</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.StereotypeImpl#getOwnedExtensionOfs <em>Owned Extension Ofs</em>}</li>
  * </ul>
  * </p>
  *
@@ -51,14 +51,14 @@ import org.eclipse.ocl.pivot.util.Visitor;
 public class StereotypeImpl extends ClassImpl implements Stereotype
 {
 	/**
-	 * The cached value of the '{@link #getExtensionOfs() <em>Extension Ofs</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedExtensionOfs() <em>Owned Extension Ofs</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExtensionOfs()
+	 * @see #getOwnedExtensionOfs()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TypeExtension> extensionOfs;
+	protected EList<TypeExtension> ownedExtensionOfs;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -86,14 +86,13 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("null")
-	public @NonNull List<TypeExtension> getExtensionOfs()
+	public List<TypeExtension> getOwnedExtensionOfs()
 	{
-		if (extensionOfs == null)
+		if (ownedExtensionOfs == null)
 		{
-			extensionOfs = new EObjectContainmentWithInverseEList<TypeExtension>(TypeExtension.class, this, PivotPackage.STEREOTYPE__EXTENSION_OFS, PivotPackage.TYPE_EXTENSION__STEREOTYPE);
+			ownedExtensionOfs = new EObjectContainmentWithInverseEList<TypeExtension>(TypeExtension.class, this, PivotPackage.STEREOTYPE__OWNED_EXTENSION_OFS, PivotPackage.TYPE_EXTENSION__OWNING_STEREOTYPE);
 		}
-		return extensionOfs;
+		return ownedExtensionOfs;
 	}
 
 	/**
@@ -107,20 +106,20 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 	{
 		switch (featureID)
 		{
-			case PivotPackage.STEREOTYPE__COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.STEREOTYPE__EXTENSION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
-			case PivotPackage.STEREOTYPE__OWNED_COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
+			case PivotPackage.STEREOTYPE__ANNOTATING_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAnnotatingComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.STEREOTYPE__OWNED_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.STEREOTYPE__OWNED_EXTENSIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedExtensions()).basicAdd(otherEnd, msgs);
 			case PivotPackage.STEREOTYPE__EXTENDED_BYS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtendedBys()).basicAdd(otherEnd, msgs);
-			case PivotPackage.STEREOTYPE__OWNED_TEMPLATE_BINDINGS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedTemplateBindings()).basicAdd(otherEnd, msgs);
-			case PivotPackage.STEREOTYPE__OWNED_TEMPLATE_SIGNATURE:
-				if (ownedTemplateSignature != null)
-					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.STEREOTYPE__OWNED_TEMPLATE_SIGNATURE, null, msgs);
-				return basicSetOwnedTemplateSignature((TemplateSignature)otherEnd, msgs);
+			case PivotPackage.STEREOTYPE__OWNED_BINDINGS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedBindings()).basicAdd(otherEnd, msgs);
+			case PivotPackage.STEREOTYPE__OWNED_SIGNATURE:
+				if (ownedSignature != null)
+					msgs = ((InternalEObject)ownedSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.STEREOTYPE__OWNED_SIGNATURE, null, msgs);
+				return basicSetOwnedSignature((TemplateSignature)otherEnd, msgs);
 			case PivotPackage.STEREOTYPE__OWNED_OPERATIONS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedOperations()).basicAdd(otherEnd, msgs);
 			case PivotPackage.STEREOTYPE__OWNED_PROPERTIES:
@@ -129,8 +128,8 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningPackage((org.eclipse.ocl.pivot.Package)otherEnd, msgs);
-			case PivotPackage.STEREOTYPE__EXTENSION_OFS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtensionOfs()).basicAdd(otherEnd, msgs);
+			case PivotPackage.STEREOTYPE__OWNED_EXTENSION_OFS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedExtensionOfs()).basicAdd(otherEnd, msgs);
 		}
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -145,24 +144,24 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 	{
 		switch (featureID)
 		{
-			case PivotPackage.STEREOTYPE__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.STEREOTYPE__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.STEREOTYPE__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.STEREOTYPE__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STEREOTYPE__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STEREOTYPE__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STEREOTYPE__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STEREOTYPE__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STEREOTYPE__EXTENDED_BYS:
 				return ((InternalEList<?>)getExtendedBys()).basicRemove(otherEnd, msgs);
-			case PivotPackage.STEREOTYPE__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
-			case PivotPackage.STEREOTYPE__OWNED_TEMPLATE_BINDINGS:
-				return ((InternalEList<?>)getOwnedTemplateBindings()).basicRemove(otherEnd, msgs);
-			case PivotPackage.STEREOTYPE__OWNED_TEMPLATE_SIGNATURE:
-				return basicSetOwnedTemplateSignature(null, msgs);
-			case PivotPackage.STEREOTYPE__OWNED_BEHAVIOR:
-				return ((InternalEList<?>)getOwnedBehavior()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STEREOTYPE__OWNED_CONSTRAINTS:
+				return ((InternalEList<?>)getOwnedConstraints()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STEREOTYPE__OWNED_BINDINGS:
+				return ((InternalEList<?>)getOwnedBindings()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STEREOTYPE__OWNED_SIGNATURE:
+				return basicSetOwnedSignature(null, msgs);
+			case PivotPackage.STEREOTYPE__OWNED_BEHAVIORS:
+				return ((InternalEList<?>)getOwnedBehaviors()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STEREOTYPE__OWNED_INVARIANTS:
 				return ((InternalEList<?>)getOwnedInvariants()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STEREOTYPE__OWNED_OPERATIONS:
@@ -171,8 +170,8 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				return ((InternalEList<?>)getOwnedProperties()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STEREOTYPE__OWNING_PACKAGE:
 				return basicSetOwningPackage(null, msgs);
-			case PivotPackage.STEREOTYPE__EXTENSION_OFS:
-				return ((InternalEList<?>)getExtensionOfs()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STEREOTYPE__OWNED_EXTENSION_OFS:
+				return ((InternalEList<?>)getOwnedExtensionOfs()).basicRemove(otherEnd, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -187,24 +186,24 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 	{
 		switch (featureID)
 		{
-			case PivotPackage.STEREOTYPE__COMMENT:
-				return getComment();
-			case PivotPackage.STEREOTYPE__EXTENSION:
-				return getExtension();
-			case PivotPackage.STEREOTYPE__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.STEREOTYPE__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.STEREOTYPE__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.STEREOTYPE__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.STEREOTYPE__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.STEREOTYPE__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.STEREOTYPE__NAME:
 				return getName();
 			case PivotPackage.STEREOTYPE__EXTENDED_BYS:
 				return getExtendedBys();
-			case PivotPackage.STEREOTYPE__OWNED_RULE:
-				return getOwnedRule();
-			case PivotPackage.STEREOTYPE__OWNED_TEMPLATE_BINDINGS:
-				return getOwnedTemplateBindings();
-			case PivotPackage.STEREOTYPE__OWNED_TEMPLATE_SIGNATURE:
-				return getOwnedTemplateSignature();
+			case PivotPackage.STEREOTYPE__OWNED_CONSTRAINTS:
+				return getOwnedConstraints();
+			case PivotPackage.STEREOTYPE__OWNED_BINDINGS:
+				return getOwnedBindings();
+			case PivotPackage.STEREOTYPE__OWNED_SIGNATURE:
+				return getOwnedSignature();
 			case PivotPackage.STEREOTYPE__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
 			case PivotPackage.STEREOTYPE__INSTANCE_CLASS_NAME:
@@ -215,8 +214,8 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				return isActive();
 			case PivotPackage.STEREOTYPE__IS_INTERFACE:
 				return isInterface();
-			case PivotPackage.STEREOTYPE__OWNED_BEHAVIOR:
-				return getOwnedBehavior();
+			case PivotPackage.STEREOTYPE__OWNED_BEHAVIORS:
+				return getOwnedBehaviors();
 			case PivotPackage.STEREOTYPE__OWNED_INVARIANTS:
 				return getOwnedInvariants();
 			case PivotPackage.STEREOTYPE__OWNED_OPERATIONS:
@@ -227,8 +226,8 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				return getOwningPackage();
 			case PivotPackage.STEREOTYPE__SUPER_CLASSES:
 				return getSuperClasses();
-			case PivotPackage.STEREOTYPE__EXTENSION_OFS:
-				return getExtensionOfs();
+			case PivotPackage.STEREOTYPE__OWNED_EXTENSION_OFS:
+				return getOwnedExtensionOfs();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -244,21 +243,21 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 	{
 		switch (featureID)
 		{
-			case PivotPackage.STEREOTYPE__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.STEREOTYPE__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.STEREOTYPE__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.STEREOTYPE__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.STEREOTYPE__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.STEREOTYPE__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.STEREOTYPE__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.STEREOTYPE__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.STEREOTYPE__NAME:
 				setName((String)newValue);
@@ -267,16 +266,16 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				getExtendedBys().clear();
 				getExtendedBys().addAll((Collection<? extends TypeExtension>)newValue);
 				return;
-			case PivotPackage.STEREOTYPE__OWNED_RULE:
-				getOwnedRule().clear();
-				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
+			case PivotPackage.STEREOTYPE__OWNED_CONSTRAINTS:
+				getOwnedConstraints().clear();
+				getOwnedConstraints().addAll((Collection<? extends Constraint>)newValue);
 				return;
-			case PivotPackage.STEREOTYPE__OWNED_TEMPLATE_BINDINGS:
-				getOwnedTemplateBindings().clear();
-				getOwnedTemplateBindings().addAll((Collection<? extends TemplateBinding>)newValue);
+			case PivotPackage.STEREOTYPE__OWNED_BINDINGS:
+				getOwnedBindings().clear();
+				getOwnedBindings().addAll((Collection<? extends TemplateBinding>)newValue);
 				return;
-			case PivotPackage.STEREOTYPE__OWNED_TEMPLATE_SIGNATURE:
-				setOwnedTemplateSignature((TemplateSignature)newValue);
+			case PivotPackage.STEREOTYPE__OWNED_SIGNATURE:
+				setOwnedSignature((TemplateSignature)newValue);
 				return;
 			case PivotPackage.STEREOTYPE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
@@ -293,9 +292,9 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 			case PivotPackage.STEREOTYPE__IS_INTERFACE:
 				setIsInterface((Boolean)newValue);
 				return;
-			case PivotPackage.STEREOTYPE__OWNED_BEHAVIOR:
-				getOwnedBehavior().clear();
-				getOwnedBehavior().addAll((Collection<? extends Behavior>)newValue);
+			case PivotPackage.STEREOTYPE__OWNED_BEHAVIORS:
+				getOwnedBehaviors().clear();
+				getOwnedBehaviors().addAll((Collection<? extends Behavior>)newValue);
 				return;
 			case PivotPackage.STEREOTYPE__OWNED_INVARIANTS:
 				getOwnedInvariants().clear();
@@ -316,9 +315,9 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				getSuperClasses().clear();
 				getSuperClasses().addAll((Collection<? extends org.eclipse.ocl.pivot.Class>)newValue);
 				return;
-			case PivotPackage.STEREOTYPE__EXTENSION_OFS:
-				getExtensionOfs().clear();
-				getExtensionOfs().addAll((Collection<? extends TypeExtension>)newValue);
+			case PivotPackage.STEREOTYPE__OWNED_EXTENSION_OFS:
+				getOwnedExtensionOfs().clear();
+				getOwnedExtensionOfs().addAll((Collection<? extends TypeExtension>)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -334,17 +333,17 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 	{
 		switch (featureID)
 		{
-			case PivotPackage.STEREOTYPE__COMMENT:
-				getComment().clear();
+			case PivotPackage.STEREOTYPE__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.STEREOTYPE__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.STEREOTYPE__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.STEREOTYPE__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.STEREOTYPE__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.STEREOTYPE__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.STEREOTYPE__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.STEREOTYPE__NAME:
 				setName(NAME_EDEFAULT);
@@ -352,14 +351,14 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 			case PivotPackage.STEREOTYPE__EXTENDED_BYS:
 				getExtendedBys().clear();
 				return;
-			case PivotPackage.STEREOTYPE__OWNED_RULE:
-				getOwnedRule().clear();
+			case PivotPackage.STEREOTYPE__OWNED_CONSTRAINTS:
+				getOwnedConstraints().clear();
 				return;
-			case PivotPackage.STEREOTYPE__OWNED_TEMPLATE_BINDINGS:
-				getOwnedTemplateBindings().clear();
+			case PivotPackage.STEREOTYPE__OWNED_BINDINGS:
+				getOwnedBindings().clear();
 				return;
-			case PivotPackage.STEREOTYPE__OWNED_TEMPLATE_SIGNATURE:
-				setOwnedTemplateSignature((TemplateSignature)null);
+			case PivotPackage.STEREOTYPE__OWNED_SIGNATURE:
+				setOwnedSignature((TemplateSignature)null);
 				return;
 			case PivotPackage.STEREOTYPE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
@@ -376,8 +375,8 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 			case PivotPackage.STEREOTYPE__IS_INTERFACE:
 				setIsInterface(IS_INTERFACE_EDEFAULT);
 				return;
-			case PivotPackage.STEREOTYPE__OWNED_BEHAVIOR:
-				getOwnedBehavior().clear();
+			case PivotPackage.STEREOTYPE__OWNED_BEHAVIORS:
+				getOwnedBehaviors().clear();
 				return;
 			case PivotPackage.STEREOTYPE__OWNED_INVARIANTS:
 				getOwnedInvariants().clear();
@@ -394,8 +393,8 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 			case PivotPackage.STEREOTYPE__SUPER_CLASSES:
 				getSuperClasses().clear();
 				return;
-			case PivotPackage.STEREOTYPE__EXTENSION_OFS:
-				getExtensionOfs().clear();
+			case PivotPackage.STEREOTYPE__OWNED_EXTENSION_OFS:
+				getOwnedExtensionOfs().clear();
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -411,24 +410,24 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 	{
 		switch (featureID)
 		{
-			case PivotPackage.STEREOTYPE__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.STEREOTYPE__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.STEREOTYPE__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.STEREOTYPE__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.STEREOTYPE__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.STEREOTYPE__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.STEREOTYPE__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.STEREOTYPE__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.STEREOTYPE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.STEREOTYPE__EXTENDED_BYS:
 				return extendedBys != null && !extendedBys.isEmpty();
-			case PivotPackage.STEREOTYPE__OWNED_RULE:
-				return ownedRule != null && !ownedRule.isEmpty();
-			case PivotPackage.STEREOTYPE__OWNED_TEMPLATE_BINDINGS:
-				return ownedTemplateBindings != null && !ownedTemplateBindings.isEmpty();
-			case PivotPackage.STEREOTYPE__OWNED_TEMPLATE_SIGNATURE:
-				return ownedTemplateSignature != null;
+			case PivotPackage.STEREOTYPE__OWNED_CONSTRAINTS:
+				return ownedConstraints != null && !ownedConstraints.isEmpty();
+			case PivotPackage.STEREOTYPE__OWNED_BINDINGS:
+				return ownedBindings != null && !ownedBindings.isEmpty();
+			case PivotPackage.STEREOTYPE__OWNED_SIGNATURE:
+				return ownedSignature != null;
 			case PivotPackage.STEREOTYPE__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
 			case PivotPackage.STEREOTYPE__INSTANCE_CLASS_NAME:
@@ -439,8 +438,8 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				return ((eFlags & IS_ACTIVE_EFLAG) != 0) != IS_ACTIVE_EDEFAULT;
 			case PivotPackage.STEREOTYPE__IS_INTERFACE:
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
-			case PivotPackage.STEREOTYPE__OWNED_BEHAVIOR:
-				return ownedBehavior != null && !ownedBehavior.isEmpty();
+			case PivotPackage.STEREOTYPE__OWNED_BEHAVIORS:
+				return ownedBehaviors != null && !ownedBehaviors.isEmpty();
 			case PivotPackage.STEREOTYPE__OWNED_INVARIANTS:
 				return ownedInvariants != null && !ownedInvariants.isEmpty();
 			case PivotPackage.STEREOTYPE__OWNED_OPERATIONS:
@@ -451,8 +450,8 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 				return getOwningPackage() != null;
 			case PivotPackage.STEREOTYPE__SUPER_CLASSES:
 				return superClasses != null && !superClasses.isEmpty();
-			case PivotPackage.STEREOTYPE__EXTENSION_OFS:
-				return extensionOfs != null && !extensionOfs.isEmpty();
+			case PivotPackage.STEREOTYPE__OWNED_EXTENSION_OFS:
+				return ownedExtensionOfs != null && !ownedExtensionOfs.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
 	}

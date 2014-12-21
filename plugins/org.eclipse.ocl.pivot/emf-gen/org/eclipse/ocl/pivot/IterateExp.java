@@ -24,7 +24,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.IterateExp#getResult <em>Result</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.IterateExp#getOwnedResult <em>Owned Result</em>}</li>
  * </ul>
  * </p>
  *
@@ -34,29 +34,29 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 public interface IterateExp extends LoopExp, ReferringElement
 {
 	/**
-	 * Returns the value of the '<em><b>Result</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Result</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Result</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Result</em>' containment reference.
-	 * @see #setResult(Variable)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getIterateExp_Result()
+	 * @return the value of the '<em>Owned Result</em>' containment reference.
+	 * @see #setOwnedResult(Variable)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getIterateExp_OwnedResult()
 	 * @generated
 	 */
-	Variable getResult();
+	Variable getOwnedResult();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.IterateExp#getResult <em>Result</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.IterateExp#getOwnedResult <em>Owned Result</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Result</em>' containment reference.
-	 * @see #getResult()
+	 * @param value the new value of the '<em>Owned Result</em>' containment reference.
+	 * @see #getOwnedResult()
 	 * @generated
 	 */
-	void setResult(Variable value);
+	void setOwnedResult(Variable value);
 
 	/**
 	 * <!-- begin-user-doc -->

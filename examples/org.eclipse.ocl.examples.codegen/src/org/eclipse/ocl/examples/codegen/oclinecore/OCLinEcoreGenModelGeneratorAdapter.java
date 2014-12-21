@@ -366,10 +366,10 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 			return true;
 		}
 		for (Operation operation : PivotQueries.getOperations(pivotClass)) {
-			if (operation.getPrecondition().size() > 0) {
+			if (operation.getOwnedPreconditions().size() > 0) {
 				return true;
 			}
-			if (operation.getPostcondition().size() > 0) {
+			if (operation.getOwnedPostconditions().size() > 0) {
 				return true;
 			}
 			if (operation.getBodyExpression() != null) {
@@ -377,7 +377,7 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 			}
 		}
 		for (Property property : PivotQueries.getProperties(pivotClass)) {
-			if (property.getDefaultExpression() != null) {
+			if (property.getOwnedExpression() != null) {
 				return true;
 			}
 		}

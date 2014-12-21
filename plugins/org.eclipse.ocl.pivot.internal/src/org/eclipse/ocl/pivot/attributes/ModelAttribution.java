@@ -31,7 +31,7 @@ public class ModelAttribution extends AbstractAttribution
 		Model targetModel = (Model)target;
 		environmentView.addAllPackages(targetModel);
 		if (environmentView.accepts(PivotPackage.Literals.NAMESPACE)) {
-			for (Import anImport : targetModel.getImports()) {
+			for (Import anImport : targetModel.getOwnedImports()) {
 				Namespace namespace = anImport.getImportedNamespace();
 				if ((namespace != null) && !namespace.eIsProxy()) {
 					String importName = anImport.getName();

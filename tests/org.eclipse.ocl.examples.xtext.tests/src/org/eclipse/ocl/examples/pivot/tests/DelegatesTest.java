@@ -951,7 +951,7 @@ public class DelegatesTest extends PivotTestSuite
 	 */
 	public void test_operationDefinedInStdlibBodyRemainsNull() throws ParserException {
 		ExpressionInOCL expr = helper.createQuery("'abc'.oclAsType(String)");
-		OperationCallExp oce = (OperationCallExp) expr.getBodyExpression();
+		OperationCallExp oce = (OperationCallExp) expr.getOwnedBody();
 		Operation o = oce.getReferredOperation();
 		try {
 			@SuppressWarnings({"unused", "null"})

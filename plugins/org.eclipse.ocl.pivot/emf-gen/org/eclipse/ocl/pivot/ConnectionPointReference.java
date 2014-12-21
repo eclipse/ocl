@@ -24,9 +24,9 @@ import java.util.List;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.ConnectionPointReference#getEntry <em>Entry</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.ConnectionPointReference#getExit <em>Exit</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.ConnectionPointReference#getState <em>State</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.ConnectionPointReference#getEntries <em>Entries</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.ConnectionPointReference#getExits <em>Exits</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.ConnectionPointReference#getOwningState <em>Owning State</em>}</li>
  * </ul>
  * </p>
  *
@@ -36,57 +36,57 @@ import java.util.List;
 public interface ConnectionPointReference extends Vertex
 {
 	/**
-	 * Returns the value of the '<em><b>Entry</b></em>' reference list.
+	 * Returns the value of the '<em><b>Entries</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.Pseudostate}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The entryPoint kind pseudo states corresponding to this connection point.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Entry</em>' reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getConnectionPointReference_Entry()
+	 * @return the value of the '<em>Entries</em>' reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getConnectionPointReference_Entries()
 	 * @generated
 	 */
-	List<Pseudostate> getEntry();
+	List<Pseudostate> getEntries();
 
 	/**
-	 * Returns the value of the '<em><b>State</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.State#getConnection <em>Connection</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The State in which the connection point refreshens are defined.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>State</em>' container reference.
-	 * @see #setState(State)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getConnectionPointReference_State()
-	 * @see org.eclipse.ocl.pivot.State#getConnection
-	 * @generated
-	 */
-	State getState();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.ConnectionPointReference#getState <em>State</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>State</em>' container reference.
-	 * @see #getState()
-	 * @generated
-	 */
-	void setState(State value);
-
-	/**
-	 * Returns the value of the '<em><b>Exit</b></em>' reference list.
+	 * Returns the value of the '<em><b>Exits</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.Pseudostate}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The exitPoints kind pseudo states corresponding to this connection point.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Exit</em>' reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getConnectionPointReference_Exit()
+	 * @return the value of the '<em>Exits</em>' reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getConnectionPointReference_Exits()
 	 * @generated
 	 */
-	List<Pseudostate> getExit();
+	List<Pseudostate> getExits();
+
+	/**
+	 * Returns the value of the '<em><b>Owning State</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.State#getOwnedConnections <em>Owned Connections</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The State in which the connection point refreshens are defined.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owning State</em>' container reference.
+	 * @see #setOwningState(State)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getConnectionPointReference_OwningState()
+	 * @see org.eclipse.ocl.pivot.State#getOwnedConnections
+	 * @generated
+	 */
+	State getOwningState();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.ConnectionPointReference#getOwningState <em>Owning State</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning State</em>' container reference.
+	 * @see #getOwningState()
+	 * @generated
+	 */
+	void setOwningState(State value);
 
 } // ConnectionPointReference

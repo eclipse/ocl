@@ -218,7 +218,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	protected @NonNull OperationCallExp createCoercionCallExp(@NonNull OCLExpression sourceExp, @NonNull Operation coercion) {
 		OperationCallExp asCoercionCallExp;
 		asCoercionCallExp = PivotFactory.eINSTANCE.createOperationCallExp();
-		asCoercionCallExp.setSource(sourceExp);
+		asCoercionCallExp.setOwnedSource(sourceExp);
 		asCoercionCallExp.setReferredOperation(coercion);
 		asCoercionCallExp.setType(coercion.getType());
 		asCoercionCallExp.setIsRequired(coercion.isRequired());
@@ -243,7 +243,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	protected @NonNull VariableExp createImplicitVariableExp(@NonNull VariableDeclaration variable) {
 		VariableExp variableExp = context.refreshModelElement(VariableExp.class, PivotPackage.Literals.VARIABLE_EXP, null); // FIXME reuse
 		variableExp.setReferredVariable(variable);
-		variableExp.setImplicit(true);
+		variableExp.setIsImplicit(true);
 		context.setType(variableExp, variable.getType(), variable.isRequired(), variable.getTypeValue());
 		return variableExp;
 	}
@@ -274,7 +274,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		for (NamedElement operation : invocations) {
 			if (operation instanceof Iteration) {
 				Iteration iteration = (Iteration) operation;
-				int iteratorsSize = iteration.getOwnedIterator().size();
+				int iteratorsSize = iteration.getOwnedIterators().size();
 				if (iteratorsSize == requiredIterators) {
 					org.eclipse.ocl.pivot.Class specializedType = iteration.getOwningClass();
 					if (specializedType != null) {
@@ -437,14 +437,14 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			Operation asOperation = null;
 			if (operation instanceof Iteration) {
 				Iteration candidateIteration = (Iteration) operation;
-				int iteratorsSize = candidateIteration.getOwnedIterator().size();
+				int iteratorsSize = candidateIteration.getOwnedIterators().size();
 				if ((iteratorCount == 0) || (iteratorCount == iteratorsSize)) {
 					asOperation = candidateIteration;
 				}
 			}
 			else {
 				Operation candidateOperation = operation;
-				int operationsSize = candidateOperation.getOwnedParameter().size();
+				int operationsSize = candidateOperation.getOwnedParameters().size();
 				if (expressionCount == operationsSize) {
 					asOperation = candidateOperation;
 				}
@@ -474,20 +474,20 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 
 	protected @NonNull OperationCallExp refreshOperationCallExp(@NonNull AbstractNameExpCS csNameExp, @Nullable OCLExpression sourceExp) {
 		OperationCallExp callExp = context.refreshModelElement(OperationCallExp.class, PivotPackage.Literals.OPERATION_CALL_EXP, csNameExp);
-		callExp.setSource(sourceExp);			
+		callExp.setOwnedSource(sourceExp);			
 		return callExp;
 	}
 
 	protected @NonNull OppositePropertyCallExp refreshOppositePropertyCallExp(@NonNull NameExpCS csNameExp, @NonNull OCLExpression sourceExp, @NonNull Property property) {
 		OppositePropertyCallExp callExp = context.refreshModelElement(OppositePropertyCallExp.class, PivotPackage.Literals.OPPOSITE_PROPERTY_CALL_EXP, csNameExp);
-		callExp.setSource(sourceExp);			
+		callExp.setOwnedSource(sourceExp);			
 		callExp.setReferredProperty(property.getOpposite());
 		return callExp;
 	}
 
 	protected @NonNull PropertyCallExp refreshPropertyCallExp(@NonNull NameExpCS csNameExp, @NonNull OCLExpression sourceExp, @NonNull Property property) {
 		PropertyCallExp callExp = context.refreshModelElement(PropertyCallExp.class, PivotPackage.Literals.PROPERTY_CALL_EXP, csNameExp);
-		callExp.setSource(sourceExp);			
+		callExp.setOwnedSource(sourceExp);			
 		callExp.setReferredProperty(property);
 		return callExp;
 	}
@@ -551,7 +551,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			//
 			//	Need to resolve types for operation arguments in order to disambiguate operation names.
 			//
-			resolveOperationArgumentTypes(exampleOperation.getOwnedParameter(), csRoundBracketedClause);
+			resolveOperationArgumentTypes(exampleOperation.getOwnedParameters(), csRoundBracketedClause);
 			//
 			//	Resolve the static operation/iteration by name and known operation argument types.
 			//
@@ -603,9 +603,9 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 					}
 				}
 				if (asCoercion != null) {
-					operationCallExp.setSource(null);
+					operationCallExp.setOwnedSource(null);
 					OperationCallExp asCoercionCallExp = createCoercionCallExp(sourceExp, asCoercion);
-					operationCallExp.setSource(asCoercionCallExp);
+					operationCallExp.setOwnedSource(asCoercionCallExp);
 				}
 			}
 			CS2AS.setPathElement(csPathName, asOperation, matcher.getAmbiguities());
@@ -658,14 +658,14 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			assert csPart != null;
 			context.visitLeft2Right(ConstructorPart.class, csPart);
 		}
-		context.refreshPivotList(ConstructorPart.class, pivotElement.getPart(), csCurlyBracketedClause.getOwnedParts());
+		context.refreshPivotList(ConstructorPart.class, pivotElement.getOwnedParts(), csCurlyBracketedClause.getOwnedParts());
 		return pivotElement;
 	}
 
 	protected @NonNull EnumLiteralExp resolveEnumLiteral(@NonNull ExpCS csExp, @NonNull EnumerationLiteral enumerationLiteral) {
 		EnumLiteralExp expression = context.refreshModelElement(EnumLiteralExp.class, PivotPackage.Literals.ENUM_LITERAL_EXP, csExp);
-		context.setType(expression, enumerationLiteral.getEnumeration(), true, null);
-		expression.setReferredEnumLiteral(enumerationLiteral);
+		context.setType(expression, enumerationLiteral.getOwningEnumeration(), true, null);
+		expression.setReferredLiteral(enumerationLiteral);
 		return expression;
 	}
 
@@ -685,9 +685,9 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 
 	protected @NonNull OCLExpression resolveImplicitAsSet(@NonNull OCLExpression sourceExp, @NonNull Type sourceType, @NonNull InfixExpCS csOperator) {
 		OperationCallExp expression = context.refreshModelElement(OperationCallExp.class, PivotPackage.Literals.OPERATION_CALL_EXP, null);
-		expression.setImplicit(true);
+		expression.setIsImplicit(true);
 		PivotUtil.resetContainer(sourceExp);
-		expression.setSource(sourceExp);
+		expression.setOwnedSource(sourceExp);
 		expression.setName("oclAsSet");
 		resolveOperationCall(expression, csOperator);
 		return expression;
@@ -715,18 +715,18 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			return null;
 		}
 		IteratorExp implicitCollectExp = context.refreshModelElement(IteratorExp.class, PivotPackage.Literals.ITERATOR_EXP, null);
-		implicitCollectExp.setImplicit(true);
+		implicitCollectExp.setIsImplicit(true);
 		PivotUtil.resetContainer(sourceExp);
-		implicitCollectExp.setSource(sourceExp);
+		implicitCollectExp.setOwnedSource(sourceExp);
 		implicitCollectExp.setName(asIteration.getName());
 		context.setReferredIteration(implicitCollectExp, asIteration);
 		Variable iterator = context.refreshModelElement(Variable.class, PivotPackage.Literals.VARIABLE, null); // FIXME reuse
-		Parameter resolvedIterator = asIteration.getOwnedIterator().get(0);
+		Parameter resolvedIterator = asIteration.getOwnedIterators().get(0);
 		iterator.setRepresentedParameter(resolvedIterator);
 		context.refreshName(iterator, "1_");
 		context.setType(iterator, elementType, false, null);
-		iterator.setImplicit(true);
-		implicitCollectExp.getIterator().add(iterator);
+		iterator.setIsImplicit(true);
+		implicitCollectExp.getOwnedIterators().add(iterator);
 		return implicitCollectExp;
 	}
 
@@ -787,7 +787,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				ExpCS csInit = csArgument.getOwnedInitExpression();
 				if (csInit != null) {
 					OCLExpression initExpression = context.visitLeft2Right(OCLExpression.class, csInit);
-					acc.setInitExpression(initExpression);
+					acc.setOwnedInit(initExpression);
 					TypedRefCS csAccType = csArgument.getOwnedType();
 					Type initType = initExpression.getType();
 					Type accType;
@@ -799,7 +799,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 					}
 					context.setType(acc, accType, false, null);
 				}
-				acc.setRepresentedParameter(iteration.getOwnedAccumulator().get(pivotAccumulators.size()));
+				acc.setRepresentedParameter(iteration.getOwnedAccumulators().get(pivotAccumulators.size()));
 				pivotAccumulators.add(acc);
 			}
 			if (csArgument.getOwnedInitExpression() == null) {
@@ -818,7 +818,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				context.addDiagnostic(csNameExp, "Iterate '" + csNameExp.getOwnedPathName() + "' cannot have more than one accumulator");			
 			}
 			else {
-				iterateExp.setResult(pivotAccumulators.get(0));
+				iterateExp.setOwnedResult(pivotAccumulators.get(0));
 			}
 		}
 		else if (pivotAccumulators.size() > 0) {
@@ -851,28 +851,28 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			}
 		}
 		if (pivotBodies.size() != 1) {
-			expression.setBody(context.addBadExpressionError(csNameExp, "Iteration '" + csNameExp.getOwnedPathName() + "' must have exactly one body"));
+			expression.setOwnedBody(context.addBadExpressionError(csNameExp, "Iteration '" + csNameExp.getOwnedPathName() + "' must have exactly one body"));
 		}
 		else {
-			expression.setBody(pivotBodies.get(0));
+			expression.setOwnedBody(pivotBodies.get(0));
 		}
 	}
 
 	protected @NonNull LoopExp resolveIterationCallExp(@NonNull AbstractNameExpCS csNameExp, @NonNull OCLExpression sourceExp, @NonNull Iteration iteration) {
 		LoopExp expression;
-		if (iteration.getOwnedAccumulator().size() > 0) {
+		if (iteration.getOwnedAccumulators().size() > 0) {
 			expression = context.refreshModelElement(IterateExp.class, PivotPackage.Literals.ITERATE_EXP, csNameExp);
 		}
 		else {
 			expression = context.refreshModelElement(IteratorExp.class, PivotPackage.Literals.ITERATOR_EXP, csNameExp);
 		}
-		expression.setSource(sourceExp);
+		expression.setOwnedSource(sourceExp);
 		context.setReferredIteration(expression, iteration);
 		return expression;
 	}
 
 	protected void resolveIterationContent(@NonNull RoundBracketedClauseCS csRoundBracketedClause, @NonNull LoopExp expression) {
-		OCLExpression source = ClassUtil.nonNullState(expression.getSource());
+		OCLExpression source = ClassUtil.nonNullState(expression.getOwnedSource());
 		resolveIterationIterators(csRoundBracketedClause, source, expression);
 		resolveIterationAccumulators(csRoundBracketedClause, expression);
 		resolveOperationArgumentTypes(null, csRoundBracketedClause);
@@ -887,7 +887,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		//
 		//	Explicit iterators
 		//
-		int iterationIteratorsSize = iteration.getOwnedIterator().size();
+		int iterationIteratorsSize = iteration.getOwnedIterators().size();
 		Type sourceType = ((CollectionType)csNameExp.getSourceType()).getElementType();
 		Type sourceElementType = sourceType != null ? metaModelManager.getPrimaryType(sourceType) : null;
 		for (int argIndex = 0; argIndex < csRoundBracketedClause.getOwnedArguments().size(); argIndex++) {
@@ -909,7 +909,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			Variable iterator = PivotUtil.getPivot(Variable.class, csName);
 			if (iterator != null) {
 				context.installPivotUsage(csArgument, iterator);
-				iterator.setRepresentedParameter(iteration.getOwnedIterator().get(pivotIterators.size()));
+				iterator.setRepresentedParameter(iteration.getOwnedIterators().get(pivotIterators.size()));
 				TypedRefCS csType = csArgument.getOwnedType();
 				Type varType = csType != null ? PivotUtil.getPivot(Type.class, csType) : sourceElementType;
 				if (varType == null) {
@@ -927,11 +927,11 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			Variable iterator = context.refreshModelElement(Variable.class, PivotPackage.Literals.VARIABLE, null);
 			context.refreshName(iterator, varName);
 			context.setType(iterator, sourceElementType, false, null);
-			iterator.setImplicit(true);
-			iterator.setRepresentedParameter(iteration.getOwnedIterator().get(pivotIterators.size()));
+			iterator.setIsImplicit(true);
+			iterator.setRepresentedParameter(iteration.getOwnedIterators().get(pivotIterators.size()));
 			pivotIterators.add(iterator);
 		}
-		context.refreshList(expression.getIterator(), pivotIterators);
+		context.refreshList(expression.getOwnedIterators(), pivotIterators);
 	}
 
 	/**
@@ -987,7 +987,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		@SuppressWarnings("null") @NonNull AbstractNameExpCS csNameExp = csRoundBracketedClause.getOwningNameExp();
 		List<OCLExpression> pivotArguments = new ArrayList<OCLExpression>();
 		List<NavigatingArgCS> csArguments = csRoundBracketedClause.getOwnedArguments();
-		List<Parameter> ownedParameters = operation.getOwnedParameter();
+		List<Parameter> ownedParameters = operation.getOwnedParameters();
 		int parametersCount = ownedParameters.size();
 		int csArgumentCount = csArguments.size();
 		if (csArgumentCount > 0) {
@@ -1025,18 +1025,18 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			String boundMessage = ClassUtil.bind(OCLMessages.MismatchedArgumentCount_ERROR_, csArgumentCount, parametersCount);
 			context.addDiagnostic(csNameExp, boundMessage);			
 		}
-		context.refreshList(expression.getArgument(), pivotArguments);
+		context.refreshList(expression.getOwnedArguments(), pivotArguments);
 	}
 
 	protected void resolveOperationCall(@NonNull OperationCallExp expression, @NonNull OperatorExpCS csOperator) {
 		String name = expression.getName();
-		Type sourceType = PivotUtil.getType(expression.getSource());
+		Type sourceType = PivotUtil.getType(expression.getOwnedSource());
 		Invocations invocations = null;
 		if ((sourceType != null) && (name != null)) {
-			invocations = getInvocations(sourceType, null, name, 0, expression.getArgument().size());
+			invocations = getInvocations(sourceType, null, name, 0, expression.getOwnedArguments().size());
 			if ((invocations == null) && name.startsWith("_")) {
 				@SuppressWarnings("null")@NonNull String unescapedName = name.substring(1);				// FIXME Compatibility
-				invocations = getInvocations(sourceType, null, unescapedName, 0, expression.getArgument().size());
+				invocations = getInvocations(sourceType, null, unescapedName, 0, expression.getOwnedArguments().size());
 			}
 		}
 		AbstractOperationMatcher matcher = null;
@@ -1060,7 +1060,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		}
 		if (asOperation == null) {
 			StringBuilder s = new StringBuilder();
-			for (OCLExpression argument : expression.getArgument()) {
+			for (OCLExpression argument : expression.getOwnedArguments()) {
 				Type argumentType = PivotUtil.getType(argument);
 				if (s.length() > 0) {
 					s.append(",");
@@ -1106,7 +1106,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		}
 		Type sourceType = null;
 		Type sourceTypeValue = null;
-		OCLExpression source = callExp.getSource();
+		OCLExpression source = callExp.getOwnedSource();
 		if (source != null) {
 			sourceType = source.getType();
 			sourceTypeValue = source.getTypeValue();
@@ -1115,8 +1115,8 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		@SuppressWarnings("unused")		// Should never happen; just for debugging
 		boolean isConformant = true;
 		if (callExp instanceof OperationCallExp) {
-			List<Parameter> parameters = operation.getOwnedParameter();
-			List<OCLExpression> arguments = ((OperationCallExp)callExp).getArgument();
+			List<Parameter> parameters = operation.getOwnedParameters();
+			List<OCLExpression> arguments = ((OperationCallExp)callExp).getOwnedArguments();
 			int iMax = Math.min(parameters.size(), arguments.size());
 			for (int i = 0; i < iMax; i++) {
 				Parameter parameter = parameters.get(i);
@@ -1132,10 +1132,10 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		}
 		else if (callExp instanceof LoopExp) {
 			if (callExp instanceof IterateExp) {
-				List<Parameter> accumulators = ((Iteration)operation).getOwnedAccumulator();
+				List<Parameter> accumulators = ((Iteration)operation).getOwnedAccumulators();
 				if (accumulators.size() >= 1) {
 					Parameter accumulator = accumulators.get(0);
-					Variable result = ((IterateExp)callExp).getResult();
+					Variable result = ((IterateExp)callExp).getOwnedResult();
 					Type accumulatorType = PivotUtil.getType(accumulator);
 					Type resultType = PivotUtil.getType(result);
 					if ((accumulatorType != null) && (resultType != null)) {
@@ -1145,10 +1145,10 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 					}
 				}
 			}
-			List<Parameter> parameters = ((Iteration)operation).getOwnedParameter();
+			List<Parameter> parameters = ((Iteration)operation).getOwnedParameters();
 			if (parameters.size() >= 1) {
 				Parameter parameter = parameters.get(0);
-				OCLExpression body = ((LoopExp)callExp).getBody();
+				OCLExpression body = ((LoopExp)callExp).getOwnedBody();
 				Type parameterType = PivotUtil.getType(parameter);
 				Type bodyType = PivotUtil.getType(body);
 				if ((bodyType != null) && (parameterType != null)) {
@@ -1209,7 +1209,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		if (formalType == null) {
 			return null;
 		}
-		OCLExpression source = callExp.getSource();
+		OCLExpression source = callExp.getOwnedSource();
 		Type actualType;
 		Type sourceType = source != null ? source.getType() : null;
 		if (sourceType != null) {
@@ -1324,15 +1324,15 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		if (csLast == null) {
 			CollectionItem expression = PivotUtil.getPivot(CollectionItem.class, csCollectionLiteralPart);	
 			if (expression != null) {
-				expression.setItem(pivotFirst);
+				expression.setOwnedItem(pivotFirst);
 			}
 		}
 		else {
 			CollectionRange expression = PivotUtil.getPivot(CollectionRange.class, csCollectionLiteralPart);
 			if (expression != null) {
-				expression.setFirst(pivotFirst);
+				expression.setOwnedFirst(pivotFirst);
 				pivotLast = context.visitLeft2Right(OCLExpression.class, csLast);
-				expression.setLast(pivotLast);
+				expression.setOwnedLast(pivotLast);
 			}
 		}
 		Type type = pivotFirst.getType();
@@ -1370,7 +1370,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			ExpCS csInitExpression = csConstructorPart.getOwnedInitExpression();
 			if (csInitExpression != null) {
 				OCLExpression initExpression = context.visitLeft2Right(OCLExpression.class, csInitExpression);
-				pivotElement.setInitExpression(initExpression);
+				pivotElement.setOwnedInit(initExpression);
 			}
 		}
 		return pivotElement;
@@ -1409,11 +1409,11 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			ExpCS csThen = csIfExp.getOwnedThenExpression();
 			ExpCS csElse = csIfExp.getOwnedElseExpression();
 			if ((csIf != null) && (csThen != null) && (csElse != null)) {
-				expression.setCondition(context.visitLeft2Right(OCLExpression.class, csIf));
+				expression.setOwnedCondition(context.visitLeft2Right(OCLExpression.class, csIf));
 				OCLExpression thenExpression = context.visitLeft2Right(OCLExpression.class, csThen);
-				expression.setThenExpression(thenExpression);
+				expression.setOwnedThen(thenExpression);
 				OCLExpression elseExpression = context.visitLeft2Right(OCLExpression.class, csElse);
-				expression.setElseExpression(elseExpression);
+				expression.setOwnedElse(elseExpression);
 				Type thenType = thenExpression != null ? thenExpression.getType() : null;
 				Type elseType = elseExpression != null ? elseExpression.getType() : null;
 				Type thenTypeValue = thenExpression != null ? thenExpression.getTypeValue() : null;
@@ -1467,12 +1467,12 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		ExpCS csSource = csOperator.getSource();
 		if (csSource != null) {
 			OCLExpression source = context.visitLeft2Right(OCLExpression.class, csSource);
-			expression.setSource(source);
+			expression.setOwnedSource(source);
 			ExpCS csArgument = csOperator.getArgument();
 			if (csArgument != null) {
 				OCLExpression argument = context.visitLeft2Right(OCLExpression.class, csArgument);
 				List<? extends OCLExpression> newElements = argument != null ? Collections.singletonList(argument) : Collections.<OCLExpression>emptyList();
-				context.refreshList(expression.getArgument(), newElements);
+				context.refreshList(expression.getOwnedArguments(), newElements);
 				Type sourceType = PivotUtil.getType(source);
 				Type argumentType = PivotUtil.getType(argument);
 				if ((sourceType != null) && (argumentType != null)) {
@@ -1505,7 +1505,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 							if (PivotConstants.OBJECT_NAVIGATION_OPERATOR.equals(navigationOperatorName)) {
 								implicitCollectExp = resolveImplicitCollect(sourceExp, csOperator, csNameExp);
 								if (implicitCollectExp != null) {
-									@SuppressWarnings("null")@NonNull Variable iterator = implicitCollectExp.getIterator().get(0);
+									@SuppressWarnings("null")@NonNull Variable iterator = implicitCollectExp.getOwnedIterators().get(0);
 									collectedSourceExp = createImplicitVariableExp(iterator);
 								}
 							}
@@ -1537,7 +1537,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 						//
 						if (callExp instanceof CallExp) {
 							if (implicitCollectExp != null) {
-								implicitCollectExp.setBody(callExp);
+								implicitCollectExp.setOwnedBody(callExp);
 								resolveOperationReturnType(implicitCollectExp);
 								navigatingExp = implicitCollectExp;
 							}
@@ -1589,7 +1589,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				else {
 					letExp = context.refreshModelElement(LetExp.class, PivotPackage.Literals.LET_EXP, null); // FIXME reuse
 				}
-				letExp.setVariable(variable);		
+				letExp.setOwnedVariable(variable);		
 				ExpCS csInitExpression = csLetVariable.getOwnedInitExpression();
 				if (csInitExpression != null) {
 					TypedRefCS csVariableType = csLetVariable.getOwnedType();
@@ -1609,13 +1609,13 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 							}
 						}
 					}
-					variable.setInitExpression(initExpression);
+					variable.setOwnedInit(initExpression);
 					if (variableType == null) {
 						variableType = initType;
 					}
 					context.setType(variable, variableType, isRequired, initTypeValue);
 					if (lastLetExp != null) {
-						lastLetExp.setIn(letExp);
+						lastLetExp.setOwnedIn(letExp);
 						context.installPivotUsage(csLetExp, letExp);
 					}
 					else {
@@ -1630,10 +1630,10 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			ExpCS csIn = csLetExp.getOwnedInExpression();
 			if (csIn != null) {
 				OCLExpression in = context.visitLeft2Right(OCLExpression.class, csIn);
-				lastLetExp.setIn(in);
+				lastLetExp.setOwnedIn(in);
 				if (in != null) {
 					Type type = in.getType();
-					for (OCLExpression letExp = firstLetExp; (letExp != in) && (letExp != null); letExp = ((LetExp)letExp).getIn()) {
+					for (OCLExpression letExp = firstLetExp; (letExp != in) && (letExp != null); letExp = ((LetExp)letExp).getOwnedIn()) {
 						context.setType(letExp, type, in.isRequired(), in.getTypeValue());
 					}
 				}
@@ -1770,7 +1770,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		if (csSource != null) {
 			OCLExpression source = context.visitLeft2Right(OCLExpression.class, csSource);
 			if (source != null) {
-				asCallExp.setSource(source);
+				asCallExp.setOwnedSource(source);
 				Type sourceType = PivotUtil.getType(source);
 				if (sourceType != null) {
 					resolveOperationCall(asCallExp, csPrefixExp);
@@ -1816,7 +1816,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				context.visitLeft2Right(TupleLiteralPart.class, csPart);
 			}
 			String tupleTypeName = "Tuple"; //ownedCollectionType.getName();
-			List<TupleLiteralPart> parts = expression.getPart();
+			List<TupleLiteralPart> parts = expression.getOwnedParts();
 			assert parts != null;
 			Type type = standardLibrary.getCompleteModel().getTupleType(tupleTypeName, parts, null);
 			context.setType(expression, type, true, null);
@@ -1831,7 +1831,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			ExpCS csInitExpression = csTupleLiteralPart.getOwnedInitExpression();
 			if (csInitExpression != null) {
 				OCLExpression initExpression = context.visitLeft2Right(OCLExpression.class, csInitExpression);
-				pivotElement.setInitExpression(initExpression);
+				pivotElement.setOwnedInit(initExpression);
 				TypedRefCS csType = csTupleLiteralPart.getOwnedType();
 				Type type = csType != null ? PivotUtil.getPivot(Type.class, csType) : initExpression.getType();
 				context.setType(pivotElement, type, initExpression.isRequired(), null);
@@ -1875,7 +1875,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				}
 				context.setType(variable, type, initExpression.isRequired(), initExpression.getTypeValue());
 			}
-			variable.setInitExpression(initExpression);
+			variable.setOwnedInit(initExpression);
 		}
 		return variable;
 	}	

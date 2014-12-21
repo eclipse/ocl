@@ -64,8 +64,8 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 		protected @NonNull CollectionType createSpecialization(@NonNull CollectionTypeParameters<Type> typeParameters) {
 			org.eclipse.ocl.pivot.Class unspecializedType = getPivotClass();
 			String typeName = unspecializedType.getName();
-			TemplateSignature templateSignature = unspecializedType.getOwnedTemplateSignature();
-			List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
+			TemplateSignature templateSignature = unspecializedType.getOwnedSignature();
+			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
 			EClass eClass = unspecializedType.eClass();
 			EFactory eFactoryInstance = eClass.getEPackage().getEFactoryInstance();
 			CollectionType specializedType = (CollectionType) eFactoryInstance.create(eClass);		
@@ -75,8 +75,8 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 			assert formalParameter != null;
 			Type elementType = typeParameters.getElementType();
 			TemplateParameterSubstitution templateParameterSubstitution = CompleteInheritanceImpl.createTemplateParameterSubstitution(formalParameter, elementType);
-			templateBinding.getOwnedTemplateParameterSubstitutions().add(templateParameterSubstitution);
-			specializedType.getOwnedTemplateBindings().add(templateBinding);
+			templateBinding.getOwnedSubstitutions().add(templateParameterSubstitution);
+			specializedType.getOwnedBindings().add(templateBinding);
 			getCompleteModel().resolveSuperClasses(specializedType, unspecializedType);
 			CollectionType specializedCollectionType = specializedType;
 			specializedCollectionType.setElementType(typeParameters.getElementType());
@@ -99,8 +99,8 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 		
 		@Override
 		public synchronized @Nullable CollectionType findCollectionType(@NonNull CollectionTypeParameters<Type> typeParameters) {
-			TemplateSignature templateSignature = getPivotClass().getOwnedTemplateSignature();
-			List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
+			TemplateSignature templateSignature = getPivotClass().getOwnedSignature();
+			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
 			if (templateParameters.size() != 1) {
 				return null;
 			}
@@ -259,7 +259,7 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 			if (completeClass == null) {
 				completeClass = name2completeClass2.get(name);
 				if (completeClass == null) {
-					if (partialClass.getOwnedTemplateSignature() == null) {
+					if (partialClass.getOwnedSignature() == null) {
 						completeClass = (CompleteClassInternal) PivotFactory.eINSTANCE.createCompleteClass();
 					}
 					else if (partialClass instanceof CollectionType) {

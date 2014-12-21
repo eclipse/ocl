@@ -253,7 +253,7 @@ public class ElementUtil
 					for (org.eclipse.ocl.pivot.Package asPackage: ((Model)eRoot).getOwnedPackages()) {
 						for (org.eclipse.ocl.pivot.Class asType: asPackage.getOwnedClasses()) {
 							for (Constraint asConstraint : asType.getOwnedInvariants()) {
-								LanguageExpression specification = asConstraint.getSpecification();
+								LanguageExpression specification = asConstraint.getOwnedSpecification();
 								if (specification != null) {
 									return metaModelManager.getQueryOrThrow(specification);
 								}
@@ -280,7 +280,7 @@ public class ElementUtil
 		}
 		TemplateBinding templateBinding = (TemplateBinding) csTemplateBinding.getPivot();
 		TemplateSignature templateSignature = templateBinding.getTemplateSignature();
-		List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
+		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
 		if (templateParameters.size() <= index) {
 			return null;
 		}
@@ -459,8 +459,8 @@ public class ElementUtil
 			if (templateParameter == null) {
 				return true;
 			}
-			TemplateSignature signature = templateParameter.getOwningTemplateSignature();
-			TemplateableElement template = signature.getOwningTemplateableElement();
+			TemplateSignature signature = templateParameter.getOwningSignature();
+			TemplateableElement template = signature.getOwningElement();
 			if (template != type) {
 				return true;
 			}

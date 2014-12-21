@@ -12,6 +12,8 @@ package org.eclipse.ocl.pivot;
 
 import java.util.List;
 
+import org.eclipse.jdt.annotation.NonNull;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Navigation Call Exp</b></em>'.
@@ -21,7 +23,7 @@ import java.util.List;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.NavigationCallExp#getNavigationSource <em>Navigation Source</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.NavigationCallExp#getQualifier <em>Qualifier</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.NavigationCallExp#getQualifiers <em>Qualifiers</em>}</li>
  * </ul>
  * </p>
  *
@@ -32,7 +34,7 @@ public interface NavigationCallExp
 		extends FeatureCallExp {
 
 	/**
-	 * Returns the value of the '<em><b>Qualifier</b></em>' reference list.
+	 * Returns the value of the '<em><b>Qualifiers</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.OCLExpression}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -40,11 +42,11 @@ public interface NavigationCallExp
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Qualifier</em>' reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getNavigationCallExp_Qualifier()
+	 * @return the value of the '<em>Qualifiers</em>' reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getNavigationCallExp_Qualifiers()
 	 * @generated
 	 */
-	List<OCLExpression> getQualifier();
+	@NonNull List<OCLExpression> getQualifiers();
 
 	/**
 	 * Returns the value of the '<em><b>Navigation Source</b></em>' reference.

@@ -143,7 +143,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		ConstraintCS csElement = context.refreshNamedElement(ConstraintCS.class, BaseCSPackage.Literals.CONSTRAINT_CS, object);
 		if (csElement != null) {
 			Namespace namespace = PivotUtil.getNamespace(object);
-			LanguageExpression specification = object.getSpecification();
+			LanguageExpression specification = object.getOwnedSpecification();
 			if ((specification != null) && (namespace != null)) {
 				specification.accept(this);					// Deep search for references
 				ExpSpecificationCS csSpec = context.refreshElement(ExpSpecificationCS.class, EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, specification);
@@ -193,13 +193,13 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 
 	@Override
 	public ElementCS visitExpressionInOCL(@NonNull ExpressionInOCL object) {
-		safeVisit(object.getBodyExpression());
+		safeVisit(object.getOwnedBody());
 		return super.visitExpressionInOCL(object);
 	}
 
 	@Override
 	public ElementCS visitOperation(@NonNull Operation object) {
-		if ((object.getPrecondition().size() <= 0) && (object.getBodyExpression() == null) && (object.getPostcondition().size() <= 0)) {
+		if ((object.getOwnedPreconditions().size() <= 0) && (object.getBodyExpression() == null) && (object.getOwnedPostconditions().size() <= 0)) {
 			return null;
 		}
 		org.eclipse.ocl.pivot.Class modelType = object.getOwningClass();
@@ -214,9 +214,9 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 			if (owningPackage != null) {
 				importPackage(owningPackage);
 			}
-			context.refreshList(csContext.getOwnedParameters(), context.visitDeclarations(ParameterCS.class, object.getOwnedParameter(), null));
-			context.refreshList(csContext.getOwnedPreconditions(), context.visitDeclarations(ConstraintCS.class, object.getPrecondition(), null));
-			context.refreshList(csContext.getOwnedPostconditions(), context.visitDeclarations(ConstraintCS.class, object.getPostcondition(), null));
+			context.refreshList(csContext.getOwnedParameters(), context.visitDeclarations(ParameterCS.class, object.getOwnedParameters(), null));
+			context.refreshList(csContext.getOwnedPreconditions(), context.visitDeclarations(ConstraintCS.class, object.getOwnedPreconditions(), null));
+			context.refreshList(csContext.getOwnedPostconditions(), context.visitDeclarations(ConstraintCS.class, object.getOwnedPostconditions(), null));
 			context.refreshList(csContext.getOwnedBodies(), context.visitDeclarationAsList(ExpSpecificationCS.class, object.getBodyExpression()));
 			context.setScope(savedScope);
 		}
@@ -272,7 +272,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 
 	@Override
 	public ElementCS visitProperty(@NonNull Property object) {
-		if (object.getDefaultExpression() == null) {
+		if (object.getOwnedExpression() == null) {
 			return null;
 		}
 		org.eclipse.ocl.pivot.Class modelType = object.getOwningClass();
@@ -286,7 +286,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 			importPackage(modelPackage);
 			// FIXME derivationInvariants here rather than in Classifier
 //			context.refreshList(csContext.getRules(), context.visitDeclarations(ContextConstraintCS.class, ownedRule, null));
-			context.refreshList(csContext.getOwnedDefaultExpressions(), context.visitDeclarationAsList(ExpSpecificationCS.class, object.getDefaultExpression()));
+			context.refreshList(csContext.getOwnedDefaultExpressions(), context.visitDeclarationAsList(ExpSpecificationCS.class, object.getOwnedExpression()));
 			context.setScope(savedScope);
 		}
 		return csContext;
@@ -294,7 +294,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 
 	protected <T extends ConstraintCS> void refreshPropertyConstraints(@NonNull Class<T> csConstraintClass, @NonNull List<? super T> csPropertyConstraints, Property object) {
 		T csConstraint = null;
-		LanguageExpression defaultExpression = object.getDefaultExpression();
+		LanguageExpression defaultExpression = object.getOwnedExpression();
 		if (defaultExpression != null) {
 			csConstraint = context.visitDeclaration(csConstraintClass, defaultExpression);
 		}

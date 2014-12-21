@@ -149,7 +149,7 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 	@Override
 	public Continuation<?> visitCollectionLiteralExpCS(@NonNull CollectionLiteralExpCS csElement) {
 		@NonNull CollectionLiteralExp pivotElement = context.refreshModelElement(CollectionLiteralExp.class, PivotPackage.Literals.COLLECTION_LITERAL_EXP, csElement);
-		context.refreshPivotList(CollectionLiteralPart.class, pivotElement.getPart(), csElement.getOwnedParts());
+		context.refreshPivotList(CollectionLiteralPart.class, pivotElement.getOwnedParts(), csElement.getOwnedParts());
 		return null;
 	}
 
@@ -176,7 +176,7 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 		ExpSpecificationCS csMessageSpecification = (ExpSpecificationCS)csElement.getOwnedMessageSpecification();
 		if (csMessageSpecification == null) {
 			ExpressionInOCL asSpecification = PivotUtil.getPivot(ExpressionInOCL.class, csStatusSpecification);
-			asConstraint.setSpecification(asSpecification);
+			asConstraint.setOwnedSpecification(asSpecification);
 		}
 		else {
 			Map<String, Type> tupleParts = new HashMap<String, Type>();
@@ -184,7 +184,7 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 			tupleParts.put(PivotConstants.STATUS_PART_NAME, standardLibrary.getBooleanType());
 			TupleType tupleType = metaModelManager.getCompleteModel().getTupleManager().getTupleType("Tuple", tupleParts);
 			Property statusProperty = ClassUtil.getNamedElement(tupleType.getOwnedProperties(), PivotConstants.STATUS_PART_NAME);
-			LanguageExpression asSpecification = asConstraint.getSpecification();
+			LanguageExpression asSpecification = asConstraint.getOwnedSpecification();
 			//
 			ExpressionInOCL asExpressionInOCL;
 			if (asSpecification instanceof ExpressionInOCL) {
@@ -192,9 +192,9 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 			}
 			else {
 				asExpressionInOCL = PivotFactory.eINSTANCE.createExpressionInOCL();
-				asConstraint.setSpecification(asExpressionInOCL);
+				asConstraint.setOwnedSpecification(asExpressionInOCL);
 			}
-			OCLExpression asExpression = asExpressionInOCL.getBodyExpression();
+			OCLExpression asExpression = asExpressionInOCL.getOwnedBody();
 			//
 			PropertyCallExp asTuplePartExp;
 			if (asExpression instanceof PropertyCallExp) {
@@ -202,12 +202,12 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 			}
 			else {
 				asTuplePartExp = PivotFactory.eINSTANCE.createPropertyCallExp();
-				asExpressionInOCL.setBodyExpression(asTuplePartExp);
+				asExpressionInOCL.setOwnedBody(asTuplePartExp);
 			}
 			asTuplePartExp.setReferredProperty(statusProperty);
 			asTuplePartExp.setType(statusProperty.getType());
 			asTuplePartExp.setIsRequired(true);
-			asExpression = asTuplePartExp.getSource();
+			asExpression = asTuplePartExp.getOwnedSource();
 			//
 			TupleLiteralExp asTupleLiteralExp;
 			if (asExpression instanceof TupleLiteralExp) {
@@ -215,7 +215,7 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 			}
 			else {
 				asTupleLiteralExp = PivotFactory.eINSTANCE.createTupleLiteralExp();
-				asTuplePartExp.setSource(asTupleLiteralExp);
+				asTuplePartExp.setOwnedSource(asTupleLiteralExp);
 			}
 			asTupleLiteralExp.setType(tupleType);
 			asTupleLiteralExp.setIsRequired(true);
@@ -226,7 +226,7 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 				parts.add(asMessagePart);
 				parts.add(asStatusPart);
 			}
-			context.refreshList(asTupleLiteralExp.getPart(), parts);
+			context.refreshList(asTupleLiteralExp.getOwnedParts(), parts);
 		}
 		return null;
 	}
@@ -474,7 +474,7 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 	@Override
 	public Continuation<?> visitTupleLiteralExpCS(@NonNull TupleLiteralExpCS csElement) {
 		@NonNull TupleLiteralExp pivotElement = context.refreshModelElement(TupleLiteralExp.class, PivotPackage.Literals.TUPLE_LITERAL_EXP, csElement);	
-		context.refreshPivotList(TupleLiteralPart.class, pivotElement.getPart(), csElement.getOwnedParts());
+		context.refreshPivotList(TupleLiteralPart.class, pivotElement.getOwnedParts(), csElement.getOwnedParts());
 		return null;
 	}
 

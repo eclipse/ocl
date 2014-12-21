@@ -22,9 +22,9 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.IfExp#getCondition <em>Condition</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.IfExp#getElseExpression <em>Else Expression</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.IfExp#getThenExpression <em>Then Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.IfExp#getOwnedCondition <em>Owned Condition</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.IfExp#getOwnedElse <em>Owned Else</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.IfExp#getOwnedThen <em>Owned Then</em>}</li>
  * </ul>
  * </p>
  *
@@ -35,79 +35,79 @@ public interface IfExp
 		extends OCLExpression {
 
 	/**
-	 * Returns the value of the '<em><b>Condition</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Condition</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Condition</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Condition</em>' containment reference.
-	 * @see #setCondition(OCLExpression)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getIfExp_Condition()
+	 * @return the value of the '<em>Owned Condition</em>' containment reference.
+	 * @see #setOwnedCondition(OCLExpression)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getIfExp_OwnedCondition()
 	 * @generated
 	 */
-	OCLExpression getCondition();
+	OCLExpression getOwnedCondition();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.IfExp#getCondition <em>Condition</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.IfExp#getOwnedCondition <em>Owned Condition</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Condition</em>' containment reference.
-	 * @see #getCondition()
+	 * @param value the new value of the '<em>Owned Condition</em>' containment reference.
+	 * @see #getOwnedCondition()
 	 * @generated
 	 */
-	void setCondition(OCLExpression value);
+	void setOwnedCondition(OCLExpression value);
 
 	/**
-	 * Returns the value of the '<em><b>Then Expression</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Then</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Then Expression</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Then Expression</em>' containment reference.
-	 * @see #setThenExpression(OCLExpression)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getIfExp_ThenExpression()
+	 * @return the value of the '<em>Owned Then</em>' containment reference.
+	 * @see #setOwnedThen(OCLExpression)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getIfExp_OwnedThen()
 	 * @generated
 	 */
-	OCLExpression getThenExpression();
+	OCLExpression getOwnedThen();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.IfExp#getThenExpression <em>Then Expression</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.IfExp#getOwnedThen <em>Owned Then</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Then Expression</em>' containment reference.
-	 * @see #getThenExpression()
+	 * @param value the new value of the '<em>Owned Then</em>' containment reference.
+	 * @see #getOwnedThen()
 	 * @generated
 	 */
-	void setThenExpression(OCLExpression value);
+	void setOwnedThen(OCLExpression value);
 
 	/**
-	 * Returns the value of the '<em><b>Else Expression</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Else</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Else Expression</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Else Expression</em>' containment reference.
-	 * @see #setElseExpression(OCLExpression)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getIfExp_ElseExpression()
+	 * @return the value of the '<em>Owned Else</em>' containment reference.
+	 * @see #setOwnedElse(OCLExpression)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getIfExp_OwnedElse()
 	 * @generated
 	 */
-	OCLExpression getElseExpression();
+	OCLExpression getOwnedElse();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.IfExp#getElseExpression <em>Else Expression</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.IfExp#getOwnedElse <em>Owned Else</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Else Expression</em>' containment reference.
-	 * @see #getElseExpression()
+	 * @param value the new value of the '<em>Owned Else</em>' containment reference.
+	 * @see #getOwnedElse()
 	 * @generated
 	 */
-	void setElseExpression(OCLExpression value);
+	void setOwnedElse(OCLExpression value);
 
 	/**
 	 * <!-- begin-user-doc -->

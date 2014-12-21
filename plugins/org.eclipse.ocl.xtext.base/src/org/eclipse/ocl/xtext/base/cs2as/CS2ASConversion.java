@@ -652,7 +652,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		}
 		if (pivotElement instanceof TemplateableElement) {
 			TemplateableElement templateableElement = (TemplateableElement)pivotElement;
-			TemplateSignature templateSignature = templateableElement.getOwnedTemplateSignature();
+			TemplateSignature templateSignature = templateableElement.getOwnedSignature();
 			if (templateSignature != null) {
 				pivotTemplateSignatures.add(templateSignature);
 			}
@@ -665,7 +665,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 	}
 
 	public void handleVisitNamedElement(@NonNull NamedElementCS csNamedElement, @NonNull NamedElement pivotElement) {
-		List<Element> pivotAnnotations = pivotElement.getOwnedAnnotation();
+		List<Element> pivotAnnotations = pivotElement.getOwnedAnnotations();
 		List<AnnotationElementCS> csAnnotations = csNamedElement.getOwnedAnnotations();
 //		if ((csAnnotations.size() <= 1) && (pivotAnnotations.size() <= 1)) {
 			refreshPivotList(Annotation.class, pivotAnnotations, csAnnotations);
@@ -863,7 +863,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		ICompositeNode node = NodeModelUtils.getNode(csElement);
 		if (node != null) {
 			List<ILeafNode> documentationNodes = CS2AS.getDocumentationNodes(node);
-			List<Comment> ownedComments = pivotElement.getOwnedComment();
+			List<Comment> ownedComments = pivotElement.getOwnedComments();
 			if (documentationNodes != null) {
 				List<String> documentationStrings = new ArrayList<String>();
 				for (ILeafNode documentationNode : documentationNodes) {
@@ -921,7 +921,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 //		System.out.println(ClassUtil.debugSimpleName(pivotSpecification) + " " + pivotSpecification);
 		EObject eContainer = pivotSpecification.eContainer();
 		EStructuralFeature eContainingFeature = pivotSpecification.eContainingFeature();
-		if (eContainingFeature == PivotPackage.Literals.CONSTRAINT__SPECIFICATION) {
+		if (eContainingFeature == PivotPackage.Literals.CONSTRAINT__OWNED_SPECIFICATION) {
 			Constraint contextConstraint = (Constraint)eContainer;
 			eContainer = contextConstraint.eContainer();
 			eContainingFeature = contextConstraint.eContainingFeature();
@@ -932,7 +932,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 				}
 				setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, contextType, null);
 			}
-			else if (eContainingFeature == PivotPackage.Literals.OPERATION__PRECONDITION) {
+			else if (eContainingFeature == PivotPackage.Literals.OPERATION__OWNED_PRECONDITIONS) {
 				Operation contextOperation = (Operation)eContainer;
 				if (contextOperation != null) {
 					setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, contextOperation.getOwningClass(), null);
@@ -942,7 +942,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 					setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, null, null);
 				}
 			}
-			else if (eContainingFeature == PivotPackage.Literals.OPERATION__POSTCONDITION) {
+			else if (eContainingFeature == PivotPackage.Literals.OPERATION__OWNED_POSTCONDITIONS) {
 				Operation contextOperation = (Operation)eContainer;
 				if (contextOperation != null) {
 					setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, contextOperation.getOwningClass(), null);
@@ -959,7 +959,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 				logger.error("Unsupported refreshContextVariable for a constraint: " + eContainingFeature);
 			}
 		}
-		else if (eContainingFeature == PivotPackage.Literals.PROPERTY__DEFAULT_EXPRESSION) {
+		else if (eContainingFeature == PivotPackage.Literals.PROPERTY__OWNED_EXPRESSION) {
 			Property contextProperty = (Property)eContainer;
 			if (contextProperty != null) {
 				setPropertyContext(pivotSpecification, contextProperty);
@@ -1054,14 +1054,14 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 	public void refreshTemplateSignature(@NonNull TemplateableElementCS csTemplateableElement, @NonNull TemplateableElement pivotTemplateableElement) {
 		TemplateSignatureCS csTemplateSignature = csTemplateableElement.getOwnedSignature();
 		if (csTemplateSignature == null) {
-			if (pivotTemplateableElement.getOwnedTemplateSignature() != null) {
-				pivotTemplateableElement.setOwnedTemplateSignature(null);
+			if (pivotTemplateableElement.getOwnedSignature() != null) {
+				pivotTemplateableElement.setOwnedSignature(null);
 			}
 			return;
 		}
 		TemplateSignature pivotTemplateSignature = PivotUtil.getPivot(TemplateSignature.class, csTemplateSignature);
-		if (pivotTemplateableElement.getOwnedTemplateSignature() != pivotTemplateSignature) {
-			pivotTemplateableElement.setOwnedTemplateSignature(pivotTemplateSignature);
+		if (pivotTemplateableElement.getOwnedSignature() != pivotTemplateSignature) {
+			pivotTemplateableElement.setOwnedSignature(pivotTemplateSignature);
 		}
 	}
 
@@ -1134,8 +1134,8 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 					}
 				}
 				installPivotReference(csTemplateBinding, templateBinding, BaseCSPackage.Literals.PIVOTABLE_ELEMENT_CS__PIVOT);
-				@SuppressWarnings("null") @NonNull List<TemplateParameterSubstitution> parameterSubstitutions = templateBinding.getOwnedTemplateParameterSubstitutions();
-				@NonNull List<TemplateParameter> templateParameters = templateSignature.getOwnedTemplateParameters();
+				@SuppressWarnings("null") @NonNull List<TemplateParameterSubstitution> parameterSubstitutions = templateBinding.getOwnedSubstitutions();
+				@NonNull List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
 				@SuppressWarnings("null") @NonNull List<TemplateParameterSubstitutionCS> csParameterSubstitutions = csTemplateBinding.getOwnedSubstitutions();
 				specializeTemplateParameterSubstitutions(parameterSubstitutions, templateParameters, csParameterSubstitutions);
 				assert templateSignatures.get(i) == templateBindings.get(i).getTemplateSignature();
@@ -1238,7 +1238,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 			//
 			//	Refresh the pivot specialization bindings and parameter substitutions
 			//
-			@SuppressWarnings("null") @NonNull List<TemplateBinding> templateBindings = specializedPivotElement.getOwnedTemplateBindings();
+			@SuppressWarnings("null") @NonNull List<TemplateBinding> templateBindings = specializedPivotElement.getOwnedBindings();
 			List<TemplateSignature> templateSignatures = getTemplateSignatures(unspecializedPivotElement);
 			List<TemplateBindingCS> csTemplateBindings = getTemplateBindings(csElement);
 			specializeTemplateBindings(templateBindings, templateSignatures, csTemplateBindings);

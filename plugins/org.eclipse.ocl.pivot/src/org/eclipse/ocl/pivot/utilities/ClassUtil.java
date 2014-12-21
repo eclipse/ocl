@@ -525,11 +525,11 @@ public class ClassUtil
 	public static @NonNull Type[] getOperationParameterTypes(@NonNull Operation anOperation) {
 		Type[] parameterTypes;
 		int iParameter = 0;
-		List<? extends TypedElement> ownedParameters = anOperation.getOwnedParameter();
+		List<? extends TypedElement> ownedParameters = anOperation.getOwnedParameters();
 		if (anOperation instanceof Iteration) {
 			Iteration anIteration = (Iteration)anOperation;
-			List<? extends TypedElement> ownedIterators = anIteration.getOwnedIterator();
-			List<? extends TypedElement> ownedAccumulators = anIteration.getOwnedAccumulator();
+			List<? extends TypedElement> ownedIterators = anIteration.getOwnedIterators();
+			List<? extends TypedElement> ownedAccumulators = anIteration.getOwnedAccumulators();
 			parameterTypes = new Type[ownedIterators.size() + ownedAccumulators.size() + ownedParameters.size()];
 			for (TypedElement ownedIterator : ownedIterators) {
 				parameterTypes[iParameter++] = ownedIterator.getType();

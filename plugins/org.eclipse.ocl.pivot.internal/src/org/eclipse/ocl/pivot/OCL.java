@@ -216,7 +216,7 @@ public class OCL {
 	 * @see #evaluate(Object, ExpressionInOCL)
 	 */
 	public boolean check(Object context, @NonNull Constraint constraint) {
-		LanguageExpression specification =  constraint.getSpecification();
+		LanguageExpression specification =  constraint.getOwnedSpecification();
 		if (specification == null) {
 			return false;
 		}
@@ -254,7 +254,7 @@ public class OCL {
 	 */
 	public boolean check(Object context, @NonNull ExpressionInOCL specification) {
 		StandardLibrary stdlib = getEnvironment().getStandardLibrary();
-		if (specification.getBodyExpression().getType() != stdlib.getBooleanType()) {
+		if (specification.getOwnedBody().getType() != stdlib.getBooleanType()) {
 			throw new IllegalArgumentException("constraint is not boolean"); //$NON-NLS-1$
 		}
 		try {
@@ -355,7 +355,7 @@ public class OCL {
 	 * @see #createQuery(ExpressionInOCL)
 	 */
 	public @NonNull Query createQuery(@NonNull ExpressionInOCL query) {
-		ClassUtil.nonNullState(query.getBodyExpression());
+		ClassUtil.nonNullState(query.getOwnedBody());
 		return new QueryImpl(this, query);
 	}
 
@@ -378,7 +378,7 @@ public class OCL {
 	 * @see #createQuery(ExpressionInOCL)
 	 */
 	public Query createQuery(@NonNull Constraint constraint) throws ParserException {
-		LanguageExpression specification = ClassUtil.nonNullState(constraint.getSpecification());
+		LanguageExpression specification = ClassUtil.nonNullState(constraint.getOwnedSpecification());
 		ExpressionInOCL query = getMetaModelManager().getQueryOrThrow(specification);
 		return new QueryImpl(this, query);
 	}
@@ -539,13 +539,13 @@ public class OCL {
 	 * that may be encountered.
 	 */
 	public @Nullable ExpressionInOCL getSpecification(@NonNull Constraint constraint) throws ParserException {
-		LanguageExpression specification = constraint.getSpecification();
+		LanguageExpression specification = constraint.getOwnedSpecification();
 		if (specification == null) {
 			return null;
 		}
 		if (specification instanceof ExpressionInOCL) {
 			ExpressionInOCL query = (ExpressionInOCL)specification;
-			if ((query.getBodyExpression() != null) || (query.getBody() == null)) {
+			if ((query.getOwnedBody() != null) || (query.getBody() == null)) {
 				return query;
 			}
 		}

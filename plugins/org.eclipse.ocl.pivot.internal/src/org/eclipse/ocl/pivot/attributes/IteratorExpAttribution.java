@@ -29,16 +29,16 @@ public class IteratorExpAttribution extends AbstractAttribution
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		IteratorExp targetExpression = (IteratorExp)target;
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
-		if (containmentFeature == PivotPackage.Literals.LOOP_EXP__BODY) {
-			OCLExpression source = targetExpression.getSource();
+		if (containmentFeature == PivotPackage.Literals.LOOP_EXP__OWNED_BODY) {
+			OCLExpression source = targetExpression.getOwnedSource();
 			environmentView.addElementsOfScope(source.getType(), scopeView);
-			environmentView.addElements(targetExpression.getIterator());
+			environmentView.addElements(targetExpression.getOwnedIterators());
 		}
-		else if (containmentFeature == PivotPackage.Literals.LOOP_EXP__ITERATOR) {
-			OCLExpression source = targetExpression.getSource();
+		else if (containmentFeature == PivotPackage.Literals.LOOP_EXP__OWNED_ITERATORS) {
+			OCLExpression source = targetExpression.getOwnedSource();
 			environmentView.addElementsOfScope(source.getType(), scopeView);
 			EObject child = scopeView.getChild();
-			for (Variable iterator : targetExpression.getIterator()) {
+			for (Variable iterator : targetExpression.getOwnedIterators()) {
 				if (iterator != null) {
 					environmentView.addNamedElement(iterator);
 					if (iterator == child) {

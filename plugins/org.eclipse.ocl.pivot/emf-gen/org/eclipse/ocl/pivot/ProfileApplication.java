@@ -20,8 +20,8 @@ package org.eclipse.ocl.pivot;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.ProfileApplication#getAppliedProfile <em>Applied Profile</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.ProfileApplication#getApplyingPackage <em>Applying Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.ProfileApplication#isStrict <em>Is Strict</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.ProfileApplication#getOwningPackage <em>Owning Package</em>}</li>
  * </ul>
  * </p>
  *
@@ -32,7 +32,7 @@ public interface ProfileApplication extends Element
 {
 	/**
 	 * Returns the value of the '<em><b>Applied Profile</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Profile#getApplication <em>Application</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Profile#getProfileApplications <em>Profile Applications</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Applied Profile</em>' reference isn't clear,
@@ -42,7 +42,7 @@ public interface ProfileApplication extends Element
 	 * @return the value of the '<em>Applied Profile</em>' reference.
 	 * @see #setAppliedProfile(Profile)
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getProfileApplication_AppliedProfile()
-	 * @see org.eclipse.ocl.pivot.Profile#getApplication
+	 * @see org.eclipse.ocl.pivot.Profile#getProfileApplications
 	 * @generated
 	 */
 	Profile getAppliedProfile();
@@ -56,33 +56,6 @@ public interface ProfileApplication extends Element
 	 * @generated
 	 */
 	void setAppliedProfile(Profile value);
-
-	/**
-	 * Returns the value of the '<em><b>Applying Package</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Package#getProfileApplication <em>Profile Application</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Applying Package</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Applying Package</em>' container reference.
-	 * @see #setApplyingPackage(org.eclipse.ocl.pivot.Package)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getProfileApplication_ApplyingPackage()
-	 * @see org.eclipse.ocl.pivot.Package#getProfileApplication
-	 * @generated
-	 */
-	org.eclipse.ocl.pivot.Package getApplyingPackage();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.ProfileApplication#getApplyingPackage <em>Applying Package</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Applying Package</em>' container reference.
-	 * @see #getApplyingPackage()
-	 * @generated
-	 */
-	void setApplyingPackage(org.eclipse.ocl.pivot.Package value);
 
 	/**
 	 * Returns the value of the '<em><b>Is Strict</b></em>' attribute.
@@ -109,5 +82,32 @@ public interface ProfileApplication extends Element
 	 * @generated
 	 */
 	void setIsStrict(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Owning Package</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Package#getOwnedProfileApplications <em>Owned Profile Applications</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owning Package</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owning Package</em>' container reference.
+	 * @see #setOwningPackage(org.eclipse.ocl.pivot.Package)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getProfileApplication_OwningPackage()
+	 * @see org.eclipse.ocl.pivot.Package#getOwnedProfileApplications
+	 * @generated
+	 */
+	org.eclipse.ocl.pivot.Package getOwningPackage();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.ProfileApplication#getOwningPackage <em>Owning Package</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Package</em>' container reference.
+	 * @see #getOwningPackage()
+	 * @generated
+	 */
+	void setOwningPackage(org.eclipse.ocl.pivot.Package value);
 
 } // ProfileApplication

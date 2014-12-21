@@ -79,21 +79,21 @@ import org.eclipse.osgi.util.NLS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.impl.OperationImpl#getOwnedRule <em>Owned Rule</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.OperationImpl#getOwnedTemplateBindings <em>Owned Template Bindings</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.OperationImpl#getOwnedTemplateSignature <em>Owned Template Signature</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.OperationImpl#getOwnedConstraints <em>Owned Constraints</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.OperationImpl#getOwnedBindings <em>Owned Bindings</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.OperationImpl#getOwnedSignature <em>Owned Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.OperationImpl#getUnspecializedElement <em>Unspecialized Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.OperationImpl#getBodyExpression <em>Body Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.OperationImpl#isInvalidating <em>Is Invalidating</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.OperationImpl#isTypeof <em>Is Typeof</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.OperationImpl#isValidating <em>Is Validating</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.OperationImpl#getOwnedParameter <em>Owned Parameter</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.OperationImpl#getOwnedParameters <em>Owned Parameters</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.OperationImpl#getOwnedPostconditions <em>Owned Postconditions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.OperationImpl#getOwnedPreconditions <em>Owned Preconditions</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.OperationImpl#getOwningClass <em>Owning Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.OperationImpl#getPostcondition <em>Postcondition</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.OperationImpl#getPrecedence <em>Precedence</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.OperationImpl#getPrecondition <em>Precondition</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.OperationImpl#getRaisedException <em>Raised Exception</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.OperationImpl#getRedefinedOperation <em>Redefined Operation</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.OperationImpl#getRaisedExceptions <em>Raised Exceptions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.OperationImpl#getRedefinedOperations <em>Redefined Operations</em>}</li>
  * </ul>
  * </p>
  *
@@ -105,34 +105,34 @@ public class OperationImpl
 		implements Operation {
 
 	/**
-	 * The cached value of the '{@link #getOwnedRule() <em>Owned Rule</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedConstraints() <em>Owned Constraints</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedRule()
+	 * @see #getOwnedConstraints()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Constraint> ownedRule;
+	protected EList<Constraint> ownedConstraints;
 
 	/**
-	 * The cached value of the '{@link #getOwnedTemplateBindings() <em>Owned Template Bindings</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedBindings() <em>Owned Bindings</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedTemplateBindings()
+	 * @see #getOwnedBindings()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TemplateBinding> ownedTemplateBindings;
+	protected EList<TemplateBinding> ownedBindings;
 
 	/**
-	 * The cached value of the '{@link #getOwnedTemplateSignature() <em>Owned Template Signature</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedSignature() <em>Owned Signature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedTemplateSignature()
+	 * @see #getOwnedSignature()
 	 * @generated
 	 * @ordered
 	 */
-	protected TemplateSignature ownedTemplateSignature;
+	protected TemplateSignature ownedSignature;
 
 	/**
 	 * The cached value of the '{@link #getUnspecializedElement() <em>Unspecialized Element</em>}' reference.
@@ -215,24 +215,34 @@ public class OperationImpl
 	protected static final int IS_VALIDATING_EFLAG = 1 << 12;
 
 	/**
-	 * The cached value of the '{@link #getOwnedParameter() <em>Owned Parameter</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedParameters() <em>Owned Parameters</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedParameter()
+	 * @see #getOwnedParameters()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Parameter> ownedParameter;
+	protected EList<Parameter> ownedParameters;
 
 	/**
-	 * The cached value of the '{@link #getPostcondition() <em>Postcondition</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedPostconditions() <em>Owned Postconditions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPostcondition()
+	 * @see #getOwnedPostconditions()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Constraint> postcondition;
+	protected EList<Constraint> ownedPostconditions;
+
+	/**
+	 * The cached value of the '{@link #getOwnedPreconditions() <em>Owned Preconditions</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedPreconditions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Constraint> ownedPreconditions;
 
 	/**
 	 * The cached value of the '{@link #getPrecedence() <em>Precedence</em>}' reference.
@@ -245,34 +255,24 @@ public class OperationImpl
 	protected Precedence precedence;
 
 	/**
-	 * The cached value of the '{@link #getPrecondition() <em>Precondition</em>}' containment reference list.
+	 * The cached value of the '{@link #getRaisedExceptions() <em>Raised Exceptions</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPrecondition()
+	 * @see #getRaisedExceptions()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Constraint> precondition;
+	protected EList<Type> raisedExceptions;
 
 	/**
-	 * The cached value of the '{@link #getRaisedException() <em>Raised Exception</em>}' reference list.
+	 * The cached value of the '{@link #getRedefinedOperations() <em>Redefined Operations</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRaisedException()
+	 * @see #getRedefinedOperations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Type> raisedException;
-
-	/**
-	 * The cached value of the '{@link #getRedefinedOperation() <em>Redefined Operation</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRedefinedOperation()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Operation> redefinedOperation;
+	protected EList<Operation> redefinedOperations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -300,13 +300,13 @@ public class OperationImpl
 	 */
 	@Override
 	@SuppressWarnings("null")
-	public @NonNull List<Constraint> getOwnedRule()
+	public @NonNull List<Constraint> getOwnedConstraints()
 	{
-		if (ownedRule == null)
+		if (ownedConstraints == null)
 		{
-			ownedRule = new EObjectContainmentEList<Constraint>(Constraint.class, this, PivotPackage.OPERATION__OWNED_RULE);
+			ownedConstraints = new EObjectContainmentEList<Constraint>(Constraint.class, this, PivotPackage.OPERATION__OWNED_CONSTRAINTS);
 		}
-		return ownedRule;
+		return ownedConstraints;
 	}
 
 	/**
@@ -315,29 +315,13 @@ public class OperationImpl
 	 * @generated
 	 */
 	@Override
-	public List<TemplateBinding> getOwnedTemplateBindings()
+	public List<TemplateBinding> getOwnedBindings()
 	{
-		if (ownedTemplateBindings == null)
+		if (ownedBindings == null)
 		{
-			ownedTemplateBindings = new EObjectContainmentWithInverseEList<TemplateBinding>(TemplateBinding.class, this, PivotPackage.OPERATION__OWNED_TEMPLATE_BINDINGS, PivotPackage.TEMPLATE_BINDING__OWNING_TEMPLATEABLE_ELEMENT);
+			ownedBindings = new EObjectContainmentWithInverseEList<TemplateBinding>(TemplateBinding.class, this, PivotPackage.OPERATION__OWNED_BINDINGS, PivotPackage.TEMPLATE_BINDING__OWNING_ELEMENT);
 		}
-		return ownedTemplateBindings;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	@SuppressWarnings("null")
-	public @NonNull List<Type> getRaisedException()
-	{
-		if (raisedException == null)
-		{
-			raisedException = new EObjectResolvingEList<Type>(Type.class, this, PivotPackage.OPERATION__RAISED_EXCEPTION);
-		}
-		return raisedException;
+		return ownedBindings;
 	}
 
 	/**
@@ -347,13 +331,13 @@ public class OperationImpl
 	 */
 	@Override
 	@SuppressWarnings("null")
-	public @NonNull List<Parameter> getOwnedParameter()
+	public @NonNull List<Type> getRaisedExceptions()
 	{
-		if (ownedParameter == null)
+		if (raisedExceptions == null)
 		{
-			ownedParameter = new EObjectContainmentWithInverseEList<Parameter>(Parameter.class, this, PivotPackage.OPERATION__OWNED_PARAMETER, PivotPackage.PARAMETER__OPERATION);
+			raisedExceptions = new EObjectResolvingEList<Type>(Type.class, this, PivotPackage.OPERATION__RAISED_EXCEPTIONS);
 		}
-		return ownedParameter;
+		return raisedExceptions;
 	}
 
 	/**
@@ -362,8 +346,13 @@ public class OperationImpl
 	 * @generated
 	 */
 	@Override
-	public TemplateSignature getOwnedTemplateSignature() {
-		return ownedTemplateSignature;
+	public List<Operation> getRedefinedOperations()
+	{
+		if (redefinedOperations == null)
+		{
+			redefinedOperations = new EObjectResolvingEList<Operation>(Operation.class, this, PivotPackage.OPERATION__REDEFINED_OPERATIONS);
+		}
+		return redefinedOperations;
 	}
 
 	/**
@@ -371,13 +360,71 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwnedTemplateSignature(
-			TemplateSignature newOwnedTemplateSignature, NotificationChain msgs) {
-		TemplateSignature oldOwnedTemplateSignature = ownedTemplateSignature;
-		ownedTemplateSignature = newOwnedTemplateSignature;
+	@Override
+	@SuppressWarnings("null")
+	public @NonNull List<Parameter> getOwnedParameters()
+	{
+		if (ownedParameters == null)
+		{
+			ownedParameters = new EObjectContainmentWithInverseEList<Parameter>(Parameter.class, this, PivotPackage.OPERATION__OWNED_PARAMETERS, PivotPackage.PARAMETER__OWNING_OPERATION);
+		}
+		return ownedParameters;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("null")
+	@Override
+	public @NonNull List<Constraint> getOwnedPostconditions()
+	{
+		if (ownedPostconditions == null)
+		{
+			ownedPostconditions = new EObjectContainmentWithInverseEList<Constraint>(Constraint.class, this, PivotPackage.OPERATION__OWNED_POSTCONDITIONS, PivotPackage.CONSTRAINT__OWNING_POST_CONTEXT);
+		}
+		return ownedPostconditions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("null")
+	@Override
+	public @NonNull List<Constraint> getOwnedPreconditions()
+	{
+		if (ownedPreconditions == null)
+		{
+			ownedPreconditions = new EObjectContainmentWithInverseEList<Constraint>(Constraint.class, this, PivotPackage.OPERATION__OWNED_PRECONDITIONS, PivotPackage.CONSTRAINT__OWNING_PRE_CONTEXT);
+		}
+		return ownedPreconditions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public TemplateSignature getOwnedSignature() {
+		return ownedSignature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwnedSignature(TemplateSignature newOwnedSignature, NotificationChain msgs)
+	{
+		TemplateSignature oldOwnedSignature = ownedSignature;
+		ownedSignature = newOwnedSignature;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.OPERATION__OWNED_TEMPLATE_SIGNATURE, oldOwnedTemplateSignature, newOwnedTemplateSignature);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.OPERATION__OWNED_SIGNATURE, oldOwnedSignature, newOwnedSignature);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -389,20 +436,20 @@ public class OperationImpl
 	 * @generated
 	 */
 	@Override
-	public void setOwnedTemplateSignature(
-			TemplateSignature newOwnedTemplateSignature) {
-		if (newOwnedTemplateSignature != ownedTemplateSignature)
+	public void setOwnedSignature(
+			TemplateSignature newOwnedSignature) {
+		if (newOwnedSignature != ownedSignature)
 		{
 			NotificationChain msgs = null;
-			if (ownedTemplateSignature != null)
-				msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, PivotPackage.TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT, TemplateSignature.class, msgs);
-			if (newOwnedTemplateSignature != null)
-				msgs = ((InternalEObject)newOwnedTemplateSignature).eInverseAdd(this, PivotPackage.TEMPLATE_SIGNATURE__OWNING_TEMPLATEABLE_ELEMENT, TemplateSignature.class, msgs);
-			msgs = basicSetOwnedTemplateSignature(newOwnedTemplateSignature, msgs);
+			if (ownedSignature != null)
+				msgs = ((InternalEObject)ownedSignature).eInverseRemove(this, PivotPackage.TEMPLATE_SIGNATURE__OWNING_ELEMENT, TemplateSignature.class, msgs);
+			if (newOwnedSignature != null)
+				msgs = ((InternalEObject)newOwnedSignature).eInverseAdd(this, PivotPackage.TEMPLATE_SIGNATURE__OWNING_ELEMENT, TemplateSignature.class, msgs);
+			msgs = basicSetOwnedSignature(newOwnedSignature, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.OPERATION__OWNED_TEMPLATE_SIGNATURE, newOwnedTemplateSignature, newOwnedTemplateSignature));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.OPERATION__OWNED_SIGNATURE, newOwnedSignature, newOwnedSignature));
 	}
 
 	/**
@@ -468,54 +515,6 @@ public class OperationImpl
 		precedence = newPrecedence;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.OPERATION__PRECEDENCE, oldPrecedence, precedence));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	@SuppressWarnings("null")
-	public @NonNull List<Operation> getRedefinedOperation()
-	{
-		if (redefinedOperation == null)
-		{
-			redefinedOperation = new EObjectResolvingEList<Operation>(Operation.class, this, PivotPackage.OPERATION__REDEFINED_OPERATION);
-		}
-		return redefinedOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	@SuppressWarnings("null")
-	public @NonNull List<Constraint> getPrecondition()
-	{
-		if (precondition == null)
-		{
-			precondition = new EObjectContainmentWithInverseEList<Constraint>(Constraint.class, this, PivotPackage.OPERATION__PRECONDITION, PivotPackage.CONSTRAINT__PRE_CONTEXT);
-		}
-		return precondition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	@SuppressWarnings("null")
-	public @NonNull List<Constraint> getPostcondition()
-	{
-		if (postcondition == null)
-		{
-			postcondition = new EObjectContainmentWithInverseEList<Constraint>(Constraint.class, this, PivotPackage.OPERATION__POSTCONDITION, PivotPackage.CONSTRAINT__POST_CONTEXT);
-		}
-		return postcondition;
 	}
 
 	/**
@@ -700,7 +699,7 @@ public class OperationImpl
 		/**
 		 * 
 		 * inv CompatibleReturn: bodyExpression <> null and
-		 *   bodyExpression.oclAsType(ExpressionInOCL).bodyExpression <> null implies
+		 *   bodyExpression.oclAsType(ExpressionInOCL).ownedBody <> null implies
 		 *   CompatibleBody(bodyExpression)
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_17;
@@ -724,10 +723,10 @@ public class OperationImpl
 		            final @Nullable /*@Thrown*/ LanguageExpression bodyExpression_0 = this.getBodyExpression();
 		            final @Nullable /*@Thrown*/ ExpressionInOCL oclAsType = (ExpressionInOCL)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, bodyExpression_0, TYP_pivot_c_c_ExpressionInOCL_0);
 		            if (oclAsType == null) {
-		                throw new InvalidValueException("Null source for \'pivot::ExpressionInOCL::bodyExpression\'");
+		                throw new InvalidValueException("Null source for \'pivot::ExpressionInOCL::ownedBody\'");
 		            }
-		            final @Nullable /*@Thrown*/ OCLExpression bodyExpression_1 = oclAsType.getBodyExpression();
-		            final /*@Thrown*/ boolean b = bodyExpression_1 != null;
+		            final @Nullable /*@Thrown*/ OCLExpression ownedBody = oclAsType.getOwnedBody();
+		            final /*@Thrown*/ boolean b = ownedBody != null;
 		            CAUGHT_b = b;
 		        }
 		        catch (Exception e) {
@@ -803,8 +802,8 @@ public class OperationImpl
 		    }
 		    @NonNull /*@Caught*/ Object CAUGHT_b_0;
 		    try {
-		        final @Nullable /*@Thrown*/ LanguageExpression bodyExpression_2 = this.getBodyExpression();
-		        final /*@Thrown*/ boolean b_0 = this.CompatibleBody((ValueSpecification)bodyExpression_2);
+		        final @Nullable /*@Thrown*/ LanguageExpression bodyExpression_1 = this.getBodyExpression();
+		        final /*@Thrown*/ boolean b_0 = this.CompatibleBody((ValueSpecification)bodyExpression_1);
 		        CAUGHT_b_0 = b_0;
 		    }
 		    catch (Exception e) {
@@ -907,16 +906,17 @@ public class OperationImpl
 	public boolean validateUniquePreconditionName(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv UniquePreconditionName: precondition->isUnique(name)
+		 * inv UniquePreconditionName: ownedPreconditions->isUnique(name)
 		 */
 		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		@NonNull /*@Caught*/ Object CAUGHT_isUnique;
 		try {
-		    final @NonNull /*@Thrown*/ List<Constraint> precondition = this.getPrecondition();
-		    final @NonNull /*@Thrown*/ SetValue BOXED_precondition = idResolver.createSetOfAll(PivotTables.SET_CLSSid_Constraint, precondition);
+		    final @Nullable /*@Thrown*/ List<Constraint> ownedPreconditions = this.getOwnedPreconditions();
+		    assert ownedPreconditions != null;
+		    final @NonNull /*@Thrown*/ SetValue BOXED_ownedPreconditions = idResolver.createSetOfAll(PivotTables.SET_CLSSid_Constraint, ownedPreconditions);
 		    @NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValueUtil.createSetAccumulatorValue(PivotTables.SET_CLSSid_Constraint);
-		    @Nullable Iterator<?> ITERATOR__1 = BOXED_precondition.iterator();
+		    @Nullable Iterator<?> ITERATOR__1 = BOXED_ownedPreconditions.iterator();
 		    /*@Thrown*/ boolean isUnique;
 		    while (true) {
 		        if (!ITERATOR__1.hasNext()) {
@@ -965,16 +965,17 @@ public class OperationImpl
 	public boolean validateUniquePostconditionName(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv UniquePostconditionName: postcondition->isUnique(name)
+		 * inv UniquePostconditionName: ownedPostconditions->isUnique(name)
 		 */
 		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		@NonNull /*@Caught*/ Object CAUGHT_isUnique;
 		try {
-		    final @NonNull /*@Thrown*/ List<Constraint> postcondition = this.getPostcondition();
-		    final @NonNull /*@Thrown*/ SetValue BOXED_postcondition = idResolver.createSetOfAll(PivotTables.SET_CLSSid_Constraint, postcondition);
+		    final @Nullable /*@Thrown*/ List<Constraint> ownedPostconditions = this.getOwnedPostconditions();
+		    assert ownedPostconditions != null;
+		    final @NonNull /*@Thrown*/ SetValue BOXED_ownedPostconditions = idResolver.createSetOfAll(PivotTables.SET_CLSSid_Constraint, ownedPostconditions);
 		    @NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValueUtil.createSetAccumulatorValue(PivotTables.SET_CLSSid_Constraint);
-		    @Nullable Iterator<?> ITERATOR__1 = BOXED_postcondition.iterator();
+		    @Nullable Iterator<?> ITERATOR__1 = BOXED_ownedPostconditions.iterator();
 		    /*@Thrown*/ boolean isUnique;
 		    while (true) {
 		        if (!ITERATOR__1.hasNext()) {
@@ -1025,28 +1026,28 @@ public class OperationImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case PivotPackage.OPERATION__COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.OPERATION__EXTENSION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
-			case PivotPackage.OPERATION__OWNED_COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.OPERATION__OWNED_TEMPLATE_BINDINGS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedTemplateBindings()).basicAdd(otherEnd, msgs);
-			case PivotPackage.OPERATION__OWNED_TEMPLATE_SIGNATURE:
-				if (ownedTemplateSignature != null)
-					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.OPERATION__OWNED_TEMPLATE_SIGNATURE, null, msgs);
-				return basicSetOwnedTemplateSignature((TemplateSignature)otherEnd, msgs);
-			case PivotPackage.OPERATION__OWNED_PARAMETER:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedParameter()).basicAdd(otherEnd, msgs);
+			case PivotPackage.OPERATION__ANNOTATING_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAnnotatingComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.OPERATION__OWNED_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.OPERATION__OWNED_EXTENSIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedExtensions()).basicAdd(otherEnd, msgs);
+			case PivotPackage.OPERATION__OWNED_BINDINGS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedBindings()).basicAdd(otherEnd, msgs);
+			case PivotPackage.OPERATION__OWNED_SIGNATURE:
+				if (ownedSignature != null)
+					msgs = ((InternalEObject)ownedSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.OPERATION__OWNED_SIGNATURE, null, msgs);
+				return basicSetOwnedSignature((TemplateSignature)otherEnd, msgs);
+			case PivotPackage.OPERATION__OWNED_PARAMETERS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedParameters()).basicAdd(otherEnd, msgs);
+			case PivotPackage.OPERATION__OWNED_POSTCONDITIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedPostconditions()).basicAdd(otherEnd, msgs);
+			case PivotPackage.OPERATION__OWNED_PRECONDITIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedPreconditions()).basicAdd(otherEnd, msgs);
 			case PivotPackage.OPERATION__OWNING_CLASS:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningClass((org.eclipse.ocl.pivot.Class)otherEnd, msgs);
-			case PivotPackage.OPERATION__POSTCONDITION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getPostcondition()).basicAdd(otherEnd, msgs);
-			case PivotPackage.OPERATION__PRECONDITION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getPrecondition()).basicAdd(otherEnd, msgs);
 		}
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -1061,30 +1062,30 @@ public class OperationImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case PivotPackage.OPERATION__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.OPERATION__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.OPERATION__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.OPERATION__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.OPERATION__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
-			case PivotPackage.OPERATION__OWNED_TEMPLATE_BINDINGS:
-				return ((InternalEList<?>)getOwnedTemplateBindings()).basicRemove(otherEnd, msgs);
-			case PivotPackage.OPERATION__OWNED_TEMPLATE_SIGNATURE:
-				return basicSetOwnedTemplateSignature(null, msgs);
+			case PivotPackage.OPERATION__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.OPERATION__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.OPERATION__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.OPERATION__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.OPERATION__OWNED_CONSTRAINTS:
+				return ((InternalEList<?>)getOwnedConstraints()).basicRemove(otherEnd, msgs);
+			case PivotPackage.OPERATION__OWNED_BINDINGS:
+				return ((InternalEList<?>)getOwnedBindings()).basicRemove(otherEnd, msgs);
+			case PivotPackage.OPERATION__OWNED_SIGNATURE:
+				return basicSetOwnedSignature(null, msgs);
 			case PivotPackage.OPERATION__BODY_EXPRESSION:
 				return basicSetBodyExpression(null, msgs);
-			case PivotPackage.OPERATION__OWNED_PARAMETER:
-				return ((InternalEList<?>)getOwnedParameter()).basicRemove(otherEnd, msgs);
+			case PivotPackage.OPERATION__OWNED_PARAMETERS:
+				return ((InternalEList<?>)getOwnedParameters()).basicRemove(otherEnd, msgs);
+			case PivotPackage.OPERATION__OWNED_POSTCONDITIONS:
+				return ((InternalEList<?>)getOwnedPostconditions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.OPERATION__OWNED_PRECONDITIONS:
+				return ((InternalEList<?>)getOwnedPreconditions()).basicRemove(otherEnd, msgs);
 			case PivotPackage.OPERATION__OWNING_CLASS:
 				return basicSetOwningClass(null, msgs);
-			case PivotPackage.OPERATION__POSTCONDITION:
-				return ((InternalEList<?>)getPostcondition()).basicRemove(otherEnd, msgs);
-			case PivotPackage.OPERATION__PRECONDITION:
-				return ((InternalEList<?>)getPrecondition()).basicRemove(otherEnd, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -1114,14 +1115,14 @@ public class OperationImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case PivotPackage.OPERATION__COMMENT:
-				return getComment();
-			case PivotPackage.OPERATION__EXTENSION:
-				return getExtension();
-			case PivotPackage.OPERATION__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.OPERATION__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.OPERATION__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.OPERATION__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.OPERATION__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.OPERATION__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.OPERATION__NAME:
 				return getName();
 			case PivotPackage.OPERATION__IS_MANY:
@@ -1137,12 +1138,12 @@ public class OperationImpl
 				return getImplementationClass();
 			case PivotPackage.OPERATION__IS_STATIC:
 				return isStatic();
-			case PivotPackage.OPERATION__OWNED_RULE:
-				return getOwnedRule();
-			case PivotPackage.OPERATION__OWNED_TEMPLATE_BINDINGS:
-				return getOwnedTemplateBindings();
-			case PivotPackage.OPERATION__OWNED_TEMPLATE_SIGNATURE:
-				return getOwnedTemplateSignature();
+			case PivotPackage.OPERATION__OWNED_CONSTRAINTS:
+				return getOwnedConstraints();
+			case PivotPackage.OPERATION__OWNED_BINDINGS:
+				return getOwnedBindings();
+			case PivotPackage.OPERATION__OWNED_SIGNATURE:
+				return getOwnedSignature();
 			case PivotPackage.OPERATION__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
 			case PivotPackage.OPERATION__BODY_EXPRESSION:
@@ -1153,21 +1154,21 @@ public class OperationImpl
 				return isTypeof();
 			case PivotPackage.OPERATION__IS_VALIDATING:
 				return isValidating();
-			case PivotPackage.OPERATION__OWNED_PARAMETER:
-				return getOwnedParameter();
+			case PivotPackage.OPERATION__OWNED_PARAMETERS:
+				return getOwnedParameters();
+			case PivotPackage.OPERATION__OWNED_POSTCONDITIONS:
+				return getOwnedPostconditions();
+			case PivotPackage.OPERATION__OWNED_PRECONDITIONS:
+				return getOwnedPreconditions();
 			case PivotPackage.OPERATION__OWNING_CLASS:
 				return getOwningClass();
-			case PivotPackage.OPERATION__POSTCONDITION:
-				return getPostcondition();
 			case PivotPackage.OPERATION__PRECEDENCE:
 				if (resolve) return getPrecedence();
 				return basicGetPrecedence();
-			case PivotPackage.OPERATION__PRECONDITION:
-				return getPrecondition();
-			case PivotPackage.OPERATION__RAISED_EXCEPTION:
-				return getRaisedException();
-			case PivotPackage.OPERATION__REDEFINED_OPERATION:
-				return getRedefinedOperation();
+			case PivotPackage.OPERATION__RAISED_EXCEPTIONS:
+				return getRaisedExceptions();
+			case PivotPackage.OPERATION__REDEFINED_OPERATIONS:
+				return getRedefinedOperations();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -1182,21 +1183,21 @@ public class OperationImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case PivotPackage.OPERATION__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.OPERATION__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.OPERATION__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.OPERATION__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.OPERATION__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.OPERATION__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.OPERATION__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.OPERATION__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.OPERATION__NAME:
 				setName((String)newValue);
@@ -1216,16 +1217,16 @@ public class OperationImpl
 			case PivotPackage.OPERATION__IS_STATIC:
 				setIsStatic((Boolean)newValue);
 				return;
-			case PivotPackage.OPERATION__OWNED_RULE:
-				getOwnedRule().clear();
-				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
+			case PivotPackage.OPERATION__OWNED_CONSTRAINTS:
+				getOwnedConstraints().clear();
+				getOwnedConstraints().addAll((Collection<? extends Constraint>)newValue);
 				return;
-			case PivotPackage.OPERATION__OWNED_TEMPLATE_BINDINGS:
-				getOwnedTemplateBindings().clear();
-				getOwnedTemplateBindings().addAll((Collection<? extends TemplateBinding>)newValue);
+			case PivotPackage.OPERATION__OWNED_BINDINGS:
+				getOwnedBindings().clear();
+				getOwnedBindings().addAll((Collection<? extends TemplateBinding>)newValue);
 				return;
-			case PivotPackage.OPERATION__OWNED_TEMPLATE_SIGNATURE:
-				setOwnedTemplateSignature((TemplateSignature)newValue);
+			case PivotPackage.OPERATION__OWNED_SIGNATURE:
+				setOwnedSignature((TemplateSignature)newValue);
 				return;
 			case PivotPackage.OPERATION__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
@@ -1242,31 +1243,31 @@ public class OperationImpl
 			case PivotPackage.OPERATION__IS_VALIDATING:
 				setIsValidating((Boolean)newValue);
 				return;
-			case PivotPackage.OPERATION__OWNED_PARAMETER:
-				getOwnedParameter().clear();
-				getOwnedParameter().addAll((Collection<? extends Parameter>)newValue);
+			case PivotPackage.OPERATION__OWNED_PARAMETERS:
+				getOwnedParameters().clear();
+				getOwnedParameters().addAll((Collection<? extends Parameter>)newValue);
+				return;
+			case PivotPackage.OPERATION__OWNED_POSTCONDITIONS:
+				getOwnedPostconditions().clear();
+				getOwnedPostconditions().addAll((Collection<? extends Constraint>)newValue);
+				return;
+			case PivotPackage.OPERATION__OWNED_PRECONDITIONS:
+				getOwnedPreconditions().clear();
+				getOwnedPreconditions().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.OPERATION__OWNING_CLASS:
 				setOwningClass((org.eclipse.ocl.pivot.Class)newValue);
 				return;
-			case PivotPackage.OPERATION__POSTCONDITION:
-				getPostcondition().clear();
-				getPostcondition().addAll((Collection<? extends Constraint>)newValue);
-				return;
 			case PivotPackage.OPERATION__PRECEDENCE:
 				setPrecedence((Precedence)newValue);
 				return;
-			case PivotPackage.OPERATION__PRECONDITION:
-				getPrecondition().clear();
-				getPrecondition().addAll((Collection<? extends Constraint>)newValue);
+			case PivotPackage.OPERATION__RAISED_EXCEPTIONS:
+				getRaisedExceptions().clear();
+				getRaisedExceptions().addAll((Collection<? extends Type>)newValue);
 				return;
-			case PivotPackage.OPERATION__RAISED_EXCEPTION:
-				getRaisedException().clear();
-				getRaisedException().addAll((Collection<? extends Type>)newValue);
-				return;
-			case PivotPackage.OPERATION__REDEFINED_OPERATION:
-				getRedefinedOperation().clear();
-				getRedefinedOperation().addAll((Collection<? extends Operation>)newValue);
+			case PivotPackage.OPERATION__REDEFINED_OPERATIONS:
+				getRedefinedOperations().clear();
+				getRedefinedOperations().addAll((Collection<? extends Operation>)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -1281,17 +1282,17 @@ public class OperationImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.OPERATION__COMMENT:
-				getComment().clear();
+			case PivotPackage.OPERATION__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.OPERATION__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.OPERATION__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.OPERATION__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.OPERATION__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.OPERATION__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.OPERATION__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.OPERATION__NAME:
 				setName(NAME_EDEFAULT);
@@ -1311,14 +1312,14 @@ public class OperationImpl
 			case PivotPackage.OPERATION__IS_STATIC:
 				setIsStatic(IS_STATIC_EDEFAULT);
 				return;
-			case PivotPackage.OPERATION__OWNED_RULE:
-				getOwnedRule().clear();
+			case PivotPackage.OPERATION__OWNED_CONSTRAINTS:
+				getOwnedConstraints().clear();
 				return;
-			case PivotPackage.OPERATION__OWNED_TEMPLATE_BINDINGS:
-				getOwnedTemplateBindings().clear();
+			case PivotPackage.OPERATION__OWNED_BINDINGS:
+				getOwnedBindings().clear();
 				return;
-			case PivotPackage.OPERATION__OWNED_TEMPLATE_SIGNATURE:
-				setOwnedTemplateSignature((TemplateSignature)null);
+			case PivotPackage.OPERATION__OWNED_SIGNATURE:
+				setOwnedSignature((TemplateSignature)null);
 				return;
 			case PivotPackage.OPERATION__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
@@ -1335,26 +1336,26 @@ public class OperationImpl
 			case PivotPackage.OPERATION__IS_VALIDATING:
 				setIsValidating(IS_VALIDATING_EDEFAULT);
 				return;
-			case PivotPackage.OPERATION__OWNED_PARAMETER:
-				getOwnedParameter().clear();
+			case PivotPackage.OPERATION__OWNED_PARAMETERS:
+				getOwnedParameters().clear();
+				return;
+			case PivotPackage.OPERATION__OWNED_POSTCONDITIONS:
+				getOwnedPostconditions().clear();
+				return;
+			case PivotPackage.OPERATION__OWNED_PRECONDITIONS:
+				getOwnedPreconditions().clear();
 				return;
 			case PivotPackage.OPERATION__OWNING_CLASS:
 				setOwningClass((org.eclipse.ocl.pivot.Class)null);
 				return;
-			case PivotPackage.OPERATION__POSTCONDITION:
-				getPostcondition().clear();
-				return;
 			case PivotPackage.OPERATION__PRECEDENCE:
 				setPrecedence((Precedence)null);
 				return;
-			case PivotPackage.OPERATION__PRECONDITION:
-				getPrecondition().clear();
+			case PivotPackage.OPERATION__RAISED_EXCEPTIONS:
+				getRaisedExceptions().clear();
 				return;
-			case PivotPackage.OPERATION__RAISED_EXCEPTION:
-				getRaisedException().clear();
-				return;
-			case PivotPackage.OPERATION__REDEFINED_OPERATION:
-				getRedefinedOperation().clear();
+			case PivotPackage.OPERATION__REDEFINED_OPERATIONS:
+				getRedefinedOperations().clear();
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -1369,14 +1370,14 @@ public class OperationImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.OPERATION__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.OPERATION__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.OPERATION__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.OPERATION__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.OPERATION__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.OPERATION__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.OPERATION__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.OPERATION__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.OPERATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.OPERATION__IS_MANY:
@@ -1391,12 +1392,12 @@ public class OperationImpl
 				return IMPLEMENTATION_CLASS_EDEFAULT == null ? implementationClass != null : !IMPLEMENTATION_CLASS_EDEFAULT.equals(implementationClass);
 			case PivotPackage.OPERATION__IS_STATIC:
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
-			case PivotPackage.OPERATION__OWNED_RULE:
-				return ownedRule != null && !ownedRule.isEmpty();
-			case PivotPackage.OPERATION__OWNED_TEMPLATE_BINDINGS:
-				return ownedTemplateBindings != null && !ownedTemplateBindings.isEmpty();
-			case PivotPackage.OPERATION__OWNED_TEMPLATE_SIGNATURE:
-				return ownedTemplateSignature != null;
+			case PivotPackage.OPERATION__OWNED_CONSTRAINTS:
+				return ownedConstraints != null && !ownedConstraints.isEmpty();
+			case PivotPackage.OPERATION__OWNED_BINDINGS:
+				return ownedBindings != null && !ownedBindings.isEmpty();
+			case PivotPackage.OPERATION__OWNED_SIGNATURE:
+				return ownedSignature != null;
 			case PivotPackage.OPERATION__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
 			case PivotPackage.OPERATION__BODY_EXPRESSION:
@@ -1407,20 +1408,20 @@ public class OperationImpl
 				return ((eFlags & IS_TYPEOF_EFLAG) != 0) != IS_TYPEOF_EDEFAULT;
 			case PivotPackage.OPERATION__IS_VALIDATING:
 				return ((eFlags & IS_VALIDATING_EFLAG) != 0) != IS_VALIDATING_EDEFAULT;
-			case PivotPackage.OPERATION__OWNED_PARAMETER:
-				return ownedParameter != null && !ownedParameter.isEmpty();
+			case PivotPackage.OPERATION__OWNED_PARAMETERS:
+				return ownedParameters != null && !ownedParameters.isEmpty();
+			case PivotPackage.OPERATION__OWNED_POSTCONDITIONS:
+				return ownedPostconditions != null && !ownedPostconditions.isEmpty();
+			case PivotPackage.OPERATION__OWNED_PRECONDITIONS:
+				return ownedPreconditions != null && !ownedPreconditions.isEmpty();
 			case PivotPackage.OPERATION__OWNING_CLASS:
 				return getOwningClass() != null;
-			case PivotPackage.OPERATION__POSTCONDITION:
-				return postcondition != null && !postcondition.isEmpty();
 			case PivotPackage.OPERATION__PRECEDENCE:
 				return precedence != null;
-			case PivotPackage.OPERATION__PRECONDITION:
-				return precondition != null && !precondition.isEmpty();
-			case PivotPackage.OPERATION__RAISED_EXCEPTION:
-				return raisedException != null && !raisedException.isEmpty();
-			case PivotPackage.OPERATION__REDEFINED_OPERATION:
-				return redefinedOperation != null && !redefinedOperation.isEmpty();
+			case PivotPackage.OPERATION__RAISED_EXCEPTIONS:
+				return raisedExceptions != null && !raisedExceptions.isEmpty();
+			case PivotPackage.OPERATION__REDEFINED_OPERATIONS:
+				return redefinedOperations != null && !redefinedOperations.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
 	}
@@ -1436,7 +1437,7 @@ public class OperationImpl
 		{
 			switch (derivedFeatureID)
 			{
-				case PivotPackage.OPERATION__OWNED_RULE: return PivotPackage.NAMESPACE__OWNED_RULE;
+				case PivotPackage.OPERATION__OWNED_CONSTRAINTS: return PivotPackage.NAMESPACE__OWNED_CONSTRAINTS;
 				default: return -1;
 			}
 		}
@@ -1444,8 +1445,8 @@ public class OperationImpl
 		{
 			switch (derivedFeatureID)
 			{
-				case PivotPackage.OPERATION__OWNED_TEMPLATE_BINDINGS: return PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_BINDINGS;
-				case PivotPackage.OPERATION__OWNED_TEMPLATE_SIGNATURE: return PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE;
+				case PivotPackage.OPERATION__OWNED_BINDINGS: return PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_BINDINGS;
+				case PivotPackage.OPERATION__OWNED_SIGNATURE: return PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_SIGNATURE;
 				case PivotPackage.OPERATION__UNSPECIALIZED_ELEMENT: return PivotPackage.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT;
 				default: return -1;
 			}
@@ -1464,7 +1465,7 @@ public class OperationImpl
 		{
 			switch (baseFeatureID)
 			{
-				case PivotPackage.NAMESPACE__OWNED_RULE: return PivotPackage.OPERATION__OWNED_RULE;
+				case PivotPackage.NAMESPACE__OWNED_CONSTRAINTS: return PivotPackage.OPERATION__OWNED_CONSTRAINTS;
 				default: return -1;
 			}
 		}
@@ -1472,8 +1473,8 @@ public class OperationImpl
 		{
 			switch (baseFeatureID)
 			{
-				case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_BINDINGS: return PivotPackage.OPERATION__OWNED_TEMPLATE_BINDINGS;
-				case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE: return PivotPackage.OPERATION__OWNED_TEMPLATE_SIGNATURE;
+				case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_BINDINGS: return PivotPackage.OPERATION__OWNED_BINDINGS;
+				case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_SIGNATURE: return PivotPackage.OPERATION__OWNED_SIGNATURE;
 				case PivotPackage.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT: return PivotPackage.OPERATION__UNSPECIALIZED_ELEMENT;
 				default: return -1;
 			}
@@ -1550,7 +1551,7 @@ public class OperationImpl
 
 	@Override
 	public @NonNull ParameterTypes getParameterTypes() {
-		List<Parameter> ownedParameter = getOwnedParameter();
+		List<Parameter> ownedParameter = getOwnedParameters();
 		int iMax = ownedParameter.size();
 		Type[] types = new Type[iMax];
 		for (int i = 0; i < iMax; i++) {
@@ -1561,7 +1562,7 @@ public class OperationImpl
 
 	@Override
 	public @NonNull DomainTypeParameters getTypeParameters() {
-		return TemplateSignatureImpl.getTypeParameters(getOwnedTemplateSignature());
+		return TemplateSignatureImpl.getTypeParameters(getOwnedSignature());
 	}
 
 	private OperationId operationId = null;

@@ -140,19 +140,19 @@ public class PivotUIConstraintLocator extends PivotConstraintLocator implements 
 			asConstraint = (Constraint)constrainingObject;
 		}
 		if (asConstraint == null) {
-			IStatus status = createStatus(null, OCLMessages.MissingSpecification_ERROR_, LabelUtil.qualifiedNameFor(asConstraint), PivotConstants.OWNED_RULE_ROLE);
+			IStatus status = createStatus(null, OCLMessages.MissingSpecification_ERROR_, LabelUtil.qualifiedNameFor(asConstraint), PivotConstants.OWNED_CONSTRAINT_ROLE);
 			throw new CoreException(status);
 		}
-		LanguageExpression specification = asConstraint.getSpecification();
+		LanguageExpression specification = asConstraint.getOwnedSpecification();
 		if (specification == null) {
-			IStatus status = createStatus(null, OCLMessages.MissingSpecificationBody_ERROR_, LabelUtil.qualifiedNameFor(asConstraint), PivotConstants.OWNED_RULE_ROLE);
+			IStatus status = createStatus(null, OCLMessages.MissingSpecificationBody_ERROR_, LabelUtil.qualifiedNameFor(asConstraint), PivotConstants.OWNED_CONSTRAINT_ROLE);
 			throw new CoreException(status);
 		}
 		ExpressionInOCL query;
 		try {
 			query = metaModelManager.getQueryOrThrow(specification);
 		} catch (ParserException e) {
-			IStatus status = createStatus(e, OCLMessages.InvalidSpecificationBody_ERROR_, LabelUtil.qualifiedNameFor(asConstraint), PivotConstants.OWNED_RULE_ROLE);
+			IStatus status = createStatus(e, OCLMessages.InvalidSpecificationBody_ERROR_, LabelUtil.qualifiedNameFor(asConstraint), PivotConstants.OWNED_CONSTRAINT_ROLE);
 			throw new CoreException(status);
 		}
 		ValidatableNode parent = resultConstrainingNode.getResultValidatableNode().getParent();

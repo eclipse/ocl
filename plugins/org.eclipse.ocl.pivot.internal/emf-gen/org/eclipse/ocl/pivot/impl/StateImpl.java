@@ -47,23 +47,23 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#getContainer <em>Container</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#getIncoming <em>Incoming</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#getOutgoing <em>Outgoing</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#getConnection <em>Connection</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#getConnectionPoint <em>Connection Point</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#getDeferrableTrigger <em>Deferrable Trigger</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#getDoActivity <em>Do Activity</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#getEntry <em>Entry</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#getExit <em>Exit</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#getIncomingTransitions <em>Incoming Transitions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#getOutgoingTransitions <em>Outgoing Transitions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#getOwningRegion <em>Owning Region</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#isOrthogonal <em>Is Orthogonal</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#isSimple <em>Is Simple</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#isSubmachineState <em>Is Submachine State</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#getOwnedConnectionPoints <em>Owned Connection Points</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#getOwnedConnections <em>Owned Connections</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#getOwnedDeferrableTriggers <em>Owned Deferrable Triggers</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#getOwnedDoActivity <em>Owned Do Activity</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#getOwnedEntry <em>Owned Entry</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#getOwnedExit <em>Owned Exit</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#getOwnedRegions <em>Owned Regions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#getOwnedStateInvariant <em>Owned State Invariant</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#getRedefinedState <em>Redefined State</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#getRegion <em>Region</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#getStateInvariant <em>State Invariant</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#getSubmachine <em>Submachine</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#getSubmachines <em>Submachines</em>}</li>
  * </ul>
  * </p>
  *
@@ -74,77 +74,23 @@ public class StateImpl
 		implements State {
 
 	/**
-	 * The cached value of the '{@link #getIncoming() <em>Incoming</em>}' reference list.
+	 * The cached value of the '{@link #getIncomingTransitions() <em>Incoming Transitions</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getIncoming()
+	 * @see #getIncomingTransitions()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Transition> incoming;
+	protected EList<Transition> incomingTransitions;
 	/**
-	 * The cached value of the '{@link #getOutgoing() <em>Outgoing</em>}' reference list.
+	 * The cached value of the '{@link #getOutgoingTransitions() <em>Outgoing Transitions</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOutgoing()
+	 * @see #getOutgoingTransitions()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Transition> outgoing;
-	/**
-	 * The cached value of the '{@link #getConnection() <em>Connection</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConnection()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ConnectionPointReference> connection;
-	/**
-	 * The cached value of the '{@link #getConnectionPoint() <em>Connection Point</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConnectionPoint()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Pseudostate> connectionPoint;
-	/**
-	 * The cached value of the '{@link #getDeferrableTrigger() <em>Deferrable Trigger</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDeferrableTrigger()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Trigger> deferrableTrigger;
-	/**
-	 * The cached value of the '{@link #getDoActivity() <em>Do Activity</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDoActivity()
-	 * @generated
-	 * @ordered
-	 */
-	protected Behavior doActivity;
-	/**
-	 * The cached value of the '{@link #getEntry() <em>Entry</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEntry()
-	 * @generated
-	 * @ordered
-	 */
-	protected Behavior entry;
-	/**
-	 * The cached value of the '{@link #getExit() <em>Exit</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getExit()
-	 * @generated
-	 * @ordered
-	 */
-	protected Behavior exit;
+	protected EList<Transition> outgoingTransitions;
 	/**
 	 * The default value of the '{@link #isComposite() <em>Is Composite</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -182,6 +128,78 @@ public class StateImpl
 	 */
 	protected static final boolean IS_SUBMACHINE_STATE_EDEFAULT = false;
 	/**
+	 * The cached value of the '{@link #getOwnedConnectionPoints() <em>Owned Connection Points</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedConnectionPoints()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Pseudostate> ownedConnectionPoints;
+	/**
+	 * The cached value of the '{@link #getOwnedConnections() <em>Owned Connections</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedConnections()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ConnectionPointReference> ownedConnections;
+	/**
+	 * The cached value of the '{@link #getOwnedDeferrableTriggers() <em>Owned Deferrable Triggers</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedDeferrableTriggers()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Trigger> ownedDeferrableTriggers;
+	/**
+	 * The cached value of the '{@link #getOwnedDoActivity() <em>Owned Do Activity</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedDoActivity()
+	 * @generated
+	 * @ordered
+	 */
+	protected Behavior ownedDoActivity;
+	/**
+	 * The cached value of the '{@link #getOwnedEntry() <em>Owned Entry</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedEntry()
+	 * @generated
+	 * @ordered
+	 */
+	protected Behavior ownedEntry;
+	/**
+	 * The cached value of the '{@link #getOwnedExit() <em>Owned Exit</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedExit()
+	 * @generated
+	 * @ordered
+	 */
+	protected Behavior ownedExit;
+	/**
+	 * The cached value of the '{@link #getOwnedRegions() <em>Owned Regions</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedRegions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Region> ownedRegions;
+	/**
+	 * The cached value of the '{@link #getOwnedStateInvariant() <em>Owned State Invariant</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedStateInvariant()
+	 * @generated
+	 * @ordered
+	 */
+	protected Constraint ownedStateInvariant;
+	/**
 	 * The cached value of the '{@link #getRedefinedState() <em>Redefined State</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -191,33 +209,14 @@ public class StateImpl
 	 */
 	protected State redefinedState;
 	/**
-	 * The cached value of the '{@link #getRegion() <em>Region</em>}' containment reference list.
+	 * The cached value of the '{@link #getSubmachines() <em>Submachines</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRegion()
+	 * @see #getSubmachines()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Region> region;
-	/**
-	 * The cached value of the '{@link #getStateInvariant() <em>State Invariant</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStateInvariant()
-	 * @generated
-	 * @ordered
-	 */
-	protected Constraint stateInvariant;
-	/**
-	 * The cached value of the '{@link #getSubmachine() <em>Submachine</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSubmachine()
-	 * @generated
-	 * @ordered
-	 */
-	protected StateMachine submachine;
-
+	protected StateMachine submachines;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -243,9 +242,39 @@ public class StateImpl
 	 * @generated
 	 */
 	@Override
-	public Region getContainer()
+	public List<Transition> getIncomingTransitions()
 	{
-		if (eContainerFeatureID() != PivotPackage.STATE__CONTAINER) return null;
+		if (incomingTransitions == null)
+		{
+			incomingTransitions = new EObjectWithInverseResolvingEList<Transition>(Transition.class, this, PivotPackage.STATE__INCOMING_TRANSITIONS, PivotPackage.TRANSITION__TARGET);
+		}
+		return incomingTransitions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public List<Transition> getOutgoingTransitions()
+	{
+		if (outgoingTransitions == null)
+		{
+			outgoingTransitions = new EObjectWithInverseResolvingEList<Transition>(Transition.class, this, PivotPackage.STATE__OUTGOING_TRANSITIONS, PivotPackage.TRANSITION__SOURCE);
+		}
+		return outgoingTransitions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Region getOwningRegion()
+	{
+		if (eContainerFeatureID() != PivotPackage.STATE__OWNING_REGION) return null;
 		return (Region)eInternalContainer();
 	}
 
@@ -254,9 +283,9 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetContainer(Region newContainer, NotificationChain msgs)
+	public NotificationChain basicSetOwningRegion(Region newOwningRegion, NotificationChain msgs)
 	{
-		msgs = eBasicSetContainer((InternalEObject)newContainer, PivotPackage.STATE__CONTAINER, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newOwningRegion, PivotPackage.STATE__OWNING_REGION, msgs);
 		return msgs;
 	}
 
@@ -266,52 +295,22 @@ public class StateImpl
 	 * @generated
 	 */
 	@Override
-	public void setContainer(Region newContainer)
+	public void setOwningRegion(Region newOwningRegion)
 	{
-		if (newContainer != eInternalContainer() || (eContainerFeatureID() != PivotPackage.STATE__CONTAINER && newContainer != null))
+		if (newOwningRegion != eInternalContainer() || (eContainerFeatureID() != PivotPackage.STATE__OWNING_REGION && newOwningRegion != null))
 		{
-			if (EcoreUtil.isAncestor(this, newContainer))
+			if (EcoreUtil.isAncestor(this, newOwningRegion))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newContainer != null)
-				msgs = ((InternalEObject)newContainer).eInverseAdd(this, PivotPackage.REGION__SUBVERTEX, Region.class, msgs);
-			msgs = basicSetContainer(newContainer, msgs);
+			if (newOwningRegion != null)
+				msgs = ((InternalEObject)newOwningRegion).eInverseAdd(this, PivotPackage.REGION__OWNED_SUBVERTEXES, Region.class, msgs);
+			msgs = basicSetOwningRegion(newOwningRegion, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.STATE__CONTAINER, newContainer, newContainer));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public List<Transition> getIncoming()
-	{
-		if (incoming == null)
-		{
-			incoming = new EObjectWithInverseResolvingEList<Transition>(Transition.class, this, PivotPackage.STATE__INCOMING, PivotPackage.TRANSITION__TARGET);
-		}
-		return incoming;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public List<Transition> getOutgoing()
-	{
-		if (outgoing == null)
-		{
-			outgoing = new EObjectWithInverseResolvingEList<Transition>(Transition.class, this, PivotPackage.STATE__OUTGOING, PivotPackage.TRANSITION__SOURCE);
-		}
-		return outgoing;
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.STATE__OWNING_REGION, newOwningRegion, newOwningRegion));
 	}
 
 	/**
@@ -322,7 +321,7 @@ public class StateImpl
 	@Override
 	public boolean isComposite()
 	{
-		return getRegion().size() > 0;
+		return getOwnedRegions().size() > 0;
 	}
 
 	/**
@@ -333,7 +332,7 @@ public class StateImpl
 	@Override
 	public boolean isOrthogonal()
 	{
-		return getRegion().size() > 1;
+		return getOwnedRegions().size() > 1;
 	}
 
 	/**
@@ -344,7 +343,7 @@ public class StateImpl
 	@Override
 	public boolean isSimple()
 	{
-		return getRegion().size() == 0;
+		return getOwnedRegions().size() == 0;
 	}
 
 	/**
@@ -364,19 +363,13 @@ public class StateImpl
 	 * @generated
 	 */
 	@Override
-	public StateMachine getSubmachine()
+	public List<Pseudostate> getOwnedConnectionPoints()
 	{
-		if (submachine != null && submachine.eIsProxy())
+		if (ownedConnectionPoints == null)
 		{
-			InternalEObject oldSubmachine = (InternalEObject)submachine;
-			submachine = (StateMachine)eResolveProxy(oldSubmachine);
-			if (submachine != oldSubmachine)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.STATE__SUBMACHINE, oldSubmachine, submachine));
-			}
+			ownedConnectionPoints = new EObjectContainmentWithInverseEList<Pseudostate>(Pseudostate.class, this, PivotPackage.STATE__OWNED_CONNECTION_POINTS, PivotPackage.PSEUDOSTATE__OWNING_STATE);
 		}
-		return submachine;
+		return ownedConnectionPoints;
 	}
 
 	/**
@@ -384,9 +377,14 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StateMachine basicGetSubmachine()
+	@Override
+	public List<ConnectionPointReference> getOwnedConnections()
 	{
-		return submachine;
+		if (ownedConnections == null)
+		{
+			ownedConnections = new EObjectContainmentWithInverseEList<ConnectionPointReference>(ConnectionPointReference.class, this, PivotPackage.STATE__OWNED_CONNECTIONS, PivotPackage.CONNECTION_POINT_REFERENCE__OWNING_STATE);
+		}
+		return ownedConnections;
 	}
 
 	/**
@@ -394,13 +392,39 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSubmachine(StateMachine newSubmachine, NotificationChain msgs)
+	@Override
+	public List<Trigger> getOwnedDeferrableTriggers()
 	{
-		StateMachine oldSubmachine = submachine;
-		submachine = newSubmachine;
+		if (ownedDeferrableTriggers == null)
+		{
+			ownedDeferrableTriggers = new EObjectContainmentWithInverseEList<Trigger>(Trigger.class, this, PivotPackage.STATE__OWNED_DEFERRABLE_TRIGGERS, PivotPackage.TRIGGER__OWNING_STATE);
+		}
+		return ownedDeferrableTriggers;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Behavior getOwnedDoActivity()
+	{
+		return ownedDoActivity;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwnedDoActivity(Behavior newOwnedDoActivity, NotificationChain msgs)
+	{
+		Behavior oldOwnedDoActivity = ownedDoActivity;
+		ownedDoActivity = newOwnedDoActivity;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.STATE__SUBMACHINE, oldSubmachine, newSubmachine);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.STATE__OWNED_DO_ACTIVITY, oldOwnedDoActivity, newOwnedDoActivity);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -412,20 +436,20 @@ public class StateImpl
 	 * @generated
 	 */
 	@Override
-	public void setSubmachine(StateMachine newSubmachine)
+	public void setOwnedDoActivity(Behavior newOwnedDoActivity)
 	{
-		if (newSubmachine != submachine)
+		if (newOwnedDoActivity != ownedDoActivity)
 		{
 			NotificationChain msgs = null;
-			if (submachine != null)
-				msgs = ((InternalEObject)submachine).eInverseRemove(this, PivotPackage.STATE_MACHINE__SUBMACHINE_STATE, StateMachine.class, msgs);
-			if (newSubmachine != null)
-				msgs = ((InternalEObject)newSubmachine).eInverseAdd(this, PivotPackage.STATE_MACHINE__SUBMACHINE_STATE, StateMachine.class, msgs);
-			msgs = basicSetSubmachine(newSubmachine, msgs);
+			if (ownedDoActivity != null)
+				msgs = ((InternalEObject)ownedDoActivity).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.STATE__OWNED_DO_ACTIVITY, null, msgs);
+			if (newOwnedDoActivity != null)
+				msgs = ((InternalEObject)newOwnedDoActivity).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.STATE__OWNED_DO_ACTIVITY, null, msgs);
+			msgs = basicSetOwnedDoActivity(newOwnedDoActivity, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.STATE__SUBMACHINE, newSubmachine, newSubmachine));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.STATE__OWNED_DO_ACTIVITY, newOwnedDoActivity, newOwnedDoActivity));
 	}
 
 	/**
@@ -434,13 +458,163 @@ public class StateImpl
 	 * @generated
 	 */
 	@Override
-	public List<ConnectionPointReference> getConnection()
+	public Behavior getOwnedEntry()
 	{
-		if (connection == null)
+		return ownedEntry;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwnedEntry(Behavior newOwnedEntry, NotificationChain msgs)
+	{
+		Behavior oldOwnedEntry = ownedEntry;
+		ownedEntry = newOwnedEntry;
+		if (eNotificationRequired())
 		{
-			connection = new EObjectContainmentWithInverseEList<ConnectionPointReference>(ConnectionPointReference.class, this, PivotPackage.STATE__CONNECTION, PivotPackage.CONNECTION_POINT_REFERENCE__STATE);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.STATE__OWNED_ENTRY, oldOwnedEntry, newOwnedEntry);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
-		return connection;
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwnedEntry(Behavior newOwnedEntry)
+	{
+		if (newOwnedEntry != ownedEntry)
+		{
+			NotificationChain msgs = null;
+			if (ownedEntry != null)
+				msgs = ((InternalEObject)ownedEntry).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.STATE__OWNED_ENTRY, null, msgs);
+			if (newOwnedEntry != null)
+				msgs = ((InternalEObject)newOwnedEntry).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.STATE__OWNED_ENTRY, null, msgs);
+			msgs = basicSetOwnedEntry(newOwnedEntry, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.STATE__OWNED_ENTRY, newOwnedEntry, newOwnedEntry));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Behavior getOwnedExit()
+	{
+		return ownedExit;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwnedExit(Behavior newOwnedExit, NotificationChain msgs)
+	{
+		Behavior oldOwnedExit = ownedExit;
+		ownedExit = newOwnedExit;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.STATE__OWNED_EXIT, oldOwnedExit, newOwnedExit);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwnedExit(Behavior newOwnedExit)
+	{
+		if (newOwnedExit != ownedExit)
+		{
+			NotificationChain msgs = null;
+			if (ownedExit != null)
+				msgs = ((InternalEObject)ownedExit).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.STATE__OWNED_EXIT, null, msgs);
+			if (newOwnedExit != null)
+				msgs = ((InternalEObject)newOwnedExit).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.STATE__OWNED_EXIT, null, msgs);
+			msgs = basicSetOwnedExit(newOwnedExit, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.STATE__OWNED_EXIT, newOwnedExit, newOwnedExit));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public List<Region> getOwnedRegions()
+	{
+		if (ownedRegions == null)
+		{
+			ownedRegions = new EObjectContainmentWithInverseEList<Region>(Region.class, this, PivotPackage.STATE__OWNED_REGIONS, PivotPackage.REGION__OWNING_STATE);
+		}
+		return ownedRegions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Constraint getOwnedStateInvariant()
+	{
+		return ownedStateInvariant;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwnedStateInvariant(Constraint newOwnedStateInvariant, NotificationChain msgs)
+	{
+		Constraint oldOwnedStateInvariant = ownedStateInvariant;
+		ownedStateInvariant = newOwnedStateInvariant;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.STATE__OWNED_STATE_INVARIANT, oldOwnedStateInvariant, newOwnedStateInvariant);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwnedStateInvariant(Constraint newOwnedStateInvariant)
+	{
+		if (newOwnedStateInvariant != ownedStateInvariant)
+		{
+			NotificationChain msgs = null;
+			if (ownedStateInvariant != null)
+				msgs = ((InternalEObject)ownedStateInvariant).eInverseRemove(this, PivotPackage.CONSTRAINT__OWNING_STATE, Constraint.class, msgs);
+			if (newOwnedStateInvariant != null)
+				msgs = ((InternalEObject)newOwnedStateInvariant).eInverseAdd(this, PivotPackage.CONSTRAINT__OWNING_STATE, Constraint.class, msgs);
+			msgs = basicSetOwnedStateInvariant(newOwnedStateInvariant, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.STATE__OWNED_STATE_INVARIANT, newOwnedStateInvariant, newOwnedStateInvariant));
 	}
 
 	/**
@@ -494,13 +668,19 @@ public class StateImpl
 	 * @generated
 	 */
 	@Override
-	public List<Region> getRegion()
+	public StateMachine getSubmachines()
 	{
-		if (region == null)
+		if (submachines != null && submachines.eIsProxy())
 		{
-			region = new EObjectContainmentWithInverseEList<Region>(Region.class, this, PivotPackage.STATE__REGION, PivotPackage.REGION__STATE);
+			InternalEObject oldSubmachines = (InternalEObject)submachines;
+			submachines = (StateMachine)eResolveProxy(oldSubmachines);
+			if (submachines != oldSubmachines)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.STATE__SUBMACHINES, oldSubmachines, submachines));
+			}
 		}
-		return region;
+		return submachines;
 	}
 
 	/**
@@ -508,10 +688,9 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Constraint getStateInvariant()
+	public StateMachine basicGetSubmachines()
 	{
-		return stateInvariant;
+		return submachines;
 	}
 
 	/**
@@ -519,13 +698,13 @@ public class StateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetStateInvariant(Constraint newStateInvariant, NotificationChain msgs)
+	public NotificationChain basicSetSubmachines(StateMachine newSubmachines, NotificationChain msgs)
 	{
-		Constraint oldStateInvariant = stateInvariant;
-		stateInvariant = newStateInvariant;
+		StateMachine oldSubmachines = submachines;
+		submachines = newSubmachines;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.STATE__STATE_INVARIANT, oldStateInvariant, newStateInvariant);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.STATE__SUBMACHINES, oldSubmachines, newSubmachines);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -537,200 +716,20 @@ public class StateImpl
 	 * @generated
 	 */
 	@Override
-	public void setStateInvariant(Constraint newStateInvariant)
+	public void setSubmachines(StateMachine newSubmachines)
 	{
-		if (newStateInvariant != stateInvariant)
+		if (newSubmachines != submachines)
 		{
 			NotificationChain msgs = null;
-			if (stateInvariant != null)
-				msgs = ((InternalEObject)stateInvariant).eInverseRemove(this, PivotPackage.CONSTRAINT__OWNING_STATE, Constraint.class, msgs);
-			if (newStateInvariant != null)
-				msgs = ((InternalEObject)newStateInvariant).eInverseAdd(this, PivotPackage.CONSTRAINT__OWNING_STATE, Constraint.class, msgs);
-			msgs = basicSetStateInvariant(newStateInvariant, msgs);
+			if (submachines != null)
+				msgs = ((InternalEObject)submachines).eInverseRemove(this, PivotPackage.STATE_MACHINE__SUBMACHINE_STATES, StateMachine.class, msgs);
+			if (newSubmachines != null)
+				msgs = ((InternalEObject)newSubmachines).eInverseAdd(this, PivotPackage.STATE_MACHINE__SUBMACHINE_STATES, StateMachine.class, msgs);
+			msgs = basicSetSubmachines(newSubmachines, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.STATE__STATE_INVARIANT, newStateInvariant, newStateInvariant));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Behavior getEntry()
-	{
-		return entry;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetEntry(Behavior newEntry, NotificationChain msgs)
-	{
-		Behavior oldEntry = entry;
-		entry = newEntry;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.STATE__ENTRY, oldEntry, newEntry);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setEntry(Behavior newEntry)
-	{
-		if (newEntry != entry)
-		{
-			NotificationChain msgs = null;
-			if (entry != null)
-				msgs = ((InternalEObject)entry).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.STATE__ENTRY, null, msgs);
-			if (newEntry != null)
-				msgs = ((InternalEObject)newEntry).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.STATE__ENTRY, null, msgs);
-			msgs = basicSetEntry(newEntry, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.STATE__ENTRY, newEntry, newEntry));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Behavior getExit()
-	{
-		return exit;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetExit(Behavior newExit, NotificationChain msgs)
-	{
-		Behavior oldExit = exit;
-		exit = newExit;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.STATE__EXIT, oldExit, newExit);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setExit(Behavior newExit)
-	{
-		if (newExit != exit)
-		{
-			NotificationChain msgs = null;
-			if (exit != null)
-				msgs = ((InternalEObject)exit).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.STATE__EXIT, null, msgs);
-			if (newExit != null)
-				msgs = ((InternalEObject)newExit).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.STATE__EXIT, null, msgs);
-			msgs = basicSetExit(newExit, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.STATE__EXIT, newExit, newExit));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Behavior getDoActivity()
-	{
-		return doActivity;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetDoActivity(Behavior newDoActivity, NotificationChain msgs)
-	{
-		Behavior oldDoActivity = doActivity;
-		doActivity = newDoActivity;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.STATE__DO_ACTIVITY, oldDoActivity, newDoActivity);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setDoActivity(Behavior newDoActivity)
-	{
-		if (newDoActivity != doActivity)
-		{
-			NotificationChain msgs = null;
-			if (doActivity != null)
-				msgs = ((InternalEObject)doActivity).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.STATE__DO_ACTIVITY, null, msgs);
-			if (newDoActivity != null)
-				msgs = ((InternalEObject)newDoActivity).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.STATE__DO_ACTIVITY, null, msgs);
-			msgs = basicSetDoActivity(newDoActivity, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.STATE__DO_ACTIVITY, newDoActivity, newDoActivity));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public List<Pseudostate> getConnectionPoint()
-	{
-		if (connectionPoint == null)
-		{
-			connectionPoint = new EObjectContainmentWithInverseEList<Pseudostate>(Pseudostate.class, this, PivotPackage.STATE__CONNECTION_POINT, PivotPackage.PSEUDOSTATE__STATE);
-		}
-		return connectionPoint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public List<Trigger> getDeferrableTrigger()
-	{
-		if (deferrableTrigger == null)
-		{
-			deferrableTrigger = new EObjectContainmentWithInverseEList<Trigger>(Trigger.class, this, PivotPackage.STATE__DEFERRABLE_TRIGGER, PivotPackage.TRIGGER__STATE);
-		}
-		return deferrableTrigger;
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.STATE__SUBMACHINES, newSubmachines, newSubmachines));
 	}
 
 	/**
@@ -744,36 +743,36 @@ public class StateImpl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.STATE__COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.STATE__EXTENSION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
-			case PivotPackage.STATE__OWNED_COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.STATE__CONTAINER:
+			case PivotPackage.STATE__ANNOTATING_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAnnotatingComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.STATE__OWNED_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.STATE__OWNED_EXTENSIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedExtensions()).basicAdd(otherEnd, msgs);
+			case PivotPackage.STATE__INCOMING_TRANSITIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getIncomingTransitions()).basicAdd(otherEnd, msgs);
+			case PivotPackage.STATE__OUTGOING_TRANSITIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOutgoingTransitions()).basicAdd(otherEnd, msgs);
+			case PivotPackage.STATE__OWNING_REGION:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetContainer((Region)otherEnd, msgs);
-			case PivotPackage.STATE__INCOMING:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getIncoming()).basicAdd(otherEnd, msgs);
-			case PivotPackage.STATE__OUTGOING:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOutgoing()).basicAdd(otherEnd, msgs);
-			case PivotPackage.STATE__CONNECTION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getConnection()).basicAdd(otherEnd, msgs);
-			case PivotPackage.STATE__CONNECTION_POINT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getConnectionPoint()).basicAdd(otherEnd, msgs);
-			case PivotPackage.STATE__DEFERRABLE_TRIGGER:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDeferrableTrigger()).basicAdd(otherEnd, msgs);
-			case PivotPackage.STATE__REGION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getRegion()).basicAdd(otherEnd, msgs);
-			case PivotPackage.STATE__STATE_INVARIANT:
-				if (stateInvariant != null)
-					msgs = ((InternalEObject)stateInvariant).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.STATE__STATE_INVARIANT, null, msgs);
-				return basicSetStateInvariant((Constraint)otherEnd, msgs);
-			case PivotPackage.STATE__SUBMACHINE:
-				if (submachine != null)
-					msgs = ((InternalEObject)submachine).eInverseRemove(this, PivotPackage.STATE_MACHINE__SUBMACHINE_STATE, StateMachine.class, msgs);
-				return basicSetSubmachine((StateMachine)otherEnd, msgs);
+				return basicSetOwningRegion((Region)otherEnd, msgs);
+			case PivotPackage.STATE__OWNED_CONNECTION_POINTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedConnectionPoints()).basicAdd(otherEnd, msgs);
+			case PivotPackage.STATE__OWNED_CONNECTIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedConnections()).basicAdd(otherEnd, msgs);
+			case PivotPackage.STATE__OWNED_DEFERRABLE_TRIGGERS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedDeferrableTriggers()).basicAdd(otherEnd, msgs);
+			case PivotPackage.STATE__OWNED_REGIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRegions()).basicAdd(otherEnd, msgs);
+			case PivotPackage.STATE__OWNED_STATE_INVARIANT:
+				if (ownedStateInvariant != null)
+					msgs = ((InternalEObject)ownedStateInvariant).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.STATE__OWNED_STATE_INVARIANT, null, msgs);
+				return basicSetOwnedStateInvariant((Constraint)otherEnd, msgs);
+			case PivotPackage.STATE__SUBMACHINES:
+				if (submachines != null)
+					msgs = ((InternalEObject)submachines).eInverseRemove(this, PivotPackage.STATE_MACHINE__SUBMACHINE_STATES, StateMachine.class, msgs);
+				return basicSetSubmachines((StateMachine)otherEnd, msgs);
 		}
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -788,40 +787,40 @@ public class StateImpl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.STATE__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.STATE__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.STATE__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.STATE__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.STATE__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
-			case PivotPackage.STATE__CONTAINER:
-				return basicSetContainer(null, msgs);
-			case PivotPackage.STATE__INCOMING:
-				return ((InternalEList<?>)getIncoming()).basicRemove(otherEnd, msgs);
-			case PivotPackage.STATE__OUTGOING:
-				return ((InternalEList<?>)getOutgoing()).basicRemove(otherEnd, msgs);
-			case PivotPackage.STATE__CONNECTION:
-				return ((InternalEList<?>)getConnection()).basicRemove(otherEnd, msgs);
-			case PivotPackage.STATE__CONNECTION_POINT:
-				return ((InternalEList<?>)getConnectionPoint()).basicRemove(otherEnd, msgs);
-			case PivotPackage.STATE__DEFERRABLE_TRIGGER:
-				return ((InternalEList<?>)getDeferrableTrigger()).basicRemove(otherEnd, msgs);
-			case PivotPackage.STATE__DO_ACTIVITY:
-				return basicSetDoActivity(null, msgs);
-			case PivotPackage.STATE__ENTRY:
-				return basicSetEntry(null, msgs);
-			case PivotPackage.STATE__EXIT:
-				return basicSetExit(null, msgs);
-			case PivotPackage.STATE__REGION:
-				return ((InternalEList<?>)getRegion()).basicRemove(otherEnd, msgs);
-			case PivotPackage.STATE__STATE_INVARIANT:
-				return basicSetStateInvariant(null, msgs);
-			case PivotPackage.STATE__SUBMACHINE:
-				return basicSetSubmachine(null, msgs);
+			case PivotPackage.STATE__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STATE__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STATE__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STATE__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STATE__OWNED_CONSTRAINTS:
+				return ((InternalEList<?>)getOwnedConstraints()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STATE__INCOMING_TRANSITIONS:
+				return ((InternalEList<?>)getIncomingTransitions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STATE__OUTGOING_TRANSITIONS:
+				return ((InternalEList<?>)getOutgoingTransitions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STATE__OWNING_REGION:
+				return basicSetOwningRegion(null, msgs);
+			case PivotPackage.STATE__OWNED_CONNECTION_POINTS:
+				return ((InternalEList<?>)getOwnedConnectionPoints()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STATE__OWNED_CONNECTIONS:
+				return ((InternalEList<?>)getOwnedConnections()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STATE__OWNED_DEFERRABLE_TRIGGERS:
+				return ((InternalEList<?>)getOwnedDeferrableTriggers()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STATE__OWNED_DO_ACTIVITY:
+				return basicSetOwnedDoActivity(null, msgs);
+			case PivotPackage.STATE__OWNED_ENTRY:
+				return basicSetOwnedEntry(null, msgs);
+			case PivotPackage.STATE__OWNED_EXIT:
+				return basicSetOwnedExit(null, msgs);
+			case PivotPackage.STATE__OWNED_REGIONS:
+				return ((InternalEList<?>)getOwnedRegions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.STATE__OWNED_STATE_INVARIANT:
+				return basicSetOwnedStateInvariant(null, msgs);
+			case PivotPackage.STATE__SUBMACHINES:
+				return basicSetSubmachines(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -836,8 +835,8 @@ public class StateImpl
 	{
 		switch (eContainerFeatureID())
 		{
-			case PivotPackage.STATE__CONTAINER:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.REGION__SUBVERTEX, Region.class, msgs);
+			case PivotPackage.STATE__OWNING_REGION:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.REGION__OWNED_SUBVERTEXES, Region.class, msgs);
 		}
 		return eDynamicBasicRemoveFromContainer(msgs);
 	}
@@ -852,36 +851,24 @@ public class StateImpl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.STATE__COMMENT:
-				return getComment();
-			case PivotPackage.STATE__EXTENSION:
-				return getExtension();
-			case PivotPackage.STATE__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.STATE__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.STATE__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.STATE__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.STATE__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.STATE__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.STATE__NAME:
 				return getName();
-			case PivotPackage.STATE__OWNED_RULE:
-				return getOwnedRule();
-			case PivotPackage.STATE__CONTAINER:
-				return getContainer();
-			case PivotPackage.STATE__INCOMING:
-				return getIncoming();
-			case PivotPackage.STATE__OUTGOING:
-				return getOutgoing();
-			case PivotPackage.STATE__CONNECTION:
-				return getConnection();
-			case PivotPackage.STATE__CONNECTION_POINT:
-				return getConnectionPoint();
-			case PivotPackage.STATE__DEFERRABLE_TRIGGER:
-				return getDeferrableTrigger();
-			case PivotPackage.STATE__DO_ACTIVITY:
-				return getDoActivity();
-			case PivotPackage.STATE__ENTRY:
-				return getEntry();
-			case PivotPackage.STATE__EXIT:
-				return getExit();
+			case PivotPackage.STATE__OWNED_CONSTRAINTS:
+				return getOwnedConstraints();
+			case PivotPackage.STATE__INCOMING_TRANSITIONS:
+				return getIncomingTransitions();
+			case PivotPackage.STATE__OUTGOING_TRANSITIONS:
+				return getOutgoingTransitions();
+			case PivotPackage.STATE__OWNING_REGION:
+				return getOwningRegion();
 			case PivotPackage.STATE__IS_COMPOSITE:
 				return isComposite();
 			case PivotPackage.STATE__IS_ORTHOGONAL:
@@ -890,16 +877,28 @@ public class StateImpl
 				return isSimple();
 			case PivotPackage.STATE__IS_SUBMACHINE_STATE:
 				return isSubmachineState();
+			case PivotPackage.STATE__OWNED_CONNECTION_POINTS:
+				return getOwnedConnectionPoints();
+			case PivotPackage.STATE__OWNED_CONNECTIONS:
+				return getOwnedConnections();
+			case PivotPackage.STATE__OWNED_DEFERRABLE_TRIGGERS:
+				return getOwnedDeferrableTriggers();
+			case PivotPackage.STATE__OWNED_DO_ACTIVITY:
+				return getOwnedDoActivity();
+			case PivotPackage.STATE__OWNED_ENTRY:
+				return getOwnedEntry();
+			case PivotPackage.STATE__OWNED_EXIT:
+				return getOwnedExit();
+			case PivotPackage.STATE__OWNED_REGIONS:
+				return getOwnedRegions();
+			case PivotPackage.STATE__OWNED_STATE_INVARIANT:
+				return getOwnedStateInvariant();
 			case PivotPackage.STATE__REDEFINED_STATE:
 				if (resolve) return getRedefinedState();
 				return basicGetRedefinedState();
-			case PivotPackage.STATE__REGION:
-				return getRegion();
-			case PivotPackage.STATE__STATE_INVARIANT:
-				return getStateInvariant();
-			case PivotPackage.STATE__SUBMACHINE:
-				if (resolve) return getSubmachine();
-				return basicGetSubmachine();
+			case PivotPackage.STATE__SUBMACHINES:
+				if (resolve) return getSubmachines();
+				return basicGetSubmachines();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -915,65 +914,65 @@ public class StateImpl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.STATE__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.STATE__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.STATE__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.STATE__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.STATE__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.STATE__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.STATE__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.STATE__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.STATE__NAME:
 				setName((String)newValue);
 				return;
-			case PivotPackage.STATE__OWNED_RULE:
-				getOwnedRule().clear();
-				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
+			case PivotPackage.STATE__OWNED_CONSTRAINTS:
+				getOwnedConstraints().clear();
+				getOwnedConstraints().addAll((Collection<? extends Constraint>)newValue);
 				return;
-			case PivotPackage.STATE__CONTAINER:
-				setContainer((Region)newValue);
+			case PivotPackage.STATE__OWNING_REGION:
+				setOwningRegion((Region)newValue);
 				return;
-			case PivotPackage.STATE__CONNECTION:
-				getConnection().clear();
-				getConnection().addAll((Collection<? extends ConnectionPointReference>)newValue);
+			case PivotPackage.STATE__OWNED_CONNECTION_POINTS:
+				getOwnedConnectionPoints().clear();
+				getOwnedConnectionPoints().addAll((Collection<? extends Pseudostate>)newValue);
 				return;
-			case PivotPackage.STATE__CONNECTION_POINT:
-				getConnectionPoint().clear();
-				getConnectionPoint().addAll((Collection<? extends Pseudostate>)newValue);
+			case PivotPackage.STATE__OWNED_CONNECTIONS:
+				getOwnedConnections().clear();
+				getOwnedConnections().addAll((Collection<? extends ConnectionPointReference>)newValue);
 				return;
-			case PivotPackage.STATE__DEFERRABLE_TRIGGER:
-				getDeferrableTrigger().clear();
-				getDeferrableTrigger().addAll((Collection<? extends Trigger>)newValue);
+			case PivotPackage.STATE__OWNED_DEFERRABLE_TRIGGERS:
+				getOwnedDeferrableTriggers().clear();
+				getOwnedDeferrableTriggers().addAll((Collection<? extends Trigger>)newValue);
 				return;
-			case PivotPackage.STATE__DO_ACTIVITY:
-				setDoActivity((Behavior)newValue);
+			case PivotPackage.STATE__OWNED_DO_ACTIVITY:
+				setOwnedDoActivity((Behavior)newValue);
 				return;
-			case PivotPackage.STATE__ENTRY:
-				setEntry((Behavior)newValue);
+			case PivotPackage.STATE__OWNED_ENTRY:
+				setOwnedEntry((Behavior)newValue);
 				return;
-			case PivotPackage.STATE__EXIT:
-				setExit((Behavior)newValue);
+			case PivotPackage.STATE__OWNED_EXIT:
+				setOwnedExit((Behavior)newValue);
+				return;
+			case PivotPackage.STATE__OWNED_REGIONS:
+				getOwnedRegions().clear();
+				getOwnedRegions().addAll((Collection<? extends Region>)newValue);
+				return;
+			case PivotPackage.STATE__OWNED_STATE_INVARIANT:
+				setOwnedStateInvariant((Constraint)newValue);
 				return;
 			case PivotPackage.STATE__REDEFINED_STATE:
 				setRedefinedState((State)newValue);
 				return;
-			case PivotPackage.STATE__REGION:
-				getRegion().clear();
-				getRegion().addAll((Collection<? extends Region>)newValue);
-				return;
-			case PivotPackage.STATE__STATE_INVARIANT:
-				setStateInvariant((Constraint)newValue);
-				return;
-			case PivotPackage.STATE__SUBMACHINE:
-				setSubmachine((StateMachine)newValue);
+			case PivotPackage.STATE__SUBMACHINES:
+				setSubmachines((StateMachine)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -989,56 +988,56 @@ public class StateImpl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.STATE__COMMENT:
-				getComment().clear();
+			case PivotPackage.STATE__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.STATE__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.STATE__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.STATE__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.STATE__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.STATE__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.STATE__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.STATE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case PivotPackage.STATE__OWNED_RULE:
-				getOwnedRule().clear();
+			case PivotPackage.STATE__OWNED_CONSTRAINTS:
+				getOwnedConstraints().clear();
 				return;
-			case PivotPackage.STATE__CONTAINER:
-				setContainer((Region)null);
+			case PivotPackage.STATE__OWNING_REGION:
+				setOwningRegion((Region)null);
 				return;
-			case PivotPackage.STATE__CONNECTION:
-				getConnection().clear();
+			case PivotPackage.STATE__OWNED_CONNECTION_POINTS:
+				getOwnedConnectionPoints().clear();
 				return;
-			case PivotPackage.STATE__CONNECTION_POINT:
-				getConnectionPoint().clear();
+			case PivotPackage.STATE__OWNED_CONNECTIONS:
+				getOwnedConnections().clear();
 				return;
-			case PivotPackage.STATE__DEFERRABLE_TRIGGER:
-				getDeferrableTrigger().clear();
+			case PivotPackage.STATE__OWNED_DEFERRABLE_TRIGGERS:
+				getOwnedDeferrableTriggers().clear();
 				return;
-			case PivotPackage.STATE__DO_ACTIVITY:
-				setDoActivity((Behavior)null);
+			case PivotPackage.STATE__OWNED_DO_ACTIVITY:
+				setOwnedDoActivity((Behavior)null);
 				return;
-			case PivotPackage.STATE__ENTRY:
-				setEntry((Behavior)null);
+			case PivotPackage.STATE__OWNED_ENTRY:
+				setOwnedEntry((Behavior)null);
 				return;
-			case PivotPackage.STATE__EXIT:
-				setExit((Behavior)null);
+			case PivotPackage.STATE__OWNED_EXIT:
+				setOwnedExit((Behavior)null);
+				return;
+			case PivotPackage.STATE__OWNED_REGIONS:
+				getOwnedRegions().clear();
+				return;
+			case PivotPackage.STATE__OWNED_STATE_INVARIANT:
+				setOwnedStateInvariant((Constraint)null);
 				return;
 			case PivotPackage.STATE__REDEFINED_STATE:
 				setRedefinedState((State)null);
 				return;
-			case PivotPackage.STATE__REGION:
-				getRegion().clear();
-				return;
-			case PivotPackage.STATE__STATE_INVARIANT:
-				setStateInvariant((Constraint)null);
-				return;
-			case PivotPackage.STATE__SUBMACHINE:
-				setSubmachine((StateMachine)null);
+			case PivotPackage.STATE__SUBMACHINES:
+				setSubmachines((StateMachine)null);
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -1054,36 +1053,24 @@ public class StateImpl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.STATE__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.STATE__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.STATE__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.STATE__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.STATE__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.STATE__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.STATE__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.STATE__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.STATE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.STATE__OWNED_RULE:
-				return ownedRule != null && !ownedRule.isEmpty();
-			case PivotPackage.STATE__CONTAINER:
-				return getContainer() != null;
-			case PivotPackage.STATE__INCOMING:
-				return incoming != null && !incoming.isEmpty();
-			case PivotPackage.STATE__OUTGOING:
-				return outgoing != null && !outgoing.isEmpty();
-			case PivotPackage.STATE__CONNECTION:
-				return connection != null && !connection.isEmpty();
-			case PivotPackage.STATE__CONNECTION_POINT:
-				return connectionPoint != null && !connectionPoint.isEmpty();
-			case PivotPackage.STATE__DEFERRABLE_TRIGGER:
-				return deferrableTrigger != null && !deferrableTrigger.isEmpty();
-			case PivotPackage.STATE__DO_ACTIVITY:
-				return doActivity != null;
-			case PivotPackage.STATE__ENTRY:
-				return entry != null;
-			case PivotPackage.STATE__EXIT:
-				return exit != null;
+			case PivotPackage.STATE__OWNED_CONSTRAINTS:
+				return ownedConstraints != null && !ownedConstraints.isEmpty();
+			case PivotPackage.STATE__INCOMING_TRANSITIONS:
+				return incomingTransitions != null && !incomingTransitions.isEmpty();
+			case PivotPackage.STATE__OUTGOING_TRANSITIONS:
+				return outgoingTransitions != null && !outgoingTransitions.isEmpty();
+			case PivotPackage.STATE__OWNING_REGION:
+				return getOwningRegion() != null;
 			case PivotPackage.STATE__IS_COMPOSITE:
 				return isComposite() != IS_COMPOSITE_EDEFAULT;
 			case PivotPackage.STATE__IS_ORTHOGONAL:
@@ -1092,14 +1079,26 @@ public class StateImpl
 				return isSimple() != IS_SIMPLE_EDEFAULT;
 			case PivotPackage.STATE__IS_SUBMACHINE_STATE:
 				return isSubmachineState() != IS_SUBMACHINE_STATE_EDEFAULT;
+			case PivotPackage.STATE__OWNED_CONNECTION_POINTS:
+				return ownedConnectionPoints != null && !ownedConnectionPoints.isEmpty();
+			case PivotPackage.STATE__OWNED_CONNECTIONS:
+				return ownedConnections != null && !ownedConnections.isEmpty();
+			case PivotPackage.STATE__OWNED_DEFERRABLE_TRIGGERS:
+				return ownedDeferrableTriggers != null && !ownedDeferrableTriggers.isEmpty();
+			case PivotPackage.STATE__OWNED_DO_ACTIVITY:
+				return ownedDoActivity != null;
+			case PivotPackage.STATE__OWNED_ENTRY:
+				return ownedEntry != null;
+			case PivotPackage.STATE__OWNED_EXIT:
+				return ownedExit != null;
+			case PivotPackage.STATE__OWNED_REGIONS:
+				return ownedRegions != null && !ownedRegions.isEmpty();
+			case PivotPackage.STATE__OWNED_STATE_INVARIANT:
+				return ownedStateInvariant != null;
 			case PivotPackage.STATE__REDEFINED_STATE:
 				return redefinedState != null;
-			case PivotPackage.STATE__REGION:
-				return region != null && !region.isEmpty();
-			case PivotPackage.STATE__STATE_INVARIANT:
-				return stateInvariant != null;
-			case PivotPackage.STATE__SUBMACHINE:
-				return submachine != null;
+			case PivotPackage.STATE__SUBMACHINES:
+				return submachines != null;
 		}
 		return eDynamicIsSet(featureID);
 	}
@@ -1116,9 +1115,9 @@ public class StateImpl
 		{
 			switch (derivedFeatureID)
 			{
-				case PivotPackage.STATE__CONTAINER: return PivotPackage.VERTEX__CONTAINER;
-				case PivotPackage.STATE__INCOMING: return PivotPackage.VERTEX__INCOMING;
-				case PivotPackage.STATE__OUTGOING: return PivotPackage.VERTEX__OUTGOING;
+				case PivotPackage.STATE__INCOMING_TRANSITIONS: return PivotPackage.VERTEX__INCOMING_TRANSITIONS;
+				case PivotPackage.STATE__OUTGOING_TRANSITIONS: return PivotPackage.VERTEX__OUTGOING_TRANSITIONS;
+				case PivotPackage.STATE__OWNING_REGION: return PivotPackage.VERTEX__OWNING_REGION;
 				default: return -1;
 			}
 		}
@@ -1137,9 +1136,9 @@ public class StateImpl
 		{
 			switch (baseFeatureID)
 			{
-				case PivotPackage.VERTEX__CONTAINER: return PivotPackage.STATE__CONTAINER;
-				case PivotPackage.VERTEX__INCOMING: return PivotPackage.STATE__INCOMING;
-				case PivotPackage.VERTEX__OUTGOING: return PivotPackage.STATE__OUTGOING;
+				case PivotPackage.VERTEX__INCOMING_TRANSITIONS: return PivotPackage.STATE__INCOMING_TRANSITIONS;
+				case PivotPackage.VERTEX__OUTGOING_TRANSITIONS: return PivotPackage.STATE__OUTGOING_TRANSITIONS;
+				case PivotPackage.VERTEX__OWNING_REGION: return PivotPackage.STATE__OWNING_REGION;
 				default: return -1;
 			}
 		}

@@ -63,10 +63,10 @@ import org.eclipse.osgi.util.NLS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.impl.MessageExpImpl#getArgument <em>Argument</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.MessageExpImpl#getCalledOperation <em>Called Operation</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.MessageExpImpl#getSentSignal <em>Sent Signal</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.MessageExpImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.MessageExpImpl#getOwnedArguments <em>Owned Arguments</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.MessageExpImpl#getOwnedCalledOperation <em>Owned Called Operation</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.MessageExpImpl#getOwnedSentSignal <em>Owned Sent Signal</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.MessageExpImpl#getOwnedTarget <em>Owned Target</em>}</li>
  * </ul>
  * </p>
  *
@@ -77,44 +77,44 @@ public class MessageExpImpl
 		implements MessageExp {
 
 	/**
-	 * The cached value of the '{@link #getArgument() <em>Argument</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedArguments() <em>Owned Arguments</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getArgument()
+	 * @see #getOwnedArguments()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<OCLExpression> argument;
+	protected EList<OCLExpression> ownedArguments;
 
 	/**
-	 * The cached value of the '{@link #getCalledOperation() <em>Called Operation</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedCalledOperation() <em>Owned Called Operation</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCalledOperation()
+	 * @see #getOwnedCalledOperation()
 	 * @generated
 	 * @ordered
 	 */
-	protected CallOperationAction calledOperation;
+	protected CallOperationAction ownedCalledOperation;
 
 	/**
-	 * The cached value of the '{@link #getSentSignal() <em>Sent Signal</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedSentSignal() <em>Owned Sent Signal</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSentSignal()
+	 * @see #getOwnedSentSignal()
 	 * @generated
 	 * @ordered
 	 */
-	protected SendSignalAction sentSignal;
+	protected SendSignalAction ownedSentSignal;
 
 	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedTarget() <em>Owned Target</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTarget()
+	 * @see #getOwnedTarget()
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLExpression target;
+	protected OCLExpression ownedTarget;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -141,8 +141,8 @@ public class MessageExpImpl
 	 * @generated
 	 */
 	@Override
-	public OCLExpression getTarget() {
-		return target;
+	public OCLExpression getOwnedTarget() {
+		return ownedTarget;
 	}
 
 	/**
@@ -150,76 +150,13 @@ public class MessageExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTarget(OCLExpression newTarget,
-			NotificationChain msgs) {
-		OCLExpression oldTarget = target;
-		target = newTarget;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.MESSAGE_EXP__TARGET, oldTarget, newTarget);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setTarget(OCLExpression newTarget) {
-		if (newTarget != target)
-		{
-			NotificationChain msgs = null;
-			if (target != null)
-				msgs = ((InternalEObject)target).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.MESSAGE_EXP__TARGET, null, msgs);
-			if (newTarget != null)
-				msgs = ((InternalEObject)newTarget).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.MESSAGE_EXP__TARGET, null, msgs);
-			msgs = basicSetTarget(newTarget, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.MESSAGE_EXP__TARGET, newTarget, newTarget));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public List<OCLExpression> getArgument()
+	public NotificationChain basicSetOwnedTarget(OCLExpression newOwnedTarget, NotificationChain msgs)
 	{
-		if (argument == null)
-		{
-			argument = new EObjectContainmentEList<OCLExpression>(OCLExpression.class, this, PivotPackage.MESSAGE_EXP__ARGUMENT);
-		}
-		return argument;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public CallOperationAction getCalledOperation() {
-		return calledOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetCalledOperation(
-			CallOperationAction newCalledOperation, NotificationChain msgs) {
-		CallOperationAction oldCalledOperation = calledOperation;
-		calledOperation = newCalledOperation;
+		OCLExpression oldOwnedTarget = ownedTarget;
+		ownedTarget = newOwnedTarget;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.MESSAGE_EXP__CALLED_OPERATION, oldCalledOperation, newCalledOperation);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.MESSAGE_EXP__OWNED_TARGET, oldOwnedTarget, newOwnedTarget);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -231,19 +168,35 @@ public class MessageExpImpl
 	 * @generated
 	 */
 	@Override
-	public void setCalledOperation(CallOperationAction newCalledOperation) {
-		if (newCalledOperation != calledOperation)
+	public void setOwnedTarget(OCLExpression newOwnedTarget) {
+		if (newOwnedTarget != ownedTarget)
 		{
 			NotificationChain msgs = null;
-			if (calledOperation != null)
-				msgs = ((InternalEObject)calledOperation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.MESSAGE_EXP__CALLED_OPERATION, null, msgs);
-			if (newCalledOperation != null)
-				msgs = ((InternalEObject)newCalledOperation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.MESSAGE_EXP__CALLED_OPERATION, null, msgs);
-			msgs = basicSetCalledOperation(newCalledOperation, msgs);
+			if (ownedTarget != null)
+				msgs = ((InternalEObject)ownedTarget).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.MESSAGE_EXP__OWNED_TARGET, null, msgs);
+			if (newOwnedTarget != null)
+				msgs = ((InternalEObject)newOwnedTarget).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.MESSAGE_EXP__OWNED_TARGET, null, msgs);
+			msgs = basicSetOwnedTarget(newOwnedTarget, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.MESSAGE_EXP__CALLED_OPERATION, newCalledOperation, newCalledOperation));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.MESSAGE_EXP__OWNED_TARGET, newOwnedTarget, newOwnedTarget));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("null")
+	@Override
+	public @NonNull List<OCLExpression> getOwnedArguments()
+	{
+		if (ownedArguments == null)
+		{
+			ownedArguments = new EObjectContainmentEList<OCLExpression>(OCLExpression.class, this, PivotPackage.MESSAGE_EXP__OWNED_ARGUMENTS);
+		}
+		return ownedArguments;
 	}
 
 	/**
@@ -252,8 +205,8 @@ public class MessageExpImpl
 	 * @generated
 	 */
 	@Override
-	public SendSignalAction getSentSignal() {
-		return sentSignal;
+	public CallOperationAction getOwnedCalledOperation() {
+		return ownedCalledOperation;
 	}
 
 	/**
@@ -261,13 +214,13 @@ public class MessageExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSentSignal(SendSignalAction newSentSignal,
-			NotificationChain msgs) {
-		SendSignalAction oldSentSignal = sentSignal;
-		sentSignal = newSentSignal;
+	public NotificationChain basicSetOwnedCalledOperation(CallOperationAction newOwnedCalledOperation, NotificationChain msgs)
+	{
+		CallOperationAction oldOwnedCalledOperation = ownedCalledOperation;
+		ownedCalledOperation = newOwnedCalledOperation;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.MESSAGE_EXP__SENT_SIGNAL, oldSentSignal, newSentSignal);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.MESSAGE_EXP__OWNED_CALLED_OPERATION, oldOwnedCalledOperation, newOwnedCalledOperation);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -279,19 +232,69 @@ public class MessageExpImpl
 	 * @generated
 	 */
 	@Override
-	public void setSentSignal(SendSignalAction newSentSignal) {
-		if (newSentSignal != sentSignal)
+	public void setOwnedCalledOperation(CallOperationAction newOwnedCalledOperation)
+	{
+		if (newOwnedCalledOperation != ownedCalledOperation)
 		{
 			NotificationChain msgs = null;
-			if (sentSignal != null)
-				msgs = ((InternalEObject)sentSignal).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.MESSAGE_EXP__SENT_SIGNAL, null, msgs);
-			if (newSentSignal != null)
-				msgs = ((InternalEObject)newSentSignal).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.MESSAGE_EXP__SENT_SIGNAL, null, msgs);
-			msgs = basicSetSentSignal(newSentSignal, msgs);
+			if (ownedCalledOperation != null)
+				msgs = ((InternalEObject)ownedCalledOperation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.MESSAGE_EXP__OWNED_CALLED_OPERATION, null, msgs);
+			if (newOwnedCalledOperation != null)
+				msgs = ((InternalEObject)newOwnedCalledOperation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.MESSAGE_EXP__OWNED_CALLED_OPERATION, null, msgs);
+			msgs = basicSetOwnedCalledOperation(newOwnedCalledOperation, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.MESSAGE_EXP__SENT_SIGNAL, newSentSignal, newSentSignal));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.MESSAGE_EXP__OWNED_CALLED_OPERATION, newOwnedCalledOperation, newOwnedCalledOperation));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SendSignalAction getOwnedSentSignal() {
+		return ownedSentSignal;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwnedSentSignal(SendSignalAction newOwnedSentSignal, NotificationChain msgs)
+	{
+		SendSignalAction oldOwnedSentSignal = ownedSentSignal;
+		ownedSentSignal = newOwnedSentSignal;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.MESSAGE_EXP__OWNED_SENT_SIGNAL, oldOwnedSentSignal, newOwnedSentSignal);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwnedSentSignal(SendSignalAction newOwnedSentSignal)
+	{
+		if (newOwnedSentSignal != ownedSentSignal)
+		{
+			NotificationChain msgs = null;
+			if (ownedSentSignal != null)
+				msgs = ((InternalEObject)ownedSentSignal).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.MESSAGE_EXP__OWNED_SENT_SIGNAL, null, msgs);
+			if (newOwnedSentSignal != null)
+				msgs = ((InternalEObject)newOwnedSentSignal).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.MESSAGE_EXP__OWNED_SENT_SIGNAL, null, msgs);
+			msgs = basicSetOwnedSentSignal(newOwnedSentSignal, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.MESSAGE_EXP__OWNED_SENT_SIGNAL, newOwnedSentSignal, newOwnedSentSignal));
 	}
 
 	/**
@@ -304,16 +307,18 @@ public class MessageExpImpl
 	{
 		/**
 		 * 
-		 * inv OneCallOrOneSend: calledOperation->size() + sentSignal->size() = 1
+		 * inv OneCallOrOneSend:
+		 *   ownedCalledOperation->size() +
+		 *   ownedSentSignal->size() = 1
 		 */
 		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		@NonNull /*@Caught*/ Object CAUGHT_eq;
 		try {
-		    final @Nullable /*@Thrown*/ CallOperationAction calledOperation = this.getCalledOperation();
-		    final @NonNull /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, PivotTables.SET_CLSSid_CallOperationAction, calledOperation);
+		    final @Nullable /*@Thrown*/ CallOperationAction ownedCalledOperation = this.getOwnedCalledOperation();
+		    final @NonNull /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, PivotTables.SET_CLSSid_CallOperationAction, ownedCalledOperation);
 		    final @NonNull /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet);
-		    final @Nullable /*@Thrown*/ SendSignalAction sentSignal = this.getSentSignal();
-		    final @NonNull /*@Thrown*/ SetValue oclAsSet_0 = OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, PivotTables.SET_CLSSid_SendSignalAction, sentSignal);
+		    final @Nullable /*@Thrown*/ SendSignalAction ownedSentSignal = this.getOwnedSentSignal();
+		    final @NonNull /*@Thrown*/ SetValue oclAsSet_0 = OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, PivotTables.SET_CLSSid_SendSignalAction, ownedSentSignal);
 		    final @NonNull /*@Thrown*/ IntegerValue size_0 = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet_0);
 		    final @NonNull /*@Thrown*/ IntegerValue sum = (IntegerValue)NumericPlusOperation.INSTANCE.evaluate(size, size_0);
 		    final /*@Thrown*/ boolean eq = sum.equals(PivotTables.INT_1);
@@ -344,7 +349,7 @@ public class MessageExpImpl
 		/**
 		 * 
 		 * inv TargetIsNotACollection:
-		 *   not target.type.oclIsKindOf(CollectionType)
+		 *   not ownedTarget.type.oclIsKindOf(CollectionType)
 		 */
 		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -353,11 +358,11 @@ public class MessageExpImpl
 		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
 		    try {
 		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pivot_c_c_CollectionType_0 = idResolver.getClass(PivotTables.CLSSid_CollectionType, null);
-		        final @Nullable /*@Thrown*/ OCLExpression target = this.getTarget();
-		        if (target == null) {
+		        final @Nullable /*@Thrown*/ OCLExpression ownedTarget = this.getOwnedTarget();
+		        if (ownedTarget == null) {
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
-		        final @Nullable /*@Thrown*/ Type type = target.getType();
+		        final @Nullable /*@Thrown*/ Type type = ownedTarget.getType();
 		        final /*@Thrown*/ boolean self_71 = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_CollectionType_0).booleanValue();
 		        CAUGHT_self_71 = self_71;
 		    }
@@ -402,22 +407,22 @@ public class MessageExpImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case PivotPackage.MESSAGE_EXP__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.MESSAGE_EXP__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.MESSAGE_EXP__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.MESSAGE_EXP__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.MESSAGE_EXP__ARGUMENT:
-				return ((InternalEList<?>)getArgument()).basicRemove(otherEnd, msgs);
-			case PivotPackage.MESSAGE_EXP__CALLED_OPERATION:
-				return basicSetCalledOperation(null, msgs);
-			case PivotPackage.MESSAGE_EXP__SENT_SIGNAL:
-				return basicSetSentSignal(null, msgs);
-			case PivotPackage.MESSAGE_EXP__TARGET:
-				return basicSetTarget(null, msgs);
+			case PivotPackage.MESSAGE_EXP__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.MESSAGE_EXP__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.MESSAGE_EXP__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.MESSAGE_EXP__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.MESSAGE_EXP__OWNED_ARGUMENTS:
+				return ((InternalEList<?>)getOwnedArguments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.MESSAGE_EXP__OWNED_CALLED_OPERATION:
+				return basicSetOwnedCalledOperation(null, msgs);
+			case PivotPackage.MESSAGE_EXP__OWNED_SENT_SIGNAL:
+				return basicSetOwnedSentSignal(null, msgs);
+			case PivotPackage.MESSAGE_EXP__OWNED_TARGET:
+				return basicSetOwnedTarget(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -431,14 +436,14 @@ public class MessageExpImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case PivotPackage.MESSAGE_EXP__COMMENT:
-				return getComment();
-			case PivotPackage.MESSAGE_EXP__EXTENSION:
-				return getExtension();
-			case PivotPackage.MESSAGE_EXP__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.MESSAGE_EXP__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.MESSAGE_EXP__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.MESSAGE_EXP__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.MESSAGE_EXP__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.MESSAGE_EXP__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.MESSAGE_EXP__NAME:
 				return getName();
 			case PivotPackage.MESSAGE_EXP__IS_MANY:
@@ -450,14 +455,14 @@ public class MessageExpImpl
 				return basicGetType();
 			case PivotPackage.MESSAGE_EXP__TYPE_VALUE:
 				return getTypeValue();
-			case PivotPackage.MESSAGE_EXP__ARGUMENT:
-				return getArgument();
-			case PivotPackage.MESSAGE_EXP__CALLED_OPERATION:
-				return getCalledOperation();
-			case PivotPackage.MESSAGE_EXP__SENT_SIGNAL:
-				return getSentSignal();
-			case PivotPackage.MESSAGE_EXP__TARGET:
-				return getTarget();
+			case PivotPackage.MESSAGE_EXP__OWNED_ARGUMENTS:
+				return getOwnedArguments();
+			case PivotPackage.MESSAGE_EXP__OWNED_CALLED_OPERATION:
+				return getOwnedCalledOperation();
+			case PivotPackage.MESSAGE_EXP__OWNED_SENT_SIGNAL:
+				return getOwnedSentSignal();
+			case PivotPackage.MESSAGE_EXP__OWNED_TARGET:
+				return getOwnedTarget();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -472,21 +477,21 @@ public class MessageExpImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case PivotPackage.MESSAGE_EXP__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.MESSAGE_EXP__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.MESSAGE_EXP__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.MESSAGE_EXP__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.MESSAGE_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.MESSAGE_EXP__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.MESSAGE_EXP__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.MESSAGE_EXP__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.MESSAGE_EXP__NAME:
 				setName((String)newValue);
@@ -500,18 +505,18 @@ public class MessageExpImpl
 			case PivotPackage.MESSAGE_EXP__TYPE_VALUE:
 				setTypeValue((Type)newValue);
 				return;
-			case PivotPackage.MESSAGE_EXP__ARGUMENT:
-				getArgument().clear();
-				getArgument().addAll((Collection<? extends OCLExpression>)newValue);
+			case PivotPackage.MESSAGE_EXP__OWNED_ARGUMENTS:
+				getOwnedArguments().clear();
+				getOwnedArguments().addAll((Collection<? extends OCLExpression>)newValue);
 				return;
-			case PivotPackage.MESSAGE_EXP__CALLED_OPERATION:
-				setCalledOperation((CallOperationAction)newValue);
+			case PivotPackage.MESSAGE_EXP__OWNED_CALLED_OPERATION:
+				setOwnedCalledOperation((CallOperationAction)newValue);
 				return;
-			case PivotPackage.MESSAGE_EXP__SENT_SIGNAL:
-				setSentSignal((SendSignalAction)newValue);
+			case PivotPackage.MESSAGE_EXP__OWNED_SENT_SIGNAL:
+				setOwnedSentSignal((SendSignalAction)newValue);
 				return;
-			case PivotPackage.MESSAGE_EXP__TARGET:
-				setTarget((OCLExpression)newValue);
+			case PivotPackage.MESSAGE_EXP__OWNED_TARGET:
+				setOwnedTarget((OCLExpression)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -526,17 +531,17 @@ public class MessageExpImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.MESSAGE_EXP__COMMENT:
-				getComment().clear();
+			case PivotPackage.MESSAGE_EXP__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.MESSAGE_EXP__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.MESSAGE_EXP__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.MESSAGE_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.MESSAGE_EXP__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.MESSAGE_EXP__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.MESSAGE_EXP__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.MESSAGE_EXP__NAME:
 				setName(NAME_EDEFAULT);
@@ -550,17 +555,17 @@ public class MessageExpImpl
 			case PivotPackage.MESSAGE_EXP__TYPE_VALUE:
 				setTypeValue((Type)null);
 				return;
-			case PivotPackage.MESSAGE_EXP__ARGUMENT:
-				getArgument().clear();
+			case PivotPackage.MESSAGE_EXP__OWNED_ARGUMENTS:
+				getOwnedArguments().clear();
 				return;
-			case PivotPackage.MESSAGE_EXP__CALLED_OPERATION:
-				setCalledOperation((CallOperationAction)null);
+			case PivotPackage.MESSAGE_EXP__OWNED_CALLED_OPERATION:
+				setOwnedCalledOperation((CallOperationAction)null);
 				return;
-			case PivotPackage.MESSAGE_EXP__SENT_SIGNAL:
-				setSentSignal((SendSignalAction)null);
+			case PivotPackage.MESSAGE_EXP__OWNED_SENT_SIGNAL:
+				setOwnedSentSignal((SendSignalAction)null);
 				return;
-			case PivotPackage.MESSAGE_EXP__TARGET:
-				setTarget((OCLExpression)null);
+			case PivotPackage.MESSAGE_EXP__OWNED_TARGET:
+				setOwnedTarget((OCLExpression)null);
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -575,14 +580,14 @@ public class MessageExpImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.MESSAGE_EXP__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.MESSAGE_EXP__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.MESSAGE_EXP__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.MESSAGE_EXP__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.MESSAGE_EXP__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.MESSAGE_EXP__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.MESSAGE_EXP__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.MESSAGE_EXP__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.MESSAGE_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.MESSAGE_EXP__IS_MANY:
@@ -593,14 +598,14 @@ public class MessageExpImpl
 				return type != null;
 			case PivotPackage.MESSAGE_EXP__TYPE_VALUE:
 				return typeValue != null;
-			case PivotPackage.MESSAGE_EXP__ARGUMENT:
-				return argument != null && !argument.isEmpty();
-			case PivotPackage.MESSAGE_EXP__CALLED_OPERATION:
-				return calledOperation != null;
-			case PivotPackage.MESSAGE_EXP__SENT_SIGNAL:
-				return sentSignal != null;
-			case PivotPackage.MESSAGE_EXP__TARGET:
-				return target != null;
+			case PivotPackage.MESSAGE_EXP__OWNED_ARGUMENTS:
+				return ownedArguments != null && !ownedArguments.isEmpty();
+			case PivotPackage.MESSAGE_EXP__OWNED_CALLED_OPERATION:
+				return ownedCalledOperation != null;
+			case PivotPackage.MESSAGE_EXP__OWNED_SENT_SIGNAL:
+				return ownedSentSignal != null;
+			case PivotPackage.MESSAGE_EXP__OWNED_TARGET:
+				return ownedTarget != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

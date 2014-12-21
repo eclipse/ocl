@@ -122,7 +122,7 @@ public class SelfTypeImpl extends ClassImpl implements SelfType
 	@Override
 	public @NonNull Type specializeIn(@NonNull CallExp expr, @Nullable Type selfType) {
 		if (selfType instanceof org.eclipse.ocl.pivot.Class) {
-			TemplateSignature templateSignature = ((TemplateableElement)selfType).getOwnedTemplateSignature();
+			TemplateSignature templateSignature = ((TemplateableElement)selfType).getOwnedSignature();
 			if (templateSignature != null) {
 				MetaModelManager metaModelManager = PivotUtil.findMetaModelManager(expr);
 				if (metaModelManager != null) {

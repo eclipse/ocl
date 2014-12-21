@@ -59,7 +59,7 @@ public interface ElementExtension extends org.eclipse.ocl.pivot.Class
 
 	/**
 	 * Returns the value of the '<em><b>Base</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Element#getExtension <em>Extension</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Element#getOwnedExtensions <em>Owned Extensions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base</em>' container reference isn't clear,
@@ -69,7 +69,7 @@ public interface ElementExtension extends org.eclipse.ocl.pivot.Class
 	 * @return the value of the '<em>Base</em>' container reference.
 	 * @see #setBase(Element)
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getElementExtension_Base()
-	 * @see org.eclipse.ocl.pivot.Element#getExtension
+	 * @see org.eclipse.ocl.pivot.Element#getOwnedExtensions
 	 * @generated
 	 */
 	Element getBase();

@@ -40,7 +40,7 @@ public class EssentialOCLOutlineTreeProvider extends BaseOutlineTreeProvider
 		if (asElement instanceof OperationCallExp) {	// e.g. oclAsSet
 			OperationCallExp asOperationCallExp = (OperationCallExp)asElement;
 			if (asOperationCallExp.isImplicit()) {
-				OCLExpression asSource = asOperationCallExp.getSource();
+				OCLExpression asSource = asOperationCallExp.getOwnedSource();
 				if (asSource != null) {
 					ElementCS csElement = ElementUtil.getCsElement(asSource);
 					if (csElement instanceof ExpCS) {
@@ -52,52 +52,52 @@ public class EssentialOCLOutlineTreeProvider extends BaseOutlineTreeProvider
 		return null;
  	}
 	protected void _createNode(IOutlineNode parentNode, ExpressionInOCL ele) {			// Skip node
-		createNode(parentNode, ele.getBodyExpression());
+		createNode(parentNode, ele.getOwnedBody());
 	}
 
 	protected void _createChildren(IOutlineNode parentNode, ExpressionInOCL exp) {}		// Skipped node so no children
 
 	protected void _createChildren(IOutlineNode parentNode, IfExp exp) {
-		createNode(parentNode, exp.getCondition());
-		createNode(parentNode, exp.getThenExpression());
-		createNode(parentNode, exp.getElseExpression());
+		createNode(parentNode, exp.getOwnedCondition());
+		createNode(parentNode, exp.getOwnedThen());
+		createNode(parentNode, exp.getOwnedElse());
 	}
 
 	protected void _createChildren(IOutlineNode parentNode, IterateExp ele) {
-		for (Variable iterator : ele.getIterator()) {
+		for (Variable iterator : ele.getOwnedIterators()) {
 			createNode(parentNode, iterator);
 		}
-		createNode(parentNode, ele.getResult());
-		createNode(parentNode, ele.getSource());
-		createNode(parentNode, ele.getBody());
+		createNode(parentNode, ele.getOwnedResult());
+		createNode(parentNode, ele.getOwnedSource());
+		createNode(parentNode, ele.getOwnedBody());
 	}
 
 	protected void _createChildren(IOutlineNode parentNode, IteratorExp ele) {
-		for (Variable iterator : ele.getIterator()) {
+		for (Variable iterator : ele.getOwnedIterators()) {
 			createNode(parentNode, iterator);
 		}
-		createNode(parentNode, ele.getSource());
-		createNode(parentNode, ele.getBody());
+		createNode(parentNode, ele.getOwnedSource());
+		createNode(parentNode, ele.getOwnedBody());
 	}
 
 	protected void _createChildren(IOutlineNode parentNode, LetExp exp) {
-		createNode(parentNode, exp.getVariable());
-		createNode(parentNode, exp.getIn());
+		createNode(parentNode, exp.getOwnedVariable());
+		createNode(parentNode, exp.getOwnedIn());
 	}
 
 	protected void _createChildren(IOutlineNode parentNode, OperationCallExp ele) {
-		createNode(parentNode, ele.getSource());
-		for (OCLExpression argument : ele.getArgument()) {
+		createNode(parentNode, ele.getOwnedSource());
+		for (OCLExpression argument : ele.getOwnedArguments()) {
 			createNode(parentNode, argument);
 		}
 	}
 
 	protected void _createChildren(IOutlineNode parentNode, OppositePropertyCallExp ele) {
-		createNode(parentNode, ele.getSource());
+		createNode(parentNode, ele.getOwnedSource());
 	}
 
 	protected void _createChildren(IOutlineNode parentNode, PropertyCallExp ele) {
-		createNode(parentNode, ele.getSource());
+		createNode(parentNode, ele.getOwnedSource());
 	}
 
 //	protected boolean _isLeaf(OperationCallExp csExp) {

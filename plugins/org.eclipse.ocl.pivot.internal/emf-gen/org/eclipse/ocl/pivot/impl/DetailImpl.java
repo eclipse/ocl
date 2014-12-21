@@ -31,7 +31,7 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.impl.DetailImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.DetailImpl#getValues <em>Values</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,14 +42,14 @@ public class DetailImpl
 		implements Detail {
 
 	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute list.
+	 * The cached value of the '{@link #getValues() <em>Values</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getValue()
+	 * @see #getValues()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<String> value;
+	protected EList<String> values;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -74,14 +74,15 @@ public class DetailImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("null")
 	@Override
-	public List<String> getValue()
+	public @NonNull List<String> getValues()
 	{
-		if (value == null)
+		if (values == null)
 		{
-			value = new EDataTypeUniqueEList<String>(String.class, this, PivotPackage.DETAIL__VALUE);
+			values = new EDataTypeUniqueEList<String>(String.class, this, PivotPackage.DETAIL__VALUES);
 		}
-		return value;
+		return values;
 	}
 
 	/**
@@ -93,18 +94,18 @@ public class DetailImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case PivotPackage.DETAIL__COMMENT:
-				return getComment();
-			case PivotPackage.DETAIL__EXTENSION:
-				return getExtension();
-			case PivotPackage.DETAIL__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.DETAIL__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.DETAIL__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.DETAIL__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.DETAIL__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.DETAIL__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.DETAIL__NAME:
 				return getName();
-			case PivotPackage.DETAIL__VALUE:
-				return getValue();
+			case PivotPackage.DETAIL__VALUES:
+				return getValues();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -119,28 +120,28 @@ public class DetailImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case PivotPackage.DETAIL__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.DETAIL__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.DETAIL__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.DETAIL__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.DETAIL__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.DETAIL__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.DETAIL__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.DETAIL__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.DETAIL__NAME:
 				setName((String)newValue);
 				return;
-			case PivotPackage.DETAIL__VALUE:
-				getValue().clear();
-				getValue().addAll((Collection<? extends String>)newValue);
+			case PivotPackage.DETAIL__VALUES:
+				getValues().clear();
+				getValues().addAll((Collection<? extends String>)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -155,23 +156,23 @@ public class DetailImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.DETAIL__COMMENT:
-				getComment().clear();
+			case PivotPackage.DETAIL__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.DETAIL__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.DETAIL__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.DETAIL__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.DETAIL__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.DETAIL__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.DETAIL__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.DETAIL__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case PivotPackage.DETAIL__VALUE:
-				getValue().clear();
+			case PivotPackage.DETAIL__VALUES:
+				getValues().clear();
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -186,18 +187,18 @@ public class DetailImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.DETAIL__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.DETAIL__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.DETAIL__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.DETAIL__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.DETAIL__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.DETAIL__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.DETAIL__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.DETAIL__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.DETAIL__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.DETAIL__VALUE:
-				return value != null && !value.isEmpty();
+			case PivotPackage.DETAIL__VALUES:
+				return values != null && !values.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
 	}

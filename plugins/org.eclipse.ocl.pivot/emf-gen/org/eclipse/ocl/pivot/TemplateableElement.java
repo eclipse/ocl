@@ -24,8 +24,8 @@ import java.util.List;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.TemplateableElement#getOwnedTemplateBindings <em>Owned Template Bindings</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.TemplateableElement#getOwnedTemplateSignature <em>Owned Template Signature</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.TemplateableElement#getOwnedBindings <em>Owned Bindings</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.TemplateableElement#getOwnedSignature <em>Owned Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.TemplateableElement#getUnspecializedElement <em>Unspecialized Element</em>}</li>
  * </ul>
  * </p>
@@ -37,46 +37,46 @@ public interface TemplateableElement
 		extends Element {
 
 	/**
-	 * Returns the value of the '<em><b>Owned Template Bindings</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Bindings</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.TemplateBinding}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.TemplateBinding#getOwningTemplateableElement <em>Owning Templateable Element</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.TemplateBinding#getOwningElement <em>Owning Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The optional bindings from this element to templates.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Template Bindings</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateableElement_OwnedTemplateBindings()
-	 * @see org.eclipse.ocl.pivot.TemplateBinding#getOwningTemplateableElement
+	 * @return the value of the '<em>Owned Bindings</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateableElement_OwnedBindings()
+	 * @see org.eclipse.ocl.pivot.TemplateBinding#getOwningElement
 	 * @generated
 	 */
-	List<TemplateBinding> getOwnedTemplateBindings();
+	List<TemplateBinding> getOwnedBindings();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.TemplateSignature#getOwningTemplateableElement <em>Owning Templateable Element</em>}'.
+	 * Returns the value of the '<em><b>Owned Signature</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.TemplateSignature#getOwningElement <em>Owning Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The optional template signature specifying the formal template parameters.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Template Signature</em>' containment reference.
-	 * @see #setOwnedTemplateSignature(TemplateSignature)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateableElement_OwnedTemplateSignature()
-	 * @see org.eclipse.ocl.pivot.TemplateSignature#getOwningTemplateableElement
+	 * @return the value of the '<em>Owned Signature</em>' containment reference.
+	 * @see #setOwnedSignature(TemplateSignature)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateableElement_OwnedSignature()
+	 * @see org.eclipse.ocl.pivot.TemplateSignature#getOwningElement
 	 * @generated
 	 */
-	TemplateSignature getOwnedTemplateSignature();
+	TemplateSignature getOwnedSignature();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.TemplateableElement#getOwnedTemplateSignature <em>Owned Template Signature</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.TemplateableElement#getOwnedSignature <em>Owned Signature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owned Template Signature</em>' containment reference.
-	 * @see #getOwnedTemplateSignature()
+	 * @param value the new value of the '<em>Owned Signature</em>' containment reference.
+	 * @see #getOwnedSignature()
 	 * @generated
 	 */
-	void setOwnedTemplateSignature(TemplateSignature value);
+	void setOwnedSignature(TemplateSignature value);
 
 	/**
 	 * Returns the value of the '<em><b>Unspecialized Element</b></em>' reference.

@@ -25,9 +25,9 @@ import java.util.List;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.InstanceSpecification#getClasses <em>Classes</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.InstanceSpecification#getOwnedSlots <em>Owned Slots</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.InstanceSpecification#getOwnedSpecification <em>Owned Specification</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.InstanceSpecification#getOwningPackage <em>Owning Package</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.InstanceSpecification#getSlots <em>Slots</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.InstanceSpecification#getSpecification <em>Specification</em>}</li>
  * </ul>
  * </p>
  *
@@ -49,6 +49,46 @@ public interface InstanceSpecification extends NamedElement
 	 * @generated
 	 */
 	List<org.eclipse.ocl.pivot.Class> getClasses();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Slots</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.pivot.Slot}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Slot#getOwningInstance <em>Owning Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A slot giving the value or values of a structural feature of the instance. An instance specification can have one slot per structural feature of its classifiers, including inherited features. It is not necessary to model a slot for each structural feature, in which case the instance specification is a partial description.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Slots</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getInstanceSpecification_OwnedSlots()
+	 * @see org.eclipse.ocl.pivot.Slot#getOwningInstance
+	 * @generated
+	 */
+	List<Slot> getOwnedSlots();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Specification</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A specification of how to compute, derive, or construct the instance.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Specification</em>' containment reference.
+	 * @see #setOwnedSpecification(LanguageExpression)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getInstanceSpecification_OwnedSpecification()
+	 * @generated
+	 */
+	LanguageExpression getOwnedSpecification();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.InstanceSpecification#getOwnedSpecification <em>Owned Specification</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Specification</em>' containment reference.
+	 * @see #getOwnedSpecification()
+	 * @generated
+	 */
+	void setOwnedSpecification(LanguageExpression value);
 
 	/**
 	 * Returns the value of the '<em><b>Owning Package</b></em>' container reference.
@@ -76,45 +116,5 @@ public interface InstanceSpecification extends NamedElement
 	 * @generated
 	 */
 	void setOwningPackage(org.eclipse.ocl.pivot.Package value);
-
-	/**
-	 * Returns the value of the '<em><b>Slots</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.pivot.Slot}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Slot#getOwningInstance <em>Owning Instance</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * A slot giving the value or values of a structural feature of the instance. An instance specification can have one slot per structural feature of its classifiers, including inherited features. It is not necessary to model a slot for each structural feature, in which case the instance specification is a partial description.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Slots</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getInstanceSpecification_Slots()
-	 * @see org.eclipse.ocl.pivot.Slot#getOwningInstance
-	 * @generated
-	 */
-	List<Slot> getSlots();
-
-	/**
-	 * Returns the value of the '<em><b>Specification</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * A specification of how to compute, derive, or construct the instance.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Specification</em>' containment reference.
-	 * @see #setSpecification(LanguageExpression)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getInstanceSpecification_Specification()
-	 * @generated
-	 */
-	LanguageExpression getSpecification();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.InstanceSpecification#getSpecification <em>Specification</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Specification</em>' containment reference.
-	 * @see #getSpecification()
-	 * @generated
-	 */
-	void setSpecification(LanguageExpression value);
 
 } // InstanceSpecification

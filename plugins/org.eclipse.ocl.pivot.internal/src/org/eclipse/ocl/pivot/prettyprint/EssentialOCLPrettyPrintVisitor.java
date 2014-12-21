@@ -69,7 +69,7 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 	}
 
 	protected void appendSourceNavigation(@NonNull CallExp object) {
-		OCLExpression source = object.getSource();
+		OCLExpression source = object.getOwnedSource();
 		if (source != null) {
 			if (!(source instanceof VariableExp) || !((VariableExp)source).isImplicit()) {
 				if ((source instanceof OperationCallExp)
@@ -102,14 +102,14 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 
 	@Override
 	public Object visitCollectionItem(@NonNull CollectionItem object) {
-		safeVisit(object.getItem());
+		safeVisit(object.getOwnedItem());
 		return null;
 	}
 
 	@Override
 	public Object visitCollectionLiteralExp(@NonNull CollectionLiteralExp object) {
 		context.appendName(object.getType(), context.getReservedNames());
-		List<CollectionLiteralPart> parts = object.getPart();
+		List<CollectionLiteralPart> parts = object.getOwnedParts();
 		if (parts.isEmpty()) {
 			context.append("{}");
 		}
@@ -129,9 +129,9 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 
 	@Override
 	public Object visitCollectionRange(@NonNull CollectionRange object) {
-		safeVisit(object.getFirst());
+		safeVisit(object.getOwnedFirst());
 		context.next("", "..", "");
-        safeVisit(object.getLast());
+        safeVisit(object.getOwnedLast());
 		return null;
 	}
 
@@ -164,7 +164,7 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 			context.appendName(object);
 		}
 		context.push(":", " ");
-        safeVisit(object.getSpecification());
+        safeVisit(object.getOwnedSpecification());
 		context.pop();
 		return null;
 	}
@@ -177,7 +177,7 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 		}
 		context.push("{", "");
 		String prefix = ""; //$NON-NLS-1$
-		for (ConstructorPart part : object.getPart()) {
+		for (ConstructorPart part : object.getOwnedParts()) {
 			context.append(prefix);
 			safeVisit(part);
 			prefix = ", ";
@@ -190,7 +190,7 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 	@Override
 	public String visitConstructorPart(@NonNull ConstructorPart part) {
 		context.appendName(part.getReferredProperty());
-		OCLExpression initExpression = part.getInitExpression();
+		OCLExpression initExpression = part.getOwnedInit();
 		if (initExpression != null) {
 			context.append(" = ");
 			safeVisit(initExpression);
@@ -200,13 +200,13 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 
 	@Override
 	public Object visitEnumLiteralExp(@NonNull EnumLiteralExp object) {
-		safeVisit(object.getReferredEnumLiteral());
+		safeVisit(object.getReferredLiteral());
 		return null;
 	}
 
 	@Override
 	public Object visitExpressionInOCL(@NonNull ExpressionInOCL object) {
-		OCLExpression bodyExpression = object.getBodyExpression();
+		OCLExpression bodyExpression = object.getOwnedBody();
 		if (bodyExpression != null) {
 			safeVisit(bodyExpression);
 		}
@@ -225,11 +225,11 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 	@Override
 	public Object visitIfExp(@NonNull IfExp object) {
 		context.push("if", " ");
-		safeVisit(object.getCondition());
+		safeVisit(object.getOwnedCondition());
 		context.exdent(" ", "then", " ");
-		safeVisit(object.getThenExpression());
+		safeVisit(object.getOwnedThen());
 		context.exdent(" ", "else", " ");
-        safeVisit(object.getElseExpression());
+        safeVisit(object.getOwnedElse());
 		context.exdent(" ", "endif", "");
 		context.pop();
 		return null;
@@ -250,10 +250,10 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 	@Override
 	public Object visitIterateExp(@NonNull IterateExp object) {
 		Iteration referredIteration = object.getReferredIteration();
-		OCLExpression body = object.getBody();
-		Variable result = object.getResult();
+		OCLExpression body = object.getOwnedBody();
+		Variable result = object.getOwnedResult();
 		if (context.showNames()) {
-			List<Variable> iterators = object.getIterator();
+			List<Variable> iterators = object.getOwnedIterators();
 			appendSourceNavigation(object);
 			context.appendName(referredIteration);
 			context.push("(", "");
@@ -285,7 +285,7 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 			context.pop();
 		}
 		else {
-			OCLExpression source = object.getSource();
+			OCLExpression source = object.getOwnedSource();
 			if (source != null) {
 				Type sourceType = source.getType();
 				if (sourceType != null) {
@@ -296,7 +296,7 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 			context.appendName(referredIteration);
 			context.push("(", "");
 			String prefix = null;
-			for (Variable iterator : object.getIterator()) {
+			for (Variable iterator : object.getOwnedIterators()) {
 				if (prefix != null) {
 					context.next(null, prefix, " ");
 				}
@@ -322,9 +322,9 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 	@Override
 	public Object visitIteratorExp(@NonNull IteratorExp object) {
 		Iteration referredIteration = object.getReferredIteration();
-		OCLExpression body = object.getBody();
+		OCLExpression body = object.getOwnedBody();
 		if (context.showNames()) {
-			List<Variable> iterators = object.getIterator();
+			List<Variable> iterators = object.getOwnedIterators();
 			appendSourceNavigation(object);
 			if (object.isImplicit()) {
 				assert referredIteration.getName().equals("collect");
@@ -361,7 +361,7 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 			}
 		}
 		else {
-			OCLExpression source = object.getSource();
+			OCLExpression source = object.getOwnedSource();
 			if (source != null) {
 				Type sourceType = source.getType();
 				if (sourceType != null) {
@@ -372,7 +372,7 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 			context.appendName(referredIteration);
 			context.push("(", "");
 			String prefix = null;
-			for (Variable iterator : object.getIterator()) {
+			for (Variable iterator : object.getOwnedIterators()) {
 				if (prefix != null) {
 					context.next(null, prefix, " ");
 				}
@@ -394,9 +394,9 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 	@Override
 	public Object visitLetExp(@NonNull LetExp object) {
 		context.push("let", " ");
-		safeVisit(object.getVariable());
+		safeVisit(object.getOwnedVariable());
 		context.exdent(" ", "in", " ");
-        safeVisit(object.getIn());
+        safeVisit(object.getOwnedIn());
 		context.pop();
 		return null;
 	}
@@ -417,8 +417,8 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 
 	@Override
 	public Object visitOperationCallExp(@NonNull OperationCallExp object) {
-		OCLExpression source = object.getSource();
-		List<OCLExpression> arguments = object.getArgument();
+		OCLExpression source = object.getOwnedSource();
+		List<OCLExpression> arguments = object.getOwnedArguments();
 		Operation referredOperation = object.getReferredOperation();
 		if (context.showNames()) {
 			Precedence precedence = referredOperation != null ? referredOperation.getPrecedence() : null;
@@ -500,7 +500,7 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 			context.appendName(referredProperty);
 		}
 		else {
-			OCLExpression source = object.getSource();
+			OCLExpression source = object.getOwnedSource();
 			if (source != null) {
 				Type sourceType = source.getType();
 				if (sourceType != null) {
@@ -534,7 +534,7 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 			context.appendName(referredProperty);
 		}
 		else {
-			OCLExpression source = object.getSource();
+			OCLExpression source = object.getOwnedSource();
 			if (source != null) {
 				Type sourceType = source.getType();
 				if (sourceType != null) {
@@ -568,7 +568,7 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 		context.append(TypeId.TUPLE_NAME);
 		context.push("{", "");
 		String prefix = ""; //$NON-NLS-1$
-		for (TupleLiteralPart part : object.getPart()) {
+		for (TupleLiteralPart part : object.getOwnedParts()) {
 			context.append(prefix);
 			safeVisit(part);
 			prefix = ", ";
@@ -582,7 +582,7 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 	public Object visitTupleLiteralPart(@NonNull TupleLiteralPart object) {
 		context.appendName(object);
 		context.append(" = ");
-		safeVisit(object.getInitExpression());
+		safeVisit(object.getOwnedInit());
 		return null;
 	}
 
@@ -615,7 +615,7 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 			context.append(" : ");
 			context.appendQualifiedType(type);
 		}
-		OCLExpression initExpression = object.getInitExpression();
+		OCLExpression initExpression = object.getOwnedInit();
 		if (initExpression != null) {
 			context.append(" = ");
 			safeVisit(initExpression);

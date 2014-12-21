@@ -23,7 +23,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.Model#getExternalURI <em>External URI</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Model#getImports <em>Imports</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Model#getOwnedImports <em>Owned Imports</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Model#getOwnedPackages <em>Owned Packages</em>}</li>
  * </ul>
  * </p>
@@ -75,18 +75,18 @@ public interface Model extends Namespace
 	void setExternalURI(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Imports</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Imports</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.Import}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Imports</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Owned Imports</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Imports</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getModel_Imports()
+	 * @return the value of the '<em>Owned Imports</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getModel_OwnedImports()
 	 * @generated
 	 */
-	@NonNull List<Import> getImports();
+	@NonNull List<Import> getOwnedImports();
 
 } // Root

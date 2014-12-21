@@ -37,14 +37,14 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 	protected def String declareCollectionTypes(Package pkg) {
 		'''
 			«FOR type : pkg.getRootPackage().getSortedCollectionTypes()»
-				«IF type.getOwnedTemplateSignature() != null»
+				«IF type.getOwnedSignature() != null»
 					private final @NonNull «type.eClass.name» «type.getPrefixedSymbolName("_" + type.getName() + "_" + type.getElementType().partialName())» = create«type.
-					eClass.name»("«type.name»"/*«type.elementType.name»*/, "«type.lower.toString()»", "«type.upper.toString()»"«IF type.getOwnedTemplateSignature() != null»«FOR templateParameter : type.getOwnedTemplateSignature().getOwnedTemplateParameters()», «templateParameter.getSymbolName()»«ENDFOR»«ENDIF»);
+					eClass.name»("«type.name»"/*«type.elementType.name»*/, "«type.lower.toString()»", "«type.upper.toString()»"«IF type.getOwnedSignature() != null»«FOR templateParameter : type.getOwnedSignature().getOwnedParameters()», «templateParameter.getSymbolName()»«ENDFOR»«ENDIF»);
 				«ENDIF»
 			«ENDFOR»
 
 			«FOR type : pkg.getRootPackage().getSortedCollectionTypes()»
-				«IF type.getOwnedTemplateSignature() == null»
+				«IF type.getOwnedSignature() == null»
 					private final @NonNull «type.eClass.name» «type.getPrefixedSymbolName("_" + type.getName() + "_" + type.getElementType().partialName())» = create«type.
 					eClass.name»(«type.getUnspecializedElement().getSymbolName()», «type.elementType.getSymbolName()»);
 				«ENDIF»
@@ -57,7 +57,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 			«FOR enumeration : pkg.getRootPackage().getSortedEnumerations()»
 				«var enumerationName = enumeration.getPrefixedSymbolName("_" + enumeration.partialName())»
 				private final @NonNull Enumeration «enumerationName» = createEnumeration("«enumeration.name»");
-				«FOR enumerationLiteral : enumeration.ownedLiteral»
+				«FOR enumerationLiteral : enumeration.ownedLiterals»
 					private final @NonNull EnumerationLiteral «enumerationLiteral.getPrefixedSymbolName(
 				"el_" + enumerationName + "_" + enumerationLiteral.name)» = createEnumerationLiteral("«enumerationLiteral.name»");
 				«ENDFOR»
@@ -160,8 +160,8 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 				List<EnumerationLiteral> enumerationLiterals;
 				«FOR enumeration : pkg.getRootPackage().getSortedEnumerations()»
 					ownedTypes.add(type = «enumeration.getSymbolName()»);
-					enumerationLiterals = type.getOwnedLiteral();
-					«FOR enumerationLiteral : enumeration.ownedLiteral»
+					enumerationLiterals = type.getOwnedLiterals();
+					«FOR enumerationLiteral : enumeration.ownedLiterals»
 						enumerationLiterals.add(«enumerationLiteral.getSymbolName()»);
 					«ENDFOR»
 					type.getSuperClasses().add(_Enumeration);
@@ -177,7 +177,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 				«FOR iteration : allIterations»
 					private final @NonNull Iteration «iteration.getPrefixedSymbolName("it_" + iteration.partialName())» = createIteration("«iteration.
 					name»", «iteration.type.getSymbolName()», «IF iteration.implementationClass != null»"«iteration.
-					implementationClass»", «iteration.implementationClass».INSTANCE«ELSE»null, null«ENDIF»«IF iteration.getOwnedTemplateSignature() != null»«FOR templateParameter : iteration.getOwnedTemplateSignature().getOwnedTemplateParameters()», «templateParameter.getSymbolName()»«ENDFOR»«ENDIF»);
+					implementationClass»", «iteration.implementationClass».INSTANCE«ELSE»null, null«ENDIF»«IF iteration.getOwnedSignature() != null»«FOR templateParameter : iteration.getOwnedSignature().getOwnedParameters()», «templateParameter.getSymbolName()»«ENDFOR»«ENDIF»);
 				«ENDFOR»
 
 			«ENDIF»
@@ -205,27 +205,27 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 						«IF iteration.isValidating»
 							iteration.setIsValidating(true);
 						«ENDIF»
-						«IF iteration.ownedIterator.size() > 0»
-							ownedParameters = iteration.getOwnedIterator();
-							«FOR parameter : iteration.ownedIterator»
+						«IF iteration.ownedIterators.size() > 0»
+							ownedParameters = iteration.getOwnedIterators();
+							«FOR parameter : iteration.ownedIterators»
 								ownedParameters.add(parameter = createParameter("«parameter.name»", «parameter.type.getSymbolName()», «parameter.isRequired»));
 								«IF parameter.isTypeof»
 									parameter.setIsTypeof(true);
 								«ENDIF»
 							«ENDFOR»
 						«ENDIF»
-						«IF iteration.ownedAccumulator.size() > 0»
-							ownedParameters = iteration.getOwnedAccumulator();
-							«FOR parameter : iteration.ownedAccumulator»
+						«IF iteration.ownedAccumulators.size() > 0»
+							ownedParameters = iteration.getOwnedAccumulators();
+							«FOR parameter : iteration.ownedAccumulators»
 								ownedParameters.add(parameter = createParameter("«parameter.name»", «parameter.type.getSymbolName()», «parameter.isRequired»));
 								«IF parameter.isTypeof»
 									parameter.setIsTypeof(true);
 								«ENDIF»
 							«ENDFOR»
 						«ENDIF»
-						«IF iteration.ownedParameter.size() > 0»
-							ownedParameters = iteration.getOwnedParameter();
-							«FOR parameter : iteration.ownedParameter»
+						«IF iteration.ownedParameters.size() > 0»
+							ownedParameters = iteration.getOwnedParameters();
+							«FOR parameter : iteration.ownedParameters»
 								ownedParameters.add(parameter = createParameter("«parameter.name»", «parameter.type.getSymbolName()», «parameter.isRequired»));
 								«IF parameter.isTypeof»
 									parameter.setIsTypeof(true);
@@ -287,7 +287,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 			«FOR operation : allOperations»
 				private final @NonNull Operation «operation.getPrefixedSymbolName("op_" + operation.partialName())» = createOperation("«operation.
 				name»", «operation.type.getSymbolName()», «IF operation.implementationClass != null»"«operation.
-				implementationClass»", «operation.implementationClass».INSTANCE«ELSE»null, null«ENDIF»«IF operation.getOwnedTemplateSignature() != null»«FOR templateParameter : operation.getOwnedTemplateSignature().getOwnedTemplateParameters()», «templateParameter.getSymbolName()»«ENDFOR»«ENDIF»);
+				implementationClass»", «operation.implementationClass».INSTANCE«ELSE»null, null«ENDIF»«IF operation.getOwnedSignature() != null»«FOR templateParameter : operation.getOwnedSignature().getOwnedParameters()», «templateParameter.getSymbolName()»«ENDFOR»«ENDIF»);
 			«ENDFOR»
 			
 			private void installOperations() {
@@ -317,9 +317,9 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 						«IF operation.bodyExpression != null»
 							operation.setBodyExpression(createExpressionInOCL(«operation.type.getSymbolName()», "«operation.bodyExpression.javaString()»"));
 						«ENDIF»
-						«IF operation.ownedParameter.size() > 0»
-							ownedParameters = operation.getOwnedParameter();
-							«FOR parameter : operation.ownedParameter»
+						«IF operation.ownedParameters.size() > 0»
+							ownedParameters = operation.getOwnedParameters();
+							«FOR parameter : operation.ownedParameters»
 								ownedParameters.add(parameter = createParameter("«parameter.name»", «parameter.type.getSymbolName()», «parameter.isRequired»));
 								«IF parameter.isTypeof»
 									parameter.setIsTypeof(true);
@@ -374,8 +374,8 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 							final Precedence «precedence.getPrefixedSymbolName("prec_" + precedence.partialName())» = createPrecedence("«precedence.name»", AssociativityKind.«precedence.associativity.toString().toUpperCase()»);
 						«ENDFOR»
 
-						final List<Precedence> ownedPrecedences = «lib.getSymbolName()».getOwnedPrecedence();
-						«FOR precedence : lib.ownedPrecedence»
+						final List<Precedence> ownedPrecedences = «lib.getSymbolName()».getOwnedPrecedences();
+						«FOR precedence : lib.ownedPrecedences»
 							ownedPrecedences.add(«precedence.getSymbolName()»);
 						«ENDFOR»
 					«ENDFOR»
@@ -425,7 +425,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 							property.setIsID(true);
 						«ENDIF»
 						«IF property.implicit»
-							property.setImplicit(true);
+							property.setIsImplicit(true);
 						«ENDIF»
 						«IF property.isReadOnly»
 							property.setIsReadOnly(true);
@@ -469,9 +469,9 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 			private void installTemplateBindings() {
 				«FOR templateableElement : allTemplateableElements»
-					«FOR templateBinding : templateableElement.ownedTemplateBindings»
-						«templateableElement.getSymbolName()».getOwnedTemplateBindings().add(createTemplateBinding(
-							«FOR templateParameterSubstitution : templateBinding.ownedTemplateParameterSubstitutions SEPARATOR (",\n")»
+					«FOR templateBinding : templateableElement.ownedBindings»
+						«templateableElement.getSymbolName()».getOwnedBindings().add(createTemplateBinding(
+							«FOR templateParameterSubstitution : templateBinding.ownedSubstitutions SEPARATOR (",\n")»
 							createTemplateParameterSubstitution(«templateParameterSubstitution.formal.getSymbolName()», «templateParameterSubstitution.actual.getSymbolName()»)«ENDFOR»));
 					«ENDFOR»
 				«ENDFOR»
@@ -564,12 +564,12 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 			CollectionType: return element.javaName()
 			LambdaType case element.contextType == null: return "null"
 			LambdaType: return element.javaName() + "_" + element.contextType.partialName()
-			Class case element.ownedTemplateBindings.size() > 0: return '''«element.javaName()»«FOR TemplateParameterSubstitution tps : element.getTemplateParameterSubstitutions()»_«tps.actual.simpleName()»«ENDFOR»'''
+			Class case element.ownedBindings.size() > 0: return '''«element.javaName()»«FOR TemplateParameterSubstitution tps : element.getTemplateParameterSubstitutions()»_«tps.actual.simpleName()»«ENDFOR»'''
 			Class: return element.javaName()
 			Comment case element.body == null: return "null"
 			Comment: return element.javaName(element.body.substring(0, Math.min(11, element.body.length() - 1)))
-			EnumerationLiteral case element.enumeration == null: return "null"
-			EnumerationLiteral: return element.enumeration.partialName() + "_" + element.javaName()
+			EnumerationLiteral case element.owningEnumeration == null: return "null"
+			EnumerationLiteral: return element.owningEnumeration.partialName() + "_" + element.javaName()
 			Operation case element.owningClass == null: return "null_" + element.javaName()
 			Operation: return element.owningClass.partialName() + "_" + element.javaName()
 			Package: return element.javaName()
@@ -577,27 +577,27 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 			Parameter: return element.eContainer().partialName() + "_" + element.javaName()
 			Precedence: return element.javaName()
 			Property: return getPartialName(element)
-			TemplateBinding case element.getTemplateSignature().owningTemplateableElement == null: return "null"
-			TemplateBinding: return element.owningTemplateableElement.partialName()
-			TemplateParameter case element.getOwningTemplateSignature.owningTemplateableElement == null: return "[" + element.getOwningTemplateSignature.partialName() + "]"
+			TemplateBinding case element.getTemplateSignature().owningElement == null: return "null"
+			TemplateBinding: return element.owningElement.partialName()
+			TemplateParameter case element.getOwningSignature.owningElement == null: return "[" + element.getOwningSignature.partialName() + "]"
 //			TemplateParameter case element.getOwningTemplateSignature.owningTemplateableElement.getUnspecializedElement() == null: return element.javaName()
-			TemplateParameter: return element.getOwningTemplateSignature.owningTemplateableElement.partialName() + "_" + element.javaName()
-			TemplateParameterSubstitution case element.owningTemplateBinding == null: return "null"
-			TemplateParameterSubstitution case element.owningTemplateBinding.owningTemplateableElement == null: return "null"
-			TemplateParameterSubstitution: return element.owningTemplateBinding.owningTemplateableElement.partialName()
-			TemplateSignature case element.owningTemplateableElement == null: return "null"
-			TemplateSignature: return element.owningTemplateableElement.partialName()
+			TemplateParameter: return element.getOwningSignature.owningElement.partialName() + "_" + element.javaName()
+			TemplateParameterSubstitution case element.owningBinding == null: return "null"
+			TemplateParameterSubstitution case element.owningBinding.owningElement == null: return "null"
+			TemplateParameterSubstitution: return element.owningBinding.owningElement.partialName()
+			TemplateSignature case element.owningElement == null: return "null"
+			TemplateSignature: return element.owningElement.partialName()
 			default: return "xyzzy" + element.eClass().name
 		}		
 	}
 
 	protected def String simpleName(EObject element) {
 		switch element {
-			TemplateParameter case element.getOwningTemplateSignature.owningTemplateableElement == null: return "null"
-			TemplateParameter: return element.getOwningTemplateSignature.owningTemplateableElement.simpleName() + "_" + element.javaName()
-			TemplateParameterSubstitution case element.owningTemplateBinding == null: return "null"
-			TemplateParameterSubstitution case element.owningTemplateBinding.owningTemplateableElement == null: return "null"
-			TemplateParameterSubstitution: return element.owningTemplateBinding.owningTemplateableElement.simpleName()
+			TemplateParameter case element.getOwningSignature.owningElement == null: return "null"
+			TemplateParameter: return element.getOwningSignature.owningElement.simpleName() + "_" + element.javaName()
+			TemplateParameterSubstitution case element.owningBinding == null: return "null"
+			TemplateParameterSubstitution case element.owningBinding.owningElement == null: return "null"
+			TemplateParameterSubstitution: return element.owningBinding.owningElement.simpleName()
 			Class: return element.javaName()
 			Operation case element.owningClass == null: return "null_" + element.javaName()
 			Operation: return element.owningClass.simpleName() + "_" + element.javaName()

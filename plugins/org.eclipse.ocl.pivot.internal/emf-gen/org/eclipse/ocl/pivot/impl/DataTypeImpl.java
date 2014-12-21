@@ -183,24 +183,24 @@ public class DataTypeImpl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.DATA_TYPE__COMMENT:
-				return getComment();
-			case PivotPackage.DATA_TYPE__EXTENSION:
-				return getExtension();
-			case PivotPackage.DATA_TYPE__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.DATA_TYPE__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.DATA_TYPE__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.DATA_TYPE__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.DATA_TYPE__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.DATA_TYPE__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.DATA_TYPE__NAME:
 				return getName();
 			case PivotPackage.DATA_TYPE__EXTENDED_BYS:
 				return getExtendedBys();
-			case PivotPackage.DATA_TYPE__OWNED_RULE:
-				return getOwnedRule();
-			case PivotPackage.DATA_TYPE__OWNED_TEMPLATE_BINDINGS:
-				return getOwnedTemplateBindings();
-			case PivotPackage.DATA_TYPE__OWNED_TEMPLATE_SIGNATURE:
-				return getOwnedTemplateSignature();
+			case PivotPackage.DATA_TYPE__OWNED_CONSTRAINTS:
+				return getOwnedConstraints();
+			case PivotPackage.DATA_TYPE__OWNED_BINDINGS:
+				return getOwnedBindings();
+			case PivotPackage.DATA_TYPE__OWNED_SIGNATURE:
+				return getOwnedSignature();
 			case PivotPackage.DATA_TYPE__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
 			case PivotPackage.DATA_TYPE__INSTANCE_CLASS_NAME:
@@ -211,8 +211,8 @@ public class DataTypeImpl
 				return isActive();
 			case PivotPackage.DATA_TYPE__IS_INTERFACE:
 				return isInterface();
-			case PivotPackage.DATA_TYPE__OWNED_BEHAVIOR:
-				return getOwnedBehavior();
+			case PivotPackage.DATA_TYPE__OWNED_BEHAVIORS:
+				return getOwnedBehaviors();
 			case PivotPackage.DATA_TYPE__OWNED_INVARIANTS:
 				return getOwnedInvariants();
 			case PivotPackage.DATA_TYPE__OWNED_OPERATIONS:
@@ -243,21 +243,21 @@ public class DataTypeImpl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.DATA_TYPE__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.DATA_TYPE__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.DATA_TYPE__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.DATA_TYPE__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.DATA_TYPE__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.DATA_TYPE__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.DATA_TYPE__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.DATA_TYPE__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.DATA_TYPE__NAME:
 				setName((String)newValue);
@@ -266,16 +266,16 @@ public class DataTypeImpl
 				getExtendedBys().clear();
 				getExtendedBys().addAll((Collection<? extends TypeExtension>)newValue);
 				return;
-			case PivotPackage.DATA_TYPE__OWNED_RULE:
-				getOwnedRule().clear();
-				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
+			case PivotPackage.DATA_TYPE__OWNED_CONSTRAINTS:
+				getOwnedConstraints().clear();
+				getOwnedConstraints().addAll((Collection<? extends Constraint>)newValue);
 				return;
-			case PivotPackage.DATA_TYPE__OWNED_TEMPLATE_BINDINGS:
-				getOwnedTemplateBindings().clear();
-				getOwnedTemplateBindings().addAll((Collection<? extends TemplateBinding>)newValue);
+			case PivotPackage.DATA_TYPE__OWNED_BINDINGS:
+				getOwnedBindings().clear();
+				getOwnedBindings().addAll((Collection<? extends TemplateBinding>)newValue);
 				return;
-			case PivotPackage.DATA_TYPE__OWNED_TEMPLATE_SIGNATURE:
-				setOwnedTemplateSignature((TemplateSignature)newValue);
+			case PivotPackage.DATA_TYPE__OWNED_SIGNATURE:
+				setOwnedSignature((TemplateSignature)newValue);
 				return;
 			case PivotPackage.DATA_TYPE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
@@ -292,9 +292,9 @@ public class DataTypeImpl
 			case PivotPackage.DATA_TYPE__IS_INTERFACE:
 				setIsInterface((Boolean)newValue);
 				return;
-			case PivotPackage.DATA_TYPE__OWNED_BEHAVIOR:
-				getOwnedBehavior().clear();
-				getOwnedBehavior().addAll((Collection<? extends Behavior>)newValue);
+			case PivotPackage.DATA_TYPE__OWNED_BEHAVIORS:
+				getOwnedBehaviors().clear();
+				getOwnedBehaviors().addAll((Collection<? extends Behavior>)newValue);
 				return;
 			case PivotPackage.DATA_TYPE__OWNED_INVARIANTS:
 				getOwnedInvariants().clear();
@@ -335,17 +335,17 @@ public class DataTypeImpl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.DATA_TYPE__COMMENT:
-				getComment().clear();
+			case PivotPackage.DATA_TYPE__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.DATA_TYPE__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.DATA_TYPE__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.DATA_TYPE__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.DATA_TYPE__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.DATA_TYPE__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.DATA_TYPE__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.DATA_TYPE__NAME:
 				setName(NAME_EDEFAULT);
@@ -353,14 +353,14 @@ public class DataTypeImpl
 			case PivotPackage.DATA_TYPE__EXTENDED_BYS:
 				getExtendedBys().clear();
 				return;
-			case PivotPackage.DATA_TYPE__OWNED_RULE:
-				getOwnedRule().clear();
+			case PivotPackage.DATA_TYPE__OWNED_CONSTRAINTS:
+				getOwnedConstraints().clear();
 				return;
-			case PivotPackage.DATA_TYPE__OWNED_TEMPLATE_BINDINGS:
-				getOwnedTemplateBindings().clear();
+			case PivotPackage.DATA_TYPE__OWNED_BINDINGS:
+				getOwnedBindings().clear();
 				return;
-			case PivotPackage.DATA_TYPE__OWNED_TEMPLATE_SIGNATURE:
-				setOwnedTemplateSignature((TemplateSignature)null);
+			case PivotPackage.DATA_TYPE__OWNED_SIGNATURE:
+				setOwnedSignature((TemplateSignature)null);
 				return;
 			case PivotPackage.DATA_TYPE__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
@@ -377,8 +377,8 @@ public class DataTypeImpl
 			case PivotPackage.DATA_TYPE__IS_INTERFACE:
 				setIsInterface(IS_INTERFACE_EDEFAULT);
 				return;
-			case PivotPackage.DATA_TYPE__OWNED_BEHAVIOR:
-				getOwnedBehavior().clear();
+			case PivotPackage.DATA_TYPE__OWNED_BEHAVIORS:
+				getOwnedBehaviors().clear();
 				return;
 			case PivotPackage.DATA_TYPE__OWNED_INVARIANTS:
 				getOwnedInvariants().clear();
@@ -415,24 +415,24 @@ public class DataTypeImpl
 	{
 		switch (featureID)
 		{
-			case PivotPackage.DATA_TYPE__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.DATA_TYPE__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.DATA_TYPE__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.DATA_TYPE__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.DATA_TYPE__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.DATA_TYPE__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.DATA_TYPE__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.DATA_TYPE__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.DATA_TYPE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.DATA_TYPE__EXTENDED_BYS:
 				return extendedBys != null && !extendedBys.isEmpty();
-			case PivotPackage.DATA_TYPE__OWNED_RULE:
-				return ownedRule != null && !ownedRule.isEmpty();
-			case PivotPackage.DATA_TYPE__OWNED_TEMPLATE_BINDINGS:
-				return ownedTemplateBindings != null && !ownedTemplateBindings.isEmpty();
-			case PivotPackage.DATA_TYPE__OWNED_TEMPLATE_SIGNATURE:
-				return ownedTemplateSignature != null;
+			case PivotPackage.DATA_TYPE__OWNED_CONSTRAINTS:
+				return ownedConstraints != null && !ownedConstraints.isEmpty();
+			case PivotPackage.DATA_TYPE__OWNED_BINDINGS:
+				return ownedBindings != null && !ownedBindings.isEmpty();
+			case PivotPackage.DATA_TYPE__OWNED_SIGNATURE:
+				return ownedSignature != null;
 			case PivotPackage.DATA_TYPE__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
 			case PivotPackage.DATA_TYPE__INSTANCE_CLASS_NAME:
@@ -443,8 +443,8 @@ public class DataTypeImpl
 				return ((eFlags & IS_ACTIVE_EFLAG) != 0) != IS_ACTIVE_EDEFAULT;
 			case PivotPackage.DATA_TYPE__IS_INTERFACE:
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
-			case PivotPackage.DATA_TYPE__OWNED_BEHAVIOR:
-				return ownedBehavior != null && !ownedBehavior.isEmpty();
+			case PivotPackage.DATA_TYPE__OWNED_BEHAVIORS:
+				return ownedBehaviors != null && !ownedBehaviors.isEmpty();
 			case PivotPackage.DATA_TYPE__OWNED_INVARIANTS:
 				return ownedInvariants != null && !ownedInvariants.isEmpty();
 			case PivotPackage.DATA_TYPE__OWNED_OPERATIONS:

@@ -88,7 +88,7 @@ public class ProfileAnalysis
 	
 	public void addTypeExtension(@NonNull TypeExtension asTypeExtension) {
 		org.eclipse.ocl.pivot.Class extendedMetatype = (org.eclipse.ocl.pivot.Class)asTypeExtension.getType();	// FIXME cast
-		Stereotype extendingStereotype = asTypeExtension.getStereotype();
+		Stereotype extendingStereotype = asTypeExtension.getOwningStereotype();
 		if ((extendedMetatype != null) && (extendingStereotype != null)) {
 			allExtendedMetatypes.add(extendedMetatype);
 			allExtendingStereotypes.add(extendingStereotype);
@@ -492,7 +492,7 @@ public class ProfileAnalysis
 //			if (applicableStereotype.getName().contains("Parent")) {
 //				System.out.println("Got it");
 //			}
-			for (TypeExtension typeExtension : applicableStereotype.getExtensionOfs()) {
+			for (TypeExtension typeExtension : applicableStereotype.getOwnedExtensionOfs()) {
 				Type extensibleMetatype = typeExtension.getType();
 				if (extensibleMetatype != null) {
 					Set<TypeExtension> typeExtensions = extensibleMetatype2typeExtensions.get(extensibleMetatype);

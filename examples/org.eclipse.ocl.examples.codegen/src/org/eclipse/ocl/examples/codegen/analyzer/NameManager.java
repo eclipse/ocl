@@ -375,7 +375,7 @@ public class NameManager
 			return("sum");
 		}
 		else if (nameHint.equals("-")) {
-			return((anObject instanceof Operation) && ((Operation)anObject).getOwnedParameter().size() <= 0 ? "neg" : "diff");
+			return((anObject instanceof Operation) && ((Operation)anObject).getOwnedParameters().size() <= 0 ? "neg" : "diff");
 		}
 		else if (nameHint.equals("*")) {
 			return("prod");

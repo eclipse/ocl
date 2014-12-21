@@ -73,7 +73,7 @@ public class JUnitCodeGenerator extends JavaCodeGenerator
 		cgClass.setName(className);
 		cgPackage.getClasses().add(cgClass);
 		//
-		Variable contextVariable = expInOcl.getContextVariable();
+		Variable contextVariable = expInOcl.getOwnedContext();
 		if (contextVariable != null) {
 			contextVariable.setIsRequired(false); // May be null for test
 		}
@@ -96,7 +96,7 @@ public class JUnitCodeGenerator extends JavaCodeGenerator
 			CGParameter cgContext = as2cgVisitor.getParameter(contextVariable);
 			cgParameters.add(cgContext);
 		}
-		for (@SuppressWarnings("null")@NonNull Variable parameterVariable : expInOcl.getParameterVariable()) {
+		for (@SuppressWarnings("null")@NonNull Variable parameterVariable : expInOcl.getOwnedParameters()) {
 			CGParameter cgParameter = as2cgVisitor.getParameter(parameterVariable);
 			cgParameters.add(cgParameter);
 		}

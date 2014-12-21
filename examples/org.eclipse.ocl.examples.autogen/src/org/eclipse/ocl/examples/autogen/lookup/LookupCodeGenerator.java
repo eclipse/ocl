@@ -218,10 +218,10 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		//	Create new AS Visitor helper operations
 		//
 		this.asVisitorEnvOperation = PivotUtil.createOperation(LookupClassContext.ENV_NAME, asEnvironmentType, null, null);
-		asVisitorEnvOperation.getOwnedParameter().add(PivotUtil.createParameter(LookupClassContext.ELEMENT_NAME, asElementType, true));
-		asVisitorEnvOperation.getOwnedParameter().add(PivotUtil.createParameter(LookupClassContext.CHILD_NAME, asElementType, false));
+		asVisitorEnvOperation.getOwnedParameters().add(PivotUtil.createParameter(LookupClassContext.ELEMENT_NAME, asElementType, true));
+		asVisitorEnvOperation.getOwnedParameters().add(PivotUtil.createParameter(LookupClassContext.CHILD_NAME, asElementType, false));
 		this.asVisitorParentEnvOperation = PivotUtil.createOperation(LookupClassContext.PARENT_ENV_NAME, asEnvironmentType, null, null);
-		asVisitorParentEnvOperation.getOwnedParameter().add(PivotUtil.createParameter(LookupClassContext.ELEMENT_NAME, asElementType, true));
+		asVisitorParentEnvOperation.getOwnedParameters().add(PivotUtil.createParameter(LookupClassContext.ELEMENT_NAME, asElementType, true));
 		asVisitorParentEnvOperation.setImplementation(NativeStaticOperation.INSTANCE);
 		asVisitorParentEnvOperation.setIsRequired(false);
 		List<Operation> asVisitorOperations = asVisitorClass.getOwnedOperations();
@@ -379,7 +379,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Class asType : asPackage.getOwnedClasses()) {
 			for (Operation envOperation : asType.getOwnedOperations()) {
 				if (LookupClassContext.ENV_NAME.equals(envOperation.getName())) {
-					List<Parameter> asParameters = envOperation.getOwnedParameter();
+					List<Parameter> asParameters = envOperation.getOwnedParameters();
 					if (asParameters.size() == 1) {
 						Operation asOperation = createVisitOperationDeclaration(reDefinitions, envOperation, asChildProperty);
 						envOperation2asOperation.put(envOperation, asOperation);
@@ -404,12 +404,12 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		//
 		org.eclipse.ocl.pivot.Class asType = ClassUtil.nonNullState(envOperation.getOwningClass());
 		Variable asElement = PivotUtil.createVariable(LookupClassContext.ELEMENT_NAME, asType, true, null);
-		reDefinitions.put(envExpressionInOCL.getContextVariable(), asElement);
+		reDefinitions.put(envExpressionInOCL.getOwnedContext(), asElement);
 		//
 		VariableExp asChildSource = createThisVariableExp();
 		PropertyCallExp asChildAccess = PivotUtil.createPropertyCallExp(asChildSource, asChildProperty);
 		Variable asChild = PivotUtil.createVariable(LookupClassContext.CHILD_NAME, asChildAccess);
-		reDefinitions.put(envExpressionInOCL.getParameterVariable().get(0), asChild);
+		reDefinitions.put(envExpressionInOCL.getOwnedParameters().get(0), asChild);
 		//
 		String visitorName = "visit" + asType.getName();
 		Operation asOperation = PivotFactory.eINSTANCE.createOperation();
@@ -508,9 +508,9 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	 * Convert source.env(child) to this.env(source, child)
 	 */
 	protected void rewriteEnvOperationCall(@NonNull OperationCallExp asOperationCallExp) {
-		OCLExpression asSource = asOperationCallExp.getSource();
-		asOperationCallExp.setSource(createThisVariableExp());
-		asOperationCallExp.getArgument().add(0, asSource);
+		OCLExpression asSource = asOperationCallExp.getOwnedSource();
+		asOperationCallExp.setOwnedSource(createThisVariableExp());
+		asOperationCallExp.getOwnedArguments().add(0, asSource);
 		asOperationCallExp.setReferredOperation(asVisitorEnvOperation);
 	}
 	
@@ -523,7 +523,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	 */
 	protected void rewriteNestedEnvOperationCall(@NonNull OperationCallExp asOperationCallExp) {
 		CallExp asOuterCallExp = asOperationCallExp;
-		for (EObject eContainer; (asOuterCallExp.eContainmentFeature() == PivotPackage.Literals.CALL_EXP__SOURCE) && ((eContainer = asOuterCallExp.eContainer()) != null); asOuterCallExp = (CallExp)eContainer) {
+		for (EObject eContainer; (asOuterCallExp.eContainmentFeature() == PivotPackage.Literals.CALL_EXP__OWNED_SOURCE) && ((eContainer = asOuterCallExp.eContainer()) != null); asOuterCallExp = (CallExp)eContainer) {
 			if (eContainer instanceof OperationCallExp) {
 				OperationCallExp asParentOperationCallExp = (OperationCallExp)eContainer;
 				Operation asReferredOperation = asParentOperationCallExp.getReferredOperation();
@@ -535,11 +535,11 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		EObject eContainer = asOuterCallExp.eContainer();
 		EReference eContainingFeature = asOuterCallExp.eContainmentFeature();		// This is not isMany()
 		eContainer.eSet(eContainingFeature, null);									// asOuterCallExp becomes an orphan
-		OCLExpression asSource = ClassUtil.nonNullState(asOperationCallExp.getSource());
+		OCLExpression asSource = ClassUtil.nonNullState(asOperationCallExp.getOwnedSource());
 		if (asOuterCallExp != asOperationCallExp) {
 			CallExp asInnerCallExp = (CallExp)asOperationCallExp.eContainer();
 			VariableExp asContextExp = PivotUtil.createVariableExp(asContextVariable);
-			asInnerCallExp.setSource(asContextExp);										// asOperationCallExp becomes an orphan
+			asInnerCallExp.setOwnedSource(asContextExp);										// asOperationCallExp becomes an orphan
 			Variable asInnerEnv = PivotUtil.createVariable("inner", asOuterCallExp);
 			VariableExp asInnerEnvExp1 = PivotUtil.createVariableExp(asInnerEnv);
 			VariableExp asInnerEnvExp2 = PivotUtil.createVariableExp(asInnerEnv);
@@ -557,9 +557,9 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	 * Convert source.parentEnv() to this.parentEnv(source)
 	 */
 	protected void rewriteParentEnvOperationCall(@NonNull OperationCallExp asOperationCallExp) {
-		OCLExpression asSource = asOperationCallExp.getSource();
-		asOperationCallExp.setSource(createThisVariableExp());
-		asOperationCallExp.getArgument().add(asSource);
+		OCLExpression asSource = asOperationCallExp.getOwnedSource();
+		asOperationCallExp.setOwnedSource(createThisVariableExp());
+		asOperationCallExp.getOwnedArguments().add(asSource);
 		asOperationCallExp.setReferredOperation(asVisitorParentEnvOperation);
 	}
 
@@ -571,8 +571,8 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 			@SuppressWarnings("null")@NonNull Operation asOperation = envOperation2asOperation.get(envOperation);
 			LanguageExpression envSpecification = ClassUtil.nonNullState(envOperation.getBodyExpression());
 			ExpressionInOCL envExpressionInOCL = metaModelManager.getQueryOrThrow(envSpecification);
-			Variable asElement = (Variable) reDefinitions.get(envExpressionInOCL.getContextVariable());
-			OCLExpression asExpression = RereferencingCopier.copy(ClassUtil.nonNullState(envExpressionInOCL.getBodyExpression()), reDefinitions);
+			Variable asElement = (Variable) reDefinitions.get(envExpressionInOCL.getOwnedContext());
+			OCLExpression asExpression = RereferencingCopier.copy(ClassUtil.nonNullState(envExpressionInOCL.getOwnedBody()), reDefinitions);
 			ExpressionInOCL asExpressionInOCL = PivotUtil.createExpressionInOCL(null, asExpression, asElement);
 			PivotUtil.initOperation(asOperation, asExpressionInOCL);
 			asOperation.setType(asEnvironmentType);

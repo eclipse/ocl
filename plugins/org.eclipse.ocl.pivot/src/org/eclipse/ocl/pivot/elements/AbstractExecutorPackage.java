@@ -28,7 +28,7 @@ public abstract class AbstractExecutorPackage extends AbstractExecutorNamedEleme
 
 	@Override
 	@NonNull
-	public List<Constraint> getOwnedRule() {
+	public List<Constraint> getOwnedConstraints() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -65,7 +65,7 @@ public abstract class AbstractExecutorPackage extends AbstractExecutorNamedEleme
 
 	@Override
 	@NonNull
-	public List<org.eclipse.ocl.pivot.Package> getImportedPackage() {
+	public List<org.eclipse.ocl.pivot.Package> getImportedPackages() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -77,7 +77,7 @@ public abstract class AbstractExecutorPackage extends AbstractExecutorNamedEleme
 
 	@Override
 	@NonNull
-	public List<ProfileApplication> getProfileApplication() {
+	public List<ProfileApplication> getOwnedProfileApplications() {
 		throw new UnsupportedOperationException();
 	}
 

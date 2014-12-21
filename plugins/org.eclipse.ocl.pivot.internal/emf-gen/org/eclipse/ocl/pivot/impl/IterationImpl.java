@@ -44,8 +44,8 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.impl.IterationImpl#getOwnedAccumulator <em>Owned Accumulator</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.IterationImpl#getOwnedIterator <em>Owned Iterator</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.IterationImpl#getOwnedAccumulators <em>Owned Accumulators</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.IterationImpl#getOwnedIterators <em>Owned Iterators</em>}</li>
  * </ul>
  * </p>
  *
@@ -54,24 +54,24 @@ import org.eclipse.ocl.pivot.util.Visitor;
 public class IterationImpl extends OperationImpl implements Iteration
 {
 	/**
-	 * The cached value of the '{@link #getOwnedAccumulator() <em>Owned Accumulator</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedAccumulators() <em>Owned Accumulators</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedAccumulator()
+	 * @see #getOwnedAccumulators()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Parameter> ownedAccumulator;
+	protected EList<Parameter> ownedAccumulators;
 
 	/**
-	 * The cached value of the '{@link #getOwnedIterator() <em>Owned Iterator</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedIterators() <em>Owned Iterators</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedIterator()
+	 * @see #getOwnedIterators()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Parameter> ownedIterator;
+	protected EList<Parameter> ownedIterators;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -101,13 +101,13 @@ public class IterationImpl extends OperationImpl implements Iteration
 	 */
 	@Override
 	@SuppressWarnings("null")
-	public @NonNull List<Parameter> getOwnedIterator()
+	public @NonNull List<Parameter> getOwnedIterators()
 	{
-		if (ownedIterator == null)
+		if (ownedIterators == null)
 		{
-			ownedIterator = new EObjectContainmentEList<Parameter>(Parameter.class, this, PivotPackage.ITERATION__OWNED_ITERATOR);
+			ownedIterators = new EObjectContainmentEList<Parameter>(Parameter.class, this, PivotPackage.ITERATION__OWNED_ITERATORS);
 		}
-		return ownedIterator;
+		return ownedIterators;
 	}
 
 	/**
@@ -117,13 +117,13 @@ public class IterationImpl extends OperationImpl implements Iteration
 	 */
 	@Override
 	@SuppressWarnings("null")
-	public @NonNull List<Parameter> getOwnedAccumulator()
+	public @NonNull List<Parameter> getOwnedAccumulators()
 	{
-		if (ownedAccumulator == null)
+		if (ownedAccumulators == null)
 		{
-			ownedAccumulator = new EObjectContainmentEList<Parameter>(Parameter.class, this, PivotPackage.ITERATION__OWNED_ACCUMULATOR);
+			ownedAccumulators = new EObjectContainmentEList<Parameter>(Parameter.class, this, PivotPackage.ITERATION__OWNED_ACCUMULATORS);
 		}
-		return ownedAccumulator;
+		return ownedAccumulators;
 	}
 
 	/**
@@ -136,34 +136,34 @@ public class IterationImpl extends OperationImpl implements Iteration
 	{
 		switch (featureID)
 		{
-			case PivotPackage.ITERATION__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ITERATION__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ITERATION__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ITERATION__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ITERATION__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ITERATION__OWNED_TEMPLATE_BINDINGS:
-				return ((InternalEList<?>)getOwnedTemplateBindings()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ITERATION__OWNED_TEMPLATE_SIGNATURE:
-				return basicSetOwnedTemplateSignature(null, msgs);
+			case PivotPackage.ITERATION__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ITERATION__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ITERATION__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ITERATION__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ITERATION__OWNED_CONSTRAINTS:
+				return ((InternalEList<?>)getOwnedConstraints()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ITERATION__OWNED_BINDINGS:
+				return ((InternalEList<?>)getOwnedBindings()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ITERATION__OWNED_SIGNATURE:
+				return basicSetOwnedSignature(null, msgs);
 			case PivotPackage.ITERATION__BODY_EXPRESSION:
 				return basicSetBodyExpression(null, msgs);
-			case PivotPackage.ITERATION__OWNED_PARAMETER:
-				return ((InternalEList<?>)getOwnedParameter()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ITERATION__OWNED_PARAMETERS:
+				return ((InternalEList<?>)getOwnedParameters()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ITERATION__OWNED_POSTCONDITIONS:
+				return ((InternalEList<?>)getOwnedPostconditions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ITERATION__OWNED_PRECONDITIONS:
+				return ((InternalEList<?>)getOwnedPreconditions()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ITERATION__OWNING_CLASS:
 				return basicSetOwningClass(null, msgs);
-			case PivotPackage.ITERATION__POSTCONDITION:
-				return ((InternalEList<?>)getPostcondition()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ITERATION__PRECONDITION:
-				return ((InternalEList<?>)getPrecondition()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ITERATION__OWNED_ACCUMULATOR:
-				return ((InternalEList<?>)getOwnedAccumulator()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ITERATION__OWNED_ITERATOR:
-				return ((InternalEList<?>)getOwnedIterator()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ITERATION__OWNED_ACCUMULATORS:
+				return ((InternalEList<?>)getOwnedAccumulators()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ITERATION__OWNED_ITERATORS:
+				return ((InternalEList<?>)getOwnedIterators()).basicRemove(otherEnd, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -178,14 +178,14 @@ public class IterationImpl extends OperationImpl implements Iteration
 	{
 		switch (featureID)
 		{
-			case PivotPackage.ITERATION__COMMENT:
-				return getComment();
-			case PivotPackage.ITERATION__EXTENSION:
-				return getExtension();
-			case PivotPackage.ITERATION__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.ITERATION__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.ITERATION__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.ITERATION__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.ITERATION__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.ITERATION__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.ITERATION__NAME:
 				return getName();
 			case PivotPackage.ITERATION__IS_MANY:
@@ -201,12 +201,12 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return getImplementationClass();
 			case PivotPackage.ITERATION__IS_STATIC:
 				return isStatic();
-			case PivotPackage.ITERATION__OWNED_RULE:
-				return getOwnedRule();
-			case PivotPackage.ITERATION__OWNED_TEMPLATE_BINDINGS:
-				return getOwnedTemplateBindings();
-			case PivotPackage.ITERATION__OWNED_TEMPLATE_SIGNATURE:
-				return getOwnedTemplateSignature();
+			case PivotPackage.ITERATION__OWNED_CONSTRAINTS:
+				return getOwnedConstraints();
+			case PivotPackage.ITERATION__OWNED_BINDINGS:
+				return getOwnedBindings();
+			case PivotPackage.ITERATION__OWNED_SIGNATURE:
+				return getOwnedSignature();
 			case PivotPackage.ITERATION__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
 			case PivotPackage.ITERATION__BODY_EXPRESSION:
@@ -217,25 +217,25 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return isTypeof();
 			case PivotPackage.ITERATION__IS_VALIDATING:
 				return isValidating();
-			case PivotPackage.ITERATION__OWNED_PARAMETER:
-				return getOwnedParameter();
+			case PivotPackage.ITERATION__OWNED_PARAMETERS:
+				return getOwnedParameters();
+			case PivotPackage.ITERATION__OWNED_POSTCONDITIONS:
+				return getOwnedPostconditions();
+			case PivotPackage.ITERATION__OWNED_PRECONDITIONS:
+				return getOwnedPreconditions();
 			case PivotPackage.ITERATION__OWNING_CLASS:
 				return getOwningClass();
-			case PivotPackage.ITERATION__POSTCONDITION:
-				return getPostcondition();
 			case PivotPackage.ITERATION__PRECEDENCE:
 				if (resolve) return getPrecedence();
 				return basicGetPrecedence();
-			case PivotPackage.ITERATION__PRECONDITION:
-				return getPrecondition();
-			case PivotPackage.ITERATION__RAISED_EXCEPTION:
-				return getRaisedException();
-			case PivotPackage.ITERATION__REDEFINED_OPERATION:
-				return getRedefinedOperation();
-			case PivotPackage.ITERATION__OWNED_ACCUMULATOR:
-				return getOwnedAccumulator();
-			case PivotPackage.ITERATION__OWNED_ITERATOR:
-				return getOwnedIterator();
+			case PivotPackage.ITERATION__RAISED_EXCEPTIONS:
+				return getRaisedExceptions();
+			case PivotPackage.ITERATION__REDEFINED_OPERATIONS:
+				return getRedefinedOperations();
+			case PivotPackage.ITERATION__OWNED_ACCUMULATORS:
+				return getOwnedAccumulators();
+			case PivotPackage.ITERATION__OWNED_ITERATORS:
+				return getOwnedIterators();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -251,21 +251,21 @@ public class IterationImpl extends OperationImpl implements Iteration
 	{
 		switch (featureID)
 		{
-			case PivotPackage.ITERATION__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.ITERATION__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.ITERATION__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.ITERATION__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.ITERATION__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.ITERATION__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.ITERATION__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.ITERATION__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.ITERATION__NAME:
 				setName((String)newValue);
@@ -285,16 +285,16 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__IS_STATIC:
 				setIsStatic((Boolean)newValue);
 				return;
-			case PivotPackage.ITERATION__OWNED_RULE:
-				getOwnedRule().clear();
-				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
+			case PivotPackage.ITERATION__OWNED_CONSTRAINTS:
+				getOwnedConstraints().clear();
+				getOwnedConstraints().addAll((Collection<? extends Constraint>)newValue);
 				return;
-			case PivotPackage.ITERATION__OWNED_TEMPLATE_BINDINGS:
-				getOwnedTemplateBindings().clear();
-				getOwnedTemplateBindings().addAll((Collection<? extends TemplateBinding>)newValue);
+			case PivotPackage.ITERATION__OWNED_BINDINGS:
+				getOwnedBindings().clear();
+				getOwnedBindings().addAll((Collection<? extends TemplateBinding>)newValue);
 				return;
-			case PivotPackage.ITERATION__OWNED_TEMPLATE_SIGNATURE:
-				setOwnedTemplateSignature((TemplateSignature)newValue);
+			case PivotPackage.ITERATION__OWNED_SIGNATURE:
+				setOwnedSignature((TemplateSignature)newValue);
 				return;
 			case PivotPackage.ITERATION__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
@@ -311,39 +311,39 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__IS_VALIDATING:
 				setIsValidating((Boolean)newValue);
 				return;
-			case PivotPackage.ITERATION__OWNED_PARAMETER:
-				getOwnedParameter().clear();
-				getOwnedParameter().addAll((Collection<? extends Parameter>)newValue);
+			case PivotPackage.ITERATION__OWNED_PARAMETERS:
+				getOwnedParameters().clear();
+				getOwnedParameters().addAll((Collection<? extends Parameter>)newValue);
+				return;
+			case PivotPackage.ITERATION__OWNED_POSTCONDITIONS:
+				getOwnedPostconditions().clear();
+				getOwnedPostconditions().addAll((Collection<? extends Constraint>)newValue);
+				return;
+			case PivotPackage.ITERATION__OWNED_PRECONDITIONS:
+				getOwnedPreconditions().clear();
+				getOwnedPreconditions().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.ITERATION__OWNING_CLASS:
 				setOwningClass((org.eclipse.ocl.pivot.Class)newValue);
 				return;
-			case PivotPackage.ITERATION__POSTCONDITION:
-				getPostcondition().clear();
-				getPostcondition().addAll((Collection<? extends Constraint>)newValue);
-				return;
 			case PivotPackage.ITERATION__PRECEDENCE:
 				setPrecedence((Precedence)newValue);
 				return;
-			case PivotPackage.ITERATION__PRECONDITION:
-				getPrecondition().clear();
-				getPrecondition().addAll((Collection<? extends Constraint>)newValue);
+			case PivotPackage.ITERATION__RAISED_EXCEPTIONS:
+				getRaisedExceptions().clear();
+				getRaisedExceptions().addAll((Collection<? extends Type>)newValue);
 				return;
-			case PivotPackage.ITERATION__RAISED_EXCEPTION:
-				getRaisedException().clear();
-				getRaisedException().addAll((Collection<? extends Type>)newValue);
+			case PivotPackage.ITERATION__REDEFINED_OPERATIONS:
+				getRedefinedOperations().clear();
+				getRedefinedOperations().addAll((Collection<? extends Operation>)newValue);
 				return;
-			case PivotPackage.ITERATION__REDEFINED_OPERATION:
-				getRedefinedOperation().clear();
-				getRedefinedOperation().addAll((Collection<? extends Operation>)newValue);
+			case PivotPackage.ITERATION__OWNED_ACCUMULATORS:
+				getOwnedAccumulators().clear();
+				getOwnedAccumulators().addAll((Collection<? extends Parameter>)newValue);
 				return;
-			case PivotPackage.ITERATION__OWNED_ACCUMULATOR:
-				getOwnedAccumulator().clear();
-				getOwnedAccumulator().addAll((Collection<? extends Parameter>)newValue);
-				return;
-			case PivotPackage.ITERATION__OWNED_ITERATOR:
-				getOwnedIterator().clear();
-				getOwnedIterator().addAll((Collection<? extends Parameter>)newValue);
+			case PivotPackage.ITERATION__OWNED_ITERATORS:
+				getOwnedIterators().clear();
+				getOwnedIterators().addAll((Collection<? extends Parameter>)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -359,17 +359,17 @@ public class IterationImpl extends OperationImpl implements Iteration
 	{
 		switch (featureID)
 		{
-			case PivotPackage.ITERATION__COMMENT:
-				getComment().clear();
+			case PivotPackage.ITERATION__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.ITERATION__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.ITERATION__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.ITERATION__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.ITERATION__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.ITERATION__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.ITERATION__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.ITERATION__NAME:
 				setName(NAME_EDEFAULT);
@@ -389,14 +389,14 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__IS_STATIC:
 				setIsStatic(IS_STATIC_EDEFAULT);
 				return;
-			case PivotPackage.ITERATION__OWNED_RULE:
-				getOwnedRule().clear();
+			case PivotPackage.ITERATION__OWNED_CONSTRAINTS:
+				getOwnedConstraints().clear();
 				return;
-			case PivotPackage.ITERATION__OWNED_TEMPLATE_BINDINGS:
-				getOwnedTemplateBindings().clear();
+			case PivotPackage.ITERATION__OWNED_BINDINGS:
+				getOwnedBindings().clear();
 				return;
-			case PivotPackage.ITERATION__OWNED_TEMPLATE_SIGNATURE:
-				setOwnedTemplateSignature((TemplateSignature)null);
+			case PivotPackage.ITERATION__OWNED_SIGNATURE:
+				setOwnedSignature((TemplateSignature)null);
 				return;
 			case PivotPackage.ITERATION__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
@@ -413,32 +413,32 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__IS_VALIDATING:
 				setIsValidating(IS_VALIDATING_EDEFAULT);
 				return;
-			case PivotPackage.ITERATION__OWNED_PARAMETER:
-				getOwnedParameter().clear();
+			case PivotPackage.ITERATION__OWNED_PARAMETERS:
+				getOwnedParameters().clear();
+				return;
+			case PivotPackage.ITERATION__OWNED_POSTCONDITIONS:
+				getOwnedPostconditions().clear();
+				return;
+			case PivotPackage.ITERATION__OWNED_PRECONDITIONS:
+				getOwnedPreconditions().clear();
 				return;
 			case PivotPackage.ITERATION__OWNING_CLASS:
 				setOwningClass((org.eclipse.ocl.pivot.Class)null);
 				return;
-			case PivotPackage.ITERATION__POSTCONDITION:
-				getPostcondition().clear();
-				return;
 			case PivotPackage.ITERATION__PRECEDENCE:
 				setPrecedence((Precedence)null);
 				return;
-			case PivotPackage.ITERATION__PRECONDITION:
-				getPrecondition().clear();
+			case PivotPackage.ITERATION__RAISED_EXCEPTIONS:
+				getRaisedExceptions().clear();
 				return;
-			case PivotPackage.ITERATION__RAISED_EXCEPTION:
-				getRaisedException().clear();
+			case PivotPackage.ITERATION__REDEFINED_OPERATIONS:
+				getRedefinedOperations().clear();
 				return;
-			case PivotPackage.ITERATION__REDEFINED_OPERATION:
-				getRedefinedOperation().clear();
+			case PivotPackage.ITERATION__OWNED_ACCUMULATORS:
+				getOwnedAccumulators().clear();
 				return;
-			case PivotPackage.ITERATION__OWNED_ACCUMULATOR:
-				getOwnedAccumulator().clear();
-				return;
-			case PivotPackage.ITERATION__OWNED_ITERATOR:
-				getOwnedIterator().clear();
+			case PivotPackage.ITERATION__OWNED_ITERATORS:
+				getOwnedIterators().clear();
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -454,14 +454,14 @@ public class IterationImpl extends OperationImpl implements Iteration
 	{
 		switch (featureID)
 		{
-			case PivotPackage.ITERATION__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.ITERATION__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.ITERATION__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.ITERATION__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.ITERATION__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.ITERATION__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.ITERATION__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.ITERATION__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.ITERATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.ITERATION__IS_MANY:
@@ -476,12 +476,12 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return IMPLEMENTATION_CLASS_EDEFAULT == null ? implementationClass != null : !IMPLEMENTATION_CLASS_EDEFAULT.equals(implementationClass);
 			case PivotPackage.ITERATION__IS_STATIC:
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
-			case PivotPackage.ITERATION__OWNED_RULE:
-				return ownedRule != null && !ownedRule.isEmpty();
-			case PivotPackage.ITERATION__OWNED_TEMPLATE_BINDINGS:
-				return ownedTemplateBindings != null && !ownedTemplateBindings.isEmpty();
-			case PivotPackage.ITERATION__OWNED_TEMPLATE_SIGNATURE:
-				return ownedTemplateSignature != null;
+			case PivotPackage.ITERATION__OWNED_CONSTRAINTS:
+				return ownedConstraints != null && !ownedConstraints.isEmpty();
+			case PivotPackage.ITERATION__OWNED_BINDINGS:
+				return ownedBindings != null && !ownedBindings.isEmpty();
+			case PivotPackage.ITERATION__OWNED_SIGNATURE:
+				return ownedSignature != null;
 			case PivotPackage.ITERATION__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
 			case PivotPackage.ITERATION__BODY_EXPRESSION:
@@ -492,24 +492,24 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return ((eFlags & IS_TYPEOF_EFLAG) != 0) != IS_TYPEOF_EDEFAULT;
 			case PivotPackage.ITERATION__IS_VALIDATING:
 				return ((eFlags & IS_VALIDATING_EFLAG) != 0) != IS_VALIDATING_EDEFAULT;
-			case PivotPackage.ITERATION__OWNED_PARAMETER:
-				return ownedParameter != null && !ownedParameter.isEmpty();
+			case PivotPackage.ITERATION__OWNED_PARAMETERS:
+				return ownedParameters != null && !ownedParameters.isEmpty();
+			case PivotPackage.ITERATION__OWNED_POSTCONDITIONS:
+				return ownedPostconditions != null && !ownedPostconditions.isEmpty();
+			case PivotPackage.ITERATION__OWNED_PRECONDITIONS:
+				return ownedPreconditions != null && !ownedPreconditions.isEmpty();
 			case PivotPackage.ITERATION__OWNING_CLASS:
 				return getOwningClass() != null;
-			case PivotPackage.ITERATION__POSTCONDITION:
-				return postcondition != null && !postcondition.isEmpty();
 			case PivotPackage.ITERATION__PRECEDENCE:
 				return precedence != null;
-			case PivotPackage.ITERATION__PRECONDITION:
-				return precondition != null && !precondition.isEmpty();
-			case PivotPackage.ITERATION__RAISED_EXCEPTION:
-				return raisedException != null && !raisedException.isEmpty();
-			case PivotPackage.ITERATION__REDEFINED_OPERATION:
-				return redefinedOperation != null && !redefinedOperation.isEmpty();
-			case PivotPackage.ITERATION__OWNED_ACCUMULATOR:
-				return ownedAccumulator != null && !ownedAccumulator.isEmpty();
-			case PivotPackage.ITERATION__OWNED_ITERATOR:
-				return ownedIterator != null && !ownedIterator.isEmpty();
+			case PivotPackage.ITERATION__RAISED_EXCEPTIONS:
+				return raisedExceptions != null && !raisedExceptions.isEmpty();
+			case PivotPackage.ITERATION__REDEFINED_OPERATIONS:
+				return redefinedOperations != null && !redefinedOperations.isEmpty();
+			case PivotPackage.ITERATION__OWNED_ACCUMULATORS:
+				return ownedAccumulators != null && !ownedAccumulators.isEmpty();
+			case PivotPackage.ITERATION__OWNED_ITERATORS:
+				return ownedIterators != null && !ownedIterators.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
 	}

@@ -43,7 +43,7 @@ public class JUnitCG2JavaClassVisitor extends CG2JavaVisitor<JUnitCodeGenerator>
 
 	@Override
 	public @NonNull Boolean visitCGClass(@NonNull CGClass cgClass) {
-		Class<?> baseClass = genModelHelper.getAbstractOperationClass(expInOcl.getParameterVariable());
+		Class<?> baseClass = genModelHelper.getAbstractOperationClass(expInOcl.getOwnedParameters());
 		String title = cgClass.getName() + " provides the Java implementation for\n";
 		js.appendCommentWithOCL(title, expInOcl);
 		String className = cgClass.getName();
@@ -57,7 +57,7 @@ public class JUnitCG2JavaClassVisitor extends CG2JavaVisitor<JUnitCodeGenerator>
 			generateGlobals(sortedGlobals);
 		}
 		js.append("\n");
-		if (expInOcl.getContextVariable() != null) {
+		if (expInOcl.getOwnedContext() != null) {
 			for (CGOperation cgOperation : cgClass.getOperations()) {
 				cgOperation.accept(this);
 			}

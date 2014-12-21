@@ -100,7 +100,7 @@ import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 {
 	public static boolean isSimpleRange(@NonNull CollectionLiteralExp cl) {
-		List<CollectionLiteralPart> partsList = cl.getPart();
+		List<CollectionLiteralPart> partsList = cl.getOwnedParts();
 		int size = partsList.size();
 		if (size == 1) {
 			CollectionLiteralPart part = partsList.get(0);
@@ -152,7 +152,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	}
 
 	protected Object evaluatePropertyCallExp(@NonNull NavigationCallExp propertyCallExp, @NonNull Property referredProperty) {
-		OCLExpression source = propertyCallExp.getSource();
+		OCLExpression source = propertyCallExp.getOwnedSource();
 		Type propertyType = propertyCallExp.getType();
 		assert propertyType != null;
 		EvaluationVisitor evaluationVisitor = undecoratedVisitor;
@@ -207,7 +207,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 */
 	@Override
     public Object visitAssociationClassCallExp(@NonNull AssociationClassCallExp ae) {
-		Object context = ae.getSource().accept(undecoratedVisitor);
+		Object context = ae.getOwnedSource().accept(undecoratedVisitor);
 		
 //		if ((context == null) || ValuesUtil.isUndefined(context)) {
 //			return evaluationEnvironment.throwInvalidEvaluation("Undefined context for AssociationClassCall", ae);
@@ -243,15 +243,15 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
     public Object visitCollectionLiteralExp(@NonNull CollectionLiteralExp cl) {
 		// construct the appropriate collection from the parts
 		// based on the collection kind.
-		List<CollectionLiteralPart> parts = cl.getPart();
+		List<CollectionLiteralPart> parts = cl.getOwnedParts();
 		CollectionType type = (CollectionType) cl.getType();
 		boolean isOrdered = type.isOrdered();
 		if (isOrdered && isSimpleRange(cl)) {
 			// literal is of the form: Sequence{first..last}.
 			// construct a list with a lazy iterator for it.
 			CollectionRange collRange = (CollectionRange) parts.get(0);
-			OCLExpression first = collRange.getFirst();
-			OCLExpression last = collRange.getLast();
+			OCLExpression first = collRange.getOwnedFirst();
+			OCLExpression last = collRange.getOwnedLast();
 
 			// evaluate first value
 			Object firstVal = first.accept(undecoratedVisitor);
@@ -297,7 +297,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 				if (part instanceof CollectionItem) {
 					// CollectionItem part
 					CollectionItem item = (CollectionItem) part;
-					OCLExpression itemExp = item.getItem();
+					OCLExpression itemExp = item.getOwnedItem();
 					Object itemVal = itemExp.accept(undecoratedVisitor);
 //					Object itemValue = ValuesUtil.asValidValue(itemVal);
 					if ((uniqueResults == null) || uniqueResults.add(itemVal)) {
@@ -306,8 +306,8 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 				} else {
 					// Collection range
 					CollectionRange range = (CollectionRange) part;
-					OCLExpression first = range.getFirst();
-					OCLExpression last = range.getLast();
+					OCLExpression first = range.getOwnedFirst();
+					OCLExpression last = range.getOwnedLast();
 
 					// evaluate first value
 					Object firstVal = first.accept(undecoratedVisitor);
@@ -372,8 +372,8 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		Object object;
 		if (value == null) {
 			EObject eObject = type.createInstance();
-			for (ConstructorPart part : ce.getPart()) {
-				OCLExpression initExpression = part.getInitExpression();
+			for (ConstructorPart part : ce.getOwnedParts()) {
+				OCLExpression initExpression = part.getOwnedInit();
 				if (initExpression != null) {
 					Object boxedValue = undecoratedVisitor.evaluate(initExpression);
 					Object unboxedValue = getIdResolver().unboxedValueOf(boxedValue);
@@ -398,7 +398,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 */
 	@Override
     public Object visitEnumLiteralExp(@NonNull EnumLiteralExp el) {
-		EnumerationLiteral enumLiteral = el.getReferredEnumLiteral();
+		EnumerationLiteral enumLiteral = el.getReferredLiteral();
 		assert enumLiteral != null;
 		return enumLiteral.getEnumerationLiteralId();
 	}
@@ -412,7 +412,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 //		Object object = getEvaluationEnvironment().getValueOf(expression.getContextVariable());
 //		System.out.println(++depth + " " + expression.getContextVariable() + " = " + object + "\n\t" + expression);
 //		try {
-			Object result = safeVisit(expression.getBodyExpression());
+			Object result = safeVisit(expression.getOwnedBody());
 //			System.out.println(depth + "\t=> " + result);
 			return result;
 //		}
@@ -430,15 +430,15 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 */
 	@Override
     public Object visitIfExp(@NonNull IfExp ifExp) {
-		OCLExpression condition = ifExp.getCondition();
+		OCLExpression condition = ifExp.getOwnedCondition();
 		Object acceptedValue = condition.accept(undecoratedVisitor);
 		Object evaluatedCondition = ValueUtil.asBoolean(acceptedValue);
 		OCLExpression expression = null;
 		if (evaluatedCondition == ValueUtil.TRUE_VALUE) {
-			expression = ifExp.getThenExpression();
+			expression = ifExp.getOwnedThen();
 		}
 		else {
-			expression = ifExp.getElseExpression();
+			expression = ifExp.getOwnedElse();
 		}
 		return expression.accept(undecoratedVisitor);
 	}
@@ -468,7 +468,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			throw new EvaluationHaltedException("Canceled");
 		}
 		Iteration staticIteration = ClassUtil.nonNullModel(iterateExp.getReferredIteration());
-		OCLExpression source = iterateExp.getSource();
+		OCLExpression source = iterateExp.getOwnedSource();
 		Object acceptedValue = source.accept(undecoratedVisitor);
 		CollectionValue sourceValue = ValueUtil.asCollectionValue(acceptedValue);
 		org.eclipse.ocl.pivot.Class dynamicSourceType = metaModelManager.getIdResolver().getClass(sourceValue.getTypeId(), null);
@@ -491,16 +491,16 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		} */
 		Object result = null;
 		try {
-			Variable accumulator = iterateExp.getResult();
-			Object initValue = accumulator.getInitExpression().accept(undecoratedVisitor);
+			Variable accumulator = iterateExp.getOwnedResult();
+			Object initValue = accumulator.getOwnedInit().accept(undecoratedVisitor);
 //			if ((initValue == null) || ValuesUtil.isUndefined(initValue)) {
 //				return evaluationEnvironment.throwInvalidEvaluation(null, iterateExp, initValue, EvaluatorMessages.UndefinedInitialiser);
 //			}
 //			initValue = ValuesUtil.asValidValue(initValue);
 			DomainIterationManager iterationManager;
 			VariableDeclaration accumulatorVariable = accumulator;
-			OCLExpression body = ClassUtil.nonNullModel(iterateExp.getBody());
-			List<Variable> iterators = iterateExp.getIterator();
+			OCLExpression body = ClassUtil.nonNullModel(iterateExp.getOwnedBody());
+			List<Variable> iterators = iterateExp.getOwnedIterators();
 			int iSize = iterators.size();
 			if (iSize == 1) {
 				VariableDeclaration firstIterator = ClassUtil.nonNullModel(iterators.get(0));
@@ -537,7 +537,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		Iteration staticIteration = ClassUtil.nonNullModel(iteratorExp.getReferredIteration());
 		CollectionValue sourceValue;
 //		try {
-			OCLExpression source = iteratorExp.getSource();
+			OCLExpression source = iteratorExp.getOwnedSource();
 			Object sourceVal = source.accept(undecoratedVisitor);
 //			if (sourceVal == null) {
 //				return evaluationEnvironment.throwInvalidEvaluation("null iterator source");
@@ -567,11 +567,11 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		Object result = null;
 		try {
 			DomainIterationManager iterationManager;
-			OCLExpression body = iteratorExp.getBody();
+			OCLExpression body = iteratorExp.getOwnedBody();
 			Type iterationType = PivotUtil.getType(ClassUtil.nonNullModel(iteratorExp.getType()));
 			Type bodyType = PivotUtil.getType(ClassUtil.nonNullModel(body.getType()));
 			Object accumulatorValue = implementation.createAccumulatorValue(undecoratedVisitor, iterationType.getTypeId(), bodyType.getTypeId());
-			List<Variable> iterators = iteratorExp.getIterator();
+			List<Variable> iterators = iteratorExp.getOwnedIterators();
 			int iSize = iterators.size();
 			if (iSize == 1) {
 				VariableDeclaration firstIterator = ClassUtil.nonNullModel(iterators.get(0));
@@ -602,8 +602,8 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 */
 	@Override
     public Object visitLetExp(@NonNull LetExp letExp) {
-		OCLExpression expression = letExp.getIn();		// Never null when valid
-		Variable variable = letExp.getVariable();		// Never null when valid
+		OCLExpression expression = letExp.getOwnedIn();		// Never null when valid
+		Variable variable = letExp.getOwnedVariable();		// Never null when valid
 		assert variable != null;
 		Object value;
 		try {
@@ -663,7 +663,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		//	Resolve source value
 		//
  		Object sourceValue;
-		OCLExpression source = operationCallExp.getSource();
+		OCLExpression source = operationCallExp.getOwnedSource();
 		boolean isValidating = apparentOperation.isValidating();
 		if (isValidating) {
 			try {
@@ -682,12 +682,12 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		//
 		//	Resolve source dispatch type
 		//
-		List<Parameter> ownedParameters = apparentOperation.getOwnedParameter();
+		List<Parameter> ownedParameters = apparentOperation.getOwnedParameters();
 		if ((ownedParameters.size() == 1) && (ownedParameters.get(0).getType() instanceof SelfType)) {
 			//
 			//	Resolve and dispatch OclSelf operation
 			//
-			List<OCLExpression> arguments = operationCallExp.getArgument();
+			List<OCLExpression> arguments = operationCallExp.getOwnedArguments();
 			Object onlyArgument = arguments.get(0).accept(undecoratedVisitor);
 			Operation actualOperation;
 			if (apparentOperation.isStatic()) {
@@ -805,7 +805,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
     public Object visitTupleLiteralExp(@NonNull TupleLiteralExp tl) {
 		Type type = ClassUtil.nonNullModel(tl.getType());
 		Map<TuplePartId, Object> propertyValues = new HashMap<TuplePartId, Object>();		
-		for (TupleLiteralPart part : tl.getPart()) {
+		for (TupleLiteralPart part : tl.getOwnedParts()) {
 			// Set the tuple field with the value of the init expression
 			propertyValues.put(part.getPartId(), part.accept(undecoratedVisitor));
 		}
@@ -815,7 +815,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	
 	@Override
     public Object visitTupleLiteralPart(@NonNull TupleLiteralPart tp) {
-		return tp.getInitExpression().accept(undecoratedVisitor);
+		return tp.getOwnedInit().accept(undecoratedVisitor);
 	}
 
 	/**
@@ -874,7 +874,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	@Override
     public Object visitVariable(@NonNull Variable variable) {
 		// return the initial (only) value
-		OCLExpression initExp = variable.getInitExpression();
+		OCLExpression initExp = variable.getOwnedInit();
 		if (initExp == null) {
 			throw new InvalidValueException("Uninitialized variable", variable);
 		}

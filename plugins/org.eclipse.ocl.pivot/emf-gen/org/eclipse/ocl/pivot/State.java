@@ -25,20 +25,20 @@ import java.util.List;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.State#getConnection <em>Connection</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.State#getConnectionPoint <em>Connection Point</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.State#getDeferrableTrigger <em>Deferrable Trigger</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.State#getDoActivity <em>Do Activity</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.State#getEntry <em>Entry</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.State#getExit <em>Exit</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.State#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.State#isOrthogonal <em>Is Orthogonal</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.State#isSimple <em>Is Simple</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.State#isSubmachineState <em>Is Submachine State</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.State#getOwnedConnectionPoints <em>Owned Connection Points</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.State#getOwnedConnections <em>Owned Connections</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.State#getOwnedDeferrableTriggers <em>Owned Deferrable Triggers</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.State#getOwnedDoActivity <em>Owned Do Activity</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.State#getOwnedEntry <em>Owned Entry</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.State#getOwnedExit <em>Owned Exit</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.State#getOwnedRegions <em>Owned Regions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.State#getOwnedStateInvariant <em>Owned State Invariant</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.State#getRedefinedState <em>Redefined State</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.State#getRegion <em>Region</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.State#getStateInvariant <em>State Invariant</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.State#getSubmachine <em>Submachine</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.State#getSubmachines <em>Submachines</em>}</li>
  * </ul>
  * </p>
  *
@@ -101,46 +101,169 @@ public interface State
 	boolean isSubmachineState();
 
 	/**
-	 * Returns the value of the '<em><b>Submachine</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.StateMachine#getSubmachineState <em>Submachine State</em>}'.
+	 * Returns the value of the '<em><b>Owned Connection Points</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.pivot.Pseudostate}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Pseudostate#getOwningState <em>Owning State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The state machine that is to be inserted in place of the (submachine) state.
+	 * The entry and exit pseudostates of a composite state. These can only be entry or exit Pseudostates, and they must have different names. They can only be defined for composite states.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Submachine</em>' reference.
-	 * @see #setSubmachine(StateMachine)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_Submachine()
-	 * @see org.eclipse.ocl.pivot.StateMachine#getSubmachineState
+	 * @return the value of the '<em>Owned Connection Points</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_OwnedConnectionPoints()
+	 * @see org.eclipse.ocl.pivot.Pseudostate#getOwningState
 	 * @generated
 	 */
-	StateMachine getSubmachine();
+	List<Pseudostate> getOwnedConnectionPoints();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.State#getSubmachine <em>Submachine</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Submachine</em>' reference.
-	 * @see #getSubmachine()
-	 * @generated
-	 */
-	void setSubmachine(StateMachine value);
-
-	/**
-	 * Returns the value of the '<em><b>Connection</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Connections</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.ConnectionPointReference}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.ConnectionPointReference#getState <em>State</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.ConnectionPointReference#getOwningState <em>Owning State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The entry and exit connection points used in conjunction with this (submachine) state, i.e. as targets and sources, respectively, in the region with the submachine state. A connection point reference references the corresponding definition of a connection point pseudostate in the statemachine referenced by the submachinestate.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Connection</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_Connection()
-	 * @see org.eclipse.ocl.pivot.ConnectionPointReference#getState
+	 * @return the value of the '<em>Owned Connections</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_OwnedConnections()
+	 * @see org.eclipse.ocl.pivot.ConnectionPointReference#getOwningState
 	 * @generated
 	 */
-	List<ConnectionPointReference> getConnection();
+	List<ConnectionPointReference> getOwnedConnections();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Deferrable Triggers</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.pivot.Trigger}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Trigger#getOwningState <em>Owning State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A list of triggers that are candidates to be retained by the state machine if they trigger no transitions out of the state (not consumed). A deferred trigger is retained until the state machine reaches a state configuration where it is no longer deferred.
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Deferrable Triggers</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_OwnedDeferrableTriggers()
+	 * @see org.eclipse.ocl.pivot.Trigger#getOwningState
+	 * @generated
+	 */
+	List<Trigger> getOwnedDeferrableTriggers();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Do Activity</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * An optional behavior that is executed while being in the state. The execution starts when this state is entered, and stops either by itself, or when the state is exited, whichever comes first.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Do Activity</em>' containment reference.
+	 * @see #setOwnedDoActivity(Behavior)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_OwnedDoActivity()
+	 * @generated
+	 */
+	Behavior getOwnedDoActivity();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.State#getOwnedDoActivity <em>Owned Do Activity</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Do Activity</em>' containment reference.
+	 * @see #getOwnedDoActivity()
+	 * @generated
+	 */
+	void setOwnedDoActivity(Behavior value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Entry</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * An optional behavior that is executed whenever this state is entered regardless of the transition taken to reach the state. If defined, entry actions are always executed to completion prior to any internal behavior or transitions performed within the state.
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Entry</em>' containment reference.
+	 * @see #setOwnedEntry(Behavior)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_OwnedEntry()
+	 * @generated
+	 */
+	Behavior getOwnedEntry();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.State#getOwnedEntry <em>Owned Entry</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Entry</em>' containment reference.
+	 * @see #getOwnedEntry()
+	 * @generated
+	 */
+	void setOwnedEntry(Behavior value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Exit</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * An optional behavior that is executed whenever this state is exited regardless of which transition was taken out of the state. If defined, exit actions are always executed to completion only after all internal activities and transition actions have completed execution.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Exit</em>' containment reference.
+	 * @see #setOwnedExit(Behavior)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_OwnedExit()
+	 * @generated
+	 */
+	Behavior getOwnedExit();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.State#getOwnedExit <em>Owned Exit</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Exit</em>' containment reference.
+	 * @see #getOwnedExit()
+	 * @generated
+	 */
+	void setOwnedExit(Behavior value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Regions</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.pivot.Region}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Region#getOwningState <em>Owning State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The regions owned directly by the state.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Regions</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_OwnedRegions()
+	 * @see org.eclipse.ocl.pivot.Region#getOwningState
+	 * @generated
+	 */
+	List<Region> getOwnedRegions();
+
+	/**
+	 * Returns the value of the '<em><b>Owned State Invariant</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Constraint#getOwningState <em>Owning State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Specifies conditions that are always true when this state is the current state. In protocol state machines, state invariants are additional conditions to the preconditions of the outgoing transitions, and to the postcondition of the incoming transitions.
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned State Invariant</em>' containment reference.
+	 * @see #setOwnedStateInvariant(Constraint)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_OwnedStateInvariant()
+	 * @see org.eclipse.ocl.pivot.Constraint#getOwningState
+	 * @generated
+	 */
+	Constraint getOwnedStateInvariant();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.State#getOwnedStateInvariant <em>Owned State Invariant</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned State Invariant</em>' containment reference.
+	 * @see #getOwnedStateInvariant()
+	 * @generated
+	 */
+	void setOwnedStateInvariant(Constraint value);
 
 	/**
 	 * Returns the value of the '<em><b>Redefined State</b></em>' reference.
@@ -167,151 +290,28 @@ public interface State
 	void setRedefinedState(State value);
 
 	/**
-	 * Returns the value of the '<em><b>Region</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.pivot.Region}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Region#getState <em>State</em>}'.
+	 * Returns the value of the '<em><b>Submachines</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.StateMachine#getSubmachineStates <em>Submachine States</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The regions owned directly by the state.
+	 * The state machine that is to be inserted in place of the (submachine) state.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Region</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_Region()
-	 * @see org.eclipse.ocl.pivot.Region#getState
+	 * @return the value of the '<em>Submachines</em>' reference.
+	 * @see #setSubmachines(StateMachine)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_Submachines()
+	 * @see org.eclipse.ocl.pivot.StateMachine#getSubmachineStates
 	 * @generated
 	 */
-	List<Region> getRegion();
+	StateMachine getSubmachines();
 
 	/**
-	 * Returns the value of the '<em><b>State Invariant</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Constraint#getOwningState <em>Owning State</em>}'.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.State#getSubmachines <em>Submachines</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Specifies conditions that are always true when this state is the current state. In protocol state machines, state invariants are additional conditions to the preconditions of the outgoing transitions, and to the postcondition of the incoming transitions.
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>State Invariant</em>' containment reference.
-	 * @see #setStateInvariant(Constraint)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_StateInvariant()
-	 * @see org.eclipse.ocl.pivot.Constraint#getOwningState
+	 * @param value the new value of the '<em>Submachines</em>' reference.
+	 * @see #getSubmachines()
 	 * @generated
 	 */
-	Constraint getStateInvariant();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.State#getStateInvariant <em>State Invariant</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>State Invariant</em>' containment reference.
-	 * @see #getStateInvariant()
-	 * @generated
-	 */
-	void setStateInvariant(Constraint value);
-
-	/**
-	 * Returns the value of the '<em><b>Entry</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * An optional behavior that is executed whenever this state is entered regardless of the transition taken to reach the state. If defined, entry actions are always executed to completion prior to any internal behavior or transitions performed within the state.
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Entry</em>' containment reference.
-	 * @see #setEntry(Behavior)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_Entry()
-	 * @generated
-	 */
-	Behavior getEntry();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.State#getEntry <em>Entry</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Entry</em>' containment reference.
-	 * @see #getEntry()
-	 * @generated
-	 */
-	void setEntry(Behavior value);
-
-	/**
-	 * Returns the value of the '<em><b>Exit</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * An optional behavior that is executed whenever this state is exited regardless of which transition was taken out of the state. If defined, exit actions are always executed to completion only after all internal activities and transition actions have completed execution.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Exit</em>' containment reference.
-	 * @see #setExit(Behavior)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_Exit()
-	 * @generated
-	 */
-	Behavior getExit();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.State#getExit <em>Exit</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Exit</em>' containment reference.
-	 * @see #getExit()
-	 * @generated
-	 */
-	void setExit(Behavior value);
-
-	/**
-	 * Returns the value of the '<em><b>Do Activity</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * An optional behavior that is executed while being in the state. The execution starts when this state is entered, and stops either by itself, or when the state is exited, whichever comes first.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Do Activity</em>' containment reference.
-	 * @see #setDoActivity(Behavior)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_DoActivity()
-	 * @generated
-	 */
-	Behavior getDoActivity();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.State#getDoActivity <em>Do Activity</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Do Activity</em>' containment reference.
-	 * @see #getDoActivity()
-	 * @generated
-	 */
-	void setDoActivity(Behavior value);
-
-	/**
-	 * Returns the value of the '<em><b>Connection Point</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.pivot.Pseudostate}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Pseudostate#getState <em>State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The entry and exit pseudostates of a composite state. These can only be entry or exit Pseudostates, and they must have different names. They can only be defined for composite states.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Connection Point</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_ConnectionPoint()
-	 * @see org.eclipse.ocl.pivot.Pseudostate#getState
-	 * @generated
-	 */
-	List<Pseudostate> getConnectionPoint();
-
-	/**
-	 * Returns the value of the '<em><b>Deferrable Trigger</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.pivot.Trigger}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Trigger#getState <em>State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * A list of triggers that are candidates to be retained by the state machine if they trigger no transitions out of the state (not consumed). A deferred trigger is retained until the state machine reaches a state configuration where it is no longer deferred.
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Deferrable Trigger</em>' containment reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_DeferrableTrigger()
-	 * @see org.eclipse.ocl.pivot.Trigger#getState
-	 * @generated
-	 */
-	List<Trigger> getDeferrableTrigger();
+	void setSubmachines(StateMachine value);
 } // State

@@ -43,13 +43,13 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.impl.TransitionImpl#getContainer <em>Container</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.TransitionImpl#getEffect <em>Effect</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.TransitionImpl#getGuard <em>Guard</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.TransitionImpl#getKind <em>Kind</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.TransitionImpl#getOwnedEffect <em>Owned Effect</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.TransitionImpl#getOwnedGuard <em>Owned Guard</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.TransitionImpl#getOwnedTriggers <em>Owned Triggers</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.TransitionImpl#getOwningRegion <em>Owning Region</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.TransitionImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.TransitionImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.TransitionImpl#getTrigger <em>Trigger</em>}</li>
  * </ul>
  * </p>
  *
@@ -57,26 +57,6 @@ import org.eclipse.ocl.pivot.util.Visitor;
  */
 public class TransitionImpl extends NamespaceImpl implements Transition
 {
-	/**
-	 * The cached value of the '{@link #getEffect() <em>Effect</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEffect()
-	 * @generated
-	 * @ordered
-	 */
-	protected Behavior effect;
-
-	/**
-	 * The cached value of the '{@link #getGuard() <em>Guard</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGuard()
-	 * @generated
-	 * @ordered
-	 */
-	protected Constraint guard;
-
 	/**
 	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -125,6 +105,36 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	protected static final int KIND_EFLAG = 0x3 << KIND_EFLAG_OFFSET;
 
 	/**
+	 * The cached value of the '{@link #getOwnedEffect() <em>Owned Effect</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedEffect()
+	 * @generated
+	 * @ordered
+	 */
+	protected Behavior ownedEffect;
+
+	/**
+	 * The cached value of the '{@link #getOwnedGuard() <em>Owned Guard</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedGuard()
+	 * @generated
+	 * @ordered
+	 */
+	protected Constraint ownedGuard;
+
+	/**
+	 * The cached value of the '{@link #getOwnedTriggers() <em>Owned Triggers</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedTriggers()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Trigger> ownedTriggers;
+
+	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -143,16 +153,6 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	 * @ordered
 	 */
 	protected Vertex target;
-
-	/**
-	 * The cached value of the '{@link #getTrigger() <em>Trigger</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTrigger()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Trigger> trigger;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -208,10 +208,9 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	 * @generated
 	 */
 	@Override
-	public Region getContainer()
+	public Behavior getOwnedEffect()
 	{
-		if (eContainerFeatureID() != PivotPackage.TRANSITION__CONTAINER) return null;
-		return (Region)eInternalContainer();
+		return ownedEffect;
 	}
 
 	/**
@@ -219,9 +218,15 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetContainer(Region newContainer, NotificationChain msgs)
+	public NotificationChain basicSetOwnedEffect(Behavior newOwnedEffect, NotificationChain msgs)
 	{
-		msgs = eBasicSetContainer((InternalEObject)newContainer, PivotPackage.TRANSITION__CONTAINER, msgs);
+		Behavior oldOwnedEffect = ownedEffect;
+		ownedEffect = newOwnedEffect;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.TRANSITION__OWNED_EFFECT, oldOwnedEffect, newOwnedEffect);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
 		return msgs;
 	}
 
@@ -231,22 +236,132 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	 * @generated
 	 */
 	@Override
-	public void setContainer(Region newContainer)
+	public void setOwnedEffect(Behavior newOwnedEffect)
 	{
-		if (newContainer != eInternalContainer() || (eContainerFeatureID() != PivotPackage.TRANSITION__CONTAINER && newContainer != null))
+		if (newOwnedEffect != ownedEffect)
 		{
-			if (EcoreUtil.isAncestor(this, newContainer))
+			NotificationChain msgs = null;
+			if (ownedEffect != null)
+				msgs = ((InternalEObject)ownedEffect).eInverseRemove(this, PivotPackage.BEHAVIOR__OWNING_TRANSITION, Behavior.class, msgs);
+			if (newOwnedEffect != null)
+				msgs = ((InternalEObject)newOwnedEffect).eInverseAdd(this, PivotPackage.BEHAVIOR__OWNING_TRANSITION, Behavior.class, msgs);
+			msgs = basicSetOwnedEffect(newOwnedEffect, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TRANSITION__OWNED_EFFECT, newOwnedEffect, newOwnedEffect));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Constraint getOwnedGuard()
+	{
+		return ownedGuard;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwnedGuard(Constraint newOwnedGuard, NotificationChain msgs)
+	{
+		Constraint oldOwnedGuard = ownedGuard;
+		ownedGuard = newOwnedGuard;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.TRANSITION__OWNED_GUARD, oldOwnedGuard, newOwnedGuard);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwnedGuard(Constraint newOwnedGuard)
+	{
+		if (newOwnedGuard != ownedGuard)
+		{
+			NotificationChain msgs = null;
+			if (ownedGuard != null)
+				msgs = ((InternalEObject)ownedGuard).eInverseRemove(this, PivotPackage.CONSTRAINT__OWNING_TRANSITION, Constraint.class, msgs);
+			if (newOwnedGuard != null)
+				msgs = ((InternalEObject)newOwnedGuard).eInverseAdd(this, PivotPackage.CONSTRAINT__OWNING_TRANSITION, Constraint.class, msgs);
+			msgs = basicSetOwnedGuard(newOwnedGuard, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TRANSITION__OWNED_GUARD, newOwnedGuard, newOwnedGuard));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public List<Trigger> getOwnedTriggers()
+	{
+		if (ownedTriggers == null)
+		{
+			ownedTriggers = new EObjectContainmentWithInverseEList<Trigger>(Trigger.class, this, PivotPackage.TRANSITION__OWNED_TRIGGERS, PivotPackage.TRIGGER__OWNING_TRANSITION);
+		}
+		return ownedTriggers;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Region getOwningRegion()
+	{
+		if (eContainerFeatureID() != PivotPackage.TRANSITION__OWNING_REGION) return null;
+		return (Region)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwningRegion(Region newOwningRegion, NotificationChain msgs)
+	{
+		msgs = eBasicSetContainer((InternalEObject)newOwningRegion, PivotPackage.TRANSITION__OWNING_REGION, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwningRegion(Region newOwningRegion)
+	{
+		if (newOwningRegion != eInternalContainer() || (eContainerFeatureID() != PivotPackage.TRANSITION__OWNING_REGION && newOwningRegion != null))
+		{
+			if (EcoreUtil.isAncestor(this, newOwningRegion))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newContainer != null)
-				msgs = ((InternalEObject)newContainer).eInverseAdd(this, PivotPackage.REGION__TRANSITION, Region.class, msgs);
-			msgs = basicSetContainer(newContainer, msgs);
+			if (newOwningRegion != null)
+				msgs = ((InternalEObject)newOwningRegion).eInverseAdd(this, PivotPackage.REGION__OWNED_TRANSITIONS, Region.class, msgs);
+			msgs = basicSetOwningRegion(newOwningRegion, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TRANSITION__CONTAINER, newContainer, newContainer));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TRANSITION__OWNING_REGION, newOwningRegion, newOwningRegion));
 	}
 
 	/**
@@ -260,34 +375,34 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	{
 		switch (featureID)
 		{
-			case PivotPackage.TRANSITION__COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.TRANSITION__EXTENSION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
-			case PivotPackage.TRANSITION__OWNED_COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.TRANSITION__CONTAINER:
+			case PivotPackage.TRANSITION__ANNOTATING_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAnnotatingComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.TRANSITION__OWNED_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.TRANSITION__OWNED_EXTENSIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedExtensions()).basicAdd(otherEnd, msgs);
+			case PivotPackage.TRANSITION__OWNED_EFFECT:
+				if (ownedEffect != null)
+					msgs = ((InternalEObject)ownedEffect).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TRANSITION__OWNED_EFFECT, null, msgs);
+				return basicSetOwnedEffect((Behavior)otherEnd, msgs);
+			case PivotPackage.TRANSITION__OWNED_GUARD:
+				if (ownedGuard != null)
+					msgs = ((InternalEObject)ownedGuard).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TRANSITION__OWNED_GUARD, null, msgs);
+				return basicSetOwnedGuard((Constraint)otherEnd, msgs);
+			case PivotPackage.TRANSITION__OWNED_TRIGGERS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedTriggers()).basicAdd(otherEnd, msgs);
+			case PivotPackage.TRANSITION__OWNING_REGION:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetContainer((Region)otherEnd, msgs);
-			case PivotPackage.TRANSITION__EFFECT:
-				if (effect != null)
-					msgs = ((InternalEObject)effect).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TRANSITION__EFFECT, null, msgs);
-				return basicSetEffect((Behavior)otherEnd, msgs);
-			case PivotPackage.TRANSITION__GUARD:
-				if (guard != null)
-					msgs = ((InternalEObject)guard).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TRANSITION__GUARD, null, msgs);
-				return basicSetGuard((Constraint)otherEnd, msgs);
+				return basicSetOwningRegion((Region)otherEnd, msgs);
 			case PivotPackage.TRANSITION__SOURCE:
 				if (source != null)
-					msgs = ((InternalEObject)source).eInverseRemove(this, PivotPackage.VERTEX__OUTGOING, Vertex.class, msgs);
+					msgs = ((InternalEObject)source).eInverseRemove(this, PivotPackage.VERTEX__OUTGOING_TRANSITIONS, Vertex.class, msgs);
 				return basicSetSource((Vertex)otherEnd, msgs);
 			case PivotPackage.TRANSITION__TARGET:
 				if (target != null)
-					msgs = ((InternalEObject)target).eInverseRemove(this, PivotPackage.VERTEX__INCOMING, Vertex.class, msgs);
+					msgs = ((InternalEObject)target).eInverseRemove(this, PivotPackage.VERTEX__INCOMING_TRANSITIONS, Vertex.class, msgs);
 				return basicSetTarget((Vertex)otherEnd, msgs);
-			case PivotPackage.TRANSITION__TRIGGER:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTrigger()).basicAdd(otherEnd, msgs);
 		}
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -352,9 +467,9 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 		{
 			NotificationChain msgs = null;
 			if (source != null)
-				msgs = ((InternalEObject)source).eInverseRemove(this, PivotPackage.VERTEX__OUTGOING, Vertex.class, msgs);
+				msgs = ((InternalEObject)source).eInverseRemove(this, PivotPackage.VERTEX__OUTGOING_TRANSITIONS, Vertex.class, msgs);
 			if (newSource != null)
-				msgs = ((InternalEObject)newSource).eInverseAdd(this, PivotPackage.VERTEX__OUTGOING, Vertex.class, msgs);
+				msgs = ((InternalEObject)newSource).eInverseAdd(this, PivotPackage.VERTEX__OUTGOING_TRANSITIONS, Vertex.class, msgs);
 			msgs = basicSetSource(newSource, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -422,9 +537,9 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 		{
 			NotificationChain msgs = null;
 			if (target != null)
-				msgs = ((InternalEObject)target).eInverseRemove(this, PivotPackage.VERTEX__INCOMING, Vertex.class, msgs);
+				msgs = ((InternalEObject)target).eInverseRemove(this, PivotPackage.VERTEX__INCOMING_TRANSITIONS, Vertex.class, msgs);
 			if (newTarget != null)
-				msgs = ((InternalEObject)newTarget).eInverseAdd(this, PivotPackage.VERTEX__INCOMING, Vertex.class, msgs);
+				msgs = ((InternalEObject)newTarget).eInverseAdd(this, PivotPackage.VERTEX__INCOMING_TRANSITIONS, Vertex.class, msgs);
 			msgs = basicSetTarget(newTarget, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -438,147 +553,32 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	 * @generated
 	 */
 	@Override
-	public Constraint getGuard()
-	{
-		return guard;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetGuard(Constraint newGuard, NotificationChain msgs)
-	{
-		Constraint oldGuard = guard;
-		guard = newGuard;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.TRANSITION__GUARD, oldGuard, newGuard);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setGuard(Constraint newGuard)
-	{
-		if (newGuard != guard)
-		{
-			NotificationChain msgs = null;
-			if (guard != null)
-				msgs = ((InternalEObject)guard).eInverseRemove(this, PivotPackage.CONSTRAINT__TRANSITION, Constraint.class, msgs);
-			if (newGuard != null)
-				msgs = ((InternalEObject)newGuard).eInverseAdd(this, PivotPackage.CONSTRAINT__TRANSITION, Constraint.class, msgs);
-			msgs = basicSetGuard(newGuard, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TRANSITION__GUARD, newGuard, newGuard));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Behavior getEffect()
-	{
-		return effect;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetEffect(Behavior newEffect, NotificationChain msgs)
-	{
-		Behavior oldEffect = effect;
-		effect = newEffect;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.TRANSITION__EFFECT, oldEffect, newEffect);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setEffect(Behavior newEffect)
-	{
-		if (newEffect != effect)
-		{
-			NotificationChain msgs = null;
-			if (effect != null)
-				msgs = ((InternalEObject)effect).eInverseRemove(this, PivotPackage.BEHAVIOR__TRANSITION, Behavior.class, msgs);
-			if (newEffect != null)
-				msgs = ((InternalEObject)newEffect).eInverseAdd(this, PivotPackage.BEHAVIOR__TRANSITION, Behavior.class, msgs);
-			msgs = basicSetEffect(newEffect, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TRANSITION__EFFECT, newEffect, newEffect));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public List<Trigger> getTrigger()
-	{
-		if (trigger == null)
-		{
-			trigger = new EObjectContainmentWithInverseEList<Trigger>(Trigger.class, this, PivotPackage.TRANSITION__TRIGGER, PivotPackage.TRIGGER__TRANSITION);
-		}
-		return trigger;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{
-			case PivotPackage.TRANSITION__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.TRANSITION__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.TRANSITION__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.TRANSITION__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.TRANSITION__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
-			case PivotPackage.TRANSITION__CONTAINER:
-				return basicSetContainer(null, msgs);
-			case PivotPackage.TRANSITION__EFFECT:
-				return basicSetEffect(null, msgs);
-			case PivotPackage.TRANSITION__GUARD:
-				return basicSetGuard(null, msgs);
+			case PivotPackage.TRANSITION__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.TRANSITION__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.TRANSITION__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.TRANSITION__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.TRANSITION__OWNED_CONSTRAINTS:
+				return ((InternalEList<?>)getOwnedConstraints()).basicRemove(otherEnd, msgs);
+			case PivotPackage.TRANSITION__OWNED_EFFECT:
+				return basicSetOwnedEffect(null, msgs);
+			case PivotPackage.TRANSITION__OWNED_GUARD:
+				return basicSetOwnedGuard(null, msgs);
+			case PivotPackage.TRANSITION__OWNED_TRIGGERS:
+				return ((InternalEList<?>)getOwnedTriggers()).basicRemove(otherEnd, msgs);
+			case PivotPackage.TRANSITION__OWNING_REGION:
+				return basicSetOwningRegion(null, msgs);
 			case PivotPackage.TRANSITION__SOURCE:
 				return basicSetSource(null, msgs);
 			case PivotPackage.TRANSITION__TARGET:
 				return basicSetTarget(null, msgs);
-			case PivotPackage.TRANSITION__TRIGGER:
-				return ((InternalEList<?>)getTrigger()).basicRemove(otherEnd, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -593,8 +593,8 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	{
 		switch (eContainerFeatureID())
 		{
-			case PivotPackage.TRANSITION__CONTAINER:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.REGION__TRANSITION, Region.class, msgs);
+			case PivotPackage.TRANSITION__OWNING_REGION:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.REGION__OWNED_TRANSITIONS, Region.class, msgs);
 		}
 		return eDynamicBasicRemoveFromContainer(msgs);
 	}
@@ -609,34 +609,34 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	{
 		switch (featureID)
 		{
-			case PivotPackage.TRANSITION__COMMENT:
-				return getComment();
-			case PivotPackage.TRANSITION__EXTENSION:
-				return getExtension();
-			case PivotPackage.TRANSITION__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.TRANSITION__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.TRANSITION__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.TRANSITION__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.TRANSITION__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.TRANSITION__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.TRANSITION__NAME:
 				return getName();
-			case PivotPackage.TRANSITION__OWNED_RULE:
-				return getOwnedRule();
-			case PivotPackage.TRANSITION__CONTAINER:
-				return getContainer();
-			case PivotPackage.TRANSITION__EFFECT:
-				return getEffect();
-			case PivotPackage.TRANSITION__GUARD:
-				return getGuard();
+			case PivotPackage.TRANSITION__OWNED_CONSTRAINTS:
+				return getOwnedConstraints();
 			case PivotPackage.TRANSITION__KIND:
 				return getKind();
+			case PivotPackage.TRANSITION__OWNED_EFFECT:
+				return getOwnedEffect();
+			case PivotPackage.TRANSITION__OWNED_GUARD:
+				return getOwnedGuard();
+			case PivotPackage.TRANSITION__OWNED_TRIGGERS:
+				return getOwnedTriggers();
+			case PivotPackage.TRANSITION__OWNING_REGION:
+				return getOwningRegion();
 			case PivotPackage.TRANSITION__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
 			case PivotPackage.TRANSITION__TARGET:
 				if (resolve) return getTarget();
 				return basicGetTarget();
-			case PivotPackage.TRANSITION__TRIGGER:
-				return getTrigger();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -652,50 +652,50 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	{
 		switch (featureID)
 		{
-			case PivotPackage.TRANSITION__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.TRANSITION__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.TRANSITION__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.TRANSITION__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.TRANSITION__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.TRANSITION__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.TRANSITION__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.TRANSITION__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.TRANSITION__NAME:
 				setName((String)newValue);
 				return;
-			case PivotPackage.TRANSITION__OWNED_RULE:
-				getOwnedRule().clear();
-				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
-				return;
-			case PivotPackage.TRANSITION__CONTAINER:
-				setContainer((Region)newValue);
-				return;
-			case PivotPackage.TRANSITION__EFFECT:
-				setEffect((Behavior)newValue);
-				return;
-			case PivotPackage.TRANSITION__GUARD:
-				setGuard((Constraint)newValue);
+			case PivotPackage.TRANSITION__OWNED_CONSTRAINTS:
+				getOwnedConstraints().clear();
+				getOwnedConstraints().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.TRANSITION__KIND:
 				setKind((TransitionKind)newValue);
+				return;
+			case PivotPackage.TRANSITION__OWNED_EFFECT:
+				setOwnedEffect((Behavior)newValue);
+				return;
+			case PivotPackage.TRANSITION__OWNED_GUARD:
+				setOwnedGuard((Constraint)newValue);
+				return;
+			case PivotPackage.TRANSITION__OWNED_TRIGGERS:
+				getOwnedTriggers().clear();
+				getOwnedTriggers().addAll((Collection<? extends Trigger>)newValue);
+				return;
+			case PivotPackage.TRANSITION__OWNING_REGION:
+				setOwningRegion((Region)newValue);
 				return;
 			case PivotPackage.TRANSITION__SOURCE:
 				setSource((Vertex)newValue);
 				return;
 			case PivotPackage.TRANSITION__TARGET:
 				setTarget((Vertex)newValue);
-				return;
-			case PivotPackage.TRANSITION__TRIGGER:
-				getTrigger().clear();
-				getTrigger().addAll((Collection<? extends Trigger>)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -711,44 +711,44 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	{
 		switch (featureID)
 		{
-			case PivotPackage.TRANSITION__COMMENT:
-				getComment().clear();
+			case PivotPackage.TRANSITION__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.TRANSITION__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.TRANSITION__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.TRANSITION__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.TRANSITION__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.TRANSITION__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.TRANSITION__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.TRANSITION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case PivotPackage.TRANSITION__OWNED_RULE:
-				getOwnedRule().clear();
-				return;
-			case PivotPackage.TRANSITION__CONTAINER:
-				setContainer((Region)null);
-				return;
-			case PivotPackage.TRANSITION__EFFECT:
-				setEffect((Behavior)null);
-				return;
-			case PivotPackage.TRANSITION__GUARD:
-				setGuard((Constraint)null);
+			case PivotPackage.TRANSITION__OWNED_CONSTRAINTS:
+				getOwnedConstraints().clear();
 				return;
 			case PivotPackage.TRANSITION__KIND:
 				setKind(KIND_EDEFAULT);
+				return;
+			case PivotPackage.TRANSITION__OWNED_EFFECT:
+				setOwnedEffect((Behavior)null);
+				return;
+			case PivotPackage.TRANSITION__OWNED_GUARD:
+				setOwnedGuard((Constraint)null);
+				return;
+			case PivotPackage.TRANSITION__OWNED_TRIGGERS:
+				getOwnedTriggers().clear();
+				return;
+			case PivotPackage.TRANSITION__OWNING_REGION:
+				setOwningRegion((Region)null);
 				return;
 			case PivotPackage.TRANSITION__SOURCE:
 				setSource((Vertex)null);
 				return;
 			case PivotPackage.TRANSITION__TARGET:
 				setTarget((Vertex)null);
-				return;
-			case PivotPackage.TRANSITION__TRIGGER:
-				getTrigger().clear();
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -764,32 +764,32 @@ public class TransitionImpl extends NamespaceImpl implements Transition
 	{
 		switch (featureID)
 		{
-			case PivotPackage.TRANSITION__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.TRANSITION__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.TRANSITION__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.TRANSITION__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.TRANSITION__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.TRANSITION__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.TRANSITION__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.TRANSITION__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.TRANSITION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.TRANSITION__OWNED_RULE:
-				return ownedRule != null && !ownedRule.isEmpty();
-			case PivotPackage.TRANSITION__CONTAINER:
-				return getContainer() != null;
-			case PivotPackage.TRANSITION__EFFECT:
-				return effect != null;
-			case PivotPackage.TRANSITION__GUARD:
-				return guard != null;
+			case PivotPackage.TRANSITION__OWNED_CONSTRAINTS:
+				return ownedConstraints != null && !ownedConstraints.isEmpty();
 			case PivotPackage.TRANSITION__KIND:
 				return (eFlags & KIND_EFLAG) != KIND_EFLAG_DEFAULT;
+			case PivotPackage.TRANSITION__OWNED_EFFECT:
+				return ownedEffect != null;
+			case PivotPackage.TRANSITION__OWNED_GUARD:
+				return ownedGuard != null;
+			case PivotPackage.TRANSITION__OWNED_TRIGGERS:
+				return ownedTriggers != null && !ownedTriggers.isEmpty();
+			case PivotPackage.TRANSITION__OWNING_REGION:
+				return getOwningRegion() != null;
 			case PivotPackage.TRANSITION__SOURCE:
 				return source != null;
 			case PivotPackage.TRANSITION__TARGET:
 				return target != null;
-			case PivotPackage.TRANSITION__TRIGGER:
-				return trigger != null && !trigger.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
 	}

@@ -85,7 +85,7 @@ public abstract class GenerateTextileForLibrary extends AbstractWorkflowComponen
 		List<Precedence> precedences = new ArrayList<Precedence>();
 		for (org.eclipse.ocl.pivot.Package asPackage : asModel.getOwnedPackages()) {
 			if (asPackage instanceof Library) {
-				precedences.addAll(((Library)asPackage).getOwnedPrecedence());
+				precedences.addAll(((Library)asPackage).getOwnedPrecedences());
 			}
 		}
 		return precedences;

@@ -63,8 +63,8 @@ import org.eclipse.osgi.util.NLS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.impl.LoopExpImpl#getBody <em>Body</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.impl.LoopExpImpl#getIterator <em>Iterator</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.LoopExpImpl#getOwnedBody <em>Owned Body</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.impl.LoopExpImpl#getOwnedIterators <em>Owned Iterators</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.LoopExpImpl#getReferredIteration <em>Referred Iteration</em>}</li>
  * </ul>
  * </p>
@@ -76,24 +76,24 @@ public abstract class LoopExpImpl
 		implements LoopExp {
 
 	/**
-	 * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedBody() <em>Owned Body</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBody()
+	 * @see #getOwnedBody()
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLExpression body;
+	protected OCLExpression ownedBody;
 
 	/**
-	 * The cached value of the '{@link #getIterator() <em>Iterator</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedIterators() <em>Owned Iterators</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getIterator()
+	 * @see #getOwnedIterators()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Variable> iterator;
+	protected EList<Variable> ownedIterators;
 
 	/**
 	 * The cached value of the '{@link #getReferredIteration() <em>Referred Iteration</em>}' reference.
@@ -130,8 +130,8 @@ public abstract class LoopExpImpl
 	 * @generated
 	 */
 	@Override
-	public OCLExpression getBody() {
-		return body;
+	public OCLExpression getOwnedBody() {
+		return ownedBody;
 	}
 
 	/**
@@ -139,13 +139,13 @@ public abstract class LoopExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetBody(OCLExpression newBody,
-			NotificationChain msgs) {
-		OCLExpression oldBody = body;
-		body = newBody;
+	public NotificationChain basicSetOwnedBody(OCLExpression newOwnedBody, NotificationChain msgs)
+	{
+		OCLExpression oldOwnedBody = ownedBody;
+		ownedBody = newOwnedBody;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.LOOP_EXP__BODY, oldBody, newBody);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.LOOP_EXP__OWNED_BODY, oldOwnedBody, newOwnedBody);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -157,19 +157,19 @@ public abstract class LoopExpImpl
 	 * @generated
 	 */
 	@Override
-	public void setBody(OCLExpression newBody) {
-		if (newBody != body)
+	public void setOwnedBody(OCLExpression newOwnedBody) {
+		if (newOwnedBody != ownedBody)
 		{
 			NotificationChain msgs = null;
-			if (body != null)
-				msgs = ((InternalEObject)body).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.LOOP_EXP__BODY, null, msgs);
-			if (newBody != null)
-				msgs = ((InternalEObject)newBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.LOOP_EXP__BODY, null, msgs);
-			msgs = basicSetBody(newBody, msgs);
+			if (ownedBody != null)
+				msgs = ((InternalEObject)ownedBody).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.LOOP_EXP__OWNED_BODY, null, msgs);
+			if (newOwnedBody != null)
+				msgs = ((InternalEObject)newOwnedBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.LOOP_EXP__OWNED_BODY, null, msgs);
+			msgs = basicSetOwnedBody(newOwnedBody, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.LOOP_EXP__BODY, newBody, newBody));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.LOOP_EXP__OWNED_BODY, newOwnedBody, newOwnedBody));
 	}
 
 	/**
@@ -179,13 +179,13 @@ public abstract class LoopExpImpl
 	 */
 	@Override
 	@SuppressWarnings("null")
-	public @NonNull List<Variable> getIterator()
+	public @NonNull List<Variable> getOwnedIterators()
 	{
-		if (iterator == null)
+		if (ownedIterators == null)
 		{
-			iterator = new EObjectContainmentEList<Variable>(Variable.class, this, PivotPackage.LOOP_EXP__ITERATOR);
+			ownedIterators = new EObjectContainmentEList<Variable>(Variable.class, this, PivotPackage.LOOP_EXP__OWNED_ITERATORS);
 		}
-		return iterator;
+		return ownedIterators;
 	}
 
 	/**
@@ -242,18 +242,20 @@ public abstract class LoopExpImpl
 	public boolean validateSourceIsCollection(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv SourceIsCollection: source.type.oclIsKindOf(CollectionType)
+		 * 
+		 * inv SourceIsCollection:
+		 *   ownedSource.type.oclIsKindOf(CollectionType)
 		 */
 		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		@NonNull /*@Caught*/ Object CAUGHT_oclIsKindOf;
 		try {
 		    final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pivot_c_c_CollectionType_0 = idResolver.getClass(PivotTables.CLSSid_CollectionType, null);
-		    final @Nullable /*@Thrown*/ OCLExpression source = this.getSource();
-		    if (source == null) {
+		    final @Nullable /*@Thrown*/ OCLExpression ownedSource = this.getOwnedSource();
+		    if (ownedSource == null) {
 		        throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		    }
-		    final @Nullable /*@Thrown*/ Type type = source.getType();
+		    final @Nullable /*@Thrown*/ Type type = ownedSource.getType();
 		    final /*@Thrown*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_CollectionType_0).booleanValue();
 		    CAUGHT_oclIsKindOf = oclIsKindOf;
 		}
@@ -282,16 +284,16 @@ public abstract class LoopExpImpl
 		/**
 		 * 
 		 * inv NoInitializers:
-		 *   self.iterator->forAll(initExpression->isEmpty())
+		 *   self.ownedIterators->forAll(ownedInit->isEmpty())
 		 */
 		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		@NonNull /*@Caught*/ Object CAUGHT_forAll;
 		try {
-		    final @NonNull /*@Thrown*/ List<Variable> iterator = this.getIterator();
-		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_iterator = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Variable, iterator);
+		    final @NonNull /*@Thrown*/ List<Variable> ownedIterators = this.getOwnedIterators();
+		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedIterators = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Variable, ownedIterators);
 		    @NonNull /*@Thrown*/ Object accumulator = ValueUtil.TRUE_VALUE;
-		    @Nullable Iterator<?> ITERATOR__1 = BOXED_iterator.iterator();
+		    @Nullable Iterator<?> ITERATOR__1 = BOXED_ownedIterators.iterator();
 		    /*@Thrown*/ boolean forAll;
 		    while (true) {
 		        if (!ITERATOR__1.hasNext()) {
@@ -305,15 +307,15 @@ public abstract class LoopExpImpl
 		        }
 		        @Nullable /*@NonInvalid*/ Variable _1 = (Variable)ITERATOR__1.next();
 		        /**
-		         * initExpression->isEmpty()
+		         * ownedInit->isEmpty()
 		         */
 		        @NonNull /*@Caught*/ Object CAUGHT_isEmpty;
 		        try {
 		            if (_1 == null) {
-		                throw new InvalidValueException("Null source for \'pivot::Variable::initExpression\'");
+		                throw new InvalidValueException("Null source for \'pivot::Variable::ownedInit\'");
 		            }
-		            final @Nullable /*@Thrown*/ OCLExpression initExpression = _1.getInitExpression();
-		            final @NonNull /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, PivotTables.SET_CLSSid_OCLExpression, initExpression);
+		            final @Nullable /*@Thrown*/ OCLExpression ownedInit = _1.getOwnedInit();
+		            final @NonNull /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, PivotTables.SET_CLSSid_OCLExpression, ownedInit);
 		            final /*@Thrown*/ boolean isEmpty = CollectionIsEmptyOperation.INSTANCE.evaluate(oclAsSet).booleanValue();
 		            CAUGHT_isEmpty = isEmpty;
 		        }
@@ -361,20 +363,20 @@ public abstract class LoopExpImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case PivotPackage.LOOP_EXP__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.LOOP_EXP__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.LOOP_EXP__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.LOOP_EXP__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.LOOP_EXP__SOURCE:
-				return basicSetSource(null, msgs);
-			case PivotPackage.LOOP_EXP__BODY:
-				return basicSetBody(null, msgs);
-			case PivotPackage.LOOP_EXP__ITERATOR:
-				return ((InternalEList<?>)getIterator()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LOOP_EXP__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LOOP_EXP__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LOOP_EXP__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LOOP_EXP__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LOOP_EXP__OWNED_SOURCE:
+				return basicSetOwnedSource(null, msgs);
+			case PivotPackage.LOOP_EXP__OWNED_BODY:
+				return basicSetOwnedBody(null, msgs);
+			case PivotPackage.LOOP_EXP__OWNED_ITERATORS:
+				return ((InternalEList<?>)getOwnedIterators()).basicRemove(otherEnd, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -388,14 +390,14 @@ public abstract class LoopExpImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case PivotPackage.LOOP_EXP__COMMENT:
-				return getComment();
-			case PivotPackage.LOOP_EXP__EXTENSION:
-				return getExtension();
-			case PivotPackage.LOOP_EXP__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.LOOP_EXP__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.LOOP_EXP__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.LOOP_EXP__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.LOOP_EXP__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.LOOP_EXP__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.LOOP_EXP__NAME:
 				return getName();
 			case PivotPackage.LOOP_EXP__IS_MANY:
@@ -407,14 +409,14 @@ public abstract class LoopExpImpl
 				return basicGetType();
 			case PivotPackage.LOOP_EXP__TYPE_VALUE:
 				return getTypeValue();
-			case PivotPackage.LOOP_EXP__IMPLICIT:
+			case PivotPackage.LOOP_EXP__IS_IMPLICIT:
 				return isImplicit();
-			case PivotPackage.LOOP_EXP__SOURCE:
-				return getSource();
-			case PivotPackage.LOOP_EXP__BODY:
-				return getBody();
-			case PivotPackage.LOOP_EXP__ITERATOR:
-				return getIterator();
+			case PivotPackage.LOOP_EXP__OWNED_SOURCE:
+				return getOwnedSource();
+			case PivotPackage.LOOP_EXP__OWNED_BODY:
+				return getOwnedBody();
+			case PivotPackage.LOOP_EXP__OWNED_ITERATORS:
+				return getOwnedIterators();
 			case PivotPackage.LOOP_EXP__REFERRED_ITERATION:
 				if (resolve) return getReferredIteration();
 				return basicGetReferredIteration();
@@ -432,21 +434,21 @@ public abstract class LoopExpImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case PivotPackage.LOOP_EXP__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.LOOP_EXP__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.LOOP_EXP__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.LOOP_EXP__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.LOOP_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.LOOP_EXP__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.LOOP_EXP__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.LOOP_EXP__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.LOOP_EXP__NAME:
 				setName((String)newValue);
@@ -460,18 +462,18 @@ public abstract class LoopExpImpl
 			case PivotPackage.LOOP_EXP__TYPE_VALUE:
 				setTypeValue((Type)newValue);
 				return;
-			case PivotPackage.LOOP_EXP__IMPLICIT:
-				setImplicit((Boolean)newValue);
+			case PivotPackage.LOOP_EXP__IS_IMPLICIT:
+				setIsImplicit((Boolean)newValue);
 				return;
-			case PivotPackage.LOOP_EXP__SOURCE:
-				setSource((OCLExpression)newValue);
+			case PivotPackage.LOOP_EXP__OWNED_SOURCE:
+				setOwnedSource((OCLExpression)newValue);
 				return;
-			case PivotPackage.LOOP_EXP__BODY:
-				setBody((OCLExpression)newValue);
+			case PivotPackage.LOOP_EXP__OWNED_BODY:
+				setOwnedBody((OCLExpression)newValue);
 				return;
-			case PivotPackage.LOOP_EXP__ITERATOR:
-				getIterator().clear();
-				getIterator().addAll((Collection<? extends Variable>)newValue);
+			case PivotPackage.LOOP_EXP__OWNED_ITERATORS:
+				getOwnedIterators().clear();
+				getOwnedIterators().addAll((Collection<? extends Variable>)newValue);
 				return;
 			case PivotPackage.LOOP_EXP__REFERRED_ITERATION:
 				setReferredIteration((Iteration)newValue);
@@ -489,17 +491,17 @@ public abstract class LoopExpImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.LOOP_EXP__COMMENT:
-				getComment().clear();
+			case PivotPackage.LOOP_EXP__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.LOOP_EXP__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.LOOP_EXP__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.LOOP_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.LOOP_EXP__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.LOOP_EXP__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.LOOP_EXP__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.LOOP_EXP__NAME:
 				setName(NAME_EDEFAULT);
@@ -513,17 +515,17 @@ public abstract class LoopExpImpl
 			case PivotPackage.LOOP_EXP__TYPE_VALUE:
 				setTypeValue((Type)null);
 				return;
-			case PivotPackage.LOOP_EXP__IMPLICIT:
-				setImplicit(IMPLICIT_EDEFAULT);
+			case PivotPackage.LOOP_EXP__IS_IMPLICIT:
+				setIsImplicit(IS_IMPLICIT_EDEFAULT);
 				return;
-			case PivotPackage.LOOP_EXP__SOURCE:
-				setSource((OCLExpression)null);
+			case PivotPackage.LOOP_EXP__OWNED_SOURCE:
+				setOwnedSource((OCLExpression)null);
 				return;
-			case PivotPackage.LOOP_EXP__BODY:
-				setBody((OCLExpression)null);
+			case PivotPackage.LOOP_EXP__OWNED_BODY:
+				setOwnedBody((OCLExpression)null);
 				return;
-			case PivotPackage.LOOP_EXP__ITERATOR:
-				getIterator().clear();
+			case PivotPackage.LOOP_EXP__OWNED_ITERATORS:
+				getOwnedIterators().clear();
 				return;
 			case PivotPackage.LOOP_EXP__REFERRED_ITERATION:
 				setReferredIteration((Iteration)null);
@@ -541,14 +543,14 @@ public abstract class LoopExpImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.LOOP_EXP__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.LOOP_EXP__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.LOOP_EXP__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.LOOP_EXP__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.LOOP_EXP__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.LOOP_EXP__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.LOOP_EXP__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.LOOP_EXP__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.LOOP_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.LOOP_EXP__IS_MANY:
@@ -559,14 +561,14 @@ public abstract class LoopExpImpl
 				return type != null;
 			case PivotPackage.LOOP_EXP__TYPE_VALUE:
 				return typeValue != null;
-			case PivotPackage.LOOP_EXP__IMPLICIT:
-				return ((eFlags & IMPLICIT_EFLAG) != 0) != IMPLICIT_EDEFAULT;
-			case PivotPackage.LOOP_EXP__SOURCE:
-				return source != null;
-			case PivotPackage.LOOP_EXP__BODY:
-				return body != null;
-			case PivotPackage.LOOP_EXP__ITERATOR:
-				return iterator != null && !iterator.isEmpty();
+			case PivotPackage.LOOP_EXP__IS_IMPLICIT:
+				return ((eFlags & IS_IMPLICIT_EFLAG) != 0) != IS_IMPLICIT_EDEFAULT;
+			case PivotPackage.LOOP_EXP__OWNED_SOURCE:
+				return ownedSource != null;
+			case PivotPackage.LOOP_EXP__OWNED_BODY:
+				return ownedBody != null;
+			case PivotPackage.LOOP_EXP__OWNED_ITERATORS:
+				return ownedIterators != null && !ownedIterators.isEmpty();
 			case PivotPackage.LOOP_EXP__REFERRED_ITERATION:
 				return referredIteration != null;
 		}

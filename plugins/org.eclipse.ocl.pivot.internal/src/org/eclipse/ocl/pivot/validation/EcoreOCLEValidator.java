@@ -559,7 +559,7 @@ public class EcoreOCLEValidator implements EValidator
 			if (asNamedElement != null) {
 				ParserContext parserContext = metaModelManager.getParserContext(asNamedElement);
 				if (parserContext == null) {
-					throw new ParserException(OCLMessages.UnknownContextType_ERROR_, LabelUtil.qualifiedNameFor(asNamedElement), PivotConstants.OWNED_RULE_ROLE);
+					throw new ParserException(OCLMessages.UnknownContextType_ERROR_, LabelUtil.qualifiedNameFor(asNamedElement), PivotConstants.OWNED_CONSTRAINT_ROLE);
 				}
 				ExpressionInOCL expressionInOCL = parserContext.parse(asNamedElement, expression);
 				Type asExpressionType = expressionInOCL.getType();

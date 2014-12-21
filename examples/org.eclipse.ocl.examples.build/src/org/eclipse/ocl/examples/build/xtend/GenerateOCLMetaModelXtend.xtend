@@ -24,7 +24,7 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 		«FOR enumeration : allEnumerations»
 			«var enumerationName = enumeration.getPrefixedSymbolName("_"+enumeration.partialName())»
 			private final @NonNull Enumeration «enumerationName» = createEnumeration(«getEcoreLiteral(enumeration)»);
-			«FOR enumerationLiteral : enumeration.ownedLiteral»
+			«FOR enumerationLiteral : enumeration.ownedLiterals»
 			private final @NonNull EnumerationLiteral «enumerationLiteral.getPrefixedSymbolName("el_"+enumerationName+"_"+enumerationLiteral.name)» = createEnumerationLiteral(«getEcoreLiteral(enumerationLiteral)»);
 			«ENDFOR»
 		«ENDFOR»
@@ -51,13 +51,13 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 	protected def String defineCollectionTypeName(Set<org.eclipse.ocl.pivot.Class> allTypes, String typeName) {
 		var CollectionType collectionType = allTypes.findCollectionType(typeName);
 		var collectionName = collectionType.getPrefixedSymbolName("_"+typeName);
-		var signatureName = collectionType.ownedTemplateSignature.getPrefixedSymbolName("_"+typeName+"_");
-		var parameterName = collectionType.ownedTemplateSignature.getOwnedTemplateParameters().get(0).getPrefixedSymbolName("_"+typeName+"_T");
+		var signatureName = collectionType.getOwnedSignature.getPrefixedSymbolName("_"+typeName+"_");
+		var parameterName = collectionType.getOwnedSignature.getOwnedParameters().get(0).getPrefixedSymbolName("_"+typeName+"_T");
 		var collectionTypeName = collectionType.eClass().getName();
 	'''
 		private final @NonNull «collectionTypeName» «collectionName» = standardLibrary.get«typeName»Type();
-		@SuppressWarnings("null") private final @NonNull TemplateSignature «signatureName» = «collectionName».getOwnedTemplateSignature();
-		@SuppressWarnings("null") private final @NonNull TemplateParameter «parameterName» = «signatureName».getOwnedTemplateParameters().get(0);
+		@SuppressWarnings("null") private final @NonNull TemplateSignature «signatureName» = «collectionName».getOwnedSignature();
+		@SuppressWarnings("null") private final @NonNull TemplateParameter «parameterName» = «signatureName».getOwnedParameters().get(0);
 	'''
 	}
 	

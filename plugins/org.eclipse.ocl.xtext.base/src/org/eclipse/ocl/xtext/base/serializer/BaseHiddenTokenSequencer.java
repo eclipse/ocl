@@ -37,7 +37,7 @@ public class BaseHiddenTokenSequencer extends HiddenTokenSequencer
 		if (semanticChild instanceof ModelElementCS) {
 			Element pivot = ((ModelElementCS)semanticChild).getPivot();
 			if (pivot != null) {
-				List<Comment> ownedComment = pivot.getOwnedComment();
+				List<Comment> ownedComment = pivot.getOwnedComments();
 				if (ownedComment.size() > 0) {
 					String commentIndent = getCommentIndent(semanticChild);
 					TerminalRule ml_COMMENTRule = grammarAccess.getML_COMMENTRule();

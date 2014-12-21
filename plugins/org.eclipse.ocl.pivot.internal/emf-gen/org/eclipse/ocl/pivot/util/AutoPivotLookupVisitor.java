@@ -360,7 +360,7 @@ public class AutoPivotLookupVisitor
         final List<Operation> UNBOXED_select_0 = select_0.asEcoreObjects(idResolver, Operation.class);
         assert UNBOXED_select_0 != null;
         final @NonNull /*@Thrown*/ Environment addElements_0 = addElements.addElements(UNBOXED_select_0);
-        final @NonNull /*@Thrown*/ List<Behavior> ownedBehavior = element.getOwnedBehavior();
+        final @NonNull /*@Thrown*/ List<Behavior> ownedBehavior = element.getOwnedBehaviors();
         final @NonNull /*@Thrown*/ Environment inner = addElements_0.addElements(ownedBehavior);
         final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
         @Nullable /*@Thrown*/ Environment symbol_7;
@@ -413,7 +413,7 @@ public class AutoPivotLookupVisitor
      */
     @Override
     public @Nullable /*@NonInvalid*/ Environment visitEnumeration(final @NonNull /*@NonInvalid*/ Enumeration element_2) {
-        final @NonNull /*@Thrown*/ List<EnumerationLiteral> ownedLiteral = element_2.getOwnedLiteral();
+        final @NonNull /*@Thrown*/ List<EnumerationLiteral> ownedLiteral = element_2.getOwnedLiterals();
         final @NonNull /*@Thrown*/ Environment addElements = context.addElements(ownedLiteral);
         final @NonNull /*@Thrown*/ List<Property> ownedProperties = element_2.getOwnedProperties();
         final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedProperties = idResolver.createOrderedSetOfAll(ORD_CLSSid_Property, ownedProperties);
@@ -527,7 +527,7 @@ public class AutoPivotLookupVisitor
         final List<Operation> UNBOXED_select_0 = select_0.asEcoreObjects(idResolver, Operation.class);
         assert UNBOXED_select_0 != null;
         final @NonNull /*@Thrown*/ Environment addElements_1 = addElements_0.addElements(UNBOXED_select_0);
-        final @NonNull /*@Thrown*/ List<Behavior> ownedBehavior = element_2.getOwnedBehavior();
+        final @NonNull /*@Thrown*/ List<Behavior> ownedBehavior = element_2.getOwnedBehaviors();
         final @NonNull /*@Thrown*/ Environment inner = addElements_1.addElements(ownedBehavior);
         final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
         @Nullable /*@Thrown*/ Environment symbol_6;
@@ -557,11 +557,11 @@ public class AutoPivotLookupVisitor
      */
     @Override
     public @Nullable /*@NonInvalid*/ Environment visitExpressionInOCL(final @NonNull /*@NonInvalid*/ ExpressionInOCL element_3) {
-        final @Nullable /*@Thrown*/ Variable contextVariable = element_3.getContextVariable();
+        final @Nullable /*@Thrown*/ Variable contextVariable = element_3.getOwnedContext();
         final @NonNull /*@Thrown*/ Environment addElement = context.addElement(contextVariable);
-        final @NonNull /*@Thrown*/ List<Variable> parameterVariable = element_3.getParameterVariable();
+        final @NonNull /*@Thrown*/ List<Variable> parameterVariable = element_3.getOwnedParameters();
         final @NonNull /*@Thrown*/ Environment addElements = addElement.addElements(parameterVariable);
-        final @Nullable /*@Thrown*/ Variable resultVariable = element_3.getResultVariable();
+        final @Nullable /*@Thrown*/ Variable resultVariable = element_3.getOwnedResult();
         final @NonNull /*@Thrown*/ Environment inner = addElements.addElement(resultVariable);
         final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
         @Nullable /*@Thrown*/ Environment symbol_0;
@@ -615,8 +615,8 @@ public class AutoPivotLookupVisitor
      */
     @Override
     public @Nullable /*@NonInvalid*/ Environment visitIterateExp(final @NonNull /*@NonInvalid*/ IterateExp element_4) {
-        final @NonNull /*@Thrown*/ List<Variable> iterator = element_4.getIterator();
-        final @Nullable /*@Thrown*/ Variable result = element_4.getResult();
+        final @NonNull /*@Thrown*/ List<Variable> iterator = element_4.getOwnedIterators();
+        final @Nullable /*@Thrown*/ Variable result = element_4.getOwnedResult();
         final /*@Thrown*/ boolean eq = (child != null) ? child.equals(result) : (result == null);
         @Nullable /*@Thrown*/ Environment symbol_4;
         if (eq) {
@@ -701,7 +701,7 @@ public class AutoPivotLookupVisitor
      */
     @Override
     public @Nullable /*@NonInvalid*/ Environment visitIteratorExp(final @NonNull /*@NonInvalid*/ IteratorExp element_5) {
-        final @NonNull /*@Thrown*/ List<Variable> iterator = element_5.getIterator();
+        final @NonNull /*@Thrown*/ List<Variable> iterator = element_5.getOwnedIterators();
         final @NonNull /*@Thrown*/ OrderedSetValue BOXED_iterator = idResolver.createOrderedSetOfAll(ORD_CLSSid_Variable, iterator);
         final @NonNull /*@Thrown*/ IntegerValue index = OrderedCollectionIndexOfOperation.INSTANCE.evaluate(BOXED_iterator, child);
         final /*@Thrown*/ boolean gt = OclComparableGreaterThanOperation.INSTANCE.evaluate(evaluator, index, INT_1).booleanValue();
@@ -757,11 +757,11 @@ public class AutoPivotLookupVisitor
      */
     @Override
     public @Nullable /*@NonInvalid*/ Environment visitLetExp(final @NonNull /*@NonInvalid*/ LetExp element_6) {
-        final @Nullable /*@Thrown*/ OCLExpression in = element_6.getIn();
+        final @Nullable /*@Thrown*/ OCLExpression in = element_6.getOwnedIn();
         final /*@Thrown*/ boolean eq = (child != null) ? child.equals(in) : (in == null);
         @Nullable /*@Thrown*/ Environment symbol_1;
         if (eq) {
-            final @Nullable /*@Thrown*/ Variable variable = element_6.getVariable();
+            final @Nullable /*@Thrown*/ Variable variable = element_6.getOwnedVariable();
             final @NonNull /*@Thrown*/ Environment inner = context.addElement(variable);
             final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
             @Nullable /*@Thrown*/ Environment symbol_0;
@@ -801,7 +801,7 @@ public class AutoPivotLookupVisitor
         final @NonNull /*@Thrown*/ Environment addElements = context.addElements(ownedPackages);
         final @NonNull /*@Thrown*/ List<Class> ownedClasses = element_7.getOwnedClasses();
         final @NonNull /*@Thrown*/ Environment addElements_0 = addElements.addElements(ownedClasses);
-        final @Nullable /*@Thrown*/ List<Precedence> ownedPrecedence = element_7.getOwnedPrecedence();
+        final @Nullable /*@Thrown*/ List<Precedence> ownedPrecedence = element_7.getOwnedPrecedences();
         assert ownedPrecedence != null;
         final @NonNull /*@Thrown*/ Environment inner = addElements_0.addElements(ownedPrecedence);
         final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
@@ -830,7 +830,7 @@ public class AutoPivotLookupVisitor
         if (parentEnv == null) {
             throw new InvalidValueException("Null source for \'env::Environment::addElements(Collection(pivot::NamedElement)) : env::Environment\'");
         }
-        final @NonNull /*@Thrown*/ List<Import> imports = element_8.getImports();
+        final @NonNull /*@Thrown*/ List<Import> imports = element_8.getOwnedImports();
         final @NonNull /*@Thrown*/ Environment addElements = parentEnv.addElements(imports);
         final @NonNull /*@Thrown*/ List<Package> ownedPackages = element_8.getOwnedPackages();
         final @NonNull /*@Thrown*/ Environment addElements_0 = addElements.addElements(ownedPackages);
@@ -855,7 +855,7 @@ public class AutoPivotLookupVisitor
      */
     @Override
     public @Nullable /*@NonInvalid*/ Environment visitOperation(final @NonNull /*@NonInvalid*/ Operation element_9) {
-        final @NonNull /*@Thrown*/ List<Parameter> ownedParameter = element_9.getOwnedParameter();
+        final @NonNull /*@Thrown*/ List<Parameter> ownedParameter = element_9.getOwnedParameters();
         final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedParameter = idResolver.createOrderedSetOfAll(ORD_CLSSid_Parameter, ownedParameter);
         final /*@Thrown*/ boolean includes = CollectionIncludesOperation.INSTANCE.evaluate(BOXED_ownedParameter, child).booleanValue();
         @Nullable /*@Thrown*/ Environment symbol_1;

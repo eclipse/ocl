@@ -106,20 +106,20 @@ public class AssociationClassImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case PivotPackage.ASSOCIATION_CLASS__COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComment()).basicAdd(otherEnd, msgs);
-			case PivotPackage.ASSOCIATION_CLASS__EXTENSION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtension()).basicAdd(otherEnd, msgs);
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_COMMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComment()).basicAdd(otherEnd, msgs);
+			case PivotPackage.ASSOCIATION_CLASS__ANNOTATING_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAnnotatingComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_EXTENSIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedExtensions()).basicAdd(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__EXTENDED_BYS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtendedBys()).basicAdd(otherEnd, msgs);
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_TEMPLATE_BINDINGS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedTemplateBindings()).basicAdd(otherEnd, msgs);
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_TEMPLATE_SIGNATURE:
-				if (ownedTemplateSignature != null)
-					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.ASSOCIATION_CLASS__OWNED_TEMPLATE_SIGNATURE, null, msgs);
-				return basicSetOwnedTemplateSignature((TemplateSignature)otherEnd, msgs);
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_BINDINGS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedBindings()).basicAdd(otherEnd, msgs);
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_SIGNATURE:
+				if (ownedSignature != null)
+					msgs = ((InternalEObject)ownedSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.ASSOCIATION_CLASS__OWNED_SIGNATURE, null, msgs);
+				return basicSetOwnedSignature((TemplateSignature)otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_OPERATIONS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedOperations()).basicAdd(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_PROPERTIES:
@@ -144,24 +144,24 @@ public class AssociationClassImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case PivotPackage.ASSOCIATION_CLASS__COMMENT:
-				return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ASSOCIATION_CLASS__EXTENSION:
-				return ((InternalEList<?>)getExtension()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ASSOCIATION_CLASS__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__EXTENDED_BYS:
 				return ((InternalEList<?>)getExtendedBys()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_TEMPLATE_BINDINGS:
-				return ((InternalEList<?>)getOwnedTemplateBindings()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_TEMPLATE_SIGNATURE:
-				return basicSetOwnedTemplateSignature(null, msgs);
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_BEHAVIOR:
-				return ((InternalEList<?>)getOwnedBehavior()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_CONSTRAINTS:
+				return ((InternalEList<?>)getOwnedConstraints()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_BINDINGS:
+				return ((InternalEList<?>)getOwnedBindings()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_SIGNATURE:
+				return basicSetOwnedSignature(null, msgs);
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_BEHAVIORS:
+				return ((InternalEList<?>)getOwnedBehaviors()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_INVARIANTS:
 				return ((InternalEList<?>)getOwnedInvariants()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_OPERATIONS:
@@ -185,24 +185,24 @@ public class AssociationClassImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case PivotPackage.ASSOCIATION_CLASS__COMMENT:
-				return getComment();
-			case PivotPackage.ASSOCIATION_CLASS__EXTENSION:
-				return getExtension();
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_ANNOTATION:
-				return getOwnedAnnotation();
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_COMMENT:
-				return getOwnedComment();
+			case PivotPackage.ASSOCIATION_CLASS__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
 			case PivotPackage.ASSOCIATION_CLASS__NAME:
 				return getName();
 			case PivotPackage.ASSOCIATION_CLASS__EXTENDED_BYS:
 				return getExtendedBys();
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_RULE:
-				return getOwnedRule();
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_TEMPLATE_BINDINGS:
-				return getOwnedTemplateBindings();
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_TEMPLATE_SIGNATURE:
-				return getOwnedTemplateSignature();
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_CONSTRAINTS:
+				return getOwnedConstraints();
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_BINDINGS:
+				return getOwnedBindings();
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_SIGNATURE:
+				return getOwnedSignature();
 			case PivotPackage.ASSOCIATION_CLASS__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
 			case PivotPackage.ASSOCIATION_CLASS__INSTANCE_CLASS_NAME:
@@ -213,8 +213,8 @@ public class AssociationClassImpl
 				return isActive();
 			case PivotPackage.ASSOCIATION_CLASS__IS_INTERFACE:
 				return isInterface();
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_BEHAVIOR:
-				return getOwnedBehavior();
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_BEHAVIORS:
+				return getOwnedBehaviors();
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_INVARIANTS:
 				return getOwnedInvariants();
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_OPERATIONS:
@@ -241,21 +241,21 @@ public class AssociationClassImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case PivotPackage.ASSOCIATION_CLASS__COMMENT:
-				getComment().clear();
-				getComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.ASSOCIATION_CLASS__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__EXTENSION:
-				getExtension().clear();
-				getExtension().addAll((Collection<? extends ElementExtension>)newValue);
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
-				getOwnedAnnotation().addAll((Collection<? extends Element>)newValue);
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.ASSOCIATION_CLASS__NAME:
 				setName((String)newValue);
@@ -264,16 +264,16 @@ public class AssociationClassImpl
 				getExtendedBys().clear();
 				getExtendedBys().addAll((Collection<? extends TypeExtension>)newValue);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_RULE:
-				getOwnedRule().clear();
-				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_CONSTRAINTS:
+				getOwnedConstraints().clear();
+				getOwnedConstraints().addAll((Collection<? extends Constraint>)newValue);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_TEMPLATE_BINDINGS:
-				getOwnedTemplateBindings().clear();
-				getOwnedTemplateBindings().addAll((Collection<? extends TemplateBinding>)newValue);
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_BINDINGS:
+				getOwnedBindings().clear();
+				getOwnedBindings().addAll((Collection<? extends TemplateBinding>)newValue);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_TEMPLATE_SIGNATURE:
-				setOwnedTemplateSignature((TemplateSignature)newValue);
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_SIGNATURE:
+				setOwnedSignature((TemplateSignature)newValue);
 				return;
 			case PivotPackage.ASSOCIATION_CLASS__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)newValue);
@@ -290,9 +290,9 @@ public class AssociationClassImpl
 			case PivotPackage.ASSOCIATION_CLASS__IS_INTERFACE:
 				setIsInterface((Boolean)newValue);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_BEHAVIOR:
-				getOwnedBehavior().clear();
-				getOwnedBehavior().addAll((Collection<? extends Behavior>)newValue);
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_BEHAVIORS:
+				getOwnedBehaviors().clear();
+				getOwnedBehaviors().addAll((Collection<? extends Behavior>)newValue);
 				return;
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_INVARIANTS:
 				getOwnedInvariants().clear();
@@ -330,17 +330,17 @@ public class AssociationClassImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.ASSOCIATION_CLASS__COMMENT:
-				getComment().clear();
+			case PivotPackage.ASSOCIATION_CLASS__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__EXTENSION:
-				getExtension().clear();
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_ANNOTATION:
-				getOwnedAnnotation().clear();
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_COMMENTS:
+				getOwnedComments().clear();
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_COMMENT:
-				getOwnedComment().clear();
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.ASSOCIATION_CLASS__NAME:
 				setName(NAME_EDEFAULT);
@@ -348,14 +348,14 @@ public class AssociationClassImpl
 			case PivotPackage.ASSOCIATION_CLASS__EXTENDED_BYS:
 				getExtendedBys().clear();
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_RULE:
-				getOwnedRule().clear();
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_CONSTRAINTS:
+				getOwnedConstraints().clear();
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_TEMPLATE_BINDINGS:
-				getOwnedTemplateBindings().clear();
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_BINDINGS:
+				getOwnedBindings().clear();
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_TEMPLATE_SIGNATURE:
-				setOwnedTemplateSignature((TemplateSignature)null);
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_SIGNATURE:
+				setOwnedSignature((TemplateSignature)null);
 				return;
 			case PivotPackage.ASSOCIATION_CLASS__UNSPECIALIZED_ELEMENT:
 				setUnspecializedElement((TemplateableElement)null);
@@ -372,8 +372,8 @@ public class AssociationClassImpl
 			case PivotPackage.ASSOCIATION_CLASS__IS_INTERFACE:
 				setIsInterface(IS_INTERFACE_EDEFAULT);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_BEHAVIOR:
-				getOwnedBehavior().clear();
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_BEHAVIORS:
+				getOwnedBehaviors().clear();
 				return;
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_INVARIANTS:
 				getOwnedInvariants().clear();
@@ -406,24 +406,24 @@ public class AssociationClassImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case PivotPackage.ASSOCIATION_CLASS__COMMENT:
-				return comment != null && !comment.isEmpty();
-			case PivotPackage.ASSOCIATION_CLASS__EXTENSION:
-				return extension != null && !extension.isEmpty();
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_ANNOTATION:
-				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
+			case PivotPackage.ASSOCIATION_CLASS__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
 			case PivotPackage.ASSOCIATION_CLASS__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.ASSOCIATION_CLASS__EXTENDED_BYS:
 				return extendedBys != null && !extendedBys.isEmpty();
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_RULE:
-				return ownedRule != null && !ownedRule.isEmpty();
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_TEMPLATE_BINDINGS:
-				return ownedTemplateBindings != null && !ownedTemplateBindings.isEmpty();
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_TEMPLATE_SIGNATURE:
-				return ownedTemplateSignature != null;
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_CONSTRAINTS:
+				return ownedConstraints != null && !ownedConstraints.isEmpty();
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_BINDINGS:
+				return ownedBindings != null && !ownedBindings.isEmpty();
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_SIGNATURE:
+				return ownedSignature != null;
 			case PivotPackage.ASSOCIATION_CLASS__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
 			case PivotPackage.ASSOCIATION_CLASS__INSTANCE_CLASS_NAME:
@@ -434,8 +434,8 @@ public class AssociationClassImpl
 				return ((eFlags & IS_ACTIVE_EFLAG) != 0) != IS_ACTIVE_EDEFAULT;
 			case PivotPackage.ASSOCIATION_CLASS__IS_INTERFACE:
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_BEHAVIOR:
-				return ownedBehavior != null && !ownedBehavior.isEmpty();
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_BEHAVIORS:
+				return ownedBehaviors != null && !ownedBehaviors.isEmpty();
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_INVARIANTS:
 				return ownedInvariants != null && !ownedInvariants.isEmpty();
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_OPERATIONS:
