@@ -105,4 +105,10 @@ public class EvaluateConstructsTest4 extends PivotTestSuite
 		//
 		assertQueryInvalid(null, "let a : Integer = invalid in a");
 	}
+
+	@Test public void testConstruct_invalidIndexOf_456057() {		
+		assertQueryInvalid(null, "let s = Sequence{0.0,0.0,0.0}, t = Sequence{1.0,2.0,3.0} in s->collect(r | r + t->at(t->indexOf(r))) ");
+		assertQueryResults(null, "Sequence{1.0,1.0,1.0}", "let s = Sequence{0.0,0.0,0.0} in s->collect(r | r + Sequence{1.0,2.0,3.0}->at(s->indexOf(r)))");
+		assertQueryResults(null, "Sequence{2.0,4.0,6.0}", "let s = Sequence{1.0,2.0,3.0} in s->collect(r | r + Sequence{1.0,2.0,3.0}->at(s->indexOf(r)))");
+	}
 }
