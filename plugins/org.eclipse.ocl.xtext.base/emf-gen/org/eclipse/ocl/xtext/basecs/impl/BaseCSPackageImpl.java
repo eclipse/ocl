@@ -474,6 +474,13 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EDataType csiEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EDataType scopeFilterEDataType = null;
 
 	/**
@@ -2075,6 +2082,17 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * @generated
 	 */
 	@Override
+	public EDataType getCSI()
+	{
+		return csiEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EDataType getScopeFilter()
 	{
 		return scopeFilterEDataType;
@@ -2307,6 +2325,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 
 		// Create data types
 		bigNumberEDataType = createEDataType(BIG_NUMBER);
+		csiEDataType = createEDataType(CSI);
 		scopeFilterEDataType = createEDataType(SCOPE_FILTER);
 	}
 
@@ -2445,7 +2464,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		initEAttribute(getDocumentationCS_Value(), thePivotPackage.getString(), "value", null, 0, 1, DocumentationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(elementCSEClass, ElementCS.class, "ElementCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getElementCS_Csi(), thePivotPackage.getString(), "csi", null, 0, 1, ElementCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getElementCS_Csi(), this.getCSI(), "csi", null, 0, 1, ElementCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getElementCS_Parent(), this.getElementCS(), null, "parent", null, 0, 1, ElementCS.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		addEOperation(elementCSEClass, thePivotPackage.getString(), "getDescription", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -2617,6 +2636,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 
 		// Initialize data types
 		initEDataType(bigNumberEDataType, Number.class, "BigNumber", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEDataType(csiEDataType, org.eclipse.ocl.xtext.base.utilities.CSI.class, "CSI", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEDataType(scopeFilterEDataType, ScopeFilter.class, "ScopeFilter", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Create resource

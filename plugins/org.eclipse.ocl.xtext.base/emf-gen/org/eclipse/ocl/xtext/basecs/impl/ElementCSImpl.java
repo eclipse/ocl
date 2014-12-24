@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.xtext.base.utilities.CSI;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
 import org.eclipse.ocl.xtext.basecs.ElementCS;
 import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
@@ -49,7 +50,8 @@ public abstract class ElementCSImpl extends EObjectImpl implements ElementCS {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String CSI_EDEFAULT = null;
+	protected static final CSI CSI_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getCsi() <em>Csi</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -58,7 +60,7 @@ public abstract class ElementCSImpl extends EObjectImpl implements ElementCS {
 	 * @generated
 	 * @ordered
 	 */
-	protected String csi = CSI_EDEFAULT;
+	protected CSI csi = CSI_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -85,7 +87,7 @@ public abstract class ElementCSImpl extends EObjectImpl implements ElementCS {
 	 * @generated
 	 */
 	@Override
-	public String getCsi()
+	public CSI getCsi()
 	{
 		return csi;
 	}
@@ -96,9 +98,9 @@ public abstract class ElementCSImpl extends EObjectImpl implements ElementCS {
 	 * @generated
 	 */
 	@Override
-	public void setCsi(String newCsi)
+	public void setCsi(CSI newCsi)
 	{
-		String oldCsi = csi;
+		CSI oldCsi = csi;
 		csi = newCsi;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.ELEMENT_CS__CSI, oldCsi, csi));
@@ -133,7 +135,7 @@ public abstract class ElementCSImpl extends EObjectImpl implements ElementCS {
 		switch (featureID)
 		{
 			case BaseCSPackage.ELEMENT_CS__CSI:
-				setCsi((String)newValue);
+				setCsi((CSI)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

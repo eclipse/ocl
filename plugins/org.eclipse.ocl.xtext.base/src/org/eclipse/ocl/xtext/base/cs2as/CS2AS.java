@@ -52,6 +52,7 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.scoping.AbstractJavaClassScope;
 import org.eclipse.ocl.xtext.base.scoping.BaseScopeView;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.xtext.base.utilities.CSI;
 import org.eclipse.ocl.xtext.base.utilities.CSI2ASMapping;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
 import org.eclipse.ocl.xtext.basecs.ElementCS;
@@ -656,8 +657,8 @@ public abstract class CS2AS extends AbstractConversion implements MetaModelManag
 	
 	public synchronized void update(@NonNull IDiagnosticConsumer diagnosticsConsumer) {
 //		printDiagnostic("CS2AS.update start", false, 0);
-		@SuppressWarnings("unused") Map<String, Element> oldCSI2AS = csi2asMapping.getMapping();
-		@SuppressWarnings("unused") Set<String> newCSIs = csi2asMapping.computeCSIs(csResources);
+		@SuppressWarnings("unused") Map<CSI, Element> oldCSI2AS = csi2asMapping.getMapping();
+		@SuppressWarnings("unused") Set<CSI> newCSIs = csi2asMapping.computeCSIs(csResources);
 //		System.out.println("==========================================================================");
 		Collection<? extends BaseCSResource> csResources = getCSResources();
 //		for (Resource csResource : csResources) {

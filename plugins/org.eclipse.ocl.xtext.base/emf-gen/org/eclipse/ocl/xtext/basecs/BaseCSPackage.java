@@ -4532,6 +4532,16 @@ public interface BaseCSPackage extends EPackage {
 	int BIG_NUMBER = 54;
 
 	/**
+	 * The meta object id for the '<em>CSI</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.xtext.base.utilities.CSI
+	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getCSI()
+	 * @generated
+	 */
+	int CSI = 55;
+
+	/**
 	 * The meta object id for the '<em>Scope Filter</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4539,7 +4549,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getScopeFilter()
 	 * @generated
 	 */
-	int SCOPE_FILTER = 55;
+	int SCOPE_FILTER = 56;
 
 
 	/**
@@ -6052,6 +6062,17 @@ public interface BaseCSPackage extends EPackage {
 	EDataType getBigNumber();
 
 	/**
+	 * Returns the meta object for data type '{@link org.eclipse.ocl.xtext.base.utilities.CSI <em>CSI</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>CSI</em>'.
+	 * @see org.eclipse.ocl.xtext.base.utilities.CSI
+	 * @model instanceClass="org.eclipse.ocl.xtext.base.utilities.CSI" serializeable="false"
+	 * @generated
+	 */
+	EDataType getCSI();
+
+	/**
 	 * Returns the meta object for data type '{@link org.eclipse.ocl.pivot.scoping.ScopeFilter <em>Scope Filter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7329,6 +7350,16 @@ public interface BaseCSPackage extends EPackage {
 		 * @generated
 		 */
 		EDataType BIG_NUMBER = eINSTANCE.getBigNumber();
+
+		/**
+		 * The meta object literal for the '<em>CSI</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.xtext.base.utilities.CSI
+		 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getCSI()
+		 * @generated
+		 */
+		EDataType CSI = eINSTANCE.getCSI();
 
 		/**
 		 * The meta object literal for the '<em>Scope Filter</em>' data type.

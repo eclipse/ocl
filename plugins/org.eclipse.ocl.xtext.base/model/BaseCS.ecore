@@ -13,6 +13,11 @@
       instanceClassName="java.lang.Number"/>
   <eClassifiers
       xsi:type="ecore:EDataType"
+      name="CSI"
+      instanceClassName="org.eclipse.ocl.xtext.base.utilities.CSI"
+      serializable="false"/>
+  <eClassifiers
+      xsi:type="ecore:EDataType"
       name="ScopeFilter"
       instanceClassName="org.eclipse.ocl.pivot.scoping.ScopeFilter"/>
   <eClassifiers
@@ -132,7 +137,7 @@
     <eStructuralFeatures
         xsi:type="ecore:EAttribute"
         name="csi"
-        eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//String"
+        eType="#//CSI"
         transient="true"/>
     <eStructuralFeatures
         xsi:type="ecore:EReference"

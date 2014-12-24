@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.base.utilities;
 
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -20,14 +22,19 @@ import java.util.Set;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.Nameable;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManagerListener;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.xtext.basecs.ElementCS;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;
 
 /**
@@ -53,28 +60,307 @@ public class CSI2ASMapping extends AdapterImpl implements MetaModelManagerListen
 	}
 	
 	/**
+	 * An AbstractCSI defines the priovate interface for a CSI and the shared support for a hashCode and toString.
+	 */
+	private abstract static class AbstractCSI implements CSI
+	{
+		protected final int hashCode;
+		
+		protected AbstractCSI(int hashCode) {
+			this.hashCode = hashCode;
+		}
+
+		@Override
+		public int hashCode() {
+			return hashCode;
+		}
+
+		public @Nullable AbstractCSI isCSIfor(@Nullable CSI thatParent, @Nullable EReference thatChild, @Nullable String thatName, int thatIndex) {
+			return null;
+		}
+
+		@Override
+		public String toString() {
+			StringBuilder s = new StringBuilder();
+			toString(s);
+			return s.toString();
+		}
+
+		protected abstract void toString(@NonNull StringBuilder s);
+	}
+	
+	/**
+	 * A RootCSI defines the CSI for the root element in a CSI hierrachy for which the parent is a Resource.
+	 */
+	private static class RootCSI extends AbstractCSI
+	{
+		private final @NonNull String name;				//. Resource.uri
+		private final int index;						// index in Resource.contents
+		
+		private RootCSI(int hashCode, @NonNull String name, int index) {
+			super(hashCode);
+			this.name = name;
+			this.index = index;
+		}
+
+		@Override
+		public @Nullable RootCSI isCSIfor(@Nullable CSI thatParent, @Nullable EReference thatChild, @Nullable String thatName, int thatIndex) {
+			if (thatParent != null) {
+				return null;
+			}
+			if (thatChild != null) {
+				return null;
+			}
+			if (this.index != thatIndex){
+				return null;
+			}
+			return ClassUtil.equals(this.name, thatName) ? this : null;
+		}
+
+		@Override
+		protected void toString(@NonNull StringBuilder s) {
+			s.append(name);
+			s.append("@");
+			s.append(index);
+		}
+	}
+	
+	/**
+	 * A MultipleChildCSI defines the CSI for the non-root element in a CSI hierarchy. The element may not have siblings.
+	 */
+	private static class SingleChildCSI extends AbstractCSI
+	{
+		protected final @NonNull AbstractCSI parent;
+		protected final @NonNull EReference child;		// null only at root
+		
+		protected SingleChildCSI(int hashCode, @NonNull AbstractCSI parent, @NonNull EReference child) {
+			super(hashCode);
+			this.parent = parent;
+			this.child = child;
+		}
+
+		@Override
+		public @Nullable SingleChildCSI isCSIfor(@Nullable CSI thatParent, @Nullable EReference thatChild, @Nullable String thatName, int thatIndex) {
+			if (this.parent != thatParent){
+				return null;
+			}
+			if (this.child != thatChild){
+				return null;
+			}
+			return this;
+		}
+
+		@Override
+		protected void toString(@NonNull StringBuilder s) {
+			parent.toString(s);
+			s.append("/");
+			s.append(child.getName());
+		}
+	}
+	
+	/**
+	 * A MultipleChildCSI defines the CSI for the non-root element in a CSI hierarchy. The element may have siblings which are
+	 * distinguished primarily by name, and then be sequential index of same-named elements.
+	 */
+	private static class MultipleChildCSI extends SingleChildCSI
+	{
+		protected final @Nullable String name;			// null for nameless elements, URI at root
+		protected final int index;						// index of same-named elements in parent container
+		
+		private MultipleChildCSI(int hashCode, @NonNull AbstractCSI parent, @NonNull EReference child, @Nullable String name, int index) {
+			super(hashCode, parent, child);
+			this.name = name;
+			this.index = index;
+		}
+
+		@Override
+		public @Nullable MultipleChildCSI isCSIfor(@Nullable CSI thatParent, @Nullable EReference thatChild, @Nullable String thatName, int thatIndex) {
+			if (super.isCSIfor(thatParent, thatChild, thatName, thatIndex) == null) {
+				return null;
+			}
+			if (this.index != thatIndex){
+				return null;
+			}
+			return ClassUtil.equals(this.name, thatName) ? this : null;
+		}
+
+		@Override
+		protected void toString(@NonNull StringBuilder s) {
+			super.toString(s);
+			if (name != null) {
+				s.append("@");
+				s.append(name);
+			}
+			s.append("@");
+			s.append(index);
+		}
+	}
+	
+	/**
+	 * HashedCSIs maintains the known CSIs in an array of entries that may comprise null for no content, a CSI for
+	 * a single content or a LIst<CSI> for multiple content.
+	 */
+	private class HashedCSIs
+	{
+		/**
+		 * And mask for the number of bins in hash2csis.
+		 */
+		private int hashMask;
+		
+		/**
+		 * The known CSIs binned into hashSize null/single-CSI/multiple-List<CSI> entries.
+		 */
+		private Object[] hash2csis;
+		
+		public HashedCSIs(int hashSize) {
+			int mask = 1;
+			while ((mask < hashSize) && (mask < 0xFFFF)){
+				mask = mask + mask + 1;
+			}
+			this.hashMask = mask;
+			this.hash2csis = new Object[hashMask+1];
+		}
+
+		private void add(@NonNull AbstractCSI csi) {
+			WeakReference<AbstractCSI> csiRef = new WeakReference<AbstractCSI>(csi);
+			int hashCode = csi.hashCode();
+			int hashIndex = hashCode & hashMask;
+			Object entry = hash2csis[hashIndex];
+			if (entry == null) {
+				hash2csis[hashIndex] = csiRef;
+			}
+			else if (entry instanceof WeakReference<?>) {
+				List<WeakReference<AbstractCSI>> csiList = new ArrayList<WeakReference<AbstractCSI>>();
+				hash2csis[hashIndex] = csiList;
+				@SuppressWarnings("unchecked")WeakReference<AbstractCSI> castEntry = (WeakReference<AbstractCSI>)entry;
+				csiList.add(castEntry);
+				csiList.add(csiRef);
+			}
+			else {
+				@SuppressWarnings("unchecked") List<WeakReference<AbstractCSI>> csiList = (List<WeakReference<AbstractCSI>>) entry;
+				csiList.add(csiRef);
+			}
+			// FIXME grow() ??
+		}
+
+		private @Nullable AbstractCSI find(int hashCode, @Nullable AbstractCSI thisParent, @Nullable EReference thisChild, @Nullable String thisName, int thisIndex) {
+			int hashIndex = hashCode & hashMask;
+			Object entry = hash2csis[hashIndex];
+			if (entry instanceof List<?>) {
+				@SuppressWarnings("unchecked") List<WeakReference<AbstractCSI>> csiList = (List<WeakReference<AbstractCSI>>) entry;
+				for (WeakReference<AbstractCSI> thatRef : csiList) {
+					AbstractCSI thatCSI = thatRef.get();
+					if (thatCSI != null) {
+						AbstractCSI childCSI = thatCSI.isCSIfor(thisParent, thisChild, thisName, thisIndex);
+						if (childCSI != null) {
+							return childCSI;
+						}
+					}
+				}
+			}
+			else if (entry instanceof WeakReference<?>) {
+				@SuppressWarnings("unchecked") WeakReference<AbstractCSI> thatRef = (WeakReference<AbstractCSI>) entry;
+				AbstractCSI thatCSI = thatRef.get();
+				if (thatCSI != null) {
+					AbstractCSI childCSI = thatCSI.isCSIfor(thisParent, thisChild, thisName, thisIndex);
+					if (childCSI != null) {
+						return childCSI;
+					}
+				}
+			}
+			return null;
+		}
+
+		protected @NonNull RootCSI getRootCSI(@NonNull ElementCS csElement) {
+			assert csElement.getCsi() == null;
+			assert csElement.eContainer() == null;
+			Resource eResource = ClassUtil.nonNullState(csElement.eResource());
+			String uri = eResource.getURI().toString();
+			int index = eResource.getContents().indexOf(csElement);
+			int hashCode = 3 * uri.hashCode() + 53 * index;
+			AbstractCSI csi = find(hashCode, null, null, uri, index);
+			if (csi == null) {
+				csi = new RootCSI(hashCode, uri, index);
+			}
+			add(csi);
+			return (RootCSI)csi;
+		}
+		
+		protected @NonNull CSI getChildCSI(@NonNull ElementCS csElement) {
+			assert csElement.getCsi() == null;
+			EObject eContainer = csElement.eContainer();
+			assert eContainer instanceof ElementCS;
+			AbstractCSI	thisParent = getCSI((ElementCS)eContainer);
+			int parentHashCode = thisParent.hashCode();
+			EReference eContainmentFeature = ClassUtil.nonNullState(csElement.eContainmentFeature());
+			EReference thisChild = eContainmentFeature;
+			int childHashCode = eContainmentFeature.hashCode();
+			String thisName = null;
+			if (csElement instanceof Nameable) {
+				thisName = ((Nameable)csElement).getName();
+			}
+			AbstractCSI csi;
+			if (eContainmentFeature.isMany()) {
+				int thisIndex;
+				@SuppressWarnings("unchecked") List<Object> siblings = (List<Object>) eContainer.eGet(eContainmentFeature);
+				if (thisName == null) {
+					thisIndex = siblings.indexOf(csElement);
+				}
+				else {
+					int count = 0;
+					for (Object sibling : siblings) {
+						if (sibling == csElement) {
+							break;
+						}
+						if (sibling instanceof Nameable) {
+							String thatName = ((Nameable)sibling).getName();
+							if (ClassUtil.equals(thisName, thatName)) {
+								count++;
+							}
+						}
+					}
+					thisIndex = count;
+				}
+				int nameHashCode = thisName != null ? thisName.hashCode() : 0;
+				int hashCode = 3 * parentHashCode + 7 * childHashCode + nameHashCode + thisIndex;
+				csi = find(hashCode, thisParent, thisChild, thisName, thisIndex);
+				if (csi == null) {
+					csi = new MultipleChildCSI(hashCode, thisParent, thisChild, thisName, thisIndex);
+				}
+			}
+			else {
+				int hashCode = 3 * parentHashCode + 7 * childHashCode;
+				csi = find(hashCode, thisParent, thisChild, null, 0);
+				if (csi == null) {
+					csi = new SingleChildCSI(hashCode, thisParent, thisChild);
+				}
+			}
+			add(csi);
+			return csi;
+		}
+	}
+	
+	/**
 	 * Mapping of each CS resource to its corresponding pivot Resource.
 	 */
 	protected final @NonNull Map<BaseCSResource, ASResource> cs2asResourceMap = new HashMap<BaseCSResource, ASResource>();
-
-	/**
-	 * Mapping of each CS resource's URI to a short alias used in URI maps.
-	 */
-	private Map<String, String> csURI2aliasMap = new HashMap<String, String>();
 
 	/**
 	 * The map from CS element (identified by URI) to pivot element at the end of the last update. This map enables
 	 * the next update from a potentially different CS Resource and elements but the same URIs to re-use the pivot elements
 	 * and to kill off the obsolete elements. 
 	 */
-	private Map<String, Element> csi2as = new HashMap<String, Element>();
+	private Map<CSI, Element> csi2as = new HashMap<CSI, Element>();
 
 	/**
 	 * A lazily created inverse map that may be required for navigation from an outline.
 	 */
 	private Map<Element, ModelElementCS> as2cs = null;
-	
-	private int nextAlias = 0;
+
+	/**
+	 * The known CSIs binned into hashSize sublists.
+	 */
+	private @Nullable HashedCSIs hashedCSIs = null;
 	
 	private CSI2ASMapping() {}
 
@@ -84,19 +370,18 @@ public class CSI2ASMapping extends AdapterImpl implements MetaModelManagerListen
 	}
 
 	public void clear() {
-		csURI2aliasMap.clear();
 		csi2as.clear();
 		as2cs = null;
 	}
 	
-	public Set<String> computeCSIs(Collection<? extends Resource> csResources) {
-		Set<String> map = new HashSet<String>();
+	public Set<CSI> computeCSIs(Collection<? extends Resource> csResources) {
+		Set<CSI> map = new HashSet<CSI>();
 		for (Resource csResource : csResources) {
 			for (Iterator<EObject> it = csResource.getAllContents(); it.hasNext(); ) {
 				EObject eObject = it.next();
 				if (eObject instanceof ModelElementCS) {
 					ModelElementCS csElement = (ModelElementCS)eObject;
-					String csURI = getCSI(csElement);
+					CSI csURI = getCSI(csElement);
 					map.add(csURI);
 				}
 			}
@@ -126,7 +411,7 @@ public class CSI2ASMapping extends AdapterImpl implements MetaModelManagerListen
 	 * Return the Pivot element corresponding to a given CS element.
 	 */
 	public @Nullable Element get(@NonNull ModelElementCS csElement) {
-		String csi = getCSI(csElement);
+		CSI csi = getCSI(csElement);
 		return csi2as.get(csi);
 	}
 
@@ -142,21 +427,35 @@ public class CSI2ASMapping extends AdapterImpl implements MetaModelManagerListen
 	 * save on memory.
 	 * @param csResource2aliasMap 
 	 */
-	private @NonNull String getCSI(@NonNull ModelElementCS csElement) {
-		String csi = csElement.getCsi();
+	private @NonNull AbstractCSI getCSI(@NonNull ElementCS csElement) {
+		CSI csi = csElement.getCsi();
 		if (csi == null) {
-			Resource csResource = csElement.eResource();
-			String csResourceURI = csResource.getURI().toString();
-			String fragment = csResource.getURIFragment(csElement);		// FIXME Use more optimized compressing algorithm
-			String alias = csURI2aliasMap.get(csResourceURI);
-			if (alias == null) {
-				alias = Integer.toString(nextAlias++);
-				csURI2aliasMap.put(csResourceURI, alias);
+			HashedCSIs hashedCSIs2 = hashedCSIs;
+			if (hashedCSIs2 == null) {
+				int size = 1024;
+				Resource eResource = csElement.eResource();
+				if (eResource != null) {
+					int count = 0;
+					for (TreeIterator<EObject> tit = eResource.getAllContents(); tit.hasNext(); tit.next()) {
+						count++;
+					}
+					size = 4 * count;
+				}
+				hashedCSIs = hashedCSIs2 = new HashedCSIs(size);
 			}
-			csi = alias + '#' + fragment;
+			EObject eContainer = csElement.eContainer();
+			if (eContainer == null) {
+				csi = hashedCSIs2.getRootCSI(csElement);
+			}
+			else { //if (eContainer instanceof ElementCS) {
+				csi = hashedCSIs2.getChildCSI(csElement);
+			}
+//			else {
+//				csi = hashedCSIs2.getOtherCSI(csElement);
+//			}
 			csElement.setCsi(csi);
 		}
-		return csi;
+		return (AbstractCSI) csi;
 	}
 
 	/**
@@ -174,7 +473,7 @@ public class CSI2ASMapping extends AdapterImpl implements MetaModelManagerListen
 		return as2cs.get(pivotElement);
 	}
 
-	public Map<String, Element> getMapping() {
+	public Map<CSI, Element> getMapping() {
 		return csi2as;
 	}
 
@@ -192,7 +491,7 @@ public class CSI2ASMapping extends AdapterImpl implements MetaModelManagerListen
 	 * Install the Pivot element corresponding to a given CS element.
 	 */
 	public void put(@NonNull ModelElementCS csElement, @Nullable Element pivotElement) {
-		String csi = getCSI(csElement);
+		CSI csi = getCSI(csElement);
 		csi2as.put(csi, pivotElement);
 	}
 
@@ -212,9 +511,7 @@ public class CSI2ASMapping extends AdapterImpl implements MetaModelManagerListen
 	public void update() {
 		as2cs = null;
 		csi2as.clear();
-		Set<String> deadURIs = new HashSet<String>(csURI2aliasMap.keySet());
 		for (Resource csResource : cs2asResourceMap.keySet()) {
-			deadURIs.remove(csResource.getURI().toString());
 			for (Iterator<EObject> it = csResource.getAllContents(); it.hasNext(); ) {
 				EObject eObject = it.next();
 				if (eObject instanceof ModelElementCS) {
@@ -224,8 +521,5 @@ public class CSI2ASMapping extends AdapterImpl implements MetaModelManagerListen
 				}
 			}
 		}
-//		for (String deadURI : deadURIs) {
-// FIXME Imported CS kills off Importing CS			csURI2aliasMap.remove(deadURI);
-//		}
 	}
 }

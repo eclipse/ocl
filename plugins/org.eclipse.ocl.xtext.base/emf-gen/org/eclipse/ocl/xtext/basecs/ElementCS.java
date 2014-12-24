@@ -14,6 +14,7 @@ package org.eclipse.ocl.xtext.basecs;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.xtext.base.utilities.CSI;
 import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.xtext.basecs.util.VisitableCS;
 
@@ -37,32 +38,6 @@ import org.eclipse.ocl.xtext.basecs.util.VisitableCS;
 public interface ElementCS extends EObject, VisitableCS {
 
 	/**
-	 * Returns the value of the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Csi</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Csi</em>' attribute.
-	 * @see #setCsi(String)
-	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getElementCS_Csi()
-	 * @model dataType="org.eclipse.ocl.pivot.String" transient="true"
-	 * @generated
-	 */
-	String getCsi();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.xtext.basecs.ElementCS#getCsi <em>Csi</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Csi</em>' attribute.
-	 * @see #getCsi()
-	 * @generated
-	 */
-	void setCsi(String value);
-
-	/**
 	 * Returns the value of the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -84,6 +59,32 @@ public interface ElementCS extends EObject, VisitableCS {
 	 * @generated
 	 */
 	String getDescription();
+
+	/**
+	 * Returns the value of the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Csi</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Csi</em>' attribute.
+	 * @see #setCsi(CSI)
+	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getElementCS_Csi()
+	 * @model dataType="org.eclipse.ocl.xtext.basecs.CSI" transient="true"
+	 * @generated
+	 */
+	CSI getCsi();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.xtext.basecs.ElementCS#getCsi <em>Csi</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Csi</em>' attribute.
+	 * @see #getCsi()
+	 * @generated
+	 */
+	void setCsi(CSI value);
 
 	/**
 	 * Accept a visit from a visitor and return the result of a call to the derived type-specific visitXXX in the visitor.
