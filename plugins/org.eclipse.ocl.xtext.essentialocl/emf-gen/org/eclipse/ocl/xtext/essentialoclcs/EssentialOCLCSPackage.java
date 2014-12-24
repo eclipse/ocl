@@ -258,6 +258,15 @@ public interface EssentialOCLCSPackage
 	int NUMBER_LITERAL_EXP_CS = 28;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXP_CS__CSI = BaseCSPackage.MODEL_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -274,15 +283,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int EXP_CS__PIVOT = BaseCSPackage.MODEL_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXP_CS__CSI = BaseCSPackage.MODEL_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -385,6 +385,15 @@ public interface EssentialOCLCSPackage
 	int ABSTRACT_NAME_EXP_CS = 0;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_NAME_EXP_CS__CSI = EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -401,15 +410,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int ABSTRACT_NAME_EXP_CS__PIVOT = EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_NAME_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -575,6 +575,15 @@ public interface EssentialOCLCSPackage
 	int CALL_EXP_CS = 3;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_EXP_CS__CSI = ABSTRACT_NAME_EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -591,15 +600,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int CALL_EXP_CS__PIVOT = ABSTRACT_NAME_EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CALL_EXP_CS__CSI = ABSTRACT_NAME_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -783,6 +783,15 @@ public interface EssentialOCLCSPackage
 	int ASSOCIATION_CLASS_CALL_EXP_CS = 1;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS_CALL_EXP_CS__CSI = CALL_EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -799,15 +808,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int ASSOCIATION_CLASS_CALL_EXP_CS__PIVOT = CALL_EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS_CALL_EXP_CS__CSI = CALL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -990,6 +990,15 @@ public interface EssentialOCLCSPackage
 	int ASSOCIATION_CLASS_CALL_EXP_CS_FEATURE_COUNT = CALL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXP_CS__CSI = EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1006,15 +1015,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int LITERAL_EXP_CS__PIVOT = EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1107,6 +1107,15 @@ public interface EssentialOCLCSPackage
 	int LITERAL_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1123,15 +1132,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int PRIMITIVE_LITERAL_EXP_CS__PIVOT = LITERAL_EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1224,6 +1224,15 @@ public interface EssentialOCLCSPackage
 	int PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1240,15 +1249,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int BOOLEAN_LITERAL_EXP_CS__PIVOT = PRIMITIVE_LITERAL_EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOLEAN_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1350,6 +1350,15 @@ public interface EssentialOCLCSPackage
 	int BOOLEAN_LITERAL_EXP_CS_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1366,15 +1375,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int COLLECTION_LITERAL_EXP_CS__PIVOT = LITERAL_EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1485,6 +1485,15 @@ public interface EssentialOCLCSPackage
 	int COLLECTION_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_PART_CS__CSI = BaseCSPackage.MODEL_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1501,15 +1510,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int COLLECTION_LITERAL_PART_CS__PIVOT = BaseCSPackage.MODEL_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_LITERAL_PART_CS__CSI = BaseCSPackage.MODEL_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1565,6 +1565,15 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 */
 	int COLLECTION_PATTERN_CS = 6;
+
+	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_PATTERN_CS__CSI = BaseCSPackage.TYPED_REF_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -1639,6 +1648,15 @@ public interface EssentialOCLCSPackage
 	int COLLECTION_PATTERN_CS_FEATURE_COUNT = BaseCSPackage.TYPED_REF_CS_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_TYPE_CS__CSI = BaseCSPackage.TYPED_REF_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1703,6 +1721,15 @@ public interface EssentialOCLCSPackage
 	int CONSTRUCTOR_EXP_CS = 8;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRUCTOR_EXP_CS__CSI = ABSTRACT_NAME_EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1719,15 +1746,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int CONSTRUCTOR_EXP_CS__PIVOT = ABSTRACT_NAME_EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__CSI = ABSTRACT_NAME_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1960,6 +1978,15 @@ public interface EssentialOCLCSPackage
 	int CONSTRUCTOR_PART_CS = 9;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRUCTOR_PART_CS__CSI = BaseCSPackage.MODEL_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1976,15 +2003,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int CONSTRUCTOR_PART_CS__PIVOT = BaseCSPackage.MODEL_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_PART_CS__CSI = BaseCSPackage.MODEL_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2041,6 +2059,15 @@ public interface EssentialOCLCSPackage
 	int CONSTRUCTOR_PART_CS_FEATURE_COUNT = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT_CS__CSI = BaseCSPackage.NAMED_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2057,15 +2084,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int CONTEXT_CS__PIVOT = BaseCSPackage.NAMED_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTEXT_CS__CSI = BaseCSPackage.NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2141,6 +2159,15 @@ public interface EssentialOCLCSPackage
 	int CURLY_BRACKETED_CLAUSE_CS = 11;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CURLY_BRACKETED_CLAUSE_CS__CSI = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2186,6 +2213,15 @@ public interface EssentialOCLCSPackage
 	int CURLY_BRACKETED_CLAUSE_CS_FEATURE_COUNT = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXP_SPECIFICATION_CS__CSI = BaseCSPackage.SPECIFICATION_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2202,15 +2238,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int EXP_SPECIFICATION_CS__PIVOT = BaseCSPackage.SPECIFICATION_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXP_SPECIFICATION_CS__CSI = BaseCSPackage.SPECIFICATION_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2258,6 +2285,15 @@ public interface EssentialOCLCSPackage
 	int EXP_SPECIFICATION_CS_FEATURE_COUNT = BaseCSPackage.SPECIFICATION_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_EXP_CS__CSI = EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2274,15 +2310,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int IF_EXP_CS__PIVOT = EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IF_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2430,6 +2457,15 @@ public interface EssentialOCLCSPackage
 	int IF_THEN_EXP_CS = 15;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_THEN_EXP_CS__CSI = EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2446,15 +2482,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int IF_THEN_EXP_CS__PIVOT = EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IF_THEN_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2575,6 +2602,15 @@ public interface EssentialOCLCSPackage
 	int OPERATOR_EXP_CS = 30;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_EXP_CS__CSI = EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2591,15 +2627,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int OPERATOR_EXP_CS__PIVOT = EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2719,6 +2746,15 @@ public interface EssentialOCLCSPackage
 	int OPERATOR_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX_EXP_CS__CSI = OPERATOR_EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2735,15 +2771,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int INFIX_EXP_CS__PIVOT = OPERATOR_EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INFIX_EXP_CS__CSI = OPERATOR_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2881,6 +2908,15 @@ public interface EssentialOCLCSPackage
 	int INFIX_EXP_CS_FEATURE_COUNT = OPERATOR_EXP_CS_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2897,15 +2933,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int INVALID_LITERAL_EXP_CS__PIVOT = PRIMITIVE_LITERAL_EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3008,6 +3035,15 @@ public interface EssentialOCLCSPackage
 	int ITERATION_CALL_EXP_CS = 19;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION_CALL_EXP_CS__CSI = CALL_EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3024,15 +3060,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int ITERATION_CALL_EXP_CS__PIVOT = CALL_EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION_CALL_EXP_CS__CSI = CALL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3234,6 +3261,15 @@ public interface EssentialOCLCSPackage
 	int ITERATE_CALL_EXP_CS = 18;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_CALL_EXP_CS__CSI = ITERATION_CALL_EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3250,15 +3286,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int ITERATE_CALL_EXP_CS__PIVOT = ITERATION_CALL_EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATE_CALL_EXP_CS__CSI = ITERATION_CALL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3469,6 +3496,15 @@ public interface EssentialOCLCSPackage
 	int LAMBDA_LITERAL_EXP_CS = 20;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3485,15 +3521,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int LAMBDA_LITERAL_EXP_CS__PIVOT = LITERAL_EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAMBDA_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3595,6 +3622,15 @@ public interface EssentialOCLCSPackage
 	int LAMBDA_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LET_EXP_CS__CSI = EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3611,15 +3647,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int LET_EXP_CS__PIVOT = EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LET_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3739,6 +3766,15 @@ public interface EssentialOCLCSPackage
 	int LET_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LET_VARIABLE_CS__CSI = EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3755,15 +3791,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int LET_VARIABLE_CS__PIVOT = EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LET_VARIABLE_CS__CSI = EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3901,6 +3928,15 @@ public interface EssentialOCLCSPackage
 	int LET_VARIABLE_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAME_EXP_CS__CSI = ASSOCIATION_CLASS_CALL_EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3917,15 +3953,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int NAME_EXP_CS__PIVOT = ASSOCIATION_CLASS_CALL_EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAME_EXP_CS__CSI = ASSOCIATION_CLASS_CALL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -4189,6 +4216,15 @@ public interface EssentialOCLCSPackage
 	int NAME_EXP_CS_FEATURE_COUNT = ASSOCIATION_CLASS_CALL_EXP_CS_FEATURE_COUNT + 9;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATING_ARG_CS__CSI = BaseCSPackage.MODEL_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4205,15 +4241,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int NAVIGATING_ARG_CS__PIVOT = BaseCSPackage.MODEL_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATING_ARG_CS__CSI = BaseCSPackage.MODEL_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -4297,6 +4324,15 @@ public interface EssentialOCLCSPackage
 	int NAVIGATING_ARG_CS_FEATURE_COUNT = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 6;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NESTED_EXP_CS__CSI = EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4313,15 +4349,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int NESTED_EXP_CS__PIVOT = EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NESTED_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -4423,6 +4450,15 @@ public interface EssentialOCLCSPackage
 	int NESTED_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4439,15 +4475,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int NULL_LITERAL_EXP_CS__PIVOT = PRIMITIVE_LITERAL_EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -4540,6 +4567,15 @@ public interface EssentialOCLCSPackage
 	int NULL_LITERAL_EXP_CS_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4556,15 +4592,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int NUMBER_LITERAL_EXP_CS__PIVOT = PRIMITIVE_LITERAL_EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUMBER_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -4676,6 +4703,15 @@ public interface EssentialOCLCSPackage
 	int OPERATION_CALL_EXP_CS = 29;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CALL_EXP_CS__CSI = CALL_EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4692,15 +4728,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int OPERATION_CALL_EXP_CS__PIVOT = CALL_EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_CALL_EXP_CS__CSI = CALL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -4893,6 +4920,15 @@ public interface EssentialOCLCSPackage
 	int PATTERN_EXP_CS = 31;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATTERN_EXP_CS__CSI = EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4909,15 +4945,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int PATTERN_EXP_CS__PIVOT = EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PATTERN_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -5098,6 +5125,15 @@ public interface EssentialOCLCSPackage
 	int TYPE_LITERAL_EXP_CS = 41;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_EXP_CS__CSI = OPERATOR_EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5114,15 +5150,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int PREFIX_EXP_CS__PIVOT = OPERATOR_EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREFIX_EXP_CS__CSI = OPERATOR_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -5242,6 +5269,15 @@ public interface EssentialOCLCSPackage
 	int PREFIX_EXP_CS_FEATURE_COUNT = OPERATOR_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP_CS__CSI = CALL_EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5258,15 +5294,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int PROPERTY_CALL_EXP_CS__PIVOT = CALL_EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_CALL_EXP_CS__CSI = CALL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -5449,6 +5476,15 @@ public interface EssentialOCLCSPackage
 	int PROPERTY_CALL_EXP_CS_FEATURE_COUNT = CALL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROUND_BRACKETED_CLAUSE_CS__CSI = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5485,6 +5521,15 @@ public interface EssentialOCLCSPackage
 	int ROUND_BRACKETED_CLAUSE_CS_FEATURE_COUNT = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELF_EXP_CS__CSI = EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5501,15 +5546,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int SELF_EXP_CS__PIVOT = EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SELF_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -5611,6 +5647,15 @@ public interface EssentialOCLCSPackage
 	int SELF_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SQUARE_BRACKETED_CLAUSE_CS__CSI = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5647,6 +5692,15 @@ public interface EssentialOCLCSPackage
 	int SQUARE_BRACKETED_CLAUSE_CS_FEATURE_COUNT = BaseCSPackage.CONTEXT_LESS_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5663,15 +5717,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int STRING_LITERAL_EXP_CS__PIVOT = PRIMITIVE_LITERAL_EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -5773,6 +5818,15 @@ public interface EssentialOCLCSPackage
 	int STRING_LITERAL_EXP_CS_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5789,15 +5843,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int TUPLE_LITERAL_EXP_CS__PIVOT = LITERAL_EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -5899,6 +5944,15 @@ public interface EssentialOCLCSPackage
 	int TUPLE_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_CS__CSI = BaseCSPackage.NAMED_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5915,15 +5969,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int VARIABLE_CS__PIVOT = BaseCSPackage.NAMED_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_CS__CSI = BaseCSPackage.NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -5980,6 +6025,15 @@ public interface EssentialOCLCSPackage
 	int VARIABLE_CS_FEATURE_COUNT = BaseCSPackage.NAMED_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_PART_CS__CSI = VARIABLE_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5996,15 +6050,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int TUPLE_LITERAL_PART_CS__PIVOT = VARIABLE_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_LITERAL_PART_CS__CSI = VARIABLE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -6061,6 +6106,15 @@ public interface EssentialOCLCSPackage
 	int TUPLE_LITERAL_PART_CS_FEATURE_COUNT = VARIABLE_CS_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6077,15 +6131,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int TYPE_LITERAL_EXP_CS__PIVOT = LITERAL_EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -6196,6 +6241,15 @@ public interface EssentialOCLCSPackage
 	int TYPE_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_NAME_EXP_CS__CSI = BaseCSPackage.TYPED_REF_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6278,6 +6332,15 @@ public interface EssentialOCLCSPackage
 	int UNLIMITED_NATURAL_LITERAL_EXP_CS = 43;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNLIMITED_NATURAL_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6294,15 +6357,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int UNLIMITED_NATURAL_LITERAL_EXP_CS__PIVOT = PRIMITIVE_LITERAL_EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -6405,6 +6459,15 @@ public interface EssentialOCLCSPackage
 	int VARIABLE_EXP_CS = 45;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_EXP_CS__CSI = ABSTRACT_NAME_EXP_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6421,15 +6484,6 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int VARIABLE_EXP_CS__PIVOT = ABSTRACT_NAME_EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_EXP_CS__CSI = ABSTRACT_NAME_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.

@@ -26,6 +26,7 @@ import org.eclipse.ocl.xtext.basecs.util.VisitableCS;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.eclipse.ocl.xtext.basecs.ElementCS#getCsi <em>Csi</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.ElementCS#getParent <em>Parent</em>}</li>
  * </ul>
  *
@@ -34,6 +35,32 @@ import org.eclipse.ocl.xtext.basecs.util.VisitableCS;
  * @generated
  */
 public interface ElementCS extends EObject, VisitableCS {
+
+	/**
+	 * Returns the value of the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Csi</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Csi</em>' attribute.
+	 * @see #setCsi(String)
+	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getElementCS_Csi()
+	 * @model dataType="org.eclipse.ocl.pivot.String" transient="true"
+	 * @generated
+	 */
+	String getCsi();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.xtext.basecs.ElementCS#getCsi <em>Csi</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Csi</em>' attribute.
+	 * @see #getCsi()
+	 * @generated
+	 */
+	void setCsi(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Parent</b></em>' reference.

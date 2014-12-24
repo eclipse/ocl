@@ -11,8 +11,10 @@
 
 package org.eclipse.ocl.xtext.basecs.impl;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -32,12 +34,32 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ElementCSImpl#getCsi <em>Csi</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ElementCSImpl#getParent <em>Parent</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class ElementCSImpl extends EObjectImpl implements ElementCS {
+	/**
+	 * The default value of the '{@link #getCsi() <em>Csi</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCsi()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String CSI_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getCsi() <em>Csi</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCsi()
+	 * @generated
+	 * @ordered
+	 */
+	protected String csi = CSI_EDEFAULT;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,10 +85,37 @@ public abstract class ElementCSImpl extends EObjectImpl implements ElementCS {
 	 * @generated
 	 */
 	@Override
+	public String getCsi()
+	{
+		return csi;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setCsi(String newCsi)
+	{
+		String oldCsi = csi;
+		csi = newCsi;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.ELEMENT_CS__CSI, oldCsi, csi));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
 		switch (featureID)
 		{
+			case BaseCSPackage.ELEMENT_CS__CSI:
+				return getCsi();
 			case BaseCSPackage.ELEMENT_CS__PARENT:
 				return getParent();
 		}
@@ -79,10 +128,46 @@ public abstract class ElementCSImpl extends EObjectImpl implements ElementCS {
 	 * @generated
 	 */
 	@Override
+	public void eSet(int featureID, Object newValue)
+	{
+		switch (featureID)
+		{
+			case BaseCSPackage.ELEMENT_CS__CSI:
+				setCsi((String)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID)
+	{
+		switch (featureID)
+		{
+			case BaseCSPackage.ELEMENT_CS__CSI:
+				setCsi(CSI_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public boolean eIsSet(int featureID)
 	{
 		switch (featureID)
 		{
+			case BaseCSPackage.ELEMENT_CS__CSI:
+				return CSI_EDEFAULT == null ? csi != null : !CSI_EDEFAULT.equals(csi);
 			case BaseCSPackage.ELEMENT_CS__PARENT:
 				return getParent() != null;
 		}

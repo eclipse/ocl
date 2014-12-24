@@ -143,6 +143,15 @@ public interface OCLinEcoreCSPackage extends EPackage {
 	OCLinEcoreCSFactory getOCLinEcoreCSFactory();
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OC_LIN_ECORE_CONSTRAINT_CS__CSI = BaseCSPackage.CONSTRAINT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -159,15 +168,6 @@ public interface OCLinEcoreCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int OC_LIN_ECORE_CONSTRAINT_CS__PIVOT = BaseCSPackage.CONSTRAINT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__CSI = BaseCSPackage.CONSTRAINT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -252,6 +252,15 @@ public interface OCLinEcoreCSPackage extends EPackage {
 	int SYS_MLCS = 1;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYS_MLCS__CSI = BaseCSPackage.ANNOTATION_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -268,15 +277,6 @@ public interface OCLinEcoreCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int SYS_MLCS__PIVOT = BaseCSPackage.ANNOTATION_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SYS_MLCS__CSI = BaseCSPackage.ANNOTATION_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -343,6 +343,15 @@ public interface OCLinEcoreCSPackage extends EPackage {
 	int TOP_LEVEL_CS = 2;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOP_LEVEL_CS__CSI = BaseCSPackage.ROOT_PACKAGE_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -359,15 +368,6 @@ public interface OCLinEcoreCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int TOP_LEVEL_CS__PIVOT = BaseCSPackage.ROOT_PACKAGE_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TOP_LEVEL_CS__CSI = BaseCSPackage.ROOT_PACKAGE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.

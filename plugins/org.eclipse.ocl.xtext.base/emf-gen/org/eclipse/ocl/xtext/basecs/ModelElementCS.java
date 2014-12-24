@@ -22,7 +22,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.xtext.basecs.ModelElementCS#getCsi <em>Csi</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.ModelElementCS#getOriginalXmiId <em>Original Xmi Id</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.ModelElementCS#getOwnedAnnotations <em>Owned Annotations</em>}</li>
  * </ul>
@@ -32,32 +31,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface ModelElementCS extends PivotableElementCS {
-	/**
-	 * Returns the value of the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Csi</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Csi</em>' attribute.
-	 * @see #setCsi(String)
-	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getModelElementCS_Csi()
-	 * @model dataType="org.eclipse.ocl.pivot.String" transient="true"
-	 * @generated
-	 */
-	String getCsi();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.xtext.basecs.ModelElementCS#getCsi <em>Csi</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Csi</em>' attribute.
-	 * @see #getCsi()
-	 * @generated
-	 */
-	void setCsi(String value);
-
 	/**
 	 * Returns the value of the '<em><b>Owned Annotations</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.xtext.basecs.AnnotationElementCS}.

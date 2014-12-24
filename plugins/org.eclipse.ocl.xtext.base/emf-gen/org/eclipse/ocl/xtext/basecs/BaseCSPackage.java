@@ -95,13 +95,22 @@ public interface BaseCSPackage extends EPackage {
 	int ELEMENT_CS = 9;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_CS__CSI = VISITABLE_CS_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_CS__PARENT = VISITABLE_CS_FEATURE_COUNT + 0;
+	int ELEMENT_CS__PARENT = VISITABLE_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Element CS</em>' class.
@@ -110,7 +119,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_CS_FEATURE_COUNT = VISITABLE_CS_FEATURE_COUNT + 1;
+	int ELEMENT_CS_FEATURE_COUNT = VISITABLE_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.PivotableElementCSImpl <em>Pivotable Element CS</em>}' class.
@@ -121,6 +130,15 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 */
 	int PIVOTABLE_ELEMENT_CS = 31;
+
+	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PIVOTABLE_ELEMENT_CS__CSI = ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -160,6 +178,15 @@ public interface BaseCSPackage extends EPackage {
 	int MODEL_ELEMENT_CS = 17;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_CS__CSI = PIVOTABLE_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -178,22 +205,13 @@ public interface BaseCSPackage extends EPackage {
 	int MODEL_ELEMENT_CS__PIVOT = PIVOTABLE_ELEMENT_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT_CS__CSI = PIVOTABLE_ELEMENT_CS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_CS__ORIGINAL_XMI_ID = PIVOTABLE_ELEMENT_CS_FEATURE_COUNT + 1;
+	int MODEL_ELEMENT_CS__ORIGINAL_XMI_ID = PIVOTABLE_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
@@ -202,7 +220,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_CS__OWNED_ANNOTATIONS = PIVOTABLE_ELEMENT_CS_FEATURE_COUNT + 2;
+	int MODEL_ELEMENT_CS__OWNED_ANNOTATIONS = PIVOTABLE_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Model Element CS</em>' class.
@@ -211,7 +229,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_CS_FEATURE_COUNT = PIVOTABLE_ELEMENT_CS_FEATURE_COUNT + 3;
+	int MODEL_ELEMENT_CS_FEATURE_COUNT = PIVOTABLE_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.AnnotationElementCSImpl <em>Annotation Element CS</em>}' class.
@@ -254,6 +272,15 @@ public interface BaseCSPackage extends EPackage {
 	int NAMED_ELEMENT_CS = 22;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT_CS__CSI = MODEL_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -270,15 +297,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int NAMED_ELEMENT_CS__PIVOT = MODEL_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_ELEMENT_CS__CSI = MODEL_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -597,6 +615,15 @@ public interface BaseCSPackage extends EPackage {
 	int ENUMERATION_LITERAL_CS = 12;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION_ELEMENT_CS__CSI = NAMED_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -613,15 +640,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int ANNOTATION_ELEMENT_CS__PIVOT = NAMED_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION_ELEMENT_CS__CSI = NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -669,6 +687,15 @@ public interface BaseCSPackage extends EPackage {
 	int ANNOTATION_ELEMENT_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION_CS__CSI = ANNOTATION_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -685,15 +712,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int ANNOTATION_CS__PIVOT = ANNOTATION_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION_CS__CSI = ANNOTATION_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -759,6 +777,15 @@ public interface BaseCSPackage extends EPackage {
 	int ANNOTATION_CS_FEATURE_COUNT = ANNOTATION_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_ELEMENT_CS__CSI = NAMED_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -775,15 +802,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int TYPED_ELEMENT_CS__PIVOT = NAMED_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_ELEMENT_CS__CSI = NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -849,6 +867,15 @@ public interface BaseCSPackage extends EPackage {
 	int TYPED_ELEMENT_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CS__CSI = TYPED_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -865,15 +892,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int FEATURE_CS__PIVOT = TYPED_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_CS__CSI = TYPED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -939,6 +957,15 @@ public interface BaseCSPackage extends EPackage {
 	int FEATURE_CS_FEATURE_COUNT = TYPED_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURAL_FEATURE_CS__CSI = FEATURE_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -955,15 +982,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int STRUCTURAL_FEATURE_CS__PIVOT = FEATURE_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRUCTURAL_FEATURE_CS__CSI = FEATURE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1056,6 +1074,15 @@ public interface BaseCSPackage extends EPackage {
 	int STRUCTURAL_FEATURE_CS_FEATURE_COUNT = FEATURE_CS_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CS__CSI = STRUCTURAL_FEATURE_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1072,15 +1099,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_CS__PIVOT = STRUCTURAL_FEATURE_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_CS__CSI = STRUCTURAL_FEATURE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1183,6 +1201,15 @@ public interface BaseCSPackage extends EPackage {
 	int CLASS_CS = 3;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_CS__CSI = NAMED_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1199,15 +1226,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int CLASS_CS__PIVOT = NAMED_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS__CSI = NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1321,6 +1339,15 @@ public interface BaseCSPackage extends EPackage {
 	int MODEL_ELEMENT_REF_CS = 18;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT_CS__CSI = NAMED_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1337,15 +1364,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONSTRAINT_CS__PIVOT = NAMED_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT_CS__CSI = NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1421,6 +1439,15 @@ public interface BaseCSPackage extends EPackage {
 	int CONTEXT_LESS_ELEMENT_CS = 5;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT_LESS_ELEMENT_CS__CSI = ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1439,6 +1466,15 @@ public interface BaseCSPackage extends EPackage {
 	int CONTEXT_LESS_ELEMENT_CS_FEATURE_COUNT = ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE_CS__CSI = CLASS_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1455,15 +1491,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int DATA_TYPE_CS__PIVOT = CLASS_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE_CS__CSI = CLASS_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1547,6 +1574,15 @@ public interface BaseCSPackage extends EPackage {
 	int DATA_TYPE_CS_FEATURE_COUNT = CLASS_CS_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DETAIL_CS__CSI = NAMED_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1563,15 +1599,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int DETAIL_CS__PIVOT = NAMED_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DETAIL_CS__CSI = NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1619,6 +1646,15 @@ public interface BaseCSPackage extends EPackage {
 	int DETAIL_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENTATION_CS__CSI = ANNOTATION_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1635,15 +1671,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int DOCUMENTATION_CS__PIVOT = ANNOTATION_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOCUMENTATION_CS__CSI = ANNOTATION_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1700,6 +1727,15 @@ public interface BaseCSPackage extends EPackage {
 	int DOCUMENTATION_CS_FEATURE_COUNT = ANNOTATION_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_REF_CS__CSI = PIVOTABLE_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1727,6 +1763,15 @@ public interface BaseCSPackage extends EPackage {
 	int ELEMENT_REF_CS_FEATURE_COUNT = PIVOTABLE_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION_CS__CSI = CLASS_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1743,15 +1788,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int ENUMERATION_CS__PIVOT = CLASS_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION_CS__CSI = CLASS_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1844,6 +1880,15 @@ public interface BaseCSPackage extends EPackage {
 	int ENUMERATION_CS_FEATURE_COUNT = CLASS_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION_LITERAL_CS__CSI = NAMED_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1860,15 +1905,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int ENUMERATION_LITERAL_CS__PIVOT = NAMED_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION_LITERAL_CS__CSI = NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1916,6 +1952,15 @@ public interface BaseCSPackage extends EPackage {
 	int ENUMERATION_LITERAL_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE_CS__CSI = NAMED_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1932,15 +1977,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int NAMESPACE_CS__PIVOT = NAMED_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMESPACE_CS__CSI = NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1979,6 +2015,15 @@ public interface BaseCSPackage extends EPackage {
 	int NAMESPACE_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT_CS__CSI = NAMESPACE_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1995,15 +2040,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int IMPORT_CS__PIVOT = NAMESPACE_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMPORT_CS__CSI = NAMESPACE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2069,6 +2105,15 @@ public interface BaseCSPackage extends EPackage {
 	int IMPORT_CS_FEATURE_COUNT = NAMESPACE_CS_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_REF_CS__CSI = ELEMENT_REF_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2094,6 +2139,15 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int TYPE_REF_CS_FEATURE_COUNT = ELEMENT_REF_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_REF_CS__CSI = TYPE_REF_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -2130,6 +2184,15 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int TYPED_REF_CS_FEATURE_COUNT = TYPE_REF_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_TYPE_CS__CSI = TYPED_REF_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -2243,6 +2306,15 @@ public interface BaseCSPackage extends EPackage {
 	int LAMBDA_TYPE_CS_FEATURE_COUNT = TYPED_REF_CS_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY_CS__CSI = NAMESPACE_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2259,15 +2331,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int LIBRARY_CS__PIVOT = NAMESPACE_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY_CS__CSI = NAMESPACE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2315,6 +2378,15 @@ public interface BaseCSPackage extends EPackage {
 	int LIBRARY_CS_FEATURE_COUNT = NAMESPACE_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_REF_CS__CSI = ELEMENT_REF_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2360,6 +2432,15 @@ public interface BaseCSPackage extends EPackage {
 	int MODEL_ELEMENT_REF_CS_FEATURE_COUNT = ELEMENT_REF_CS_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLICITY_CS__CSI = ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2376,6 +2457,15 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int MULTIPLICITY_CS_FEATURE_COUNT = ELEMENT_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLICITY_BOUNDS_CS__CSI = MULTIPLICITY_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -2414,6 +2504,15 @@ public interface BaseCSPackage extends EPackage {
 	int MULTIPLICITY_BOUNDS_CS_FEATURE_COUNT = MULTIPLICITY_CS_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLICITY_STRING_CS__CSI = MULTIPLICITY_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2441,6 +2540,15 @@ public interface BaseCSPackage extends EPackage {
 	int MULTIPLICITY_STRING_CS_FEATURE_COUNT = MULTIPLICITY_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CS__CSI = FEATURE_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2457,15 +2565,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int OPERATION_CS__PIVOT = FEATURE_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_CS__CSI = FEATURE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2604,6 +2703,15 @@ public interface BaseCSPackage extends EPackage {
 	int PACKAGE_OWNER_CS = 26;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_OWNER_CS__CSI = MODEL_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2620,15 +2728,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int PACKAGE_OWNER_CS__PIVOT = MODEL_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE_OWNER_CS__CSI = MODEL_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2667,6 +2766,15 @@ public interface BaseCSPackage extends EPackage {
 	int PACKAGE_OWNER_CS_FEATURE_COUNT = MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_CS__CSI = PACKAGE_OWNER_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2683,15 +2791,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int PACKAGE_CS__PIVOT = PACKAGE_OWNER_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE_CS__CSI = PACKAGE_OWNER_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2766,6 +2865,15 @@ public interface BaseCSPackage extends EPackage {
 	int PACKAGE_CS_FEATURE_COUNT = PACKAGE_OWNER_CS_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_CS__CSI = TYPED_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2782,15 +2890,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int PARAMETER_CS__PIVOT = TYPED_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_CS__CSI = TYPED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -2875,6 +2974,15 @@ public interface BaseCSPackage extends EPackage {
 	int PATH_ELEMENT_CS = 28;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_ELEMENT_CS__CSI = ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2928,6 +3036,15 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 */
 	int PATH_ELEMENT_WITH_URICS = 29;
+
+	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_ELEMENT_WITH_URICS__CSI = PATH_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -2994,6 +3111,15 @@ public interface BaseCSPackage extends EPackage {
 	int PATH_NAME_CS = 30;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_NAME_CS__CSI = ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3048,6 +3174,15 @@ public interface BaseCSPackage extends EPackage {
 	int PATH_NAME_CS_FEATURE_COUNT = ELEMENT_CS_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE_REF_CS__CSI = TYPED_REF_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3093,6 +3228,15 @@ public interface BaseCSPackage extends EPackage {
 	int PRIMITIVE_TYPE_REF_CS_FEATURE_COUNT = TYPED_REF_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_CS__CSI = STRUCTURAL_FEATURE_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3109,15 +3253,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int REFERENCE_CS__PIVOT = STRUCTURAL_FEATURE_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_CS__CSI = STRUCTURAL_FEATURE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3238,6 +3373,15 @@ public interface BaseCSPackage extends EPackage {
 	int ROOT_CS = 34;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROOT_CS__CSI = MODEL_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3254,15 +3398,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int ROOT_CS__PIVOT = MODEL_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROOT_CS__CSI = MODEL_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3320,6 +3455,15 @@ public interface BaseCSPackage extends EPackage {
 	int ROOT_PACKAGE_CS = 35;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROOT_PACKAGE_CS__CSI = PACKAGE_OWNER_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3336,15 +3480,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int ROOT_PACKAGE_CS__PIVOT = PACKAGE_OWNER_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROOT_PACKAGE_CS__CSI = PACKAGE_OWNER_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3411,6 +3546,15 @@ public interface BaseCSPackage extends EPackage {
 	int SPECIFICATION_CS = 36;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFICATION_CS__CSI = MODEL_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3427,15 +3571,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int SPECIFICATION_CS__PIVOT = MODEL_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPECIFICATION_CS__CSI = MODEL_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3484,6 +3619,15 @@ public interface BaseCSPackage extends EPackage {
 	int STRUCTURED_CLASS_CS = 38;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_CLASS_CS__CSI = CLASS_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3500,15 +3644,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int STRUCTURED_CLASS_CS__PIVOT = CLASS_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRUCTURED_CLASS_CS__CSI = CLASS_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3628,6 +3763,15 @@ public interface BaseCSPackage extends EPackage {
 	int STRUCTURED_CLASS_CS_FEATURE_COUNT = CLASS_CS_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_BINDING_CS__CSI = ELEMENT_REF_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3673,6 +3817,15 @@ public interface BaseCSPackage extends EPackage {
 	int TEMPLATE_BINDING_CS_FEATURE_COUNT = ELEMENT_REF_CS_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_CS__CSI = NAMED_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3689,15 +3842,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int TEMPLATE_PARAMETER_CS__PIVOT = NAMED_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_CS__CSI = NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3745,6 +3889,15 @@ public interface BaseCSPackage extends EPackage {
 	int TEMPLATE_PARAMETER_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_SUBSTITUTION_CS__CSI = MODEL_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3761,15 +3914,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int TEMPLATE_PARAMETER_SUBSTITUTION_CS__PIVOT = MODEL_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION_CS__CSI = MODEL_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3817,6 +3961,15 @@ public interface BaseCSPackage extends EPackage {
 	int TEMPLATE_PARAMETER_SUBSTITUTION_CS_FEATURE_COUNT = MODEL_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_SIGNATURE_CS__CSI = MODEL_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3833,15 +3986,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int TEMPLATE_SIGNATURE_CS__PIVOT = MODEL_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_SIGNATURE_CS__CSI = MODEL_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -3889,6 +4033,15 @@ public interface BaseCSPackage extends EPackage {
 	int TEMPLATE_SIGNATURE_CS_FEATURE_COUNT = MODEL_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATEABLE_ELEMENT_CS__CSI = ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3926,6 +4079,15 @@ public interface BaseCSPackage extends EPackage {
 	int TUPLE_PART_CS = 44;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_PART_CS__CSI = TYPED_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3942,15 +4104,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int TUPLE_PART_CS__PIVOT = TYPED_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_PART_CS__CSI = TYPED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -4026,6 +4179,15 @@ public interface BaseCSPackage extends EPackage {
 	int TUPLE_TYPE_CS = 45;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE_CS__CSI = TYPED_REF_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4080,6 +4242,15 @@ public interface BaseCSPackage extends EPackage {
 	int TUPLE_TYPE_CS_FEATURE_COUNT = TYPED_REF_CS_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_CS__CSI = MODEL_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4096,15 +4267,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int TYPE_CS__PIVOT = MODEL_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_CS__CSI = MODEL_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -4134,6 +4296,15 @@ public interface BaseCSPackage extends EPackage {
 	int TYPE_CS_FEATURE_COUNT = MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_PARAMETER_CS__CSI = TEMPLATE_PARAMETER_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4150,15 +4321,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int TYPE_PARAMETER_CS__PIVOT = TEMPLATE_PARAMETER_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_PARAMETER_CS__CSI = TEMPLATE_PARAMETER_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -4222,6 +4384,15 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int TYPE_PARAMETER_CS_FEATURE_COUNT = TEMPLATE_PARAMETER_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_TYPE_REF_CS__CSI = TYPED_REF_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -4294,6 +4465,15 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int TYPED_TYPE_REF_CS_FEATURE_COUNT = TYPED_REF_CS_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WILDCARD_TYPE_REF_CS__CSI = TYPE_REF_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -4595,6 +4775,17 @@ public interface BaseCSPackage extends EPackage {
 	EClass getElementCS();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.basecs.ElementCS#getCsi <em>Csi</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Csi</em>'.
+	 * @see org.eclipse.ocl.xtext.basecs.ElementCS#getCsi()
+	 * @see #getElementCS()
+	 * @generated
+	 */
+	EAttribute getElementCS_Csi();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.ocl.xtext.basecs.ElementCS#getParent <em>Parent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4794,17 +4985,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getModelElementCS();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.basecs.ModelElementCS#getCsi <em>Csi</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Csi</em>'.
-	 * @see org.eclipse.ocl.xtext.basecs.ModelElementCS#getCsi()
-	 * @see #getModelElementCS()
-	 * @generated
-	 */
-	EAttribute getModelElementCS_Csi();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.xtext.basecs.ModelElementCS#getOwnedAnnotations <em>Owned Annotations</em>}'.
@@ -6101,6 +6281,14 @@ public interface BaseCSPackage extends EPackage {
 		EClass ELEMENT_CS = eINSTANCE.getElementCS();
 
 		/**
+		 * The meta object literal for the '<em><b>Csi</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ELEMENT_CS__CSI = eINSTANCE.getElementCS_Csi();
+
+		/**
 		 * The meta object literal for the '<em><b>Parent</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6267,14 +6455,6 @@ public interface BaseCSPackage extends EPackage {
 		 * @generated
 		 */
 		EClass MODEL_ELEMENT_CS = eINSTANCE.getModelElementCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Csi</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MODEL_ELEMENT_CS__CSI = eINSTANCE.getModelElementCS_Csi();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Annotations</b></em>' containment reference list feature.

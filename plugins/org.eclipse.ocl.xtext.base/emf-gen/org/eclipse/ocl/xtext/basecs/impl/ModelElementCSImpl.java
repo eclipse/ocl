@@ -34,7 +34,6 @@ import org.eclipse.ocl.xtext.basecs.ModelElementCS;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ModelElementCSImpl#getCsi <em>Csi</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ModelElementCSImpl#getOriginalXmiId <em>Original Xmi Id</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ModelElementCSImpl#getOwnedAnnotations <em>Owned Annotations</em>}</li>
  * </ul>
@@ -42,26 +41,6 @@ import org.eclipse.ocl.xtext.basecs.ModelElementCS;
  * @generated
  */
 public abstract class ModelElementCSImpl extends PivotableElementCSImpl implements ModelElementCS {
-	/**
-	 * The default value of the '{@link #getCsi() <em>Csi</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCsi()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String CSI_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getCsi() <em>Csi</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCsi()
-	 * @generated
-	 * @ordered
-	 */
-	protected String csi = CSI_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getOriginalXmiId() <em>Original Xmi Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -109,31 +88,6 @@ public abstract class ModelElementCSImpl extends PivotableElementCSImpl implemen
 	@Override
 	protected EClass eStaticClass() {
 		return BaseCSPackage.Literals.MODEL_ELEMENT_CS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getCsi()
-	{
-		return csi;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setCsi(String newCsi)
-	{
-		String oldCsi = csi;
-		csi = newCsi;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.MODEL_ELEMENT_CS__CSI, oldCsi, csi));
 	}
 
 	/**
@@ -209,8 +163,6 @@ public abstract class ModelElementCSImpl extends PivotableElementCSImpl implemen
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case BaseCSPackage.MODEL_ELEMENT_CS__CSI:
-				return getCsi();
 			case BaseCSPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID:
 				return getOriginalXmiId();
 			case BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS:
@@ -229,9 +181,6 @@ public abstract class ModelElementCSImpl extends PivotableElementCSImpl implemen
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case BaseCSPackage.MODEL_ELEMENT_CS__CSI:
-				setCsi((String)newValue);
-				return;
 			case BaseCSPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID:
 				setOriginalXmiId((String)newValue);
 				return;
@@ -252,9 +201,6 @@ public abstract class ModelElementCSImpl extends PivotableElementCSImpl implemen
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.MODEL_ELEMENT_CS__CSI:
-				setCsi(CSI_EDEFAULT);
-				return;
 			case BaseCSPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID:
 				setOriginalXmiId(ORIGINAL_XMI_ID_EDEFAULT);
 				return;
@@ -274,8 +220,6 @@ public abstract class ModelElementCSImpl extends PivotableElementCSImpl implemen
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSPackage.MODEL_ELEMENT_CS__CSI:
-				return CSI_EDEFAULT == null ? csi != null : !CSI_EDEFAULT.equals(csi);
 			case BaseCSPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID:
 				return ORIGINAL_XMI_ID_EDEFAULT == null ? originalXmiId != null : !ORIGINAL_XMI_ID_EDEFAULT.equals(originalXmiId);
 			case BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS:

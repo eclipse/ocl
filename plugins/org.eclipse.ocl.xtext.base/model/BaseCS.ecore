@@ -130,6 +130,11 @@
         name="getDescription"
         eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//String"/>
     <eStructuralFeatures
+        xsi:type="ecore:EAttribute"
+        name="csi"
+        eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//String"
+        transient="true"/>
+    <eStructuralFeatures
         xsi:type="ecore:EReference"
         name="parent"
         eType="#//ElementCS"
@@ -232,11 +237,6 @@
       name="ModelElementCS"
       abstract="true"
       eSuperTypes="#//PivotableElementCS">
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="csi"
-        eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//String"
-        transient="true"/>
     <eStructuralFeatures
         xsi:type="ecore:EAttribute"
         name="originalXmiId"

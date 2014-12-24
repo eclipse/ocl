@@ -785,9 +785,20 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * @generated
 	 */
 	@Override
+	public EAttribute getElementCS_Csi()
+	{
+		return (EAttribute)elementCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EReference getElementCS_Parent()
 	{
-		return (EReference)elementCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)elementCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -990,20 +1001,9 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getModelElementCS_Csi()
-	{
-		return (EAttribute)modelElementCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getModelElementCS_OwnedAnnotations()
 	{
-		return (EReference)modelElementCSEClass.getEStructuralFeatures().get(2);
+		return (EReference)modelElementCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1013,7 +1013,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	@Override
 	public EAttribute getModelElementCS_OriginalXmiId() {
-		return (EAttribute)modelElementCSEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)modelElementCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -2141,6 +2141,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		createEAttribute(documentationCSEClass, DOCUMENTATION_CS__VALUE);
 
 		elementCSEClass = createEClass(ELEMENT_CS);
+		createEAttribute(elementCSEClass, ELEMENT_CS__CSI);
 		createEReference(elementCSEClass, ELEMENT_CS__PARENT);
 
 		elementRefCSEClass = createEClass(ELEMENT_REF_CS);
@@ -2168,7 +2169,6 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		createEReference(libraryCSEClass, LIBRARY_CS__REFERRED_PACKAGE);
 
 		modelElementCSEClass = createEClass(MODEL_ELEMENT_CS);
-		createEAttribute(modelElementCSEClass, MODEL_ELEMENT_CS__CSI);
 		createEAttribute(modelElementCSEClass, MODEL_ELEMENT_CS__ORIGINAL_XMI_ID);
 		createEReference(modelElementCSEClass, MODEL_ELEMENT_CS__OWNED_ANNOTATIONS);
 
@@ -2445,6 +2445,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		initEAttribute(getDocumentationCS_Value(), thePivotPackage.getString(), "value", null, 0, 1, DocumentationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(elementCSEClass, ElementCS.class, "ElementCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getElementCS_Csi(), thePivotPackage.getString(), "csi", null, 0, 1, ElementCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getElementCS_Parent(), this.getElementCS(), null, "parent", null, 0, 1, ElementCS.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		addEOperation(elementCSEClass, thePivotPackage.getString(), "getDescription", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -2474,7 +2475,6 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		initEReference(getLibraryCS_ReferredPackage(), thePivotPackage.getPackage(), null, "referredPackage", null, 0, 1, LibraryCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(modelElementCSEClass, ModelElementCS.class, "ModelElementCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getModelElementCS_Csi(), thePivotPackage.getString(), "csi", null, 0, 1, ModelElementCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getModelElementCS_OriginalXmiId(), thePivotPackage.getString(), "originalXmiId", null, 0, 1, ModelElementCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getModelElementCS_OwnedAnnotations(), this.getAnnotationElementCS(), null, "ownedAnnotations", null, 0, -1, ModelElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 

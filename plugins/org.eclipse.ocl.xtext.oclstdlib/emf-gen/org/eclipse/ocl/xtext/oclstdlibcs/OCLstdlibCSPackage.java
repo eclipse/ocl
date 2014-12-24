@@ -78,6 +78,15 @@ public interface OCLstdlibCSPackage
 	int JAVA_CLASS_CS = 0;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_CLASS_CS__CSI = BaseCSPackage.NAMED_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -94,15 +103,6 @@ public interface OCLstdlibCSPackage
 	 * @ordered
 	 */
 	int JAVA_CLASS_CS__PIVOT = BaseCSPackage.NAMED_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA_CLASS_CS__CSI = BaseCSPackage.NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -191,6 +191,15 @@ public interface OCLstdlibCSPackage
 	int JAVA_IMPLEMENTATION_CS = 1;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_IMPLEMENTATION_CS__CSI = BaseCSPackage.ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -228,6 +237,15 @@ public interface OCLstdlibCSPackage
 	int LIB_CLASS_CS = 2;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CLASS_CS__CSI = BaseCSPackage.STRUCTURED_CLASS_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -244,15 +262,6 @@ public interface OCLstdlibCSPackage
 	 * @ordered
 	 */
 	int LIB_CLASS_CS__PIVOT = BaseCSPackage.STRUCTURED_CLASS_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_CLASS_CS__CSI = BaseCSPackage.STRUCTURED_CLASS_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -391,6 +400,15 @@ public interface OCLstdlibCSPackage
 	int LIB_COERCION_CS = 3;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_COERCION_CS__CSI = BaseCSPackage.OPERATION_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -407,15 +425,6 @@ public interface OCLstdlibCSPackage
 	 * @ordered
 	 */
 	int LIB_COERCION_CS__PIVOT = BaseCSPackage.OPERATION_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_COERCION_CS__CSI = BaseCSPackage.OPERATION_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -553,6 +562,15 @@ public interface OCLstdlibCSPackage
 	int LIB_COERCION_CS_FEATURE_COUNT = BaseCSPackage.OPERATION_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_CONSTRAINT_CS__CSI = BaseCSPackage.CONSTRAINT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -569,15 +587,6 @@ public interface OCLstdlibCSPackage
 	 * @ordered
 	 */
 	int LIB_CONSTRAINT_CS__PIVOT = BaseCSPackage.CONSTRAINT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_CONSTRAINT_CS__CSI = BaseCSPackage.CONSTRAINT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -643,6 +652,15 @@ public interface OCLstdlibCSPackage
 	int LIB_CONSTRAINT_CS_FEATURE_COUNT = BaseCSPackage.CONSTRAINT_CS_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_ITERATION_CS__CSI = BaseCSPackage.OPERATION_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -659,15 +677,6 @@ public interface OCLstdlibCSPackage
 	 * @ordered
 	 */
 	int LIB_ITERATION_CS__PIVOT = BaseCSPackage.OPERATION_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_ITERATION_CS__CSI = BaseCSPackage.OPERATION_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -841,6 +850,15 @@ public interface OCLstdlibCSPackage
 	int LIB_ITERATION_CS_FEATURE_COUNT = BaseCSPackage.OPERATION_CS_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_OPERATION_CS__CSI = BaseCSPackage.OPERATION_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -857,15 +875,6 @@ public interface OCLstdlibCSPackage
 	 * @ordered
 	 */
 	int LIB_OPERATION_CS__PIVOT = BaseCSPackage.OPERATION_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_OPERATION_CS__CSI = BaseCSPackage.OPERATION_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1049,6 +1058,15 @@ public interface OCLstdlibCSPackage
 	int LIB_PACKAGE_CS = 7;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_PACKAGE_CS__CSI = BaseCSPackage.PACKAGE_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1065,15 +1083,6 @@ public interface OCLstdlibCSPackage
 	 * @ordered
 	 */
 	int LIB_PACKAGE_CS__PIVOT = BaseCSPackage.PACKAGE_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_PACKAGE_CS__CSI = BaseCSPackage.PACKAGE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1157,6 +1166,15 @@ public interface OCLstdlibCSPackage
 	int LIB_PACKAGE_CS_FEATURE_COUNT = BaseCSPackage.PACKAGE_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_PROPERTY_CS__CSI = BaseCSPackage.ATTRIBUTE_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1173,15 +1191,6 @@ public interface OCLstdlibCSPackage
 	 * @ordered
 	 */
 	int LIB_PROPERTY_CS__PIVOT = BaseCSPackage.ATTRIBUTE_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_PROPERTY_CS__CSI = BaseCSPackage.ATTRIBUTE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1302,6 +1311,15 @@ public interface OCLstdlibCSPackage
 	int LIB_ROOT_PACKAGE_CS = 9;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_ROOT_PACKAGE_CS__CSI = BaseCSPackage.ROOT_PACKAGE_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1318,15 +1336,6 @@ public interface OCLstdlibCSPackage
 	 * @ordered
 	 */
 	int LIB_ROOT_PACKAGE_CS__PIVOT = BaseCSPackage.ROOT_PACKAGE_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_ROOT_PACKAGE_CS__CSI = BaseCSPackage.ROOT_PACKAGE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1393,6 +1402,15 @@ public interface OCLstdlibCSPackage
 	int METACLASS_NAME_CS = 10;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METACLASS_NAME_CS__CSI = BaseCSPackage.ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1430,6 +1448,15 @@ public interface OCLstdlibCSPackage
 	int PRECEDENCE_CS = 11;
 
 	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRECEDENCE_CS__CSI = BaseCSPackage.NAMED_ELEMENT_CS__CSI;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1446,15 +1473,6 @@ public interface OCLstdlibCSPackage
 	 * @ordered
 	 */
 	int PRECEDENCE_CS__PIVOT = BaseCSPackage.NAMED_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRECEDENCE_CS__CSI = BaseCSPackage.NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
