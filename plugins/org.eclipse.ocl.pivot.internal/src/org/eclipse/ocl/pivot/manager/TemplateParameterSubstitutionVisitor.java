@@ -110,6 +110,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	 */
 	public static @NonNull Type specializeType(@NonNull Type type, @NonNull CallExp callExp, @NonNull MetaModelManager metaModelManager, @Nullable Type selfType, @Nullable Type selfTypeValue) {
 		TemplateParameterSubstitutionVisitor visitor = createVisitor(callExp, metaModelManager, selfType, selfTypeValue);
+		visitor.exclude(callExp);
 		visitor.visit(callExp);
 		return visitor.specializeType(type);
 	}
@@ -117,6 +118,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	private final @NonNull MetaModelManager metaModelManager;
 	private final @Nullable Type selfType;
 	private final @Nullable Type selfTypeValue;
+	private @Nullable TypedElement excludedTarget = null;
 	
 	/**
 	 * Internal variable used to pass the actual corresponding to the visited formal.
@@ -151,7 +153,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	}
 
 	protected void analyzeTypedElement(@Nullable TypedElement newFormal, @Nullable TypedElement newActual) {
-		if ((newFormal != null) && (newActual != null)) {
+		if ((newFormal != null) && (newActual != null) && (newActual != excludedTarget)) {
 			Element oldActual = actual;
 			try {
 				actual = newActual;
@@ -178,6 +180,14 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		for (int i = 0; i < iMax; i++) {
 			analyzeType(formalElements.get(i), actualElements.get(i));
 		}
+	}
+
+	/**
+	 * Exclude the current typed element whicxh may have a stale type.
+	 */
+	private void exclude(@NonNull TypedElement typedElement) {
+		assert excludedTarget == null;
+		excludedTarget = typedElement;
 	}
 
 	@Override
@@ -411,7 +421,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	public @Nullable Object visitOperationCallExp(@NonNull OperationCallExp object) {
 		Operation referredOperation = object.getReferredOperation();
 //		visit(referredOperation, object);
-		analyzeType(referredOperation.getType(), object.getType());
+		analyzeTypedElement(referredOperation, object);
 		OCLExpression source = object.getOwnedSource();
 		if (source != null) {
 			analyzeType(referredOperation.getOwningClass(), source.getType());
