@@ -21,10 +21,10 @@ import org.eclipse.ocl.xtext.basecs.PathNameCS;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.PathNameDeclCS#getOwnedPathName <em>Owned Path Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage#getPathNameDeclCS()
  * @model abstract="true" superTypes="org.eclipse.ocl.xtext.basecs.ModelElementCS org.eclipse.ocl.pivot.MorePivotable"

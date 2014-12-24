@@ -24,11 +24,12 @@ import org.eclipse.ocl.xtext.basecs.TemplateableElementCS;
  * An implementation of the model object '<em><b>Templateable Element CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.TemplateableElementCSImpl#getOwnedSignature <em>Owned Signature</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

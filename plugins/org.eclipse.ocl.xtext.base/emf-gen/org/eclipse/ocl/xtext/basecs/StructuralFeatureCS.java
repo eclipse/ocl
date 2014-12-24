@@ -21,12 +21,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.StructuralFeatureCS#getDefault <em>Default</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.StructuralFeatureCS#getOwnedDefaultExpressions <em>Owned Default Expressions</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.StructuralFeatureCS#getOwningClass <em>Owning Class</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getStructuralFeatureCS()
  * @model abstract="true"

@@ -19,10 +19,10 @@ import org.eclipse.ocl.pivot.Operation;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.OperationCallExpCS#getReferredOperation <em>Referred Operation</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getOperationCallExpCS()
  * @model abstract="true"

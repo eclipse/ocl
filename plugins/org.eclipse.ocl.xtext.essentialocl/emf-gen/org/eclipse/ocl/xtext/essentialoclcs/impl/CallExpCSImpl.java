@@ -26,12 +26,13 @@ import org.eclipse.ocl.xtext.essentialoclcs.ExpCS;
  * An implementation of the model object '<em><b>Call Exp CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.CallExpCSImpl#getArguments <em>Arguments</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.CallExpCSImpl#getSource <em>Source</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

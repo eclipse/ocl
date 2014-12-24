@@ -36,7 +36,9 @@ import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
  * An implementation of the model object '<em><b>Variable CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.LetVariableCSImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.LetVariableCSImpl#getOwnedInitExpression <em>Owned Init Expression</em>}</li>
@@ -44,7 +46,6 @@ import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.LetVariableCSImpl#getOwnedRoundBracketedClause <em>Owned Round Bracketed Clause</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.LetVariableCSImpl#getOwningLetExpression <em>Owning Let Expression</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

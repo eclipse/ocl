@@ -28,11 +28,12 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
  * An implementation of the model object '<em><b>Element CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ElementCSImpl#getParent <em>Parent</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

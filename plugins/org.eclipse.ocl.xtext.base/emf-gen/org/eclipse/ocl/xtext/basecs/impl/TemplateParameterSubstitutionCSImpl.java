@@ -29,12 +29,13 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
  * An implementation of the model object '<em><b>Template Parameter Substitution CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.TemplateParameterSubstitutionCSImpl#getOwnedActualParameter <em>Owned Actual Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.TemplateParameterSubstitutionCSImpl#getOwningBinding <em>Owning Binding</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

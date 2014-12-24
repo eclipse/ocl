@@ -36,13 +36,14 @@ import org.eclipse.ocl.xtext.essentialoclcs.ExpSpecificationCS;
  * An implementation of the model object '<em><b>Property Context Decl CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.impl.PropertyContextDeclCSImpl#getOwnedDefaultExpressions <em>Owned Default Expressions</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.impl.PropertyContextDeclCSImpl#getOwnedDerivedInvariants <em>Owned Derived Invariants</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.impl.PropertyContextDeclCSImpl#getReferredProperty <em>Referred Property</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

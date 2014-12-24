@@ -20,11 +20,11 @@ import org.eclipse.ocl.xtext.basecs.TypedRefCS;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.TypeLiteralExpCS#getOwnedPathName <em>Owned Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.TypeLiteralExpCS#getOwnedType <em>Owned Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getTypeLiteralExpCS()
  * @model

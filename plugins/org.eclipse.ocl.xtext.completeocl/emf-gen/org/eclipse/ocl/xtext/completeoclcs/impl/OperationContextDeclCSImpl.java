@@ -42,7 +42,9 @@ import org.eclipse.ocl.xtext.essentialoclcs.VariableCS;
  * An implementation of the model object '<em><b>Operation Context Decl CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.impl.OperationContextDeclCSImpl#getOwnedSignature <em>Owned Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.impl.OperationContextDeclCSImpl#getOwnedBodies <em>Owned Bodies</em>}</li>
@@ -52,7 +54,6 @@ import org.eclipse.ocl.xtext.essentialoclcs.VariableCS;
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.impl.OperationContextDeclCSImpl#getOwnedResult <em>Owned Result</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.impl.OperationContextDeclCSImpl#getReferredOperation <em>Referred Operation</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

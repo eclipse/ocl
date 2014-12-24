@@ -30,12 +30,13 @@ import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
  * An implementation of the model object '<em><b>Variable CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.VariableCSImpl#getOwnedInitExpression <em>Owned Init Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.VariableCSImpl#getOwnedType <em>Owned Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -19,10 +19,10 @@ import org.eclipse.ocl.pivot.Variable;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.VariableExpCS#getReferredVariable <em>Referred Variable</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getVariableExpCS()
  * @model abstract="true"

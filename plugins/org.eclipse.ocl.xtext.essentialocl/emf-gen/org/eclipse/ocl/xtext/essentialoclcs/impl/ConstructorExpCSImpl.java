@@ -27,13 +27,14 @@ import org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS;
  * An implementation of the model object '<em><b>Constructor Exp CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.ConstructorExpCSImpl#getParts <em>Parts</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.ConstructorExpCSImpl#getTypeName <em>Type Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.ConstructorExpCSImpl#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

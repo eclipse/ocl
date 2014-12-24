@@ -20,10 +20,10 @@ import org.eclipse.ocl.xtext.basecs.ElementCS;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.oclstdlibcs.MetaclassNameCS#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.oclstdlibcs.OCLstdlibCSPackage#getMetaclassNameCS()
  * @model superTypes="org.eclipse.ocl.xtext.basecs.ElementCS org.eclipse.ocl.pivot.Nameable"

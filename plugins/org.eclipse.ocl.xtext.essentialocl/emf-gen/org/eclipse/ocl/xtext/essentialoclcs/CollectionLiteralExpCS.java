@@ -19,11 +19,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralExpCS#getOwnedParts <em>Owned Parts</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralExpCS#getOwnedType <em>Owned Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getCollectionLiteralExpCS()
  * @model

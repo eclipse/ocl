@@ -25,11 +25,12 @@ import org.eclipse.ocl.xtext.basecs.TypedRefCS;
  * An implementation of the model object '<em><b>Typed Ref CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.TypedRefCSImpl#getOwnedMultiplicity <em>Owned Multiplicity</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -34,12 +34,13 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
  * An implementation of the model object '<em><b>Root Package CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.RootPackageCSImpl#getOwnedImports <em>Owned Imports</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.RootPackageCSImpl#getOwnedLibraries <em>Owned Libraries</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

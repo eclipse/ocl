@@ -34,13 +34,14 @@ import org.eclipse.ocl.xtext.essentialoclcs.OperatorExpCS;
  * An implementation of the model object '<em><b>Operator CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.OperatorExpCSImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.OperatorExpCSImpl#getOwnedRight <em>Owned Right</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.OperatorExpCSImpl#getSource <em>Source</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

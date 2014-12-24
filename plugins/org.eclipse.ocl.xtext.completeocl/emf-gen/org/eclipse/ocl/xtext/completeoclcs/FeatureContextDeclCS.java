@@ -20,10 +20,10 @@ import org.eclipse.ocl.xtext.basecs.TypedRefCS;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.FeatureContextDeclCS#getOwnedType <em>Owned Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage#getFeatureContextDeclCS()
  * @model abstract="true"

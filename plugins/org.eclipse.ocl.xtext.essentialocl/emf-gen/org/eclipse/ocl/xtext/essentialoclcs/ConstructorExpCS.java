@@ -19,12 +19,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorExpCS#getParts <em>Parts</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorExpCS#getTypeName <em>Type Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorExpCS#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getConstructorExpCS()
  * @model abstract="true"

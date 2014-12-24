@@ -25,6 +25,7 @@ import org.eclipse.ocl.xtext.essentialoclcs.VariableCS;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.OperationContextDeclCS#getOwnedBodies <em>Owned Bodies</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.OperationContextDeclCS#getOwnedParameters <em>Owned Parameters</em>}</li>
@@ -33,7 +34,6 @@ import org.eclipse.ocl.xtext.essentialoclcs.VariableCS;
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.OperationContextDeclCS#getOwnedResult <em>Owned Result</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.OperationContextDeclCS#getReferredOperation <em>Referred Operation</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage#getOperationContextDeclCS()
  * @model

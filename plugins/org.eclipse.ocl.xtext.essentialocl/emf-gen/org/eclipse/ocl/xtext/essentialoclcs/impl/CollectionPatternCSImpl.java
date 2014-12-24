@@ -36,14 +36,15 @@ import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
  * An implementation of the model object '<em><b>Collection Pattern CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.CollectionPatternCSImpl#getOwnedParts <em>Owned Parts</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.CollectionPatternCSImpl#getOwnedPatternGuard <em>Owned Pattern Guard</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.CollectionPatternCSImpl#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.CollectionPatternCSImpl#getRestVariableName <em>Rest Variable Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

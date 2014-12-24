@@ -20,7 +20,6 @@ import org.eclipse.ocl.xtext.basecs.NamespaceCS;
  * An implementation of the model object '<em><b>Namespace CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * </p>
  *
  * @generated
  */

@@ -27,7 +27,9 @@ import org.eclipse.ocl.xtext.markupcs.MarkupPackage;
  * An implementation of the model object '<em><b>Fig Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.markupcs.impl.FigureElementImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.markupcs.impl.FigureElementImpl#getSrc <em>Src</em>}</li>
@@ -38,7 +40,6 @@ import org.eclipse.ocl.xtext.markupcs.MarkupPackage;
  *   <li>{@link org.eclipse.ocl.xtext.markupcs.impl.FigureElementImpl#getActualWidth <em>Actual Width</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.markupcs.impl.FigureElementImpl#getActualHeight <em>Actual Height</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -19,11 +19,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.TemplateBindingCS#getOwnedSubstitutions <em>Owned Substitutions</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.TemplateBindingCS#getOwningElement <em>Owning Element</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getTemplateBindingCS()
  * @model

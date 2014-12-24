@@ -24,7 +24,6 @@ import org.eclipse.ocl.xtext.essentialoclcs.impl.ExpCSImpl;
  * An implementation of the model object '<em><b>Ocl Message Arg CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * </p>
  *
  * @generated
  */

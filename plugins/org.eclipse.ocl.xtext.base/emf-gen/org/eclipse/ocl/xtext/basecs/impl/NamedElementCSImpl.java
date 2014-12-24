@@ -22,11 +22,12 @@ import org.eclipse.ocl.xtext.basecs.NamedElementCS;
  * An implementation of the model object '<em><b>Named Element CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.NamedElementCSImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

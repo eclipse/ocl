@@ -20,10 +20,10 @@ import org.eclipse.ocl.xtext.basecs.AttributeCS;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.oclstdlibcs.LibPropertyCS#isIsStatic <em>Is Static</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.oclstdlibcs.OCLstdlibCSPackage#getLibPropertyCS()
  * @model

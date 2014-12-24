@@ -317,15 +317,6 @@ public interface BaseCSPackage extends EPackage {
 	int NAMED_ELEMENT_CS_FEATURE_COUNT = MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION_ELEMENT_CS__PARENT = NAMED_ELEMENT_CS__PARENT;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.TypedElementCSImpl <em>Typed Element CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -604,6 +595,15 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 */
 	int ENUMERATION_LITERAL_CS = 12;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION_ELEMENT_CS__PARENT = NAMED_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1291,15 +1291,6 @@ public interface BaseCSPackage extends EPackage {
 	int CLASS_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 5;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT_CS__PARENT = NAMED_ELEMENT_CS__PARENT;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.ElementRefCSImpl <em>Element Ref CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1328,6 +1319,15 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 */
 	int MODEL_ELEMENT_REF_CS = 18;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT_CS__PARENT = NAMED_ELEMENT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -4796,6 +4796,17 @@ public interface BaseCSPackage extends EPackage {
 	EClass getModelElementCS();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.basecs.ModelElementCS#getCsi <em>Csi</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Csi</em>'.
+	 * @see org.eclipse.ocl.xtext.basecs.ModelElementCS#getCsi()
+	 * @see #getModelElementCS()
+	 * @generated
+	 */
+	EAttribute getModelElementCS_Csi();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.xtext.basecs.ModelElementCS#getOwnedAnnotations <em>Owned Annotations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4816,17 +4827,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getModelElementCS_OriginalXmiId();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.basecs.ModelElementCS#getCsi <em>Csi</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Csi</em>'.
-	 * @see org.eclipse.ocl.xtext.basecs.ModelElementCS#getCsi()
-	 * @see #getModelElementCS()
-	 * @generated
-	 */
-	EAttribute getModelElementCS_Csi();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.basecs.ModelElementRefCS <em>Model Element Ref CS</em>}'.
@@ -6269,6 +6269,14 @@ public interface BaseCSPackage extends EPackage {
 		EClass MODEL_ELEMENT_CS = eINSTANCE.getModelElementCS();
 
 		/**
+		 * The meta object literal for the '<em><b>Csi</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MODEL_ELEMENT_CS__CSI = eINSTANCE.getModelElementCS_Csi();
+
+		/**
 		 * The meta object literal for the '<em><b>Owned Annotations</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6283,14 +6291,6 @@ public interface BaseCSPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MODEL_ELEMENT_CS__ORIGINAL_XMI_ID = eINSTANCE.getModelElementCS_OriginalXmiId();
-
-		/**
-		 * The meta object literal for the '<em><b>Csi</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MODEL_ELEMENT_CS__CSI = eINSTANCE.getModelElementCS_Csi();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.basecs.impl.ModelElementRefCSImpl <em>Model Element Ref CS</em>}' class.

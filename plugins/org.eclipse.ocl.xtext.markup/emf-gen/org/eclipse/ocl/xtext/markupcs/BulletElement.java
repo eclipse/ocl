@@ -17,10 +17,10 @@ package org.eclipse.ocl.xtext.markupcs;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.markupcs.BulletElement#getLevel <em>Level</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.markupcs.MarkupPackage#getBulletElement()
  * @model

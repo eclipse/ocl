@@ -31,12 +31,13 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
  * An implementation of the model object '<em><b>Annotation CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.AnnotationCSImpl#getOwnedContents <em>Owned Contents</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.AnnotationCSImpl#getOwnedReferences <em>Owned References</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

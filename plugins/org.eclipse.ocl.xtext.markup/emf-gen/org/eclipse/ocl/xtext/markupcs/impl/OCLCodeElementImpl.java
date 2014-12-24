@@ -19,7 +19,6 @@ import org.eclipse.ocl.xtext.markupcs.OCLCodeElement;
  * An implementation of the model object '<em><b>Ocl Code Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * </p>
  *
  * @generated
  */

@@ -20,6 +20,7 @@ import org.eclipse.ocl.xtext.basecs.TypedRefCS;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.NavigatingArgCS#getOwnedInitExpression <em>Owned Init Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.NavigatingArgCS#getOwnedNameExpression <em>Owned Name Expression</em>}</li>
@@ -28,7 +29,6 @@ import org.eclipse.ocl.xtext.basecs.TypedRefCS;
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.NavigatingArgCS#getPrefix <em>Prefix</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.NavigatingArgCS#getRole <em>Role</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getNavigatingArgCS()
  * @model

@@ -28,11 +28,12 @@ import org.eclipse.ocl.xtext.oclinecorecs.util.OCLinEcoreCSVisitor;
  * An implementation of the model object '<em><b>Sys MLCS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.oclinecorecs.impl.SysMLCSImpl#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

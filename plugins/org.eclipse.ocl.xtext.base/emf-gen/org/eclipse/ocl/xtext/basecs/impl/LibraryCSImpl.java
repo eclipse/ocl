@@ -26,11 +26,12 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
  * An implementation of the model object '<em><b>Library CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.LibraryCSImpl#getReferredPackage <em>Referred Package</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

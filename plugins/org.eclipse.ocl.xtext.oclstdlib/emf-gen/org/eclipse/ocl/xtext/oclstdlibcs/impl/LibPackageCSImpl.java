@@ -32,11 +32,12 @@ import org.eclipse.ocl.xtext.oclstdlibcs.util.OCLstdlibCSVisitor;
  * An implementation of the model object '<em><b>Lib Package CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.oclstdlibcs.impl.LibPackageCSImpl#getOwnedPrecedences <em>Owned Precedences</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -17,12 +17,12 @@ package org.eclipse.ocl.xtext.basecs;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.ConstraintCS#getOwnedMessageSpecification <em>Owned Message Specification</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.ConstraintCS#getOwnedSpecification <em>Owned Specification</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.ConstraintCS#getStereotype <em>Stereotype</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getConstraintCS()
  * @model

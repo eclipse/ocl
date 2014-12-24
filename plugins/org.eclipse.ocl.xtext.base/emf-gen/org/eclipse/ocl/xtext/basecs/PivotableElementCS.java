@@ -20,10 +20,10 @@ import org.eclipse.ocl.pivot.utilities.Pivotable;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.PivotableElementCS#getPivot <em>Pivot</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getPivotableElementCS()
  * @model abstract="true" superTypes="org.eclipse.ocl.xtext.basecs.ElementCS org.eclipse.ocl.pivot.Pivotable"

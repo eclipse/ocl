@@ -36,12 +36,13 @@ import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
  * An implementation of the model object '<em><b>Round Bracketed Clause CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.RoundBracketedClauseCSImpl#getOwnedArguments <em>Owned Arguments</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.RoundBracketedClauseCSImpl#getOwningNameExp <em>Owning Name Exp</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

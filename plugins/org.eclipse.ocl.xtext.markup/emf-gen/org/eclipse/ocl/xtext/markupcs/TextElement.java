@@ -19,10 +19,10 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.markupcs.TextElement#getText <em>Text</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.markupcs.MarkupPackage#getTextElement()
  * @model

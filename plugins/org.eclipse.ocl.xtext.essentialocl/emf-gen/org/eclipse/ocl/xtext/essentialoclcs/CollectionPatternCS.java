@@ -20,13 +20,13 @@ import org.eclipse.ocl.xtext.basecs.TypedRefCS;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.CollectionPatternCS#getOwnedParts <em>Owned Parts</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.CollectionPatternCS#getOwnedPatternGuard <em>Owned Pattern Guard</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.CollectionPatternCS#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.CollectionPatternCS#getRestVariableName <em>Rest Variable Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getCollectionPatternCS()
  * @model

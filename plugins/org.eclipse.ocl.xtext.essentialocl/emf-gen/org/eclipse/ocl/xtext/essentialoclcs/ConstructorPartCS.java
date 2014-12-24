@@ -21,12 +21,12 @@ import org.eclipse.ocl.xtext.basecs.ModelElementCS;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS#getOwnedInitExpression <em>Owned Init Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS#getOwningCurlyBracketClause <em>Owning Curly Bracket Clause</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS#getReferredProperty <em>Referred Property</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getConstructorPartCS()
  * @model superTypes="org.eclipse.ocl.xtext.basecs.ModelElementCS org.eclipse.ocl.pivot.Nameable"

@@ -35,14 +35,15 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
  * An implementation of the model object '<em><b>Class CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.StructuredClassCSImpl#getOwnedMetaclass <em>Owned Metaclass</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.StructuredClassCSImpl#getOwnedOperations <em>Owned Operations</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.StructuredClassCSImpl#getOwnedProperties <em>Owned Properties</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.StructuredClassCSImpl#getOwnedSuperTypes <em>Owned Super Types</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

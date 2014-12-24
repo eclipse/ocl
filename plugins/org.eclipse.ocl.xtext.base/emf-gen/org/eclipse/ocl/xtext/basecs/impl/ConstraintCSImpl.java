@@ -27,13 +27,14 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
  * An implementation of the model object '<em><b>Constraint CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ConstraintCSImpl#getOwnedMessageSpecification <em>Owned Message Specification</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ConstraintCSImpl#getOwnedSpecification <em>Owned Specification</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ConstraintCSImpl#getStereotype <em>Stereotype</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

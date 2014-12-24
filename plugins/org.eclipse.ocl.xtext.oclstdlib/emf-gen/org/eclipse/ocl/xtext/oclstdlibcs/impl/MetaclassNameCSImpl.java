@@ -26,11 +26,12 @@ import org.eclipse.ocl.xtext.oclstdlibcs.util.OCLstdlibCSVisitor;
  * An implementation of the model object '<em><b>Meta Type Name</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.oclstdlibcs.impl.MetaclassNameCSImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

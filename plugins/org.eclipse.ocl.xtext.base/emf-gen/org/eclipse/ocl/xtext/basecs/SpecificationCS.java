@@ -18,10 +18,10 @@ package org.eclipse.ocl.xtext.basecs;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.SpecificationCS#getExprString <em>Expr String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getSpecificationCS()
  * @model

@@ -19,10 +19,10 @@ import org.eclipse.ocl.xtext.basecs.SpecificationCS;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.ExpSpecificationCS#getOwnedExpression <em>Owned Expression</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getExpSpecificationCS()
  * @model

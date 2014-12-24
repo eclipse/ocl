@@ -19,7 +19,6 @@ import org.eclipse.ocl.xtext.basecs.ContextLessElementCS;
  * An implementation of the model object '<em><b>Context Less Element CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * </p>
  *
  * @generated
  */

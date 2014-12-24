@@ -36,7 +36,9 @@ import org.eclipse.ocl.xtext.basecs.TypeCS;
  * An implementation of the model object '<em><b>Classifier CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ClassCSImpl#getOwnedSignature <em>Owned Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ClassCSImpl#getInstanceClassName <em>Instance Class Name</em>}</li>
@@ -44,7 +46,6 @@ import org.eclipse.ocl.xtext.basecs.TypeCS;
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ClassCSImpl#getOwningPackage <em>Owning Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ClassCSImpl#getQualifiers <em>Qualifiers</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

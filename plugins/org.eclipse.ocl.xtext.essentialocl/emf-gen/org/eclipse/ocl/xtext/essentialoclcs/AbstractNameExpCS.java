@@ -13,6 +13,7 @@ import org.eclipse.ocl.xtext.basecs.PathNameCS;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.AbstractNameExpCS#isIsPre <em>Is Pre</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.AbstractNameExpCS#getOwnedCurlyBracketedClause <em>Owned Curly Bracketed Clause</em>}</li>
@@ -22,7 +23,6 @@ import org.eclipse.ocl.xtext.basecs.PathNameCS;
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.AbstractNameExpCS#getSourceType <em>Source Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.AbstractNameExpCS#getSourceTypeValue <em>Source Type Value</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getAbstractNameExpCS()
  * @model abstract="true"

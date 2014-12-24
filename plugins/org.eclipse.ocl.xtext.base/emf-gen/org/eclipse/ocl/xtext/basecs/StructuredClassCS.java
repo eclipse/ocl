@@ -20,13 +20,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.StructuredClassCS#getOwnedMetaclass <em>Owned Metaclass</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.StructuredClassCS#getOwnedOperations <em>Owned Operations</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.StructuredClassCS#getOwnedProperties <em>Owned Properties</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.StructuredClassCS#getOwnedSuperTypes <em>Owned Super Types</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getStructuredClassCS()
  * @model

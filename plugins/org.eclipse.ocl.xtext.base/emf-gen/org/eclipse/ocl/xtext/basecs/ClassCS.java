@@ -20,13 +20,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.ClassCS#getInstanceClassName <em>Instance Class Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.ClassCS#getOwnedConstraints <em>Owned Constraints</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.ClassCS#getOwningPackage <em>Owning Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.ClassCS#getQualifiers <em>Qualifiers</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getClassCS()
  * @model abstract="true"

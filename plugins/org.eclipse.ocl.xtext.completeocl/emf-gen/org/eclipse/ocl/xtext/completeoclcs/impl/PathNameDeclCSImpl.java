@@ -31,11 +31,12 @@ import org.eclipse.ocl.xtext.completeoclcs.PathNameDeclCS;
  * An implementation of the model object '<em><b>Named Element Decl CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.impl.PathNameDeclCSImpl#getOwnedPathName <em>Owned Path Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

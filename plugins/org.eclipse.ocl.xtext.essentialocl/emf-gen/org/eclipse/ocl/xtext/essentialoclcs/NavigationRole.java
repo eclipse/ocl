@@ -127,6 +127,8 @@ public enum NavigationRole
 	 * Returns the '<em><b>Navigation Role</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static NavigationRole get(String literal) {
@@ -145,6 +147,8 @@ public enum NavigationRole
 	 * Returns the '<em><b>Navigation Role</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static NavigationRole getByName(String name) {
@@ -163,6 +167,8 @@ public enum NavigationRole
 	 * Returns the '<em><b>Navigation Role</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static NavigationRole get(int value) {

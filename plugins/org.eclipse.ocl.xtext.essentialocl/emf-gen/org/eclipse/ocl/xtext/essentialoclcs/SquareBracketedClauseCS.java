@@ -20,11 +20,11 @@ import org.eclipse.ocl.xtext.basecs.ContextLessElementCS;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.SquareBracketedClauseCS#getOwnedTerms <em>Owned Terms</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.SquareBracketedClauseCS#getOwningNameExp <em>Owning Name Exp</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getSquareBracketedClauseCS()
  * @model

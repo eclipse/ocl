@@ -36,12 +36,13 @@ import org.eclipse.ocl.xtext.completeoclcs.util.CompleteOCLCSVisitor;
  * An implementation of the model object '<em><b>Def Operation CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.impl.DefOperationCSImpl#getOwnedSignature <em>Owned Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.impl.DefOperationCSImpl#getOwnedParameters <em>Owned Parameters</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

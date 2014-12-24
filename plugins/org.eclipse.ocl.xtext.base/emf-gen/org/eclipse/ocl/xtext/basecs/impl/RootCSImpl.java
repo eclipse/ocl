@@ -28,12 +28,13 @@ import org.eclipse.ocl.xtext.basecs.RootCS;
  * An implementation of the model object '<em><b>Root CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.RootCSImpl#getOwnedImports <em>Owned Imports</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.RootCSImpl#getOwnedLibraries <em>Owned Libraries</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

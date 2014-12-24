@@ -27,12 +27,13 @@ import org.eclipse.ocl.xtext.essentialoclcs.VariableCS;
  * An implementation of the model object '<em><b>Iteration Call Exp CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.IterationCallExpCSImpl#getIterators <em>Iterators</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.IterationCallExpCSImpl#getReferredIteration <em>Referred Iteration</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -28,12 +28,13 @@ import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
  * An implementation of the model object '<em><b>Pattern Exp CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.PatternExpCSImpl#getOwnedPatternType <em>Owned Pattern Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.PatternExpCSImpl#getPatternVariableName <em>Pattern Variable Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -45,7 +45,9 @@ import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
  * An implementation of the model object '<em><b>Named Element Ref CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.NameExpCSImpl#getParts <em>Parts</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.NameExpCSImpl#getTypeName <em>Type Name</em>}</li>
@@ -57,7 +59,6 @@ import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.NameExpCSImpl#getReferredProperty <em>Referred Property</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.NameExpCSImpl#getReferredVariable <em>Referred Variable</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

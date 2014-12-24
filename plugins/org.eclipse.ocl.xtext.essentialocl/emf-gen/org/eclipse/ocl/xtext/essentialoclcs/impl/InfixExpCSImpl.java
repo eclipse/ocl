@@ -28,12 +28,13 @@ import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
  * An implementation of the model object '<em><b>Binary Expression CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.InfixExpCSImpl#getArgument <em>Argument</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.InfixExpCSImpl#getOwnedLeft <em>Owned Left</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -27,12 +27,13 @@ import org.eclipse.ocl.xtext.markupcs.MarkupPackage;
  * An implementation of the model object '<em><b>Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.markupcs.impl.MarkupElementImpl#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.markupcs.impl.MarkupElementImpl#getUniqueId <em>Unique Id</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

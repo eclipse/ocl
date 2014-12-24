@@ -41,7 +41,9 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
  * An implementation of the model object '<em><b>Operation CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.OperationCSImpl#getOwnedSignature <em>Owned Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.OperationCSImpl#getOwnedBodyExpressions <em>Owned Body Expressions</em>}</li>
@@ -51,7 +53,6 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.OperationCSImpl#getOwnedPreconditions <em>Owned Preconditions</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.OperationCSImpl#getOwningClass <em>Owning Class</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

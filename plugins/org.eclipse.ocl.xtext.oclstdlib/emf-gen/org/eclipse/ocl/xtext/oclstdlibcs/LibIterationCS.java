@@ -22,13 +22,13 @@ import org.eclipse.ocl.xtext.basecs.ParameterCS;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.oclstdlibcs.LibIterationCS#isIsInvalidating <em>Is Invalidating</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.oclstdlibcs.LibIterationCS#isIsValidating <em>Is Validating</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.oclstdlibcs.LibIterationCS#getOwnedAccumulators <em>Owned Accumulators</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.oclstdlibcs.LibIterationCS#getOwnedIterators <em>Owned Iterators</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.oclstdlibcs.OCLstdlibCSPackage#getLibIterationCS()
  * @model

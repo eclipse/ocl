@@ -28,12 +28,13 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
  * An implementation of the model object '<em><b>Model Element Ref CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ModelElementRefCSImpl#getOwnedPathName <em>Owned Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ModelElementRefCSImpl#getReferredElement <em>Referred Element</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

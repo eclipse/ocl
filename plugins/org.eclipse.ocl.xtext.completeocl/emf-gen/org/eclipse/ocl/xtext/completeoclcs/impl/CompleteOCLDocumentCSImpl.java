@@ -40,7 +40,9 @@ import org.eclipse.ocl.xtext.completeoclcs.util.CompleteOCLCSVisitor;
  * An implementation of the model object '<em><b>Document CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.impl.CompleteOCLDocumentCSImpl#getOwnedImports <em>Owned Imports</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.impl.CompleteOCLDocumentCSImpl#getOwnedLibraries <em>Owned Libraries</em>}</li>
@@ -48,7 +50,6 @@ import org.eclipse.ocl.xtext.completeoclcs.util.CompleteOCLCSVisitor;
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.impl.CompleteOCLDocumentCSImpl#getOwnedIncludes <em>Owned Includes</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.impl.CompleteOCLDocumentCSImpl#getOwnedPackages <em>Owned Packages</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -19,13 +19,13 @@ import org.eclipse.ocl.pivot.Type;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.TypedTypeRefCS#isIsTypeof <em>Is Typeof</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.TypedTypeRefCS#getOwnedBinding <em>Owned Binding</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.TypedTypeRefCS#getOwnedPathName <em>Owned Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.TypedTypeRefCS#getReferredType <em>Referred Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getTypedTypeRefCS()
  * @model

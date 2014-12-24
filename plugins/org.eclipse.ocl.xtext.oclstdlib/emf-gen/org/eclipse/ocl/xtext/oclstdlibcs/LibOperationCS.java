@@ -21,13 +21,13 @@ import org.eclipse.ocl.xtext.basecs.OperationCS;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.oclstdlibcs.LibOperationCS#isIsInvalidating <em>Is Invalidating</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.oclstdlibcs.LibOperationCS#isIsStatic <em>Is Static</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.oclstdlibcs.LibOperationCS#isIsValidating <em>Is Validating</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.oclstdlibcs.LibOperationCS#getPrecedence <em>Precedence</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.oclstdlibcs.OCLstdlibCSPackage#getLibOperationCS()
  * @model

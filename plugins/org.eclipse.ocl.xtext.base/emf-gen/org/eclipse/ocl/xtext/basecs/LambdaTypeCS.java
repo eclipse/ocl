@@ -20,13 +20,13 @@ import org.eclipse.ocl.pivot.Nameable;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.LambdaTypeCS#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.LambdaTypeCS#getOwnedContextType <em>Owned Context Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.LambdaTypeCS#getOwnedParameterTypes <em>Owned Parameter Types</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.LambdaTypeCS#getOwnedResultType <em>Owned Result Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getLambdaTypeCS()
  * @model superTypes="org.eclipse.ocl.xtext.basecs.TypedRefCS org.eclipse.ocl.xtext.basecs.TemplateableElementCS org.eclipse.ocl.pivot.Nameable"

@@ -20,12 +20,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.PackageCS#getNsPrefix <em>Ns Prefix</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.PackageCS#getNsURI <em>Ns URI</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.PackageCS#getOwnedClasses <em>Owned Classes</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getPackageCS()
  * @model

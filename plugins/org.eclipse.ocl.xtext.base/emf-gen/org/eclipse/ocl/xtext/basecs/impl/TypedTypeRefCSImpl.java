@@ -29,14 +29,15 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
  * An implementation of the model object '<em><b>Typed Type Ref CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.TypedTypeRefCSImpl#isIsTypeof <em>Is Typeof</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.TypedTypeRefCSImpl#getOwnedBinding <em>Owned Binding</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.TypedTypeRefCSImpl#getOwnedPathName <em>Owned Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.TypedTypeRefCSImpl#getReferredType <em>Referred Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

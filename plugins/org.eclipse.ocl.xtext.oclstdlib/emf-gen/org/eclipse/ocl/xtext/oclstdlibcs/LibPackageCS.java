@@ -20,10 +20,10 @@ import org.eclipse.ocl.xtext.basecs.PackageCS;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.oclstdlibcs.LibPackageCS#getOwnedPrecedences <em>Owned Precedences</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.oclstdlibcs.OCLstdlibCSPackage#getLibPackageCS()
  * @model

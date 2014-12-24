@@ -25,7 +25,9 @@ import org.eclipse.ocl.xtext.essentialoclcs.SquareBracketedClauseCS;
  * An implementation of the model object '<em><b>Abstract Name Exp CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.AbstractNameExpCSImpl#isIsPre <em>Is Pre</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.AbstractNameExpCSImpl#getOwnedCurlyBracketedClause <em>Owned Curly Bracketed Clause</em>}</li>
@@ -35,7 +37,6 @@ import org.eclipse.ocl.xtext.essentialoclcs.SquareBracketedClauseCS;
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.AbstractNameExpCSImpl#getSourceType <em>Source Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.AbstractNameExpCSImpl#getSourceTypeValue <em>Source Type Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -990,6 +990,17 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * @generated
 	 */
 	@Override
+	public EAttribute getModelElementCS_Csi()
+	{
+		return (EAttribute)modelElementCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EReference getModelElementCS_OwnedAnnotations()
 	{
 		return (EReference)modelElementCSEClass.getEStructuralFeatures().get(2);
@@ -1003,17 +1014,6 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	@Override
 	public EAttribute getModelElementCS_OriginalXmiId() {
 		return (EAttribute)modelElementCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getModelElementCS_Csi()
-	{
-		return (EAttribute)modelElementCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**

@@ -30,13 +30,14 @@ import org.eclipse.ocl.xtext.basecs.ModelElementCS;
  * An implementation of the model object '<em><b>Model Element CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ModelElementCSImpl#getCsi <em>Csi</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ModelElementCSImpl#getOriginalXmiId <em>Original Xmi Id</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ModelElementCSImpl#getOwnedAnnotations <em>Owned Annotations</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -116,6 +117,31 @@ public abstract class ModelElementCSImpl extends PivotableElementCSImpl implemen
 	 * @generated
 	 */
 	@Override
+	public String getCsi()
+	{
+		return csi;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setCsi(String newCsi)
+	{
+		String oldCsi = csi;
+		csi = newCsi;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.MODEL_ELEMENT_CS__CSI, oldCsi, csi));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EList<AnnotationElementCS> getOwnedAnnotations()
 	{
 		if (ownedAnnotations == null)
@@ -146,31 +172,6 @@ public abstract class ModelElementCSImpl extends PivotableElementCSImpl implemen
 		originalXmiId = newOriginalXmiId;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID, oldOriginalXmiId, originalXmiId));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getCsi()
-	{
-		return csi;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setCsi(String newCsi)
-	{
-		String oldCsi = csi;
-		csi = newCsi;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.MODEL_ELEMENT_CS__CSI, oldCsi, csi));
 	}
 
 	/**

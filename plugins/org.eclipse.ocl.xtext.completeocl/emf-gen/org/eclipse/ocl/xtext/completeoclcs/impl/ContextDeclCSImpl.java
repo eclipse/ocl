@@ -20,7 +20,6 @@ import org.eclipse.ocl.xtext.completeoclcs.ContextDeclCS;
  * An implementation of the model object '<em><b>Context Decl CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * </p>
  *
  * @generated
  */

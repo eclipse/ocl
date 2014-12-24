@@ -18,11 +18,11 @@ package org.eclipse.ocl.xtext.basecs;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.TemplateParameterSubstitutionCS#getOwnedActualParameter <em>Owned Actual Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.TemplateParameterSubstitutionCS#getOwningBinding <em>Owning Binding</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getTemplateParameterSubstitutionCS()
  * @model

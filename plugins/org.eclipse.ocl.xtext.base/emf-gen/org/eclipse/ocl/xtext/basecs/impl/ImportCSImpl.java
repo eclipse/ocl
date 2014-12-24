@@ -29,13 +29,14 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
  * An implementation of the model object '<em><b>Import CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ImportCSImpl#isIsAll <em>Is All</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ImportCSImpl#getOwnedPathName <em>Owned Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ImportCSImpl#getReferredNamespace <em>Referred Namespace</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

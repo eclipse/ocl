@@ -21,12 +21,12 @@ import org.eclipse.ocl.xtext.basecs.RootCS;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.CompleteOCLDocumentCS#getOwnedContexts <em>Owned Contexts</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.CompleteOCLDocumentCS#getOwnedIncludes <em>Owned Includes</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.CompleteOCLDocumentCS#getOwnedPackages <em>Owned Packages</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage#getCompleteOCLDocumentCS()
  * @model

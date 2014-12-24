@@ -19,10 +19,10 @@ import org.eclipse.ocl.pivot.AssociationClass;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.AssociationClassCallExpCS#getReferredAssociation <em>Referred Association</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getAssociationClassCallExpCS()
  * @model abstract="true"

@@ -41,7 +41,9 @@ import org.eclipse.ocl.xtext.completeoclcs.util.CompleteOCLCSVisitor;
  * An implementation of the model object '<em><b>Classifier Context Decl CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.impl.ClassifierContextDeclCSImpl#getOwnedSignature <em>Owned Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.impl.ClassifierContextDeclCSImpl#getOwnedDefinitions <em>Owned Definitions</em>}</li>
@@ -49,7 +51,6 @@ import org.eclipse.ocl.xtext.completeoclcs.util.CompleteOCLCSVisitor;
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.impl.ClassifierContextDeclCSImpl#getReferredClass <em>Referred Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.impl.ClassifierContextDeclCSImpl#getSelfName <em>Self Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

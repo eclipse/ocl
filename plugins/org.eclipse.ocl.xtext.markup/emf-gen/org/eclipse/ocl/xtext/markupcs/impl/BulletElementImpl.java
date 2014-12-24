@@ -21,11 +21,12 @@ import org.eclipse.ocl.xtext.markupcs.MarkupPackage;
  * An implementation of the model object '<em><b>Bullet Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.markupcs.impl.BulletElementImpl#getLevel <em>Level</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -20,10 +20,10 @@ import org.eclipse.ocl.xtext.basecs.RootCS;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.ContextCS#getOwnedExpression <em>Owned Expression</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getContextCS()
  * @model

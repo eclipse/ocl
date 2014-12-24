@@ -20,11 +20,11 @@ import org.eclipse.ocl.pivot.Iteration;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.IterationCallExpCS#getIterators <em>Iterators</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.IterationCallExpCS#getReferredIteration <em>Referred Iteration</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getIterationCallExpCS()
  * @model abstract="true"

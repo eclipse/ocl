@@ -19,12 +19,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.LetExpCS#isIsImplicit <em>Is Implicit</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.LetExpCS#getOwnedInExpression <em>Owned In Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.LetExpCS#getOwnedVariables <em>Owned Variables</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getLetExpCS()
  * @model

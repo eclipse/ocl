@@ -21,11 +21,12 @@ import org.eclipse.ocl.xtext.markupcs.MarkupPackage;
  * An implementation of the model object '<em><b>Font Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.markupcs.impl.FontElementImpl#getFont <em>Font</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

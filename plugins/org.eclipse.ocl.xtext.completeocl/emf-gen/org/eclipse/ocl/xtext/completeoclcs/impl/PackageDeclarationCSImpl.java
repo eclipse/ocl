@@ -35,13 +35,14 @@ import org.eclipse.ocl.xtext.completeoclcs.util.CompleteOCLCSVisitor;
  * An implementation of the model object '<em><b>Package Declaration CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.impl.PackageDeclarationCSImpl#getOwnedContexts <em>Owned Contexts</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.impl.PackageDeclarationCSImpl#getOwnedInvariants <em>Owned Invariants</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.impl.PackageDeclarationCSImpl#getReferredPackage <em>Referred Package</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

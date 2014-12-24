@@ -28,11 +28,12 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
  * An implementation of the model object '<em><b>Parameter CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ParameterCSImpl#getOwningOperation <em>Owning Operation</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

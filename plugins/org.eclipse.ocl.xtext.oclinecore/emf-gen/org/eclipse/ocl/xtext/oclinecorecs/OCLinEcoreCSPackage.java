@@ -82,15 +82,6 @@ public interface OCLinEcoreCSPackage extends EPackage {
 	int OC_LIN_ECORE_CONSTRAINT_CS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__PARENT = BaseCSPackage.CONSTRAINT_CS__PARENT;
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.oclinecorecs.OCLinEcoreConstraintCS <em>OC Lin Ecore Constraint CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -150,6 +141,15 @@ public interface OCLinEcoreCSPackage extends EPackage {
 	 * @generated
 	 */
 	OCLinEcoreCSFactory getOCLinEcoreCSFactory();
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OC_LIN_ECORE_CONSTRAINT_CS__PARENT = BaseCSPackage.CONSTRAINT_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.

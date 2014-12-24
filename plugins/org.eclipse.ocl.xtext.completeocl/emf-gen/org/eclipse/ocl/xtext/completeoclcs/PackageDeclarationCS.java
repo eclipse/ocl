@@ -20,12 +20,12 @@ import org.eclipse.ocl.xtext.basecs.ConstraintCS;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.PackageDeclarationCS#getOwnedContexts <em>Owned Contexts</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.PackageDeclarationCS#getOwnedInvariants <em>Owned Invariants</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.PackageDeclarationCS#getReferredPackage <em>Referred Package</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage#getPackageDeclarationCS()
  * @model

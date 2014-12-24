@@ -34,12 +34,13 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
  * An implementation of the model object '<em><b>Template Signature CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.TemplateSignatureCSImpl#getOwnedParameters <em>Owned Parameters</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.TemplateSignatureCSImpl#getOwningElement <em>Owning Element</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

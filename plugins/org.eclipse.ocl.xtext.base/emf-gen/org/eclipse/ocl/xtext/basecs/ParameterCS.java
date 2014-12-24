@@ -20,10 +20,10 @@ package org.eclipse.ocl.xtext.basecs;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.ParameterCS#getOwningOperation <em>Owning Operation</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getParameterCS()
  * @model

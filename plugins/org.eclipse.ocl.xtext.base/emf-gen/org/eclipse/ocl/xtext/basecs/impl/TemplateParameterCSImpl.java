@@ -25,11 +25,12 @@ import org.eclipse.ocl.xtext.basecs.TemplateSignatureCS;
  * An implementation of the model object '<em><b>Template Parameter CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.TemplateParameterCSImpl#getOwningSignature <em>Owning Signature</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

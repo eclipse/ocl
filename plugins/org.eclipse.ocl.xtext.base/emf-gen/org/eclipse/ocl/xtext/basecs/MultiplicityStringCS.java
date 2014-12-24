@@ -18,10 +18,10 @@ package org.eclipse.ocl.xtext.basecs;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.MultiplicityStringCS#getStringBounds <em>String Bounds</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getMultiplicityStringCS()
  * @model

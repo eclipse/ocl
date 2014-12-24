@@ -19,11 +19,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.AnnotationCS#getOwnedContents <em>Owned Contents</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.AnnotationCS#getOwnedReferences <em>Owned References</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getAnnotationCS()
  * @model

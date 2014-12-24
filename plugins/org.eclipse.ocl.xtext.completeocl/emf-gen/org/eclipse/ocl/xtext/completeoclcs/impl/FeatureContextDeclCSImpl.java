@@ -25,11 +25,12 @@ import org.eclipse.ocl.xtext.completeoclcs.FeatureContextDeclCS;
  * An implementation of the model object '<em><b>Feature Context Decl CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.impl.FeatureContextDeclCSImpl#getOwnedType <em>Owned Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -21,12 +21,12 @@ import org.eclipse.ocl.pivot.Namespace;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.ImportCS#isIsAll <em>Is All</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.ImportCS#getOwnedPathName <em>Owned Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.ImportCS#getReferredNamespace <em>Referred Namespace</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getImportCS()
  * @model

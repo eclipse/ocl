@@ -24,10 +24,10 @@ import org.eclipse.ocl.xtext.basecs.util.VisitableCS;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.ElementCS#getParent <em>Parent</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getElementCS()
  * @model abstract="true" superTypes="org.eclipse.ocl.xtext.basecs.VisitableCS"

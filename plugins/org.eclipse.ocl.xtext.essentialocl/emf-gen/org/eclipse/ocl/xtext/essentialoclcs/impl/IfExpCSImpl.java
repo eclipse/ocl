@@ -34,7 +34,9 @@ import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
  * An implementation of the model object '<em><b>If Exp CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.IfExpCSImpl#isIsImplicit <em>Is Implicit</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.IfExpCSImpl#getOwnedCondition <em>Owned Condition</em>}</li>
@@ -42,7 +44,6 @@ import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.IfExpCSImpl#getOwnedIfThenExpressions <em>Owned If Then Expressions</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.IfExpCSImpl#getOwnedThenExpression <em>Owned Then Expression</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

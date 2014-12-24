@@ -21,10 +21,10 @@ import org.eclipse.ocl.xtext.basecs.TemplateableElementCS;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.DefOperationCS#getOwnedParameters <em>Owned Parameters</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage#getDefOperationCS()
  * @model

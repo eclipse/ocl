@@ -17,10 +17,10 @@ package org.eclipse.ocl.xtext.essentialoclcs;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.SelfExpCS#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getSelfExpCS()
  * @model

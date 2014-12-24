@@ -20,10 +20,10 @@ import org.eclipse.ocl.xtext.basecs.NamespaceCS;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.IncludeCS#getReferredNamespace <em>Referred Namespace</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage#getIncludeCS()
  * @model

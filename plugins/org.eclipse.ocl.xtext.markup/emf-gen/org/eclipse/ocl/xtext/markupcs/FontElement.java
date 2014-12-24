@@ -18,10 +18,10 @@ package org.eclipse.ocl.xtext.markupcs;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.markupcs.FontElement#getFont <em>Font</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.markupcs.MarkupPackage#getFontElement()
  * @model

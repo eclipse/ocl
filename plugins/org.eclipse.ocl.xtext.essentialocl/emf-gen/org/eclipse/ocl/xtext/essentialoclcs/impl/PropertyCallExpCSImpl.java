@@ -22,11 +22,12 @@ import org.eclipse.ocl.xtext.essentialoclcs.PropertyCallExpCS;
  * An implementation of the model object '<em><b>Property Call Exp CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.PropertyCallExpCSImpl#getReferredProperty <em>Referred Property</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

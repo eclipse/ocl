@@ -19,10 +19,10 @@ import org.eclipse.ocl.xtext.basecs.NamedElementCS;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.oclstdlibcs.PrecedenceCS#isIsRightAssociative <em>Is Right Associative</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.oclstdlibcs.OCLstdlibCSPackage#getPrecedenceCS()
  * @model

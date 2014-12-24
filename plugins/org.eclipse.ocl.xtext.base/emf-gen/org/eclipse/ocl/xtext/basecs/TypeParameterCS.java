@@ -19,11 +19,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.TypeParameterCS#getOwnedExtends <em>Owned Extends</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.TypeParameterCS#getOwnedSuper <em>Owned Super</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getTypeParameterCS()
  * @model

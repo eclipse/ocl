@@ -35,7 +35,9 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
  * An implementation of the model object '<em><b>Lambda Type CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.LambdaTypeCSImpl#getOwnedSignature <em>Owned Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.LambdaTypeCSImpl#getName <em>Name</em>}</li>
@@ -43,7 +45,6 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.LambdaTypeCSImpl#getOwnedParameterTypes <em>Owned Parameter Types</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.LambdaTypeCSImpl#getOwnedResultType <em>Owned Result Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

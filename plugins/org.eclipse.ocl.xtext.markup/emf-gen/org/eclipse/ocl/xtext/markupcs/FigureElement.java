@@ -18,6 +18,7 @@ package org.eclipse.ocl.xtext.markupcs;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.markupcs.FigureElement#getId <em>Id</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.markupcs.FigureElement#getSrc <em>Src</em>}</li>
@@ -28,7 +29,6 @@ package org.eclipse.ocl.xtext.markupcs;
  *   <li>{@link org.eclipse.ocl.xtext.markupcs.FigureElement#getActualWidth <em>Actual Width</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.markupcs.FigureElement#getActualHeight <em>Actual Height</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.markupcs.MarkupPackage#getFigureElement()
  * @model

@@ -20,11 +20,11 @@ import org.eclipse.ocl.pivot.Nameable;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.TupleTypeCS#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.TupleTypeCS#getOwnedParts <em>Owned Parts</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getTupleTypeCS()
  * @model superTypes="org.eclipse.ocl.xtext.basecs.TypedRefCS org.eclipse.ocl.pivot.Nameable"

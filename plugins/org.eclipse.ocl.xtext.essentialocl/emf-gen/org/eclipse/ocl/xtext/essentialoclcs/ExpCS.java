@@ -22,6 +22,7 @@ import org.eclipse.ocl.xtext.basecs.ModelElementCS;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.ExpCS#isHasError <em>Has Error</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.ExpCS#getLocalLeft <em>Local Left</em>}</li>
@@ -31,7 +32,6 @@ import org.eclipse.ocl.xtext.basecs.ModelElementCS;
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.ExpCS#getLocalRightmostDescendant <em>Local Rightmost Descendant</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.ExpCS#getPrecedence <em>Precedence</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getExpCS()
  * @model
