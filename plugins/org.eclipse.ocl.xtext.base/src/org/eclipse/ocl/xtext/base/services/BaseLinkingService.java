@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.utilities.IllegalLibraryException;
+import org.eclipse.ocl.pivot.utilities.TracingOption;
 import org.eclipse.ocl.xtext.base.cs2as.AmbiguitiesAdapter;
 import org.eclipse.ocl.xtext.base.cs2as.ExceptionAdapter;
 import org.eclipse.ocl.xtext.base.scoping.BaseScopeProvider;
@@ -40,7 +41,7 @@ import com.google.inject.Inject;
 
 public class BaseLinkingService extends DefaultLinkingService
 {
-	public static boolean DEBUG_RETRY = false;			// Set true to retry for debug tracing
+	public static final @NonNull TracingOption DEBUG_RETRY = new TracingOption("org.eclipse.ocl.xtext.base", "debug/retry");
 	
 	private static int depth = -1;
 	
@@ -86,14 +87,14 @@ public class BaseLinkingService extends DefaultLinkingService
 				eAdapters.remove(adapter);
 			}
 			if (linkedObjects.size() > 1) {
-				if (DEBUG_RETRY) {
+				if (DEBUG_RETRY.isActive()) {
 					scope.getElements(qualifiedName);
 				}
 				AmbiguitiesAdapter.setAmbiguities(context, linkedObjects);
 				return Collections.emptyList();
 			}
 			if (linkedObjects.size() <= 0) {
-				if (DEBUG_RETRY) {
+				if (DEBUG_RETRY.isActive()) {
 					scope.getElements(qualifiedName);
 				}
 			}

@@ -31,7 +31,7 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
 
 	@Override
     protected void setUp() throws Exception {
-		BaseLinkingService.DEBUG_RETRY = true;
+		BaseLinkingService.DEBUG_RETRY.setState(true);
         super.setUp();
         helper.setContext(metaModelManager.getStandardLibrary().getClassType());
     }

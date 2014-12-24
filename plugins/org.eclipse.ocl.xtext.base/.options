@@ -6,6 +6,9 @@ org.eclipse.ocl.xtext.base/lookup=false
 # Turn on general work tracing
 org.eclipse.ocl.xtext.base/work=false
 
-# Turn on c2 2 pivot continuation tracing
+# Turn on cs 2 as continuation tracing
 org.eclipse.ocl.xtext.base/continuation=false
+
+# Turn on debug retry of failed lookups
+org.eclipse.ocl.xtext.base/debug/retry=false
 

@@ -360,7 +360,7 @@ public class PivotTests extends XtextTestCase
 	}
 
 	public void testPivot_oclstdlib_oclstdlib() throws IOException, InterruptedException {
-		BaseLinkingService.DEBUG_RETRY = true;
+		BaseLinkingService.DEBUG_RETRY.setState(true);
 		doPivotTestOCLstdlib("oclstdlib");
 	}
 

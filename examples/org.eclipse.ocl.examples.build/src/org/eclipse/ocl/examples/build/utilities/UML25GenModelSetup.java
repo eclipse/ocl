@@ -21,7 +21,7 @@ import org.eclipse.ocl.xtext.essentialocl.EssentialOCLStandaloneSetup;
 public class UML25GenModelSetup extends UMLGenModelSetup
 {
 	public UML25GenModelSetup() {
-		BaseLinkingService.DEBUG_RETRY = true;
+		BaseLinkingService.DEBUG_RETRY.setState(true);
 	}
 	
 	@Override

@@ -50,7 +50,7 @@ public class GenerateModel extends AbstractWorkflowComponent {
 	
 	public GenerateModel() {
 		super();
-		BaseLinkingService.DEBUG_RETRY = true;
+		BaseLinkingService.DEBUG_RETRY.setState(true);
 	}
 
 	@Override
