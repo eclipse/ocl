@@ -49,6 +49,7 @@ import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.values.CollectionTypeParameters;
 import org.eclipse.ocl.pivot.values.impl.CollectionTypeParametersImpl;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
@@ -122,6 +123,7 @@ public class EditTests extends XtextTestCase
 	protected void replace(EssentialOCLCSResource xtextResource, String oldString, String newString) {
 		String xtextContent = xtextResource.getContents().get(0).toString();
 		int index = xtextContent.indexOf(oldString);
+		assert index >= 0;
 		xtextResource.update(index, oldString.length(), newString);
 	}	
 
@@ -742,6 +744,59 @@ public class EditTests extends XtextTestCase
 //			assertNoValidationErrors("Unpasting operation", xtextResource);
 //			assertNoResourceErrors("Unpasting operation", asResource);
 //			assertNoValidationErrors("Unpasting operation", asResource);
+//			URI ecoreURI3 = getProjectFileURI("test3.ecore");
+//			@SuppressWarnings("unused") Resource ecoreResource3 = as2ecore(ocl, asResource, ecoreURI3, true);
+		}
+	}	
+
+	public void testEdit_Paste_OCLstdlib() throws Exception {
+		String goodString = "coercion toUnlimitedNatural";
+		String badString = "coer cion toUnlimitedNatural";
+		OCLDelegateDomain.initialize(null);
+		OCLDelegateDomain.initialize(null, OCLConstants.OCL_DELEGATE_URI);
+		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		EssentialOCLCSResource xtextResource;
+		Resource asResource;
+		{
+//			URI ecoreURI1 = getProjectFileURI("test1.ecore");
+//			InputStream inputStream = new URIConverter.ReadableInputStream(testDocument, "UTF-8");
+//			URI outputURI = getProjectFileURI("test.ocl");
+			MetaModelManager metaModelManager = ocl.getMetaModelManager();
+			StandaloneProjectMap projectMap = metaModelManager.getProjectMap();
+			projectMap.initializeResourceSet(resourceSet);
+			URI libURI = URI.createPlatformResourceURI("org.eclipse.ocl.library/model/OCL-2.5.oclstdlib", true);
+			xtextResource = (EssentialOCLCSResource) resourceSet.createResource(libURI, null);
+			MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
+//			xtextResource.load(inputStream, null);
+			xtextResource.load(null);
+			asResource = cs2as(ocl, xtextResource, null);
+			assertNoResourceErrors("Loading", xtextResource);
+			assertNoValidationErrors("Loading", xtextResource);
+			assertNoResourceErrors("Loading", asResource);
+			assertNoValidationErrors("Loading", asResource);
+//			@SuppressWarnings("unused") Resource ecoreResource1 = as2ecore(ocl, asResource, ecoreURI1, true);
+		}
+		//
+		//	Change "coercion" to "coer cion" - a catastrophic syntax error
+		//
+		{
+			replace(xtextResource, goodString, badString);
+			assertResourceErrors("Pasting operation", xtextResource, "mismatched input 'coer' expecting '}'", "no viable alternative at 'type'");
+//			assertNoValidationErrors("Pasting operation", xtextResource);
+			assertNoResourceErrors("Pasting operation", asResource);
+			assertNoValidationErrors("Pasting operation", asResource);
+//			URI ecoreURI2 = getProjectFileURI("test2.ecore");
+//			@SuppressWarnings("unused") Resource ecoreResource2 = as2ecore(ocl, asResource, ecoreURI2, false);
+		}
+		//
+		//	Change "coer cion" back to "coercion".
+		//
+		{
+			replace(xtextResource, badString, goodString);
+			assertNoResourceErrors("Unpasting operation", xtextResource);
+			assertNoValidationErrors("Unpasting operation", xtextResource);
+			assertNoResourceErrors("Unpasting operation", asResource);
+			assertNoValidationErrors("Unpasting operation", asResource);
 //			URI ecoreURI3 = getProjectFileURI("test3.ecore");
 //			@SuppressWarnings("unused") Resource ecoreResource3 = as2ecore(ocl, asResource, ecoreURI3, true);
 		}
