@@ -25,7 +25,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.ocl.xtext.basecs.ClassCS#getInstanceClassName <em>Instance Class Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.ClassCS#getOwnedConstraints <em>Owned Constraints</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.ClassCS#getOwningPackage <em>Owning Package</em>}</li>
- *   <li>{@link org.eclipse.ocl.xtext.basecs.ClassCS#getQualifiers <em>Qualifiers</em>}</li>
  * </ul>
  *
  * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getClassCS()
@@ -102,21 +101,5 @@ public interface ClassCS extends NamedElementCS, TypeCS, TemplateableElementCS {
 	 * @generated
 	 */
 	EList<ConstraintCS> getOwnedConstraints();
-
-	/**
-	 * Returns the value of the '<em><b>Qualifiers</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Qualifier</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Qualifiers</em>' attribute list.
-	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getClassCS_Qualifiers()
-	 * @model dataType="org.eclipse.ocl.pivot.String"
-	 * @generated
-	 */
-	EList<String> getQualifiers();
 
 } // ClassifierCS

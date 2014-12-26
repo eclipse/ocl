@@ -19,7 +19,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -44,7 +43,6 @@ import org.eclipse.ocl.xtext.basecs.TypeCS;
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ClassCSImpl#getInstanceClassName <em>Instance Class Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ClassCSImpl#getOwnedConstraints <em>Owned Constraints</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ClassCSImpl#getOwningPackage <em>Owning Package</em>}</li>
- *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ClassCSImpl#getQualifiers <em>Qualifiers</em>}</li>
  * </ul>
  *
  * @generated
@@ -86,15 +84,6 @@ public abstract class ClassCSImpl extends NamedElementCSImpl implements ClassCS 
 	 * @ordered
 	 */
 	protected EList<ConstraintCS> ownedConstraints;
-	/**
-	 * The cached value of the '{@link #getQualifiers() <em>Qualifiers</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getQualifiers()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<String> qualifiers;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -254,21 +243,6 @@ public abstract class ClassCSImpl extends NamedElementCSImpl implements ClassCS 
 	 * @generated
 	 */
 	@Override
-	public EList<String> getQualifiers()
-	{
-		if (qualifiers == null)
-		{
-			qualifiers = new EDataTypeUniqueEList<String>(String.class, this, BaseCSPackage.CLASS_CS__QUALIFIERS);
-		}
-		return qualifiers;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public String toString()
 	{
 		return super.toString();
@@ -355,8 +329,6 @@ public abstract class ClassCSImpl extends NamedElementCSImpl implements ClassCS 
 				return getOwnedConstraints();
 			case BaseCSPackage.CLASS_CS__OWNING_PACKAGE:
 				return getOwningPackage();
-			case BaseCSPackage.CLASS_CS__QUALIFIERS:
-				return getQualifiers();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -384,10 +356,6 @@ public abstract class ClassCSImpl extends NamedElementCSImpl implements ClassCS 
 			case BaseCSPackage.CLASS_CS__OWNING_PACKAGE:
 				setOwningPackage((PackageCS)newValue);
 				return;
-			case BaseCSPackage.CLASS_CS__QUALIFIERS:
-				getQualifiers().clear();
-				getQualifiers().addAll((Collection<? extends String>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -413,9 +381,6 @@ public abstract class ClassCSImpl extends NamedElementCSImpl implements ClassCS 
 			case BaseCSPackage.CLASS_CS__OWNING_PACKAGE:
 				setOwningPackage((PackageCS)null);
 				return;
-			case BaseCSPackage.CLASS_CS__QUALIFIERS:
-				getQualifiers().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -437,8 +402,6 @@ public abstract class ClassCSImpl extends NamedElementCSImpl implements ClassCS 
 				return ownedConstraints != null && !ownedConstraints.isEmpty();
 			case BaseCSPackage.CLASS_CS__OWNING_PACKAGE:
 				return getOwningPackage() != null;
-			case BaseCSPackage.CLASS_CS__QUALIFIERS:
-				return qualifiers != null && !qualifiers.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -63,6 +63,7 @@ EnumerationLiteralName returns ecore::EString:
 |	'package'
 |	'postcondition'
 |	'precondition'
+|	'primitive'
 |	'property'
 |	'readonly'
 |	'reference'
@@ -134,7 +135,7 @@ DataTypeCS returns base::DataTypeCS:
 	isPrimitive ?= 'primitive'? 'datatype' name=UnrestrictedName
 	(ownedSignature=TemplateSignatureCS)?
 	(':' instanceClassName=SINGLE_QUOTED_STRING)?
-	('{' (qualifiers+='serializable' | qualifiers+='!serializable')? '}')?
+	('{' (isSerializable?='serializable' | '!serializable')? '}')?
 	(	('{' (ownedAnnotations+=AnnotationElementCS
 	        | ownedConstraints+=InvariantConstraintCS)* '}')
 	|	';'
@@ -155,7 +156,7 @@ EnumerationCS returns base::EnumerationCS:
 	'enum' name=UnrestrictedName
 	(ownedSignature=TemplateSignatureCS)?
 	(':' instanceClassName=SINGLE_QUOTED_STRING)?
-	('{' (qualifiers+='serializable' | qualifiers+='!serializable')? '}')?
+	('{' (isSerializable?='serializable' | '!serializable')? '}')?
 	(	('{' (ownedAnnotations+=AnnotationElementCS
 	        | ownedLiterals+=EnumerationLiteralCS
 	        | ownedConstraints+=InvariantConstraintCS)* '}')
@@ -255,12 +256,12 @@ SpecificationCS returns essentialocl::ExpSpecificationCS:
 ;
 
 StructuredClassCS returns base::StructuredClassCS:
-	qualifiers+='abstract'?
+	isAbstract?='abstract'?
 	'class' name=UnrestrictedName
 	(ownedSignature=TemplateSignatureCS)?
 	('extends' ownedSuperTypes+=TypedRefCS (',' ownedSuperTypes+=TypedRefCS)*)?
 	(':' instanceClassName=SINGLE_QUOTED_STRING)?
-	('{' qualifiers+='interface'
+	('{' isInterface?='interface'?
 	 '}')?
 	(	('{' (ownedAnnotations+=AnnotationElementCS
 	        | ownedOperations+=OperationCS

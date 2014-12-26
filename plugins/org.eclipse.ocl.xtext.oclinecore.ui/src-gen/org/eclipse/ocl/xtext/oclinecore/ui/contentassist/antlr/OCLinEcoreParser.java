@@ -349,8 +349,7 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDataTypeCSAccess().getNameAssignment_2(), "rule__DataTypeCS__NameAssignment_2");
 					put(grammarAccess.getDataTypeCSAccess().getOwnedSignatureAssignment_3(), "rule__DataTypeCS__OwnedSignatureAssignment_3");
 					put(grammarAccess.getDataTypeCSAccess().getInstanceClassNameAssignment_4_1(), "rule__DataTypeCS__InstanceClassNameAssignment_4_1");
-					put(grammarAccess.getDataTypeCSAccess().getQualifiersAssignment_5_1_0(), "rule__DataTypeCS__QualifiersAssignment_5_1_0");
-					put(grammarAccess.getDataTypeCSAccess().getQualifiersAssignment_5_1_1(), "rule__DataTypeCS__QualifiersAssignment_5_1_1");
+					put(grammarAccess.getDataTypeCSAccess().getIsSerializableAssignment_5_1_0(), "rule__DataTypeCS__IsSerializableAssignment_5_1_0");
 					put(grammarAccess.getDataTypeCSAccess().getOwnedAnnotationsAssignment_6_0_1_0(), "rule__DataTypeCS__OwnedAnnotationsAssignment_6_0_1_0");
 					put(grammarAccess.getDataTypeCSAccess().getOwnedConstraintsAssignment_6_0_1_1(), "rule__DataTypeCS__OwnedConstraintsAssignment_6_0_1_1");
 					put(grammarAccess.getDetailCSAccess().getNameAssignment_0(), "rule__DetailCS__NameAssignment_0");
@@ -361,8 +360,7 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getEnumerationCSAccess().getNameAssignment_1(), "rule__EnumerationCS__NameAssignment_1");
 					put(grammarAccess.getEnumerationCSAccess().getOwnedSignatureAssignment_2(), "rule__EnumerationCS__OwnedSignatureAssignment_2");
 					put(grammarAccess.getEnumerationCSAccess().getInstanceClassNameAssignment_3_1(), "rule__EnumerationCS__InstanceClassNameAssignment_3_1");
-					put(grammarAccess.getEnumerationCSAccess().getQualifiersAssignment_4_1_0(), "rule__EnumerationCS__QualifiersAssignment_4_1_0");
-					put(grammarAccess.getEnumerationCSAccess().getQualifiersAssignment_4_1_1(), "rule__EnumerationCS__QualifiersAssignment_4_1_1");
+					put(grammarAccess.getEnumerationCSAccess().getIsSerializableAssignment_4_1_0(), "rule__EnumerationCS__IsSerializableAssignment_4_1_0");
 					put(grammarAccess.getEnumerationCSAccess().getOwnedAnnotationsAssignment_5_0_1_0(), "rule__EnumerationCS__OwnedAnnotationsAssignment_5_0_1_0");
 					put(grammarAccess.getEnumerationCSAccess().getOwnedLiteralsAssignment_5_0_1_1(), "rule__EnumerationCS__OwnedLiteralsAssignment_5_0_1_1");
 					put(grammarAccess.getEnumerationCSAccess().getOwnedConstraintsAssignment_5_0_1_2(), "rule__EnumerationCS__OwnedConstraintsAssignment_5_0_1_2");
@@ -443,13 +441,13 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getReferenceCSAccess().getOwnedDefaultExpressionsAssignment_7_0_1_3_3(), "rule__ReferenceCS__OwnedDefaultExpressionsAssignment_7_0_1_3_3");
 					put(grammarAccess.getSpecificationCSAccess().getOwnedExpressionAssignment_0(), "rule__SpecificationCS__OwnedExpressionAssignment_0");
 					put(grammarAccess.getSpecificationCSAccess().getExprStringAssignment_1(), "rule__SpecificationCS__ExprStringAssignment_1");
-					put(grammarAccess.getStructuredClassCSAccess().getQualifiersAssignment_0(), "rule__StructuredClassCS__QualifiersAssignment_0");
+					put(grammarAccess.getStructuredClassCSAccess().getIsAbstractAssignment_0(), "rule__StructuredClassCS__IsAbstractAssignment_0");
 					put(grammarAccess.getStructuredClassCSAccess().getNameAssignment_2(), "rule__StructuredClassCS__NameAssignment_2");
 					put(grammarAccess.getStructuredClassCSAccess().getOwnedSignatureAssignment_3(), "rule__StructuredClassCS__OwnedSignatureAssignment_3");
 					put(grammarAccess.getStructuredClassCSAccess().getOwnedSuperTypesAssignment_4_1(), "rule__StructuredClassCS__OwnedSuperTypesAssignment_4_1");
 					put(grammarAccess.getStructuredClassCSAccess().getOwnedSuperTypesAssignment_4_2_1(), "rule__StructuredClassCS__OwnedSuperTypesAssignment_4_2_1");
 					put(grammarAccess.getStructuredClassCSAccess().getInstanceClassNameAssignment_5_1(), "rule__StructuredClassCS__InstanceClassNameAssignment_5_1");
-					put(grammarAccess.getStructuredClassCSAccess().getQualifiersAssignment_6_1(), "rule__StructuredClassCS__QualifiersAssignment_6_1");
+					put(grammarAccess.getStructuredClassCSAccess().getIsInterfaceAssignment_6_1(), "rule__StructuredClassCS__IsInterfaceAssignment_6_1");
 					put(grammarAccess.getStructuredClassCSAccess().getOwnedAnnotationsAssignment_7_0_1_0(), "rule__StructuredClassCS__OwnedAnnotationsAssignment_7_0_1_0");
 					put(grammarAccess.getStructuredClassCSAccess().getOwnedOperationsAssignment_7_0_1_1(), "rule__StructuredClassCS__OwnedOperationsAssignment_7_0_1_1");
 					put(grammarAccess.getStructuredClassCSAccess().getOwnedPropertiesAssignment_7_0_1_2(), "rule__StructuredClassCS__OwnedPropertiesAssignment_7_0_1_2");

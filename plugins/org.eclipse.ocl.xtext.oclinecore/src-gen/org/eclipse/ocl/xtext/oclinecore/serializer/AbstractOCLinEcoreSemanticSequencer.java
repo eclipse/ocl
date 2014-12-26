@@ -741,7 +741,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	 *         name=UnrestrictedName 
 	 *         ownedSignature=TemplateSignatureCS? 
 	 *         instanceClassName=SINGLE_QUOTED_STRING? 
-	 *         (qualifiers+='serializable' | qualifiers+='!serializable')? 
+	 *         isSerializable?='serializable'? 
 	 *         (ownedAnnotations+=AnnotationElementCS | ownedConstraints+=InvariantConstraintCS)*
 	 *     )
 	 */
@@ -774,7 +774,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	 *         name=UnrestrictedName 
 	 *         ownedSignature=TemplateSignatureCS? 
 	 *         instanceClassName=SINGLE_QUOTED_STRING? 
-	 *         (qualifiers+='serializable' | qualifiers+='!serializable')? 
+	 *         isSerializable?='serializable'? 
 	 *         (ownedAnnotations+=AnnotationElementCS | ownedLiterals+=EnumerationLiteralCS | ownedConstraints+=InvariantConstraintCS)*
 	 *     )
 	 */
@@ -971,12 +971,12 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	/**
 	 * Constraint:
 	 *     (
-	 *         qualifiers+='abstract'? 
+	 *         isAbstract?='abstract'? 
 	 *         name=UnrestrictedName 
 	 *         ownedSignature=TemplateSignatureCS? 
 	 *         (ownedSuperTypes+=TypedRefCS ownedSuperTypes+=TypedRefCS*)? 
 	 *         instanceClassName=SINGLE_QUOTED_STRING? 
-	 *         qualifiers+='interface'? 
+	 *         isInterface?='interface'? 
 	 *         (ownedAnnotations+=AnnotationElementCS | ownedOperations+=OperationCS | ownedProperties+=StructuralFeatureCS | ownedConstraints+=InvariantConstraintCS)*
 	 *     )
 	 */

@@ -39,6 +39,8 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.StructuredClassCSImpl#isIsAbstract <em>Is Abstract</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.StructuredClassCSImpl#isIsInterface <em>Is Interface</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.StructuredClassCSImpl#getOwnedMetaclass <em>Owned Metaclass</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.StructuredClassCSImpl#getOwnedOperations <em>Owned Operations</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.StructuredClassCSImpl#getOwnedProperties <em>Owned Properties</em>}</li>
@@ -48,6 +50,46 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
  * @generated
  */
 public class StructuredClassCSImpl extends ClassCSImpl implements StructuredClassCS {
+	/**
+	 * The default value of the '{@link #isIsAbstract() <em>Is Abstract</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsAbstract()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_ABSTRACT_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIsAbstract() <em>Is Abstract</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsAbstract()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isAbstract = IS_ABSTRACT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isIsInterface() <em>Is Interface</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsInterface()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_INTERFACE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIsInterface() <em>Is Interface</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsInterface()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isInterface = IS_INTERFACE_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getOwnedMetaclass() <em>Owned Metaclass</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -113,12 +155,73 @@ public class StructuredClassCSImpl extends ClassCSImpl implements StructuredClas
 	 * @generated
 	 */
 	@Override
+	public boolean isIsAbstract()
+	{
+		return isAbstract;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsAbstract(boolean newIsAbstract)
+	{
+		boolean oldIsAbstract = isAbstract;
+		isAbstract = newIsAbstract;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.STRUCTURED_CLASS_CS__IS_ABSTRACT, oldIsAbstract, isAbstract));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isIsInterface()
+	{
+		return isInterface;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsInterface(boolean newIsInterface)
+	{
+		boolean oldIsInterface = isInterface;
+		isInterface = newIsInterface;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.STRUCTURED_CLASS_CS__IS_INTERFACE, oldIsInterface, isInterface));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EList<TypedRefCS> getOwnedSuperTypes() {
 		if (ownedSuperTypes == null)
 		{
 			ownedSuperTypes = new EObjectContainmentEList<TypedRefCS>(TypedRefCS.class, this, BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_SUPER_TYPES);
 		}
 		return ownedSuperTypes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString()
+	{
+		return super.toString();
 	}
 
 	/**
@@ -247,6 +350,10 @@ public class StructuredClassCSImpl extends ClassCSImpl implements StructuredClas
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case BaseCSPackage.STRUCTURED_CLASS_CS__IS_ABSTRACT:
+				return isIsAbstract();
+			case BaseCSPackage.STRUCTURED_CLASS_CS__IS_INTERFACE:
+				return isIsInterface();
 			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_METACLASS:
 				return getOwnedMetaclass();
 			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_OPERATIONS:
@@ -269,6 +376,12 @@ public class StructuredClassCSImpl extends ClassCSImpl implements StructuredClas
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case BaseCSPackage.STRUCTURED_CLASS_CS__IS_ABSTRACT:
+				setIsAbstract((Boolean)newValue);
+				return;
+			case BaseCSPackage.STRUCTURED_CLASS_CS__IS_INTERFACE:
+				setIsInterface((Boolean)newValue);
+				return;
 			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_METACLASS:
 				setOwnedMetaclass((TypedRefCS)newValue);
 				return;
@@ -297,6 +410,12 @@ public class StructuredClassCSImpl extends ClassCSImpl implements StructuredClas
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case BaseCSPackage.STRUCTURED_CLASS_CS__IS_ABSTRACT:
+				setIsAbstract(IS_ABSTRACT_EDEFAULT);
+				return;
+			case BaseCSPackage.STRUCTURED_CLASS_CS__IS_INTERFACE:
+				setIsInterface(IS_INTERFACE_EDEFAULT);
+				return;
 			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_METACLASS:
 				setOwnedMetaclass((TypedRefCS)null);
 				return;
@@ -322,6 +441,10 @@ public class StructuredClassCSImpl extends ClassCSImpl implements StructuredClas
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case BaseCSPackage.STRUCTURED_CLASS_CS__IS_ABSTRACT:
+				return isAbstract != IS_ABSTRACT_EDEFAULT;
+			case BaseCSPackage.STRUCTURED_CLASS_CS__IS_INTERFACE:
+				return isInterface != IS_INTERFACE_EDEFAULT;
 			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_METACLASS:
 				return ownedMetaclass != null;
 			case BaseCSPackage.STRUCTURED_CLASS_CS__OWNED_OPERATIONS:

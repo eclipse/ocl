@@ -399,80 +399,87 @@ ruleEnumerationLiteralName returns [AntlrDatatypeRuleToken current=new AntlrData
     }
 
     |
+	kw='primitive' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getPrimitiveKeyword_25()); 
+    }
+
+    |
 	kw='property' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getPropertyKeyword_25()); 
+        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getPropertyKeyword_26()); 
     }
 
     |
 	kw='readonly' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getReadonlyKeyword_26()); 
+        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getReadonlyKeyword_27()); 
     }
 
     |
 	kw='reference' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getReferenceKeyword_27()); 
+        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getReferenceKeyword_28()); 
     }
 
     |
 	kw='resolve' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getResolveKeyword_28()); 
+        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getResolveKeyword_29()); 
     }
 
     |
 	kw='static' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getStaticKeyword_29()); 
+        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getStaticKeyword_30()); 
     }
 
     |
 	kw='super' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getSuperKeyword_30()); 
+        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getSuperKeyword_31()); 
     }
 
     |
 	kw='throws' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getThrowsKeyword_31()); 
+        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getThrowsKeyword_32()); 
     }
 
     |
 	kw='transient' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getTransientKeyword_32()); 
+        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getTransientKeyword_33()); 
     }
 
     |
 	kw='unique' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getUniqueKeyword_33()); 
+        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getUniqueKeyword_34()); 
     }
 
     |
 	kw='unsettable' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getUnsettableKeyword_34()); 
+        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getUnsettableKeyword_35()); 
     }
 
     |
 	kw='volatile' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getVolatileKeyword_35()); 
+        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getVolatileKeyword_36()); 
     }
 )
     ;
@@ -1751,36 +1758,25 @@ ruleDataTypeCS returns [EObject current=null]
     }
 ((
 (
-		lv_qualifiers_7_0=	'serializable' 
+		lv_isSerializable_7_0=	'serializable' 
     {
-        newLeafNode(lv_qualifiers_7_0, grammarAccess.getDataTypeCSAccess().getQualifiersSerializableKeyword_5_1_0_0());
+        newLeafNode(lv_isSerializable_7_0, grammarAccess.getDataTypeCSAccess().getIsSerializableSerializableKeyword_5_1_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDataTypeCSRule());
 	        }
-       		addWithLastConsumed($current, "qualifiers", lv_qualifiers_7_0, "serializable");
+       		setWithLastConsumed($current, "isSerializable", true, "serializable");
 	    }
 
 )
 )
-    |(
-(
-		lv_qualifiers_8_0=	'!serializable' 
+    |	otherlv_8='!serializable' 
     {
-        newLeafNode(lv_qualifiers_8_0, grammarAccess.getDataTypeCSAccess().getQualifiersSerializableKeyword_5_1_1_0());
+    	newLeafNode(otherlv_8, grammarAccess.getDataTypeCSAccess().getSerializableKeyword_5_1_1());
     }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getDataTypeCSRule());
-	        }
-       		addWithLastConsumed($current, "qualifiers", lv_qualifiers_8_0, "!serializable");
-	    }
-
-)
-))?	otherlv_9='}' 
+)?	otherlv_9='}' 
     {
     	newLeafNode(otherlv_9, grammarAccess.getDataTypeCSAccess().getRightCurlyBracketKeyword_5_2());
     }
@@ -2124,36 +2120,25 @@ ruleEnumerationCS returns [EObject current=null]
     }
 ((
 (
-		lv_qualifiers_6_0=	'serializable' 
+		lv_isSerializable_6_0=	'serializable' 
     {
-        newLeafNode(lv_qualifiers_6_0, grammarAccess.getEnumerationCSAccess().getQualifiersSerializableKeyword_4_1_0_0());
+        newLeafNode(lv_isSerializable_6_0, grammarAccess.getEnumerationCSAccess().getIsSerializableSerializableKeyword_4_1_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getEnumerationCSRule());
 	        }
-       		addWithLastConsumed($current, "qualifiers", lv_qualifiers_6_0, "serializable");
+       		setWithLastConsumed($current, "isSerializable", true, "serializable");
 	    }
 
 )
 )
-    |(
-(
-		lv_qualifiers_7_0=	'!serializable' 
+    |	otherlv_7='!serializable' 
     {
-        newLeafNode(lv_qualifiers_7_0, grammarAccess.getEnumerationCSAccess().getQualifiersSerializableKeyword_4_1_1_0());
+    	newLeafNode(otherlv_7, grammarAccess.getEnumerationCSAccess().getSerializableKeyword_4_1_1());
     }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getEnumerationCSRule());
-	        }
-       		addWithLastConsumed($current, "qualifiers", lv_qualifiers_7_0, "!serializable");
-	    }
-
-)
-))?	otherlv_8='}' 
+)?	otherlv_8='}' 
     {
     	newLeafNode(otherlv_8, grammarAccess.getEnumerationCSAccess().getRightCurlyBracketKeyword_4_2());
     }
@@ -4112,16 +4097,16 @@ ruleStructuredClassCS returns [EObject current=null]
     @after { leaveRule(); }:
 ((
 (
-		lv_qualifiers_0_0=	'abstract' 
+		lv_isAbstract_0_0=	'abstract' 
     {
-        newLeafNode(lv_qualifiers_0_0, grammarAccess.getStructuredClassCSAccess().getQualifiersAbstractKeyword_0_0());
+        newLeafNode(lv_isAbstract_0_0, grammarAccess.getStructuredClassCSAccess().getIsAbstractAbstractKeyword_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getStructuredClassCSRule());
 	        }
-       		addWithLastConsumed($current, "qualifiers", lv_qualifiers_0_0, "abstract");
+       		setWithLastConsumed($current, "isAbstract", true, "abstract");
 	    }
 
 )
@@ -4237,20 +4222,20 @@ ruleStructuredClassCS returns [EObject current=null]
     }
 (
 (
-		lv_qualifiers_11_0=	'interface' 
+		lv_isInterface_11_0=	'interface' 
     {
-        newLeafNode(lv_qualifiers_11_0, grammarAccess.getStructuredClassCSAccess().getQualifiersInterfaceKeyword_6_1_0());
+        newLeafNode(lv_isInterface_11_0, grammarAccess.getStructuredClassCSAccess().getIsInterfaceInterfaceKeyword_6_1_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getStructuredClassCSRule());
 	        }
-       		addWithLastConsumed($current, "qualifiers", lv_qualifiers_11_0, "interface");
+       		setWithLastConsumed($current, "isInterface", true, "interface");
 	    }
 
 )
-)	otherlv_12='}' 
+)?	otherlv_12='}' 
     {
     	newLeafNode(otherlv_12, grammarAccess.getStructuredClassCSAccess().getRightCurlyBracketKeyword_6_2());
     }

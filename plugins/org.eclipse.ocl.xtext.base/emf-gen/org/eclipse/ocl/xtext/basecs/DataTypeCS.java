@@ -21,6 +21,7 @@ package org.eclipse.ocl.xtext.basecs;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.DataTypeCS#isIsPrimitive <em>Is Primitive</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.basecs.DataTypeCS#isIsSerializable <em>Is Serializable</em>}</li>
  * </ul>
  *
  * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getDataTypeCS()
@@ -56,5 +57,32 @@ public interface DataTypeCS extends ClassCS, NamespaceCS
 	 * @generated
 	 */
 	void setIsPrimitive(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Serializable</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Serializable</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Serializable</em>' attribute.
+	 * @see #setIsSerializable(boolean)
+	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getDataTypeCS_IsSerializable()
+	 * @model default="false" dataType="org.eclipse.ocl.pivot.Boolean"
+	 * @generated
+	 */
+	boolean isIsSerializable();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.xtext.basecs.DataTypeCS#isIsSerializable <em>Is Serializable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Serializable</em>' attribute.
+	 * @see #isIsSerializable()
+	 * @generated
+	 */
+	void setIsSerializable(boolean value);
 
 } // DataTypeCS

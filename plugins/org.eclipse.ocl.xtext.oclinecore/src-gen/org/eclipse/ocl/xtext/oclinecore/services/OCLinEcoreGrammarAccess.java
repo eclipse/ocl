@@ -136,32 +136,33 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cPackageKeyword_22 = (Keyword)cAlternatives.eContents().get(22);
 		private final Keyword cPostconditionKeyword_23 = (Keyword)cAlternatives.eContents().get(23);
 		private final Keyword cPreconditionKeyword_24 = (Keyword)cAlternatives.eContents().get(24);
-		private final Keyword cPropertyKeyword_25 = (Keyword)cAlternatives.eContents().get(25);
-		private final Keyword cReadonlyKeyword_26 = (Keyword)cAlternatives.eContents().get(26);
-		private final Keyword cReferenceKeyword_27 = (Keyword)cAlternatives.eContents().get(27);
-		private final Keyword cResolveKeyword_28 = (Keyword)cAlternatives.eContents().get(28);
-		private final Keyword cStaticKeyword_29 = (Keyword)cAlternatives.eContents().get(29);
-		private final Keyword cSuperKeyword_30 = (Keyword)cAlternatives.eContents().get(30);
-		private final Keyword cThrowsKeyword_31 = (Keyword)cAlternatives.eContents().get(31);
-		private final Keyword cTransientKeyword_32 = (Keyword)cAlternatives.eContents().get(32);
-		private final Keyword cUniqueKeyword_33 = (Keyword)cAlternatives.eContents().get(33);
-		private final Keyword cUnsettableKeyword_34 = (Keyword)cAlternatives.eContents().get(34);
-		private final Keyword cVolatileKeyword_35 = (Keyword)cAlternatives.eContents().get(35);
+		private final Keyword cPrimitiveKeyword_25 = (Keyword)cAlternatives.eContents().get(25);
+		private final Keyword cPropertyKeyword_26 = (Keyword)cAlternatives.eContents().get(26);
+		private final Keyword cReadonlyKeyword_27 = (Keyword)cAlternatives.eContents().get(27);
+		private final Keyword cReferenceKeyword_28 = (Keyword)cAlternatives.eContents().get(28);
+		private final Keyword cResolveKeyword_29 = (Keyword)cAlternatives.eContents().get(29);
+		private final Keyword cStaticKeyword_30 = (Keyword)cAlternatives.eContents().get(30);
+		private final Keyword cSuperKeyword_31 = (Keyword)cAlternatives.eContents().get(31);
+		private final Keyword cThrowsKeyword_32 = (Keyword)cAlternatives.eContents().get(32);
+		private final Keyword cTransientKeyword_33 = (Keyword)cAlternatives.eContents().get(33);
+		private final Keyword cUniqueKeyword_34 = (Keyword)cAlternatives.eContents().get(34);
+		private final Keyword cUnsettableKeyword_35 = (Keyword)cAlternatives.eContents().get(35);
+		private final Keyword cVolatileKeyword_36 = (Keyword)cAlternatives.eContents().get(36);
 		
 		//EnumerationLiteralName returns ecore::EString:
 		//	EssentialOCLUnrestrictedName | "abstract" | "attribute" | "body" | "callable" | "class" | "composes" | "datatype" |
 		//	"definition" | "derivation" | "derived" | "enum" | "extends" | "id" | "import" | "initial" | "interface" | "key" |
-		//	"library" | "module" | "operation" | "ordered" | "package" | "postcondition" | "precondition" | "property" |
-		//	"readonly" | "reference" | "resolve" | "static" | "super" | "throws" | "transient" | "unique" | "unsettable" |
-		//	"volatile";
+		//	"library" | "module" | "operation" | "ordered" | "package" | "postcondition" | "precondition" | "primitive" |
+		//	"property" | "readonly" | "reference" | "resolve" | "static" | "super" | "throws" | "transient" | "unique" |
+		//	"unsettable" | "volatile";
 		@Override
 		public ParserRule getRule() { return rule; }
 
 		//EssentialOCLUnrestrictedName | "abstract" | "attribute" | "body" | "callable" | "class" | "composes" | "datatype" |
 		//"definition" | "derivation" | "derived" | "enum" | "extends" | "id" | "import" | "initial" | "interface" | "key" |
-		//"library" | "module" | "operation" | "ordered" | "package" | "postcondition" | "precondition" | "property" |
-		//"readonly" | "reference" | "resolve" | "static" | "super" | "throws" | "transient" | "unique" | "unsettable" |
-		//"volatile"
+		//"library" | "module" | "operation" | "ordered" | "package" | "postcondition" | "precondition" | "primitive" |
+		//"property" | "readonly" | "reference" | "resolve" | "static" | "super" | "throws" | "transient" | "unique" |
+		//"unsettable" | "volatile"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//EssentialOCLUnrestrictedName
@@ -239,38 +240,41 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//"precondition"
 		public Keyword getPreconditionKeyword_24() { return cPreconditionKeyword_24; }
 
+		//"primitive"
+		public Keyword getPrimitiveKeyword_25() { return cPrimitiveKeyword_25; }
+
 		//"property"
-		public Keyword getPropertyKeyword_25() { return cPropertyKeyword_25; }
+		public Keyword getPropertyKeyword_26() { return cPropertyKeyword_26; }
 
 		//"readonly"
-		public Keyword getReadonlyKeyword_26() { return cReadonlyKeyword_26; }
+		public Keyword getReadonlyKeyword_27() { return cReadonlyKeyword_27; }
 
 		//"reference"
-		public Keyword getReferenceKeyword_27() { return cReferenceKeyword_27; }
+		public Keyword getReferenceKeyword_28() { return cReferenceKeyword_28; }
 
 		//"resolve"
-		public Keyword getResolveKeyword_28() { return cResolveKeyword_28; }
+		public Keyword getResolveKeyword_29() { return cResolveKeyword_29; }
 
 		//"static"
-		public Keyword getStaticKeyword_29() { return cStaticKeyword_29; }
+		public Keyword getStaticKeyword_30() { return cStaticKeyword_30; }
 
 		//"super"
-		public Keyword getSuperKeyword_30() { return cSuperKeyword_30; }
+		public Keyword getSuperKeyword_31() { return cSuperKeyword_31; }
 
 		//"throws"
-		public Keyword getThrowsKeyword_31() { return cThrowsKeyword_31; }
+		public Keyword getThrowsKeyword_32() { return cThrowsKeyword_32; }
 
 		//"transient"
-		public Keyword getTransientKeyword_32() { return cTransientKeyword_32; }
+		public Keyword getTransientKeyword_33() { return cTransientKeyword_33; }
 
 		//"unique"
-		public Keyword getUniqueKeyword_33() { return cUniqueKeyword_33; }
+		public Keyword getUniqueKeyword_34() { return cUniqueKeyword_34; }
 
 		//"unsettable"
-		public Keyword getUnsettableKeyword_34() { return cUnsettableKeyword_34; }
+		public Keyword getUnsettableKeyword_35() { return cUnsettableKeyword_35; }
 
 		//"volatile"
-		public Keyword getVolatileKeyword_35() { return cVolatileKeyword_35; }
+		public Keyword getVolatileKeyword_36() { return cVolatileKeyword_36; }
 	}
 
 	public class InvariantConstraintCSElements extends AbstractParserRuleElementFinder {
@@ -1068,10 +1072,9 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
 		private final Keyword cLeftCurlyBracketKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
 		private final Alternatives cAlternatives_5_1 = (Alternatives)cGroup_5.eContents().get(1);
-		private final Assignment cQualifiersAssignment_5_1_0 = (Assignment)cAlternatives_5_1.eContents().get(0);
-		private final Keyword cQualifiersSerializableKeyword_5_1_0_0 = (Keyword)cQualifiersAssignment_5_1_0.eContents().get(0);
-		private final Assignment cQualifiersAssignment_5_1_1 = (Assignment)cAlternatives_5_1.eContents().get(1);
-		private final Keyword cQualifiersSerializableKeyword_5_1_1_0 = (Keyword)cQualifiersAssignment_5_1_1.eContents().get(0);
+		private final Assignment cIsSerializableAssignment_5_1_0 = (Assignment)cAlternatives_5_1.eContents().get(0);
+		private final Keyword cIsSerializableSerializableKeyword_5_1_0_0 = (Keyword)cIsSerializableAssignment_5_1_0.eContents().get(0);
+		private final Keyword cSerializableKeyword_5_1_1 = (Keyword)cAlternatives_5_1.eContents().get(1);
 		private final Keyword cRightCurlyBracketKeyword_5_2 = (Keyword)cGroup_5.eContents().get(2);
 		private final Alternatives cAlternatives_6 = (Alternatives)cGroup.eContents().get(6);
 		private final Group cGroup_6_0 = (Group)cAlternatives_6.eContents().get(0);
@@ -1086,13 +1089,13 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//DataTypeCS returns base::DataTypeCS:
 		//	isPrimitive?="primitive"? "datatype" name=UnrestrictedName ownedSignature=TemplateSignatureCS? (":"
-		//	instanceClassName=SINGLE_QUOTED_STRING)? ("{" (qualifiers+="serializable" | qualifiers+="!serializable")? "}")? ("{"
+		//	instanceClassName=SINGLE_QUOTED_STRING)? ("{" (isSerializable?="serializable" | "!serializable")? "}")? ("{"
 		//	(ownedAnnotations+=AnnotationElementCS | ownedConstraints+=InvariantConstraintCS)* "}" | ";");
 		@Override
 		public ParserRule getRule() { return rule; }
 
 		//isPrimitive?="primitive"? "datatype" name=UnrestrictedName ownedSignature=TemplateSignatureCS? (":"
-		//instanceClassName=SINGLE_QUOTED_STRING)? ("{" (qualifiers+="serializable" | qualifiers+="!serializable")? "}")? ("{"
+		//instanceClassName=SINGLE_QUOTED_STRING)? ("{" (isSerializable?="serializable" | "!serializable")? "}")? ("{"
 		//(ownedAnnotations+=AnnotationElementCS | ownedConstraints+=InvariantConstraintCS)* "}" | ";")
 		public Group getGroup() { return cGroup; }
 
@@ -1129,26 +1132,23 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//SINGLE_QUOTED_STRING
 		public RuleCall getInstanceClassNameSINGLE_QUOTED_STRINGTerminalRuleCall_4_1_0() { return cInstanceClassNameSINGLE_QUOTED_STRINGTerminalRuleCall_4_1_0; }
 
-		//("{" (qualifiers+="serializable" | qualifiers+="!serializable")? "}")?
+		//("{" (isSerializable?="serializable" | "!serializable")? "}")?
 		public Group getGroup_5() { return cGroup_5; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_5_0() { return cLeftCurlyBracketKeyword_5_0; }
 
-		//(qualifiers+="serializable" | qualifiers+="!serializable")?
+		//(isSerializable?="serializable" | "!serializable")?
 		public Alternatives getAlternatives_5_1() { return cAlternatives_5_1; }
 
-		//qualifiers+="serializable"
-		public Assignment getQualifiersAssignment_5_1_0() { return cQualifiersAssignment_5_1_0; }
+		//isSerializable?="serializable"
+		public Assignment getIsSerializableAssignment_5_1_0() { return cIsSerializableAssignment_5_1_0; }
 
 		//"serializable"
-		public Keyword getQualifiersSerializableKeyword_5_1_0_0() { return cQualifiersSerializableKeyword_5_1_0_0; }
-
-		//qualifiers+="!serializable"
-		public Assignment getQualifiersAssignment_5_1_1() { return cQualifiersAssignment_5_1_1; }
+		public Keyword getIsSerializableSerializableKeyword_5_1_0_0() { return cIsSerializableSerializableKeyword_5_1_0_0; }
 
 		//"!serializable"
-		public Keyword getQualifiersSerializableKeyword_5_1_1_0() { return cQualifiersSerializableKeyword_5_1_1_0; }
+		public Keyword getSerializableKeyword_5_1_1() { return cSerializableKeyword_5_1_1; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_5_2() { return cRightCurlyBracketKeyword_5_2; }
@@ -1319,10 +1319,9 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
 		private final Keyword cLeftCurlyBracketKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
 		private final Alternatives cAlternatives_4_1 = (Alternatives)cGroup_4.eContents().get(1);
-		private final Assignment cQualifiersAssignment_4_1_0 = (Assignment)cAlternatives_4_1.eContents().get(0);
-		private final Keyword cQualifiersSerializableKeyword_4_1_0_0 = (Keyword)cQualifiersAssignment_4_1_0.eContents().get(0);
-		private final Assignment cQualifiersAssignment_4_1_1 = (Assignment)cAlternatives_4_1.eContents().get(1);
-		private final Keyword cQualifiersSerializableKeyword_4_1_1_0 = (Keyword)cQualifiersAssignment_4_1_1.eContents().get(0);
+		private final Assignment cIsSerializableAssignment_4_1_0 = (Assignment)cAlternatives_4_1.eContents().get(0);
+		private final Keyword cIsSerializableSerializableKeyword_4_1_0_0 = (Keyword)cIsSerializableAssignment_4_1_0.eContents().get(0);
+		private final Keyword cSerializableKeyword_4_1_1 = (Keyword)cAlternatives_4_1.eContents().get(1);
 		private final Keyword cRightCurlyBracketKeyword_4_2 = (Keyword)cGroup_4.eContents().get(2);
 		private final Alternatives cAlternatives_5 = (Alternatives)cGroup.eContents().get(5);
 		private final Group cGroup_5_0 = (Group)cAlternatives_5.eContents().get(0);
@@ -1339,13 +1338,13 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//EnumerationCS returns base::EnumerationCS:
 		//	"enum" name=UnrestrictedName ownedSignature=TemplateSignatureCS? (":" instanceClassName=SINGLE_QUOTED_STRING)? ("{"
-		//	(qualifiers+="serializable" | qualifiers+="!serializable")? "}")? ("{" (ownedAnnotations+=AnnotationElementCS |
+		//	(isSerializable?="serializable" | "!serializable")? "}")? ("{" (ownedAnnotations+=AnnotationElementCS |
 		//	ownedLiterals+=EnumerationLiteralCS | ownedConstraints+=InvariantConstraintCS)* "}" | ";");
 		@Override
 		public ParserRule getRule() { return rule; }
 
 		//"enum" name=UnrestrictedName ownedSignature=TemplateSignatureCS? (":" instanceClassName=SINGLE_QUOTED_STRING)? ("{"
-		//(qualifiers+="serializable" | qualifiers+="!serializable")? "}")? ("{" (ownedAnnotations+=AnnotationElementCS |
+		//(isSerializable?="serializable" | "!serializable")? "}")? ("{" (ownedAnnotations+=AnnotationElementCS |
 		//ownedLiterals+=EnumerationLiteralCS | ownedConstraints+=InvariantConstraintCS)* "}" | ";")
 		public Group getGroup() { return cGroup; }
 
@@ -1376,26 +1375,23 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//SINGLE_QUOTED_STRING
 		public RuleCall getInstanceClassNameSINGLE_QUOTED_STRINGTerminalRuleCall_3_1_0() { return cInstanceClassNameSINGLE_QUOTED_STRINGTerminalRuleCall_3_1_0; }
 
-		//("{" (qualifiers+="serializable" | qualifiers+="!serializable")? "}")?
+		//("{" (isSerializable?="serializable" | "!serializable")? "}")?
 		public Group getGroup_4() { return cGroup_4; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_4_0() { return cLeftCurlyBracketKeyword_4_0; }
 
-		//(qualifiers+="serializable" | qualifiers+="!serializable")?
+		//(isSerializable?="serializable" | "!serializable")?
 		public Alternatives getAlternatives_4_1() { return cAlternatives_4_1; }
 
-		//qualifiers+="serializable"
-		public Assignment getQualifiersAssignment_4_1_0() { return cQualifiersAssignment_4_1_0; }
+		//isSerializable?="serializable"
+		public Assignment getIsSerializableAssignment_4_1_0() { return cIsSerializableAssignment_4_1_0; }
 
 		//"serializable"
-		public Keyword getQualifiersSerializableKeyword_4_1_0_0() { return cQualifiersSerializableKeyword_4_1_0_0; }
-
-		//qualifiers+="!serializable"
-		public Assignment getQualifiersAssignment_4_1_1() { return cQualifiersAssignment_4_1_1; }
+		public Keyword getIsSerializableSerializableKeyword_4_1_0_0() { return cIsSerializableSerializableKeyword_4_1_0_0; }
 
 		//"!serializable"
-		public Keyword getQualifiersSerializableKeyword_4_1_1_0() { return cQualifiersSerializableKeyword_4_1_1_0; }
+		public Keyword getSerializableKeyword_4_1_1() { return cSerializableKeyword_4_1_1; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_4_2() { return cRightCurlyBracketKeyword_4_2; }
@@ -2733,8 +2729,8 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	public class StructuredClassCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StructuredClassCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cQualifiersAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final Keyword cQualifiersAbstractKeyword_0_0 = (Keyword)cQualifiersAssignment_0.eContents().get(0);
+		private final Assignment cIsAbstractAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cIsAbstractAbstractKeyword_0_0 = (Keyword)cIsAbstractAssignment_0.eContents().get(0);
 		private final Keyword cClassKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNameUnrestrictedNameParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
@@ -2754,8 +2750,8 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cInstanceClassNameSINGLE_QUOTED_STRINGTerminalRuleCall_5_1_0 = (RuleCall)cInstanceClassNameAssignment_5_1.eContents().get(0);
 		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
 		private final Keyword cLeftCurlyBracketKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
-		private final Assignment cQualifiersAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
-		private final Keyword cQualifiersInterfaceKeyword_6_1_0 = (Keyword)cQualifiersAssignment_6_1.eContents().get(0);
+		private final Assignment cIsInterfaceAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final Keyword cIsInterfaceInterfaceKeyword_6_1_0 = (Keyword)cIsInterfaceAssignment_6_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_6_2 = (Keyword)cGroup_6.eContents().get(2);
 		private final Alternatives cAlternatives_7 = (Alternatives)cGroup.eContents().get(7);
 		private final Group cGroup_7_0 = (Group)cAlternatives_7.eContents().get(0);
@@ -2773,24 +2769,24 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_7_1 = (Keyword)cAlternatives_7.eContents().get(1);
 		
 		//StructuredClassCS returns base::StructuredClassCS:
-		//	qualifiers+="abstract"? "class" name=UnrestrictedName ownedSignature=TemplateSignatureCS? ("extends"
+		//	isAbstract?="abstract"? "class" name=UnrestrictedName ownedSignature=TemplateSignatureCS? ("extends"
 		//	ownedSuperTypes+=TypedRefCS ("," ownedSuperTypes+=TypedRefCS)*)? (":" instanceClassName=SINGLE_QUOTED_STRING)? ("{"
-		//	qualifiers+="interface" "}")? ("{" (ownedAnnotations+=AnnotationElementCS | ownedOperations+=OperationCS |
+		//	isInterface?="interface"? "}")? ("{" (ownedAnnotations+=AnnotationElementCS | ownedOperations+=OperationCS |
 		//	ownedProperties+=StructuralFeatureCS | ownedConstraints+=InvariantConstraintCS)* "}" | ";");
 		@Override
 		public ParserRule getRule() { return rule; }
 
-		//qualifiers+="abstract"? "class" name=UnrestrictedName ownedSignature=TemplateSignatureCS? ("extends"
+		//isAbstract?="abstract"? "class" name=UnrestrictedName ownedSignature=TemplateSignatureCS? ("extends"
 		//ownedSuperTypes+=TypedRefCS ("," ownedSuperTypes+=TypedRefCS)*)? (":" instanceClassName=SINGLE_QUOTED_STRING)? ("{"
-		//qualifiers+="interface" "}")? ("{" (ownedAnnotations+=AnnotationElementCS | ownedOperations+=OperationCS |
+		//isInterface?="interface"? "}")? ("{" (ownedAnnotations+=AnnotationElementCS | ownedOperations+=OperationCS |
 		//ownedProperties+=StructuralFeatureCS | ownedConstraints+=InvariantConstraintCS)* "}" | ";")
 		public Group getGroup() { return cGroup; }
 
-		//qualifiers+="abstract"?
-		public Assignment getQualifiersAssignment_0() { return cQualifiersAssignment_0; }
+		//isAbstract?="abstract"?
+		public Assignment getIsAbstractAssignment_0() { return cIsAbstractAssignment_0; }
 
 		//"abstract"
-		public Keyword getQualifiersAbstractKeyword_0_0() { return cQualifiersAbstractKeyword_0_0; }
+		public Keyword getIsAbstractAbstractKeyword_0_0() { return cIsAbstractAbstractKeyword_0_0; }
 
 		//"class"
 		public Keyword getClassKeyword_1() { return cClassKeyword_1; }
@@ -2843,17 +2839,17 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//SINGLE_QUOTED_STRING
 		public RuleCall getInstanceClassNameSINGLE_QUOTED_STRINGTerminalRuleCall_5_1_0() { return cInstanceClassNameSINGLE_QUOTED_STRINGTerminalRuleCall_5_1_0; }
 
-		//("{" qualifiers+="interface" "}")?
+		//("{" isInterface?="interface"? "}")?
 		public Group getGroup_6() { return cGroup_6; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_6_0() { return cLeftCurlyBracketKeyword_6_0; }
 
-		//qualifiers+="interface"
-		public Assignment getQualifiersAssignment_6_1() { return cQualifiersAssignment_6_1; }
+		//isInterface?="interface"?
+		public Assignment getIsInterfaceAssignment_6_1() { return cIsInterfaceAssignment_6_1; }
 
 		//"interface"
-		public Keyword getQualifiersInterfaceKeyword_6_1_0() { return cQualifiersInterfaceKeyword_6_1_0; }
+		public Keyword getIsInterfaceInterfaceKeyword_6_1_0() { return cIsInterfaceInterfaceKeyword_6_1_0; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_6_2() { return cRightCurlyBracketKeyword_6_2; }
@@ -3436,9 +3432,9 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	//EnumerationLiteralName returns ecore::EString:
 	//	EssentialOCLUnrestrictedName | "abstract" | "attribute" | "body" | "callable" | "class" | "composes" | "datatype" |
 	//	"definition" | "derivation" | "derived" | "enum" | "extends" | "id" | "import" | "initial" | "interface" | "key" |
-	//	"library" | "module" | "operation" | "ordered" | "package" | "postcondition" | "precondition" | "property" |
-	//	"readonly" | "reference" | "resolve" | "static" | "super" | "throws" | "transient" | "unique" | "unsettable" |
-	//	"volatile";
+	//	"library" | "module" | "operation" | "ordered" | "package" | "postcondition" | "precondition" | "primitive" |
+	//	"property" | "readonly" | "reference" | "resolve" | "static" | "super" | "throws" | "transient" | "unique" |
+	//	"unsettable" | "volatile";
 	public EnumerationLiteralNameElements getEnumerationLiteralNameAccess() {
 		return pEnumerationLiteralName;
 	}
@@ -3531,7 +3527,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 
 	//DataTypeCS returns base::DataTypeCS:
 	//	isPrimitive?="primitive"? "datatype" name=UnrestrictedName ownedSignature=TemplateSignatureCS? (":"
-	//	instanceClassName=SINGLE_QUOTED_STRING)? ("{" (qualifiers+="serializable" | qualifiers+="!serializable")? "}")? ("{"
+	//	instanceClassName=SINGLE_QUOTED_STRING)? ("{" (isSerializable?="serializable" | "!serializable")? "}")? ("{"
 	//	(ownedAnnotations+=AnnotationElementCS | ownedConstraints+=InvariantConstraintCS)* "}" | ";");
 	public DataTypeCSElements getDataTypeCSAccess() {
 		return pDataTypeCS;
@@ -3564,7 +3560,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 
 	//EnumerationCS returns base::EnumerationCS:
 	//	"enum" name=UnrestrictedName ownedSignature=TemplateSignatureCS? (":" instanceClassName=SINGLE_QUOTED_STRING)? ("{"
-	//	(qualifiers+="serializable" | qualifiers+="!serializable")? "}")? ("{" (ownedAnnotations+=AnnotationElementCS |
+	//	(isSerializable?="serializable" | "!serializable")? "}")? ("{" (ownedAnnotations+=AnnotationElementCS |
 	//	ownedLiterals+=EnumerationLiteralCS | ownedConstraints+=InvariantConstraintCS)* "}" | ";");
 	public EnumerationCSElements getEnumerationCSAccess() {
 		return pEnumerationCS;
@@ -3694,9 +3690,9 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StructuredClassCS returns base::StructuredClassCS:
-	//	qualifiers+="abstract"? "class" name=UnrestrictedName ownedSignature=TemplateSignatureCS? ("extends"
+	//	isAbstract?="abstract"? "class" name=UnrestrictedName ownedSignature=TemplateSignatureCS? ("extends"
 	//	ownedSuperTypes+=TypedRefCS ("," ownedSuperTypes+=TypedRefCS)*)? (":" instanceClassName=SINGLE_QUOTED_STRING)? ("{"
-	//	qualifiers+="interface" "}")? ("{" (ownedAnnotations+=AnnotationElementCS | ownedOperations+=OperationCS |
+	//	isInterface?="interface"? "}")? ("{" (ownedAnnotations+=AnnotationElementCS | ownedOperations+=OperationCS |
 	//	ownedProperties+=StructuralFeatureCS | ownedConstraints+=InvariantConstraintCS)* "}" | ";");
 	public StructuredClassCSElements getStructuredClassCSAccess() {
 		return pStructuredClassCS;

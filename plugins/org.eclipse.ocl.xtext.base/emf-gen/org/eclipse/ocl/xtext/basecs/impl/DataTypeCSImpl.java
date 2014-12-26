@@ -29,6 +29,7 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.DataTypeCSImpl#isIsPrimitive <em>Is Primitive</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.DataTypeCSImpl#isIsSerializable <em>Is Serializable</em>}</li>
  * </ul>
  *
  * @generated
@@ -53,6 +54,25 @@ public class DataTypeCSImpl extends ClassCSImpl implements DataTypeCS
 	 * @ordered
 	 */
 	protected boolean isPrimitive = IS_PRIMITIVE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isIsSerializable() <em>Is Serializable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsSerializable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_SERIALIZABLE_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isIsSerializable() <em>Is Serializable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsSerializable()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isSerializable = IS_SERIALIZABLE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -106,6 +126,31 @@ public class DataTypeCSImpl extends ClassCSImpl implements DataTypeCS
 	 * @generated
 	 */
 	@Override
+	public boolean isIsSerializable()
+	{
+		return isSerializable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsSerializable(boolean newIsSerializable)
+	{
+		boolean oldIsSerializable = isSerializable;
+		isSerializable = newIsSerializable;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.DATA_TYPE_CS__IS_SERIALIZABLE, oldIsSerializable, isSerializable));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public String toString()
 	{
 		return super.toString();
@@ -123,6 +168,8 @@ public class DataTypeCSImpl extends ClassCSImpl implements DataTypeCS
 		{
 			case BaseCSPackage.DATA_TYPE_CS__IS_PRIMITIVE:
 				return isIsPrimitive();
+			case BaseCSPackage.DATA_TYPE_CS__IS_SERIALIZABLE:
+				return isIsSerializable();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -139,6 +186,9 @@ public class DataTypeCSImpl extends ClassCSImpl implements DataTypeCS
 		{
 			case BaseCSPackage.DATA_TYPE_CS__IS_PRIMITIVE:
 				setIsPrimitive((Boolean)newValue);
+				return;
+			case BaseCSPackage.DATA_TYPE_CS__IS_SERIALIZABLE:
+				setIsSerializable((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -157,6 +207,9 @@ public class DataTypeCSImpl extends ClassCSImpl implements DataTypeCS
 			case BaseCSPackage.DATA_TYPE_CS__IS_PRIMITIVE:
 				setIsPrimitive(IS_PRIMITIVE_EDEFAULT);
 				return;
+			case BaseCSPackage.DATA_TYPE_CS__IS_SERIALIZABLE:
+				setIsSerializable(IS_SERIALIZABLE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -173,6 +226,8 @@ public class DataTypeCSImpl extends ClassCSImpl implements DataTypeCS
 		{
 			case BaseCSPackage.DATA_TYPE_CS__IS_PRIMITIVE:
 				return isPrimitive != IS_PRIMITIVE_EDEFAULT;
+			case BaseCSPackage.DATA_TYPE_CS__IS_SERIALIZABLE:
+				return isSerializable != IS_SERIALIZABLE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

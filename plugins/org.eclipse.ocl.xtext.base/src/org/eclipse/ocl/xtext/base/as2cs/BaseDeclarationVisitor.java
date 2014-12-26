@@ -125,8 +125,8 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 					return element != oclElementType;
 				}
 			}));
-		context.refreshQualifiers(csElement.getQualifiers(), "abstract", object.isAbstract());
-		context.refreshQualifiers(csElement.getQualifiers(), "interface", object.isInterface());
+		csElement.setIsAbstract(object.isAbstract());
+		csElement.setIsInterface(object.isInterface());
 		context.setScope(savedScope);
 		return csElement;
 	}
@@ -148,7 +148,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	@Override
 	public ElementCS visitDataType(@NonNull DataType object) {
 		DataTypeCS csElement = context.refreshClassifier(DataTypeCS.class, BaseCSPackage.Literals.DATA_TYPE_CS, object);
-		context.refreshQualifiers(csElement.getQualifiers(), "serializable", object.isSerializable());
+		csElement.setIsSerializable(object.isSerializable());
 		return csElement;
 	}
 
@@ -165,7 +165,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	public ElementCS visitEnumeration(@NonNull org.eclipse.ocl.pivot.Enumeration object) {
 		EnumerationCS csElement = context.refreshClassifier(EnumerationCS.class, BaseCSPackage.Literals.ENUMERATION_CS, object);
 		context.refreshList(csElement.getOwnedLiterals(), context.visitDeclarations(EnumerationLiteralCS.class, object.getOwnedLiterals(), null));
-		context.refreshQualifiers(csElement.getQualifiers(), "serializable", object.isSerializable());
+		csElement.setIsSerializable(object.isSerializable());
 		return csElement;
 	}
 
@@ -242,7 +242,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	public @Nullable ElementCS visitPrimitiveType(@NonNull PrimitiveType object) {
 		DataTypeCS csElement = context.refreshClassifier(DataTypeCS.class, BaseCSPackage.Literals.DATA_TYPE_CS, object);
 		csElement.setIsPrimitive(true);
-		context.refreshQualifiers(csElement.getQualifiers(), "serializable", object.isSerializable());
+		csElement.setIsSerializable(object.isSerializable());
 		return csElement;
 	}
 

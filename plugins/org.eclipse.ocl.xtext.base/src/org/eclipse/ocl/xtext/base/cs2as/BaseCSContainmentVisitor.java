@@ -113,9 +113,8 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 
 
 	protected Continuation<?> refreshClass(@NonNull org.eclipse.ocl.pivot.Class pivotElement, @NonNull StructuredClassCS csElement) {
-		List<String> qualifiers = csElement.getQualifiers();
-		pivotElement.setIsAbstract(qualifiers.contains("abstract"));
-		pivotElement.setIsInterface(qualifiers.contains("interface"));
+		pivotElement.setIsAbstract(csElement.isIsAbstract());
+		pivotElement.setIsInterface(csElement.isIsInterface());
 //		pivotElement.setIsStatic(qualifiers.contains("static"));
 		context.refreshPivotList(Property.class, pivotElement.getOwnedProperties(), csElement.getOwnedProperties());
 		context.refreshPivotList(Operation.class, pivotElement.getOwnedOperations(), csElement.getOwnedOperations());
@@ -257,11 +256,6 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		context.refreshPivotList(org.eclipse.ocl.pivot.Package.class, pivotElement.getOwnedPackages(), csElement.getOwnedPackages());
 		return pivotElement;
 	}
-
-	protected void refreshSerializable(DataType pivotElement, ClassCS csElement) {
-		List<String> qualifiers = csElement.getQualifiers();
-		pivotElement.setIsSerializable(qualifiers.contains("serializable"));
-	}
 	
 	@Override
 	public Continuation<?> visitAnnotationCS(@NonNull AnnotationCS csElement) {
@@ -292,7 +286,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		else {
 			pivotElement = refreshNamedElement(DataType.class, PivotPackage.Literals.DATA_TYPE, csElement);
 		}
-		refreshSerializable(pivotElement, csElement);
+		pivotElement.setIsSerializable(csElement.isIsSerializable());
 		refreshClassifier(pivotElement, csElement);
 		return null;
 	}
@@ -328,7 +322,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		@SuppressWarnings("null") @NonNull EClass eClass = PivotPackage.Literals.ENUMERATION;
 		org.eclipse.ocl.pivot.Enumeration pivotElement = refreshNamedElement(org.eclipse.ocl.pivot.Enumeration.class, eClass, csElement);
 		context.refreshPivotList(EnumerationLiteral.class, pivotElement.getOwnedLiterals(), csElement.getOwnedLiterals());
-		refreshSerializable(pivotElement, csElement);
+		pivotElement.setIsSerializable(csElement.isIsSerializable());
 		refreshClassifier(pivotElement, csElement);
 		return null;
 	}

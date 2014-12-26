@@ -1291,22 +1291,13 @@ public interface BaseCSPackage extends EPackage {
 	int CLASS_CS__OWNING_PACKAGE = NAMED_ELEMENT_CS_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS__QUALIFIERS = NAMED_ELEMENT_CS_FEATURE_COUNT + 4;
-
-	/**
 	 * The number of structural features of the '<em>Class CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 5;
+	int CLASS_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.ElementRefCSImpl <em>Element Ref CS</em>}' class.
@@ -1556,15 +1547,6 @@ public interface BaseCSPackage extends EPackage {
 	int DATA_TYPE_CS__OWNING_PACKAGE = CLASS_CS__OWNING_PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE_CS__QUALIFIERS = CLASS_CS__QUALIFIERS;
-
-	/**
 	 * The feature id for the '<em><b>Is Primitive</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1574,13 +1556,22 @@ public interface BaseCSPackage extends EPackage {
 	int DATA_TYPE_CS__IS_PRIMITIVE = CLASS_CS_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Is Serializable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE_CS__IS_SERIALIZABLE = CLASS_CS_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Data Type CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE_CS_FEATURE_COUNT = CLASS_CS_FEATURE_COUNT + 1;
+	int DATA_TYPE_CS_FEATURE_COUNT = CLASS_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -1862,13 +1853,13 @@ public interface BaseCSPackage extends EPackage {
 	int ENUMERATION_CS__OWNING_PACKAGE = CLASS_CS__OWNING_PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
+	 * The feature id for the '<em><b>Is Serializable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_CS__QUALIFIERS = CLASS_CS__QUALIFIERS;
+	int ENUMERATION_CS__IS_SERIALIZABLE = CLASS_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Literals</b></em>' containment reference list.
@@ -1877,7 +1868,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_CS__OWNED_LITERALS = CLASS_CS_FEATURE_COUNT + 0;
+	int ENUMERATION_CS__OWNED_LITERALS = CLASS_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Enumeration CS</em>' class.
@@ -1886,7 +1877,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_CS_FEATURE_COUNT = CLASS_CS_FEATURE_COUNT + 1;
+	int ENUMERATION_CS_FEATURE_COUNT = CLASS_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -3718,13 +3709,22 @@ public interface BaseCSPackage extends EPackage {
 	int STRUCTURED_CLASS_CS__OWNING_PACKAGE = CLASS_CS__OWNING_PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURED_CLASS_CS__QUALIFIERS = CLASS_CS__QUALIFIERS;
+	int STRUCTURED_CLASS_CS__IS_ABSTRACT = CLASS_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_CLASS_CS__IS_INTERFACE = CLASS_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owned Metaclass</b></em>' containment reference.
@@ -3733,7 +3733,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURED_CLASS_CS__OWNED_METACLASS = CLASS_CS_FEATURE_COUNT + 0;
+	int STRUCTURED_CLASS_CS__OWNED_METACLASS = CLASS_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -3742,7 +3742,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURED_CLASS_CS__OWNED_OPERATIONS = CLASS_CS_FEATURE_COUNT + 1;
+	int STRUCTURED_CLASS_CS__OWNED_OPERATIONS = CLASS_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
@@ -3751,7 +3751,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURED_CLASS_CS__OWNED_PROPERTIES = CLASS_CS_FEATURE_COUNT + 2;
+	int STRUCTURED_CLASS_CS__OWNED_PROPERTIES = CLASS_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Owned Super Types</b></em>' containment reference list.
@@ -3760,7 +3760,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURED_CLASS_CS__OWNED_SUPER_TYPES = CLASS_CS_FEATURE_COUNT + 3;
+	int STRUCTURED_CLASS_CS__OWNED_SUPER_TYPES = CLASS_CS_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Structured Class CS</em>' class.
@@ -3769,7 +3769,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURED_CLASS_CS_FEATURE_COUNT = CLASS_CS_FEATURE_COUNT + 4;
+	int STRUCTURED_CLASS_CS_FEATURE_COUNT = CLASS_CS_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -4668,17 +4668,6 @@ public interface BaseCSPackage extends EPackage {
 	EReference getClassCS_OwnedConstraints();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.ocl.xtext.basecs.ClassCS#getQualifiers <em>Qualifiers</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Qualifiers</em>'.
-	 * @see org.eclipse.ocl.xtext.basecs.ClassCS#getQualifiers()
-	 * @see #getClassCS()
-	 * @generated
-	 */
-	EAttribute getClassCS_Qualifiers();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.basecs.ConstraintCS <em>Constraint CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4751,6 +4740,17 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getDataTypeCS_IsPrimitive();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.basecs.DataTypeCS#isIsSerializable <em>Is Serializable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Serializable</em>'.
+	 * @see org.eclipse.ocl.xtext.basecs.DataTypeCS#isIsSerializable()
+	 * @see #getDataTypeCS()
+	 * @generated
+	 */
+	EAttribute getDataTypeCS_IsSerializable();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.basecs.DetailCS <em>Detail CS</em>}'.
@@ -4845,6 +4845,17 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getEnumerationCS();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.basecs.EnumerationCS#isIsSerializable <em>Is Serializable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Serializable</em>'.
+	 * @see org.eclipse.ocl.xtext.basecs.EnumerationCS#isIsSerializable()
+	 * @see #getEnumerationCS()
+	 * @generated
+	 */
+	EAttribute getEnumerationCS_IsSerializable();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.xtext.basecs.EnumerationCS#getOwnedLiterals <em>Owned Literals</em>}'.
@@ -5591,6 +5602,28 @@ public interface BaseCSPackage extends EPackage {
 	EClass getStructuredClassCS();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.basecs.StructuredClassCS#isIsAbstract <em>Is Abstract</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Abstract</em>'.
+	 * @see org.eclipse.ocl.xtext.basecs.StructuredClassCS#isIsAbstract()
+	 * @see #getStructuredClassCS()
+	 * @generated
+	 */
+	EAttribute getStructuredClassCS_IsAbstract();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.basecs.StructuredClassCS#isIsInterface <em>Is Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Interface</em>'.
+	 * @see org.eclipse.ocl.xtext.basecs.StructuredClassCS#isIsInterface()
+	 * @see #getStructuredClassCS()
+	 * @generated
+	 */
+	EAttribute getStructuredClassCS_IsInterface();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.xtext.basecs.StructuredClassCS#getOwnedSuperTypes <em>Owned Super Types</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6214,14 +6247,6 @@ public interface BaseCSPackage extends EPackage {
 		EReference CLASS_CS__OWNED_CONSTRAINTS = eINSTANCE.getClassCS_OwnedConstraints();
 
 		/**
-		 * The meta object literal for the '<em><b>Qualifiers</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CLASS_CS__QUALIFIERS = eINSTANCE.getClassCS_Qualifiers();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.basecs.impl.ConstraintCSImpl <em>Constraint CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6282,6 +6307,14 @@ public interface BaseCSPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DATA_TYPE_CS__IS_PRIMITIVE = eINSTANCE.getDataTypeCS_IsPrimitive();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Serializable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATA_TYPE_CS__IS_SERIALIZABLE = eINSTANCE.getDataTypeCS_IsSerializable();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.basecs.impl.DetailCSImpl <em>Detail CS</em>}' class.
@@ -6364,6 +6397,14 @@ public interface BaseCSPackage extends EPackage {
 		 * @generated
 		 */
 		EClass ENUMERATION_CS = eINSTANCE.getEnumerationCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Serializable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ENUMERATION_CS__IS_SERIALIZABLE = eINSTANCE.getEnumerationCS_IsSerializable();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Literals</b></em>' containment reference list feature.
@@ -6976,6 +7017,22 @@ public interface BaseCSPackage extends EPackage {
 		 * @generated
 		 */
 		EClass STRUCTURED_CLASS_CS = eINSTANCE.getStructuredClassCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Abstract</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STRUCTURED_CLASS_CS__IS_ABSTRACT = eINSTANCE.getStructuredClassCS_IsAbstract();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Interface</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STRUCTURED_CLASS_CS__IS_INTERFACE = eINSTANCE.getStructuredClassCS_IsInterface();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Super Types</b></em>' containment reference list feature.
