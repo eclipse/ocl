@@ -695,28 +695,21 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	/**
 	 * Constraint:
 	 *     (
-	 *         ((qualifiers+='static' qualifiers+='definition'?) | (qualifiers+='definition' qualifiers+='static'?))? 
+	 *         isStatic?='static'? 
+	 *         isDefinition?='definition'? 
 	 *         name=UnrestrictedName 
 	 *         ownedType=TypedMultiplicityRefCS? 
 	 *         default=SINGLE_QUOTED_STRING? 
 	 *         (
-	 *             qualifiers+='derived' | 
-	 *             qualifiers+='!derived' | 
-	 *             qualifiers+='id' | 
-	 *             qualifiers+='!id' | 
-	 *             qualifiers+='ordered' | 
-	 *             qualifiers+='!ordered' | 
-	 *             qualifiers+='readonly' | 
-	 *             qualifiers+='!readonly' | 
-	 *             qualifiers+='transient' | 
-	 *             qualifiers+='!transient' | 
-	 *             qualifiers+='unique' | 
-	 *             qualifiers+='!unique' | 
-	 *             qualifiers+='unsettable' | 
-	 *             qualifiers+='!unsettable' | 
-	 *             qualifiers+='volatile' | 
-	 *             qualifiers+='!volatile'
-	 *         )* 
+	 *             isDerived?='derived'? 
+	 *             isId?='id'? 
+	 *             isOrdered?='ordered'? 
+	 *             isReadonly?='readonly'? 
+	 *             isTransient?='transient'? 
+	 *             isNotUnique?='!unique'? 
+	 *             isUnsettable?='unsettable'? 
+	 *             isVolatile?='volatile'?
+	 *         )? 
 	 *         (ownedAnnotations+=AnnotationElementCS | ownedDefaultExpressions+=SpecificationCS? | ownedDefaultExpressions+=SpecificationCS?)*
 	 *     )
 	 */
@@ -836,20 +829,14 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	/**
 	 * Constraint:
 	 *     (
-	 *         ((qualifiers+='static' qualifiers+='definition'?) | (qualifiers+='definition' qualifiers+='static'?))? 
+	 *         isStatic?='static'? 
+	 *         isDefinition?='definition'? 
 	 *         ownedSignature=TemplateSignatureCS? 
 	 *         name=UnrestrictedName 
 	 *         (ownedParameters+=ParameterCS ownedParameters+=ParameterCS*)? 
 	 *         ownedType=TypedMultiplicityRefCS? 
 	 *         (ownedExceptions+=TypedRefCS ownedExceptions+=TypedRefCS*)? 
-	 *         (
-	 *             qualifiers+='derived' | 
-	 *             qualifiers+='!derived' | 
-	 *             qualifiers+='ordered' | 
-	 *             qualifiers+='!ordered' | 
-	 *             qualifiers+='unique' | 
-	 *             qualifiers+='!unique'
-	 *         )* 
+	 *         (isDerived?='derived'? isOrdered?='ordered'? isNotUnique?='!unique'?)? 
 	 *         (
 	 *             ownedAnnotations+=AnnotationElementCS | 
 	 *             ownedPreconditions+=PreconditionConstraintCS | 
@@ -879,12 +866,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	
 	/**
 	 * Constraint:
-	 *     (
-	 *         name=UnrestrictedName 
-	 *         ownedType=TypedMultiplicityRefCS? 
-	 *         (qualifiers+='ordered' | qualifiers+='!ordered' | qualifiers+='unique' | qualifiers+='!unique')* 
-	 *         ownedAnnotations+=AnnotationElementCS*
-	 *     )
+	 *     (name=UnrestrictedName ownedType=TypedMultiplicityRefCS? (isOrdered?='ordered'? isNotUnique?='!unique'?)? ownedAnnotations+=AnnotationElementCS*)
 	 */
 	protected void sequence_ParameterCS(EObject context, ParameterCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -921,31 +903,23 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	/**
 	 * Constraint:
 	 *     (
-	 *         ((qualifiers+='static' qualifiers+='definition'?) | (qualifiers+='definition' qualifiers+='static'?))? 
+	 *         isStatic?='static'? 
+	 *         isDefinition?='definition'? 
 	 *         name=UnrestrictedName 
 	 *         referredOpposite=[Property|UnrestrictedName]? 
 	 *         ownedType=TypedMultiplicityRefCS? 
 	 *         default=SINGLE_QUOTED_STRING? 
 	 *         (
-	 *             qualifiers+='composes' | 
-	 *             qualifiers+='!composes' | 
-	 *             qualifiers+='derived' | 
-	 *             qualifiers+='!derived' | 
-	 *             qualifiers+='ordered' | 
-	 *             qualifiers+='!ordered' | 
-	 *             qualifiers+='readonly' | 
-	 *             qualifiers+='!readonly' | 
-	 *             qualifiers+='resolve' | 
-	 *             qualifiers+='!resolve' | 
-	 *             qualifiers+='transient' | 
-	 *             qualifiers+='!transient' | 
-	 *             qualifiers+='unique' | 
-	 *             qualifiers+='!unique' | 
-	 *             qualifiers+='unsettable' | 
-	 *             qualifiers+='!unsettable' | 
-	 *             qualifiers+='volatile' | 
-	 *             qualifiers+='!volatile'
-	 *         )* 
+	 *             isComposes?='composes'? 
+	 *             isDerived?='derived'? 
+	 *             isOrdered?='ordered'? 
+	 *             isReadonly?='readonly'? 
+	 *             isResolve?='resolve'? 
+	 *             isTransient?='transient'? 
+	 *             isNotUnique?='!unique'? 
+	 *             isUnsettable?='unsettable'? 
+	 *             isVolatile?='volatile'?
+	 *         )? 
 	 *         (
 	 *             ownedAnnotations+=AnnotationElementCS | 
 	 *             (referredKeys+=[Property|UnrestrictedName] referredKeys+=[Property|UnrestrictedName]*) | 

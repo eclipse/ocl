@@ -255,13 +255,13 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 		}
 		if (type instanceof DataType) {
 			AttributeCS csAttribute = context.refreshStructuralFeature(AttributeCS.class, BaseCSPackage.Literals.ATTRIBUTE_CS, object);
-			context.refreshQualifiers(csAttribute.getQualifiers(), "id", object.isID());
+			csAttribute.setIsId(object.isID());
 			csElement = csAttribute;
 		}
 		else {
 			ReferenceCS csReference = context.refreshStructuralFeature(ReferenceCS.class, BaseCSPackage.Literals.REFERENCE_CS, object);
-			context.refreshQualifiers(csReference.getQualifiers(), "composes", object.isComposite());
-			context.refreshQualifiers(csReference.getQualifiers(), "resolve", "!resolve", object.isResolveProxies() ? null : Boolean.FALSE);
+			csReference.setIsComposes(object.isComposite());
+			csReference.setIsResolve(object.isResolveProxies());
 			Property opposite = object.getOpposite();
 			if (opposite != null) {
 				if (!opposite.isImplicit()) {

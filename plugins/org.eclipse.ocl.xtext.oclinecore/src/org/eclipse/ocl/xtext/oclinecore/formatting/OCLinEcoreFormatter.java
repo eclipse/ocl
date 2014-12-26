@@ -96,8 +96,15 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 	    }		
 	    {	// AttributeCS
 			AttributeCSElements a = f.getAttributeCSAccess();
-			c.setNoSpace().between(a.getLeftCurlyBracketKeyword_5_0(), a.getRightCurlyBracketKeyword_5_2());
+			c.setNoSpace().between(a.getLeftCurlyBracketKeyword_5_0_0(), a.getRightCurlyBracketKeyword_5_7_1());
+			c.setNoSpace().around(a.getCommaKeyword_5_0_1_1());
 			c.setNoSpace().around(a.getCommaKeyword_5_1_1());
+			c.setNoSpace().around(a.getCommaKeyword_5_2_1());
+			c.setNoSpace().around(a.getCommaKeyword_5_3_1());
+			c.setNoSpace().around(a.getCommaKeyword_5_4_1());
+			c.setNoSpace().around(a.getCommaKeyword_5_5_1());
+			c.setNoSpace().around(a.getCommaKeyword_5_6_1());
+			c.setNoSpace().around(a.getCommaKeyword_5_7_0_1());
 			setNoSpaceLineWrap(c, a.getSemicolonKeyword_6_1());
 			setBraces(c, a.getLeftCurlyBracketKeyword_6_0_0(), a.getRightCurlyBracketKeyword_6_0_2());
 			//
@@ -159,8 +166,10 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 			c.setNoSpace().around(a.getLeftParenthesisKeyword_4());	
 			c.setNoSpace().before(a.getCommaKeyword_5_1_0());
 			c.setNoSpace().before(a.getRightParenthesisKeyword_6());	
-			c.setNoSpace().between(a.getLeftCurlyBracketKeyword_9_0(), a.getRightCurlyBracketKeyword_9_2());
+			c.setNoSpace().between(a.getLeftCurlyBracketKeyword_9_0_0(), a.getRightCurlyBracketKeyword_9_2_1());
+			c.setNoSpace().around(a.getCommaKeyword_9_0_1_1());
 			c.setNoSpace().around(a.getCommaKeyword_9_1_1());
+			c.setNoSpace().around(a.getCommaKeyword_9_2_0_1());
 			setBraces(c, a.getLeftCurlyBracketKeyword_10_0_0(), a.getRightCurlyBracketKeyword_10_0_2());
 			setNoSpaceLineWrap(c, a.getSemicolonKeyword_10_1());
 		    c.setIndentation(a.getLeftParenthesisKeyword_4(), a.getRightParenthesisKeyword_6());
@@ -178,8 +187,9 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 	    }
 	    {
 			ParameterCSElements a = f.getParameterCSAccess();
-			c.setNoSpace().between(a.getLeftCurlyBracketKeyword_2_0(), a.getRightCurlyBracketKeyword_2_2());
-			c.setNoSpace().around(a.getCommaKeyword_2_1_1());
+			c.setNoSpace().between(a.getLeftCurlyBracketKeyword_2_0_0(), a.getRightCurlyBracketKeyword_2_1_1());
+			c.setNoSpace().around(a.getCommaKeyword_2_0_1_1());
+			c.setNoSpace().around(a.getCommaKeyword_2_1_0_1());
 			setBraces(c, a.getLeftCurlyBracketKeyword_3_0(), a.getRightCurlyBracketKeyword_3_2());
 	    }
 	    {
@@ -203,8 +213,16 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 	    {
 			ReferenceCSElements a = f.getReferenceCSAccess();
 			c.setNoSpace().around(a.getNumberSignKeyword_3_0());
-			c.setNoSpace().between(a.getLeftCurlyBracketKeyword_6_0(), a.getRightCurlyBracketKeyword_6_2());
+			c.setNoSpace().between(a.getLeftCurlyBracketKeyword_6_0_0(), a.getRightCurlyBracketKeyword_6_8_1());
+			c.setNoSpace().around(a.getCommaKeyword_6_0_1_1());
 			c.setNoSpace().around(a.getCommaKeyword_6_1_1());
+			c.setNoSpace().around(a.getCommaKeyword_6_2_1());
+			c.setNoSpace().around(a.getCommaKeyword_6_3_1());
+			c.setNoSpace().around(a.getCommaKeyword_6_4_1());
+			c.setNoSpace().around(a.getCommaKeyword_6_5_1());
+			c.setNoSpace().around(a.getCommaKeyword_6_6_1());
+			c.setNoSpace().around(a.getCommaKeyword_6_7_1());
+			c.setNoSpace().around(a.getCommaKeyword_6_8_0_1());
 			setBraces(c, a.getLeftCurlyBracketKeyword_7_0_0(), a.getRightCurlyBracketKeyword_7_0_2());
 			c.setNoSpace().before(a.getCommaKeyword_7_0_1_1_2_0());
 			//

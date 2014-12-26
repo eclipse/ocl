@@ -35,7 +35,6 @@ import org.eclipse.ocl.xtext.oclstdlibcs.util.OCLstdlibCSVisitor;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.oclstdlibcs.impl.LibPropertyCSImpl#getImplementation <em>Implementation</em>}</li>
- *   <li>{@link org.eclipse.ocl.xtext.oclstdlibcs.impl.LibPropertyCSImpl#isIsStatic <em>Is Static</em>}</li>
  * </ul>
  *
  * @generated
@@ -53,26 +52,6 @@ public class LibPropertyCSImpl
 	 * @ordered
 	 */
 	protected JavaClassCS implementation;
-
-	/**
-	 * The default value of the '{@link #isIsStatic() <em>Is Static</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsStatic()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean IS_STATIC_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isIsStatic() <em>Is Static</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsStatic()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean isStatic = IS_STATIC_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -143,37 +122,12 @@ public class LibPropertyCSImpl
 	 * @generated
 	 */
 	@Override
-	public boolean isIsStatic() {
-		return isStatic;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setIsStatic(boolean newIsStatic) {
-		boolean oldIsStatic = isStatic;
-		isStatic = newIsStatic;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OCLstdlibCSPackage.LIB_PROPERTY_CS__IS_STATIC, oldIsStatic, isStatic));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
 			case OCLstdlibCSPackage.LIB_PROPERTY_CS__IMPLEMENTATION:
 				if (resolve) return getImplementation();
 				return basicGetImplementation();
-			case OCLstdlibCSPackage.LIB_PROPERTY_CS__IS_STATIC:
-				return isIsStatic();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -189,9 +143,6 @@ public class LibPropertyCSImpl
 		{
 			case OCLstdlibCSPackage.LIB_PROPERTY_CS__IMPLEMENTATION:
 				setImplementation((JavaClassCS)newValue);
-				return;
-			case OCLstdlibCSPackage.LIB_PROPERTY_CS__IS_STATIC:
-				setIsStatic((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -209,9 +160,6 @@ public class LibPropertyCSImpl
 			case OCLstdlibCSPackage.LIB_PROPERTY_CS__IMPLEMENTATION:
 				setImplementation((JavaClassCS)null);
 				return;
-			case OCLstdlibCSPackage.LIB_PROPERTY_CS__IS_STATIC:
-				setIsStatic(IS_STATIC_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -227,8 +175,6 @@ public class LibPropertyCSImpl
 		{
 			case OCLstdlibCSPackage.LIB_PROPERTY_CS__IMPLEMENTATION:
 				return implementation != null;
-			case OCLstdlibCSPackage.LIB_PROPERTY_CS__IS_STATIC:
-				return isStatic != IS_STATIC_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -277,16 +223,5 @@ public class LibPropertyCSImpl
 	@Override
 	public @Nullable <R> R accept(@NonNull BaseCSVisitor<R> visitor) {
 		return (R) ((OCLstdlibCSVisitor<?>)visitor).visitLibPropertyCS(this);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString()
-	{
-		return super.toString();
 	}
 } //LibPropertyCSImpl

@@ -37,7 +37,6 @@ import org.eclipse.ocl.xtext.oclstdlibcs.util.OCLstdlibCSVisitor;
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.oclstdlibcs.impl.LibOperationCSImpl#getImplementation <em>Implementation</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.oclstdlibcs.impl.LibOperationCSImpl#isIsInvalidating <em>Is Invalidating</em>}</li>
- *   <li>{@link org.eclipse.ocl.xtext.oclstdlibcs.impl.LibOperationCSImpl#isIsStatic <em>Is Static</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.oclstdlibcs.impl.LibOperationCSImpl#isIsValidating <em>Is Validating</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.oclstdlibcs.impl.LibOperationCSImpl#getPrecedence <em>Precedence</em>}</li>
  * </ul>
@@ -77,26 +76,6 @@ public class LibOperationCSImpl
 	 * @ordered
 	 */
 	protected boolean isInvalidating = IS_INVALIDATING_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isIsStatic() <em>Is Static</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsStatic()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean IS_STATIC_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isIsStatic() <em>Is Static</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsStatic()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean isStatic = IS_STATIC_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isIsValidating() <em>Is Validating</em>}' attribute.
@@ -264,31 +243,6 @@ public class LibOperationCSImpl
 	 * @generated
 	 */
 	@Override
-	public boolean isIsStatic()
-	{
-		return isStatic;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setIsStatic(boolean newIsStatic)
-	{
-		boolean oldIsStatic = isStatic;
-		isStatic = newIsStatic;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OCLstdlibCSPackage.LIB_OPERATION_CS__IS_STATIC, oldIsStatic, isStatic));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public boolean isIsValidating()
 	{
 		return isValidating;
@@ -322,8 +276,6 @@ public class LibOperationCSImpl
 				return basicGetImplementation();
 			case OCLstdlibCSPackage.LIB_OPERATION_CS__IS_INVALIDATING:
 				return isIsInvalidating();
-			case OCLstdlibCSPackage.LIB_OPERATION_CS__IS_STATIC:
-				return isIsStatic();
 			case OCLstdlibCSPackage.LIB_OPERATION_CS__IS_VALIDATING:
 				return isIsValidating();
 			case OCLstdlibCSPackage.LIB_OPERATION_CS__PRECEDENCE:
@@ -347,9 +299,6 @@ public class LibOperationCSImpl
 				return;
 			case OCLstdlibCSPackage.LIB_OPERATION_CS__IS_INVALIDATING:
 				setIsInvalidating((Boolean)newValue);
-				return;
-			case OCLstdlibCSPackage.LIB_OPERATION_CS__IS_STATIC:
-				setIsStatic((Boolean)newValue);
 				return;
 			case OCLstdlibCSPackage.LIB_OPERATION_CS__IS_VALIDATING:
 				setIsValidating((Boolean)newValue);
@@ -376,9 +325,6 @@ public class LibOperationCSImpl
 			case OCLstdlibCSPackage.LIB_OPERATION_CS__IS_INVALIDATING:
 				setIsInvalidating(IS_INVALIDATING_EDEFAULT);
 				return;
-			case OCLstdlibCSPackage.LIB_OPERATION_CS__IS_STATIC:
-				setIsStatic(IS_STATIC_EDEFAULT);
-				return;
 			case OCLstdlibCSPackage.LIB_OPERATION_CS__IS_VALIDATING:
 				setIsValidating(IS_VALIDATING_EDEFAULT);
 				return;
@@ -402,8 +348,6 @@ public class LibOperationCSImpl
 				return implementation != null;
 			case OCLstdlibCSPackage.LIB_OPERATION_CS__IS_INVALIDATING:
 				return isInvalidating != IS_INVALIDATING_EDEFAULT;
-			case OCLstdlibCSPackage.LIB_OPERATION_CS__IS_STATIC:
-				return isStatic != IS_STATIC_EDEFAULT;
 			case OCLstdlibCSPackage.LIB_OPERATION_CS__IS_VALIDATING:
 				return isValidating != IS_VALIDATING_EDEFAULT;
 			case OCLstdlibCSPackage.LIB_OPERATION_CS__PRECEDENCE:

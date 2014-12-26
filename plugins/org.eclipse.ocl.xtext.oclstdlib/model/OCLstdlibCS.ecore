@@ -27,8 +27,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="LibOperationCS" eSuperTypes="../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//OperationCS #//JavaImplementationCS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInvalidating" eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Boolean"
         defaultValueLiteral="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStatic" eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Boolean"
-        defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isValidating" eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Boolean"
         defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="precedence" eType="ecore:EClass ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Precedence"/>
@@ -37,10 +35,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPrecedences" upperBound="-1"
         eType="#//PrecedenceCS" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LibPropertyCS" eSuperTypes="../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//AttributeCS #//JavaImplementationCS">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStatic" eType="ecore:EDataType ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Boolean"
-        defaultValueLiteral="false"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LibPropertyCS" eSuperTypes="../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//AttributeCS #//JavaImplementationCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="LibRootPackageCS" eSuperTypes="../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//RootPackageCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="MetaclassNameCS" eSuperTypes="../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//ElementCS ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Nameable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

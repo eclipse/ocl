@@ -36,6 +36,8 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ReferenceCSImpl#getReferredKeys <em>Referred Keys</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ReferenceCSImpl#getReferredOpposite <em>Referred Opposite</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ReferenceCSImpl#isIsComposes <em>Is Composes</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.ReferenceCSImpl#isIsResolve <em>Is Resolve</em>}</li>
  * </ul>
  *
  * @generated
@@ -61,6 +63,46 @@ public class ReferenceCSImpl extends StructuralFeatureCSImpl implements Referenc
 	 * @ordered
 	 */
 	protected Property referredOpposite;
+
+	/**
+	 * The default value of the '{@link #isIsComposes() <em>Is Composes</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsComposes()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_COMPOSES_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIsComposes() <em>Is Composes</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsComposes()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isComposes = IS_COMPOSES_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isIsResolve() <em>Is Resolve</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsResolve()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_RESOLVE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIsResolve() <em>Is Resolve</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsResolve()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isResolve = IS_RESOLVE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -134,6 +176,67 @@ public class ReferenceCSImpl extends StructuralFeatureCSImpl implements Referenc
 	 * @generated
 	 */
 	@Override
+	public boolean isIsComposes()
+	{
+		return isComposes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsComposes(boolean newIsComposes)
+	{
+		boolean oldIsComposes = isComposes;
+		isComposes = newIsComposes;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.REFERENCE_CS__IS_COMPOSES, oldIsComposes, isComposes));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isIsResolve()
+	{
+		return isResolve;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsResolve(boolean newIsResolve)
+	{
+		boolean oldIsResolve = isResolve;
+		isResolve = newIsResolve;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.REFERENCE_CS__IS_RESOLVE, oldIsResolve, isResolve));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString()
+	{
+		return super.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EList<Property> getReferredKeys()
 	{
 		if (referredKeys == null)
@@ -158,6 +261,10 @@ public class ReferenceCSImpl extends StructuralFeatureCSImpl implements Referenc
 			case BaseCSPackage.REFERENCE_CS__REFERRED_OPPOSITE:
 				if (resolve) return getReferredOpposite();
 				return basicGetReferredOpposite();
+			case BaseCSPackage.REFERENCE_CS__IS_COMPOSES:
+				return isIsComposes();
+			case BaseCSPackage.REFERENCE_CS__IS_RESOLVE:
+				return isIsResolve();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -180,6 +287,12 @@ public class ReferenceCSImpl extends StructuralFeatureCSImpl implements Referenc
 			case BaseCSPackage.REFERENCE_CS__REFERRED_OPPOSITE:
 				setReferredOpposite((Property)newValue);
 				return;
+			case BaseCSPackage.REFERENCE_CS__IS_COMPOSES:
+				setIsComposes((Boolean)newValue);
+				return;
+			case BaseCSPackage.REFERENCE_CS__IS_RESOLVE:
+				setIsResolve((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -200,6 +313,12 @@ public class ReferenceCSImpl extends StructuralFeatureCSImpl implements Referenc
 			case BaseCSPackage.REFERENCE_CS__REFERRED_OPPOSITE:
 				setReferredOpposite((Property)null);
 				return;
+			case BaseCSPackage.REFERENCE_CS__IS_COMPOSES:
+				setIsComposes(IS_COMPOSES_EDEFAULT);
+				return;
+			case BaseCSPackage.REFERENCE_CS__IS_RESOLVE:
+				setIsResolve(IS_RESOLVE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -218,6 +337,10 @@ public class ReferenceCSImpl extends StructuralFeatureCSImpl implements Referenc
 				return referredKeys != null && !referredKeys.isEmpty();
 			case BaseCSPackage.REFERENCE_CS__REFERRED_OPPOSITE:
 				return referredOpposite != null;
+			case BaseCSPackage.REFERENCE_CS__IS_COMPOSES:
+				return isComposes != IS_COMPOSES_EDEFAULT;
+			case BaseCSPackage.REFERENCE_CS__IS_RESOLVE:
+				return isResolve != IS_RESOLVE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

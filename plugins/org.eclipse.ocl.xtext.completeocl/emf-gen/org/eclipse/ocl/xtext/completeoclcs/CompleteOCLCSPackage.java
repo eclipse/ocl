@@ -544,6 +544,15 @@ public interface CompleteOCLCSPackage
 	int DEF_CS__NAME = BaseCSPackage.TYPED_ELEMENT_CS__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Not Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_CS__IS_NOT_UNIQUE = BaseCSPackage.TYPED_ELEMENT_CS__IS_NOT_UNIQUE;
+
+	/**
 	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -553,6 +562,15 @@ public interface CompleteOCLCSPackage
 	int DEF_CS__IS_OPTIONAL = BaseCSPackage.TYPED_ELEMENT_CS__IS_OPTIONAL;
 
 	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_CS__IS_ORDERED = BaseCSPackage.TYPED_ELEMENT_CS__IS_ORDERED;
+
+	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -560,15 +578,6 @@ public interface CompleteOCLCSPackage
 	 * @ordered
 	 */
 	int DEF_CS__OWNED_TYPE = BaseCSPackage.TYPED_ELEMENT_CS__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEF_CS__QUALIFIERS = BaseCSPackage.TYPED_ELEMENT_CS__QUALIFIERS;
 
 	/**
 	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
@@ -671,6 +680,15 @@ public interface CompleteOCLCSPackage
 	int DEF_OPERATION_CS__NAME = DEF_CS__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Not Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_OPERATION_CS__IS_NOT_UNIQUE = DEF_CS__IS_NOT_UNIQUE;
+
+	/**
 	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -680,6 +698,15 @@ public interface CompleteOCLCSPackage
 	int DEF_OPERATION_CS__IS_OPTIONAL = DEF_CS__IS_OPTIONAL;
 
 	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_OPERATION_CS__IS_ORDERED = DEF_CS__IS_ORDERED;
+
+	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -687,15 +714,6 @@ public interface CompleteOCLCSPackage
 	 * @ordered
 	 */
 	int DEF_OPERATION_CS__OWNED_TYPE = DEF_CS__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEF_OPERATION_CS__QUALIFIERS = DEF_CS__QUALIFIERS;
 
 	/**
 	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
@@ -816,6 +834,15 @@ public interface CompleteOCLCSPackage
 	int DEF_PROPERTY_CS__NAME = DEF_CS__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Not Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_PROPERTY_CS__IS_NOT_UNIQUE = DEF_CS__IS_NOT_UNIQUE;
+
+	/**
 	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -825,6 +852,15 @@ public interface CompleteOCLCSPackage
 	int DEF_PROPERTY_CS__IS_OPTIONAL = DEF_CS__IS_OPTIONAL;
 
 	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_PROPERTY_CS__IS_ORDERED = DEF_CS__IS_ORDERED;
+
+	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -832,15 +868,6 @@ public interface CompleteOCLCSPackage
 	 * @ordered
 	 */
 	int DEF_PROPERTY_CS__OWNED_TYPE = DEF_CS__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEF_PROPERTY_CS__QUALIFIERS = DEF_CS__QUALIFIERS;
 
 	/**
 	 * The feature id for the '<em><b>Is Static</b></em>' attribute.

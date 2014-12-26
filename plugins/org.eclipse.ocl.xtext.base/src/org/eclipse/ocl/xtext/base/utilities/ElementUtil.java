@@ -120,21 +120,8 @@ public class ElementUtil
 		if (upper == 1) {
 			return null;
 		}
-		List<String> qualifiers = csTypedElement.getQualifiers();
-		boolean isOrdered = true;
-		boolean isUnique = true;
-		if (qualifiers.contains("!ordered")) { //$NON-NLS-1$
-			isOrdered = false;
-		}
-		else if (qualifiers.contains("ordered")) { //$NON-NLS-1$
-			isOrdered = true;
-		}
-		if (qualifiers.contains("!unique")) { //$NON-NLS-1$
-			isUnique = false;
-		}
-		else if (qualifiers.contains("unique")) { //$NON-NLS-1$
-			isUnique = true;
-		}
+	boolean isOrdered = csTypedElement.isIsOrdered();
+		boolean isUnique = !csTypedElement.isIsNotUnique();
 		return getCollectionName(isOrdered, isUnique);
 	}
 
@@ -432,18 +419,6 @@ public class ElementUtil
 			}
 		}
 		return false;
-	}
-
-	public static boolean isOrdered(@NonNull TypedElementCS csTypedElement) {
-		List<String> qualifiers = csTypedElement.getQualifiers();
-		assert qualifiers != null;
-		return getQualifier(qualifiers, "ordered", "!ordered", false);
-	}
-
-	public static boolean isUnique(@NonNull TypedElementCS csTypedElement) {
-		List<String> qualifiers = csTypedElement.getQualifiers();
-		assert qualifiers != null;
-		return getQualifier(qualifiers, "unique", "!unique", true);
 	}
 
 	public static boolean isSpecialization(@NonNull TemplateBindingCS csTemplateBinding) {

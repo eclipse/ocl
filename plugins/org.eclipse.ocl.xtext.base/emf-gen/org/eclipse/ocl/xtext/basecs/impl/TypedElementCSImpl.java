@@ -10,15 +10,11 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.basecs.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
 import org.eclipse.ocl.xtext.basecs.TypedElementCS;
 import org.eclipse.ocl.xtext.basecs.TypedRefCS;
@@ -32,15 +28,36 @@ import org.eclipse.ocl.xtext.basecs.TypedRefCS;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.TypedElementCSImpl#isIsNotUnique <em>Is Not Unique</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.TypedElementCSImpl#isIsOptional <em>Is Optional</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.TypedElementCSImpl#isIsOrdered <em>Is Ordered</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.TypedElementCSImpl#getOwnedType <em>Owned Type</em>}</li>
- *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.TypedElementCSImpl#getQualifiers <em>Qualifiers</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class TypedElementCSImpl extends NamedElementCSImpl implements TypedElementCS
 {
+	/**
+	 * The default value of the '{@link #isIsNotUnique() <em>Is Not Unique</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsNotUnique()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_NOT_UNIQUE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIsNotUnique() <em>Is Not Unique</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsNotUnique()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isNotUnique = IS_NOT_UNIQUE_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #isIsOptional() <em>Is Optional</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -62,6 +79,26 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	protected boolean isOptional = IS_OPTIONAL_EDEFAULT;
 
 	/**
+	 * The default value of the '{@link #isIsOrdered() <em>Is Ordered</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsOrdered()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_ORDERED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIsOrdered() <em>Is Ordered</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsOrdered()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isOrdered = IS_ORDERED_EDEFAULT;
+
+	/**
 	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,16 +107,6 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	 * @ordered
 	 */
 	protected TypedRefCS ownedType;
-
-	/**
-	 * The cached value of the '{@link #getQualifiers() <em>Qualifiers</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getQualifiers()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<String> qualifiers;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -100,6 +127,31 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	protected EClass eStaticClass()
 	{
 		return BaseCSPackage.Literals.TYPED_ELEMENT_CS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isIsNotUnique()
+	{
+		return isNotUnique;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsNotUnique(boolean newIsNotUnique)
+	{
+		boolean oldIsNotUnique = isNotUnique;
+		isNotUnique = newIsNotUnique;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.TYPED_ELEMENT_CS__IS_NOT_UNIQUE, oldIsNotUnique, isNotUnique));
 	}
 
 	/**
@@ -158,21 +210,6 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	 * @generated
 	 */
 	@Override
-	public EList<String> getQualifiers()
-	{
-		if (qualifiers == null)
-		{
-			qualifiers = new EDataTypeUniqueEList<String>(String.class, this, BaseCSPackage.TYPED_ELEMENT_CS__QUALIFIERS);
-		}
-		return qualifiers;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public boolean isIsOptional()
 	{
 		return isOptional;
@@ -190,6 +227,31 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 		isOptional = newIsOptional;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.TYPED_ELEMENT_CS__IS_OPTIONAL, oldIsOptional, isOptional));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isIsOrdered()
+	{
+		return isOrdered;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsOrdered(boolean newIsOrdered)
+	{
+		boolean oldIsOrdered = isOrdered;
+		isOrdered = newIsOrdered;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.TYPED_ELEMENT_CS__IS_ORDERED, oldIsOrdered, isOrdered));
 	}
 
 	/**
@@ -229,12 +291,14 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	{
 		switch (featureID)
 		{
+			case BaseCSPackage.TYPED_ELEMENT_CS__IS_NOT_UNIQUE:
+				return isIsNotUnique();
 			case BaseCSPackage.TYPED_ELEMENT_CS__IS_OPTIONAL:
 				return isIsOptional();
+			case BaseCSPackage.TYPED_ELEMENT_CS__IS_ORDERED:
+				return isIsOrdered();
 			case BaseCSPackage.TYPED_ELEMENT_CS__OWNED_TYPE:
 				return getOwnedType();
-			case BaseCSPackage.TYPED_ELEMENT_CS__QUALIFIERS:
-				return getQualifiers();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -250,15 +314,17 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	{
 		switch (featureID)
 		{
+			case BaseCSPackage.TYPED_ELEMENT_CS__IS_NOT_UNIQUE:
+				setIsNotUnique((Boolean)newValue);
+				return;
 			case BaseCSPackage.TYPED_ELEMENT_CS__IS_OPTIONAL:
 				setIsOptional((Boolean)newValue);
 				return;
+			case BaseCSPackage.TYPED_ELEMENT_CS__IS_ORDERED:
+				setIsOrdered((Boolean)newValue);
+				return;
 			case BaseCSPackage.TYPED_ELEMENT_CS__OWNED_TYPE:
 				setOwnedType((TypedRefCS)newValue);
-				return;
-			case BaseCSPackage.TYPED_ELEMENT_CS__QUALIFIERS:
-				getQualifiers().clear();
-				getQualifiers().addAll((Collection<? extends String>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -274,14 +340,17 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	{
 		switch (featureID)
 		{
+			case BaseCSPackage.TYPED_ELEMENT_CS__IS_NOT_UNIQUE:
+				setIsNotUnique(IS_NOT_UNIQUE_EDEFAULT);
+				return;
 			case BaseCSPackage.TYPED_ELEMENT_CS__IS_OPTIONAL:
 				setIsOptional(IS_OPTIONAL_EDEFAULT);
 				return;
+			case BaseCSPackage.TYPED_ELEMENT_CS__IS_ORDERED:
+				setIsOrdered(IS_ORDERED_EDEFAULT);
+				return;
 			case BaseCSPackage.TYPED_ELEMENT_CS__OWNED_TYPE:
 				setOwnedType((TypedRefCS)null);
-				return;
-			case BaseCSPackage.TYPED_ELEMENT_CS__QUALIFIERS:
-				getQualifiers().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -297,12 +366,14 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	{
 		switch (featureID)
 		{
+			case BaseCSPackage.TYPED_ELEMENT_CS__IS_NOT_UNIQUE:
+				return isNotUnique != IS_NOT_UNIQUE_EDEFAULT;
 			case BaseCSPackage.TYPED_ELEMENT_CS__IS_OPTIONAL:
 				return isOptional != IS_OPTIONAL_EDEFAULT;
+			case BaseCSPackage.TYPED_ELEMENT_CS__IS_ORDERED:
+				return isOrdered != IS_ORDERED_EDEFAULT;
 			case BaseCSPackage.TYPED_ELEMENT_CS__OWNED_TYPE:
 				return ownedType != null;
-			case BaseCSPackage.TYPED_ELEMENT_CS__QUALIFIERS:
-				return qualifiers != null && !qualifiers.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

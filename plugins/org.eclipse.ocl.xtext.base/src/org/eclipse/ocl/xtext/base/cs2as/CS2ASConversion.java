@@ -750,8 +750,9 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 			boolean isUnique = false;
 			EObject eContainer = csElement.eContainer();
 			if (eContainer instanceof TypedElementCS) {
-				isOrdered = ElementUtil.isOrdered((TypedElementCS) eContainer);
-				isUnique = ElementUtil.isUnique((TypedElementCS) eContainer);
+				TypedElementCS csTypedElement = (TypedElementCS) eContainer;
+				isOrdered = csTypedElement.isIsOrdered();
+				isUnique = !csTypedElement.isIsNotUnique();
 			}
 			IntegerValue lowerValue = ValueUtil.integerValueOf(lower);
 			UnlimitedNaturalValue upperValue = upper != -1 ? ValueUtil.unlimitedNaturalValueOf(upper) : ValueUtil.UNLIMITED_VALUE;

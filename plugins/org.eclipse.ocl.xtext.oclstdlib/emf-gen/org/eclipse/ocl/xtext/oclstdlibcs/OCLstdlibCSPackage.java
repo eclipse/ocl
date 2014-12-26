@@ -463,6 +463,15 @@ public interface OCLstdlibCSPackage
 	int LIB_COERCION_CS__NAME = BaseCSPackage.OPERATION_CS__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Not Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_COERCION_CS__IS_NOT_UNIQUE = BaseCSPackage.OPERATION_CS__IS_NOT_UNIQUE;
+
+	/**
 	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -470,6 +479,15 @@ public interface OCLstdlibCSPackage
 	 * @ordered
 	 */
 	int LIB_COERCION_CS__IS_OPTIONAL = BaseCSPackage.OPERATION_CS__IS_OPTIONAL;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_COERCION_CS__IS_ORDERED = BaseCSPackage.OPERATION_CS__IS_ORDERED;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -481,13 +499,31 @@ public interface OCLstdlibCSPackage
 	int LIB_COERCION_CS__OWNED_TYPE = BaseCSPackage.OPERATION_CS__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
+	 * The feature id for the '<em><b>Is Definition</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_COERCION_CS__QUALIFIERS = BaseCSPackage.OPERATION_CS__QUALIFIERS;
+	int LIB_COERCION_CS__IS_DEFINITION = BaseCSPackage.OPERATION_CS__IS_DEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_COERCION_CS__IS_DERIVED = BaseCSPackage.OPERATION_CS__IS_DERIVED;
+
+	/**
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_COERCION_CS__IS_STATIC = BaseCSPackage.OPERATION_CS__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Owned Signature</b></em>' containment reference.
@@ -715,6 +751,15 @@ public interface OCLstdlibCSPackage
 	int LIB_ITERATION_CS__NAME = BaseCSPackage.OPERATION_CS__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Not Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_ITERATION_CS__IS_NOT_UNIQUE = BaseCSPackage.OPERATION_CS__IS_NOT_UNIQUE;
+
+	/**
 	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -722,6 +767,15 @@ public interface OCLstdlibCSPackage
 	 * @ordered
 	 */
 	int LIB_ITERATION_CS__IS_OPTIONAL = BaseCSPackage.OPERATION_CS__IS_OPTIONAL;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_ITERATION_CS__IS_ORDERED = BaseCSPackage.OPERATION_CS__IS_ORDERED;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -733,13 +787,31 @@ public interface OCLstdlibCSPackage
 	int LIB_ITERATION_CS__OWNED_TYPE = BaseCSPackage.OPERATION_CS__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
+	 * The feature id for the '<em><b>Is Definition</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_ITERATION_CS__QUALIFIERS = BaseCSPackage.OPERATION_CS__QUALIFIERS;
+	int LIB_ITERATION_CS__IS_DEFINITION = BaseCSPackage.OPERATION_CS__IS_DEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_ITERATION_CS__IS_DERIVED = BaseCSPackage.OPERATION_CS__IS_DERIVED;
+
+	/**
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_ITERATION_CS__IS_STATIC = BaseCSPackage.OPERATION_CS__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Owned Signature</b></em>' containment reference.
@@ -913,6 +985,15 @@ public interface OCLstdlibCSPackage
 	int LIB_OPERATION_CS__NAME = BaseCSPackage.OPERATION_CS__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Not Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_OPERATION_CS__IS_NOT_UNIQUE = BaseCSPackage.OPERATION_CS__IS_NOT_UNIQUE;
+
+	/**
 	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -920,6 +1001,15 @@ public interface OCLstdlibCSPackage
 	 * @ordered
 	 */
 	int LIB_OPERATION_CS__IS_OPTIONAL = BaseCSPackage.OPERATION_CS__IS_OPTIONAL;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_OPERATION_CS__IS_ORDERED = BaseCSPackage.OPERATION_CS__IS_ORDERED;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -931,13 +1021,31 @@ public interface OCLstdlibCSPackage
 	int LIB_OPERATION_CS__OWNED_TYPE = BaseCSPackage.OPERATION_CS__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
+	 * The feature id for the '<em><b>Is Definition</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_OPERATION_CS__QUALIFIERS = BaseCSPackage.OPERATION_CS__QUALIFIERS;
+	int LIB_OPERATION_CS__IS_DEFINITION = BaseCSPackage.OPERATION_CS__IS_DEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_OPERATION_CS__IS_DERIVED = BaseCSPackage.OPERATION_CS__IS_DERIVED;
+
+	/**
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_OPERATION_CS__IS_STATIC = BaseCSPackage.OPERATION_CS__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Owned Signature</b></em>' containment reference.
@@ -1021,22 +1129,13 @@ public interface OCLstdlibCSPackage
 	int LIB_OPERATION_CS__IS_INVALIDATING = BaseCSPackage.OPERATION_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_OPERATION_CS__IS_STATIC = BaseCSPackage.OPERATION_CS_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Is Validating</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_OPERATION_CS__IS_VALIDATING = BaseCSPackage.OPERATION_CS_FEATURE_COUNT + 3;
+	int LIB_OPERATION_CS__IS_VALIDATING = BaseCSPackage.OPERATION_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Precedence</b></em>' reference.
@@ -1045,7 +1144,7 @@ public interface OCLstdlibCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_OPERATION_CS__PRECEDENCE = BaseCSPackage.OPERATION_CS_FEATURE_COUNT + 4;
+	int LIB_OPERATION_CS__PRECEDENCE = BaseCSPackage.OPERATION_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Lib Operation CS</em>' class.
@@ -1054,7 +1153,7 @@ public interface OCLstdlibCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_OPERATION_CS_FEATURE_COUNT = BaseCSPackage.OPERATION_CS_FEATURE_COUNT + 5;
+	int LIB_OPERATION_CS_FEATURE_COUNT = BaseCSPackage.OPERATION_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.oclstdlibcs.impl.LibPackageCSImpl <em>Lib Package CS</em>}' class.
@@ -1229,6 +1328,15 @@ public interface OCLstdlibCSPackage
 	int LIB_PROPERTY_CS__NAME = BaseCSPackage.ATTRIBUTE_CS__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Not Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_PROPERTY_CS__IS_NOT_UNIQUE = BaseCSPackage.ATTRIBUTE_CS__IS_NOT_UNIQUE;
+
+	/**
 	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1236,6 +1344,15 @@ public interface OCLstdlibCSPackage
 	 * @ordered
 	 */
 	int LIB_PROPERTY_CS__IS_OPTIONAL = BaseCSPackage.ATTRIBUTE_CS__IS_OPTIONAL;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_PROPERTY_CS__IS_ORDERED = BaseCSPackage.ATTRIBUTE_CS__IS_ORDERED;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -1247,13 +1364,31 @@ public interface OCLstdlibCSPackage
 	int LIB_PROPERTY_CS__OWNED_TYPE = BaseCSPackage.ATTRIBUTE_CS__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
+	 * The feature id for the '<em><b>Is Definition</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_PROPERTY_CS__QUALIFIERS = BaseCSPackage.ATTRIBUTE_CS__QUALIFIERS;
+	int LIB_PROPERTY_CS__IS_DEFINITION = BaseCSPackage.ATTRIBUTE_CS__IS_DEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_PROPERTY_CS__IS_DERIVED = BaseCSPackage.ATTRIBUTE_CS__IS_DERIVED;
+
+	/**
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_PROPERTY_CS__IS_STATIC = BaseCSPackage.ATTRIBUTE_CS__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Default</b></em>' attribute.
@@ -1263,6 +1398,42 @@ public interface OCLstdlibCSPackage
 	 * @ordered
 	 */
 	int LIB_PROPERTY_CS__DEFAULT = BaseCSPackage.ATTRIBUTE_CS__DEFAULT;
+
+	/**
+	 * The feature id for the '<em><b>Is Readonly</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_PROPERTY_CS__IS_READONLY = BaseCSPackage.ATTRIBUTE_CS__IS_READONLY;
+
+	/**
+	 * The feature id for the '<em><b>Is Transient</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_PROPERTY_CS__IS_TRANSIENT = BaseCSPackage.ATTRIBUTE_CS__IS_TRANSIENT;
+
+	/**
+	 * The feature id for the '<em><b>Is Unsettable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_PROPERTY_CS__IS_UNSETTABLE = BaseCSPackage.ATTRIBUTE_CS__IS_UNSETTABLE;
+
+	/**
+	 * The feature id for the '<em><b>Is Volatile</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_PROPERTY_CS__IS_VOLATILE = BaseCSPackage.ATTRIBUTE_CS__IS_VOLATILE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Default Expressions</b></em>' containment reference list.
@@ -1283,6 +1454,15 @@ public interface OCLstdlibCSPackage
 	int LIB_PROPERTY_CS__OWNING_CLASS = BaseCSPackage.ATTRIBUTE_CS__OWNING_CLASS;
 
 	/**
+	 * The feature id for the '<em><b>Is Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_PROPERTY_CS__IS_ID = BaseCSPackage.ATTRIBUTE_CS__IS_ID;
+
+	/**
 	 * The feature id for the '<em><b>Implementation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1292,22 +1472,13 @@ public interface OCLstdlibCSPackage
 	int LIB_PROPERTY_CS__IMPLEMENTATION = BaseCSPackage.ATTRIBUTE_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_PROPERTY_CS__IS_STATIC = BaseCSPackage.ATTRIBUTE_CS_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Lib Property CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_PROPERTY_CS_FEATURE_COUNT = BaseCSPackage.ATTRIBUTE_CS_FEATURE_COUNT + 2;
+	int LIB_PROPERTY_CS_FEATURE_COUNT = BaseCSPackage.ATTRIBUTE_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.oclstdlibcs.impl.LibRootPackageCSImpl <em>Lib Root Package CS</em>}' class.
@@ -1666,17 +1837,6 @@ public interface OCLstdlibCSPackage
 	EAttribute getLibOperationCS_IsInvalidating();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.oclstdlibcs.LibOperationCS#isIsStatic <em>Is Static</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Static</em>'.
-	 * @see org.eclipse.ocl.xtext.oclstdlibcs.LibOperationCS#isIsStatic()
-	 * @see #getLibOperationCS()
-	 * @generated
-	 */
-	EAttribute getLibOperationCS_IsStatic();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.oclstdlibcs.LibOperationCS#isIsValidating <em>Is Validating</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1717,17 +1877,6 @@ public interface OCLstdlibCSPackage
 	 * @generated
 	 */
 	EClass getLibPropertyCS();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.oclstdlibcs.LibPropertyCS#isIsStatic <em>Is Static</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Static</em>'.
-	 * @see org.eclipse.ocl.xtext.oclstdlibcs.LibPropertyCS#isIsStatic()
-	 * @see #getLibPropertyCS()
-	 * @generated
-	 */
-	EAttribute getLibPropertyCS_IsStatic();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.oclstdlibcs.LibRootPackageCS <em>Lib Root Package CS</em>}'.
@@ -1942,14 +2091,6 @@ public interface OCLstdlibCSPackage
 		EAttribute LIB_OPERATION_CS__IS_INVALIDATING = eINSTANCE.getLibOperationCS_IsInvalidating();
 
 		/**
-		 * The meta object literal for the '<em><b>Is Static</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute LIB_OPERATION_CS__IS_STATIC = eINSTANCE.getLibOperationCS_IsStatic();
-
-		/**
 		 * The meta object literal for the '<em><b>Is Validating</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1984,14 +2125,6 @@ public interface OCLstdlibCSPackage
 		 * @generated
 		 */
 		EClass LIB_PROPERTY_CS = eINSTANCE.getLibPropertyCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Is Static</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute LIB_PROPERTY_CS__IS_STATIC = eINSTANCE.getLibPropertyCS_IsStatic();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.oclstdlibcs.impl.LibRootPackageCSImpl <em>Lib Root Package CS</em>}' class.

@@ -831,13 +831,31 @@ public interface BaseCSPackage extends EPackage {
 	int TYPED_ELEMENT_CS__NAME = NAMED_ELEMENT_CS__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Not Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_ELEMENT_CS__IS_NOT_UNIQUE = NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_CS__IS_OPTIONAL = NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
+	int TYPED_ELEMENT_CS__IS_OPTIONAL = NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_ELEMENT_CS__IS_ORDERED = NAMED_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -846,16 +864,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_CS__OWNED_TYPE = NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_ELEMENT_CS__QUALIFIERS = NAMED_ELEMENT_CS_FEATURE_COUNT + 2;
+	int TYPED_ELEMENT_CS__OWNED_TYPE = NAMED_ELEMENT_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Typed Element CS</em>' class.
@@ -864,7 +873,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 3;
+	int TYPED_ELEMENT_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -921,6 +930,15 @@ public interface BaseCSPackage extends EPackage {
 	int FEATURE_CS__NAME = TYPED_ELEMENT_CS__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Not Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CS__IS_NOT_UNIQUE = TYPED_ELEMENT_CS__IS_NOT_UNIQUE;
+
+	/**
 	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -928,6 +946,15 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int FEATURE_CS__IS_OPTIONAL = TYPED_ELEMENT_CS__IS_OPTIONAL;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CS__IS_ORDERED = TYPED_ELEMENT_CS__IS_ORDERED;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -939,13 +966,31 @@ public interface BaseCSPackage extends EPackage {
 	int FEATURE_CS__OWNED_TYPE = TYPED_ELEMENT_CS__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
+	 * The feature id for the '<em><b>Is Definition</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CS__QUALIFIERS = TYPED_ELEMENT_CS__QUALIFIERS;
+	int FEATURE_CS__IS_DEFINITION = TYPED_ELEMENT_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CS__IS_DERIVED = TYPED_ELEMENT_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CS__IS_STATIC = TYPED_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Feature CS</em>' class.
@@ -954,7 +999,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CS_FEATURE_COUNT = TYPED_ELEMENT_CS_FEATURE_COUNT + 0;
+	int FEATURE_CS_FEATURE_COUNT = TYPED_ELEMENT_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -1011,6 +1056,15 @@ public interface BaseCSPackage extends EPackage {
 	int STRUCTURAL_FEATURE_CS__NAME = FEATURE_CS__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Not Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURAL_FEATURE_CS__IS_NOT_UNIQUE = FEATURE_CS__IS_NOT_UNIQUE;
+
+	/**
 	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1018,6 +1072,15 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int STRUCTURAL_FEATURE_CS__IS_OPTIONAL = FEATURE_CS__IS_OPTIONAL;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURAL_FEATURE_CS__IS_ORDERED = FEATURE_CS__IS_ORDERED;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -1029,13 +1092,31 @@ public interface BaseCSPackage extends EPackage {
 	int STRUCTURAL_FEATURE_CS__OWNED_TYPE = FEATURE_CS__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
+	 * The feature id for the '<em><b>Is Definition</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURAL_FEATURE_CS__QUALIFIERS = FEATURE_CS__QUALIFIERS;
+	int STRUCTURAL_FEATURE_CS__IS_DEFINITION = FEATURE_CS__IS_DEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURAL_FEATURE_CS__IS_DERIVED = FEATURE_CS__IS_DERIVED;
+
+	/**
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURAL_FEATURE_CS__IS_STATIC = FEATURE_CS__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Default</b></em>' attribute.
@@ -1047,13 +1128,49 @@ public interface BaseCSPackage extends EPackage {
 	int STRUCTURAL_FEATURE_CS__DEFAULT = FEATURE_CS_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Is Readonly</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURAL_FEATURE_CS__IS_READONLY = FEATURE_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Is Transient</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURAL_FEATURE_CS__IS_TRANSIENT = FEATURE_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Is Unsettable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURAL_FEATURE_CS__IS_UNSETTABLE = FEATURE_CS_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Is Volatile</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURAL_FEATURE_CS__IS_VOLATILE = FEATURE_CS_FEATURE_COUNT + 4;
+
+	/**
 	 * The feature id for the '<em><b>Owned Default Expressions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS = FEATURE_CS_FEATURE_COUNT + 1;
+	int STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS = FEATURE_CS_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
@@ -1062,7 +1179,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURAL_FEATURE_CS__OWNING_CLASS = FEATURE_CS_FEATURE_COUNT + 2;
+	int STRUCTURAL_FEATURE_CS__OWNING_CLASS = FEATURE_CS_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Structural Feature CS</em>' class.
@@ -1071,7 +1188,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURAL_FEATURE_CS_FEATURE_COUNT = FEATURE_CS_FEATURE_COUNT + 3;
+	int STRUCTURAL_FEATURE_CS_FEATURE_COUNT = FEATURE_CS_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -1128,6 +1245,15 @@ public interface BaseCSPackage extends EPackage {
 	int ATTRIBUTE_CS__NAME = STRUCTURAL_FEATURE_CS__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Not Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CS__IS_NOT_UNIQUE = STRUCTURAL_FEATURE_CS__IS_NOT_UNIQUE;
+
+	/**
 	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1135,6 +1261,15 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_CS__IS_OPTIONAL = STRUCTURAL_FEATURE_CS__IS_OPTIONAL;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CS__IS_ORDERED = STRUCTURAL_FEATURE_CS__IS_ORDERED;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -1146,13 +1281,31 @@ public interface BaseCSPackage extends EPackage {
 	int ATTRIBUTE_CS__OWNED_TYPE = STRUCTURAL_FEATURE_CS__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
+	 * The feature id for the '<em><b>Is Definition</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_CS__QUALIFIERS = STRUCTURAL_FEATURE_CS__QUALIFIERS;
+	int ATTRIBUTE_CS__IS_DEFINITION = STRUCTURAL_FEATURE_CS__IS_DEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CS__IS_DERIVED = STRUCTURAL_FEATURE_CS__IS_DERIVED;
+
+	/**
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CS__IS_STATIC = STRUCTURAL_FEATURE_CS__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Default</b></em>' attribute.
@@ -1162,6 +1315,42 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_CS__DEFAULT = STRUCTURAL_FEATURE_CS__DEFAULT;
+
+	/**
+	 * The feature id for the '<em><b>Is Readonly</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CS__IS_READONLY = STRUCTURAL_FEATURE_CS__IS_READONLY;
+
+	/**
+	 * The feature id for the '<em><b>Is Transient</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CS__IS_TRANSIENT = STRUCTURAL_FEATURE_CS__IS_TRANSIENT;
+
+	/**
+	 * The feature id for the '<em><b>Is Unsettable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CS__IS_UNSETTABLE = STRUCTURAL_FEATURE_CS__IS_UNSETTABLE;
+
+	/**
+	 * The feature id for the '<em><b>Is Volatile</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CS__IS_VOLATILE = STRUCTURAL_FEATURE_CS__IS_VOLATILE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Default Expressions</b></em>' containment reference list.
@@ -1182,13 +1371,22 @@ public interface BaseCSPackage extends EPackage {
 	int ATTRIBUTE_CS__OWNING_CLASS = STRUCTURAL_FEATURE_CS__OWNING_CLASS;
 
 	/**
+	 * The feature id for the '<em><b>Is Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CS__IS_ID = STRUCTURAL_FEATURE_CS_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Attribute CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_CS_FEATURE_COUNT = STRUCTURAL_FEATURE_CS_FEATURE_COUNT + 0;
+	int ATTRIBUTE_CS_FEATURE_COUNT = STRUCTURAL_FEATURE_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.ClassCSImpl <em>Class CS</em>}' class.
@@ -2594,6 +2792,15 @@ public interface BaseCSPackage extends EPackage {
 	int OPERATION_CS__NAME = FEATURE_CS__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Not Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CS__IS_NOT_UNIQUE = FEATURE_CS__IS_NOT_UNIQUE;
+
+	/**
 	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2601,6 +2808,15 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int OPERATION_CS__IS_OPTIONAL = FEATURE_CS__IS_OPTIONAL;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CS__IS_ORDERED = FEATURE_CS__IS_ORDERED;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -2612,13 +2828,31 @@ public interface BaseCSPackage extends EPackage {
 	int OPERATION_CS__OWNED_TYPE = FEATURE_CS__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
+	 * The feature id for the '<em><b>Is Definition</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CS__QUALIFIERS = FEATURE_CS__QUALIFIERS;
+	int OPERATION_CS__IS_DEFINITION = FEATURE_CS__IS_DEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CS__IS_DERIVED = FEATURE_CS__IS_DERIVED;
+
+	/**
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CS__IS_STATIC = FEATURE_CS__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Owned Signature</b></em>' containment reference.
@@ -2919,6 +3153,15 @@ public interface BaseCSPackage extends EPackage {
 	int PARAMETER_CS__NAME = TYPED_ELEMENT_CS__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Not Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_CS__IS_NOT_UNIQUE = TYPED_ELEMENT_CS__IS_NOT_UNIQUE;
+
+	/**
 	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2928,6 +3171,15 @@ public interface BaseCSPackage extends EPackage {
 	int PARAMETER_CS__IS_OPTIONAL = TYPED_ELEMENT_CS__IS_OPTIONAL;
 
 	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_CS__IS_ORDERED = TYPED_ELEMENT_CS__IS_ORDERED;
+
+	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2935,15 +3187,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int PARAMETER_CS__OWNED_TYPE = TYPED_ELEMENT_CS__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_CS__QUALIFIERS = TYPED_ELEMENT_CS__QUALIFIERS;
 
 	/**
 	 * The feature id for the '<em><b>Owning Operation</b></em>' container reference.
@@ -3282,6 +3525,15 @@ public interface BaseCSPackage extends EPackage {
 	int REFERENCE_CS__NAME = STRUCTURAL_FEATURE_CS__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Not Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_CS__IS_NOT_UNIQUE = STRUCTURAL_FEATURE_CS__IS_NOT_UNIQUE;
+
+	/**
 	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3289,6 +3541,15 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int REFERENCE_CS__IS_OPTIONAL = STRUCTURAL_FEATURE_CS__IS_OPTIONAL;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_CS__IS_ORDERED = STRUCTURAL_FEATURE_CS__IS_ORDERED;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -3300,13 +3561,31 @@ public interface BaseCSPackage extends EPackage {
 	int REFERENCE_CS__OWNED_TYPE = STRUCTURAL_FEATURE_CS__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
+	 * The feature id for the '<em><b>Is Definition</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_CS__QUALIFIERS = STRUCTURAL_FEATURE_CS__QUALIFIERS;
+	int REFERENCE_CS__IS_DEFINITION = STRUCTURAL_FEATURE_CS__IS_DEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_CS__IS_DERIVED = STRUCTURAL_FEATURE_CS__IS_DERIVED;
+
+	/**
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_CS__IS_STATIC = STRUCTURAL_FEATURE_CS__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Default</b></em>' attribute.
@@ -3316,6 +3595,42 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int REFERENCE_CS__DEFAULT = STRUCTURAL_FEATURE_CS__DEFAULT;
+
+	/**
+	 * The feature id for the '<em><b>Is Readonly</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_CS__IS_READONLY = STRUCTURAL_FEATURE_CS__IS_READONLY;
+
+	/**
+	 * The feature id for the '<em><b>Is Transient</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_CS__IS_TRANSIENT = STRUCTURAL_FEATURE_CS__IS_TRANSIENT;
+
+	/**
+	 * The feature id for the '<em><b>Is Unsettable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_CS__IS_UNSETTABLE = STRUCTURAL_FEATURE_CS__IS_UNSETTABLE;
+
+	/**
+	 * The feature id for the '<em><b>Is Volatile</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_CS__IS_VOLATILE = STRUCTURAL_FEATURE_CS__IS_VOLATILE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Default Expressions</b></em>' containment reference list.
@@ -3354,13 +3669,31 @@ public interface BaseCSPackage extends EPackage {
 	int REFERENCE_CS__REFERRED_OPPOSITE = STRUCTURAL_FEATURE_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Is Composes</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_CS__IS_COMPOSES = STRUCTURAL_FEATURE_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Is Resolve</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_CS__IS_RESOLVE = STRUCTURAL_FEATURE_CS_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Reference CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_CS_FEATURE_COUNT = STRUCTURAL_FEATURE_CS_FEATURE_COUNT + 2;
+	int REFERENCE_CS_FEATURE_COUNT = STRUCTURAL_FEATURE_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.RootCSImpl <em>Root CS</em>}' class.
@@ -4142,6 +4475,15 @@ public interface BaseCSPackage extends EPackage {
 	int TUPLE_PART_CS__NAME = TYPED_ELEMENT_CS__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Is Not Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_PART_CS__IS_NOT_UNIQUE = TYPED_ELEMENT_CS__IS_NOT_UNIQUE;
+
+	/**
 	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4151,6 +4493,15 @@ public interface BaseCSPackage extends EPackage {
 	int TUPLE_PART_CS__IS_OPTIONAL = TYPED_ELEMENT_CS__IS_OPTIONAL;
 
 	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_PART_CS__IS_ORDERED = TYPED_ELEMENT_CS__IS_ORDERED;
+
+	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4158,15 +4509,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int TUPLE_PART_CS__OWNED_TYPE = TYPED_ELEMENT_CS__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_PART_CS__QUALIFIERS = TYPED_ELEMENT_CS__QUALIFIERS;
 
 	/**
 	 * The number of structural features of the '<em>Tuple Part CS</em>' class.
@@ -4625,6 +4967,17 @@ public interface BaseCSPackage extends EPackage {
 	EClass getAttributeCS();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.basecs.AttributeCS#isIsId <em>Is Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Id</em>'.
+	 * @see org.eclipse.ocl.xtext.basecs.AttributeCS#isIsId()
+	 * @see #getAttributeCS()
+	 * @generated
+	 */
+	EAttribute getAttributeCS_IsId();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.basecs.ClassCS <em>Class CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4898,6 +5251,39 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getFeatureCS();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.basecs.FeatureCS#isIsDefinition <em>Is Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Definition</em>'.
+	 * @see org.eclipse.ocl.xtext.basecs.FeatureCS#isIsDefinition()
+	 * @see #getFeatureCS()
+	 * @generated
+	 */
+	EAttribute getFeatureCS_IsDefinition();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.basecs.FeatureCS#isIsDerived <em>Is Derived</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Derived</em>'.
+	 * @see org.eclipse.ocl.xtext.basecs.FeatureCS#isIsDerived()
+	 * @see #getFeatureCS()
+	 * @generated
+	 */
+	EAttribute getFeatureCS_IsDerived();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.basecs.FeatureCS#isIsStatic <em>Is Static</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Static</em>'.
+	 * @see org.eclipse.ocl.xtext.basecs.FeatureCS#isIsStatic()
+	 * @see #getFeatureCS()
+	 * @generated
+	 */
+	EAttribute getFeatureCS_IsStatic();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.basecs.ImportCS <em>Import CS</em>}'.
@@ -5518,6 +5904,28 @@ public interface BaseCSPackage extends EPackage {
 	EReference getReferenceCS_ReferredOpposite();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.basecs.ReferenceCS#isIsComposes <em>Is Composes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Composes</em>'.
+	 * @see org.eclipse.ocl.xtext.basecs.ReferenceCS#isIsComposes()
+	 * @see #getReferenceCS()
+	 * @generated
+	 */
+	EAttribute getReferenceCS_IsComposes();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.basecs.ReferenceCS#isIsResolve <em>Is Resolve</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Resolve</em>'.
+	 * @see org.eclipse.ocl.xtext.basecs.ReferenceCS#isIsResolve()
+	 * @see #getReferenceCS()
+	 * @generated
+	 */
+	EAttribute getReferenceCS_IsResolve();
+
+	/**
 	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.xtext.basecs.ReferenceCS#getReferredKeys <em>Referred Keys</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5698,6 +6106,50 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getStructuralFeatureCS_Default();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.basecs.StructuralFeatureCS#isIsReadonly <em>Is Readonly</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Readonly</em>'.
+	 * @see org.eclipse.ocl.xtext.basecs.StructuralFeatureCS#isIsReadonly()
+	 * @see #getStructuralFeatureCS()
+	 * @generated
+	 */
+	EAttribute getStructuralFeatureCS_IsReadonly();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.basecs.StructuralFeatureCS#isIsTransient <em>Is Transient</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Transient</em>'.
+	 * @see org.eclipse.ocl.xtext.basecs.StructuralFeatureCS#isIsTransient()
+	 * @see #getStructuralFeatureCS()
+	 * @generated
+	 */
+	EAttribute getStructuralFeatureCS_IsTransient();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.basecs.StructuralFeatureCS#isIsUnsettable <em>Is Unsettable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Unsettable</em>'.
+	 * @see org.eclipse.ocl.xtext.basecs.StructuralFeatureCS#isIsUnsettable()
+	 * @see #getStructuralFeatureCS()
+	 * @generated
+	 */
+	EAttribute getStructuralFeatureCS_IsUnsettable();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.basecs.StructuralFeatureCS#isIsVolatile <em>Is Volatile</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Volatile</em>'.
+	 * @see org.eclipse.ocl.xtext.basecs.StructuralFeatureCS#isIsVolatile()
+	 * @see #getStructuralFeatureCS()
+	 * @generated
+	 */
+	EAttribute getStructuralFeatureCS_IsVolatile();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.xtext.basecs.StructuralFeatureCS#getOwnedDefaultExpressions <em>Owned Default Expressions</em>}'.
@@ -5953,6 +6405,17 @@ public interface BaseCSPackage extends EPackage {
 	EClass getTypedElementCS();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.basecs.TypedElementCS#isIsNotUnique <em>Is Not Unique</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Not Unique</em>'.
+	 * @see org.eclipse.ocl.xtext.basecs.TypedElementCS#isIsNotUnique()
+	 * @see #getTypedElementCS()
+	 * @generated
+	 */
+	EAttribute getTypedElementCS_IsNotUnique();
+
+	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.xtext.basecs.TypedElementCS#getOwnedType <em>Owned Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5964,17 +6427,6 @@ public interface BaseCSPackage extends EPackage {
 	EReference getTypedElementCS_OwnedType();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.ocl.xtext.basecs.TypedElementCS#getQualifiers <em>Qualifiers</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Qualifiers</em>'.
-	 * @see org.eclipse.ocl.xtext.basecs.TypedElementCS#getQualifiers()
-	 * @see #getTypedElementCS()
-	 * @generated
-	 */
-	EAttribute getTypedElementCS_Qualifiers();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.basecs.TypedElementCS#isIsOptional <em>Is Optional</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5984,6 +6436,17 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getTypedElementCS_IsOptional();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.basecs.TypedElementCS#isIsOrdered <em>Is Ordered</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Ordered</em>'.
+	 * @see org.eclipse.ocl.xtext.basecs.TypedElementCS#isIsOrdered()
+	 * @see #getTypedElementCS()
+	 * @generated
+	 */
+	EAttribute getTypedElementCS_IsOrdered();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.basecs.TypedRefCS <em>Typed Ref CS</em>}'.
@@ -6211,6 +6674,14 @@ public interface BaseCSPackage extends EPackage {
 		 * @generated
 		 */
 		EClass ATTRIBUTE_CS = eINSTANCE.getAttributeCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE_CS__IS_ID = eINSTANCE.getAttributeCS_IsId();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.basecs.impl.ClassCSImpl <em>Class CS</em>}' class.
@@ -6441,6 +6912,30 @@ public interface BaseCSPackage extends EPackage {
 		 * @generated
 		 */
 		EClass FEATURE_CS = eINSTANCE.getFeatureCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Definition</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FEATURE_CS__IS_DEFINITION = eINSTANCE.getFeatureCS_IsDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Derived</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FEATURE_CS__IS_DERIVED = eINSTANCE.getFeatureCS_IsDerived();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Static</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FEATURE_CS__IS_STATIC = eINSTANCE.getFeatureCS_IsStatic();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.basecs.impl.ImportCSImpl <em>Import CS</em>}' class.
@@ -6947,6 +7442,22 @@ public interface BaseCSPackage extends EPackage {
 		EReference REFERENCE_CS__REFERRED_OPPOSITE = eINSTANCE.getReferenceCS_ReferredOpposite();
 
 		/**
+		 * The meta object literal for the '<em><b>Is Composes</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REFERENCE_CS__IS_COMPOSES = eINSTANCE.getReferenceCS_IsComposes();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Resolve</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REFERENCE_CS__IS_RESOLVE = eINSTANCE.getReferenceCS_IsResolve();
+
+		/**
 		 * The meta object literal for the '<em><b>Referred Keys</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7091,6 +7602,38 @@ public interface BaseCSPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute STRUCTURAL_FEATURE_CS__DEFAULT = eINSTANCE.getStructuralFeatureCS_Default();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Readonly</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STRUCTURAL_FEATURE_CS__IS_READONLY = eINSTANCE.getStructuralFeatureCS_IsReadonly();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Transient</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STRUCTURAL_FEATURE_CS__IS_TRANSIENT = eINSTANCE.getStructuralFeatureCS_IsTransient();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Unsettable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STRUCTURAL_FEATURE_CS__IS_UNSETTABLE = eINSTANCE.getStructuralFeatureCS_IsUnsettable();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Volatile</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STRUCTURAL_FEATURE_CS__IS_VOLATILE = eINSTANCE.getStructuralFeatureCS_IsVolatile();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Default Expressions</b></em>' containment reference list feature.
@@ -7307,6 +7850,14 @@ public interface BaseCSPackage extends EPackage {
 		EClass TYPED_ELEMENT_CS = eINSTANCE.getTypedElementCS();
 
 		/**
+		 * The meta object literal for the '<em><b>Is Not Unique</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TYPED_ELEMENT_CS__IS_NOT_UNIQUE = eINSTANCE.getTypedElementCS_IsNotUnique();
+
+		/**
 		 * The meta object literal for the '<em><b>Owned Type</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7315,20 +7866,20 @@ public interface BaseCSPackage extends EPackage {
 		EReference TYPED_ELEMENT_CS__OWNED_TYPE = eINSTANCE.getTypedElementCS_OwnedType();
 
 		/**
-		 * The meta object literal for the '<em><b>Qualifiers</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TYPED_ELEMENT_CS__QUALIFIERS = eINSTANCE.getTypedElementCS_Qualifiers();
-
-		/**
 		 * The meta object literal for the '<em><b>Is Optional</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute TYPED_ELEMENT_CS__IS_OPTIONAL = eINSTANCE.getTypedElementCS_IsOptional();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Ordered</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TYPED_ELEMENT_CS__IS_ORDERED = eINSTANCE.getTypedElementCS_IsOrdered();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.basecs.impl.TypedRefCSImpl <em>Typed Ref CS</em>}' class.

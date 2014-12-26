@@ -316,7 +316,7 @@ public class OCLstdlibCSPackageImpl
 	 */
 	@Override
 	public EReference getLibOperationCS_Precedence() {
-		return (EReference)libOperationCSEClass.getEStructuralFeatures().get(3);
+		return (EReference)libOperationCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -336,20 +336,9 @@ public class OCLstdlibCSPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EAttribute getLibOperationCS_IsStatic()
-	{
-		return (EAttribute)libOperationCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EAttribute getLibOperationCS_IsValidating()
 	{
-		return (EAttribute)libOperationCSEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)libOperationCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -382,17 +371,6 @@ public class OCLstdlibCSPackageImpl
 	@Override
 	public EClass getLibPropertyCS() {
 		return libPropertyCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getLibPropertyCS_IsStatic()
-	{
-		return (EAttribute)libPropertyCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -519,7 +497,6 @@ public class OCLstdlibCSPackageImpl
 
 		libOperationCSEClass = createEClass(LIB_OPERATION_CS);
 		createEAttribute(libOperationCSEClass, LIB_OPERATION_CS__IS_INVALIDATING);
-		createEAttribute(libOperationCSEClass, LIB_OPERATION_CS__IS_STATIC);
 		createEAttribute(libOperationCSEClass, LIB_OPERATION_CS__IS_VALIDATING);
 		createEReference(libOperationCSEClass, LIB_OPERATION_CS__PRECEDENCE);
 
@@ -527,7 +504,6 @@ public class OCLstdlibCSPackageImpl
 		createEReference(libPackageCSEClass, LIB_PACKAGE_CS__OWNED_PRECEDENCES);
 
 		libPropertyCSEClass = createEClass(LIB_PROPERTY_CS);
-		createEAttribute(libPropertyCSEClass, LIB_PROPERTY_CS__IS_STATIC);
 
 		libRootPackageCSEClass = createEClass(LIB_ROOT_PACKAGE_CS);
 
@@ -609,7 +585,6 @@ public class OCLstdlibCSPackageImpl
 
 		initEClass(libOperationCSEClass, LibOperationCS.class, "LibOperationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getLibOperationCS_IsInvalidating(), thePivotPackage.getBoolean(), "isInvalidating", "false", 0, 1, LibOperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLibOperationCS_IsStatic(), thePivotPackage.getBoolean(), "isStatic", "false", 0, 1, LibOperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLibOperationCS_IsValidating(), thePivotPackage.getBoolean(), "isValidating", "false", 0, 1, LibOperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLibOperationCS_Precedence(), thePivotPackage.getPrecedence(), null, "precedence", null, 0, 1, LibOperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -617,7 +592,6 @@ public class OCLstdlibCSPackageImpl
 		initEReference(getLibPackageCS_OwnedPrecedences(), this.getPrecedenceCS(), null, "ownedPrecedences", null, 0, -1, LibPackageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(libPropertyCSEClass, LibPropertyCS.class, "LibPropertyCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getLibPropertyCS_IsStatic(), thePivotPackage.getBoolean(), "isStatic", "false", 0, 1, LibPropertyCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(libRootPackageCSEClass, LibRootPackageCS.class, "LibRootPackageCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -43,9 +43,9 @@ import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.basecs.AnnotationCS;
 import org.eclipse.ocl.xtext.basecs.AnnotationElementCS;
+import org.eclipse.ocl.xtext.basecs.AttributeCS;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
 import org.eclipse.ocl.xtext.basecs.ClassCS;
 import org.eclipse.ocl.xtext.basecs.ConstraintCS;
@@ -69,6 +69,7 @@ import org.eclipse.ocl.xtext.basecs.ParameterCS;
 import org.eclipse.ocl.xtext.basecs.PathElementCS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
 import org.eclipse.ocl.xtext.basecs.PrimitiveTypeRefCS;
+import org.eclipse.ocl.xtext.basecs.ReferenceCS;
 import org.eclipse.ocl.xtext.basecs.RootCS;
 import org.eclipse.ocl.xtext.basecs.RootPackageCS;
 import org.eclipse.ocl.xtext.basecs.SpecificationCS;
@@ -270,6 +271,16 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 	}
 
 	@Override
+	public Continuation<?> visitAttributeCS(@NonNull AttributeCS csElement) {
+		Continuation<?> continuation = visitStructuralFeatureCS(csElement);
+		Property pivotElement = PivotUtil.getPivot(Property.class, csElement);
+		if (pivotElement != null) {
+			pivotElement.setIsID(csElement.isIsId());
+		}
+		return continuation;
+	}
+
+	@Override
 	public Continuation<?> visitConstraintCS(@NonNull ConstraintCS csElement) {
 		@SuppressWarnings("null") @NonNull EClass eClass = PivotPackage.Literals.CONSTRAINT;
 		Constraint pivotElement = refreshNamedElement(Constraint.class, eClass, csElement);
@@ -423,6 +434,17 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 	}
 
 	@Override
+	public Continuation<?> visitReferenceCS(@NonNull ReferenceCS csElement) {
+		Continuation<?> continuation = visitStructuralFeatureCS(csElement);
+		Property pivotElement = PivotUtil.getPivot(Property.class, csElement);
+		if (pivotElement != null) {
+			pivotElement.setIsComposite(csElement.isIsComposes());
+			pivotElement.setIsResolveProxies(csElement.isIsResolve());
+		}
+		return continuation;
+	}
+
+	@Override
 	public Continuation<?> visitRootPackageCS(@NonNull RootPackageCS csElement) {
 		importPackages(csElement);
 		@SuppressWarnings("null") @NonNull EClass eClass = PivotPackage.Literals.MODEL;
@@ -465,16 +487,12 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 	public Continuation<?> visitStructuralFeatureCS(@NonNull StructuralFeatureCS csElement) {
 		@SuppressWarnings("null") @NonNull EClass eClass = PivotPackage.Literals.PROPERTY;
 		Property pivotElement = refreshNamedElement(Property.class, eClass, csElement);
-		List<String> qualifiers = csElement.getQualifiers();
-		pivotElement.setIsComposite(qualifiers.contains("composes"));
-		pivotElement.setIsDerived(qualifiers.contains("derived"));
-		pivotElement.setIsID(qualifiers.contains("id"));
-		pivotElement.setIsReadOnly(qualifiers.contains("readonly"));
-		pivotElement.setIsResolveProxies(ElementUtil.getQualifier(qualifiers, "resolve", "!resolve", true));
-		pivotElement.setIsStatic(qualifiers.contains("static"));
-		pivotElement.setIsTransient(qualifiers.contains("transient"));
-		pivotElement.setIsUnsettable(qualifiers.contains("unsettable"));
-		pivotElement.setIsVolatile(qualifiers.contains("volatile"));
+		pivotElement.setIsDerived(csElement.isIsDerived());
+		pivotElement.setIsReadOnly(csElement.isIsReadonly());
+		pivotElement.setIsStatic(csElement.isIsStatic());
+		pivotElement.setIsTransient(csElement.isIsTransient());
+		pivotElement.setIsUnsettable(csElement.isIsUnsettable());
+		pivotElement.setIsVolatile(csElement.isIsVolatile());
 		pivotElement.setDefaultValueString(csElement.getDefault());
 		List<SpecificationCS> csDefaultExpressions = csElement.getOwnedDefaultExpressions();
 		SpecificationCS csDefaultExpression = csDefaultExpressions.size() > 0 ? csDefaultExpressions.get(0) : null;

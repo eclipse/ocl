@@ -418,43 +418,14 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 		}
 	}
 
-	public void refreshQualifiers(List<String> qualifiers, String trueString, String falseString, Boolean polarity) {
-		boolean isFalse = false;
-		boolean isTrue = false;
-		for (String qualifier : qualifiers) {
-			if (qualifier.equals(trueString)) {
-				if (isTrue || (polarity != Boolean.TRUE)) {
-					qualifiers.remove(qualifier);
-				}
-				isTrue = true;
-			}
-			if (qualifier.equals(falseString)) {
-				if (isTrue || (polarity != Boolean.FALSE)) {
-					qualifiers.remove(qualifier);
-				}
-				isFalse = true;
-			}
-		}
-		if (polarity == Boolean.TRUE) {
-			if (!isTrue) {
-				qualifiers.add(trueString);
-			}
-		}
-		else if (polarity == Boolean.FALSE) {
-			if (!isFalse) {
-				qualifiers.add(falseString);
-			}
-		}
-	}
-
 	public <T extends StructuralFeatureCS> T refreshStructuralFeature(@NonNull Class<T> csClass, /*@NonNull */EClass csEClass, @NonNull Property object) {
 		T csElement = refreshTypedElement(csClass, csEClass, object);
-		refreshQualifiers(csElement.getQualifiers(), "derived", object.isDerived());
-		refreshQualifiers(csElement.getQualifiers(), "readonly", object.isReadOnly());
-		refreshQualifiers(csElement.getQualifiers(), "static", object.isStatic());
-		refreshQualifiers(csElement.getQualifiers(), "transient", object.isTransient());
-		refreshQualifiers(csElement.getQualifiers(), "unsettable", object.isUnsettable());
-		refreshQualifiers(csElement.getQualifiers(), "volatile", object.isVolatile());
+		csElement.setIsDerived(object.isDerived());
+		csElement.setIsReadonly(object.isReadOnly());
+		csElement.setIsStatic(object.isStatic());
+		csElement.setIsTransient(object.isTransient());
+		csElement.setIsUnsettable(object.isUnsettable());
+		csElement.setIsVolatile(object.isVolatile());
 		csElement.setDefault(object.getDefaultValueString());
 		return csElement;
 	}
@@ -490,9 +461,8 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 				lower = collectionType.getLower().intValue();
 				Number upper2 = collectionType.getUpper();
 				upper = upper2 instanceof Unlimited ? -1 : upper2.intValue();
-				List<String> qualifiers = csElement.getQualifiers();
-				refreshQualifiers(qualifiers, "ordered", "!ordered", collectionType.isOrdered() ? Boolean.TRUE : null);
-				refreshQualifiers(qualifiers, "unique", "!unique", collectionType.isUnique() ? null : Boolean.FALSE);
+				csElement.setIsOrdered(collectionType.isOrdered());
+				csElement.setIsNotUnique(!collectionType.isUnique());
 			}
 			else {
 				lower = object.isRequired() ? 1 : 0;

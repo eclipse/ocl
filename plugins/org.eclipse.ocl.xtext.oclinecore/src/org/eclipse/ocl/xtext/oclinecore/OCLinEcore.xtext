@@ -106,19 +106,18 @@ AnnotationElementCS returns base::AnnotationElementCS:
 ;
 
 AttributeCS returns base::AttributeCS:
-	((qualifiers+='static' (qualifiers+='definition')?) | (qualifiers+='definition' (qualifiers+='static')?))?
+	(isStatic?='static'? & isDefinition?='definition'?)
 	'attribute' name=UnrestrictedName
 	(':' ownedType=TypedMultiplicityRefCS)?
 	('=' default=SINGLE_QUOTED_STRING)?
-	('{'((qualifiers+='derived' | qualifiers+='!derived' |
-		  qualifiers+='id' | qualifiers+='!id' |
-		  qualifiers+='ordered' | qualifiers+='!ordered' |
-		  qualifiers+='readonly' | qualifiers+='!readonly' |
-		  qualifiers+='transient' | qualifiers+='!transient' |
-		  qualifiers+='unique' | qualifiers+='!unique' |
-		  qualifiers+='unsettable' | qualifiers+='!unsettable' |
-		  qualifiers+='volatile' | qualifiers+='!volatile'
-	    ) ','? )+
+	('{'((isDerived?='derived' | '!derived') ','?)? &
+		((isId?='id' | '!id') ','?)? &
+		((isOrdered?='ordered' | '!ordered') ','?)? &
+		((isReadonly?='readonly' | '!readonly') ','?)? &
+		((isTransient?='transient' | '!transient') ','?)? &
+		((isNotUnique?='!unique' | 'unique') ','?)? &
+		((isUnsettable?='unsettable' | '!unsettable') ','?)? &
+		((isVolatile?='volatile' | '!volatile') ','?)?
 	'}')?
 	(	('{' (ownedAnnotations+=AnnotationElementCS
 	      | ('derivation' UnrestrictedName? ':' ownedDefaultExpressions+=SpecificationCS? ';') 
@@ -188,15 +187,14 @@ ModelElementRefCS returns base::ModelElementRefCS:
 ;
 
 OperationCS returns base::OperationCS:
-	((qualifiers+='static' (qualifiers+='definition')?) | (qualifiers+='definition' (qualifiers+='static')?))?
+	(isStatic?='static'? & isDefinition?='definition'?)
 	'operation' (ownedSignature=TemplateSignatureCS)? name=UnrestrictedName
 	'(' (ownedParameters+=ParameterCS (',' ownedParameters+=ParameterCS)*)? ')'
 	(':' ownedType=TypedMultiplicityRefCS)?
 	('throws' ownedExceptions+=TypedRefCS (',' ownedExceptions+=TypedRefCS)*)?
-	('{'((qualifiers+='derived' | qualifiers+='!derived' |
-		  qualifiers+='ordered' | qualifiers+='!ordered' |
-		  qualifiers+='unique' | qualifiers+='!unique'
-		) ','? )+
+	('{'((isDerived?='derived' | '!derived') ','?)? &
+		((isOrdered?='ordered' | '!ordered') ','?)? &
+		((isNotUnique?='!unique' | 'unique') ','?)?
 	'}')?
 	(	('{' (ownedAnnotations+=AnnotationElementCS
 	        | ownedPreconditions+=PreconditionConstraintCS
@@ -219,29 +217,27 @@ PackageCS returns base::PackageCS:
 ParameterCS returns base::ParameterCS:
 	name=UnrestrictedName
 	(':' ownedType=TypedMultiplicityRefCS)?
-	('{'(( qualifiers+='ordered' | qualifiers+='!ordered' |
-		   qualifiers+='unique' | qualifiers+='!unique'
-		  ) ','?)+
+	('{'((isOrdered?='ordered' | '!ordered') ','?)? &
+		((isNotUnique?='!unique' | 'unique') ','?)?
 	 '}')?
 	('{' ownedAnnotations+=AnnotationElementCS* '}')?
 ;
 
 ReferenceCS returns base::ReferenceCS:
-	((qualifiers+='static' (qualifiers+='definition')?) | (qualifiers+='definition' (qualifiers+='static')?))?
+	(isStatic?='static'? & isDefinition?='definition'?)
 	'property' name=UnrestrictedName
 	('#' referredOpposite=[pivot::Property|UnrestrictedName])?
 	(':' ownedType=TypedMultiplicityRefCS)?
 	('=' default=SINGLE_QUOTED_STRING)?
-	('{'((qualifiers+='composes' | qualifiers+='!composes' |
-		  qualifiers+='derived' | qualifiers+='!derived' |
-		  qualifiers+='ordered' | qualifiers+='!ordered' |
-		  qualifiers+='readonly' | qualifiers+='!readonly' |
-		  qualifiers+='resolve' | qualifiers+='!resolve' |
-		  qualifiers+='transient' | qualifiers+='!transient' |
-		  qualifiers+='unique' | qualifiers+='!unique' |
-		  qualifiers+='unsettable' | qualifiers+='!unsettable' |
-		  qualifiers+='volatile' | qualifiers+='!volatile'
-		) ','? )+
+	('{'((isComposes?='composes' | '!composes') ','?)? &
+		((isDerived?='derived' | '!derived') ','?)? &
+		((isOrdered?='ordered' | '!ordered') ','?)? &
+		((isReadonly?='readonly' | '!readonly') ','?)? &
+		((isResolve?='resolve' | '!resolve') ','?)? &
+		((isTransient?='transient' | '!transient') ','?)? &
+		((isNotUnique?='!unique' | 'unique') ','?)? &
+		((isUnsettable?='unsettable' | '!unsettable') ','?)? &
+		((isVolatile?='volatile' | '!volatile') ','?)?
 	'}')?
 	(	('{' (ownedAnnotations+=AnnotationElementCS
 			| ('key' referredKeys+=[pivot::Property|UnrestrictedName] (',' referredKeys+=[pivot::Property|UnrestrictedName])* ';')

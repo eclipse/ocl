@@ -37,6 +37,10 @@ import org.eclipse.ocl.xtext.basecs.StructuredClassCS;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.StructuralFeatureCSImpl#getDefault <em>Default</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.StructuralFeatureCSImpl#isIsReadonly <em>Is Readonly</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.StructuralFeatureCSImpl#isIsTransient <em>Is Transient</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.StructuralFeatureCSImpl#isIsUnsettable <em>Is Unsettable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.StructuralFeatureCSImpl#isIsVolatile <em>Is Volatile</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.StructuralFeatureCSImpl#getOwnedDefaultExpressions <em>Owned Default Expressions</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.StructuralFeatureCSImpl#getOwningClass <em>Owning Class</em>}</li>
  * </ul>
@@ -63,6 +67,86 @@ public abstract class StructuralFeatureCSImpl extends FeatureCSImpl implements S
 	 * @ordered
 	 */
 	protected String default_ = DEFAULT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isIsReadonly() <em>Is Readonly</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsReadonly()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_READONLY_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIsReadonly() <em>Is Readonly</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsReadonly()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isReadonly = IS_READONLY_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isIsTransient() <em>Is Transient</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsTransient()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_TRANSIENT_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIsTransient() <em>Is Transient</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsTransient()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isTransient = IS_TRANSIENT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isIsUnsettable() <em>Is Unsettable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsUnsettable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_UNSETTABLE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIsUnsettable() <em>Is Unsettable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsUnsettable()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isUnsettable = IS_UNSETTABLE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isIsVolatile() <em>Is Volatile</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsVolatile()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_VOLATILE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIsVolatile() <em>Is Volatile</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsVolatile()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isVolatile = IS_VOLATILE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getOwnedDefaultExpressions() <em>Owned Default Expressions</em>}' containment reference list.
@@ -169,6 +253,106 @@ public abstract class StructuralFeatureCSImpl extends FeatureCSImpl implements S
 	 * @generated
 	 */
 	@Override
+	public boolean isIsReadonly()
+	{
+		return isReadonly;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsReadonly(boolean newIsReadonly)
+	{
+		boolean oldIsReadonly = isReadonly;
+		isReadonly = newIsReadonly;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.STRUCTURAL_FEATURE_CS__IS_READONLY, oldIsReadonly, isReadonly));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isIsTransient()
+	{
+		return isTransient;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsTransient(boolean newIsTransient)
+	{
+		boolean oldIsTransient = isTransient;
+		isTransient = newIsTransient;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.STRUCTURAL_FEATURE_CS__IS_TRANSIENT, oldIsTransient, isTransient));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isIsUnsettable()
+	{
+		return isUnsettable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsUnsettable(boolean newIsUnsettable)
+	{
+		boolean oldIsUnsettable = isUnsettable;
+		isUnsettable = newIsUnsettable;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.STRUCTURAL_FEATURE_CS__IS_UNSETTABLE, oldIsUnsettable, isUnsettable));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isIsVolatile()
+	{
+		return isVolatile;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsVolatile(boolean newIsVolatile)
+	{
+		boolean oldIsVolatile = isVolatile;
+		isVolatile = newIsVolatile;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.STRUCTURAL_FEATURE_CS__IS_VOLATILE, oldIsVolatile, isVolatile));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EList<SpecificationCS> getOwnedDefaultExpressions()
 	{
 		if (ownedDefaultExpressions == null)
@@ -249,6 +433,14 @@ public abstract class StructuralFeatureCSImpl extends FeatureCSImpl implements S
 		{
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__DEFAULT:
 				return getDefault();
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__IS_READONLY:
+				return isIsReadonly();
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__IS_TRANSIENT:
+				return isIsTransient();
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__IS_UNSETTABLE:
+				return isIsUnsettable();
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__IS_VOLATILE:
+				return isIsVolatile();
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS:
 				return getOwnedDefaultExpressions();
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS:
@@ -269,6 +461,18 @@ public abstract class StructuralFeatureCSImpl extends FeatureCSImpl implements S
 		{
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__DEFAULT:
 				setDefault((String)newValue);
+				return;
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__IS_READONLY:
+				setIsReadonly((Boolean)newValue);
+				return;
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__IS_TRANSIENT:
+				setIsTransient((Boolean)newValue);
+				return;
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__IS_UNSETTABLE:
+				setIsUnsettable((Boolean)newValue);
+				return;
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__IS_VOLATILE:
+				setIsVolatile((Boolean)newValue);
 				return;
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS:
 				getOwnedDefaultExpressions().clear();
@@ -293,6 +497,18 @@ public abstract class StructuralFeatureCSImpl extends FeatureCSImpl implements S
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__DEFAULT:
 				setDefault(DEFAULT_EDEFAULT);
 				return;
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__IS_READONLY:
+				setIsReadonly(IS_READONLY_EDEFAULT);
+				return;
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__IS_TRANSIENT:
+				setIsTransient(IS_TRANSIENT_EDEFAULT);
+				return;
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__IS_UNSETTABLE:
+				setIsUnsettable(IS_UNSETTABLE_EDEFAULT);
+				return;
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__IS_VOLATILE:
+				setIsVolatile(IS_VOLATILE_EDEFAULT);
+				return;
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS:
 				getOwnedDefaultExpressions().clear();
 				return;
@@ -314,6 +530,14 @@ public abstract class StructuralFeatureCSImpl extends FeatureCSImpl implements S
 		{
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__DEFAULT:
 				return DEFAULT_EDEFAULT == null ? default_ != null : !DEFAULT_EDEFAULT.equals(default_);
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__IS_READONLY:
+				return isReadonly != IS_READONLY_EDEFAULT;
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__IS_TRANSIENT:
+				return isTransient != IS_TRANSIENT_EDEFAULT;
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__IS_UNSETTABLE:
+				return isUnsettable != IS_UNSETTABLE_EDEFAULT;
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__IS_VOLATILE:
+				return isVolatile != IS_VOLATILE_EDEFAULT;
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS:
 				return ownedDefaultExpressions != null && !ownedDefaultExpressions.isEmpty();
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS:
