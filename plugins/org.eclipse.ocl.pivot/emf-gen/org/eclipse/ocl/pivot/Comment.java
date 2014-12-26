@@ -23,12 +23,12 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.Comment#getAnnotatedElements <em>Annotated Elements</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Comment#getBody <em>Body</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Comment#getOwningElement <em>Owning Element</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getComment()
  * @generated

@@ -67,7 +67,6 @@ import org.eclipse.osgi.util.NLS;
  * An implementation of the model object '<em><b>Iterator Exp</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * </p>
  *
  * @generated
  */

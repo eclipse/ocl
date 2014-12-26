@@ -22,12 +22,12 @@ package org.eclipse.ocl.pivot;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.LanguageExpression#getBody <em>Body</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.LanguageExpression#getLanguage <em>Language</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.LanguageExpression#getOwningConstraint <em>Owning Constraint</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getLanguageExpression()
  * @generated

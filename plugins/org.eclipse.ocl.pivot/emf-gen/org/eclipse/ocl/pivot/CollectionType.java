@@ -23,12 +23,12 @@ import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.CollectionType#getElementType <em>Element Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.CollectionType#getLower <em>Lower</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.CollectionType#getUpper <em>Upper</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getCollectionType()
  * @generated

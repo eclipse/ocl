@@ -36,13 +36,14 @@ import org.eclipse.ocl.pivot.ValueSpecification;
  * An implementation of the model object '<em><b>Slot</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.SlotImpl#getDefiningProperty <em>Defining Property</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.SlotImpl#getOwnedValues <em>Owned Values</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.SlotImpl#getOwningInstance <em>Owning Instance</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

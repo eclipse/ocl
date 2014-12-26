@@ -41,7 +41,9 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * An implementation of the model object '<em><b>Transition</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.TransitionImpl#getKind <em>Kind</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.TransitionImpl#getOwnedEffect <em>Owned Effect</em>}</li>
@@ -51,7 +53,6 @@ import org.eclipse.ocl.pivot.util.Visitor;
  *   <li>{@link org.eclipse.ocl.pivot.impl.TransitionImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.TransitionImpl#getTarget <em>Target</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

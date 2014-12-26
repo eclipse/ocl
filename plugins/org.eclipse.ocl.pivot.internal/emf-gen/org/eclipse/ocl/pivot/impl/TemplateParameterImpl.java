@@ -48,14 +48,15 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
  * An implementation of the model object '<em><b>Template Parameter</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.TemplateParameterImpl#getConstrainingClasses <em>Constraining Classes</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.TemplateParameterImpl#getLowerBound <em>Lower Bound</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.TemplateParameterImpl#getOwningSignature <em>Owning Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.TemplateParameterImpl#getUpperBound <em>Upper Bound</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

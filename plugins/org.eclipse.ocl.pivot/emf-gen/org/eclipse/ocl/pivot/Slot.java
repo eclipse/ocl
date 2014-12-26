@@ -23,12 +23,12 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.Slot#getDefiningProperty <em>Defining Property</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Slot#getOwnedValues <em>Owned Values</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Slot#getOwningInstance <em>Owning Instance</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getSlot()
  * @generated

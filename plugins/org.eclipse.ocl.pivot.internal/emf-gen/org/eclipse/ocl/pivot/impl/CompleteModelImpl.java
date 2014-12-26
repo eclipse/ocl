@@ -71,7 +71,9 @@ import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
  * @extends org.eclipse.ocl.pivot.complete.CompleteModelInternal
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.CompleteModelImpl#getOrphanCompletePackage <em>Orphan Complete Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.CompleteModelImpl#getOwnedCompletePackages <em>Owned Complete Packages</em>}</li>
@@ -79,7 +81,6 @@ import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
  *   <li>{@link org.eclipse.ocl.pivot.impl.CompleteModelImpl#getPartialModels <em>Partial Models</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.CompleteModelImpl#getPrimitiveCompletePackage <em>Primitive Complete Package</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

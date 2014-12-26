@@ -30,6 +30,7 @@ import org.eclipse.ocl.pivot.ids.PropertyId;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.Property#getAssociationClass <em>Association Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Property#getDefaultValue <em>Default Value</em>}</li>
@@ -51,7 +52,6 @@ import org.eclipse.ocl.pivot.ids.PropertyId;
  *   <li>{@link org.eclipse.ocl.pivot.Property#getReferredProperty <em>Referred Property</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Property#getSubsettedProperty <em>Subsetted Property</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getProperty()
  * @generated

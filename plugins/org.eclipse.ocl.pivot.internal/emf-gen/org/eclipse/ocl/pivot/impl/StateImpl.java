@@ -45,7 +45,9 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * An implementation of the model object '<em><b>State</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#getIncomingTransitions <em>Incoming Transitions</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#getOutgoingTransitions <em>Outgoing Transitions</em>}</li>
@@ -65,7 +67,6 @@ import org.eclipse.ocl.pivot.util.Visitor;
  *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#getRedefinedState <em>Redefined State</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.StateImpl#getSubmachines <em>Submachines</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

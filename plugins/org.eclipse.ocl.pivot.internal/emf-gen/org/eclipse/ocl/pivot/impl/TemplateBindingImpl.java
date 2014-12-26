@@ -39,13 +39,14 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * An implementation of the model object '<em><b>Template Binding</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.TemplateBindingImpl#getOwnedSubstitutions <em>Owned Substitutions</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.TemplateBindingImpl#getOwningElement <em>Owning Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.TemplateBindingImpl#getTemplateSignature <em>Template Signature</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

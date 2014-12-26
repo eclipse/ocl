@@ -17,11 +17,11 @@ package org.eclipse.ocl.pivot;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.CollectionRange#getOwnedFirst <em>Owned First</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.CollectionRange#getOwnedLast <em>Owned Last</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getCollectionRange()
  * @generated

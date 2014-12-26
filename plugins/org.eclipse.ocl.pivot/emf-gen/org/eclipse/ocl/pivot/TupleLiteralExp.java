@@ -19,10 +19,10 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.TupleLiteralExp#getOwnedParts <em>Owned Parts</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getTupleLiteralExp()
  * @generated

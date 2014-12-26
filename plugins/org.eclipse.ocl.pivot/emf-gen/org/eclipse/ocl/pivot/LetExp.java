@@ -21,11 +21,11 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.LetExp#getOwnedIn <em>Owned In</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.LetExp#getOwnedVariable <em>Owned Variable</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getLetExp()
  * @generated

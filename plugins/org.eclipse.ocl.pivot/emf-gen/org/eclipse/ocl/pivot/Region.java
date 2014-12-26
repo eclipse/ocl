@@ -23,6 +23,7 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.Region#getExtendedRegion <em>Extended Region</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Region#getOwnedSubvertexes <em>Owned Subvertexes</em>}</li>
@@ -30,7 +31,6 @@ import java.util.List;
  *   <li>{@link org.eclipse.ocl.pivot.Region#getOwningState <em>Owning State</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Region#getOwningStateMachine <em>Owning State Machine</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getRegion()
  * @generated

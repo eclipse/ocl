@@ -21,12 +21,12 @@ import org.eclipse.jdt.annotation.NonNull;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.Model#getExternalURI <em>External URI</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Model#getOwnedImports <em>Owned Imports</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Model#getOwnedPackages <em>Owned Packages</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getModel()
  * @generated

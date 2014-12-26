@@ -58,12 +58,13 @@ import org.eclipse.osgi.util.NLS;
  * An implementation of the model object '<em><b>Collection Literal Exp</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.CollectionLiteralExpImpl#getKind <em>Kind</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.CollectionLiteralExpImpl#getOwnedParts <em>Owned Parts</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

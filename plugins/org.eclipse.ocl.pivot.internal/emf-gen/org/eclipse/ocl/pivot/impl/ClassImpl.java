@@ -77,7 +77,9 @@ import org.eclipse.osgi.util.NLS;
  * An implementation of the model object '<em><b>Class</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ClassImpl#getOwnedConstraints <em>Owned Constraints</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ClassImpl#getOwnedBindings <em>Owned Bindings</em>}</li>
@@ -95,7 +97,6 @@ import org.eclipse.osgi.util.NLS;
  *   <li>{@link org.eclipse.ocl.pivot.impl.ClassImpl#getOwningPackage <em>Owning Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ClassImpl#getSuperClasses <em>Super Classes</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

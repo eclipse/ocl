@@ -19,13 +19,13 @@ package org.eclipse.ocl.pivot;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.ElementExtension#getBase <em>Base</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.ElementExtension#isApplied <em>Is Applied</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.ElementExtension#isRequired <em>Is Required</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.ElementExtension#getStereotype <em>Stereotype</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getElementExtension()
  * @generated

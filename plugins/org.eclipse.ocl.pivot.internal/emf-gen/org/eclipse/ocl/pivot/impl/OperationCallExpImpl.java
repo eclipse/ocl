@@ -64,12 +64,13 @@ import org.eclipse.osgi.util.NLS;
  * An implementation of the model object '<em><b>Operation Call Exp</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.OperationCallExpImpl#getOwnedArguments <em>Owned Arguments</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.OperationCallExpImpl#getReferredOperation <em>Referred Operation</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

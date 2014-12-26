@@ -24,6 +24,7 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.State#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.State#isOrthogonal <em>Is Orthogonal</em>}</li>
@@ -40,7 +41,6 @@ import java.util.List;
  *   <li>{@link org.eclipse.ocl.pivot.State#getRedefinedState <em>Redefined State</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.State#getSubmachines <em>Submachines</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getState()
  * @generated

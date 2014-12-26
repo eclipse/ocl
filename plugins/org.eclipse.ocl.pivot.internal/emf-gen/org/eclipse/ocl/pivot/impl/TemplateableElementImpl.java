@@ -34,13 +34,14 @@ import org.eclipse.ocl.pivot.TemplateableElement;
  * An implementation of the model object '<em><b>Templateable Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.TemplateableElementImpl#getOwnedBindings <em>Owned Bindings</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.TemplateableElementImpl#getOwnedSignature <em>Owned Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.TemplateableElementImpl#getUnspecializedElement <em>Unspecialized Element</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

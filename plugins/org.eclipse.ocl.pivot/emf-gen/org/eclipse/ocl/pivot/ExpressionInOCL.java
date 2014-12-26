@@ -25,13 +25,13 @@ import org.eclipse.jdt.annotation.NonNull;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.ExpressionInOCL#getOwnedBody <em>Owned Body</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.ExpressionInOCL#getOwnedContext <em>Owned Context</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.ExpressionInOCL#getOwnedParameters <em>Owned Parameters</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.ExpressionInOCL#getOwnedResult <em>Owned Result</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getExpressionInOCL()
  * @generated

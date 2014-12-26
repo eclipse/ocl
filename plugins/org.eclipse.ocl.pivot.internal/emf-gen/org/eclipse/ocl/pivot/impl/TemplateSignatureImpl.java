@@ -40,12 +40,13 @@ import org.eclipse.ocl.pivot.utilities.TypeUtil;
  * An implementation of the model object '<em><b>Template Signature</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.TemplateSignatureImpl#getOwnedParameters <em>Owned Parameters</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.TemplateSignatureImpl#getOwningElement <em>Owning Element</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

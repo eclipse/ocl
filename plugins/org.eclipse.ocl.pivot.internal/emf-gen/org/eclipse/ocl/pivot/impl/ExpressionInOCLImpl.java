@@ -39,14 +39,15 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * An implementation of the model object '<em><b>Expression In Ocl</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ExpressionInOCLImpl#getOwnedBody <em>Owned Body</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ExpressionInOCLImpl#getOwnedContext <em>Owned Context</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ExpressionInOCLImpl#getOwnedParameters <em>Owned Parameters</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ExpressionInOCLImpl#getOwnedResult <em>Owned Result</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

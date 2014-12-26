@@ -20,12 +20,12 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.Variable#isImplicit <em>Is Implicit</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Variable#getOwnedInit <em>Owned Init</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Variable#getRepresentedParameter <em>Represented Parameter</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getVariable()
  * @generated

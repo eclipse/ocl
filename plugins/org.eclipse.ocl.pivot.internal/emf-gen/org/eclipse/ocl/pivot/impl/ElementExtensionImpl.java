@@ -43,14 +43,15 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
  * An implementation of the model object '<em><b>Applied Stereotype</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ElementExtensionImpl#getBase <em>Base</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ElementExtensionImpl#isApplied <em>Is Applied</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ElementExtensionImpl#isRequired <em>Is Required</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ElementExtensionImpl#getStereotype <em>Stereotype</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

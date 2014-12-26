@@ -42,12 +42,13 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
  * An implementation of the model object '<em><b>Enumeration Literal</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.EnumerationLiteralImpl#getOwningEnumeration <em>Owning Enumeration</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.EnumerationLiteralImpl#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

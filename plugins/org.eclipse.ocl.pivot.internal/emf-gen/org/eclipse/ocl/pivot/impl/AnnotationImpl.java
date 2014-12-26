@@ -34,13 +34,14 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * An implementation of the model object '<em><b>Annotation</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.AnnotationImpl#getOwnedContents <em>Owned Contents</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.AnnotationImpl#getOwnedDetails <em>Owned Details</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.AnnotationImpl#getReferences <em>References</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

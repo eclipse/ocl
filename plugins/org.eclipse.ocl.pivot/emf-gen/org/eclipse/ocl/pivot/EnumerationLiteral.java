@@ -27,11 +27,11 @@ import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.EnumerationLiteral#getOwningEnumeration <em>Owning Enumeration</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.EnumerationLiteral#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getEnumerationLiteral()
  * @generated

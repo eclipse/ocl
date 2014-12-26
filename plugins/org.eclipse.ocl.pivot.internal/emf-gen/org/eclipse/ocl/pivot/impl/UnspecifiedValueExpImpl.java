@@ -21,7 +21,6 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * An implementation of the model object '<em><b>Unspecified Value Exp</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * </p>
  *
  * @generated
  */

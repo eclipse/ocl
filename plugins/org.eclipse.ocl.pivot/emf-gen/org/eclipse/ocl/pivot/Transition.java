@@ -23,6 +23,7 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.Transition#getKind <em>Kind</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Transition#getOwnedEffect <em>Owned Effect</em>}</li>
@@ -32,7 +33,6 @@ import java.util.List;
  *   <li>{@link org.eclipse.ocl.pivot.Transition#getSource <em>Source</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Transition#getTarget <em>Target</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getTransition()
  * @generated

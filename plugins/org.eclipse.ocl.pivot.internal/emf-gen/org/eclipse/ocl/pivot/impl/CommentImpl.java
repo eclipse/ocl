@@ -34,13 +34,14 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * An implementation of the model object '<em><b>Comment</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.CommentImpl#getAnnotatedElements <em>Annotated Elements</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.CommentImpl#getBody <em>Body</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.CommentImpl#getOwningElement <em>Owning Element</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

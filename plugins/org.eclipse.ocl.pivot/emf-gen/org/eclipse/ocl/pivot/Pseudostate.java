@@ -22,12 +22,12 @@ package org.eclipse.ocl.pivot;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.Pseudostate#getKind <em>Kind</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Pseudostate#getOwningState <em>Owning State</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Pseudostate#getOwningStateMachine <em>Owning State Machine</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getPseudostate()
  * @generated

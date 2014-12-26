@@ -45,12 +45,13 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * An implementation of the model object '<em><b>Dynamic Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.DynamicTypeImpl#getMetaType <em>Meta Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.DynamicTypeImpl#getOwnedDynamicProperties <em>Owned Dynamic Properties</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

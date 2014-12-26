@@ -18,12 +18,12 @@ package org.eclipse.ocl.pivot;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.ProfileApplication#getAppliedProfile <em>Applied Profile</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.ProfileApplication#isStrict <em>Is Strict</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.ProfileApplication#getOwningPackage <em>Owning Package</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getProfileApplication()
  * @generated

@@ -36,14 +36,15 @@ import org.eclipse.ocl.pivot.Slot;
  * An implementation of the model object '<em><b>Instance Specification</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.InstanceSpecificationImpl#getClasses <em>Classes</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.InstanceSpecificationImpl#getOwnedSlots <em>Owned Slots</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.InstanceSpecificationImpl#getOwnedSpecification <em>Owned Specification</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.InstanceSpecificationImpl#getOwningPackage <em>Owning Package</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

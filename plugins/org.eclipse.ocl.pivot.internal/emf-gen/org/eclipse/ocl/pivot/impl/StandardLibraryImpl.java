@@ -73,11 +73,12 @@ import org.eclipse.osgi.util.NLS;
  * @extends org.eclipse.ocl.pivot.complete.StandardLibraryInternal
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.StandardLibraryImpl#getOwningCompleteEnvironment <em>Owning Complete Environment</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

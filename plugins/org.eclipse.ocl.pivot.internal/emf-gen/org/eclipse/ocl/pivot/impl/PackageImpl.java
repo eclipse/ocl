@@ -46,7 +46,9 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
  * An implementation of the model object '<em><b>Package</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.PackageImpl#getURI <em>URI</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.PackageImpl#getImportedPackages <em>Imported Packages</em>}</li>
@@ -57,7 +59,6 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
  *   <li>{@link org.eclipse.ocl.pivot.impl.PackageImpl#getOwnedProfileApplications <em>Owned Profile Applications</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.PackageImpl#getOwningPackage <em>Owning Package</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -19,7 +19,6 @@ import org.eclipse.ocl.pivot.PivotPackage;
  * An implementation of the model object '<em><b>Dynamic Value Specification</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * </p>
  *
  * @generated
  */

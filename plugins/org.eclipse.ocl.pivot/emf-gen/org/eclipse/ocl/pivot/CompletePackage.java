@@ -23,6 +23,7 @@ import org.eclipse.jdt.annotation.Nullable;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.CompletePackage#getOwnedCompleteClasses <em>Owned Complete Classes</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.CompletePackage#getOwnedCompletePackages <em>Owned Complete Packages</em>}</li>
@@ -30,7 +31,6 @@ import org.eclipse.jdt.annotation.Nullable;
  *   <li>{@link org.eclipse.ocl.pivot.CompletePackage#getOwningCompletePackage <em>Owning Complete Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.CompletePackage#getPartialPackages <em>Partial Packages</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getCompletePackage()
  * @generated

@@ -19,12 +19,12 @@ import org.eclipse.ocl.pivot.library.LibraryFeature;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.Feature#getImplementation <em>Implementation</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Feature#getImplementationClass <em>Implementation Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Feature#isStatic <em>Is Static</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getFeature()
  * @generated

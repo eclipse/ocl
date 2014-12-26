@@ -40,7 +40,6 @@ import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
  * An implementation of the model object '<em><b>Orphan Complete Package</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * </p>
  *
  * @generated
  */

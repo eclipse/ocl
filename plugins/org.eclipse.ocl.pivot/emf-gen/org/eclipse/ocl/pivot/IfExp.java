@@ -21,12 +21,12 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.IfExp#getOwnedCondition <em>Owned Condition</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.IfExp#getOwnedElse <em>Owned Else</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.IfExp#getOwnedThen <em>Owned Then</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getIfExp()
  * @generated

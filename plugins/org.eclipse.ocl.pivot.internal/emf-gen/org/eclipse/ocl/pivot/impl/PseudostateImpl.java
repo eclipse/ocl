@@ -36,13 +36,14 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * An implementation of the model object '<em><b>Pseudostate</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.PseudostateImpl#getKind <em>Kind</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.PseudostateImpl#getOwningState <em>Owning State</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.PseudostateImpl#getOwningStateMachine <em>Owning State Machine</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

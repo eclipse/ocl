@@ -18,11 +18,11 @@ package org.eclipse.ocl.pivot;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.Trigger#getOwningState <em>Owning State</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Trigger#getOwningTransition <em>Owning Transition</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getTrigger()
  * @generated

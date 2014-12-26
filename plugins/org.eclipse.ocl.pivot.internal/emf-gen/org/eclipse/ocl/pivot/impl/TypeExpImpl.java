@@ -34,11 +34,12 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * An implementation of the model object '<em><b>Type Exp</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.TypeExpImpl#getReferredType <em>Referred Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -23,13 +23,13 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.StateMachine#getExtendedStateMachines <em>Extended State Machines</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.StateMachine#getOwnedConnectionPoints <em>Owned Connection Points</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.StateMachine#getOwnedRegions <em>Owned Regions</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.StateMachine#getSubmachineStates <em>Submachine States</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getStateMachine()
  * @generated

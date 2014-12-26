@@ -34,12 +34,13 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * An implementation of the model object '<em><b>Parameter</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ParameterImpl#isTypeof <em>Is Typeof</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ParameterImpl#getOwningOperation <em>Owning Operation</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

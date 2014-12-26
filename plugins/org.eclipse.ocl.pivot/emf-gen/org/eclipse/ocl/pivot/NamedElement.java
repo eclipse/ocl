@@ -24,10 +24,10 @@ import org.eclipse.ocl.pivot.Nameable;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.NamedElement#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getNamedElement()
  * @generated

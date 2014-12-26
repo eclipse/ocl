@@ -68,12 +68,13 @@ import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
  * @extends org.eclipse.ocl.pivot.complete.CompleteEnvironmentInternal
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.CompleteEnvironmentImpl#getOwnedCompleteModel <em>Owned Complete Model</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.CompleteEnvironmentImpl#getOwnedStandardLibrary <em>Owned Standard Library</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

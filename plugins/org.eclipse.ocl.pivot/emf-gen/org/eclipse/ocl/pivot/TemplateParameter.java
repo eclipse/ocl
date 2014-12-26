@@ -26,13 +26,13 @@ import org.eclipse.ocl.pivot.ids.TemplateParameterId;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.TemplateParameter#getConstrainingClasses <em>Constraining Classes</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.TemplateParameter#getLowerBound <em>Lower Bound</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.TemplateParameter#getOwningSignature <em>Owning Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.TemplateParameter#getUpperBound <em>Upper Bound</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateParameter()
  * @generated

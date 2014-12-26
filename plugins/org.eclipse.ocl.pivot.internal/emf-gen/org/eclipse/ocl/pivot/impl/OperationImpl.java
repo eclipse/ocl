@@ -77,7 +77,9 @@ import org.eclipse.osgi.util.NLS;
  * An implementation of the model object '<em><b>Operation</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.OperationImpl#getOwnedConstraints <em>Owned Constraints</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.OperationImpl#getOwnedBindings <em>Owned Bindings</em>}</li>
@@ -95,7 +97,6 @@ import org.eclipse.osgi.util.NLS;
  *   <li>{@link org.eclipse.ocl.pivot.impl.OperationImpl#getRaisedExceptions <em>Raised Exceptions</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.OperationImpl#getRedefinedOperations <em>Redefined Operations</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

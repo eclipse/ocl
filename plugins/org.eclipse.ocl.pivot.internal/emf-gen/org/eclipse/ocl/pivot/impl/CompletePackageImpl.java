@@ -53,7 +53,9 @@ import com.google.common.collect.Iterables;
  * @extends org.eclipse.ocl.pivot.complete.CompletePackageInternal
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.CompletePackageImpl#getOwnedCompleteClasses <em>Owned Complete Classes</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.CompletePackageImpl#getOwnedCompletePackages <em>Owned Complete Packages</em>}</li>
@@ -61,7 +63,6 @@ import com.google.common.collect.Iterables;
  *   <li>{@link org.eclipse.ocl.pivot.impl.CompletePackageImpl#getOwningCompletePackage <em>Owning Complete Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.CompletePackageImpl#getPartialPackages <em>Partial Packages</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -31,6 +31,7 @@ import org.eclipse.ocl.pivot.library.LibraryFeature;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.Class#getExtenders <em>Extenders</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Class#getInstanceClassName <em>Instance Class Name</em>}</li>
@@ -44,7 +45,6 @@ import org.eclipse.ocl.pivot.library.LibraryFeature;
  *   <li>{@link org.eclipse.ocl.pivot.Class#getOwningPackage <em>Owning Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Class#getSuperClasses <em>Super Classes</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getClass_()
  * @generated

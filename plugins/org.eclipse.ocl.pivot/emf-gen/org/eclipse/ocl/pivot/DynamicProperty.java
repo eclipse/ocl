@@ -19,11 +19,11 @@ package org.eclipse.ocl.pivot;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.DynamicProperty#getDefault <em>Default</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.DynamicProperty#getReferredProperty <em>Referred Property</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getDynamicProperty()
  * @generated

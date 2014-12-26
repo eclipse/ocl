@@ -33,13 +33,14 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * An implementation of the model object '<em><b>Profile Application</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ProfileApplicationImpl#getAppliedProfile <em>Applied Profile</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ProfileApplicationImpl#isStrict <em>Is Strict</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ProfileApplicationImpl#getOwningPackage <em>Owning Package</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -18,10 +18,10 @@ package org.eclipse.ocl.pivot;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.AssociationClassCallExp#getReferredAssociationClass <em>Referred Association Class</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getAssociationClassCallExp()
  * @generated

@@ -52,11 +52,12 @@ import org.eclipse.osgi.util.NLS;
  * An implementation of the model object '<em><b>Property Call Exp</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.PropertyCallExpImpl#getReferredProperty <em>Referred Property</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

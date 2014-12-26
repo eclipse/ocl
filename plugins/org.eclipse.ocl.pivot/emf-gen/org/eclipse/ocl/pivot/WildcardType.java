@@ -18,11 +18,11 @@ package org.eclipse.ocl.pivot;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.WildcardType#getLowerBound <em>Lower Bound</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.WildcardType#getUpperBound <em>Upper Bound</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getWildcardType()
  * @generated

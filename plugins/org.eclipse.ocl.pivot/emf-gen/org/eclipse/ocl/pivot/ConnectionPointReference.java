@@ -23,12 +23,12 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.ConnectionPointReference#getEntries <em>Entries</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.ConnectionPointReference#getExits <em>Exits</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.ConnectionPointReference#getOwningState <em>Owning State</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getConnectionPointReference()
  * @generated

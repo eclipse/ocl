@@ -36,7 +36,6 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
  * An implementation of the model object '<em><b>Self Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * </p>
  *
  * @generated
  */

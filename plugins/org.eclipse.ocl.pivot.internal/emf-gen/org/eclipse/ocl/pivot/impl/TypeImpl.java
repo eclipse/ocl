@@ -37,7 +37,6 @@ import org.eclipse.ocl.pivot.values.OCLValue;
  * An implementation of the model object '<em><b>Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * </p>
  *
  * @generated
  */

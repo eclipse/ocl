@@ -19,10 +19,10 @@ import org.eclipse.ocl.pivot.ids.TuplePartId;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.TupleLiteralPart#getOwnedInit <em>Owned Init</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getTupleLiteralPart()
  * @generated

@@ -26,12 +26,12 @@ import org.eclipse.ocl.pivot.ids.TypeId;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.TypedElement#isMany <em>Is Many</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.TypedElement#isRequired <em>Is Required</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.TypedElement#getType <em>Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getTypedElement()
  * @generated

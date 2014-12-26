@@ -46,13 +46,14 @@ import org.eclipse.ocl.pivot.utilities.TypeUtil;
  * An implementation of the model object '<em><b>Lambda Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.LambdaTypeImpl#getContextType <em>Context Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.LambdaTypeImpl#getParameterType <em>Parameter Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.LambdaTypeImpl#getResultType <em>Result Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

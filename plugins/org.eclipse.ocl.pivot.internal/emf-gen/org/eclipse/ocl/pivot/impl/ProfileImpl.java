@@ -35,11 +35,12 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * An implementation of the model object '<em><b>Profile</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ProfileImpl#getProfileApplications <em>Profile Applications</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

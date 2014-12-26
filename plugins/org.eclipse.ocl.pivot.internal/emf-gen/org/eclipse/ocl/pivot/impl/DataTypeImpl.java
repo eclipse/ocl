@@ -43,12 +43,13 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * An implementation of the model object '<em><b>Data Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.DataTypeImpl#getBehavioralClass <em>Behavioral Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.DataTypeImpl#isSerializable <em>Is Serializable</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

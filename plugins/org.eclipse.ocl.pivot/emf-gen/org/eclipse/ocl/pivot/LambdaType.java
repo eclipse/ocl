@@ -22,12 +22,12 @@ import org.eclipse.ocl.pivot.ids.ParametersId;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.LambdaType#getContextType <em>Context Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.LambdaType#getParameterType <em>Parameter Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.LambdaType#getResultType <em>Result Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getLambdaType()
  * @generated

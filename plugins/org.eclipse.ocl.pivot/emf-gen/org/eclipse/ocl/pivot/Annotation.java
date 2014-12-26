@@ -21,12 +21,12 @@ import org.eclipse.jdt.annotation.NonNull;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.Annotation#getOwnedContents <em>Owned Contents</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Annotation#getOwnedDetails <em>Owned Details</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Annotation#getReferences <em>References</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getAnnotation()
  * @generated

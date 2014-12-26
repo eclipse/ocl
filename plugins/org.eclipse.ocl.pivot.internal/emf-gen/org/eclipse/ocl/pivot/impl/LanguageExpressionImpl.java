@@ -32,13 +32,14 @@ import org.eclipse.ocl.pivot.Type;
  * An implementation of the model object '<em><b>Language Expression</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.LanguageExpressionImpl#getBody <em>Body</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.LanguageExpressionImpl#getLanguage <em>Language</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.LanguageExpressionImpl#getOwningConstraint <em>Owning Constraint</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

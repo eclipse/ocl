@@ -18,12 +18,12 @@ package org.eclipse.ocl.pivot;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.StereotypeExtender#getClass_ <em>Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.StereotypeExtender#isRequired <em>Is Required</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.StereotypeExtender#getOwningStereotype <em>Owning Stereotype</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getStereotypeExtender()
  * @generated

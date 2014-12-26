@@ -45,13 +45,14 @@ import org.eclipse.ocl.pivot.values.UnlimitedValue;
  * An implementation of the model object '<em><b>Typed Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.TypedElementImpl#isMany <em>Is Many</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.TypedElementImpl#isRequired <em>Is Required</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.TypedElementImpl#getType <em>Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

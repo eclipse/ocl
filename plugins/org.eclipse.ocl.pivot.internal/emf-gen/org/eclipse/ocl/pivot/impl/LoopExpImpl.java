@@ -61,13 +61,14 @@ import org.eclipse.osgi.util.NLS;
  * An implementation of the model object '<em><b>Loop Exp</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.LoopExpImpl#getOwnedBody <em>Owned Body</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.LoopExpImpl#getOwnedIterators <em>Owned Iterators</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.LoopExpImpl#getReferredIteration <em>Referred Iteration</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

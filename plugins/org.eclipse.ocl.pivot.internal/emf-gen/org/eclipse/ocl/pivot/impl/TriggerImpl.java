@@ -34,12 +34,13 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * An implementation of the model object '<em><b>Trigger</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.TriggerImpl#getOwningState <em>Owning State</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.TriggerImpl#getOwningTransition <em>Owning Transition</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

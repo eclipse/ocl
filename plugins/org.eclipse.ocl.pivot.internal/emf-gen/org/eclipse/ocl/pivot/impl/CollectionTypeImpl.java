@@ -53,13 +53,14 @@ import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
  * An implementation of the model object '<em><b>Collection Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.CollectionTypeImpl#getElementType <em>Element Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.CollectionTypeImpl#getLower <em>Lower</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.CollectionTypeImpl#getUpper <em>Upper</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

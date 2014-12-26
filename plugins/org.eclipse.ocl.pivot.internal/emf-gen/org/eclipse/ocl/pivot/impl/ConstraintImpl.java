@@ -45,7 +45,9 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * An implementation of the model object '<em><b>Constraint</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ConstraintImpl#getConstrainedElements <em>Constrained Elements</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ConstraintImpl#getContext <em>Context</em>}</li>
@@ -57,7 +59,6 @@ import org.eclipse.ocl.pivot.util.Visitor;
  *   <li>{@link org.eclipse.ocl.pivot.impl.ConstraintImpl#getOwningTransition <em>Owning Transition</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ConstraintImpl#getRedefinedConstraints <em>Redefined Constraints</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -28,6 +28,7 @@ import org.eclipse.ocl.pivot.ids.PackageId;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.Package#getURI <em>URI</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Package#getImportedPackages <em>Imported Packages</em>}</li>
@@ -38,7 +39,6 @@ import org.eclipse.ocl.pivot.ids.PackageId;
  *   <li>{@link org.eclipse.ocl.pivot.Package#getOwnedProfileApplications <em>Owned Profile Applications</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Package#getOwningPackage <em>Owning Package</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getPackage()
  * @generated

@@ -40,7 +40,9 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * An implementation of the model object '<em><b>Region</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.RegionImpl#getExtendedRegion <em>Extended Region</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.RegionImpl#getOwnedSubvertexes <em>Owned Subvertexes</em>}</li>
@@ -48,7 +50,6 @@ import org.eclipse.ocl.pivot.util.Visitor;
  *   <li>{@link org.eclipse.ocl.pivot.impl.RegionImpl#getOwningState <em>Owning State</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.RegionImpl#getOwningStateMachine <em>Owning State Machine</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

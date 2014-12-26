@@ -22,11 +22,11 @@ package org.eclipse.ocl.pivot;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.DataType#getBehavioralClass <em>Behavioral Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.DataType#isSerializable <em>Is Serializable</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getDataType()
  * @generated

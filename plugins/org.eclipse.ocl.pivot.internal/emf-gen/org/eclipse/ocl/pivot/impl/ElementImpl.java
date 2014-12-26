@@ -43,14 +43,15 @@ import org.eclipse.ocl.pivot.values.SetValue;
  * An implementation of the model object '<em><b>Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ElementImpl#getAnnotatingComments <em>Annotating Comments</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ElementImpl#getOwnedAnnotations <em>Owned Annotations</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ElementImpl#getOwnedComments <em>Owned Comments</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ElementImpl#getOwnedExtensions <em>Owned Extensions</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

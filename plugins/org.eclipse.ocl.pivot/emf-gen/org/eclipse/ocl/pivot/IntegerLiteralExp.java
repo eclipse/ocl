@@ -21,10 +21,10 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.IntegerLiteralExp#getIntegerSymbol <em>Integer Symbol</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getIntegerLiteralExp()
  * @generated

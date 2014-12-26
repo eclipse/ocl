@@ -23,11 +23,11 @@ import org.eclipse.jdt.annotation.NonNull;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.CollectionLiteralExp#getKind <em>Kind</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.CollectionLiteralExp#getOwnedParts <em>Owned Parts</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getCollectionLiteralExp()
  * @generated

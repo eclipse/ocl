@@ -61,14 +61,15 @@ import org.eclipse.osgi.util.NLS;
  * An implementation of the model object '<em><b>Message Exp</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.MessageExpImpl#getOwnedArguments <em>Owned Arguments</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.MessageExpImpl#getOwnedCalledOperation <em>Owned Called Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.MessageExpImpl#getOwnedSentSignal <em>Owned Sent Signal</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.MessageExpImpl#getOwnedTarget <em>Owned Target</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -27,13 +27,13 @@ import org.eclipse.ocl.pivot.util.Visitable;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.Element#getAnnotatingComments <em>Annotating Comments</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Element#getOwnedAnnotations <em>Owned Annotations</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Element#getOwnedComments <em>Owned Comments</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Element#getOwnedExtensions <em>Owned Extensions</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getElement()
  * @generated

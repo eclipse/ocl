@@ -38,13 +38,14 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * An implementation of the model object '<em><b>Connection Point Reference</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ConnectionPointReferenceImpl#getEntries <em>Entries</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ConnectionPointReferenceImpl#getExits <em>Exits</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.impl.ConnectionPointReferenceImpl#getOwningState <em>Owning State</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

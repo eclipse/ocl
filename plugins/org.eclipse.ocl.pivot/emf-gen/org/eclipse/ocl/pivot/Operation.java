@@ -31,6 +31,7 @@ import org.eclipse.ocl.pivot.ids.ParametersId;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.Operation#getBodyExpression <em>Body Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Operation#isInvalidating <em>Is Invalidating</em>}</li>
@@ -44,7 +45,6 @@ import org.eclipse.ocl.pivot.ids.ParametersId;
  *   <li>{@link org.eclipse.ocl.pivot.Operation#getRaisedExceptions <em>Raised Exceptions</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Operation#getRedefinedOperations <em>Redefined Operations</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getOperation()
  * @generated
