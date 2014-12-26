@@ -26,6 +26,7 @@ import org.eclipse.ocl.pivot.ParameterTypes;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TemplateBinding;
+import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
@@ -210,7 +211,7 @@ public class AbstractExecutorOperation extends AbstractExecutorFeature implement
 
 	@Override
 	@NonNull
-	public DomainTypeParameters getTypeParameters() {
+	public TemplateParameters getTypeParameters() {
 		throw new UnsupportedOperationException();
 	}
 }

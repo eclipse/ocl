@@ -54,10 +54,10 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.SequenceType;
 import org.eclipse.ocl.pivot.SetType;
 import org.eclipse.ocl.pivot.TemplateParameter;
+import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.VoidType;
-import org.eclipse.ocl.pivot.elements.DomainTypeParameters;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.TemplateParameterId;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -447,13 +447,12 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 				op.getOwningClass().accept(emitLiteralVisitor);
 				s.append(",\n			" + i + ", ");
 				if (ownedTemplateSignature == null) {
-					s.appendClassReference(DomainTypeParameters.class);
+					s.appendClassReference(TemplateParameters.class);
 					s.append(".EMPTY_LIST");
 				}
 				else {
-					s.append("new ");
-					s.appendClassReference(DomainTypeParameters.class);
-					s.append("(");
+					s.appendClassReference(TypeUtil.class);
+					s.append(".createTemplateParameters(");
 					for (TemplateParameter parameter : ownedTemplateSignature.getOwnedParameters()) {
 						if (parameter != null) {
 							s.append("TypeParameters._");

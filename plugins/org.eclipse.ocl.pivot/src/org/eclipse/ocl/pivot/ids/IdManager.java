@@ -31,8 +31,8 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.elements.DomainTypeParameters;
 import org.eclipse.ocl.pivot.ids.impl.BindingsIdImpl;
 import org.eclipse.ocl.pivot.ids.impl.GeneralizedCollectionTypeIdImpl;
 import org.eclipse.ocl.pivot.ids.impl.GeneralizedLambdaTypeIdImpl;
@@ -197,7 +197,7 @@ public final class IdManager
 		assert name != null;
 		org.eclipse.ocl.pivot.Package parentPackage = aType.getOwningPackage();
 		if (parentPackage != null) {
-			DomainTypeParameters typeParameters = aType.getTypeParameters();
+			TemplateParameters typeParameters = aType.getTypeParameters();
 			PackageId packageId = parentPackage.getPackageId();
 			return packageId.getClassId(name, typeParameters.parametersSize());
 		}
@@ -221,7 +221,7 @@ public final class IdManager
 		assert name != null;
 		org.eclipse.ocl.pivot.Package parentPackage = aType.getOwningPackage();
 		if (parentPackage != null) {
-			DomainTypeParameters typeParameters = aType.getTypeParameters();
+			TemplateParameters typeParameters = aType.getTypeParameters();
 			PackageId packageId = parentPackage.getPackageId();
 			return packageId.getDataTypeId(name, typeParameters.parametersSize());
 		}
@@ -335,7 +335,7 @@ public final class IdManager
 		org.eclipse.ocl.pivot.Class parentType = anOperation.getOwningClass();
 		TypeId parentTypeId = parentType.getTypeId();
 		Type[] parameterTypes = ClassUtil.getOperationParameterTypes(anOperation);
-		DomainTypeParameters typeParameters = anOperation.getTypeParameters();
+		TemplateParameters typeParameters = anOperation.getTypeParameters();
 		ParametersId parametersId = getParametersId(parameterTypes);
 		return parentTypeId.getOperationId(typeParameters.parametersSize(), name, parametersId);
 	}

@@ -21,9 +21,9 @@ import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.ParameterTypes;
 import org.eclipse.ocl.pivot.StandardLibrary;
+import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.elements.AbstractExecutorOperation;
-import org.eclipse.ocl.pivot.elements.DomainTypeParameters;
 import org.eclipse.ocl.pivot.ids.OperationId;
 import org.eclipse.ocl.pivot.ids.ParametersId;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -34,9 +34,9 @@ public class ExecutorOperation extends AbstractExecutorOperation
 	protected final @NonNull ParameterTypes parameterTypes;
 	protected final int index;
 	protected final @NonNull LibraryFeature implementation;
-	protected final @NonNull DomainTypeParameters typeParameters;
+	protected final @NonNull TemplateParameters typeParameters;
 	
-	public ExecutorOperation(@NonNull String name, @NonNull ParameterTypes parameterTypes, @NonNull Type type, int index, @NonNull DomainTypeParameters typeParameters, @Nullable LibraryFeature implementation) {
+	public ExecutorOperation(@NonNull String name, @NonNull ParameterTypes parameterTypes, @NonNull Type type, int index, @NonNull TemplateParameters typeParameters, @Nullable LibraryFeature implementation) {
 		super(name, type);
 		this.parameterTypes = parameterTypes;
 		this.index = index;
@@ -127,7 +127,7 @@ public class ExecutorOperation extends AbstractExecutorOperation
 	}
 
 	@Override
-	public @NonNull DomainTypeParameters getTypeParameters() {
+	public @NonNull TemplateParameters getTypeParameters() {
 		return typeParameters;
 	}
 

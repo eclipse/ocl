@@ -26,6 +26,7 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.TemplateBinding;
+import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
 
@@ -126,8 +127,8 @@ public class AbstractExecutorClass extends AbstractExecutorType implements org.e
 
 	@Override
 		@NonNull
-		public DomainTypeParameters getTypeParameters() {
-			return DomainTypeParameters.EMPTY_LIST;
+		public TemplateParameters getTypeParameters() {
+			return TemplateParameters.EMPTY_LIST;
 	//		throw new UnsupportedOperationException();
 		}
 

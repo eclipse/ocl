@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.utilities;
 
+import java.util.List;
+
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CollectionType;
@@ -17,11 +19,14 @@ import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.ParameterTypes;
 import org.eclipse.ocl.pivot.StandardLibrary;
+import org.eclipse.ocl.pivot.TemplateParameter;
+import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.PrimitiveTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.types.ParameterTypesImpl;
+import org.eclipse.ocl.pivot.types.TemplateParametersImpl;
 import org.eclipse.ocl.pivot.values.CollectionTypeParameters;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
@@ -82,6 +87,14 @@ public class TypeUtil
 
 	public static @NonNull ParameterTypes createParameterTypes(@NonNull Type... parameterTypes) {
 		return new ParameterTypesImpl(parameterTypes);
+	}
+
+	public static @NonNull TemplateParameters createTemplateParameters(@NonNull TemplateParameter... parameters) {
+		return new TemplateParametersImpl(parameters);
+	}
+
+	public static @NonNull TemplateParameters createTemplateParameters(@NonNull List<? extends Type> parameters) {
+		return new TemplateParametersImpl(parameters);
 	}
 
 	public static @Nullable Type getPrimitiveType(@NonNull StandardLibrary standardLibrary, @NonNull PrimitiveTypeId typeId) {

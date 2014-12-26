@@ -13,6 +13,7 @@ package codegen.company;
 
 import codegen.company.CodegencompanyPackage;
 import codegen.company.CodegencompanyTables;
+
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.library.ecore.EcoreExecutorEnumeration;
 import org.eclipse.ocl.library.ecore.EcoreExecutorEnumerationLiteral;
@@ -28,7 +29,7 @@ import org.eclipse.ocl.library.executor.ExecutorStandardLibrary;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.ParameterTypes;
 import org.eclipse.ocl.pivot.PivotTables;
-import org.eclipse.ocl.pivot.elements.DomainTypeParameters;
+import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.ids.ClassId;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.EnumerationId;
@@ -188,9 +189,9 @@ public class CodegencompanyTables
 	 */
 	public static class Operations {
 		public static final @NonNull ExecutorOperation _Employee__hasNameAsOperation = new ExecutorOperation("hasNameAsOperation", Parameters._, Types._Employee,
-			0, DomainTypeParameters.EMPTY_LIST, null);
+			0, TemplateParameters.EMPTY_LIST, null);
 		public static final @NonNull ExecutorOperation _Employee__reportsTo = new ExecutorOperation("reportsTo", Parameters._Employee, Types._Employee,
-			1, DomainTypeParameters.EMPTY_LIST, null);
+			1, TemplateParameters.EMPTY_LIST, null);
 
 	}
 

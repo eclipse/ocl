@@ -48,11 +48,11 @@ import org.eclipse.ocl.pivot.Stereotype;
 import org.eclipse.ocl.pivot.TemplateBinding;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateParameterSubstitution;
+import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.Vertex;
-import org.eclipse.ocl.pivot.elements.DomainTypeParameters;
 import org.eclipse.ocl.pivot.ids.OperationId;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.ids.ParametersId;
@@ -66,6 +66,7 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
+import org.eclipse.ocl.pivot.utilities.TypeUtil;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
@@ -136,7 +137,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 	// FIXME tests fail if keys are weak since GC is too aggressive across tests
 	// The actual types are weak keys so that parameterizations using stale types are garbage collected. 
 	//
-	private @Nullable /*WeakHash*/Map<DomainTypeParameters, WeakReference<org.eclipse.ocl.pivot.Class>> specializations = null;
+	private @Nullable /*WeakHash*/Map<TemplateParameters, WeakReference<org.eclipse.ocl.pivot.Class>> specializations = null;
 
 	public PartialClasses(@NonNull CompleteClassImpl completeClass) {
 		super(org.eclipse.ocl.pivot.Class.class, completeClass, PivotPackage.COMPLETE_CLASS__PARTIAL_CLASSES);
@@ -214,7 +215,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 		return extensionProperty;
 	}
 
-	protected @NonNull org.eclipse.ocl.pivot.Class createSpecialization(@NonNull DomainTypeParameters templateArguments) {
+	protected @NonNull org.eclipse.ocl.pivot.Class createSpecialization(@NonNull TemplateParameters templateArguments) {
 		org.eclipse.ocl.pivot.Class unspecializedType = getCompleteClass().getPivotClass();
 		String typeName = unspecializedType.getName();
 		TemplateSignature templateSignature = unspecializedType.getOwnedSignature();
@@ -365,14 +366,14 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 		superCompleteClasses = null;
 	}
 
-	public synchronized @Nullable Type findSpecializedType(@NonNull DomainTypeParameters templateArguments) {
+	public synchronized @Nullable Type findSpecializedType(@NonNull TemplateParameters templateArguments) {
 		TemplateSignature templateSignature = getCompleteClass().getPivotClass().getOwnedSignature();
 		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
 		int iMax = templateParameters.size();
 		if (templateArguments.parametersSize() != iMax) {
 			return null;
 		}
-		Map<DomainTypeParameters, WeakReference<org.eclipse.ocl.pivot.Class>> specializations2 = specializations;
+		Map<TemplateParameters, WeakReference<org.eclipse.ocl.pivot.Class>> specializations2 = specializations;
 		if (specializations2 == null) {
 			return null;
 		}
@@ -667,22 +668,22 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 	}
 
 	public synchronized @NonNull org.eclipse.ocl.pivot.Class getSpecializedType(@NonNull List<? extends Type> templateArguments) {
-		return getSpecializedType(new DomainTypeParameters(templateArguments));
+		return getSpecializedType(TypeUtil.createTemplateParameters(templateArguments));
 	}
 
-	public synchronized @NonNull org.eclipse.ocl.pivot.Class getSpecializedType(@NonNull DomainTypeParameters templateArguments) {
+	public synchronized @NonNull org.eclipse.ocl.pivot.Class getSpecializedType(@NonNull TemplateParameters templateArguments) {
 		TemplateSignature templateSignature = getCompleteClass().getPivotClass().getOwnedSignature();
 		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
 		int iMax = templateParameters.size();
 		if (templateArguments.parametersSize() != iMax) {
 			throw new IllegalArgumentException("Incompatible template argument count");
 		}
-		Map<DomainTypeParameters, WeakReference<org.eclipse.ocl.pivot.Class>> specializations2 = specializations;
+		Map<TemplateParameters, WeakReference<org.eclipse.ocl.pivot.Class>> specializations2 = specializations;
 		if (specializations2 == null) {
 			synchronized(this) {
 				specializations2 = specializations;
 				if (specializations2 == null) {
-					specializations2 = specializations = new /*Weak*/HashMap<DomainTypeParameters, WeakReference<org.eclipse.ocl.pivot.Class>>();
+					specializations2 = specializations = new /*Weak*/HashMap<TemplateParameters, WeakReference<org.eclipse.ocl.pivot.Class>>();
 				}
 			}
 		}

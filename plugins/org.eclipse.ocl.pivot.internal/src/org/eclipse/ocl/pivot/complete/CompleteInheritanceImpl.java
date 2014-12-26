@@ -24,8 +24,8 @@ import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateParameterSubstitution;
+import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.elements.DomainTypeParameters;
 import org.eclipse.ocl.pivot.executor.PivotReflectiveFragment;
 import org.eclipse.ocl.pivot.ids.OperationId;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -135,8 +135,8 @@ public class CompleteInheritanceImpl extends ReflectiveInheritance implements Co
 	}
 
 	@Override
-	public @NonNull DomainTypeParameters getTypeParameters() {
-		return DomainTypeParameters.EMPTY_LIST;
+	public @NonNull TemplateParameters getTypeParameters() {
+		return TemplateParameters.EMPTY_LIST;
 	}
 
 	@Override

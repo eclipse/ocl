@@ -23,14 +23,15 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TemplateParameter;
+import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.elements.AbstractExecutorClass;
-import org.eclipse.ocl.pivot.elements.DomainTypeParameters;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.OperationId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.utilities.ArrayIterable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.TypeUtil;
 import org.eclipse.ocl.pivot.values.OCLValue;
 
 /**
@@ -53,13 +54,13 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	private int[] indexes = null;
 	
 	protected final @NonNull org.eclipse.ocl.pivot.Package evaluationPackage;
-	private final @NonNull DomainTypeParameters typeParameters;
+	private final @NonNull TemplateParameters typeParameters;
 	private /*@LazyNonNull*/ DomainProperties allProperties;
 	
 	public ExecutorType(@NonNull String name, @NonNull ExecutorPackage evaluationPackage, int flags, @NonNull ExecutorTypeParameter... typeParameters) {
 		super(name, flags);
 		this.evaluationPackage = evaluationPackage;
-		this.typeParameters = new DomainTypeParameters(typeParameters);
+		this.typeParameters = TypeUtil.createTemplateParameters(typeParameters);
 	}
 
 	@Override
@@ -206,7 +207,7 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 //	}
 
 	@Override
-	public @NonNull DomainTypeParameters getTypeParameters() {
+	public @NonNull TemplateParameters getTypeParameters() {
 		return typeParameters;
 	}
 

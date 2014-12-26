@@ -51,11 +51,11 @@ import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TemplateBinding;
+import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ValueSpecification;
-import org.eclipse.ocl.pivot.elements.DomainTypeParameters;
 import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
@@ -1561,7 +1561,7 @@ public class OperationImpl
 	}
 
 	@Override
-	public @NonNull DomainTypeParameters getTypeParameters() {
+	public @NonNull TemplateParameters getTypeParameters() {
 		return TemplateSignatureImpl.getTypeParameters(getOwnedSignature());
 	}
 

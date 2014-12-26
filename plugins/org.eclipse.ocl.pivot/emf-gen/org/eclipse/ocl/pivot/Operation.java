@@ -16,7 +16,6 @@ import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.elements.DomainTypeParameters;
 import org.eclipse.ocl.pivot.ids.OperationId;
 import org.eclipse.ocl.pivot.ids.ParametersId;
 
@@ -339,5 +338,5 @@ public interface Operation extends Feature, Namespace, TemplateableElement {
 	/**
 	 * Return the ordered list of type parameters of this operation.
 	 */
-	@NonNull DomainTypeParameters getTypeParameters();
+	@NonNull TemplateParameters getTypeParameters();
 } // Operation

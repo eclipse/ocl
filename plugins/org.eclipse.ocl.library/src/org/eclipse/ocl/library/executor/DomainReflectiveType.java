@@ -20,8 +20,8 @@ import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.StandardLibrary;
+import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.elements.DomainTypeParameters;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.OperationId;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -158,7 +158,7 @@ public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 	}
 
 	@Override
-	public @NonNull DomainTypeParameters getTypeParameters() {
+	public @NonNull TemplateParameters getTypeParameters() {
 		return domainClass.getTypeParameters();
 	}
 

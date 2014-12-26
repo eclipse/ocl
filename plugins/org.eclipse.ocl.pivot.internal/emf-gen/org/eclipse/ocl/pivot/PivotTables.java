@@ -21,6 +21,7 @@
 package org.eclipse.ocl.pivot;
 
 import java.lang.String;
+
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.library.ecore.EcoreExecutorEnumeration;
 import org.eclipse.ocl.library.ecore.EcoreExecutorEnumerationLiteral;
@@ -36,7 +37,6 @@ import org.eclipse.ocl.library.executor.ExecutorStandardLibrary;
 import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.ParameterTypes;
 import org.eclipse.ocl.pivot.PivotTables;
-import org.eclipse.ocl.pivot.elements.DomainTypeParameters;
 import org.eclipse.ocl.pivot.ids.ClassId;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.DataTypeId;
@@ -1909,61 +1909,61 @@ public class PivotTables
 	 */
 	public static class Operations {
 		public static final @NonNull ExecutorOperation _CompleteModel__getOwnedCompletePackage = new ExecutorOperation("getOwnedCompletePackage", Parameters._String, Types._CompleteModel,
-			0, DomainTypeParameters.EMPTY_LIST, null);
+			0, TemplateParameters.EMPTY_LIST, null);
 
 		public static final @NonNull ExecutorOperation _CompletePackage__getOwnedCompleteClass = new ExecutorOperation("getOwnedCompleteClass", Parameters._String, Types._CompletePackage,
-			0, DomainTypeParameters.EMPTY_LIST, null);
+			0, TemplateParameters.EMPTY_LIST, null);
 
 		public static final @NonNull ExecutorOperation _Element__allOwnedElements = new ExecutorOperation("allOwnedElements", Parameters._, Types._Element,
-			0, DomainTypeParameters.EMPTY_LIST, null);
+			0, TemplateParameters.EMPTY_LIST, null);
 		public static final @NonNull ExecutorOperation _Element__getValue = new ExecutorOperation("getValue", Parameters._Type___String, Types._Element,
-			1, DomainTypeParameters.EMPTY_LIST, null);
+			1, TemplateParameters.EMPTY_LIST, null);
 
 		public static final @NonNull ExecutorOperation _Enumeration__allInstances = new ExecutorOperation("allInstances", Parameters._, Types._Enumeration,
-			0, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.enumeration.EnumerationAllInstancesOperation.INSTANCE);
+			0, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.library.enumeration.EnumerationAllInstancesOperation.INSTANCE);
 
 		public static final @NonNull ExecutorOperation _Property__isAttribute = new ExecutorOperation("isAttribute", Parameters._Property, Types._Property,
-			0, DomainTypeParameters.EMPTY_LIST, null);
+			0, TemplateParameters.EMPTY_LIST, null);
 
 		public static final @NonNull ExecutorOperation _PropertyCallExp__getSpecializedReferredPropertyOwningType = new ExecutorOperation("getSpecializedReferredPropertyOwningType", Parameters._, Types._PropertyCallExp,
-			0, DomainTypeParameters.EMPTY_LIST, null);
+			0, TemplateParameters.EMPTY_LIST, null);
 		public static final @NonNull ExecutorOperation _PropertyCallExp__getSpecializedReferredPropertyType = new ExecutorOperation("getSpecializedReferredPropertyType", Parameters._, Types._PropertyCallExp,
-			1, DomainTypeParameters.EMPTY_LIST, null);
+			1, TemplateParameters.EMPTY_LIST, null);
 
 		public static final @NonNull ExecutorOperation _ReferringElement__getReferredElement = new ExecutorOperation("getReferredElement", Parameters._, Types._ReferringElement,
-			0, DomainTypeParameters.EMPTY_LIST, null);
+			0, TemplateParameters.EMPTY_LIST, null);
 
 		public static final @NonNull ExecutorOperation _SelfType__specializeIn = new ExecutorOperation("specializeIn", Parameters._OCLExpression___Type, Types._SelfType,
-			0, DomainTypeParameters.EMPTY_LIST, null);
+			0, TemplateParameters.EMPTY_LIST, null);
 
 		public static final @NonNull ExecutorOperation _Type__conformsTo = new ExecutorOperation("conformsTo", Parameters._Type, Types._Type,
-			0, DomainTypeParameters.EMPTY_LIST, org.eclipse.ocl.library.classifier.OclTypeConformsToOperation.INSTANCE);
+			0, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.library.classifier.OclTypeConformsToOperation.INSTANCE);
 		public static final @NonNull ExecutorOperation _Type__flattenedType = new ExecutorOperation("flattenedType", Parameters._, Types._Type,
-			1, DomainTypeParameters.EMPTY_LIST, null);
+			1, TemplateParameters.EMPTY_LIST, null);
 		public static final @NonNull ExecutorOperation _Type__isClass = new ExecutorOperation("isClass", Parameters._, Types._Type,
-			2, DomainTypeParameters.EMPTY_LIST, null);
+			2, TemplateParameters.EMPTY_LIST, null);
 		public static final @NonNull ExecutorOperation _Type__isTemplateParameter = new ExecutorOperation("isTemplateParameter", Parameters._, Types._Type,
-			3, DomainTypeParameters.EMPTY_LIST, null);
+			3, TemplateParameters.EMPTY_LIST, null);
 		public static final @NonNull ExecutorOperation _Type__specializeIn = new ExecutorOperation("specializeIn", Parameters._OCLExpression___Type, Types._Type,
-			4, DomainTypeParameters.EMPTY_LIST, null);
+			4, TemplateParameters.EMPTY_LIST, null);
 
 		public static final @NonNull ExecutorOperation _TypedElement__CompatibleBody = new ExecutorOperation("CompatibleBody", Parameters._ValueSpecification, Types._TypedElement,
-			0, DomainTypeParameters.EMPTY_LIST, null);
+			0, TemplateParameters.EMPTY_LIST, null);
 		public static final @NonNull ExecutorOperation _TypedElement__makeParameter = new ExecutorOperation("makeParameter", Parameters._, Types._TypedElement,
-			1, DomainTypeParameters.EMPTY_LIST, null);
+			1, TemplateParameters.EMPTY_LIST, null);
 
 		public static final @NonNull ExecutorOperation _ValueSpecification__booleanValue = new ExecutorOperation("booleanValue", Parameters._, Types._ValueSpecification,
-			0, DomainTypeParameters.EMPTY_LIST, null);
+			0, TemplateParameters.EMPTY_LIST, null);
 		public static final @NonNull ExecutorOperation _ValueSpecification__integerValue = new ExecutorOperation("integerValue", Parameters._, Types._ValueSpecification,
-			1, DomainTypeParameters.EMPTY_LIST, null);
+			1, TemplateParameters.EMPTY_LIST, null);
 		public static final @NonNull ExecutorOperation _ValueSpecification__isComputable = new ExecutorOperation("isComputable", Parameters._, Types._ValueSpecification,
-			2, DomainTypeParameters.EMPTY_LIST, null);
+			2, TemplateParameters.EMPTY_LIST, null);
 		public static final @NonNull ExecutorOperation _ValueSpecification__isNull = new ExecutorOperation("isNull", Parameters._, Types._ValueSpecification,
-			3, DomainTypeParameters.EMPTY_LIST, null);
+			3, TemplateParameters.EMPTY_LIST, null);
 		public static final @NonNull ExecutorOperation _ValueSpecification__stringValue = new ExecutorOperation("stringValue", Parameters._, Types._ValueSpecification,
-			4, DomainTypeParameters.EMPTY_LIST, null);
+			4, TemplateParameters.EMPTY_LIST, null);
 		public static final @NonNull ExecutorOperation _ValueSpecification__unlimitedValue = new ExecutorOperation("unlimitedValue", Parameters._, Types._ValueSpecification,
-			5, DomainTypeParameters.EMPTY_LIST, null);
+			5, TemplateParameters.EMPTY_LIST, null);
 
 	}
 

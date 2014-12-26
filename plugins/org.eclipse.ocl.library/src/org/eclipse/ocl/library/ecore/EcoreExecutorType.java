@@ -20,7 +20,7 @@ import org.eclipse.ocl.library.executor.ExecutorFragment;
 import org.eclipse.ocl.library.executor.ExecutorPackage;
 import org.eclipse.ocl.library.executor.ExecutorType;
 import org.eclipse.ocl.library.executor.ExecutorTypeParameter;
-import org.eclipse.ocl.pivot.elements.DomainTypeParameters;
+import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.ids.BuiltInTypeId;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.PackageId;
@@ -109,7 +109,7 @@ public class EcoreExecutorType extends ExecutorType
 					}
 					else {
 						PackageId packageTypeId = evaluationPackage.getPackageId(); //IdManager.getPackageId(evaluationPackage);
-						DomainTypeParameters typeParameters = getTypeParameters();
+						TemplateParameters typeParameters = getTypeParameters();
 						if (eClassifier instanceof EDataType) {
 							typeId2 = packageTypeId.getDataTypeId(name, typeParameters.parametersSize());
 						}

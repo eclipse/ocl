@@ -8,26 +8,26 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.pivot.elements;
+package org.eclipse.ocl.pivot.types;
 
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.TemplateParameter;
+import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.Type;
 
 /**
- * DomainTypeParameters provides a hashable list of type
+ * TemplateParameters provides a hashable list of type
  * parameters suitable for use when indexing specializations.
  */
-public class DomainTypeParameters
+public class TemplateParametersImpl implements TemplateParameters
 {
-	public static final @NonNull DomainTypeParameters EMPTY_LIST = new DomainTypeParameters();
 	
 	private final @NonNull Type[] typeParameters;
 	private final int hashCode;
 
-	public DomainTypeParameters(@NonNull TemplateParameter... typeParameters) {
+	public TemplateParametersImpl(@NonNull TemplateParameter... typeParameters) {
 		this.typeParameters = new Type[typeParameters.length];
 		int hash = 0;
 		for (int i = 0; i < typeParameters.length; i++) {
@@ -38,7 +38,7 @@ public class DomainTypeParameters
 		hashCode = hash;
 	}
 	
-	public DomainTypeParameters(@NonNull List<? extends Type> parameters) {
+	public TemplateParametersImpl(@NonNull List<? extends Type> parameters) {
 		typeParameters = new Type[parameters.size()];
 		int hash = 0;
 		for (int i = 0; i < typeParameters.length; i++) {
@@ -51,10 +51,10 @@ public class DomainTypeParameters
 	
 	@Override
 	public boolean equals(Object o) {
-		if (!(o instanceof DomainTypeParameters)) {
+		if (!(o instanceof TemplateParametersImpl)) {
 			return false;
 		}
-		DomainTypeParameters that = (DomainTypeParameters)o;
+		TemplateParametersImpl that = (TemplateParametersImpl)o;
 		if (this.hashCode != that.hashCode){
 			return false;
 		}
@@ -86,6 +86,7 @@ public class DomainTypeParameters
 		return true;
 	}
 
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull Type get(int i) {
 		return typeParameters[i];
@@ -96,6 +97,7 @@ public class DomainTypeParameters
 		return hashCode;
 	}
 
+	@Override
 	public int parametersSize() {
 		return typeParameters.length;
 	}

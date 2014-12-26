@@ -11,6 +11,7 @@
 package org.eclipse.ocl.pivot.impl;
 
 import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -23,8 +24,8 @@ import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TemplateParameter;
+import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.elements.DomainTypeParameters;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.util.Visitor;
@@ -230,7 +231,7 @@ public abstract class TypeImpl
 		throw new UnsupportedOperationException();		// FIXME
 	}
 
-	public @NonNull DomainTypeParameters getTypeParameters() {
+	public @NonNull TemplateParameters getTypeParameters() {
 		throw new UnsupportedOperationException();		// FIXME
 	}
 } //TypeImpl

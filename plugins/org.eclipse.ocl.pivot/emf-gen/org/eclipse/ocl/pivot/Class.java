@@ -17,7 +17,6 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.elements.DomainTypeParameters;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
 
 
@@ -301,7 +300,7 @@ public interface Class
 	/**
 	 * Return the ordered list of type parameters of this type.
 	 */
-	@NonNull DomainTypeParameters getTypeParameters();
+	@NonNull TemplateParameters getTypeParameters();
 	
 	/**
 	 * Return true if this type is a Collection type and has ordered elements.

@@ -28,8 +28,8 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
+import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.elements.DomainTypeParameters;
 import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
 import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
@@ -591,7 +591,7 @@ public abstract class ValueUtil
 					allStaticsInitialized = true;
 					// org.eclipse.ocl.domain.elements
 					ParameterTypesImpl.EMPTY_LIST.getClass();
-					DomainTypeParameters.EMPTY_LIST.getClass();
+					TemplateParameters.EMPTY_LIST.getClass();
 					// org.eclipse.ocl.domain.evaluation
 					DomainModelManager.NULL.getClass();
 					// org.eclipse.ocl.domain.ids
