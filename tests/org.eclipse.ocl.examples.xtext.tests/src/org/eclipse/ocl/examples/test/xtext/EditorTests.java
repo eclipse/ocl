@@ -267,6 +267,12 @@ public class EditorTests extends XtextTestCase
 		doTestEditor(OCLinEcoreUiModule.EDITOR_ID, "test.ecore", "package test : test = 'test' { }");
 	}	
 	
+	public void testEditor_OpenOCLinEcoreEditor4Pivot() throws Exception {
+		URI uri = URI.createPlatformPluginURI("org.eclipse.ocl.pivot.internal/model/Pivot.ecore", true);
+		String documentText = doTestEditor(OCLinEcoreUiModule.EDITOR_ID, uri);
+		assertTrue(documentText.contains("primitive datatype _'Boolean'"));
+	}	
+	
 	public void testEditor_OpenOCLStdLibEditor() throws Exception {
 		doTestEditor(OCLstdlibUiModule.EDITOR_ID, "test.oclstdlib",
 			"import '" + LibraryConstants.STDLIB_URI + "';\n" + 

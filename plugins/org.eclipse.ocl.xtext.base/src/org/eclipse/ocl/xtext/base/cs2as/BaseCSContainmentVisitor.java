@@ -33,6 +33,7 @@ import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateSignature;
@@ -284,8 +285,13 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 
 	@Override
 	public Continuation<?> visitDataTypeCS(@NonNull DataTypeCS csElement) {
-		@SuppressWarnings("null") @NonNull EClass eClass = PivotPackage.Literals.DATA_TYPE;
-		DataType pivotElement = refreshNamedElement(DataType.class, eClass, csElement);
+		DataType pivotElement;
+		if (csElement.isIsPrimitive()) {
+			pivotElement = refreshNamedElement(PrimitiveType.class, PivotPackage.Literals.PRIMITIVE_TYPE, csElement);
+		}
+		else {
+			pivotElement = refreshNamedElement(DataType.class, PivotPackage.Literals.DATA_TYPE, csElement);
+		}
 		refreshSerializable(pivotElement, csElement);
 		refreshClassifier(pivotElement, csElement);
 		return null;

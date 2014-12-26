@@ -1668,23 +1668,38 @@ ruleDataTypeCS returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(	otherlv_0='datatype' 
+((
+(
+		lv_isPrimitive_0_0=	'primitive' 
     {
-    	newLeafNode(otherlv_0, grammarAccess.getDataTypeCSAccess().getDatatypeKeyword_0());
+        newLeafNode(lv_isPrimitive_0_0, grammarAccess.getDataTypeCSAccess().getIsPrimitivePrimitiveKeyword_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getDataTypeCSRule());
+	        }
+       		setWithLastConsumed($current, "isPrimitive", true, "primitive");
+	    }
+
+)
+)?	otherlv_1='datatype' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getDataTypeCSAccess().getDatatypeKeyword_1());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDataTypeCSAccess().getNameUnrestrictedNameParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getDataTypeCSAccess().getNameUnrestrictedNameParserRuleCall_2_0()); 
 	    }
-		lv_name_1_0=ruleUnrestrictedName		{
+		lv_name_2_0=ruleUnrestrictedName		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDataTypeCSRule());
 	        }
        		set(
        			$current, 
        			"name",
-        		lv_name_1_0, 
+        		lv_name_2_0, 
         		"UnrestrictedName");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -1693,30 +1708,30 @@ ruleDataTypeCS returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDataTypeCSAccess().getOwnedSignatureTemplateSignatureCSParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getDataTypeCSAccess().getOwnedSignatureTemplateSignatureCSParserRuleCall_3_0()); 
 	    }
-		lv_ownedSignature_2_0=ruleTemplateSignatureCS		{
+		lv_ownedSignature_3_0=ruleTemplateSignatureCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDataTypeCSRule());
 	        }
        		set(
        			$current, 
        			"ownedSignature",
-        		lv_ownedSignature_2_0, 
+        		lv_ownedSignature_3_0, 
         		"TemplateSignatureCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)?(	otherlv_3=':' 
+)?(	otherlv_4=':' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getDataTypeCSAccess().getColonKeyword_3_0());
+    	newLeafNode(otherlv_4, grammarAccess.getDataTypeCSAccess().getColonKeyword_4_0());
     }
 (
 (
-		lv_instanceClassName_4_0=RULE_SINGLE_QUOTED_STRING
+		lv_instanceClassName_5_0=RULE_SINGLE_QUOTED_STRING
 		{
-			newLeafNode(lv_instanceClassName_4_0, grammarAccess.getDataTypeCSAccess().getInstanceClassNameSINGLE_QUOTED_STRINGTerminalRuleCall_3_1_0()); 
+			newLeafNode(lv_instanceClassName_5_0, grammarAccess.getDataTypeCSAccess().getInstanceClassNameSINGLE_QUOTED_STRINGTerminalRuleCall_4_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -1725,67 +1740,67 @@ ruleDataTypeCS returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"instanceClassName",
-        		lv_instanceClassName_4_0, 
+        		lv_instanceClassName_5_0, 
         		"SINGLE_QUOTED_STRING");
 	    }
 
 )
-))?(	otherlv_5='{' 
+))?(	otherlv_6='{' 
     {
-    	newLeafNode(otherlv_5, grammarAccess.getDataTypeCSAccess().getLeftCurlyBracketKeyword_4_0());
+    	newLeafNode(otherlv_6, grammarAccess.getDataTypeCSAccess().getLeftCurlyBracketKeyword_5_0());
     }
 ((
 (
-		lv_qualifiers_6_0=	'serializable' 
+		lv_qualifiers_7_0=	'serializable' 
     {
-        newLeafNode(lv_qualifiers_6_0, grammarAccess.getDataTypeCSAccess().getQualifiersSerializableKeyword_4_1_0_0());
+        newLeafNode(lv_qualifiers_7_0, grammarAccess.getDataTypeCSAccess().getQualifiersSerializableKeyword_5_1_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDataTypeCSRule());
 	        }
-       		addWithLastConsumed($current, "qualifiers", lv_qualifiers_6_0, "serializable");
+       		addWithLastConsumed($current, "qualifiers", lv_qualifiers_7_0, "serializable");
 	    }
 
 )
 )
     |(
 (
-		lv_qualifiers_7_0=	'!serializable' 
+		lv_qualifiers_8_0=	'!serializable' 
     {
-        newLeafNode(lv_qualifiers_7_0, grammarAccess.getDataTypeCSAccess().getQualifiersSerializableKeyword_4_1_1_0());
+        newLeafNode(lv_qualifiers_8_0, grammarAccess.getDataTypeCSAccess().getQualifiersSerializableKeyword_5_1_1_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getDataTypeCSRule());
 	        }
-       		addWithLastConsumed($current, "qualifiers", lv_qualifiers_7_0, "!serializable");
+       		addWithLastConsumed($current, "qualifiers", lv_qualifiers_8_0, "!serializable");
 	    }
 
 )
-))?	otherlv_8='}' 
+))?	otherlv_9='}' 
     {
-    	newLeafNode(otherlv_8, grammarAccess.getDataTypeCSAccess().getRightCurlyBracketKeyword_4_2());
+    	newLeafNode(otherlv_9, grammarAccess.getDataTypeCSAccess().getRightCurlyBracketKeyword_5_2());
     }
-)?((	otherlv_9='{' 
+)?((	otherlv_10='{' 
     {
-    	newLeafNode(otherlv_9, grammarAccess.getDataTypeCSAccess().getLeftCurlyBracketKeyword_5_0_0());
+    	newLeafNode(otherlv_10, grammarAccess.getDataTypeCSAccess().getLeftCurlyBracketKeyword_6_0_0());
     }
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDataTypeCSAccess().getOwnedAnnotationsAnnotationElementCSParserRuleCall_5_0_1_0_0()); 
+	        newCompositeNode(grammarAccess.getDataTypeCSAccess().getOwnedAnnotationsAnnotationElementCSParserRuleCall_6_0_1_0_0()); 
 	    }
-		lv_ownedAnnotations_10_0=ruleAnnotationElementCS		{
+		lv_ownedAnnotations_11_0=ruleAnnotationElementCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDataTypeCSRule());
 	        }
        		add(
        			$current, 
        			"ownedAnnotations",
-        		lv_ownedAnnotations_10_0, 
+        		lv_ownedAnnotations_11_0, 
         		"AnnotationElementCS");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -1795,29 +1810,29 @@ ruleDataTypeCS returns [EObject current=null]
     |(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDataTypeCSAccess().getOwnedConstraintsInvariantConstraintCSParserRuleCall_5_0_1_1_0()); 
+	        newCompositeNode(grammarAccess.getDataTypeCSAccess().getOwnedConstraintsInvariantConstraintCSParserRuleCall_6_0_1_1_0()); 
 	    }
-		lv_ownedConstraints_11_0=ruleInvariantConstraintCS		{
+		lv_ownedConstraints_12_0=ruleInvariantConstraintCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDataTypeCSRule());
 	        }
        		add(
        			$current, 
        			"ownedConstraints",
-        		lv_ownedConstraints_11_0, 
+        		lv_ownedConstraints_12_0, 
         		"InvariantConstraintCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))*	otherlv_12='}' 
+))*	otherlv_13='}' 
     {
-    	newLeafNode(otherlv_12, grammarAccess.getDataTypeCSAccess().getRightCurlyBracketKeyword_5_0_2());
+    	newLeafNode(otherlv_13, grammarAccess.getDataTypeCSAccess().getRightCurlyBracketKeyword_6_0_2());
     }
 )
-    |	otherlv_13=';' 
+    |	otherlv_14=';' 
     {
-    	newLeafNode(otherlv_13, grammarAccess.getDataTypeCSAccess().getSemicolonKeyword_5_1());
+    	newLeafNode(otherlv_14, grammarAccess.getDataTypeCSAccess().getSemicolonKeyword_6_1());
     }
 ))
 ;

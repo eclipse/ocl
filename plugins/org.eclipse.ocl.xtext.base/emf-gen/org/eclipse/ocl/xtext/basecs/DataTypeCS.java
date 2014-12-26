@@ -16,6 +16,12 @@ package org.eclipse.ocl.xtext.basecs;
  * A representation of the model object '<em><b>Data Type CS</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.ocl.xtext.basecs.DataTypeCS#isIsPrimitive <em>Is Primitive</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getDataTypeCS()
  * @model
@@ -23,5 +29,32 @@ package org.eclipse.ocl.xtext.basecs;
  */
 public interface DataTypeCS extends ClassCS, NamespaceCS
 {
+
+	/**
+	 * Returns the value of the '<em><b>Is Primitive</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Primitive</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Primitive</em>' attribute.
+	 * @see #setIsPrimitive(boolean)
+	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getDataTypeCS_IsPrimitive()
+	 * @model default="false" dataType="org.eclipse.ocl.pivot.Boolean"
+	 * @generated
+	 */
+	boolean isIsPrimitive();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.xtext.basecs.DataTypeCS#isIsPrimitive <em>Is Primitive</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Primitive</em>' attribute.
+	 * @see #isIsPrimitive()
+	 * @generated
+	 */
+	void setIsPrimitive(boolean value);
 
 } // DataTypeCS

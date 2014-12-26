@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.DataType;
@@ -30,6 +31,7 @@ import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateSignature;
@@ -233,6 +235,14 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	@Override
 	public ElementCS visitParameter(@NonNull Parameter object) {
 		ParameterCS csElement = context.refreshTypedElement(ParameterCS.class, BaseCSPackage.Literals.PARAMETER_CS, object);
+		return csElement;
+	}
+
+	@Override
+	public @Nullable ElementCS visitPrimitiveType(@NonNull PrimitiveType object) {
+		DataTypeCS csElement = context.refreshClassifier(DataTypeCS.class, BaseCSPackage.Literals.DATA_TYPE_CS, object);
+		csElement.setIsPrimitive(true);
+		context.refreshQualifiers(csElement.getQualifiers(), "serializable", object.isSerializable());
 		return csElement;
 	}
 

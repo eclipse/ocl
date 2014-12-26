@@ -1565,13 +1565,22 @@ public interface BaseCSPackage extends EPackage {
 	int DATA_TYPE_CS__QUALIFIERS = CLASS_CS__QUALIFIERS;
 
 	/**
+	 * The feature id for the '<em><b>Is Primitive</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE_CS__IS_PRIMITIVE = CLASS_CS_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Data Type CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE_CS_FEATURE_COUNT = CLASS_CS_FEATURE_COUNT + 0;
+	int DATA_TYPE_CS_FEATURE_COUNT = CLASS_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -4733,6 +4742,17 @@ public interface BaseCSPackage extends EPackage {
 	EClass getDataTypeCS();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.basecs.DataTypeCS#isIsPrimitive <em>Is Primitive</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Primitive</em>'.
+	 * @see org.eclipse.ocl.xtext.basecs.DataTypeCS#isIsPrimitive()
+	 * @see #getDataTypeCS()
+	 * @generated
+	 */
+	EAttribute getDataTypeCS_IsPrimitive();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.basecs.DetailCS <em>Detail CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6254,6 +6274,14 @@ public interface BaseCSPackage extends EPackage {
 		 * @generated
 		 */
 		EClass DATA_TYPE_CS = eINSTANCE.getDataTypeCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Primitive</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATA_TYPE_CS__IS_PRIMITIVE = eINSTANCE.getDataTypeCS_IsPrimitive();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.basecs.impl.DetailCSImpl <em>Detail CS</em>}' class.

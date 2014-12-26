@@ -127,11 +127,11 @@ AttributeCS returns base::AttributeCS:
 ;
 
 ClassCS returns base::ClassCS:
-	StructuredClassCS | DataTypeCS | EnumerationCS 
+	StructuredClassCS | DataTypeCS | EnumerationCS
 ;
 
 DataTypeCS returns base::DataTypeCS:
-	'datatype' name=UnrestrictedName
+	isPrimitive ?= 'primitive'? 'datatype' name=UnrestrictedName
 	(ownedSignature=TemplateSignatureCS)?
 	(':' instanceClassName=SINGLE_QUOTED_STRING)?
 	('{' (qualifiers+='serializable' | qualifiers+='!serializable')? '}')?

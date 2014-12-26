@@ -737,6 +737,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	/**
 	 * Constraint:
 	 *     (
+	 *         isPrimitive?='primitive'? 
 	 *         name=UnrestrictedName 
 	 *         ownedSignature=TemplateSignatureCS? 
 	 *         instanceClassName=SINGLE_QUOTED_STRING? 

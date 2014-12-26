@@ -113,9 +113,9 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 	    }
 	    {
 			DataTypeCSElements a = f.getDataTypeCSAccess();
-			c.setNoSpace().between(a.getLeftCurlyBracketKeyword_4_0(), a.getRightCurlyBracketKeyword_4_2());
-			setBraces(c, a.getLeftCurlyBracketKeyword_5_0_0(), a.getRightCurlyBracketKeyword_5_0_2());
-			setNoSpaceLineWrap(c, a.getSemicolonKeyword_5_1());
+			c.setNoSpace().between(a.getLeftCurlyBracketKeyword_5_0(), a.getRightCurlyBracketKeyword_5_2());
+			setBraces(c, a.getLeftCurlyBracketKeyword_6_0_0(), a.getRightCurlyBracketKeyword_6_0_2());
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_6_1());
 	    }
 	    {
 	    	DocumentationCSElements a = f.getDocumentationCSAccess();

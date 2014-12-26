@@ -739,6 +739,17 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * @generated
 	 */
 	@Override
+	public EAttribute getDataTypeCS_IsPrimitive()
+	{
+		return (EAttribute)dataTypeCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getDetailCS() {
 		return detailCSEClass;
 	}
@@ -2151,6 +2162,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		contextLessElementCSEClass = createEClass(CONTEXT_LESS_ELEMENT_CS);
 
 		dataTypeCSEClass = createEClass(DATA_TYPE_CS);
+		createEAttribute(dataTypeCSEClass, DATA_TYPE_CS__IS_PRIMITIVE);
 
 		detailCSEClass = createEClass(DETAIL_CS);
 		createEAttribute(detailCSEClass, DETAIL_CS__VALUES);
@@ -2456,6 +2468,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		initEClass(contextLessElementCSEClass, ContextLessElementCS.class, "ContextLessElementCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(dataTypeCSEClass, DataTypeCS.class, "DataTypeCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getDataTypeCS_IsPrimitive(), thePivotPackage.getBoolean(), "isPrimitive", "false", 0, 1, DataTypeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
 		initEClass(detailCSEClass, DetailCS.class, "DetailCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getDetailCS_Values(), thePivotPackage.getString(), "values", null, 0, -1, DetailCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
