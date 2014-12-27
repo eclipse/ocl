@@ -134,7 +134,7 @@ public class QueryImpl implements Query, ProblemAware
 		@SuppressWarnings("null")
 		@NonNull Environment nonNullEnvironment = environment;
 		EvaluationVisitor ev =
-			nonNullEnvironment.getFactory().createEvaluationVisitor(
+			nonNullEnvironment.getEnvironmentFactory().createEvaluationVisitor(
 					nonNullEnvironment, getEvaluationEnvironment(), getModelManager());
 		
 		Object result;
@@ -168,7 +168,7 @@ public class QueryImpl implements Query, ProblemAware
 		// lazily create the evaluation environment, if not already done by
 		//    the client.  Initialize it with the "self" context variable
 		EvaluationEnvironment myEnv = getEvaluationEnvironment();
-		MetaModelManager metaModelManager = myEnv.getMetaModelManager();
+		MetaModelManager metaModelManager = environment.getEnvironmentFactory().getMetaModelManager();
 		Variable contextVariable = ClassUtil.nonNullState(query.getOwnedContext());
 		myEnv.add(contextVariable, metaModelManager.getIdResolver().boxedValueOf(obj));
 //		Variable resultVariable = specification.getResultVariable();
@@ -178,7 +178,7 @@ public class QueryImpl implements Query, ProblemAware
 		
 		@SuppressWarnings("null")
 		@NonNull Environment nonNullEnvironment = environment;
-		EvaluationVisitor ev = nonNullEnvironment.getFactory().createEvaluationVisitor(
+		EvaluationVisitor ev = nonNullEnvironment.getEnvironmentFactory().createEvaluationVisitor(
 					nonNullEnvironment, myEnv, getModelManager());
 		
 		Object result;
@@ -227,7 +227,7 @@ public class QueryImpl implements Query, ProblemAware
 	@SuppressWarnings("null")
 	public @NonNull EvaluationEnvironment getEvaluationEnvironment() {
 		if (evalEnv == null) {
-			evalEnv = environment.getFactory().createEvaluationEnvironment();
+			evalEnv = environment.getEnvironmentFactory().createEvaluationEnvironment();
 		}
 		
 		return evalEnv;
@@ -246,7 +246,7 @@ public class QueryImpl implements Query, ProblemAware
 			
 			Object context = myEnv.getValueOf(query.getOwnedContext());
 			
-			modelManager = myEnv.createModelManager(context);
+			modelManager = environment.getEnvironmentFactory().createModelManager(context);
 		}
 		
 		return modelManager;

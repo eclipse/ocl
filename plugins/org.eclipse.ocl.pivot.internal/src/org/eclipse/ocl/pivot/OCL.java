@@ -51,11 +51,11 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
  * Ecore metamodel to the superclass's generic type parameters.  This frees
  * client code from the long list of parameter substitutions.  This subclass
  * also provides a shortcut to creating an <code>OCL</code> on the shared
- * {@link EnvironmentFactory} instance.
+ * {@link EnvironmentFactoryInternal} instance.
  * 
  * @author Christian W. Damus (cdamus)
  * 
- * @see EnvironmentFactory
+ * @see EnvironmentFactoryInternal
  */
 public class OCL {
 
@@ -112,7 +112,7 @@ public class OCL {
      * @param envFactory an environment factory for Ecore
      * @return the new <code>OCL</code>
      */
-	public static @NonNull OCL newInstance(@NonNull EnvironmentFactory envFactory) {	
+	public static @NonNull OCL newInstance(@NonNull EnvironmentFactoryInternal envFactory) {	
 		return new OCL(envFactory, envFactory.createEnvironment());
 	}
 	
@@ -125,7 +125,7 @@ public class OCL {
      *    (which may be empty for an initially empty environment)
      * @return the new <code>OCL</code>
      */
-	public static @NonNull OCL newInstance(@NonNull EnvironmentFactory envFactory, @NonNull Resource resource) {	
+	public static @NonNull OCL newInstance(@NonNull EnvironmentFactoryInternal envFactory, @NonNull Resource resource) {	
 		return new OCL(envFactory, envFactory.loadEnvironment(resource));
 	}
 	
@@ -137,10 +137,10 @@ public class OCL {
      * @return the new <code>OCL</code>
      */
 	public static @NonNull OCL newInstance(@NonNull Environment env) {	
-		return new OCL(env.getFactory(), env);
+		return new OCL(env.getEnvironmentFactory(), env);
 	}
 	
-	private final @NonNull EnvironmentFactory environmentFactory;
+	private final @NonNull EnvironmentFactoryInternal environmentFactory;
 
 	private final @NonNull Environment rootEnvironment;
 
@@ -165,7 +165,7 @@ public class OCL {
 	 * @param rootEnv
 	 *            my root environment
 	 */
-	protected OCL(@NonNull EnvironmentFactory envFactory, @NonNull Environment rootEnv) {
+	protected OCL(@NonNull EnvironmentFactoryInternal envFactory, @NonNull Environment rootEnv) {
 		this.environmentFactory = envFactory;
 		this.rootEnvironment = rootEnv;
 
@@ -474,7 +474,7 @@ public class OCL {
 		return rootEnvironment;
 	}
 
-	public @NonNull EnvironmentFactory getEnvironmentFactory() {
+	public @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
 		return environmentFactory;
 	}
 	

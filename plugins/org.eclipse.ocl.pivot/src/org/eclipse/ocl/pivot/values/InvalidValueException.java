@@ -47,7 +47,7 @@ public class InvalidValueException extends UndefinedValueImpl implements Invalid
 		return ValuesPackage.Literals.INVALID_VALUE;
 	}
 	
-	public InvalidValueException(@NonNull Exception exception, @NonNull String message) {
+	public InvalidValueException(@NonNull Exception exception, /*@NonNull*/ String message) {
 		super(exception, message);
 		assert !(exception instanceof InvalidValueException);
 	}

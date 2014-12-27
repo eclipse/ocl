@@ -21,7 +21,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Variable;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluationEnvironment;
+import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitorImpl;
@@ -72,7 +72,7 @@ public class EObjectOperation extends AbstractOperation
 		else {
 			nestedEvaluator = evaluator.createNestedEvaluator();
 		}
-		DomainEvaluationEnvironment nestedEvaluationEnvironment = nestedEvaluator.getEvaluationEnvironment();
+		EvaluationEnvironment nestedEvaluationEnvironment = nestedEvaluator.getEvaluationEnvironment();
 		nestedEvaluationEnvironment.add(ClassUtil.nonNullModel(query.getOwnedContext()), sourceValue);
 		List<Variable> parameterVariables = query.getOwnedParameters();
 		int iMax = Math.min(parameterVariables.size(), argumentValues.length);

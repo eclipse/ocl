@@ -27,12 +27,12 @@ import org.eclipse.ocl.examples.debug.vm.utils.ASTBindingHelper;
 import org.eclipse.ocl.examples.debug.vm.utils.VMRuntimeException;
 import org.eclipse.ocl.examples.debug.vm.utils.VMStackTraceBuilder;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Variable;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 public class OCLVMRootEvaluationEnvironment extends VMRootEvaluationEnvironment<ExpressionInOCL> implements IOCLVMEvaluationEnvironment
@@ -49,15 +49,15 @@ public class OCLVMRootEvaluationEnvironment extends VMRootEvaluationEnvironment<
 	private final long id;
 	private final @NonNull Variable pcVariable;
 
-    public OCLVMRootEvaluationEnvironment(@NonNull MetaModelManager metaModelManager, @NonNull IVMModelManager modelManager, @NonNull ExpressionInOCL expressionInOCL, long id) {
-		super(metaModelManager, modelManager, expressionInOCL);
+    public OCLVMRootEvaluationEnvironment(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull IVMModelManager modelManager, @NonNull ExpressionInOCL expressionInOCL, long id) {
+		super(environmentFactory, modelManager, expressionInOCL);
 		myCurrentIP = expressionInOCL;
 		myOperation = expressionInOCL;
 		this.id = id;
 		pcVariable = ClassUtil.nonNullEMF(PivotFactory.eINSTANCE.createVariable());
 		pcVariable.setName("$pc");
 		String typeName = ClassUtil.nonNullEMF(PivotPackage.Literals.OCL_EXPRESSION.getName());
-		pcVariable.setType(metaModelManager.getPivotType(typeName));
+		pcVariable.setType(environmentFactory.getMetaModelManager().getPivotType(typeName));
 	}
 
 	@Override

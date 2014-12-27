@@ -55,7 +55,7 @@ import org.eclipse.ocl.pivot.utilities.EnvironmentRegistryImpl;
  * </p>
  * 
  * @see AbstractEnvironment
- * @see EnvironmentFactory
+ * @see EnvironmentFactoryInternal
  */
 public interface Environment extends BasicEnvironment {
 	/**
@@ -87,9 +87,10 @@ public interface Environment extends BasicEnvironment {
 	 * 
 	 * @return my originating factory
 	 * 
-	 * @see EnvironmentFactory#createEnvironment(Environment)
+	 * @see EnvironmentFactoryInternal#createEnvironment(Environment)
 	 */
-    @NonNull EnvironmentFactory getFactory();
+    @Override
+	@NonNull EnvironmentFactoryInternal getEnvironmentFactory();
     
     /**
      * Obtains my parent environment, if I have one.  My parent environment
@@ -143,7 +144,7 @@ public interface Environment extends BasicEnvironment {
      * classifiers such as <tt>OclAny</tt>, <tt>Collection(T)</tt>, etc.
      * Implementers of OCL metamodel bindings are encouraged to share a single
      * instance of the standard library amonst all of the <tt>Environment</tt>s
-     * constructed by a particular {@link EnvironmentFactory}.
+     * constructed by a particular {@link EnvironmentFactoryInternal}.
      * 
      * @return the OCL Standard Library implementation for this environment
      */

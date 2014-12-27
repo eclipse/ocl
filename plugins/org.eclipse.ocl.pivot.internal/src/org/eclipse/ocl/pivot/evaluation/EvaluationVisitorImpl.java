@@ -24,7 +24,6 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.AssociationClassCallExp;
 import org.eclipse.ocl.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.pivot.CollectionItem;
 import org.eclipse.ocl.pivot.CollectionLiteralExp;
@@ -38,7 +37,7 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnumLiteralExp;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.Environment;
-import org.eclipse.ocl.pivot.EnvironmentFactory;
+import org.eclipse.ocl.pivot.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.IfExp;
 import org.eclipse.ocl.pivot.IntegerLiteralExp;
@@ -125,7 +124,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	@Override
 	public @NonNull EvaluationVisitor createNestedEvaluator() {
 		Environment environment = getEnvironment();
-		EnvironmentFactory factory = environment.getFactory();
+		EnvironmentFactoryInternal factory = environment.getEnvironmentFactory();
     	EvaluationEnvironment nestedEvalEnv = factory.createEvaluationEnvironment(getEvaluationEnvironment());
 		EvaluationVisitorImpl nestedEvaluationVisitor = new EvaluationVisitorImpl(environment, nestedEvalEnv, getModelManager());
 		nestedEvaluationVisitor.setMonitor(getMonitor());
@@ -204,7 +203,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 * result. For example, in "self.foo", "self" is the source and would be
 	 * evaluated first, then the value of the reference "foo" would be derived
 	 * on that object.
-	 */
+	 *
 	@Override
     public Object visitAssociationClassCallExp(@NonNull AssociationClassCallExp ae) {
 		Object context = ae.getOwnedSource().accept(undecoratedVisitor);
@@ -218,7 +217,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			ae.getReferredAssociationClass(),
 			ae.getNavigationSource(),
 			context);
-	}
+	} */
 
 	/**
 	 * Callback for a BooleanLiteralExp visit.

@@ -34,7 +34,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Environment;
-import org.eclipse.ocl.pivot.EnvironmentFactory;
+import org.eclipse.ocl.pivot.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.ParserException;
@@ -100,7 +100,7 @@ public class PivotEObjectValidator implements EValidator
 		}
 
 		protected final @NonNull MetaModelManager metaModelManager;
-		protected final @NonNull EnvironmentFactory environmentFactory;
+		protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 		protected final @NonNull Environment rootEnvironment;
 		
 		public ValidationAdapter(@NonNull MetaModelManager metaModelManager) {

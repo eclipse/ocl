@@ -25,7 +25,7 @@ public interface Evaluator
 	void dispose();
 	@Nullable Object evaluate(@NonNull OCLExpression body);
 	@NonNull CompleteEnvironment getCompleteEnvironment();
-	@NonNull DomainEvaluationEnvironment getEvaluationEnvironment();
+	@NonNull EvaluationEnvironment getEvaluationEnvironment();
 	@NonNull IdResolver getIdResolver();
 
 	/**

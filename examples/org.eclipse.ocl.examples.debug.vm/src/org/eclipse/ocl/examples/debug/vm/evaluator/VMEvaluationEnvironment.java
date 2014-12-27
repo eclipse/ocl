@@ -15,17 +15,17 @@ import java.util.Stack;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.evaluation.PivotEvaluationEnvironment;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
 
 public abstract class VMEvaluationEnvironment<T extends NamedElement> extends PivotEvaluationEnvironment implements IVMEvaluationEnvironment<T>
 {
 	protected final @NonNull IVMModelManager modelManager;
 	private final @NonNull Stack<StepperEntry> stepperStack = new Stack<StepperEntry>();
 	
-	protected VMEvaluationEnvironment(@NonNull MetaModelManager metaModelManager, @NonNull IVMModelManager modelManager) {
-		super(metaModelManager);
+	protected VMEvaluationEnvironment(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull IVMModelManager modelManager) {
+		super(environmentFactory);
 		this.modelManager = modelManager;
 	}
 

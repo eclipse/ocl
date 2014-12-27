@@ -28,10 +28,10 @@ import org.eclipse.ocl.pivot.evaluation.TracingEvaluationVisitor;
 import org.eclipse.ocl.pivot.manager.PivotIdResolver;
 
 /**
- * Partial implementation of the {@link EnvironmentFactory} interface, useful
+ * Partial implementation of the {@link EnvironmentFactoryInternal} interface, useful
  * for subclassing to define the Pivot binding for a metamodel.
  */
-public abstract class AbstractEnvironmentFactory implements EnvironmentFactory, Adaptable {
+public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryInternal, Adaptable {
 
     private boolean traceEvaluation;
     
@@ -62,15 +62,6 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactory, 
 		
 		return result;
 	}
-
-    // implements the interface method
-/*    public Environment
-    createPackageContext(
-            Environment parent,
-            List<String> pathname) {
-		org.eclipse.ocl.pivot.Package contextPackage = lookupPackage(pathname);        
-        return (contextPackage == null)? null : createPackageContext(parent, contextPackage);
-    } */
 	
     // implements the interface method
 	@Override
@@ -140,7 +131,7 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactory, 
 		EvaluationEnvironment evaluationEnvironment = createEvaluationEnvironment();
 		Variable contextVariable = expression.getOwnedContext();
 		if (contextVariable != null) {
-			PivotIdResolver idResolver = evaluationEnvironment.getMetaModelManager().getIdResolver();
+			PivotIdResolver idResolver = getMetaModelManager().getIdResolver();
 			Object value = idResolver.boxedValueOf(context);
 			evaluationEnvironment.add(contextVariable, value);
 		}
@@ -152,7 +143,7 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactory, 
 		ModelManager extents = modelManager;
 		if (extents == null) {
 			// let the evaluation environment create one
-			extents = evaluationEnvironment.createModelManager(context);
+			extents = createModelManager(context);
 		}
 		return createEvaluationVisitor(environment, evaluationEnvironment, extents);
 	}

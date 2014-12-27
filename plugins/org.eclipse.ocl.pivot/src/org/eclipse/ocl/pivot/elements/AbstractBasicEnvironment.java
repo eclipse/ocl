@@ -21,6 +21,7 @@ import java.util.Map;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.BasicEnvironment;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Option;
 
 /**
@@ -31,14 +32,23 @@ public abstract class AbstractBasicEnvironment<P extends BasicEnvironment> imple
 {	
 	private final @NonNull Map<Option<?>, Object> options = new java.util.HashMap<Option<?>, Object>();
 	
-	protected final @Nullable P parent;					// parent in environment hierarchy
+	protected final @NonNull EnvironmentFactory environmentFactory;
+
+	protected final @Nullable P parent;					// parent in environment hierarchy, null at root
     
     /**
-     * Initializes me with the specified parent environment.
-     * 
-     * @param parent an environment (or <code>null</code>)
+     * Initializes me as an environment root.
      */
-    protected AbstractBasicEnvironment(P parent) {      
+    protected AbstractBasicEnvironment(@NonNull EnvironmentFactory environmentFactory) {
+		this.environmentFactory = environmentFactory;
+		this.parent = null;
+    }
+    
+    /**
+     * Initializes me as a child of parent.
+      */
+    protected AbstractBasicEnvironment(@NonNull P parent) {      
+		this.environmentFactory = parent.getEnvironmentFactory();
 		this.parent = parent;
     }
 
@@ -69,6 +79,11 @@ public abstract class AbstractBasicEnvironment<P extends BasicEnvironment> imple
 			return (T) this;
 		} 
 		return null;
+	}
+	
+	@Override
+	public @NonNull EnvironmentFactory getEnvironmentFactory() {
+		return environmentFactory;
 	}
 	
 	@Override

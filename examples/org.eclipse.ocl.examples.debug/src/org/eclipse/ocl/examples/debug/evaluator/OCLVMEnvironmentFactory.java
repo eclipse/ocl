@@ -53,7 +53,7 @@ public class OCLVMEnvironmentFactory extends PivotEnvironmentFactory implements 
 	}
 
 	public @NonNull IOCLVMEvaluationEnvironment createEvaluationEnvironment(@NonNull IVMModelManager modelManager, @NonNull ExpressionInOCL expressionInOCL) {
-		return new OCLVMRootEvaluationEnvironment(getMetaModelManager(), modelManager, expressionInOCL, ++envId);
+		return new OCLVMRootEvaluationEnvironment(this, modelManager, expressionInOCL, ++envId);
 	}
 
 	@Override

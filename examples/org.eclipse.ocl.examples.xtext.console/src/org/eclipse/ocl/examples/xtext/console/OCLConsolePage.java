@@ -52,7 +52,7 @@ import org.eclipse.ocl.examples.xtext.console.messages.ConsoleMessages;
 import org.eclipse.ocl.examples.xtext.console.xtfo.EmbeddedXtextEditor;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Environment;
-import org.eclipse.ocl.pivot.EnvironmentFactory;
+import org.eclipse.ocl.pivot.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Type;
@@ -142,7 +142,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 		
 		@Override
 		public @NonNull EvaluationVisitor createNestedEvaluator() {
-			EnvironmentFactory factory = environment.getFactory();
+			EnvironmentFactoryInternal factory = environment.getEnvironmentFactory();
 	    	EvaluationEnvironment nestedEvalEnv = factory.createEvaluationEnvironment(evaluationEnvironment);
 			CancelableEvaluationVisitor nestedVisitor = new CancelableEvaluationVisitor(monitor, environment, nestedEvalEnv, modelManager);
 			nestedVisitor.setLogger(getLogger());
@@ -221,7 +221,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 				evaluationEnvironment.add(ClassUtil.nonNullModel(expressionInOCL.getOwnedContext()), contextValue);
 	//			if (modelManager == null) {
 					// let the evaluation environment create one
-					@NonNull ModelManager modelManager2 = modelManager = evaluationEnvironment.createModelManager(contextObject);
+					@NonNull ModelManager modelManager2 = modelManager = envFactory.createModelManager(contextObject);
 	//			}
 				monitor.worked(2);
 				monitor.subTask(ConsoleMessages.Progress_Evaluating);

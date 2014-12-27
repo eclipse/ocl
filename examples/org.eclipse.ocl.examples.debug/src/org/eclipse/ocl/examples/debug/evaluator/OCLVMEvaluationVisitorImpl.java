@@ -42,7 +42,7 @@ public class OCLVMEvaluationVisitorImpl extends EvaluationVisitorImpl implements
     @Override
     public @NonNull IOCLVMEvaluationVisitor createNestedEvaluator() { // FIXME Pass 'operation'
     	OCLVMEnvironment vmEnvironment = getEnvironment();
-    	OCLVMEnvironmentFactory factory = vmEnvironment.getFactory();
+    	OCLVMEnvironmentFactory factory = vmEnvironment.getEnvironmentFactory();
     	IOCLVMEvaluationEnvironment nestedEvalEnv = factory.createEvaluationEnvironment(evaluationEnvironment);
         OCLVMEvaluationVisitorImpl ne = new OCLVMEvaluationVisitorImpl(vmEnvironment, nestedEvalEnv);
         return ne;

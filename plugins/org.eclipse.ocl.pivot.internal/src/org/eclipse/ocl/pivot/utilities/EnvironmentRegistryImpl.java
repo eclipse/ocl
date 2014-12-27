@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Environment;
-import org.eclipse.ocl.pivot.EnvironmentFactory;
+import org.eclipse.ocl.pivot.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
@@ -165,9 +165,9 @@ public class EnvironmentRegistryImpl implements Environment.Registry {
 			if (className != null) {
 				EnvironmentDescriptor descriptor = new EnvironmentDescriptor() {
 					@Override
-					EnvironmentFactory createFactory() {
+					EnvironmentFactoryInternal createFactory() {
 						try {
-							return (EnvironmentFactory)
+							return (EnvironmentFactoryInternal)
 								element.createExecutableExtension(A_CLASS);
 						} catch (CoreException e) {
                             PivotInternalPlugin.getPlugin().log(e);
@@ -274,7 +274,7 @@ public class EnvironmentRegistryImpl implements Environment.Registry {
 		
 		Environment instantiate() {
 			if (env == null) {
-				EnvironmentFactory factory = createFactory();
+				EnvironmentFactoryInternal factory = createFactory();
 			
 				env = factory.createEnvironment();
 			}
@@ -293,7 +293,7 @@ public class EnvironmentRegistryImpl implements Environment.Registry {
 			environments.remove(this);
 		}
 		
-		abstract EnvironmentFactory createFactory();
+		abstract EnvironmentFactoryInternal createFactory();
 	}
     
     /**

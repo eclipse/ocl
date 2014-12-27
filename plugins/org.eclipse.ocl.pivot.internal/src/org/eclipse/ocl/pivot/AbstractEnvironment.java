@@ -58,16 +58,16 @@ public abstract class AbstractEnvironment extends AbstractBasicEnvironment<Envir
     /**
      * Initializes me without a parent environment.
      */
-	protected AbstractEnvironment() {
-		this(null);
-	}
+    protected AbstractEnvironment(@NonNull EnvironmentFactory environmentFactory) {      
+		super(environmentFactory);
+    }
     
     /**
      * Initializes me with the specified parent environment.
      * 
      * @param parent an environment (or <code>null</code>)
      */
-    protected AbstractEnvironment(Environment parent) {      
+    protected AbstractEnvironment(@NonNull Environment parent) {      
 		super(parent);
     }
 	
@@ -147,7 +147,12 @@ public abstract class AbstractEnvironment extends AbstractBasicEnvironment<Envir
 		return null;
 	}
 	
-    // implements the interface method
+    @Override
+	public @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
+		return (EnvironmentFactoryInternal) super.getEnvironmentFactory();
+	}
+
+	// implements the interface method
 	@Override
 	public @Nullable Variable getSelfVariable() {
 		Variable result = selfVariable;		

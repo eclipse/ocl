@@ -25,7 +25,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.AbstractEnvironment;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Environment;
-import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.State;
@@ -46,63 +45,7 @@ import org.eclipse.ocl.pivot.manager.MetaModelManager;
  */
 public class PivotEnvironment extends AbstractEnvironment {
 	
-	/**
-	 * The namespace URI of the Ecore representation of the OCL Standard Library.
-	 */
-//	public static final String OCL_STANDARD_LIBRARY_NS_URI = "http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore"; //$NON-NLS-1$
-
-//    private static final Map<List<String>, org.eclipse.ocl.pivot.Package> OCL_PACKAGES =
-//        new java.util.HashMap<List<String>, org.eclipse.ocl.pivot.Package>();
-    
-    
-/*    static {
-        List<String> names = new java.util.ArrayList<String>();
-        names.add(ExpressionsPackageImpl.OCL_ROOT_PACKAGE.getName());
-        OCL_PACKAGES.put(names, ExpressionsPackageImpl.OCL_ROOT_PACKAGE);
-        
-        names = new java.util.ArrayList<String>(names);
-        names.add(ExpressionsPackage.eINSTANCE.getName());
-        OCL_PACKAGES.put(names, ExpressionsPackage.eINSTANCE);
-        
-        names = new java.util.ArrayList<String>(names);
-        names.set(1, TypesPackage.eINSTANCE.getName());
-        OCL_PACKAGES.put(names, TypesPackage.eINSTANCE);
-        
-        names = new java.util.ArrayList<String>(names);
-        names.set(1, UtilitiesPackage.eINSTANCE.getName());
-        OCL_PACKAGES.put(names, UtilitiesPackage.eINSTANCE);
-        
-        names = new java.util.ArrayList<String>(names);
-        names.set(1, EcorePackage.eINSTANCE.getName());
-        OCL_PACKAGES.put(names, EcorePackage.eINSTANCE);
-    } */
-	
-	private final @NonNull EnvironmentFactory factory;
 	private final @NonNull MetaModelManager metaModelManager;
-	
-	/**
-	 * Initializes me with a package registry for package look-ups.
-	 * 
-	 * @param reg a package registry
-	 *
-	public PivotEnvironment(EPackage.Registry reg, MetaModelManager metaModelManager) {
-		registry = reg;
-		typeResolver = createTypeResolver();
-		this.metaModelManager = metaModelManager;
-		uml = new PivotReflectionImpl(metaModelManager);
-	} */
-	
-    /**
-     * Initializes me with a package registry and a resource in which I am
-     * persisted (and from which I load myself if it already has content).
-     * 
-     * @param reg a package registry
-     * @param resource a resource, which may or may not already have content
-     *
-	protected PivotEnvironment(EPackage.Registry reg, Resource resource) {
-		registry = reg;
-		typeResolver = createTypeResolver(resource);
-	} */
 
 	/**
 	 * Initializes me with an environment factory from which package registry
@@ -116,7 +59,7 @@ public class PivotEnvironment extends AbstractEnvironment {
 	 *            a resource, which may or may not already have content
 	 */
 	protected PivotEnvironment(@NonNull PivotEnvironmentFactory factory, @Nullable Resource resource) {
-		this.factory = factory;
+		super(factory);
 		this.metaModelManager = factory.getMetaModelManager();
 	}
 
@@ -128,14 +71,7 @@ public class PivotEnvironment extends AbstractEnvironment {
      */
 	protected PivotEnvironment(@NonNull PivotEnvironment parent) {		
 		super(parent);
-		factory = parent.factory;
 		metaModelManager = parent.metaModelManager;
-	}
-
-    // implements the inherited specification
-	@Override
-	public @NonNull EnvironmentFactory getFactory() {
-		return factory;
 	}
 	
 	/**
@@ -223,11 +159,6 @@ public class PivotEnvironment extends AbstractEnvironment {
 	public @NonNull PivotFactory getOCLFactory() {
 		return ClassUtil.nonNullEMF(PivotFactoryImpl.eINSTANCE);
 	}
-
-//	@Override
-//	protected OCLRoot createOCLLibrary() {
-//		return EcoreOCLLibrary.getDefault();
-//	}
 
 	@Override
 	public @NonNull StandardLibraryInternal getStandardLibrary() {

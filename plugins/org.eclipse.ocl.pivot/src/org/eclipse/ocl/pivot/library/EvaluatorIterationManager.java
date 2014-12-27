@@ -16,7 +16,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.TypedElement;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluationEnvironment;
+import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 
@@ -24,7 +24,7 @@ public abstract class EvaluatorIterationManager extends AbstractIterationManager
 {
 	protected static class ValueIterator
 	{
-		private final DomainEvaluationEnvironment evaluationEnvironment;
+		private final EvaluationEnvironment evaluationEnvironment;
 		private final @NonNull CollectionValue collectionValue;
 		private final @NonNull TypedElement variable;
 		private Iterator<? extends Object> javaIter;
@@ -123,7 +123,7 @@ public abstract class EvaluatorIterationManager extends AbstractIterationManager
 		return collectionValue;
 	}
 
-	public @NonNull DomainEvaluationEnvironment getEvaluationEnvironment() {
+	public @NonNull EvaluationEnvironment getEvaluationEnvironment() {
 		return evaluator.getEvaluationEnvironment();
 	}
 

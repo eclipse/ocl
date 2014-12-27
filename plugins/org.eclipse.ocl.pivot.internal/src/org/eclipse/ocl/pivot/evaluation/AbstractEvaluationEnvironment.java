@@ -18,9 +18,9 @@ import java.util.Set;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Environment;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.elements.AbstractBasicEnvironment;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.osgi.util.NLS;
@@ -40,24 +40,15 @@ import org.eclipse.osgi.util.NLS;
 public abstract class AbstractEvaluationEnvironment extends AbstractBasicEnvironment<EvaluationEnvironment>
 		implements EvaluationEnvironment {
 	
-    protected final @NonNull MetaModelManager metaModelManager;
-
     private final @NonNull Map<TypedElement, Object> variableValues = new HashMap<TypedElement, Object>();
     
-    protected AbstractEvaluationEnvironment(@NonNull MetaModelManager metaModelManager) {
-    	super(null);
-    	this.metaModelManager = metaModelManager;
+    protected AbstractEvaluationEnvironment(@NonNull EnvironmentFactory environmentFactory) {
+    	super(environmentFactory);
     }
     
     protected AbstractEvaluationEnvironment(@NonNull EvaluationEnvironment parent) {	
     	super(parent);
-    	this.metaModelManager = parent.getMetaModelManager();
     }
-    
-	@Override
-	public @NonNull MetaModelManager getMetaModelManager() {
-		return metaModelManager;
-	}
     
     /**
      * Returns the value associated with the supplied referredVariable
@@ -134,8 +125,7 @@ public abstract class AbstractEvaluationEnvironment extends AbstractBasicEnviron
      * @return the value associated with the removed referredVariable
      */
     @Override
-	@Deprecated
-    public Object remove(@NonNull TypedElement referredVariable) {
+   public @Nullable Object remove(@NonNull TypedElement referredVariable) {
     	return variableValues.remove(referredVariable);
     }
 

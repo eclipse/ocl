@@ -56,7 +56,7 @@ import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.Environment;
-import org.eclipse.ocl.pivot.EnvironmentFactory;
+import org.eclipse.ocl.pivot.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Namespace;
@@ -1108,7 +1108,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	
 	@SuppressWarnings("null")
 	protected @NonNull ExpressionInOCL createQuery(
-			@NonNull EnvironmentFactory envFactory,
+			@NonNull EnvironmentFactoryInternal envFactory,
 			@NonNull org.eclipse.ocl.pivot.Class context, @NonNull String text) {
 		
 		OCL localOcl = OCL.newInstance(envFactory);

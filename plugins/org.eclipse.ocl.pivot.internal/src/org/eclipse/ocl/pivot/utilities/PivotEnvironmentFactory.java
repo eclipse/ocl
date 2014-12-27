@@ -12,21 +12,25 @@
 
 package org.eclipse.ocl.pivot.utilities;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.AbstractEnvironmentFactory;
 import org.eclipse.ocl.pivot.Environment;
-import org.eclipse.ocl.pivot.EnvironmentFactory;
+import org.eclipse.ocl.pivot.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.evaluation.PivotEvaluationEnvironment;
+import org.eclipse.ocl.pivot.evaluation.PivotModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.values.ObjectValue;
 
 
 
 /**
- * Implementation of the {@link EnvironmentFactory} for parsing OCL expressions
+ * Implementation of the {@link EnvironmentFactoryInternal} for parsing OCL expressions
  * on Ecore models.
  *
  * @author Christian W. Damus (cdamus)
@@ -125,7 +129,7 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
     // implements the inherited specification
 	@Override
 	public @NonNull EvaluationEnvironment createEvaluationEnvironment() {
-		return new PivotEvaluationEnvironment(getMetaModelManager());
+		return new PivotEvaluationEnvironment(this);
 	}
 
     // implements the inherited specification
@@ -134,12 +138,27 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
 		return new PivotEvaluationEnvironment(parent);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public @NonNull ModelManager createModelManager(@Nullable Object object) {
+		if (object instanceof ObjectValue) {
+			object = ((ObjectValue) object).getObject();
+		}
+		if (object instanceof EObject) {
+			return new PivotModelManager(metaModelManager, (EObject) object);
+		}
+		return ModelManager.NULL;
+	}
+
 	@Override
 	protected @NonNull org.eclipse.ocl.pivot.Class getClassifier(@NonNull Object context) {
 		org.eclipse.ocl.pivot.Class dType = metaModelManager.getIdResolver().getStaticTypeOf(context);
 		return metaModelManager.getType(dType);
 	}
 	
+	@Override
 	public @NonNull MetaModelManager getMetaModelManager() {
 		return metaModelManager;
 	}

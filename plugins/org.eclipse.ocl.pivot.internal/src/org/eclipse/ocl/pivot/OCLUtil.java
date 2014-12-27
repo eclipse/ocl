@@ -90,7 +90,7 @@ public final class OCLUtil {
 	 * Obtains an adapter for the specified interface type.
 	 */
 	@SuppressWarnings("unchecked")
-	public static @Nullable <T> T getAdapter(@NonNull EnvironmentFactory factory, @NonNull java.lang.Class<T> adapterType) {
+	public static @Nullable <T> T getAdapter(@NonNull EnvironmentFactoryInternal factory, @NonNull java.lang.Class<T> adapterType) {
 		T result;
 		
 		if (factory instanceof Adaptable) {

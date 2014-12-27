@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Environment;
-import org.eclipse.ocl.pivot.EnvironmentFactory;
+import org.eclipse.ocl.pivot.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.Operation;
@@ -40,7 +40,7 @@ public class OCLHelperImpl implements OCLHelper
 	protected final @NonNull Environment rootEnvironment;
 	protected final @NonNull MetaModelManager metaModelManager;
 
-	protected final @NonNull EnvironmentFactory environmentFactory;
+	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 	private Environment env;
 
 	private boolean validating = true;
@@ -56,7 +56,7 @@ public class OCLHelperImpl implements OCLHelper
         this.ocl = ocl;
 		this.rootEnvironment = ocl.getEnvironment();
 		this.metaModelManager = rootEnvironment.getMetaModelManager();
-		this.environmentFactory = rootEnvironment.getFactory();
+		this.environmentFactory = rootEnvironment.getEnvironmentFactory();
 	}
 
 	@Override

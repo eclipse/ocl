@@ -20,7 +20,7 @@ import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluationEnvironment;
+import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
 import org.eclipse.ocl.pivot.values.CollectionValue;
@@ -108,7 +108,7 @@ public abstract class ExecutorManager implements Evaluator
 	}
 
 	@Override
-	public @NonNull DomainEvaluationEnvironment getEvaluationEnvironment() {
+	public @NonNull EvaluationEnvironment getEvaluationEnvironment() {
 		throw new UnsupportedOperationException();
 	}
 

@@ -27,7 +27,7 @@ public class OCLVMEnvironment extends PivotEnvironment
 	}
 
 	@Override
-	public @NonNull OCLVMEnvironmentFactory getFactory() {
-		return (OCLVMEnvironmentFactory) super.getFactory();
+	public @NonNull OCLVMEnvironmentFactory getEnvironmentFactory() {
+		return (OCLVMEnvironmentFactory) super.getEnvironmentFactory();
 	}
 }

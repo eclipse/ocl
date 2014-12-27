@@ -22,6 +22,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.pivot.manager.MetaModelManager;
 
 /**
  * A factory for creating OCL parser {@link Environment}s.  Clients of the OCL
@@ -40,7 +41,7 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
  *
  * @author Christian W. Damus (cdamus)
  */
-public interface EnvironmentFactory {
+public interface EnvironmentFactoryInternal extends EnvironmentFactory {
 	
 	/**
 	 * Creates a root environment, in which package contexts and/or classifier
@@ -53,21 +54,6 @@ public interface EnvironmentFactory {
 	 * @return a new root environment
 	 */
 	@NonNull Environment createEnvironment();
-	
-	/**
-	 * Creates an environment suitable for parsing OCL expressions in the
-	 * specified package context.  This context will become a classifier context
-	 * when the {@linkplain Environment#setSelfVariable "self" variable}
-	 * is defined.
-	 * 
-	 * @param pathname the qualified package name (the "::"-separated parts)
-	 * @return the environment or null if lookup fails to locate a package
-	 * 
-	 * @see #createClassifierContext
-	 * @see #createOperationContext
-     * @see #createAttributeContext
-	 */
-//	Environment createPackageContext(Environment parent, List<String> pathname);
 	
 	/**
 	 * Loads an environment from the specified <tt>resource</tt>.  If not
@@ -151,7 +137,7 @@ public interface EnvironmentFactory {
 	 * @return the child environment
 	 */
 	@NonNull Environment createEnvironment(@NonNull Environment parent);
-	
+
 	/**
 	 * Creates a new evaluation environment to track the values of variables in
 	 * an OCL expression as it is evaluated.
@@ -188,4 +174,6 @@ public interface EnvironmentFactory {
      * @return the new evaluation visitor
      */
 	@NonNull EvaluationVisitor createEvaluationVisitor(@NonNull Environment env, @NonNull EvaluationEnvironment evalEnv, @NonNull ModelManager modelManager);
+
+	@NonNull MetaModelManager getMetaModelManager();
 }

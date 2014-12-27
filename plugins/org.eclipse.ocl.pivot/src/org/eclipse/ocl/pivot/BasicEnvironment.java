@@ -11,9 +11,12 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot;
 
+import org.eclipse.jdt.annotation.NonNull;
+
 /**
  * A <code>BasicEnvironment</code> provides shared analysis and evaluation customization support.
  */
 public interface BasicEnvironment extends Adaptable, Customizable
-{	
+{
+	@NonNull EnvironmentFactory getEnvironmentFactory();
 }

@@ -12,15 +12,15 @@
 package org.eclipse.ocl.examples.debug.vm.evaluator;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.NamedElement;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
 
 public abstract class VMRootEvaluationEnvironment<T extends NamedElement> extends VMEvaluationEnvironment<T> implements IVMRootEvaluationEnvironment<T>
 {
     protected final @NonNull T debuggableElement;
 
-    public VMRootEvaluationEnvironment(@NonNull MetaModelManager metaModelManager, @NonNull IVMModelManager modelManager, @NonNull T debuggableElement) {
-		super(metaModelManager, modelManager);
+    public VMRootEvaluationEnvironment(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull IVMModelManager modelManager, @NonNull T debuggableElement) {
+		super(environmentFactory, modelManager);
 		this.debuggableElement = debuggableElement;
 	}
 
