@@ -41,12 +41,12 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
-import org.eclipse.ocl.pivot.UMLReflection;
 import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.values.Unlimited;
 import org.eclipse.ocl.xtext.base.as2cs.AS2CS.Factory;
@@ -307,7 +307,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 		T csElement = refreshNamedElement(csClass, csEClass, object);
 		List<ConstraintCS> csInvariants = visitDeclarations(ConstraintCS.class, object.getOwnedInvariants(), null);
 		for (ConstraintCS csInvariant : csInvariants) {
-			csInvariant.setStereotype(UMLReflection.INVARIANT);
+			csInvariant.setStereotype(PivotConstants.INVARIANT_NAME);
 		}
 		refreshList(csElement.getOwnedConstraints(), csInvariants);
 		TemplateSignature ownedTemplateSignature = object.getOwnedSignature();

@@ -56,7 +56,6 @@ import org.eclipse.ocl.pivot.TupleLiteralPart;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypeExp;
 import org.eclipse.ocl.pivot.TypedElement;
-import org.eclipse.ocl.pivot.UMLReflection;
 import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableDeclaration;
@@ -67,6 +66,7 @@ import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.xtext.base.as2cs.AS2CSConversion;
 import org.eclipse.ocl.xtext.base.as2cs.BaseDeclarationVisitor;
 import org.eclipse.ocl.xtext.basecs.BaseCSFactory;
@@ -245,13 +245,13 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 
 	protected ElementCS refreshConstraint(@NonNull ConstraintCS csElement, @NonNull Constraint object) {
 		if (object.eContainmentFeature() == PivotPackage.Literals.OPERATION__OWNED_POSTCONDITIONS) {
-			csElement.setStereotype(UMLReflection.POSTCONDITION);
+			csElement.setStereotype(PivotConstants.POSTCONDITION_NAME);
 		}
 		else if (object.eContainmentFeature() == PivotPackage.Literals.OPERATION__OWNED_PRECONDITIONS) {
-			csElement.setStereotype(UMLReflection.PRECONDITION);
+			csElement.setStereotype(PivotConstants.PRECONDITION_NAME);
 		}
 		else {
-			csElement.setStereotype(UMLReflection.INVARIANT);
+			csElement.setStereotype(PivotConstants.INVARIANT_NAME);
 		}
 		ExpSpecificationCS csStatus = null;
 		LanguageExpression specification = object.getOwnedSpecification();

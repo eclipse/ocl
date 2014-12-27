@@ -89,7 +89,6 @@ import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
-import org.eclipse.ocl.pivot.UMLReflection;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.VoidType;
@@ -1356,19 +1355,19 @@ public class PivotUtil extends ClassUtil
 	public static String getStereotype(@NonNull Constraint object) {
 		EStructuralFeature eContainingFeature = object.eContainingFeature();
 		if (eContainingFeature == PivotPackage.Literals.CLASS__OWNED_INVARIANTS) {
-			return UMLReflection.INVARIANT;
+			return PivotConstants.INVARIANT_NAME;
 		}
 		else if (eContainingFeature == PivotPackage.Literals.OPERATION__BODY_EXPRESSION) {
-			return UMLReflection.BODY;
+			return PivotConstants.BODY_NAME;
 		}
 		else if (eContainingFeature == PivotPackage.Literals.OPERATION__OWNED_POSTCONDITIONS) {
-			return UMLReflection.POSTCONDITION;
+			return PivotConstants.POSTCONDITION_NAME;
 		}
 		else if (eContainingFeature == PivotPackage.Literals.OPERATION__OWNED_PRECONDITIONS) {
-			return UMLReflection.PRECONDITION;
+			return PivotConstants.PRECONDITION_NAME;
 		}
 		else if (eContainingFeature == PivotPackage.Literals.PROPERTY__OWNED_EXPRESSION) {
-			return UMLReflection.DERIVATION;
+			return PivotConstants.DERIVATION_NAME;
 		}
 		return "";
 	}

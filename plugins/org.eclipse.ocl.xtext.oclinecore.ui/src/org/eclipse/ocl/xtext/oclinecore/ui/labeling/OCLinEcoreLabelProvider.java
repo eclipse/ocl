@@ -12,7 +12,7 @@ package org.eclipse.ocl.xtext.oclinecore.ui.labeling;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.UMLReflection;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.xtext.basecs.AnnotationCS;
 import org.eclipse.ocl.xtext.basecs.AttributeCS;
 import org.eclipse.ocl.xtext.basecs.DataTypeCS;
@@ -74,22 +74,22 @@ public class OCLinEcoreLabelProvider extends EssentialOCLLabelProvider {
 
 	protected String image(OCLinEcoreConstraintCS ele) {
 		String stereotype = ele.getStereotype();
-		if (UMLReflection.BODY.equals(stereotype)) {
+		if (PivotConstants.BODY_NAME.equals(stereotype)) {
 			return "/org.eclipse.ocl.xtext.oclinecore.ui/icons/full/obj16/DefinitionConstraint.gif";
 		}
-		else if (UMLReflection.DERIVATION.equals(stereotype)) {
+		else if (PivotConstants.DERIVATION_NAME.equals(stereotype)) {
 			return "/org.eclipse.ocl.xtext.oclinecore.ui/icons/full/obj16/DerivationConstraint.gif";
 		}
-		else if (UMLReflection.INITIAL.equals(stereotype)) {
+		else if (PivotConstants.INITIAL_NAME.equals(stereotype)) {
 			return "/org.eclipse.ocl.xtext.oclinecore.ui/icons/full/obj16/InitialConstraint.gif";
 		}
-		else if (UMLReflection.INVARIANT.equals(stereotype)) {
+		else if (PivotConstants.INVARIANT_NAME.equals(stereotype)) {
 			return "/org.eclipse.ocl.xtext.oclinecore.ui/icons/full/obj16/InvariantConstraint.gif";
 		}
-		else if (UMLReflection.POSTCONDITION.equals(stereotype)) {
+		else if (PivotConstants.POSTCONDITION_NAME.equals(stereotype)) {
 			return "/org.eclipse.ocl.xtext.oclinecore.ui/icons/full/obj16/PostconditionConstraint.gif";
 		}
-		else if (UMLReflection.PRECONDITION.equals(stereotype)) {
+		else if (PivotConstants.PRECONDITION_NAME.equals(stereotype)) {
 			return "/org.eclipse.ocl.xtext.oclinecore.ui/icons/full/obj16/PreconditionConstraint.gif";
 		}
 		return "/org.eclipse.ocl.edit/icons/full/obj16/Constraint.gif";

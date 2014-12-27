@@ -86,12 +86,42 @@ public interface PivotConstants
 	static final @NonNull String STATUS_PART_NAME = "status";
 
 	/**
-	 * The name of the context variable 'self'.
+	 * Stereotype applied to operation body conditions.
 	 */
-	@NonNull String SELF_NAME = "self"; //$NON-NLS-1$
+	static final @NonNull String BODY_NAME = "body"; //$NON-NLS-1$
+
+	/**
+	 * Stereotype applied derived value expressions.
+	 */
+	static final @NonNull String DERIVATION_NAME = "derivation"; //$NON-NLS-1$
+
+	/**
+	 * Stereotype applied initial value expressions.
+	 */
+	static final @NonNull String INITIAL_NAME = "initial"; //$NON-NLS-1$
+
+	/**
+	 * Stereotype applied to classifier invariant constraints.
+	 */
+	static final @NonNull String INVARIANT_NAME = "invariant"; //$NON-NLS-1$
+
+	/**
+	 * Stereotype applied to operation postcondition constraints.
+	 */
+	static final @NonNull String POSTCONDITION_NAME = "postcondition"; //$NON-NLS-1$
+
+	/**
+	 * Stereotype applied to operation precondition constraints.
+	 */
+	static final @NonNull String PRECONDITION_NAME = "precondition"; //$NON-NLS-1$
 
 	/**
 	 * The name of the operation result variable 'result'.
 	 */
-	@NonNull String RESULT_NAME = "result"; //$NON-NLS-1$
+	static final @NonNull String RESULT_NAME = "result"; //$NON-NLS-1$
+
+	/**
+	 * The name of the context variable 'self'.
+	 */
+	static final @NonNull String SELF_NAME = "self"; //$NON-NLS-1$
 }

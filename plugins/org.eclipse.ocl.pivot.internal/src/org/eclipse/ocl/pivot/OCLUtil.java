@@ -14,8 +14,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot;
 
-import java.util.Map;
-
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;

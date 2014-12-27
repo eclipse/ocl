@@ -33,10 +33,10 @@ import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
-import org.eclipse.ocl.pivot.UMLReflection;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.as2cs.AS2CSConversion;
 import org.eclipse.ocl.xtext.base.as2cs.AliasAnalysis;
@@ -299,7 +299,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 			csConstraint = context.visitDeclaration(csConstraintClass, defaultExpression);
 		}
 		if (csConstraint != null) {
-			csConstraint.setStereotype(UMLReflection.DERIVATION);
+			csConstraint.setStereotype(PivotConstants.DERIVATION_NAME);
 			context.refreshList(csPropertyConstraints, Collections.singletonList(csConstraint));
 		}
 		else {

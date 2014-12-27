@@ -47,7 +47,6 @@ import org.eclipse.ocl.pivot.TupleLiteralExp;
 import org.eclipse.ocl.pivot.TupleLiteralPart;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypeExp;
-import org.eclipse.ocl.pivot.UMLReflection;
 import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableDeclaration;
@@ -139,22 +138,22 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 	@Override
 	public Object visitConstraint(@NonNull Constraint object) {
 		String stereotype = PivotUtil.getStereotype(object);
-		if (UMLReflection.BODY.equals(stereotype)) {
+		if (PivotConstants.BODY_NAME.equals(stereotype)) {
 			context.append("body");
 		}
-		else if (UMLReflection.DERIVATION.equals(stereotype)) {
+		else if (PivotConstants.DERIVATION_NAME.equals(stereotype)) {
 			context.append("der");
 		}
-		else if (UMLReflection.INITIAL.equals(stereotype)) {
+		else if (PivotConstants.INITIAL_NAME.equals(stereotype)) {
 			context.append("init");
 		}
-		else if (UMLReflection.INVARIANT.equals(stereotype)) {
+		else if (PivotConstants.INVARIANT_NAME.equals(stereotype)) {
 			context.append("inv");
 		}
-		else if (UMLReflection.POSTCONDITION.equals(stereotype)) {
+		else if (PivotConstants.POSTCONDITION_NAME.equals(stereotype)) {
 			context.append("post");
 		}
-		else if (UMLReflection.PRECONDITION.equals(stereotype)) {
+		else if (PivotConstants.PRECONDITION_NAME.equals(stereotype)) {
 			context.append("pre");
 		}
 		else {
