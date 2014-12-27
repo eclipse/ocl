@@ -12,7 +12,7 @@
  *   Zeligsoft - Bugs 245760, 243976, 242236
  *   Borland - Bug 266320
  *******************************************************************************/
-package org.eclipse.ocl.pivot;
+package org.eclipse.ocl.pivot.elements;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -20,7 +20,8 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.options.Option;
+import org.eclipse.ocl.pivot.BasicEnvironment;
+import org.eclipse.ocl.pivot.Option;
 
 /**
  * Partial implementation of the {@link BasicEnvironment} interface, providing
@@ -30,7 +31,7 @@ public abstract class AbstractBasicEnvironment<P extends BasicEnvironment> imple
 {	
 	private final @NonNull Map<Option<?>, Object> options = new java.util.HashMap<Option<?>, Object>();
 	
-	protected @Nullable P parent;					// parent in environment hierarchy
+	protected final @Nullable P parent;					// parent in environment hierarchy
     
     /**
      * Initializes me with the specified parent environment.
@@ -83,7 +84,7 @@ public abstract class AbstractBasicEnvironment<P extends BasicEnvironment> imple
 	}
 
     // implements the interface method
-	public final P getParent() {
+	public final @Nullable P getParent() {
 		return parent;
 	}
 	
@@ -104,20 +105,6 @@ public abstract class AbstractBasicEnvironment<P extends BasicEnvironment> imple
 		Boolean result = getValue(option);
 		return (result == null)? false : result.booleanValue();
 	}
-    
-    /**
-     * Queries whether I have a non-OK setting for the specified problem option.
-     * In such cases, I will need to be concerned with reporting the problem.
-     * 
-     * @param option the problem option
-     * @return whether I have a setting for it that is not OK
-     * 
-     * @see ProblemHandler.Severity#OK
-     */
-    public boolean notOK(@NonNull Option<ProblemHandler.Severity> option) {
-        ProblemHandler.Severity sev = getValue(option);
-        return (sev != null) && !sev.isOK();
-    }
 	
 	@Override
 	public <T> void putOptions(@NonNull Map<? extends Option<T>, ? extends T> newOptions) {
@@ -149,15 +136,5 @@ public abstract class AbstractBasicEnvironment<P extends BasicEnvironment> imple
 	@Override
 	public <T> void setOption(@NonNull Option<T> option, @Nullable T value) {
 		options.put(option, value);
-	}
-
-    /**
-     * Assigns me a parent environment after construction.  It is not advisable
-     * to set the parent to <code>null</code> if I previously had one.
-     * 
-     * @param parent my new parent
-     */
-	protected void setParent(P parent) {
-		this.parent = parent;
 	}
 }

@@ -25,7 +25,6 @@ import org.eclipse.ocl.pivot.OCLUtil;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 
@@ -72,8 +71,8 @@ public interface EvaluationEnvironment extends DomainEvaluationEnvironment, Basi
      * @param value
      *            the new value
      */
-    @Override
-	void replace(@NonNull TypedElement referredVariable, Object value);
+	@Override
+	void replace(@NonNull TypedElement referredVariable, @Nullable Object value);
 
     /**
      * Adds the supplied variable declaration and value binding to the environment.  The variable declaration
@@ -86,8 +85,8 @@ public interface EvaluationEnvironment extends DomainEvaluationEnvironment, Basi
      *            
      * @see #replace(TypedElement, Object)
      */
-    @Override
-	void add(@NonNull TypedElement referredVariable, Object value);
+	@Override
+	void add(@NonNull TypedElement referredVariable, @Nullable Object value);
  
     /**
      * Removes the supplied variable declaration and binding from the environment (if it exists)

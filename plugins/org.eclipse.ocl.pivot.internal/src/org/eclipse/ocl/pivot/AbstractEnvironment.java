@@ -18,6 +18,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Variable;
+import org.eclipse.ocl.pivot.elements.AbstractBasicEnvironment;
 
 /**
  * A partial implementation of the {@link Environment} interface providing

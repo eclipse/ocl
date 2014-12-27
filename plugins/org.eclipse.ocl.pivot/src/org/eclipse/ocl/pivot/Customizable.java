@@ -17,9 +17,7 @@ import java.util.Map;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
-//import org.eclipse.ocl.Environment;
-import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
-import org.eclipse.ocl.pivot.options.Option;
+import org.eclipse.ocl.pivot.Option;
 
 
 /**

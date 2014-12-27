@@ -19,6 +19,7 @@ import org.eclipse.ocl.pivot.BasicEnvironment;
 import org.eclipse.ocl.pivot.Customizable;
 import org.eclipse.ocl.pivot.Environment;
 import org.eclipse.ocl.pivot.OCLUtil;
+import org.eclipse.ocl.pivot.Option;
 
 /**
  * Options applicable to {@link Environment}s to

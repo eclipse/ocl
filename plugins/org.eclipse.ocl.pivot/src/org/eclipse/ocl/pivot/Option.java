@@ -8,9 +8,8 @@
  * Contributors: 
  *   IBM - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.pivot.options;
+package org.eclipse.ocl.pivot;
 
-import org.eclipse.ocl.pivot.Customizable;
 
 /**
  * Interface implemented by the options that can be applied to {@link Customizable}

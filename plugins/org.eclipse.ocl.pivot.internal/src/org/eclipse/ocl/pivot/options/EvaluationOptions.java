@@ -16,6 +16,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Customizable;
 import org.eclipse.ocl.pivot.OCLUtil;
+import org.eclipse.ocl.pivot.Option;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 
 /**

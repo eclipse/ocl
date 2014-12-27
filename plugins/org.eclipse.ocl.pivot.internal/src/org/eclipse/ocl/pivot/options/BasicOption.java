@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.options;
 
+import org.eclipse.ocl.pivot.Option;
+
 
 
 

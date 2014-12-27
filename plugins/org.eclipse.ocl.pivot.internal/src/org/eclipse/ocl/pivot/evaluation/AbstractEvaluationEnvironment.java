@@ -17,9 +17,9 @@ import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.AbstractBasicEnvironment;
 import org.eclipse.ocl.pivot.Environment;
 import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.elements.AbstractBasicEnvironment;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.values.InvalidValueException;

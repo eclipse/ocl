@@ -12,7 +12,7 @@
 package org.eclipse.ocl.pivot;
 
 /**
- * A <code>BasicEnvironment</code> provides shared analysis and ebvaluation cuistomization support.
+ * A <code>BasicEnvironment</code> provides shared analysis and evaluation customization support.
  */
 public interface BasicEnvironment extends Adaptable, Customizable
 {	

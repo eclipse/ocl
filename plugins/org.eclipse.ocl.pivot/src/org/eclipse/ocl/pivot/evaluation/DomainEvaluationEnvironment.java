@@ -11,10 +11,11 @@
 package org.eclipse.ocl.pivot.evaluation;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.BasicEnvironment;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 
-public interface DomainEvaluationEnvironment
+public interface DomainEvaluationEnvironment extends BasicEnvironment
 {
 	void add(@NonNull TypedElement variable, Object value);
 	@NonNull TypedElement createVariable(@NonNull String name, @NonNull Type type);
