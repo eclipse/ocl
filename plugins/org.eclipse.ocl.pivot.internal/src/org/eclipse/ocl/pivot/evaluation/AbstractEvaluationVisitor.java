@@ -28,7 +28,7 @@ import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.evaluation.DomainLogger;
+import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
 import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
@@ -72,7 +72,7 @@ public abstract class AbstractEvaluationVisitor
 	 */
 	private /*@LazyNonNull*/ Map<String, Pattern> regexPatterns = null;
 
-	private DomainLogger logger = new DomainLogger()
+	private EvaluationLogger logger = new EvaluationLogger()
 	{
 		@Override
 		public void append(@NonNull String message) {
@@ -151,7 +151,7 @@ public abstract class AbstractEvaluationVisitor
 	}
 
 	@Override
-	public @Nullable DomainLogger getLogger() {
+	public @Nullable EvaluationLogger getLogger() {
 		return logger;
 	}
 
@@ -248,7 +248,7 @@ public abstract class AbstractEvaluationVisitor
 	}
 
 	@Override
-	public void setLogger(@Nullable DomainLogger logger) {
+	public void setLogger(@Nullable EvaluationLogger logger) {
 		this.logger = logger;
 	}
 

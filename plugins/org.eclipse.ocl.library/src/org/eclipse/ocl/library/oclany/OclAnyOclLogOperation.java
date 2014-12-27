@@ -13,7 +13,7 @@ package org.eclipse.ocl.library.oclany;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
-import org.eclipse.ocl.pivot.evaluation.DomainLogger;
+import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractPolyOperation;
 
@@ -27,7 +27,7 @@ public class OclAnyOclLogOperation extends AbstractPolyOperation
 	@Override
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceVal) {
 		try {
-			DomainLogger log = evaluator.getLogger();
+			EvaluationLogger log = evaluator.getLogger();
 			if (log != null) {
 				log.append(getSourceText(sourceVal));
 			}
@@ -40,7 +40,7 @@ public class OclAnyOclLogOperation extends AbstractPolyOperation
 			@Nullable Object sourceVal, @Nullable Object argVal) {
 		try {
 			String message = asString(argVal);
-			DomainLogger log = evaluator.getLogger();
+			EvaluationLogger log = evaluator.getLogger();
 			if (log != null) {
 				log.append(message + getSourceText(sourceVal));
 			}

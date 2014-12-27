@@ -22,7 +22,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.evaluation.DomainEvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
-import org.eclipse.ocl.pivot.evaluation.DomainLogger;
+import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.Value;
 
@@ -117,7 +117,7 @@ public abstract class ExecutorManager implements DomainEvaluator
 //	}
 
 	@Override
-	public @Nullable DomainLogger getLogger() {
+	public @Nullable EvaluationLogger getLogger() {
 		return null;
 	}
 
@@ -186,7 +186,7 @@ public abstract class ExecutorManager implements DomainEvaluator
 	}
 
 	@Override
-	public void setLogger(@Nullable DomainLogger logger) {
+	public void setLogger(@Nullable EvaluationLogger logger) {
 		/* ignored */;
 	}
 	

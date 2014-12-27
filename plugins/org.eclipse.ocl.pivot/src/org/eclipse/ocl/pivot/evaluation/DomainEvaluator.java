@@ -31,7 +31,7 @@ public interface DomainEvaluator
 	/**
 	 * Return the logger handling oclLog() invocations or null for none.
 	 */
-	@Nullable DomainLogger getLogger();
+	@Nullable EvaluationLogger getLogger();
 	
 	/**
 	 * Return the manager of all model instances for use by allInstances() and hidden opposite support.
@@ -64,5 +64,5 @@ public interface DomainEvaluator
 	/**
 	 * Specify the logger to handle oclLog() invocations or null for none.
 	 */
-	void setLogger(@Nullable DomainLogger loger);
+	void setLogger(@Nullable EvaluationLogger loger);
 }

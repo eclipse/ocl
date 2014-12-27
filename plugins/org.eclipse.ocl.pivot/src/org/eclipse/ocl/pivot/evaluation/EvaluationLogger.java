@@ -12,7 +12,7 @@ package org.eclipse.ocl.pivot.evaluation;
 
 import org.eclipse.jdt.annotation.NonNull;
 
-public interface DomainLogger
+public interface EvaluationLogger
 {
 	void append(@NonNull String message);
 }

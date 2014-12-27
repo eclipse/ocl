@@ -58,7 +58,7 @@ import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.context.ClassContext;
 import org.eclipse.ocl.pivot.context.ParserContext;
-import org.eclipse.ocl.pivot.evaluation.DomainLogger;
+import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
 import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationHaltedException;
@@ -228,7 +228,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 				try {
 	//				metaModelManager.setMonitor(monitor);
 					CancelableEvaluationVisitor evaluationVisitor = new CancelableEvaluationVisitor(monitor, environment, evaluationEnvironment, modelManager2);
-					evaluationVisitor.setLogger(new DomainLogger()
+					evaluationVisitor.setLogger(new EvaluationLogger()
 					{
 						@Override
 						public void append(final @NonNull String message) {

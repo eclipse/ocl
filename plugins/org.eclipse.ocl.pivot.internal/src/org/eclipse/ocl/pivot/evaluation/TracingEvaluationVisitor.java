@@ -48,7 +48,7 @@ import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableExp;
-import org.eclipse.ocl.pivot.evaluation.DomainLogger;
+import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
@@ -101,7 +101,7 @@ public class TracingEvaluationVisitor extends EvaluationVisitorDecorator {
 	}
 
 	@Override
-	public @Nullable DomainLogger getLogger() {
+	public @Nullable EvaluationLogger getLogger() {
 		return delegate.getLogger();
 	}
 
@@ -151,7 +151,7 @@ public class TracingEvaluationVisitor extends EvaluationVisitorDecorator {
 	}
 
 	@Override
-	public void setLogger(@Nullable DomainLogger logger) {
+	public void setLogger(@Nullable EvaluationLogger logger) {
 		delegate.setLogger(logger);
 	}
 
