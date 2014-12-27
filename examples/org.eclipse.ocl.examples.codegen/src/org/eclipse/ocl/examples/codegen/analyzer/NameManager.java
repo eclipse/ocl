@@ -86,6 +86,7 @@ import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.ids.UnspecifiedId;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.IntegerRange;
 import org.eclipse.ocl.pivot.values.IntegerValue;
@@ -102,7 +103,7 @@ public class NameManager
 	public static final String COLLECTION_NAME_HINT_PREFIX = "COL";
 	public static final String DEFAULT_NAME_PREFIX = "symbol";
 //	public static final String ID_NAME_HINT_PREFIX = "TID";
-	public static final String EXPRESSION_IN_OCL_NAME_HINT_PREFIX = "result";
+	public static final String EXPRESSION_IN_OCL_NAME_HINT_PREFIX = PivotConstants.RESULT_NAME;
 	public static final String INTEGER_NAME_HINT_PREFIX = "INT_";
 	public static final String INVALID_NAME_HINT_PREFIX = "IVE_";
 	public static final String ITERATION_NAME_HINT_PREFIX = "";

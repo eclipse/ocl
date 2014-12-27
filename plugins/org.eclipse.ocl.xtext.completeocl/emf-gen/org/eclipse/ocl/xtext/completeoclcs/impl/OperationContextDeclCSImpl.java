@@ -22,8 +22,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.Environment;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
 import org.eclipse.ocl.xtext.basecs.ConstraintCS;
 import org.eclipse.ocl.xtext.basecs.ParameterCS;
@@ -214,7 +214,7 @@ public class OperationContextDeclCSImpl
 		if (ownedResult == null) {
 			VariableCS resultVariable = EssentialOCLCSFactory.eINSTANCE
 				.createVariableCS();
-			resultVariable.setName(Environment.RESULT_VARIABLE_NAME);
+			resultVariable.setName(PivotConstants.RESULT_NAME);
 			// FIXME			resultVariable.setType(getType());
 			setOwnedResult(resultVariable);
 		}

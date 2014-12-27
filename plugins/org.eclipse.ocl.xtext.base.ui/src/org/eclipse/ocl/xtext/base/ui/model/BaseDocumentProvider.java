@@ -42,7 +42,7 @@ import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.ocl.pivot.Model;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManagerListener;
@@ -298,7 +298,7 @@ public abstract class BaseDocumentProvider extends XtextDocumentProvider impleme
 				StandaloneProjectMap projectMap = ProjectMap.getAdapter(resourceSet);
 				StandaloneProjectMap.IConflictHandler conflictHandler = MapToFirstConflictHandlerWithLog.INSTANCE; //null; 			// FIXME
 				projectMap.configure(resourceSet, StandaloneProjectMap.LoadFirstStrategy.INSTANCE, conflictHandler);
-				IProjectDescriptor pivotPackageDescriptor = projectMap.getProjectDescriptor(PivotConstants.PLUGIN_ID);
+				IProjectDescriptor pivotPackageDescriptor = projectMap.getProjectDescriptor(PivotConstantsInternal.PLUGIN_ID);
 				if (pivotPackageDescriptor != null) {
 					pivotPackageDescriptor.configure(resourceSet, StandaloneProjectMap.LoadBothStrategy.INSTANCE, conflictHandler);	
 				}

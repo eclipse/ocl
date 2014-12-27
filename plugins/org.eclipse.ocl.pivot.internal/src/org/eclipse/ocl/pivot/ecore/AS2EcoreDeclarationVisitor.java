@@ -58,7 +58,7 @@ import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.Parameter;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateParameter;
@@ -290,16 +290,16 @@ public class AS2EcoreDeclarationVisitor
 			type = collectionType.getElementType();
 			lowerValue = collectionType.getLowerValue();
 			upperValue = collectionType.getUpperValue();
-			if (collectionType.isOrdered() != PivotConstants.DEFAULT_IMPLICIT_OPPOSITE_ORDERED) {
+			if (collectionType.isOrdered() != PivotConstantsInternal.DEFAULT_IMPLICIT_OPPOSITE_ORDERED) {
 				ordered = Boolean.toString(collectionType.isOrdered());
 			}
-			if (collectionType.isUnique() != PivotConstants.DEFAULT_IMPLICIT_OPPOSITE_UNIQUE) {
+			if (collectionType.isUnique() != PivotConstantsInternal.DEFAULT_IMPLICIT_OPPOSITE_UNIQUE) {
 				unique = Boolean.toString(collectionType.isUnique());
 			}
-			if (!PivotConstants.DEFAULT_IMPLICIT_OPPOSITE_LOWER_VALUE.equals(lowerValue)) {
+			if (!PivotConstantsInternal.DEFAULT_IMPLICIT_OPPOSITE_LOWER_VALUE.equals(lowerValue)) {
 				lower = lowerValue.toString();
 			}
-			if (!PivotConstants.DEFAULT_IMPLICIT_OPPOSITE_UPPER_VALUE.equals(upperValue)) {
+			if (!PivotConstantsInternal.DEFAULT_IMPLICIT_OPPOSITE_UPPER_VALUE.equals(upperValue)) {
 				upper = upperValue.toString();
 			}
 		}
@@ -324,17 +324,17 @@ public class AS2EcoreDeclarationVisitor
 		upper = null;
 		if (propertyType instanceof CollectionType) {
 			CollectionType collectionType = (CollectionType)propertyType;
-			if (collectionType.isOrdered() != PivotConstants.ANNOTATED_IMPLICIT_OPPOSITE_ORDERED) {
+			if (collectionType.isOrdered() != PivotConstantsInternal.ANNOTATED_IMPLICIT_OPPOSITE_ORDERED) {
 				ordered = Boolean.toString(collectionType.isOrdered());
 			}
-			if (collectionType.isUnique() != PivotConstants.ANNOTATED_IMPLICIT_OPPOSITE_UNIQUE) {
+			if (collectionType.isUnique() != PivotConstantsInternal.ANNOTATED_IMPLICIT_OPPOSITE_UNIQUE) {
 				unique = Boolean.toString(collectionType.isUnique());
 			}
 		}
-		if (!PivotConstants.ANNOTATED_IMPLICIT_OPPOSITE_LOWER_VALUE.equals(lowerValue)) {
+		if (!PivotConstantsInternal.ANNOTATED_IMPLICIT_OPPOSITE_LOWER_VALUE.equals(lowerValue)) {
 			lower = lowerValue.toString();
 		}
-		if (!PivotConstants.ANNOTATED_IMPLICIT_OPPOSITE_UPPER_VALUE.equals(upperValue)) {
+		if (!PivotConstantsInternal.ANNOTATED_IMPLICIT_OPPOSITE_UPPER_VALUE.equals(upperValue)) {
 			upper = upperValue.toString();
 		}
 		EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
@@ -451,10 +451,10 @@ public class AS2EcoreDeclarationVisitor
 				}
 			}
 			if (eDuplicates != null) {
-				EAnnotation eAnnotation = eClass.getEAnnotation(PivotConstants.DUPLICATES_ANNOTATION_SOURCE);
+				EAnnotation eAnnotation = eClass.getEAnnotation(PivotConstantsInternal.DUPLICATES_ANNOTATION_SOURCE);
 				if (eAnnotation == null) {
 					eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-					eAnnotation.setSource(PivotConstants.DUPLICATES_ANNOTATION_SOURCE);
+					eAnnotation.setSource(PivotConstantsInternal.DUPLICATES_ANNOTATION_SOURCE);
 					eClass.getEAnnotations().add(eAnnotation);
 				}
 				context.refreshList(eAnnotation.getContents(), eDuplicates);
@@ -553,7 +553,7 @@ public class AS2EcoreDeclarationVisitor
 				if (importedNamespace != null) {
 					if (importAnnotation == null) {
 						importAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-						importAnnotation.setSource(PivotConstants.IMPORT_ANNOTATION_SOURCE);
+						importAnnotation.setSource(PivotConstantsInternal.IMPORT_ANNOTATION_SOURCE);
 					}
 					EObject eTarget = importedNamespace.getETarget();
 					if (eTarget != null) {

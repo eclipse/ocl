@@ -11,15 +11,13 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.debug.evaluator;
 
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironment;
 
 public class OCLVMEnvironment extends PivotEnvironment
 {
-	public OCLVMEnvironment(@NonNull OCLVMEnvironmentFactory factory, @Nullable Resource resource) {
-		super(factory, resource);
+	public OCLVMEnvironment(@NonNull OCLVMEnvironmentFactory factory) {
+		super(factory);
 	}
 
 	public OCLVMEnvironment(@NonNull OCLVMEnvironment parent) {

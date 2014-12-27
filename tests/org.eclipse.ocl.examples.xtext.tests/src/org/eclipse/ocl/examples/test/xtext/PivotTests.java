@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.Model;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
@@ -219,7 +219,7 @@ public class PivotTests extends XtextTestCase
 
 	@SuppressWarnings("null")
 	protected void doPivotTestOCLstdlib(@NonNull String stem) throws IOException {
-		String pivotName = stem + PivotConstants.DOT_OCL_AS_FILE_EXTENSION;
+		String pivotName = stem + PivotConstantsInternal.DOT_OCL_AS_FILE_EXTENSION;
 		URI pivotURI = getProjectFileURI(pivotName);
 		BaseCSResource csResource = doLoadOCLstdlib(stem, "oclstdlib");
 		//

@@ -83,7 +83,7 @@ public class OCLstdlib extends ASResourceImpl
 		if (oclstdlib == null) {
 			Contents contents = new Contents();
 			Model libraryModel = contents.create("http://www.eclipse.org/ocl/2015/Library", "ocl", "ocl", "http://www.eclipse.org/ocl/2015/Library");
-			oclstdlib = INSTANCE = new OCLstdlib(STDLIB_URI + PivotConstants.DOT_OCL_AS_FILE_EXTENSION, libraryModel);
+			oclstdlib = INSTANCE = new OCLstdlib(STDLIB_URI + PivotConstantsInternal.DOT_OCL_AS_FILE_EXTENSION, libraryModel);
 		}
 		return oclstdlib;
 	}
@@ -165,7 +165,7 @@ public class OCLstdlib extends ASResourceImpl
 		public @NonNull Resource getResource() {
 			Contents contents = new Contents();
 			Model libraryModel = contents.create("http://www.eclipse.org/ocl/2015/Library", "ocl", "ocl", metamodelNsUri);
-			Resource resource = new OCLstdlib(STDLIB_URI + PivotConstants.DOT_OCL_AS_FILE_EXTENSION, libraryModel);
+			Resource resource = new OCLstdlib(STDLIB_URI + PivotConstantsInternal.DOT_OCL_AS_FILE_EXTENSION, libraryModel);
 			return resource;
 		}
 	}

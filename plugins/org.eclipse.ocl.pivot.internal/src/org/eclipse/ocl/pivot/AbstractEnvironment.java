@@ -21,7 +21,7 @@ import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.elements.AbstractBasicEnvironment;
 
 /**
- * A partial implementation of the {@link Environment} interface providing
+ * A partial implementation of the {@link EnvironmentInternal} interface providing
  * some useful common behavior for providers of metamodel bindings.  It is
  * recommended to extend this class rather than to implement the
  * <code>Environment</code> interface from scratch.
@@ -42,13 +42,13 @@ import org.eclipse.ocl.pivot.elements.AbstractBasicEnvironment;
  * along with some subclass hook methods and convenience methods.
  * </p>
  * <p>
- * See the {@link Environment} class for a description of the
+ * See the {@link EnvironmentInternal} class for a description of the
  * generic type parameters of this class. 
  * </p>
  * 
  * @author Christian W. Damus (cdamus)
  */
-public abstract class AbstractEnvironment extends AbstractBasicEnvironment<Environment> implements Environment
+public abstract class AbstractEnvironment extends AbstractBasicEnvironment<EnvironmentInternal> implements EnvironmentInternal
 {
 	private org.eclipse.ocl.pivot.Package contextPackage;
 	private Operation contextOperation;
@@ -67,32 +67,9 @@ public abstract class AbstractEnvironment extends AbstractBasicEnvironment<Envir
      * 
      * @param parent an environment (or <code>null</code>)
      */
-    protected AbstractEnvironment(@NonNull Environment parent) {      
+    protected AbstractEnvironment(@NonNull EnvironmentInternal parent) {      
 		super(parent);
     }
-	
-    // implements the interface method
-	@Override
-	public boolean addElement(@NonNull String name, @NonNull Variable elem, boolean isExplicit) {
-		throw new UnsupportedOperationException();
-/*		// FIXME this is now redundant
-		if (name == null) {
-			name = generateName();
-			while (lookup(name) != null) {
-				name = generateName();
-			}
-		} else if (lookupLocal(name) != null) {
-			return false;
-		}
-		
-		elem.setName(name);
-		VariableEntry newelem = new VariableEntry(name, elem, isExplicit);
-		namedElements.add(newelem);
-		
-		addedVariable(name, elem, isExplicit);
-		
-		return true; */
-	}
 	   
     /**
      * Dispose of any owned objects.
@@ -107,7 +84,7 @@ public abstract class AbstractEnvironment extends AbstractBasicEnvironment<Envir
 		if (contextPackage != null) {
 			return contextPackage;
 		}
-		Environment parent2 = parent;
+		EnvironmentInternal parent2 = parent;
 		if (parent2 != null) {
 			return parent2.getContextPackage();
 		}		
@@ -127,7 +104,7 @@ public abstract class AbstractEnvironment extends AbstractBasicEnvironment<Envir
 		if (contextOperation != null) {
 			return contextOperation;
 		}
-		Environment parent2 = parent;
+		EnvironmentInternal parent2 = parent;
 		if (parent2 != null) {
 			return parent2.getContextOperation();
 		}
@@ -140,7 +117,7 @@ public abstract class AbstractEnvironment extends AbstractBasicEnvironment<Envir
 		if (contextProperty != null) {
 			return contextProperty;
 		}
-		Environment parent2 = parent;
+		EnvironmentInternal parent2 = parent;
 		if (parent2 != null) {
 			return parent2.getContextProperty();
 		}	
@@ -157,7 +134,7 @@ public abstract class AbstractEnvironment extends AbstractBasicEnvironment<Envir
 	public @Nullable Variable getSelfVariable() {
 		Variable result = selfVariable;		
 		if (result == null) {
-			Environment parent2 = parent;
+			EnvironmentInternal parent2 = parent;
 			if (parent2 != null) {
 				result = parent2.getSelfVariable();
 			}
@@ -205,34 +182,6 @@ public abstract class AbstractEnvironment extends AbstractBasicEnvironment<Envir
 			if (contextClassifier != null) {
 				setContextPackage(contextClassifier.getOwningPackage());
 			}
-		}
-	}
-
-	//
-	// Nested classes
-	//
-	
-    /**
-     * Wrapper for OCL variable declarations that additionally tracks whether
-     * they are explicit or implicit variables.
-     * 
-     * @author Christian W. Damus (cdamus)
-	 */
-	protected final class VariableEntry {
-		final @NonNull String name;
-		final @NonNull Variable variable;
-		final boolean isExplicit;
-		
-		VariableEntry(@NonNull String name, @NonNull Variable variable, boolean isExplicit) {
-			this.name = name;
-			this.variable = variable;
-			this.isExplicit = isExplicit;
-		}
-		
-		@Override
-		public String toString() {
-			return "VariableEntry[" + name + ", "  //$NON-NLS-1$//$NON-NLS-2$
-				+ (isExplicit? "explicit, " : "implicit, ") + variable + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		}
 	}
 }

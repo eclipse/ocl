@@ -24,7 +24,7 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
  * when it is created.  The query can subsequently be evaluated on a single
  * object or on multiple objects in one operation.
  * <p>
- * See the {@link Environment} class for a description of the
+ * See the {@link EnvironmentInternal} class for a description of the
  * generic type parameters of this class. 
  * </p>
  * 

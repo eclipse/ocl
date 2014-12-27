@@ -12,7 +12,7 @@
 
 package org.eclipse.ocl.pivot.helper;
 
-import org.eclipse.ocl.pivot.Environment;
+import org.eclipse.ocl.pivot.EnvironmentInternal;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.util.PivotInternalPlugin;
@@ -97,7 +97,7 @@ public class HelperUtil {
 	
 	public static
 	Object getConstraintContext(
-			Environment env,
+			EnvironmentInternal env,
 			Object element,
 			OCLExpression expr) {
 		
@@ -126,7 +126,7 @@ public class HelperUtil {
 		return result;
 	}
 	public static
-	Object getConstraintContext(Environment env, Object element, ExpressionInOCL expr) {		
+	Object getConstraintContext(EnvironmentInternal env, Object element, ExpressionInOCL expr) {		
 		throw new UnsupportedOperationException();
 /*		Object result = element;
 		Variable contextVariable = expr.getContextVariable();

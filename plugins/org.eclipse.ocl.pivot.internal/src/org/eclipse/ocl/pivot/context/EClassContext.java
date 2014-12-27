@@ -14,10 +14,10 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.Environment;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 /**
  * EClassContext supports parsing OCL expressions in the context of an Ecore Class.
@@ -45,7 +45,7 @@ public class EClassContext extends AbstractParserContext
 		super.initialize(conversion, expression);
 		Type classContext = getClassContext();
 		if (classContext != null) {
-			conversion.setContextVariable(expression, Environment.SELF_VARIABLE_NAME, classContext, null);
+			conversion.setContextVariable(expression, PivotConstants.SELF_NAME, classContext, null);
 		}
 	}
 }

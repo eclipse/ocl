@@ -33,6 +33,7 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.oclinecore.ui.OCLinEcoreUiModule;
 import org.eclipse.ocl.xtext.oclinecore.ui.internal.OCLinEcoreActivator;
@@ -129,7 +130,7 @@ public class CompletionProposalTests extends XtextTestCase
 	
 	public static final @NonNull IReferenceCompletionProposal abstractKeywordProposal = new ReferenceConfigurableCompletionProposal("abstract");
 	public static final @NonNull IReferenceCompletionProposal annotationTemplateProposal = new ReferenceXtextTemplateProposal("Annotation - annotation declaration");
-	public static final @NonNull IReferenceCompletionProposal selfKeywordProposal = new ReferenceConfigurableCompletionProposal("self");
+	public static final @NonNull IReferenceCompletionProposal selfKeywordProposal = new ReferenceConfigurableCompletionProposal(PivotConstants.SELF_NAME);
 	public static final @NonNull IReferenceCompletionProposal sNameProposal = new ReferenceConfigurableCompletionProposal("s");
 
 	public static void assertExcludes(ICompletionProposal[] actualProposals, IReferenceCompletionProposal expectedProposal) {

@@ -36,7 +36,7 @@ import org.eclipse.ocl.pivot.ConstructorPart;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnumLiteralExp;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
-import org.eclipse.ocl.pivot.Environment;
+import org.eclipse.ocl.pivot.EnvironmentInternal;
 import org.eclipse.ocl.pivot.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.IfExp;
@@ -116,14 +116,14 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 * @param modelManager
 	 *            a map of classes to their instance lists
 	 */
-	public EvaluationVisitorImpl( @NonNull Environment env,  @NonNull EvaluationEnvironment evalEnv, @NonNull ModelManager modelManager) {
+	public EvaluationVisitorImpl( @NonNull EnvironmentInternal env,  @NonNull EvaluationEnvironment evalEnv, @NonNull ModelManager modelManager) {
 		super(env, evalEnv, modelManager);
 	}
 	
 	// FIXME Revise API so that cannot invoke createNestedEvaluator() by mistake
 	@Override
 	public @NonNull EvaluationVisitor createNestedEvaluator() {
-		Environment environment = getEnvironment();
+		EnvironmentInternal environment = getEnvironment();
 		EnvironmentFactoryInternal factory = environment.getEnvironmentFactory();
     	EvaluationEnvironment nestedEvalEnv = factory.createEvaluationEnvironment(getEvaluationEnvironment());
 		EvaluationVisitorImpl nestedEvaluationVisitor = new EvaluationVisitorImpl(environment, nestedEvalEnv, getModelManager());

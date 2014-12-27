@@ -68,7 +68,7 @@ import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.pivot.OrderedSetType;
 import org.eclipse.ocl.pivot.Parameter;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.PrimitiveLiteralExp;
@@ -165,10 +165,10 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 			return;
 		}
 		if (sourceType instanceof CollectionType) {
-			s.append(PivotConstants.COLLECTION_NAVIGATION_OPERATOR);
+			s.append(PivotConstantsInternal.COLLECTION_NAVIGATION_OPERATOR);
 		}
 		else {
-			s.append(PivotConstants.OBJECT_NAVIGATION_OPERATOR); 
+			s.append(PivotConstantsInternal.OBJECT_NAVIGATION_OPERATOR); 
 		}
 		s.append(" ");
 	}

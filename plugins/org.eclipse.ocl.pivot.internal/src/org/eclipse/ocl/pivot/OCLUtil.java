@@ -45,7 +45,7 @@ public final class OCLUtil {
 	 * @return an instance of the requested interface, or <code>null</code>
 	 *     if this environment does not adapt to it
 	 */
-	public static @Nullable <T> T getAdapter(@NonNull Environment env, @NonNull java.lang.Class<T> adapterType) {
+	public static @Nullable <T> T getAdapter(@NonNull EnvironmentInternal env, @NonNull java.lang.Class<T> adapterType) {
 	    return env.getAdapter(adapterType);
 	}
 	
@@ -132,7 +132,7 @@ public final class OCLUtil {
 	 * 
 	 * @see #checkForErrors(ProblemHandler)
 	 */
-	public static Diagnostic checkForErrors(@NonNull Environment env)
+	public static Diagnostic checkForErrors(@NonNull EnvironmentInternal env)
 			throws SyntaxException, SemanticException {
 		throw new UnsupportedOperationException();
 //		return checkForErrors(getAdapter(env, ProblemHandler.class));
@@ -228,34 +228,6 @@ public final class OCLUtil {
 		}
 		
 		return result; */
-	}
-	
-	/**
-	 * Attempts to get an environment instance that is appropriate for introspection
-	 * of the specified validation <tt>target</tt>.  If an environment is specified
-	 * in the validation <tt>context</tt>, then it is used.  Otherwise, an
-	 * environment is obtained from the registry.
-	 * 
-	 * @param target an object to be validated in an appropriate environment
-	 * @param context the current validation context
-	 * 
-	 * @return the environment, or <code>null</code> if none can be found
-	 * 
-	 * @see Environment.Registry
-	 */
-	public static @Nullable Environment getValidationEnvironment(@NonNull Object target, @NonNull Map<Object, Object> context) {
-		Environment result = (Environment) context.get(Environment.class);
-		
-		if (result == null) {
-			// try the extension point
-			result = Environment.Registry.INSTANCE.getEnvironmentFor(target);
-			
-			if (result != null) {
-				context.put(Environment.class, result);
-			}
-		}
-		
-		return result;
 	}
 	
 	/**

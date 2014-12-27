@@ -13,6 +13,7 @@ package org.eclipse.ocl.xtext.essentialocl.ui.labeling;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.xtext.base.ui.labeling.BaseLabelProvider;
 import org.eclipse.ocl.xtext.basecs.TemplateParameterCS;
 import org.eclipse.ocl.xtext.basecs.TuplePartCS;
@@ -142,7 +143,7 @@ public class EssentialOCLLabelProvider extends BaseLabelProvider
 	}
 
 	protected String text(SelfExpCS ele) {
-		return "self";
+		return PivotConstants.SELF_NAME;
 	}
 
 	protected String text(StringLiteralExpCS ele) {

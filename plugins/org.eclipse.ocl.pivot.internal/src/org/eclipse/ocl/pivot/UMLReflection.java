@@ -18,7 +18,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * An interface providing reflection service for the metaclasses that the
  * OCL borrows from UML.
  * <p>
- * See the {@link Environment} class for a description of the
+ * See the {@link EnvironmentInternal} class for a description of the
  * generic type parameters of this interface. 
  * </p>
  * 

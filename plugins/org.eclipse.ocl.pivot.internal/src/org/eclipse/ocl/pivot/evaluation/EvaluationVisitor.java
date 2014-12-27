@@ -14,7 +14,7 @@ package org.eclipse.ocl.pivot.evaluation;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.Environment;
+import org.eclipse.ocl.pivot.EnvironmentInternal;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
@@ -26,7 +26,7 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * A specialized visitor that is used for evaluation an
  * {@linkplain OCLExpression OCL expression} by walking its AST.
  * <p>
- * See the {@link Environment} class for a description of the
+ * See the {@link EnvironmentInternal} class for a description of the
  * generic type parameters of this class. 
  * </p>
  */
@@ -44,7 +44,7 @@ public interface EvaluationVisitor extends Visitor<Object>, Evaluator
      *  
 	 * @return the environment
 	 */
-	@NonNull Environment getEnvironment();
+	@NonNull EnvironmentInternal getEnvironment();
 
 	/**
      * Obtains the evaluation environment that keeps track of variable values

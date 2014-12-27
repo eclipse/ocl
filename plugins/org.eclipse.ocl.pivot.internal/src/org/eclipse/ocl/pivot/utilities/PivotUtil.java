@@ -68,7 +68,7 @@ import org.eclipse.ocl.pivot.OrderedSetType;
 import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PivotTables;
@@ -652,13 +652,13 @@ public class PivotUtil extends ClassUtil
 		StringBuilder s = new StringBuilder();
 		s.append("Tuple {");
 		if (messageText != null) {
-			s.append("\n\t" + PivotConstants.MESSAGE_PART_NAME + " : String = " + messageText + ",");
+			s.append("\n\t" + PivotConstantsInternal.MESSAGE_PART_NAME + " : String = " + messageText + ",");
 		}
 		if (severity != null) {
-			s.append("\n\t" + PivotConstants.SEVERITY_PART_NAME + " : Integer = " + severity + ",");
+			s.append("\n\t" + PivotConstantsInternal.SEVERITY_PART_NAME + " : Integer = " + severity + ",");
 		}
-		s.append("\n\t" + PivotConstants.STATUS_PART_NAME + " : Boolean = " + statusText);		// NB parts in alphabetical order
-		s.append("\n}."+ PivotConstants.STATUS_PART_NAME);
+		s.append("\n\t" + PivotConstantsInternal.STATUS_PART_NAME + " : Boolean = " + statusText);		// NB parts in alphabetical order
+		s.append("\n}."+ PivotConstantsInternal.STATUS_PART_NAME);
 		@SuppressWarnings("null")@NonNull String string = s.toString();
 		return string;
 	}
@@ -874,9 +874,9 @@ public class PivotUtil extends ClassUtil
 			logger.error("Unexpected fragment ignored for '" + uri.toString() + "'");
 			uri = uri.trimFragment();
 		}
-		URI asURI = uri.appendFileExtension(PivotConstants.OCL_AS_FILE_EXTENSION);
+		URI asURI = uri.appendFileExtension(PivotConstantsInternal.OCL_AS_FILE_EXTENSION);
 		if (!isASURI(asURI)) {
-			asURI = uri.appendSegment(PivotConstants.DOT_OCL_AS_FILE_EXTENSION);
+			asURI = uri.appendSegment(PivotConstantsInternal.DOT_OCL_AS_FILE_EXTENSION);
 		}
 		assert isASURI(asURI);
 		return asURI;
@@ -976,7 +976,7 @@ public class PivotUtil extends ClassUtil
 	@SuppressWarnings("null")
 	public static @NonNull String getBodyExpression(@NonNull String umlBody) {
 		String s = umlBody.trim();
-		if (s.startsWith("result")) {
+		if (s.startsWith(PivotConstants.RESULT_NAME)) {
 			s = s.substring(6).trim();
 			if (s.startsWith("=")) {
 				s = s.substring(1).trim();
@@ -1334,22 +1334,22 @@ public class PivotUtil extends ClassUtil
 	public static String getSpecificationRole(@NonNull LanguageExpression specification) {
 		EReference eContainmentFeature = specification.eContainmentFeature();
 		if (eContainmentFeature == PivotPackage.Literals.NAMESPACE__OWNED_CONSTRAINTS) {
-			return PivotConstants.OWNED_CONSTRAINT_ROLE;
+			return PivotConstantsInternal.OWNED_CONSTRAINT_ROLE;
 		}
 		else if (eContainmentFeature == PivotPackage.Literals.PROPERTY__OWNED_EXPRESSION) {
-			return PivotConstants.DEFAULT_EXPRESSION_ROLE;
+			return PivotConstantsInternal.DEFAULT_EXPRESSION_ROLE;
 		}
 		else if (eContainmentFeature == PivotPackage.Literals.OPERATION__BODY_EXPRESSION) {
-			return PivotConstants.BODY_EXPRESSION_ROLE;
+			return PivotConstantsInternal.BODY_EXPRESSION_ROLE;
 		}
 		else if (eContainmentFeature == PivotPackage.Literals.OPERATION__OWNED_PRECONDITIONS) {
-			return PivotConstants.PRECONDITION_ROLE;
+			return PivotConstantsInternal.PRECONDITION_ROLE;
 		}
 		else if (eContainmentFeature == PivotPackage.Literals.OPERATION__OWNED_POSTCONDITIONS) {
-			return PivotConstants.POSTCONDITION_ROLE;
+			return PivotConstantsInternal.POSTCONDITION_ROLE;
 		}
 		else {
-			return PivotConstants.UNKNOWN_ROLE;
+			return PivotConstantsInternal.UNKNOWN_ROLE;
 		}
 	}
 

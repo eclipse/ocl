@@ -46,6 +46,7 @@ import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.xtext.base.cs2as.Continuation;
@@ -190,7 +191,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 					if (contextVariable != null) {
 						List<CGParameter> cgParameters = cgOperation.getParameters();
 						CGParameter cgContext = as2cgVisitor.getParameter(contextVariable);
-						cgContext.setValueName("self");
+						cgContext.setValueName(PivotConstants.SELF_NAME);
 						cgParameters.add(cgContext);
 					}
 					

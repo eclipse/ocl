@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.Environment;
+import org.eclipse.ocl.pivot.EnvironmentInternal;
 import org.eclipse.ocl.pivot.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.OCL;
@@ -30,6 +30,7 @@ import org.eclipse.ocl.pivot.context.OperationContext;
 import org.eclipse.ocl.pivot.context.ParserContext;
 import org.eclipse.ocl.pivot.context.PropertyContext;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 /**
  * Implementation of the {@link OCLHelper} convenience interface.
@@ -37,11 +38,11 @@ import org.eclipse.ocl.pivot.manager.MetaModelManager;
 public class OCLHelperImpl implements OCLHelper
 {
     private final @NonNull OCL ocl;
-	protected final @NonNull Environment rootEnvironment;
+	protected final @NonNull EnvironmentInternal rootEnvironment;
 	protected final @NonNull MetaModelManager metaModelManager;
 
 	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
-	private Environment env;
+	private EnvironmentInternal env;
 
 	private boolean validating = true;
     
@@ -95,7 +96,7 @@ public class OCLHelperImpl implements OCLHelper
 		if (contextOperation == null) {
 			throw new IllegalStateException("Undefined contextOperation");
 		}
-		ParserContext parserContext = new OperationContext(metaModelManager, null, contextOperation, Environment.RESULT_VARIABLE_NAME);
+		ParserContext parserContext = new OperationContext(metaModelManager, null, contextOperation, PivotConstants.RESULT_NAME);
 		return parserContext.parse(contextOperation, expression);
 	}
 
@@ -148,7 +149,7 @@ public class OCLHelperImpl implements OCLHelper
 	
 	@Override
 	@SuppressWarnings("null")
-	public @NonNull Environment getEnvironment() {
+	public @NonNull EnvironmentInternal getEnvironment() {
 		return env == null ? rootEnvironment : env;
 	}
 	
@@ -184,7 +185,7 @@ public class OCLHelperImpl implements OCLHelper
 		setEnvironment(environmentFactory.createClassifierContext(getEnvironment(), context));
 	}
 	
-	private void setEnvironment(@NonNull Environment env) {
+	private void setEnvironment(@NonNull EnvironmentInternal env) {
 		this.env = env;
 	}
     

@@ -25,14 +25,14 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.util.EcoreSwitch;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.utilities.AliasAdapter;
 
 /**
  * Ecore2Moniker supports generation of a hierarchically derived moniker for
  * an EModelElement. A moniker provides a unique repeatable readable id.
  */
-public class UML2Moniker extends EcoreSwitch<Object> implements PivotConstants
+public class UML2Moniker extends EcoreSwitch<Object> implements PivotConstantsInternal
 {
 	public static String toSignature(EModelElement eElement) {
 		UML2Moniker moniker = new UML2Moniker(true);

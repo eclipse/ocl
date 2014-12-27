@@ -20,7 +20,7 @@ import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.OCLExpression;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
@@ -177,13 +177,13 @@ public class EssentialOCLScoping
 			}
 			String typeText = "";
 			if (source != null) {
-				typeText = PivotConstants.UNKNOWN_TYPE_TEXT;
+				typeText = PivotConstantsInternal.UNKNOWN_TYPE_TEXT;
 				if (sourceType == null) {
 					sourceType = source.getType();
 				}
 				if (sourceType != null) {
 					OperatorExpCS csParent = navigationArgument != null ? navigationArgument.getLocalParent() : null;
-					if (!(sourceType instanceof CollectionType) && NavigationUtil.isNavigationInfixExp(csParent) && (csParent != null) && PivotConstants.COLLECTION_NAVIGATION_OPERATOR.equals(((InfixExpCS)csParent).getName())) {
+					if (!(sourceType instanceof CollectionType) && NavigationUtil.isNavigationInfixExp(csParent) && (csParent != null) && PivotConstantsInternal.COLLECTION_NAVIGATION_OPERATOR.equals(((InfixExpCS)csParent).getName())) {
 						typeText = "Set(" + sourceType.toString() + ")";
 					}
 					else {

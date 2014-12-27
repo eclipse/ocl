@@ -19,7 +19,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.Environment;
+import org.eclipse.ocl.pivot.EnvironmentInternal;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.OCLExpression;
@@ -54,7 +54,7 @@ import org.eclipse.ocl.pivot.util.PivotInternalPlugin;
 public class QueryImpl implements Query, ProblemAware
 {
 	private final OCL ocl;
-	private final Environment environment;
+	private final EnvironmentInternal environment;
 	private final ExpressionInOCL query;
 	private final OCLExpression expression;
 	private ModelManager modelManager = null;
@@ -132,7 +132,7 @@ public class QueryImpl implements Query, ProblemAware
 		// lazily create the evaluation environment, if not already done by
 		//    the client.  There is no "self" context variable
 		@SuppressWarnings("null")
-		@NonNull Environment nonNullEnvironment = environment;
+		@NonNull EnvironmentInternal nonNullEnvironment = environment;
 		EvaluationVisitor ev =
 			nonNullEnvironment.getEnvironmentFactory().createEvaluationVisitor(
 					nonNullEnvironment, getEvaluationEnvironment(), getModelManager());
@@ -177,7 +177,7 @@ public class QueryImpl implements Query, ProblemAware
 //		}
 		
 		@SuppressWarnings("null")
-		@NonNull Environment nonNullEnvironment = environment;
+		@NonNull EnvironmentInternal nonNullEnvironment = environment;
 		EvaluationVisitor ev = nonNullEnvironment.getEnvironmentFactory().createEvaluationVisitor(
 					nonNullEnvironment, myEnv, getModelManager());
 		

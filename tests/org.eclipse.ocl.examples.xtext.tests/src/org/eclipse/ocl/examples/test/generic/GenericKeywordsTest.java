@@ -121,7 +121,7 @@ public abstract class GenericKeywordsTest
         assertInvariant(constraint, "_'con''te' 'x'\n't' <> null implies self._context.oclIsKindOf(Class)");
     }
 
-    public void test_isUniqueOperation_162300() {
+/*    public void test_isUniqueOperation_162300() {
         createVariableInEnvironment("aBlock", block);
         assertInvariant(collection, "self.isUnique(aBlock)");
         assertInvariant(collection, "isUnique(aBlock)");
@@ -131,7 +131,7 @@ public abstract class GenericKeywordsTest
         createVariableInEnvironment("aBlock", block);
         assertInvariant(collection, "self.select(aBlock).isEmpty()");
         assertInvariant(collection, "select(aBlock).isEmpty()");
-   }
+   } */
 
     public void test_contextOperation_162300() {
         assertInvariant(block, "self._context(self).name = 'Block'");

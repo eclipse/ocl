@@ -17,6 +17,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGModelFactory;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.JavaConstants;
 import org.eclipse.ocl.examples.codegen.java.JavaGlobalContext;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 /**
  * A AutoGlobalContext maintains the Java-specific global context for generation of Auto code.
@@ -31,7 +32,7 @@ public class CS2ASGlobalContext extends JavaGlobalContext<CS2ASCodeGenerator>
 		nameManager.reserveName("context", null);
 		nameManager.reserveName("converter", null);
 		nameManager.reserveName("element", null);
-		nameManager.reserveName("result", null);
+		nameManager.reserveName(PivotConstants.RESULT_NAME, null);
 	}
 	
 	@Override

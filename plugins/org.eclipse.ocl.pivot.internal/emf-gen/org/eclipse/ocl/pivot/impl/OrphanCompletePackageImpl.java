@@ -20,7 +20,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.OrphanCompletePackage;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateSignature;
@@ -70,7 +70,7 @@ public class OrphanCompletePackageImpl extends CompletePackageImpl implements Or
 	protected OrphanCompletePackageImpl()
 	{
 		super();
-		init("$orphans$", "orph", PivotConstants.ORPHANAGE_URI);
+		init("$orphans$", "orph", PivotConstantsInternal.ORPHANAGE_URI);
 	}
 
 	@Override

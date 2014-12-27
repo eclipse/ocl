@@ -58,7 +58,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.pivot.OCL;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.PivotStandaloneSetup;
 import org.eclipse.ocl.pivot.delegate.ValidationDelegate;
 import org.eclipse.ocl.pivot.ecore.AS2Ecore;
@@ -172,7 +172,7 @@ public class PivotTestCase extends TestCase
 		//		
 		URI savedURI = ClassUtil.nonNullState(asResource.getURI());
 //		asResource.setURI(PivotUtil.getNonPivotURI(savedURI).appendFileExtension(PivotConstants.OCL_AS_FILE_EXTENSION));
-		asResource.setURI(outputURI.trimFileExtension().trimFileExtension().appendFileExtension(PivotConstants.OCL_AS_FILE_EXTENSION));
+		asResource.setURI(outputURI.trimFileExtension().trimFileExtension().appendFileExtension(PivotConstantsInternal.OCL_AS_FILE_EXTENSION));
 		asResource.save(null);
 		asResource.setURI(savedURI);
 		

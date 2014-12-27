@@ -20,7 +20,7 @@ import org.eclipse.ocl.pivot.CollectionRange;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ConstructorExp;
 import org.eclipse.ocl.pivot.EnumLiteralExp;
-import org.eclipse.ocl.pivot.Environment;
+import org.eclipse.ocl.pivot.EnvironmentInternal;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.IfExp;
 import org.eclipse.ocl.pivot.IntegerLiteralExp;
@@ -92,7 +92,7 @@ public abstract class AbstractEvaluationVisitorDecorator<EV extends EvaluationVi
      * Obtains my delegate's environment.
      */
     @Override
-	public @NonNull Environment getEnvironment() {
+	public @NonNull EnvironmentInternal getEnvironment() {
         return delegate.getEnvironment();
     }
 

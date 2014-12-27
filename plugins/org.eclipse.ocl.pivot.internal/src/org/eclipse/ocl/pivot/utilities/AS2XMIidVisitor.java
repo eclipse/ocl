@@ -26,7 +26,7 @@ import org.eclipse.ocl.pivot.Nameable;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.PrimitiveType;
@@ -205,7 +205,7 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 			return false;
 		}
 		String name = object.getName();
-		if (PivotConstants.WILDCARD_NAME.equals(name)) {
+		if (PivotConstantsInternal.WILDCARD_NAME.equals(name)) {
 			if (Orphanage.isTypeOrphanage(PivotUtil.getContainingPackage(object))) {
 				return false;
 			}

@@ -39,7 +39,6 @@ import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.Environment;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.pivot.Iteration;
@@ -50,7 +49,7 @@ import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.Parameter;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
@@ -67,6 +66,7 @@ import org.eclipse.ocl.pivot.scoping.ScopeFilter;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.pivot.utilities.MorePivotable;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.Pivotable;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
@@ -537,7 +537,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		for (org.eclipse.ocl.pivot.Package pkg : pkgs) {
 			String name = pkg.getName();
 			if (name == null) {
-				name = PivotConstants.NULL_ROOT;
+				name = PivotConstantsInternal.NULL_ROOT;
 			}
 			String qualifiedName = getQualifiedName(new StringBuilder(), pkg);
 			org.eclipse.ocl.pivot.Package oldPkg = oldPackagesByQualifiedName.put(qualifiedName, pkg);
@@ -591,7 +591,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		}
 		String name = pkg.getName();
 		if (name == null) {
-			name = PivotConstants.NULL_ROOT;
+			name = PivotConstantsInternal.NULL_ROOT;
 		}
 		s.append(name);
 		@SuppressWarnings("null") @NonNull String string = s.toString();
@@ -606,7 +606,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		}
 		String name = csPackage.getName();
 		if (name == null) {
-			name = PivotConstants.NULL_ROOT;
+			name = PivotConstantsInternal.NULL_ROOT;
 			if (eContainer == null) {
 				Resource csResource = csPackage.eResource();
 				if (csResource != null) {
@@ -930,26 +930,26 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 				if (contextType != null) {
 					setClassifierContext(pivotSpecification, contextType);
 				}
-				setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, contextType, null);
+				setContextVariable(pivotSpecification, PivotConstants.SELF_NAME, contextType, null);
 			}
 			else if (eContainingFeature == PivotPackage.Literals.OPERATION__OWNED_PRECONDITIONS) {
 				Operation contextOperation = (Operation)eContainer;
 				if (contextOperation != null) {
-					setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, contextOperation.getOwningClass(), null);
+					setContextVariable(pivotSpecification, PivotConstants.SELF_NAME, contextOperation.getOwningClass(), null);
 					setOperationContext(pivotSpecification, contextOperation, null);
 				}
 				else {
-					setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, null, null);
+					setContextVariable(pivotSpecification, PivotConstants.SELF_NAME, null, null);
 				}
 			}
 			else if (eContainingFeature == PivotPackage.Literals.OPERATION__OWNED_POSTCONDITIONS) {
 				Operation contextOperation = (Operation)eContainer;
 				if (contextOperation != null) {
-					setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, contextOperation.getOwningClass(), null);
-					setOperationContext(pivotSpecification, contextOperation, Environment.RESULT_VARIABLE_NAME);
+					setContextVariable(pivotSpecification, PivotConstants.SELF_NAME, contextOperation.getOwningClass(), null);
+					setOperationContext(pivotSpecification, contextOperation, PivotConstants.RESULT_NAME);
 				}
 				else {
-					setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, null, null);
+					setContextVariable(pivotSpecification, PivotConstants.SELF_NAME, null, null);
 				}
 			}
 			else if (eContainingFeature == null) {
@@ -963,20 +963,20 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 			Property contextProperty = (Property)eContainer;
 			if (contextProperty != null) {
 				setPropertyContext(pivotSpecification, contextProperty);
-				setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, contextProperty.getOwningClass(), null);
+				setContextVariable(pivotSpecification, PivotConstants.SELF_NAME, contextProperty.getOwningClass(), null);
 			}
 			else {
-				setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, null, null);
+				setContextVariable(pivotSpecification, PivotConstants.SELF_NAME, null, null);
 			}
 		}
 		else if (eContainingFeature == PivotPackage.Literals.OPERATION__BODY_EXPRESSION) {
 			Operation contextOperation = (Operation)eContainer;
 			if (contextOperation != null) {
-				setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, contextOperation.getOwningClass(), null);
+				setContextVariable(pivotSpecification, PivotConstants.SELF_NAME, contextOperation.getOwningClass(), null);
 				setOperationContext(pivotSpecification, contextOperation, null);
 			}
 			else {
-				setContextVariable(pivotSpecification, Environment.SELF_VARIABLE_NAME, null, null);
+				setContextVariable(pivotSpecification, PivotConstants.SELF_NAME, null, null);
 			}
 		}
 		else {

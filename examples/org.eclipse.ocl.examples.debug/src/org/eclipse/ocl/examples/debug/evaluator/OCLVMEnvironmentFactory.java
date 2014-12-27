@@ -37,7 +37,7 @@ public class OCLVMEnvironmentFactory extends PivotEnvironmentFactory implements 
 
 	@Override
 	public @NonNull OCLVMEnvironment createEnvironment() {
-		OCLVMEnvironment result = new OCLVMEnvironment(this, null);
+		OCLVMEnvironment result = new OCLVMEnvironment(this);
 		return result;
 	}
 

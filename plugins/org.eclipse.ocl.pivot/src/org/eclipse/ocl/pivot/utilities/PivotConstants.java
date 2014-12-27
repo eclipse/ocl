@@ -84,4 +84,14 @@ public interface PivotConstants
 	static final @NonNull String MESSAGE_PART_NAME = "message";
 	static final @NonNull String SEVERITY_PART_NAME = "severity";
 	static final @NonNull String STATUS_PART_NAME = "status";
+
+	/**
+	 * The name of the context variable 'self'.
+	 */
+	@NonNull String SELF_NAME = "self"; //$NON-NLS-1$
+
+	/**
+	 * The name of the operation result variable 'result'.
+	 */
+	@NonNull String RESULT_NAME = "result"; //$NON-NLS-1$
 }

@@ -16,7 +16,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.OCLExpression;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.PropertyCallExp;
 import org.eclipse.ocl.pivot.StringLiteralExp;
@@ -50,7 +50,7 @@ public abstract class ConstraintEvaluator<T>
 		if (body instanceof PropertyCallExp) {
 			PropertyCallExp propertyCallExp = (PropertyCallExp)body;
 			Property referredProperty = propertyCallExp.getReferredProperty();
-			if ((referredProperty != null) && (referredProperty.getOwningClass() instanceof TupleType) && PivotConstants.STATUS_PART_NAME.equals(referredProperty.getName())) {
+			if ((referredProperty != null) && (referredProperty.getOwningClass() instanceof TupleType) && PivotConstantsInternal.STATUS_PART_NAME.equals(referredProperty.getName())) {
 				body = propertyCallExp.getOwnedSource();
 			}
 		}
@@ -109,7 +109,7 @@ public abstract class ConstraintEvaluator<T>
 		if (result instanceof TupleValue) {
 			TupleValue tupleValue = (TupleValue)result;
 			TupleTypeId tupleTypeId = tupleValue.getTypeId();
-			TuplePartId messagePartId = tupleTypeId.getPartId(PivotConstants.MESSAGE_PART_NAME);
+			TuplePartId messagePartId = tupleTypeId.getPartId(PivotConstantsInternal.MESSAGE_PART_NAME);
 			if (messagePartId != null) {
 				@SuppressWarnings("null")@NonNull String string = String.valueOf(tupleValue.getValue(messagePartId));
 				return string;
@@ -132,7 +132,7 @@ public abstract class ConstraintEvaluator<T>
 		if (result instanceof TupleValue) {
 			TupleValue tupleValue = (TupleValue)result;
 			TupleTypeId tupleTypeId = tupleValue.getTypeId();
-			TuplePartId severityPartId = tupleTypeId.getPartId(PivotConstants.SEVERITY_PART_NAME);
+			TuplePartId severityPartId = tupleTypeId.getPartId(PivotConstantsInternal.SEVERITY_PART_NAME);
 			if (severityPartId != null) {
 				IntegerValue value = ValueUtil.integerValueOf(tupleValue.getValue(severityPartId));
 				int signum = value.signum();
@@ -147,7 +147,7 @@ public abstract class ConstraintEvaluator<T>
 				}
 			}
 			else {
-				TuplePartId statusPartId = tupleTypeId.getPartId(PivotConstants.STATUS_PART_NAME);
+				TuplePartId statusPartId = tupleTypeId.getPartId(PivotConstantsInternal.STATUS_PART_NAME);
 				if (statusPartId != null) {
 					result = tupleValue.getValue(statusPartId);
 				}
@@ -167,7 +167,7 @@ public abstract class ConstraintEvaluator<T>
 		if (result instanceof TupleValue) {
 			TupleValue tupleValue = (TupleValue)result;
 			TupleTypeId tupleTypeId = tupleValue.getTypeId();
-			TuplePartId statusPartId = tupleTypeId.getPartId(PivotConstants.STATUS_PART_NAME);
+			TuplePartId statusPartId = tupleTypeId.getPartId(PivotConstantsInternal.STATUS_PART_NAME);
 			if (statusPartId == null) {
 				return false;
 			}

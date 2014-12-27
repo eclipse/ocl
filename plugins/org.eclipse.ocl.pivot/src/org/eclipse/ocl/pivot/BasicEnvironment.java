@@ -18,5 +18,6 @@ import org.eclipse.jdt.annotation.NonNull;
  */
 public interface BasicEnvironment extends Adaptable, Customizable
 {
+	void dispose();
 	@NonNull EnvironmentFactory getEnvironmentFactory();
 }

@@ -55,8 +55,8 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
-import org.eclipse.ocl.pivot.Environment;
 import org.eclipse.ocl.pivot.EnvironmentFactoryInternal;
+import org.eclipse.ocl.pivot.EnvironmentInternal;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Namespace;
@@ -72,7 +72,6 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.SemanticException;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.context.ClassContext;
 import org.eclipse.ocl.pivot.context.ParserContext;
 import org.eclipse.ocl.pivot.ecore.Ecore2AS;
@@ -190,7 +189,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	protected MetaModelManager metaModelManager;
 	protected IdResolver idResolver;
 	protected OCL ocl;
-	protected Environment environment;
+	protected EnvironmentInternal environment;
 	protected OCLHelper helper;
 	protected final boolean useCodeGen;
 
@@ -1133,14 +1132,6 @@ public abstract class PivotTestSuite extends PivotTestCase
 			"ecore", new EcoreResourceFactoryImpl());
 		resourceSet.getPackageRegistry().put(PivotPackage.eINSTANCE.getNsURI(), PivotPackage.eINSTANCE);
 		return resourceSet;
-	}
-
-	@SuppressWarnings("null")
-	protected void createVariableInEnvironment(@NonNull String name, @NonNull Type type) {
-		Variable var = environment.getOCLFactory().createVariable();
-        var.setName(name);
-        var.setType(type);
-        environment.addElement(var.getName(), var, true);
 	}
 	
 	protected void disposeResourceSet() {

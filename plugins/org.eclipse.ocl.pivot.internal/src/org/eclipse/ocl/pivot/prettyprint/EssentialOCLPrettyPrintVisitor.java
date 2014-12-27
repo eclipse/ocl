@@ -53,6 +53,7 @@ import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableDeclaration;
 import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.Unlimited;
@@ -626,7 +627,7 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 	@Override
 	public Object visitVariableExp(@NonNull VariableExp object) {
 		VariableDeclaration referredVariable = object.getReferredVariable();
-		if ((referredVariable != null) && "self".equals(referredVariable.getName())) {
+		if ((referredVariable != null) && PivotConstants.SELF_NAME.equals(referredVariable.getName())) {
 			context.appendName(referredVariable, null);
 		}
 		else {

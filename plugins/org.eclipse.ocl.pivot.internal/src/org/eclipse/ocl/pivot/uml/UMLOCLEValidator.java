@@ -32,7 +32,7 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
@@ -352,8 +352,8 @@ public class UMLOCLEValidator implements EValidator
 			EList<String> languages = opaqueExpression.getLanguages();
 			for (int i = 0; i < bodies.size(); i++) {
 				try {
-					String language = i < languages.size() ? languages.get(i) : PivotConstants.OCL_LANGUAGE;
-					if ((i >= languages.size()) || PivotConstants.OCL_LANGUAGE.equals(languages.get(i))) {
+					String language = i < languages.size() ? languages.get(i) : PivotConstantsInternal.OCL_LANGUAGE;
+					if ((i >= languages.size()) || PivotConstantsInternal.OCL_LANGUAGE.equals(languages.get(i))) {
 						String body = bodies.get(i);
 						if (body != null) {
 							if (VALIDATE_INSTANCE.isActive()) {
@@ -446,12 +446,12 @@ public class UMLOCLEValidator implements EValidator
 		boolean allOk = true;
 		if (context != null) {
 			for (int i = 0; i < bodies.size(); i++) {
-				if ((i >= languages.size()) || PivotConstants.OCL_LANGUAGE.equals(languages.get(i))) {
+				if ((i >= languages.size()) || PivotConstantsInternal.OCL_LANGUAGE.equals(languages.get(i))) {
 					try {
 						String body = bodies.get(i);
 						if (body != null) {
 							if (VALIDATE_OPAQUE_ELEMENT.isActive()) {
-								VALIDATE_OPAQUE_ELEMENT.println(PivotConstants.OCL_LANGUAGE + ": " + body);
+								VALIDATE_OPAQUE_ELEMENT.println(PivotConstantsInternal.OCL_LANGUAGE + ": " + body);
 							}
 							if (!validateSyntax(null, body, opaqueElement, diagnostics, context) && (diagnostics == null)) {
 								allOk = false;

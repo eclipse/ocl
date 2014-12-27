@@ -44,7 +44,7 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateParameter;
@@ -144,7 +144,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 		if (converter.isInvariant(eObject2)) {
 			Constraint pivotElement = converter.getCreated(Constraint.class, eObject2);
 			if (pivotElement != null) {
-				EAnnotation redefinesAnnotation = eObject2.getEAnnotation(PivotConstants.REDEFINES_ANNOTATION_SOURCE);
+				EAnnotation redefinesAnnotation = eObject2.getEAnnotation(PivotConstantsInternal.REDEFINES_ANNOTATION_SOURCE);
 				if (redefinesAnnotation != null) {
 					for (EObject eReference : redefinesAnnotation.getReferences()) {
 						if (eReference != null) {
@@ -161,7 +161,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 		else {
 			Operation pivotElement = (Operation) caseETypedElement(eObject2);
 			if (pivotElement != null) {
-				EAnnotation redefinesAnnotation = eObject2.getEAnnotation(PivotConstants.REDEFINES_ANNOTATION_SOURCE);
+				EAnnotation redefinesAnnotation = eObject2.getEAnnotation(PivotConstantsInternal.REDEFINES_ANNOTATION_SOURCE);
 				if (redefinesAnnotation != null) {
 					for (EObject eReference : redefinesAnnotation.getReferences()) {
 						if (eReference != null) {
@@ -252,22 +252,22 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 							//
 							//
 							String lowerValue = details.get("lower");
-							IntegerValue lower = lowerValue != null ? ValueUtil.integerValueOf(lowerValue) :  PivotConstants.ANNOTATED_IMPLICIT_OPPOSITE_LOWER_VALUE;
+							IntegerValue lower = lowerValue != null ? ValueUtil.integerValueOf(lowerValue) :  PivotConstantsInternal.ANNOTATED_IMPLICIT_OPPOSITE_LOWER_VALUE;
 							if (lower.isInvalid()) {
 								logger.error("Invalid " + PROPERTY_OPPOSITE_ROLE_LOWER_KEY + " " + lower);
-								lower = PivotConstants.ANNOTATED_IMPLICIT_OPPOSITE_LOWER_VALUE;
+								lower = PivotConstantsInternal.ANNOTATED_IMPLICIT_OPPOSITE_LOWER_VALUE;
 							}
 							String upperValue = details.get("upper");
-							UnlimitedNaturalValue upper = upperValue != null ? ValueUtil.unlimitedNaturalValueOf(upperValue) : PivotConstants.ANNOTATED_IMPLICIT_OPPOSITE_UPPER_VALUE;
+							UnlimitedNaturalValue upper = upperValue != null ? ValueUtil.unlimitedNaturalValueOf(upperValue) : PivotConstantsInternal.ANNOTATED_IMPLICIT_OPPOSITE_UPPER_VALUE;
 							if (upper.isInvalid()) {
 								logger.error("Invalid " + PROPERTY_OPPOSITE_ROLE_UPPER_KEY + " " + upper);
-								upper = PivotConstants.ANNOTATED_IMPLICIT_OPPOSITE_UPPER_VALUE;
+								upper = PivotConstantsInternal.ANNOTATED_IMPLICIT_OPPOSITE_UPPER_VALUE;
 							}
 							if (!upper.equals(ValueUtil.ONE_VALUE)) {
 								String uniqueValue = details.get("unique");
-								boolean isUnique = uniqueValue != null ? Boolean.valueOf(uniqueValue) : PivotConstants.ANNOTATED_IMPLICIT_OPPOSITE_UNIQUE;
+								boolean isUnique = uniqueValue != null ? Boolean.valueOf(uniqueValue) : PivotConstantsInternal.ANNOTATED_IMPLICIT_OPPOSITE_UNIQUE;
 								String orderedValue = details.get("ordered");
-								boolean isOrdered = orderedValue != null ? Boolean.valueOf(orderedValue) : PivotConstants.ANNOTATED_IMPLICIT_OPPOSITE_ORDERED;
+								boolean isOrdered = orderedValue != null ? Boolean.valueOf(orderedValue) : PivotConstantsInternal.ANNOTATED_IMPLICIT_OPPOSITE_ORDERED;
 								oppositeProperty.setType(metaModelManager.getCollectionType(isOrdered, isUnique, localType, lower, upper));
 								oppositeProperty.setIsRequired(true);
 							}
@@ -296,7 +296,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 		@SuppressWarnings("null")@NonNull EStructuralFeature eObject2 = eObject;
 		Property pivotElement = (Property) caseETypedElement(eObject2);
 		if (pivotElement != null) {
-			EAnnotation redefinesAnnotation = eObject2.getEAnnotation(PivotConstants.REDEFINES_ANNOTATION_SOURCE);
+			EAnnotation redefinesAnnotation = eObject2.getEAnnotation(PivotConstantsInternal.REDEFINES_ANNOTATION_SOURCE);
 			if (redefinesAnnotation != null) {
 				for (EObject eReference : redefinesAnnotation.getReferences()) {
 					if (eReference != null) {
@@ -308,7 +308,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 			EObject eContainer = eObject2.eContainer();
 			if (eContainer instanceof EAnnotation) {
 				EAnnotation duplicatesAnnotation = (EAnnotation) eContainer;
-				if (PivotConstants.DUPLICATES_ANNOTATION_SOURCE.equals(duplicatesAnnotation.getSource())) {
+				if (PivotConstantsInternal.DUPLICATES_ANNOTATION_SOURCE.equals(duplicatesAnnotation.getSource())) {
 					EAnnotation eAnnotation = duplicatesAnnotation.getEAnnotation(eObject.getName());
 					if (eAnnotation != null) {
 						String newLowerBound = null;

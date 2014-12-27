@@ -38,7 +38,7 @@ import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Operation;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.Type;
@@ -88,7 +88,7 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 			if (eRedefined != null) {
 				if (eRedefinesAnnotation == null) {
 					eRedefinesAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-					eRedefinesAnnotation.setSource(PivotConstants.REDEFINES_ANNOTATION_SOURCE);
+					eRedefinesAnnotation.setSource(PivotConstantsInternal.REDEFINES_ANNOTATION_SOURCE);
 					eStructuralFeature.getEAnnotations().add(eRedefinesAnnotation);
 				}
 				eRedefinesAnnotation.getReferences().add(eRedefined);
@@ -159,7 +159,7 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 		for (@SuppressWarnings("null")@NonNull Property redefinedProperty1 :  pivotProperty.getRedefinedProperties()) {
 			if (!ClassUtil.safeEquals(pivotProperty.getName(), redefinedProperty1.getName())) {
 				EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-				eAnnotation.setSource(PivotConstants.REDEFINES_ANNOTATION_SOURCE);
+				eAnnotation.setSource(PivotConstantsInternal.REDEFINES_ANNOTATION_SOURCE);
 				for (@SuppressWarnings("null")@NonNull Property redefinedProperty2 :  pivotProperty.getRedefinedProperties()) {
 					EStructuralFeature eRedefined = context.getCreated(EStructuralFeature.class, redefinedProperty2);
 					if (eRedefined != null) {
@@ -311,7 +311,7 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 			if (eRedefined != null) {
 				if (eRedefinesAnnotation == null) {
 					eRedefinesAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-					eRedefinesAnnotation.setSource(PivotConstants.REDEFINES_ANNOTATION_SOURCE);
+					eRedefinesAnnotation.setSource(PivotConstantsInternal.REDEFINES_ANNOTATION_SOURCE);
 				}
 				eRedefinesAnnotation.getReferences().add(eRedefined);
 			}
@@ -338,7 +338,7 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 			if (eRedefined != null) {
 				if (eRedefinesAnnotation == null) {
 					eRedefinesAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-					eRedefinesAnnotation.setSource(PivotConstants.REDEFINES_ANNOTATION_SOURCE);
+					eRedefinesAnnotation.setSource(PivotConstantsInternal.REDEFINES_ANNOTATION_SOURCE);
 				}
 				eRedefinesAnnotation.getReferences().add(eRedefined);
 			}

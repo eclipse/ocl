@@ -36,7 +36,7 @@ import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.library.LibraryConstants;
 import org.eclipse.ocl.pivot.OCL;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.SequenceType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.complete.CompleteClassInternal;
@@ -334,9 +334,9 @@ public class EditTests extends XtextTestCase
 		for (TreeIterator<EObject> tit = aResource.getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
 			if (eObject instanceof EModelElement) {
-				EAnnotation eAnnotation = ((EModelElement)eObject).getEAnnotation(PivotConstants.DOCUMENTATION_ANNOTATION_SOURCE);
+				EAnnotation eAnnotation = ((EModelElement)eObject).getEAnnotation(PivotConstantsInternal.DOCUMENTATION_ANNOTATION_SOURCE);
 				if (eAnnotation != null) {
-					String comment = eAnnotation.getDetails().get(PivotConstants.DOCUMENTATION_ANNOTATION_KEY);
+					String comment = eAnnotation.getDetails().get(PivotConstantsInternal.DOCUMENTATION_ANNOTATION_KEY);
 					Integer count = expected.get(comment);
 					assertTrue("Expected comment '" + comment + "' exists", (count != null) && (count > 0));
 					expected.put(comment, count-1);

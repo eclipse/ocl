@@ -22,7 +22,7 @@ import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.SemanticException;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ecore.Ecore2AS;
@@ -48,7 +48,7 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 				return constraint;
 			}
 		}
-		throw new OCLDelegateException(new SemanticException(OCLMessages.MissingSpecificationBody_ERROR_, type, PivotConstants.OWNED_CONSTRAINT_ROLE));
+		throw new OCLDelegateException(new SemanticException(OCLMessages.MissingSpecificationBody_ERROR_, type, PivotConstantsInternal.OWNED_CONSTRAINT_ROLE));
 	}
 
 	@Override
@@ -112,7 +112,7 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 	public @NonNull ExpressionInOCL getQueryOrThrow(@NonNull MetaModelManager metaModelManager, @NonNull Constraint constraint) throws OCLDelegateException {
 		LanguageExpression specification = constraint.getOwnedSpecification();
 		if (specification == null) {
-			throw new OCLDelegateException(new SemanticException(OCLMessages.MissingSpecificationBody_ERROR_, constraint, PivotConstants.OWNED_CONSTRAINT_ROLE));
+			throw new OCLDelegateException(new SemanticException(OCLMessages.MissingSpecificationBody_ERROR_, constraint, PivotConstantsInternal.OWNED_CONSTRAINT_ROLE));
 		}
 		try {
 			return metaModelManager.getQueryOrThrow(specification);

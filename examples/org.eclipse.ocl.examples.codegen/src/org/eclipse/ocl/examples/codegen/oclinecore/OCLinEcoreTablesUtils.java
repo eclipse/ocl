@@ -52,7 +52,7 @@ import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.ParameterTypes;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateBinding;
@@ -812,7 +812,7 @@ public class OCLinEcoreTablesUtils
 		if (asPackage == metaModelPackage) {
 			GenPackage metaModelGenPackage = getMetaModelGenPackage(usedGenPackages);
 			if (metaModelGenPackage == null) {
-				metaModelGenPackage = loadGenPackage(genModelResourceSet, PivotConstants.GEN_MODEL_URI);
+				metaModelGenPackage = loadGenPackage(genModelResourceSet, PivotConstantsInternal.GEN_MODEL_URI);
 			}
 			return metaModelGenPackage;
 		}

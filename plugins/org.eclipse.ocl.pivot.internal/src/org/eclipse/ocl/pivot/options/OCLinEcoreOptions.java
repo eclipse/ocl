@@ -12,7 +12,7 @@ package org.eclipse.ocl.pivot.options;
 
 import org.eclipse.ocl.common.delegate.VirtualDelegateMapping;
 import org.eclipse.ocl.common.internal.preferences.StringPreference;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
 
 public class OCLinEcoreOptions
@@ -31,7 +31,7 @@ public class OCLinEcoreOptions
 	 * {@link VirtualDelegateMapping} to control which evaluator to use.
 	 */
     public static final StringPreference EXPORT_DELEGATION_URI = new StringPreference(
-    	PivotConstants.PLUGIN_ID, "export.delegation.mode", OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT); //$NON-NLS-1$
+    	PivotConstantsInternal.PLUGIN_ID, "export.delegation.mode", OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT); //$NON-NLS-1$
 
     /**
      * Not instantiable by clients.

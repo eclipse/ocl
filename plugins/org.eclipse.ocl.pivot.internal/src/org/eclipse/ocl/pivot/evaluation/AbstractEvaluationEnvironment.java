@@ -17,7 +17,7 @@ import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.Environment;
+import org.eclipse.ocl.pivot.EnvironmentInternal;
 import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.elements.AbstractBasicEnvironment;
@@ -31,7 +31,7 @@ import org.eclipse.osgi.util.NLS;
  * environments are encourage to extend this class rather than implement
  * an evaluation environment "from scratch."
  * <p>
- * See the {@link Environment} class for a description of the
+ * See the {@link EnvironmentInternal} class for a description of the
  * generic type parameters of this class. 
  * </p>
  * 

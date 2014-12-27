@@ -12,7 +12,7 @@ package org.eclipse.ocl.xtext.oclinecore.cs2as;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Annotation;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.xtext.base.cs2as.Continuation;
@@ -28,7 +28,7 @@ public class OCLinEcoreCSContainmentVisitor extends AbstractOCLinEcoreCSContainm
 	@Override
 	public Continuation<?> visitSysMLCS(@NonNull SysMLCS csElement) {
 		@NonNull Annotation pivotElement = context.refreshModelElement(Annotation.class, PivotPackage.Literals.ANNOTATION, csElement);
-		context.refreshName(pivotElement, PivotConstants.SYSML_ANNOTATION_SOURCE);
+		context.refreshName(pivotElement, PivotConstantsInternal.SYSML_ANNOTATION_SOURCE);
 		context.refreshComments(pivotElement, csElement);
 		return null;
 	}

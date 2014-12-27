@@ -65,7 +65,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.pivot.Parameter;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.PrimitiveType;
@@ -295,8 +295,8 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 		safeVisit(source);
         Type sourceType = source != null ? source.getType() : null;
         context.append(sourceType instanceof CollectionType
-				? PivotConstants.COLLECTION_NAVIGATION_OPERATOR
-				: PivotConstants.OBJECT_NAVIGATION_OPERATOR);
+				? PivotConstantsInternal.COLLECTION_NAVIGATION_OPERATOR
+				: PivotConstantsInternal.OBJECT_NAVIGATION_OPERATOR);
 		appendName(property);
 		appendAtPre(pc);
         List<OCLExpression> qualifiers = pc.getQualifiers();
@@ -335,7 +335,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 		else {
 			EObject container = object.eContainer();
 			if ((container != null) && (!(container instanceof Model) && (container instanceof NamedElement) &&
-				(!(container.eContainer() instanceof Model) || !PivotConstants.OCL_NAME.equals(((NamedElement)container).getName())))) {
+				(!(container.eContainer() instanceof Model) || !PivotConstantsInternal.OCL_NAME.equals(((NamedElement)container).getName())))) {
 				appendQualifiedName((NamedElement) container);
 				append("::"); //$NON-NLS-1$
 			}
@@ -459,7 +459,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 			append("null::");
 			appendName(cls);
 		}
-		else if (!(pkg.eContainer() instanceof Model) || !PivotConstants.OCL_NAME.equals(pkg.getName())) {
+		else if (!(pkg.eContainer() instanceof Model) || !PivotConstantsInternal.OCL_NAME.equals(pkg.getName())) {
 			appendQualifiedName(pkg, "::", cls);
 		}
 		else {
@@ -936,11 +936,11 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 		if (oper != null) {
 	        Type sourceType = source != null ? source.getType() : null;
 			append(sourceType instanceof CollectionType
-					? PivotConstants.COLLECTION_NAVIGATION_OPERATOR
-					: PivotConstants.OBJECT_NAVIGATION_OPERATOR);
+					? PivotConstantsInternal.COLLECTION_NAVIGATION_OPERATOR
+					: PivotConstantsInternal.OBJECT_NAVIGATION_OPERATOR);
 			appendName(oper);
 		} else {
-			append(PivotConstants.OBJECT_NAVIGATION_OPERATOR);
+			append(PivotConstantsInternal.OBJECT_NAVIGATION_OPERATOR);
 			appendName(oc);
 		}
 		append("(");

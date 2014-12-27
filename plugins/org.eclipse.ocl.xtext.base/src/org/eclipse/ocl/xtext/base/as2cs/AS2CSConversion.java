@@ -35,7 +35,7 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.Package;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateSignature;
@@ -75,7 +75,7 @@ import org.eclipse.ocl.xtext.basecs.TypedElementCS;
 import org.eclipse.ocl.xtext.basecs.TypedRefCS;
 import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
 
-public class AS2CSConversion extends AbstractConversion implements PivotConstants
+public class AS2CSConversion extends AbstractConversion implements PivotConstantsInternal
 {	
 	private static final Logger logger = Logger.getLogger(AS2CSConversion.class);
 

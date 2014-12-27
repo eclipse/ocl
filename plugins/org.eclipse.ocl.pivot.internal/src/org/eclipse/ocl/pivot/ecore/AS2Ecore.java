@@ -43,7 +43,7 @@ import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Model;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.delegate.DelegateInstaller;
@@ -79,13 +79,13 @@ public class AS2Ecore extends AbstractConversion
 
 	public static void copyAnnotationComments(@NonNull EAnnotation eModelElement, @NonNull Constraint pivotConstraint) {
 		String key = DelegateInstaller.getAnnotationKey(pivotConstraint);
-		EAnnotation commentAnnotation = eModelElement.getEAnnotation(PivotConstants.DOCUMENTATION_ANNOTATION_SOURCE);
+		EAnnotation commentAnnotation = eModelElement.getEAnnotation(PivotConstantsInternal.DOCUMENTATION_ANNOTATION_SOURCE);
 		List<Comment> newComments = pivotConstraint.getOwnedComments();
 		int iMax = newComments.size();
 		if (iMax > 0) {
 			if (commentAnnotation == null) {
 				commentAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-				commentAnnotation.setSource(PivotConstants.DOCUMENTATION_ANNOTATION_SOURCE);
+				commentAnnotation.setSource(PivotConstantsInternal.DOCUMENTATION_ANNOTATION_SOURCE);
 				eModelElement.getEAnnotations().add(commentAnnotation);
 			}
 			StringBuilder s = new StringBuilder();
@@ -109,7 +109,7 @@ public class AS2Ecore extends AbstractConversion
 		int iMax = newComments.size();
 		List<EAnnotation> removals = null;
 		for (EAnnotation eAnnotation : allEAnnotations) {
-			if (PivotConstants.DOCUMENTATION_ANNOTATION_SOURCE.equals(eAnnotation.getSource())) {
+			if (PivotConstantsInternal.DOCUMENTATION_ANNOTATION_SOURCE.equals(eAnnotation.getSource())) {
 				if (iComment >= iMax) {
 					if (removals == null) {
 						removals = new ArrayList<EAnnotation>();
@@ -118,16 +118,16 @@ public class AS2Ecore extends AbstractConversion
 				}
 				else {
 					String body = newComments.get(iComment).getBody();
-					eAnnotation.getDetails().put(PivotConstants.DOCUMENTATION_ANNOTATION_KEY, body);
+					eAnnotation.getDetails().put(PivotConstantsInternal.DOCUMENTATION_ANNOTATION_KEY, body);
 				}
 				iComment++;
 			}
 		}
 		for ( ; iComment < iMax; iComment++) {
 			EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-			eAnnotation.setSource(PivotConstants.DOCUMENTATION_ANNOTATION_SOURCE);
+			eAnnotation.setSource(PivotConstantsInternal.DOCUMENTATION_ANNOTATION_SOURCE);
 			String body = newComments.get(iComment).getBody();
-			eAnnotation.getDetails().put(PivotConstants.DOCUMENTATION_ANNOTATION_KEY, body);
+			eAnnotation.getDetails().put(PivotConstantsInternal.DOCUMENTATION_ANNOTATION_KEY, body);
 			allEAnnotations.add(eAnnotation);
 		}
 		if (removals != null) {
@@ -265,7 +265,7 @@ public class AS2Ecore extends AbstractConversion
 		this.pass1 = new AS2EcoreDeclarationVisitor(this);	
 		this.pass2 = new AS2EcoreReferenceVisitor(this);
 		this.ecoreURI = ecoreURI;
-		this.primitiveTypesUriPrefix = getString(options, PivotConstants.PRIMITIVE_TYPES_URI_PREFIX);
+		this.primitiveTypesUriPrefix = getString(options, PivotConstantsInternal.PRIMITIVE_TYPES_URI_PREFIX);
 	}
 
 	protected @Nullable Object convert(@NonNull Element pivotObject) {

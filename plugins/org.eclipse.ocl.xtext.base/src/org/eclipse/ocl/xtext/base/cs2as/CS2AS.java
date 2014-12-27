@@ -32,7 +32,6 @@ import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.Environment;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.PivotPackage;
@@ -48,6 +47,7 @@ import org.eclipse.ocl.pivot.scoping.ScopeFilter;
 import org.eclipse.ocl.pivot.scoping.ScopeView;
 import org.eclipse.ocl.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.xtext.base.scoping.AbstractJavaClassScope;
@@ -558,7 +558,7 @@ public abstract class CS2AS extends AbstractConversion implements MetaModelManag
 
 	public @Nullable VariableDeclaration lookupSelf(@NonNull ElementCS csElement) {
 		@SuppressWarnings("null") @NonNull EReference eReference = PivotPackage.Literals.EXPRESSION_IN_OCL__OWNED_CONTEXT;
-		EnvironmentView environmentView = new EnvironmentView(metaModelManager, eReference, Environment.SELF_VARIABLE_NAME);
+		EnvironmentView environmentView = new EnvironmentView(metaModelManager, eReference, PivotConstants.SELF_NAME);
 		ScopeView baseScopeView = BaseScopeView.getScopeView(metaModelManager, csElement, eReference);
 		environmentView.computeLookups(baseScopeView);
 		VariableDeclaration variableDeclaration = (VariableDeclaration) environmentView.getContent();

@@ -54,7 +54,6 @@ import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.DynamicElement;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
-import org.eclipse.ocl.pivot.Environment;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Feature;
 import org.eclipse.ocl.pivot.FeatureFilter;
@@ -77,7 +76,7 @@ import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Precedence;
@@ -132,6 +131,7 @@ import org.eclipse.ocl.pivot.utilities.CompleteElementIterable;
 import org.eclipse.ocl.pivot.utilities.External2AS;
 import org.eclipse.ocl.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.Pivotable;
@@ -1363,10 +1363,10 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 				if (eClass != null) {
 					EPackage ePackage = eClass.getEPackage();
 					if (ePackage instanceof UMLPackage) {
-						return IdManager.getRootPackageId(PivotConstants.UML_METAMODEL_NAME);
+						return IdManager.getRootPackageId(PivotConstantsInternal.UML_METAMODEL_NAME);
 					}
 					else if (ePackage instanceof TypesPackage) {
-						return IdManager.getRootPackageId(PivotConstants.TYPES_METAMODEL_NAME);
+						return IdManager.getRootPackageId(PivotConstantsInternal.TYPES_METAMODEL_NAME);
 					}
 //					if (ePackage instanceof EcorePackage) {
 //						return IdManager.getRootPackageId(DomainConstants.ECORE_METAMODEL_NAME);
@@ -1477,7 +1477,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 					if (pivotOperation.getOwnedPostconditions().contains(pivotContainer)) {
 						Type resultType = pivotOperation.getType();
 						if ((resultType != null) && !(resultType instanceof VoidType)) {
-							resultName = Environment.RESULT_VARIABLE_NAME;
+							resultName = PivotConstants.RESULT_NAME;
 						}
 					}
 					return new OperationContext(this, null, pivotOperation, resultName);
@@ -1508,7 +1508,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 				if (pivotOperation.getOwnedPostconditions().contains(pivotElement)) {
 					Type resultType = pivotOperation.getType();
 					if ((resultType != null) && !(resultType instanceof VoidType)) {
-						resultName = Environment.RESULT_VARIABLE_NAME;
+						resultName = PivotConstants.RESULT_NAME;
 					}
 				}
 				return new OperationContext(this, null, pivotOperation, resultName);
@@ -1969,11 +1969,11 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		}
 		else {
 			newOpposite.setType(getCollectionType(
-				PivotConstants.DEFAULT_IMPLICIT_OPPOSITE_ORDERED,
-				PivotConstants.DEFAULT_IMPLICIT_OPPOSITE_UNIQUE,
+				PivotConstantsInternal.DEFAULT_IMPLICIT_OPPOSITE_ORDERED,
+				PivotConstantsInternal.DEFAULT_IMPLICIT_OPPOSITE_UNIQUE,
 				thisClass,
-				PivotConstants.DEFAULT_IMPLICIT_OPPOSITE_LOWER_VALUE,
-				PivotConstants.DEFAULT_IMPLICIT_OPPOSITE_UPPER_VALUE));
+				PivotConstantsInternal.DEFAULT_IMPLICIT_OPPOSITE_LOWER_VALUE,
+				PivotConstantsInternal.DEFAULT_IMPLICIT_OPPOSITE_UPPER_VALUE));
 			newOpposite.setIsRequired(true);
 		}
 		thatClass = getMutable(thatClass);
@@ -2327,7 +2327,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		asMetamodel = asPackage;
 		String uri = asMetamodel.getURI();
 		if (uri != null) {
-			completeModel.addPackageURI2completeURI(uri, PivotConstants.METAMODEL_NAME);
+			completeModel.addPackageURI2completeURI(uri, PivotConstantsInternal.METAMODEL_NAME);
 		}
 	}
 
@@ -2348,7 +2348,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 			getASMetamodel();
 		}
 		else if (!metaNsURI.equals(asMetamodel.getURI())) {
-			completeModel.addPackageURI2completeURI(metaNsURI, PivotConstants.METAMODEL_NAME);
+			completeModel.addPackageURI2completeURI(metaNsURI, PivotConstantsInternal.METAMODEL_NAME);
 //			throw new IllegalMetamodelException(asMetamodel.getNsURI(), metaNsURI);
 		}
 	}

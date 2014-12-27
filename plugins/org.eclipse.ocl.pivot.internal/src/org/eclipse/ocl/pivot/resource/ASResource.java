@@ -15,7 +15,7 @@ import java.util.Map;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.PivotPackage;
 
 /**
@@ -50,7 +50,7 @@ public interface ASResource extends XMIResource
 	/**
 	 * The file extension for OCL Abstract Syntax resources.
 	 */
-	@NonNull String FILE_EXTENSION = PivotConstants.OCL_AS_FILE_EXTENSION;
+	@NonNull String FILE_EXTENSION = PivotConstantsInternal.OCL_AS_FILE_EXTENSION;
 
 	/**
 	 * The default encoding for OCL Abstract Syntax resources.

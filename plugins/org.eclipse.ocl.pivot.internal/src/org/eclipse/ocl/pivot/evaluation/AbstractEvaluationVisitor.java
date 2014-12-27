@@ -21,7 +21,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.Constraint;
-import org.eclipse.ocl.pivot.Environment;
+import org.eclipse.ocl.pivot.EnvironmentInternal;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.OCLExpression;
@@ -44,7 +44,7 @@ import org.eclipse.ocl.pivot.utilities.ValueUtil;
  * clients.  Use the {@link EvaluationVisitor} interface, instead.
  * </p>
  * <p>
- * See the {@link Environment} class for a description of the
+ * See the {@link EnvironmentInternal} class for a description of the
  * generic type parameters of this class. 
  * </p>
  */
@@ -58,7 +58,7 @@ public abstract class AbstractEvaluationVisitor
 	private static final float DEFAULT_REGEX_CACHE_LOAD_FACTOR = 0.75f;
 	
 	protected final @NonNull EvaluationEnvironment evaluationEnvironment;
-	protected final @NonNull Environment environment;
+	protected final @NonNull EnvironmentInternal environment;
 	protected final @NonNull MetaModelManager metaModelManager;	
 	protected final @NonNull CompleteEnvironmentInternal completeEnvironment;
 	protected final @NonNull StandardLibraryInternal standardLibrary;
@@ -92,7 +92,7 @@ public abstract class AbstractEvaluationVisitor
 	 * @param evalEnv an evaluation environment (map of variable names to values)
 	 * @param modelManager a map of classes to their instance sets
 	 */
-	protected AbstractEvaluationVisitor(@NonNull Environment env, @NonNull EvaluationEnvironment evalEnv,
+	protected AbstractEvaluationVisitor(@NonNull EnvironmentInternal env, @NonNull EvaluationEnvironment evalEnv,
 			@NonNull ModelManager modelManager) {
         super(Object.class);						// Useless dummy object as context
         this.evaluationEnvironment = evalEnv;
@@ -135,7 +135,7 @@ public abstract class AbstractEvaluationVisitor
 
     // implements the interface method
 	@Override
-	public @NonNull Environment getEnvironment() {
+	public @NonNull EnvironmentInternal getEnvironment() {
 		return environment;
 	}
     

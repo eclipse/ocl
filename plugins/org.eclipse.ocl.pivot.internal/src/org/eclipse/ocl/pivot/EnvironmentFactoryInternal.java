@@ -12,20 +12,15 @@
 
 package org.eclipse.ocl.pivot;
 
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.ExpressionInOCL;
-import org.eclipse.ocl.pivot.Operation;
-import org.eclipse.ocl.pivot.Property;
-import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 
 /**
- * A factory for creating OCL parser {@link Environment}s.  Clients of the OCL
+ * A factory for creating OCL parser {@link EnvironmentInternal}s.  Clients of the OCL
  * parser that wish to use OCL with their metamodels can provide the parser
  * a factory that creates the suitable environments.  The environment provides
  * mappings from the client's metamodel to the UML concepts required by the
@@ -53,18 +48,18 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory {
 	 * 
 	 * @return a new root environment
 	 */
-	@NonNull Environment createEnvironment();
+	@Override
+	@NonNull EnvironmentInternal createEnvironment();
 	
 	/**
-	 * Loads an environment from the specified <tt>resource</tt>.  If not
-	 * already loaded, this method will load the resource.  This resource will
-	 * subsequently be used to persist new OCL constraints, so supplying a new,
-	 * empty resource will allow the client to determine where the environment
-	 * is persisted.
+	 * Creates a child environment of a specified <code>parent</code>, for
+	 * definition of nested scopes.
 	 * 
-	 * @param resource a resource containing the persisted environment
+	 * @param parent the parent environment
+	 * @return the child environment
 	 */
-	@NonNull Environment loadEnvironment(@NonNull Resource resource);
+	@Override
+	@NonNull EnvironmentInternal createEnvironment(@NonNull Environment parent);
 	
 	/**
 	 * Creates an environment suitable for parsing OCL expressions in the
@@ -74,11 +69,11 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory {
 	 * @param context the context classifier
 	 * @return the environment
 	 * 
-	 * @see #createOperationContext(Environment, Operation)
-     * @see #createPropertyContext(Environment, Property)
-     * @see #createInstanceContext(Environment, Object)
+	 * @see #createOperationContext(EnvironmentInternal, Operation)
+     * @see #createPropertyContext(EnvironmentInternal, Property)
+     * @see #createInstanceContext(EnvironmentInternal, Object)
 	 */
-	@NonNull Environment createClassifierContext(@NonNull Environment parent, @NonNull org.eclipse.ocl.pivot.Class context);
+	@NonNull EnvironmentInternal createClassifierContext(@NonNull EnvironmentInternal parent, @NonNull org.eclipse.ocl.pivot.Class context);
 	
     /**
      * Creates an environment suitable for parsing OCL expressions on the
@@ -96,10 +91,10 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory {
      * @param context the context object or value
      * @return the environment
      * 
-     * @see #createClassifierContext(Environment, Type)
+     * @see #createClassifierContext(EnvironmentInternal, Type)
      * @see StandardLibrary#getOclAnyType()
      */
-	@NonNull Environment createInstanceContext(@NonNull Environment parent, @NonNull Object context);
+	@NonNull EnvironmentInternal createInstanceContext(@NonNull EnvironmentInternal parent, @NonNull Object context);
     
 	/**
 	 * Creates an environment suitable for parsing OCL expressions on the
@@ -111,9 +106,9 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory {
 	 * @param operation an operation in the client's metamodel
 	 * @return the environment
 	 * 
-	 * @see #createClassifierContext(Environment, Type)
+	 * @see #createClassifierContext(EnvironmentInternal, Type)
 	 */
-	@NonNull Environment createOperationContext(@NonNull Environment parent, @NonNull Operation operation);
+	@NonNull EnvironmentInternal createOperationContext(@NonNull EnvironmentInternal parent, @NonNull Operation operation);
 	
 	/**
 	 * Creates an environment suitable for parsing OCL expressions on the
@@ -125,35 +120,9 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory {
 	 * @param property an attribute in the client's metamodel
 	 * @return the environment
 	 * 
-	 * @see #createClassifierContext(Environment, Type)
+	 * @see #createClassifierContext(EnvironmentInternal, Type)
 	 */
-	@NonNull Environment createPropertyContext(@NonNull Environment parent, @NonNull Property property);
-	
-	/**
-	 * Creates a child environment of a specified <code>parent</code>, for
-	 * definition of nested scopes.
-	 * 
-	 * @param parent the parent environment
-	 * @return the child environment
-	 */
-	@NonNull Environment createEnvironment(@NonNull Environment parent);
-
-	/**
-	 * Creates a new evaluation environment to track the values of variables in
-	 * an OCL expression as it is evaluated.
-	 * 
-	 * @return a new evaluation environment
-	 */
-	@NonNull EvaluationEnvironment createEvaluationEnvironment();
-	
-	/**
-	 * Creates a new evaluation environment as a nested environment of the
-	 * specified <tt>parent</tt>.
-	 * 
-	 * @param parent a nesting evaluation environment
-	 * @return a new nested evaluation environment
-	 */
-	@NonNull EvaluationEnvironment createEvaluationEnvironment(@NonNull EvaluationEnvironment parent);
+	@NonNull EnvironmentInternal createPropertyContext(@NonNull EnvironmentInternal parent, @NonNull Property property);
 
     /**
      * Creates a new evaluation visitor, for the evaluation of an OCL expression on a context using an environment and a modelManager.
@@ -161,7 +130,7 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory {
      * If context is null and the expression uses self subsequent evaluations will give invalid as the result.
      * If modelManager is null, the context object's ResoutceSet is analyzed to create one.
      */
-	@NonNull EvaluationVisitor createEvaluationVisitor(@Nullable Environment environment, @Nullable Object context, @NonNull ExpressionInOCL expression, @Nullable ModelManager modelManager);
+	@NonNull EvaluationVisitor createEvaluationVisitor(@Nullable EnvironmentInternal environment, @Nullable Object context, @NonNull ExpressionInOCL expression, @Nullable ModelManager modelManager);
 	
     /**
      * Creates a new evaluation visitor, for the evaluation of OCL expressions.
@@ -173,7 +142,7 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory {
      * @param modelManager the map of <tt>Class</tt>es to their extends
      * @return the new evaluation visitor
      */
-	@NonNull EvaluationVisitor createEvaluationVisitor(@NonNull Environment env, @NonNull EvaluationEnvironment evalEnv, @NonNull ModelManager modelManager);
+	@NonNull EvaluationVisitor createEvaluationVisitor(@NonNull EnvironmentInternal env, @NonNull EvaluationEnvironment evalEnv, @NonNull ModelManager modelManager);
 
 	@NonNull MetaModelManager getMetaModelManager();
 }

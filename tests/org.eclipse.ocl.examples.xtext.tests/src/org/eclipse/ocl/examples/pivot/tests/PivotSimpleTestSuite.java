@@ -12,7 +12,7 @@
 package org.eclipse.ocl.examples.pivot.tests;
 
 import org.eclipse.ocl.pivot.Model;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 
 /**
  * Test suite with a simple model.
@@ -38,7 +38,7 @@ public abstract class PivotSimpleTestSuite extends PivotTestSuite
 	@Override
     protected void setUp() throws Exception {
         super.setUp();
-		metaModelManager.addGlobalNamespace(PivotConstants.OCL_NAME, metaModelManager.getASMetamodel());
+		metaModelManager.addGlobalNamespace(PivotConstantsInternal.OCL_NAME, metaModelManager.getASMetamodel());
 
         // need a metamodel that has a reflexive EReference.
         // Ecore will do nicely. Create the following structure:

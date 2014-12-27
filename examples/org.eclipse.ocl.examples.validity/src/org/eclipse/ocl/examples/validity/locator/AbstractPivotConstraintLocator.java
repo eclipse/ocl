@@ -21,7 +21,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.emf.validation.validity.LeafConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.locator.AbstractConstraintLocator;
 import org.eclipse.ocl.pivot.Constraint;
-import org.eclipse.ocl.pivot.Environment;
+import org.eclipse.ocl.pivot.EnvironmentInternal;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.ParserException;
@@ -81,7 +81,7 @@ public abstract class AbstractPivotConstraintLocator extends AbstractConstraintL
 	protected @NonNull EvaluationVisitor createEvaluationVisitor(@NonNull MetaModelManager metaModelManager,
 			@NonNull ExpressionInOCL query, @Nullable Object contextObject, @Nullable Monitor monitor) {
 		PivotEnvironmentFactory environmentFactory = new PivotEnvironmentFactory(null, metaModelManager);
-		Environment rootEnvironment = environmentFactory.createEnvironment();
+		EnvironmentInternal rootEnvironment = environmentFactory.createEnvironment();
 		EvaluationVisitor evaluationVisitor = environmentFactory.createEvaluationVisitor(rootEnvironment, contextObject, query, null);
 		evaluationVisitor.setMonitor(monitor);
 		return evaluationVisitor;

@@ -39,7 +39,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.Model;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.ecore.AS2Ecore;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.resource.ASResource;
@@ -170,7 +170,7 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 //				ePackage.getEAnnotations().remove(eAnnotation);
 //			}
 			EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-			eAnnotation.setSource(PivotConstants.AS_LIBRARY_ANNOTATION_SOURCE);
+			eAnnotation.setSource(PivotConstantsInternal.AS_LIBRARY_ANNOTATION_SOURCE);
 			ePackage.getEAnnotations().add(eAnnotation);
 			log.info("Saving '" + ecoreURI + "'");
 			eResource.save(null);

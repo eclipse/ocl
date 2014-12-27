@@ -14,8 +14,8 @@ package org.eclipse.ocl.pivot;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
-import org.omg.CORBA.Environment;
 
 /**
  * A factory for creating OCL parser {@link Environment}s.  Clients of the OCL
@@ -36,6 +36,45 @@ import org.omg.CORBA.Environment;
  */
 public interface EnvironmentFactory
 {
+	
+	/**
+	 * Creates a root environment, in which package contexts and/or classifier
+     * contexts will be created as nested environments.  All operation body
+     * constraints, attribute initial/derived value constraints, and definitions
+     * of additional attributes and operations should be maintained by the root
+     * environment, so that they will be accessible from constraints parsed in
+     * any nested environment.
+	 * 
+	 * @return a new root environment
+	 */
+	@NonNull Environment createEnvironment();
+	
+	/**
+	 * Creates a child environment of a specified <code>parent</code>, for
+	 * definition of nested scopes.
+	 * 
+	 * @param parent the parent environment
+	 * @return the child environment
+	 */
+	@NonNull Environment createEnvironment(@NonNull Environment parent);
+
+	/**
+	 * Creates a new evaluation environment to track the values of variables in
+	 * an OCL expression as it is evaluated.
+	 * 
+	 * @return a new evaluation environment
+	 */
+	@NonNull EvaluationEnvironment createEvaluationEnvironment();
+	
+	/**
+	 * Creates a new evaluation environment as a nested environment of the
+	 * specified <tt>parent</tt>.
+	 * 
+	 * @param parent a nesting evaluation environment
+	 * @return a new nested evaluation environment
+	 */
+	@NonNull EvaluationEnvironment createEvaluationEnvironment(@NonNull EvaluationEnvironment parent);
+
 	/**
 	 * Creates an extent map for invocation of <tt>OclType.allInstances()</tt>
 	 * using the specified <code>object</code> as a context from which to find

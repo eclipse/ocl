@@ -27,13 +27,13 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.NamedElement;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.compatibility.UML_4_2;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.pivot.utilities.External2AS;
 
-public abstract class AbstractEcore2AS extends AbstractConversion implements External2AS, PivotConstants
+public abstract class AbstractEcore2AS extends AbstractConversion implements External2AS, PivotConstantsInternal
 {
 	protected AbstractEcore2AS(@NonNull MetaModelManager metaModelManager) {
 		super(metaModelManager);
@@ -49,7 +49,7 @@ public abstract class AbstractEcore2AS extends AbstractConversion implements Ext
 		if (eNamedElement == null) {
 			return null;
 		}
-		EAnnotation eAnnotation = eNamedElement.getEAnnotation(PivotConstants.REDEFINES_ANNOTATION_SOURCE);
+		EAnnotation eAnnotation = eNamedElement.getEAnnotation(PivotConstantsInternal.REDEFINES_ANNOTATION_SOURCE);
 		if (eAnnotation != null) {
 			EObject eContainer = eNamedElement.eContainer();
 			if (eContainer instanceof EAnnotation) {   // duplicates ... redefines
@@ -84,10 +84,10 @@ public abstract class AbstractEcore2AS extends AbstractConversion implements Ext
 		if (!EcoreUtil.isInvariant(eOperation)) {
 			return false;
 		}
-		EAnnotation eAnnotation = eOperation.getEAnnotation(PivotConstants.DOCUMENTATION_ANNOTATION_SOURCE);
+		EAnnotation eAnnotation = eOperation.getEAnnotation(PivotConstantsInternal.DOCUMENTATION_ANNOTATION_SOURCE);
 		if (eAnnotation != null) {
 			@SuppressWarnings("null")@NonNull EMap<String, String> details = eAnnotation.getDetails();
-			if ((details.size() != 1) ||  details.containsKey(PivotConstants.DOCUMENTATION_ANNOTATION_KEY)) {
+			if ((details.size() != 1) ||  details.containsKey(PivotConstantsInternal.DOCUMENTATION_ANNOTATION_KEY)) {
 				return false;
 			}
 		}

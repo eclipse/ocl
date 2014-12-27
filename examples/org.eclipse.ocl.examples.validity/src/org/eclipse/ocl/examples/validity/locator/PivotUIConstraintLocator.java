@@ -40,7 +40,7 @@ import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
@@ -140,19 +140,19 @@ public class PivotUIConstraintLocator extends PivotConstraintLocator implements 
 			asConstraint = (Constraint)constrainingObject;
 		}
 		if (asConstraint == null) {
-			IStatus status = createStatus(null, OCLMessages.MissingSpecification_ERROR_, NameUtil.qualifiedNameFor(asConstraint), PivotConstants.OWNED_CONSTRAINT_ROLE);
+			IStatus status = createStatus(null, OCLMessages.MissingSpecification_ERROR_, NameUtil.qualifiedNameFor(asConstraint), PivotConstantsInternal.OWNED_CONSTRAINT_ROLE);
 			throw new CoreException(status);
 		}
 		LanguageExpression specification = asConstraint.getOwnedSpecification();
 		if (specification == null) {
-			IStatus status = createStatus(null, OCLMessages.MissingSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(asConstraint), PivotConstants.OWNED_CONSTRAINT_ROLE);
+			IStatus status = createStatus(null, OCLMessages.MissingSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(asConstraint), PivotConstantsInternal.OWNED_CONSTRAINT_ROLE);
 			throw new CoreException(status);
 		}
 		ExpressionInOCL query;
 		try {
 			query = metaModelManager.getQueryOrThrow(specification);
 		} catch (ParserException e) {
-			IStatus status = createStatus(e, OCLMessages.InvalidSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(asConstraint), PivotConstants.OWNED_CONSTRAINT_ROLE);
+			IStatus status = createStatus(e, OCLMessages.InvalidSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(asConstraint), PivotConstantsInternal.OWNED_CONSTRAINT_ROLE);
 			throw new CoreException(status);
 		}
 		ValidatableNode parent = resultConstrainingNode.getResultValidatableNode().getParent();

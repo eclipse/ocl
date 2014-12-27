@@ -34,7 +34,7 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.delegate.DelegateInstaller;
 import org.eclipse.ocl.pivot.ecore.AS2Ecore;
 import org.eclipse.ocl.pivot.ecore.Ecore2AS;
@@ -293,7 +293,7 @@ public class RoundTripTests extends XtextTestCase
 //			URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI),
 //			true).getContents().get(0);
 		String inputName = stem + ".uml";
-		String pivotName = stem + PivotConstants.DOT_OCL_AS_FILE_EXTENSION;
+		String pivotName = stem + PivotConstantsInternal.DOT_OCL_AS_FILE_EXTENSION;
 		String outputName = stem + ".regenerated.uml";
 		URI inputURI = getProjectFileURI(inputName);
 		URI pivotURI = getProjectFileURI(pivotName);

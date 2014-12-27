@@ -17,12 +17,12 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.BasicEnvironment;
 import org.eclipse.ocl.pivot.Customizable;
-import org.eclipse.ocl.pivot.Environment;
+import org.eclipse.ocl.pivot.EnvironmentInternal;
 import org.eclipse.ocl.pivot.OCLUtil;
 import org.eclipse.ocl.pivot.Option;
 
 /**
- * Options applicable to {@link Environment}s to
+ * Options applicable to {@link EnvironmentInternal}s to
  * {@linkplain Customizable customize} their parsing behaviour.
  * 
  * @author Christian W. Damus (cdamus)
@@ -46,7 +46,7 @@ public class ParsingOptions
      * 
      * @see Customizable#setOption(Option, Object)
      */
-    public static <T> void setOption(@NonNull Environment env, @NonNull Option<T> option, @Nullable T value) {
+    public static <T> void setOption(@NonNull EnvironmentInternal env, @NonNull Option<T> option, @Nullable T value) {
         
         Customizable custom = OCLUtil.getAdapter(env, Customizable.class);
         if (custom == null) {
@@ -72,7 +72,7 @@ public class ParsingOptions
      * 
      * @see Customizable#getValue(Option)
      */
-    public static @Nullable <T> T getValue(@NonNull Environment env, @NonNull Option<T> option) {
+    public static @Nullable <T> T getValue(@NonNull EnvironmentInternal env, @NonNull Option<T> option) {
         
         Customizable custom = OCLUtil.getAdapter(env, Customizable.class);
         if (custom == null) {

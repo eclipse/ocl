@@ -45,7 +45,7 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
@@ -471,7 +471,7 @@ public class LoadTests extends XtextTestCase
 //				else if (languages.size() == 0) {
 //					System.out.println("******** Empty languages");
 //				}
-				else if (!PivotConstants.OCL_LANGUAGE.equals(language)) {
+				else if (!PivotConstantsInternal.OCL_LANGUAGE.equals(language)) {
 //					System.out.println("******** Non-OCL \'" + languages.get(0) + "' languages");
 //					languages.set(0, "OCL");
 				}
@@ -497,7 +497,7 @@ public class LoadTests extends XtextTestCase
 	public Resource doLoad_Concrete(String stem, String extension) throws IOException {
 		String inputName = stem + "." + extension;
 		String cstName = inputName + ".xmi";
-		String pivotName = inputName + PivotConstants.DOT_OCL_AS_FILE_EXTENSION;
+		String pivotName = inputName + PivotConstantsInternal.DOT_OCL_AS_FILE_EXTENSION;
 		String savedName = stem + ".saved." + extension;
 		URI inputURI = getProjectFileURI(inputName);
 		URI cstURI = getProjectFileURI(cstName);
@@ -632,7 +632,7 @@ public class LoadTests extends XtextTestCase
 		String ecoreName = "Expression" + ".saved.ecore";
 		URI ecoreURI = getProjectFileURI(ecoreName);
 		Map<String,Object> options = new HashMap<String,Object>();
-		options.put(PivotConstants.PRIMITIVE_TYPES_URI_PREFIX, "primitives.ecore#//");
+		options.put(PivotConstantsInternal.PRIMITIVE_TYPES_URI_PREFIX, "primitives.ecore#//");
 		XMLResource ecoreResource = AS2Ecore.createResource(metaModelManager, asResource, ecoreURI, options);
 		ecoreResource.save(null);
 	}	
@@ -754,7 +754,7 @@ public class LoadTests extends XtextTestCase
 		String ecoreName = "oclstdlib" + ".saved.ecore";
 		URI ecoreURI = getProjectFileURI(ecoreName);
 		Map<String,Object> options = new HashMap<String,Object>();
-		options.put(PivotConstants.PRIMITIVE_TYPES_URI_PREFIX, "primitives.ecore#//");
+		options.put(PivotConstantsInternal.PRIMITIVE_TYPES_URI_PREFIX, "primitives.ecore#//");
 		XMLResource ecoreResource = AS2Ecore.createResource(metaModelManager, asResource, ecoreURI, options);
 		ecoreResource.save(null);
 	}
@@ -1133,7 +1133,7 @@ public class LoadTests extends XtextTestCase
 			org.eclipse.ocl.pivot.Package aPackage = completePackage.getPivotPackage();
 			if (aPackage instanceof Model) {}
 			else if (aPackage instanceof Library) {}
-			else if (PivotConstants.ORPHANAGE_NAME.equals(aPackage.getName())) {}
+			else if (PivotConstantsInternal.ORPHANAGE_NAME.equals(aPackage.getName())) {}
 			else {
 				allPackages.add(aPackage);
 			}
@@ -1220,7 +1220,7 @@ public class LoadTests extends XtextTestCase
 			org.eclipse.ocl.pivot.Package aPackage = completePackage.getPivotPackage();
 			if (aPackage instanceof Model) {}
 			else if (aPackage instanceof Library) {}
-			else if (PivotConstants.ORPHANAGE_NAME.equals(aPackage.getName())) {}
+			else if (PivotConstantsInternal.ORPHANAGE_NAME.equals(aPackage.getName())) {}
 			else {
 				allPackages.add(aPackage);
 			}

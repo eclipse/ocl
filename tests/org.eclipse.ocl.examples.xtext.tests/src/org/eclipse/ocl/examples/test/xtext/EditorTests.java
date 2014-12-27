@@ -38,7 +38,7 @@ import org.eclipse.ocl.examples.xtext.tests.TestCaseLogger;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.library.LibraryConstants;
 import org.eclipse.ocl.pivot.OCL;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
@@ -299,7 +299,7 @@ public class EditorTests extends XtextTestCase
 	
 	// FIXME Disabled for BUG 425505
 	public void zztestEditor_OpenOCLinEcoreEditor4Pivot_Ecore() throws Exception {
-		URI uri = URI.createPlatformPluginURI(PivotConstants.PIVOT_ECORE, true);
+		URI uri = URI.createPlatformPluginURI(PivotConstantsInternal.PIVOT_ECORE, true);
 		String documentText = doTestEditor(OCLinEcoreUiModule.EDITOR_ID, uri);
 		assertTrue(documentText.contains("abstract class Visitable : 'org.eclipse.ocl.pivot.util.Visitable' { interface };"));
 		assertTrue(documentText.contains("reference Type::ownedAttribute"));							// Tests Bug 363141 EAnnotation reference

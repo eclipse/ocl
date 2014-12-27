@@ -13,7 +13,7 @@ package org.eclipse.ocl.xtext.oclinecore.ui.preferences;
 import java.util.List;
 
 import org.eclipse.ocl.common.ui.internal.preferences.AbstractProjectPreferencePage;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.options.OCLinEcoreOptions;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.oclinecore.ui.messages.OCLinEcoreUIMessages;
@@ -29,7 +29,7 @@ public class OCLinEcoreProjectPreferencePage extends AbstractProjectPreferencePa
 {
 	
 	public OCLinEcoreProjectPreferencePage() {
-		super(PivotConstants.PLUGIN_ID, OCLinEcoreUIMessages.OCLinEcore_PageTitle);
+		super(PivotConstantsInternal.PLUGIN_ID, OCLinEcoreUIMessages.OCLinEcore_PageTitle);
 	}
 
 	@Override

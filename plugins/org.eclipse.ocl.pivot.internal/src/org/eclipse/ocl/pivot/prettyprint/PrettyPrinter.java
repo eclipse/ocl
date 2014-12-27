@@ -30,7 +30,7 @@ import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.TemplateBinding;
@@ -48,6 +48,7 @@ import org.eclipse.ocl.pivot.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.util.AbstractVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.PathElement;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.Unlimited;
@@ -60,7 +61,7 @@ public class PrettyPrinter
 {
 	public static final @NonNull String NULL_PLACEHOLDER = "<null>";
 	@SuppressWarnings("null")
-	public static @NonNull List<String> reservedNameList = Arrays.asList("and", "else", "endif", "false", "if", "implies", "in", "invalid", "let", "not", "null", "or", "self", "then", "true", "xor");
+	public static @NonNull List<String> reservedNameList = Arrays.asList("and", "else", "endif", "false", "if", "implies", "in", "invalid", "let", "not", "null", "or", PivotConstants.SELF_NAME, "then", "true", "xor");
 	@SuppressWarnings("null")
 	public static @NonNull List<String> restrictedNameList = Arrays.asList(TypeId.BAG_NAME, TypeId.BOOLEAN_NAME, "Collection", TypeId.INTEGER_NAME, TypeId.OCL_ANY_NAME, TypeId.OCL_INVALID_NAME, TypeId.OCL_VOID_NAME, TypeId.ORDERED_SET_NAME, TypeId.REAL_NAME, TypeId.SEQUENCE_NAME, TypeId.SET_NAME, TypeId.STRING_NAME, TypeId.TUPLE_NAME, TypeId.UNLIMITED_NATURAL_NAME);
 	
@@ -432,7 +433,7 @@ public class PrettyPrinter
 						return;
 	            	}
 	                String name = ((org.eclipse.ocl.pivot.Package)parent).getName();
-	                if (PivotConstants.ORPHANAGE_NAME.equals(name)) {
+	                if (PivotConstantsInternal.ORPHANAGE_NAME.equals(name)) {
 	                    return;
 	                }
 	                if (PivotPackage.eNAME.equals(name)) {
@@ -444,7 +445,7 @@ public class PrettyPrinter
 				}
 				if ((element instanceof Operation) &&
 					(parent instanceof Type) &&
-						PivotConstants.ORPHANAGE_NAME.equals(((Type)parent).getName())) {
+						PivotConstantsInternal.ORPHANAGE_NAME.equals(((Type)parent).getName())) {
 					Operation operation = (Operation)element;
 					append(operation.getOwningClass().getName());
 					appendTemplateBindings(operation);
@@ -520,13 +521,13 @@ public class PrettyPrinter
 					String name = rootPathElement.getName();
 		        	Element rootElement = rootPathElement.getElement();
 					if (rootElement != null) {
-						if (PivotConstants.ORPHANAGE_NAME.equals(name)) {
+						if (PivotConstantsInternal.ORPHANAGE_NAME.equals(name)) {
 			                i++;
 			            }
 			            else if (PivotPackage.eNAME.equals(name)) {
 			                i++;
 			            }
-			            else if (PivotConstants.OCL_NAME.equals(name)) {
+			            else if (PivotConstantsInternal.OCL_NAME.equals(name)) {
 			                i++;
 			            }
 			            else if (rootElement.eContainer() instanceof Model) {

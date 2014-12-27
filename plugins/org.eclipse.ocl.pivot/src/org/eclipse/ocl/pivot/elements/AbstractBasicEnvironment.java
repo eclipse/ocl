@@ -69,6 +69,12 @@ public abstract class AbstractBasicEnvironment<P extends BasicEnvironment> imple
 	}
 
 	/**
+	 * Dispose of any owned objects.
+	 */
+	@Override
+	public void dispose() {}
+
+	/**
 	 * Implements the interface method by testing whether I am an instance of
 	 * the requested adapter type.
 	 */

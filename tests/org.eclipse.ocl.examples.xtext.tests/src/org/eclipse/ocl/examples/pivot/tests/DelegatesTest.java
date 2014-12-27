@@ -64,7 +64,7 @@ import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.SemanticException;
@@ -93,6 +93,7 @@ import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.utilities.BaseResource;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
@@ -552,7 +553,7 @@ public class DelegatesTest extends PivotTestSuite
 		//
 		//	Definition of undeclared variable
 		//
-		delegate = factory.createQueryDelegate(companyClass, variables, "self");
+		delegate = factory.createQueryDelegate(companyClass, variables, PivotConstants.SELF_NAME);
 		Map<String, Object> bindings = new HashMap<String, Object>();
 		bindings.put(okName, "xx");
 		bindings.put(badName, Integer.valueOf(123));
@@ -561,14 +562,14 @@ public class DelegatesTest extends PivotTestSuite
 		//
 		//	Mis-definition of context
 		//
-		delegate = factory.createQueryDelegate(companyClass, variables, "self");
+		delegate = factory.createQueryDelegate(companyClass, variables, PivotConstants.SELF_NAME);
 		delegate.prepare();
 		executeWithException(delegate, amy, okBindings,
 			OCLMessages.WrongContextClassifier_ERROR_, getType(amy), getType(acme));
 		//
 		//	Mis-definition of variable
 		//
-		delegate = factory.createQueryDelegate(companyClass, variables, "self");
+		delegate = factory.createQueryDelegate(companyClass, variables, PivotConstants.SELF_NAME);
 		delegate.prepare();
 		executeWithException(delegate, acme, okBindings,
 			OCLMessages.MismatchedArgumentType_ERROR_, okName, "Integer", "String");
@@ -626,7 +627,7 @@ public class DelegatesTest extends PivotTestSuite
 		EStructuralFeature eStructuralFeature = getStructuralFeature(badClassClass, "attributeDefinedWithoutDerivationBody");
 		Property property = metaModelManager.getPivotOfEcore(Property.class, eStructuralFeature);
 		getWithException(badClassInstance, eStructuralFeature.getName(),
-			StringUtil.bind(OCLMessages.MissingSpecificationBody_ERROR_, property, PivotConstants.DEFAULT_EXPRESSION_ROLE));
+			StringUtil.bind(OCLMessages.MissingSpecificationBody_ERROR_, property, PivotConstantsInternal.DEFAULT_EXPRESSION_ROLE));
 	}
 
 	public void test_attributeEvaluatingToInvalid() {
@@ -871,7 +872,7 @@ public class DelegatesTest extends PivotTestSuite
 		EOperation eOperation = getOperation(badClassClass, "operationDefinedWithoutBody");
 		Operation operation = metaModelManager.getPivotOfEcore(Operation.class, eOperation);
 		invokeWithException(badClassInstance, eOperation.getName(),
-			StringUtil.bind(OCLMessages.MissingSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(operation), PivotConstants.BODY_EXPRESSION_ROLE));
+			StringUtil.bind(OCLMessages.MissingSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(operation), PivotConstantsInternal.BODY_EXPRESSION_ROLE));
 	}
 
 	public void test_operationDefinedWithoutBodyBody() throws InvocationTargetException {
@@ -880,7 +881,7 @@ public class DelegatesTest extends PivotTestSuite
 		EOperation eOperation = getOperation(badClassClass, "operationDefinedWithoutBodyBody");
 		Operation operation = metaModelManager.getPivotOfEcore(Operation.class, eOperation);
 		invokeWithException(badClassInstance, eOperation.getName(),
-			StringUtil.bind(OCLMessages.MissingSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(operation), PivotConstants.BODY_EXPRESSION_ROLE));
+			StringUtil.bind(OCLMessages.MissingSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(operation), PivotConstantsInternal.BODY_EXPRESSION_ROLE));
 	}
 
 	public void test_operationEvaluatingToInvalid() throws InvocationTargetException {

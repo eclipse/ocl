@@ -29,7 +29,7 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.TemplateBinding;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateParameterSubstitution;
@@ -39,7 +39,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.resource.ASResource;
 
-public class AS2Moniker implements PivotConstants
+public class AS2Moniker implements PivotConstantsInternal
 {
 	public static @NonNull String toString(@NonNull Element pivotElement) {
 		AS2Moniker moniker = new AS2Moniker(pivotElement);

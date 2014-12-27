@@ -14,7 +14,6 @@ package org.eclipse.ocl.pivot.utilities;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.AbstractEnvironmentFactory;
@@ -93,25 +92,8 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
     // implements the inherited specification
     @Override
 	public @NonNull PivotEnvironment createEnvironment() {
-		PivotEnvironment result = new PivotEnvironment(this, null);
+		PivotEnvironment result = new PivotEnvironment(this);
 		return result;
-	}
-	
-    // implements the inherited specification
-    @Override
-	public @NonNull PivotEnvironment loadEnvironment(@NonNull Resource resource) {
-    	PivotEnvironment result = new PivotEnvironment(this, resource);
-		return result;
-	}
-	
-    /**
-     * Obtains the package registry used by environment that I create to look
-     * up packages.
-     * 
-     * @return my package registry
-     */
-	public final @Nullable EPackage.Registry getEPackageRegistry() {
-		return registry;
 	}
 
     // implements the inherited specification
@@ -124,6 +106,16 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
 		
 		PivotEnvironment result = new PivotEnvironment((PivotEnvironment) parent);
 		return result;
+	}
+	
+    /**
+     * Obtains the package registry used by environment that I create to look
+     * up packages.
+     * 
+     * @return my package registry
+     */
+	public final @Nullable EPackage.Registry getEPackageRegistry() {
+		return registry;
 	}
 
     // implements the inherited specification

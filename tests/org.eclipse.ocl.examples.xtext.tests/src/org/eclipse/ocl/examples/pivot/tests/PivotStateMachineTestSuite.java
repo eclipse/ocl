@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.uml.UML2AS;
 import org.eclipse.uml2.uml.util.UMLUtil;
@@ -101,6 +101,6 @@ public abstract class PivotStateMachineTestSuite extends PivotTestSuite
 	@Override
     protected void setUp() throws Exception {
         super.setUp();
-		metaModelManager.addGlobalNamespace(PivotConstants.OCL_NAME, metaModelManager.getASMetamodel());
+		metaModelManager.addGlobalNamespace(PivotConstantsInternal.OCL_NAME, metaModelManager.getASMetamodel());
     }
 }

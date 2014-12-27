@@ -43,7 +43,7 @@ import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.OppositePropertyCallExp;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.PrimitiveType;
@@ -67,7 +67,7 @@ import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.values.Unlimited;
 
-public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Moniker> implements PivotConstants
+public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Moniker> implements PivotConstantsInternal
 {	
 	private static boolean initialized = false;
 

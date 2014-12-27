@@ -42,7 +42,7 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.complete.StandardLibraryInternal;
@@ -559,7 +559,7 @@ public class EcoreOCLEValidator implements EValidator
 			if (asNamedElement != null) {
 				ParserContext parserContext = metaModelManager.getParserContext(asNamedElement);
 				if (parserContext == null) {
-					throw new ParserException(OCLMessages.UnknownContextType_ERROR_, NameUtil.qualifiedNameFor(asNamedElement), PivotConstants.OWNED_CONSTRAINT_ROLE);
+					throw new ParserException(OCLMessages.UnknownContextType_ERROR_, NameUtil.qualifiedNameFor(asNamedElement), PivotConstantsInternal.OWNED_CONSTRAINT_ROLE);
 				}
 				ExpressionInOCL expressionInOCL = parserContext.parse(asNamedElement, expression);
 				Type asExpressionType = expressionInOCL.getType();

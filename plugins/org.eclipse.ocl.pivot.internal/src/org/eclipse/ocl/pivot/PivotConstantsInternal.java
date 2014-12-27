@@ -18,14 +18,15 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 
-public interface PivotConstants extends org.eclipse.ocl.pivot.utilities.PivotConstants
+public interface PivotConstantsInternal extends PivotConstants
 {
 	static final @NonNull String PLUGIN_ID = "org.eclipse.ocl.pivot.internal";
-	static final @NonNull String PIVOT_ECORE = PivotConstants.class.getPackage().getName() + "/model/Pivot.ecore";
+	static final @NonNull String PIVOT_ECORE = PivotConstantsInternal.class.getPackage().getName() + "/model/Pivot.ecore";
 	@SuppressWarnings("null")
 	static final @NonNull URI GEN_MODEL_URI = URI.createPlatformPluginURI("/" + PLUGIN_ID + "/model/Pivot.merged.genmodel", true); //$NON-NLS-1$
 	

@@ -49,6 +49,7 @@ import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.BagValue;
@@ -368,7 +369,7 @@ public class IteratorsTest4 extends PivotTestSuite
     @Test public void test_implicitCollect_unknownOperation_232669() {
     	assertBadInvariant(SemanticException.class, Diagnostic.ERROR,
     		"ownedPackages.unknownOperation(self)",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "Set(Package)", "unknownOperation", "self");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "Set(Package)", "unknownOperation", PivotConstants.SELF_NAME);
    }
 
     /**

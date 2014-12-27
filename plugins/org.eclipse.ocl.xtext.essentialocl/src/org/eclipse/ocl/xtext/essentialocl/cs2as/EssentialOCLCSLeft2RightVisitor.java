@@ -55,7 +55,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.pivot.Parameter;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PrimitiveType;
@@ -1503,7 +1503,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 						//
 						String navigationOperatorName = csOperator.getName();
 						if (actualSourceType instanceof CollectionType) {
-							if (PivotConstants.OBJECT_NAVIGATION_OPERATOR.equals(navigationOperatorName)) {
+							if (PivotConstantsInternal.OBJECT_NAVIGATION_OPERATOR.equals(navigationOperatorName)) {
 								implicitCollectExp = resolveImplicitCollect(sourceExp, csOperator, csNameExp);
 								if (implicitCollectExp != null) {
 									@SuppressWarnings("null")@NonNull Variable iterator = implicitCollectExp.getOwnedIterators().get(0);
@@ -1512,7 +1512,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 							}
 						}
 						else {
-							if (PivotConstants.COLLECTION_NAVIGATION_OPERATOR.equals(navigationOperatorName)) {
+							if (PivotConstantsInternal.COLLECTION_NAVIGATION_OPERATOR.equals(navigationOperatorName)) {
 								collectedSourceExp = resolveImplicitAsSet(sourceExp, actualSourceType, csOperator);
 							}
 						}

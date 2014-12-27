@@ -14,11 +14,11 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.Environment;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 /**
  * EObjectContext supports parsing OCL expressions in the context of the lazily determined classifier of an EObject.
@@ -69,6 +69,6 @@ public class EObjectContext extends AbstractParserContext
 	public void initialize(@NonNull Base2ASConversion conversion, @NonNull ExpressionInOCL expression) {
 		super.initialize(conversion, expression);
 		Type classContext = getClassContext();
-		conversion.setContextVariable(expression, Environment.SELF_VARIABLE_NAME, classContext, null);
+		conversion.setContextVariable(expression, PivotConstants.SELF_NAME, classContext, null);
 	}
 }

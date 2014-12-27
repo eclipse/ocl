@@ -48,7 +48,7 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.ProfileApplication;
@@ -126,7 +126,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 		int languagesSize = languages.size();
 		int i = 0;
 		for ( ; i < languagesSize; i++) {
-			if (PivotConstants.OCL_LANGUAGE.equals(languages.get(i))) {
+			if (PivotConstantsInternal.OCL_LANGUAGE.equals(languages.get(i))) {
 				break;
 			}
 		}
@@ -178,8 +178,8 @@ public abstract class UML2AS extends AbstractEcore2AS
 	}
 
 	public static void initialize() {
-		IdManager.addMetamodelEPackage(ClassUtil.nonNullEMF(UMLPackage.eNS_URI), PivotConstants.UML_METAMODEL_NAME);
-		IdManager.addMetamodelEPackage(ClassUtil.nonNullEMF(TypesPackage.eNS_URI), PivotConstants.TYPES_METAMODEL_NAME);
+		IdManager.addMetamodelEPackage(ClassUtil.nonNullEMF(UMLPackage.eNS_URI), PivotConstantsInternal.UML_METAMODEL_NAME);
+		IdManager.addMetamodelEPackage(ClassUtil.nonNullEMF(TypesPackage.eNS_URI), PivotConstantsInternal.TYPES_METAMODEL_NAME);
 	}
 
 	/**
@@ -834,8 +834,8 @@ public abstract class UML2AS extends AbstractEcore2AS
 		metaModelManager.addExternalResource(this);
 		metaModelManager.addListener(this);
 		CompleteModel completeModel = metaModelManager.getCompleteModel();
-		completeModel.addPackageURI2completeURI(ClassUtil.nonNullEMF(UMLPackage.eNS_URI), PivotConstants.UML_METAMODEL_NAME);
-		completeModel.addPackageURI2completeURI(ClassUtil.nonNullEMF(TypesPackage.eNS_URI), PivotConstants.TYPES_METAMODEL_NAME);		// FIXME All known synonyms
+		completeModel.addPackageURI2completeURI(ClassUtil.nonNullEMF(UMLPackage.eNS_URI), PivotConstantsInternal.UML_METAMODEL_NAME);
+		completeModel.addPackageURI2completeURI(ClassUtil.nonNullEMF(TypesPackage.eNS_URI), PivotConstantsInternal.TYPES_METAMODEL_NAME);		// FIXME All known synonyms
 		// FIXME All known synonyms
 	}
 	
@@ -1036,7 +1036,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 		List<String> umlBodies = umlExpression.getBodies();
 		List<String> umlLanguages = umlExpression.getLanguages();
 		for (int i = 0; i < umlBodies.size(); i++) {
-			String asLanguage = PivotConstants.OCL_LANGUAGE;
+			String asLanguage = PivotConstantsInternal.OCL_LANGUAGE;
 			if (i < umlLanguages.size()) {		// languages are optional, with defaults implementation defined ==> OCL
 				String umlLanguage = umlLanguages.get(i);
 				if ((umlLanguage != null) && (umlLanguage.length() > 0)) {
@@ -1044,7 +1044,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 				}
 			}
 			String umlBody = umlBodies.get(i);
-			if ((umlBody != null) && asLanguage.equals(PivotConstants.OCL_LANGUAGE)) {
+			if ((umlBody != null) && asLanguage.equals(PivotConstantsInternal.OCL_LANGUAGE)) {
 				EObject eContainer = umlExpression.eContainer();
 				if (eContainer instanceof org.eclipse.uml2.uml.Constraint) {
 					EObject eContainerContainer = eContainer.eContainer();
@@ -1210,7 +1210,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 //			csTypeRef.setSuper(doSwitchAll(eGenericType.getSuper()));
 			return csTypeRef; */
 		org.eclipse.ocl.pivot.Class pivotElement = PivotFactory.eINSTANCE.createClass();
-		String name = PivotConstants.WILDCARD_NAME;
+		String name = PivotConstantsInternal.WILDCARD_NAME;
 		EStructuralFeature eFeature = eGenericType.eContainmentFeature();
 		if ((eFeature != null) && eFeature.isMany()) {
 			EObject eContainer = eGenericType.eContainer();

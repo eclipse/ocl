@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.Environment;
+import org.eclipse.ocl.pivot.EnvironmentInternal;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.Operation;
@@ -33,7 +33,7 @@ import org.eclipse.ocl.pivot.Type;
  * the context is implied by the placement of the constraint in the model.
  * <p>
  * An OCL helper is created by the {@link OCL#createOCLHelper()} factory method
- * and inherits the current context {@link Environment} of the {@link OCL} that
+ * and inherits the current context {@link EnvironmentInternal} of the {@link OCL} that
  * created it.
  * </p><p>
  * Since 1.2, the helper supplies {@linkplain #getProblems() diagnostics}
@@ -45,7 +45,7 @@ import org.eclipse.ocl.pivot.Type;
  * by clients.
  * </p>
  * <p>
- * See the {@link Environment} class for a description of the
+ * See the {@link EnvironmentInternal} class for a description of the
  * generic type parameters of this class. 
  * </p>
  * 
@@ -228,7 +228,7 @@ public interface OCLHelper
      * @see #setOperationContext(Type, Operation)
      * @see #setPropertyContext(Type, Property)
      */
-    @NonNull Environment getEnvironment();
+    @NonNull EnvironmentInternal getEnvironment();
     
 	/**
 	 * Queries whether I validate the expressions that I parse.  Validation

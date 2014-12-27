@@ -47,6 +47,7 @@ import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.CollectionValue;
@@ -200,7 +201,7 @@ public class VariableFinder
 	}
 	
 	private static boolean isPredefinedVar(String name, @NonNull IVMEvaluationEnvironment<?> evalEnv) {
-		if(("self".equals(name) || "result".equals(name)) && evalEnv.getOperation() != null) {
+		if((PivotConstants.SELF_NAME.equals(name) || PivotConstants.RESULT_NAME.equals(name)) && evalEnv.getOperation() != null) {
 			return true;
 		}
 		return "this".equals(name);
@@ -628,7 +629,7 @@ public class VariableFinder
 			for (IVMEvaluationEnvironment<?> evalEnv = fEvalEnv; evalEnv != null; evalEnv = evalEnv.getParentEvaluationEnvironment()) {
 				Set<TypedElement> localVariables = evalEnv.getVariables();
 				variables.addAll(localVariables);
-				if (NameUtil.getNameable(localVariables, "self") != null) {
+				if (NameUtil.getNameable(localVariables, PivotConstants.SELF_NAME) != null) {
 					break;
 				}
 			}

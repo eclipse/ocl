@@ -124,10 +124,10 @@ public class OCL {
      * @param resource the resource containing a persistent environment
      *    (which may be empty for an initially empty environment)
      * @return the new <code>OCL</code>
-     */
+     *
 	public static @NonNull OCL newInstance(@NonNull EnvironmentFactoryInternal envFactory, @NonNull Resource resource) {	
 		return new OCL(envFactory, envFactory.loadEnvironment(resource));
-	}
+	} */
 	
     /**
      * Creates a new <code>OCL</code> using the specified initial Ecore
@@ -136,13 +136,13 @@ public class OCL {
      * @param env an environment for Ecore
      * @return the new <code>OCL</code>
      */
-	public static @NonNull OCL newInstance(@NonNull Environment env) {	
+	public static @NonNull OCL newInstance(@NonNull EnvironmentInternal env) {	
 		return new OCL(env.getEnvironmentFactory(), env);
 	}
 	
 	private final @NonNull EnvironmentFactoryInternal environmentFactory;
 
-	private final @NonNull Environment rootEnvironment;
+	private final @NonNull EnvironmentInternal rootEnvironment;
 
 	private @Nullable ModelManager modelManager;
 
@@ -165,7 +165,7 @@ public class OCL {
 	 * @param rootEnv
 	 *            my root environment
 	 */
-	protected OCL(@NonNull EnvironmentFactoryInternal envFactory, @NonNull Environment rootEnv) {
+	protected OCL(@NonNull EnvironmentFactoryInternal envFactory, @NonNull EnvironmentInternal rootEnv) {
 		this.environmentFactory = envFactory;
 		this.rootEnvironment = rootEnv;
 
@@ -395,7 +395,7 @@ public class OCL {
 	/**
 	 * Disposes any objects that I have created while I have been in use. This
 	 * includes disposing of any {@link #getConstraints() constraints} that I
-	 * have parsed and {@linkplain Environment#dispose() disposing} of
+	 * have parsed and {@linkplain EnvironmentInternal#dispose() disposing} of
 	 * my environment.
 	 */
 	public void dispose() {
@@ -470,7 +470,7 @@ public class OCL {
 	 * 
 	 * @return the parsing environment
 	 */
-	public @NonNull Environment getEnvironment() {
+	public @NonNull EnvironmentInternal getEnvironment() {
 		return rootEnvironment;
 	}
 

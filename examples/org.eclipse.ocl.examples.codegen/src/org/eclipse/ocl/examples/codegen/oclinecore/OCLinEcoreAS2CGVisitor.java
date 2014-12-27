@@ -18,6 +18,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGParameter;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 public final class OCLinEcoreAS2CGVisitor extends AS2CGVisitor
 {
@@ -45,7 +46,7 @@ public final class OCLinEcoreAS2CGVisitor extends AS2CGVisitor
 	@Override
 	public @NonNull CGParameter getParameter(@NonNull Variable aParameter) {
 		CGParameter cgParameter = super.getParameter(aParameter);
-		if ("self".equals(aParameter.getName())) {
+		if (PivotConstants.SELF_NAME.equals(aParameter.getName())) {
 			cgParameter.setValueName("this");
 		}
 		return cgParameter;

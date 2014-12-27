@@ -13,10 +13,10 @@ package org.eclipse.ocl.pivot.context;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.Environment;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 /**
  * ClassContext supports parsing OCL expressions in the context of a Class.
@@ -45,6 +45,6 @@ public class ClassContext extends AbstractParserContext
 	@Override
 	public void initialize(@NonNull Base2ASConversion conversion, @NonNull ExpressionInOCL expression) {
 		super.initialize(conversion, expression);
-		conversion.setContextVariable(expression, Environment.SELF_VARIABLE_NAME, classContext, instanceContext);
+		conversion.setContextVariable(expression, PivotConstants.SELF_NAME, classContext, instanceContext);
 	}
 }

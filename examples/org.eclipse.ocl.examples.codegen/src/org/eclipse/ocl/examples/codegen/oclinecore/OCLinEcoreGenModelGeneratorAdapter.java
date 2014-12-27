@@ -65,7 +65,7 @@ import org.eclipse.ocl.library.LibraryConstants;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Operation;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.ecore.AS2Ecore;
@@ -174,7 +174,7 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 								String source = eAnnotation.getSource();
 								if (OCLCommon.isDelegateURI(source)) {
 									@SuppressWarnings("deprecation")
-									String messageAnnotationDetailSuffix = PivotConstants.MESSAGE_ANNOTATION_DETAIL_SUFFIX;
+									String messageAnnotationDetailSuffix = PivotConstantsInternal.MESSAGE_ANNOTATION_DETAIL_SUFFIX;
 									EMap<String, String> details = eAnnotation.getDetails();
 									for (String key : details.keySet()) {
 										if ((key != null) && !key.endsWith(messageAnnotationDetailSuffix)) {

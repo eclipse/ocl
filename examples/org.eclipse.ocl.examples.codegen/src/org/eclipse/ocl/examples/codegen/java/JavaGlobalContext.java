@@ -26,6 +26,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.generator.GlobalContext;
 import org.eclipse.ocl.pivot.ids.ElementId;
 import org.eclipse.ocl.pivot.ids.IdVisitor;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 /**
  * A JavaGlobalContext maintains the Java-specific global context for generation of code.
@@ -49,7 +50,7 @@ public class JavaGlobalContext<CG extends JavaCodeGenerator> extends AbstractJav
 		this.eName = nameManager.reserveName(JavaConstants.E_NAME, null);
 		this.evaluateName = nameManager.reserveName(JavaConstants.EVALUATE_NAME, null);
 		this.instanceName = nameManager.reserveName(JavaConstants.INSTANCE_NAME, null);
-		this.selfName = nameManager.reserveName(JavaConstants.SELF_NAME, null);
+		this.selfName = nameManager.reserveName(PivotConstants.SELF_NAME, null);
 	}
 
 	protected void addGlobal(@NonNull CGValuedElement cgGlobal) {

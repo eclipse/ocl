@@ -51,7 +51,7 @@ import org.eclipse.ocl.examples.xtext.console.actions.SaveExpressionAction;
 import org.eclipse.ocl.examples.xtext.console.messages.ConsoleMessages;
 import org.eclipse.ocl.examples.xtext.console.xtfo.EmbeddedXtextEditor;
 import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.Environment;
+import org.eclipse.ocl.pivot.EnvironmentInternal;
 import org.eclipse.ocl.pivot.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.ParserException;
@@ -135,7 +135,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
     {
 		private final @NonNull IProgressMonitor monitor;
 		
-		protected CancelableEvaluationVisitor(@NonNull IProgressMonitor monitor, @NonNull Environment env, @NonNull EvaluationEnvironment evalEnv, @NonNull ModelManager modelManager) {
+		protected CancelableEvaluationVisitor(@NonNull IProgressMonitor monitor, @NonNull EnvironmentInternal env, @NonNull EvaluationEnvironment evalEnv, @NonNull ModelManager modelManager) {
 			super(env, evalEnv, modelManager);
 			this.monitor = monitor;
 		}

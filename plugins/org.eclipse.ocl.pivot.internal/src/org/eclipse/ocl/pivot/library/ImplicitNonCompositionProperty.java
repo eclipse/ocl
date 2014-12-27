@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CollectionType;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
@@ -71,8 +71,8 @@ public class ImplicitNonCompositionProperty extends AbstractProperty
 			}
 		}
 		if (isMany) {
-			return evaluator.getIdResolver().createCollectionOfAll(PivotConstants.DEFAULT_IMPLICIT_OPPOSITE_ORDERED,
-				PivotConstants.DEFAULT_IMPLICIT_OPPOSITE_UNIQUE, returnTypeId, results);
+			return evaluator.getIdResolver().createCollectionOfAll(PivotConstantsInternal.DEFAULT_IMPLICIT_OPPOSITE_ORDERED,
+				PivotConstantsInternal.DEFAULT_IMPLICIT_OPPOSITE_UNIQUE, returnTypeId, results);
 		}
 		else if (results.size() == 0) {
 			return null;

@@ -37,7 +37,7 @@ import org.eclipse.ocl.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.NullLiteralExp;
 import org.eclipse.ocl.pivot.OCLExpression;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
@@ -180,10 +180,10 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 		}
 		else {
 			Map<String, Type> tupleParts = new HashMap<String, Type>();
-			tupleParts.put(PivotConstants.MESSAGE_PART_NAME, standardLibrary.getStringType());
-			tupleParts.put(PivotConstants.STATUS_PART_NAME, standardLibrary.getBooleanType());
+			tupleParts.put(PivotConstantsInternal.MESSAGE_PART_NAME, standardLibrary.getStringType());
+			tupleParts.put(PivotConstantsInternal.STATUS_PART_NAME, standardLibrary.getBooleanType());
 			TupleType tupleType = metaModelManager.getCompleteModel().getTupleManager().getTupleType("Tuple", tupleParts);
-			Property statusProperty = NameUtil.getNameable(tupleType.getOwnedProperties(), PivotConstants.STATUS_PART_NAME);
+			Property statusProperty = NameUtil.getNameable(tupleType.getOwnedProperties(), PivotConstantsInternal.STATUS_PART_NAME);
 			LanguageExpression asSpecification = asConstraint.getOwnedSpecification();
 			//
 			ExpressionInOCL asExpressionInOCL;
@@ -272,11 +272,11 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 				@NonNull TupleLiteralPart csTupleLiteralPart = context.refreshModelElement(TupleLiteralPart.class, PivotPackage.Literals.TUPLE_LITERAL_PART, csElement);
 				EStructuralFeature eContainingFeature = csElement.eContainingFeature();
 				if (eContainingFeature == BaseCSPackage.Literals.CONSTRAINT_CS__OWNED_SPECIFICATION) {
-					csTupleLiteralPart.setName(PivotConstants.STATUS_PART_NAME);
+					csTupleLiteralPart.setName(PivotConstantsInternal.STATUS_PART_NAME);
 					csTupleLiteralPart.setType(standardLibrary.getBooleanType());
 				}
 				else if (eContainingFeature == BaseCSPackage.Literals.CONSTRAINT_CS__OWNED_MESSAGE_SPECIFICATION) {
-					csTupleLiteralPart.setName(PivotConstants.MESSAGE_PART_NAME);
+					csTupleLiteralPart.setName(PivotConstantsInternal.MESSAGE_PART_NAME);
 					csTupleLiteralPart.setType(standardLibrary.getStringType());
 				}
 				else {

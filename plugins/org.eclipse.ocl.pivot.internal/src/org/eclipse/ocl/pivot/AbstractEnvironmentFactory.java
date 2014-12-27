@@ -26,6 +26,7 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitorImpl;
 import org.eclipse.ocl.pivot.evaluation.TracingEvaluationVisitor;
 import org.eclipse.ocl.pivot.manager.PivotIdResolver;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 /**
  * Partial implementation of the {@link EnvironmentFactoryInternal} interface, useful
@@ -49,10 +50,10 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryIn
      * @param context the package context (must not be <code>null</code>)
      * @return the new nested environment
      */
-	protected Environment createPackageContext(@NonNull Environment parent,
+	protected EnvironmentInternal createPackageContext(@NonNull EnvironmentInternal parent,
 			@NonNull org.eclipse.ocl.pivot.Package context) {
 		
-		Environment result =
+		EnvironmentInternal result =
 			createEnvironment(parent);
 		
 		if (result instanceof AbstractEnvironment) {
@@ -65,13 +66,13 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryIn
 	
     // implements the interface method
 	@Override
-	public @NonNull Environment createClassifierContext(@NonNull Environment parent, @NonNull org.eclipse.ocl.pivot.Class context) {
+	public @NonNull EnvironmentInternal createClassifierContext(@NonNull EnvironmentInternal parent, @NonNull org.eclipse.ocl.pivot.Class context) {
         
-        Environment result =
+        EnvironmentInternal result =
             createEnvironment(parent);
         
-        Variable self = parent.getOCLFactory().createVariable();
-        self.setName(Environment.SELF_VARIABLE_NAME);
+        Variable self = PivotFactory.eINSTANCE.createVariable();
+        self.setName(PivotConstants.SELF_NAME);
         self.setType(context);
         
 //        result.addElement(self.getName(), self, true);
@@ -82,21 +83,20 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryIn
     
     // implements the interface method
     @Override
-	public @NonNull Environment createInstanceContext(@NonNull Environment parent, @NonNull Object context) {       
+	public @NonNull EnvironmentInternal createInstanceContext(@NonNull EnvironmentInternal parent, @NonNull Object context) {       
         return createClassifierContext(parent, getClassifier(context));
     }
 	
     // implements the interface method
 	@Override
-	public @NonNull Environment createOperationContext(@NonNull Environment parent, @NonNull Operation operation) {		
-		Environment result = createEnvironment(parent);		
+	public @NonNull EnvironmentInternal createOperationContext(@NonNull EnvironmentInternal parent, @NonNull Operation operation) {		
+		EnvironmentInternal result = createEnvironment(parent);		
 		if (result instanceof AbstractEnvironment) {
 			((AbstractEnvironment) result).setContextOperation(operation);
 		}
-		PivotFactory oclFactory = parent.getOCLFactory();		
         for (Parameter next : operation.getOwnedParameters()) {
 			// ensure that we use the OCL primitive types wherever possible
-			Variable var = oclFactory.createVariable();
+			Variable var = PivotFactory.eINSTANCE.createVariable();
 			var.setName(next.getName());
 			var.setType(next.getType());
 			var.setRepresentedParameter(next);		
@@ -107,9 +107,9 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryIn
 	
     // implements the interface method
 	@Override
-	public @NonNull Environment createPropertyContext(@NonNull Environment parent, @NonNull Property property) {
+	public @NonNull EnvironmentInternal createPropertyContext(@NonNull EnvironmentInternal parent, @NonNull Property property) {
 		
-		Environment result =
+		EnvironmentInternal result =
 			createEnvironment(parent);
 		
 		if (result instanceof AbstractEnvironment) {
@@ -121,7 +121,7 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryIn
 	}
 
 	@Override
-	public @NonNull EvaluationVisitor createEvaluationVisitor(@Nullable Environment environment, @Nullable Object context, @NonNull ExpressionInOCL expression, @Nullable ModelManager modelManager) {
+	public @NonNull EvaluationVisitor createEvaluationVisitor(@Nullable EnvironmentInternal environment, @Nullable Object context, @NonNull ExpressionInOCL expression, @Nullable ModelManager modelManager) {
 		if (environment == null) {
 			environment = createEnvironment();
 		}
@@ -150,7 +150,7 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryIn
 	
     // implements the interface method
 	@Override
-	public @NonNull EvaluationVisitor createEvaluationVisitor(@NonNull Environment env, @NonNull EvaluationEnvironment evalEnv,
+	public @NonNull EvaluationVisitor createEvaluationVisitor(@NonNull EnvironmentInternal env, @NonNull EvaluationEnvironment evalEnv,
 			@NonNull ModelManager modelManager) {
         EvaluationVisitor result = new EvaluationVisitorImpl(env, evalEnv, modelManager);
         

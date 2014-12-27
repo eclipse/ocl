@@ -34,6 +34,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.xtext.base.cs2as.Continuation;
@@ -211,7 +212,7 @@ public class CS2ASCG2JavaVisitor extends AutoCG2JavaVisitor<CS2ASCodeGenerator>
 				js.append(" ");
 				js.appendClassReference(typeDescriptor);
 				js.append(" ");
-				js.append("self");
+				js.append(PivotConstants.SELF_NAME);
 				js.append(") {\n");
 				js.pushIndentation(null);
 				cgContainmentBody.accept(this);
@@ -241,7 +242,7 @@ public class CS2ASCG2JavaVisitor extends AutoCG2JavaVisitor<CS2ASCodeGenerator>
 		js.append(" ");
 		js.appendClassReference(typeDescriptor);
 		js.append(" ");
-		js.append("self");
+		js.append(PivotConstants.SELF_NAME);
 		js.append(") {\n");
 		js.pushIndentation(null);
 		js.append("throw new UnsupportedOperationException(\"");

@@ -50,7 +50,7 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.PivotConstants;
+import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
@@ -466,7 +466,7 @@ public class Ecore2AS extends AbstractEcore2AS
 			if ((metaModelManager.getLibraryResource() == null) && isPivot(ecoreContents)) {
 				String nsURI = ((EPackage)ecoreContents.iterator().next()).getNsURI();
 				if (nsURI != null) {
-					String stdlibASUri = LibraryConstants.STDLIB_URI + PivotConstants.DOT_OCL_AS_FILE_EXTENSION;
+					String stdlibASUri = LibraryConstants.STDLIB_URI + PivotConstantsInternal.DOT_OCL_AS_FILE_EXTENSION;
 					OCLstdlib library = OCLstdlib.create(stdlibASUri, "ocl", "ocl", OCLstdlib.STDLIB_URI);
 					metaModelManager.installResource(library);
 //					metaModelManager.installAs(nsURI, OCLstdlibTables.PACKAGE);
@@ -511,7 +511,7 @@ public class Ecore2AS extends AbstractEcore2AS
 		List<Import> allImports = pivotModel.getOwnedImports();
 		for (EObject eContent : ecoreResource.getContents()) {
 			if (eContent instanceof EModelElement) {
-				EAnnotation importAnnotation = ((EModelElement)eContent).getEAnnotation(PivotConstants.IMPORT_ANNOTATION_SOURCE);
+				EAnnotation importAnnotation = ((EModelElement)eContent).getEAnnotation(PivotConstantsInternal.IMPORT_ANNOTATION_SOURCE);
 				if (importAnnotation != null) {
 					EMap<String, String> details = importAnnotation.getDetails();
 					for (String key : details.keySet()) {
@@ -556,7 +556,7 @@ public class Ecore2AS extends AbstractEcore2AS
 			return null;
 		}
 		EPackage ecorePackage = (EPackage) ecoreRoot;
-		EAnnotation asLibraryAnnotation = ecorePackage.getEAnnotation(PivotConstants.AS_LIBRARY_ANNOTATION_SOURCE);
+		EAnnotation asLibraryAnnotation = ecorePackage.getEAnnotation(PivotConstantsInternal.AS_LIBRARY_ANNOTATION_SOURCE);
 		return asLibraryAnnotation != null ? ecorePackage : null;
 	}
 
@@ -617,7 +617,7 @@ public class Ecore2AS extends AbstractEcore2AS
 			}
 			asMetamodels.add(ePackage);
 		}
-		EAnnotation importAnnotation = ePackage.getEAnnotation(PivotConstants.IMPORT_ANNOTATION_SOURCE);
+		EAnnotation importAnnotation = ePackage.getEAnnotation(PivotConstantsInternal.IMPORT_ANNOTATION_SOURCE);
 		if (importAnnotation != null) {
 			EMap<String, String> details = importAnnotation.getDetails();
 			for (String key : details.keySet()) {
