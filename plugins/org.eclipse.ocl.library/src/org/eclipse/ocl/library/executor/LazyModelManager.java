@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.omg.CORBA.Environment;
 
 /**
@@ -50,7 +50,7 @@ import org.omg.CORBA.Environment;
  *
  * @author Christian W. Damus (cdamus)
  */
-public abstract class LazyModelManager implements DomainModelManager {
+public abstract class LazyModelManager implements ModelManager {
 
 	private final Map<Type, Set<EObject>> modelManager = new HashMap<Type, Set<EObject>>();
 	private final Collection<EObject> roots;

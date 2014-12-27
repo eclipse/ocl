@@ -27,7 +27,7 @@ import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
-import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitorImpl;
@@ -212,7 +212,7 @@ public abstract class OCLVMEvaluationVisitor extends AbstractWrappingVisitor<Obj
 	}
 
 	@Override
-	public @NonNull DomainModelManager getModelManager() {
+	public @NonNull ModelManager getModelManager() {
 		return delegate.getModelManager();
 	}
 

@@ -41,7 +41,7 @@ import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableExp;
-import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 
@@ -108,7 +108,7 @@ public abstract class AbstractEvaluationVisitorDecorator<EV extends EvaluationVi
      * Obtains my delegate's extent map.
      */
     @Override
-	public @NonNull DomainModelManager getModelManager() {
+	public @NonNull ModelManager getModelManager() {
         return delegate.getModelManager();
     }
 

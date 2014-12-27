@@ -59,7 +59,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.context.ClassContext;
 import org.eclipse.ocl.pivot.context.ParserContext;
 import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
-import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationHaltedException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
@@ -135,7 +135,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
     {
 		private final @NonNull IProgressMonitor monitor;
 		
-		protected CancelableEvaluationVisitor(@NonNull IProgressMonitor monitor, @NonNull Environment env, @NonNull EvaluationEnvironment evalEnv, @NonNull DomainModelManager modelManager) {
+		protected CancelableEvaluationVisitor(@NonNull IProgressMonitor monitor, @NonNull Environment env, @NonNull EvaluationEnvironment evalEnv, @NonNull ModelManager modelManager) {
 			super(env, evalEnv, modelManager);
 			this.monitor = monitor;
 		}
@@ -221,7 +221,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 				evaluationEnvironment.add(ClassUtil.nonNullModel(expressionInOCL.getOwnedContext()), contextValue);
 	//			if (modelManager == null) {
 					// let the evaluation environment create one
-					@NonNull DomainModelManager modelManager2 = modelManager = evaluationEnvironment.createModelManager(contextObject);
+					@NonNull ModelManager modelManager2 = modelManager = evaluationEnvironment.createModelManager(contextObject);
 	//			}
 				monitor.worked(2);
 				monitor.subTask(ConsoleMessages.Progress_Evaluating);
@@ -358,7 +358,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 	
 //	private final CancelableMetaModelManager metaModelManager;
 	private MetaModelManager nullMetaModelManager = null;
-	private DomainModelManager modelManager = null;
+	private ModelManager modelManager = null;
 	
 //	private Map<TargetMetamodel, IAction> metamodelActions =
 //	    new java.util.HashMap<TargetMetamodel, IAction>();

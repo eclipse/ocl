@@ -26,7 +26,7 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.evaluation.DomainEvaluationEnvironment;
-import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 
 /**
@@ -177,7 +177,7 @@ public interface EvaluationEnvironment extends DomainEvaluationEnvironment, Basi
 	 *     classifier extents
 	 * @return the extent map
 	 */
-    @NonNull DomainModelManager createModelManager(@Nullable Object object);
+    @NonNull ModelManager createModelManager(@Nullable Object object);
     
     /**
      * Queries whether an object is an instance of the specified classifier or

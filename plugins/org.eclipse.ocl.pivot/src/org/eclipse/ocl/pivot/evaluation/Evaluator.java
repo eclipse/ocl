@@ -36,7 +36,7 @@ public interface Evaluator
 	/**
 	 * Return the manager of all model instances for use by allInstances() and hidden opposite support.
 	 */
-	@NonNull DomainModelManager getModelManager();
+	@NonNull ModelManager getModelManager();
 
 	/**
 	 * Return a cached matcher for a give regular expression.

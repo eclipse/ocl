@@ -17,13 +17,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 
 /**
- * DomainModelManager provides the models to be used during evaluation. In particular
+ * ModelManager provides the models to be used during evaluation. In particular
  * the managed models constitute the extent from which Classifier.allInstances
  * returns are made.
  */
-public interface DomainModelManager
+public interface ModelManager
 {
-	@NonNull DomainModelManager NULL = new DomainModelManager()
+	@NonNull ModelManager NULL = new ModelManager()
 	{
 		@Override
 		@SuppressWarnings("null")

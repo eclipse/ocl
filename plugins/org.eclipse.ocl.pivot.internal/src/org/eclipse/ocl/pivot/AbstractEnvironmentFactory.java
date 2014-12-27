@@ -20,7 +20,7 @@ import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Variable;
-import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitorImpl;
@@ -130,7 +130,7 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactory, 
 	}
 
 	@Override
-	public @NonNull EvaluationVisitor createEvaluationVisitor(@Nullable Environment environment, @Nullable Object context, @NonNull ExpressionInOCL expression, @Nullable DomainModelManager modelManager) {
+	public @NonNull EvaluationVisitor createEvaluationVisitor(@Nullable Environment environment, @Nullable Object context, @NonNull ExpressionInOCL expression, @Nullable ModelManager modelManager) {
 		if (environment == null) {
 			environment = createEnvironment();
 		}
@@ -149,7 +149,7 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactory, 
 				evaluationEnvironment.add(parameterVariable, null);
 			}
 		}
-		DomainModelManager extents = modelManager;
+		ModelManager extents = modelManager;
 		if (extents == null) {
 			// let the evaluation environment create one
 			extents = evaluationEnvironment.createModelManager(context);
@@ -160,7 +160,7 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactory, 
     // implements the interface method
 	@Override
 	public @NonNull EvaluationVisitor createEvaluationVisitor(@NonNull Environment env, @NonNull EvaluationEnvironment evalEnv,
-			@NonNull DomainModelManager modelManager) {
+			@NonNull ModelManager modelManager) {
         EvaluationVisitor result = new EvaluationVisitorImpl(env, evalEnv, modelManager);
         
         if (isEvaluationTracingEnabled()) {

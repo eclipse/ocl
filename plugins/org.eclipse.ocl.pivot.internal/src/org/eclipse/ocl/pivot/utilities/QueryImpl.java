@@ -28,7 +28,7 @@ import org.eclipse.ocl.pivot.Query;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.DomainException;
-import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationHaltedException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
@@ -57,7 +57,7 @@ public class QueryImpl implements Query, ProblemAware
 	private final Environment environment;
 	private final ExpressionInOCL query;
 	private final OCLExpression expression;
-	private DomainModelManager modelManager = null;
+	private ModelManager modelManager = null;
 	private EvaluationEnvironment evalEnv;
 	private Diagnostic evalProblems;
 	private BasicDiagnostic batchEvalProblems;
@@ -240,7 +240,7 @@ public class QueryImpl implements Query, ProblemAware
 
 	@Override
 	@SuppressWarnings("null")
-	public @NonNull DomainModelManager getModelManager() {
+	public @NonNull ModelManager getModelManager() {
 		if (modelManager == null) {
 			EvaluationEnvironment myEnv = getEvaluationEnvironment();
 			

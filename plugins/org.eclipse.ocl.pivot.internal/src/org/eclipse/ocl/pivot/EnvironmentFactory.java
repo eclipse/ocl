@@ -19,7 +19,7 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 
@@ -175,7 +175,7 @@ public interface EnvironmentFactory {
      * If context is null and the expression uses self subsequent evaluations will give invalid as the result.
      * If modelManager is null, the context object's ResoutceSet is analyzed to create one.
      */
-	@NonNull EvaluationVisitor createEvaluationVisitor(@Nullable Environment environment, @Nullable Object context, @NonNull ExpressionInOCL expression, @Nullable DomainModelManager modelManager);
+	@NonNull EvaluationVisitor createEvaluationVisitor(@Nullable Environment environment, @Nullable Object context, @NonNull ExpressionInOCL expression, @Nullable ModelManager modelManager);
 	
     /**
      * Creates a new evaluation visitor, for the evaluation of OCL expressions.
@@ -187,5 +187,5 @@ public interface EnvironmentFactory {
      * @param modelManager the map of <tt>Class</tt>es to their extends
      * @return the new evaluation visitor
      */
-	@NonNull EvaluationVisitor createEvaluationVisitor(@NonNull Environment env, @NonNull EvaluationEnvironment evalEnv, @NonNull DomainModelManager modelManager);
+	@NonNull EvaluationVisitor createEvaluationVisitor(@NonNull Environment env, @NonNull EvaluationEnvironment evalEnv, @NonNull ModelManager modelManager);
 }

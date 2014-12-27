@@ -18,7 +18,7 @@ import org.eclipse.ocl.pivot.Environment;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
-import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.util.Visitor;
 
@@ -63,7 +63,7 @@ public interface EvaluationVisitor extends Visitor<Object>, Evaluator
 	 * @return the model manager
 	 */
 	@Override
-	@NonNull DomainModelManager getModelManager();
+	@NonNull ModelManager getModelManager();
 
 	@NonNull MetaModelManager getMetaModelManager();
 

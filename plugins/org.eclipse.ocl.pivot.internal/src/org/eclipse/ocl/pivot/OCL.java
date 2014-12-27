@@ -30,7 +30,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.ecore.AS2Ecore;
 import org.eclipse.ocl.pivot.ecore.Ecore2AS;
-import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.evaluation.EvaluationHaltedException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.helper.OCLHelper;
@@ -144,7 +144,7 @@ public class OCL {
 
 	private final @NonNull Environment rootEnvironment;
 
-	private @Nullable DomainModelManager modelManager;
+	private @Nullable ModelManager modelManager;
 
 	private @NonNull List<Constraint> constraints = new java.util.ArrayList<Constraint>();
 
@@ -499,7 +499,7 @@ public class OCL {
 	 * @return the client-provided custom model manager, or <code>null</code> if
 	 *         thie OCL is using the default dynamic extent map implementation
 	 */
-	public @Nullable DomainModelManager getModelManager() {
+	public @Nullable ModelManager getModelManager() {
 		return modelManager;
 	}
 
@@ -655,7 +655,7 @@ public class OCL {
 	 *            a custom extent map, or <code>null</code> to use the default
 	 *            dynamic extent map implementation
 	 */
-	public void setModelManager(@Nullable DomainModelManager modelManager) {
+	public void setModelManager(@Nullable ModelManager modelManager) {
 		this.modelManager = modelManager;
 	}
 

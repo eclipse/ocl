@@ -40,7 +40,7 @@ import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
-import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
@@ -168,15 +168,15 @@ public class PivotEObjectValidator implements EValidator
 //			if (bodyExpression == null) {	// May be null for declations of hand coded Java
 //				return null;
 //			}
-			DomainModelManager oldModelManager = null;
+			ModelManager oldModelManager = null;
 			if (context != null) {
-				oldModelManager = (DomainModelManager) context.get(DomainModelManager.class);
+				oldModelManager = (ModelManager) context.get(ModelManager.class);
 			}
 			EvaluationVisitor evaluationVisitor = environmentFactory.createEvaluationVisitor(rootEnvironment, object, query, oldModelManager);
 			if (context != null) {
-				DomainModelManager newModelManager = evaluationVisitor.getModelManager();
+				ModelManager newModelManager = evaluationVisitor.getModelManager();
 				if (newModelManager != oldModelManager) {
-					context.put(DomainModelManager.class, newModelManager);
+					context.put(ModelManager.class, newModelManager);
 				}
 				Object monitor = context.get(Monitor.class);
 				if (monitor instanceof Monitor) {

@@ -16,7 +16,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 
 /**
@@ -153,7 +153,7 @@ public interface Query {
 	 * 
 	 * @return the map of classes to their extents
 	 */
-	public DomainModelManager getModelManager();
+	public ModelManager getModelManager();
 	
 	/**
 	 * Obtains the expression that I evaluate (or check as a boolean constraint).

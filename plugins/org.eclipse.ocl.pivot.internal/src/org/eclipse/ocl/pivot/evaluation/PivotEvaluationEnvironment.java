@@ -20,7 +20,7 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.Variable;
-import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.values.ObjectValue;
 
@@ -323,14 +323,14 @@ public class PivotEvaluationEnvironment extends AbstractEvaluationEnvironment {
     * {@inheritDoc}
     */
    @Override
-public @NonNull DomainModelManager createModelManager(@Nullable Object object) {
+public @NonNull ModelManager createModelManager(@Nullable Object object) {
         if (object instanceof ObjectValue) {
             object = ((ObjectValue) object).getObject();
         }
         if (object instanceof EObject) {
             return new PivotModelManager(getMetaModelManager(), (EObject) object);
         }
-        return DomainModelManager.NULL;
+        return ModelManager.NULL;
     }
 
 //    public Map<org.eclipse.ocl.pivot.Class, Set<Object>> createExtentMap(

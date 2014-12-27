@@ -31,7 +31,7 @@ import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
-import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.ElementId;
 import org.eclipse.ocl.pivot.ids.TemplateableId;
@@ -593,7 +593,7 @@ public abstract class ValueUtil
 					ParameterTypesImpl.EMPTY_LIST.getClass();
 					TemplateParameters.EMPTY_LIST.getClass();
 					// org.eclipse.ocl.domain.evaluation
-					DomainModelManager.NULL.getClass();
+					ModelManager.NULL.getClass();
 					// org.eclipse.ocl.domain.ids
 //					IdManager.getClass();
 					TemplateableId.NULL_TEMPLATEABLE_ID_ARRAY.getClass();

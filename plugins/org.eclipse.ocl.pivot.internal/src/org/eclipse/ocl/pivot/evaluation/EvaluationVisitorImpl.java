@@ -117,7 +117,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 * @param modelManager
 	 *            a map of classes to their instance lists
 	 */
-	public EvaluationVisitorImpl( @NonNull Environment env,  @NonNull EvaluationEnvironment evalEnv, @NonNull DomainModelManager modelManager) {
+	public EvaluationVisitorImpl( @NonNull Environment env,  @NonNull EvaluationEnvironment evalEnv, @NonNull ModelManager modelManager) {
 		super(env, evalEnv, modelManager);
 	}
 	

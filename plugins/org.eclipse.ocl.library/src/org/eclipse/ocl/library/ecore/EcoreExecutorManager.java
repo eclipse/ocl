@@ -30,7 +30,7 @@ import org.eclipse.ocl.library.executor.LazyModelManager;
 import org.eclipse.ocl.pivot.PivotObject;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
-import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
@@ -43,7 +43,7 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 public class EcoreExecutorManager extends ExecutorManager
 {
 	private final @Nullable Object contextObject;
-	private DomainModelManager modelManager = null;
+	private ModelManager modelManager = null;
 	private /*@LazyNonNull*/ IdResolver idResolver = null;
 	
 	/**
@@ -138,8 +138,8 @@ public class EcoreExecutorManager extends ExecutorManager
 	}
 
 	@Override
-	public @NonNull DomainModelManager getModelManager() {
-		DomainModelManager modelManager2 = modelManager;
+	public @NonNull ModelManager getModelManager() {
+		ModelManager modelManager2 = modelManager;
 		if (modelManager2 == null) {
 			synchronized (this) {
 				modelManager2 = modelManager;
@@ -157,7 +157,7 @@ public class EcoreExecutorManager extends ExecutorManager
 						};
 					}
 					else {
-						modelManager2 = DomainModelManager.NULL;
+						modelManager2 = ModelManager.NULL;
 					}
 					modelManager = modelManager2;
 				}

@@ -29,7 +29,7 @@ import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
-import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
@@ -62,7 +62,7 @@ public abstract class AbstractEvaluationVisitor
 	protected final @NonNull MetaModelManager metaModelManager;	
 	protected final @NonNull CompleteEnvironmentInternal completeEnvironment;
 	protected final @NonNull StandardLibraryInternal standardLibrary;
-	protected final @NonNull DomainModelManager modelManager;
+	protected final @NonNull ModelManager modelManager;
 
     protected @NonNull EvaluationVisitor undecoratedVisitor;
 	
@@ -93,7 +93,7 @@ public abstract class AbstractEvaluationVisitor
 	 * @param modelManager a map of classes to their instance sets
 	 */
 	protected AbstractEvaluationVisitor(@NonNull Environment env, @NonNull EvaluationEnvironment evalEnv,
-			@NonNull DomainModelManager modelManager) {
+			@NonNull ModelManager modelManager) {
         super(Object.class);						// Useless dummy object as context
         this.evaluationEnvironment = evalEnv;
         this.environment = env;
@@ -162,7 +162,7 @@ public abstract class AbstractEvaluationVisitor
 	
     // implements the interface method
 	@Override
-	public @NonNull DomainModelManager getModelManager() {
+	public @NonNull ModelManager getModelManager() {
 		return modelManager;
 	}
 

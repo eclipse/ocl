@@ -23,7 +23,7 @@ import org.eclipse.ocl.pivot.PivotConstants;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
-import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractProperty;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -43,7 +43,7 @@ public class ImplicitNonCompositionProperty extends AbstractProperty
 	
 	@Override
 	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
-		DomainModelManager modelManager = evaluator.getModelManager();
+		ModelManager modelManager = evaluator.getModelManager();
 		Property thatProperty = property.getOpposite();
 		Type thatType = ClassUtil.nonNullModel(property.getType());
 		boolean isMany = thatType instanceof CollectionType;

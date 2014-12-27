@@ -19,7 +19,7 @@ import org.eclipse.ocl.library.executor.ExecutorManager;
 import org.eclipse.ocl.library.executor.LazyModelManager;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
-import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
@@ -34,7 +34,7 @@ public class PivotExecutorManager extends ExecutorManager
 	protected final @NonNull MetaModelManager metaModelManager;
 	protected final @NonNull PivotIdResolver idResolver;
 	protected final @NonNull EObject contextObject;
-	private @Nullable DomainModelManager modelManager = null;
+	private @Nullable ModelManager modelManager = null;
 
 	public PivotExecutorManager(@NonNull MetaModelManager metaModelManager, @NonNull EObject contextObject) {
 		super(metaModelManager.getCompleteEnvironment());
@@ -59,8 +59,8 @@ public class PivotExecutorManager extends ExecutorManager
 	}
 
 	@Override
-	public @NonNull DomainModelManager getModelManager() {
-		DomainModelManager modelManager2 = modelManager;
+	public @NonNull ModelManager getModelManager() {
+		ModelManager modelManager2 = modelManager;
 		if (modelManager2 == null) {
 			synchronized (this) {
 				modelManager2 = modelManager;

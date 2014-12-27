@@ -22,7 +22,7 @@ import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
-import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.PropertyId;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -44,7 +44,7 @@ public class UnboxedOppositeNavigationProperty extends AbstractProperty
 	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		IdResolver idResolver = evaluator.getIdResolver();
 		Property oppositeProperty = idResolver.getProperty(oppositePropertyId);		
-		DomainModelManager modelManager = evaluator.getModelManager();
+		ModelManager modelManager = evaluator.getModelManager();
 		Type thatType = ClassUtil.nonNullModel(oppositeProperty.getType());
 		if (thatType instanceof CollectionType) {
 			thatType = ((CollectionType)thatType).getElementType();

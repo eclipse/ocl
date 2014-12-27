@@ -30,7 +30,7 @@ public interface DomainEvaluationVisitor
      * 
 	 * @return the model manager
 	 */
-	@NonNull DomainModelManager getModelManager();
+	@NonNull ModelManager getModelManager();
 
 	@NonNull StandardLibrary getStandardLibrary();
 }
