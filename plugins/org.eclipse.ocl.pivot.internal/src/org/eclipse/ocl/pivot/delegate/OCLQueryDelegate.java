@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
-import org.eclipse.ocl.pivot.EvaluationException;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.OCLExpression;
@@ -31,8 +30,8 @@ import org.eclipse.ocl.pivot.SemanticException;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.context.EInvocationContext;
-import org.eclipse.ocl.pivot.evaluation.DomainException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.pivot.evaluation.EvaluationException;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
@@ -159,7 +158,7 @@ public class OCLQueryDelegate implements QueryDelegate
 		catch (InvocationTargetException e) {
 			throw e;
 		}
-		catch (DomainException e) {
+		catch (EvaluationException e) {
 			String message = ClassUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, specification.getBody());
 			throw new InvocationTargetException(new EvaluationException(message));
 		}

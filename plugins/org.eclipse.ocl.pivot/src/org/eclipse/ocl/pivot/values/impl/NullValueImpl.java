@@ -49,7 +49,7 @@ public class NullValueImpl extends UndefinedValueImpl implements NullValue
 	}
 	
 	public NullValueImpl() {
-		super(null, null);
+		super(null);
 	}
 	
 	@Override

@@ -27,11 +27,11 @@ import org.eclipse.ocl.pivot.ProblemAware;
 import org.eclipse.ocl.pivot.Query;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
-import org.eclipse.ocl.pivot.evaluation.DomainException;
-import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.pivot.evaluation.EvaluationException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationHaltedException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.helper.HelperUtil;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
@@ -126,7 +126,7 @@ public class QueryImpl implements Query, ProblemAware
 	}
 
 	@Override
-	public Object evaluate() throws DomainException {
+	public Object evaluate() throws EvaluationException {
 		evalProblems = null;
 		
 		// lazily create the evaluation environment, if not already done by
@@ -151,7 +151,7 @@ public class QueryImpl implements Query, ProblemAware
 	}
 
 	@Override
-	public Object evaluate(Object obj) throws DomainException {
+	public Object evaluate(Object obj) throws EvaluationException {
 		evalProblems = null;
 		
 		if (obj == null) {

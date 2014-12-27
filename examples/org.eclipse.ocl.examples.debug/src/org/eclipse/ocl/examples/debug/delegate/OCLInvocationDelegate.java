@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
 import org.eclipse.ocl.pivot.Constraint;
-import org.eclipse.ocl.pivot.EvaluationException;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.OCL;
@@ -31,8 +30,8 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.delegate.InvocationBehavior;
 import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.pivot.evaluation.DomainException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.pivot.evaluation.EvaluationException;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
@@ -107,9 +106,8 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 			Object unboxedValue = idResolver.unboxedValueOf(result);
 			return ValueUtil.ecoreValueOf(unboxedValue, eOperation.getEType().getInstanceClass());
 		}
-		catch (DomainException e) {
-			String message = ClassUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, operation);
-			throw new OCLDelegateException(new EvaluationException(message, e));
+		catch (EvaluationException e) {
+			throw new OCLDelegateException(new EvaluationException(e, OCLMessages.EvaluationResultIsInvalid_ERROR_, operation));
 		}
 	}
 

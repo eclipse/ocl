@@ -9,22 +9,31 @@
  *   E.D.Willink (CEA LIST) - Initial API and implementation
  *******************************************************************************/
 
-package org.eclipse.ocl.pivot;
+package org.eclipse.ocl.pivot.evaluation;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * Exception indicating a failure to evaluate an OCL constraint or expression.
  */
-public class EvaluationException extends Exception
+public class EvaluationException extends RuntimeException
 {
-	private static final long serialVersionUID = 8309911574900800121L;
+	private static final long serialVersionUID = -887131032132664080L;
 
-	public EvaluationException(@NonNull String message) {
+	public EvaluationException(String message) {
 		super(message);
 	}
 
-	public EvaluationException(@NonNull String message, @NonNull Throwable e) {
+	public EvaluationException(/*@NonNull*/ String messageTemplate, Object... bindings) {
+		super(NLS.bind(messageTemplate, bindings));
+	}
+
+	public EvaluationException(@NonNull Throwable e, String message) {
 		super(message, e);
+	}
+
+	public EvaluationException(@NonNull Throwable e, /*@NonNull*/ String messageTemplate, Object... bindings) {
+		super(NLS.bind(messageTemplate, bindings), e);
 	}
 }

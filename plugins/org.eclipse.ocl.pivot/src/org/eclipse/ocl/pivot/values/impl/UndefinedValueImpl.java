@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.evaluation.DomainException;
+import org.eclipse.ocl.pivot.evaluation.EvaluationException;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.OclVoidTypeId;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
@@ -52,7 +52,7 @@ import org.eclipse.ocl.pivot.values.Value;
 /**
  * @generated NOT
  */
-public abstract class UndefinedValueImpl extends DomainException implements NullValue
+public abstract class UndefinedValueImpl extends EvaluationException implements NullValue
 {	
 	private static final long serialVersionUID = 1L;
 
@@ -73,8 +73,20 @@ public abstract class UndefinedValueImpl extends DomainException implements Null
 		}
 	}
 
-	protected UndefinedValueImpl(@Nullable String message, @Nullable Throwable cause) {
-		super(message, cause);
+	public UndefinedValueImpl(String message) {
+		super(message);
+	}
+
+	public UndefinedValueImpl(String messageTemplate, Object... bindings) {
+		super(messageTemplate, bindings);
+	}
+
+	public UndefinedValueImpl(@NonNull Throwable e, String message) {
+		super(e, message);
+	}
+
+	public UndefinedValueImpl(@NonNull Throwable e, String messageTemplate, Object... bindings) {
+		super(e, messageTemplate, bindings);
 	}
 
 	@Override

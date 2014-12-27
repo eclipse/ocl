@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicSettingDelegate;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
-import org.eclipse.ocl.pivot.EvaluationException;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.Property;
@@ -23,7 +22,7 @@ import org.eclipse.ocl.pivot.Query;
 import org.eclipse.ocl.pivot.SemanticException;
 import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.delegate.SettingBehavior;
-import org.eclipse.ocl.pivot.evaluation.DomainException;
+import org.eclipse.ocl.pivot.evaluation.EvaluationException;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
@@ -74,9 +73,8 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 			Object unboxedValue = idResolver.unboxedValueOf(result);
 			return ValueUtil.ecoreValueOf(unboxedValue, eStructuralFeature.getEType().getInstanceClass());
 		}
-		catch (DomainException e) {
-			String message = ClassUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, property);
-			throw new OCLDelegateException(new EvaluationException(message, e));
+		catch (EvaluationException e) {
+			throw new OCLDelegateException(new EvaluationException(e, OCLMessages.EvaluationResultIsInvalid_ERROR_, property));
 		}
 	}
 

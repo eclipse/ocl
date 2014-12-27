@@ -15,14 +15,12 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.OclInvalidTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.values.impl.UndefinedValueImpl;
 
 /**
@@ -49,22 +47,22 @@ public class InvalidValueException extends UndefinedValueImpl implements Invalid
 		return ValuesPackage.Literals.INVALID_VALUE;
 	}
 	
-	public InvalidValueException(@Nullable Exception exception, /*@NonNull*/ String message) {
-		super(message, exception);
+	public InvalidValueException(@NonNull Exception exception, @NonNull String message) {
+		super(exception, message);
 		assert !(exception instanceof InvalidValueException);
 	}
 
 	public InvalidValueException(/*@NonNull*/ String messageTemplate, Object... bindings) {
-		this(null, ClassUtil.bind(messageTemplate, bindings));
+		super(messageTemplate, bindings);
 	}
 
 	public InvalidValueException(@NonNull Exception exception) {
-		super(null, exception);
+		super(exception, null);
 		assert !(exception instanceof InvalidValueException);
 	}
 
-	public InvalidValueException(@Nullable Exception exception, /*@NonNull*/ String messageTemplate, Object... bindings) {
-		this(exception, ClassUtil.bind(messageTemplate, bindings));
+	public InvalidValueException(@NonNull Exception exception, /*@NonNull*/ String messageTemplate, Object... bindings) {
+		super(exception, messageTemplate, bindings);
 	}
 
 	@Override

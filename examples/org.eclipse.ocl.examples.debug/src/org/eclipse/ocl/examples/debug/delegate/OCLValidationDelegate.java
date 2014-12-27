@@ -23,7 +23,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
 import org.eclipse.ocl.pivot.Constraint;
-import org.eclipse.ocl.pivot.EvaluationException;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.OCL;
@@ -33,6 +32,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.delegate.InvocationBehavior;
 import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.delegate.ValidationDelegate;
+import org.eclipse.ocl.pivot.evaluation.EvaluationException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
@@ -74,9 +74,8 @@ public class OCLValidationDelegate implements ValidationDelegate
 
 		@Override
 		protected Boolean handleExceptionResult(@NonNull Throwable e) {
-			String message = ClassUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
-				getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.toString());
-			throw new OCLDelegateException(new EvaluationException(message, e));
+			throw new OCLDelegateException(new EvaluationException(e, OCLMessages.ValidationResultIsInvalid_ERROR_,
+					getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.toString()));
 		}
 
 		@Override
@@ -97,9 +96,8 @@ public class OCLValidationDelegate implements ValidationDelegate
 
 		@Override
 		protected Boolean handleInvalidResult(@NonNull InvalidValueException e) {
-			String message = ClassUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
-				getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.getLocalizedMessage());
-			throw new OCLDelegateException(new EvaluationException(message, e));
+			throw new OCLDelegateException(new EvaluationException(e, OCLMessages.ValidationResultIsInvalid_ERROR_,
+					getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.getLocalizedMessage()));
 		}
 
 		@Override

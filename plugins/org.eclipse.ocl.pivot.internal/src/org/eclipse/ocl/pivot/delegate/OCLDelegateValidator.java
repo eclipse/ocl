@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.EvaluationException;
+import org.eclipse.ocl.pivot.evaluation.EvaluationException;
 
 /**
  * Perform the validation of delegated OCL constraints and invariants.

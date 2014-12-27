@@ -62,7 +62,7 @@ import org.eclipse.ocl.pivot.PivotConstants;
 import org.eclipse.ocl.pivot.PivotStandaloneSetup;
 import org.eclipse.ocl.pivot.delegate.ValidationDelegate;
 import org.eclipse.ocl.pivot.ecore.AS2Ecore;
-import org.eclipse.ocl.pivot.evaluation.DomainException;
+import org.eclipse.ocl.pivot.evaluation.EvaluationException;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
@@ -541,14 +541,14 @@ public class PivotTestCase extends TestCase
 	}
 
 	protected static Value failOn(@NonNull String expression, @Nullable Throwable e) {
-		if (e instanceof DomainException) {
+		if (e instanceof EvaluationException) {
 			Throwable eCause = e.getCause();
 			if (eCause != null) {
 				return failOn(expression, eCause);
 			}
 			throw new Error("Failed to evaluate \"" + expression + "\"", e);
 		}
-		else if (e instanceof DomainException) {
+		else if (e instanceof EvaluationException) {
 			throw new Error("Failed to parse or evaluate \"" + expression + "\"", e);
 		}
 		else {
