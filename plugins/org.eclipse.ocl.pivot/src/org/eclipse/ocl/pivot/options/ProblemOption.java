@@ -11,7 +11,6 @@
 package org.eclipse.ocl.pivot.options;
 
 import org.eclipse.ocl.pivot.Option;
-import org.eclipse.ocl.pivot.ProblemHandler;
 
 
 /**

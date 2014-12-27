@@ -27,7 +27,7 @@ import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
@@ -48,7 +48,7 @@ public abstract class AbstractPivotConstraintLocator extends AbstractConstraintL
 
 		@Override
 		protected Diagnostic handleExceptionResult(@NonNull Throwable e) {
-			String message = StringUtil.bind(OCLMessages.ValidationConstraintException_ERROR_,
+			String message = StringUtil.bind(PivotMessagesInternal.ValidationConstraintException_ERROR_,
 				getConstraintTypeName(), getConstraintName(), getObjectLabel(), e);
 			return new BasicDiagnostic(Diagnostic.ERROR, EObjectValidator.DIAGNOSTIC_SOURCE, 0, message, new Object [] { object });
 		}
@@ -67,7 +67,7 @@ public abstract class AbstractPivotConstraintLocator extends AbstractConstraintL
 
 		@Override
 		protected Diagnostic handleInvalidResult(@NonNull InvalidValueException e) {
-			String message = StringUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
+			String message = StringUtil.bind(PivotMessagesInternal.ValidationResultIsInvalid_ERROR_,
 				getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.getLocalizedMessage());
 			return new BasicDiagnostic(Diagnostic.ERROR, EObjectValidator.DIAGNOSTIC_SOURCE, 0, message, new Object [] { object });
 		}

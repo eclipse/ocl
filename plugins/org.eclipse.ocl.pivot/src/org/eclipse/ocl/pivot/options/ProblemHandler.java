@@ -9,10 +9,10 @@
  *   E.D.Willink - Initial API and implementation
  *   IBM - Refactor phase and severity as types for localization
  *******************************************************************************/
-package org.eclipse.ocl.pivot;
+package org.eclipse.ocl.pivot.options;
 
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 
 /**
  * A <code>ProblemHandler</code> handles problems detected during the various lexical
@@ -37,17 +37,17 @@ public interface ProblemHandler {
 	 */
 	class Phase implements Comparable<Phase> {
 		/** Identifies problems found in the tokenizing (lexing) phase. */
-		public static Phase LEXER = new Phase(OCLMessages.Phase_Lexer);
+		public static Phase LEXER = new Phase(PivotMessages.Phase_Lexer);
 		/** Identifies problems found in the concrete syntax parsing phase. */
-		public static Phase PARSER = new Phase(OCLMessages.Phase_Parser);
+		public static Phase PARSER = new Phase(PivotMessages.Phase_Parser);
 		/** Identifies problems found in the abstract syntax parsing phase. */
-		public static Phase ANALYZER = new Phase(OCLMessages.Phase_Analyzer);
+		public static Phase ANALYZER = new Phase(PivotMessages.Phase_Analyzer);
 		/** Identifies problems found in the abstract syntax validation phase. */
-		public static Phase VALIDATOR = new Phase(OCLMessages.Phase_Validator);
+		public static Phase VALIDATOR = new Phase(PivotMessages.Phase_Validator);
 		/** Identifies problems found in a utility method (not really a parsing phase). */
-		public static Phase UTILITY = new Phase(OCLMessages.Phase_Utility);
+		public static Phase UTILITY = new Phase(PivotMessages.Phase_Utility);
 		/** Identifies problems found in un-parsing an OCL expression or constraint. */
-		public static Phase UNPARSER = new Phase(OCLMessages.Phase_Unparser);
+		public static Phase UNPARSER = new Phase(PivotMessages.Phase_Unparser);
 		
 		private final String localizedName;
 		
@@ -125,7 +125,7 @@ public interface ProblemHandler {
 		 * Corresponds to the EMF {@link Diagnostic} severity
 		 * {@link Diagnostic#OK} and Eclipse <tt>IStatus.OK</tt>.
 		 */
-		OK(OCLMessages.Severity_OK, Diagnostic.OK) {
+		OK(PivotMessages.Severity_OK, Diagnostic.OK) {
 		    @Override
             public boolean isOK() {
 		        return true;
@@ -136,13 +136,13 @@ public interface ProblemHandler {
 		 * Corresponds to the EMF {@link Diagnostic} severity
 		 * {@link Diagnostic#INFO} and Eclipse <tt>IStatus.INFO</tt>.
 		 */
-		INFO(OCLMessages.Severity_Info, Diagnostic.INFO),
+		INFO(PivotMessages.Severity_Info, Diagnostic.INFO),
 		/**
 		 * Severity constant indicating a warning problem.
 		 * Corresponds to the EMF {@link Diagnostic} severity
 		 * {@link Diagnostic#WARNING} and Eclipse <tt>IStatus.WARNING</tt>.
 		 */
-		WARNING(OCLMessages.Severity_Warning, Diagnostic.WARNING),
+		WARNING(PivotMessages.Severity_Warning, Diagnostic.WARNING),
 		/**
 		 * Severity constant indicating an error problem that does not
 		 * prevent the parser from proceeding, but which does indicate
@@ -150,7 +150,7 @@ public interface ProblemHandler {
 		 * Corresponds to the EMF {@link Diagnostic} severity
 		 * {@link Diagnostic#ERROR} and Eclipse <tt>IStatus.ERROR</tt>.
 		 */
-		ERROR(OCLMessages.Severity_Error, Diagnostic.ERROR),
+		ERROR(PivotMessages.Severity_Error, Diagnostic.ERROR),
 		/**
 		 * Severity constant indicating an error problem that prevents
 		 * the parser from continuing to process the remainder of the
@@ -160,7 +160,7 @@ public interface ProblemHandler {
 		 * because these frameworks do not distinguish between fatal
 		 * and non-fatal conditions.
 		 */
-		FATAL(OCLMessages.Severity_Fatal_Error, Diagnostic.ERROR),
+		FATAL(PivotMessages.Severity_Fatal_Error, Diagnostic.ERROR),
 		/**
 		 * Severity constant indicating a deliberate cancellation of the
 		 * parsing operation by the user.
@@ -172,7 +172,7 @@ public interface ProblemHandler {
 		 * is incomplete and any results produced are necessarily invalid
 		 * as in the case of {@link #FATAL} errors.
 		 */
-        CANCEL(OCLMessages.Severity_Cancel, Diagnostic.CANCEL);
+        CANCEL(PivotMessages.Severity_Cancel, Diagnostic.CANCEL);
 		
 		private final int diagnosticSeverity;
 		private final String localizedName;

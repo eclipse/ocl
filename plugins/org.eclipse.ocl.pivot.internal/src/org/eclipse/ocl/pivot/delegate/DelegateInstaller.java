@@ -52,6 +52,7 @@ import org.eclipse.ocl.pivot.options.OCLinEcoreOptions;
 import org.eclipse.ocl.pivot.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.uml2.codegen.ecore.genmodel.util.UML2GenModelUtil;
 
@@ -376,7 +377,7 @@ public class DelegateInstaller
 					if (eObject instanceof EAnnotation) {
 						EAnnotation nestedAnnotation = (EAnnotation) eObject;
 						if (UML2GenModelUtil.UML2_GEN_MODEL_PACKAGE_1_1_NS_URI.equals(nestedAnnotation.getSource())) {
-							nestedAnnotation.setSource(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+							nestedAnnotation.setSource(PivotConstants.OCL_DELEGATE_URI_PIVOT);
 						}
 					}
 				}
@@ -470,9 +471,9 @@ public class DelegateInstaller
 				eAnnotations.remove(annotation2);
 			}
 		}
-		EAnnotation annotation3 = eModelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		EAnnotation annotation3 = eModelElement.getEAnnotation(PivotConstants.OCL_DELEGATE_URI_PIVOT);
 		if (annotation3 != null) {
-			if (OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT.equals(exportDelegateURI)) {
+			if (PivotConstants.OCL_DELEGATE_URI_PIVOT.equals(exportDelegateURI)) {
 				oclAnnotation = annotation3;
 			}
 			else {

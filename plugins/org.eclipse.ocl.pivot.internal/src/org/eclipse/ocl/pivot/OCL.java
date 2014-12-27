@@ -41,6 +41,7 @@ import org.eclipse.ocl.pivot.uml.UML2AS;
 import org.eclipse.ocl.pivot.util.PivotInternalPlugin;
 import org.eclipse.ocl.pivot.utilities.BaseResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.ObjectUtil;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.QueryImpl;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;

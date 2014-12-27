@@ -16,7 +16,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBuiltInIterationCallExp;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
@@ -45,7 +45,7 @@ public class AnyIteration2Java extends AbstractIteration2Java
 			return true;
 		}
 		else {
-			return js.appendThrowInvalidValueException(EvaluatorMessages.NonBooleanBody, "any");
+			return js.appendThrowInvalidValueException(PivotMessages.NonBooleanBody, "any");
 		}
 	}
 	

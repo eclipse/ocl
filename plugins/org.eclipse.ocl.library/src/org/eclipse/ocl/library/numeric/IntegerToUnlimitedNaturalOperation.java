@@ -3,7 +3,7 @@ package org.eclipse.ocl.library.numeric;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.library.AbstractSimpleUnaryOperation;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
@@ -21,7 +21,7 @@ public class IntegerToUnlimitedNaturalOperation extends AbstractSimpleUnaryOpera
 			return numericValue;
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, "non-negative", "negative"); //$NON-NLS-1$ //$NON-NLS-2$
+			throw new InvalidValueException(PivotMessages.TypedValueRequired, "non-negative", "negative"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 }

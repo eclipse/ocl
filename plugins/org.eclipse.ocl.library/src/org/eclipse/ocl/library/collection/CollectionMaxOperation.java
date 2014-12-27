@@ -14,7 +14,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.library.numeric.NumericMaxOperation;
 import org.eclipse.ocl.pivot.library.AbstractSimpleUnaryOperation;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
@@ -39,7 +39,7 @@ public class CollectionMaxOperation extends AbstractSimpleUnaryOperation
         	}
         }
 		if (result == null) {
-        	throw new InvalidValueException(EvaluatorMessages.EmptyCollection, collectionValue.getKind(), "max"); //$NON-NLS-1$
+        	throw new InvalidValueException(PivotMessages.EmptyCollection, collectionValue.getKind(), "max"); //$NON-NLS-1$
 		}
 		return result;
     }

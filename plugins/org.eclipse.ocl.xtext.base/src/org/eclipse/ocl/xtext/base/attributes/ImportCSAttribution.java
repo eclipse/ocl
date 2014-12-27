@@ -25,7 +25,7 @@ import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.compatibility.EMF_2_9;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.scoping.ScopeView;
@@ -117,14 +117,14 @@ public class ImportCSAttribution extends AbstractAttribution implements Unresolv
 					List<Resource.Diagnostic> warnings = importedResource.getWarnings();
 					if (warnings.size() > 0) {
 						INode node = NodeModelUtils.getNode(target);
-						String errorMessage = PivotUtil.formatResourceDiagnostics(warnings, StringUtil.bind(OCLMessages.WarningsInURI, uri2), "\n\t");
+						String errorMessage = PivotUtil.formatResourceDiagnostics(warnings, StringUtil.bind(PivotMessagesInternal.WarningsInURI, uri2), "\n\t");
 						Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, errorMessage);
 						csResource.getWarnings().add(resourceDiagnostic);
 					}
 					List<Resource.Diagnostic> errors = importedResource.getErrors();
 					if (errors.size() > 0) {
 						INode node = NodeModelUtils.getNode(target);
-						String errorMessage = PivotUtil.formatResourceDiagnostics(errors, StringUtil.bind(OCLMessages.ErrorsInURI, uri), "\n\t");
+						String errorMessage = PivotUtil.formatResourceDiagnostics(errors, StringUtil.bind(PivotMessagesInternal.ErrorsInURI, uri), "\n\t");
 						Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, errorMessage);
 						csResource.getErrors().add(resourceDiagnostic);
 					}
@@ -164,7 +164,7 @@ public class ImportCSAttribution extends AbstractAttribution implements Unresolv
 		ImportAdapter adapter = ClassUtil.getAdapter(ImportAdapter.class, context);
 		if (adapter != null) {
 			String message = adapter.getMessage();
-			return NLS.bind(OCLMessages.UnresolvedImport_ERROR_, linkText, message);
+			return NLS.bind(PivotMessagesInternal.UnresolvedImport_ERROR_, linkText, message);
 		}
 		return null;
 	}

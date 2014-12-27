@@ -28,7 +28,7 @@ import org.eclipse.ocl.pivot.ids.OclVoidTypeId;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.BagValue;
 import org.eclipse.ocl.pivot.values.CollectionValue;
@@ -116,7 +116,7 @@ public abstract class UndefinedValueImpl extends EvaluationException implements 
 
 	@Override
 	public @NonNull BagValue asBagValue() {
-		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.BAG_NAME, getTypeName());
+		throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.BAG_NAME, getTypeName());
 	}
 
 	@Override
@@ -126,12 +126,12 @@ public abstract class UndefinedValueImpl extends EvaluationException implements 
 
 	@Override
 	public @NonNull CollectionValue asCollectionValue() {
-		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.COLLECTION_NAME, getTypeName());
+		throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.COLLECTION_NAME, getTypeName());
 	}
 
 	@Override
 	public @NonNull Double asDouble() {
-		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, "Double", getTypeName());
+		throw new InvalidValueException(PivotMessages.TypedValueRequired, "Double", getTypeName());
 	}
 	
 	@Override
@@ -141,12 +141,12 @@ public abstract class UndefinedValueImpl extends EvaluationException implements 
 
 	@Override
 	public @NonNull Integer asInteger() {
-		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.INTEGER_NAME, getTypeName());
+		throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.INTEGER_NAME, getTypeName());
 	}
 
 	@Override
 	public @NonNull IntegerValue asIntegerValue() {
-		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.INTEGER_NAME, getTypeName());
+		throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.INTEGER_NAME, getTypeName());
 	}
 
 	public @NonNull List<Object> asList() {
@@ -155,7 +155,7 @@ public abstract class UndefinedValueImpl extends EvaluationException implements 
 
 	@Override
 	public @NonNull EObject asNavigableObject() {
-		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, "Object", getTypeName());
+		throw new InvalidValueException(PivotMessages.TypedValueRequired, "Object", getTypeName());
 	}
 
 	@Override
@@ -170,47 +170,47 @@ public abstract class UndefinedValueImpl extends EvaluationException implements 
 
 	@Override
 	public @NonNull ObjectValue asObjectValue() {
-		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, "Object", getTypeName());
+		throw new InvalidValueException(PivotMessages.TypedValueRequired, "Object", getTypeName());
 	}
 
 	@Override
 	public @NonNull OrderedCollectionValue asOrderedCollectionValue() {
-		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.ORDERED_COLLECTION_NAME, getTypeName());
+		throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.ORDERED_COLLECTION_NAME, getTypeName());
 	}
 
 	@Override
 	public @NonNull OrderedSetValue asOrderedSetValue() {
-		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.ORDERED_SET_NAME, getTypeName());
+		throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.ORDERED_SET_NAME, getTypeName());
 	}
 
 	@Override
 	public @NonNull RealValue asRealValue() {
-		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.REAL_NAME, getTypeName());
+		throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.REAL_NAME, getTypeName());
 	}
 
 	@Override
 	public @NonNull SequenceValue asSequenceValue() {
-		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.SEQUENCE_NAME, getTypeName());
+		throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.SEQUENCE_NAME, getTypeName());
 	}
 
 	@Override
 	public @NonNull SetValue asSetValue() {
-		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.SET_NAME, getTypeName());
+		throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.SET_NAME, getTypeName());
 	}
 
 	@Override
 	public @NonNull TupleValue asTupleValue() {
-		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.TUPLE_NAME, getTypeName());
+		throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.TUPLE_NAME, getTypeName());
 	}
 
 	@Override
 	public @NonNull UniqueCollectionValue asUniqueCollectionValue() {
-		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, "Unique Collection", getTypeName());
+		throw new InvalidValueException(PivotMessages.TypedValueRequired, "Unique Collection", getTypeName());
 	}
 
 	@Override
 	public @NonNull UnlimitedNaturalValue asUnlimitedNaturalValue() {
-		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.UNLIMITED_NATURAL_NAME, getTypeName());
+		throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.UNLIMITED_NATURAL_NAME, getTypeName());
 	}
 
 	@Override
@@ -318,13 +318,13 @@ public abstract class UndefinedValueImpl extends EvaluationException implements 
 
     @Override
 	public @NonNull Boolean excludes(@Nullable Object value) {
-		throw new InvalidValueException(EvaluatorMessages.ConvertibleValueRequired, "Invalid");
+		throw new InvalidValueException(PivotMessages.ConvertibleValueRequired, "Invalid");
     }
 
 
     @Override
 	public @NonNull Boolean excludesAll(@NonNull CollectionValue c) {
-		throw new InvalidValueException(EvaluatorMessages.ConvertibleValueRequired, "Invalid");
+		throw new InvalidValueException(PivotMessages.ConvertibleValueRequired, "Invalid");
     }
 
 	@Override
@@ -399,12 +399,12 @@ public abstract class UndefinedValueImpl extends EvaluationException implements 
 
     @Override
 	public @NonNull Boolean includes(@Nullable Object value) {
-		throw new InvalidValueException(EvaluatorMessages.ConvertibleValueRequired, "Invalid");
+		throw new InvalidValueException(PivotMessages.ConvertibleValueRequired, "Invalid");
     }
 
     @Override
 	public @NonNull Boolean includesAll(@NonNull CollectionValue c) {
-		throw new InvalidValueException(EvaluatorMessages.ConvertibleValueRequired, "Invalid");
+		throw new InvalidValueException(PivotMessages.ConvertibleValueRequired, "Invalid");
    }
 
 	@Override
@@ -439,7 +439,7 @@ public abstract class UndefinedValueImpl extends EvaluationException implements 
 
 	@Override
 	public @NonNull Boolean isEmpty() {
-		throw new InvalidValueException(EvaluatorMessages.ConvertibleValueRequired, "Invalid");
+		throw new InvalidValueException(PivotMessages.ConvertibleValueRequired, "Invalid");
 	}
 
 	public boolean isFalse() {
@@ -583,7 +583,7 @@ public abstract class UndefinedValueImpl extends EvaluationException implements 
 
 	@Override
 	public @NonNull Boolean notEmpty() {
-		throw new InvalidValueException(EvaluatorMessages.ConvertibleValueRequired, "Invalid");
+		throw new InvalidValueException(PivotMessages.ConvertibleValueRequired, "Invalid");
 	}
 
 	@Override
@@ -656,7 +656,7 @@ public abstract class UndefinedValueImpl extends EvaluationException implements 
 	}
 
 	protected @NonNull NullValue toInvalidValue() {
-		throw new InvalidValueException(EvaluatorMessages.ConvertibleValueRequired, "Invalid");
+		throw new InvalidValueException(PivotMessages.ConvertibleValueRequired, "Invalid");
 	}
     
 	@Override

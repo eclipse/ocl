@@ -16,7 +16,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBuiltInIterationCallExp;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 public class RejectIteration2Java extends AbstractAccumulation2Java
@@ -44,7 +44,7 @@ public class RejectIteration2Java extends AbstractAccumulation2Java
 			return true;
 		}
 		else {
-			return js.appendThrowInvalidValueException(EvaluatorMessages.NonBooleanBody, "reject");
+			return js.appendThrowInvalidValueException(PivotMessages.NonBooleanBody, "reject");
 		}
 	}
 }

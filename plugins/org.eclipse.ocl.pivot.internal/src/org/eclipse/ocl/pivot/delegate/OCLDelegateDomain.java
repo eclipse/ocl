@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.common.delegate.VirtualDelegateMapping;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
@@ -39,6 +38,7 @@ import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManagerListener;
 import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironmentFactory;
 
 /**
@@ -69,28 +69,21 @@ public class OCLDelegateDomain implements DelegateDomain, MetaModelManagerListen
 
 		@Override
 		public @Nullable String getDefaultValue() {
-			return OCL_DELEGATE_URI_PIVOT;
+			return PivotConstants.OCL_DELEGATE_URI_PIVOT;
 		}
 
 		@Override
 		public @Nullable String getPreferredValue() {
-			return OCL_DELEGATE_URI_PIVOT;
+			return PivotConstants.OCL_DELEGATE_URI_PIVOT;
 		}
 	}
 
-	/**
-	 * The delegate URI for Ecore annotations using the Pivot evaluator.
-	 */
-	public static final @NonNull String OCL_DELEGATE_URI_PIVOT = OCLConstants.OCL_DELEGATE_URI_SLASH + "Pivot"; //$NON-NLS-1$
-	
-	public static final @NonNull String OCL_DELEGATE_URI_DEBUG = OCLConstants.OCL_DELEGATE_URI_SLASH + "Debug"; //$NON-NLS-1$
-	
 	/**
 	 * Initialize the resourceSet registries, if non-null, or the global registries, if null,
 	 * to support usage of the Pivot OCL Delegate Evaluator for the Pivot OCL Delegate URI. 
 	 */
 	public static void initialize(@Nullable ResourceSet resourceSet) {
-		initialize(resourceSet, OCL_DELEGATE_URI_PIVOT);
+		initialize(resourceSet, PivotConstants.OCL_DELEGATE_URI_PIVOT);
 	}
 	
 	/**

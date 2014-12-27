@@ -19,7 +19,7 @@ import java.io.UnsupportedEncodingException;
 import java.nio.CharBuffer;
 import java.nio.charset.Charset;
 
-import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
 
 /**
  * Encapsulation of an OCL document, which may be obtained from a string or from
@@ -136,7 +136,7 @@ public final class OCLInput {
                 textReader.close();
             }
         } catch (IOException e) {
-            throw new ParserException(e, OCLMessages.Input_ERROR_, e.getLocalizedMessage());
+            throw new ParserException(e, PivotMessagesInternal.Input_ERROR_, e.getLocalizedMessage());
         }
         
         return result;

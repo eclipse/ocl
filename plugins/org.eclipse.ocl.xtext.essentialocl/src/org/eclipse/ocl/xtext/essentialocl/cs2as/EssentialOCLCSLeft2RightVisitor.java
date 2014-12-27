@@ -79,7 +79,7 @@ import org.eclipse.ocl.pivot.library.LibraryFeature;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.TemplateParameterSubstitutionHelper;
 import org.eclipse.ocl.pivot.manager.TemplateParameterSubstitutionVisitor;
-import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
@@ -899,7 +899,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				continue;
 			}
 			if (iterationIteratorsSize <= argIndex) {
-				context.addWarning(csArgument, OCLMessages.RedundantIterator_WARNING_, iteration.getName());
+				context.addWarning(csArgument, PivotMessagesInternal.RedundantIterator_WARNING_, iteration.getName());
 				continue;
 			}
 			if (csArgument.getOwnedInitExpression() != null) {
@@ -1025,7 +1025,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			}
 		}
 		if ((csArgumentCount != parametersCount) && (operation != standardLibrary.basicGetOclInvalidOperation())) {
-			String boundMessage = StringUtil.bind(OCLMessages.MismatchedArgumentCount_ERROR_, csArgumentCount, parametersCount);
+			String boundMessage = StringUtil.bind(PivotMessagesInternal.MismatchedArgumentCount_ERROR_, csArgumentCount, parametersCount);
 			context.addDiagnostic(csNameExp, boundMessage);			
 		}
 		context.refreshList(expression.getOwnedArguments(), pivotArguments);
@@ -1074,10 +1074,10 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			}
 			String boundMessage;
 			if (s.length() > 0) {
-				boundMessage = StringUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, sourceType, csOperator.getName(), s.toString());
+				boundMessage = StringUtil.bind(PivotMessagesInternal.UnresolvedOperationCall_ERROR_, sourceType, csOperator.getName(), s.toString());
 			}
 			else {
-				boundMessage = StringUtil.bind(OCLMessages.UnresolvedOperation_ERROR_, sourceType, csOperator.getName());
+				boundMessage = StringUtil.bind(PivotMessagesInternal.UnresolvedOperation_ERROR_, sourceType, csOperator.getName());
 			}
 //			context.addBadExpressionError(csOperator, boundMessage); 
 			context.addDiagnostic(csOperator, boundMessage);

@@ -16,6 +16,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 /**
  * Factory for OCL operation-invocation delegates.
@@ -45,7 +46,7 @@ public class OCLInvocationDelegateFactory extends AbstractOCLDelegateFactory
 	public static class Global extends OCLInvocationDelegateFactory
 	{
 		public Global() {
-			super(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+			super(PivotConstants.OCL_DELEGATE_URI_PIVOT);
 		}
 
 		@Override

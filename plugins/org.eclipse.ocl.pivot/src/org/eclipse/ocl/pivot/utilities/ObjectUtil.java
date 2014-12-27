@@ -8,15 +8,13 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.pivot;
+package org.eclipse.ocl.pivot.utilities;
 
 import java.util.Collection;
 import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.ocl.pivot.NamedElement;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
  * Certain generic utility operations on objects.
@@ -46,14 +44,5 @@ public class ObjectUtil {
 	            dispose(next);
 	        }
 	    }
-	}
-
-	public static <T extends NamedElement> T getNamedElement(Collection<T> elements, String name) {
-		if (elements == null)
-			return null;
-		for (T element : elements)
-			if (ClassUtil.safeEquals(name, element.getName()))
-				return element;
-		return null;				
 	}
 }

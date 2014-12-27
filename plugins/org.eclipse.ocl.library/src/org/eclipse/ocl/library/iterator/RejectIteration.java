@@ -17,7 +17,7 @@ import org.eclipse.ocl.pivot.evaluation.IterationManager;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractIteration;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.CollectionValue.Accumulator;
@@ -38,7 +38,7 @@ public class RejectIteration extends AbstractIteration
     protected @Nullable Object updateAccumulator(@NonNull IterationManager iterationManager) {
 		Object bodyVal = iterationManager.evaluateBody();		
 		if (bodyVal == null) {
-			throw new InvalidValueException(EvaluatorMessages.UndefinedBody, "reject"); 	// Null body is invalid //$NON-NLS-1$
+			throw new InvalidValueException(PivotMessages.UndefinedBody, "reject"); 	// Null body is invalid //$NON-NLS-1$
 		}
 		else if (bodyVal == Boolean.FALSE) {
 			Object value = iterationManager.get();		
@@ -47,7 +47,7 @@ public class RejectIteration extends AbstractIteration
 			accumulatorValue.add(value);
 		}
 		else if (bodyVal != Boolean.TRUE) {
-			throw new InvalidValueException(EvaluatorMessages.NonBooleanBody, "reject"); 	// Non boolean body is invalid //$NON-NLS-1$
+			throw new InvalidValueException(PivotMessages.NonBooleanBody, "reject"); 	// Non boolean body is invalid //$NON-NLS-1$
 		}
 		return CARRY_ON;
 	}

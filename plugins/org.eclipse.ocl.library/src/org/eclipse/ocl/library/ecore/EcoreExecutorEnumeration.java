@@ -20,7 +20,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.ids.EnumerationId;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.osgi.util.NLS;
 
 import com.google.common.collect.Lists;
@@ -44,7 +44,7 @@ public class EcoreExecutorEnumeration extends EcoreExecutorType implements Enume
 	public final @NonNull EEnum getEEnum() {
 		EClassifier eClassifier2 = eClassifier;
 		if (eClassifier2 == null) {
-			throw new IllegalStateException(NLS.bind(EvaluatorMessages.IncompleteInitialization, this));
+			throw new IllegalStateException(NLS.bind(PivotMessages.IncompleteInitialization, this));
 		}
 		return (EEnum) eClassifier2;
 	}

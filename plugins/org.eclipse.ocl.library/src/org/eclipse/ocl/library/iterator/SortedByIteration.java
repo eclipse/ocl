@@ -30,7 +30,7 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractIteration;
 import org.eclipse.ocl.pivot.library.LibraryBinaryOperation;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -157,7 +157,7 @@ public class SortedByIteration extends AbstractIteration
 			LibraryFeature implementation = bodyType.lookupImplementation(standardLibrary, staticOperation);
 			return new SortingValue(evaluator, (CollectionTypeId)accumulatorTypeId, (LibraryBinaryOperation) implementation);
 		}
-		throw new InvalidValueException(EvaluatorMessages.UndefinedOperation, String.valueOf(comparableType) + "::" + LibraryConstants.COMPARE_TO); //$NON-NLS-1$
+		throw new InvalidValueException(PivotMessages.UndefinedOperation, String.valueOf(comparableType) + "::" + LibraryConstants.COMPARE_TO); //$NON-NLS-1$
 	}
 	
 	@Override
@@ -171,7 +171,7 @@ public class SortedByIteration extends AbstractIteration
     protected @Nullable Object updateAccumulator(@NonNull IterationManager iterationManager) {
 		Object bodyVal = iterationManager.evaluateBody();		
 		if (bodyVal == null) {
-			throw new InvalidValueException(EvaluatorMessages.UndefinedBody, "sortedBy"); 	// Null body is invalid //$NON-NLS-1$
+			throw new InvalidValueException(PivotMessages.UndefinedBody, "sortedBy"); 	// Null body is invalid //$NON-NLS-1$
 		}
 		Object iterValue = iterationManager.get();		
 		SortingValue accumulatorValue = (SortingValue) iterationManager.getAccumulatorValue();

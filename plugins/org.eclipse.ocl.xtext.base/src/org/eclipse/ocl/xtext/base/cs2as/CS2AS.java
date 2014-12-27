@@ -40,7 +40,7 @@ import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.VariableDeclaration;
 import org.eclipse.ocl.pivot.manager.MetaModelManagedAdapter;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.scoping.ScopeFilter;
@@ -216,7 +216,7 @@ public abstract class CS2AS extends AbstractConversion implements MetaModelManag
 		if (unresolvedProxyMessageProvider != null) {
 			return unresolvedProxyMessageProvider.getMessage(csContext, linkText);
 		}
-		@SuppressWarnings("null") @NonNull String messageTemplate = OCLMessages.Unresolved_ERROR_;
+		@SuppressWarnings("null") @NonNull String messageTemplate = PivotMessagesInternal.Unresolved_ERROR_;
 		String errorContext = "Unknown";
 		EClass referenceType = eReference.getEReferenceType();
 		if (referenceType != null) {

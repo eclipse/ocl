@@ -25,7 +25,7 @@ import org.eclipse.ocl.pivot.library.AbstractOperation;
 import org.eclipse.ocl.pivot.library.LibraryBinaryOperation;
 import org.eclipse.ocl.pivot.library.LibraryTernaryOperation;
 import org.eclipse.ocl.pivot.library.LibraryUnaryOperation;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.SequenceValue;
 
@@ -46,7 +46,7 @@ public class StringTokenizeOperation extends AbstractOperation implements Librar
 		if (arguments.size() > 0) {
 			if (arguments.size() > 1) {
 				if (arguments.size() > 2) {
-					throw new InvalidValueException(EvaluatorMessages.InvalidArgument, arguments.get(2));
+					throw new InvalidValueException(PivotMessages.InvalidArgument, arguments.get(2));
 				}
 				OCLExpression argument1 = arguments.get(1);
 				assert argument1 != null;

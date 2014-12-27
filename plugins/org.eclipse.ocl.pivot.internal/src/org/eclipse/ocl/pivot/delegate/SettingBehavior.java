@@ -23,7 +23,7 @@ import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.SemanticException;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.osgi.util.NLS;
 
@@ -59,7 +59,7 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 	public @NonNull ExpressionInOCL getQueryOrThrow(@NonNull MetaModelManager metaModelManager, @NonNull Property property) throws OCLDelegateException {
 		LanguageExpression specification = property.getOwnedExpression();
 		if (specification == null) {
-			String message = NLS.bind(OCLMessages.MissingDerivationForSettingDelegate_ERROR_, property);
+			String message = NLS.bind(PivotMessagesInternal.MissingDerivationForSettingDelegate_ERROR_, property);
 			throw new OCLDelegateException(new SemanticException(message));
 		}
 		try {

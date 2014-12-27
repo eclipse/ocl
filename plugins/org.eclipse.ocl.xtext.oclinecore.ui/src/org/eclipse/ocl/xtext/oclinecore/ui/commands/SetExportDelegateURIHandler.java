@@ -15,7 +15,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.common.OCLConstants;
-import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.xtext.oclinecore.ui.model.OCLinEcoreDocumentProvider;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -37,7 +37,7 @@ public class SetExportDelegateURIHandler extends AbstractHandler
 			uri = OCLConstants.OCL_DELEGATE_URI_LPG;
 		}
 		else if (id.contains("Pivot")) {
-			uri = OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT;
+			uri = PivotConstants.OCL_DELEGATE_URI_PIVOT;
 		}
 		else {
 			uri = OCLConstants.OCL_DELEGATE_URI;

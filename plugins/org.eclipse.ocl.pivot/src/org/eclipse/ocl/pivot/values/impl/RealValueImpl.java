@@ -21,7 +21,7 @@ import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.ComparableValue;
 import org.eclipse.ocl.pivot.values.IntegerValue;
@@ -93,7 +93,7 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 			@SuppressWarnings("null") @NonNull BigDecimal result = value.add(rightValue.bigDecimalValue());
 			return ValueUtil.realValueOf(result);
 		} catch (InvalidValueException e) {
-			throw new InvalidValueException(EvaluatorMessages.InvalidReal, e, null, rightValue);
+			throw new InvalidValueException(PivotMessages.InvalidReal, e, null, rightValue);
 		}
 	}
 
@@ -103,7 +103,7 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 			@SuppressWarnings("null") @NonNull BigDecimal result = value.add(rightValue.bigDecimalValue());
 			return ValueUtil.realValueOf(result);
 		} catch (InvalidValueException e) {
-			throw new InvalidValueException(EvaluatorMessages.InvalidReal, e, null, rightValue);
+			throw new InvalidValueException(PivotMessages.InvalidReal, e, null, rightValue);
 		}
 	}
 
@@ -305,7 +305,7 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 			@SuppressWarnings("null") @NonNull BigDecimal result = value.max(rightValue.bigDecimalValue());
 			return ValueUtil.realValueOf(result);
 		} catch (InvalidValueException e) {
-			throw new InvalidValueException(EvaluatorMessages.InvalidReal, e, null, rightValue);
+			throw new InvalidValueException(PivotMessages.InvalidReal, e, null, rightValue);
 		}
 	}
 
@@ -315,7 +315,7 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 			@SuppressWarnings("null") @NonNull BigDecimal result = value.max(rightValue.bigDecimalValue());
 			return ValueUtil.realValueOf(result);
 		} catch (InvalidValueException e) {
-			throw new InvalidValueException(EvaluatorMessages.InvalidReal, e, null, rightValue);
+			throw new InvalidValueException(PivotMessages.InvalidReal, e, null, rightValue);
 		}
 	}
 
@@ -330,7 +330,7 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 			@SuppressWarnings("null") @NonNull BigDecimal result = value.min(rightValue.bigDecimalValue());
 			return ValueUtil.realValueOf(result);
 		} catch (InvalidValueException e) {
-			throw new InvalidValueException(EvaluatorMessages.InvalidReal, e, null, rightValue);
+			throw new InvalidValueException(PivotMessages.InvalidReal, e, null, rightValue);
 		}
 	}
 
@@ -340,7 +340,7 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 			@SuppressWarnings("null") @NonNull BigDecimal result = value.min(rightValue.bigDecimalValue());
 			return ValueUtil.realValueOf(result);
 		} catch (InvalidValueException e) {
-			throw new InvalidValueException(EvaluatorMessages.InvalidReal, e, null, rightValue);
+			throw new InvalidValueException(PivotMessages.InvalidReal, e, null, rightValue);
 		}
 	}
 
@@ -350,7 +350,7 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 			@SuppressWarnings("null") @NonNull BigDecimal result = value.multiply(rightValue.bigDecimalValue());
 			return ValueUtil.realValueOf(result);
 		} catch (InvalidValueException e) {
-			throw new InvalidValueException(EvaluatorMessages.InvalidReal, e, null, rightValue);
+			throw new InvalidValueException(PivotMessages.InvalidReal, e, null, rightValue);
 		}
 	}
 
@@ -360,7 +360,7 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 			@SuppressWarnings("null") @NonNull BigDecimal result = value.multiply(rightValue.bigDecimalValue());
 			return ValueUtil.realValueOf(result);
 		} catch (InvalidValueException e) {
-			throw new InvalidValueException(EvaluatorMessages.InvalidReal, e, null, rightValue);
+			throw new InvalidValueException(PivotMessages.InvalidReal, e, null, rightValue);
 		}
 	}
 
@@ -394,7 +394,7 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 			@SuppressWarnings("null") @NonNull BigDecimal result = value.subtract(rightValue.bigDecimalValue());
 			return ValueUtil.realValueOf(result);
 		} catch (InvalidValueException e) {
-			throw new InvalidValueException(EvaluatorMessages.InvalidReal, e, null, rightValue);
+			throw new InvalidValueException(PivotMessages.InvalidReal, e, null, rightValue);
 		}
 	}
 
@@ -404,7 +404,7 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 			@SuppressWarnings("null") @NonNull BigDecimal result = value.subtract(rightValue.bigDecimalValue());
 			return ValueUtil.realValueOf(result);
 		} catch (InvalidValueException e) {
-			throw new InvalidValueException(EvaluatorMessages.InvalidReal, e, null, rightValue);
+			throw new InvalidValueException(PivotMessages.InvalidReal, e, null, rightValue);
 		}
 	}
 

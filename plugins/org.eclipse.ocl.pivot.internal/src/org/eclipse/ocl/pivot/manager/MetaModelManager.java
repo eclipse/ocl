@@ -118,7 +118,7 @@ import org.eclipse.ocl.pivot.library.LibraryFeature;
 import org.eclipse.ocl.pivot.library.LibraryProperty;
 import org.eclipse.ocl.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.pivot.library.UnsupportedOperation;
-import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.model.OCLMetaModel;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResource;
@@ -1825,11 +1825,11 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		}
 		String expression = specification.getBody();
 		if (expression == null) {
-			throw new ParserException(OCLMessages.MissingSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(contextElement), PivotUtilInternal.getSpecificationRole(specification));
+			throw new ParserException(PivotMessagesInternal.MissingSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(contextElement), PivotUtilInternal.getSpecificationRole(specification));
 		}
 		ParserContext parserContext = getParserContext(specification);
 		if (parserContext == null) {
-			throw new ParserException(OCLMessages.UnknownContextType_ERROR_, NameUtil.qualifiedNameFor(contextElement), PivotUtilInternal.getSpecificationRole(specification));
+			throw new ParserException(PivotMessagesInternal.UnknownContextType_ERROR_, NameUtil.qualifiedNameFor(contextElement), PivotUtilInternal.getSpecificationRole(specification));
 		}
 		parserContext.setRootElement(specification);
 		return parserContext.parse(contextElement, expression);
@@ -1981,14 +1981,14 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 				String uri = asLibrary.getURI();
 				if (asLibraries.isEmpty()) {
 					if (uri == null) {
-						throw new IllegalLibraryException(OCLMessages.MissingLibraryURI_ERROR_);
+						throw new IllegalLibraryException(PivotMessagesInternal.MissingLibraryURI_ERROR_);
 					}
 					standardLibrary.setDefaultStandardLibraryURI(uri);
 				}
 				else {
 					String libraryURI = standardLibrary.getDefaultStandardLibraryURI();
 					if ((uri != null) && !uri.equals(libraryURI)) {
-						throw new IllegalLibraryException(NLS.bind(OCLMessages.ImportedLibraryURI_ERROR_, uri , libraryURI));
+						throw new IllegalLibraryException(NLS.bind(PivotMessagesInternal.ImportedLibraryURI_ERROR_, uri , libraryURI));
 					}
 				}
 				asLibraries.add(asLibrary);

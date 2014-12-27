@@ -13,7 +13,7 @@ package org.eclipse.ocl.library.string;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.library.AbstractSimpleBinaryOperation;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
@@ -35,7 +35,7 @@ public class StringAtOperation extends AbstractSimpleBinaryOperation
 			return result;
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.IndexOutOfRange, index, size);
+			throw new InvalidValueException(PivotMessages.IndexOutOfRange, index, size);
 		}
 	}
 }

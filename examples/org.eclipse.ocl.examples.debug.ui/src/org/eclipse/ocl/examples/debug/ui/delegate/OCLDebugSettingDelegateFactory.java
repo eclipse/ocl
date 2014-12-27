@@ -18,6 +18,7 @@ import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.pivot.delegate.AbstractOCLDelegateFactory;
 import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 /**
  * Factory for OCL derived-attribute setting delegates.
@@ -49,7 +50,7 @@ public class OCLDebugSettingDelegateFactory extends AbstractOCLDelegateFactory
 	public static class Global extends OCLDebugSettingDelegateFactory
 	{
 		public Global() {
-			super(OCLDelegateDomain.OCL_DELEGATE_URI_DEBUG);
+			super(PivotConstants.OCL_DELEGATE_URI_DEBUG);
 		}
 
 		@Override

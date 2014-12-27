@@ -14,7 +14,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.InheritanceFragment;
 import org.eclipse.ocl.pivot.Operation;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 public abstract class AbstractFragment implements InheritanceFragment
@@ -74,7 +74,7 @@ public abstract class AbstractFragment implements InheritanceFragment
 				localOperation = bestOverload;
 			}
 			else {
-				throw new InvalidValueException(EvaluatorMessages.AmbiguousOperation, apparentOperation, derivedInheritance);
+				throw new InvalidValueException(PivotMessages.AmbiguousOperation, apparentOperation, derivedInheritance);
 			}
 		}
 //		if (localOperation == null) {

@@ -17,7 +17,7 @@ import org.eclipse.ocl.pivot.evaluation.IterationManager;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractIteration;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.CollectionValue.Accumulator;
@@ -39,7 +39,7 @@ public class SelectIteration extends AbstractIteration
 		Object bodyVal = iterationManager.evaluateBody();		
 		assert !(bodyVal instanceof InvalidValueException);
 		if (bodyVal == null) {
-			throw new InvalidValueException(EvaluatorMessages.UndefinedBody, "select"); 	// Null body is invalid //$NON-NLS-1$
+			throw new InvalidValueException(PivotMessages.UndefinedBody, "select"); 	// Null body is invalid //$NON-NLS-1$
 		}
 		else if (bodyVal == TRUE_VALUE) {
 			Object value = iterationManager.get();		
@@ -48,7 +48,7 @@ public class SelectIteration extends AbstractIteration
 			accumulatorValue.add(value);
 		}
 		else if (bodyVal != Boolean.FALSE) {
-			throw new InvalidValueException(EvaluatorMessages.NonBooleanBody, "select"); 	// Non boolean body is invalid //$NON-NLS-1$
+			throw new InvalidValueException(PivotMessages.NonBooleanBody, "select"); 	// Non boolean body is invalid //$NON-NLS-1$
 		}
 		return CARRY_ON;
 	}

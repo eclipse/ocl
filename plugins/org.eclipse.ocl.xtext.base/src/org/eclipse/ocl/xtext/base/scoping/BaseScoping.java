@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.scoping.Attribution;
 import org.eclipse.ocl.xtext.base.attributes.ElementCSAttribution;
 import org.eclipse.ocl.xtext.base.attributes.ImportCSAttribution;
@@ -66,7 +66,7 @@ public class BaseScoping
 				}
 			}
 			String element = elementType != null ? elementType.getName() : "unknown";
-			@SuppressWarnings("null") @NonNull String messageTemplate = OCLMessages.Unresolved_ERROR_;
+			@SuppressWarnings("null") @NonNull String messageTemplate = PivotMessagesInternal.Unresolved_ERROR_;
 			return CS2AS.getMessageBinder().bind(context, messageTemplate, element, linkText);
 		}
 	}
@@ -79,7 +79,7 @@ public class BaseScoping
 		
 		@Override
 		public @Nullable String getMessage(@NonNull EObject context, @NonNull String linkText) {
-			@SuppressWarnings("null") @NonNull String messageTemplate = OCLMessages.UnresolvedType_ERROR_;
+			@SuppressWarnings("null") @NonNull String messageTemplate = PivotMessagesInternal.UnresolvedType_ERROR_;
 			return CS2AS.getMessageBinder().bind(context, messageTemplate, "", linkText);
 		}
 	}

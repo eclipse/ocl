@@ -37,7 +37,7 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Feature;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.osgi.util.NLS;
@@ -187,7 +187,7 @@ public class OCLinEcoreCG2JavaVisitor extends CG2JavaVisitor<OCLinEcoreCodeGener
 					js.append(" " + getLocalContext().getMessageName() + " = ");
 					js.appendClassReference(NLS.class);
 					js.append(".bind(");
-					js.appendClassReference(EvaluatorMessages.class);
+					js.appendClassReference(PivotMessages.class);
 					js.append(".ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{\"");
 					js.append(genClassifierName);
 					js.append("\", \"");

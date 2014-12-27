@@ -14,7 +14,7 @@ package org.eclipse.ocl.pivot;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.pivot.messages.StatusCodes;
-import org.eclipse.ocl.pivot.util.PivotInternalPlugin;
+import org.eclipse.ocl.pivot.plugin.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 
 /**
@@ -89,7 +89,7 @@ public class ParserException extends Exception {
 	 * @return a diagnostic
 	 */
 	private Diagnostic createDiagnostic(String message) {
-		return new BasicDiagnostic(Diagnostic.ERROR, PivotInternalPlugin.PLUGIN_ID,
+		return new BasicDiagnostic(Diagnostic.ERROR, PivotPlugin.PLUGIN_ID,
 			StatusCodes.ERROR, message, null);
 	}
 }

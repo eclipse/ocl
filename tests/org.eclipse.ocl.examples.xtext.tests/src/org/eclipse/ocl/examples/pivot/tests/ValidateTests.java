@@ -46,11 +46,12 @@ import org.eclipse.ocl.pivot.delegate.SettingBehavior;
 import org.eclipse.ocl.pivot.delegate.ValidationBehavior;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.resource.OCLASResourceFactory;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.validation.EcoreOCLEValidator;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
@@ -157,7 +158,7 @@ public class ValidateTests extends AbstractValidateTests
 		OCL ocl1 = OCL.newInstance();
 		MetaModelManager metaModelManager1 = ocl1.getMetaModelManager();
 		@NonNull List<Diagnostic> diagnostics = doValidateOCLinEcore(ocl1, "Bug418552",
-			StringUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Property", "CompatibleDefaultExpression", "temp::Tester::total"));
+			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Property", "CompatibleDefaultExpression", "temp::Tester::total"));
 		Object property = diagnostics.get(0).getData().get(0);
 		assertEquals(PivotPackage.Literals.PROPERTY, ((EObject)property).eClass());
 		ModelElementCS csElement = ElementUtil.getCsElement((Element) property);
@@ -231,7 +232,7 @@ public class ValidateTests extends AbstractValidateTests
 		try {
 			EObject testInstance1 = eCreate(validatePackage1, "Level3");
 			EObject testInstance2 = eCreate(validatePackage2, "Level3");
-			String template = EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_;
+			String template = PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_;
 			String objectLabel;
 			//
 			//	No errors
@@ -298,10 +299,10 @@ public class ValidateTests extends AbstractValidateTests
 	}
 
 	public void testValidate_Validate_completeocl_loadresource() throws IOException, InterruptedException {		
-		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
 		ResourceSet resourceSet = createResourceSet();
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
-		OCLDelegateDomain.initialize(resourceSet, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);			
+		OCLDelegateDomain.initialize(resourceSet, PivotConstants.OCL_DELEGATE_URI_PIVOT);			
 		MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, null);
 		//
 		URI ecoreURI = getTestModelURI("model/OCLinEcoreTutorial.ecore");
@@ -333,19 +334,19 @@ public class ValidateTests extends AbstractValidateTests
 		helper.installPackages();
 		
 		assertValidationDiagnostics("Without Complete OCL", resource, 
-			StringUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Book", "SufficientCopies", "Library lib::Book b2"),
-			StringUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Member", "AtMostTwoLoans", "Library lib::Member m3"),
-			StringUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Member", "UniqueLoans", "Library lib::Member m3"),
-			StringUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Book", "ExactlyOneCopy", "Library lib::Book b2"));
+			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Book", "SufficientCopies", "Library lib::Book b2"),
+			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Member", "AtMostTwoLoans", "Library lib::Member m3"),
+			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Member", "UniqueLoans", "Library lib::Member m3"),
+			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Book", "ExactlyOneCopy", "Library lib::Book b2"));
 		adapter.getMetaModelManager().dispose();
 		disposeResourceSet(resourceSet);
 	}
 
 	public void testValidate_Validate_completeocl_Bug422583() throws IOException, InterruptedException {
-		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
 		ResourceSet resourceSet = createResourceSet();
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
-		OCLDelegateDomain.initialize(resourceSet, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);			
+		OCLDelegateDomain.initialize(resourceSet, PivotConstants.OCL_DELEGATE_URI_PIVOT);			
 		MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, null);
 		//
 		URI umlURI = getProjectFileURI("Names.uml");
@@ -400,8 +401,8 @@ public class ValidateTests extends AbstractValidateTests
 //		String objectLabel3 = ClassUtil.getLabel(uNamed.getOwnedAttribute("r", null).getLowerValue());
 //		String objectLabel4 = ClassUtil.getLabel(uNamed.getOwnedAttribute("s", null).getLowerValue());
 		assertValidationDiagnostics("Without Complete OCL", resource,
-			StringUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Classifier", "IsClassifierWrtLeaf", objectLabel1),
-			StringUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Class", "IsClassWrtLeaf", objectLabel1)/*,
+			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Classifier", "IsClassifierWrtLeaf", objectLabel1),
+			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Class", "IsClassWrtLeaf", objectLabel1)/*,
 			ClassUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "NamedElement", "visibility_needs_ownership", objectLabel3),	// FIXME BUG 437450
 			ClassUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "NamedElement", "visibility_needs_ownership", objectLabel4)*/);	// FIXME BUG 437450
 		adapter.getMetaModelManager().dispose();
@@ -440,7 +441,7 @@ public class ValidateTests extends AbstractValidateTests
 			//	Check OCLinEcoreEObjectValidator warnings and distinct message
 			//
 			EValidator.Registry.INSTANCE.put(validatePackage, new OCLinEcoreEObjectValidator());
-			template = EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_;
+			template = PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_;
 			checkValidationDiagnostics(testInstance, Diagnostic.WARNING,
 				StringUtil.bind(template, "Level1", "L1", objectLabel),
 				StringUtil.bind(template, "Level2a", "L2a", objectLabel),

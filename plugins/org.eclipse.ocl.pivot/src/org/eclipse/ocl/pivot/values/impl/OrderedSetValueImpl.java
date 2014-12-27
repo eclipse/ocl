@@ -22,7 +22,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.IntegerValue;
@@ -82,7 +82,7 @@ public abstract class OrderedSetValueImpl extends CollectionValueImpl implements
 	public @Nullable Object at(int index) {
         index = index - 1;        
         if (index < 0 || index >= elements.size()) {
-        	throw new InvalidValueException(EvaluatorMessages.IndexOutOfRange, index + 1, size());
+        	throw new InvalidValueException(PivotMessages.IndexOutOfRange, index + 1, size());
 		}        
         int curr = 0;
         for (Iterator<? extends Object> it = iterator(); it.hasNext();) {
@@ -215,19 +215,19 @@ public abstract class OrderedSetValueImpl extends CollectionValueImpl implements
                 index++;
             }        
         }
-        throw new InvalidValueException(EvaluatorMessages.MissingValue, "indexOf");
+        throw new InvalidValueException(PivotMessages.MissingValue, "indexOf");
     }
 
     @Override
 	public @NonNull OrderedSetValue insertAt(int index, @Nullable Object object) {
 		if (object instanceof InvalidValueException) {
-			throw new InvalidValueException(EvaluatorMessages.InvalidSource, "insertAt");
+			throw new InvalidValueException(PivotMessages.InvalidSource, "insertAt");
 		}
         index = index - 1;
         boolean isContained = elements.contains(object);
         int effectiveSize = elements.size() - (isContained ? 1 : 0);
         if ((index < 0) || (effectiveSize < index)) {
-        	throw new InvalidValueException(EvaluatorMessages.IndexOutOfRange, index + 1, size());
+        	throw new InvalidValueException(PivotMessages.IndexOutOfRange, index + 1, size());
         }
         
         OrderedSet<Object> result = new OrderedSetImpl<Object>();

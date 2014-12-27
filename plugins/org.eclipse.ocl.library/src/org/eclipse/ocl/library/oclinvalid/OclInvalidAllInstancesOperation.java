@@ -13,7 +13,7 @@ package org.eclipse.ocl.library.oclinvalid;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.library.AbstractSimpleUnaryOperation;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.SetValue;
 
@@ -27,6 +27,6 @@ public class OclInvalidAllInstancesOperation extends AbstractSimpleUnaryOperatio
 	@Override
 	public @NonNull SetValue evaluate(@Nullable Object sourceVal) {
 		// OclInvalid has a single instance: invalid that cannot be returned in a collection
-		throw new InvalidValueException(EvaluatorMessages.InvalidLiteral);
+		throw new InvalidValueException(PivotMessages.InvalidLiteral);
 	}
 }

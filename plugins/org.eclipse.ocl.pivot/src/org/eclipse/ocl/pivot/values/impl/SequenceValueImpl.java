@@ -21,7 +21,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.IntegerValue;
@@ -53,7 +53,7 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
     @Override
 	public @NonNull OrderedCollectionValue append(@Nullable Object object) {
 		if (object instanceof InvalidValueException) {
-			throw new InvalidValueException(EvaluatorMessages.InvalidSource, "append");
+			throw new InvalidValueException(PivotMessages.InvalidSource, "append");
 		}
     	List<Object> result = new ArrayList<Object>(elements);
         result.add(object);
@@ -86,7 +86,7 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
 	public @Nullable Object at(int index) {
         index = index - 1;        
         if (index < 0 || elements.size() <= index) {
-        	throw new InvalidValueException(EvaluatorMessages.IndexOutOfRange, index + 1, size());
+        	throw new InvalidValueException(PivotMessages.IndexOutOfRange, index + 1, size());
 		}        
         return getElements().get(index);
     }
@@ -169,7 +169,7 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
     @Override
 	public @Nullable Object first() {
         if (elements.size() <= 0) {
-        	throw new InvalidValueException(EvaluatorMessages.EmptyCollection, TypeId.SEQUENCE_NAME, "first");
+        	throw new InvalidValueException(PivotMessages.EmptyCollection, TypeId.SEQUENCE_NAME, "first");
         }
         return getElements().get(0);
     }
@@ -203,7 +203,7 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
 	@Override
 	public @NonNull SequenceValue including(@Nullable Object value) {
 		if (value instanceof InvalidValueException) {
-			throw new InvalidValueException(EvaluatorMessages.InvalidSource, "including");
+			throw new InvalidValueException(PivotMessages.InvalidSource, "including");
 		}
 		List<Object> result = new ArrayList<Object>(elements);
 		result.add(value);
@@ -223,7 +223,7 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
 	public @NonNull IntegerValue indexOf(@Nullable Object object) {
         int index = getElements().indexOf(object);
         if (index < 0) {
-        	throw new InvalidValueException(EvaluatorMessages.MissingValue, "indexOf");
+        	throw new InvalidValueException(PivotMessages.MissingValue, "indexOf");
         }
     	return ValueUtil.integerValueOf(index+1);
     }
@@ -231,11 +231,11 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
     @Override
 	public @NonNull SequenceValue insertAt(int index, @Nullable Object object) {
 		if (object instanceof InvalidValueException) {
-			throw new InvalidValueException(EvaluatorMessages.InvalidSource, "insertAt");
+			throw new InvalidValueException(PivotMessages.InvalidSource, "insertAt");
 		}
         index = index - 1;        
         if (index < 0 || index > elements.size()) {
-        	throw new InvalidValueException(EvaluatorMessages.IndexOutOfRange, index + 1, size());
+        	throw new InvalidValueException(PivotMessages.IndexOutOfRange, index + 1, size());
         }        
 		List<Object> result = new ArrayList<Object>(elements);
 		result.add(index, object);
@@ -256,7 +256,7 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
 	public @Nullable Object last() {
         int size = elements.size();
 		if (size <= 0) {
-			throw new InvalidValueException(EvaluatorMessages.EmptyCollection, TypeId.SEQUENCE_NAME, "last");
+			throw new InvalidValueException(PivotMessages.EmptyCollection, TypeId.SEQUENCE_NAME, "last");
         }
         return getElements().get(size-1);
     }
@@ -264,7 +264,7 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
     @Override
 	public @NonNull SequenceValue prepend(@Nullable Object object) {
 		if (object instanceof InvalidValueException) {
-			throw new InvalidValueException(EvaluatorMessages.InvalidSource, "prepend");
+			throw new InvalidValueException(PivotMessages.InvalidSource, "prepend");
 		}
     	List<Object> result = new ArrayList<Object>();
         result.add(object);

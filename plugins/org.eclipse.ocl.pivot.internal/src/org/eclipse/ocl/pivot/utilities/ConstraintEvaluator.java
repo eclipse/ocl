@@ -26,8 +26,8 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
-import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.TupleValue;
@@ -116,11 +116,11 @@ public abstract class ConstraintEvaluator<T>
 			}
 		}
 		else if (result == null) {
-			return StringUtil.bind(OCLMessages.ValidationResultIsNull_ERROR_,
+			return StringUtil.bind(PivotMessagesInternal.ValidationResultIsNull_ERROR_,
 				getConstraintTypeName(), getConstraintName(), getObjectLabel());
 			
 		}
-		return StringUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_,
+		return StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_,
 				getConstraintTypeName(), getConstraintName(), getObjectLabel());
 	}
 

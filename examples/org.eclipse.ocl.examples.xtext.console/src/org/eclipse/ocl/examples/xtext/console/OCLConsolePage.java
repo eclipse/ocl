@@ -73,6 +73,7 @@ import org.eclipse.ocl.pivot.utilities.BaseResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironment;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironmentFactory;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.Pivotable;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
@@ -205,7 +206,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 //			monitor.subTask(ConsoleMessages.Progress_AST);
 			ExpressionInOCL expressionInOCL;
 			try {
-				PivotUtilInternal.checkResourceErrors("", resource); //$NON-NLS-1$
+				PivotUtil.checkResourceErrors("", resource); //$NON-NLS-1$
 				expressionInOCL = parserContext.getExpression(resource);
 			} catch (ParserException e) {
 				value = new InvalidValueException(e, ConsoleMessages.Result_ParsingFailure);

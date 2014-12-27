@@ -39,7 +39,7 @@ import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.UnsupportedOperation;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.messages.StatusCodes;
 import org.eclipse.ocl.pivot.types.AbstractInheritance;
 import org.eclipse.ocl.pivot.types.ParameterTypesImpl;
@@ -125,7 +125,7 @@ public abstract class ValueUtil
 			return ((Value)value).asBagValue();
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.BAG_NAME, getTypeName(value));
+			throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.BAG_NAME, getTypeName(value));
 		}
 	}
 
@@ -137,7 +137,7 @@ public abstract class ValueUtil
 			return FALSE_VALUE;
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.BOOLEAN_NAME, getTypeName(value));
+			throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.BOOLEAN_NAME, getTypeName(value));
 		}
 	}
 
@@ -146,7 +146,7 @@ public abstract class ValueUtil
 			return (org.eclipse.ocl.pivot.Class)value;
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, "Class", getTypeName(value));
+			throw new InvalidValueException(PivotMessages.TypedValueRequired, "Class", getTypeName(value));
 		}
 	}
 
@@ -155,7 +155,7 @@ public abstract class ValueUtil
 			return (CollectionType)value;
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.COLLECTION_TYPE_NAME, getTypeName(value));
+			throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.COLLECTION_TYPE_NAME, getTypeName(value));
 		}
 	}
 
@@ -164,7 +164,7 @@ public abstract class ValueUtil
 			return ((Value)value).asCollectionValue();
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.COLLECTION_NAME, getTypeName(value));
+			throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.COLLECTION_NAME, getTypeName(value));
 		}
 	}
 
@@ -176,7 +176,7 @@ public abstract class ValueUtil
 			return (Integer)value;
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.INTEGER_NAME, getTypeName(value));
+			throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.INTEGER_NAME, getTypeName(value));
 		}
 	}
 
@@ -185,7 +185,7 @@ public abstract class ValueUtil
 			return ((Value)value).asIntegerValue();
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.INTEGER_NAME, getTypeName(value));
+			throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.INTEGER_NAME, getTypeName(value));
 		}
 	}
 
@@ -205,7 +205,7 @@ public abstract class ValueUtil
 				return (EObject) unboxedValue;
 			}
 		}
-		throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, "NavigableObject", getTypeName(value));
+		throw new InvalidValueException(PivotMessages.TypedValueRequired, "NavigableObject", getTypeName(value));
 	}
 
 	public static @Nullable Object asObject(@Nullable Object value) {
@@ -222,7 +222,7 @@ public abstract class ValueUtil
 			return ((Value)value).asOrderedCollectionValue();
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.ORDERED_COLLECTION_NAME, getTypeName(value));
+			throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.ORDERED_COLLECTION_NAME, getTypeName(value));
 		}
 	}
 
@@ -231,7 +231,7 @@ public abstract class ValueUtil
 			return ((Value)value).asOrderedSetValue();
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.ORDERED_SET_NAME, getTypeName(value));
+			throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.ORDERED_SET_NAME, getTypeName(value));
 		}
 	}
 
@@ -240,7 +240,7 @@ public abstract class ValueUtil
 			return ((Value)value).asRealValue();
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.REAL_NAME, getTypeName(value));
+			throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.REAL_NAME, getTypeName(value));
 		}
 	}
 
@@ -249,7 +249,7 @@ public abstract class ValueUtil
 			return ((Value)value).asSequenceValue();
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.SEQUENCE_NAME, getTypeName(value));
+			throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.SEQUENCE_NAME, getTypeName(value));
 		}
 	}
 
@@ -258,7 +258,7 @@ public abstract class ValueUtil
 			return ((Value)value).asSetValue();
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.SET_NAME, getTypeName(value));
+			throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.SET_NAME, getTypeName(value));
 		}
 	}
 
@@ -267,7 +267,7 @@ public abstract class ValueUtil
 			return (String)value;
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.STRING_NAME, getTypeName(value));
+			throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.STRING_NAME, getTypeName(value));
 		}
 	}
 
@@ -276,7 +276,7 @@ public abstract class ValueUtil
 			return ((Value)value).asTupleValue();
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.TUPLE_NAME, getTypeName(value));
+			throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.TUPLE_NAME, getTypeName(value));
 		}
 	}
 
@@ -285,7 +285,7 @@ public abstract class ValueUtil
 			return (Type)value;
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, "Type", getTypeName(value));
+			throw new InvalidValueException(PivotMessages.TypedValueRequired, "Type", getTypeName(value));
 		}
 	}
 
@@ -294,7 +294,7 @@ public abstract class ValueUtil
 			return ((Value)value).asUniqueCollectionValue();
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.UNIQUE_COLLECTION_NAME, getTypeName(value));
+			throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.UNIQUE_COLLECTION_NAME, getTypeName(value));
 		}
 	}
 
@@ -303,7 +303,7 @@ public abstract class ValueUtil
 			return ((Value)value).asUnlimitedNaturalValue();
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.UNLIMITED_NATURAL_NAME, getTypeName(value));
+			throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.UNLIMITED_NATURAL_NAME, getTypeName(value));
 		}
 	}
 
@@ -312,7 +312,7 @@ public abstract class ValueUtil
 			return value;
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, TypeId.OCL_ANY_NAME, getTypeName(value));
+			throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.OCL_ANY_NAME, getTypeName(value));
 		}
 	}
 
@@ -331,7 +331,7 @@ public abstract class ValueUtil
 			return BigDecimal.valueOf(((Character)anObject).charValue());
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.InvalidReal, anObject);
+			throw new InvalidValueException(PivotMessages.InvalidReal, anObject);
 		}
 	}
 
@@ -350,7 +350,7 @@ public abstract class ValueUtil
 			return BigInteger.valueOf(((Character)anObject).charValue());
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.InvalidInteger, anObject);
+			throw new InvalidValueException(PivotMessages.InvalidInteger, anObject);
 		}
 	}
 
@@ -366,7 +366,7 @@ public abstract class ValueUtil
 			return Character.valueOf((char)((Number)anObject).longValue());
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.InvalidCharacter, anObject);
+			throw new InvalidValueException(PivotMessages.InvalidCharacter, anObject);
 		}
 	}
 
@@ -604,7 +604,7 @@ public abstract class ValueUtil
 					// org.eclipse.ocl.domain.library
 					UnsupportedOperation.INSTANCE.getClass();
 					// org.eclipse.ocl.domain.messages
-					EvaluatorMessages.InvalidOperation.getClass();
+					PivotMessages.InvalidOperation.getClass();
 					new StatusCodes();
 					// org.eclipse.ocl.domain.types
 					AbstractInheritance.initStatics();
@@ -659,7 +659,7 @@ public abstract class ValueUtil
 	
 	public static @NonNull IntegerValue integerValueOf(@Nullable BigInteger value) {
 		if (value == null) {
-			throw new InvalidValueException(EvaluatorMessages.InvalidInteger, value);
+			throw new InvalidValueException(PivotMessages.InvalidInteger, value);
 		}
 		else if (value.signum() >= 0) {
 			if (value.compareTo(INTEGER_MAX_VALUE) <= 0) {
@@ -697,7 +697,7 @@ public abstract class ValueUtil
 			return (IntegerValue)aValue;					// Never happens
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.InvalidInteger, aValue);
+			throw new InvalidValueException(PivotMessages.InvalidInteger, aValue);
 		}
 	}
 	
@@ -718,7 +718,7 @@ public abstract class ValueUtil
 			}
 		}
 		catch (NumberFormatException e) {
-			throw new InvalidValueException(e, EvaluatorMessages.InvalidInteger, aValue);
+			throw new InvalidValueException(e, PivotMessages.InvalidInteger, aValue);
 		}
 	}
 
@@ -812,18 +812,18 @@ public abstract class ValueUtil
 			return new RealValueImpl(value);
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.InvalidReal, value);
+			throw new InvalidValueException(PivotMessages.InvalidReal, value);
 		}
 	}
 
 	public static @NonNull RealValue realValueOf(@Nullable IntegerValue integerValue) {
 		if (integerValue == null) {
-			throw new InvalidValueException(EvaluatorMessages.InvalidInteger, integerValue);
+			throw new InvalidValueException(PivotMessages.InvalidInteger, integerValue);
 		}
 		try {
 			return realValueOf(integerValue.bigDecimalValue());
 		} catch (InvalidValueException e) {
-			throw new InvalidValueException(e, EvaluatorMessages.InvalidInteger, integerValue);
+			throw new InvalidValueException(e, PivotMessages.InvalidInteger, integerValue);
 		}
 	}
     
@@ -844,7 +844,7 @@ public abstract class ValueUtil
 			return new RealValueImpl(aNumber.doubleValue());
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.InvalidReal, aNumber);
+			throw new InvalidValueException(PivotMessages.InvalidReal, aNumber);
 		}
 	}
 	
@@ -853,7 +853,7 @@ public abstract class ValueUtil
 			return new RealValueImpl(new BigDecimal(aValue.trim()));
 		}
 		catch (NumberFormatException e) {
-			throw new InvalidValueException(e, EvaluatorMessages.InvalidReal, aValue);
+			throw new InvalidValueException(e, PivotMessages.InvalidReal, aValue);
 		}
 	}
 
@@ -905,7 +905,7 @@ public abstract class ValueUtil
 	}
 
 	public static int throwUnsupportedCompareTo(@Nullable Object left, @Nullable Object right) {
-		throw new InvalidValueException(EvaluatorMessages.UnsupportedCompareTo,
+		throw new InvalidValueException(PivotMessages.UnsupportedCompareTo,
 			left != null ? left.getClass().getName() : "null", //$NON-NLS-1$
 			right != null ? right.getClass().getName() : "null"); //$NON-NLS-1$
 	}
@@ -970,7 +970,7 @@ public abstract class ValueUtil
 			return (UnlimitedNaturalValue)aValue;					// Never happens
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.InvalidInteger, aValue);
+			throw new InvalidValueException(PivotMessages.InvalidInteger, aValue);
 		}
 	}
 	
@@ -994,7 +994,7 @@ public abstract class ValueUtil
 			}
 		}
 		catch (NumberFormatException e) {
-			throw new InvalidValueException(e, EvaluatorMessages.InvalidInteger, aValue);
+			throw new InvalidValueException(e, PivotMessages.InvalidInteger, aValue);
 		}
 	}
 }

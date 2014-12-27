@@ -11,6 +11,7 @@
 package org.eclipse.ocl.pivot.utilities;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.common.OCLConstants;
 
 public interface PivotConstants
 {
@@ -124,4 +125,11 @@ public interface PivotConstants
 	 * The name of the context variable 'self'.
 	 */
 	static final @NonNull String SELF_NAME = "self"; //$NON-NLS-1$
+
+	/**
+	 * The delegate URI for Ecore annotations using the Pivot evaluator.
+	 */
+	@NonNull String OCL_DELEGATE_URI_PIVOT = OCLConstants.OCL_DELEGATE_URI_SLASH + "Pivot"; //$NON-NLS-1$
+
+	@NonNull String OCL_DELEGATE_URI_DEBUG = OCLConstants.OCL_DELEGATE_URI_SLASH + "Debug"; //$NON-NLS-1$
 }

@@ -35,9 +35,11 @@ import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.OppositePropertyCallExp;
+import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.PropertyCallExp;
+import org.eclipse.ocl.pivot.SemanticException;
 import org.eclipse.ocl.pivot.StringLiteralExp;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateParameterSubstitution;
@@ -318,4 +320,11 @@ public class PivotUtil
 			T castUnspecializedElement = (T) unspecializedElement;
 			return castUnspecializedElement;
 		}
+
+	public static void checkResourceErrors(@NonNull String message, @NonNull Resource resource) throws ParserException {
+		List<Resource.Diagnostic> errors = resource.getErrors();
+		if (errors.size() > 0) {
+			throw new SemanticException(formatResourceDiagnostics(ClassUtil.nonNullEMF(resource.getErrors()), message, "\n"));
+		}
+	}
 }

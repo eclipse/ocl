@@ -24,6 +24,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 /**
  * Factory for OCL derived-classifier validation delegates.
@@ -133,7 +134,7 @@ public class OCLValidationDelegateFactory extends AbstractOCLDelegateFactory
 		public static final @NonNull Global INSTANCE = new Global();
 		
 		public Global() {
-			super(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+			super(PivotConstants.OCL_DELEGATE_URI_PIVOT);
 		}
 
 		@Override

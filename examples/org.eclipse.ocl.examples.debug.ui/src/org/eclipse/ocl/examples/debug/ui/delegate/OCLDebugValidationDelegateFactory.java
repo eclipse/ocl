@@ -28,6 +28,7 @@ import org.eclipse.ocl.pivot.delegate.DelegateEClassifierAdapter;
 import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.delegate.ValidationDelegate;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 /**
  * Factory for OCL derived-classifier validation delegates.
@@ -130,7 +131,7 @@ public class OCLDebugValidationDelegateFactory extends AbstractOCLDelegateFactor
 		public static final @NonNull Global INSTANCE = new Global();
 		
 		public Global() {
-			super(OCLDelegateDomain.OCL_DELEGATE_URI_DEBUG);
+			super(PivotConstants.OCL_DELEGATE_URI_DEBUG);
 		}
 
 		@Override

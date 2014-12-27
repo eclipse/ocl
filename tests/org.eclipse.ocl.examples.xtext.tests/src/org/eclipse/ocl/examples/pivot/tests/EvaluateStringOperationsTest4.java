@@ -16,8 +16,8 @@ import java.util.Collection;
 import java.util.regex.PatternSyntaxException;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
-import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.osgi.util.NLS;
 import org.junit.After;
@@ -456,7 +456,7 @@ public class EvaluateStringOperationsTest4 extends PivotTestSuite
 		assertQueryEquals(null, "repla ce operation", "'repla ce operation'.substituteFirst('', '')");
 		//
 		assertQueryInvalid(null, "'repla ce operation'.substituteFirst('(\\\\w+)\\\\s*', '')",
-			StringUtil.bind(EvaluatorMessages.MissingSubstring, "(\\w+)\\s*", "repla ce operation"), null);
+			StringUtil.bind(PivotMessages.MissingSubstring, "(\\w+)\\s*", "repla ce operation"), null);
 		//
 		assertQueryInvalid(null, "let s : String = null in s.substituteFirst('(\\\\w+)\\\\s*', '$1')");
 		assertQueryInvalid(null, "'repla ce operation'.substituteFirst(null, '$1')");
@@ -501,7 +501,7 @@ public class EvaluateStringOperationsTest4 extends PivotTestSuite
 	@Test public void testStringToInteger() {
 		assertQueryEquals(null, Integer.valueOf(4), "'4'.toInteger()");
 		assertQueryEquals(null, Integer.valueOf(-4), "'-4'.toInteger()");
-		assertQueryInvalid(null, "'4.0'.toInteger()", NLS.bind(EvaluatorMessages.InvalidInteger, "4.0"), NumberFormatException.class);
+		assertQueryInvalid(null, "'4.0'.toInteger()", NLS.bind(PivotMessages.InvalidInteger, "4.0"), NumberFormatException.class);
 
 		assertQueryInvalid(null, "'2.4.0'.toInteger()");
 		assertQueryInvalid(null, "'a'.toInteger()");
@@ -530,8 +530,8 @@ public class EvaluateStringOperationsTest4 extends PivotTestSuite
 		assertQueryEquals(null, -4.0, "'-4'.toReal()", 0.0);
 		assertQueryEquals(null, 4.0, "'4.0'.toReal()", 0.0);
 
-		assertQueryInvalid(null, "'2.4.0'.toReal()", NLS.bind(EvaluatorMessages.InvalidReal, "2.4.0"), NumberFormatException.class);
-		assertQueryInvalid(null, "'a'.toReal()", NLS.bind(EvaluatorMessages.InvalidReal, "a"), NumberFormatException.class);
+		assertQueryInvalid(null, "'2.4.0'.toReal()", NLS.bind(PivotMessages.InvalidReal, "2.4.0"), NumberFormatException.class);
+		assertQueryInvalid(null, "'a'.toReal()", NLS.bind(PivotMessages.InvalidReal, "a"), NumberFormatException.class);
 		// invalid
 		assertQueryInvalid(null, "let s : String = invalid in s.toReal()");
 		// null
@@ -588,7 +588,7 @@ public class EvaluateStringOperationsTest4 extends PivotTestSuite
 		assertQueryInvalid(null, "let s : String = null in ''.tokenize(s,true)");
 		assertQueryInvalid(null, "let b : Boolean = null in ''.tokenize('',b)");
 		//
-		assertSemanticErrorQuery("''.tokenize('',false,null)", OCLMessages.UnresolvedOperationCall_ERROR_, "String", "tokenize", "'',false,null");
+		assertSemanticErrorQuery("''.tokenize('',false,null)", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "String", "tokenize", "'',false,null");
 	}
 
 	@Test public void testStringTrim() {

@@ -34,7 +34,7 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationException;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
@@ -85,7 +85,7 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 			return evaluate(ocl, query2, target, arguments);
 		}
 		catch (EvaluationException e) {
-			throw new OCLDelegateException(new EvaluationException(e, OCLMessages.EvaluationResultIsInvalid_ERROR_, operation));
+			throw new OCLDelegateException(new EvaluationException(e, PivotMessagesInternal.EvaluationResultIsInvalid_ERROR_, operation));
 		}
 	}
 
@@ -132,7 +132,7 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 	public @NonNull ExpressionInOCL getQueryOrThrow(@NonNull MetaModelManager metaModelManager, @NonNull Constraint constraint) {
 		LanguageExpression specification = constraint.getOwnedSpecification();
 		if (specification == null) {
-			throw new OCLDelegateException(new SemanticException(OCLMessages.MissingSpecificationBody_ERROR_, constraint.getContext(), PivotConstantsInternal.BODY_EXPRESSION_ROLE));
+			throw new OCLDelegateException(new SemanticException(PivotMessagesInternal.MissingSpecificationBody_ERROR_, constraint.getContext(), PivotConstantsInternal.BODY_EXPRESSION_ROLE));
 		}
 		try {
 			return metaModelManager.getQueryOrThrow(specification);

@@ -18,7 +18,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.ComparableValue;
 import org.eclipse.ocl.pivot.values.IntegerValue;
@@ -52,7 +52,7 @@ public abstract class IntegerValueImpl extends NumberValueImpl implements Intege
 			@SuppressWarnings("null") @NonNull BigDecimal result = bigDecimalValue().add(rightValue.bigDecimalValue());
 			return ValueUtil.realValueOf(result);
 		} catch (InvalidValueException e) {
-			throw new InvalidValueException(EvaluatorMessages.InvalidReal, e, null, rightValue);
+			throw new InvalidValueException(PivotMessages.InvalidReal, e, null, rightValue);
 		}
 	}
 	
@@ -133,7 +133,7 @@ public abstract class IntegerValueImpl extends NumberValueImpl implements Intege
 
 	@Override
 	public @NonNull IntegerValue divUnlimited(@NonNull UnlimitedValue right) {
-		throw new InvalidValueException(EvaluatorMessages.InvalidOperation, "div", "UnlimitedValue");
+		throw new InvalidValueException(PivotMessages.InvalidOperation, "div", "UnlimitedValue");
 	}
 
 	@Override
@@ -219,7 +219,7 @@ public abstract class IntegerValueImpl extends NumberValueImpl implements Intege
 
 	@Override
 	public @NonNull IntegerValue modUnlimited(@NonNull UnlimitedValue right) {
-		throw new InvalidValueException(EvaluatorMessages.InvalidOperation, "mod", "UnlimitedValue");
+		throw new InvalidValueException(PivotMessages.InvalidOperation, "mod", "UnlimitedValue");
 	}
 
 	@Override
@@ -228,7 +228,7 @@ public abstract class IntegerValueImpl extends NumberValueImpl implements Intege
 			@SuppressWarnings("null") @NonNull BigDecimal result = bigDecimalValue().multiply(rightValue.bigDecimalValue());
 			return ValueUtil.realValueOf(result);
 		} catch (InvalidValueException e) {
-			throw new InvalidValueException(EvaluatorMessages.InvalidReal, e, null, rightValue);
+			throw new InvalidValueException(PivotMessages.InvalidReal, e, null, rightValue);
 		}
 	}
 
@@ -243,7 +243,7 @@ public abstract class IntegerValueImpl extends NumberValueImpl implements Intege
 			@SuppressWarnings("null") @NonNull BigDecimal result = bigDecimalValue().subtract(rightValue.bigDecimalValue());
 			return ValueUtil.realValueOf(result);
 		} catch (InvalidValueException e) {
-			throw new InvalidValueException(EvaluatorMessages.InvalidReal, e, null, rightValue);
+			throw new InvalidValueException(PivotMessages.InvalidReal, e, null, rightValue);
 		}
 	}
 }

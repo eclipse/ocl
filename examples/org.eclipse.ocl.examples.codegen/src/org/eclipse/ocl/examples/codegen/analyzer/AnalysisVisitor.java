@@ -39,7 +39,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypeExp;
 import org.eclipse.ocl.pivot.ids.ElementId;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
@@ -120,7 +120,7 @@ public class AnalysisVisitor extends AbstractExtendingCGModelVisitor<Object, Cod
 		}
 		else if (cgCondition.isConstant()) {
 			ElementId asTypeId = cgCondition.getTypeId().getElementId();
-			context.setConstant(cgIfExp, context.getInvalid(EvaluatorMessages.TypedValueRequired, "Boolean", asTypeId));
+			context.setConstant(cgIfExp, context.getInvalid(PivotMessages.TypedValueRequired, "Boolean", asTypeId));
 		}
 		else {
 			CGValuedElement cgThen = context.getExpression(cgIfExp.getThenExpression());
@@ -222,7 +222,7 @@ public class AnalysisVisitor extends AbstractExtendingCGModelVisitor<Object, Cod
 			return null;
 		}
 		else if (cgSource.isNull()) {
-			context.setConstant(cgIterationCallExp, context.getInvalid(EvaluatorMessages.TypedValueRequired, TypeId.COLLECTION_NAME, ValueUtil.getTypeName(null)));
+			context.setConstant(cgIterationCallExp, context.getInvalid(PivotMessages.TypedValueRequired, TypeId.COLLECTION_NAME, ValueUtil.getTypeName(null)));
 			return null;
 		}
 //			for (@SuppressWarnings("null")@NonNull CGValuedElement cgArgument : cgIterationCallExp.getArguments()) {

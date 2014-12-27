@@ -27,7 +27,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.resource.ASResourceFactoryRegistry;
@@ -157,7 +157,7 @@ public class AS2XMIid
 			}
 		}
 		if (s != null) {
-			String message = StringUtil.bind(OCLMessages.UnstableXMIid_ERROR_, s.toString());
+			String message = StringUtil.bind(PivotMessagesInternal.UnstableXMIid_ERROR_, s.toString());
 			asResource.getErrors().add(new UnstableXMIidDiagnostics(message));
 		}
 	}

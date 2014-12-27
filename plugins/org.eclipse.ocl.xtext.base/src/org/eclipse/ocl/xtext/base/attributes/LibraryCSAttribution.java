@@ -30,7 +30,7 @@ import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
-import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.scoping.ScopeView;
@@ -155,7 +155,7 @@ public class LibraryCSAttribution extends AbstractAttribution implements Unresol
 				List<Resource.Diagnostic> warnings = importedResource.getWarnings();
 				if (warnings.size() > 0) {
 					INode node = NodeModelUtils.getNode(target);
-					String errorMessage = PivotUtil.formatResourceDiagnostics(warnings, StringUtil.bind(OCLMessages.WarningsInURI, uri), "\n\t");
+					String errorMessage = PivotUtil.formatResourceDiagnostics(warnings, StringUtil.bind(PivotMessagesInternal.WarningsInURI, uri), "\n\t");
 					Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, errorMessage);
 					csResource.getWarnings().add(resourceDiagnostic);
 				}
@@ -207,7 +207,7 @@ public class LibraryCSAttribution extends AbstractAttribution implements Unresol
 		LibraryAdapter adapter = ClassUtil.getAdapter(LibraryAdapter.class, context);
 		if (adapter != null) {
 			String message = adapter.getMessage();
-			return NLS.bind(OCLMessages.UnresolvedLibrary_ERROR_, linkText, message);
+			return NLS.bind(PivotMessagesInternal.UnresolvedLibrary_ERROR_, linkText, message);
 		}
 		return null;
 	}

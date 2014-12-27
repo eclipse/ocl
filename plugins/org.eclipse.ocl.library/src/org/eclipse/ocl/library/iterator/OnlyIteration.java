@@ -16,7 +16,7 @@ import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.IterationManager;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractIteration;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
@@ -48,13 +48,13 @@ public class OnlyIteration extends AbstractIteration
     protected @Nullable Object updateAccumulator(@NonNull IterationManager iterationManager) {
 		Object bodyVal = iterationManager.evaluateBody();		
 		if (bodyVal == null) {
-			throw new InvalidValueException(EvaluatorMessages.UndefinedBody, "only"); 	// Null body is invalid //$NON-NLS-1$
+			throw new InvalidValueException(PivotMessages.UndefinedBody, "only"); 	// Null body is invalid //$NON-NLS-1$
 		}
 		else if (bodyVal == Boolean.FALSE) {
 			return CARRY_ON;									// Carry on for nothing found
 		}
 		else if (bodyVal != Boolean.TRUE) {
-			throw new InvalidValueException(EvaluatorMessages.NonBooleanBody, "only"); 	// Non boolean body is invalid //$NON-NLS-1$
+			throw new InvalidValueException(PivotMessages.NonBooleanBody, "only"); 	// Non boolean body is invalid //$NON-NLS-1$
 		}
 		else {
 			MutableObject accumulatorValue = (MutableObject)iterationManager.getAccumulatorValue();

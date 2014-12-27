@@ -16,10 +16,10 @@ import org.eclipse.osgi.util.NLS;
 /**
  * An accessor class for externalized strings.
  */
-public class EvaluatorMessages
+public class PivotMessages
 {	
 	static {
-		NLS.initializeMessages(EvaluatorMessages.class.getName(), EvaluatorMessages.class);
+		NLS.initializeMessages(PivotMessages.class.getName(), PivotMessages.class);
 	}
 	
 	public static String AmbiguousOperation;
@@ -59,4 +59,18 @@ public class EvaluatorMessages
 	
 	public static String ValidationConstraintIsNotSatisfied_ERROR_;
 	public static String ValidationEvaluationFailed_ERROR_;
+	
+    public static String Severity_Cancel;
+	public static String Severity_Fatal_Error;
+	public static String Severity_Error;
+	public static String Severity_Warning;
+	public static String Severity_Info;
+	public static String Severity_OK;
+
+	public static String Phase_Parser;
+	public static String Phase_Unparser;
+	public static String Phase_Lexer;
+	public static String Phase_Analyzer;
+	public static String Phase_Validator;
+	public static String Phase_Utility;
 }

@@ -42,7 +42,7 @@ import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
@@ -140,19 +140,19 @@ public class PivotUIConstraintLocator extends PivotConstraintLocator implements 
 			asConstraint = (Constraint)constrainingObject;
 		}
 		if (asConstraint == null) {
-			IStatus status = createStatus(null, OCLMessages.MissingSpecification_ERROR_, NameUtil.qualifiedNameFor(asConstraint), PivotConstantsInternal.OWNED_CONSTRAINT_ROLE);
+			IStatus status = createStatus(null, PivotMessagesInternal.MissingSpecification_ERROR_, NameUtil.qualifiedNameFor(asConstraint), PivotConstantsInternal.OWNED_CONSTRAINT_ROLE);
 			throw new CoreException(status);
 		}
 		LanguageExpression specification = asConstraint.getOwnedSpecification();
 		if (specification == null) {
-			IStatus status = createStatus(null, OCLMessages.MissingSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(asConstraint), PivotConstantsInternal.OWNED_CONSTRAINT_ROLE);
+			IStatus status = createStatus(null, PivotMessagesInternal.MissingSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(asConstraint), PivotConstantsInternal.OWNED_CONSTRAINT_ROLE);
 			throw new CoreException(status);
 		}
 		ExpressionInOCL query;
 		try {
 			query = metaModelManager.getQueryOrThrow(specification);
 		} catch (ParserException e) {
-			IStatus status = createStatus(e, OCLMessages.InvalidSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(asConstraint), PivotConstantsInternal.OWNED_CONSTRAINT_ROLE);
+			IStatus status = createStatus(e, PivotMessagesInternal.InvalidSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(asConstraint), PivotConstantsInternal.OWNED_CONSTRAINT_ROLE);
 			throw new CoreException(status);
 		}
 		ValidatableNode parent = resultConstrainingNode.getResultValidatableNode().getParent();

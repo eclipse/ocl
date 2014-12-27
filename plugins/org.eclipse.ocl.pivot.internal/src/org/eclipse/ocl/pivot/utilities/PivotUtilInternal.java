@@ -68,7 +68,6 @@ import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.PropertyCallExp;
 import org.eclipse.ocl.pivot.SelfType;
-import org.eclipse.ocl.pivot.SemanticException;
 import org.eclipse.ocl.pivot.SequenceType;
 import org.eclipse.ocl.pivot.SetType;
 import org.eclipse.ocl.pivot.StringLiteralExp;
@@ -100,13 +99,6 @@ import org.eclipse.ocl.pivot.scoping.NullAttribution;
 public class PivotUtilInternal extends PivotUtil
 {	
 	private static final Logger logger = Logger.getLogger(PivotUtilInternal.class);
-
-	public static void checkResourceErrors(@NonNull String message, @NonNull Resource resource) throws ParserException {
-		List<Resource.Diagnostic> errors = resource.getErrors();
-		if (errors.size() > 0) {
-			throw new SemanticException(PivotUtil.formatResourceDiagnostics(ClassUtil.nonNullEMF(resource.getErrors()), message, "\n"));
-		}
-	}
 
 	public static @NonNull AnyType createAnyType(@NonNull String name) {
 		AnyType pivotType = PivotFactory.eINSTANCE.createAnyType();

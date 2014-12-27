@@ -17,7 +17,7 @@ import org.eclipse.ocl.pivot.evaluation.IterationManager;
 import org.eclipse.ocl.pivot.evaluation.EvaluationHaltedException;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractIteration;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
@@ -63,7 +63,7 @@ public class ExistsIteration extends AbstractIteration
 				return CARRY_ON;						// Carry on for nothing found
 			}
 			else {
-				throw new InvalidValueException(EvaluatorMessages.NonBooleanBody, "exists"); 	// Non boolean body is invalid //$NON-NLS-1$
+				throw new InvalidValueException(PivotMessages.NonBooleanBody, "exists"); 	// Non boolean body is invalid //$NON-NLS-1$
 			}
 		}
 		catch (EvaluationHaltedException e) {

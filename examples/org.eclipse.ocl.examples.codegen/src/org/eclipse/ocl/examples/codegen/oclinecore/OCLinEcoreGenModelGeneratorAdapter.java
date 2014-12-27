@@ -67,7 +67,6 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.Property;
-import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.ecore.AS2Ecore;
 import org.eclipse.ocl.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
@@ -75,6 +74,7 @@ import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.pivot.util.PivotInternalPlugin;
 import org.eclipse.ocl.pivot.utilities.AS2Moniker;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.uml2.codegen.ecore.genmodel.util.UML2GenModelUtil;
 
@@ -151,7 +151,7 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 					if (message != null) {
 						body = PivotUtilInternal.createTupleValuedConstraint(body, null, message);
 					}
-					EcoreUtil.setAnnotation(eOperation, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT, "body", body);
+					EcoreUtil.setAnnotation(eOperation, PivotConstants.OCL_DELEGATE_URI_PIVOT, "body", body);
 				}
 			}
 		}
@@ -466,7 +466,7 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		if (oclAnnotation != null) {
 			eAnnotations.remove(oclAnnotation);
 		}
-		oclAnnotation = eOperation.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		oclAnnotation = eOperation.getEAnnotation(PivotConstants.OCL_DELEGATE_URI_PIVOT);
 		if (oclAnnotation != null) {
 			eAnnotations.remove(oclAnnotation);
 		}
@@ -494,7 +494,7 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		if (oclAnnotation != null) {
 			eAnnotations.remove(oclAnnotation);
 		}
-		oclAnnotation = eFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		oclAnnotation = eFeature.getEAnnotation(PivotConstants.OCL_DELEGATE_URI_PIVOT);
 		if (oclAnnotation != null) {
 			eAnnotations.remove(oclAnnotation);
 		}

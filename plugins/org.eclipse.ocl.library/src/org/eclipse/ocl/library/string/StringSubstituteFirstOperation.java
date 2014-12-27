@@ -13,7 +13,7 @@ package org.eclipse.ocl.library.string;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.library.AbstractSimpleTernaryOperation;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
@@ -30,7 +30,7 @@ public class StringSubstituteFirstOperation extends AbstractSimpleTernaryOperati
 		String newSubstring = asString(secondArgumentValue);
 		int index = sourceString.indexOf(oldSubstring);
 		if (index < 0) {
-			throw new InvalidValueException(EvaluatorMessages.MissingSubstring, oldSubstring, sourceString);
+			throw new InvalidValueException(PivotMessages.MissingSubstring, oldSubstring, sourceString);
 		}
 		else {
 			return sourceString.substring(0, index) + newSubstring + sourceString.substring(index + oldSubstring.length(), sourceString.length());

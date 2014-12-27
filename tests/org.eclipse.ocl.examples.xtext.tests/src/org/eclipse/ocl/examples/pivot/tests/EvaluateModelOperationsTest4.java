@@ -29,8 +29,8 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
-import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.Value;
@@ -366,46 +366,46 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 		OrderedSetValue kids1 = idResolver.createOrderedSetOfEach(TypeId.ORDERED_SET.getSpecializedId(children1Type.getTypeId()), children1);
 		OrderedSetValue kids2 = idResolver.createOrderedSetOfEach(TypeId.ORDERED_SET.getSpecializedId(children2Type.getTypeId()), children2);
 		//
-		assertSemanticErrorQuery2(parentType, "parent", OCLMessages.UnresolvedProperty_ERROR_, "", "parent");
-		assertSemanticErrorQuery2(parentType, "self.parent", OCLMessages.UnresolvedProperty_ERROR_, parentType, "parent");
+		assertSemanticErrorQuery2(parentType, "parent", PivotMessagesInternal.UnresolvedProperty_ERROR_, "", "parent");
+		assertSemanticErrorQuery2(parentType, "self.parent", PivotMessagesInternal.UnresolvedProperty_ERROR_, parentType, "parent");
 		assertQueryEquals(parent, parentType, "Parent");
-		assertSemanticErrorQuery2(parentType, "self.Parent", OCLMessages.UnresolvedProperty_ERROR_, parentType, "Parent");
+		assertSemanticErrorQuery2(parentType, "self.Parent", PivotMessagesInternal.UnresolvedProperty_ERROR_, parentType, "Parent");
 		assertQueryEquals(parent, child1, "child1");
 		assertQueryEquals(parent, child1, "self.child1");
 		assertQueryEquals(parent, child1Type, "Child1");
-		assertSemanticErrorQuery2(parentType, "self.Child1", OCLMessages.UnresolvedProperty_ERROR_, parentType, "Child1");
+		assertSemanticErrorQuery2(parentType, "self.Child1", PivotMessagesInternal.UnresolvedProperty_ERROR_, parentType, "Child1");
 		assertQueryEquals(parent, child2, "child2");
 		assertQueryEquals(parent, child2, "self.child2");
 		assertQueryEquals(parent, child2Type, "Child2");
-		assertSemanticErrorQuery2(parentType, "self.Child2", OCLMessages.UnresolvedProperty_ERROR_, parentType, "Child2");
+		assertSemanticErrorQuery2(parentType, "self.Child2", PivotMessagesInternal.UnresolvedProperty_ERROR_, parentType, "Child2");
 		assertQueryEquals(parent, kids1, "children1");
 		assertQueryEquals(parent, kids1, "self.children1");
 		assertQueryEquals(parent, children1Type, "Children1");
-		assertSemanticErrorQuery2(parentType, "self.Children1", OCLMessages.UnresolvedProperty_ERROR_, parentType, "Children1");
+		assertSemanticErrorQuery2(parentType, "self.Children1", PivotMessagesInternal.UnresolvedProperty_ERROR_, parentType, "Children1");
 		assertQueryEquals(parent, kids2, "children2");
 		assertQueryEquals(parent, kids2, "self.children2");
 		assertQueryEquals(parent, children2Type, "Children2");
-		assertSemanticErrorQuery2(parentType, "self.Children2", OCLMessages.UnresolvedProperty_ERROR_, parentType, "Children2");
+		assertSemanticErrorQuery2(parentType, "self.Children2", PivotMessagesInternal.UnresolvedProperty_ERROR_, parentType, "Children2");
 		//
-		assertSemanticErrorQuery2(child1Type, "parent", OCLMessages.UnresolvedProperty_ERROR_, "", "parent");
+		assertSemanticErrorQuery2(child1Type, "parent", PivotMessagesInternal.UnresolvedProperty_ERROR_, "", "parent");
 		assertQueryEquals(child2, parentType, "Parent");
-		assertSemanticErrorQuery2(child1Type, "self.parent", OCLMessages.UnresolvedProperty_ERROR_, child1Type, "parent");
+		assertSemanticErrorQuery2(child1Type, "self.parent", PivotMessagesInternal.UnresolvedProperty_ERROR_, child1Type, "parent");
 		assertQueryEquals(child1, parent, "self.Parent");
 		//
 		assertQueryEquals(child2, parent, "parent");
 		assertQueryEquals(child2, parentType, "Parent");
 		assertQueryEquals(child2, parent, "self.parent");
-		assertSemanticErrorQuery2(child2Type, "self.Parent", OCLMessages.UnresolvedProperty_ERROR_, child2Type, "Parent");
+		assertSemanticErrorQuery2(child2Type, "self.Parent", PivotMessagesInternal.UnresolvedProperty_ERROR_, child2Type, "Parent");
 		//
-		assertSemanticErrorQuery2(children1Type, "parent", OCLMessages.UnresolvedProperty_ERROR_, "", "parent");
+		assertSemanticErrorQuery2(children1Type, "parent", PivotMessagesInternal.UnresolvedProperty_ERROR_, "", "parent");
 		assertQueryEquals(children1, parentType, "Parent");
-		assertSemanticErrorQuery2(children1Type, "self.parent", OCLMessages.UnresolvedProperty_ERROR_, children1Type, "parent");
+		assertSemanticErrorQuery2(children1Type, "self.parent", PivotMessagesInternal.UnresolvedProperty_ERROR_, children1Type, "parent");
 		assertQueryEquals(children1, parent, "self.Parent");
 		//
 		assertQueryEquals(children2, parent, "parent");
 		assertQueryEquals(children2, parentType, "Parent");
 		assertQueryEquals(children2, parent, "self.parent");
-		assertSemanticErrorQuery2(children2Type, "self.Parent", OCLMessages.UnresolvedProperty_ERROR_, children2Type, "Parent");
+		assertSemanticErrorQuery2(children2Type, "self.Parent", PivotMessagesInternal.UnresolvedProperty_ERROR_, children2Type, "Parent");
 		//
 		assertQueryTrue(parent, "child1 = child1");
 		ocl1.dispose();
@@ -463,11 +463,11 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 		assertQueryTrue(null, "let x : Collection(Type) = Set{Integer,Real} in x->forAll(x : Type | x.name.indexOf('e') > 0)");
 		assertQueryTrue(null, "let x : Type[*] = Bag{Integer,Real} in x->forAll(x : Type | x.name.indexOf('e') > 0)");
 		assertValidationErrorQuery2(null, "let x : Type[*] = Set{Integer,Real} in x->forAll(x : Type | x.name.indexOf('e') > 0)",
-			EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Variable", "CompatibleInitialiserType", "x : Bag(Type) = Set{Integer, Real}");
+			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Variable", "CompatibleInitialiserType", "x : Bag(Type) = Set{Integer, Real}");
 		assertQueryTrue(null, "let x : Collection(Type[*]) = Set{Bag{Integer,Real},Bag{Boolean}} in x->forAll(x : Type[*] | x->size() > 0)");
 		assertValidationErrorQuery2(null, "let x : Collection(Type[*]) = Set{Bag{Integer,Real},Bag{Boolean}} in x->forAll(x : Type | x->size() > 0)",
-			EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "IteratorExp", "IteratorTypeIsSourceElementType", "x->forAll(x : Type[?] | x.oclAsSet()->size().>(0))");
+			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "IteratorExp", "IteratorTypeIsSourceElementType", "x->forAll(x : Type[?] | x.oclAsSet()->size().>(0))");
 		assertValidationErrorQuery2(null, "let x : Collection(Type) = Set{Integer,Real} in x->forAll(x : Type[*] | x->size() > 0)",
-			EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "IteratorExp", "IteratorTypeIsSourceElementType", "x->forAll(x : Bag(Type)[?] | x->size().>(0))");
+			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "IteratorExp", "IteratorTypeIsSourceElementType", "x->forAll(x : Bag(Type)[?] | x->size().>(0))");
 	}
 }

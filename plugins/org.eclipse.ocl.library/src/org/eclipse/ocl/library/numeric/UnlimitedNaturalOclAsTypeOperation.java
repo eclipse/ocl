@@ -16,7 +16,7 @@ import org.eclipse.ocl.library.oclany.OclAnyOclAsTypeOperation;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
@@ -33,13 +33,13 @@ public class UnlimitedNaturalOclAsTypeOperation extends OclAnyOclAsTypeOperation
 		Type argType = asType(argVal);
 		if (sourceType.conformsTo(standardLibrary, argType)) {
 			if (isUnlimited(sourceVal) && ((argType == standardLibrary.getRealType()) || (argType == standardLibrary.getIntegerType()))) {
-				throw new InvalidValueException(EvaluatorMessages.NonFiniteIntegerValue);
+				throw new InvalidValueException(PivotMessages.NonFiniteIntegerValue);
 			}
 			assert sourceVal != null;
 			return sourceVal;
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.IncompatibleOclAsTypeSourceType, sourceType, argType);
+			throw new InvalidValueException(PivotMessages.IncompatibleOclAsTypeSourceType, sourceType, argType);
 		}
 	}
 }

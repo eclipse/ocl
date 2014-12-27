@@ -20,7 +20,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGTypeId;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
 import org.eclipse.ocl.examples.codegen.java.types.JavaTypeId;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
@@ -107,7 +107,7 @@ public class ExistsIteration2Java extends AbstractIteration2Java
 			js.append("break;\n");
 		}
 		else if (cgBody.isConstant()) {
-			return js.appendThrowInvalidValueException(EvaluatorMessages.NonBooleanBody, "exists");
+			return js.appendThrowInvalidValueException(PivotMessages.NonBooleanBody, "exists");
 		}
 		else {
 			js.append("if (");
@@ -174,7 +174,7 @@ public class ExistsIteration2Java extends AbstractIteration2Java
 				js.append(" = new ");
 				js.appendClassReference(InvalidValueException.class);
 				js.append("(");
-				js.appendClassReference(EvaluatorMessages.class);
+				js.appendClassReference(PivotMessages.class);
 				js.append(".NonBooleanBody, \"exists\");\n");
 			js.popIndentation();
 			js.append("}\n");

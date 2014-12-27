@@ -57,11 +57,12 @@ import org.eclipse.ocl.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
-import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.uml.UML2AS;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.ProjectMap;
 import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
@@ -655,7 +656,7 @@ public class LoadTests extends XtextTestCase
 	}	
 
 	public void testLoad_Refresh_oclinecore() throws IOException, InterruptedException {
-		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
 		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
 			OCLDelegateDomain.initialize(null);
 		}
@@ -688,7 +689,7 @@ public class LoadTests extends XtextTestCase
 	}
 
 	public void testLoad_Refresh2_oclinecore() throws IOException, InterruptedException {
-		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
 		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
 			OCLDelegateDomain.initialize(null);
 		}
@@ -962,7 +963,7 @@ public class LoadTests extends XtextTestCase
 				"endpackage\n";
 		createOCLinEcoreFile("Bug450950.ocl", bug450950);
 		Resource asResource = doLoad_Concrete("Bug450950", "ocl");
-		assertResourceErrors("Save", asResource, StringUtil.bind(OCLMessages.UnstableXMIid_ERROR_, "\\n Package 'P.bug450950'"));
+		assertResourceErrors("Save", asResource, StringUtil.bind(PivotMessagesInternal.UnstableXMIid_ERROR_, "\\n Package 'P.bug450950'"));
 	}	
 	
 	public void testLoad_Bug441620_completeocl() throws IOException {

@@ -23,7 +23,7 @@ import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
-import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.scoping.Attribution;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
@@ -98,7 +98,7 @@ public class EssentialOCLScoping
 			ExpCS navigationArgument = null;
 			Type sourceType = null;
 			if ((index + 1) < path.size()) {
-				messageTemplate = OCLMessages.UnresolvedNamespace_ERROR_;
+				messageTemplate = PivotMessagesInternal.UnresolvedNamespace_ERROR_;
 			}
 			else if (csContext instanceof NameExpCS) {
 				NameExpCS csNameExp = (NameExpCS)csContext;
@@ -108,28 +108,28 @@ public class EssentialOCLScoping
 					argumentText = getOperationArguments(csRoundBracketedClause);
 					List<NavigatingArgCS> arguments = csRoundBracketedClause.getOwnedArguments();
 					if ((arguments.size() > 0) && (arguments.get(0).getRole() == NavigationRole.ITERATOR)) {
-						messageTemplate = OCLMessages.UnresolvedIterationCall_ERROR_;
+						messageTemplate = PivotMessagesInternal.UnresolvedIterationCall_ERROR_;
 					}
 					else {
-						messageTemplate = csNameExp.getSourceTypeValue() != null ? OCLMessages.UnresolvedStaticOperationCall_ERROR_ : OCLMessages.UnresolvedOperationCall_ERROR_;
+						messageTemplate = csNameExp.getSourceTypeValue() != null ? PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_ : PivotMessagesInternal.UnresolvedOperationCall_ERROR_;
 					}
 				}
 				else {
-					messageTemplate = csNameExp.getSourceTypeValue() != null ? OCLMessages.UnresolvedStaticProperty_ERROR_ : OCLMessages.UnresolvedProperty_ERROR_;
+					messageTemplate = csNameExp.getSourceTypeValue() != null ? PivotMessagesInternal.UnresolvedStaticProperty_ERROR_ : PivotMessagesInternal.UnresolvedProperty_ERROR_;
 				}
 				if (csNameExp.getSourceTypeValue() != null) {
 					sourceType = csNameExp.getSourceTypeValue();
 				}
 			}
 			else if (csContext instanceof TypeNameExpCS) {
-				messageTemplate = OCLMessages.UnresolvedType_ERROR_;
+				messageTemplate = PivotMessagesInternal.UnresolvedType_ERROR_;
 			}
 			else if (csContext instanceof TypedTypeRefCS) {
-				messageTemplate = OCLMessages.UnresolvedType_ERROR_;
+				messageTemplate = PivotMessagesInternal.UnresolvedType_ERROR_;
 			}
 			else if (csContext instanceof ExpCS) {
 				navigationArgument = (ExpCS)csContext;
-				messageTemplate = OCLMessages.UnresolvedProperty_ERROR_;
+				messageTemplate = PivotMessagesInternal.UnresolvedProperty_ERROR_;
 			}
 			else if (csContext instanceof ImportCS) {
 				return ImportCSAttribution.INSTANCE.getMessage(csContext, linkText);			// FIXME return a messageTemplate

@@ -21,7 +21,7 @@ import org.eclipse.ocl.pivot.EnvironmentInternal;
 import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.elements.AbstractBasicEnvironment;
-import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.osgi.util.NLS;
 
@@ -107,7 +107,7 @@ public abstract class AbstractEvaluationEnvironment extends AbstractBasicEnviron
         	Object oldValue = variableValues.get(referredVariable);
         	if ((oldValue != value) && ((oldValue == null) || !oldValue.equals(value))) {
 	            String message = NLS.bind(
-	            		OCLMessages.BindingExist_ERROR_,
+	            		PivotMessagesInternal.BindingExist_ERROR_,
 	            		referredVariable,
 	            		oldValue);
 	            throw new IllegalArgumentException(message);

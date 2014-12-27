@@ -16,7 +16,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.OrderedSet;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
@@ -55,7 +55,7 @@ public class SparseOrderedSetValueImpl extends OrderedSetValueImpl
     @Override
 	public @NonNull OrderedSetValue append(@Nullable Object object) {
 		if (object instanceof InvalidValueException) {
-        	throw new InvalidValueException(EvaluatorMessages.InvalidSource, "append");
+        	throw new InvalidValueException(PivotMessages.InvalidSource, "append");
 		}
     	OrderedSet<Object> result = new OrderedSetImpl<Object>(elements);
         result.remove(object);  // appended object must be last
@@ -66,7 +66,7 @@ public class SparseOrderedSetValueImpl extends OrderedSetValueImpl
     @Override
 	public @Nullable Object first() {
         if (elements.size() <= 0) {
-        	throw new InvalidValueException(EvaluatorMessages.EmptyCollection, TypeId.ORDERED_SET_NAME, "first");
+        	throw new InvalidValueException(PivotMessages.EmptyCollection, TypeId.ORDERED_SET_NAME, "first");
         }
         return elements.iterator().next();
     }
@@ -90,7 +90,7 @@ public class SparseOrderedSetValueImpl extends OrderedSetValueImpl
 	@Override
 	public @NonNull OrderedSetValue including(@Nullable Object value) {
 		if (value instanceof InvalidValueException) {
-			throw new InvalidValueException(EvaluatorMessages.InvalidSource, "including");
+			throw new InvalidValueException(PivotMessages.InvalidSource, "including");
 		}
 		OrderedSet<Object> result = new OrderedSetImpl<Object>(elements);
 		result.add(value);
@@ -100,7 +100,7 @@ public class SparseOrderedSetValueImpl extends OrderedSetValueImpl
     @Override
 	public @Nullable Object last() {
         if (elements.size() <= 0) {
-        	throw new InvalidValueException(EvaluatorMessages.EmptyCollection, TypeId.ORDERED_SET_NAME, "last");
+        	throw new InvalidValueException(PivotMessages.EmptyCollection, TypeId.ORDERED_SET_NAME, "last");
         }
         Object result = null;
         for (Object next : elements) {
@@ -112,7 +112,7 @@ public class SparseOrderedSetValueImpl extends OrderedSetValueImpl
     @Override
 	public @NonNull OrderedSetValue prepend(@Nullable Object object) {
 		if (object instanceof InvalidValueException) {
-			throw new InvalidValueException(EvaluatorMessages.InvalidSource, "prepend");
+			throw new InvalidValueException(PivotMessages.InvalidSource, "prepend");
 		}
     	OrderedSet<Object> result = new OrderedSetImpl<Object>();
         result.add(object);

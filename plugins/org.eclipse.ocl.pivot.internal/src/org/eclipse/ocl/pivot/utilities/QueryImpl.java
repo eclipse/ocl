@@ -34,7 +34,7 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.helper.HelperUtil;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.util.PivotInternalPlugin;
 
 /**
@@ -74,7 +74,7 @@ public class QueryImpl implements Query, ProblemAware
 	public boolean check(Object obj) {
 		if (resultType() != environment.getStandardLibrary().getBooleanType()) {
 			IllegalArgumentException error = new IllegalArgumentException(
-					OCLMessages.BooleanQuery_ERROR_);
+					PivotMessagesInternal.BooleanQuery_ERROR_);
 			PivotInternalPlugin.throwing(getClass(), "check", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -94,14 +94,14 @@ public class QueryImpl implements Query, ProblemAware
 	public boolean check(List<?> objList) {
 		if (objList == null) {
 			IllegalArgumentException error = new IllegalArgumentException(
-					OCLMessages.NullArgExpectlist_ERROR_);
+					PivotMessagesInternal.NullArgExpectlist_ERROR_);
 			PivotInternalPlugin.throwing(getClass(), "check", error);//$NON-NLS-1$
 			throw error;
 		}
 		
 		if (resultType() != environment.getStandardLibrary().getBooleanType()) {
 			IllegalArgumentException error = new IllegalArgumentException(
-					OCLMessages.BooleanQuery_ERROR_);
+					PivotMessagesInternal.BooleanQuery_ERROR_);
 			PivotInternalPlugin.throwing(getClass(), "check", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -156,7 +156,7 @@ public class QueryImpl implements Query, ProblemAware
 		
 		if (obj == null) {
 			IllegalArgumentException error = new IllegalArgumentException(
-				OCLMessages.NullArgExpectEObj_ERROR_);
+				PivotMessagesInternal.NullArgExpectEObj_ERROR_);
 			PivotInternalPlugin.throwing(getClass(), "evaluate", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -203,7 +203,7 @@ public class QueryImpl implements Query, ProblemAware
 	public List<?> evaluate(List<?> objList) {
 		if (objList == null) {
 			IllegalArgumentException error = new IllegalArgumentException(
-					OCLMessages.NullArgExpectlist_ERROR_);
+					PivotMessagesInternal.NullArgExpectlist_ERROR_);
 			PivotInternalPlugin.throwing(getClass(), "evaluate", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -292,7 +292,7 @@ public class QueryImpl implements Query, ProblemAware
 	public <T> List<T> reject(List<T> objList) {
 		if (objList == null) {
 			IllegalArgumentException error = new IllegalArgumentException(
-					OCLMessages.NullArgExpectlist_ERROR_);
+					PivotMessagesInternal.NullArgExpectlist_ERROR_);
 			PivotInternalPlugin.throwing(getClass(), "reject", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -322,7 +322,7 @@ public class QueryImpl implements Query, ProblemAware
 	public <T> List<T> select(List<T> objList) {
 		if (objList == null) {
 			IllegalArgumentException error = new IllegalArgumentException(
-					OCLMessages.NullArgExpectlist_ERROR_);
+					PivotMessagesInternal.NullArgExpectlist_ERROR_);
 			PivotInternalPlugin.throwing(getClass(), "select", error);//$NON-NLS-1$
 			throw error;
 		}

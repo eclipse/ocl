@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 /**
  * Factory for OCL query delegates.
@@ -67,7 +68,7 @@ public class OCLQueryDelegateFactory extends AbstractOCLDelegateFactory
 	public static class Global extends OCLQueryDelegateFactory
 	{
 		public Global() {
-			super(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+			super(PivotConstants.OCL_DELEGATE_URI_PIVOT);
 		}
 
 		@Override

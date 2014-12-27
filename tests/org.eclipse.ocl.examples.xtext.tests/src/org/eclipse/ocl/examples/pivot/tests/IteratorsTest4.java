@@ -46,8 +46,8 @@ import org.eclipse.ocl.pivot.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
-import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
@@ -358,7 +358,7 @@ public class IteratorsTest4 extends PivotTestSuite
     @Test public void test_implicitCollect_unknownAttribute_232669() {
         assertBadInvariant(SemanticException.class, Diagnostic.ERROR,
     		"ownedPackages.unknownAttribute",
-        	OCLMessages.UnresolvedProperty_ERROR_, "Set(Package)", "unknownAttribute");
+        	PivotMessagesInternal.UnresolvedProperty_ERROR_, "Set(Package)", "unknownAttribute");
    }
 
     /**
@@ -369,7 +369,7 @@ public class IteratorsTest4 extends PivotTestSuite
     @Test public void test_implicitCollect_unknownOperation_232669() {
     	assertBadInvariant(SemanticException.class, Diagnostic.ERROR,
     		"ownedPackages.unknownOperation(self)",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "Set(Package)", "unknownOperation", PivotConstants.SELF_NAME);
+        	PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Set(Package)", "unknownOperation", PivotConstants.SELF_NAME);
    }
 
     /**
@@ -555,7 +555,7 @@ public class IteratorsTest4 extends PivotTestSuite
         // is more general than the iterator variable, so cannot be
         // assigned recursively
         assertValidationErrorQuery("self->closure(getFakes())",
-        	OCLMessages.IncompatibleBodyType_WARNING_, fake, subFake);
+        	PivotMessagesInternal.IncompatibleBodyType_WARNING_, fake, subFake);
 
         // this should parse OK because the result of the closure expression
         // is more specific than the iterator variable, so it can be
@@ -572,7 +572,7 @@ public class IteratorsTest4 extends PivotTestSuite
         Property owningPackage = getAttribute(packageMetaclass, "owningPackage", packageMetaclass);
         SetValue expected = idResolver.createSetOfEach(typeId, owningPackage, packageMetaclass, packageMetaclass.eContainer(), packageMetaclass.eContainer().eContainer());
         assertQueryEquals(owningPackage, expected, "self->closure(i : OclElement | i.oclContainer())");
-		assertValidationErrorQuery2(propertyMetaclass, "self->closure(oclContainer())", OCLMessages.IncompatibleBodyType_WARNING_, "OclElement", "Property");
+		assertValidationErrorQuery2(propertyMetaclass, "self->closure(oclContainer())", PivotMessagesInternal.IncompatibleBodyType_WARNING_, "OclElement", "Property");
     }
 
     @SuppressWarnings("unchecked")
@@ -784,7 +784,7 @@ public class IteratorsTest4 extends PivotTestSuite
      */
     @Test public void test_closure_invalidBody_142518() {
         assertQueryInvalid(getUMLMetamodel(),
-            "let c : ocl::Type = invalid in ownedClasses->closure(c)", EvaluatorMessages.InvalidLiteral, InvalidValueException.class);
+            "let c : ocl::Type = invalid in ownedClasses->closure(c)", PivotMessages.InvalidLiteral, InvalidValueException.class);
 
         // in the case of a null value, null is allowed in a collection, so
         // it does not result in invalid
@@ -802,11 +802,11 @@ public class IteratorsTest4 extends PivotTestSuite
      */
     @Test public void test_sortedBy_invalidBody_142518() {
         assertQueryInvalid(EcorePackage.eINSTANCE,
-            "let s : String = null in Bag{1, 2, 3}->sortedBy(s.size())", StringUtil.bind(EvaluatorMessages.TypedValueRequired, TypeId.STRING_NAME, ValueUtil.getTypeName(null)), InvalidValueException.class);
+            "let s : String = null in Bag{1, 2, 3}->sortedBy(s.size())", StringUtil.bind(PivotMessages.TypedValueRequired, TypeId.STRING_NAME, ValueUtil.getTypeName(null)), InvalidValueException.class);
 
         // same deal for null values
         assertQueryInvalid(EcorePackage.eINSTANCE,
-            "Bag{1, 2, 3}->sortedBy(null.oclAsType(Integer))", StringUtil.bind(EvaluatorMessages.UndefinedBody, "sortedBy"), InvalidValueException.class);
+            "Bag{1, 2, 3}->sortedBy(null.oclAsType(Integer))", StringUtil.bind(PivotMessages.UndefinedBody, "sortedBy"), InvalidValueException.class);
 
     }
 
@@ -817,11 +817,11 @@ public class IteratorsTest4 extends PivotTestSuite
     @Test public void test_iterateWithNullSource_143996() {
         assertQueryInvalid(pkg1,
             "let e : Collection(ocl::Package) = null in e->iterate(" +
-                "p : ocl::Package; s : String = '' | s.concat(p.name))", StringUtil.bind(EvaluatorMessages.TypedValueRequired, TypeId.COLLECTION_NAME, ValueUtil.getTypeName(null)), InvalidValueException.class);
+                "p : ocl::Package; s : String = '' | s.concat(p.name))", StringUtil.bind(PivotMessages.TypedValueRequired, TypeId.COLLECTION_NAME, ValueUtil.getTypeName(null)), InvalidValueException.class);
 
         assertQueryInvalid(pkg1,
             "let e : Collection(ocl::Package) = invalid in e->iterate(" +
-                "p : ocl::Package; s : String = '' | s.concat(p.name))", EvaluatorMessages.InvalidLiteral, InvalidValueException.class);
+                "p : ocl::Package; s : String = '' | s.concat(p.name))", PivotMessages.InvalidLiteral, InvalidValueException.class);
     }
 
     /**
@@ -831,11 +831,11 @@ public class IteratorsTest4 extends PivotTestSuite
     @Test public void test_existsWithNullSource_143996() {
     	assertQueryInvalid(pkg1,
             "let e : Collection(ocl::Package) = null in e->exists(" +
-                "p : ocl::Package | p.name = 'bob')", StringUtil.bind(EvaluatorMessages.TypedValueRequired, TypeId.COLLECTION_NAME, ValueUtil.getTypeName(null)), InvalidValueException.class);
+                "p : ocl::Package | p.name = 'bob')", StringUtil.bind(PivotMessages.TypedValueRequired, TypeId.COLLECTION_NAME, ValueUtil.getTypeName(null)), InvalidValueException.class);
 
     	assertQueryInvalid(pkg1,
             "let e : Collection(ocl::Package) = invalid in e->exists(" +
-                "p : ocl::Package | p.name = 'bob')", EvaluatorMessages.InvalidLiteral, InvalidValueException.class);
+                "p : ocl::Package | p.name = 'bob')", PivotMessages.InvalidLiteral, InvalidValueException.class);
     }
 
     /**
@@ -870,35 +870,35 @@ public class IteratorsTest4 extends PivotTestSuite
     @Test public void test_invalidMultipleIteratorVariables() {
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,		// FIXME Bug 296990
         	"Sequence{'a', 'b', 'c'}->exists(e1, e2, e3 | e1 = e2)",
-        	OCLMessages.UnresolvedIterationCall_ERROR_, "Sequence(String)", "exists", "e1, e2, e3| e1 = e2");
+        	PivotMessagesInternal.UnresolvedIterationCall_ERROR_, "Sequence(String)", "exists", "e1, e2, e3| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,		// FIXME Bug 296990
         	"Sequence{'a', 'b', 'c'}->forAll(e1, e2, e3 | e1 = e2)",
-        	OCLMessages.UnresolvedIterationCall_ERROR_, "Sequence(String)", "forAll", "e1, e2, e3| e1 = e2");
+        	PivotMessagesInternal.UnresolvedIterationCall_ERROR_, "Sequence(String)", "forAll", "e1, e2, e3| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->collect(e1, e2 | Tuple{a : String = e1, b : String = e2})",
-        	OCLMessages.UnresolvedIterationCall_ERROR_, "Sequence(String)", "collect", "e1, e2| Tuple{a : String = e1, b : String = e2}");
+        	PivotMessagesInternal.UnresolvedIterationCall_ERROR_, "Sequence(String)", "collect", "e1, e2| Tuple{a : String = e1, b : String = e2}");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->any(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedIterationCall_ERROR_, "Sequence(String)", "any", "e1, e2| e1 = e2");
+        	PivotMessagesInternal.UnresolvedIterationCall_ERROR_, "Sequence(String)", "any", "e1, e2| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->one(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedIterationCall_ERROR_, "Sequence(String)", "one", "e1, e2| e1 = e2");
+        	PivotMessagesInternal.UnresolvedIterationCall_ERROR_, "Sequence(String)", "one", "e1, e2| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->select(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedIterationCall_ERROR_, "Sequence(String)", "select", "e1, e2| e1 = e2");
+        	PivotMessagesInternal.UnresolvedIterationCall_ERROR_, "Sequence(String)", "select", "e1, e2| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->reject(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedIterationCall_ERROR_, "Sequence(String)", "reject", "e1, e2| e1 = e2");
+        	PivotMessagesInternal.UnresolvedIterationCall_ERROR_, "Sequence(String)", "reject", "e1, e2| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->isUnique(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedIterationCall_ERROR_, "Sequence(String)", "isUnique", "e1, e2| e1 = e2");
+        	PivotMessagesInternal.UnresolvedIterationCall_ERROR_, "Sequence(String)", "isUnique", "e1, e2| e1 = e2");
     }
 
 	/**
@@ -909,7 +909,7 @@ public class IteratorsTest4 extends PivotTestSuite
     	org.eclipse.ocl.pivot.Class context = metaModelManager.getPivotType("Package");
     	org.eclipse.ocl.pivot.Class type = metaModelManager.getPivotType("Class");
      	assertValidationErrorQuery("ownedClasses->sortedBy(e | e)",
-        	OCLMessages.UnresolvedOperation_ERROR_, type + "", LibraryConstants.COMPARE_TO);
+        	PivotMessagesInternal.UnresolvedOperation_ERROR_, type + "", LibraryConstants.COMPARE_TO);
        
     	assertQuery(context, "ownedClasses->sortedBy(e | e.name)");
     	loadEPackage("ecore", EcorePackage.eINSTANCE);

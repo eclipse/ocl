@@ -19,7 +19,7 @@ import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractBinaryOperation;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.TupleValue;
@@ -42,7 +42,7 @@ public class CollectionProductOperation extends AbstractBinaryOperation
         	return evaluator.getIdResolver().createSetOfAll(collTypeId, product);
         }
         else {
-        	throw new InvalidValueException(EvaluatorMessages.MissingResult, "product"); //$NON-NLS-1$
+        	throw new InvalidValueException(PivotMessages.MissingResult, "product"); //$NON-NLS-1$
         }
 	}
 }

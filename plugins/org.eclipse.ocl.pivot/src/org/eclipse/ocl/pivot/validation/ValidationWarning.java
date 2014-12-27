@@ -11,12 +11,12 @@
 package org.eclipse.ocl.pivot.validation;
 
 import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.osgi.util.NLS;
 
 public class ValidationWarning extends BasicDiagnostic
 {
 	public ValidationWarning(String messageTemplate, Object... bindings) {
-		super(EvaluatorMessages.Validation, WARNING, NLS.bind(messageTemplate, bindings), null);
+		super(PivotMessages.Validation, WARNING, NLS.bind(messageTemplate, bindings), null);
 	}
 }

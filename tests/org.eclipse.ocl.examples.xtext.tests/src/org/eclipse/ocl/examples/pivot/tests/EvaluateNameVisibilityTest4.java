@@ -40,8 +40,8 @@ import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
-import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.uml.UML2AS;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -95,22 +95,22 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	 * Tests the basic name accesses
 	 */
 	@Test public void test_bad_navigation() throws InvocationTargetException {
-		assertSemanticErrorQuery("let a : Type = null in a.Package", OCLMessages.UnresolvedProperty_ERROR_, "Type", "Package");
-		assertSemanticErrorQuery("let a : Type = null in a.Package()", OCLMessages.UnresolvedOperation_ERROR_, "Type", "Package");
-		assertSemanticErrorQuery("let a : Set(Type) = null in a.Package", OCLMessages.UnresolvedProperty_ERROR_, "Set(Type)", "Package");
-		assertSemanticErrorQuery("let a : Set(Type) = null in a.Package()", OCLMessages.UnresolvedOperation_ERROR_, "Set(Type)", "Package");
-		assertSemanticErrorQuery("Type.Package", OCLMessages.UnresolvedStaticProperty_ERROR_, "Type", "Package");
-		assertSemanticErrorQuery("Type.Package()", OCLMessages.UnresolvedStaticOperationCall_ERROR_, "Type", "Package", "");
-		assertSemanticErrorQuery("Set(Type).Package", OCLMessages.UnresolvedStaticProperty_ERROR_, "Set(Type)", "Package");
-		assertSemanticErrorQuery("Set(Type).Package()", OCLMessages.UnresolvedStaticOperationCall_ERROR_, "Set(Type)", "Package", "");
-		assertSemanticErrorQuery("let a : Type = null in a->Package", OCLMessages.UnresolvedProperty_ERROR_, "Set(Type)", "Package");
-		assertSemanticErrorQuery("let a : Type = null in a->Package()", OCLMessages.UnresolvedOperation_ERROR_, "Set(Type)", "Package");
-		assertSemanticErrorQuery("let a : Set(Type) = null in a->Package", OCLMessages.UnresolvedProperty_ERROR_, "Set(Type)", "Package");
-		assertSemanticErrorQuery("let a : Set(Type) = null in a->Package()", OCLMessages.UnresolvedOperation_ERROR_, "Set(Type)", "Package");
-		assertSemanticErrorQuery("Type->Package", OCLMessages.UnresolvedProperty_ERROR_, "Set(Class)", "Package");
-		assertSemanticErrorQuery("Type->Package()", OCLMessages.UnresolvedOperation_ERROR_, "Set(Class)", "Package");
-		assertSemanticErrorQuery("Set(Type)->Package", OCLMessages.UnresolvedProperty_ERROR_, "Set(Class)", "Package");
-		assertSemanticErrorQuery("Set(Type)->Package()", OCLMessages.UnresolvedOperation_ERROR_, "Set(Class)", "Package");
+		assertSemanticErrorQuery("let a : Type = null in a.Package", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Type", "Package");
+		assertSemanticErrorQuery("let a : Type = null in a.Package()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Type", "Package");
+		assertSemanticErrorQuery("let a : Set(Type) = null in a.Package", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Set(Type)", "Package");
+		assertSemanticErrorQuery("let a : Set(Type) = null in a.Package()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Set(Type)", "Package");
+		assertSemanticErrorQuery("Type.Package", PivotMessagesInternal.UnresolvedStaticProperty_ERROR_, "Type", "Package");
+		assertSemanticErrorQuery("Type.Package()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "Type", "Package", "");
+		assertSemanticErrorQuery("Set(Type).Package", PivotMessagesInternal.UnresolvedStaticProperty_ERROR_, "Set(Type)", "Package");
+		assertSemanticErrorQuery("Set(Type).Package()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "Set(Type)", "Package", "");
+		assertSemanticErrorQuery("let a : Type = null in a->Package", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Set(Type)", "Package");
+		assertSemanticErrorQuery("let a : Type = null in a->Package()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Set(Type)", "Package");
+		assertSemanticErrorQuery("let a : Set(Type) = null in a->Package", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Set(Type)", "Package");
+		assertSemanticErrorQuery("let a : Set(Type) = null in a->Package()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Set(Type)", "Package");
+		assertSemanticErrorQuery("Type->Package", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Set(Class)", "Package");
+		assertSemanticErrorQuery("Type->Package()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Set(Class)", "Package");
+		assertSemanticErrorQuery("Set(Type)->Package", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Set(Class)", "Package");
+		assertSemanticErrorQuery("Set(Type)->Package()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Set(Class)", "Package");
 		assertSemanticErrorQuery("let a : Type = null in a.if", "no viable alternative following input ''if''");
 		assertSemanticErrorQuery("let a : Type = null in a->if", "no viable alternative following input ''if''");
 	}
@@ -414,16 +414,16 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		assertQueryEquals(redApple, "RedApple", "self.Fruit::name");
 		assertQueryEquals(redApple, "RedApple", "self.Apple::name");
 		assertValidationErrorQuery2(appleType, "self.Tree::name",
-			EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "PropertyCallExp", "NonStaticSourceTypeIsConformant", "self.name");
+			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "PropertyCallExp", "NonStaticSourceTypeIsConformant", "self.name");
 		assertQueryEquals(redApple, redApple, "self.oclAsType(Apple)");
 		assertQueryEquals(redApple, redApple, "self.oclAsType(fruit::Apple)");
 		assertQueryEquals(redApple, idResolver.createSetOfEach(null, redApple), "self->oclAsType(Set(Fruit))");
 		assertQueryEquals(redApple, idResolver.createSetOfEach(null, redApple), "self->oclAsType(Set(fruit::Apple))");
-		assertSemanticErrorQuery("self.oclAsType(fruit::fruit::Apple)", OCLMessages.UnresolvedNamespace_ERROR_, "", "fruit");	// Demonstrates Bug 353985
-		assertSemanticErrorQuery("self->oclAsType(Set(fruit::apple::BadApple))", OCLMessages.UnresolvedType_ERROR_, "", "BadApple");
-		assertSemanticErrorQuery("self->oclAsType(Set(fruit::apple::BadApple))", OCLMessages.UnresolvedType_ERROR_, "", "BadApple");
-		assertSemanticErrorQuery("self->oclAsType(Set(fruit::badapple::BadApple))", OCLMessages.UnresolvedNamespace_ERROR_, "", "badapple");
-		assertSemanticErrorQuery("self->oclAsType(Set(badfruit::badapple::BadApple))", OCLMessages.UnresolvedNamespace_ERROR_, "", "badfruit");
+		assertSemanticErrorQuery("self.oclAsType(fruit::fruit::Apple)", PivotMessagesInternal.UnresolvedNamespace_ERROR_, "", "fruit");	// Demonstrates Bug 353985
+		assertSemanticErrorQuery("self->oclAsType(Set(fruit::apple::BadApple))", PivotMessagesInternal.UnresolvedType_ERROR_, "", "BadApple");
+		assertSemanticErrorQuery("self->oclAsType(Set(fruit::apple::BadApple))", PivotMessagesInternal.UnresolvedType_ERROR_, "", "BadApple");
+		assertSemanticErrorQuery("self->oclAsType(Set(fruit::badapple::BadApple))", PivotMessagesInternal.UnresolvedNamespace_ERROR_, "", "badapple");
+		assertSemanticErrorQuery("self->oclAsType(Set(badfruit::badapple::BadApple))", PivotMessagesInternal.UnresolvedNamespace_ERROR_, "", "badfruit");
 		assertQueryInvalid(redApple, "self->oclAsType(Set(fruit::apple::EatingApple))");
 		assertQueryInvalid(redApple, "self->oclAsType(Set(fruit::Tree))");		
 		//
@@ -577,12 +577,12 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		//
 		assertQueryEquals(testObjectT2a, "T2a::op1", "self.op1()");
 		assertQueryEquals(testObjectT2a, "T2a::op2", "self.op2()");
-		assertSemanticErrorQuery2(pivotTypeT2a, "self.op3()", OCLMessages.UnresolvedOperation_ERROR_, "Bug411154", "T2a::op3");
+		assertSemanticErrorQuery2(pivotTypeT2a, "self.op3()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T2a::op3");
 		assertQueryEquals(testObjectT2a, "T2a::op4", "self.op4()");
 		assertQueryEquals(testObjectT2a, "T1::op5", "self.op5()");
 		assertQueryEquals(testObjectT2a, "T2a::op6", "self.op6()");
 		assertQueryEquals(testObjectT2a, "T2a::op7", "self.op7()");
-		assertSemanticErrorQuery2(pivotTypeT2a, "self.op8()", OCLMessages.UnresolvedOperation_ERROR_, "Bug411154", "T2a::op8");
+		assertSemanticErrorQuery2(pivotTypeT2a, "self.op8()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T2a::op8");
 		assertQueryEquals(testObjectT2a, "T2a::op9", "self.op9()");
 		//
 		assertQueryEquals(testObjectT3a, "T3a::op1", "self.op1()");
@@ -592,42 +592,42 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		assertQueryEquals(testObjectT3a, "T1::op5", "self.op5()");
 		assertQueryEquals(testObjectT3a, "T3a::op6", "self.op6()");
 		assertQueryEquals(testObjectT3a, "T3a::op7", "self.op7()");
-		assertSemanticErrorQuery2(pivotTypeT3a, "self.op8()", OCLMessages.UnresolvedOperation_ERROR_, "Bug411154", "T3a::op8");
+		assertSemanticErrorQuery2(pivotTypeT3a, "self.op8()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T3a::op8");
 		assertSemanticErrorQuery2(pivotTypeT3a, "self.op9()", "Ambiguous resolution:\n" +
 				"\tOperation : Bug411154::T2a::op9() : String\n" +
 				"\tOperation : Bug411154::T2b::op9() : String");
 		//
 		assertQueryEquals(testObjectDomain, "T2a::op1", "t1_2a.op1()");
-		assertSemanticErrorQuery2(pivotTypeDomain, "t1_2a.op2()", OCLMessages.UnresolvedOperation_ERROR_, "Bug411154", "T1::op2");
-		assertSemanticErrorQuery2(pivotTypeDomain, "t1_2a.op3()", OCLMessages.UnresolvedOperation_ERROR_, "Bug411154", "T1::op3");
+		assertSemanticErrorQuery2(pivotTypeDomain, "t1_2a.op2()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op2");
+		assertSemanticErrorQuery2(pivotTypeDomain, "t1_2a.op3()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op3");
 		assertQueryEquals(testObjectDomain, "T2a::op4", "t1_2a.op4()");
 		assertQueryEquals(testObjectDomain, "T1::op5", "t1_2a.op5()");
 		//
 		assertQueryEquals(testObjectDomain, "T3a::op1", "t1_3a.op1()");
-		assertSemanticErrorQuery2(pivotTypeDomain, "t1_3a.op2()", OCLMessages.UnresolvedOperation_ERROR_, "Bug411154", "T1::op2");
-		assertSemanticErrorQuery2(pivotTypeDomain, "t1_3a.op3()", OCLMessages.UnresolvedOperation_ERROR_, "Bug411154", "T1::op3");
+		assertSemanticErrorQuery2(pivotTypeDomain, "t1_3a.op2()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op2");
+		assertSemanticErrorQuery2(pivotTypeDomain, "t1_3a.op3()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op3");
 		assertQueryEquals(testObjectDomain, "T2a::op4", "t1_3a.op4()");
 		assertQueryEquals(testObjectDomain, "T1::op5", "t1_3a.op5()");
 		//
 		assertQueryEquals(testObjectDomain, "T2a::op1", "t1_3b.op1()");
-		assertSemanticErrorQuery2(pivotTypeDomain, "t1_3b.op2()", OCLMessages.UnresolvedOperation_ERROR_, "Bug411154", "T1::op2");
-		assertSemanticErrorQuery2(pivotTypeDomain, "t1_3b.op3()", OCLMessages.UnresolvedOperation_ERROR_, "Bug411154", "T1::op3");
+		assertSemanticErrorQuery2(pivotTypeDomain, "t1_3b.op2()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op2");
+		assertSemanticErrorQuery2(pivotTypeDomain, "t1_3b.op3()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op3");
 		assertQueryEquals(testObjectDomain, "T2a::op4", "t1_3b.op4()");
 		assertQueryEquals(testObjectDomain, "T1::op5", "t1_3b.op5()");
-		assertQueryInvalid(testObjectDomain, "t1_3b.op6()", NLS.bind(EvaluatorMessages.AmbiguousOperation, "Bug411154::T1::op6() : String", "Bug411154::T3b"), InvalidValueException.class);
-		assertSemanticErrorQuery2(pivotTypeDomain, "t1_3b.op7()", OCLMessages.UnresolvedOperation_ERROR_, "Bug411154", "T1::op7");
+		assertQueryInvalid(testObjectDomain, "t1_3b.op6()", NLS.bind(PivotMessages.AmbiguousOperation, "Bug411154::T1::op6() : String", "Bug411154::T3b"), InvalidValueException.class);
+		assertSemanticErrorQuery2(pivotTypeDomain, "t1_3b.op7()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op7");
 		//
 		assertQueryEquals(testObjectDomain, "T3a::op1", "t1_4.op1()");
-		assertSemanticErrorQuery2(pivotTypeDomain, "t1_4.op2()", OCLMessages.UnresolvedOperation_ERROR_, "Bug411154", "T1::op2");
-		assertSemanticErrorQuery2(pivotTypeDomain, "t1_4.op3()", OCLMessages.UnresolvedOperation_ERROR_, "Bug411154", "T1::op3");
+		assertSemanticErrorQuery2(pivotTypeDomain, "t1_4.op2()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op2");
+		assertSemanticErrorQuery2(pivotTypeDomain, "t1_4.op3()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op3");
 		assertQueryEquals(testObjectDomain, "T2a::op4", "t1_4.op4()");
 		assertQueryEquals(testObjectDomain, "T1::op5", "t1_4.op5()");
 		assertQueryEquals(testObjectDomain, "T4::op6", "t1_4.op6()");
-		assertSemanticErrorQuery2(pivotTypeDomain, "t1_4.op7()", OCLMessages.UnresolvedOperation_ERROR_, "Bug411154", "T1::op7");
+		assertSemanticErrorQuery2(pivotTypeDomain, "t1_4.op7()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op7");
 		//
 		assertQueryEquals(testObjectDomain, "T2a::op1", "t2a_2a.op1()");
 		assertQueryEquals(testObjectDomain, "T2a::op2", "t2a_2a.op2()");
-		assertSemanticErrorQuery2(pivotTypeDomain, "t2a_2a.op3()", OCLMessages.UnresolvedOperation_ERROR_, "Bug411154", "T2a::op3");
+		assertSemanticErrorQuery2(pivotTypeDomain, "t2a_2a.op3()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T2a::op3");
 		assertQueryEquals(testObjectDomain, "T2a::op4", "t2a_2a.op4()");
 		assertQueryEquals(testObjectDomain, "T1::op5", "t2a_2a.op5()");
 		assertQueryEquals(testObjectDomain, "T2a::op6", "t2a_2a.op6()");
@@ -637,7 +637,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		//
 		assertQueryEquals(testObjectDomain, "T3a::op1", "t2a_3a.op1()");
 		assertQueryEquals(testObjectDomain, "T3a::op2", "t2a_3a.op2()");
-		assertSemanticErrorQuery2(pivotTypeDomain, "t2a_3a.op3()", OCLMessages.UnresolvedOperation_ERROR_, "Bug411154", "T2a::op3");
+		assertSemanticErrorQuery2(pivotTypeDomain, "t2a_3a.op3()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T2a::op3");
 		assertQueryEquals(testObjectDomain, "T2a::op4", "t2a_3a.op4()");
 		assertQueryEquals(testObjectDomain, "T1::op5", "t2a_3a.op5()");
 		//

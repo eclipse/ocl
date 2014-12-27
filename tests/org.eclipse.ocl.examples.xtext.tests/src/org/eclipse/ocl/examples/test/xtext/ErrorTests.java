@@ -21,7 +21,7 @@ import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceAdapter;
-import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.Bag;
@@ -55,7 +55,7 @@ public class ErrorTests extends XtextTestCase
 		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
 		xtextResource.load(inputStream, null);
 		assertResourceErrors("Loading Xtext", xtextResource,
-			StringUtil.bind(OCLMessages.UnresolvedIterationCall_ERROR_, "Set(test::Test)", "iterate", "w, h; acc : String = ''| true"));
+			StringUtil.bind(PivotMessagesInternal.UnresolvedIterationCall_ERROR_, "Set(test::Test)", "iterate", "w, h; acc : String = ''| true"));
         //
 		metaModelManager.dispose();
 	}
@@ -80,7 +80,7 @@ public class ErrorTests extends XtextTestCase
 		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
 		xtextResource.load(inputStream, null);
 		assertResourceErrors("Loading Xtext", xtextResource,
-			StringUtil.bind(OCLMessages.UnresolvedStaticProperty_ERROR_, "test::Test", "allInstances"));
+			StringUtil.bind(PivotMessagesInternal.UnresolvedStaticProperty_ERROR_, "test::Test", "allInstances"));
         //
 		metaModelManager.dispose();
 	}

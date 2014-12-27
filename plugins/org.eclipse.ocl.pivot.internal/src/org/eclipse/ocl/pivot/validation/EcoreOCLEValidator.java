@@ -51,7 +51,7 @@ import org.eclipse.ocl.pivot.delegate.InvocationBehavior;
 import org.eclipse.ocl.pivot.delegate.SettingBehavior;
 import org.eclipse.ocl.pivot.delegate.ValidationBehavior;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.util.PivotInternalPlugin;
 import org.eclipse.ocl.pivot.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
@@ -156,7 +156,7 @@ public class EcoreOCLEValidator implements EValidator
 
 		@Override
 		protected Boolean handleExceptionResult(@NonNull Throwable e) {
-			String message = StringUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.toString());
+			String message = StringUtil.bind(PivotMessagesInternal.ValidationResultIsInvalid_ERROR_, getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.toString());
 			if (!mayUseNewLines) {
 				message = message.replace("\n", "");
 			}
@@ -187,7 +187,7 @@ public class EcoreOCLEValidator implements EValidator
 
 		@Override
 		protected Boolean handleInvalidResult(@NonNull InvalidValueException e) {
-			String message = StringUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
+			String message = StringUtil.bind(PivotMessagesInternal.ValidationResultIsInvalid_ERROR_,
 				getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.getLocalizedMessage());
 			if (!mayUseNewLines) {
 				message = message.replace("\n", "");
@@ -559,7 +559,7 @@ public class EcoreOCLEValidator implements EValidator
 			if (asNamedElement != null) {
 				ParserContext parserContext = metaModelManager.getParserContext(asNamedElement);
 				if (parserContext == null) {
-					throw new ParserException(OCLMessages.UnknownContextType_ERROR_, NameUtil.qualifiedNameFor(asNamedElement), PivotConstantsInternal.OWNED_CONSTRAINT_ROLE);
+					throw new ParserException(PivotMessagesInternal.UnknownContextType_ERROR_, NameUtil.qualifiedNameFor(asNamedElement), PivotConstantsInternal.OWNED_CONSTRAINT_ROLE);
 				}
 				ExpressionInOCL expressionInOCL = parserContext.parse(asNamedElement, expression);
 				Type asExpressionType = expressionInOCL.getType();

@@ -25,7 +25,7 @@ import org.eclipse.ocl.pivot.delegate.SettingBehavior;
 import org.eclipse.ocl.pivot.evaluation.EvaluationException;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
@@ -74,7 +74,7 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 			return ValueUtil.ecoreValueOf(unboxedValue, eStructuralFeature.getEType().getInstanceClass());
 		}
 		catch (EvaluationException e) {
-			throw new OCLDelegateException(new EvaluationException(e, OCLMessages.EvaluationResultIsInvalid_ERROR_, property));
+			throw new OCLDelegateException(new EvaluationException(e, PivotMessagesInternal.EvaluationResultIsInvalid_ERROR_, property));
 		}
 	}
 

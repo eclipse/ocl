@@ -17,7 +17,7 @@ import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.ComparableValue;
 import org.eclipse.ocl.pivot.values.IntegerValue;
@@ -60,7 +60,7 @@ public class UnlimitedValueImpl extends NumberValueImpl implements UnlimitedValu
 
 	@Override
 	public @NonNull RealValue asRealValue() {
-		throw new InvalidValueException(EvaluatorMessages.InvalidOperation, "asRealValue", "UnlimitedValue");
+		throw new InvalidValueException(PivotMessages.InvalidOperation, "asRealValue", "UnlimitedValue");
 	}
 
 	@Override
@@ -113,12 +113,12 @@ public class UnlimitedValueImpl extends NumberValueImpl implements UnlimitedValu
 
 	@Override
 	public double doubleValue() {
-		throw new InvalidValueException(EvaluatorMessages.InvalidReal, null, null, this);
+		throw new InvalidValueException(PivotMessages.InvalidReal, null, null, this);
 	}
 
 	@Override
 	public float floatValue() {
-		throw new InvalidValueException(EvaluatorMessages.InvalidReal, null, null, this);
+		throw new InvalidValueException(PivotMessages.InvalidReal, null, null, this);
 	}
 
 	public @NonNull Type getType(@NonNull StandardLibrary standardLibrary) {
@@ -132,7 +132,7 @@ public class UnlimitedValueImpl extends NumberValueImpl implements UnlimitedValu
 
 	@Override
 	public int intValue() {
-		throw new InvalidValueException(EvaluatorMessages.InvalidInteger, null, null, this);
+		throw new InvalidValueException(PivotMessages.InvalidInteger, null, null, this);
 	}
 
 	@Override
@@ -152,7 +152,7 @@ public class UnlimitedValueImpl extends NumberValueImpl implements UnlimitedValu
 
 	@Override
 	public long longValue() {
-		throw new InvalidValueException(EvaluatorMessages.InvalidInteger, null, null, this);
+		throw new InvalidValueException(PivotMessages.InvalidInteger, null, null, this);
 	}
 
 	@Override

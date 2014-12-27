@@ -16,7 +16,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractSimpleBinaryOperation;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
@@ -35,11 +35,11 @@ public class JavaCompareToOperation extends AbstractSimpleBinaryOperation
 		try {
 			Object result = method.invoke(leftObject, rightObject);
 			if (!(result instanceof Integer)) {
-				throw new InvalidValueException(EvaluatorMessages.TypedResultRequired, TypeId.INTEGER_NAME);
+				throw new InvalidValueException(PivotMessages.TypedResultRequired, TypeId.INTEGER_NAME);
 			}
 			return ValueUtil.integerValueOf(((Integer)result).intValue());
 		} catch (Exception e) {
-			throw new InvalidValueException(e, EvaluatorMessages.TypedResultRequired, TypeId.INTEGER_NAME);
+			throw new InvalidValueException(e, PivotMessages.TypedResultRequired, TypeId.INTEGER_NAME);
 		}
 	}
 }

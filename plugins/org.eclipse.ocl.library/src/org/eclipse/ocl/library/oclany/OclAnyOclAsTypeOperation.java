@@ -16,7 +16,7 @@ import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.library.AbstractUntypedBinaryOperation;
-import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
@@ -38,7 +38,7 @@ public class OclAnyOclAsTypeOperation extends AbstractUntypedBinaryOperation
 			return sourceVal;
 		}
 		else {
-			throw new InvalidValueException(EvaluatorMessages.IncompatibleOclAsTypeSourceType, sourceType, argType);
+			throw new InvalidValueException(PivotMessages.IncompatibleOclAsTypeSourceType, sourceType, argType);
 		}
 	}
 }

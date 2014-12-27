@@ -20,10 +20,10 @@ import org.eclipse.osgi.util.NLS;
 /**
  * An accessor class for externalized strings.
  */
-public class OCLMessages
+public class PivotMessagesInternal
 {
 	static {
-		NLS.initializeMessages(OCLMessages.class.getName(), OCLMessages.class);
+		NLS.initializeMessages(PivotMessagesInternal.class.getName(), PivotMessagesInternal.class);
 	}
 	
 	public static String ErrorsInResource;
@@ -114,19 +114,6 @@ public class OCLMessages
 	
 	public static String ErrorMessage_ERROR_;
 	public static String ProblemMessage_ERROR_;
-    public static String Severity_Cancel;
-	public static String Severity_Fatal_Error;
-	public static String Severity_Error;
-	public static String Severity_Warning;
-	public static String Severity_Info;
-	public static String Severity_OK;
-
-	public static String Phase_Parser;
-	public static String Phase_Unparser;
-	public static String Phase_Lexer;
-	public static String Phase_Analyzer;
-	public static String Phase_Validator;
-	public static String Phase_Utility;
 	
 	
 	public static String VariableUsed_ERROR_;

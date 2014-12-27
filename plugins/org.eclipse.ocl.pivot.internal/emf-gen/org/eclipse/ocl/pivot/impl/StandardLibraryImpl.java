@@ -57,7 +57,7 @@ import org.eclipse.ocl.pivot.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.ids.PrimitiveTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
@@ -731,10 +731,10 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 			type = getLibraryType(typeName);	// FIXME just a debug retry
 			Map<String, org.eclipse.ocl.pivot.Class> nameToLibraryTypeMap2 = nameToLibraryTypeMap;
 			if ((nameToLibraryTypeMap2 == null) || nameToLibraryTypeMap2.isEmpty()) {
-				throw new IllegalLibraryException(OCLMessages.EmptyLibrary_ERROR_);
+				throw new IllegalLibraryException(PivotMessagesInternal.EmptyLibrary_ERROR_);
 			}
 			else {
-				throw new IllegalLibraryException(NLS.bind(OCLMessages.MissingLibraryType_ERROR_, typeName));
+				throw new IllegalLibraryException(NLS.bind(PivotMessagesInternal.MissingLibraryType_ERROR_, typeName));
 			}
 		}
 		return type;
