@@ -158,7 +158,7 @@ public class AS2XMIid
 			}
 		}
 		if (s != null) {
-			String message = ClassUtil.bind(OCLMessages.UnstableXMIid_ERROR_, s.toString());
+			String message = StringUtil.bind(OCLMessages.UnstableXMIid_ERROR_, s.toString());
 			asResource.getErrors().add(new UnstableXMIidDiagnostics(message));
 		}
 	}

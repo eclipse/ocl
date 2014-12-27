@@ -75,6 +75,7 @@ import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.Orphanage;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.essentialocl.utilities.EssentialOCLASResourceFactory;
@@ -234,7 +235,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	 */
 	protected void convertOperations(@NonNull CGClass cgClass, @NonNull Collection<Operation> asOperations) {
 		List<Operation> sortedOperations = new ArrayList<Operation>(asOperations);
-		Collections.sort(sortedOperations, ClassUtil.NAMEABLE_COMPARATOR);
+		Collections.sort(sortedOperations, NameUtil.NAMEABLE_COMPARATOR);
 		for (Operation asOperation : sortedOperations) {
 			CGOperation cgOperation = as2cgVisitor.doVisit(CGOperation.class, asOperation);
 			cgClass.getOperations().add(cgOperation);					
@@ -353,12 +354,12 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		@SuppressWarnings("null")@NonNull String className = javaClass.getSimpleName();
 		RootPackageId javaPackageId = IdManager.getRootPackageId(packageName);
 		Orphanage orphanage = metaModelManager.getCompleteModel().getOrphanage();
-		org.eclipse.ocl.pivot.Package asPackage = ClassUtil.getNamedElement(orphanage.getOwnedPackages(), packageName);
+		org.eclipse.ocl.pivot.Package asPackage = NameUtil.getNameable(orphanage.getOwnedPackages(), packageName);
 		if (asPackage == null) {
 			asPackage = PivotUtil.createPackage(packageName, packageName, packageName, javaPackageId);
 			orphanage.getOwnedPackages().add(asPackage);
 		}
-		org.eclipse.ocl.pivot.Class asType = ClassUtil.getNamedElement(asPackage.getOwnedClasses(), className);
+		org.eclipse.ocl.pivot.Class asType = NameUtil.getNameable(asPackage.getOwnedClasses(), className);
 		if (asType == null) {
 			asType = PivotUtil.createClass(className);
 			asPackage.getOwnedClasses().add(asType);

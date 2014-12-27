@@ -38,6 +38,7 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.types.AbstractCollectionType;
 import org.eclipse.ocl.pivot.types.AbstractTupleType;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.TypeUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.CollectionTypeParameters;
@@ -153,12 +154,12 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 
 	@Override
 	public @Nullable org.eclipse.ocl.pivot.Package getNestedPackage(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name) {
-		return ClassUtil.getNamedElement(parentPackage.getOwnedPackages(), name);
+		return NameUtil.getNameable(parentPackage.getOwnedPackages(), name);
 	}
 
 	@Override
 	public @Nullable org.eclipse.ocl.pivot.Class getNestedType(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name) {
-		return ClassUtil.getNamedElement(parentPackage.getOwnedClasses(), name);
+		return NameUtil.getNameable(parentPackage.getOwnedClasses(), name);
 	}
 
 	@Override

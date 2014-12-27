@@ -14,7 +14,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.library.AbstractSimpleTernaryOperation;
 import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
@@ -37,7 +37,7 @@ public class StringSubstringOperation extends AbstractSimpleTernaryOperation
 			return result;
 		}
 		else {
-			throw new InvalidValueException(ClassUtil.bind(EvaluatorMessages.IndexesOutOfRange, lower, upper, size));
+			throw new InvalidValueException(StringUtil.bind(EvaluatorMessages.IndexesOutOfRange, lower, upper, size));
 		}
 	}
 }

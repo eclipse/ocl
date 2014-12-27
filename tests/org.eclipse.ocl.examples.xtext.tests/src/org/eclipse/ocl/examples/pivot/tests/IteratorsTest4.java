@@ -49,6 +49,7 @@ import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.BagValue;
 import org.eclipse.ocl.pivot.values.CollectionValue;
@@ -800,11 +801,11 @@ public class IteratorsTest4 extends PivotTestSuite
      */
     @Test public void test_sortedBy_invalidBody_142518() {
         assertQueryInvalid(EcorePackage.eINSTANCE,
-            "let s : String = null in Bag{1, 2, 3}->sortedBy(s.size())", ClassUtil.bind(EvaluatorMessages.TypedValueRequired, TypeId.STRING_NAME, ValueUtil.getTypeName(null)), InvalidValueException.class);
+            "let s : String = null in Bag{1, 2, 3}->sortedBy(s.size())", StringUtil.bind(EvaluatorMessages.TypedValueRequired, TypeId.STRING_NAME, ValueUtil.getTypeName(null)), InvalidValueException.class);
 
         // same deal for null values
         assertQueryInvalid(EcorePackage.eINSTANCE,
-            "Bag{1, 2, 3}->sortedBy(null.oclAsType(Integer))", ClassUtil.bind(EvaluatorMessages.UndefinedBody, "sortedBy"), InvalidValueException.class);
+            "Bag{1, 2, 3}->sortedBy(null.oclAsType(Integer))", StringUtil.bind(EvaluatorMessages.UndefinedBody, "sortedBy"), InvalidValueException.class);
 
     }
 
@@ -815,7 +816,7 @@ public class IteratorsTest4 extends PivotTestSuite
     @Test public void test_iterateWithNullSource_143996() {
         assertQueryInvalid(pkg1,
             "let e : Collection(ocl::Package) = null in e->iterate(" +
-                "p : ocl::Package; s : String = '' | s.concat(p.name))", ClassUtil.bind(EvaluatorMessages.TypedValueRequired, TypeId.COLLECTION_NAME, ValueUtil.getTypeName(null)), InvalidValueException.class);
+                "p : ocl::Package; s : String = '' | s.concat(p.name))", StringUtil.bind(EvaluatorMessages.TypedValueRequired, TypeId.COLLECTION_NAME, ValueUtil.getTypeName(null)), InvalidValueException.class);
 
         assertQueryInvalid(pkg1,
             "let e : Collection(ocl::Package) = invalid in e->iterate(" +
@@ -829,7 +830,7 @@ public class IteratorsTest4 extends PivotTestSuite
     @Test public void test_existsWithNullSource_143996() {
     	assertQueryInvalid(pkg1,
             "let e : Collection(ocl::Package) = null in e->exists(" +
-                "p : ocl::Package | p.name = 'bob')", ClassUtil.bind(EvaluatorMessages.TypedValueRequired, TypeId.COLLECTION_NAME, ValueUtil.getTypeName(null)), InvalidValueException.class);
+                "p : ocl::Package | p.name = 'bob')", StringUtil.bind(EvaluatorMessages.TypedValueRequired, TypeId.COLLECTION_NAME, ValueUtil.getTypeName(null)), InvalidValueException.class);
 
     	assertQueryInvalid(pkg1,
             "let e : Collection(ocl::Package) = invalid in e->exists(" +

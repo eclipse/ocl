@@ -46,6 +46,8 @@ import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -123,7 +125,7 @@ public class VariableFinder
 			}
 			s.append("(");
 			s.append(eType.getName());
-			ClassUtil.formatMultiplicity(s, lowerBound, upperBound);
+			StringUtil.formatMultiplicity(s, lowerBound, upperBound);
 			s.append(")");
 		}
 		else {
@@ -626,11 +628,11 @@ public class VariableFinder
 			for (IVMEvaluationEnvironment<?> evalEnv = fEvalEnv; evalEnv != null; evalEnv = evalEnv.getParentEvaluationEnvironment()) {
 				Set<TypedElement> localVariables = evalEnv.getVariables();
 				variables.addAll(localVariables);
-				if (ClassUtil.getNamedElement(localVariables, "self") != null) {
+				if (NameUtil.getNameable(localVariables, "self") != null) {
 					break;
 				}
 			}
-			rootObj = ClassUtil.getNamedElement(variables, envVarName);
+			rootObj = NameUtil.getNameable(variables, envVarName);
 			if (rootObj instanceof Variable) {
 				rootObj = fEvalEnv.getValueOf((TypedElement)rootObj);
 				gotIt = true;

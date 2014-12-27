@@ -74,6 +74,7 @@ import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.xtext.util.Strings;
 
@@ -1144,7 +1145,7 @@ public class OCLinEcoreTablesUtils
 			Map<org.eclipse.ocl.pivot.Class,org.eclipse.ocl.pivot.Class> typeMap = new HashMap<org.eclipse.ocl.pivot.Class,org.eclipse.ocl.pivot.Class>();
 			ArrayList<org.eclipse.ocl.pivot.Class> libraryTypes = new ArrayList<org.eclipse.ocl.pivot.Class>(library.getOwnedClasses());
 			for (org.eclipse.ocl.pivot.Class secondaryType : libraryTypes) {
-				org.eclipse.ocl.pivot.Class primaryType = ClassUtil.getNamedElement(primaryTypes, secondaryType.getName());
+				org.eclipse.ocl.pivot.Class primaryType = NameUtil.getNameable(primaryTypes, secondaryType.getName());
 				if (primaryType != null) {
 					typeMap.put(secondaryType, primaryType);
 				}
@@ -1172,8 +1173,8 @@ public class OCLinEcoreTablesUtils
 		}
 		for (org.eclipse.ocl.pivot.Class primaryType : primaryTypes) {
 			List<org.eclipse.ocl.pivot.Class> primarySuperClasses = primaryType.getSuperClasses();
-			Type classType = ClassUtil.getNamedElement(primarySuperClasses, TypeId.CLASS_NAME);
-			Type metaclass = ClassUtil.getNamedElement(primarySuperClasses, "Classifier");
+			Type classType = NameUtil.getNameable(primarySuperClasses, TypeId.CLASS_NAME);
+			Type metaclass = NameUtil.getNameable(primarySuperClasses, "Classifier");
 			if ((classType != null) && (metaclass != null)) {
 				primarySuperClasses.remove(classType);		// WIP FIXME fix at source
 			}

@@ -39,7 +39,7 @@ import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.uml.UML2ASUtil;
 import org.eclipse.ocl.pivot.uml.UMLElementExtension;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotObjectImpl;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -285,7 +285,7 @@ public class PivotIdResolver extends AbstractIdResolver
 		org.eclipse.ocl.pivot.Package rootPackage = standardLibrary.getRootPackage(completeURIorName);
 		if (rootPackage == null) {
 			Orphanage orphanage = metaModelManager.getCompleteModel().getOrphanage();
-			rootPackage = ClassUtil.getNamedElement(orphanage.getOwnedPackages(), completeURIorName);
+			rootPackage = NameUtil.getNameable(orphanage.getOwnedPackages(), completeURIorName);
 			if (rootPackage == null) {
 //				return super.visitRootPackageId(id);
 				throw new UnsupportedOperationException();

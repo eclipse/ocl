@@ -21,7 +21,7 @@ import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractProperty;
 import org.eclipse.ocl.pivot.uml.UMLElementExtension;
-import org.eclipse.ocl.pivot.utilities.LabelUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 
 /**
  * The static instance of ExplicitNavigationProperty supports evaluation of
@@ -47,7 +47,7 @@ public class BaseProperty extends AbstractProperty
 		if (sourceValue instanceof EObject) {
 			EObject eObject = (EObject)sourceValue;
 			EClass eClass = eObject.eClass();
-			EStructuralFeature eFeature = LabelUtil.getNamedElement(eClass.getEAllStructuralFeatures(), property.getName());
+			EStructuralFeature eFeature = NameUtil.getENamedElement(eClass.getEAllStructuralFeatures(), property.getName());
 			if (eFeature != null) {
 				Object baseObject = eObject.eGet(eFeature);
 				return baseObject;

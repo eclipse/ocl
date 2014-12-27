@@ -36,6 +36,7 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
@@ -118,7 +119,7 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 			query = ValidationBehavior.INSTANCE.getQueryOrThrow(metaModelManager, constraint);
 		}
 		if (query == null) {
-			String message = ClassUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, constraint.getContext());
+			String message = StringUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, constraint.getContext());
 			throw new OCLDelegateException(new SemanticException(message));
 		}
 		return query;

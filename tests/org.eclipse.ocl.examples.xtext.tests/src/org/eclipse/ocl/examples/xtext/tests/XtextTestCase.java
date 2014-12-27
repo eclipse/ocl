@@ -68,6 +68,7 @@ import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.ProjectMap;
 import org.eclipse.ocl.pivot.values.Bag;
@@ -119,7 +120,7 @@ public class XtextTestCase extends PivotTestCase
 		public void normalize() {
 			EList<EAnnotation> eList = eModelElement.getEAnnotations();
 			List<EAnnotation> newOrder = new ArrayList<EAnnotation>(eList);
-			Collections.sort(newOrder, ClassUtil.EAnnotationComparator.INSTANCE);
+			Collections.sort(newOrder, NameUtil.EAnnotationComparator.INSTANCE);
 			eList.clear();
 			eList.addAll(newOrder);
 		}

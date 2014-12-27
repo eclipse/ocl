@@ -11,7 +11,7 @@
 
 package org.eclipse.ocl.pivot;
 
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 
 /**
  * Exception indicating a semantic error in parsing or validating OCL
@@ -33,6 +33,6 @@ public class SemanticException extends ParserException
 		super(msg);
 	}
 	public SemanticException(String messageTemplate, Object... bindings) {
-		super(null, ClassUtil.bind(messageTemplate, bindings));
+		super(null, StringUtil.bind(messageTemplate, bindings));
 	}
 }

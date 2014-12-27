@@ -41,7 +41,7 @@ import org.eclipse.ocl.pivot.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
-import org.eclipse.ocl.pivot.utilities.LabelUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
@@ -137,7 +137,7 @@ public class AS2EcoreTypeRefVisitor
 	@Override
 	public EObject visitCollectionType(@NonNull CollectionType object) {
 		EGenericType eGenericType = EcoreFactory.eINSTANCE.createEGenericType();
-		EClassifier eClassifier = LabelUtil.getNamedElement(OCLstdlibPackage.eINSTANCE.getEClassifiers(), object.getName());
+		EClassifier eClassifier = NameUtil.getENamedElement(OCLstdlibPackage.eINSTANCE.getEClassifiers(), object.getName());
 		eGenericType.setEClassifier(eClassifier);
 		safeVisitAll(eGenericType.getETypeArguments(), object.getOwnedBindings().get(0).getOwnedSubstitutions());
 		// FIXME bounds, supers

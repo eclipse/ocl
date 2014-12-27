@@ -38,6 +38,7 @@ import org.eclipse.ocl.pivot.utilities.BaseResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.Pivotable;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 
 public abstract class AbstractParserContext /*extends AdapterImpl*/ implements ParserContext
 {
@@ -132,7 +133,7 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 			String childName = owner instanceof Nameable ? ((Nameable)owner).getName() : "<unknown>";
 			EObject eContainer = owner != null ? owner.eContainer() : null;
 			String parentName = eContainer instanceof Nameable ? ((Nameable)eContainer).getName() : "<unknown>";
-			PivotUtil.checkResourceErrors(ClassUtil.bind(OCLMessages.ValidationConstraintIsInvalid_ERROR_, parentName, childName, expression.trim()), resource);
+			PivotUtil.checkResourceErrors(StringUtil.bind(OCLMessages.ValidationConstraintIsInvalid_ERROR_, parentName, childName, expression.trim()), resource);
 			ExpressionInOCL expressionInOCL = getExpression(resource);
 			expressionInOCL.setBody(expression);
 			return expressionInOCL;

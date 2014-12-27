@@ -53,9 +53,9 @@ import org.eclipse.ocl.pivot.delegate.ValidationBehavior;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.util.PivotInternalPlugin;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ConstraintEvaluator;
-import org.eclipse.ocl.pivot.utilities.LabelUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.TemplateParameterSubstitutions;
@@ -151,12 +151,12 @@ public class EcoreOCLEValidator implements EValidator
 
 		@Override
 		protected String getObjectLabel() {
-			return LabelUtil.qualifiedNameFor(eObject);
+			return NameUtil.qualifiedNameFor(eObject);
 		}
 
 		@Override
 		protected Boolean handleExceptionResult(@NonNull Throwable e) {
-			String message = ClassUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.toString());
+			String message = StringUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.toString());
 			if (!mayUseNewLines) {
 				message = message.replace("\n", "");
 			}
@@ -187,7 +187,7 @@ public class EcoreOCLEValidator implements EValidator
 
 		@Override
 		protected Boolean handleInvalidResult(@NonNull InvalidValueException e) {
-			String message = ClassUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
+			String message = StringUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
 				getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.getLocalizedMessage());
 			if (!mayUseNewLines) {
 				message = message.replace("\n", "");
@@ -326,7 +326,7 @@ public class EcoreOCLEValidator implements EValidator
 			if (constraintsAnnotation == null) {
 				if (diagnostics != null) {
 					String objectLabel = EObjectValidator.getObjectLabel(eClassifier, context);
-					String message = ClassUtil.bind(MISSING_CONSTRAINTS, objectLabel);
+					String message = StringUtil.bind(MISSING_CONSTRAINTS, objectLabel);
 					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EcoreValidator.DIAGNOSTIC_SOURCE,
 						0, message,  new Object[] { eClassifier }));
 				}
@@ -342,7 +342,7 @@ public class EcoreOCLEValidator implements EValidator
 				for (String aConstraint : oclConstraints) {
 					if (diagnostics != null) {
 						String objectLabel = EObjectValidator.getObjectLabel(eClassifier, context);
-						String message = ClassUtil.bind(MISSING_CONSTRAINTS_ANNOTATION_ENTRY, aConstraint, objectLabel);
+						String message = StringUtil.bind(MISSING_CONSTRAINTS_ANNOTATION_ENTRY, aConstraint, objectLabel);
 						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EcoreValidator.DIAGNOSTIC_SOURCE,
 							0, message,  new Object[] { eClassifier }));
 					}
@@ -353,7 +353,7 @@ public class EcoreOCLEValidator implements EValidator
 				for (String aConstraint : ecoreConstraints) {
 					if (diagnostics != null) {
 						String objectLabel = EObjectValidator.getObjectLabel(eClassifier, context);
-						String message = ClassUtil.bind(EXTRA_CONSTRAINTS_ANNOTATION_ENTRY, aConstraint, objectLabel);
+						String message = StringUtil.bind(EXTRA_CONSTRAINTS_ANNOTATION_ENTRY, aConstraint, objectLabel);
 						diagnostics.add(new BasicDiagnostic(Diagnostic.WARNING, EcoreValidator.DIAGNOSTIC_SOURCE,
 							0, message,  new Object[] { eClassifier }));
 					}
@@ -395,7 +395,7 @@ public class EcoreOCLEValidator implements EValidator
 		if (needsInvocationDelegates && !hasInvocationDelegates) {
 			if (diagnostics != null) {
 				String objectLabel = EObjectValidator.getObjectLabel(ePackage, context);
-				String message = ClassUtil.bind(MISSING_DELEGATE, InvocationBehavior.NAME, objectLabel);
+				String message = StringUtil.bind(MISSING_DELEGATE, InvocationBehavior.NAME, objectLabel);
 				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EcoreValidator.DIAGNOSTIC_SOURCE,
 					0, message,  new Object[] { ePackage }));
 			}
@@ -406,7 +406,7 @@ public class EcoreOCLEValidator implements EValidator
 		if (needsSettingDelegates && !hasSettingDelegates) {
 			if (diagnostics != null) {
 				String objectLabel = EObjectValidator.getObjectLabel(ePackage, context);
-				String message = ClassUtil.bind(MISSING_DELEGATE, SettingBehavior.NAME, objectLabel);
+				String message = StringUtil.bind(MISSING_DELEGATE, SettingBehavior.NAME, objectLabel);
 				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EcoreValidator.DIAGNOSTIC_SOURCE,
 					0, message,  new Object[] { ePackage }));
 			}
@@ -417,7 +417,7 @@ public class EcoreOCLEValidator implements EValidator
 		if (needsValidationDelegates && !hasValidationDelegates) {
 			if (diagnostics != null) {
 				String objectLabel = EObjectValidator.getObjectLabel(ePackage, context);
-				String message = ClassUtil.bind(MISSING_DELEGATE, ValidationBehavior.NAME, objectLabel);
+				String message = StringUtil.bind(MISSING_DELEGATE, ValidationBehavior.NAME, objectLabel);
 				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EcoreValidator.DIAGNOSTIC_SOURCE,
 					0, message,  new Object[] { ePackage }));
 			}
@@ -460,7 +460,7 @@ public class EcoreOCLEValidator implements EValidator
 				if (diagnostics != null) {
 					for (String unknownKey : unknownKeys) {
 						String objectLabel = EObjectValidator.getObjectLabel(eOperation, context);
-						String message = ClassUtil.bind(UNKNOWN_DETAIL, unknownKey, objectLabel);
+						String message = StringUtil.bind(UNKNOWN_DETAIL, unknownKey, objectLabel);
 						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EcoreValidator.DIAGNOSTIC_SOURCE,
 							0, message,  new Object[] { eOperation }));
 					}
@@ -491,7 +491,7 @@ public class EcoreOCLEValidator implements EValidator
 			if (entries == 0) {
 				if (diagnostics != null) {
 					String objectLabel = EObjectValidator.getObjectLabel(eStructuralFeature, context);
-					String message = ClassUtil.bind(MISSING_PROPERTY_KEY, objectLabel);
+					String message = StringUtil.bind(MISSING_PROPERTY_KEY, objectLabel);
 					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EcoreValidator.DIAGNOSTIC_SOURCE,
 						0, message,  new Object[] { eStructuralFeature }));
 				}
@@ -502,7 +502,7 @@ public class EcoreOCLEValidator implements EValidator
 			else if (entries == 2) {
 				if (diagnostics != null) {
 					String objectLabel = EObjectValidator.getObjectLabel(eStructuralFeature, context);
-					String message = ClassUtil.bind(DOUBLE_PROPERTY_KEY, objectLabel);
+					String message = StringUtil.bind(DOUBLE_PROPERTY_KEY, objectLabel);
 					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EcoreValidator.DIAGNOSTIC_SOURCE,
 						0, message,  new Object[] { eStructuralFeature }));
 				}
@@ -513,7 +513,7 @@ public class EcoreOCLEValidator implements EValidator
 			else if (details.size() != 1) {
 				if (diagnostics != null) {
 					String objectLabel = EObjectValidator.getObjectLabel(eStructuralFeature, context);
-					String message = ClassUtil.bind(EXTRA_PROPERTY_KEY, objectLabel);
+					String message = StringUtil.bind(EXTRA_PROPERTY_KEY, objectLabel);
 					diagnostics.add(new BasicDiagnostic(Diagnostic.WARNING, EcoreValidator.DIAGNOSTIC_SOURCE,
 						0, message,  new Object[] { eStructuralFeature }));
 				}
@@ -524,7 +524,7 @@ public class EcoreOCLEValidator implements EValidator
 			else if (value == null) {
 				if (diagnostics != null) {
 					String objectLabel = EObjectValidator.getObjectLabel(eStructuralFeature, context);
-					String message = ClassUtil.bind(NULL_PROPERTY_KEY, objectLabel);
+					String message = StringUtil.bind(NULL_PROPERTY_KEY, objectLabel);
 					diagnostics.add(new BasicDiagnostic(Diagnostic.WARNING, EcoreValidator.DIAGNOSTIC_SOURCE,
 						0, message,  new Object[] { eStructuralFeature }));
 				}
@@ -545,7 +545,7 @@ public class EcoreOCLEValidator implements EValidator
 		if (expression == null) {
 			if (diagnostics != null) {
 				String objectLabel = EObjectValidator.getObjectLabel(eNamedElement, context);
-				String message = ClassUtil.bind(NULL_EXPRESSION, objectLabel);
+				String message = StringUtil.bind(NULL_EXPRESSION, objectLabel);
 				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EcoreValidator.DIAGNOSTIC_SOURCE,
 					0, message,  new Object[] { eNamedElement }));
 				return true;
@@ -559,7 +559,7 @@ public class EcoreOCLEValidator implements EValidator
 			if (asNamedElement != null) {
 				ParserContext parserContext = metaModelManager.getParserContext(asNamedElement);
 				if (parserContext == null) {
-					throw new ParserException(OCLMessages.UnknownContextType_ERROR_, LabelUtil.qualifiedNameFor(asNamedElement), PivotConstants.OWNED_CONSTRAINT_ROLE);
+					throw new ParserException(OCLMessages.UnknownContextType_ERROR_, NameUtil.qualifiedNameFor(asNamedElement), PivotConstants.OWNED_CONSTRAINT_ROLE);
 				}
 				ExpressionInOCL expressionInOCL = parserContext.parse(asNamedElement, expression);
 				Type asExpressionType = expressionInOCL.getType();
@@ -579,8 +579,8 @@ public class EcoreOCLEValidator implements EValidator
 //					metaModelManager.conformsTo(asExpressionType, TemplateParameterSubstitutions.EMPTY, asType, TemplateParameterSubstitutions.EMPTY);			// Debugging
 					if (diagnostics != null) {
 						String objectLabel = EObjectValidator.getObjectLabel(eNamedElement, context);
-						String message = role == null ? ClassUtil.bind(INCOMPATIBLE_TYPE_1, asExpressionType, objectLabel)
-							: ClassUtil.bind(INCOMPATIBLE_TYPE_2, asExpressionType, objectLabel, role);
+						String message = role == null ? StringUtil.bind(INCOMPATIBLE_TYPE_1, asExpressionType, objectLabel)
+							: StringUtil.bind(INCOMPATIBLE_TYPE_2, asExpressionType, objectLabel, role);
 						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EcoreValidator.DIAGNOSTIC_SOURCE,
 							0, message,  new Object[] { eNamedElement }));
 					}
@@ -593,8 +593,8 @@ public class EcoreOCLEValidator implements EValidator
 		catch (ParserException e) {
 			if (diagnostics != null) {
 				String objectLabel = EObjectValidator.getObjectLabel(eNamedElement, context);
-				String message = role == null ? ClassUtil.bind(PARSING_ERROR_1, e, objectLabel)
-					: ClassUtil.bind(PARSING_ERROR_2, e, objectLabel, role);
+				String message = role == null ? StringUtil.bind(PARSING_ERROR_1, e, objectLabel)
+					: StringUtil.bind(PARSING_ERROR_2, e, objectLabel, role);
 				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EcoreValidator.DIAGNOSTIC_SOURCE,
 					0, message,  new Object[] { eNamedElement }));
 			}

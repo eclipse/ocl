@@ -32,6 +32,7 @@ import org.eclipse.xtext.TypeRef
 import org.eclipse.xtext.UntilToken
 import org.eclipse.xtext.Wildcard
 import org.eclipse.ocl.pivot.utilities.ClassUtil
+import org.eclipse.ocl.pivot.utilities.NameUtil
 
 public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 {
@@ -117,7 +118,7 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 	}
 
 	protected def emitCS2AS(@NonNull Class asClass, @NonNull Package cs2asPackage) {
-		var cs2asClass = ClassUtil.getNamedElement(cs2asPackage.getOwnedClasses(), asClass.getName());
+		var cs2asClass = NameUtil.getNameable(cs2asPackage.getOwnedClasses(), asClass.getName());
 		if (cs2asClass != null)  {
 		'''
 
@@ -135,7 +136,7 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 	}
 
 	protected def emitCS2CS(@NonNull Class asClass, @NonNull Package cs2asPackage) {
-		var cs2csClass = ClassUtil.getNamedElement(cs2asPackage.getOwnedClasses(), asClass.getName());
+		var cs2csClass = NameUtil.getNameable(cs2asPackage.getOwnedClasses(), asClass.getName());
 		if (cs2csClass != null)  {
 		'''
 

@@ -31,6 +31,7 @@ import org.eclipse.emf.mwe.core.lib.WorkflowComponentWithModelSlot;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 
 /**
  * Alphabeticizes a designated <tt>modelSlot</tt> so that primitive types
@@ -84,17 +85,17 @@ public class EPackageAlphabetizer extends WorkflowComponentWithModelSlot
 			EObject eObject = it.next();
 			if (eObject instanceof EPackage) {
 				EPackage package_ = (EPackage) eObject;
-				listOfLists.put(package_.getESubpackages(), ClassUtil.ENamedElementComparator.INSTANCE);
+				listOfLists.put(package_.getESubpackages(), NameUtil.ENamedElementComparator.INSTANCE);
 				listOfLists.put(package_.getEClassifiers(), EClassifierComparator.INSTANCE);
 			}
 			else if (eObject instanceof EClass) {
 				EClass class_ = (EClass) eObject;
-				listOfLists.put(class_.getEStructuralFeatures(), ClassUtil.ENamedElementComparator.INSTANCE);
-				listOfLists.put(class_.getEOperations(), ClassUtil.ENamedElementComparator.INSTANCE);
+				listOfLists.put(class_.getEStructuralFeatures(), NameUtil.ENamedElementComparator.INSTANCE);
+				listOfLists.put(class_.getEOperations(), NameUtil.ENamedElementComparator.INSTANCE);
 			}
 			if (eObject instanceof EModelElement) {
 				EModelElement eEModelElement = (EModelElement) eObject;
-				listOfLists.put(eEModelElement.getEAnnotations(), ClassUtil.EAnnotationComparator.INSTANCE);
+				listOfLists.put(eEModelElement.getEAnnotations(), NameUtil.EAnnotationComparator.INSTANCE);
 			}
 		}
 		for (Map.Entry<EList<? extends EObject>, Comparator<? extends EObject>> entry : listOfLists.entrySet()) {

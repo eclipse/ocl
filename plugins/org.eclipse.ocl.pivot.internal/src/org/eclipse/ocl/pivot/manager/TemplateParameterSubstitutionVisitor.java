@@ -56,6 +56,7 @@ import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.values.TemplateParameterSubstitutions;
 
@@ -211,7 +212,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 						if (resolutions == null) {
 							resolutions = new HashMap<String, Type>();
 						}
-						resolutions.put(ClassUtil.getSafeName(part), resolvedPropertyType);
+						resolutions.put(NameUtil.getSafeName(part), resolvedPropertyType);
 					}
 				}
 			}
@@ -220,7 +221,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 			List<TuplePartId> partIds = new ArrayList<TuplePartId>(parts.size());
 			for (int i = 0; i < parts.size(); i++) {
 				@SuppressWarnings("null") @NonNull Property part = parts.get(i);
-				String partName = ClassUtil.getSafeName(part);
+				String partName = NameUtil.getSafeName(part);
 				Type resolvedPropertyType = resolutions.get(partName);
 				TypeId partTypeId = resolvedPropertyType != null ? resolvedPropertyType.getTypeId() : part.getTypeId();
 				TuplePartId tuplePartId = IdManager.getTuplePartId(i, partName, partTypeId);
@@ -240,7 +241,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 					partMap.put(part.getName(), type3);
 				}
 			}
-			return metaModelManager.getCompleteModel().getTupleManager().getTupleType(ClassUtil.getSafeName(type), partMap);
+			return metaModelManager.getCompleteModel().getTupleManager().getTupleType(NameUtil.getSafeName(type), partMap);
 		}
 	}
 

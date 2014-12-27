@@ -64,6 +64,7 @@ import org.eclipse.ocl.pivot.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.util.PivotInternalPlugin;
 import org.eclipse.ocl.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
@@ -791,7 +792,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 //			allPropertiedTypes.addAll(stereotypeProperties.keySet());
 			for (org.eclipse.ocl.pivot.Class pivotType : type2properties.keySet()) {
 				List<Property> asProperties = type2properties.get(pivotType);
-				Collections.sort(asProperties, ClassUtil.NAMEABLE_COMPARATOR);
+				Collections.sort(asProperties, NameUtil.NAMEABLE_COMPARATOR);
 				refreshList(ClassUtil.nonNullEMF(pivotType.getOwnedProperties()), asProperties);
 			}
 		}

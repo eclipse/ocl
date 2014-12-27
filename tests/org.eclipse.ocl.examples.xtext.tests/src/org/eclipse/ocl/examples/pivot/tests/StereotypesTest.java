@@ -33,9 +33,10 @@ import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.uml.UML2AS;
 import org.eclipse.ocl.pivot.uml.UMLElementExtension;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.utilities.ProjectMap;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
@@ -109,9 +110,9 @@ public class StereotypesTest extends PivotTestSuite
 	        asGermanClass = metaModelManager.getPivotOf(org.eclipse.ocl.pivot.Class.class, umlGermanClass);
 	        //
 	    	umlEnglishClassInEnglish = (UMLElementExtension) UMLElementExtension.getUMLElementExtension(mmm.asInEnglishStereotype, umlEnglishClass);
-	        asEnglishClassInEnglish = ClassUtil.getNamedElement(asEnglishClass.getOwnedExtensions(), "EnglishClass$InEnglish");
-	        asFrenchClassInEnglish = ClassUtil.getNamedElement(asFrenchClass.getOwnedExtensions(), "FrenchClass$InFrench");
-	        asGermanClassInEnglish = ClassUtil.getNamedElement(asGermanClass.getOwnedExtensions(), "GermanClass$InGerman");
+	        asEnglishClassInEnglish = NameUtil.getNameable(asEnglishClass.getOwnedExtensions(), "EnglishClass$InEnglish");
+	        asFrenchClassInEnglish = NameUtil.getNameable(asFrenchClass.getOwnedExtensions(), "FrenchClass$InFrench");
+	        asGermanClassInEnglish = NameUtil.getNameable(asGermanClass.getOwnedExtensions(), "GermanClass$InGerman");
 	    }
 	}
 	
@@ -283,7 +284,7 @@ public class StereotypesTest extends PivotTestSuite
     	assertQueryEquals(mm.umlEnglishClass, mm.umlEnglishClassInEnglish, "self.extension_Internationalized.oclAsType(InternationalizedProfile::InEnglish)");
 //    	assertQueryInvalid(mm.umlEnglishClass, "self.extension_Internationalized.oclAsType(InternationalizedProfile::InGerman)", ClassUtil.bind(EvaluatorMessages.IncompatibleOclAsTypeSourceType,
 //    		metaModelManager.getMetaclass(mm.asEnglishClassInEnglish), "InternationalizedProfile::InGerman"), InvalidValueException.class);
-    	assertQueryInvalid(mm.umlEnglishClass, "self.extension_Internationalized.oclAsType(InternationalizedProfile::InGerman)", ClassUtil.bind(EvaluatorMessages.IncompatibleOclAsTypeSourceType,
+    	assertQueryInvalid(mm.umlEnglishClass, "self.extension_Internationalized.oclAsType(InternationalizedProfile::InGerman)", StringUtil.bind(EvaluatorMessages.IncompatibleOclAsTypeSourceType,
     		mmm.asInEnglishStereotype, "InternationalizedProfile::InGerman"), InvalidValueException.class);
     }
 

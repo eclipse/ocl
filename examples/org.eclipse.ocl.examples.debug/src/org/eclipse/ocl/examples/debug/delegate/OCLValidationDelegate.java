@@ -39,6 +39,8 @@ import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
@@ -60,8 +62,8 @@ public class OCLValidationDelegate implements ValidationDelegate
 		@Override
 		public Boolean evaluate(@NonNull EvaluationVisitor evaluationVisitor) {
 			if (!isBooleanConstraint()) {
-				String objectLabel = ClassUtil.getLabel(query.getType());
-				String checkMessage = ClassUtil.bind(OCLMessages.ValidationConstraintIsNotBooleanType_ERROR_, getConstraintTypeName(), getConstraintName(), objectLabel);
+				String objectLabel = LabelUtil.getLabel(query.getType());
+				String checkMessage = StringUtil.bind(OCLMessages.ValidationConstraintIsNotBooleanType_ERROR_, getConstraintTypeName(), getConstraintName(), objectLabel);
 				throw new OCLDelegateException(new EvaluationException(checkMessage));
 			}
 			return super.evaluate(evaluationVisitor);
@@ -69,7 +71,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 
 		@Override
 		protected String getObjectLabel() {
-			return ClassUtil.getLabel(eClassifier, null, null);
+			return LabelUtil.getLabel(eClassifier, null, null);
 		}
 
 		@Override
@@ -127,7 +129,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 			query = ValidationBehavior.INSTANCE.getQueryOrThrow(metaModelManager, constraint);
 		}
 		if (query == null) {
-			String message = ClassUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, constraint.getContext());
+			String message = StringUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, constraint.getContext());
 			throw new OCLDelegateException(new SemanticException(message));
 		}
 		return query;
@@ -238,7 +240,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 		{
 			@Override
 			protected String getObjectLabel() {
-				return LabelUtil.qualifiedNameFor(value);
+				return NameUtil.qualifiedNameFor(value);
 //				return ClassUtil.getLabel(eClassifier, value, context);
 			}
 
@@ -267,7 +269,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 		Type type = delegateDomain.getPivot(Type.class, eClassifier);
 		Constraint constraint = ValidationBehavior.INSTANCE.getConstraint(metaModelManager, eClassifier, constraintName);
 		if (constraint == null) {
-			String message = ClassUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
+			String message = StringUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
 			throw new OCLDelegateException(new SemanticException(message));
 		}
 		ExpressionInOCL query = null;
@@ -275,7 +277,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 			query = ValidationBehavior.INSTANCE.getQueryOrThrow(metaModelManager, constraint);
 		}
 		if (query == null) {
-			String message = ClassUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
+			String message = StringUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
 			throw new OCLDelegateException(new SemanticException(message));
 		}
 		return validateExpressionInOCL(eClassifier, value, diagnostics, context,

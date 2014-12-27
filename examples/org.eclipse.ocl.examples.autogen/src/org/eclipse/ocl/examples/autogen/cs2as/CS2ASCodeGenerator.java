@@ -45,6 +45,7 @@ import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.xtext.base.cs2as.Continuation;
@@ -169,7 +170,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 		cgPackage.getClasses().add(cgClass);
 		for (org.eclipse.ocl.pivot.Class asType : asPackage.getOwnedClasses()) {
 			boolean hasCS2ASmappingOperation = false;
-			Operation astOperation = ClassUtil.getNamedElement(asType.getOwnedOperations(), "ast");			
+			Operation astOperation = NameUtil.getNameable(asType.getOwnedOperations(), "ast");			
 			if (astOperation != null) {
 				LanguageExpression specification = ClassUtil.nonNullState(astOperation.getBodyExpression());
 				ExpressionInOCL expressionInOCL = metaModelManager.getQueryOrThrow(specification);

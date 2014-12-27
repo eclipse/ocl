@@ -15,7 +15,7 @@ import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 
 
 public class TuplePartImpl
@@ -29,14 +29,14 @@ public class TuplePartImpl
 	
 	public TuplePartImpl(@NonNull TuplePartId partId, @NonNull Type partType) {
 		this.partId = partId;
-		setName(ClassUtil.getSafeName(partId));
+		setName(NameUtil.getSafeName(partId));
 		setType(partType);
 	}
 	
 	public @NonNull TuplePartId getTuplePartId() {
 		TuplePartId partId2 = partId;
 		if (partId2 == null) {
-			String name2 = ClassUtil.getSafeName(this);
+			String name2 = NameUtil.getSafeName(this);
 			int index = ((TupleType)eContainer()).getOwnedProperties().indexOf(this);
 			partId = partId2 = IdManager.getTuplePartId(index, name2, getTypeId());
 		}

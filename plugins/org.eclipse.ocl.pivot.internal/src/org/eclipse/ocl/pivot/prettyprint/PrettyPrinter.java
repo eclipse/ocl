@@ -47,9 +47,9 @@ import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.util.AbstractVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PathElement;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.Unlimited;
 
 /**
@@ -704,7 +704,7 @@ public class PrettyPrinter
 		}
 		StringBuilder s = new StringBuilder();
 		s.append("_'");
-		s.append(ClassUtil.convertToOCLString(name));
+		s.append(StringUtil.convertToOCLString(name));
 		s.append("'");
 		return s.toString();
 	}

@@ -25,7 +25,8 @@ import org.eclipse.ocl.examples.codegen.analyzer.DependencyVisitor;
 import org.eclipse.ocl.examples.codegen.analyzer.ReferencesVisitor;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
 
 import com.google.common.collect.HashMultimap;
@@ -74,7 +75,7 @@ public class GlobalPlace extends AbstractPlace
 	 */
 	protected @Nullable SimpleAnalysis buildSimpleAnalysisTree(@NonNull CGElement cgElement, int depth) {
 		if (CommonSubexpressionEliminator.CSE_BUILD.isActive()) {
-			CommonSubexpressionEliminator.CSE_BUILD.println(ClassUtil.getIndentation(depth, "  ") + "Build " + ClassUtil.debugSimpleName(cgElement) + " " + ClassUtil.convertToOCLString(cgElement.toString()));
+			CommonSubexpressionEliminator.CSE_BUILD.println(StringUtil.getIndentation(depth, "  ") + "Build " + NameUtil.debugSimpleName(cgElement) + " " + StringUtil.convertToOCLString(cgElement.toString()));
 		}
 		//
 		//	Create the Place hierarchy in Preorder
@@ -87,7 +88,7 @@ public class GlobalPlace extends AbstractPlace
 			element2place.put(cgElement, abstractPlace);
 		}
 		if (CommonSubexpressionEliminator.CSE_BUILD.isActive()) {
-			CommonSubexpressionEliminator.CSE_BUILD.println(ClassUtil.getIndentation(depth, "  ") + " ==> " + ClassUtil.debugSimpleName(abstractPlace));
+			CommonSubexpressionEliminator.CSE_BUILD.println(StringUtil.getIndentation(depth, "  ") + " ==> " + NameUtil.debugSimpleName(abstractPlace));
 		}
 		//
 		//	Determine the local part of the structural hash code from referenced objects
@@ -116,7 +117,7 @@ public class GlobalPlace extends AbstractPlace
 		CGValuedElement cgValuedElement = (CGValuedElement)cgElement;
 //		System.out.println("Build2 " + ClassUtil.debugSimpleName(cgElement));
 		if (CommonSubexpressionEliminator.CSE_BUILD.isActive()) {
-			CommonSubexpressionEliminator.CSE_BUILD.println(ClassUtil.getIndentation(depth, "  ") + "=> " + ClassUtil.debugSimpleName(abstractPlace) + " " + structuralHashCode);
+			CommonSubexpressionEliminator.CSE_BUILD.println(StringUtil.getIndentation(depth, "  ") + "=> " + NameUtil.debugSimpleName(abstractPlace) + " " + structuralHashCode);
 		}
 		if (abstractPlace != this) {			// FIXME Ugh!
 			StackPlace stackPlace = abstractPlace.getStackPlace();
@@ -138,7 +139,7 @@ public class GlobalPlace extends AbstractPlace
 			structuralAnalysis = new SimpleAnalysis(this, cgValuedElement, depth, structuralHashCode, SimpleAnalysis.EMPTY_LIST);
 		}
 		if (CommonSubexpressionEliminator.CSE_BUILD.isActive()) {
-			CommonSubexpressionEliminator.CSE_BUILD.println(ClassUtil.getIndentation(depth, "  ") + "=> " + ClassUtil.debugSimpleName(structuralAnalysis) + " " + structuralAnalysis.toString());
+			CommonSubexpressionEliminator.CSE_BUILD.println(StringUtil.getIndentation(depth, "  ") + "=> " + NameUtil.debugSimpleName(structuralAnalysis) + " " + structuralAnalysis.toString());
 		}
 		return structuralAnalysis;
 	}

@@ -536,7 +536,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 		long lowerValue = lower != null ? lower.longValue() : 0l;		// FIXME Handle BigInteger
 		long upperValue = (upper != null) && !(upper instanceof Unlimited) ? upper.longValue() : -1l;
 		if ((lowerValue != 0) || (upperValue != -1)) {
-			ClassUtil.formatMultiplicity(context, lowerValue, upperValue);
+			StringUtil.formatMultiplicity(context, lowerValue, upperValue);
 		}
 		return null;
 	}

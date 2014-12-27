@@ -19,7 +19,7 @@ import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.IdVisitor;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.ids.UnspecifiedId;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 
 public class UnspecifiedIdImpl extends AbstractTypeId implements UnspecifiedId, ClassId, DataTypeId
 {
@@ -36,7 +36,7 @@ public class UnspecifiedIdImpl extends AbstractTypeId implements UnspecifiedId, 
 
 	@Override
 	public @NonNull String getDisplayName() {
-		return ClassUtil.getSafeName(type);
+		return NameUtil.getSafeName(type);
 	}
 
 	@Override

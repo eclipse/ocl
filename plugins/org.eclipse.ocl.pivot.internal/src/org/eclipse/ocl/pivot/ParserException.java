@@ -15,7 +15,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.pivot.messages.StatusCodes;
 import org.eclipse.ocl.pivot.util.PivotInternalPlugin;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 
 /**
  * Exception indicating a failure to parse or validate OCL constraints.
@@ -40,7 +40,7 @@ public class ParserException extends Exception {
 		this(null, msg);
 	}
 	public ParserException(String messageTemplate, Object... bindings) {
-		this(null, ClassUtil.bind(messageTemplate, bindings));
+		this(null, StringUtil.bind(messageTemplate, bindings));
 	}
 
     /**
@@ -56,7 +56,7 @@ public class ParserException extends Exception {
 		diagnostic = createDiagnostic(msg);
 	}
 	public ParserException(Throwable cause, String messageTemplate, Object... bindings) {
-		this(cause, ClassUtil.bind(messageTemplate, bindings));
+		this(cause, StringUtil.bind(messageTemplate, bindings));
 	}
 	
 	/**

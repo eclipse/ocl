@@ -26,7 +26,7 @@ import org.eclipse.ocl.pivot.SemanticException;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.LabelUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 
 /**
  */
@@ -82,7 +82,7 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 	public @NonNull ExpressionInOCL getQueryOrThrow(@NonNull MetaModelManager metaModelManager, @NonNull Operation operation) throws OCLDelegateException {
 		LanguageExpression specification = operation.getBodyExpression();
 		if (specification == null) {
-			throw new OCLDelegateException(new SemanticException(OCLMessages.MissingSpecificationBody_ERROR_, LabelUtil.qualifiedNameFor(operation), PivotConstants.BODY_EXPRESSION_ROLE));
+			throw new OCLDelegateException(new SemanticException(OCLMessages.MissingSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(operation), PivotConstants.BODY_EXPRESSION_ROLE));
 		}
 		try {
 			return metaModelManager.getQueryOrThrow(specification);

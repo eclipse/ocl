@@ -16,7 +16,7 @@ import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractProperty;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.TupleValue;
 
@@ -35,6 +35,6 @@ public class TuplePartProperty extends AbstractProperty
 		if (resultValue != null) {
 			return resultValue;		// null is a static type error so no need to diagnose dynamically
 		}
-		throw new InvalidValueException(ClassUtil.bind("part '" + tuplePartId + "' is not a part of '" + sourceValue));
+		throw new InvalidValueException(StringUtil.bind("part '" + tuplePartId + "' is not a part of '" + sourceValue));
 	}
 }

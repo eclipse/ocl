@@ -38,8 +38,7 @@ import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.uml.UML2AS.Outer;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.LabelUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 
 /**
  * The ModelAnalysis captures the overall analysis of the UML M1 ProfileApplication and ElementExtensions.
@@ -134,10 +133,10 @@ public class ModelAnalysis
 		@SuppressWarnings("null")@NonNull EClass eClass = umlStereotypeApplication.eClass();
 		if (UML2AS.ADD_STEREOTYPE_APPLICATION.isActive()) {
 			if (umlStereotypeApplication instanceof DynamicEObjectImpl) {
-				UML2AS.ADD_STEREOTYPE_APPLICATION.println(LabelUtil.qualifiedNameFor(eClass));
+				UML2AS.ADD_STEREOTYPE_APPLICATION.println(NameUtil.qualifiedNameFor(eClass));
 			}
 			else {
-				UML2AS.ADD_STEREOTYPE_APPLICATION.println(LabelUtil.qualifiedNameFor(eClass));
+				UML2AS.ADD_STEREOTYPE_APPLICATION.println(NameUtil.qualifiedNameFor(eClass));
 //					ADD_STEREOTYPE_APPLICATION.println(umlStereotypeApplication.toString());
 			}
 		}
@@ -421,21 +420,21 @@ public class ModelAnalysis
 			@NonNull Map<Type, Set<StereotypeExtender>> metatype2typeExtensions) {
 		if (UML2AS.TYPE_EXTENSIONS.isActive()) {
 			StringBuffer s = new StringBuffer();
-			s.append(LabelUtil.qualifiedNameFor(asPackage) + " : " + asPackage.getURI());
+			s.append(NameUtil.qualifiedNameFor(asPackage) + " : " + asPackage.getURI());
 			List<Type> metatypes = new ArrayList<Type>(metatype2typeExtensions.keySet());
-			Collections.sort(metatypes, PivotUtil.NAMEABLE_COMPARATOR);
+			Collections.sort(metatypes, NameUtil.NAMEABLE_COMPARATOR);
 			for (Type metatype : metatypes) {
 				if (metatype != null) {
-					s.append("\n\t" + LabelUtil.qualifiedNameFor(metatype) + " ++"); //+ " : " + asProfile.getNsURI());
+					s.append("\n\t" + NameUtil.qualifiedNameFor(metatype) + " ++"); //+ " : " + asProfile.getNsURI());
 					Set<StereotypeExtender> typeExtensions = metatype2typeExtensions.get(metatype);
 					List<Stereotype> stereotypes = new ArrayList<Stereotype>();
 					for (StereotypeExtender typeExtension : typeExtensions) {
 						stereotypes.add(typeExtension.getOwningStereotype());
 					}
-					Collections.sort(stereotypes, PivotUtil.NAMEABLE_COMPARATOR);
+					Collections.sort(stereotypes, NameUtil.NAMEABLE_COMPARATOR);
 					for (Stereotype stereotype : stereotypes) {
 						if (stereotype != null) {
-							s.append(" " + LabelUtil.qualifiedNameFor(stereotype) + ","); //+ " : " + asProfile.getNsURI());
+							s.append(" " + NameUtil.qualifiedNameFor(stereotype) + ","); //+ " : " + asProfile.getNsURI());
 						}
 					}
 				}

@@ -66,7 +66,7 @@ import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.xtext.base.as2cs.AS2CSConversion;
 import org.eclipse.ocl.xtext.base.as2cs.BaseDeclarationVisitor;
 import org.eclipse.ocl.xtext.basecs.BaseCSFactory;
@@ -258,8 +258,8 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		if (specification instanceof ExpressionInOCL) {
 			OCLExpression bodyExpression = ((ExpressionInOCL)specification).getOwnedBody();
 			if ((bodyExpression instanceof TupleLiteralExp) && (bodyExpression.getTypeId() == TUPLE_MESSAGE_STATUS)) {
-				TupleLiteralPart messagePart = ClassUtil.getNamedElement(((TupleLiteralExp)bodyExpression).getOwnedParts(), TUPLE_MESSAGE_STATUS_0.getName());
-				TupleLiteralPart statusPart = ClassUtil.getNamedElement(((TupleLiteralExp)bodyExpression).getOwnedParts(), TUPLE_MESSAGE_STATUS_1.getName());
+				TupleLiteralPart messagePart = NameUtil.getNameable(((TupleLiteralExp)bodyExpression).getOwnedParts(), TUPLE_MESSAGE_STATUS_0.getName());
+				TupleLiteralPart statusPart = NameUtil.getNameable(((TupleLiteralExp)bodyExpression).getOwnedParts(), TUPLE_MESSAGE_STATUS_1.getName());
 				OCLExpression messageExpression = messagePart.getOwnedInit();
 				OCLExpression statusExpression = statusPart.getOwnedInit();
 				ExpSpecificationCS csMessage = context.refreshElement(ExpSpecificationCS.class, EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, specification);

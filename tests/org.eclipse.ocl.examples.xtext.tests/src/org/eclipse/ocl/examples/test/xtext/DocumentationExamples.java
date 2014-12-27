@@ -39,8 +39,8 @@ import org.eclipse.ocl.pivot.helper.OCLHelper;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
-import org.eclipse.ocl.pivot.validation.DomainSubstitutionLabelProvider;
 
 /**
  * Tests for the OCLinEcore tutorial using LPG or Pivot delegate URIs on LPG or Pivot evaluator.
@@ -94,7 +94,7 @@ public class DocumentationExamples extends PivotTestCase
 		EStructuralFeature bookName = ecoreBook.getEStructuralFeature("name");
 		EStructuralFeature bookCopies = ecoreBook.getEStructuralFeature("copies");
 		EStructuralFeature bookLoans = ecoreBook.getEStructuralFeature("loans");
-		EOperation bookIsAvailable = LabelUtil.getNamedElement(ecoreBook.getEOperations(), "isAvailable");
+		EOperation bookIsAvailable = NameUtil.getENamedElement(ecoreBook.getEOperations(), "isAvailable");
 		@SuppressWarnings("unchecked")
 		List<EObject> xmiBooks = (List<EObject>) xmiLibrary.eGet(ecoreBooks);
 		EObject b2Book = null;
@@ -130,7 +130,7 @@ public class DocumentationExamples extends PivotTestCase
 		Object b2Available = queryEval.evaluate(b2Book);
 	    assertFalse((Boolean)b2Available);
 	    
-		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
+		Map<Object, Object> validationContext = LabelUtil.createDefaultContext(Diagnostician.INSTANCE);
 	    Diagnostic diagnostics = Diagnostician.INSTANCE.validate(xmiLibrary, validationContext);
 	    assertEquals(3, diagnostics.getChildren().size());
 	    
@@ -162,7 +162,7 @@ public class DocumentationExamples extends PivotTestCase
 		EStructuralFeature bookName = ecoreBook.getEStructuralFeature("name");
 		EStructuralFeature bookCopies = ecoreBook.getEStructuralFeature("copies");
 		EStructuralFeature bookLoans = ecoreBook.getEStructuralFeature("loans");
-		EOperation bookIsAvailable = LabelUtil.getNamedElement(ecoreBook.getEOperations(), "isAvailable");
+		EOperation bookIsAvailable = NameUtil.getENamedElement(ecoreBook.getEOperations(), "isAvailable");
 		@SuppressWarnings("unchecked")
 		List<EObject> xmiBooks = (List<EObject>) xmiLibrary.eGet(ecoreBooks);
 		EObject b2Book = null;
@@ -202,7 +202,7 @@ public class DocumentationExamples extends PivotTestCase
 			Object b2Available = queryEval.evaluate(b2Book);
 		    assertFalse(ValueUtil.asBoolean(b2Available));
 		    
-			Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
+			Map<Object, Object> validationContext = LabelUtil.createDefaultContext(Diagnostician.INSTANCE);
 		    Diagnostic diagnostics = Diagnostician.INSTANCE.validate(xmiLibrary, validationContext);
 		    assertEquals(3, diagnostics.getChildren().size());
 		    

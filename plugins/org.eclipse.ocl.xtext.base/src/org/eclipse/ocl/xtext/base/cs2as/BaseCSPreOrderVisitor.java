@@ -28,6 +28,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.types.AbstractTuplePart;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.basecs.AnnotationCS;
@@ -361,7 +362,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 				List<Property> tupleParts = tupleType.getOwnedProperties();
 				for (TuplePartCS csTuplePart : csElement.getOwnedParts()) {
 					String partName = csTuplePart.getName();
-					Property tuplePart = ClassUtil.getNamedElement(tupleParts, partName);
+					Property tuplePart = NameUtil.getNameable(tupleParts, partName);
 					if (tuplePart != null) {
 						context.installPivotUsage(csTuplePart, tuplePart);
 					}

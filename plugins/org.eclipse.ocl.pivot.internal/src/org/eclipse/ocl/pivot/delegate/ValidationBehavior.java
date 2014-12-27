@@ -29,6 +29,7 @@ import org.eclipse.ocl.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 
 /**
  */
@@ -42,7 +43,7 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreMetaModel, metaModelManager);
 		Type type = ecore2as.getCreated(Type.class, eClassifier);
 		if (type != null) {
-			Constraint constraint = ClassUtil.getNamedElement(metaModelManager.getAllInvariants(type), constraintName);
+			Constraint constraint = NameUtil.getNameable(metaModelManager.getAllInvariants(type), constraintName);
 			if (constraint != null) {
 				return constraint;
 			}

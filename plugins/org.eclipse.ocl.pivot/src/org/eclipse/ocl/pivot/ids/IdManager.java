@@ -49,7 +49,9 @@ import org.eclipse.ocl.pivot.ids.impl.WeakHashMapOfListOfWeakReference3;
 import org.eclipse.ocl.pivot.ids.impl.WeakHashMapOfListOfWeakReference4;
 import org.eclipse.ocl.pivot.ids.impl.WeakHashMapOfWeakReference;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
+import org.eclipse.ocl.pivot.utilities.TypeUtil;
 
 /**
  * IdManager supervises the thread-safe allocation of unique hierarchical identifier to each metamodel element.
@@ -264,7 +266,7 @@ public final class IdManager
      * Return the typeId for aLambdaType.
       */
 	public static @NonNull LambdaTypeId getLambdaTypeId(@NonNull LambdaType lambdaType) {
-		String name = ClassUtil.getSafeName(lambdaType);
+		String name = NameUtil.getSafeName(lambdaType);
 		return getLambdaTypeId(name, lambdaType.getParametersId());
 	}
 
@@ -331,10 +333,10 @@ public final class IdManager
      * Return the OperationId for anOperation.
       */
 	public static @NonNull OperationId getOperationId(@NonNull Operation anOperation) {
-		String name = ClassUtil.getSafeName(anOperation);
+		String name = NameUtil.getSafeName(anOperation);
 		org.eclipse.ocl.pivot.Class parentType = anOperation.getOwningClass();
 		TypeId parentTypeId = parentType.getTypeId();
-		Type[] parameterTypes = ClassUtil.getOperationParameterTypes(anOperation);
+		Type[] parameterTypes = TypeUtil.getOperationParameterTypes(anOperation);
 		TemplateParameters typeParameters = anOperation.getTypeParameters();
 		ParametersId parametersId = getParametersId(parameterTypes);
 		return parentTypeId.getOperationId(typeParameters.parametersSize(), name, parametersId);

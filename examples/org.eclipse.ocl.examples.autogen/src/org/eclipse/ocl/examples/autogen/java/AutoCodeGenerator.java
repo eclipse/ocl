@@ -50,6 +50,7 @@ import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreGenModelGeneratorAd
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 
 /**
  * AutoCodeGenerator supports generation of the content of a JavaClassFile to
@@ -188,7 +189,7 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 			cgPackage.setName(packageName);
 			externalPackages.put(packageName, cgPackage);
 		}
-		CGClass cgClass = ClassUtil.getNamedElement(cgPackage.getClasses(), className);
+		CGClass cgClass = NameUtil.getNameable(cgPackage.getClasses(), className);
 		if (cgClass == null) {
 			cgClass = CGModelFactory.eINSTANCE.createCGClass();
 			cgClass.setName(className);

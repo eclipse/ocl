@@ -23,16 +23,19 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypeParameter;
-import org.eclipse.emf.ecore.ETypedElement;
+import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.Labelable;
 import org.eclipse.ocl.pivot.labels.AbstractLabelGenerator;
 //import org.eclipse.ocl.ecore.Constraint;
 //import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
@@ -40,9 +43,17 @@ import org.eclipse.ocl.pivot.labels.AbstractLabelGenerator;
 //import org.eclipse.ocl.utilities.UMLReflection;
 import org.eclipse.ocl.pivot.labels.ILabelGenerator;
 import org.eclipse.ocl.pivot.labels.LabelGeneratorRegistry;
+import org.eclipse.ocl.pivot.labels.impl.LabelSubstitutionLabelProvider;
 
 public class LabelUtil
 {	
+	/**
+	 * The global QUALIFIED_NAME_REGISTRY is used by qualifiedNameFor to generate qualified names 
+	 * for objects; typically a :: separted hierarchical name.  The QUALIFIED_NAME_REGISTRY delegates unsupported
+	 * label generation to the SIMPLE_NAME_REGISTRY.
+	 */
+	public static @NonNull ILabelGenerator.Registry QUALIFIED_NAME_REGISTRY = new LabelGeneratorRegistry(ILabelGenerator.Registry.INSTANCE);
+
 	/**
 	 * The global SIMPLE_NAME_REGISTRY is used by simpleNameFor to generate simple names 
 	 * for objects; typically the name property. The SIMPLE_NAME_REGISTRY delegates unsupported
@@ -51,11 +62,9 @@ public class LabelUtil
 	public static @NonNull ILabelGenerator.Registry SIMPLE_NAME_REGISTRY = new LabelGeneratorRegistry(ILabelGenerator.Registry.INSTANCE);
 
 	/**
-	 * The global QUALIFIED_NAME_REGISTRY is used by qualifiedNameFor to generate qualified names 
-	 * for objects; typically a :: separted hierarchical name.  The QUALIFIED_NAME_REGISTRY delegates unsupported
-	 * label generation to the SIMPLE_NAME_REGISTRY.
+	 * A SubstitutionLabelProvider instance that uses LaberlUtil.getLabel() to provide labels.
 	 */
-	public static @NonNull ILabelGenerator.Registry QUALIFIED_NAME_REGISTRY = new LabelGeneratorRegistry(ILabelGenerator.Registry.INSTANCE);
+	public static @NonNull EValidator.SubstitutionLabelProvider SUBSTITUTION_LABEL_PROVIDER = new LabelSubstitutionLabelProvider();
 
 	static {
 		/**
@@ -100,6 +109,18 @@ public class LabelUtil
 	}
 
 	/**
+	 * Return a context map for use by EValidator.validate in which the EVlaidator.class key
+	 * is mapped to the eValidator, and the EValidator.SubstitutionLabelProvider.class key
+	 * is mapped to a SubstitutionLabelProvider that uses getLabel().
+	 */
+	public static @NonNull Map<Object, Object> createDefaultContext(EValidator eValidator) {
+		Map<Object, Object> context = new HashMap<Object, Object>();
+		context.put(EValidator.SubstitutionLabelProvider.class, LabelUtil.SUBSTITUTION_LABEL_PROVIDER);
+		context.put(EValidator.class, eValidator);
+		return context;
+	}
+
+	/**
 	 * Convert the map return from EcoreUtil.UnresolvedProxyCrossReferencer.find(xx)
 	 * into a textual diagnosis.
 	 * <br>
@@ -128,40 +149,6 @@ public class LabelUtil
     	return s.toString();
 	}
 
-	public static @NonNull String formatMultiplicity(@Nullable ETypedElement typedElement) {
-		if (typedElement == null)
-			return "";
-		int lower = typedElement.getLowerBound();
-		int upper = typedElement.getUpperBound();
-		if (lower == upper)
-			return "" + Integer.toString(lower);
-		else if (lower == 0) {
-			if (upper < 0)
-				return "*";
-			else if (upper == 1)
-				return "?";
-		}
-		else if (lower == 1) {
-			if (upper < 0)
-				return "+";
-		}
-		return Integer.toString(lower) + ".." + (upper >= 0 ? Integer.toString(upper) : "*");
-	}
-
-	public static @NonNull String formatOrdered(@Nullable ETypedElement typedElement) {
-		boolean isOrdered = typedElement != null ? (typedElement.isOrdered() && typedElement.isMany()) : false;
-		return isOrdered ? "{ordered}" : "";
-	}
-
-	public static@NonNull  String formatString(@Nullable String name) {
-		return name != null ? name : "<null>";
-	}
-
-	public static @NonNull String formatUnique(@Nullable ETypedElement typedElement) {
-		boolean isOrdered = typedElement != null ? (typedElement.isUnique() && typedElement.isMany()) : false;
-		return isOrdered ? "{unique}" : "";
-	}
-	
 	public static @Nullable <T extends Adapter> T getAdapter(@Nullable Notifier notifier, Class<T> adapterClass) {
 		if (notifier == null)
 			return null;
@@ -266,7 +253,7 @@ public class LabelUtil
 	 */
 	public static @Nullable EOperation getEcoreInvariant(@NonNull EClass eClass, @NonNull String name) {
 		for (EOperation eOperation : eClass.getEOperations()) {
-			if (ClassUtil.equals(name, eOperation.getName()) && EcoreUtil.isInvariant(eOperation)) {
+			if (ClassUtil.safeEquals(name, eOperation.getName()) && EcoreUtil.isInvariant(eOperation)) {
 				return eOperation;
 			}
 		}
@@ -285,56 +272,37 @@ public class LabelUtil
 		return notification.getFeatureID(featureClass);
 	}
 
-	public static @Nullable <T extends ENamedElement> T getNamedElement(@Nullable Collection<T> elements, String name) {
-		if (elements == null)
-			return null;
-		for (T element : elements)
-			if (ClassUtil.equals(name, element.getName()))
-				return element;
-		return null;				
-	}
-
-	@SuppressWarnings("unchecked")
-	public static @Nullable <T extends ENamedElement, R extends T> R getNamedElement(@Nullable Collection<T> elements, @Nullable String name, @Nullable Class<R> returnClass) {
-		if (elements == null)
-			return null;
-		if (name == null)
-			return null;
-		if (returnClass == null)
-			return null;
-		for (T element : elements)
-			if (returnClass.isAssignableFrom(element.getClass()) && ClassUtil.equals(name, element.getName()))
-				return (R) element;
-		return null;				
-	}
-	
 	/**
-	 * Return a qualified name for object using the label generators registered
-	 * in the QUALIFIED_NAME_REGISTRY.
-	 * 
-	 * @param object to be named
-	 * @return qualified name
+	 * Return a simple readable description of eObject using an IItemLabelProvider if possible.
 	 */
-	public static @NonNull String qualifiedNameFor(@Nullable Object object) {
-		if (object == null) {
-			return "<<null>>";
+	public static String getLabel(EObject eObject) {
+		if (eObject instanceof Labelable) {
+			String text = ((Labelable)eObject).getText();
+			if (text != null) {
+				return text;
+			}
 		}
-		Map<ILabelGenerator.Option<?>, Object> options = new HashMap<ILabelGenerator.Option<?>, Object>();
-		options.put(ILabelGenerator.Builder.SHOW_QUALIFIER, "::");
-		return QUALIFIED_NAME_REGISTRY.labelFor(object, options);
+		return NameUtil.qualifiedNameFor(eObject);
 	}
 
 	/**
-	 * Return a simple name for object using the label generators registered
-	 * in the SIMPLE_NAME_REGISTRY.
-	 * 
-	 * @param object to be named
-	 * @return simple name
+	 * Return a simple readable description of object. If non-null eClassifier
+	 * identifies the type of object. If non-null context may provide an ESubstitutionLabelProvider.
 	 */
-	public static @NonNull String simpleNameFor(@Nullable Object object) {
-		if (object == null) {
-			return "<<null>>";
+	public static String getLabel(EClassifier eClassifier, Object object, Map<Object, Object> context) {
+		if (eClassifier instanceof EDataType) {
+			return EObjectValidator.getValueLabel((EDataType) eClassifier, object, context);
 		}
-		return SIMPLE_NAME_REGISTRY.labelFor(object);
+		else if (object instanceof EObject) {
+			if (context != null) {					// Use an ESubstitutionLabelProvider
+				return EObjectValidator.getObjectLabel((EObject)object, context);
+			}
+			else {									// Use an ItemProvider rather than EcoreUtil.getIdentification
+				return LabelUtil.getLabel((EObject)object);
+			}
+		}
+		else {			// Never happens
+			return String.valueOf(object);
+		}
 	}
 }

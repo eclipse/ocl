@@ -39,6 +39,7 @@ import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.util.PivotSwitch;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 /**
@@ -195,7 +196,7 @@ public class CompleteOCLSplitter
 			else {
 				separateSiblings = ((org.eclipse.ocl.pivot.Package)separateParent).getOwnedPackages();
 			}
-			org.eclipse.ocl.pivot.Package separateObject = ClassUtil.getNamedElement(separateSiblings, name);
+			org.eclipse.ocl.pivot.Package separateObject = NameUtil.getNameable(separateSiblings, name);
 			if (separateObject == null) {
 				separateObject = (org.eclipse.ocl.pivot.Package) object.eClass().getEPackage().getEFactoryInstance().create(object.eClass());
 				separateObject.setName(name);
@@ -234,7 +235,7 @@ public class CompleteOCLSplitter
 
 		protected <T extends NamedElement> T cloneNamedElement(List<T> separateSiblings, T object) {
 			String name = object.getName();
-			T separateObject = ClassUtil.getNamedElement(separateSiblings, name);
+			T separateObject = NameUtil.getNameable(separateSiblings, name);
 			if (separateObject == null) {
 				@SuppressWarnings("unchecked")
 				T castObject = (T) object.eClass().getEPackage().getEFactoryInstance().create(object.eClass());
@@ -249,7 +250,7 @@ public class CompleteOCLSplitter
 			if (elements == null)
 				return null;
 			for (EObject element : elements)
-				if ((element instanceof NamedElement) && ClassUtil.equals(name, ((NamedElement)element).getName()))
+				if ((element instanceof NamedElement) && ClassUtil.safeEquals(name, ((NamedElement)element).getName()))
 					return (NamedElement)element;
 			return null;				
 		}

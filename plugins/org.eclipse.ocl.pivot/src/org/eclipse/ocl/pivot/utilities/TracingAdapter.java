@@ -20,6 +20,7 @@ import org.eclipse.emf.common.notify.impl.NotificationImpl;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.labels.Label;
 
 public class TracingAdapter extends AdapterImpl
@@ -27,7 +28,7 @@ public class TracingAdapter extends AdapterImpl
 	public static final TracingOption NOTIFICATION = new TracingOption("notification"); //$NON-NLS-1$
 
 	private static Map<Integer,String> eventTypes = null;
-	
+
 	public static void debugNotification(Object target, Notification notification) {
 		if (NOTIFICATION.isActive() && (notification.getEventType() != Notification.REMOVING_ADAPTER)) {
 			NOTIFICATION.println(Label.labelFor(target)
@@ -40,7 +41,10 @@ public class TracingAdapter extends AdapterImpl
 		}
 	}
 
-	private static String getEventType(int eventType) {
+	/**
+	 * Return a string describing the notiducation event type; the name of the corresponding Notification field.
+	 */
+	public static @NonNull String getEventType(int eventType) {
 		if (eventTypes == null) {
 			Notification notification = new NotificationImpl(0, 0, 0);
 			eventTypes = new HashMap<Integer,String>();
@@ -58,7 +62,7 @@ public class TracingAdapter extends AdapterImpl
 			return eventString;
 	}
 
-	private static String getFeatureType(Notification notification) {
+	private static String getFeatureType(@NonNull Notification notification) {
 		Object feature = notification.getFeature();
 		if (feature == null) {
 			Object notifier = notification.getNotifier();

@@ -27,7 +27,7 @@ import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 
 public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 {
@@ -162,7 +162,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 
 	@Override
 	public @Nullable org.eclipse.ocl.pivot.Class getNestedType(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name) {
-		org.eclipse.ocl.pivot.Class nestedType = ClassUtil.getNamedElement(parentPackage.getOwnedClasses(), name);
+		org.eclipse.ocl.pivot.Class nestedType = NameUtil.getNameable(parentPackage.getOwnedClasses(), name);
 		if (nestedType != null) {
 			return nestedType;
 		}

@@ -38,6 +38,8 @@ import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
@@ -58,9 +60,9 @@ public class OCLValidationDelegate implements ValidationDelegate
 		@Override
 		public Boolean evaluate(@NonNull EvaluationVisitor evaluationVisitor) {
 			if (!isBooleanConstraint()) {
-				String objectLabel = ClassUtil.getLabel(query.getType());
+				String objectLabel = LabelUtil.getLabel(query.getType());
 //				String constraintTypeName = getConstraintTypeName(query);
-				String checkMessage = ClassUtil.bind(OCLMessages.ValidationConstraintIsNotBooleanType_ERROR_, getConstraintTypeName(), getConstraintName(), objectLabel);
+				String checkMessage = StringUtil.bind(OCLMessages.ValidationConstraintIsNotBooleanType_ERROR_, getConstraintTypeName(), getConstraintName(), objectLabel);
 				throw new OCLDelegateException(new EvaluationException(checkMessage));
 			}
 			return super.evaluate(evaluationVisitor);
@@ -68,7 +70,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 
 		@Override
 		protected String getObjectLabel() {
-			return ClassUtil.getLabel(eClassifier, null, null);
+			return LabelUtil.getLabel(eClassifier, null, null);
 		}
 
 		@Override
@@ -255,7 +257,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 		{
 			@Override
 			protected String getObjectLabel() {
-				return LabelUtil.qualifiedNameFor(value);
+				return NameUtil.qualifiedNameFor(value);
 //				return ClassUtil.getLabel(eClassifier, value, context);
 			}
 

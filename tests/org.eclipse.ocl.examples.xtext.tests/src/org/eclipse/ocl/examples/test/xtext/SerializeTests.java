@@ -31,10 +31,10 @@ import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.uml.UML2AS;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.IPackageDescriptor;
 import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.IProjectDescriptor;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.basecs.ImportCS;
 import org.eclipse.ocl.xtext.basecs.RootPackageCS;
@@ -461,7 +461,7 @@ public class SerializeTests extends XtextTestCase
 	public void testSerialize_States() throws Exception {
 		Map<Object, Object> options = new HashMap<Object, Object>();
 		options.put("cs2asErrors", 
-			ClassUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, "OclInvalid", "substring", "1, 1"));
+			StringUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, "OclInvalid", "substring", "1, 1"));
 		doSerialize("States", "States", options, true, true);
 	}	
 

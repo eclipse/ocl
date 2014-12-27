@@ -25,7 +25,7 @@ import org.eclipse.ocl.pivot.delegate.OCLValidationDelegate;
 import org.eclipse.ocl.pivot.evaluation.EvaluationException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.utilities.ConstraintEvaluator;
-import org.eclipse.ocl.pivot.utilities.LabelUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 
 /**
  * An implementation of the dynamic validation delegate API, maintaining a cache
@@ -43,7 +43,7 @@ public class OCLDebugValidationDelegate extends OCLValidationDelegate
 		{
 			@Override
 			protected String getObjectLabel() {
-				return LabelUtil.qualifiedNameFor(value);
+				return NameUtil.qualifiedNameFor(value);
 //				return ClassUtil.getLabel(eClassifier, value, context);
 			}
 

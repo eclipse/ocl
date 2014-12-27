@@ -55,6 +55,7 @@ import org.eclipse.ocl.pivot.manager.LambdaTypeManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.TupleTypeManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.TypeUtil;
 import org.eclipse.ocl.pivot.values.CollectionTypeParameters;
@@ -527,7 +528,7 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 			return false;
 		}
 		for (Property actualProperty : actualProperties) {
-			Property requiredProperty = ClassUtil.getNamedElement(requiredProperties, actualProperty.getName());
+			Property requiredProperty = NameUtil.getNameable(requiredProperties, actualProperty.getName());
 			if (requiredProperty == null) {
 				return false;
 			}

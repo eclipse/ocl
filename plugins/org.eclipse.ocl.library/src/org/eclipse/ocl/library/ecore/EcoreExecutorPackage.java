@@ -24,6 +24,7 @@ import org.eclipse.ocl.library.executor.ExecutorType;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 
 import com.google.common.collect.Lists;
 
@@ -92,7 +93,7 @@ public class EcoreExecutorPackage extends ExecutorPackage
 
 	@Override
 	public @Nullable ExecutorType getOwnedClass(String typeName) {
-		int index = Arrays.binarySearch(types, new StringNameable(typeName), ClassUtil.NameableComparator.INSTANCE);
+		int index = Arrays.binarySearch(types, new StringNameable(typeName), NameUtil.NameableComparator.INSTANCE);
 		if (index >= 0) {
 			return types[index];
 		}

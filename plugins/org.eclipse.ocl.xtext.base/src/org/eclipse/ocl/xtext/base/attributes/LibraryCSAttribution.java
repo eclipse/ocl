@@ -38,6 +38,7 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.Pivotable;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS.UnresolvedProxyMessageProvider;
 import org.eclipse.ocl.xtext.base.cs2as.ValidationDiagnostic;
 import org.eclipse.ocl.xtext.base.scoping.AbstractJavaClassScope;
@@ -154,7 +155,7 @@ public class LibraryCSAttribution extends AbstractAttribution implements Unresol
 				List<Resource.Diagnostic> warnings = importedResource.getWarnings();
 				if (warnings.size() > 0) {
 					INode node = NodeModelUtils.getNode(target);
-					String errorMessage = PivotUtil.formatResourceDiagnostics(warnings, ClassUtil.bind(OCLMessages.WarningsInURI, uri), "\n\t");
+					String errorMessage = PivotUtil.formatResourceDiagnostics(warnings, StringUtil.bind(OCLMessages.WarningsInURI, uri), "\n\t");
 					Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, errorMessage);
 					csResource.getWarnings().add(resourceDiagnostic);
 				}

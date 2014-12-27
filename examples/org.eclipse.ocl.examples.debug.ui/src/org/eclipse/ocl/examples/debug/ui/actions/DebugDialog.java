@@ -34,7 +34,7 @@ import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.registry.CompleteOCLRegistry;
-import org.eclipse.ocl.pivot.utilities.LabelUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.ui.utilities.PDEUtils;
 import org.eclipse.swt.SWT;
@@ -229,9 +229,9 @@ public class DebugDialog extends Dialog
 	}
 
 	public void setSelection(@NonNull EObject eObject) {
-		elementName.setText(LabelUtil.qualifiedNameFor(eObject));
+		elementName.setText(NameUtil.qualifiedNameFor(eObject));
 		EClass eClass = eObject.eClass();
-		elementClass.setText(LabelUtil.qualifiedNameFor(eClass));
+		elementClass.setText(NameUtil.qualifiedNameFor(eClass));
 		EPackage ePackage = eClass != null ? eClass.getEPackage() : null;
 		String nsURI = ePackage != null ? ePackage.getNsURI() : null;
 		elementNsURI.setText(String.valueOf(nsURI));

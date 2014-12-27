@@ -38,8 +38,8 @@ import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManagerListener;
 import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironmentFactory;
-import org.eclipse.ocl.pivot.validation.DomainSubstitutionLabelProvider;
 
 /**
  * An implementation of a delegate domain for an OCL enhanced package. The domain
@@ -139,7 +139,7 @@ public class OCLDelegateDomain implements DelegateDomain, MetaModelManagerListen
 
 	public static void initializePivotOnlyDiagnosticianContext(@NonNull Map<Object, Object> context) {
 		context.put(org.eclipse.emf.ecore.EValidator.ValidationDelegate.Registry.class, PivotOnlyRegistry.INSTANCE);
-		context.put(EValidator.SubstitutionLabelProvider.class, DomainSubstitutionLabelProvider.INSTANCE);
+		context.put(EValidator.SubstitutionLabelProvider.class, LabelUtil.SUBSTITUTION_LABEL_PROVIDER);
 	}
 
 	public static void initializePivotOnlyDiagnosticianResourceSet(@NonNull ResourceSet resourceSet) {

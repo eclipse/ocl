@@ -42,7 +42,7 @@ public final class PivotSaveImpl extends XMISaveImpl
 		@Override
 		protected EStructuralFeature[] listFeatures(EClass cls) {
 			EStructuralFeature[] listFeatures = super.listFeatures(cls);
-			Arrays.sort(listFeatures, ClassUtil.ENamedElementComparator.INSTANCE);
+			Arrays.sort(listFeatures, NameUtil.ENamedElementComparator.INSTANCE);
 			return listFeatures;
 		}
 	}

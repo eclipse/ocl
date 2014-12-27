@@ -69,12 +69,13 @@ import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.BaseResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.ProjectMap;
 import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
-import org.eclipse.ocl.pivot.validation.DomainSubstitutionLabelProvider;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.Bag;
 import org.eclipse.ocl.pivot.values.Value;
 import org.eclipse.ocl.xtext.base.BaseStandaloneSetup;
@@ -135,15 +136,15 @@ public class PivotTestCase extends TestCase
 				}
 				testLog.append(";");
 				if (testExpression != null) {
-					testLog.append("\"" + ClassUtil.convertToOCLString(testExpression) + "\"");
+					testLog.append("\"" + StringUtil.convertToOCLString(testExpression) + "\"");
 				}
 				testLog.append(";");
 				if (parseVerdict != null) {
-					testLog.append("\"" + ClassUtil.convertToOCLString(parseVerdict) + "\"");
+					testLog.append("\"" + StringUtil.convertToOCLString(parseVerdict) + "\"");
 				}
 				testLog.append(";");
 				if (evaluationVerdict != null) {
-					testLog.append("\"" + ClassUtil.convertToOCLString(evaluationVerdict) + "\"");
+					testLog.append("\"" + StringUtil.convertToOCLString(evaluationVerdict) + "\"");
 				}
 				testLog.append(";");
 				if (evaluationTolerance != null) {
@@ -299,7 +300,7 @@ public class PivotTestCase extends TestCase
 	}
 
 	public static void assertNoValidationErrors(@NonNull String string, @NonNull EObject eObject) {
-		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
+		Map<Object, Object> validationContext = LabelUtil.createDefaultContext(Diagnostician.INSTANCE);
 		Resource eResource = ClassUtil.nonNullState(eObject.eResource());
 		PivotUtil.getMetaModelManager(eResource);	// FIXME oclIsKindOf fails because ExecutableStandardLibrary.getMetaclass is bad
 		Diagnostic diagnostic = Diagnostician.INSTANCE.validate(eObject, validationContext);
@@ -374,7 +375,7 @@ public class PivotTestCase extends TestCase
 	}
 
 	public static @NonNull List<Diagnostic> assertValidationDiagnostics(@NonNull String prefix, @NonNull Resource resource, String... messages) {
-		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
+		Map<Object, Object> validationContext = LabelUtil.createDefaultContext(Diagnostician.INSTANCE);
 		return assertValidationDiagnostics(prefix, resource, validationContext, messages);
 	}
 

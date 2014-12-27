@@ -38,6 +38,7 @@ import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 
 /**
  * EcoreIdResolver provides a package discovery capability so that package identifiers can be resolved.
@@ -118,7 +119,7 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 		List<TuplePartId> partsList = new ArrayList<TuplePartId>(iSize);
 		for (int i = 0; i < iSize; i++) {
 			TypedElement part = parts[i];
-			String partName = ClassUtil.getSafeName(part);
+			String partName = NameUtil.getSafeName(part);
 			partsList.add(IdManager.getTuplePartId(i, partName, part.getTypeId()));
 		}
 		return getTupleType(IdManager.getTupleTypeId(TypeId.TUPLE_NAME, partsList));

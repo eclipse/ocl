@@ -119,7 +119,7 @@ import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.WildcardType;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.Unlimited;
 
 /**
@@ -1581,7 +1581,7 @@ public class PivotFactoryImpl
 	public Number createIntegerFromString(EDataType eDataType, String aValue) {
 		try {
 			assert aValue != null;
-			return ClassUtil.createNumberFromString(aValue);
+			return StringUtil.createNumberFromString(aValue);
 		}
 		catch (NumberFormatException e) {
 //			return throwInvalidValueException(e, EvaluatorMessages.InvalidInteger, aValue);
@@ -1714,7 +1714,7 @@ public class PivotFactoryImpl
 	public Number createUnlimitedNaturalFromString(EDataType eDataType, String aValue) {
 		try {
 			assert aValue != null;
-			return ClassUtil.createNumberFromString(aValue);
+			return StringUtil.createNumberFromString(aValue);
 		}
 		catch (NumberFormatException e) {
 //			return throwInvalidValueException(e, EvaluatorMessages.InvalidInteger, aValue);

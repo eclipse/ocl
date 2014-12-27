@@ -53,8 +53,8 @@ import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableDeclaration;
 import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.Unlimited;
 import org.eclipse.ocl.pivot.values.Value;
 
@@ -558,7 +558,7 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 	@Override
 	public Object visitStringLiteralExp(@NonNull StringLiteralExp object) {
 		context.append("'");
-		context.append(ClassUtil.convertToOCLString(object.getStringSymbol()));
+		context.append(StringUtil.convertToOCLString(object.getStringSymbol()));
 		context.append("'");
 		return null;
 	}

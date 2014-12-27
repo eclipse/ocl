@@ -18,7 +18,7 @@ import java.util.regex.PatternSyntaxException;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.osgi.util.NLS;
 import org.junit.After;
 import org.junit.Before;
@@ -456,7 +456,7 @@ public class EvaluateStringOperationsTest4 extends PivotTestSuite
 		assertQueryEquals(null, "repla ce operation", "'repla ce operation'.substituteFirst('', '')");
 		//
 		assertQueryInvalid(null, "'repla ce operation'.substituteFirst('(\\\\w+)\\\\s*', '')",
-			ClassUtil.bind(EvaluatorMessages.MissingSubstring, "(\\w+)\\s*", "repla ce operation"), null);
+			StringUtil.bind(EvaluatorMessages.MissingSubstring, "(\\w+)\\s*", "repla ce operation"), null);
 		//
 		assertQueryInvalid(null, "let s : String = null in s.substituteFirst('(\\\\w+)\\\\s*', '$1')");
 		assertQueryInvalid(null, "'repla ce operation'.substituteFirst(null, '$1')");

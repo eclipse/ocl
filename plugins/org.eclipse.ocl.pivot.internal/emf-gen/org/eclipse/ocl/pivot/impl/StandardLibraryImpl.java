@@ -60,6 +60,7 @@ import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.IllegalLibraryException;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.TypeUtil;
@@ -559,7 +560,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 			InvalidType invalidType = getOclInvalidType();
 			List<Operation> invalidOperations = invalidType.getOwnedOperations();
 			String invalidName = "oclBadOperation";
-			oclInvalidOperation2 = ClassUtil.getNamedElement(invalidOperations, invalidName);
+			oclInvalidOperation2 = NameUtil.getNameable(invalidOperations, invalidName);
 			if (oclInvalidOperation2 == null) {
 				oclInvalidOperation2 = PivotFactory.eINSTANCE.createOperation();
 				oclInvalidOperation2.setName(invalidName);
@@ -579,7 +580,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 			InvalidType invalidType = getOclInvalidType();
 			List<Property> invalidProperties = invalidType.getOwnedProperties();
 			String invalidName = "oclBadProperty";
-			oclInvalidProperty2 = ClassUtil.getNamedElement(invalidProperties, invalidName);
+			oclInvalidProperty2 = NameUtil.getNameable(invalidProperties, invalidName);
 			if (oclInvalidProperty2 == null) {
 				oclInvalidProperty2 = PivotFactory.eINSTANCE.createProperty();
 				oclInvalidProperty2.setName(invalidName);

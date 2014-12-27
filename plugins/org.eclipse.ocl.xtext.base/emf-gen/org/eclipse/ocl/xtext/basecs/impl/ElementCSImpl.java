@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.xtext.base.utilities.CSI;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
 import org.eclipse.ocl.xtext.basecs.ElementCS;
@@ -208,7 +208,7 @@ public abstract class ElementCSImpl extends EObjectImpl implements ElementCS {
 		if (parserNode != null) {
 			return parserNode.getText().trim();
 		}
-		return ClassUtil.debugFullName(this);
+		return NameUtil.debugFullName(this);
 	}
 
 	/**

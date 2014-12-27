@@ -253,7 +253,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 			IResourceLoadStatus resourceLoadStatus = packageLoadStatus.getResourceLoadStatus();
 			IResourceLoadStrategy2 resourceLoadStrategy = (IResourceLoadStrategy2) resourceLoadStatus.getResourceLoadStrategy();
 			if (PROJECT_MAP_GET.isActive()) {
-				PROJECT_MAP_GET.println("BasicGet " + getURI() + " with " + resourceLoadStrategy + " in " + ClassUtil.debugSimpleName(resourceLoadStatus.getPackageRegistry()));
+				PROJECT_MAP_GET.println("BasicGet " + getURI() + " with " + resourceLoadStrategy + " in " + NameUtil.debugSimpleName(resourceLoadStatus.getPackageRegistry()));
 			}
 			return resourceLoadStrategy.basicGetEPackage(packageLoadStatus);
 		}
@@ -274,7 +274,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 			IResourceLoadStatus resourceLoadStatus = packageLoadStatus.getResourceLoadStatus();
 			IResourceLoadStrategy resourceLoadStrategy = resourceLoadStatus.getResourceLoadStrategy();
 			if (PROJECT_MAP_GET.isActive()) {
-				PROJECT_MAP_GET.println("Get " + getURI() + " with " + resourceLoadStrategy + " in " + ClassUtil.debugSimpleName(resourceLoadStatus.getPackageRegistry()));
+				PROJECT_MAP_GET.println("Get " + getURI() + " with " + resourceLoadStrategy + " in " + NameUtil.debugSimpleName(resourceLoadStatus.getPackageRegistry()));
 			}
 			return resourceLoadStrategy.getEPackage(packageLoadStatus);
 		}
@@ -1309,7 +1309,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 					if (packageLoadStatus != null) {
 						packageLoadStatus.setModel(ePackage);
 						if (PROJECT_MAP_RESOLVE.isActive()) {
-							PROJECT_MAP_RESOLVE.println(ePackage.getNsURI() + " => " + ePackage.eResource().getURI() + " : " + ClassUtil.debugSimpleName(ePackage));
+							PROJECT_MAP_RESOLVE.println(ePackage.getNsURI() + " => " + ePackage.eResource().getURI() + " : " + NameUtil.debugSimpleName(ePackage));
 						}
 					}
 				}
@@ -1411,7 +1411,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 			else {
 				s.append(" in ");
 			}
-			s.append(ClassUtil.debugSimpleName(packageRegistry));
+			s.append(NameUtil.debugSimpleName(packageRegistry));
 			@SuppressWarnings("null")@NonNull String string = s.toString();
 			return string;
 		}
@@ -1799,7 +1799,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 			if (resourceLoadStatus != null) {
 				IResourceLoadStrategy resourceLoadStrategy = resourceLoadStatus.getResourceLoadStrategy();
 				if (PROJECT_MAP_GET.isActive()) {
-					PROJECT_MAP_GET.println("Add " + resource.getURI() + " with " + resourceLoadStrategy + " in " + ClassUtil.debugSimpleName(resourceSet.getPackageRegistry()));
+					PROJECT_MAP_GET.println("Add " + resource.getURI() + " with " + resourceLoadStrategy + " in " + NameUtil.debugSimpleName(resourceSet.getPackageRegistry()));
 				}
 				resourceLoadStrategy.addedDynamicResource(resourceLoadStatus, resource);
 			}
@@ -3247,7 +3247,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 				IResourceLoadStatus resourceLoadStatus = resourceDescriptor.getResourceLoadStatus(resourceSet);
 				IResourceLoadStrategy resourceLoadStrategy = resourceLoadStatus.getResourceLoadStrategy();
 				if (PROJECT_MAP_GET.isActive()) {
-					PROJECT_MAP_GET.println("Use " + uri + " with " + resourceLoadStrategy + " in " + ClassUtil.debugSimpleName(resourceLoadStatus.getPackageRegistry()));
+					PROJECT_MAP_GET.println("Use " + uri + " with " + resourceLoadStrategy + " in " + NameUtil.debugSimpleName(resourceLoadStatus.getPackageRegistry()));
 				}
 				resourceLoadStrategy.useGeneratedResource(resourceLoadStatus, resource);
 			}

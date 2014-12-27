@@ -49,6 +49,7 @@ import org.eclipse.ocl.pivot.scoping.ScopeView;
 import org.eclipse.ocl.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.xtext.base.scoping.AbstractJavaClassScope;
 import org.eclipse.ocl.xtext.base.scoping.BaseScopeView;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
@@ -155,7 +156,7 @@ public abstract class CS2AS extends AbstractConversion implements MetaModelManag
 
 		@Override
 		public @NonNull String bind(@NonNull EObject csContext, @NonNull String messageTemplate, Object... bindings) {
-			return ClassUtil.bind(messageTemplate, bindings);
+			return StringUtil.bind(messageTemplate, bindings);
 		}
 	}
 
@@ -168,7 +169,7 @@ public abstract class CS2AS extends AbstractConversion implements MetaModelManag
 
 		@Override
 		public @NonNull String bind(@NonNull EObject csContext, @NonNull String messageTemplate, Object... bindings) {
-			String message = ClassUtil.bind(messageTemplate, bindings);
+			String message = StringUtil.bind(messageTemplate, bindings);
 			ICompositeNode node = NodeModelUtils.getNode(csContext);
 			if (node != null) {
 				int startLine = node.getStartLine();

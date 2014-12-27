@@ -63,6 +63,7 @@ import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.pivot.util.PivotValidator;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -685,7 +686,7 @@ public class PropertyImpl
 		if ((defaultValue == null) && (defaultValueString2 != null)) {
 			TypeId typeId = getTypeId();
 			if (typeId instanceof EnumerationId) {
-				defaultValue = ClassUtil.getNamedElement(((Enumeration)type).getOwnedLiterals(), defaultValueString2);
+				defaultValue = NameUtil.getNameable(((Enumeration)type).getOwnedLiterals(), defaultValueString2);
 				if (defaultValue == null) {
 					throw new IllegalStateException("Unknown enumeration literal'" + defaultValueString2 + "' for '" + typeId + "'");
 				}

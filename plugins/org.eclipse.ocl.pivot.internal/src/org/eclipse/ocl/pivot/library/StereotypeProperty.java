@@ -28,8 +28,7 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.uml.UMLElementExtension;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.LabelUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
@@ -57,7 +56,7 @@ public class StereotypeProperty extends ConstrainedProperty
 		else if (eObject instanceof ElementExtension) {
 			ElementExtension elementExtension = (ElementExtension)eObject;
 			String propertyName = property.getName();
-			Property extensionProperty = ClassUtil.getNamedElement(elementExtension.getOwnedProperties(), propertyName);
+			Property extensionProperty = NameUtil.getNameable(elementExtension.getOwnedProperties(), propertyName);
 			if (extensionProperty == null) {
 				boolean gotIt = false;
 				Object defaultValue = null;
@@ -66,7 +65,7 @@ public class StereotypeProperty extends ConstrainedProperty
 					EObject umlStereotypeApplication = elementExtension.getETarget();
 					if (umlStereotypeApplication != null) {
 						EClass eClass = umlStereotypeApplication.eClass();
-						EStructuralFeature eStructuralFeature = LabelUtil.getNamedElement(eClass.getEAllStructuralFeatures(), propertyName);
+						EStructuralFeature eStructuralFeature = NameUtil.getENamedElement(eClass.getEAllStructuralFeatures(), propertyName);
 						if (eStructuralFeature != null) {
 							defaultValue = idResolver.boxedValueOf(umlStereotypeApplication.eGet(eStructuralFeature));
 							gotIt = true;
@@ -74,7 +73,7 @@ public class StereotypeProperty extends ConstrainedProperty
 					}
 				}
 				if (!gotIt && (elementExtension.isApplied() || elementExtension.isRequired())) {
-					Property theProperty = ClassUtil.getNamedElement(elementExtension.getStereotype().getOwnedProperties(), propertyName);
+					Property theProperty = NameUtil.getNameable(elementExtension.getStereotype().getOwnedProperties(), propertyName);
 					defaultValue = theProperty.getDefaultValue();
 					defaultExpression = theProperty.getOwnedExpression();
 					gotIt = true;
@@ -132,7 +131,7 @@ public class StereotypeProperty extends ConstrainedProperty
 		}
 		else {
 			EClass eClass = eObject.eClass();
-			EStructuralFeature eFeature = LabelUtil.getNamedElement(eClass.getEAllStructuralFeatures(), property.getName());
+			EStructuralFeature eFeature = NameUtil.getENamedElement(eClass.getEAllStructuralFeatures(), property.getName());
 			if (eFeature != null) {
 				Object value = eObject.eGet(eFeature);
 				boxedValue = value != null ? idResolver.boxedValueOf(value, eFeature, returnTypeId) : null;

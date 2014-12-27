@@ -60,6 +60,7 @@ import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
@@ -454,7 +455,7 @@ public class Ecore2AS extends AbstractEcore2AS
 //			int prefix = LibraryConstants.ECORE_STDLIB_PREFIX.length();
 			for (EClassifier eClassifier : libraryEPackage.getEClassifiers()) {
 				String name = getOriginalName(eClassifier); //.substring(prefix);
-				Type asType = ClassUtil.getNamedElement(ownedType, name);
+				Type asType = NameUtil.getNameable(ownedType, name);
 				newCreateMap.put(eClassifier, asType);
 			}
 			Model containingRoot = PivotUtil.getContainingRoot(asLibrary);

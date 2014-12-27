@@ -37,9 +37,10 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.util.PivotInternalPlugin;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.osgi.util.NLS;
@@ -129,12 +130,12 @@ public class UMLOCLEValidator implements EValidator
 
 		@Override
 		protected String getObjectLabel() {
-			return LabelUtil.qualifiedNameFor(eObject);
+			return NameUtil.qualifiedNameFor(eObject);
 		}
 
 		@Override
 		protected Boolean handleExceptionResult(@NonNull Throwable e) {
-			String message = ClassUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.toString());
+			String message = StringUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.toString());
 			if (!mayUseNewLines) {
 				message = message.replace("\n", "");
 			}
@@ -165,7 +166,7 @@ public class UMLOCLEValidator implements EValidator
 
 		@Override
 		protected Boolean handleInvalidResult(@NonNull InvalidValueException e) {
-			String message = ClassUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
+			String message = StringUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
 				getConstraintTypeName(), getConstraintName(), getObjectLabel(), e.getLocalizedMessage());
 			if (!mayUseNewLines) {
 				message = message.replace("\n", "");
@@ -488,8 +489,8 @@ public class UMLOCLEValidator implements EValidator
 			org.eclipse.ocl.pivot.ExpressionInOCL asSpecification = metaModelManager.getPivotOf(org.eclipse.ocl.pivot.ExpressionInOCL.class, opaqueElement);
 			if (asSpecification == null) {
 				if (diagnostics != null) {
-					String objectLabel = ClassUtil.getLabel(opaqueElement);
-					String message = ClassUtil.bind("No pivot for {0}", objectLabel);
+					String objectLabel = LabelUtil.getLabel(opaqueElement);
+					String message = StringUtil.bind("No pivot for {0}", objectLabel);
 					if (!mayUseNewLines) {
 						message = message.replace("\n", " ");
 					}
@@ -501,8 +502,8 @@ public class UMLOCLEValidator implements EValidator
 			asQuery = metaModelManager.getQueryOrThrow(asSpecification);
 		} catch (ParserException e) {
 			if (diagnostics != null) {
-				String objectLabel = ClassUtil.getLabel(opaqueElement);
-				String message = ClassUtil.bind(OCLMessages.ParsingError, objectLabel, e.getMessage());
+				String objectLabel = LabelUtil.getLabel(opaqueElement);
+				String message = StringUtil.bind(OCLMessages.ParsingError, objectLabel, e.getMessage());
 				if (!mayUseNewLines) {
 					message = message.replace("\n", " ");
 				}

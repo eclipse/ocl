@@ -32,7 +32,7 @@ import org.eclipse.ocl.common.OCLCommon;
 import org.eclipse.ocl.common.delegate.VirtualDelegateMapping;
 import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationException;
-import org.eclipse.ocl.pivot.validation.DomainSubstitutionLabelProvider;
+import org.eclipse.ocl.pivot.utilities.LabelUtil;
 
 /**
  * A basic implementation of a delegated behavior.
@@ -183,7 +183,7 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 	}
 
 	public void validate(EObject eObject) {
-		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
+		Map<Object, Object> validationContext = LabelUtil.createDefaultContext(Diagnostician.INSTANCE);
 		BasicDiagnostic diagnostics = Diagnostician.INSTANCE.createDefaultDiagnostic(eObject);
 		if (!Diagnostician.INSTANCE.validate(eObject, diagnostics, validationContext)) {
 			StringBuilder s = null;

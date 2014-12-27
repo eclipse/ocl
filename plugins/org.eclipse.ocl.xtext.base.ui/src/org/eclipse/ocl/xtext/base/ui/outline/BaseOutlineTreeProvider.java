@@ -17,7 +17,7 @@ import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.Pivotable;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
 import org.eclipse.ocl.xtext.base.ui.BaseUiPluginHelper;
@@ -73,7 +73,7 @@ public class BaseOutlineTreeProvider extends DefaultOutlineTreeProvider
 			ElementUtil.appendTextRegion(s, eObjectNode.getFullTextRegion(), false);
 			s.append(" ");
 			ElementUtil.appendTextRegion(s, eObjectNode.getSignificantTextRegion(), true);
-			s.append(" " + ClassUtil.debugSimpleName(eObjectNode) + " " + String.valueOf(eObjectNode.getText()).replace("\n", "\\n"));
+			s.append(" " + NameUtil.debugSimpleName(eObjectNode) + " " + String.valueOf(eObjectNode.getText()).replace("\n", "\\n"));
 			CREATE.println(s.toString());
 		}
 		return eObjectNode;

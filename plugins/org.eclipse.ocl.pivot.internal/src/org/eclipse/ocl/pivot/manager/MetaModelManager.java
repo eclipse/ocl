@@ -131,7 +131,7 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.CompleteElementIterable;
 import org.eclipse.ocl.pivot.utilities.External2AS;
 import org.eclipse.ocl.pivot.utilities.IllegalLibraryException;
-import org.eclipse.ocl.pivot.utilities.LabelUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.Pivotable;
@@ -371,8 +371,8 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		asResourceSet.eAdapters().add(this);
 		if (liveMetaModelManagers != null) {
 			liveMetaModelManagers.put(this, null);
-			System.out.println(Thread.currentThread().getName() + " Create " + PivotUtil.debugSimpleName(this)
-				+ " " + PivotUtil.debugSimpleName(asResourceSet));	
+			System.out.println(Thread.currentThread().getName() + " Create " + NameUtil.debugSimpleName(this)
+				+ " " + NameUtil.debugSimpleName(asResourceSet));	
 		}
 	}
 
@@ -770,7 +770,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 	@Override
 	protected void finalize() throws Throwable {
 		if (liveMetaModelManagers != null) {
-			System.out.println("Finalize " + PivotUtil.debugSimpleName(this));		
+			System.out.println("Finalize " + NameUtil.debugSimpleName(this));		
 			List<MetaModelManager> keySet = new ArrayList<MetaModelManager>(liveMetaModelManagers.keySet());
 			if (!keySet.isEmpty()) {
 				StringBuilder s = new StringBuilder();
@@ -1388,7 +1388,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 					org.eclipse.ocl.pivot.Class asPartialType = (org.eclipse.ocl.pivot.Class)domainType;
 					if (!ClassUtil.isRegistered(asPartialType.eResource())) {
 						if (CREATE_MUTABLE_CLONE.isActive()) {
-							CREATE_MUTABLE_CLONE.println(asType + " " + ClassUtil.debugSimpleName(asType) + " => " + ClassUtil.debugSimpleName(asPartialType));
+							CREATE_MUTABLE_CLONE.println(asType + " " + NameUtil.debugSimpleName(asType) + " => " + NameUtil.debugSimpleName(asPartialType));
 						}
 						return asPartialType;
 					}
@@ -1419,7 +1419,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 					org.eclipse.ocl.pivot.Class asPartialType = (org.eclipse.ocl.pivot.Class)domainType;
 					if (!ClassUtil.isRegistered(asPartialType.eResource())) {
 						if (CREATE_MUTABLE_CLONE.isActive()) {
-							CREATE_MUTABLE_CLONE.println(asType + " " + ClassUtil.debugSimpleName(asType) + " => " + ClassUtil.debugSimpleName(asPartialType));
+							CREATE_MUTABLE_CLONE.println(asType + " " + NameUtil.debugSimpleName(asType) + " => " + NameUtil.debugSimpleName(asPartialType));
 						}
 						return asPartialType;
 					}
@@ -1428,7 +1428,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 			throw new UnsupportedOperationException("No cloned library type " + asType);
 		}
 		if (CREATE_MUTABLE_CLONE.isActive()) {
-			CREATE_MUTABLE_CLONE.println(asType + " " + ClassUtil.debugSimpleName(asType));
+			CREATE_MUTABLE_CLONE.println(asType + " " + NameUtil.debugSimpleName(asType));
 		}
 		return asType;
 	}
@@ -1621,7 +1621,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 				return null;
 			}
 		}
-		return ClassUtil.getNamedElement(asMetamodel.getOwnedClasses(), className);
+		return NameUtil.getNameable(asMetamodel.getOwnedClasses(), className);
 	}	
 
 	@SuppressWarnings("null")
@@ -1845,11 +1845,11 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		}
 		String expression = specification.getBody();
 		if (expression == null) {
-			throw new ParserException(OCLMessages.MissingSpecificationBody_ERROR_, LabelUtil.qualifiedNameFor(contextElement), PivotUtil.getSpecificationRole(specification));
+			throw new ParserException(OCLMessages.MissingSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(contextElement), PivotUtil.getSpecificationRole(specification));
 		}
 		ParserContext parserContext = getParserContext(specification);
 		if (parserContext == null) {
-			throw new ParserException(OCLMessages.UnknownContextType_ERROR_, LabelUtil.qualifiedNameFor(contextElement), PivotUtil.getSpecificationRole(specification));
+			throw new ParserException(OCLMessages.UnknownContextType_ERROR_, NameUtil.qualifiedNameFor(contextElement), PivotUtil.getSpecificationRole(specification));
 		}
 		parserContext.setRootElement(specification);
 		return parserContext.parse(contextElement, expression);
@@ -2093,7 +2093,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 	 */
 	protected void loadASMetamodel(@NonNull org.eclipse.ocl.pivot.Package asLibrary) {
 		for (org.eclipse.ocl.pivot.Package libPackage : getPartialPackages(asLibrary, false)) {
-			if (ClassUtil.getNamedElement(libPackage.getOwnedClasses(), PivotPackage.Literals.ELEMENT.getName()) != null) {
+			if (NameUtil.getNameable(libPackage.getOwnedClasses(), PivotPackage.Literals.ELEMENT.getName()) != null) {
 				setASMetamodel(libPackage);	// Custom meta-model
 				return;
 			}

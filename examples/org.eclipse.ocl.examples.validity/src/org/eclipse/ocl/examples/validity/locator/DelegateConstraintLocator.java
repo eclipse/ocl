@@ -45,8 +45,8 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ConstraintEvaluator;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 public class DelegateConstraintLocator extends AbstractPivotConstraintLocator
@@ -69,7 +69,7 @@ public class DelegateConstraintLocator extends AbstractPivotConstraintLocator
 				if (eClassifier instanceof EClassifier) {
 					org.eclipse.ocl.pivot.Class asType = metaModelManager.getPivotOf(org.eclipse.ocl.pivot.Class.class, eClassifier);
 					if (asType != null) {
-						return ClassUtil.getNamedElement(asType.getOwnedInvariants(), eEntry.getKey());
+						return NameUtil.getNameable(asType.getOwnedInvariants(), eEntry.getKey());
 					}
 				}
 			}

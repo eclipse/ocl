@@ -50,7 +50,7 @@ import org.eclipse.ocl.pivot.delegate.DelegateInstaller;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.options.OCLinEcoreOptions;
 import org.eclipse.ocl.pivot.utilities.AbstractConversion;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.IPackageDescriptor;
@@ -373,16 +373,16 @@ public class AS2Ecore extends AbstractConversion
 	 */
 	public boolean isPivot(@NonNull org.eclipse.ocl.pivot.Package asPackage) {
 		List<org.eclipse.ocl.pivot.Class> asTypes = asPackage.getOwnedClasses();
-		if (ClassUtil.getNamedElement(asTypes, PivotPackage.Literals.ENUMERATION_LITERAL.getName()) == null) {
+		if (NameUtil.getNameable(asTypes, PivotPackage.Literals.ENUMERATION_LITERAL.getName()) == null) {
 			return false;
 		}
-		if (ClassUtil.getNamedElement(asTypes, PivotPackage.Literals.EXPRESSION_IN_OCL.getName()) == null) {
+		if (NameUtil.getNameable(asTypes, PivotPackage.Literals.EXPRESSION_IN_OCL.getName()) == null) {
 			return false;
 		}
-		if (ClassUtil.getNamedElement(asTypes, PivotPackage.Literals.OPERATION_CALL_EXP.getName()) == null) {
+		if (NameUtil.getNameable(asTypes, PivotPackage.Literals.OPERATION_CALL_EXP.getName()) == null) {
 			return false;
 		}
-		if (ClassUtil.getNamedElement(asTypes, PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION.getName()) == null) {
+		if (NameUtil.getNameable(asTypes, PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION.getName()) == null) {
 			return false;
 		}
 		return true;

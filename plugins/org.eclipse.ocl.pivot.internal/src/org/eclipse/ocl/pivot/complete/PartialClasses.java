@@ -62,8 +62,7 @@ import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.Orphanage;
 import org.eclipse.ocl.pivot.uml.UML2AS;
 import org.eclipse.ocl.pivot.util.PivotInternalPlugin;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.LabelUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
 import org.eclipse.ocl.pivot.utilities.TypeUtil;
@@ -751,7 +750,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 		Property extensionProperty = createExtensionProperty(elementExtension, baseType);
 		didAddProperty(extensionProperty);
 		if (ADD_EXTENSION_PROPERTY.isActive()) {
-			ADD_EXTENSION_PROPERTY.println(LabelUtil.qualifiedNameFor(extensionProperty) + " => " + LabelUtil.qualifiedNameFor(extensionProperty.getType()));
+			ADD_EXTENSION_PROPERTY.println(NameUtil.qualifiedNameFor(extensionProperty) + " => " + NameUtil.qualifiedNameFor(extensionProperty.getType()));
 		}
 	}
 
@@ -856,7 +855,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 			}
 			Class pivotClass = getCompleteClass().getPivotClass();
 			if (INIT_MEMBER_PROPERTIES.isActive()) {
-				INIT_MEMBER_PROPERTIES.println(this + " for " + pivotClass + " " + ClassUtil.debugSimpleName(pivotClass));
+				INIT_MEMBER_PROPERTIES.println(this + " for " + pivotClass + " " + NameUtil.debugSimpleName(pivotClass));
 			}
 			if (extendingStereotypes != null) {
 				Set<Stereotype> allStereotypes = new HashSet<Stereotype>();
@@ -894,7 +893,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 	protected void initMemberPropertiesFrom(@NonNull org.eclipse.ocl.pivot.Class asType) {
 		org.eclipse.ocl.pivot.Class asPrimaryType = PivotUtil.getUnspecializedTemplateableElement(asType);
 		if (INIT_MEMBER_PROPERTIES.isActive()) {
-			INIT_MEMBER_PROPERTIES.println(this + " from " + asPrimaryType + " " + ClassUtil.debugSimpleName(asPrimaryType));
+			INIT_MEMBER_PROPERTIES.println(this + " from " + asPrimaryType + " " + NameUtil.debugSimpleName(asPrimaryType));
 		}
 		for (ElementExtension extension : asPrimaryType.getOwnedExtensions()) {
 			assert extension != null;

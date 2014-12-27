@@ -330,7 +330,7 @@ public class RoundTripTests extends XtextTestCase
 		if (elements == null)
 			return null;
 		for (T element : elements)
-			if (ClassUtil.equals(name, element.getName()))
+			if (ClassUtil.safeEquals(name, element.getName()))
 				return element;
 		return null;				
 	}

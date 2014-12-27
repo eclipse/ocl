@@ -43,9 +43,9 @@ import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.PivotConstants;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.LabelUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Shell;
 
@@ -120,7 +120,7 @@ public class PivotUIConstraintLocator extends PivotConstraintLocator implements 
     public static @NonNull PivotUIConstraintLocator INSTANCE = new PivotUIConstraintLocator();
 
 	public static @NonNull IStatus createStatus(Throwable e, String messageTemplate, Object... bindings) {
-		String message = ClassUtil.bind(messageTemplate, bindings);
+		String message = StringUtil.bind(messageTemplate, bindings);
 		return new Status(IStatus.ERROR, OCLValidityPlugin.PLUGIN_ID, 0, message, e);
 	}
 
@@ -140,19 +140,19 @@ public class PivotUIConstraintLocator extends PivotConstraintLocator implements 
 			asConstraint = (Constraint)constrainingObject;
 		}
 		if (asConstraint == null) {
-			IStatus status = createStatus(null, OCLMessages.MissingSpecification_ERROR_, LabelUtil.qualifiedNameFor(asConstraint), PivotConstants.OWNED_CONSTRAINT_ROLE);
+			IStatus status = createStatus(null, OCLMessages.MissingSpecification_ERROR_, NameUtil.qualifiedNameFor(asConstraint), PivotConstants.OWNED_CONSTRAINT_ROLE);
 			throw new CoreException(status);
 		}
 		LanguageExpression specification = asConstraint.getOwnedSpecification();
 		if (specification == null) {
-			IStatus status = createStatus(null, OCLMessages.MissingSpecificationBody_ERROR_, LabelUtil.qualifiedNameFor(asConstraint), PivotConstants.OWNED_CONSTRAINT_ROLE);
+			IStatus status = createStatus(null, OCLMessages.MissingSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(asConstraint), PivotConstants.OWNED_CONSTRAINT_ROLE);
 			throw new CoreException(status);
 		}
 		ExpressionInOCL query;
 		try {
 			query = metaModelManager.getQueryOrThrow(specification);
 		} catch (ParserException e) {
-			IStatus status = createStatus(e, OCLMessages.InvalidSpecificationBody_ERROR_, LabelUtil.qualifiedNameFor(asConstraint), PivotConstants.OWNED_CONSTRAINT_ROLE);
+			IStatus status = createStatus(e, OCLMessages.InvalidSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(asConstraint), PivotConstants.OWNED_CONSTRAINT_ROLE);
 			throw new CoreException(status);
 		}
 		ValidatableNode parent = resultConstrainingNode.getResultValidatableNode().getParent();

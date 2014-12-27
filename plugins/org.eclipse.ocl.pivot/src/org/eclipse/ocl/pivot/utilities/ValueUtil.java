@@ -43,7 +43,6 @@ import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.pivot.messages.StatusCodes;
 import org.eclipse.ocl.pivot.types.AbstractInheritance;
 import org.eclipse.ocl.pivot.types.ParameterTypesImpl;
-import org.eclipse.ocl.pivot.validation.DomainSubstitutionLabelProvider;
 import org.eclipse.ocl.pivot.values.Bag;
 import org.eclipse.ocl.pivot.values.BagValue;
 import org.eclipse.ocl.pivot.values.CollectionValue;
@@ -198,7 +197,7 @@ public abstract class ValueUtil
 			return (EObject)value;
 		}
 		else if (value == null) {
-			throw new InvalidValueException(("Attempt to navigate from null to '" + LabelUtil.qualifiedNameFor(navigation) + "'").replace("'", "''"));
+			throw new InvalidValueException(("Attempt to navigate from null to '" + NameUtil.qualifiedNameFor(navigation) + "'").replace("'", "''"));
 		}
 		else if ((evaluator != null) && (value instanceof ElementId)) {
 			Object unboxedValue = evaluator.getIdResolver().unboxedValueOf(value);		// Primarily to unbox and so allow navigation of UML EnumerationLiterals
@@ -610,10 +609,10 @@ public abstract class ValueUtil
 					// org.eclipse.ocl.domain.types
 					AbstractInheritance.initStatics();
 					// org.eclipse.ocl.domain.utilities
-					ClassUtil.createNumberFromString("0");
+					StringUtil.createNumberFromString("0");
 					StandaloneProjectMap.initStatics();
 					// org.eclipse.ocl.domain.validation
-					DomainSubstitutionLabelProvider.INSTANCE.getClass();
+					LabelUtil.SUBSTITUTION_LABEL_PROVIDER.getClass();
 					// org.eclipse.ocl.domain.values
 					ValuesPackage.eINSTANCE.getClass();
 					// org.eclipse.ocl.domain.values.impl
@@ -867,7 +866,7 @@ public abstract class ValueUtil
 //			return ((Value)aValue).toString();
 //		}
 		else if (aValue instanceof String) {
-			stringValue = "'" + ClassUtil.convertToOCLString((String)aValue) + "'";
+			stringValue = "'" + StringUtil.convertToOCLString((String)aValue) + "'";
 		}
 //		else if (aValue instanceof DomainType) {
 //			return String.valueOf(aValue);
@@ -880,7 +879,7 @@ public abstract class ValueUtil
 //		}
 		else if ((aValue instanceof EObject) &&
 			!((aValue instanceof Element) || (aValue instanceof EEnumLiteral))) {
-			stringValue = ClassUtil.getLabel((EObject) aValue);
+			stringValue = LabelUtil.getLabel((EObject) aValue);
 		}
 		else if (aValue.getClass().isArray()) {
 			throw new UnsupportedOperationException();			// Must invoke DomainStandardLibrary.valueOf() for aggregates

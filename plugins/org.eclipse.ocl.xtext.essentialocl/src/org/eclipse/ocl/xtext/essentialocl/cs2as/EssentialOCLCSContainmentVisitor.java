@@ -53,7 +53,7 @@ import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.context.ParserContext;
 import org.eclipse.ocl.pivot.utilities.BaseResource;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.Unlimited;
@@ -183,7 +183,7 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 			tupleParts.put(PivotConstants.MESSAGE_PART_NAME, standardLibrary.getStringType());
 			tupleParts.put(PivotConstants.STATUS_PART_NAME, standardLibrary.getBooleanType());
 			TupleType tupleType = metaModelManager.getCompleteModel().getTupleManager().getTupleType("Tuple", tupleParts);
-			Property statusProperty = ClassUtil.getNamedElement(tupleType.getOwnedProperties(), PivotConstants.STATUS_PART_NAME);
+			Property statusProperty = NameUtil.getNameable(tupleType.getOwnedProperties(), PivotConstants.STATUS_PART_NAME);
 			LanguageExpression asSpecification = asConstraint.getOwnedSpecification();
 			//
 			ExpressionInOCL asExpressionInOCL;

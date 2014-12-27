@@ -53,7 +53,7 @@ import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.library.JavaCompareToOperation;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.utilities.LabelUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
@@ -345,10 +345,10 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 										EPackage ePackage = (EPackage)eRoot;
 										if (path[0].equals(ePackage.getName())) {
 											for (int i = 1; (ePackage != null) && (i < iSize-1); i++) {
-												ePackage = LabelUtil.getNamedElement(ePackage.getESubpackages(), path[i]);
+												ePackage = NameUtil.getENamedElement(ePackage.getESubpackages(), path[i]);
 											}
 											if (ePackage != null) {
-												EClassifier eClassifier = LabelUtil.getNamedElement(ePackage.getEClassifiers(), path[iSize-1]);
+												EClassifier eClassifier = NameUtil.getENamedElement(ePackage.getEClassifiers(), path[iSize-1]);
 												if (eClassifier != null) {
 													newType = converter.getPivotType(eClassifier);
 													changedType = true;

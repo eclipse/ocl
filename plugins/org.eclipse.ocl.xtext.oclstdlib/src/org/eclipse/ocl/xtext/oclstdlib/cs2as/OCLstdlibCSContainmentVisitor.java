@@ -29,7 +29,7 @@ import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.PackageId;
-import org.eclipse.ocl.pivot.utilities.LabelUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.xtext.base.cs2as.Continuation;
@@ -73,7 +73,7 @@ public class OCLstdlibCSContainmentVisitor extends AbstractOCLstdlibCSContainmen
 		MetaclassNameCS metaType = OCLstdlibCS2AS.lookUpMetaTypeName(csElement, OCLstdlibCSPackage.Literals.LIB_CLASS_CS__METACLASS_NAME);
 		if ((metaType != null) && !metaType.eIsProxy()) {
 			String metaTypeName = metaType.getName();
-			eClass = (EClass) LabelUtil.getNamedElement(PivotPackage.eINSTANCE.getEClassifiers(), metaTypeName);
+			eClass = (EClass) NameUtil.getENamedElement(PivotPackage.eINSTANCE.getEClassifiers(), metaTypeName);
 		}
 		if (eClass == null) {
 			eClass = PivotPackage.Literals.CLASS;

@@ -34,6 +34,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.scoping.ScopeFilter;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
@@ -149,7 +150,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 				contextOperations.add(contextOperation);
 			}
 		}
-		Collections.sort(contextOperations, PivotUtil.NAMEABLE_COMPARATOR);
+		Collections.sort(contextOperations, NameUtil.NAMEABLE_COMPARATOR);
 		List<Property> contextProperties = new ArrayList<Property>();
 		for (PropertyContextDeclCS propertyContextDecl : propertyContextDecls) {
 			if (propertyContextDecl != null) {
@@ -163,7 +164,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 				contextProperties.add(contextProperty);
 			}
 		}
-		Collections.sort(contextProperties, PivotUtil.NAMEABLE_COMPARATOR);
+		Collections.sort(contextProperties, NameUtil.NAMEABLE_COMPARATOR);
 		ClassifierContextDeclCS csElement = classifierContextDecls.size() > 0 ? classifierContextDecls.get(0) : null;
 		org.eclipse.ocl.pivot.Class contextClass = context.refreshModelElement(org.eclipse.ocl.pivot.Class.class, PivotPackage.Literals.CLASS, csElement);
 		contextClass.setName(modelClass.getName());
@@ -229,7 +230,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 			}
 		}
 		List<org.eclipse.ocl.pivot.Class> sortedModelClasses = new ArrayList<org.eclipse.ocl.pivot.Class>(modelClasses);
-		Collections.sort(sortedModelClasses, PivotUtil.NAMEABLE_COMPARATOR);
+		Collections.sort(sortedModelClasses, NameUtil.NAMEABLE_COMPARATOR);
 		List<org.eclipse.ocl.pivot.Class> contextClasses = new ArrayList<org.eclipse.ocl.pivot.Class>();
 		for (org.eclipse.ocl.pivot.Class modelClass : sortedModelClasses) {
 			if (modelClass != null) {
@@ -336,7 +337,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 			}
 		}
 		List<org.eclipse.ocl.pivot.Package> sortedModelPackages = new ArrayList<org.eclipse.ocl.pivot.Package>(modelPackages);
-		Collections.sort(sortedModelPackages, PivotUtil.NAMEABLE_COMPARATOR);
+		Collections.sort(sortedModelPackages, NameUtil.NAMEABLE_COMPARATOR);
 		List<org.eclipse.ocl.pivot.Package> contextPackages = new ArrayList<org.eclipse.ocl.pivot.Package>();
 		for (org.eclipse.ocl.pivot.Package modelPackage : sortedModelPackages) {
 			if (modelPackage != null) {

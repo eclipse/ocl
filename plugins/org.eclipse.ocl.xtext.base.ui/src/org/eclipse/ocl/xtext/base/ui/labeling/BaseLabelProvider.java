@@ -96,7 +96,7 @@ import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.utilities.AS2Moniker;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.basecs.NamedElementCS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
@@ -138,7 +138,7 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 			if (element.eIsProxy()) {
 				EcoreUtil.resolve(element, element);
 			}
-			appendString(s, ClassUtil.getSafeName(element));
+			appendString(s, NameUtil.getSafeName(element));
 		}	
 	}
 
@@ -147,7 +147,7 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 			if (csElement.eIsProxy()) {
 				EcoreUtil.resolve(csElement, csElement);
 			}
-			appendString(s, ClassUtil.getSafeName(csElement));
+			appendString(s, NameUtil.getSafeName(csElement));
 		}	
 	}
 

@@ -12,7 +12,7 @@ package org.eclipse.ocl.xtext.base.ui.outline;
 
 import org.apache.log4j.Logger;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
 import org.eclipse.ocl.xtext.base.ui.BaseUiPluginHelper;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
@@ -43,7 +43,7 @@ public class BaseOutlineWithEditorLinker extends OutlineWithEditorLinker
 				StringBuilder s = new StringBuilder();
 				s.append("FindBest limit at ");
 				ElementUtil.appendTextRegion(s, selectedTextRegion, true);
-				s.append(" " + ClassUtil.debugSimpleName(input));
+				s.append(" " + NameUtil.debugSimpleName(input));
 				logger.error(s.toString());
 				return null;
 			}

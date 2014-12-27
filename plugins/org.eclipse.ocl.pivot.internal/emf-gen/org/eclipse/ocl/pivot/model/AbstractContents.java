@@ -31,8 +31,8 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.impl.LibraryImpl;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.Unlimited;
 
 public class AbstractContents extends PivotUtil
@@ -43,8 +43,8 @@ public class AbstractContents extends PivotUtil
 
 	protected @NonNull <T extends CollectionType> T createCollectionType(/*@NonNull*/ T pivotType, @NonNull String name, @Nullable  String lower, @Nullable String upper, @NonNull TemplateParameter templateParameter) {
 		pivotType.setName(name);
-		pivotType.setLower(lower != null ? ClassUtil.createNumberFromString(lower) : Integer.valueOf(0));
-		pivotType.setUpper(upper != null ? ClassUtil.createNumberFromString(upper) : Unlimited.INSTANCE);
+		pivotType.setLower(lower != null ? StringUtil.createNumberFromString(lower) : Integer.valueOf(0));
+		pivotType.setUpper(upper != null ? StringUtil.createNumberFromString(upper) : Unlimited.INSTANCE);
 		initTemplateParameter(pivotType, templateParameter);
 		pivotType.setElementType(templateParameter);
 		return pivotType;

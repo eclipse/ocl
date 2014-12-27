@@ -31,6 +31,7 @@ import org.eclipse.ocl.pivot.VariableDeclaration;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 /**
@@ -126,7 +127,7 @@ public abstract class AbstractBase2ASConversion extends AbstractConversion imple
 		List<Variable> newVariables = new ArrayList<Variable>();
 		for (Parameter parameter : parameters) {
 		    String name = parameter.getName();
-			Variable param = ClassUtil.getNamedElement(oldVariables, name);
+			Variable param = NameUtil.getNameable(oldVariables, name);
 		    if (param != null) {
 		    	oldVariables.remove(param);
 		    }
@@ -147,7 +148,7 @@ public abstract class AbstractBase2ASConversion extends AbstractConversion imple
 		List<Variable> newVariables = new ArrayList<Variable>();
 		for (String name : parameters.keySet()) {
 		    Type type = parameters.get(name);
-			Variable param = ClassUtil.getNamedElement(oldVariables, name);
+			Variable param = NameUtil.getNameable(oldVariables, name);
 		    if (param != null) {
 		    	oldVariables.remove(param);
 		    }

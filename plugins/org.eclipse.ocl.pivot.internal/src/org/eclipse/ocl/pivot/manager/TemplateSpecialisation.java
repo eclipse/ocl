@@ -25,6 +25,7 @@ import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 
 /**
  * A TemplateSpecialisation supports resolution of template parameter within an element referenced from an OCL expression.
@@ -167,7 +168,7 @@ public class TemplateSpecialisation
 				TupleType resolvedTupleType = (TupleType)resolvedType;
 				Iterable<? extends Property> referencedTupleParts = referencedTupleType.getOwnedProperties();
 				for (Property resolvedTuplePart : resolvedTupleType.getOwnedProperties()) {
-					Property referencedTuplePart = ClassUtil.getNamedElement(referencedTupleParts, resolvedTuplePart.getName());
+					Property referencedTuplePart = NameUtil.getNameable(referencedTupleParts, resolvedTuplePart.getName());
 					if (referencedTuplePart != null) {
 						Type resolvedTuplePartType = resolvedTuplePart.getType();
 						Type referencedTuplePartType = referencedTuplePart.getType();

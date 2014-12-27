@@ -36,6 +36,7 @@ import org.eclipse.ocl.pivot.impl.TuplePartImpl;
 import org.eclipse.ocl.pivot.impl.TupleTypeImpl;
 import org.eclipse.ocl.pivot.impl.TypedElementImpl;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.values.TemplateParameterSubstitutions;
 
@@ -146,7 +147,7 @@ public class TupleTypeManager
 			if (name == null) {
 				return null;				// Never happens
 			}
-			Property rightProperty = ClassUtil.getNamedElement(rightProperties, name);
+			Property rightProperty = NameUtil.getNameable(rightProperties, name);
 			if (rightProperty == null) {
 				return null;				// Happens for inconsistent tuples
 			}
@@ -263,7 +264,7 @@ public class TupleTypeManager
 						if (resolutions == null) {
 							resolutions = new HashMap<String, Type>();
 						}
-						resolutions.put(ClassUtil.getSafeName(part), resolvedPropertyType);
+						resolutions.put(NameUtil.getSafeName(part), resolvedPropertyType);
 					}
 				}
 			}
@@ -272,7 +273,7 @@ public class TupleTypeManager
 			List<TuplePartId> partIds = new ArrayList<TuplePartId>(parts.size());
 			for (int i = 0; i < parts.size(); i++) {
 				@SuppressWarnings("null") @NonNull Property part = parts.get(i);
-				String partName = ClassUtil.getSafeName(part);
+				String partName = NameUtil.getSafeName(part);
 				Type resolvedPropertyType = resolutions.get(partName);
 				TypeId partTypeId = resolvedPropertyType != null ? resolvedPropertyType.getTypeId() : part.getTypeId();
 				TuplePartId tuplePartId = IdManager.getTuplePartId(i, partName, partTypeId);
@@ -283,7 +284,7 @@ public class TupleTypeManager
 			return specializedTupleType;
 		}
 		else {
-			return getTupleType(ClassUtil.getSafeName(type), type.getOwnedProperties(), usageBindings);
+			return getTupleType(NameUtil.getSafeName(type), type.getOwnedProperties(), usageBindings);
 		}
 	}
 }

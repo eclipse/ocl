@@ -61,12 +61,13 @@ import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.uml.UML2AS;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.ProjectMap;
 import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.IPackageDescriptor;
 import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.IProjectDescriptor;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.Unlimited;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
@@ -886,15 +887,15 @@ public class LoadTests extends XtextTestCase
 		org.eclipse.ocl.pivot.Package pkg = root.getOwnedPackages().get(0);
 		org.eclipse.ocl.pivot.Class cls = pkg.getOwnedClasses().get(0);
 		List<Property> ownedAttributes = cls.getOwnedProperties();
-		checkMultiplicity(ClassUtil.getNamedElement(ownedAttributes, "vBlank"), 1, 1);
-		checkMultiplicity(ClassUtil.getNamedElement(ownedAttributes, "vQuery"), 0, 1);
-		checkMultiplicity(ClassUtil.getNamedElement(ownedAttributes, "vPlus"), 1, -1);
-		checkMultiplicity(ClassUtil.getNamedElement(ownedAttributes, "vStar"), 0, -1);
-		checkMultiplicity(ClassUtil.getNamedElement(ownedAttributes, "vOne"), 1, 1);
-		checkMultiplicity(ClassUtil.getNamedElement(ownedAttributes, "vThree"), 3, 3);
-		checkMultiplicity(ClassUtil.getNamedElement(ownedAttributes, "vOne2Three"), 1, 3);
-		checkMultiplicity(ClassUtil.getNamedElement(ownedAttributes, "vThree2Three"), 3, 3);
-		checkMultiplicity(ClassUtil.getNamedElement(ownedAttributes, "vThree2Star"), 3, -1);
+		checkMultiplicity(NameUtil.getNameable(ownedAttributes, "vBlank"), 1, 1);
+		checkMultiplicity(NameUtil.getNameable(ownedAttributes, "vQuery"), 0, 1);
+		checkMultiplicity(NameUtil.getNameable(ownedAttributes, "vPlus"), 1, -1);
+		checkMultiplicity(NameUtil.getNameable(ownedAttributes, "vStar"), 0, -1);
+		checkMultiplicity(NameUtil.getNameable(ownedAttributes, "vOne"), 1, 1);
+		checkMultiplicity(NameUtil.getNameable(ownedAttributes, "vThree"), 3, 3);
+		checkMultiplicity(NameUtil.getNameable(ownedAttributes, "vOne2Three"), 1, 3);
+		checkMultiplicity(NameUtil.getNameable(ownedAttributes, "vThree2Three"), 3, 3);
+		checkMultiplicity(NameUtil.getNameable(ownedAttributes, "vThree2Star"), 3, -1);
 	}
 
 	public void testLoad_Bug403070_oclinecore() throws IOException, InterruptedException {
@@ -961,7 +962,7 @@ public class LoadTests extends XtextTestCase
 				"endpackage\n";
 		createOCLinEcoreFile("Bug450950.ocl", bug450950);
 		Resource asResource = doLoad_Concrete("Bug450950", "ocl");
-		assertResourceErrors("Save", asResource, ClassUtil.bind(OCLMessages.UnstableXMIid_ERROR_, "\\n Package 'P.bug450950'"));
+		assertResourceErrors("Save", asResource, StringUtil.bind(OCLMessages.UnstableXMIid_ERROR_, "\\n Package 'P.bug450950'"));
 	}	
 	
 	public void testLoad_Bug441620_completeocl() throws IOException {

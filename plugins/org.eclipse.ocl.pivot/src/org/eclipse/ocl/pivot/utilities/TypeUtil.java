@@ -16,13 +16,16 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteInheritance;
+import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.LambdaType;
+import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.ParameterTypes;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.ids.PrimitiveTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.types.ParameterTypesImpl;
@@ -95,6 +98,43 @@ public class TypeUtil
 
 	public static @NonNull TemplateParameters createTemplateParameters(@NonNull List<? extends Type> parameters) {
 		return new TemplateParametersImpl(parameters);
+	}
+
+	public static @NonNull Type[] getLambdaParameterTypes(@NonNull LambdaType lambdaType) {
+		int iParameter = 0;
+		List<? extends Type> ownedParameters = lambdaType.getParameterTypes();
+		Type[] parameterTypes = new Type[ownedParameters.size() + 2];
+		parameterTypes[iParameter++] = lambdaType.getContextType();
+		parameterTypes[iParameter++] = lambdaType.getResultType();
+		for (Type parameterType : ownedParameters) {
+			parameterTypes[iParameter++] = parameterType;
+		}
+		return parameterTypes;
+	}
+
+	public static @NonNull Type[] getOperationParameterTypes(@NonNull Operation anOperation) {
+		Type[] parameterTypes;
+		int iParameter = 0;
+		List<? extends TypedElement> ownedParameters = anOperation.getOwnedParameters();
+		if (anOperation instanceof Iteration) {
+			Iteration anIteration = (Iteration)anOperation;
+			List<? extends TypedElement> ownedIterators = anIteration.getOwnedIterators();
+			List<? extends TypedElement> ownedAccumulators = anIteration.getOwnedAccumulators();
+			parameterTypes = new Type[ownedIterators.size() + ownedAccumulators.size() + ownedParameters.size()];
+			for (TypedElement ownedIterator : ownedIterators) {
+				parameterTypes[iParameter++] = ownedIterator.getType();
+			}
+			for (TypedElement ownedAccumulator : ownedAccumulators) {
+				parameterTypes[iParameter++] = ownedAccumulator.getType();
+			}
+		}
+		else {
+			parameterTypes = new Type[ownedParameters.size()];
+		}
+		for (TypedElement ownedParameter : ownedParameters) {
+			parameterTypes[iParameter++] = ownedParameter.getType();
+		}
+		return parameterTypes;
 	}
 
 	public static @Nullable Type getPrimitiveType(@NonNull StandardLibrary standardLibrary, @NonNull PrimitiveTypeId typeId) {

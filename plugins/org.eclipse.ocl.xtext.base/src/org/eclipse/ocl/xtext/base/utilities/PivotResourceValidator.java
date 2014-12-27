@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.validation.DomainSubstitutionLabelProvider;
+import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.util.CancelIndicator;
@@ -92,7 +92,7 @@ public class PivotResourceValidator extends ResourceValidatorImpl
 
 	protected void performValidation(IAcceptor<Issue> acceptor, Resource asResource, CancelIndicator monitor) {
 		Diagnostician diagnostician = getDiagnostician();
-		Map<Object, Object> context = DomainSubstitutionLabelProvider.createDefaultContext(diagnostician);
+		Map<Object, Object> context = LabelUtil.createDefaultContext(diagnostician);
 		List<Resource> resources = asResource.getResourceSet().getResources();
 		for (int i = 0; i < resources.size(); i++) {
 			Resource pResource = resources.get(i);
@@ -191,7 +191,7 @@ public class PivotResourceValidator extends ResourceValidatorImpl
 					if (monitor.isCanceled())
 						return null;
 					Diagnostician diagnostician = getDiagnostician();
-					Map<Object, Object> options = DomainSubstitutionLabelProvider.createDefaultContext(diagnostician);
+					Map<Object, Object> options = LabelUtil.createDefaultContext(diagnostician);
 					options.put(CheckMode.KEY, mode);
 					options.put(CancelableDiagnostician.CANCEL_INDICATOR, monitor);
 					// disable concrete syntax validation, since a semantic model that has been parsed 

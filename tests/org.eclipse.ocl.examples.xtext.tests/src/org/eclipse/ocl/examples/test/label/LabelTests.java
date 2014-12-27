@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.labels.ILabelGenerator;
 import org.eclipse.ocl.pivot.labels.LabelGeneratorRegistry;
-import org.eclipse.ocl.pivot.utilities.LabelUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 
 public class LabelTests extends TestCase
 {
@@ -55,13 +55,13 @@ public class LabelTests extends TestCase
 	}
 	
 	public void testEcoreFeatureQualifiedName() {
-		String actualLabel = LabelUtil.qualifiedNameFor(EcorePackage.Literals.ENAMED_ELEMENT__NAME);
+		String actualLabel = NameUtil.qualifiedNameFor(EcorePackage.Literals.ENAMED_ELEMENT__NAME);
 		String expectedLabel = "ecore::ENamedElement::name";
 		assertEquals(expectedLabel, actualLabel);
 	}
 	
 	public void testEcoreFeatureName() {
-		String actualLabel = LabelUtil.simpleNameFor(EcorePackage.Literals.ENAMED_ELEMENT__NAME);
+		String actualLabel = NameUtil.simpleNameFor(EcorePackage.Literals.ENAMED_ELEMENT__NAME);
 		String expectedLabel = "name";
 		assertEquals(expectedLabel, actualLabel);
 	}

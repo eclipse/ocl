@@ -116,11 +116,11 @@ public abstract class ConstraintEvaluator<T>
 			}
 		}
 		else if (result == null) {
-			return ClassUtil.bind(OCLMessages.ValidationResultIsNull_ERROR_,
+			return StringUtil.bind(OCLMessages.ValidationResultIsNull_ERROR_,
 				getConstraintTypeName(), getConstraintName(), getObjectLabel());
 			
 		}
-		return ClassUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_,
+		return StringUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_,
 				getConstraintTypeName(), getConstraintName(), getObjectLabel());
 	}
 

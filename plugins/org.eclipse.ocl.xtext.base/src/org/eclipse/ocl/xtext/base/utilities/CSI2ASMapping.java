@@ -114,7 +114,7 @@ public class CSI2ASMapping extends AdapterImpl implements MetaModelManagerListen
 			if (this.index != thatIndex){
 				return null;
 			}
-			return ClassUtil.equals(this.name, thatName) ? this : null;
+			return ClassUtil.safeEquals(this.name, thatName) ? this : null;
 		}
 
 		@Override
@@ -181,7 +181,7 @@ public class CSI2ASMapping extends AdapterImpl implements MetaModelManagerListen
 			if (this.index != thatIndex){
 				return null;
 			}
-			return ClassUtil.equals(this.name, thatName) ? this : null;
+			return ClassUtil.safeEquals(this.name, thatName) ? this : null;
 		}
 
 		@Override
@@ -314,7 +314,7 @@ public class CSI2ASMapping extends AdapterImpl implements MetaModelManagerListen
 						}
 						if (sibling instanceof Nameable) {
 							String thatName = ((Nameable)sibling).getName();
-							if (ClassUtil.equals(thisName, thatName)) {
+							if (ClassUtil.safeEquals(thisName, thatName)) {
 								count++;
 							}
 						}

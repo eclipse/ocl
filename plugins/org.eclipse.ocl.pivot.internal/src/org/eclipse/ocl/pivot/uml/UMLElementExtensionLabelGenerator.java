@@ -12,7 +12,7 @@ package org.eclipse.ocl.pivot.uml;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.labels.AbstractLabelGenerator;
-import org.eclipse.ocl.pivot.utilities.LabelUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 
 public final class UMLElementExtensionLabelGenerator extends AbstractLabelGenerator<UMLElementExtension>
 {
@@ -26,8 +26,8 @@ public final class UMLElementExtensionLabelGenerator extends AbstractLabelGenera
 
 	@Override
 	public void buildLabelFor(@NonNull Builder labelBuilder, @NonNull UMLElementExtension object) {
-		labelBuilder.appendString(LabelUtil.simpleNameFor(object.getTarget()));
+		labelBuilder.appendString(NameUtil.simpleNameFor(object.getTarget()));
 		labelBuilder.appendString("$");
-		labelBuilder.appendString(LabelUtil.simpleNameFor(object.getDynamicStereotype()));
+		labelBuilder.appendString(NameUtil.simpleNameFor(object.getDynamicStereotype()));
 	}
 }

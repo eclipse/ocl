@@ -83,6 +83,7 @@ import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.SingletonIterator;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.xtext.base.cs2as.AmbiguitiesAdapter;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
@@ -1022,7 +1023,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			}
 		}
 		if ((csArgumentCount != parametersCount) && (operation != standardLibrary.basicGetOclInvalidOperation())) {
-			String boundMessage = ClassUtil.bind(OCLMessages.MismatchedArgumentCount_ERROR_, csArgumentCount, parametersCount);
+			String boundMessage = StringUtil.bind(OCLMessages.MismatchedArgumentCount_ERROR_, csArgumentCount, parametersCount);
 			context.addDiagnostic(csNameExp, boundMessage);			
 		}
 		context.refreshList(expression.getOwnedArguments(), pivotArguments);
@@ -1071,10 +1072,10 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			}
 			String boundMessage;
 			if (s.length() > 0) {
-				boundMessage = ClassUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, sourceType, csOperator.getName(), s.toString());
+				boundMessage = StringUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, sourceType, csOperator.getName(), s.toString());
 			}
 			else {
-				boundMessage = ClassUtil.bind(OCLMessages.UnresolvedOperation_ERROR_, sourceType, csOperator.getName());
+				boundMessage = StringUtil.bind(OCLMessages.UnresolvedOperation_ERROR_, sourceType, csOperator.getName());
 			}
 //			context.addBadExpressionError(csOperator, boundMessage); 
 			context.addDiagnostic(csOperator, boundMessage);

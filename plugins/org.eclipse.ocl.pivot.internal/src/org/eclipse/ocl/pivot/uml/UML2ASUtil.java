@@ -19,6 +19,7 @@ import java.util.Set;
 
 
 
+
 //import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -28,7 +29,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.utilities.LabelUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 
 /**
  * UML2ASUtil provides a variety of helpful routines for dealing with UML midels in conjunction with the Pivot-based OCL.
@@ -62,10 +63,10 @@ public class UML2ASUtil
 			}
 			StringBuffer s = new StringBuffer();
 			for (@SuppressWarnings("null")@NonNull EClass umlStereotypeEClass : umlStereotypeEClass2umlStereotypedElements.keySet()) {
-				s.append("\n\t" + LabelUtil.qualifiedNameFor(umlStereotypeEClass));
+				s.append("\n\t" + NameUtil.qualifiedNameFor(umlStereotypeEClass));
 				for (org.eclipse.uml2.uml.Element umlStereotypedElement : umlStereotypeEClass2umlStereotypedElements.get(umlStereotypeEClass)) {
 					if (umlStereotypedElement != null) {
-						s.append("\n\t\t" + LabelUtil.qualifiedNameFor(umlStereotypedElement));
+						s.append("\n\t\t" + NameUtil.qualifiedNameFor(umlStereotypedElement));
 					}
 				}
 			}

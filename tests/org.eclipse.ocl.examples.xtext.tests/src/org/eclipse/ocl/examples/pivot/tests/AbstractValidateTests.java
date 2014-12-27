@@ -38,10 +38,10 @@ import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.uml.UMLOCLEValidator;
+import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.ProjectMap;
 import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
-import org.eclipse.ocl.pivot.validation.DomainSubstitutionLabelProvider;
 import org.eclipse.ocl.pivot.values.Bag;
 import org.eclipse.ocl.pivot.values.impl.BagImpl;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
@@ -53,7 +53,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 public abstract class AbstractValidateTests extends PivotTestCase
 {	
 	public static @NonNull List<Diagnostic> assertUMLOCLValidationDiagnostics(@Nullable OCL ocl, @NonNull String prefix, @NonNull Resource resource, String... messages) {
-		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
+		Map<Object, Object> validationContext = LabelUtil.createDefaultContext(Diagnostician.INSTANCE);
 		if (ocl != null) {
 			UMLOCLEValidator.setOCL(validationContext, ocl);
 		}
@@ -73,7 +73,7 @@ public abstract class AbstractValidateTests extends PivotTestCase
 		for (String message : expectedMessage) {
 			expectedMessages.add(message);
 		}
-		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
+		Map<Object, Object> validationContext = LabelUtil.createDefaultContext(Diagnostician.INSTANCE);
 		Diagnostic diagnostics = Diagnostician.INSTANCE.validate(testInstance, validationContext);
 		Bag<String> actualMessages = new BagImpl<String>();
 		for (Diagnostic diagnostic : diagnostics.getChildren()) {

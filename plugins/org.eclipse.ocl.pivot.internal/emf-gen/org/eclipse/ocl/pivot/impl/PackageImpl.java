@@ -39,7 +39,7 @@ import org.eclipse.ocl.pivot.complete.PackageListeners;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.util.Visitor;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -637,7 +637,7 @@ public class PackageImpl
 	@Override
 	
 	public @Nullable org.eclipse.ocl.pivot.Class getOwnedClass(String className) {
-		return ClassUtil.getNamedElement(getOwnedClasses(), className);
+		return NameUtil.getNameable(getOwnedClasses(), className);
 	}
 
 	@Override
