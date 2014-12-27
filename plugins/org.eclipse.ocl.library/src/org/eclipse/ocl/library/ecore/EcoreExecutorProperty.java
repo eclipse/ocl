@@ -16,7 +16,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.library.executor.ExecutorProperty;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.LibraryProperty;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -33,7 +33,7 @@ public class EcoreExecutorProperty extends ExecutorProperty implements LibraryPr
 	}
 
 	@Override
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
+	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		EObject eObject = ValueUtil.asNavigableObject(sourceValue, eFeature, evaluator);
 		Object eValue = eObject.eGet(eFeature);
 		return eValue != null ? evaluator.getIdResolver().boxedValueOf(eValue, eFeature, returnTypeId) : null;

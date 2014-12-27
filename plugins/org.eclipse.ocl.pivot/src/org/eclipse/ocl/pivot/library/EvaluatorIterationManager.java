@@ -17,7 +17,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.evaluation.DomainEvaluationEnvironment;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 
 public abstract class EvaluatorIterationManager extends AbstractIterationManager
@@ -30,7 +30,7 @@ public abstract class EvaluatorIterationManager extends AbstractIterationManager
 		private Iterator<? extends Object> javaIter;
 		private Object value;		// 'null' is a valid value so 'this' is used as end of iteration
 
-		public ValueIterator(@NonNull DomainEvaluator evaluator, @NonNull CollectionValue collectionValue, @NonNull TypedElement variable) {
+		public ValueIterator(@NonNull Evaluator evaluator, @NonNull CollectionValue collectionValue, @NonNull TypedElement variable) {
 			this.evaluationEnvironment = evaluator.getEvaluationEnvironment();
 			this.collectionValue = collectionValue;
 			this.variable = variable;
@@ -68,7 +68,7 @@ public abstract class EvaluatorIterationManager extends AbstractIterationManager
 		}
 	}
 
-	protected static ValueIterator[] createIterators(@NonNull TypedElement[] referredIterators, @NonNull DomainEvaluator evaluator, @NonNull CollectionValue collectionValue) {
+	protected static ValueIterator[] createIterators(@NonNull TypedElement[] referredIterators, @NonNull Evaluator evaluator, @NonNull CollectionValue collectionValue) {
 		int iMax = referredIterators.length;
 		ValueIterator[] iterators = new ValueIterator[iMax];
 		for (int i = 0; i < iMax; i++) {
@@ -89,7 +89,7 @@ public abstract class EvaluatorIterationManager extends AbstractIterationManager
 	protected final @Nullable TypedElement accumulatorVariable;
 	private @Nullable Object accumulatorValue;
 
-	public EvaluatorIterationManager(@NonNull DomainEvaluator evaluator, @NonNull OCLExpression body, @NonNull CollectionValue collectionValue,
+	public EvaluatorIterationManager(@NonNull Evaluator evaluator, @NonNull OCLExpression body, @NonNull CollectionValue collectionValue,
 			@Nullable TypedElement accumulatorVariable, @Nullable Object accumulatorValue) {
 		super(evaluator);
 		this.collectionValue = collectionValue;

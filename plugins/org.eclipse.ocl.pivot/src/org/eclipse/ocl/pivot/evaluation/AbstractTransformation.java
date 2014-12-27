@@ -23,12 +23,12 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 
 public abstract class AbstractTransformation
 {
-	protected final @NonNull DomainEvaluator evaluator;
+	protected final @NonNull Evaluator evaluator;
 	protected final @NonNull IdResolver idResolver;
 	protected final @NonNull List<EObject>[] modelObjects;
 	protected final @NonNull Map<String, Integer> modelIndexes = new HashMap<String, Integer>();
 	
-	protected AbstractTransformation(@NonNull DomainEvaluator evaluator, @NonNull String[] modelNames) {
+	protected AbstractTransformation(@NonNull Evaluator evaluator, @NonNull String[] modelNames) {
 		this.evaluator = evaluator;
 		this.idResolver = evaluator.getIdResolver();
 		@SuppressWarnings("unchecked")List<EObject>[] modelObjects = (List<EObject>[]) new List<?>[modelNames.length];

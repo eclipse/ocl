@@ -56,7 +56,7 @@ import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ValueSpecification;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.OperationId;
@@ -716,7 +716,7 @@ public class OperationImpl
 		        catch (Exception e) {
 		            CAUGHT_self_71 = ValueUtil.createInvalidValue(e);
 		        }
-		        final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
+		        final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtil.getEvaluator(this);
 		        final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		        @NonNull /*@Caught*/ Object CAUGHT_b;
 		        try {
@@ -909,7 +909,7 @@ public class OperationImpl
 		/**
 		 * inv UniquePreconditionName: ownedPreconditions->isUnique(name)
 		 */
-		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		@NonNull /*@Caught*/ Object CAUGHT_isUnique;
 		try {
@@ -968,7 +968,7 @@ public class OperationImpl
 		/**
 		 * inv UniquePostconditionName: ownedPostconditions->isUnique(name)
 		 */
-		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		@NonNull /*@Caught*/ Object CAUGHT_isUnique;
 		try {

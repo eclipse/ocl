@@ -21,12 +21,12 @@ import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.evaluation.DomainEvaluationEnvironment;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.Value;
 
-public abstract class ExecutorManager implements DomainEvaluator
+public abstract class ExecutorManager implements Evaluator
 {	
 	// This is the same as HashMap's default initial capacity
 	private static final int DEFAULT_REGEX_CACHE_LIMIT = 16;

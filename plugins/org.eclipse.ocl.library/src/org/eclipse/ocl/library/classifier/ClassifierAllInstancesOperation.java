@@ -15,7 +15,7 @@ import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -30,7 +30,7 @@ public class ClassifierAllInstancesOperation extends AbstractUnaryOperation
 	public static final @NonNull ClassifierAllInstancesOperation INSTANCE = new ClassifierAllInstancesOperation();
 
 	@Override
-	public @NonNull SetValue evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceVal) {
+	public @NonNull SetValue evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceVal) {
 		org.eclipse.ocl.pivot.Class type = asClass(sourceVal);
 //		if (type instanceof DomainMetaclass) {
 //			type = ((DomainMetaclass)type).getInstanceType();

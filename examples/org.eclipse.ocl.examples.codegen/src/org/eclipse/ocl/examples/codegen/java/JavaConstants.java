@@ -14,7 +14,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.codegen.java.types.JavaTypeId;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.StandardLibrary;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.ids.impl.WeakHashMapOfWeakReference;
@@ -48,7 +48,7 @@ public class JavaConstants
 
 	public static final @NonNull TypeId CLASS_TYPE_ID = getJavaTypeId(org.eclipse.ocl.pivot.Class.class);
 	public static final @NonNull TypeId PROPERTY_TYPE_ID = getJavaTypeId(Property.class);
-	public static final @NonNull TypeId EVALUATOR_TYPE_ID = getJavaTypeId(DomainEvaluator.class);
+	public static final @NonNull TypeId EVALUATOR_TYPE_ID = getJavaTypeId(Evaluator.class);
 	public static final @NonNull TypeId ID_RESOLVER_TYPE_ID = getJavaTypeId(IdResolver.class);
 //	public static final @NonNull TypeId SELF_TYPE_ID = getJavaTypeId(Object.class);
 	public static final @NonNull TypeId STANDARD_LIBRARY_TYPE_ID = getJavaTypeId(StandardLibrary.class);

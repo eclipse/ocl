@@ -31,7 +31,7 @@ import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ValueSpecification;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
@@ -168,7 +168,7 @@ public class BooleanLiteralExpImpl
 		/**
 		 * inv TypeIsBoolean: self.type = Boolean
 		 */
-		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		@NonNull /*@Caught*/ Object CAUGHT_eq;
 		try {

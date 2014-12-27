@@ -22,7 +22,7 @@ import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.Property;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitorImpl;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -42,7 +42,7 @@ public class StereotypeProperty extends ConstrainedProperty
 	}
 	
 	@Override
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
+	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		IdResolver idResolver = evaluator.getIdResolver();
 		EObject eObject = asNavigableObject(sourceValue, property, evaluator);
 //		if (eObject instanceof Metaclass<?>) {

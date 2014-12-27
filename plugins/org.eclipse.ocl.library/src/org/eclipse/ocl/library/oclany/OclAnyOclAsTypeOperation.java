@@ -14,7 +14,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.library.AbstractUntypedBinaryOperation;
 import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -27,7 +27,7 @@ public class OclAnyOclAsTypeOperation extends AbstractUntypedBinaryOperation
 	public static final @NonNull OclAnyOclAsTypeOperation INSTANCE = new OclAnyOclAsTypeOperation();
 
 	@Override
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @Nullable Object sourceVal, @Nullable Object argVal) {
+	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceVal, @Nullable Object argVal) {
 		if (sourceVal instanceof InvalidValueException) {
 			throw (InvalidValueException)sourceVal;
 		}

@@ -44,7 +44,7 @@ import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Variable;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.ClassId;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.IdManager;
@@ -80,7 +80,7 @@ public class AutoPivotLookupVisitor
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Class_0 = PACKid_$metamodel$.getClassId("Class", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_DataType = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("DataType", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_DataType_0 = PACKid_$metamodel$.getClassId("DataType", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_DomainEvaluator = PACKid_org_eclipse_ocl_pivot_evaluation.getClassId("DomainEvaluator", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Evaluator = PACKid_org_eclipse_ocl_pivot_evaluation.getClassId("Evaluator", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Element = PACKid_$metamodel$.getClassId("Element", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Element_0 = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("Element", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Enumeration = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("Enumeration", 0);
@@ -125,7 +125,7 @@ public class AutoPivotLookupVisitor
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Package = TypeId.SET.getSpecializedId(CLSSid_Package);
     
     protected @Nullable /*@Thrown*/ Element child;
-    protected final @NonNull /*@Thrown*/ DomainEvaluator evaluator;
+    protected final @NonNull /*@Thrown*/ Evaluator evaluator;
     protected final @NonNull /*@Thrown*/ IdResolver idResolver;
     
     public AutoPivotLookupVisitor(@NonNull Environment context) {
@@ -196,7 +196,7 @@ public class AutoPivotLookupVisitor
              * superClasses
              */
             @Override
-            public @Nullable Object evaluate(final @NonNull DomainEvaluator evaluator, final @NonNull TypeId typeId, final @Nullable Object oclAsSet, final @Nullable /*@NonInvalid*/ Object _1) {
+            public @Nullable Object evaluate(final @NonNull Evaluator evaluator, final @NonNull TypeId typeId, final @Nullable Object oclAsSet, final @Nullable /*@NonInvalid*/ Object _1) {
                 final @Nullable /*@NonInvalid*/ Class symbol_0 = (Class)_1;
                 if (symbol_0 == null) {
                     throw new InvalidValueException("Null source for \'pivot::Class::superClasses\'");

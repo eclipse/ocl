@@ -21,7 +21,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.OperationCallExp;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -42,7 +42,7 @@ public class EInvokeOperation extends AbstractOperation
 	}
 
 	@Override
-	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
+	public @Nullable Object dispatch(@NonNull Evaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
 		TypeId typeId = callExp.getTypeId();
 		List<? extends OCLExpression> arguments = callExp.getOwnedArguments();
 		if (arguments.size() == 0) {
@@ -71,7 +71,7 @@ public class EInvokeOperation extends AbstractOperation
 		return evaluate(evaluator, typeId, sourceValue, argumentValues);
 	}
 
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue,
+	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue,
 			@NonNull Object... boxedArgumentValues) {
 		EObject eObject = asNavigableObject(sourceValue, eOperation, evaluator);
 		EList<Object> ecoreArguments = evaluator.getIdResolver().ecoreValuesOfEach(boxedArgumentValues);
@@ -83,7 +83,7 @@ public class EInvokeOperation extends AbstractOperation
 		}
 	}
 
-	protected @Nullable Object getResultValue(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object eResult) {
+	protected @Nullable Object getResultValue(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object eResult) {
 		if (returnTypeId instanceof CollectionTypeId) {
 			if (eResult instanceof Iterable<?>) {
 				return evaluator.getIdResolver().createCollectionOfAll((CollectionTypeId)returnTypeId, (Iterable<?>)eResult);

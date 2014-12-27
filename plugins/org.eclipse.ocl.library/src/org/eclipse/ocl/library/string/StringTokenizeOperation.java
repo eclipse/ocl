@@ -18,7 +18,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.OperationCallExp;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractOperation;
@@ -38,7 +38,7 @@ public class StringTokenizeOperation extends AbstractOperation implements Librar
 	private static final @NonNull String DELIMS = " \t\n\r\f"; //$NON-NLS-1$
 
 	@Override
-	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
+	public @Nullable Object dispatch(@NonNull Evaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
 		String delims = DELIMS;
 		boolean returnDelims = false;
 		TypeId typeId = callExp.getTypeId();
@@ -62,24 +62,24 @@ public class StringTokenizeOperation extends AbstractOperation implements Librar
 	}
 
 	@Override
-	public @NonNull SequenceValue evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
+	public @NonNull SequenceValue evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		return evaluate(evaluator, (CollectionTypeId)returnTypeId, sourceValue, DELIMS, false);
 	}
 
 	@Override
-	public @NonNull SequenceValue evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue, @Nullable Object argumentValue) {
+	public @NonNull SequenceValue evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue, @Nullable Object argumentValue) {
 		String delims = asString(argumentValue);
 		return evaluate(evaluator, (CollectionTypeId)returnTypeId, sourceValue, delims, false);
 	}
 
 	@Override
-	public @NonNull SequenceValue evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue, @Nullable Object firstArgumentValue, @Nullable Object secondArgumentValue) {
+	public @NonNull SequenceValue evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue, @Nullable Object firstArgumentValue, @Nullable Object secondArgumentValue) {
 		String delims = asString(firstArgumentValue);
 		boolean returnDelims = asBoolean(secondArgumentValue);
 		return evaluate(evaluator, (CollectionTypeId)returnTypeId, sourceValue, delims, returnDelims);
 	}
 
-/*	public @NonNull SequenceValue evaluate(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue, @NonNull Object... argumentValues) {
+/*	public @NonNull SequenceValue evaluate(@NonNull Evaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue, @NonNull Object... argumentValues) {
 		String delims = DELIMS;
 		boolean returnDelims = false;
 		if (argumentValues.length > 0) {
@@ -98,7 +98,7 @@ public class StringTokenizeOperation extends AbstractOperation implements Librar
 		return evaluate(evaluator, (CollectionTypeId)ClassUtil.nonNullPivot(callExp.getType()).getTypeId(), sourceValue, delims, returnDelims);
 	} */
 
-	private @NonNull SequenceValue evaluate(@NonNull DomainEvaluator evaluator, @NonNull CollectionTypeId returnTypeId, @Nullable Object sourceValue, @NonNull String delims, boolean returnDelims) {
+	private @NonNull SequenceValue evaluate(@NonNull Evaluator evaluator, @NonNull CollectionTypeId returnTypeId, @Nullable Object sourceValue, @NonNull String delims, boolean returnDelims) {
 		String sourceString = asString(sourceValue);
 		StringTokenizer tokenizer = new StringTokenizer(sourceString, delims, returnDelims);
 		List<Object> results = new ArrayList<Object>();

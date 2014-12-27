@@ -16,7 +16,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.OperationCallExp;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractSimpleBinaryOperation;
 import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
@@ -30,7 +30,7 @@ public class BooleanOrOperation extends AbstractSimpleBinaryOperation
 	public static final @NonNull BooleanOrOperation INSTANCE = new BooleanOrOperation();
 
 	@Override
-	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
+	public @Nullable Object dispatch(@NonNull Evaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
 		if (sourceValue == Boolean.TRUE) {
 			return TRUE_VALUE;
 		}

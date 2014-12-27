@@ -16,7 +16,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractUnaryOperation;
@@ -29,7 +29,7 @@ public class ClassifierOclContentsOperation extends AbstractUnaryOperation
 	public static final @NonNull ClassifierOclContentsOperation INSTANCE = new ClassifierOclContentsOperation();
 
 	@Override
-	public @NonNull Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
+	public @NonNull Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		EObject object = asNavigableObject(sourceValue, "oclContents()", evaluator); //$NON-NLS-1$
     	Set<Object> collection = new HashSet<Object>();
 		for (Object eContent : object.eContents()) {

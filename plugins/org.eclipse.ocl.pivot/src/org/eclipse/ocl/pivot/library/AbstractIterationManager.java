@@ -13,15 +13,15 @@ package org.eclipse.ocl.pivot.library;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.StandardLibrary;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.DomainIterationManager;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 
 public abstract class AbstractIterationManager implements DomainIterationManager
 {
-	protected final @NonNull DomainEvaluator evaluator;
+	protected final @NonNull Evaluator evaluator;
 
-	public AbstractIterationManager(@NonNull DomainEvaluator evaluator) {
+	public AbstractIterationManager(@NonNull Evaluator evaluator) {
 		this.evaluator = evaluator;
 	}
 
@@ -41,7 +41,7 @@ public abstract class AbstractIterationManager implements DomainIterationManager
 	}
 	
 	@Override
-	public @NonNull DomainEvaluator getEvaluator() {
+	public @NonNull Evaluator getEvaluator() {
 		return evaluator;
 	}
 

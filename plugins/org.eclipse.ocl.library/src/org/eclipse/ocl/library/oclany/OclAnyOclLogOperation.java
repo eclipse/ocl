@@ -12,7 +12,7 @@ package org.eclipse.ocl.library.oclany;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractPolyOperation;
@@ -25,7 +25,7 @@ public class OclAnyOclLogOperation extends AbstractPolyOperation
 	public static final @NonNull OclAnyOclLogOperation INSTANCE = new OclAnyOclLogOperation();
 
 	@Override
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceVal) {
+	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceVal) {
 		try {
 			EvaluationLogger log = evaluator.getLogger();
 			if (log != null) {
@@ -36,7 +36,7 @@ public class OclAnyOclLogOperation extends AbstractPolyOperation
 	}
 
 	@Override
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId,
+	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId,
 			@Nullable Object sourceVal, @Nullable Object argVal) {
 		try {
 			String message = asString(argVal);
@@ -49,7 +49,7 @@ public class OclAnyOclLogOperation extends AbstractPolyOperation
 	}
 
 	@Override
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId,
+	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId,
 			@Nullable Object sourceValue, @Nullable Object firstArgumentValue, @Nullable Object secondArgumentValue) {
 		throw new UnsupportedOperationException();
 	}

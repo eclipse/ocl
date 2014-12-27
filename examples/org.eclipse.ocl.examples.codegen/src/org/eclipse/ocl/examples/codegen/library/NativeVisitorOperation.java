@@ -12,7 +12,7 @@ package org.eclipse.ocl.examples.codegen.library;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractBinaryOperation;
 
@@ -27,12 +27,12 @@ public class NativeVisitorOperation extends AbstractBinaryOperation
 	public NativeVisitorOperation() {}
 
 //	@Override
-//	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue) {
+//	public @Nullable Object dispatch(@NonNull Evaluator evaluator, @NonNull DomainCallExp callExp, @Nullable Object sourceValue) {
 //		throw new UnsupportedOperationException();	// Only evaluated in code generated form; see CG2JavaVisitor.visitCGNativeOperationCallExp
 //	}
 
 	@Override
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue, @Nullable Object argumentValue) {
+	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue, @Nullable Object argumentValue) {
 		throw new UnsupportedOperationException();	// Only evaluated in code generated form; see CG2JavaVisitor.visitCGNativeOperationCallExp
 	}
 }

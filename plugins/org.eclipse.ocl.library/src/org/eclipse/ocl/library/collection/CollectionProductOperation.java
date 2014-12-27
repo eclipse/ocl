@@ -14,7 +14,7 @@ import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -32,7 +32,7 @@ public class CollectionProductOperation extends AbstractBinaryOperation
 	public static final @NonNull CollectionProductOperation INSTANCE = new CollectionProductOperation();
 
 	@Override
-	public @NonNull CollectionValue evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceVal, @Nullable Object argVal) {
+	public @NonNull CollectionValue evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceVal, @Nullable Object argVal) {
 		CollectionValue sourceValue = asCollectionValue(sourceVal);
 		CollectionValue argumentValue = asCollectionValue(argVal);
 		CollectionTypeId collTypeId = (CollectionTypeId)returnTypeId;

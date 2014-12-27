@@ -19,7 +19,7 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.Variable;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitorImpl;
@@ -40,7 +40,7 @@ public class ConstrainedOperation extends AbstractOperation
 	}
 	
 	@Override
-	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
+	public @Nullable Object dispatch(@NonNull Evaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
 		List<? extends OCLExpression> arguments = callExp.getOwnedArguments();
 		Object[] argumentValues = new Object[arguments.size()];
 		for (int i = 0; i < arguments.size(); i++) {
@@ -51,7 +51,7 @@ public class ConstrainedOperation extends AbstractOperation
 		return evaluate(evaluator, callExp, sourceValue, argumentValues);
 	}
 
-	private @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue, @NonNull Object... argumentValues) {
+	private @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue, @NonNull Object... argumentValues) {
 		PivotUtil.checkExpression(expressionInOCL);
 		EvaluationVisitor evaluationVisitor = (EvaluationVisitor)evaluator;
 		EvaluationVisitor nestedVisitor;

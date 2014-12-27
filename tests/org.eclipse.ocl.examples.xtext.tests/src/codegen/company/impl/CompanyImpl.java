@@ -31,7 +31,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.library.collection.CollectionIncludesOperation;
 import org.eclipse.ocl.library.collection.CollectionSizeOperation;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -188,7 +188,7 @@ public class CompanyImpl extends EObjectImpl implements Company
 		 * in
 		 *   table->any(range->includes(employees->size())).size
 		 */
-		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		@Nullable Iterator<?> ITERATOR__1 = CodegencompanyTables.table.iterator();
 		@Nullable /*@Thrown*/ TupleValue any;

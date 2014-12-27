@@ -23,7 +23,7 @@ import org.eclipse.ocl.library.LibraryConstants;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.StandardLibrary;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.DomainIterationManager;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -45,13 +45,13 @@ public class SortedByIteration extends AbstractIteration
 	protected static class SortingValue extends ValueImpl implements Comparator<Object>
 	{
 		protected final @NonNull CollectionTypeId typeId;
-		private final @NonNull DomainEvaluator evaluator;
+		private final @NonNull Evaluator evaluator;
 		private final boolean isUnique;
 		private final @NonNull LibraryBinaryOperation implementation;
 		private final @NonNull Map<Object, Object> content = new HashMap<Object, Object>();	// User object to sortedBy value
 		private Map<Object, Integer> repeatCounts = null;						// Repeat counts for non-unique content
 
-		public SortingValue(@NonNull DomainEvaluator evaluator, @NonNull CollectionTypeId returnTypeId, @NonNull LibraryBinaryOperation implementation) {
+		public SortingValue(@NonNull Evaluator evaluator, @NonNull CollectionTypeId returnTypeId, @NonNull LibraryBinaryOperation implementation) {
 			this.typeId = returnTypeId;
 			this.evaluator = evaluator;
 			this.implementation = implementation;
@@ -147,7 +147,7 @@ public class SortedByIteration extends AbstractIteration
 	public static final @NonNull SortedByIteration INSTANCE = new SortedByIteration();
 
 	@Override
-	public @NonNull SortedByIteration.SortingValue createAccumulatorValue(@NonNull DomainEvaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
+	public @NonNull SortedByIteration.SortingValue createAccumulatorValue(@NonNull Evaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
 		StandardLibrary standardLibrary = evaluator.getStandardLibrary();
 		CompleteInheritance comparableType = standardLibrary.getOclComparableType().getInheritance(standardLibrary);
 		CompleteInheritance selfType = standardLibrary.getOclSelfType().getInheritance(standardLibrary);

@@ -12,7 +12,7 @@ package org.eclipse.ocl.library.iterator;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.DomainIterationManager;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractIteration;
@@ -40,7 +40,7 @@ public class OneIteration extends AbstractIteration
 	public static final @NonNull OneIteration INSTANCE = new OneIteration();
 
 	@Override
-	public @NonNull MutableBoolean createAccumulatorValue(@NonNull DomainEvaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
+	public @NonNull MutableBoolean createAccumulatorValue(@NonNull Evaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
 		return new MutableBoolean();
 	}
 

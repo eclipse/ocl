@@ -12,7 +12,7 @@ package org.eclipse.ocl.pivot.library;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.TypeId;
 
 /**
@@ -22,5 +22,5 @@ public interface LibraryProperty extends LibraryFeature
 	/**
 	 * @throws Exception 
 	 */
-	@Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue);
+	@Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue);
 }

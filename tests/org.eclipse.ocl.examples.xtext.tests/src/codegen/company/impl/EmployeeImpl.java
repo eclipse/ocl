@@ -40,7 +40,7 @@ import org.eclipse.ocl.library.oclany.OclAnyOclAsSetOperation;
 import org.eclipse.ocl.library.oclany.OclComparableGreaterThanOperation;
 import org.eclipse.ocl.library.string.StringSizeOperation;
 import org.eclipse.ocl.pivot.PivotTables;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -254,7 +254,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		/**
 		 * company.employees->select(manager = self)
 		 */
-		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		final @NonNull /*@Thrown*/ Company company = this.getCompany();
 		final @NonNull /*@Thrown*/ List<Employee> employees = company.getEmployees();
@@ -296,7 +296,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		/**
 		 * Employee.allInstances()->select(reportsTo(self))
 		 */
-		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_company_c_c_Employee_0 = idResolver.getClass(CodegencompanyTables.CLSSid_Employee, null);
 		final @NonNull /*@Thrown*/ SetValue allInstances = ClassUtil.nonNullState(ClassifierAllInstancesOperation.INSTANCE.evaluate(evaluator, CodegencompanyTables.SET_CLSSid_Employee, TYP_company_c_c_Employee_0));
@@ -340,7 +340,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		 * else manager.reportingChain->prepend(manager)
 		 * endif
 		 */
-		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		@Nullable /*@Caught*/ Object CAUGHT_manager_0;
 		try {
@@ -395,7 +395,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		/**
 		 * self.reportingChain->includes(manager)
 		 */
-		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		final @NonNull /*@Thrown*/ List<Employee> reportingChain = this.getReportingChain();
 		final @NonNull /*@Thrown*/ OrderedSetValue BOXED_reportingChain = idResolver.createOrderedSetOfAll(CodegencompanyTables.ORD_CLSSid_Employee, reportingChain);
@@ -427,7 +427,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		        CAUGHT_manager_0 = ValueUtil.createInvalidValue(e);
 		    }
 		    final /*@NonInvalid*/ boolean self_11 = (CAUGHT_manager_0 == null) || (CAUGHT_manager_0 instanceof InvalidValueException);
-		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
+		    final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
@@ -676,7 +676,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		 * 
 		 * inv mustHaveNonEmptyName: name->notEmpty() implies name.size() > 0
 		 */
-		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtil.getEvaluator(this);
 		@NonNull /*@Caught*/ Object CAUGHT_symbol_14;
 		try {
 		    @NonNull /*@Caught*/ Object CAUGHT_self_11;

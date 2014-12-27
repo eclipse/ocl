@@ -5,7 +5,7 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.NamedElement;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 
 
 /**
@@ -14,6 +14,6 @@ import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
 public interface Environment {
 	@NonNull Environment addElement(@Nullable NamedElement namedElement);
 	@NonNull Environment addElements(@Nullable List<? extends NamedElement> namedElements);
-	@NonNull DomainEvaluator getEvaluator();
+	@NonNull Evaluator getEvaluator();
 	boolean hasFinalResult();
 }

@@ -30,7 +30,7 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.ElementId;
@@ -190,7 +190,7 @@ public abstract class ValueUtil
 		}
 	}
 
-	public static @NonNull EObject asNavigableObject(@Nullable Object value, @NonNull Object navigation, @Nullable DomainEvaluator evaluator) {
+	public static @NonNull EObject asNavigableObject(@Nullable Object value, @NonNull Object navigation, @Nullable Evaluator evaluator) {
 		if (value instanceof Value) {
 			return ((Value)value).asNavigableObject();
 		}

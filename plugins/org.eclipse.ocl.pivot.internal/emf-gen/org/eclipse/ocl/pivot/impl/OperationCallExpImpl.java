@@ -45,7 +45,7 @@ import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.ReferringElement;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ValueSpecification;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.pivot.util.PivotValidator;
@@ -500,7 +500,7 @@ public class OperationCallExpImpl
 		    }
 		    final @NonNull /*@Thrown*/ List<Parameter> parameters = operation.getOwnedParameters();
 		    final @Nullable /*@Thrown*/ org.eclipse.ocl.pivot.Class selfType_1 = operation.getOwningClass();
-		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
+		    final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtil.getEvaluator(this);
 		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		    final @NonNull /*@Thrown*/ List<OCLExpression> ownedArguments = this.getOwnedArguments();
 		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedArguments = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_OCLExpression, ownedArguments);
@@ -615,7 +615,7 @@ public class OperationCallExpImpl
 		 *   ownedArguments->size() =
 		 *   referredOperation.ownedParameters->size()
 		 */
-		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		@NonNull /*@Caught*/ Object CAUGHT_eq;
 		try {

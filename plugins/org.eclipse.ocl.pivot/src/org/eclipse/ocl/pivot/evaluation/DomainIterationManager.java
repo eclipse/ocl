@@ -63,7 +63,7 @@ public interface DomainIterationManager
 	 */
 	@Nullable Object getAccumulatorValue();
 
-	@NonNull DomainEvaluator getEvaluator();
+	@NonNull Evaluator getEvaluator();
 
 	/**
 	 * Return the source collection over which this (nested) iteration iterates.

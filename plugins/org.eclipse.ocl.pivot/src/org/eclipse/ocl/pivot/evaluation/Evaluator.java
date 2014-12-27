@@ -19,9 +19,9 @@ import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 
-public interface DomainEvaluator
+public interface Evaluator
 {
-	@NonNull DomainEvaluator createNestedEvaluator();
+	@NonNull Evaluator createNestedEvaluator();
 	void dispose();
 	@Nullable Object evaluate(@NonNull OCLExpression body);
 	@NonNull CompleteEnvironment getCompleteEnvironment();

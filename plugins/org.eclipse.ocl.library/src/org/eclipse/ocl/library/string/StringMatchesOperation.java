@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractBinaryOperation;
 
@@ -27,7 +27,7 @@ public class StringMatchesOperation extends AbstractBinaryOperation
 	public static final @NonNull StringMatchesOperation INSTANCE = new StringMatchesOperation();
 
 	@Override
-	public @NonNull Boolean evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object left, @Nullable Object right) {
+	public @NonNull Boolean evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object left, @Nullable Object right) {
 		String leftString = asString(left);
 		String rightString = asString(right);
 		Pattern pattern = evaluator.getRegexPattern(rightString);

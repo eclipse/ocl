@@ -15,7 +15,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.library.numeric.NumericPlusOperation;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractUnaryOperation;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
@@ -29,7 +29,7 @@ public class CollectionSumOperation extends AbstractUnaryOperation
 	public static final @NonNull CollectionSumOperation INSTANCE = new CollectionSumOperation();
 
 	@Override
-	public @NonNull Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceVal) {
+	public @NonNull Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceVal) {
 		CollectionValue collectionValue = asCollectionValue(sourceVal);
 		// FIXME Bug 301351 Look for user-defined zero
 //			resultType.getZero();

@@ -14,7 +14,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.TypedElement;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 
 public class EvaluatorMultipleIterationManager extends EvaluatorIterationManager
@@ -22,7 +22,7 @@ public class EvaluatorMultipleIterationManager extends EvaluatorIterationManager
 	protected final ValueIterator[] iterators;
 	protected boolean hasCurrent;
 	
-	public EvaluatorMultipleIterationManager(@NonNull DomainEvaluator invokingEvaluator, @NonNull OCLExpression body, @NonNull CollectionValue collectionValue,
+	public EvaluatorMultipleIterationManager(@NonNull Evaluator invokingEvaluator, @NonNull OCLExpression body, @NonNull CollectionValue collectionValue,
 			@Nullable TypedElement accumulator, @Nullable Object accumulatorValue, TypedElement... referredIterators) {
 		super(invokingEvaluator.createNestedEvaluator(), body, collectionValue, accumulator, accumulatorValue);
 		int iMax = referredIterators.length;

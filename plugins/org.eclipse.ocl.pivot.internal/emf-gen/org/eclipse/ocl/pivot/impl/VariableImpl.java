@@ -37,7 +37,7 @@ import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ValueSpecification;
 import org.eclipse.ocl.pivot.Variable;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.pivot.util.PivotValidator;
 import org.eclipse.ocl.pivot.util.Visitor;
@@ -238,7 +238,7 @@ public class VariableImpl
 		    catch (Exception e) {
 		        CAUGHT_self_71 = ValueUtil.createInvalidValue(e);
 		    }
-		    final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
+		    final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtil.getEvaluator(this);
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
 		        final @Nullable /*@Thrown*/ OCLExpression ownedInit_0 = this.getOwnedInit();

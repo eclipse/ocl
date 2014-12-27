@@ -18,7 +18,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.library.executor.ExecutorManager;
 import org.eclipse.ocl.library.executor.LazyModelManager;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -49,7 +49,7 @@ public class PivotExecutorManager extends ExecutorManager
 	}
 
 	@Override
-	public @NonNull DomainEvaluator createNestedEvaluator() {
+	public @NonNull Evaluator createNestedEvaluator() {
 		return new PivotExecutorManager(metaModelManager, contextObject);
 	}
 

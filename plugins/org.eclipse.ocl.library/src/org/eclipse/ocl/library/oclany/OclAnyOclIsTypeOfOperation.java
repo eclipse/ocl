@@ -13,7 +13,7 @@ package org.eclipse.ocl.library.oclany;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.library.AbstractUntypedBinaryOperation;
 
 /**
@@ -24,7 +24,7 @@ public class OclAnyOclIsTypeOfOperation extends AbstractUntypedBinaryOperation
 	public static final @NonNull OclAnyOclIsTypeOfOperation INSTANCE = new OclAnyOclIsTypeOfOperation();
 
 	@Override
-	public @NonNull Boolean evaluate(@NonNull DomainEvaluator evaluator, @Nullable Object sourceVal, @Nullable Object argVal) {
+	public @NonNull Boolean evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceVal, @Nullable Object argVal) {
 		Type sourceType = evaluator.getIdResolver().getDynamicTypeOf(sourceVal);
 		Type argType = asType(argVal);
 		boolean result = sourceType.isEqualTo(evaluator.getStandardLibrary(), argType);

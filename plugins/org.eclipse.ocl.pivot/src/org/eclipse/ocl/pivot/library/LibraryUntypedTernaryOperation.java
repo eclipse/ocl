@@ -12,7 +12,7 @@ package org.eclipse.ocl.pivot.library;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 
 /**
  * LibraryUntypedTernaryOperation extends the invocation API of a ternary operation to support using just
@@ -21,5 +21,5 @@ import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
  */
 public interface LibraryUntypedTernaryOperation extends LibraryTernaryOperation, LibraryUntypedOperation
 {
-	@Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @Nullable Object sourceValue, @Nullable Object firstArgumentValue, @Nullable Object secondArgumentValue);
+	@Nullable Object evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceValue, @Nullable Object firstArgumentValue, @Nullable Object secondArgumentValue);
 }

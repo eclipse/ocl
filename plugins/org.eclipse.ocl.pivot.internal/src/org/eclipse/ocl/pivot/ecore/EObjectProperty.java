@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractProperty;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -38,7 +38,7 @@ public class EObjectProperty extends AbstractProperty
 	}
 
 	@Override
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
+	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		Object object = asObject(sourceValue);
 		if (!(object instanceof EObject)) {
 			throw new InvalidValueException("non-EObject");

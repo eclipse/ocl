@@ -12,7 +12,7 @@ package org.eclipse.ocl.library.logical;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractUntypedUnaryOperation;
@@ -27,7 +27,7 @@ public class BooleanAllInstancesOperation extends AbstractUntypedUnaryOperation
 	public static final @NonNull CollectionTypeId SET_BOOLEAN = TypeId.SET.getSpecializedId(TypeId.BOOLEAN);
 	
 	@Override
-	public @NonNull SetValue evaluate(@NonNull DomainEvaluator evaluator, @Nullable Object sourceVal) {
+	public @NonNull SetValue evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceVal) {
 		// Boolean has two instances: false, true
 		return evaluator.getIdResolver().createSetOfEach(SET_BOOLEAN, Boolean.FALSE, Boolean.TRUE);
 	}

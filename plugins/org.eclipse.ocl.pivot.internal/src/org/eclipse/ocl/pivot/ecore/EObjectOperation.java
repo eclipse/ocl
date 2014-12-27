@@ -22,7 +22,7 @@ import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.DomainEvaluationEnvironment;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitorImpl;
 import org.eclipse.ocl.pivot.library.AbstractOperation;
@@ -47,7 +47,7 @@ public class EObjectOperation extends AbstractOperation
 	}
 
 	@Override
-	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
+	public @Nullable Object dispatch(@NonNull Evaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
 		if (specification.getOwnedBody() == null) {		
 			try {
 				EvaluationVisitor evaluationVisitor = (EvaluationVisitor)evaluator;
@@ -65,7 +65,7 @@ public class EObjectOperation extends AbstractOperation
 			assert argument != null;
 			argumentValues[i] = evaluator.evaluate(argument);
 		}
-		DomainEvaluator nestedEvaluator;
+		Evaluator nestedEvaluator;
 		if (evaluator instanceof EvaluationVisitorImpl) {
 			nestedEvaluator = ((EvaluationVisitorImpl)evaluator).createNestedUndecoratedEvaluator(query);
 		}

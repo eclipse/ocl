@@ -16,7 +16,7 @@ import org.eclipse.ocl.library.LibraryConstants;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.StandardLibrary;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractUntypedBinaryOperation;
 import org.eclipse.ocl.pivot.library.LibraryBinaryOperation;
@@ -29,7 +29,7 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
 public abstract class OclComparableComparisonOperation extends AbstractUntypedBinaryOperation
 {
 	@Override
-	public @NonNull Boolean evaluate(@NonNull DomainEvaluator evaluator, @Nullable Object left, @Nullable Object right) {
+	public @NonNull Boolean evaluate(@NonNull Evaluator evaluator, @Nullable Object left, @Nullable Object right) {
 		StandardLibrary standardLibrary = evaluator.getStandardLibrary();
 		CompleteInheritance leftType = evaluator.getIdResolver().getDynamicTypeOf(left).getInheritance(standardLibrary);
 		CompleteInheritance rightType = evaluator.getIdResolver().getDynamicTypeOf(right).getInheritance(standardLibrary);

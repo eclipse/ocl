@@ -76,7 +76,7 @@ import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.context.ClassContext;
 import org.eclipse.ocl.pivot.context.ParserContext;
 import org.eclipse.ocl.pivot.ecore.Ecore2AS;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.helper.OCLHelper;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -1236,7 +1236,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 				dir.mkdir();
 				LibraryUnaryOperation testInstance = (LibraryUnaryOperation) genModelHelper.loadClass(expr, targetFolder, packageName, className, true);
 				assert testInstance != null;
-				DomainEvaluator evaluator = new EcoreExecutorManager(self, PivotTables.LIBRARY);
+				Evaluator evaluator = new EcoreExecutorManager(self, PivotTables.LIBRARY);
 				OperationCallExp callExp = PivotFactory.eINSTANCE.createOperationCallExp();
 				callExp.setType(expr.getType());
 				result = testInstance.evaluate(evaluator, callExp.getTypeId(), self);

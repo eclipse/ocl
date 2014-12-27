@@ -32,7 +32,7 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.ValueSpecification;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.util.Visitor;
@@ -171,7 +171,7 @@ public abstract class TypedElementImpl
 		/**
 		 * bodySpecification.type.conformsTo(self.type)
 		 */
-		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtil.getEvaluator(this);
 		final @Nullable /*@Thrown*/ Type type = bodySpecification.getType();
 		final @Nullable /*@Thrown*/ Type type_0 = this.getType();
 		final /*@Thrown*/ boolean conformsTo = OclTypeConformsToOperation.INSTANCE.evaluate(evaluator, type, type_0).booleanValue();
@@ -189,7 +189,7 @@ public abstract class TypedElementImpl
 		/**
 		 * Parameter{name = 'name'}
 		 */
-		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		final @NonNull /*@NonInvalid*/ Property CTORid_name = idResolver.getProperty(PivotTables.PROPid_name);
 		final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pivot_c_c_Parameter_0 = idResolver.getClass(PivotTables.CLSSid_Parameter, null);

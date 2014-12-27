@@ -13,7 +13,7 @@ package org.eclipse.ocl.library.oclany;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.library.AbstractUntypedUnaryOperation;
 
 /**
@@ -24,7 +24,7 @@ public class OclAnyOclTypeOperation extends AbstractUntypedUnaryOperation
 	public static final @NonNull OclAnyOclTypeOperation INSTANCE = new OclAnyOclTypeOperation();
 
 	@Override
-	public @NonNull Type evaluate(@NonNull DomainEvaluator evaluator, @Nullable Object sourceVal) {
+	public @NonNull Type evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceVal) {
 //		return evaluator.getStaticTypeOf(sourceVal);
 		return evaluator.getIdResolver().getDynamicTypeOf(sourceVal);
 	}

@@ -107,7 +107,7 @@ import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.DomainIterationManager;
 import org.eclipse.ocl.pivot.ids.ClassId;
 import org.eclipse.ocl.pivot.ids.ElementId;
@@ -291,7 +291,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 			js.appendIsRequired(true);
 			js.append(" ");
 	//		js.appendDeclaration(evaluatorParameter);
-			js.appendClassReference(DomainEvaluator.class);
+			js.appendClassReference(Evaluator.class);
 			js.append(" ");
 			js.append(JavaConstants.EVALUATOR_NAME);
 			js.append(", ");
@@ -467,11 +467,11 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 			}
 			else if (libraryOperation instanceof LibraryUntypedOperation) {
 				arguments = new Class<?>[argumentSize+2];
-				arguments[i++] = DomainEvaluator.class;
+				arguments[i++] = Evaluator.class;
 			}
 			else {
 			    arguments = new Class<?>[argumentSize+3];
-				arguments[i++] = DomainEvaluator.class;
+				arguments[i++] = Evaluator.class;
 				arguments[i++] = TypeId.class; 
 			}
 			while (i < arguments.length) {
@@ -488,7 +488,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		try {
 			@SuppressWarnings("null") @NonNull Class<? extends LibraryProperty> implementationClass = libraryProperty.getClass();
 			Class<?>[] arguments = new Class<?>[3];
-			arguments[0] = DomainEvaluator.class;
+			arguments[0] = Evaluator.class;
 			arguments[1] = TypeId.class; 
 			arguments[2] = Object.class; 
 			Method method = implementationClass.getMethod("evaluate", arguments);

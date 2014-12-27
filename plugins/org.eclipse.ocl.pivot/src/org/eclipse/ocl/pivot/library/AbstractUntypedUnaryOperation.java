@@ -13,7 +13,7 @@ package org.eclipse.ocl.pivot.library;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OperationCallExp;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.TypeId;
 
 /**
@@ -23,16 +23,16 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 public abstract class AbstractUntypedUnaryOperation extends AbstractUnaryOperation implements LibraryUntypedUnaryOperation
 {
 	@Override
-	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
+	public @Nullable Object dispatch(@NonNull Evaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
 		return evaluate(evaluator, sourceValue);
 	}
 
 	@Override
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
+	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		return evaluate(evaluator, sourceValue);
 	}
 
 	// Redundant declaration avoids @Override dilemma for 1.5/1.6
 	@Override
-	public abstract @Nullable /*@Thrown*/ Object evaluate(@NonNull DomainEvaluator evaluator, @Nullable Object sourceValue);
+	public abstract @Nullable /*@Thrown*/ Object evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceValue);
 }

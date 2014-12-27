@@ -15,7 +15,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.library.oclany.OclAnyOclAsTypeOperation;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
@@ -27,7 +27,7 @@ public class UnlimitedNaturalOclAsTypeOperation extends OclAnyOclAsTypeOperation
 	public static final @NonNull UnlimitedNaturalOclAsTypeOperation INSTANCE = new UnlimitedNaturalOclAsTypeOperation();
 
 	@Override
-	public @NonNull Object evaluate(@NonNull DomainEvaluator evaluator, @Nullable Object sourceVal, @Nullable Object argVal) {
+	public @NonNull Object evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceVal, @Nullable Object argVal) {
 		StandardLibrary standardLibrary = evaluator.getStandardLibrary();
 		Type sourceType = evaluator.getIdResolver().getDynamicTypeOf(sourceVal);
 		Type argType = asType(argVal);

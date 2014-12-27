@@ -12,7 +12,7 @@ package org.eclipse.ocl.library.oclany;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.library.AbstractUntypedBinaryOperation;
 
 /**
@@ -23,7 +23,7 @@ public class OclAnyOclIsInStateOperation extends AbstractUntypedBinaryOperation
 	public static final @NonNull OclAnyOclIsInStateOperation INSTANCE = new OclAnyOclIsInStateOperation();
 
 	@Override
-	public @NonNull Boolean evaluate(@NonNull DomainEvaluator evaluator, @Nullable Object sourceVal, @Nullable Object argVal) {
+	public @NonNull Boolean evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceVal, @Nullable Object argVal) {
 		throw new UnsupportedOperationException();			// FIXME
 	}
 }

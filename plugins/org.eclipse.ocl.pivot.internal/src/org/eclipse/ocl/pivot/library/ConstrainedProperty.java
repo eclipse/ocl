@@ -19,7 +19,7 @@ import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Variable;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitorImpl;
@@ -43,7 +43,7 @@ public class ConstrainedProperty extends AbstractProperty
 	}
 
 	@Override
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
+	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		ExpressionInOCL expression2 = expression;
 		if (expression2 == null) {
 			LanguageExpression defaultSpecification = property.getOwnedExpression();

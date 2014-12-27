@@ -12,7 +12,7 @@ package org.eclipse.ocl.library.iterator;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.DomainIterationManager;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -30,7 +30,7 @@ public class SelectIteration extends AbstractIteration
 	public static final @NonNull SelectIteration INSTANCE = new SelectIteration();
 
 	@Override
-	public @NonNull CollectionValue.Accumulator createAccumulatorValue(@NonNull DomainEvaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
+	public @NonNull CollectionValue.Accumulator createAccumulatorValue(@NonNull Evaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
 		return createCollectionAccumulatorValue((CollectionTypeId)accumulatorTypeId);
 	}
 	

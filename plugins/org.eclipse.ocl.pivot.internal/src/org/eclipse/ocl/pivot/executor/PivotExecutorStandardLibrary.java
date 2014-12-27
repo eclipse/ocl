@@ -54,7 +54,7 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 	}
 	
 //	@Override
-//	public @NonNull DomainEvaluator createEvaluator(@NonNull EObject contextObject, @Nullable Map<Object, Object> contextMap) {
+//	public @NonNull Evaluator createEvaluator(@NonNull EObject contextObject, @Nullable Map<Object, Object> contextMap) {
 //		return new PivotEcoreExecutorManager(contextObject, contextMap, this, getMetaModelManager());
 //	}
 

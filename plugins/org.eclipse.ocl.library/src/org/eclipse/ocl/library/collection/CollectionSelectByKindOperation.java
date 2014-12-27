@@ -17,7 +17,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.library.AbstractUntypedBinaryOperation;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 
@@ -29,7 +29,7 @@ public class CollectionSelectByKindOperation extends AbstractUntypedBinaryOperat
 	public static final @NonNull CollectionSelectByKindOperation INSTANCE = new CollectionSelectByKindOperation();
 
 	@Override
-	public @NonNull CollectionValue evaluate(@NonNull DomainEvaluator evaluator, @Nullable Object sourceVal, @Nullable Object argVal) {
+	public @NonNull CollectionValue evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceVal, @Nullable Object argVal) {
 		CollectionValue collectionValue = asCollectionValue(sourceVal);
 		Type requiredElementType = asType(argVal);
     	StandardLibrary standardLibrary = evaluator.getStandardLibrary();

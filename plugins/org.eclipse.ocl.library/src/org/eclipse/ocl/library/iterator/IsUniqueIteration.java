@@ -12,7 +12,7 @@ package org.eclipse.ocl.library.iterator;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.DomainIterationManager;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractIteration;
@@ -28,7 +28,7 @@ public class IsUniqueIteration extends AbstractIteration
 	public static final @NonNull IsUniqueIteration INSTANCE = new IsUniqueIteration();
 
 	@Override
-	public @NonNull SetValueImpl.Accumulator createAccumulatorValue(@NonNull DomainEvaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
+	public @NonNull SetValueImpl.Accumulator createAccumulatorValue(@NonNull Evaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
 		return new SetValueImpl.Accumulator(TypeId.SET.getSpecializedId(accumulatorTypeId));
 	}
 	

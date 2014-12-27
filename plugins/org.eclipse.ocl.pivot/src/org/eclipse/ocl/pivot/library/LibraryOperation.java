@@ -13,7 +13,7 @@ package org.eclipse.ocl.pivot.library;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OperationCallExp;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 
 /**
  */
@@ -30,5 +30,5 @@ public interface LibraryOperation extends LibraryFeature
 	 * Invocations may bypass dispatch if a derived LibraryOperation such as LibrarySimpleBinaryOperation
 	 * makes its internal evaluate signature available for use after a type test and cast.
 	 */
-	@Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue);
+	@Nullable Object dispatch(@NonNull Evaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue);
 }

@@ -14,7 +14,7 @@ import java.util.Iterator;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.DomainIterationManager;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractIterationManager;
@@ -58,7 +58,7 @@ public class ExecutorSingleIterationManager extends AbstractIterationManager
 	protected final @NonNull Iterator<? extends Object> iteratorValue;
 	private Object currentValue;		// 'null' is a valid value so 'iteratorValue' is used as end of iteration
 
-	public ExecutorSingleIterationManager(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @NonNull LibraryBinaryOperation body,
+	public ExecutorSingleIterationManager(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @NonNull LibraryBinaryOperation body,
 			@Nullable CollectionValue value, @Nullable Object accumulatorValue) {
 		super(evaluator);
 		this.collectionValue = ValueUtil.asCollectionValue(value);

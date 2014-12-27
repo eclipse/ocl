@@ -64,7 +64,7 @@ import org.eclipse.ocl.pivot.PropertyCallExp;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableExp;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.OperationId;
@@ -208,7 +208,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		//	Create new AS Visitor helper properties
 		//
 		this.asChildProperty = createNativeProperty(LookupClassContext.CHILD_NAME, asElementType, false);
-		this.asEvaluatorProperty = createNativeProperty(JavaConstants.EVALUATOR_NAME, DomainEvaluator.class, true);
+		this.asEvaluatorProperty = createNativeProperty(JavaConstants.EVALUATOR_NAME, Evaluator.class, true);
 		this.asIdResolverProperty = createNativeProperty(JavaConstants.ID_RESOLVER_NAME, IdResolver.class, true);
 		List<Property> asVisitorProperties = asVisitorClass.getOwnedProperties();
 		asVisitorProperties.add(asChildProperty);

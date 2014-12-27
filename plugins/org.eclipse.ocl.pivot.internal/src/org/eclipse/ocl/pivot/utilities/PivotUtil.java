@@ -95,7 +95,7 @@ import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.context.ParserContext;
 import org.eclipse.ocl.pivot.ecore.Ecore2AS;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.impl.PackageImpl;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
@@ -1086,7 +1086,7 @@ public class PivotUtil extends ClassUtil
 		return depth;
 	}
 
-	public static @NonNull DomainEvaluator getEvaluator(@NonNull EObject eObject) {
+	public static @NonNull Evaluator getEvaluator(@NonNull EObject eObject) {
 		Resource asResource = eObject.eResource();
 		if (asResource != null) {
 			MetaModelManager metaModelManager = findMetaModelManager(asResource);

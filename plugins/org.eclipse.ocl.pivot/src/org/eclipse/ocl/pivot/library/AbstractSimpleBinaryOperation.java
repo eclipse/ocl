@@ -16,7 +16,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.OperationCallExp;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.TypeId;
 
 /**
@@ -26,7 +26,7 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 public abstract class AbstractSimpleBinaryOperation extends AbstractUntypedBinaryOperation implements LibrarySimpleBinaryOperation
 {
 	@Override
-	public @Nullable Object dispatch(@NonNull DomainEvaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
+	public @Nullable Object dispatch(@NonNull Evaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
 		List<? extends OCLExpression> arguments = callExp.getOwnedArguments();
 		OCLExpression argument0 = arguments.get(0);
 		assert argument0 != null;
@@ -35,12 +35,12 @@ public abstract class AbstractSimpleBinaryOperation extends AbstractUntypedBinar
 	}
 
 	@Override
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue, @Nullable Object argumentValue) {
+	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue, @Nullable Object argumentValue) {
 		return evaluate(sourceValue, argumentValue);
 	}
 
 	@Override
-	public @Nullable /*@Thrown*/ Object evaluate(@NonNull DomainEvaluator evaluator, @Nullable Object sourceValue, @Nullable Object argumentValue) {
+	public @Nullable /*@Thrown*/ Object evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceValue, @Nullable Object argumentValue) {
 		return evaluate(sourceValue, argumentValue);
 	}
 

@@ -23,7 +23,7 @@ public interface DomainEvaluationVisitor
 	 */
 	@NonNull DomainEvaluationEnvironment getEvaluationEnvironment();
 
-	@NonNull DomainEvaluator getEvaluator();
+	@NonNull Evaluator getEvaluator();
 	
 	/**
      * Obtains the mapping of model classes to their extents.

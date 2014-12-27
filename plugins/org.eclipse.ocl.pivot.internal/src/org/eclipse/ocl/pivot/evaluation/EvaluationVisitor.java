@@ -17,7 +17,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Environment;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.StandardLibrary;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.util.Visitor;
@@ -30,7 +30,7 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * generic type parameters of this class. 
  * </p>
  */
-public interface EvaluationVisitor extends Visitor<Object>, DomainEvaluator
+public interface EvaluationVisitor extends Visitor<Object>, Evaluator
 {
 	@Override
 	@NonNull EvaluationVisitor createNestedEvaluator();

@@ -22,7 +22,7 @@ import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Stereotype;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitorImpl;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -44,7 +44,7 @@ public class ExtensionProperty extends AbstractProperty
 	}
 	
 	@Override
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
+	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		Type staticType = property.getType();
 		if (staticType == null) {
 			return null;

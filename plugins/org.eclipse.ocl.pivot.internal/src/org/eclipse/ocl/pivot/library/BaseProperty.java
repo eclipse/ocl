@@ -17,7 +17,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.Property;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractProperty;
 import org.eclipse.ocl.pivot.uml.UMLElementExtension;
@@ -36,7 +36,7 @@ public class BaseProperty extends AbstractProperty
 	}
 	
 	@Override
-	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
+	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 //		return property.getType(); 
 		if (sourceValue instanceof ElementExtension) {
 			return ((ElementExtension)sourceValue).eContainer(); 

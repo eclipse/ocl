@@ -30,7 +30,7 @@ import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.PivotObjectImpl;
@@ -188,7 +188,7 @@ public abstract class ElementImpl
 		/**
 		 * oclContents()
 		 */
-		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		final @NonNull /*@Thrown*/ SetValue oclContents = (SetValue)ClassifierOclContentsOperation.INSTANCE.evaluate(evaluator, PivotTables.SET_CLSSid_OclElement, this);
 		final List<? extends Object> UNBOXED_oclContents = oclContents.asEcoreObjects(idResolver, Object.class);

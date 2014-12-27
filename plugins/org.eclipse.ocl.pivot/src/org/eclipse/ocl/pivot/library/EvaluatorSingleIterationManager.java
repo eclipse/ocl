@@ -14,7 +14,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.TypedElement;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.DomainIterationManager;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 
@@ -50,7 +50,7 @@ public class EvaluatorSingleIterationManager extends EvaluatorIterationManager
 	protected final @NonNull TypedElement referredIterator;
 	protected final @NonNull ValueIterator iterator;
 
-	public EvaluatorSingleIterationManager(@NonNull DomainEvaluator invokingEvaluator,
+	public EvaluatorSingleIterationManager(@NonNull Evaluator invokingEvaluator,
 			@NonNull OCLExpression body, @NonNull CollectionValue collectionValue,
 			@Nullable TypedElement accumulator, @Nullable Object accumulatorValue,
 			@NonNull TypedElement referredIterator) {

@@ -656,7 +656,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		if ((monitor != null) && monitor.isCanceled()) {
 			throw new EvaluationHaltedException("Canceled");
 		}
-		DomainEvaluator evaluator = undecoratedVisitor.getEvaluator();
+		Evaluator evaluator = undecoratedVisitor.getEvaluator();
 		Operation apparentOperation = operationCallExp.getReferredOperation();
 		assert apparentOperation != null;
 		//

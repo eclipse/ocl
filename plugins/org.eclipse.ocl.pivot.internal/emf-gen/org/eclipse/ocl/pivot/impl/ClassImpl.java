@@ -56,7 +56,7 @@ import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.complete.ClassListeners;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -654,7 +654,7 @@ public class ClassImpl
 		/**
 		 * inv UniqueInvariantName: ownedInvariants->isUnique(name)
 		 */
-		final @NonNull /*@NonInvalid*/ DomainEvaluator evaluator = PivotUtil.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtil.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		@NonNull /*@Caught*/ Object CAUGHT_isUnique;
 		try {

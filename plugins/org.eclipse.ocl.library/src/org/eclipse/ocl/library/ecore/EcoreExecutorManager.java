@@ -29,7 +29,7 @@ import org.eclipse.ocl.library.executor.ExecutorStandardLibrary;
 import org.eclipse.ocl.library.executor.LazyModelManager;
 import org.eclipse.ocl.pivot.PivotObject;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.evaluation.DomainEvaluator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.DomainModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -124,7 +124,7 @@ public class EcoreExecutorManager extends ExecutorManager
 	}
 
 	@Override
-	public @NonNull DomainEvaluator createNestedEvaluator() {
+	public @NonNull Evaluator createNestedEvaluator() {
 		return new EcoreExecutorManager(contextObject, getStandardLibrary());
 	}
 
