@@ -44,7 +44,7 @@ import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Shell;
@@ -133,7 +133,7 @@ public class PivotUIConstraintLocator extends PivotConstraintLocator implements 
 		if (eResource == null) {
 			return false;
 		}
-		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(eResource);
+		MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(eResource);
 		Constraint asConstraint = null;
 		Object constrainingObject = resultConstrainingNode.getParent().getConstrainingObject();
 		if (constrainingObject instanceof Constraint) {

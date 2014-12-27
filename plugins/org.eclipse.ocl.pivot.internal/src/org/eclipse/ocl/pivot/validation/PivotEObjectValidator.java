@@ -48,6 +48,7 @@ import org.eclipse.ocl.pivot.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
@@ -87,7 +88,7 @@ public class PivotEObjectValidator implements EValidator
 					return (ValidationAdapter)adapter;
 				}
 			}
-			MetaModelManager metaModelManager = PivotUtil.findMetaModelManager(resourceSet);
+			MetaModelManager metaModelManager = PivotUtilInternal.findMetaModelManager(resourceSet);
 			if (metaModelManager != null) {
 				ResourceSet externalResourceSet = metaModelManager.getExternalResourceSet();
 				for (Adapter adapter : externalResourceSet.eAdapters()) {

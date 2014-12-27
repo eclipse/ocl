@@ -40,7 +40,7 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.swt.SWT;
@@ -304,7 +304,7 @@ public class MainTab extends AbstractMainTab implements OCLLaunchConstants
 			if (constraintUri.length() > 0) {
 				URI constraintURI = URI.createURI(constraintUri);
 				@SuppressWarnings("null")@NonNull URI oclASURI = constraintURI.trimFragment();
-				URI oclNonASURI = PivotUtil.getNonASURI(oclASURI);
+				URI oclNonASURI = PivotUtilInternal.getNonASURI(oclASURI);
 				oclPath.setText(oclNonASURI.toString());
 				EObject eObject = getMetaModelManager().getASResourceSet().getEObject(constraintURI, true);
 				if (eObject instanceof Constraint) {

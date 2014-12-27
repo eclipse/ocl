@@ -79,7 +79,7 @@ import org.eclipse.ocl.pivot.uml.UML2AS;
 import org.eclipse.ocl.pivot.utilities.AS2Moniker;
 import org.eclipse.ocl.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -614,7 +614,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 				if (key.equals("body")) {
 					bodyName = "";
 					if (value != null) {
-						value = PivotUtil.getBodyExpression(value);	// Workaround Bug 419324
+						value = PivotUtilInternal.getBodyExpression(value);	// Workaround Bug 419324
 					}
 				}
 				else if (key.startsWith("body_")) {
@@ -832,7 +832,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 			T pivotObject = (T) doSwitch(eObject);
 			newList.add(pivotObject);
 		}
-		PivotUtil.refreshList(pivotObjects, newList);
+		PivotUtilInternal.refreshList(pivotObjects, newList);
 	}
 
 	public <T extends Element> void doSwitchAll(List<? extends EObject> eObjects) {
@@ -912,7 +912,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 					// Rescue any deprecated format message expressions
 					String message = oclAnnotationDetails.get(invariantName + messageAnnotationDetailSuffix);
 					if ((value != null) && (message != null)) {
-						value = PivotUtil.createTupleValuedConstraint(value, null, message);
+						value = PivotUtilInternal.createTupleValuedConstraint(value, null, message);
 					}
 					expression.setBody(value);
 					if (newInvariants == null) {

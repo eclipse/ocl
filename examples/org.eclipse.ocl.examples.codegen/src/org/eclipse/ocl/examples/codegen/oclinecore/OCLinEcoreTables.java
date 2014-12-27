@@ -62,7 +62,7 @@ import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.TemplateParameterId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.TypeUtil;
 
 public class OCLinEcoreTables extends OCLinEcoreTablesUtils
@@ -499,7 +499,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 				if (i > 0) {
 					s.append(", ");
 				}
-				Type type = PivotUtil.getType(types.get(i));
+				Type type = PivotUtilInternal.getType(types.get(i));
 				type.accept(declareParameterTypeVisitor);				
 			}
 			s.append(");\n");

@@ -18,7 +18,7 @@ import org.eclipse.ocl.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.scoping.Attribution;
 import org.eclipse.ocl.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.scoping.ScopeView;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 
 public class DataTypeAttribution extends AbstractAttribution
 {
@@ -30,7 +30,7 @@ public class DataTypeAttribution extends AbstractAttribution
 		Type behavioralType = targetElement.getBehavioralClass();
 		Attribution attribution;
 		if (behavioralType != null) {
-			attribution = PivotUtil.getAttribution(behavioralType);
+			attribution = PivotUtilInternal.getAttribution(behavioralType);
 		}
 		else {
 			attribution = ClassAttribution.INSTANCE;

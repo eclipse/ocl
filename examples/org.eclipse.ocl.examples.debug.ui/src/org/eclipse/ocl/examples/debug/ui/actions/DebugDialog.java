@@ -35,7 +35,7 @@ import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.registry.CompleteOCLRegistry;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.xtext.base.ui.utilities.PDEUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -65,7 +65,7 @@ public class DebugDialog extends Dialog
 				if (selectedURI != null) {
 					Resource eResource = selectedObject.eResource();
 					if (eResource != null) {
-						MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(eResource);
+						MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(eResource);
 						Element resource = null;
 						try {
 							resource = metaModelManager.loadResource(selectedURI, null, null);

@@ -32,7 +32,7 @@ import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.scoping.Attribution;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.xtext.base.attributes.RootCSAttribution;
 import org.eclipse.ocl.xtext.base.ui.BaseUiModule;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
@@ -113,7 +113,7 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 						ElementCS csElement = (ElementCS) resource.getContents().get(0);
 						if (csElement != null) {
 							@SuppressWarnings("unused")
-							Attribution attribution = PivotUtil.getAttribution(csElement);
+							Attribution attribution = PivotUtilInternal.getAttribution(csElement);
 //							if (attribution != null) {
 								return ElementUtil.getDocumentAttribution(csElement);
 //							}

@@ -10,7 +10,7 @@ import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.BaseResource;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironment;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironmentFactory;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLRuntimeModule;
 import org.eclipse.ocl.xtext.completeocl.ui.CompleteOCLUiModule;
 import org.eclipse.ocl.xtext.completeocl.utilities.CompleteOCLPlugin;
@@ -84,7 +84,7 @@ public class OCLUI
 	 * @return the metamodelManager
 	 */
 	protected MetaModelManager getMetaModelManager(EObject contextObject) {
-		MetaModelManager metaModelManager = PivotUtil.findMetaModelManager(contextObject);
+		MetaModelManager metaModelManager = PivotUtilInternal.findMetaModelManager(contextObject);
 		if (metaModelManager != null) {
 			return metaModelManager;
 		}
@@ -98,7 +98,7 @@ public class OCLUI
 	 * Evaluate an oclExpression using selfObject as the OCL self object. Returns a boxed value.
 	 */
 	public static Object evaluate(@Nullable EObject selfObject, @NonNull String oclExpression) throws Exception {
-		MetaModelManager metaModelManager = PivotUtil.findMetaModelManager(selfObject);
+		MetaModelManager metaModelManager = PivotUtilInternal.findMetaModelManager(selfObject);
 		if (metaModelManager == null) {
 			metaModelManager = new MetaModelManager();
 			// FIXME install
@@ -119,7 +119,7 @@ public class OCLUI
 	 */
 	public static void setParserContext(@NonNull XtextResource csResource, EObject eObject) throws Exception {
 		if (csResource instanceof BaseResource) {
-			PivotUtil.setParserContext((BaseResource) csResource, eObject);
+			PivotUtilInternal.setParserContext((BaseResource) csResource, eObject);
 		}
 	}
 }

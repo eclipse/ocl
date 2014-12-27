@@ -46,7 +46,7 @@ import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.pivot.util.PivotValidator;
 import org.eclipse.ocl.pivot.util.Visitor;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -507,7 +507,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 		 * inv BodyTypeConformsToResultType:
 		 *   ownedBody.type.conformsTo(ownedResult.type)
 		 */
-		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtil.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		@NonNull /*@Caught*/ Object CAUGHT_conformsTo;
 		try {
 		    final @Nullable /*@Thrown*/ OCLExpression ownedBody = this.getOwnedBody();
@@ -549,7 +549,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 		 * 
 		 * inv OneInitializer: self.ownedResult.ownedInit->size() = 1
 		 */
-		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtil.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		@NonNull /*@Caught*/ Object CAUGHT_eq;
 		try {
 		    final @Nullable /*@Thrown*/ Variable ownedResult = this.getOwnedResult();

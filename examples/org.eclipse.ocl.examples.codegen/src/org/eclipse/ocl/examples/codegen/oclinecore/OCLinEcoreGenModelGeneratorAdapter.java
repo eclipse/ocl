@@ -75,7 +75,7 @@ import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.pivot.util.PivotInternalPlugin;
 import org.eclipse.ocl.pivot.utilities.AS2Moniker;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.uml2.codegen.ecore.genmodel.util.UML2GenModelUtil;
 
 public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
@@ -149,7 +149,7 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 					((EClass)eClassifier).getEOperations().add(eOperation);
 					ecore2as.addMapping(eOperation, rule);
 					if (message != null) {
-						body = PivotUtil.createTupleValuedConstraint(body, null, message);
+						body = PivotUtilInternal.createTupleValuedConstraint(body, null, message);
 					}
 					EcoreUtil.setAnnotation(eOperation, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT, "body", body);
 				}

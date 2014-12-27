@@ -43,7 +43,7 @@ import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.manager.Orphanage;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.IProjectDescriptor;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
@@ -181,7 +181,7 @@ public class ConstraintMerger extends AbstractProjectComponent
 		List<Constraint> primaryInvariants = primaryType.getOwnedInvariants();
 		for (Constraint mergeInvariant : new ArrayList<Constraint>(mergeInvariants)) {
 			mergeInvariant.setIsCallable(true);
-			PivotUtil.resetContainer(mergeInvariant);
+			PivotUtilInternal.resetContainer(mergeInvariant);
 			primaryInvariants.add(mergeInvariant);
 		}
 		List<Property> mergeProperties = mergeType.getOwnedProperties();
@@ -216,7 +216,7 @@ public class ConstraintMerger extends AbstractProjectComponent
 				}
 				else											// Else simple promotion
 				{
-					PivotUtil.resetContainer(mergeOperation);
+					PivotUtilInternal.resetContainer(mergeOperation);
 					primaryOperations.add(mergeOperation);
 				}
 			}

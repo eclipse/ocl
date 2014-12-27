@@ -42,7 +42,7 @@ public class AliasAdapter extends AdapterImpl
 		if (resource == null) {
 			return null;
 		}
-		return PivotUtil.getAdapter(AliasAdapter.class, resource);
+		return ClassUtil.getAdapter(AliasAdapter.class, resource);
 	}
 
 	public static AliasAdapter getAdapter(Resource resource) {
@@ -50,7 +50,7 @@ public class AliasAdapter extends AdapterImpl
 			return null;
 		}
 		List<Adapter> eAdapters = ClassUtil.nonNullEMF(resource.eAdapters());
-		AliasAdapter adapter = PivotUtil.getAdapter(AliasAdapter.class, eAdapters);
+		AliasAdapter adapter = ClassUtil.getAdapter(AliasAdapter.class, eAdapters);
 		if (adapter == null) {
 			adapter = new AliasAdapter();
 			eAdapters.add(adapter);

@@ -33,6 +33,7 @@ import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.TemplateParameterSubstitutionVisitor;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.xtext.essentialocl.cs2as.EssentialOCLCSLeft2RightVisitor.Invocations;
 
@@ -91,7 +92,7 @@ public abstract class AbstractOperationMatcher
 
 	protected AbstractOperationMatcher(@NonNull MetaModelManager metaModelManager, @Nullable Type sourceType, @Nullable Type sourceTypeValue) {
 		this.metaModelManager = metaModelManager;
-		this.sourceType = sourceType != null ? PivotUtil.getType(sourceType) : null;		// FIXME redundant
+		this.sourceType = sourceType != null ? PivotUtilInternal.getType(sourceType) : null;		// FIXME redundant
 		this.sourceTypeValue = sourceTypeValue;
 	}
 
@@ -102,8 +103,8 @@ public abstract class AbstractOperationMatcher
 		@NonNull Operation candidate = (Operation) match2;
 		org.eclipse.ocl.pivot.Class referenceClass = reference.getOwningClass();
 		org.eclipse.ocl.pivot.Class candidateClass = candidate.getOwningClass();
-		Type referenceType = referenceClass != null ? PivotUtil.getType(referenceClass) : null;
-		Type candidateType = candidateClass != null ? PivotUtil.getType(candidateClass) : null;
+		Type referenceType = referenceClass != null ? PivotUtilInternal.getType(referenceClass) : null;
+		Type candidateType = candidateClass != null ? PivotUtilInternal.getType(candidateClass) : null;
 		Type specializedReferenceType = referenceType != null ? completeModel.getSpecializedType(referenceType, referenceBindings) : null;
 		Type specializedCandidateType = candidateType != null ? completeModel.getSpecializedType(candidateType, candidateBindings) : null;
 		if ((reference instanceof Iteration) && (candidate instanceof Iteration) && (specializedReferenceType != null) && (specializedCandidateType != null)) {
@@ -147,8 +148,8 @@ public abstract class AbstractOperationMatcher
 				candidateConversions = Integer.MIN_VALUE;
 			}
 			else {
-				referenceType = PivotUtil.getType(ClassUtil.nonNullModel(referenceParameter.getType()));
-				candidateType = PivotUtil.getType(ClassUtil.nonNullModel(candidateParameter.getType()));
+				referenceType = PivotUtilInternal.getType(ClassUtil.nonNullModel(referenceParameter.getType()));
+				candidateType = PivotUtilInternal.getType(ClassUtil.nonNullModel(candidateParameter.getType()));
 				specializedReferenceType = completeModel.getSpecializedType(referenceType, referenceBindings);
 				specializedCandidateType = completeModel.getSpecializedType(candidateType, candidateBindings);
 				if (argumentType != specializedReferenceType) {
@@ -277,11 +278,11 @@ public abstract class AbstractOperationMatcher
 				if (expression == null) {
 					return null;
 				}
-				Type candidateType = PivotUtil.getType(candidateParameter);
+				Type candidateType = PivotUtilInternal.getType(candidateParameter);
 				if (candidateType == null) {
 					return null;
 				}
-				Type expressionType = PivotUtil.getType(expression);
+				Type expressionType = PivotUtilInternal.getType(expression);
 				if (expressionType == null) {
 					return null;
 				}

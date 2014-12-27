@@ -41,7 +41,7 @@ import org.eclipse.m2m.qvt.oml.TransformationExecutor;
 import org.eclipse.m2m.qvt.oml.util.StringBufferLog;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 
 public class QVToTransformationExecutor extends AbstractWorkflowComponent
 {
@@ -266,7 +266,7 @@ public class QVToTransformationExecutor extends AbstractWorkflowComponent
 		for (EObject eObject : resource.getContents()) {
 			Map<Object, Object> validationContext = LabelUtil.createDefaultContext(Diagnostician.INSTANCE);
 			Resource eResource = ClassUtil.nonNullState(eObject.eResource());
-			PivotUtil.getMetaModelManager(eResource);	// FIXME oclIsKindOf fails because ExecutableStandardLibrary.getMetaclass is bad
+			PivotUtilInternal.getMetaModelManager(eResource);	// FIXME oclIsKindOf fails because ExecutableStandardLibrary.getMetaclass is bad
 			Diagnostic diagnostic = Diagnostician.INSTANCE.validate(eObject, validationContext);
 			List<Diagnostic> children = diagnostic.getChildren();
 			if (children.size() <= 0) {

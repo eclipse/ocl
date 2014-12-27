@@ -19,7 +19,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.scoping.ScopeView;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.xtext.essentialoclcs.AbstractNameExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CurlyBracketedClauseCS;
@@ -36,7 +36,7 @@ public class ConstructorPartCSAttribution extends AbstractAttribution
 			ConstructorPartCS targetElement = (ConstructorPartCS)target;
 			CurlyBracketedClauseCS csCurlyBracketClause = targetElement.getOwningCurlyBracketClause();
 			AbstractNameExpCS csNameExp = csCurlyBracketClause.getOwningNameExp();
-			ConstructorExp pivot = PivotUtil.getPivot(ConstructorExp.class, csNameExp);
+			ConstructorExp pivot = PivotUtilInternal.getPivot(ConstructorExp.class, csNameExp);
 			if (pivot != null) {
 				Type type = pivot.getType();
 				if (type instanceof org.eclipse.ocl.pivot.Class) {

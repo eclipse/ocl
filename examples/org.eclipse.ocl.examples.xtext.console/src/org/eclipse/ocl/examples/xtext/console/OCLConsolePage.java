@@ -73,7 +73,7 @@ import org.eclipse.ocl.pivot.utilities.BaseResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironment;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironmentFactory;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.Pivotable;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.CollectionValue;
@@ -205,7 +205,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 //			monitor.subTask(ConsoleMessages.Progress_AST);
 			ExpressionInOCL expressionInOCL;
 			try {
-				PivotUtil.checkResourceErrors("", resource); //$NON-NLS-1$
+				PivotUtilInternal.checkResourceErrors("", resource); //$NON-NLS-1$
 				expressionInOCL = parserContext.getExpression(resource);
 			} catch (ParserException e) {
 				value = new InvalidValueException(e, ConsoleMessages.Result_ParsingFailure);
@@ -843,7 +843,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 	}
 
 	public @NonNull MetaModelManager getMetaModelManager(@Nullable EObject contextObject) {
-		MetaModelManager metaModelManager = contextObject != null ? PivotUtil.findMetaModelManager(contextObject) : null;
+		MetaModelManager metaModelManager = contextObject != null ? PivotUtilInternal.findMetaModelManager(contextObject) : null;
 		if (metaModelManager != null) {
 			return metaModelManager;
 		}
@@ -937,7 +937,7 @@ public class OCLConsolePage extends Page implements MetaModelManagerListener
 					if (state instanceof BaseResource) {
 						((BaseResource)state).setParserContext(null);
 					}
-					return PivotUtil.findMetaModelManager(state);
+					return PivotUtilInternal.findMetaModelManager(state);
 				}
 			});
 			flushEvents();

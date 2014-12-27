@@ -40,7 +40,7 @@ import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.util.PivotSwitch;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 
 /**
  * 
@@ -75,8 +75,8 @@ public class CompleteOCLSplitter
 			return null;
 		}
 		URI uri = resource.getURI();
-		@SuppressWarnings("null")@NonNull URI oclURI = PivotUtil.getNonASURI(uri).appendFileExtension("ocl");
-		URI oclASuri = PivotUtil.getASURI(oclURI);	// xxx.ocl.ocl.oclas
+		@SuppressWarnings("null")@NonNull URI oclURI = PivotUtilInternal.getNonASURI(uri).appendFileExtension("ocl");
+		URI oclASuri = PivotUtilInternal.getASURI(oclURI);	// xxx.ocl.ocl.oclas
 		ASResource oclResource = (ASResource) resource.getResourceSet().createResource(oclASuri, ASResource.COMPLETE_OCL_CONTENT_TYPE);	
 		if (oclResource != null) {
 			Separator separator = new Separator(metaModelManager, oclResource);
@@ -115,7 +115,7 @@ public class CompleteOCLSplitter
 			NamedElement parent = (NamedElement) object.eContainer();
 			NamedElement separateParent = getSeparate(parent);
 			EStructuralFeature eContainingFeature = object.eContainingFeature();
-			PivotUtil.resetContainer(object);		// Avoid a child-stealing detection
+			PivotUtilInternal.resetContainer(object);		// Avoid a child-stealing detection
 			if (!eContainingFeature.isMany()) {
 				separateParent.eSet(eContainingFeature, object);
 			}
@@ -131,11 +131,11 @@ public class CompleteOCLSplitter
 			NamedElement parent = (NamedElement) object.eContainer();
 			NamedElement separateParent = getSeparate(parent);
 			if (separateParent instanceof Operation) {
-				PivotUtil.resetContainer(object);
+				PivotUtilInternal.resetContainer(object);
 				((Operation)separateParent).setBodyExpression(object);
 			}
 			if (separateParent instanceof Property) {
-				PivotUtil.resetContainer(object);
+				PivotUtilInternal.resetContainer(object);
 				((Property)separateParent).setOwnedExpression(object);
 			}
 			return object;

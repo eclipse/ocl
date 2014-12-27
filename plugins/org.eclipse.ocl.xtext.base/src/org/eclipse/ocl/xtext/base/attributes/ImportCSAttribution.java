@@ -29,6 +29,7 @@ import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.scoping.ScopeView;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS.UnresolvedProxyMessageProvider;
@@ -144,7 +145,7 @@ public class ImportCSAttribution extends AbstractAttribution implements Unresolv
 	@Override
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		ImportCS targetElement = (ImportCS)target;
-		ImportAdapter adapter = PivotUtil.getAdapter(ImportAdapter.class, targetElement);
+		ImportAdapter adapter = ClassUtil.getAdapter(ImportAdapter.class, targetElement);
 		if (adapter == null) {
 			adapter = new ImportAdapter();
 			targetElement.eAdapters().add(adapter);
@@ -160,7 +161,7 @@ public class ImportCSAttribution extends AbstractAttribution implements Unresolv
 
 	@Override
 	public @Nullable String getMessage(@NonNull EObject context, @NonNull String linkText) {
-		ImportAdapter adapter = PivotUtil.getAdapter(ImportAdapter.class, context);
+		ImportAdapter adapter = ClassUtil.getAdapter(ImportAdapter.class, context);
 		if (adapter != null) {
 			String message = adapter.getMessage();
 			return NLS.bind(OCLMessages.UnresolvedImport_ERROR_, linkText, message);

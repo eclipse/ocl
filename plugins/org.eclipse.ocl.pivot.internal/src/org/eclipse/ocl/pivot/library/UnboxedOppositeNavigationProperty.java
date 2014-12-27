@@ -29,9 +29,6 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractProperty;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
-/**
- * @since 3.5
- */
 public class UnboxedOppositeNavigationProperty extends AbstractProperty
 {
 	protected @NonNull PropertyId oppositePropertyId;

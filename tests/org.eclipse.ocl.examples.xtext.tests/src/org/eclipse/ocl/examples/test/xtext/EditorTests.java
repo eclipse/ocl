@@ -40,7 +40,8 @@ import org.eclipse.ocl.library.LibraryConstants;
 import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
@@ -105,7 +106,7 @@ public class EditorTests extends XtextTestCase
 		MetaModelManager metaModelManager = document.modify(new IUnitOfWork<MetaModelManager, XtextResource>() {				// Cancel validation
 			@Override
 			public MetaModelManager exec(@Nullable XtextResource state) throws Exception {
-				return PivotUtil.findMetaModelManager(state);
+				return PivotUtilInternal.findMetaModelManager(state);
 			}
 		});
 		flushEvents();
@@ -185,7 +186,7 @@ public class EditorTests extends XtextTestCase
 			@Override
 			public Object exec(@Nullable XtextResource resource) throws Exception {
 				assertNoResourceErrors("Loaded CS", resource);
-				CS2AS cs2as = PivotUtil.getAdapter(CS2AS.class, resource);		// FIXME Wrong class
+				CS2AS cs2as = ClassUtil.getAdapter(CS2AS.class, resource);		// FIXME Wrong class
 				if (cs2as != null) {
 					Resource asResource = cs2as.getPivotResource((BaseCSResource) resource);
 					assertNoResourceErrors("Loaded pivot", asResource);
@@ -214,7 +215,7 @@ public class EditorTests extends XtextTestCase
 			@Override
 			public Object exec(@Nullable XtextResource resource) throws Exception {
 //				assertNoResourceErrors("Loaded CS", resource);
-				CS2ASResourceAdapter cs2as = PivotUtil.getAdapter(CS2ASResourceAdapter.class, resource);
+				CS2ASResourceAdapter cs2as = ClassUtil.getAdapter(CS2ASResourceAdapter.class, resource);
 				if (cs2as != null) {
 					Resource asResource = cs2as.getASResource((BaseCSResource) resource);
 					assertNoResourceErrors(prefix, asResource);

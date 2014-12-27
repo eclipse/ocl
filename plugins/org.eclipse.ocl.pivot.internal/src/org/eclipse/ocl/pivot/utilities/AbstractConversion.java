@@ -78,10 +78,10 @@ public abstract class AbstractConversion
 	}
 
 	public <T extends EObject> void refreshList(@Nullable List<? super T> oldElements, @Nullable List<? extends T> newElements) {
-		PivotUtil.refreshList(oldElements, newElements);
+		PivotUtilInternal.refreshList(oldElements, newElements);
 	}
 
 	protected <T extends EObject> void refreshSet(@Nullable List<? super T> oldElements, @Nullable Collection<? extends T> newElements) {
-		PivotUtil.refreshSet(oldElements, newElements);
+		PivotUtilInternal.refreshSet(oldElements, newElements);
 	}
 }

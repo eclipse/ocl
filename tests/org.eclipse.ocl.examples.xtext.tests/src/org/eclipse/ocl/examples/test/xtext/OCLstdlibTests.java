@@ -49,7 +49,7 @@ import org.eclipse.ocl.pivot.model.OCLMetaModel;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.utilities.AS2Moniker;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ProjectMap;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
@@ -368,7 +368,7 @@ public class OCLstdlibTests extends XtextTestCase
 		//
 		Resource javaResource = OCLstdlib.getDefault();
 		Resource asResource = doLoadAS(resourceSet, libraryURI, javaResource, true);
-		PivotUtil.getMetaModelManager(asResource).dispose();
+		PivotUtilInternal.getMetaModelManager(asResource).dispose();
 	}
 	
 	/**
@@ -391,6 +391,6 @@ public class OCLstdlibTests extends XtextTestCase
 		org.eclipse.ocl.pivot.Package oclMetamodel = OCLMetaModel.create(standardLibrary, asLibrary.getName(), asLibrary.getNsPrefix(), OCLMetaModel.PIVOT_URI);
 		Resource javaResource = oclMetamodel.eResource();
 		Resource asResource = doLoadAS(resourceSet, pivotURI, javaResource, false);		// FIXME Contents are far from identical
-		PivotUtil.getMetaModelManager(asResource).dispose();
+		PivotUtilInternal.getMetaModelManager(asResource).dispose();
 	}
 }

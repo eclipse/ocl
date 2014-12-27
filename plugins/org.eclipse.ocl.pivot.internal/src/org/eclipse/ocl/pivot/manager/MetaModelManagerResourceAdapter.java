@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 /**
  * A MetaModelManagerResourceAdapter enhances the Resource for a Concrete Syntax model
@@ -34,7 +33,7 @@ public class MetaModelManagerResourceAdapter extends AbstractMetaModelManagerRes
 	
 	public static @NonNull MetaModelManagerResourceAdapter getAdapter(@NonNull Resource resource, @Nullable MetaModelManager metaModelManager) {
 		List<Adapter> eAdapters = ClassUtil.nonNullEMF(resource.eAdapters());
-		MetaModelManagerResourceAdapter adapter = PivotUtil.getAdapter(MetaModelManagerResourceAdapter.class, eAdapters);
+		MetaModelManagerResourceAdapter adapter = ClassUtil.getAdapter(MetaModelManagerResourceAdapter.class, eAdapters);
 //		if ((adapter != null) && (metaModelManager != null) && (adapter.getMetaModelManager() != metaModelManager)) {
 //			eAdapters.remove(adapter);
 //			adapter = null;

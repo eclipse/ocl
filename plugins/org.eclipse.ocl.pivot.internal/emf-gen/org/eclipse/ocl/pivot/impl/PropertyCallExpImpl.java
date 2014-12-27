@@ -42,7 +42,7 @@ import org.eclipse.ocl.pivot.manager.TemplateSpecialisation;
 import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.pivot.util.PivotValidator;
 import org.eclipse.ocl.pivot.util.Visitor;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.osgi.util.NLS;
@@ -420,7 +420,7 @@ public class PropertyCallExpImpl
 		Property referredProperty = getReferredProperty();
 		org.eclipse.ocl.pivot.Class referencedType = referredProperty.getOwningClass();
 		if (TemplateSpecialisation.needsSpecialisation(referencedType)) {
-		    Evaluator evaluator = PivotUtil.getEvaluator(this);
+		    Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 			TemplateSpecialisation templateSpecialization = new TemplateSpecialisation(evaluator.getCompleteEnvironment());
 			Type resultType = getType();
 //			if (resultType instanceof DomainMetaclass) {
@@ -435,7 +435,7 @@ public class PropertyCallExpImpl
 			return referencedType;
 		}
 		else {
-		    Evaluator evaluator = PivotUtil.getEvaluator(this);
+		    Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		    return evaluator.getCompleteEnvironment().getOwnedStandardLibrary().getOclInvalidType();
 		}
 	}
@@ -452,7 +452,7 @@ public class PropertyCallExpImpl
 		Type referencedType = referredProperty.getType();
 		Type specializedType = referencedType;
 		if ((referencedType != null) && TemplateSpecialisation.needsSpecialisation(referencedType)) {
-		    Evaluator evaluator = PivotUtil.getEvaluator(this);
+		    Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 			TemplateSpecialisation templateSpecialization = new TemplateSpecialisation(evaluator.getCompleteEnvironment());
 			Type resultType = getType();
 //			boolean isMetaclass = resultType instanceof DomainMetaclass;
@@ -473,7 +473,7 @@ public class PropertyCallExpImpl
 			return (org.eclipse.ocl.pivot.Class)specializedType;
 		}
 		else {
-		    Evaluator evaluator = PivotUtil.getEvaluator(this);
+		    Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		    return evaluator.getCompleteEnvironment().getOwnedStandardLibrary().getOclInvalidType();
 		}
 	}
@@ -532,7 +532,7 @@ public class PropertyCallExpImpl
 		    catch (Exception e) {
 		        CAUGHT_symbol_2 = ValueUtil.createInvalidValue(e);
 		    }
-		    final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtil.getEvaluator(this);
+		    final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		    @NonNull /*@Caught*/ Object CAUGHT_b;
 		    try {
 		        final @Nullable /*@Thrown*/ OCLExpression ownedSource = this.getOwnedSource();

@@ -92,6 +92,7 @@ import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironment;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ProjectMap;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
@@ -220,7 +221,7 @@ public abstract class PivotTestSuite extends PivotTestCase
     		org.eclipse.ocl.pivot.Class contextClassifier = environment.getContextClassifier();
     		ParserContext semanticContext = new ClassContext(metaModelManager, null, contextClassifier, null);
 			resource = semanticContext.createBaseResource(expression);
-			PivotUtil.checkResourceErrors(StringUtil.bind(OCLMessages.ErrorsInResource, expression), resource);
+			PivotUtilInternal.checkResourceErrors(StringUtil.bind(OCLMessages.ErrorsInResource, expression), resource);
             fail("Should not have parsed \"" + expression + "\"");
         } catch (ParserException e) {
         	assertEquals("Exception for \"" + expression + "\"", exception, e.getClass());
@@ -257,7 +258,7 @@ public abstract class PivotTestSuite extends PivotTestCase
    		org.eclipse.ocl.pivot.Class contextClassifier = environment.getContextClassifier();
    		ParserContext classContext = new ClassContext(metaModelManager, null, contextClassifier, null);
    		csResource = (BaseCSResource) classContext.createBaseResource(expression);
-			PivotUtil.checkResourceErrors(StringUtil.bind(OCLMessages.ErrorsInResource, expression), csResource);
+			PivotUtilInternal.checkResourceErrors(StringUtil.bind(OCLMessages.ErrorsInResource, expression), csResource);
 			CS2ASResourceAdapter cs2as = csResource.getCS2ASAdapter(metaModelManager);
 			Resource asResource = cs2as.getASResource(csResource);
 			assertNoValidationErrors("Validating", asResource);
@@ -291,7 +292,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 			org.eclipse.ocl.pivot.Class contextClassifier = environment.getContextClassifier();
 			ParserContext classContext = new ClassContext(metaModelManager, null, contextClassifier, null);
 			csResource = (BaseCSResource) classContext.createBaseResource(expression);
-			PivotUtil.checkResourceErrors(StringUtil.bind(OCLMessages.ErrorsInResource, expression), csResource);
+			PivotUtilInternal.checkResourceErrors(StringUtil.bind(OCLMessages.ErrorsInResource, expression), csResource);
 			CS2ASResourceAdapter cs2as = csResource.getCS2ASAdapter(metaModelManager);
 			Resource asResource = cs2as.getASResource(csResource);
 			assertNoValidationErrors("Validating", asResource);
@@ -783,7 +784,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	   		org.eclipse.ocl.pivot.Class contextClassifier = environment.getContextClassifier();
 	   		ParserContext classContext = new ClassContext(metaModelManager, null, contextClassifier, null);
 	   		csResource = (BaseCSResource) classContext.createBaseResource(expression);
-			PivotUtil.checkResourceErrors(StringUtil.bind(OCLMessages.ErrorsInResource, expression), csResource);
+			PivotUtilInternal.checkResourceErrors(StringUtil.bind(OCLMessages.ErrorsInResource, expression), csResource);
 			CS2ASResourceAdapter cs2as = csResource.getCS2ASAdapter(metaModelManager);
 			Resource asResource = cs2as.getASResource(csResource);
 	       	String expectedMessage = StringUtil.bind(messageTemplate, bindings);
@@ -808,7 +809,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	   		org.eclipse.ocl.pivot.Class contextClassifier = environment.getContextClassifier();
 	   		ParserContext classContext = new ClassContext(metaModelManager, null, contextClassifier, null);
 	   		csResource = (BaseCSResource) classContext.createBaseResource(expression);
-			PivotUtil.checkResourceErrors(StringUtil.bind(OCLMessages.ErrorsInResource, expression), csResource);
+			PivotUtilInternal.checkResourceErrors(StringUtil.bind(OCLMessages.ErrorsInResource, expression), csResource);
 			CS2ASResourceAdapter cs2as = csResource.getCS2ASAdapter(metaModelManager);
 			Resource asResource = cs2as.getASResource(csResource);
 	       	String expectedMessage = StringUtil.bind(messageTemplate, bindings);

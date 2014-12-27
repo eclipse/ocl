@@ -15,7 +15,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.AbstractScope;
@@ -23,12 +23,11 @@ import org.eclipse.xtext.scoping.impl.AbstractScope;
 /**
  * An AbstractJavaClassScope provides the abstract support for ClassName lookup in the base plugin. The real
  * lookup is opnly appropriate for OCLstdlib whether the derived JavaClassScope resides.
- * @since 3.5
  */
 public abstract class AbstractJavaClassScope extends AbstractScope implements Adapter
 {
 	public static @Nullable AbstractJavaClassScope findAdapter(@NonNull BaseCSResource csResource) {
-		return PivotUtil.getAdapter(AbstractJavaClassScope.class, csResource);
+		return ClassUtil.getAdapter(AbstractJavaClassScope.class, csResource);
 	}
 	
 	private Notifier target;

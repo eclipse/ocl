@@ -48,6 +48,7 @@ import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 
 public class DelegateConstraintLocator extends AbstractPivotConstraintLocator
 {
@@ -177,7 +178,7 @@ public class DelegateConstraintLocator extends AbstractPivotConstraintLocator
 		if (resultConstrainingNode == null) {
 			return;
 		}
-		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(eResource);
+		MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(eResource);
 		Constraint asConstraint = null;
 		try {
 			asConstraint = getConstraint(metaModelManager, resultConstrainingNode);

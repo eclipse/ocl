@@ -27,7 +27,7 @@ import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.scoping.ScopeView;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.xtext.essentialoclcs.AbstractNameExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.InfixExpCS;
@@ -47,7 +47,7 @@ public class NavigatingArgCSAttribution extends AbstractAttribution
 		AbstractNameExpCS targetElement = csRoundBracketedClause.getOwningNameExp();
 		assert targetElement != null;
 		InfixExpCS csNavigationOperator = NavigationUtil.getNavigationInfixExp(targetElement);
-		OCLExpression pivot = PivotUtil.getPivot(OCLExpression.class, targetElement);	// NB QVTr's RelationCallExp is not a CallExp
+		OCLExpression pivot = PivotUtilInternal.getPivot(OCLExpression.class, targetElement);	// NB QVTr's RelationCallExp is not a CallExp
 		if (pivot instanceof LoopExp) {				// FIXME This is null for nested iteration
 			if (role == NavigationRole.EXPRESSION) {
 				for (Variable iterator : ((LoopExp)pivot).getOwnedIterators()) {
@@ -97,7 +97,7 @@ public class NavigatingArgCSAttribution extends AbstractAttribution
 				//
 				if ((csNavigationOperator != null)  && csNavigationOperator.getName().equals(PivotConstantsInternal.COLLECTION_NAVIGATION_OPERATOR)) {
 					ExpCS csSource = csNavigationOperator.getSource();
-					OCLExpression source = PivotUtil.getPivot(OCLExpression.class, csSource);
+					OCLExpression source = PivotUtilInternal.getPivot(OCLExpression.class, csSource);
 					if (source != null) {
 						Type type = source.getType();
 						Type elementType;

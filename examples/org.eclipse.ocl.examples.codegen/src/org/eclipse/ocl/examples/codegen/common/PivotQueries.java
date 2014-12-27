@@ -17,12 +17,12 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 
 public class PivotQueries
 {
 	public static @NonNull LinkedHashSet<Operation> getOperations(@NonNull org.eclipse.ocl.pivot.Class type) {
-		MetaModelManager metaModelManager = ClassUtil.nonNullState(PivotUtil.findMetaModelManager(type));
+		MetaModelManager metaModelManager = ClassUtil.nonNullState(PivotUtilInternal.findMetaModelManager(type));
 		LinkedHashSet<Operation> operations = new LinkedHashSet<Operation>();
 		for (Operation operation : metaModelManager.getMemberOperations(type, false)) {
 			operations.add(operation);
@@ -34,7 +34,7 @@ public class PivotQueries
 	}
 	
 	public static @NonNull LinkedHashSet<Property> getProperties(@NonNull org.eclipse.ocl.pivot.Class type) {
-		MetaModelManager metaModelManager = ClassUtil.nonNullState(PivotUtil.findMetaModelManager(type));
+		MetaModelManager metaModelManager = ClassUtil.nonNullState(PivotUtilInternal.findMetaModelManager(type));
 		LinkedHashSet<Property> properties = new LinkedHashSet<Property>();
 		for (Property property : metaModelManager.getMemberProperties(type, false)) {
 			properties.add(property);

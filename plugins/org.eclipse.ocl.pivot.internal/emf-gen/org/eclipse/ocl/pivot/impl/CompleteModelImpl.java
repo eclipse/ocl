@@ -59,6 +59,7 @@ import org.eclipse.ocl.pivot.manager.TupleTypeManager;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.TypeUtil;
 import org.eclipse.ocl.pivot.values.CollectionTypeParameters;
 import org.eclipse.ocl.pivot.values.IntegerValue;
@@ -727,7 +728,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 								if (specializedParameterSubstitution.getFormal() == superActual) {
 									Type specializedActual = ClassUtil.nonNullModel(specializedParameterSubstitution.getActual());
 									TemplateParameter superFormal = ClassUtil.nonNullModel(superParameterSubstitution.getFormal());
-									superSpecializedTemplateParameterSubstitution = PivotUtil.createTemplateParameterSubstitution(superFormal, specializedActual);
+									superSpecializedTemplateParameterSubstitution = PivotUtilInternal.createTemplateParameterSubstitution(superFormal, specializedActual);
 									break;
 								}
 							}

@@ -85,7 +85,7 @@ public class ASSaver
 	}
 
 	public boolean addSpecializingElement(@NonNull Element object, @NonNull org.eclipse.ocl.pivot.Class referredType) {
-		if (PivotUtil.isLibraryType(referredType)) {
+		if (PivotUtilInternal.isLibraryType(referredType)) {
 			return false;
 		}
 		else {
@@ -290,7 +290,7 @@ public class ASSaver
 	 * of a local copy of a specialization.
 	 */
 	public @NonNull <T extends org.eclipse.ocl.pivot.Class> T resolveType(@NonNull T referredType) {
-		if (PivotUtil.isLibraryType(referredType)) {
+		if (PivotUtilInternal.isLibraryType(referredType)) {
 			return referredType;
 		}
 		org.eclipse.ocl.pivot.Class resolvedType = specializations.get(referredType);

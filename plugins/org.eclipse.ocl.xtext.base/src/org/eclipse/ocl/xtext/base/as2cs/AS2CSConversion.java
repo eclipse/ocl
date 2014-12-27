@@ -48,6 +48,7 @@ import org.eclipse.ocl.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.values.Unlimited;
 import org.eclipse.ocl.xtext.base.as2cs.AS2CS.Factory;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
@@ -114,7 +115,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 	public void createImports(@NonNull RootCS documentCS, @NonNull Map<Namespace, List<String>> importedNamespaces) {
 		BaseCSResource csResource = (BaseCSResource) ClassUtil.nonNullState(documentCS.eResource());
 		AliasAnalysis.dispose(csResource);			// Force reanalysis
-		MetaModelManager metaModelManager = PivotUtil.findMetaModelManager(csResource);
+		MetaModelManager metaModelManager = PivotUtilInternal.findMetaModelManager(csResource);
 		if (metaModelManager == null) {
 			throw new IllegalStateException("No MetaModelManager");
 		}
@@ -205,8 +206,8 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 			public int compare(ImportCS o1, ImportCS o2) {
 				Namespace ns1 = o1.getReferredNamespace();
 				Namespace ns2 = o2.getReferredNamespace();
-				int d1 = PivotUtil.getContainmentDepth(ns1);
-				int d2 = PivotUtil.getContainmentDepth(ns2);
+				int d1 = PivotUtilInternal.getContainmentDepth(ns1);
+				int d2 = PivotUtilInternal.getContainmentDepth(ns2);
 				if (d1 != d2) {
 					return d1 - d2;
 				}
@@ -464,7 +465,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 		final Type type = object.getType();
 		final Type elementType;
 		if ((type instanceof CollectionType) && (((CollectionType)type).getUnspecializedElement() != standardLibrary.getCollectionType())) {
-			PivotUtil.debugWellContainedness(type);
+			PivotUtilInternal.debugWellContainedness(type);
 			elementType = ((CollectionType)type).getElementType();
 		}
 		else if (type instanceof VoidType) {
@@ -474,7 +475,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 			elementType = type;
 		}
 		if (elementType != null) {
-			PivotUtil.debugWellContainedness(elementType);
+			PivotUtilInternal.debugWellContainedness(elementType);
 			TypedRefCS typeRef = visitReference(TypedRefCS.class, elementType, null);
 			csElement.setOwnedType(typeRef);
 		}

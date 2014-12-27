@@ -22,7 +22,7 @@ import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.resource.ASResourceImpl;
 import org.eclipse.ocl.pivot.utilities.AS2XMIid;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 
@@ -53,7 +53,7 @@ public class CompleteOCLASResourceImpl extends ASResourceImpl
 	@Override
 	public void load(Map<?, ?> options) throws IOException {
 		@SuppressWarnings("null")@NonNull URI oclURI = uri.trimFileExtension();
-		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(this);
+		MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(this);
 		BaseCSResource csResource = (BaseCSResource) metaModelManager.getExternalResourceSet().getResource(oclURI, true);
 		CS2ASResourceAdapter adapter = null;
 //		try {

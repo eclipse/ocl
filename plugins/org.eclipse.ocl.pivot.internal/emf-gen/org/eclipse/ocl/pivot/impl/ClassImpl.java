@@ -66,7 +66,7 @@ import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.pivot.util.PivotValidator;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.SetValue;
@@ -654,7 +654,7 @@ public class ClassImpl
 		/**
 		 * inv UniqueInvariantName: ownedInvariants->isUnique(name)
 		 */
-		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtil.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		@NonNull /*@Caught*/ Object CAUGHT_isUnique;
 		try {
@@ -1342,12 +1342,12 @@ public class ClassImpl
 		if (selfType != null) {
 			TemplateSignature templateSignature = getOwnedSignature();
 			if (templateSignature != null) {
-				MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(ClassUtil.nonNullState(callExpr.eResource()));
+				MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(ClassUtil.nonNullState(callExpr.eResource()));
 				return metaModelManager.specializeType(this, callExpr, selfType, null);
 			}
 			List<TemplateBinding> templateBindings = getOwnedBindings();
 			if ((templateBindings != null) && !templateBindings.isEmpty()) {
-				MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(ClassUtil.nonNullState(callExpr.eResource()));
+				MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(ClassUtil.nonNullState(callExpr.eResource()));
 				return metaModelManager.specializeType(this, callExpr, selfType, null);
 			}
 		}

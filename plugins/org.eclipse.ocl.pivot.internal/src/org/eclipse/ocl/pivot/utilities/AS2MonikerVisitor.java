@@ -246,7 +246,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 	@Override
 	public Object visitConstraint(@NonNull Constraint object) {
 		context.appendParent(object, MONIKER_SCOPE_SEPARATOR);
-		context.append(PivotUtil.getStereotype(object));
+		context.append(PivotUtilInternal.getStereotype(object));
 		Object container = object.eContainer().eGet(object.eContainingFeature());
 		if (container instanceof List<?>) {		
 			int index = 0;
@@ -257,7 +257,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 				}
 				if (content instanceof Constraint) {
 					Constraint sibling = (Constraint) content;
-					if (PivotUtil.getStereotype(sibling).equals(PivotUtil.getStereotype(object))) {
+					if (PivotUtilInternal.getStereotype(sibling).equals(PivotUtilInternal.getStereotype(object))) {
 						String name1 = sibling.getName();
 						if (name1 != name2) {
 							if ((name1 == null) || !name1.equals(name2)) {
@@ -441,7 +441,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 //		if (!object.hasMoniker()) {
 //			throw new IllegalStateException("No moniker has been configured for " + object);
 //		}
-		context.append(PivotUtil.getNsURI(object));
+		context.append(PivotUtilInternal.getNsURI(object));
 		return true;
 	}
 

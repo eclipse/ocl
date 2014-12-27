@@ -19,7 +19,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.xtext.essentialoclcs.NavigatingArgCS;
 import org.eclipse.ocl.xtext.essentialoclcs.NavigationRole;
 import org.eclipse.ocl.xtext.essentialoclcs.RoundBracketedClauseCS;
@@ -32,7 +32,7 @@ public class OperationMatcher extends AbstractOperationMatcher
 		super(metaModelManager, sourceType, sourceTypeValue);
 		for (NavigatingArgCS csNavigatingArg : csRoundBracketedClause.getOwnedArguments()) {
 			if (csNavigatingArg.getRole() == NavigationRole.EXPRESSION) {
-				asArguments.add(PivotUtil.getPivot(OCLExpression.class, csNavigatingArg));
+				asArguments.add(PivotUtilInternal.getPivot(OCLExpression.class, csNavigatingArg));
 			}
 		}
 	}

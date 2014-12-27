@@ -46,7 +46,7 @@ import org.eclipse.ocl.pivot.resource.ASResourceImpl;
 import org.eclipse.ocl.pivot.resource.OCLASResourceFactory;
 import org.eclipse.ocl.pivot.utilities.AS2XMIid;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 
 /**
  * This is the http://www.eclipse.org/ocl/2015/Library Standard Library
@@ -185,7 +185,7 @@ public class OCLstdlib extends ASResourceImpl
 	 */
 	private OCLstdlib(@NonNull String asURI, @NonNull Model libraryModel) {
 		super(ClassUtil.nonNullState(URI.createURI(asURI)), OCLASResourceFactory.INSTANCE);
-		assert PivotUtil.isASURI(asURI);
+		assert PivotUtilInternal.isASURI(asURI);
 		getContents().add(libraryModel);
 //		System.out.println(Thread.currentThread().getName() + " Create " + debugSimpleName(this));		
 //		liveOCLstdlibs.put(this, null);

@@ -30,7 +30,7 @@ import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
@@ -90,7 +90,7 @@ public class OCLstdlibCSContainmentVisitor extends AbstractOCLstdlibCSContainmen
 						if (coercions == null) {
 							coercions = new ArrayList<Operation>();
 						}
-						coercions.add(PivotUtil.getPivot(Operation.class, csOperation));
+						coercions.add(PivotUtilInternal.getPivot(Operation.class, csOperation));
 					}
 					else {
 						context.addDiagnostic(csOperation, "Only PrimitiveTypes may have coercions");
@@ -98,7 +98,7 @@ public class OCLstdlibCSContainmentVisitor extends AbstractOCLstdlibCSContainmen
 				}
 			}
 			if (pivotElement instanceof PrimitiveType) {
-				PivotUtil.refreshList(((PrimitiveType)pivotElement).getCoercions(), coercions);
+				PivotUtilInternal.refreshList(((PrimitiveType)pivotElement).getCoercions(), coercions);
 			}
 		}
 		return null;
@@ -119,7 +119,7 @@ public class OCLstdlibCSContainmentVisitor extends AbstractOCLstdlibCSContainmen
 	@Override
 	public Continuation<?> visitLibOperationCS(@NonNull LibOperationCS csElement) {
 		Continuation<?> cont = super.visitLibOperationCS(csElement);
-		Operation pivotElement = PivotUtil.getPivot(Operation.class, csElement);
+		Operation pivotElement = PivotUtilInternal.getPivot(Operation.class, csElement);
 		if (pivotElement != null) {
 			pivotElement.setIsInvalidating(csElement.isIsInvalidating());
 			pivotElement.setIsValidating(csElement.isIsValidating());

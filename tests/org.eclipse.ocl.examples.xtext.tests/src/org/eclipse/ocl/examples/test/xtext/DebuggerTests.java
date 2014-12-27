@@ -47,7 +47,7 @@ import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.intro.IIntroManager;
@@ -133,7 +133,7 @@ public class DebuggerTests extends XtextTestCase
 		@SuppressWarnings("unchecked")List<EObject> customers = (List<EObject>) xmiRoot.eGet(ref_RandL_Customer);
 		EObject eObject = customers.get(0);
 		
-		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(oclResource);
+		MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(oclResource);
 		org.eclipse.ocl.pivot.Class customerClass = metaModelManager.getPivotOf(org.eclipse.ocl.pivot.Class.class, eObject.eClass());
 		Iterable<Constraint> customerInvariants = metaModelManager.getAllInvariants(customerClass);
 		Constraint constraint = NameUtil.getNameable(customerInvariants, "invariant_sizesAgree");

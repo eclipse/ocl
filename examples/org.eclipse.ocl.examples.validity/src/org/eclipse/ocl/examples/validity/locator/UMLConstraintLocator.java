@@ -43,6 +43,7 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
@@ -281,13 +282,13 @@ public class UMLConstraintLocator extends AbstractPivotConstraintLocator
 		if (umlConstraint == null) {
 			return;
 		}
-		MetaModelManager metaModelManager = PivotUtil.findMetaModelManager(umlConstraint);
+		MetaModelManager metaModelManager = PivotUtilInternal.findMetaModelManager(umlConstraint);
 		if (metaModelManager == null) {
 			Resource eResource = umlConstraint.eResource();
 			if (eResource == null) {
 				return;
 			}
-			metaModelManager = PivotUtil.getMetaModelManager(eResource);
+			metaModelManager = PivotUtilInternal.getMetaModelManager(eResource);
 		}
 		Severity severity = Severity.UNKNOWN;
 		try {

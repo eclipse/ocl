@@ -34,7 +34,7 @@ import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.xtext.oclinecore.ui.OCLinEcoreUiModule;
 import org.eclipse.ocl.xtext.oclinecore.ui.internal.OCLinEcoreActivator;
 import org.eclipse.ocl.xtext.oclstdlib.ui.OCLstdlibUiModule;
@@ -215,7 +215,7 @@ public class CompletionProposalTests extends XtextTestCase
 		MetaModelManager metaModelManager = document.modify(new IUnitOfWork<MetaModelManager, XtextResource>() {				// Cancel validation
 			@Override
 			public MetaModelManager exec(@Nullable XtextResource state) throws Exception {
-				return PivotUtil.findMetaModelManager(state);
+				return PivotUtilInternal.findMetaModelManager(state);
 			}
 		});
 		flushEvents();

@@ -2884,7 +2884,6 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 
 	/**
 	 * Return the names of all the  projects/bundles.
-	 * @since 3.5
 	 */
 	public @Nullable Set<String> getProjectNames() {
 		Map<String, IProjectDescriptor> project2descriptor2 = getProjectDescriptors();

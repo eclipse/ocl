@@ -37,7 +37,7 @@ import org.eclipse.ocl.pivot.impl.TupleTypeImpl;
 import org.eclipse.ocl.pivot.impl.TypedElementImpl;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.values.TemplateParameterSubstitutions;
 
 /**
@@ -257,7 +257,7 @@ public class TupleTypeManager
 		List<Property> parts = specializedTupleType.getOwnedProperties();
 		for (Property part : parts) {
 			if (part != null) {
-				Type propertyType = PivotUtil.getType(part);
+				Type propertyType = PivotUtilInternal.getType(part);
 				if (propertyType != null) {
 					Type resolvedPropertyType = completeEnvironment.getSpecializedType(propertyType, usageBindings);
 					if (resolvedPropertyType != propertyType) {

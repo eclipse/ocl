@@ -14,12 +14,17 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.BagType;
+import org.eclipse.ocl.pivot.CollectionKind;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.OrderedSetType;
 import org.eclipse.ocl.pivot.ParameterTypes;
+import org.eclipse.ocl.pivot.SequenceType;
+import org.eclipse.ocl.pivot.SetType;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateParameters;
@@ -191,5 +196,23 @@ public class TypeUtil
 		TypeId firstParts = firstTupleType.getTypeId();
 		TypeId secondParts = secondTupleType.getTypeId();
 		return firstParts == secondParts;
+	}
+
+	public static CollectionKind getCollectionKind(CollectionType collectionType) {
+		if (collectionType instanceof OrderedSetType) {
+			return CollectionKind.ORDERED_SET;
+		}
+		else if (collectionType instanceof SequenceType) {
+			return CollectionKind.SEQUENCE;
+		}
+		else if (collectionType instanceof SetType) {
+			return CollectionKind.SET;
+		}
+		else if (collectionType instanceof BagType) {
+			return CollectionKind.BAG;
+		}
+		else {
+			return CollectionKind.COLLECTION;
+		}
 	}
 }

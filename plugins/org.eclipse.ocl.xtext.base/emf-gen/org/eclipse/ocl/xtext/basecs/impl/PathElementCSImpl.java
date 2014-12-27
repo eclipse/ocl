@@ -23,7 +23,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
 import org.eclipse.ocl.xtext.basecs.PathElementCS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
@@ -371,7 +371,7 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 		Element element = getReferredElementGen();
 		if ((element == null) || ((EObject)element).eIsProxy())
 		{
-			MetaModelManager metaModelManager = PivotUtil.findMetaModelManager(this);
+			MetaModelManager metaModelManager = PivotUtilInternal.findMetaModelManager(this);
 			if (metaModelManager != null) {
 				if (isType()) {
 					element = metaModelManager.getStandardLibrary().getOclInvalidType();

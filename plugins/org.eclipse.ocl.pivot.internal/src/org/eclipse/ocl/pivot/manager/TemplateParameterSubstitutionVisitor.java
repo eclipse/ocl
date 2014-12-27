@@ -58,6 +58,7 @@ import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.values.TemplateParameterSubstitutions;
 
 /**
@@ -205,7 +206,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		List<Property> parts = specializedTupleType.getOwnedProperties();
 		for (Property part : parts) {
 			if (part != null) {
-				Type propertyType = PivotUtil.getType(part);
+				Type propertyType = PivotUtilInternal.getType(part);
 				if (propertyType != null) {
 					Type resolvedPropertyType = specializeType(propertyType);
 					if (resolvedPropertyType != propertyType) {

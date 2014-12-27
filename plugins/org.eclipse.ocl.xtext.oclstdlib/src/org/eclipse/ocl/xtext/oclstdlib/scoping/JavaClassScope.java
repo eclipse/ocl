@@ -37,7 +37,7 @@ import org.eclipse.jdt.core.IParent;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.xtext.base.scoping.AbstractJavaClassScope;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.oclstdlibcs.JavaClassCS;
@@ -64,7 +64,7 @@ public class JavaClassScope extends AbstractJavaClassScope
 //	private static final Logger logger = Logger.getLogger(JavaClassScope.class);
 
 	public static @NonNull JavaClassScope getAdapter(@NonNull BaseCSResource csResource, @NonNull ClassLoader classLoader) {
-		AbstractJavaClassScope adapter = PivotUtil.getAdapter(AbstractJavaClassScope.class, csResource);
+		AbstractJavaClassScope adapter = ClassUtil.getAdapter(AbstractJavaClassScope.class, csResource);
 		if (adapter == null) {
 			adapter = new JavaClassScope(classLoader);
 			csResource.eAdapters().add(adapter);
@@ -73,7 +73,7 @@ public class JavaClassScope extends AbstractJavaClassScope
 	}
 
 	public static @NonNull JavaClassScope getAdapter(@NonNull BaseCSResource csResource, @NonNull IProject project) {
-		AbstractJavaClassScope adapter = PivotUtil.getAdapter(AbstractJavaClassScope.class, csResource);
+		AbstractJavaClassScope adapter = ClassUtil.getAdapter(AbstractJavaClassScope.class, csResource);
 		if (adapter == null) {
 			adapter = new JavaClassScope(project);
 			csResource.eAdapters().add(adapter);

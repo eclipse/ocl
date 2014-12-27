@@ -22,7 +22,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
 import org.eclipse.ocl.examples.debug.vm.srclookup.VMSourcePathComputer;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 
 public class OCLSourcePathComputer extends VMSourcePathComputer
 {
@@ -46,7 +46,7 @@ public class OCLSourcePathComputer extends VMSourcePathComputer
 			uri = URI.createURI(moduleFileName);
 		}
 	@SuppressWarnings("null")@NonNull URI trimFragment = uri.trimFragment();
-      URI moduleURI = PivotUtil.getNonASURI(trimFragment);
+      URI moduleURI = PivotUtilInternal.getNonASURI(trimFragment);
       return moduleURI;
 //      IFile moduleFile = getWorkspaceFile(moduleUri);
 //      if (moduleFile == null) {

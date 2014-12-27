@@ -37,7 +37,7 @@ import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.BaseResource;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.validation.PivotEObjectValidator.ValidationAdapter;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;
@@ -59,7 +59,7 @@ public class PivotConstraintLocator extends AbstractConstraintLocator
 				asResource = ((BaseResource) resource).getASResource(null);
 			}
 			if (asResource != null) {
-				MetaModelManager metaModelManager = PivotUtil.findMetaModelManager(asResource);
+				MetaModelManager metaModelManager = PivotUtilInternal.findMetaModelManager(asResource);
 				if (metaModelManager != null) {
 					for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {
 						if (monitor.isCanceled()) {

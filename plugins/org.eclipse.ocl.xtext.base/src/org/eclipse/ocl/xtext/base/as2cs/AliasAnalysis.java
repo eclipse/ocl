@@ -33,6 +33,7 @@ import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PathElement;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.Pivotable;
 import org.eclipse.ocl.xtext.basecs.ImportCS;
 import org.eclipse.ocl.xtext.basecs.NamedElementCS;
@@ -50,14 +51,14 @@ public class AliasAnalysis extends AdapterImpl
 {
 	public static void dispose(@NonNull Resource resource) {
 		List<Adapter> eAdapters = ClassUtil.nonNullEMF(resource.eAdapters());
-		AliasAnalysis adapter = PivotUtil.getAdapter(AliasAnalysis.class, eAdapters);
+		AliasAnalysis adapter = ClassUtil.getAdapter(AliasAnalysis.class, eAdapters);
 		if (adapter != null) {
 			adapter.dispose();
 		}
 	}
 
 	public static @NonNull AliasAnalysis getAdapter(@NonNull Resource resource) {
-		MetaModelManager metaModelManager = PivotUtil.findMetaModelManager(resource);
+		MetaModelManager metaModelManager = PivotUtilInternal.findMetaModelManager(resource);
 		if (metaModelManager == null) {
 			throw new IllegalStateException("No MetaModelManager");
 		}

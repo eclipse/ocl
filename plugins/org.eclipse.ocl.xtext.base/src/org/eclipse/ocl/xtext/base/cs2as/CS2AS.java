@@ -48,7 +48,7 @@ import org.eclipse.ocl.pivot.scoping.ScopeView;
 import org.eclipse.ocl.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.xtext.base.scoping.AbstractJavaClassScope;
 import org.eclipse.ocl.xtext.base.scoping.BaseScopeView;
@@ -208,7 +208,7 @@ public abstract class CS2AS extends AbstractConversion implements MetaModelManag
 	}	
 
 	public static @Nullable String getUnresolvedProxyText(@NonNull EReference eReference, @NonNull EObject csContext, @NonNull String linkText) {
-		ExceptionAdapter exceptionAdapter = PivotUtil.getAdapter(ExceptionAdapter.class, csContext);
+		ExceptionAdapter exceptionAdapter = ClassUtil.getAdapter(ExceptionAdapter.class, csContext);
 		if (exceptionAdapter != null) {
 			return exceptionAdapter.getErrorMessage();
 		}
@@ -226,7 +226,7 @@ public abstract class CS2AS extends AbstractConversion implements MetaModelManag
 	}	
 	
 	public static @Nullable CS2AS findAdapter(@NonNull ResourceSet resourceSet) {
-		return PivotUtil.getAdapter(CS2AS.class, resourceSet);
+		return ClassUtil.getAdapter(CS2AS.class, resourceSet);
 	}
 
 	public static List<ILeafNode> getDocumentationNodes(@NonNull ICompositeNode node) {
@@ -629,7 +629,7 @@ public abstract class CS2AS extends AbstractConversion implements MetaModelManag
 		if ((pivotElement != null)
 		 && pivotClass.isAssignableFrom(pivotElement.getClass())					// Avoid resetting container of incidental reference
 		 && ((csElement == null) || (csElement.eContainer() != null))) {			// Avoid resetting container of potentially re-used root
-			PivotUtil.resetContainer(pivotElement);		// Bypass child-stealing detector
+			PivotUtilInternal.resetContainer(pivotElement);		// Bypass child-stealing detector
 		}
 		if ((pivotElement == null) || (pivotEClass != pivotElement.eClass())) {
 			@SuppressWarnings("null") @NonNull Element pivotElement3 = (Element) pivotEClass.getEPackage().getEFactoryInstance().create(pivotEClass);

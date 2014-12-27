@@ -69,7 +69,7 @@ import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ProjectMap;
 import org.eclipse.ocl.pivot.values.Bag;
 import org.eclipse.ocl.pivot.values.impl.BagImpl;
@@ -287,7 +287,7 @@ public class XtextTestCase extends PivotTestCase
 		ResourceSet reloadResourceSet = new ResourceSetImpl();
 //		reloadResourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("pivot", new EcoreResourceFactoryImpl());
 		Resource reloadedPivotResource = reloadResourceSet.getResource(pivotURI, true);
-		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(reloadedPivotResource);
+		MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(reloadedPivotResource);
 		assertNoValidationErrors("Pivot reload validation problems", reloadedPivotResource);
 		unloadResourceSet(reloadResourceSet);
 		metaModelManager.dispose();
@@ -496,7 +496,7 @@ public class XtextTestCase extends PivotTestCase
 			return false;
 		}
 		if (pivotElement instanceof TupleType) {
-			return PivotUtil.isLibraryType((TupleType)pivotElement);
+			return PivotUtilInternal.isLibraryType((TupleType)pivotElement);
 		}
 		if (pivotElement instanceof Type) {
 			EObject eContainer = pivotElement.eContainer();

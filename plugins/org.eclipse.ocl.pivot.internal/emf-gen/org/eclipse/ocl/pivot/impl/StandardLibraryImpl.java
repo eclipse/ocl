@@ -63,6 +63,7 @@ import org.eclipse.ocl.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.TypeUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
@@ -891,7 +892,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 
 	@Override
 	public void setDefaultStandardLibraryURI(@NonNull String defaultStandardLibraryURI) {
-		assert !PivotUtil.isASURI(defaultStandardLibraryURI);
+		assert !PivotUtilInternal.isASURI(defaultStandardLibraryURI);
 		this.defaultStandardLibraryURI = defaultStandardLibraryURI;
 	}
 

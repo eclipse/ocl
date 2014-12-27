@@ -57,6 +57,7 @@ import org.eclipse.ocl.pivot.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.osgi.util.NLS;
@@ -108,10 +109,10 @@ public class DelegateUIConstraintLocator extends DelegateConstraintLocator imple
 				}
 				else if (containingRoot != PivotUtil.getContainingRoot(metaModelManager.getStandardLibrary().getOclAnyType())) {
 					externalURI = containingRoot.getExternalURI();
-					if (PivotUtil.isASURI(externalURI)) {
+					if (PivotUtilInternal.isASURI(externalURI)) {
 						@SuppressWarnings("null")
 						@NonNull URI uri = URI.createURI(externalURI);
-						externalURI = PivotUtil.getNonASURI(uri).toString();
+						externalURI = PivotUtilInternal.getNonASURI(uri).toString();
 					}
 				}
 				if (externalURI != null) {
@@ -156,7 +157,7 @@ public class DelegateUIConstraintLocator extends DelegateConstraintLocator imple
 		 */
 		protected @Nullable BaseCSResource loadDocument(IProgressMonitor monitor, @NonNull URI documentURI) throws Exception {
 			Resource contextResource = contextObject != null ? contextObject.eResource()  : null;
-			MetaModelManager metaModelManager = contextResource != null ? PivotUtil.getMetaModelManager(contextResource) : new MetaModelManager();
+			MetaModelManager metaModelManager = contextResource != null ? PivotUtilInternal.getMetaModelManager(contextResource) : new MetaModelManager();
 			ResourceSet resourceSet = metaModelManager.getExternalResourceSet();
 			Resource resource = resourceSet.getResource(documentURI, true);
 			if (resource instanceof BaseCSResource) {
@@ -252,7 +253,7 @@ public class DelegateUIConstraintLocator extends DelegateConstraintLocator imple
 		if (eResource == null) {
 			return false;
 		}
-		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(eResource);
+		MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(eResource);
 		Constraint asConstraint = null;
 		try {
 			asConstraint = getConstraint(metaModelManager, resultConstrainingNode);

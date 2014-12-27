@@ -18,7 +18,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
  * A MetaModelManagerResourceAdapter enhances the Resource for a Concrete Syntax model
@@ -37,7 +37,7 @@ public abstract class AbstractMetaModelManagerResourceAdapter<T extends Resource
 	}
 
 	public static @Nullable AbstractMetaModelManagerResourceAdapter<?> findAdapter(@NonNull Resource resource) {
-		return PivotUtil.getAdapter(AbstractMetaModelManagerResourceAdapter.class, resource);
+		return ClassUtil.getAdapter(AbstractMetaModelManagerResourceAdapter.class, resource);
 	}
 	
 //	public static LiveInstances<MetaModelManagerResourceAdapter> INSTANCES = new LiveInstances(MetaModelManagerResourceAdapter.class);

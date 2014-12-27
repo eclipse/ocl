@@ -16,7 +16,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 
 /**
  * ScopeViews support access to some or all of the elements in a scope.
@@ -84,7 +84,7 @@ public class PivotScopeView implements ScopeView
 	public @Nullable ScopeView computeLookup(@NonNull EnvironmentView environmentView, @NonNull EObject aTarget) {
 		assert aTarget instanceof Element;
 		if (attribution == null) {
-			attribution = PivotUtil.getAttribution(target);
+			attribution = PivotUtilInternal.getAttribution(target);
 		}
 		return attribution.computeLookup(aTarget, environmentView, this);
 	}
@@ -93,7 +93,7 @@ public class PivotScopeView implements ScopeView
 	public @NonNull Attribution getAttribution() {
 		Attribution attribution2 = attribution;
 		if (attribution2 == null) {
-			attribution = attribution2 = PivotUtil.getAttribution(target);
+			attribution = attribution2 = PivotUtilInternal.getAttribution(target);
 		}
 		return attribution2;
 	}

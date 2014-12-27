@@ -19,7 +19,7 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.Property;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.xtext.basecs.ParameterCS;
 import org.eclipse.ocl.xtext.basecs.TypedRefCS;
 import org.eclipse.ocl.xtext.completeoclcs.ClassifierContextDeclCS;
@@ -76,7 +76,7 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 	}
 
 	protected String text(CompleteOCLDocumentCS ele) {
-		Model root = PivotUtil.getPivot(Model.class, ele);
+		Model root = PivotUtilInternal.getPivot(Model.class, ele);
 		return root != null ? String.valueOf(root.getName()) : "null";
 	}
 
@@ -204,7 +204,7 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 		assert csElement != null;
 		Element asElement = csElement.getReferredPackage();
 		if (asElement == null) {
-			asElement = PivotUtil.getPivot(Element.class, csElement);
+			asElement = PivotUtilInternal.getPivot(Element.class, csElement);
 		}
 		if (asElement != null) {
 			return String.valueOf(doGetText(asElement));

@@ -50,6 +50,7 @@ import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.PathElement;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.Unlimited;
 
@@ -348,7 +349,7 @@ public class PrettyPrinter
 	}
 
 	public void appendMultiplicity(@NonNull Number lower, @NonNull Number upper) {
-		PivotUtil.appendMultiplicity(pendingText, lower.longValue(), (upper instanceof Unlimited) ? -1 : upper.longValue());
+		StringUtil.appendMultiplicity(pendingText, lower.longValue(), (upper instanceof Unlimited) ? -1 : upper.longValue());
 	}
 
 	public void appendName(NamedElement object) {
@@ -542,8 +543,8 @@ public class PrettyPrinter
 				            else {
 				            	uri = rootElement.eResource().getURI();
 				            	if (uri != null) {
-				                	if (PivotUtil.isASURI(uri)) {
-				                		uri = PivotUtil.getNonASURI(uri);
+				                	if (PivotUtilInternal.isASURI(uri)) {
+				                		uri = PivotUtilInternal.getNonASURI(uri);
 				                	}
 				            	}
 				            }
@@ -700,7 +701,7 @@ public class PrettyPrinter
 	}
 
 	public String getName(@Nullable String name, @Nullable Set<String> keywords) {
-		if ((keywords == null) || (!keywords.contains(name)) && PivotUtil.isValidIdentifier(name)) {
+		if ((keywords == null) || (!keywords.contains(name)) && PivotUtilInternal.isValidIdentifier(name)) {
 			return name;
 		}
 		StringBuilder s = new StringBuilder();

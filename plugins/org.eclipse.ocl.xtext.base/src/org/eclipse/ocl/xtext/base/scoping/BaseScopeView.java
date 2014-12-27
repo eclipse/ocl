@@ -36,7 +36,7 @@ import org.eclipse.ocl.pivot.scoping.NullAttribution;
 import org.eclipse.ocl.pivot.scoping.ScopeView;
 import org.eclipse.ocl.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.pivot.utilities.PivotObjectImpl;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.Pivotable;
 import org.eclipse.ocl.xtext.base.as2cs.AliasAnalysis;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
@@ -160,7 +160,7 @@ public class BaseScopeView extends AbstractScope implements IScopeView
 	public @NonNull Attribution getAttribution() {
 		Attribution attribution2 = attribution;
 		if (attribution2 == null) {
-			attribution = attribution2 = PivotUtil.getAttribution(target);
+			attribution = attribution2 = PivotUtilInternal.getAttribution(target);
 		}
 		return attribution2;
 	}
@@ -365,8 +365,8 @@ public class BaseScopeView extends AbstractScope implements IScopeView
 		if (uri == null) {
 			return null;
 		}
-		if (PivotUtil.isASURI(uri)) {
-			uri = PivotUtil.getNonASURI(uri);
+		if (PivotUtilInternal.isASURI(uri)) {
+			uri = PivotUtilInternal.getNonASURI(uri);
 		}
 		return uri.toString();
 	}

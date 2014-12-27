@@ -26,6 +26,7 @@ import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.scoping.ScopeView;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS.UnresolvedProxyMessageProvider;
@@ -171,7 +172,7 @@ public class IncludeCSAttribution extends AbstractAttribution implements Unresol
 	@Override
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		IncludeCS targetElement = (IncludeCS)target;
-		IncludeAdapter adapter = PivotUtil.getAdapter(IncludeAdapter.class, targetElement);
+		IncludeAdapter adapter = ClassUtil.getAdapter(IncludeAdapter.class, targetElement);
 		if (adapter == null) {
 			adapter = new IncludeAdapter();
 			targetElement.eAdapters().add(adapter);
@@ -187,7 +188,7 @@ public class IncludeCSAttribution extends AbstractAttribution implements Unresol
 
 	@Override
 	public String getMessage(@NonNull EObject context, @NonNull String linkText) {
-		IncludeAdapter adapter = PivotUtil.getAdapter(IncludeAdapter.class, context);
+		IncludeAdapter adapter = ClassUtil.getAdapter(IncludeAdapter.class, context);
 		if (adapter != null) {
 			String message = adapter.getMessage();
 			return NLS.bind(OCLMessages.UnresolvedInclude_ERROR_, linkText, message);

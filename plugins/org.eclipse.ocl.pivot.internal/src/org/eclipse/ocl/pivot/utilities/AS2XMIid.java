@@ -37,7 +37,6 @@ public class AS2XMIid
 	/**
 	 * Aggregated Diagnostic added to ASResource.errors if xmi:id assignment has to allocate
 	 * an unstable random uuid to avoid a duplicate stable id.
-	 * @since 3.5
 	 */
 	public static final class UnstableXMIidDiagnostics implements Resource.Diagnostic
 	{
@@ -85,7 +84,7 @@ public class AS2XMIid
 			Resource resource = resourceSet.getResource(uri, true);
 			if (resource instanceof XMLResource) {
 				@SuppressWarnings("null")@NonNull List<Adapter> eAdapters = resource.eAdapters();
-				AS2MonikerVisitor monikerVisitor = PivotUtil.getAdapter(AS2MonikerVisitor.class, eAdapters);
+				AS2MonikerVisitor monikerVisitor = ClassUtil.getAdapter(AS2MonikerVisitor.class, eAdapters);
 				if (monikerVisitor != null) {
 					XMLResource xmlResource = (XMLResource) resource;
 					for (TreeIterator<EObject> tit = xmlResource.getAllContents(); tit.hasNext(); ) {
@@ -174,7 +173,7 @@ public class AS2XMIid
 				assignIds((ASResource)resource, options);
 			}
 		}
-		MetaModelManager metaModelManager = PivotUtil.findMetaModelManager(asResourceSet);
+		MetaModelManager metaModelManager = PivotUtilInternal.findMetaModelManager(asResourceSet);
 		if (metaModelManager != null) {
 			metaModelManager.assignLibraryIds(this, options);
 		}

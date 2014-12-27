@@ -57,6 +57,7 @@ import org.eclipse.ocl.pivot.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 
 /**
  * An EnvironmentView provides a selective view of the environment visible at
@@ -260,18 +261,18 @@ public class EnvironmentView
 	}
 
 	public void addAllElements(@NonNull org.eclipse.ocl.pivot.Class asClass, @NonNull ScopeView scopeView) {
-		Attribution attribution = PivotUtil.getAttribution(asClass);
+		Attribution attribution = PivotUtilInternal.getAttribution(asClass);
 		attribution.computeLookup(asClass, this, scopeView);
 		org.eclipse.ocl.pivot.Class asUnspecializedClass = PivotUtil.getUnspecializedTemplateableElement(asClass);
 		org.eclipse.ocl.pivot.Package asPackage = asUnspecializedClass.getOwningPackage();
 		if (asPackage != null) {
-			attribution = PivotUtil.getAttribution(asPackage);
+			attribution = PivotUtilInternal.getAttribution(asPackage);
 			attribution.computeLookup(asPackage, this, scopeView);
 		}
 		{	// FIXME redundant
 			asPackage = asUnspecializedClass.getOwningPackage();
 			if (asPackage != null) {
-				attribution = PivotUtil.getAttribution(asPackage);
+				attribution = PivotUtilInternal.getAttribution(asPackage);
 				attribution.computeLookup(asPackage, this, scopeView);
 			}
 		}
@@ -634,7 +635,7 @@ public class EnvironmentView
 
 	public void addElementsOfScope(@Nullable Element asElement, @NonNull ScopeView scopeView) {
 		if (asElement != null) {
-			Attribution attribution = PivotUtil.getAttribution(asElement);
+			Attribution attribution = PivotUtilInternal.getAttribution(asElement);
 			attribution.computeLookup(asElement, this, scopeView);
 		}
 	}
@@ -647,8 +648,8 @@ public class EnvironmentView
 	}
 
 	public void addImportedElement(@NonNull URI baseURI) {
-    	if (PivotUtil.isASURI(baseURI)) {
-    		baseURI = PivotUtil.getNonASURI(baseURI);
+    	if (PivotUtilInternal.isASURI(baseURI)) {
+    		baseURI = PivotUtilInternal.getNonASURI(baseURI);
     	}
 		String name = getName();
 		if (name != null) {

@@ -50,7 +50,7 @@ import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.Vertex;
 import org.eclipse.ocl.pivot.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.Unlimited;
@@ -184,7 +184,7 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 				org.eclipse.ocl.pivot.Class oclElementType = standardLibrary.getOclElementType();
 				newSuperTypes.add(oclElementType);
 			}
-			PivotUtil.refreshList(pivotElement.getSuperClasses(), newSuperTypes);
+			PivotUtilInternal.refreshList(pivotElement.getSuperClasses(), newSuperTypes);
 		}
 		return pivotElement;
 	}

@@ -188,7 +188,7 @@ public class LibraryCSAttribution extends AbstractAttribution implements Unresol
 	@Override
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		LibraryCS targetElement = (LibraryCS)target;
-		LibraryAdapter adapter = PivotUtil.getAdapter(LibraryAdapter.class, targetElement);
+		LibraryAdapter adapter = ClassUtil.getAdapter(LibraryAdapter.class, targetElement);
 		if (adapter == null) {
 			adapter = new LibraryAdapter();
 			targetElement.eAdapters().add(adapter);
@@ -204,7 +204,7 @@ public class LibraryCSAttribution extends AbstractAttribution implements Unresol
 
 	@Override
 	public @Nullable String getMessage(@NonNull EObject context, @NonNull String linkText) {
-		LibraryAdapter adapter = PivotUtil.getAdapter(LibraryAdapter.class, context);
+		LibraryAdapter adapter = ClassUtil.getAdapter(LibraryAdapter.class, context);
 		if (adapter != null) {
 			String message = adapter.getMessage();
 			return NLS.bind(OCLMessages.UnresolvedLibrary_ERROR_, linkText, message);

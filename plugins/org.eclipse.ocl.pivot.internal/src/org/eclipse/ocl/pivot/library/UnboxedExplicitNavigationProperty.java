@@ -21,9 +21,6 @@ import org.eclipse.ocl.pivot.ids.PropertyId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractProperty;
 
-/**
- * @since 3.5
- */
 public class UnboxedExplicitNavigationProperty extends AbstractProperty
 {
 	protected @NonNull PropertyId propertyId;

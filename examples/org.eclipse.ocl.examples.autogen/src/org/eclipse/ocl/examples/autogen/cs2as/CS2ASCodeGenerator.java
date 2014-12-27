@@ -47,7 +47,7 @@ import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.xtext.basecs.util.VisitableCS;
@@ -75,7 +75,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 //		CommonSubexpressionEliminator.CSE_REWRITE.setState(true);
 	
 		AutoCG2StringVisitor.FACTORY.getClass();
-		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(ClassUtil.nonNullState(ePackage.eResource()));
+		MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(ClassUtil.nonNullState(ePackage.eResource()));
 		org.eclipse.ocl.pivot.Package asPackage = metaModelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Package.class, ePackage);
 		if (asPackage != null) {
 			GenPackage superGenPackage = null;

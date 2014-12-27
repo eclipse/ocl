@@ -14,7 +14,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Annotation;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Detail;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.xtext.oclinecorecs.OCLinEcoreConstraintCS;
@@ -30,7 +30,7 @@ public class OCLinEcoreCSPostOrderVisitor extends AbstractOCLinEcoreCSPostOrderV
 	@Override
 	public Continuation<?> visitOCLinEcoreConstraintCS(@NonNull OCLinEcoreConstraintCS csConstraint) {
 		Continuation<?> continuation = super.visitOCLinEcoreConstraintCS(csConstraint);
-		Constraint pivotElement = PivotUtil.getPivot(Constraint.class, csConstraint);
+		Constraint pivotElement = PivotUtilInternal.getPivot(Constraint.class, csConstraint);
 		if (pivotElement != null) {
 			pivotElement.setIsCallable(csConstraint.isIsCallable());
 		}
@@ -39,7 +39,7 @@ public class OCLinEcoreCSPostOrderVisitor extends AbstractOCLinEcoreCSPostOrderV
 
 	@Override
 	public Continuation<?> visitSysMLCS(@NonNull SysMLCS csSysML) {
-		Annotation pivotElement = PivotUtil.getPivot(Annotation.class, csSysML);
+		Annotation pivotElement = PivotUtilInternal.getPivot(Annotation.class, csSysML);
 		if (pivotElement != null) {
 			context.handleVisitNamedElement(csSysML, pivotElement);
 			context.refreshPivotList(Detail.class, pivotElement.getOwnedDetails(), csSysML.getOwnedDetails());

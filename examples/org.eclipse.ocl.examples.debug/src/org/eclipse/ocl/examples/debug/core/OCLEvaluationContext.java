@@ -21,7 +21,7 @@ import org.eclipse.ocl.examples.debug.vm.core.EvaluationContext;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 
 public class OCLEvaluationContext extends EvaluationContext
 {
@@ -49,7 +49,7 @@ public class OCLEvaluationContext extends EvaluationContext
 		if (expressionObject2 != null) {
 			Resource eResource = expressionObject2.eResource();
 			if (eResource != null) {
-				MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(eResource);
+				MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(eResource);
 				if (metaModelManager != null) {
 					return metaModelManager;
 				}
@@ -59,7 +59,7 @@ public class OCLEvaluationContext extends EvaluationContext
 		if (contextObject2 != null) {
 			Resource eResource = contextObject2.eResource();
 			if (eResource != null) {
-				MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(eResource);
+				MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(eResource);
 				if (metaModelManager != null) {
 					return metaModelManager;
 				}

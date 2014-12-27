@@ -53,7 +53,7 @@ import org.eclipse.ocl.pivot.VariableDeclaration;
 import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.Unlimited;
 import org.eclipse.ocl.pivot.values.Value;
@@ -137,7 +137,7 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 
 	@Override
 	public Object visitConstraint(@NonNull Constraint object) {
-		String stereotype = PivotUtil.getStereotype(object);
+		String stereotype = PivotUtilInternal.getStereotype(object);
 		if (PivotConstants.BODY_NAME.equals(stereotype)) {
 			context.append("body");
 		}
@@ -447,7 +447,7 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 				}
 				if (arguments.size() == 0) {			// Prefix
 					context.appendName(referredOperation, null);
-					if ((referredOperation != null) && PivotUtil.isValidIdentifier(referredOperation.getName())) {
+					if ((referredOperation != null) && PivotUtilInternal.isValidIdentifier(referredOperation.getName())) {
 						context.append(" ");			// No space for unary minus
 					}
 					context.precedenceVisit(source, precedence);

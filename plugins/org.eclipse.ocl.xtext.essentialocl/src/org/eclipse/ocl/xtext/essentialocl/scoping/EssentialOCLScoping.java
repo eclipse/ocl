@@ -26,6 +26,7 @@ import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
 import org.eclipse.ocl.pivot.scoping.Attribution;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.xtext.base.attributes.ImportCSAttribution;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS.AbstractUnresolvedProxyMessageProvider;
@@ -172,7 +173,7 @@ public class EssentialOCLScoping
 			}
 			if (source == null) {
 				if ((csSource != null) && (csSource != navigationArgument)) {
-					source = PivotUtil.getPivot(OCLExpression.class, csSource);
+					source = PivotUtilInternal.getPivot(OCLExpression.class, csSource);
 				}
 			}
 			String typeText = "";
@@ -206,7 +207,7 @@ public class EssentialOCLScoping
 			List<NavigatingArgCS> arguments = csRoundBracketedClause.getOwnedArguments();
 			StringBuilder s = new StringBuilder();
 			for (NavigatingArgCS csArgument : arguments) {
-				TypedElement pivot = PivotUtil.getPivot(TypedElement.class, csArgument);
+				TypedElement pivot = PivotUtilInternal.getPivot(TypedElement.class, csArgument);
 				if ((pivot != null) && !pivot.eIsProxy()) {
 					if (s.length() > 0) {
 						s.append(", ");

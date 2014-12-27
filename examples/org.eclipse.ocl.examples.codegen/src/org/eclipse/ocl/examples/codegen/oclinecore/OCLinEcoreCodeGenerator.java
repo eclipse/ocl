@@ -32,7 +32,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGVariable;
 import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 
 /**
  * OCLinEcoreCodeGenerator supports generation of the inline OCL-defined content of a Ecore *Impl file.
@@ -87,7 +87,7 @@ public class OCLinEcoreCodeGenerator extends JavaCodeGenerator
 
 	public static void generatePackage(@NonNull GenPackage genPackage,
 			@NonNull Map<String, String> uri2body, @NonNull Map<GenPackage, String> constantsTexts) {
-		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(ClassUtil.nonNullState(genPackage.eResource()));
+		MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(ClassUtil.nonNullState(genPackage.eResource()));
 		OCLinEcoreCodeGenerator generator = new OCLinEcoreCodeGenerator(metaModelManager, genPackage);
 		generator.generate(uri2body, constantsTexts);
 	}

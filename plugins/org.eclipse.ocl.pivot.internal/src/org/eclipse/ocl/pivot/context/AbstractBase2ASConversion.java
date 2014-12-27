@@ -32,7 +32,7 @@ import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 
 /**
  * AbstractBase2ASConversion provides the Xtext independent support for Concrete Syntax
@@ -74,7 +74,7 @@ public abstract class AbstractBase2ASConversion extends AbstractConversion imple
 
 	public void setBehavioralType(@NonNull TypedElement targetElement, @NonNull TypedElement sourceElement) {
 		if (!sourceElement.eIsProxy()) {
-			Type type = PivotUtil.getType(sourceElement);
+			Type type = PivotUtilInternal.getType(sourceElement);
 			if ((type == null) || !type.eIsProxy()) {
 				setType(targetElement, type, sourceElement.isRequired());
 				return;
@@ -219,7 +219,7 @@ public abstract class AbstractBase2ASConversion extends AbstractConversion imple
 			pivotElement.setIsRequired(isRequired);
 		}
 		if (primaryType != null) {
-			PivotUtil.debugWellContainedness(primaryType);
+			PivotUtilInternal.debugWellContainedness(primaryType);
 		}
 	}
 }

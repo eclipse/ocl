@@ -46,6 +46,7 @@ import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.ASSaver;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.values.Bag;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.OrderedSet;
@@ -111,7 +112,7 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 			Map<String, Object> options = new HashMap<String, Object>();
 			options.put(ASResource.OPTION_NORMALIZE_CONTENTS, Boolean.TRUE);
 			asResource.save(options);
-			MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(asResource);
+			MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(asResource);
 			String ecoreFile = "/" + projectName + "/model-gen/oclstdlib.ecore";
 			@SuppressWarnings("null")@NonNull URI ecoreURI = URI.createPlatformResourceURI(ecoreFile, true);
 			AS2Ecore converter = new AS2Ecore(metaModelManager, ecoreURI, null);

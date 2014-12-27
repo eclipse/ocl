@@ -58,6 +58,7 @@ import org.eclipse.ocl.pivot.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.osgi.util.NLS;
@@ -109,10 +110,10 @@ public class UMLUIConstraintLocator extends UMLConstraintLocator implements Cons
 				}
 				else if (containingRoot != PivotUtil.getContainingRoot(metaModelManager.getStandardLibrary().getOclAnyType())) {
 					externalURI = containingRoot.getExternalURI();
-					if (PivotUtil.isASURI(externalURI)) {
+					if (PivotUtilInternal.isASURI(externalURI)) {
 						@SuppressWarnings("null")
 						@NonNull URI uri = URI.createURI(externalURI);
-						externalURI = PivotUtil.getNonASURI(uri).toString();
+						externalURI = PivotUtilInternal.getNonASURI(uri).toString();
 					}
 				}
 				if (externalURI != null) {
@@ -264,7 +265,7 @@ public class UMLUIConstraintLocator extends UMLConstraintLocator implements Cons
 		if (eResource == null) {
 			return false;
 		}
-		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(eResource);
+		MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(eResource);
 		Constraint constraint = null;
 		try {
 			constraint = metaModelManager.getPivotOf(Constraint.class, umlConstraint);

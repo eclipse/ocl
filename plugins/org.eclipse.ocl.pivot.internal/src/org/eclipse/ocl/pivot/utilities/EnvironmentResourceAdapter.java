@@ -28,12 +28,12 @@ public class EnvironmentResourceAdapter implements Adapter
 		if (resource == null) {
 			return null;
 		}
-		return PivotUtil.getAdapter(EnvironmentResourceAdapter.class, resource);
+		return ClassUtil.getAdapter(EnvironmentResourceAdapter.class, resource);
 	}
 	
 	public static EnvironmentResourceAdapter getAdapter(@NonNull Resource resource, @NonNull PivotEnvironment environment) {
 		List<Adapter> eAdapters = ClassUtil.nonNullEMF(resource.eAdapters());
-		EnvironmentResourceAdapter adapter = PivotUtil.getAdapter(EnvironmentResourceAdapter.class, eAdapters);
+		EnvironmentResourceAdapter adapter = ClassUtil.getAdapter(EnvironmentResourceAdapter.class, eAdapters);
 		if (adapter == null) {
 			adapter = new EnvironmentResourceAdapter(resource, environment);
 			eAdapters.add(adapter);

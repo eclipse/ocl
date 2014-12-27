@@ -66,7 +66,7 @@ import org.eclipse.ocl.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotObjectImpl;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
 import org.eclipse.uml2.types.TypesPackage;
@@ -253,7 +253,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 	}
 
 	public static UML2AS loadFromUML(@NonNull ASResource umlASResource, @NonNull URI umlURI) {
-		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(umlASResource);
+		MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(umlASResource);
 		Resource umlResource = metaModelManager.getExternalResourceSet().getResource(umlURI, true);
 		if (umlResource == null) {
 			return null;
@@ -884,7 +884,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 		if (uri == null) {
 			throw new IllegalStateException("Missing resource URI");
 		}
-		return PivotUtil.getASURI(uri);
+		return PivotUtilInternal.getASURI(uri);
 	}
 
 	public void dispose() {
@@ -936,7 +936,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 				error("Bad UML content : " + eObject.eClass().getName());
 			}
 		}
-		PivotUtil.refreshList(pivotModel2.getOwnedPackages(), rootPackages);
+		PivotUtilInternal.refreshList(pivotModel2.getOwnedPackages(), rootPackages);
 		return pivotModel2;
 	}
 
@@ -1051,7 +1051,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 					if (eContainerContainer instanceof org.eclipse.uml2.uml.Operation) {
 						org.eclipse.uml2.uml.Operation umlOperation = (org.eclipse.uml2.uml.Operation)eContainerContainer;
 						if (umlOperation.getBodyCondition() == eContainer) {
-							umlBody = PivotUtil.getBodyExpression(umlBody);
+							umlBody = PivotUtilInternal.getBodyExpression(umlBody);
 						}
 					}
 				}

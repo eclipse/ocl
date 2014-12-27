@@ -96,6 +96,7 @@ import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
 
@@ -490,7 +491,7 @@ public class DelegatesTest extends PivotTestSuite
 		Map<String, Object> badArguments = new HashMap<String, Object>();
 		badArguments.put(n, amy);
 		executeWithException(delegate, acme, badArguments,
-			OCLMessages.MismatchedArgumentType_ERROR_, n, getType(amy), PivotUtil.findTypeOf(metaModelManager, EcorePackage.Literals.ESTRING));
+			OCLMessages.MismatchedArgumentType_ERROR_, n, getType(amy), PivotUtilInternal.findTypeOf(metaModelManager, EcorePackage.Literals.ESTRING));
 
 		Map<String, Object> arguments = new HashMap<String, Object>();
 		arguments.put(n, "Amy");

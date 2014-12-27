@@ -40,8 +40,9 @@ import org.eclipse.ocl.pivot.context.ParserContext;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.IllegalLibraryException;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.xtext.base.as2cs.AS2CS;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.ImportDiagnostic;
@@ -268,7 +269,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	
 	@Override
 	public final @Nullable CS2ASResourceAdapter findCS2ASAdapter() {
-		return PivotUtil.getAdapter(CS2ASResourceAdapter.class, this);
+		return ClassUtil.getAdapter(CS2ASResourceAdapter.class, this);
 	}
 	
 	@Override
@@ -278,10 +279,10 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	
 	@Override
 	public final @NonNull CS2ASResourceAdapter getCS2ASAdapter(@Nullable MetaModelManager metaModelManager) {
-		CS2ASResourceAdapter adapter = PivotUtil.getAdapter(CS2ASResourceAdapter.class, this);
+		CS2ASResourceAdapter adapter = ClassUtil.getAdapter(CS2ASResourceAdapter.class, this);
 		if (adapter == null) {
 			if (metaModelManager == null) {
-				metaModelManager = PivotUtil.findMetaModelManager(this);					
+				metaModelManager = PivotUtilInternal.findMetaModelManager(this);					
 				if (metaModelManager == null) {
 					metaModelManager = createMetaModelManager();
 					ResourceSet csResourceSet = getResourceSet();
@@ -406,7 +407,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 		if (ElementUtil.hasSyntaxError(errors)) {
 			return;
 		}
-		MetaModelManager metaModelManager = PivotUtil.findMetaModelManager(this);
+		MetaModelManager metaModelManager = PivotUtilInternal.findMetaModelManager(this);
 		if (metaModelManager != null) {
 			StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
 //			if (metaModelManager.getLibraryResource() != org.eclipse.ocl.library.oclstdlib.OCLstdlib.INSTANCE) {

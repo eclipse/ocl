@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 /**
  * A MetaModelManagerResourceSetAdapter associates a MetaModelManager with a ResourceSet so
@@ -28,12 +27,12 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
 public class MetaModelManagerResourceSetAdapter implements MetaModelManagedAdapter
 {		
 	public static @Nullable MetaModelManagerResourceSetAdapter findAdapter(@NonNull ResourceSet resourceSet) {
-		return PivotUtil.getAdapter(MetaModelManagerResourceSetAdapter.class, resourceSet);
+		return ClassUtil.getAdapter(MetaModelManagerResourceSetAdapter.class, resourceSet);
 	}
 	
 	public static @NonNull MetaModelManagerResourceSetAdapter getAdapter(@NonNull ResourceSet resourceSet, @Nullable MetaModelManager metaModelManager) {
 		List<Adapter> eAdapters = ClassUtil.nonNullEMF(resourceSet.eAdapters());
-		MetaModelManagerResourceSetAdapter adapter = PivotUtil.getAdapter(MetaModelManagerResourceSetAdapter.class, eAdapters);
+		MetaModelManagerResourceSetAdapter adapter = ClassUtil.getAdapter(MetaModelManagerResourceSetAdapter.class, eAdapters);
 		if (adapter == null) {
 			if (metaModelManager == null) {
 				metaModelManager = new MetaModelManager();

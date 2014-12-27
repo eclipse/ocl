@@ -29,7 +29,7 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.UML2EcoreConverter;
 
@@ -128,7 +128,7 @@ public class UML2Ecore2AS extends Ecore2AS
 
 	public static UML2Ecore2AS getAdapter(@NonNull Resource resource, @NonNull MetaModelManager metaModelManager) {
 		List<Adapter> eAdapters = resource.eAdapters();
-		UML2Ecore2AS adapter = PivotUtil.getAdapter(UML2Ecore2AS.class, resource);
+		UML2Ecore2AS adapter = ClassUtil.getAdapter(UML2Ecore2AS.class, resource);
 		if (adapter != null) {
 			return adapter;
 		}
@@ -189,7 +189,7 @@ public class UML2Ecore2AS extends Ecore2AS
 		if (uri == null) {
 			throw new IllegalStateException("Missing resource URI");
 		}
-		return PivotUtil.getASURI(uri);
+		return PivotUtilInternal.getASURI(uri);
 	}
 
 	@Override

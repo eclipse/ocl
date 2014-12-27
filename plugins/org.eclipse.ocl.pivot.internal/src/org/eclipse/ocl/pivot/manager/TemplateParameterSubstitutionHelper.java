@@ -23,7 +23,7 @@ import org.eclipse.ocl.pivot.LoopExp;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 
 /**
  * TemplateParameterSubstitutionHelper instances support irregular YemplateParameterSubstitution deduction for difficult to
@@ -59,7 +59,7 @@ public abstract class TemplateParameterSubstitutionHelper
 			LoopExp loopExp = (LoopExp)callExp;
 			OCLExpression body = loopExp.getOwnedBody();
 			Type asType = body != null ? body.getType() : null;
-			Type bodyType = asType != null ? PivotUtil.getType(asType) : null;
+			Type bodyType = asType != null ? PivotUtilInternal.getType(asType) : null;
 			if (bodyType != null) {
 				@NonNull Type elementType = bodyType;
 //				if (bodyType instanceof CollectionType) {

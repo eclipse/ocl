@@ -24,7 +24,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGModelFactory;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGVariable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGVariableExp;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 
 public class CommonAnalysis extends AbstractAnalysis
 {
@@ -137,13 +137,13 @@ public class CommonAnalysis extends AbstractAnalysis
 			}
 			rewriteAsLet(controlElement, cgVariable);
 			if (cgCSE.eResource() == null) {
-				PivotUtil.resetContainer(cgCSE);
+				PivotUtilInternal.resetContainer(cgCSE);
 			}
 			else if (cgCSE instanceof CGExecutorType) {
-				PivotUtil.resetContainer(cgCSE);			// FIXME Bug 439603 is this reparenting valid?
+				PivotUtilInternal.resetContainer(cgCSE);			// FIXME Bug 439603 is this reparenting valid?
 			}
 			else {
-				PivotUtil.resetContainer(cgCSE);			// FIXME Bug 439603 is this reparenting valid?
+				PivotUtilInternal.resetContainer(cgCSE);			// FIXME Bug 439603 is this reparenting valid?
 //				CGConstantExp cgConstExp = CGModelFactory.eINSTANCE.createCGConstantExp();
 //				cgConstExp.setReferredConstant(cgCSE);
 //				cgCSE = cgConstExp;

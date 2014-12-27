@@ -38,7 +38,7 @@ import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.utilities.HTMLBuffer;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.Pivotable;
 import org.eclipse.ocl.xtext.basecs.ElementCS;
 import org.eclipse.ocl.xtext.markup.MarkupUtils;
@@ -124,7 +124,7 @@ public class MarkupHoverProvider extends DefaultEObjectHoverProvider
 			return null;
 		}
 		try {
-			MetaModelManager metaModelManager = PivotUtil.findMetaModelManager(resource);
+			MetaModelManager metaModelManager = PivotUtilInternal.findMetaModelManager(resource);
 			if (metaModelManager == null) {
 				return null;
 			}
@@ -176,7 +176,7 @@ public class MarkupHoverProvider extends DefaultEObjectHoverProvider
 //		System.out.println("getFirstLine " + eObject.eClass().getName());
 		Element pivotElement = null;
 		if (eObject instanceof Pivotable) {
-			pivotElement = PivotUtil.getPivot(Element.class, (Pivotable)eObject);
+			pivotElement = PivotUtilInternal.getPivot(Element.class, (Pivotable)eObject);
 		}
 		else if (eObject instanceof Element) {
 			pivotElement = (Element)eObject;
@@ -200,7 +200,7 @@ public class MarkupHoverProvider extends DefaultEObjectHoverProvider
 				}				
 			};
 			if (namespace != null) {
-				MetaModelManager metaModelManager = PivotUtil.findMetaModelManager(namespace);
+				MetaModelManager metaModelManager = PivotUtilInternal.findMetaModelManager(namespace);
 				if (metaModelManager != null) {
 					prettyPrintOptions.setMetaModelManager(metaModelManager);
 				}

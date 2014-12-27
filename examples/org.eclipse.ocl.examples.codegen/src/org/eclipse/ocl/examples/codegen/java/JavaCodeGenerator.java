@@ -169,7 +169,7 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 		org.eclipse.ocl.pivot.values.Value.class,
 		org.eclipse.ocl.pivot.values.InvalidValueException.class,
 		org.eclipse.ocl.pivot.utilities.ClassUtil.class,
-		org.eclipse.ocl.pivot.utilities.PivotUtil.class,
+		org.eclipse.ocl.pivot.utilities.PivotUtilInternal.class,
 		org.eclipse.ocl.pivot.utilities.ValueUtil.class,
 		org.eclipse.osgi.util.NLS.class
 	};

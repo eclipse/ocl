@@ -29,7 +29,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.util.Visitor;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 
 /**
  * <!-- begin-user-doc -->
@@ -123,7 +123,7 @@ public class SelfTypeImpl extends ClassImpl implements SelfType
 		if (selfType instanceof org.eclipse.ocl.pivot.Class) {
 			TemplateSignature templateSignature = ((TemplateableElement)selfType).getOwnedSignature();
 			if (templateSignature != null) {
-				MetaModelManager metaModelManager = PivotUtil.findMetaModelManager(expr);
+				MetaModelManager metaModelManager = PivotUtilInternal.findMetaModelManager(expr);
 				if (metaModelManager != null) {
 					return metaModelManager.specializeType(selfType, expr, selfType, null); // FIXME is this a no-op
 				}

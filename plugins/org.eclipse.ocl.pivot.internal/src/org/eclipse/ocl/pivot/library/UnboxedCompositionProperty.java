@@ -18,9 +18,6 @@ import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractProperty;
 
-/**
- * @since 3.5
- */
 public class UnboxedCompositionProperty extends AbstractProperty
 {
 	protected @NonNull String containmentFeatureName;

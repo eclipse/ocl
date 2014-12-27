@@ -134,6 +134,7 @@ import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.Pivotable;
 import org.eclipse.ocl.pivot.utilities.ProjectMap;
 import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
@@ -248,12 +249,12 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		if (resourceSet == null) {
 			return null;
 		}
-		return PivotUtil.getAdapter(MetaModelManager.class, resourceSet);
+		return ClassUtil.getAdapter(MetaModelManager.class, resourceSet);
 	}
 
 	public static @NonNull MetaModelManager getAdapter(@NonNull ResourceSet resourceSet) {
 		List<Adapter> eAdapters = ClassUtil.nonNullEMF(resourceSet.eAdapters());
-		MetaModelManager adapter = PivotUtil.getAdapter(MetaModelManager.class, eAdapters);
+		MetaModelManager adapter = ClassUtil.getAdapter(MetaModelManager.class, eAdapters);
 		if (adapter == null) {
 			if (resourceSet.getResourceFactoryRegistry().getContentTypeToFactoryMap().get(ASResource.CONTENT_TYPE) == null) {
 				MetaModelManager.initializeASResourceSet(resourceSet);
@@ -487,8 +488,8 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 			}
 			org.eclipse.ocl.pivot.Class referenceClass = reference.getOwningClass();
 			org.eclipse.ocl.pivot.Class candidateClass = candidate.getOwningClass();
-			Type referenceType = referenceClass != null ? PivotUtil.getType(referenceClass) : null;
-			Type candidateType = candidateClass != null ? PivotUtil.getType(candidateClass) : null;
+			Type referenceType = referenceClass != null ? PivotUtilInternal.getType(referenceClass) : null;
+			Type candidateType = candidateClass != null ? PivotUtilInternal.getType(candidateClass) : null;
 			Type specializedReferenceType = referenceType != null ? completeModel.getSpecializedType(referenceType, referenceBindings) : null;
 			Type specializedCandidateType = candidateType != null ? completeModel.getSpecializedType(candidateType, candidateBindings) : null;
 			if ((referenceType != candidateType) && (specializedReferenceType != null) && (specializedCandidateType != null)) {
@@ -516,8 +517,8 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 				candidateConformsToReference = false;
 			}
 			else {
-				Type referenceType = PivotUtil.getBehavioralType(referenceParameter);
-				Type candidateType = PivotUtil.getBehavioralType(candidateParameter);
+				Type referenceType = PivotUtilInternal.getBehavioralType(referenceParameter);
+				Type candidateType = PivotUtilInternal.getBehavioralType(candidateParameter);
 				Type specializedReferenceType = completeModel.getSpecializedType(referenceType, referenceBindings);
 				Type specializedCandidateType = completeModel.getSpecializedType(candidateType, candidateBindings);
 				if (referenceType != candidateType) {
@@ -572,9 +573,6 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return completeModel.conformsTo(firstType, firstSubstitutions, secondType, secondSubstitutions);
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	public @NonNull BooleanLiteralExp createBooleanLiteralExp(boolean booleanSymbol) {
 		BooleanLiteralExp asBoolean = PivotFactory.eINSTANCE.createBooleanLiteralExp();
 		asBoolean.setBooleanSymbol(booleanSymbol);
@@ -587,9 +585,6 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return new PivotIdResolver(this);
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	public @NonNull IfExp createIfExp(@NonNull OperationCallExp asCondition, @NonNull OCLExpression asThen, @NonNull OCLExpression asElse) {
 		Type commonType = getCommonType(ClassUtil.nonNullState(asThen.getType()), TemplateParameterSubstitutions.EMPTY,
 			ClassUtil.nonNullState(asElse.getType()), TemplateParameterSubstitutions.EMPTY);
@@ -606,9 +601,6 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return new ImplementationManager(this);
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	public @NonNull IntegerLiteralExp createIntegerLiteralExp(@NonNull Number integerSymbol) {
 		IntegerLiteralExp asInteger = PivotFactory.eINSTANCE.createIntegerLiteralExp();
 		asInteger.setIntegerSymbol(integerSymbol);
@@ -638,9 +630,6 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return pivotModel;
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	public @NonNull NullLiteralExp createNullLiteralExp() {
 		NullLiteralExp asNull = PivotFactory.eINSTANCE.createNullLiteralExp();
 		asNull.setType(standardLibrary.getOclVoidType());
@@ -673,9 +662,6 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return precedenceManager;
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	public @NonNull RealLiteralExp createRealLiteralExp(@NonNull Number realSymbol) {
 		RealLiteralExp asReal = PivotFactory.eINSTANCE.createRealLiteralExp();
 		asReal.setRealSymbol(realSymbol);
@@ -684,9 +670,6 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return asReal;
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	public @NonNull StringLiteralExp createStringLiteralExp(@NonNull String stringSymbol) {
 		StringLiteralExp asString = PivotFactory.eINSTANCE.createStringLiteralExp();
 		asString.setStringSymbol(stringSymbol);
@@ -695,9 +678,6 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return asString;
 	}
 
-	/**
-	 * @since 3.5
-	 */
 	public @NonNull UnlimitedNaturalLiteralExp createUnlimitedNaturalLiteralExp(@NonNull Number unlimitedNaturalSymbol) {
 		UnlimitedNaturalLiteralExp asUnlimitedNatural = PivotFactory.eINSTANCE.createUnlimitedNaturalLiteralExp();
 		asUnlimitedNatural.setUnlimitedNaturalSymbol(unlimitedNaturalSymbol);
@@ -1033,7 +1013,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		URI ecoreURI;
 		String externalUri = root.getExternalURI();
 		URI externalURI = URI.createURI(externalUri);
-		if (PivotUtil.isASURI(externalUri)) {
+		if (PivotUtilInternal.isASURI(externalUri)) {
 			ecoreURI = ClassUtil.nonNullEMF(externalURI.trimFileExtension());
 		}
 		else {
@@ -1827,7 +1807,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 				message = "";
 			}
 			logger.error(message);
-			return PivotUtil.createExpressionInOCLError(message);
+			return PivotUtilInternal.createExpressionInOCLError(message);
 		}
 	}
 
@@ -1845,11 +1825,11 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		}
 		String expression = specification.getBody();
 		if (expression == null) {
-			throw new ParserException(OCLMessages.MissingSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(contextElement), PivotUtil.getSpecificationRole(specification));
+			throw new ParserException(OCLMessages.MissingSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(contextElement), PivotUtilInternal.getSpecificationRole(specification));
 		}
 		ParserContext parserContext = getParserContext(specification);
 		if (parserContext == null) {
-			throw new ParserException(OCLMessages.UnknownContextType_ERROR_, NameUtil.qualifiedNameFor(contextElement), PivotUtil.getSpecificationRole(specification));
+			throw new ParserException(OCLMessages.UnknownContextType_ERROR_, NameUtil.qualifiedNameFor(contextElement), PivotUtilInternal.getSpecificationRole(specification));
 		}
 		parserContext.setRootElement(specification);
 		return parserContext.parse(contextElement, expression);
@@ -2133,7 +2113,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 						for (org.eclipse.ocl.pivot.Class type : asLibrary.getOwnedClasses()) {
 							if (type != null) {
 								org.eclipse.ocl.pivot.Class primaryType = getPrimaryType(type);
-								if ((type == primaryType) && PivotUtil.isLibraryType(type)) {
+								if ((type == primaryType) && PivotUtilInternal.isLibraryType(type)) {
 									standardLibrary.defineLibraryType(primaryType);
 								}
 							}

@@ -63,6 +63,7 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
 
 public class Ecore2AS extends AbstractEcore2AS
@@ -120,7 +121,7 @@ public class Ecore2AS extends AbstractEcore2AS
 	}
 
 	public static Ecore2AS loadFromEcore(@NonNull ASResource ecoreASResource, @NonNull URI ecoreURI) {
-		MetaModelManager metaModelManager = PivotUtil.getMetaModelManager(ecoreASResource);
+		MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(ecoreASResource);
 		ResourceSet resourceSet = metaModelManager.getExternalResourceSet();
 		Resource ecoreResource = resourceSet.getResource(ecoreURI, true);
 		if (ecoreResource == null) {
@@ -272,7 +273,7 @@ public class Ecore2AS extends AbstractEcore2AS
 		if (uri == null) {
 			throw new IllegalStateException("Missing resource URI");
 		}
-		return PivotUtil.getASURI(uri);
+		return PivotUtilInternal.getASURI(uri);
 	}
 
 	public void dispose() {
@@ -842,7 +843,7 @@ public class Ecore2AS extends AbstractEcore2AS
 		newCreateMap = new HashMap<EObject, Element>();
 		referencers = new HashSet<EObject>();
 		genericTypes = new ArrayList<EGenericType>();
-		PivotUtil.refreshList(asResource.getContents(), Collections.singletonList(pivotModel));
+		PivotUtilInternal.refreshList(asResource.getContents(), Collections.singletonList(pivotModel));
 		List<org.eclipse.ocl.pivot.Package> newPackages = new ArrayList<org.eclipse.ocl.pivot.Package>();
 		for (EObject eObject : ecoreContents) {
 			EClass eClass = eObject.eClass();
@@ -859,7 +860,7 @@ public class Ecore2AS extends AbstractEcore2AS
 				}
 			}
 		}
-		PivotUtil.refreshList(pivotModel.getOwnedPackages(), newPackages);
+		PivotUtilInternal.refreshList(pivotModel.getOwnedPackages(), newPackages);
 		Map<String, Type> resolvedSpecializations = new HashMap<String, Type>();
 		for (EGenericType eGenericType : genericTypes) {
 			if (eGenericType != null) {

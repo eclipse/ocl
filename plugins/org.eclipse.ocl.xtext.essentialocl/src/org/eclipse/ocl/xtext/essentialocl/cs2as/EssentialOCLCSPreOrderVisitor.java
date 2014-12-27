@@ -17,7 +17,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.PrecedenceManager;
 import org.eclipse.ocl.pivot.messages.OCLMessages;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
@@ -82,7 +82,7 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 			String name = csElement.getName();
 			assert name != null;
 			if (csElementType != null) {
-				Type elementType = PivotUtil.getPivot(Type.class, csElementType);
+				Type elementType = PivotUtilInternal.getPivot(Type.class, csElementType);
 				if (elementType != null) {
 					IntegerValue lowerValue;
 					UnlimitedNaturalValue upperValue;

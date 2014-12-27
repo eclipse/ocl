@@ -14,6 +14,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -21,6 +23,7 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -242,5 +245,23 @@ public class ClassUtil
 				Collections.sort(aList, comparator);
 			}
 		}
+	}
+
+	public static <T> T getAdapter(@NonNull Class<T> adapterClass, @NonNull Notifier notifier) {
+		List<Adapter> eAdapters = nonNullEMF(notifier.eAdapters());
+		return getAdapter(adapterClass, eAdapters);
+	}
+
+	public static <T> T getAdapter(@NonNull Class<T> adapterClass, @NonNull List<Adapter> eAdapters) {
+		Adapter adapter = EcoreUtil.getAdapter(eAdapters, adapterClass);
+		if (adapter == null) {
+			return null;
+		}
+		if (!adapterClass.isAssignableFrom(adapter.getClass())) {
+			throw new ClassCastException(adapter.getClass().getName() + " is not assignable to " + adapterClass.getName());
+		}
+		@SuppressWarnings("unchecked")
+		T castAdapter = (T) adapter;
+		return castAdapter;
 	}
 }

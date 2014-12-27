@@ -8,9 +8,6 @@ import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 
 
-/**
- * @since 3.5
- */
 public interface Environment {
 	@NonNull Environment addElement(@Nullable NamedElement namedElement);
 	@NonNull Environment addElements(@Nullable List<? extends NamedElement> namedElements);

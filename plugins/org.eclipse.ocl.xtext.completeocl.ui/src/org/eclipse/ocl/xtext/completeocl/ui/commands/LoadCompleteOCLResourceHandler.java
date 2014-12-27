@@ -39,7 +39,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.registry.CompleteOCLRegistry;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.xtext.base.ui.utilities.PDEUtils;
 import org.eclipse.ocl.xtext.completeocl.ui.CompleteOCLUiModule;
 import org.eclipse.ocl.xtext.completeocl.ui.messages.CompleteOCLUIMessages;
@@ -377,7 +377,7 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 					if (xtextResource == null) {
 						return null;
 					}
-					MetaModelManager metaModelManager = PivotUtil.findMetaModelManager(xtextResource);
+					MetaModelManager metaModelManager = PivotUtilInternal.findMetaModelManager(xtextResource);
 					if (metaModelManager != null) {
 						return metaModelManager.getExternalResourceSet();
 					}

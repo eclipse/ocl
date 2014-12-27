@@ -54,7 +54,7 @@ import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.context.ParserContext;
 import org.eclipse.ocl.pivot.utilities.BaseResource;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.Unlimited;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
@@ -175,7 +175,7 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 		ExpSpecificationCS csStatusSpecification = (ExpSpecificationCS)csElement.getOwnedSpecification();
 		ExpSpecificationCS csMessageSpecification = (ExpSpecificationCS)csElement.getOwnedMessageSpecification();
 		if (csMessageSpecification == null) {
-			ExpressionInOCL asSpecification = PivotUtil.getPivot(ExpressionInOCL.class, csStatusSpecification);
+			ExpressionInOCL asSpecification = PivotUtilInternal.getPivot(ExpressionInOCL.class, csStatusSpecification);
 			asConstraint.setOwnedSpecification(asSpecification);
 		}
 		else {
@@ -220,8 +220,8 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 			asTupleLiteralExp.setType(tupleType);
 			asTupleLiteralExp.setIsRequired(true);
 			List<TupleLiteralPart> parts = new ArrayList<TupleLiteralPart>();
-			TupleLiteralPart asStatusPart = PivotUtil.getPivot(TupleLiteralPart.class, csStatusSpecification);
-			TupleLiteralPart asMessagePart = PivotUtil.getPivot(TupleLiteralPart.class, csMessageSpecification);
+			TupleLiteralPart asStatusPart = PivotUtilInternal.getPivot(TupleLiteralPart.class, csStatusSpecification);
+			TupleLiteralPart asMessagePart = PivotUtilInternal.getPivot(TupleLiteralPart.class, csMessageSpecification);
 			if ((asMessagePart != null) && (asStatusPart != null)) {
 				parts.add(asMessagePart);
 				parts.add(asStatusPart);
@@ -240,7 +240,7 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 	@Override
 	public Continuation<?> visitContextCS(@NonNull ContextCS csElement) {
 		@NonNull ExpressionInOCL pivotElement = context.refreshModelElement(ExpressionInOCL.class, PivotPackage.Literals.EXPRESSION_IN_OCL, csElement);
-		PivotUtil.setBody(pivotElement, null, null);
+		PivotUtilInternal.setBody(pivotElement, null, null);
 		Resource resource = csElement.eResource();
 		if (resource instanceof BaseResource) {	
 			ParserContext parserContext = ((BaseResource)resource).getParserContext();

@@ -47,7 +47,7 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.scoping.Attribution;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.xtext.base.attributes.RootCSAttribution;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.ImportDiagnostic;
@@ -194,7 +194,7 @@ public class ElementUtil
 	
 	public static @Nullable RootCSAttribution getDocumentAttribution(@NonNull ElementCS context) {
 		for (ElementCS target = context, parent; (parent = target.getParent()) != null; target = parent) {
-			Attribution attribution = PivotUtil.getAttribution(parent);
+			Attribution attribution = PivotUtilInternal.getAttribution(parent);
 			if (attribution instanceof RootCSAttribution) {
 				return (RootCSAttribution) attribution;
 			}

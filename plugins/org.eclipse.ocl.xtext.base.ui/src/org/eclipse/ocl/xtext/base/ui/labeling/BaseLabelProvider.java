@@ -98,6 +98,7 @@ import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.utilities.AS2Moniker;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.xtext.basecs.NamedElementCS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
 import org.eclipse.ocl.xtext.basecs.PivotableElementCS;
@@ -447,7 +448,7 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 	public String text(Constraint ele) {
 		StringBuilder s = new StringBuilder();
 		s.append("<");
-		appendString(s, ele != null ? PivotUtil.getStereotype(ele) : "null");
+		appendString(s, ele != null ? PivotUtilInternal.getStereotype(ele) : "null");
 		s.append("> ");
 		String name = ele != null ? ele.getName() : null;
 		if (name != null) {

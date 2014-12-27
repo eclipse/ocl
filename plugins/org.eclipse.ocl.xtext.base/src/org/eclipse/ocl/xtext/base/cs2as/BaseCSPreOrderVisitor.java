@@ -29,7 +29,7 @@ import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.types.AbstractTuplePart;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.basecs.AnnotationCS;
 import org.eclipse.ocl.xtext.basecs.ClassCS;
@@ -87,7 +87,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 
 		@Override
 		public BasicContinuation<?> execute() {
-			org.eclipse.ocl.pivot.Class pivotElement = PivotUtil.getPivot(org.eclipse.ocl.pivot.Class.class, csElement);
+			org.eclipse.ocl.pivot.Class pivotElement = PivotUtilInternal.getPivot(org.eclipse.ocl.pivot.Class.class, csElement);
 			if (pivotElement != null) {
 				List<org.eclipse.ocl.pivot.Class> superClasses = pivotElement.getSuperClasses();
 				context.refreshList(org.eclipse.ocl.pivot.Class.class, superClasses, csElement.getOwnedSuperTypes());
@@ -123,13 +123,13 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 
 		@Override
 		public BasicContinuation<?> execute() {
-			Type contextType = PivotUtil.getPivot(Type.class, csElement.getOwnedContextType());
-			Type resultType = PivotUtil.getPivot(Type.class, csElement.getOwnedResultType());
+			Type contextType = PivotUtilInternal.getPivot(Type.class, csElement.getOwnedContextType());
+			Type resultType = PivotUtilInternal.getPivot(Type.class, csElement.getOwnedResultType());
 			String name = csElement.getName();
 			if ((contextType != null) && (resultType != null) && (name != null)) {
 				List<Type> parameterTypes = new ArrayList<Type>();
 				for (TypedRefCS csParameterType : csElement.getOwnedParameterTypes()) {
-					Type parameterType = PivotUtil.getPivot(Type.class, csParameterType);
+					Type parameterType = PivotUtilInternal.getPivot(Type.class, csParameterType);
 					parameterTypes.add(parameterType);
 				}
 				LambdaType lambdaType = context.getMetaModelManager().getCompleteModel().getLambdaType(name, contextType, parameterTypes, resultType, null);
@@ -174,7 +174,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 
 		@Override
 		public BasicContinuation<?> execute() {
-			Parameter parameter = PivotUtil.getPivot(Parameter.class, csElement);
+			Parameter parameter = PivotUtilInternal.getPivot(Parameter.class, csElement);
 			if (parameter != null) {
 				context.refreshRequiredType(parameter, csElement);
 				TypedRefCS ownedType = csElement.getOwnedType();
@@ -308,7 +308,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 
 		@Override
 		public BasicContinuation<?> execute() {
-			Type pivotElement = PivotUtil.getPivot(Type.class, csElement);
+			Type pivotElement = PivotUtilInternal.getPivot(Type.class, csElement);
 			if (pivotElement != null) {
 				if (pivotElement instanceof TemplateableElement) {
 					context.refreshTemplateSignature(csElement, (TemplateableElement)pivotElement);
@@ -351,7 +351,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 				for (@SuppressWarnings("null")@NonNull TuplePartCS csTuplePart : csElement.getOwnedParts()) {
 					String partName = csTuplePart.getName();
 					if (partName != null) {
-						Type partType = PivotUtil.getPivot(Type.class, csTuplePart.getOwnedType());
+						Type partType = PivotUtilInternal.getPivot(Type.class, csTuplePart.getOwnedType());
 						if (partType != null) {
 							parts.add(new AbstractTuplePart(partType, partName));
 						}
@@ -417,7 +417,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 
 	@Override
 	public Continuation<?> visitDataTypeCS(@NonNull DataTypeCS csDataType) {
-		DataType pivotElement = PivotUtil.getPivot(DataType.class, csDataType);
+		DataType pivotElement = PivotUtilInternal.getPivot(DataType.class, csDataType);
 		if (pivotElement != null) {
 			List<org.eclipse.ocl.pivot.Class> pivotSuperClasses = pivotElement.getSuperClasses();
 			pivotSuperClasses.clear();
@@ -434,7 +434,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 
 	@Override
 	public Continuation<?> visitEnumerationCS(@NonNull EnumerationCS csEnumeration) {
-		org.eclipse.ocl.pivot.Enumeration pivotElement = PivotUtil.getPivot(org.eclipse.ocl.pivot.Enumeration.class, csEnumeration);
+		org.eclipse.ocl.pivot.Enumeration pivotElement = PivotUtilInternal.getPivot(org.eclipse.ocl.pivot.Enumeration.class, csEnumeration);
 		if (pivotElement != null) {
 			List<org.eclipse.ocl.pivot.Class> pivotSuperClasses = pivotElement.getSuperClasses();
 			pivotSuperClasses.clear();
@@ -511,7 +511,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 
 	@Override
 	public Continuation<?> visitStructuredClassCS(@NonNull StructuredClassCS csClass) {
-		org.eclipse.ocl.pivot.Class pivotElement = PivotUtil.getPivot(org.eclipse.ocl.pivot.Class.class, csClass);
+		org.eclipse.ocl.pivot.Class pivotElement = PivotUtilInternal.getPivot(org.eclipse.ocl.pivot.Class.class, csClass);
 		if (pivotElement == null) {
 			return null;
 		}

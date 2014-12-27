@@ -126,7 +126,7 @@ public class VariableFinder
 			}
 			s.append("(");
 			s.append(eType.getName());
-			StringUtil.formatMultiplicity(s, lowerBound, upperBound);
+			StringUtil.appendMultiplicity(s, lowerBound, upperBound);
 			s.append(")");
 		}
 		else {

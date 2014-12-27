@@ -34,7 +34,7 @@ import org.eclipse.ocl.pivot.ids.ElementId;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.RealValue;
@@ -293,7 +293,7 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 		if (asType instanceof VoidType) {
 			return false;
 		}
-		Type type = PivotUtil.getType(asType);
+		Type type = PivotUtilInternal.getType(asType);
 		if (type instanceof Enumeration) {
 			return false;
 		}

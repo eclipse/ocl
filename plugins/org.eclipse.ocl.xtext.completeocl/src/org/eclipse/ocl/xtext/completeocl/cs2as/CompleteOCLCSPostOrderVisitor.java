@@ -14,7 +14,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.xtext.completeoclcs.ClassifierContextDeclCS;
@@ -51,7 +51,7 @@ public class CompleteOCLCSPostOrderVisitor extends AbstractCompleteOCLCSPostOrde
 
 	@Override
 	public Continuation<?> visitDefOperationCS(@NonNull DefOperationCS csElement) {
-		Operation contextOperation = PivotUtil.getPivot(Operation.class, csElement);
+		Operation contextOperation = PivotUtilInternal.getPivot(Operation.class, csElement);
 		if (contextOperation != null) {
 			context.refreshRequiredType(contextOperation, csElement);		// FIXME type consistency check
 		}
@@ -60,7 +60,7 @@ public class CompleteOCLCSPostOrderVisitor extends AbstractCompleteOCLCSPostOrde
 
 	@Override
 	public Continuation<?> visitDefPropertyCS(@NonNull DefPropertyCS csElement) {
-		Property contextProperty = PivotUtil.getPivot(Property.class, csElement);
+		Property contextProperty = PivotUtilInternal.getPivot(Property.class, csElement);
 		if (contextProperty != null) {
 			context.refreshRequiredType(contextProperty, csElement);		// FIXME type consistency check
 		}
@@ -76,7 +76,7 @@ public class CompleteOCLCSPostOrderVisitor extends AbstractCompleteOCLCSPostOrde
 	public Continuation<?> visitOperationContextDeclCS(@NonNull OperationContextDeclCS csElement) {
 		Operation modelOperation = csElement.getReferredOperation();
 		if ((modelOperation != null) && !modelOperation.eIsProxy()) {
-			Operation contextOperation = PivotUtil.getPivot(Operation.class, csElement);
+			Operation contextOperation = PivotUtilInternal.getPivot(Operation.class, csElement);
 			if (contextOperation != null) {
 				context.refreshName(contextOperation, ClassUtil.nonNullModel(modelOperation.getName()));
 				context.setType(contextOperation, modelOperation.getType(), modelOperation.isRequired());		// FIXME type consistency check
