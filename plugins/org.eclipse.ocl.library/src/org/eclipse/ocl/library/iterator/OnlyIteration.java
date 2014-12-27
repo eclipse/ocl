@@ -13,7 +13,7 @@ package org.eclipse.ocl.library.iterator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
-import org.eclipse.ocl.pivot.evaluation.DomainIterationManager;
+import org.eclipse.ocl.pivot.evaluation.IterationManager;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractIteration;
 import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
@@ -32,7 +32,7 @@ public class OnlyIteration extends AbstractIteration
 	}
 	
 	@Override
-	protected @NonNull Object resolveTerminalValue(@NonNull DomainIterationManager iterationManager) {
+	protected @NonNull Object resolveTerminalValue(@NonNull IterationManager iterationManager) {
 		MutableObject accumulatorValue = (MutableObject)iterationManager.getAccumulatorValue();
 		assert accumulatorValue != null;
 		Object object = accumulatorValue.get();
@@ -45,7 +45,7 @@ public class OnlyIteration extends AbstractIteration
 	}
 	
 	@Override
-    protected @Nullable Object updateAccumulator(@NonNull DomainIterationManager iterationManager) {
+    protected @Nullable Object updateAccumulator(@NonNull IterationManager iterationManager) {
 		Object bodyVal = iterationManager.evaluateBody();		
 		if (bodyVal == null) {
 			throw new InvalidValueException(EvaluatorMessages.UndefinedBody, "only"); 	// Null body is invalid //$NON-NLS-1$

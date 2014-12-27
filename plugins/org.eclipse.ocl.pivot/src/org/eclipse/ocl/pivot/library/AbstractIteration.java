@@ -12,7 +12,7 @@ package org.eclipse.ocl.pivot.library;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.evaluation.DomainIterationManager;
+import org.eclipse.ocl.pivot.evaluation.IterationManager;
 
 /**
  * AbstractIteration realizes shared characteristics of library iterations by providing a
@@ -53,10 +53,10 @@ public abstract class AbstractIteration extends AbstractFeature implements Libra
 	
 	/**
 	 * The default iteration algorithm steps through the iteration domain by invoking
-	 * {@link DomainIterationManager#hasCurrent()} and {@link DomainIterationManager#advanceIterators()}.
-	 * At each step {@link #updateAccumulator(DomainIterationManager)} is invoked to update the
+	 * {@link IterationManager#hasCurrent()} and {@link IterationManager#advanceIterators()}.
+	 * At each step {@link #updateAccumulator(IterationManager)} is invoked to update the
 	 * accumulator for that step. A non-null return causes a premature exit and forms the
-	 * return from the overall evaluation. If all steps complete {@link #resolveTerminalValue(DomainIterationManager)}
+	 * return from the overall evaluation. If all steps complete {@link #resolveTerminalValue(IterationManager)}
 	 * is invoked to provide the return value.
 	 * <p>
 	 * Derived classes may override this method to change the iteration algorithm or override
@@ -64,7 +64,7 @@ public abstract class AbstractIteration extends AbstractFeature implements Libra
 	 * @throws Exception 
 	 */
 	@Override
-	public @Nullable Object evaluateIteration(@NonNull DomainIterationManager iterationManager) {
+	public @Nullable Object evaluateIteration(@NonNull IterationManager iterationManager) {
 		try {
 			while (true) {
 				if (!iterationManager.hasCurrent()) {
@@ -92,7 +92,7 @@ public abstract class AbstractIteration extends AbstractFeature implements Libra
 	 * @param iterationManager the iteration context
 	 * @return the result
 	 */
-	protected @Nullable Object resolveTerminalValue(@NonNull DomainIterationManager iterationManager) {
+	protected @Nullable Object resolveTerminalValue(@NonNull IterationManager iterationManager) {
 		return iterationManager.getAccumulatorValue();
 	}
 	
@@ -104,5 +104,5 @@ public abstract class AbstractIteration extends AbstractFeature implements Libra
 	 * @return non-CARRY_ON premature result of iteration, or CARRY_ON if complete
 	 * @throws Exception 
 	 */
-	protected abstract @Nullable Object updateAccumulator(@NonNull DomainIterationManager iterationManager);
+	protected abstract @Nullable Object updateAccumulator(@NonNull IterationManager iterationManager);
 }

@@ -13,7 +13,7 @@ package org.eclipse.ocl.library.iterator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
-import org.eclipse.ocl.pivot.evaluation.DomainIterationManager;
+import org.eclipse.ocl.pivot.evaluation.IterationManager;
 import org.eclipse.ocl.pivot.evaluation.EvaluationHaltedException;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractIteration;
@@ -34,7 +34,7 @@ public class ForAllIteration extends AbstractIteration
 	}
 
 	@Override
-	protected @Nullable Object resolveTerminalValue(@NonNull DomainIterationManager iterationManager) {
+	protected @Nullable Object resolveTerminalValue(@NonNull IterationManager iterationManager) {
 		MutableObject accumulatorValue = (MutableObject) iterationManager.getAccumulatorValue();
 		assert accumulatorValue != null;
 		Object object = accumulatorValue.get();
@@ -45,7 +45,7 @@ public class ForAllIteration extends AbstractIteration
 	}
 
 	@Override
-    protected @Nullable Object updateAccumulator(@NonNull DomainIterationManager iterationManager) {
+    protected @Nullable Object updateAccumulator(@NonNull IterationManager iterationManager) {
 		try {
 			Object bodyVal = iterationManager.evaluateBody();
 			if (bodyVal == Boolean.FALSE) {

@@ -13,7 +13,7 @@ package org.eclipse.ocl.library.iterator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
-import org.eclipse.ocl.pivot.evaluation.DomainIterationManager;
+import org.eclipse.ocl.pivot.evaluation.IterationManager;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractIteration;
 import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
@@ -32,13 +32,13 @@ public class AnyIteration extends AbstractIteration
 	}
 	
 	@Override
-	protected @Nullable Object resolveTerminalValue(@NonNull DomainIterationManager iterationManager) {
+	protected @Nullable Object resolveTerminalValue(@NonNull IterationManager iterationManager) {
 //		return null;
 		throw new InvalidValueException("No matching content for 'any'"); // OMG Issue 18504 //$NON-NLS-1$
 	}
 	
 	@Override
-    protected @Nullable Object updateAccumulator(@NonNull DomainIterationManager iterationManager) {
+    protected @Nullable Object updateAccumulator(@NonNull IterationManager iterationManager) {
 		Object bodyVal = iterationManager.evaluateBody();		
 		if (bodyVal == null) {
 			throw new InvalidValueException(EvaluatorMessages.UndefinedBody, "any"); 	// Null body is invalid //$NON-NLS-1$

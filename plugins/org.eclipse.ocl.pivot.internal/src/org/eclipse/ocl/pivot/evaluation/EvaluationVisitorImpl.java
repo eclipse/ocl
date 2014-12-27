@@ -497,7 +497,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 //				return evaluationEnvironment.throwInvalidEvaluation(null, iterateExp, initValue, EvaluatorMessages.UndefinedInitialiser);
 //			}
 //			initValue = ValuesUtil.asValidValue(initValue);
-			DomainIterationManager iterationManager;
+			IterationManager iterationManager;
 			VariableDeclaration accumulatorVariable = accumulator;
 			OCLExpression body = ClassUtil.nonNullModel(iterateExp.getOwnedBody());
 			List<Variable> iterators = iterateExp.getOwnedIterators();
@@ -566,7 +566,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		} */
 		Object result = null;
 		try {
-			DomainIterationManager iterationManager;
+			IterationManager iterationManager;
 			OCLExpression body = iteratorExp.getOwnedBody();
 			Type iterationType = PivotUtil.getType(ClassUtil.nonNullModel(iteratorExp.getType()));
 			Type bodyType = PivotUtil.getType(ClassUtil.nonNullModel(body.getType()));

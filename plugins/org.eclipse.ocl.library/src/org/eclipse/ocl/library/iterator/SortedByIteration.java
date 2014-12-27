@@ -24,7 +24,7 @@ import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
-import org.eclipse.ocl.pivot.evaluation.DomainIterationManager;
+import org.eclipse.ocl.pivot.evaluation.IterationManager;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractIteration;
@@ -161,14 +161,14 @@ public class SortedByIteration extends AbstractIteration
 	}
 	
 	@Override
-	protected @NonNull Object resolveTerminalValue(@NonNull DomainIterationManager iterationManager) {
+	protected @NonNull Object resolveTerminalValue(@NonNull IterationManager iterationManager) {
 		SortingValue accumulatorValue = (SortingValue) iterationManager.getAccumulatorValue();
 		assert accumulatorValue != null;
 		return accumulatorValue.createSortedValue();
 	}
 
 	@Override
-    protected @Nullable Object updateAccumulator(@NonNull DomainIterationManager iterationManager) {
+    protected @Nullable Object updateAccumulator(@NonNull IterationManager iterationManager) {
 		Object bodyVal = iterationManager.evaluateBody();		
 		if (bodyVal == null) {
 			throw new InvalidValueException(EvaluatorMessages.UndefinedBody, "sortedBy"); 	// Null body is invalid //$NON-NLS-1$

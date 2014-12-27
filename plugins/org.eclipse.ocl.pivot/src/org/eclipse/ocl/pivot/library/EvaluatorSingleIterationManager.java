@@ -15,7 +15,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
-import org.eclipse.ocl.pivot.evaluation.DomainIterationManager;
+import org.eclipse.ocl.pivot.evaluation.IterationManager;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 
 public class EvaluatorSingleIterationManager extends EvaluatorIterationManager
@@ -72,7 +72,7 @@ public class EvaluatorSingleIterationManager extends EvaluatorIterationManager
 	}
 
 	@Override
-	public @NonNull DomainIterationManager createNestedIterationManager(@NonNull CollectionValue value) {
+	public @NonNull IterationManager createNestedIterationManager(@NonNull CollectionValue value) {
 		return new Nested(this, value);
 	}
 

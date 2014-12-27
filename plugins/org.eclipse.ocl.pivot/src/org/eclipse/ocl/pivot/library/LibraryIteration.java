@@ -13,7 +13,7 @@ package org.eclipse.ocl.pivot.library;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
-import org.eclipse.ocl.pivot.evaluation.DomainIterationManager;
+import org.eclipse.ocl.pivot.evaluation.IterationManager;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
@@ -35,5 +35,5 @@ public interface LibraryIteration extends LibraryFeature
 	 * 
 	 * @throws InvalidValueException if a body evaluates to invalid
 	 */
-	@Nullable Object evaluateIteration(@NonNull DomainIterationManager iterationManager);
+	@Nullable Object evaluateIteration(@NonNull IterationManager iterationManager);
 }

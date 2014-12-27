@@ -13,7 +13,7 @@ package org.eclipse.ocl.library.iterator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
-import org.eclipse.ocl.pivot.evaluation.DomainIterationManager;
+import org.eclipse.ocl.pivot.evaluation.IterationManager;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractIteration;
 import org.eclipse.ocl.pivot.messages.EvaluatorMessages;
@@ -46,14 +46,14 @@ public class OneIteration extends AbstractIteration
 
 	@Override
 	protected @NonNull
-	Object resolveTerminalValue(@NonNull DomainIterationManager iterationManager) {
+	Object resolveTerminalValue(@NonNull IterationManager iterationManager) {
 		MutableBoolean accumulatorValue = (MutableBoolean) iterationManager.getAccumulatorValue();
 		assert accumulatorValue != null;
 		return accumulatorValue.isSet() != false;			// FIXME redundant test to suppress warning
 	}
 
 	@Override
-    protected @Nullable Object updateAccumulator(@NonNull DomainIterationManager iterationManager) {
+    protected @Nullable Object updateAccumulator(@NonNull IterationManager iterationManager) {
 		Object bodyVal = iterationManager.evaluateBody();		
 		if (bodyVal == null) {
 			throw new InvalidValueException(EvaluatorMessages.UndefinedBody, "one"); 	// Null body is invalid //$NON-NLS-1$

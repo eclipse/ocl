@@ -13,7 +13,7 @@ package org.eclipse.ocl.library.iterator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
-import org.eclipse.ocl.pivot.evaluation.DomainIterationManager;
+import org.eclipse.ocl.pivot.evaluation.IterationManager;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractIteration;
 import org.eclipse.ocl.pivot.values.CollectionValue;
@@ -33,12 +33,12 @@ public class IsUniqueIteration extends AbstractIteration
 	}
 	
 	@Override
-	protected @NonNull Object resolveTerminalValue(@NonNull DomainIterationManager iterationManager) {
+	protected @NonNull Object resolveTerminalValue(@NonNull IterationManager iterationManager) {
 		return true;
 	}
 	
 	@Override
-    protected @Nullable Object updateAccumulator(@NonNull DomainIterationManager iterationManager) {
+    protected @Nullable Object updateAccumulator(@NonNull IterationManager iterationManager) {
 		CollectionValue.Accumulator accumulatorValue = (CollectionValue.Accumulator)iterationManager.getAccumulatorValue();
 		assert accumulatorValue != null;
 		Object bodyVal = iterationManager.evaluateBody();		

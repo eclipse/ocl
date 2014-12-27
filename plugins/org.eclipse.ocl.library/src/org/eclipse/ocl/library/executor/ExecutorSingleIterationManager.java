@@ -15,7 +15,7 @@ import java.util.Iterator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
-import org.eclipse.ocl.pivot.evaluation.DomainIterationManager;
+import org.eclipse.ocl.pivot.evaluation.IterationManager;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractIterationManager;
 import org.eclipse.ocl.pivot.library.LibraryBinaryOperation;
@@ -86,7 +86,7 @@ public class ExecutorSingleIterationManager extends AbstractIterationManager
 	}
 
 	@Override
-	public @NonNull DomainIterationManager createNestedIterationManager(@NonNull CollectionValue value) {
+	public @NonNull IterationManager createNestedIterationManager(@NonNull CollectionValue value) {
 		return new Nested(this, value);
 	}
 

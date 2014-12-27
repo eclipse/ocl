@@ -14,7 +14,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
-import org.eclipse.ocl.pivot.evaluation.DomainIterationManager;
+import org.eclipse.ocl.pivot.evaluation.IterationManager;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractIteration;
@@ -38,7 +38,7 @@ public class ClosureIteration extends AbstractIteration
 	 * @throws Exception 
 	 */
     @Override
-	protected @Nullable Object updateAccumulator(@NonNull DomainIterationManager iterationManager) {
+	protected @Nullable Object updateAccumulator(@NonNull IterationManager iterationManager) {
 		// The parent is the iterator
 		Object value = iterationManager.get();
 		CollectionValue.Accumulator accumulatorValue = (CollectionValue.Accumulator)iterationManager.getAccumulatorValue();

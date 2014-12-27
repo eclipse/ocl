@@ -108,7 +108,7 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
-import org.eclipse.ocl.pivot.evaluation.DomainIterationManager;
+import org.eclipse.ocl.pivot.evaluation.IterationManager;
 import org.eclipse.ocl.pivot.ids.ClassId;
 import org.eclipse.ocl.pivot.ids.ElementId;
 import org.eclipse.ocl.pivot.ids.EnumerationId;
@@ -450,7 +450,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 	private Method getJavaMethod(@NonNull LibraryIteration libraryIteration) {
 		try {
 			@SuppressWarnings("null") @NonNull Class<? extends LibraryIteration> implementationClass = libraryIteration.getClass();
-			Method method = implementationClass.getMethod("evaluateIteration", DomainIterationManager.class);
+			Method method = implementationClass.getMethod("evaluateIteration", IterationManager.class);
 			return method;
 		} catch (Exception e) {
 			return null;

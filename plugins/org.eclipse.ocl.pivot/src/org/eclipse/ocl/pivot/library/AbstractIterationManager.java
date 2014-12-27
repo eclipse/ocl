@@ -14,10 +14,10 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
-import org.eclipse.ocl.pivot.evaluation.DomainIterationManager;
+import org.eclipse.ocl.pivot.evaluation.IterationManager;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 
-public abstract class AbstractIterationManager implements DomainIterationManager
+public abstract class AbstractIterationManager implements IterationManager
 {
 	protected final @NonNull Evaluator evaluator;
 
@@ -26,7 +26,7 @@ public abstract class AbstractIterationManager implements DomainIterationManager
 	}
 
 	@Override
-	public @NonNull DomainIterationManager createNestedIterationManager(@NonNull CollectionValue value) {
+	public @NonNull IterationManager createNestedIterationManager(@NonNull CollectionValue value) {
 		throw new UnsupportedOperationException();	// Only required for single iterator managers
 	}
 

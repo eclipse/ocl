@@ -17,10 +17,10 @@ import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
- * DomainIterationManager defines the supervisor for an iteration. It provides a body, one or more
+ * IterationManager defines the supervisor for an iteration. It provides a body, one or more
  * iterators and an accumulator, which may be updated by evaluating the body.
  */
-public interface DomainIterationManager
+public interface IterationManager
 {
 	/**
 	 * Advance the iterators to the next iteration, returning false once all possible
@@ -38,7 +38,7 @@ public interface DomainIterationManager
 	 * @return the iteration space
 	 * @throws InvalidValueException
 	 */
-	@NonNull DomainIterationManager createNestedIterationManager(@NonNull CollectionValue value);
+	@NonNull IterationManager createNestedIterationManager(@NonNull CollectionValue value);
 
 	void dispose();
 
