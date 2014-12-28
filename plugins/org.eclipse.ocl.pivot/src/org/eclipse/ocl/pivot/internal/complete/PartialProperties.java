@@ -21,7 +21,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView.Disambiguator;
 
@@ -35,10 +35,10 @@ public class PartialProperties implements Iterable<Property>
 	private boolean isResolved = false;
 	private @Nullable Property resolution = null;
 	private @Nullable List<Property> partials = null;
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull MetamodelManager metamodelManager;
 
-	public PartialProperties(@NonNull MetaModelManager metaModelManager) {
-		this.metaModelManager = metaModelManager;
+	public PartialProperties(@NonNull MetamodelManager metamodelManager) {
+		this.metamodelManager = metamodelManager;
 	}
 
 	public synchronized void didAddProperty(@NonNull Property pivotProperty) {
@@ -100,7 +100,7 @@ public class PartialProperties implements Iterable<Property>
 			if (property != null) {
 				org.eclipse.ocl.pivot.Class owningType = property.getOwningClass();
 				if (owningType != null) {
-					Type domainType = metaModelManager.getPrimaryType(owningType);
+					Type domainType = metamodelManager.getPrimaryType(owningType);
 					if (!primaryProperties.containsKey(domainType)) {
 						primaryProperties.put(domainType, property);	// FIXME something more deterministic than first
 					}
@@ -183,7 +183,7 @@ public class PartialProperties implements Iterable<Property>
 						if (disambiguators != null) {
 							for (Comparator<Object> comparator : disambiguators) {
 								if (comparator instanceof Disambiguator<?>) {
-									verdict = ((Disambiguator<Object>)comparator).compare(metaModelManager, iValue, jValue);
+									verdict = ((Disambiguator<Object>)comparator).compare(metamodelManager, iValue, jValue);
 								}
 								else {
 									verdict = comparator.compare(iValue, jValue);

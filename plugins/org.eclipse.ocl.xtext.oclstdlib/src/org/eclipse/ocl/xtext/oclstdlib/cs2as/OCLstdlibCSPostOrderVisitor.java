@@ -13,7 +13,7 @@ package org.eclipse.ocl.xtext.oclstdlib.cs2as;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Property;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.xtext.oclstdlibcs.LibPropertyCS;
@@ -30,10 +30,10 @@ public class OCLstdlibCSPostOrderVisitor extends AbstractOCLstdlibCSPostOrderVis
 	public @Nullable
 	Continuation<?> visitLibPropertyCS(@NonNull LibPropertyCS csElement) {
 		Continuation<?> continuation = super.visitLibPropertyCS(csElement);
-		Property pivotElement = PivotUtilInternal.getPivot(Property.class, csElement);
+		Property pivotElement = PivotUtil.getPivot(Property.class, csElement);
 		if (pivotElement != null) {
 			pivotElement.setOpposite(null);
-			metaModelManager.installPropertyDeclaration(pivotElement);
+			metamodelManager.installPropertyDeclaration(pivotElement);
 		}
 		return continuation;
 	}

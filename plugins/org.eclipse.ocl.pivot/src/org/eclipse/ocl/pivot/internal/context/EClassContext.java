@@ -16,7 +16,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 /**
@@ -27,15 +27,15 @@ public class EClassContext extends AbstractParserContext
 	protected final @Nullable EClassifier eClassContext;
 	private Type classContext = null;
 
-	public EClassContext(@NonNull MetaModelManager metaModelManager, @Nullable URI uri, @Nullable EClassifier eClassContext) {
-		super(metaModelManager, uri);
+	public EClassContext(@NonNull MetamodelManager metamodelManager, @Nullable URI uri, @Nullable EClassifier eClassContext) {
+		super(metamodelManager, uri);
 		this.eClassContext = eClassContext;
 	}
 
 	@Override
 	public @Nullable Type getClassContext() {
 		if (classContext == null) {
-			classContext = metaModelManager.getPivotOfEcore(Type.class, eClassContext);
+			classContext = metamodelManager.getPivotOfEcore(Type.class, eClassContext);
 		}
 		return classContext;
 	}

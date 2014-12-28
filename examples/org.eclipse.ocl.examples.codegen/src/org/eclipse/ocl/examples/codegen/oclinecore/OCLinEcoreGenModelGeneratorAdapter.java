@@ -68,13 +68,13 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.ecore.AS2Ecore;
 import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.uml2.codegen.ecore.genmodel.util.UML2GenModelUtil;
 
 public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
@@ -148,7 +148,7 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 					((EClass)eClassifier).getEOperations().add(eOperation);
 					ecore2as.addMapping(eOperation, rule);
 					if (message != null) {
-						body = PivotUtilInternal.createTupleValuedConstraint(body, null, message);
+						body = PivotUtil.createTupleValuedConstraint(body, null, message);
 					}
 					EcoreUtil.setAnnotation(eOperation, PivotConstants.OCL_DELEGATE_URI_PIVOT, "body", body);
 				}
@@ -156,13 +156,13 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		}
 	}
 
-	protected void convertConstraintsToOperations(@NonNull MetaModelManager metaModelManager, @NonNull GenModel genModel) {
+	protected void convertConstraintsToOperations(@NonNull MetamodelManager metamodelManager, @NonNull GenModel genModel) {
 		List<GenPackage> genPackages = genModel.getAllGenPackagesWithClassifiers();
 		for (GenPackage genPackage : genPackages) {
 			EPackage ecorePackage = genPackage.getEcorePackage();
 			Resource ecoreResource = ecorePackage.eResource();
 			if (ecoreResource != null) {
-				Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metaModelManager);
+				Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager);
 				if (ecore2as != null) {
 					for (GenClass genClass : genPackage.getGenClasses()) {
 						EClass eClass = genClass.getEcoreClass();
@@ -269,12 +269,12 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 				if (resourceSet == null) {
 					throw new NullPointerException("No ResourceSet for genmodel");
 				}
-				MetaModelManager metaModelManager = MetaModelManager.findAdapter(resourceSet);
-				MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
-				metaModelManager = adapter.getMetaModelManager();
-				convertConstraintsToOperations(metaModelManager, genModel);
+				MetamodelManager metamodelManager = MetamodelManager.findAdapter(resourceSet);
+				MetamodelManagerResourceSetAdapter adapter = MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
+				metamodelManager = adapter.getMetamodelManager();
+				convertConstraintsToOperations(metamodelManager, genModel);
 			    Map<String, String> results = createFeatureBodies(genModel);			
-				installJavaBodies(metaModelManager, genModel, results);
+				installJavaBodies(metamodelManager, genModel, results);
 				pruneDelegates(genModel);
 			}
 		} catch (Exception e) {
@@ -414,13 +414,13 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		return false;
 	}
 
-	protected void installJavaBodies(@NonNull MetaModelManager metaModelManager, @NonNull GenModel genModel, @NonNull Map<String, String> results) {
+	protected void installJavaBodies(@NonNull MetamodelManager metamodelManager, @NonNull GenModel genModel, @NonNull Map<String, String> results) {
 		List<GenPackage> genPackages = genModel.getAllGenPackagesWithClassifiers();
 		for (GenPackage genPackage : genPackages) {
 			EPackage ecorePackage = genPackage.getEcorePackage();
 			Resource ecoreResource = ecorePackage.eResource();
 			if (ecoreResource != null) {
-				Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metaModelManager);
+				Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager);
 				if (ecore2as != null) {
 					for (GenClass genClass : genPackage.getGenClasses()) {
 						EClass eClass = genClass.getEcoreClass();

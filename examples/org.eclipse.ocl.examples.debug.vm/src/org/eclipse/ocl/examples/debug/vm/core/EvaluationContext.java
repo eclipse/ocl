@@ -15,42 +15,42 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.utils.Log;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerListener;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerListener;
 
-public abstract class EvaluationContext implements MetaModelManagerListener
+public abstract class EvaluationContext implements MetamodelManagerListener
 {
-	private @Nullable MetaModelManager metaModelManager;
+	private @Nullable MetamodelManager metamodelManager;
 	private @Nullable Log log;
 	
 	public @Nullable Log getLog() {
 		return log;
 	}
 
-	protected @Nullable MetaModelManager findMetaModelManager() {
+	protected @Nullable MetamodelManager findMetamodelManager() {
 		return null;
 	}
 
 	public abstract @NonNull URI getDebuggableURI();
 
-	public @NonNull MetaModelManager getMetaModelManager() {
-		MetaModelManager metaModelManager2 = metaModelManager;
-		if (metaModelManager2 == null) {
-			if (metaModelManager2 == null) {
-				metaModelManager2 = findMetaModelManager();
+	public @NonNull MetamodelManager getMetamodelManager() {
+		MetamodelManager metamodelManager2 = metamodelManager;
+		if (metamodelManager2 == null) {
+			if (metamodelManager2 == null) {
+				metamodelManager2 = findMetamodelManager();
 			}
-			if (metaModelManager2 == null) {
-				metaModelManager2 = new MetaModelManager();
+			if (metamodelManager2 == null) {
+				metamodelManager2 = new MetamodelManager();
 			}
-			metaModelManager = metaModelManager2;
-			metaModelManager2.addListener(this);
+			metamodelManager = metamodelManager2;
+			metamodelManager2.addListener(this);
 		}
-		return metaModelManager2;
+		return metamodelManager2;
 	}
 
 	@Override
-	public void metaModelManagerDisposed(@NonNull MetaModelManager metaModelManager) {
-		this.metaModelManager = null;
+	public void metamodelManagerDisposed(@NonNull MetamodelManager metamodelManager) {
+		this.metamodelManager = null;
 	}
 
 	public void setLog(@NonNull Log log) {

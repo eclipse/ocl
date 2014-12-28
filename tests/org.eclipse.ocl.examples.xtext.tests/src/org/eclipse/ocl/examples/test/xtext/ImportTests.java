@@ -16,12 +16,12 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.Model;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
 import org.eclipse.ocl.pivot.internal.values.BagImpl;
 import org.eclipse.ocl.pivot.library.AbstractSimpleUnaryOperation;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
+import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.Bag;
@@ -43,7 +43,7 @@ public class ImportTests extends XtextTestCase
 		}
 	}
 	
-	protected MetaModelManager metaModelManager = null;
+	protected MetamodelManager metamodelManager = null;
 	
 	@Override
 	protected void setUp() throws Exception {
@@ -54,23 +54,23 @@ public class ImportTests extends XtextTestCase
 
 	@Override
 	protected void tearDown() throws Exception {
-//		MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.findAdapter(resourceSet);
+//		MetamodelManagerResourceSetAdapter adapter = MetamodelManagerResourceSetAdapter.findAdapter(resourceSet);
 //		if (adapter != null) {
-//			MetaModelManager metaModelManager = adapter.getMetaModelManager();
-//			if (metaModelManager != null) {
-//				metaModelManager.dispose();
+//			MetamodelManager metamodelManager = adapter.getMetamodelManager();
+//			if (metamodelManager != null) {
+//				metamodelManager.dispose();
 //			}
 //		}
-		if (metaModelManager != null) {
-			metaModelManager.dispose();
-			metaModelManager = null;
+		if (metamodelManager != null) {
+			metamodelManager.dispose();
+			metamodelManager = null;
 		}
 		super.tearDown();
 	}
 
 	protected void createTestImport_OCLinEcore_Bug353793_Files()
 			throws IOException {
-		MetaModelManager metaModelManager = new MetaModelManager();
+		MetamodelManager metamodelManager = new MetamodelManager();
 		String testFileA =
 				"package A1 : A2 = 'http://A3'{\n" +
 				"    class A;\n" +
@@ -85,13 +85,13 @@ public class ImportTests extends XtextTestCase
 				"package E1 : E2 = 'http://E3'{\n" +
 				"    class E;\n" +
 				"}\n";
-		createEcoreFile(metaModelManager, "Bug353793E", testFileE);
+		createEcoreFile(metamodelManager, "Bug353793E", testFileE);
 		String testFileF =
 				"package F1 : F2 = 'http://F3'{\n" +
 				"    class F;\n" +
 				"}\n";
-		createEcoreFile(metaModelManager, "Bug353793F", testFileF);
-		metaModelManager.dispose();
+		createEcoreFile(metamodelManager, "Bug353793F", testFileF);
+		metamodelManager.dispose();
 	}	
 
 	protected String getNoSuchFileMessage() {
@@ -427,7 +427,7 @@ public class ImportTests extends XtextTestCase
 				"package ocl\n" +				
 				"endpackage\n";
 		
-		ASResource resource = doLoadASResourceFromString(new MetaModelManager(), "importer.ocl", testFile);
+		ASResource resource = doLoadASResourceFromString(new MetamodelManager(), "importer.ocl", testFile);
 		Model root = (Model) resource.getContents().get(0);
 		assertEquals(1, root.getOwnedImports().size());
 		assertNotNull(root.getOwnedImports().get(0));

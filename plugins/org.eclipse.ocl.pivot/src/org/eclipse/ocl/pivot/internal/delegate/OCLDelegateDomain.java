@@ -34,9 +34,9 @@ import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.OCL;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerListener;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerListener;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
@@ -45,7 +45,7 @@ import org.eclipse.ocl.pivot.utilities.PivotConstants;
  * An implementation of a delegate domain for an OCL enhanced package. The domain
  * maintains an OCL facade to be shared by all delegates within the package.
  */
-public class OCLDelegateDomain implements DelegateDomain, MetaModelManagerListener
+public class OCLDelegateDomain implements DelegateDomain, MetamodelManagerListener
 {
 	protected static class PivotOnlyRegistry extends ValidationDelegateRegistryImpl
 	{
@@ -168,16 +168,16 @@ public class OCLDelegateDomain implements DelegateDomain, MetaModelManagerListen
 		Resource res = ePackage.eResource();
 		PivotEnvironmentFactory envFactory = null;
 		if (res != null) {
-			MetaModelManager metaModelManager = null;
+			MetamodelManager metamodelManager = null;
 			ResourceSet resourceSet = res.getResourceSet();
 			if (resourceSet != null) {
-				MetaModelManagerResourceSetAdapter rsAdapter = MetaModelManagerResourceSetAdapter.findAdapter(resourceSet);
+				MetamodelManagerResourceSetAdapter rsAdapter = MetamodelManagerResourceSetAdapter.findAdapter(resourceSet);
 				if (rsAdapter != null) {
-					metaModelManager = rsAdapter.getMetaModelManager();
+					metamodelManager = rsAdapter.getMetamodelManager();
 				}
 				// it's a dynamic package. Use the local package registry
 				EPackage.Registry packageRegistry = resourceSet.getPackageRegistry();
-				envFactory = new PivotEnvironmentFactory(packageRegistry, metaModelManager);
+				envFactory = new PivotEnvironmentFactory(packageRegistry, metamodelManager);
 				DelegateResourceAdapter.getAdapter(res);
 			}
 		}
@@ -188,8 +188,8 @@ public class OCLDelegateDomain implements DelegateDomain, MetaModelManagerListen
 		return envFactory;
 	}
 
-	public final @NonNull MetaModelManager getMetaModelManager() {
-		return getOCL().getMetaModelManager();
+	public final @NonNull MetamodelManager getMetamodelManager() {
+		return getOCL().getMetamodelManager();
 	}
 
 	public @NonNull OCL getOCL() {
@@ -198,15 +198,15 @@ public class OCLDelegateDomain implements DelegateDomain, MetaModelManagerListen
 			// Delegates are an application-independent extension of EMF
 			//  so we must use the neutral/global context see Bug 338501
 			ocl2 = ocl = OCL.newInstance(getEnvironmentFactory());
-			ocl2.getMetaModelManager().addListener(this);
+			ocl2.getMetamodelManager().addListener(this);
 		}
 		return ocl2;
 	}
 	
 	public <T extends Element> T getPivot(@NonNull Class<T> requiredClass, @NonNull EObject eObject) {
-		MetaModelManager metaModelManager = getOCL().getMetaModelManager();
+		MetamodelManager metamodelManager = getOCL().getMetamodelManager();
 		try {
-			return metaModelManager.getPivotOf(requiredClass, eObject);
+			return metamodelManager.getPivotOf(requiredClass, eObject);
 		} catch (ParserException e) {
 			return null;
 		}
@@ -218,7 +218,7 @@ public class OCLDelegateDomain implements DelegateDomain, MetaModelManagerListen
 	}
 
 	@Override
-	public void metaModelManagerDisposed(@NonNull MetaModelManager metaModelManager) {
+	public void metamodelManagerDisposed(@NonNull MetamodelManager metamodelManager) {
 		reset();
 	}
 

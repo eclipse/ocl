@@ -116,7 +116,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	}
 
     @Test public void test_implicit_source() {
-		StandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+		StandardLibrary standardLibrary = metamodelManager.getStandardLibrary();
         assertQueryTrue(standardLibrary.getPackage(), "ownedClasses->select(name = 'Integer') = Set{Integer}");
         assertQueryTrue(standardLibrary.getPackage(), "let name : String = 'String' in ownedClasses->select(name = 'Integer') = Set{Integer}");
         assertQueryTrue(-1, "let type : Class = oclType() in type.owningPackage.ownedClasses->select(name = type.name) = Set{Integer}");
@@ -172,7 +172,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	 * Tests a guarded let if in operator. This gave CG problems.
 	 */
 	@Test public void test_cg_let_implies() {
-		StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
+		StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
 		String textQuery = 
 			    "let bodyConstraint : Constraint = null\n" + 
 			    "in bodyConstraint <> null implies\n" +
@@ -180,11 +180,11 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		org.eclipse.ocl.pivot.Class testType = standardLibrary.getIntegerType();
 		assert testType.getOwnedInvariants().isEmpty();
 		assertQueryTrue(testType, textQuery);
-//		assertQueryTrue(ValuesUtil.createTypeValue(metaModelManager.getMetaclass(testType)), textQuery);
+//		assertQueryTrue(ValuesUtil.createTypeValue(metamodelManager.getMetaclass(testType)), textQuery);
 	}
 	
 	@Test public void test_let_implies_let_implies() {
-		StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
+		StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
 		String textQuery = 
 			    "let bodyConstraint : Constraint = oclType().ownedInvariants->any(name = 'body')\n" + 
 			    "in bodyConstraint <> null implies\n" +
@@ -203,7 +203,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	}
 	
 	@Test public void test_cg_implies_calls() throws ParserException {
-		StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
+		StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
 		getHelper().setContext(standardLibrary.getOclVoidType());
 		ExpressionInOCL query = getHelper().createQuery("self->any(true)");
 		String textQuery = 
@@ -213,7 +213,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	}
 	
 	@Test public void test_cg_caught_if() throws ParserException {
-		StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
+		StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
 		getHelper().setContext(standardLibrary.getOclVoidType());
 		ExpressionInOCL query = getHelper().createQuery("self->any(true)");
 		String textQuery = 
@@ -260,7 +260,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		Root pivotModel = (Root) metaModel.getContents().get(0);
 		org.eclipse.ocl.pivot.Package pivotPackage = pivotModel.getNestedPackage().get(0);
 		Type pivotType = pivotPackage.getOwnedType().get(0);
-		EClass eClass = metaModelManager.getEcoreOfPivot(EClass.class, pivotType);
+		EClass eClass = metamodelManager.getEcoreOfPivot(EClass.class, pivotType);
 		Object testObject = eClass.getEPackage().getEFactoryInstance().create(eClass);
 		String textQuery = "self.derivedDerivedOperation(3)";
 		assertQueryEquals(testObject, 594, textQuery);
@@ -283,7 +283,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		Model pivotModel = (Model) metaModel.getContents().get(0);
 		org.eclipse.ocl.pivot.Package pivotPackage = pivotModel.getOwnedPackages().get(0);
 		org.eclipse.ocl.pivot.Class pivotType = pivotPackage.getOwnedClasses().get(0);
-		EClass eClass = metaModelManager.getEcoreOfPivot(EClass.class, pivotType);
+		EClass eClass = metamodelManager.getEcoreOfPivot(EClass.class, pivotType);
 		Object testObject = eClass.getEPackage().getEFactoryInstance().create(eClass);
 		String textQuery = "self.derivedDerivedInteger";
 		assertQueryEquals(testObject, 198, textQuery);
@@ -317,12 +317,12 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		org.eclipse.ocl.pivot.Package pivotPackage = pivotModel.getOwnedPackages().get(0);
 		org.eclipse.ocl.pivot.Class pivotTypeA = NameUtil.getNameable(pivotPackage.getOwnedClasses(), "A");
 		org.eclipse.ocl.pivot.Class pivotTypeB = NameUtil.getNameable(pivotPackage.getOwnedClasses(), "B");
-		EPackage ePackage = metaModelManager.getEcoreOfPivot(EPackage.class, pivotPackage);
-		EClass eClassA = metaModelManager.getEcoreOfPivot(EClass.class, pivotTypeA);
-		EClass eClassB = metaModelManager.getEcoreOfPivot(EClass.class, pivotTypeB);
-		EAttribute eAttributeAd = metaModelManager.getEcoreOfPivot(EAttribute.class, NameUtil.getNameable(pivotTypeA.getOwnedProperties(), "d"));
-		EAttribute eAttributeAe = metaModelManager.getEcoreOfPivot(EAttribute.class, NameUtil.getNameable(pivotTypeA.getOwnedProperties(), "e"));
-		EReference eReferenceBas = metaModelManager.getEcoreOfPivot(EReference.class, NameUtil.getNameable(pivotTypeB.getOwnedProperties(), "as"));
+		EPackage ePackage = metamodelManager.getEcoreOfPivot(EPackage.class, pivotPackage);
+		EClass eClassA = metamodelManager.getEcoreOfPivot(EClass.class, pivotTypeA);
+		EClass eClassB = metamodelManager.getEcoreOfPivot(EClass.class, pivotTypeB);
+		EAttribute eAttributeAd = metamodelManager.getEcoreOfPivot(EAttribute.class, NameUtil.getNameable(pivotTypeA.getOwnedProperties(), "d"));
+		EAttribute eAttributeAe = metamodelManager.getEcoreOfPivot(EAttribute.class, NameUtil.getNameable(pivotTypeA.getOwnedProperties(), "e"));
+		EReference eReferenceBas = metamodelManager.getEcoreOfPivot(EReference.class, NameUtil.getNameable(pivotTypeB.getOwnedProperties(), "as"));
 		EFactory eFactory = ePackage.getEFactoryInstance();
 		Resource resource = new ResourceImpl();
 		EObject testObjectA1 = eFactory.create(eClassA);
@@ -342,7 +342,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	}
 	
 	@Test public void test_cg_tuple_access() throws ParserException, IOException {
-//		getHelper().setContext(metaModelManager.getOclVoidType());
+//		getHelper().setContext(metamodelManager.getOclVoidType());
 		String textQuery = 
 				"let\n" +
 				"  table : Set(Tuple(range : Sequence(Integer), size : String)) = Set{\n" +
@@ -360,7 +360,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	 */
 	@Test public void test_container_navigation() throws InvocationTargetException {
 		initFruitPackage();
-		metaModelManager.addGlobalNamespace("fruit", fruitPackage);
+		metamodelManager.addGlobalNamespace("fruit", fruitPackage);
 		//
 		//	Simple model: aTree contains redApple
 		//
@@ -373,7 +373,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		List<Object> treeFruits = (List<Object>) aTree.eGet(tree_fruits);
 		treeFruits.add(redApple);
 		//
-		Type pivotTree = metaModelManager.getPivotOfEcore(Type.class, tree);
+		Type pivotTree = metamodelManager.getPivotOfEcore(Type.class, tree);
 		//
 		assertQueryEquals(redApple, color_red, "let aFruit : fruit::Fruit = self in aFruit.color");
 		assertQueryEquals(aTree, idResolver.createOrderedSetOfEach(null, redApple), "let aTree : fruit::Tree = self in aTree.fruits");
@@ -397,7 +397,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	 */
 	@Test public void test_nested_names() throws InvocationTargetException {
 		initFruitPackage();
-		org.eclipse.ocl.pivot.Class appleType = metaModelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Class.class, apple);
+		org.eclipse.ocl.pivot.Class appleType = metamodelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Class.class, apple);
 		//
 		//	Simple model: appleTree contains redApple
 		//
@@ -431,7 +431,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		assertQueryEquals(redApple, idResolver.createSetOfEach(null, appleTree), "fruit::Tree.allInstances()");
 		assertQueryEquals(null, getEmptySetValue(), "fruit::Tree.allInstances()");
 //
-		metaModelManager.addGlobalNamespace("zz", fruitPackage);
+		metamodelManager.addGlobalNamespace("zz", fruitPackage);
 		assertQueryEquals(redApple, idResolver.createSetOfEach(null, appleTree), "zz::Tree.allInstances()");
 //
 		assertQueryEquals(redApple, idResolver.createBagOfEach(null, redApple), "Fruit.allInstances().oclAsType(Apple)");		
@@ -463,7 +463,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	@Test public void test_uml_primitives_399378() throws ParserException {
 		UML2AS.initialize(resourceSet);
 		URI uri = getTestModelURI("model/Fruit.uml");
-		Element element = metaModelManager.loadResource(uri, null, resourceSet);
+		Element element = metamodelManager.loadResource(uri, null, resourceSet);
 		org.eclipse.ocl.pivot.Package fruitPackage = ((Model)element).getOwnedPackages().get(0);
 		org.eclipse.ocl.pivot.Class treeClass = NameUtil.getNameable(fruitPackage.getOwnedClasses(), "Tree");
 		ExpressionInOCL query = createQuery(treeClass, "self.height>20");
@@ -533,23 +533,23 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		org.eclipse.ocl.pivot.Class pivotTypeT3a = NameUtil.getNameable(pivotPackage.getOwnedClasses(), "T3a");
 		org.eclipse.ocl.pivot.Class pivotTypeT3b = NameUtil.getNameable(pivotPackage.getOwnedClasses(), "T3b");
 		org.eclipse.ocl.pivot.Class pivotTypeT4 = NameUtil.getNameable(pivotPackage.getOwnedClasses(), "T4");
-		EPackage ePackage = metaModelManager.getEcoreOfPivot(EPackage.class, pivotPackage);
-		EClass eClassDomain = metaModelManager.getEcoreOfPivot(EClass.class, pivotTypeDomain);
-//		EClass eClassT1 = metaModelManager.getEcoreOfPivot(EClass.class, pivotTypeT1);
-		EClass eClassT2a = metaModelManager.getEcoreOfPivot(EClass.class, pivotTypeT2a);
-		EClass eClassT2b = metaModelManager.getEcoreOfPivot(EClass.class, pivotTypeT2b);
-		EClass eClassT3a = metaModelManager.getEcoreOfPivot(EClass.class, pivotTypeT3a);
-		EClass eClassT3b = metaModelManager.getEcoreOfPivot(EClass.class, pivotTypeT3b);
-		EClass eClassT4 = metaModelManager.getEcoreOfPivot(EClass.class, pivotTypeT4);
-		EReference eReferenceDomain_types = metaModelManager.getEcoreOfPivot(EReference.class, NameUtil.getNameable(pivotTypeDomain.getOwnedProperties(), "types"));
-		EReference eReferenceDomain_t1_2a = metaModelManager.getEcoreOfPivot(EReference.class, NameUtil.getNameable(pivotTypeDomain.getOwnedProperties(), "t1_2a"));
-		EReference eReferenceDomain_t1_3a = metaModelManager.getEcoreOfPivot(EReference.class, NameUtil.getNameable(pivotTypeDomain.getOwnedProperties(), "t1_3a"));
-		EReference eReferenceDomain_t1_3b = metaModelManager.getEcoreOfPivot(EReference.class, NameUtil.getNameable(pivotTypeDomain.getOwnedProperties(), "t1_3b"));
-		EReference eReferenceDomain_t1_4 = metaModelManager.getEcoreOfPivot(EReference.class, NameUtil.getNameable(pivotTypeDomain.getOwnedProperties(), "t1_4"));
-		EReference eReferenceDomain_t2a_2a = metaModelManager.getEcoreOfPivot(EReference.class, NameUtil.getNameable(pivotTypeDomain.getOwnedProperties(), "t2a_2a"));
-		EReference eReferenceDomain_t2a_3a = metaModelManager.getEcoreOfPivot(EReference.class, NameUtil.getNameable(pivotTypeDomain.getOwnedProperties(), "t2a_3a"));
-		EReference eReferenceDomain_t2b_2b = metaModelManager.getEcoreOfPivot(EReference.class, NameUtil.getNameable(pivotTypeDomain.getOwnedProperties(), "t2b_2b"));
-		EReference eReferenceDomain_t3a = metaModelManager.getEcoreOfPivot(EReference.class, NameUtil.getNameable(pivotTypeDomain.getOwnedProperties(), "t3a"));
+		EPackage ePackage = metamodelManager.getEcoreOfPivot(EPackage.class, pivotPackage);
+		EClass eClassDomain = metamodelManager.getEcoreOfPivot(EClass.class, pivotTypeDomain);
+//		EClass eClassT1 = metamodelManager.getEcoreOfPivot(EClass.class, pivotTypeT1);
+		EClass eClassT2a = metamodelManager.getEcoreOfPivot(EClass.class, pivotTypeT2a);
+		EClass eClassT2b = metamodelManager.getEcoreOfPivot(EClass.class, pivotTypeT2b);
+		EClass eClassT3a = metamodelManager.getEcoreOfPivot(EClass.class, pivotTypeT3a);
+		EClass eClassT3b = metamodelManager.getEcoreOfPivot(EClass.class, pivotTypeT3b);
+		EClass eClassT4 = metamodelManager.getEcoreOfPivot(EClass.class, pivotTypeT4);
+		EReference eReferenceDomain_types = metamodelManager.getEcoreOfPivot(EReference.class, NameUtil.getNameable(pivotTypeDomain.getOwnedProperties(), "types"));
+		EReference eReferenceDomain_t1_2a = metamodelManager.getEcoreOfPivot(EReference.class, NameUtil.getNameable(pivotTypeDomain.getOwnedProperties(), "t1_2a"));
+		EReference eReferenceDomain_t1_3a = metamodelManager.getEcoreOfPivot(EReference.class, NameUtil.getNameable(pivotTypeDomain.getOwnedProperties(), "t1_3a"));
+		EReference eReferenceDomain_t1_3b = metamodelManager.getEcoreOfPivot(EReference.class, NameUtil.getNameable(pivotTypeDomain.getOwnedProperties(), "t1_3b"));
+		EReference eReferenceDomain_t1_4 = metamodelManager.getEcoreOfPivot(EReference.class, NameUtil.getNameable(pivotTypeDomain.getOwnedProperties(), "t1_4"));
+		EReference eReferenceDomain_t2a_2a = metamodelManager.getEcoreOfPivot(EReference.class, NameUtil.getNameable(pivotTypeDomain.getOwnedProperties(), "t2a_2a"));
+		EReference eReferenceDomain_t2a_3a = metamodelManager.getEcoreOfPivot(EReference.class, NameUtil.getNameable(pivotTypeDomain.getOwnedProperties(), "t2a_3a"));
+		EReference eReferenceDomain_t2b_2b = metamodelManager.getEcoreOfPivot(EReference.class, NameUtil.getNameable(pivotTypeDomain.getOwnedProperties(), "t2b_2b"));
+		EReference eReferenceDomain_t3a = metamodelManager.getEcoreOfPivot(EReference.class, NameUtil.getNameable(pivotTypeDomain.getOwnedProperties(), "t3a"));
 		EFactory eFactory = ePackage.getEFactoryInstance();
 		Resource resource = new ResourceImpl();
 		EObject testObjectDomain = eFactory.create(eClassDomain);

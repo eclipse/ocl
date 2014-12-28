@@ -38,15 +38,15 @@ import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.VariableDeclaration;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagedAdapter;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagedAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.internal.scoping.ScopeFilter;
 import org.eclipse.ocl.pivot.internal.scoping.ScopeView;
 import org.eclipse.ocl.pivot.internal.utilities.AbstractConversion;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
@@ -82,7 +82,7 @@ import org.eclipse.xtext.util.Tuples;
  * and their corresponding Pivot Resources creating a CS2ASConversion
  * to update.
  */
-public abstract class CS2AS extends AbstractConversion implements MetaModelManagedAdapter
+public abstract class CS2AS extends AbstractConversion implements MetamodelManagedAdapter
 {	
 	public static interface UnresolvedProxyMessageProvider
 	{
@@ -399,19 +399,19 @@ public abstract class CS2AS extends AbstractConversion implements MetaModelManag
 	 */
 	protected final @NonNull CSI2ASMapping csi2asMapping;
 
-	public CS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull MetaModelManager metaModelManager) {
-		super(metaModelManager);
-		this.csi2asMapping = CSI2ASMapping.getAdapter(metaModelManager);
+	public CS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull MetamodelManager metamodelManager) {
+		super(metamodelManager);
+		this.csi2asMapping = CSI2ASMapping.getAdapter(metamodelManager);
 		csi2asMapping.add(cs2asResourceMap);
 		this.csResources = ClassUtil.nonNullState(cs2asResourceMap.keySet());
-		metaModelManager.addListener(this);
-		metaModelManager.getASResourceSet().eAdapters().add(this);
+		metamodelManager.addListener(this);
+		metamodelManager.getASResourceSet().eAdapters().add(this);
 	}
 	
 	protected CS2AS(@NonNull CS2AS aConverter) {
-		super(aConverter.metaModelManager);
+		super(aConverter.metamodelManager);
 		this.csResources = aConverter.csResources;
-		this.csi2asMapping = CSI2ASMapping.getAdapter(metaModelManager);
+		this.csi2asMapping = CSI2ASMapping.getAdapter(metamodelManager);
 	}
 
 	public @NonNull String bind(@NonNull EObject csContext, /*@NonNull*/ String messageTemplate, Object... bindings) {
@@ -432,8 +432,8 @@ public abstract class CS2AS extends AbstractConversion implements MetaModelManag
 	public void dispose() {
 		csi2asMapping.removeCSResources(csResources);
 		csResources.clear();
-		metaModelManager.getASResourceSet().eAdapters().remove(this);
-		metaModelManager.removeListener(this);
+		metamodelManager.getASResourceSet().eAdapters().remove(this);
+		metamodelManager.removeListener(this);
 	}
 
 	public @Nullable ModelElementCS getCSElement(@NonNull Element pivotElement) {
@@ -466,12 +466,12 @@ public abstract class CS2AS extends AbstractConversion implements MetaModelManag
 	}
 
 	public Collection<? extends Resource> getPivotResources() {
-		return metaModelManager.getASResourceSet().getResources();//cs2asResourceMap.values();
+		return metamodelManager.getASResourceSet().getResources();//cs2asResourceMap.values();
 	}
 
 	@Override
 	public Notifier getTarget() {
-		return metaModelManager.getASResourceSet();
+		return metamodelManager.getASResourceSet();
 	}
 	
 	/**
@@ -530,8 +530,8 @@ public abstract class CS2AS extends AbstractConversion implements MetaModelManag
 	}
 
 	@Override
-	public boolean isAdapterFor(@NonNull MetaModelManager metaModelManager) {
-		return this.metaModelManager == metaModelManager;
+	public boolean isAdapterFor(@NonNull MetamodelManager metamodelManager) {
+		return this.metamodelManager == metamodelManager;
 	}
 
 	public @Nullable Iteration lookupIteration(@NonNull ElementCS csElement, @NonNull PathNameCS csPathName, @Nullable ScopeFilter scopeFilter) {
@@ -558,8 +558,8 @@ public abstract class CS2AS extends AbstractConversion implements MetaModelManag
 
 	public @Nullable VariableDeclaration lookupSelf(@NonNull ElementCS csElement) {
 		@SuppressWarnings("null") @NonNull EReference eReference = PivotPackage.Literals.EXPRESSION_IN_OCL__OWNED_CONTEXT;
-		EnvironmentView environmentView = new EnvironmentView(metaModelManager, eReference, PivotConstants.SELF_NAME);
-		ScopeView baseScopeView = BaseScopeView.getScopeView(metaModelManager, csElement, eReference);
+		EnvironmentView environmentView = new EnvironmentView(metamodelManager, eReference, PivotConstants.SELF_NAME);
+		ScopeView baseScopeView = BaseScopeView.getScopeView(metamodelManager, csElement, eReference);
 		environmentView.computeLookups(baseScopeView);
 		VariableDeclaration variableDeclaration = (VariableDeclaration) environmentView.getContent();
 		return variableDeclaration;
@@ -614,7 +614,7 @@ public abstract class CS2AS extends AbstractConversion implements MetaModelManag
 	}
 
 	@Override
-	public void metaModelManagerDisposed(@NonNull MetaModelManager metaModelManager) {
+	public void metamodelManagerDisposed(@NonNull MetamodelManager metamodelManager) {
 		dispose();
 	}
 
@@ -648,12 +648,12 @@ public abstract class CS2AS extends AbstractConversion implements MetaModelManag
 
 	@Override
 	public void setTarget(Notifier newTarget) {
-		assert newTarget == metaModelManager.getASResourceSet();
+		assert newTarget == metamodelManager.getASResourceSet();
 	}
 
 	@Override
 	public void unsetTarget(Notifier oldTarget) {
-		assert oldTarget == metaModelManager.getASResourceSet();
+		assert oldTarget == metamodelManager.getASResourceSet();
 	}
 	
 	public synchronized void update(@NonNull IDiagnosticConsumer diagnosticsConsumer) {
@@ -678,7 +678,7 @@ public abstract class CS2AS extends AbstractConversion implements MetaModelManag
 		deadCSIs.removeAll(newCSIs);
 		for (String deadCSI : deadCSIs) {
 			Element deadPivot = oldCSI2AS.get(deadCSI);	// WIP
-//			metaModelManager.kill(deadPivot);
+//			metamodelManager.kill(deadPivot);
 		} */
 		Map<BaseCSResource, ASResource> cs2asResourceMap = new HashMap<BaseCSResource, ASResource>();
 		for (BaseCSResource csResource : csResources) {

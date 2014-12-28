@@ -43,15 +43,15 @@ import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.ecore.AS2Ecore;
 import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.pivot.internal.helper.HelperUtil;
 import org.eclipse.ocl.pivot.internal.helper.OCLHelper;
 import org.eclipse.ocl.pivot.internal.helper.OCLHelperImpl;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.plugin.PivotInternalPlugin;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
+import org.eclipse.ocl.pivot.internal.helper.QueryImpl;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.uml.UML2AS;
-import org.eclipse.ocl.pivot.internal.utilities.BaseResource;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
-import org.eclipse.ocl.pivot.internal.utilities.QueryImpl;
+import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ObjectUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
@@ -97,23 +97,23 @@ public class OCL {
 
     /**
      * Creates a new <code>OCL</code> with no initial Ecore package registry.
-     * This automatically creates a new EnvironmentFactory and MetaModelManager.
+     * This automatically creates a new EnvironmentFactory and MetamodelManager.
      * 
      * @return the new <code>OCL</code>
      */
 	public static @NonNull OCL newInstance() {
-		return newInstance(new PivotEnvironmentFactory(null, new MetaModelManager()));
+		return newInstance(new PivotEnvironmentFactory(null, new MetamodelManager()));
 	}
 	
     /**
      * Creates a new <code>OCL</code> using the specified Ecore package registry.
-     * This automatically creates an new EnvironmentFactory and MetaModelManager.
+     * This automatically creates an new EnvironmentFactory and MetamodelManager.
      * 
      * @param reg Ecore package registry
      * @return the new <code>OCL</code>
      */
 	public static @NonNull OCL newInstance(@NonNull EPackage.Registry reg) {	
-		return newInstance(new PivotEnvironmentFactory(reg, new MetaModelManager()));
+		return newInstance(new PivotEnvironmentFactory(reg, new MetamodelManager()));
 	}
 	
     /**
@@ -164,9 +164,9 @@ public class OCL {
 
 	private int parserRepairCount = 0;
 
-	private boolean traceParsing = PivotInternalPlugin.shouldTrace(OCLDebugOptions.PARSING);
+	private boolean traceParsing = HelperUtil.shouldTrace(OCLDebugOptions.PARSING);
 
-	private boolean traceEvaluation = PivotInternalPlugin.shouldTrace(OCLDebugOptions.EVALUATION);
+	private boolean traceEvaluation = HelperUtil.shouldTrace(OCLDebugOptions.EVALUATION);
 
 	/**
 	 * Initializes me with my environment factory and root environment.
@@ -195,17 +195,17 @@ public class OCL {
 	 * (BaseResource) resourceSet.createResource(outputURI, OCLinEcoreCSPackage.eCONTENT_TYPE);
 	 * </tt>
 	 */
-	public void as2cs(@NonNull ASResource asResource, @NonNull BaseResource csResource) {
-		MetaModelManager metaModelManager = getMetaModelManager();
-		csResource.updateFrom(asResource, metaModelManager);
+	public void as2cs(@NonNull ASResource asResource, @NonNull CSResource csResource) {
+		MetamodelManager metamodelManager = getMetamodelManager();
+		csResource.updateFrom(asResource, metamodelManager);
 	}
 
 	/**
 	 * Return the Ecore resource counterpart of a asResource, specifying the uri of the resulting Ecore resource.
 	 */
 	public @NonNull Resource as2ecore(@NonNull Resource asResource, @NonNull URI uri) throws IOException {
-		MetaModelManager metaModelManager = getMetaModelManager();
-		Resource ecoreResource = AS2Ecore.createResource(metaModelManager, asResource, uri, null);
+		MetamodelManager metamodelManager = getMetamodelManager();
+		Resource ecoreResource = AS2Ecore.createResource(metamodelManager, asResource, uri, null);
 		return ecoreResource;
 	}
 
@@ -233,7 +233,7 @@ public class OCL {
 		}
 		ExpressionInOCL query;
 		try {
-			query = getMetaModelManager().getQueryOrThrow(specification);
+			query = getMetamodelManager().getQueryOrThrow(specification);
 		} catch (ParserException e) {
 //			e.printStackTrace();
 			return false;
@@ -390,16 +390,16 @@ public class OCL {
 	 */
 	public Query createQuery(@NonNull Constraint constraint) throws ParserException {
 		LanguageExpression specification = ClassUtil.nonNullState(constraint.getOwnedSpecification());
-		ExpressionInOCL query = getMetaModelManager().getQueryOrThrow(specification);
+		ExpressionInOCL query = getMetamodelManager().getQueryOrThrow(specification);
 		return new QueryImpl(this, query);
 	}
 
 	/**
 	 * Return the Pivot resource counterpart of an Xtext csResource.
 	 */
-	public @NonNull Resource cs2as(@NonNull BaseResource csResource) {
-		MetaModelManager metaModelManager = getMetaModelManager();
-		Resource asResource = csResource.getASResource(metaModelManager);
+	public @NonNull Resource cs2as(@NonNull CSResource csResource) {
+		MetamodelManager metamodelManager = getMetamodelManager();
+		Resource asResource = csResource.getASResource(metamodelManager);
 		return asResource;
 	}
 
@@ -423,7 +423,7 @@ public class OCL {
 
 		if (environmentFactory != PivotEnvironmentFactory.basicGetGlobalRegistryInstance()) { // dispose of my environment
 			getEnvironment().dispose();
-			getMetaModelManager().dispose();
+			getMetamodelManager().dispose();
 		}
 	}
 
@@ -431,8 +431,8 @@ public class OCL {
 	 * Return the Pivot resource counterpart of an ecoreResource.
 	 */
 	public @NonNull ASResource ecore2as(@NonNull Resource ecoreResource) throws ParserException {
-		MetaModelManager metaModelManager = getMetaModelManager();
-		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metaModelManager);
+		MetamodelManager metamodelManager = getMetamodelManager();
+		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager);
 		Model pivotModel = ecore2as.getPivotModel();
 		ASResource asResource = (ASResource) pivotModel.eResource();
 		return ClassUtil.nonNullModel(asResource);
@@ -499,8 +499,8 @@ public class OCL {
 		return evaluationProblems;
 	}
 
-	public @NonNull MetaModelManager getMetaModelManager() {
-		return rootEnvironment.getMetaModelManager();
+	public @NonNull MetamodelManager getMetamodelManager() {
+		return rootEnvironment.getMetamodelManager();
 	}
 
 	/**
@@ -560,7 +560,7 @@ public class OCL {
 				return query;
 			}
 		}
-		return getMetaModelManager().getQueryOrThrow(specification);
+		return getMetamodelManager().getQueryOrThrow(specification);
 	}
 
 	public @NonNull StandardLibraryInternal getStandardLibrary() {
@@ -620,9 +620,9 @@ public class OCL {
 	 * Load the Complete OCL document specified by the URI into the external ResourceSet and
 	 * return the concrete syntax resource.
 	 */
-	public @Nullable BaseResource load(@NonNull URI uri) {
-		ResourceSet externalResourceSet = getMetaModelManager().getExternalResourceSet();
-		return (BaseResource) externalResourceSet.getResource(uri, true);
+	public @Nullable CSResource load(@NonNull URI uri) {
+		ResourceSet externalResourceSet = getMetamodelManager().getExternalResourceSet();
+		return (CSResource) externalResourceSet.getResource(uri, true);
 	}
 
 	/**
@@ -630,7 +630,7 @@ public class OCL {
 	 * parse the concrete syntax resource returning the resulting abstract syntax resource.
 	 */
 	public @Nullable Resource parse(@NonNull URI uri) {
-		BaseResource csResource = load(uri);
+		CSResource csResource = load(uri);
 		return csResource != null ? cs2as(csResource) : null;
 	}
 
@@ -720,8 +720,8 @@ public class OCL {
 	 * @throws ParserException 
 	 */
 	public @NonNull ASResource uml2as(@NonNull Resource umlResource) throws ParserException {
-		MetaModelManager metaModelManager = getMetaModelManager();
-		UML2AS uml2as = UML2AS.getAdapter(umlResource, metaModelManager);
+		MetamodelManager metamodelManager = getMetamodelManager();
+		UML2AS uml2as = UML2AS.getAdapter(umlResource, metamodelManager);
 		Model pivotModel = uml2as.getPivotModel();
 		ASResource asResource = (ASResource) pivotModel.eResource();
 		return ClassUtil.nonNullModel(asResource);

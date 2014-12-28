@@ -41,7 +41,7 @@ import org.eclipse.ocl.examples.standalone.StandaloneApplication;
 import org.eclipse.ocl.examples.standalone.StandaloneCommand;
 import org.eclipse.ocl.examples.standalone.StandaloneResponse;
 import org.eclipse.ocl.examples.standalone.messages.StandaloneMessages;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.validation.PivotEObjectValidator.ValidationAdapter;
 import org.eclipse.ocl.xtext.completeocl.utilities.CompleteOCLLoader;
 
@@ -580,9 +580,9 @@ public class ValidateCommand extends StandaloneCommand
 //				// TODO Auto-generated catch block
 //				e.printStackTrace();
 //			}
-			MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.findAdapter(modelResource.getResourceSet());
+			MetamodelManagerResourceSetAdapter adapter = MetamodelManagerResourceSetAdapter.findAdapter(modelResource.getResourceSet());
 			if (adapter != null) {
-				adapter.getMetaModelManager().dispose();
+				adapter.getMetamodelManager().dispose();
 			}
 		}
 		return StandaloneResponse.OK;
@@ -683,8 +683,8 @@ public class ValidateCommand extends StandaloneCommand
 			}
 		}
 
-		if (allOk && !helper.loadMetaModels()) {
-			logger.error(StandaloneMessages.OCLValidatorApplication_MetaModelsLoadProblem);
+		if (allOk && !helper.loadMetamodels()) {
+			logger.error(StandaloneMessages.OCLValidatorApplication_MetamodelsLoadProblem);
 			allOk = false;
 		}
 

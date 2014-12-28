@@ -44,7 +44,7 @@ import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.ids.UnspecifiedId;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.Orphanage;
 import org.eclipse.ocl.pivot.internal.manager.PivotIdResolver;
 import org.eclipse.ocl.pivot.values.BagValue;
@@ -65,19 +65,19 @@ import org.eclipse.ocl.pivot.values.TupleValue;
 public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 {
 	protected final @NonNull GenModelHelper genModelHelper;
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull MetamodelManager metamodelManager;
 	protected final @NonNull PivotIdResolver idResolver;
 //	private /*@LazyNonNull*/ Id2BoxedJavaClassVisitor id2BoxedJavaClassVisitor = null;
 //	private /*@LazyNonNull*/ Id2UnboxedJavaClassVisitor id2UnboxedJavaClassVisitor = null;
 	
 	public Id2BoxedDescriptorVisitor(@NonNull JavaCodeGenerator javaCodeGenerator) {
 		this.genModelHelper = javaCodeGenerator.getGenModelHelper();
-		this.metaModelManager = javaCodeGenerator.getMetaModelManager();
-		this.idResolver = metaModelManager.getIdResolver();
+		this.metamodelManager = javaCodeGenerator.getMetamodelManager();
+		this.idResolver = metamodelManager.getIdResolver();
 	}
 
 	protected EClassifier getEClassifier(@NonNull Type type) {
-		for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Class dType : metaModelManager.getPartialClasses(type)) {
+		for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Class dType : metamodelManager.getPartialClasses(type)) {
 			EClassifier eClass = (EClassifier) dType.getETarget();
 			if (eClass != null) {
 				return eClass;
@@ -153,7 +153,7 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 			}
 		}
 		if (unboxedDescriptor == null) {
-			unboxedDescriptor = new UnboxedElementsDescriptor(id, metaModelManager.getStandardLibrary(), type);
+			unboxedDescriptor = new UnboxedElementsDescriptor(id, metamodelManager.getStandardLibrary(), type);
 		}
 		Class<?> boxedClass;
 		if (generalizedId == TypeId.BAG) {

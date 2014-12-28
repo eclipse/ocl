@@ -710,12 +710,12 @@ public class AS2EcoreDeclarationVisitor
 				EDataType eDataType = (EDataType)eType;
 				EFactory eFactoryInstance = eDataType.getEPackage().getEFactoryInstance();
 				Object unboxedValue = eFactoryInstance.createFromString(eDataType, defaultValueLiteral);
-				boxedValue = metaModelManager.getIdResolver().boxedValueOf(unboxedValue);
+				boxedValue = metamodelManager.getIdResolver().boxedValueOf(unboxedValue);
 				pivotElement.setDefaultValue(boxedValue);
 			}
 			else {
 				URI uri = URI.createURI(defaultValueLiteral);
-				boxedValue = metaModelManager.getExternalResourceSet().getEObject(uri, false);
+				boxedValue = metamodelManager.getExternalResourceSet().getEObject(uri, false);
 			}
 			pivotElement.setDefaultValue(boxedValue); * /
 			

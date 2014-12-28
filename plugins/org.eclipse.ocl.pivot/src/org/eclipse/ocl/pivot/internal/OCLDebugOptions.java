@@ -11,7 +11,7 @@
 
 package org.eclipse.ocl.pivot.internal;
 
-import org.eclipse.ocl.pivot.internal.plugin.PivotInternalPlugin;
+import org.eclipse.ocl.pivot.util.PivotPlugin;
 
 
 /**
@@ -26,7 +26,7 @@ public final class OCLDebugOptions {
 		super();
 	}
 	
-	public static final String DEBUG = PivotInternalPlugin.getPluginId() + "/debug"; //$NON-NLS-1$
+	public static final String DEBUG = PivotPlugin.PLUGIN_ID + "/debug"; //$NON-NLS-1$
 
 	public static final String EXCEPTIONS_CATCHING = DEBUG + "/exceptions/catching"; //$NON-NLS-1$
 	public static final String EXCEPTIONS_THROWING = DEBUG + "/exceptions/throwing"; //$NON-NLS-1$

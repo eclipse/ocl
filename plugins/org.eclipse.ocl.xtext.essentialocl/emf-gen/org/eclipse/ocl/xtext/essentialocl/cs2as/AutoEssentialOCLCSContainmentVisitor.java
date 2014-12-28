@@ -79,7 +79,7 @@ public class AutoEssentialOCLCSContainmentVisitor
     public AutoEssentialOCLCSContainmentVisitor(@NonNull CS2ASConversion context) {
         super(context);
         this.converter = context.getConverter();
-        this.idResolver = converter.getMetaModelManager().getIdResolver();
+        this.idResolver = converter.getMetamodelManager().getIdResolver();
     }
     
     @Override

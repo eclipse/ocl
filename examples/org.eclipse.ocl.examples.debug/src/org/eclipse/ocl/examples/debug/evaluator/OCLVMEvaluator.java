@@ -25,7 +25,7 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Variable;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 
 /**
  * A OCLVMEvaluator supports loading a transformation as source then loading models, performing a transformation
@@ -33,20 +33,20 @@ import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
  */
 public class OCLVMEvaluator implements IVMEvaluator
 {
-    public static @NonNull EObject loadContext(@NonNull MetaModelManager metaModelManager, @NonNull URI contextURI) throws IOException {
-        EObject eObject = metaModelManager.getExternalResourceSet().getEObject(contextURI, true);
+    public static @NonNull EObject loadContext(@NonNull MetamodelManager metamodelManager, @NonNull URI contextURI) throws IOException {
+        EObject eObject = metamodelManager.getExternalResourceSet().getEObject(contextURI, true);
         if (eObject == null) {
             throw new IOException("Nothing loadable as '" + contextURI + "'");
         }
         return eObject;
 	}
     
-    public static @NonNull ExpressionInOCL loadExpression(@NonNull MetaModelManager metaModelManager, @NonNull URI constraintURI, boolean keepDebug) throws IOException, ParserException {
-        EObject eObject = metaModelManager.getASResourceSet().getEObject(constraintURI, true);
-        return loadExpression(metaModelManager, eObject, constraintURI);
+    public static @NonNull ExpressionInOCL loadExpression(@NonNull MetamodelManager metamodelManager, @NonNull URI constraintURI, boolean keepDebug) throws IOException, ParserException {
+        EObject eObject = metamodelManager.getASResourceSet().getEObject(constraintURI, true);
+        return loadExpression(metamodelManager, eObject, constraintURI);
 	}
 
-	public static @NonNull ExpressionInOCL loadExpression(@NonNull MetaModelManager metaModelManager, EObject eObject, URI constraintURI) throws IOException, ParserException {
+	public static @NonNull ExpressionInOCL loadExpression(@NonNull MetamodelManager metamodelManager, EObject eObject, URI constraintURI) throws IOException, ParserException {
 		if (eObject == null) {
             throw new IOException("Nothing loadable as '" + constraintURI + "'");
         }
@@ -57,10 +57,10 @@ public class OCLVMEvaluator implements IVMEvaluator
     	if (specification == null) {
             throw new IOException("Missing OCL expression " + eObject.eClass().getName() + " expected as '" + constraintURI + "'");
     	}
-		return metaModelManager.getQueryOrThrow(specification);
+		return metamodelManager.getQueryOrThrow(specification);
 	}
     
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull MetamodelManager metamodelManager;
 	protected final @NonNull ExpressionInOCL expressionInOCL;
 	protected final @NonNull OCLVMEnvironmentFactory envFactory;
 	protected final @NonNull OCLVMEnvironment env;
@@ -69,19 +69,19 @@ public class OCLVMEvaluator implements IVMEvaluator
 	private boolean suspendOnStartup = false;
 
     public OCLVMEvaluator(@NonNull OCLVMEnvironmentFactory envFactory, @NonNull URI oclURI, @Nullable URI contextURI) throws IOException, ParserException {
-    	this(envFactory, loadExpression(envFactory.getMetaModelManager(), oclURI, envFactory.keepDebug()), contextURI != null ? loadContext(envFactory.getMetaModelManager(), contextURI) : null);
+    	this(envFactory, loadExpression(envFactory.getMetamodelManager(), oclURI, envFactory.keepDebug()), contextURI != null ? loadContext(envFactory.getMetamodelManager(), contextURI) : null);
     }
 
     public OCLVMEvaluator(@NonNull OCLVMEnvironmentFactory envFactory, @NonNull Constraint constraint, @NonNull EObject context) throws IOException, ParserException {
-    	this(envFactory, loadExpression(envFactory.getMetaModelManager(), constraint, EcoreUtil.getURI(constraint)), context);
+    	this(envFactory, loadExpression(envFactory.getMetamodelManager(), constraint, EcoreUtil.getURI(constraint)), context);
     }
     
     public OCLVMEvaluator(@NonNull OCLVMEnvironmentFactory envFactory, @NonNull ExpressionInOCL expressionInOCL, @Nullable EObject context) throws IOException {
     	this.envFactory = envFactory;
-    	this.metaModelManager = envFactory.getMetaModelManager();
+    	this.metamodelManager = envFactory.getMetamodelManager();
     	this.expressionInOCL = expressionInOCL;
     	this.env = envFactory.createEnvironment();
-    	this.modelManager = envFactory.createModelManager(metaModelManager);
+    	this.modelManager = envFactory.createModelManager(metamodelManager);
     	this.context = context;
     }
 
@@ -114,8 +114,8 @@ public class OCLVMEvaluator implements IVMEvaluator
 		return envFactory;
 	}
 
-	public final @NonNull MetaModelManager getMetaModelManager() {
-		return metaModelManager;
+	public final @NonNull MetamodelManager getMetamodelManager() {
+		return metamodelManager;
 	}
 	
 	public final @NonNull IVMModelManager getModelManager() {

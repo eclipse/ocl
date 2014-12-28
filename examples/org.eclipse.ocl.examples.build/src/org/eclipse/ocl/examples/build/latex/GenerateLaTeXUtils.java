@@ -40,7 +40,7 @@ import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.Property;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
@@ -558,7 +558,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		return precedences;
 	}
 	
-	protected @Nullable org.eclipse.ocl.pivot.Package getPrimaryPackage(@NonNull MetaModelManager metaModelManager, @Nullable Resource oclResource) {
+	protected @Nullable org.eclipse.ocl.pivot.Package getPrimaryPackage(@NonNull MetamodelManager metamodelManager, @Nullable Resource oclResource) {
 		if (oclResource != null) {
 			for (EObject eContent : oclResource.getContents()) {
 				if (eContent instanceof RootCS) {
@@ -574,7 +574,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		return null;
 	}
 	
-	protected @Nullable org.eclipse.ocl.pivot.Package getSecondaryPackage(@NonNull MetaModelManager metaModelManager, @Nullable Resource oclResource) {
+	protected @Nullable org.eclipse.ocl.pivot.Package getSecondaryPackage(@NonNull MetamodelManager metamodelManager, @Nullable Resource oclResource) {
 		if (oclResource != null) {
 			for (EObject eContent : oclResource.getContents()) {
 				if (eContent instanceof RootCS) {

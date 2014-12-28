@@ -22,7 +22,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.TemplateParameterSubstitutionVisitor;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintVisitor;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
@@ -30,11 +30,8 @@ import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
 import org.eclipse.ocl.pivot.internal.utilities.AS2MonikerVisitor;
 import org.eclipse.ocl.pivot.internal.utilities.AS2XMIid;
 import org.eclipse.ocl.pivot.internal.utilities.AS2XMIidVisitor;
-import org.eclipse.ocl.pivot.internal.utilities.ASSaver;
-import org.eclipse.ocl.pivot.internal.utilities.ASSaverLocateVisitor;
-import org.eclipse.ocl.pivot.internal.utilities.ASSaverNormalizeVisitor;
-import org.eclipse.ocl.pivot.internal.utilities.ASSaverResolveVisitor;
-import org.eclipse.ocl.pivot.internal.utilities.ToStringVisitor;
+import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.utilities.ToStringVisitor;
 
 /**
  * ASResourceFactory provides Resource-type-dependent functionality for an OCL Abstract Syntax (Pivot) Model
@@ -48,7 +45,7 @@ public interface ASResourceFactory extends Resource.Factory
 	int CAN_HANDLE = 100;
 	
 	/**
-	 * Configure the MetaModelManager's external ResourceSet. Implementations may install
+	 * Configure the MetamodelManager's external ResourceSet. Implementations may install
 	 * any required extension or content to factory mappings in the resource factory registry.
 	 * @param resourceSet
 	 */
@@ -87,7 +84,7 @@ public interface ASResourceFactory extends Resource.Factory
 	/**
 	 * Create a visitor to resolve template substitutions. 
 	 */
-	@NonNull TemplateParameterSubstitutionVisitor createTemplateParameterSubstitutionVisitor(@NonNull MetaModelManager metaModelManager, @Nullable Type selfType, @Nullable Type selfTypeValue);
+	@NonNull TemplateParameterSubstitutionVisitor createTemplateParameterSubstitutionVisitor(@NonNull MetamodelManager metamodelManager, @Nullable Type selfType, @Nullable Type selfTypeValue);
 
 	/**
 	 * Create a visitor to provide a debug representation of one or more elements in the resource. 
@@ -95,10 +92,10 @@ public interface ASResourceFactory extends Resource.Factory
 	@NonNull ToStringVisitor createToStringVisitor(@NonNull StringBuilder s);
 
 	/**
-	 * Return the OCL AS element corresponding to eObject using metaModelManager to supervise
+	 * Return the OCL AS element corresponding to eObject using metamodelManager to supervise
 	 * the correspondence and ensuring that the result is of asClass.
 	 */
-	@Nullable <T extends Element> T getASElement(@NonNull MetaModelManager metaModelManager, @NonNull Class<T> asClass, @NonNull EObject eObject) throws ParserException;
+	@Nullable <T extends Element> T getASElement(@NonNull MetamodelManager metamodelManager, @NonNull Class<T> asClass, @NonNull EObject eObject) throws ParserException;
 
 	/**
 	 * Return the Content Type Identifier supported by this ASResourceFactory.
@@ -148,7 +145,7 @@ public interface ASResourceFactory extends Resource.Factory
 	 * resource. 
 	 * @throws ParserException 
 	 */
-	@Nullable Element importFromResource(@NonNull MetaModelManager metaModelManager, @NonNull Resource resource, @Nullable URI uri) throws ParserException;
+	@Nullable Element importFromResource(@NonNull MetamodelManager metamodelManager, @NonNull Resource resource, @Nullable URI uri) throws ParserException;
 
 	/**
 	 * Return true if newResource can be ignored in favour of an already loaded oldResource.

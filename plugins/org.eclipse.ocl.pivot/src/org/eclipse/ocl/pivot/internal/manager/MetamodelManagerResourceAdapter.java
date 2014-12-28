@@ -19,41 +19,41 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
- * A MetaModelManagerResourceAdapter enhances the Resource for a Concrete Syntax model
+ * A MetamodelManagerResourceAdapter enhances the Resource for a Concrete Syntax model
  * to support synchronization with a Pivot model representation.
  */
-public class MetaModelManagerResourceAdapter extends AbstractMetaModelManagerResourceAdapter<Resource>
+public class MetamodelManagerResourceAdapter extends AbstractMetamodelManagerResourceAdapter<Resource>
 {		
-/*	public static MetaModelManagerResourceAdapter findAdapter(Resource resource) {
+/*	public static MetamodelManagerResourceAdapter findAdapter(Resource resource) {
 		if (resource == null) {
 			return null;
 		}
-		return PivotUtil.getAdapter(MetaModelManagerResourceAdapter.class, resource);
+		return PivotUtil.getAdapter(MetamodelManagerResourceAdapter.class, resource);
 	} */
 	
-	public static @NonNull MetaModelManagerResourceAdapter getAdapter(@NonNull Resource resource, @Nullable MetaModelManager metaModelManager) {
+	public static @NonNull MetamodelManagerResourceAdapter getAdapter(@NonNull Resource resource, @Nullable MetamodelManager metamodelManager) {
 		List<Adapter> eAdapters = ClassUtil.nonNullEMF(resource.eAdapters());
-		MetaModelManagerResourceAdapter adapter = ClassUtil.getAdapter(MetaModelManagerResourceAdapter.class, eAdapters);
-//		if ((adapter != null) && (metaModelManager != null) && (adapter.getMetaModelManager() != metaModelManager)) {
+		MetamodelManagerResourceAdapter adapter = ClassUtil.getAdapter(MetamodelManagerResourceAdapter.class, eAdapters);
+//		if ((adapter != null) && (metamodelManager != null) && (adapter.getMetamodelManager() != metamodelManager)) {
 //			eAdapters.remove(adapter);
 //			adapter = null;
 //		}
 		if (adapter == null) {
-			if (metaModelManager == null) {
-				metaModelManager = new MetaModelManager();
+			if (metamodelManager == null) {
+				metamodelManager = new MetamodelManager();
 			}
-			adapter = new MetaModelManagerResourceAdapter(resource, metaModelManager);
+			adapter = new MetamodelManagerResourceAdapter(resource, metamodelManager);
 			eAdapters.add(adapter);
 		}
 		return adapter;
 	}
 	
-	public MetaModelManagerResourceAdapter(@NonNull Resource resource, @NonNull MetaModelManager metaModelManager) {
-		super(resource, metaModelManager);		
+	public MetamodelManagerResourceAdapter(@NonNull Resource resource, @NonNull MetamodelManager metamodelManager) {
+		super(resource, metamodelManager);		
 	}
 
 	@Override
 	public boolean isAdapterForType(Object type) {
-		return super.isAdapterForType(type) || (type == MetaModelManagerResourceAdapter.class);
+		return super.isAdapterForType(type) || (type == MetamodelManagerResourceAdapter.class);
 	}
 }

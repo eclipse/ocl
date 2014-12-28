@@ -10,8 +10,8 @@
  *******************************************************************************
  * This code is 100% auto-generated
  * from: /org.eclipse.ocl.pivot/model/Pivot.ecore
- * by: org.eclipse.ocl.examples.build.xtend.GenerateOCLMetaModel.xtend
- * and: org.eclipse.ocl.examples.build.GeneratePivotMetaModel.mwe2
+ * by: org.eclipse.ocl.examples.build.xtend.GenerateOCLmetamodel.xtend
+ * and: org.eclipse.ocl.examples.build.GeneratePivotMetamodel.mwe2
  *
  * Do not edit it.
  *******************************************************************************/
@@ -31,6 +31,7 @@ import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceImpl;
 import org.eclipse.ocl.pivot.internal.resource.OCLASResourceFactory;
+import org.eclipse.ocl.pivot.internal.utilities.AbstractContents;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -42,7 +43,7 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
  * It facilitates efficient model loading without the overheads of model reading.
  */
 @SuppressWarnings({"nls", "unused"})
-public class OCLMetaModel extends ASResourceImpl
+public class OCLmetamodel extends ASResourceImpl
 {
 	/**
 	 *	The URI of this Standard Library.
@@ -50,13 +51,13 @@ public class OCLMetaModel extends ASResourceImpl
 	public static final @NonNull String PIVOT_URI = "http://www.eclipse.org/ocl/2015/Pivot";
 
 	public static @NonNull Package create(@NonNull StandardLibraryInternal standardLibrary, @NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
-		OCLMetaModel resource = new OCLMetaModel(ClassUtil.nonNullEMF(URI.createURI(PIVOT_URI)));
+		OCLmetamodel resource = new OCLmetamodel(ClassUtil.nonNullEMF(URI.createURI(PIVOT_URI)));
 		Contents contents = new Contents(standardLibrary, name, nsPrefix, nsURI);
 		resource.getContents().add(contents.root);
 		return contents.metamodel;
 	}
 
-	protected OCLMetaModel(@NonNull URI uri) {
+	protected OCLmetamodel(@NonNull URI uri) {
 		super(uri, OCLASResourceFactory.INSTANCE);
 	}
 

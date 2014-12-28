@@ -60,7 +60,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.ids.ElementId;
 import org.eclipse.ocl.pivot.ids.OperationId;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.library.LibraryIteration;
 import org.eclipse.ocl.pivot.library.iterator.IterateIteration;
 
@@ -93,8 +93,8 @@ public class BoxingAnalyzer extends AbstractExtendingCGModelVisitor<Object, Code
 	}
 
 	protected boolean hasOclVoidOperation(@NonNull OperationId operationId) {
-		MetaModelManager metaModelManager = codeGenerator.getMetaModelManager();
-		CompleteClass completeClass = metaModelManager.getCompleteClass(metaModelManager.getStandardLibrary().getOclVoidType());
+		MetamodelManager metamodelManager = codeGenerator.getMetamodelManager();
+		CompleteClass completeClass = metamodelManager.getCompleteClass(metamodelManager.getStandardLibrary().getOclVoidType());
 		Operation memberOperation = completeClass.getOperation(operationId);
 		if (memberOperation == null) {
 			return false;
@@ -103,7 +103,7 @@ public class BoxingAnalyzer extends AbstractExtendingCGModelVisitor<Object, Code
 		if (owningType == null) {
 			return false;
 		}
-		CompleteClass owningCompleteClass = metaModelManager.getCompleteClass(owningType);
+		CompleteClass owningCompleteClass = metamodelManager.getCompleteClass(owningType);
 		return completeClass == owningCompleteClass;
 	}
 

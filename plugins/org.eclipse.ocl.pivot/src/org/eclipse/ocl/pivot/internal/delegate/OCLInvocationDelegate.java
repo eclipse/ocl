@@ -33,7 +33,7 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.Query;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
@@ -63,19 +63,19 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
 		try {
 			OCL ocl = delegateDomain.getOCL();
-			MetaModelManager metaModelManager = ocl.getMetaModelManager();
+			MetamodelManager metamodelManager = ocl.getMetamodelManager();
 			ExpressionInOCL query2 = query;
 			if (query2 == null) {
 				Operation operation2 = operation;
 				NamedElement namedElement = delegateDomain.getPivot(NamedElement.class, ClassUtil.nonNullEMF(eOperation));
 				if (namedElement instanceof Operation) {
 					operation2 = operation = (Operation) namedElement;
-					query2 = query = InvocationBehavior.INSTANCE.getQueryOrThrow(metaModelManager, operation2);
+					query2 = query = InvocationBehavior.INSTANCE.getQueryOrThrow(metamodelManager, operation2);
 					InvocationBehavior.INSTANCE.validate(operation2);
 				}
 				else if (namedElement instanceof Constraint) {
 					Constraint constraint = (Constraint)namedElement;
-					query2 = query = ValidationBehavior.INSTANCE.getQueryOrThrow(metaModelManager, constraint);
+					query2 = query = ValidationBehavior.INSTANCE.getQueryOrThrow(metamodelManager, constraint);
 					ValidationBehavior.INSTANCE.validate(constraint);
 				}
 				else {
@@ -90,8 +90,8 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 	}
 
 	protected Object evaluate(@NonNull OCL ocl, @NonNull ExpressionInOCL query2, InternalEObject target, List<?> arguments) {
-		MetaModelManager metaModelManager = ocl.getMetaModelManager();
-		IdResolver idResolver = metaModelManager.getIdResolver();
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
+		IdResolver idResolver = metamodelManager.getIdResolver();
 		Query query = ocl.createQuery(query2);
 		EvaluationEnvironment env = query.getEvaluationEnvironment();
 		Object object = target;
@@ -129,13 +129,13 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 		return operation2;
 	}
 
-	public @NonNull ExpressionInOCL getQueryOrThrow(@NonNull MetaModelManager metaModelManager, @NonNull Constraint constraint) {
+	public @NonNull ExpressionInOCL getQueryOrThrow(@NonNull MetamodelManager metamodelManager, @NonNull Constraint constraint) {
 		LanguageExpression specification = constraint.getOwnedSpecification();
 		if (specification == null) {
 			throw new OCLDelegateException(new SemanticException(PivotMessagesInternal.MissingSpecificationBody_ERROR_, constraint.getContext(), PivotConstantsInternal.BODY_EXPRESSION_ROLE));
 		}
 		try {
-			return metaModelManager.getQueryOrThrow(specification);
+			return metamodelManager.getQueryOrThrow(specification);
 		} catch (ParserException e) {
 			throw new OCLDelegateException(e);
 		}

@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.uml.UML2AS;
 import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.UML2EcoreConverter;
@@ -49,10 +49,10 @@ public abstract class PivotStateMachineTestSuite extends PivotTestSuite
 	}
 
 	@SuppressWarnings("null")
-	protected Resource getPivotFromUML(MetaModelManager metaModelManager, Resource umlResource) throws ParserException {
-//		String problem = UML2AS.initialize(metaModelManager.getExternalResourceSet());
+	protected Resource getPivotFromUML(MetamodelManager metamodelManager, Resource umlResource) throws ParserException {
+//		String problem = UML2AS.initialize(metamodelManager.getExternalResourceSet());
 //		assertNull(problem);
-		UML2AS uml2as = UML2AS.getAdapter(umlResource, metaModelManager);
+		UML2AS uml2as = UML2AS.getAdapter(umlResource, metamodelManager);
 		Model pivotModel = uml2as.getPivotModel();
 		Resource asResource = pivotModel.eResource();
 		assertNoResourceErrors("Normalisation failed", asResource);
@@ -91,9 +91,9 @@ public abstract class PivotStateMachineTestSuite extends PivotTestSuite
 		statefulEFactory = statefulEPackage.getEFactoryInstance();
 		c1Class = (EClass) statefulEPackage.getEClassifier("C1");
 //		OCL ocl1 = OCL.newInstance();
-//		MetaModelManager metaModelManager1 = ocl1.getMetaModelManager();
+//		MetamodelManager metamodelManager1 = ocl1.getMetamodelManager();
 //		try {
-			Resource asResource = getPivotFromUML(metaModelManager, umlResource);
+			Resource asResource = getPivotFromUML(metamodelManager, umlResource);
 		return asResource;
 	}
 
@@ -101,6 +101,6 @@ public abstract class PivotStateMachineTestSuite extends PivotTestSuite
 	@Override
     protected void setUp() throws Exception {
         super.setUp();
-		metaModelManager.addGlobalNamespace(PivotConstantsInternal.OCL_NAME, metaModelManager.getASMetamodel());
+		metamodelManager.addGlobalNamespace(PivotConstantsInternal.OCL_NAME, metamodelManager.getASmetamodel());
     }
 }

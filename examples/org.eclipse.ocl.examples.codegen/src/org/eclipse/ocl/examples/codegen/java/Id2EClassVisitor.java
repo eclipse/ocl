@@ -36,19 +36,19 @@ import org.eclipse.ocl.pivot.ids.TemplateableTypeId;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.UnspecifiedId;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 
 public class Id2EClassVisitor implements IdVisitor<EClass>
 {
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull MetamodelManager metamodelManager;
 	
-	protected Id2EClassVisitor(@NonNull MetaModelManager metaModelManager) {
-		this.metaModelManager = metaModelManager;
+	protected Id2EClassVisitor(@NonNull MetamodelManager metamodelManager) {
+		this.metamodelManager = metamodelManager;
 	}
 
 	@Override
 	public @Nullable EClass visitClassId(@NonNull ClassId id) {
-		Type type = metaModelManager.getIdResolver().getType(id, null);
+		Type type = metamodelManager.getIdResolver().getType(id, null);
 		return (EClass) type.getETarget();
 	}
 

@@ -33,13 +33,13 @@ import org.eclipse.ocl.pivot.library.LibraryFeature;
 public class FinalAnalysis
 {
 	protected final @NonNull CompleteModelInternal completeModel;
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull MetamodelManager metamodelManager;
 	private final @NonNull Map<CompleteClass, Set<CompleteClass>> superCompleteClass2subCompleteClasses = new HashMap<CompleteClass, Set<CompleteClass>>();
 	private final @NonNull Map<Operation, Set<Operation>> operation2overrides = new HashMap<Operation, Set<Operation>>();
 
 	public FinalAnalysis(@NonNull CompleteModelInternal completeModel) {
 		this.completeModel = completeModel;
-		this.metaModelManager = completeModel.getMetaModelManager();
+		this.metamodelManager = completeModel.getMetamodelManager();
 		for (CompletePackage completePackage :  completeModel.getAllCompletePackages()) {
 			for (CompleteClass subCompleteClass :  completePackage.getOwnedCompleteClasses()) {
 				for (CompleteClass superCompleteClass : subCompleteClass.getSuperCompleteClasses()) {
@@ -57,13 +57,13 @@ public class FinalAnalysis
 			for (Operation domainOperation : superCompleteClass.getOperations(null)) {
 				String opName = domainOperation.getName();
 				ParametersId parametersId = domainOperation.getParametersId();
-				LibraryFeature domainImplementation = metaModelManager.getImplementation(domainOperation);
+				LibraryFeature domainImplementation = metamodelManager.getImplementation(domainOperation);
 				Set<Operation> overrides = null;
 				for (CompleteClass subCompleteClass : subCompleteClasses) {
 					if (subCompleteClass != superCompleteClass) {
 						for (Operation subOperation : subCompleteClass.getOperations(null)) {
 							if (opName.equals(subOperation.getName()) && parametersId.equals(subOperation.getParametersId())) {
-								LibraryFeature subImplementation = metaModelManager.getImplementation(subOperation);
+								LibraryFeature subImplementation = metamodelManager.getImplementation(subOperation);
 								if (domainImplementation != subImplementation) {
 									if (overrides == null) {
 										overrides = new HashSet<Operation>();

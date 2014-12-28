@@ -62,7 +62,7 @@ Workflow {
 //    component = PruneSuperClasses { skipOnErrors = true
 //    	modelSlot = "${ecoreSlot}"
 //    }
-//    component = SetASMetamodel { skipOnErrors = true
+//    component = SetASmetamodel { skipOnErrors = true
 //    	modelSlot = "${ecoreSlot}"
 //    }
 //    component = OCLDelegateActivator { skipOnErrors = true

@@ -47,15 +47,15 @@ import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.delegate.DelegateInstaller;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.AbstractConversion;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.options.OCLinEcoreOptions;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IPackageDescriptor;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IResourceDescriptor;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IResourceLoadStatus;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
-import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
-import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.IPackageDescriptor;
-import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.IResourceDescriptor;
-import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.IResourceLoadStatus;
 
 public class AS2Ecore extends AbstractConversion
 {
@@ -192,8 +192,8 @@ public class AS2Ecore extends AbstractConversion
 		return eOperation;
 	}
 
-	public static @NonNull XMLResource createResource(@NonNull MetaModelManager metaModelManager, @NonNull Resource asResource, @NonNull URI ecoreURI, @Nullable Map<String,Object> options) {
-		AS2Ecore converter = new AS2Ecore(metaModelManager, ecoreURI, options);
+	public static @NonNull XMLResource createResource(@NonNull MetamodelManager metamodelManager, @NonNull Resource asResource, @NonNull URI ecoreURI, @Nullable Map<String,Object> options) {
+		AS2Ecore converter = new AS2Ecore(metamodelManager, ecoreURI, options);
 		return converter.convertResource(asResource, ecoreURI);
 	}
 	
@@ -258,10 +258,10 @@ public class AS2Ecore extends AbstractConversion
 	protected final @NonNull URI ecoreURI;
 	protected final @Nullable String primitiveTypesUriPrefix;
 	
-	public AS2Ecore(@NonNull MetaModelManager metaModelManager, @NonNull URI ecoreURI, @Nullable Map<String,Object> options) {
-		super(metaModelManager);
+	public AS2Ecore(@NonNull MetamodelManager metamodelManager, @NonNull URI ecoreURI, @Nullable Map<String,Object> options) {
+		super(metamodelManager);
 		this.options = options != null ? options : new HashMap<String,Object>();
-		this.delegateInstaller = new DelegateInstaller(metaModelManager, options);
+		this.delegateInstaller = new DelegateInstaller(metamodelManager, options);
 		this.pass1 = new AS2EcoreDeclarationVisitor(this);	
 		this.pass2 = new AS2EcoreReferenceVisitor(this);
 		this.ecoreURI = ecoreURI;
@@ -277,7 +277,7 @@ public class AS2Ecore extends AbstractConversion
 	}
 
 	public @NonNull XMLResource convertResource(@NonNull Resource asResource, @NonNull URI ecoreURI) {
-		ResourceSet resourceSet = metaModelManager.getExternalResourceSet();
+		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
 		setGenerationInProgress(asResource, true);
 		try {
 			XMLResource ecoreResource = (XMLResource) resourceSet.createResource(ecoreURI);
@@ -322,7 +322,7 @@ public class AS2Ecore extends AbstractConversion
 		EModelElement eModelElement = createMap.get(pivotElement);
 //		System.out.println("Get " + PivotUtil.debugSimpleName(pivotElement) + " " + PivotUtil.debugSimpleName(eModelElement));
 		if (eModelElement == null) {
-			Element primaryElement = metaModelManager.getPrimaryElement(pivotElement);
+			Element primaryElement = metamodelManager.getPrimaryElement(pivotElement);
 			if (pivotElement != primaryElement) {
 				eModelElement = createMap.get(primaryElement);
 			}
@@ -393,7 +393,7 @@ public class AS2Ecore extends AbstractConversion
 	}
 
 	public void putCreated(@NonNull Element pivotElement, @NonNull EModelElement eModelElement) {
-		Element primaryElement = metaModelManager.getPrimaryElement(pivotElement);
+		Element primaryElement = metamodelManager.getPrimaryElement(pivotElement);
 //		System.out.println("Put1 " + PivotUtil.debugSimpleName(pivotElement) + " " + PivotUtil.debugSimpleName(eModelElement));
 		EModelElement oldPivot = createMap.put(pivotElement, eModelElement);
 		assert oldPivot == null;
@@ -418,12 +418,12 @@ public class AS2Ecore extends AbstractConversion
 	protected void setGenerationInProgress(@NonNull org.eclipse.ocl.pivot.Package asPackage, boolean isGenerating) {
 		String nsUri = asPackage.getURI();
 		if (nsUri != null) {
-			StandaloneProjectMap projectMap = metaModelManager.getProjectMap();
+			StandaloneProjectMap projectMap = metamodelManager.getProjectMap();
 			@SuppressWarnings("null")@NonNull URI nsURI = URI.createURI(nsUri);
 			IPackageDescriptor packageDescriptor = projectMap.getPackageDescriptor(nsURI);
 			if (packageDescriptor != null) {
 				IResourceDescriptor resourceDescriptor = packageDescriptor.getResourceDescriptor();
-				ResourceSet resourceSet = metaModelManager.getExternalResourceSet();
+				ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
 				IResourceLoadStatus resourceLoadStatus = resourceDescriptor.getResourceLoadStatus(resourceSet);
 				resourceLoadStatus.setGenerationInProgress(isGenerating);
 			}

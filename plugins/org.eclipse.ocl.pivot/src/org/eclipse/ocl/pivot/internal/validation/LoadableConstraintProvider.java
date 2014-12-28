@@ -37,7 +37,7 @@ import org.eclipse.ocl.pivot.Annotation;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.internal.OCL;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -88,10 +88,10 @@ public abstract class LoadableConstraintProvider extends XmlConstraintProvider
 	}
 	
 	protected void installConstraint(@NonNull Constraint constraint, @NonNull Set<Category> categories) {
-        MetaModelManager metaModelManager = ocl.getMetaModelManager();
+        MetamodelManager metamodelManager = ocl.getMetamodelManager();
         for (/*@NonNull*/ Element constrainedElement : constraint.getConstrainedElements()) {
     		if (constrainedElement != null) {
-    			EModelElement targetElement = metaModelManager.getEcoreOfPivot(EModelElement.class, constrainedElement);
+    			EModelElement targetElement = metamodelManager.getEcoreOfPivot(EModelElement.class, constrainedElement);
                 if (targetElement != null) {
         			int code = 99;
 					LoadableConstraintDescriptor<?> desc = null;
@@ -130,8 +130,8 @@ public abstract class LoadableConstraintProvider extends XmlConstraintProvider
 	protected void installDescriptor(@NonNull XmlConstraintDescriptor descriptor, String namespaceIdentifier, @NonNull Set<Category> categories) {
 		String path = descriptor.getParameterValue("path");
 		@SuppressWarnings("null")@NonNull URI uri = URI.createPlatformPluginURI("/" + namespaceIdentifier + "/" + path, true);
-        MetaModelManager metaModelManager = getOCL().getMetaModelManager();
-		load(metaModelManager, uri, categories);
+        MetamodelManager metamodelManager = getOCL().getMetamodelManager();
+		load(metamodelManager, uri, categories);
 	}
 
 	protected boolean installResource(@NonNull Resource asResource, @NonNull Set<Category> categories) {
@@ -151,7 +151,7 @@ public abstract class LoadableConstraintProvider extends XmlConstraintProvider
 		return true;
 	}
 
-	protected abstract boolean load(@NonNull MetaModelManager metaModelManager, @NonNull URI uri, @NonNull Set<Category> categories);
+	protected abstract boolean load(@NonNull MetamodelManager metamodelManager, @NonNull URI uri, @NonNull Set<Category> categories);
 
 	@Override
 	public void setInitializationData(IConfigurationElement config, String propertyName, Object data) throws CoreException {

@@ -15,8 +15,8 @@ import java.io.OutputStream;
 import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.xtext.base.as2cs.AS2CS;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
@@ -28,14 +28,14 @@ public class OCLinEcoreCSResource extends EssentialOCLCSResource
 {
 	@Override
 	public @NonNull AS2CS createAS2CS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap,
-			@NonNull MetaModelManager metaModelManager) {
-		return new OCLinEcoreAS2CS(cs2asResourceMap, metaModelManager);
+			@NonNull MetamodelManager metamodelManager) {
+		return new OCLinEcoreAS2CS(cs2asResourceMap, metamodelManager);
 	}
 
 	@Override
 	public @NonNull CS2AS createCS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap,
-			@NonNull MetaModelManager metaModelManager) {
-		return new OCLinEcoreCS2AS(cs2asResourceMap, metaModelManager);
+			@NonNull MetamodelManager metamodelManager) {
+		return new OCLinEcoreCS2AS(cs2asResourceMap, metamodelManager);
 	}
 
 	@Override

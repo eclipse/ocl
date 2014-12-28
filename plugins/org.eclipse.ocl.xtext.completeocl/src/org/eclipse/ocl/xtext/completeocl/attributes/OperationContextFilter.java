@@ -16,10 +16,10 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.internal.scoping.ScopeFilter;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.basecs.ParameterCS;
 import org.eclipse.ocl.xtext.completeoclcs.OperationContextDeclCS;
 
@@ -37,9 +37,9 @@ public class OperationContextFilter implements ScopeFilter
 			return false;
 		}
 		Operation candidateOperation = (Operation) object;
-		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-//		Type context = metaModelManager.getPrimaryType(candidateOperation.getOwningType());
-//		if (context != metaModelManager.getPrimaryElement(forType)) {
+		MetamodelManager metamodelManager = environmentView.getMetamodelManager();
+//		Type context = metamodelManager.getPrimaryType(candidateOperation.getOwningType());
+//		if (context != metamodelManager.getPrimaryElement(forType)) {
 //			return false;
 //		}
 		List<ParameterCS> contextParameters = csOperationContext.getOwnedParameters();
@@ -51,13 +51,13 @@ public class OperationContextFilter implements ScopeFilter
 		for (int i = 0; i < iMax; i++) {
 			ParameterCS contextParameter = contextParameters.get(i);
 			Parameter candidateParameter = candidateParameters.get(i);
-			Type contextType = PivotUtilInternal.getPivot(Type.class, contextParameter.getOwnedType());
+			Type contextType = PivotUtil.getPivot(Type.class, contextParameter.getOwnedType());
 			Type candidateType = candidateParameter.getType();
 			if (contextType != null) {
-				contextType = metaModelManager.getPrimaryType(contextType);
+				contextType = metamodelManager.getPrimaryType(contextType);
 			}
 			if (candidateType != null) {
-				candidateType = metaModelManager.getPrimaryType(candidateType);
+				candidateType = metamodelManager.getPrimaryType(candidateType);
 			}
 // FIXME Need to resolve parameter type pivots first
 //			if (contextType != candidateType) {

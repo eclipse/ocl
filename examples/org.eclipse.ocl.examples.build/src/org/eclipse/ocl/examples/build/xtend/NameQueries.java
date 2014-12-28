@@ -24,13 +24,13 @@ import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 public class NameQueries
 {
 	public static final Logger logger = Logger.getLogger(NameQueries.class);
-	public static @Nullable MetaModelManager metaModelManager = null;
+	public static @Nullable MetamodelManager metamodelManager = null;
 
 	private static @NonNull Map<String, Integer> counters = new HashMap<String, Integer>();
 	private static @NonNull Map<Object, String> definedSymbols = new HashMap<Object, String>();
@@ -60,7 +60,7 @@ public class NameQueries
 	public static @NonNull String getEcoreLiteral(@NonNull EnumerationLiteral enumerationLiteral) {
 		Enumeration enumeration = enumerationLiteral.getOwningEnumeration();
 		String nsURI = ClassUtil.nonNullModel(enumeration.getOwningPackage().getURI());
-		GenPackage genPackage = ClassUtil.nonNullState(metaModelManager).getGenPackage(nsURI);
+		GenPackage genPackage = ClassUtil.nonNullState(metamodelManager).getGenPackage(nsURI);
 		if (genPackage != null) {
 			return /*genPackage.getInterfacePackageName() +*/ genPackage.getPackageInterfaceName() + ".Literals." + CodeGenUtil.upperName(enumeration.getName())
 						+ ".getEEnumLiteral(" + enumeration.getName() + "." + CodeGenUtil.upperName(enumerationLiteral.getName()) + "_VALUE)";
@@ -73,7 +73,7 @@ public class NameQueries
 			org.eclipse.ocl.pivot.Class type = property.getOwningClass();
 			if (type != null) {
 				String nsURI = ClassUtil.nonNullModel(type.getOwningPackage().getURI());
-				GenPackage genPackage = ClassUtil.nonNullState(metaModelManager).getGenPackage(nsURI);
+				GenPackage genPackage = ClassUtil.nonNullState(metamodelManager).getGenPackage(nsURI);
 				if (genPackage != null) {
 					return /*genPackage.getInterfacePackageName() +*/genPackage
 						.getPackageInterfaceName()
@@ -89,7 +89,7 @@ public class NameQueries
 	
 	public static @NonNull String getEcoreLiteral(@NonNull org.eclipse.ocl.pivot.Class type) {
 		String nsURI = ClassUtil.nonNullModel(type.getOwningPackage().getURI());
-		GenPackage genPackage = ClassUtil.nonNullState(metaModelManager).getGenPackage(nsURI);
+		GenPackage genPackage = ClassUtil.nonNullState(metamodelManager).getGenPackage(nsURI);
 		if (genPackage != null) {
 			return /*genPackage.getInterfacePackageName() +*/ genPackage.getPackageInterfaceName() + ".Literals." + CodeGenUtil.upperName(type.getName());
 		}
@@ -119,8 +119,8 @@ public class NameQueries
 		if ((elem instanceof CollectionType) && (((CollectionType)elem).getUnspecializedElement() != null)) {
 		}
 		else if (elem instanceof org.eclipse.ocl.pivot.Class) {
-			if (metaModelManager != null) {
-				elem = metaModelManager.getCompleteModel().getCompleteClass((Type)elem);
+			if (metamodelManager != null) {
+				elem = metamodelManager.getCompleteModel().getCompleteClass((Type)elem);
 			}
 		}
 		String symbol = definedSymbols.get(elem);
@@ -146,7 +146,7 @@ public class NameQueries
 		definedSymbols = new HashMap<Object, String>();
 	} */
 	
-	public static void setMetaModelManager(@Nullable MetaModelManager metaModelManager) {
-		NameQueries.metaModelManager = metaModelManager;
+	public static void setMetamodelManager(@Nullable MetamodelManager metamodelManager) {
+		NameQueries.metamodelManager = metamodelManager;
 	}
 }

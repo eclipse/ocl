@@ -23,8 +23,8 @@ public class VoidTypeAttribution extends ClassAttribution
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		super.computeLookup(target, environmentView, scopeView);
 /*		if (!environmentView.hasFinalResult()) {
-			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-			for (PackageServer packageServer : Lists.newArrayList(metaModelManager.getAllPackages())) {		// Avoid CME risk
+			MetamodelManager metamodelManager = environmentView.getMetamodelManager();
+			for (PackageServer packageServer : Lists.newArrayList(metamodelManager.getAllPackages())) {		// Avoid CME risk
 				for (TypeServer typeServer : packageServer.getMemberTypes()) {
 					Type primaryType = typeServer.getPivotType();
 					environmentView.addAllOperations(primaryType, false);

@@ -18,4 +18,4 @@ getOwnedClasses => getOwnedClasses
 getPivotRoot => getPivotModel
 getTemplateBinding => getOwnedTemplateBindings
 
-metaModelManager.getStandardLibrary()
+metamodelManager.getStandardLibrary()

@@ -39,7 +39,7 @@ import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.TemplateParameterId;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -559,8 +559,8 @@ public class TemplateParameterImpl
 	public @NonNull Type specializeIn(@NonNull CallExp expr, @Nullable Type selfType) {
 		Resource eResource = ((EObject) expr).eResource();
 		if ((eResource != null) && (selfType != null)) {
-			MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(eResource);
-			return metaModelManager.specializeType(this, expr, selfType, null);
+			MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(eResource);
+			return metamodelManager.specializeType(this, expr, selfType, null);
 		}
 		return this;
 	}

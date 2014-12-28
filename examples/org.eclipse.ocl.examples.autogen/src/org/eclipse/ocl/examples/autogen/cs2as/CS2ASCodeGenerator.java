@@ -43,7 +43,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Variable;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
@@ -75,8 +75,8 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 //		CommonSubexpressionEliminator.CSE_REWRITE.setState(true);
 	
 		AutoCG2StringVisitor.FACTORY.getClass();
-		MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(ClassUtil.nonNullState(ePackage.eResource()));
-		org.eclipse.ocl.pivot.Package asPackage = metaModelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Package.class, ePackage);
+		MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(ClassUtil.nonNullState(ePackage.eResource()));
+		org.eclipse.ocl.pivot.Package asPackage = metamodelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Package.class, ePackage);
 		if (asPackage != null) {
 			GenPackage superGenPackage = null;
 			org.eclipse.ocl.pivot.Package asSuperPackage = null;
@@ -86,7 +86,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 					if (name.startsWith(superProjectPrefix)) {
 						superGenPackage = gPackage;
 						EPackage eSuperPackage = gPackage.getEcorePackage();
-						asSuperPackage = metaModelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Package.class, eSuperPackage);
+						asSuperPackage = metamodelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Package.class, eSuperPackage);
 						break;
 					}
 				}
@@ -94,7 +94,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 					throw new IllegalStateException("No super-GenPackage found in UsedGenPackages for " + superProjectPrefix);
 				}
 			}
-			AutoCodeGenerator autoCodeGenerator = new CS2ASCodeGenerator(metaModelManager, asPackage, asSuperPackage, genPackage, // superGenPackage,
+			AutoCodeGenerator autoCodeGenerator = new CS2ASCodeGenerator(metamodelManager, asPackage, asSuperPackage, genPackage, // superGenPackage,
 					projectPrefix, projectName, visitorPackage, visitorClass, superProjectPrefix, superProjectName, superVisitorClass);
 			autoCodeGenerator.saveSourceFile();
 		}
@@ -102,12 +102,12 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 
 	protected final @NonNull CS2ASGlobalContext globalContext = new CS2ASGlobalContext(this);
 
-	public CS2ASCodeGenerator(@NonNull MetaModelManager metaModelManager,
+	public CS2ASCodeGenerator(@NonNull MetamodelManager metamodelManager,
 			@NonNull Package asPackage, Package asSuperPackage, @NonNull GenPackage genPackage,
 			@NonNull String projectPrefix, @NonNull String projectName, @NonNull String visitorPackage,
 			@NonNull String visitorClass, String superProjectPrefix,
 			String superManualVisitorPackage, String superVisitorClass) {
-		super(metaModelManager, asPackage, asSuperPackage, genPackage, projectPrefix,
+		super(metamodelManager, asPackage, asSuperPackage, genPackage, projectPrefix,
 			projectName, visitorPackage, visitorClass, superProjectPrefix,
 			superManualVisitorPackage, superVisitorClass);
 	}
@@ -174,7 +174,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 			Operation astOperation = NameUtil.getNameable(asType.getOwnedOperations(), "ast");			
 			if (astOperation != null) {
 				LanguageExpression specification = ClassUtil.nonNullState(astOperation.getBodyExpression());
-				ExpressionInOCL expressionInOCL = metaModelManager.getQueryOrThrow(specification);
+				ExpressionInOCL expressionInOCL = metamodelManager.getQueryOrThrow(specification);
 				OCLExpression oclExpression = expressionInOCL.getOwnedBody();
 				if (oclExpression instanceof ConstructorExp) {
 					hasCS2ASmappingOperation = true;

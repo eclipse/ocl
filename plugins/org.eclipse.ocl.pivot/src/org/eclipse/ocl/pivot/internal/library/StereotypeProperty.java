@@ -26,7 +26,7 @@ import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitorImpl;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.uml.UMLElementExtension;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -117,8 +117,8 @@ public class StereotypeProperty extends ConstrainedProperty
 				String body = defaultExpression.getBody();
 				if (body != null) {
 					try {
-						MetaModelManager metaModelManager = ((EvaluationVisitorImpl)evaluator).getMetaModelManager();
-						ExpressionInOCL expr = metaModelManager.getQueryOrThrow(defaultExpression);
+						MetamodelManager metamodelManager = ((EvaluationVisitorImpl)evaluator).getMetamodelManager();
+						ExpressionInOCL expr = metamodelManager.getQueryOrThrow(defaultExpression);
 						OCLExpression bodyExpression = expr.getOwnedBody();
 						if (bodyExpression != null) {
 							boxedValue = evaluator.evaluate(bodyExpression);		// FIXME errors

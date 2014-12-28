@@ -85,7 +85,7 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 		invalidVariable = ClassUtil.nonNullEMF(PivotFactory.eINSTANCE.createVariable());
 		invalidVariable.setName("$invalid");
 		String typeName = ClassUtil.nonNullEMF(PivotPackage.Literals.OCL_EXPRESSION.getName());
-		invalidVariable.setType(env.getMetaModelManager().getPivotType(typeName));
+		invalidVariable.setType(env.getMetamodelManager().getPivotType(typeName));
 	}
 
 	@Override

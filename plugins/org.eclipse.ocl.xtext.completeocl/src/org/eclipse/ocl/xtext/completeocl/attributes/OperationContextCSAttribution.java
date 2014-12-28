@@ -65,13 +65,13 @@ public class OperationContextCSAttribution extends AbstractAttribution
 					Element element = path.get(path.size()-2).getReferredElement();
 					if (element instanceof org.eclipse.ocl.pivot.Class) {
 						org.eclipse.ocl.pivot.Class type = (org.eclipse.ocl.pivot.Class) element;
-//						MetaModelManager metaModelManager = environmentView.getMetaModelManager();
+//						MetamodelManager metamodelManager = environmentView.getMetamodelManager();
 						environmentView.addAllOperations(type, FeatureFilter.SELECT_NON_STATIC);
 						environmentView.addAllProperties(type, FeatureFilter.SELECT_NON_STATIC);
 //						if (!environmentView.hasFinalResult()) {
 //							Set<Type> alreadyVisitedTypes = new HashSet<Type>();
 		//					org.eclipse.ocl.pivot.Class unspecializedTarget = PivotUtil.getUnspecializedTemplateableElement(target);	// FIXME
-//							for (Type superClass : metaModelManager.getSuperClasses(type)) {
+//							for (Type superClass : metamodelManager.getSuperClasses(type)) {
 //								environmentView.addAllContents(type, scopeView, superClass, Boolean.FALSE, alreadyVisitedTypes);
 //							}
 //						}

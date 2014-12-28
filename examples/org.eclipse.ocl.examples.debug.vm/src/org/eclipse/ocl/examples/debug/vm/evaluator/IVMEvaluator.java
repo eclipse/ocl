@@ -12,7 +12,7 @@ package org.eclipse.ocl.examples.debug.vm.evaluator;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.NamedElement;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 
 
 public interface IVMEvaluator
@@ -21,7 +21,7 @@ public interface IVMEvaluator
 
 	@NonNull NamedElement getDebuggable();
 
-	@NonNull MetaModelManager getMetaModelManager();
+	@NonNull MetamodelManager getMetamodelManager();
 
 	void saveModels();
 

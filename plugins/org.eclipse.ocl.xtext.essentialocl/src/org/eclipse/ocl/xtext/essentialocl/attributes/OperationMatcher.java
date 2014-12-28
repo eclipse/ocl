@@ -18,8 +18,8 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.essentialoclcs.NavigatingArgCS;
 import org.eclipse.ocl.xtext.essentialoclcs.NavigationRole;
 import org.eclipse.ocl.xtext.essentialoclcs.RoundBracketedClauseCS;
@@ -28,11 +28,11 @@ public class OperationMatcher extends AbstractOperationMatcher
 {
 	protected final @NonNull List<OCLExpression> asArguments = new ArrayList<OCLExpression>();
 
-	public OperationMatcher(@NonNull MetaModelManager metaModelManager, @Nullable Type sourceType, @Nullable Type sourceTypeValue, @NonNull RoundBracketedClauseCS csRoundBracketedClause) {
-		super(metaModelManager, sourceType, sourceTypeValue);
+	public OperationMatcher(@NonNull MetamodelManager metamodelManager, @Nullable Type sourceType, @Nullable Type sourceTypeValue, @NonNull RoundBracketedClauseCS csRoundBracketedClause) {
+		super(metamodelManager, sourceType, sourceTypeValue);
 		for (NavigatingArgCS csNavigatingArg : csRoundBracketedClause.getOwnedArguments()) {
 			if (csNavigatingArg.getRole() == NavigationRole.EXPRESSION) {
-				asArguments.add(PivotUtilInternal.getPivot(OCLExpression.class, csNavigatingArg));
+				asArguments.add(PivotUtil.getPivot(OCLExpression.class, csNavigatingArg));
 			}
 		}
 	}

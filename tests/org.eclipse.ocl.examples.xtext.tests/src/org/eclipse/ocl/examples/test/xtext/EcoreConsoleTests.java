@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.pivot.internal.OCL;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 
 /**
  * Tests that exercise the Xtext OCL Console using simple Ecore models.
@@ -36,8 +36,8 @@ public class EcoreConsoleTests extends AbstractConsoleTests
 
 	public void testConsole_OCLinEcoreTutorial() throws Exception {
 		OCL ocl = OCL.newInstance();
-		MetaModelManager metaModelManager = ocl.getMetaModelManager();
-		ResourceSet resourceSet = metaModelManager.getExternalResourceSet();
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
+		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
 		URI testModelURI = getTestModelURI("model/OCLinEcoreTutorialForPivot.xmi");
 		Resource xmiResource = resourceSet.getResource(testModelURI, true);
 		EObject xmiLibrary = xmiResource.getContents().get(0);

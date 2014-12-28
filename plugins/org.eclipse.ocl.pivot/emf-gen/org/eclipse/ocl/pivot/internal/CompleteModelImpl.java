@@ -53,10 +53,9 @@ import org.eclipse.ocl.pivot.internal.complete.CompleteURIs;
 import org.eclipse.ocl.pivot.internal.complete.PartialModels;
 import org.eclipse.ocl.pivot.internal.complete.RootCompletePackages;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.Orphanage;
 import org.eclipse.ocl.pivot.internal.manager.TupleTypeManager;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -388,7 +387,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	 */
 	private final @NonNull CompleteURIs completeURIs = new CompleteURIs(this);
 	
-	protected /*final @NonNull*/ MetaModelManager metaModelManager;
+	protected /*final @NonNull*/ MetamodelManager metamodelManager;
 	
 	private Orphanage orphanage = null;
 
@@ -544,8 +543,8 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	}
 
 	@Override
-	public @NonNull MetaModelManager getMetaModelManager() {
-		return ClassUtil.nonNullState(metaModelManager);
+	public @NonNull MetamodelManager getMetamodelManager() {
+		return ClassUtil.nonNullState(metamodelManager);
 	}
 
 	@Override
@@ -564,7 +563,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	public @NonNull Orphanage getOrphanage() {
 		Orphanage orphanage2 = orphanage;
 		if (orphanage2 == null) {
-			orphanage2 = orphanage = metaModelManager.createOrphanage();
+			orphanage2 = orphanage = metamodelManager.createOrphanage();
 			orphanage2.addPackageListener(getOrphanCompletePackage().getPartialPackages());
 		}
 		return orphanage2;
@@ -699,7 +698,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	@Override
 	public @NonNull CompleteModelInternal init(@NonNull CompleteEnvironmentInternal completeEnvironment) {
 		this.completeEnvironment = completeEnvironment;
-		this.metaModelManager = completeEnvironment.getMetaModelManager();
+		this.metamodelManager = completeEnvironment.getMetamodelManager();
 		partialModels = new PartialModels(this);
 		ownedCompletePackages = new RootCompletePackages(this);
 		return this;
@@ -728,7 +727,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 								if (specializedParameterSubstitution.getFormal() == superActual) {
 									Type specializedActual = ClassUtil.nonNullModel(specializedParameterSubstitution.getActual());
 									TemplateParameter superFormal = ClassUtil.nonNullModel(superParameterSubstitution.getFormal());
-									superSpecializedTemplateParameterSubstitution = PivotUtilInternal.createTemplateParameterSubstitution(superFormal, specializedActual);
+									superSpecializedTemplateParameterSubstitution = PivotUtil.createTemplateParameterSubstitution(superFormal, specializedActual);
 									break;
 								}
 							}
@@ -742,7 +741,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 					}
 				}
 				@NonNull org.eclipse.ocl.pivot.Class unspecializedSuperClass = PivotUtil.getUnspecializedTemplateableElement(superClass);
-				CompleteClassInternal superCompleteClass = metaModelManager.getCompleteClass(unspecializedSuperClass);
+				CompleteClassInternal superCompleteClass = metamodelManager.getCompleteClass(unspecializedSuperClass);
 				org.eclipse.ocl.pivot.Class superPivotClass = superCompleteClass.getPivotClass();
 				if (superPivotClass instanceof CollectionType) {
 					if (superSpecializedTemplateParameterSubstitutions.size() == 1) {

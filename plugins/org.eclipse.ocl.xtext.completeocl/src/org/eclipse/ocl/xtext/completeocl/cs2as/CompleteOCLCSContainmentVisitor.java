@@ -36,6 +36,7 @@ import org.eclipse.ocl.pivot.internal.scoping.ScopeFilter;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.xtext.base.cs2as.Continuation;
@@ -145,7 +146,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 			}
 		}
 		for (DefOperationCS defOperation : defOperations) {
-			Operation contextOperation = PivotUtilInternal.getPivot(Operation.class, defOperation);
+			Operation contextOperation = PivotUtil.getPivot(Operation.class, defOperation);
 			if (contextOperation != null) {
 				contextOperations.add(contextOperation);
 			}
@@ -159,7 +160,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 			}
 		}
 		for (DefPropertyCS defProperty : defProperties) {
-			Property contextProperty = PivotUtilInternal.getPivot(Property.class, defProperty);
+			Property contextProperty = PivotUtil.getPivot(Property.class, defProperty);
 			if (contextProperty != null) {
 				contextProperties.add(contextProperty);
 			}
@@ -194,7 +195,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 			context.setType(contextOperation, modelOperation.getType(), modelOperation.isRequired());
 			List<ExpSpecificationCS> ownedBodies = operationContextDecl.getOwnedBodies();
 			ExpSpecificationCS ownedBody = ownedBodies.size() > 0 ? ownedBodies.get(0) : null;
-			LanguageExpression languageExpression = ownedBody != null ? PivotUtilInternal.getPivot(LanguageExpression.class,  ownedBody) : null;
+			LanguageExpression languageExpression = ownedBody != null ? PivotUtil.getPivot(LanguageExpression.class,  ownedBody) : null;
 			contextOperation.setBodyExpression(languageExpression);
 			context.refreshPivotList(Parameter.class, contextOperation.getOwnedParameters(), operationContextDecl.getOwnedParameters());
 			context.refreshPivotList(Constraint.class, contextOperation.getOwnedPreconditions(), operationContextDecl.getOwnedPreconditions());
@@ -276,7 +277,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 			context.setType(contextProperty, modelProperty.getType(), modelProperty.isRequired());
 			List<ExpSpecificationCS> ownedDefaultExpressions = propertyContextDecl.getOwnedDefaultExpressions();
 			ExpSpecificationCS ownedDefaultExpression = ownedDefaultExpressions.size() > 0 ? ownedDefaultExpressions.get(0) : null;
-			LanguageExpression languageExpression = ownedDefaultExpression != null ? PivotUtilInternal.getPivot(LanguageExpression.class,  ownedDefaultExpression) : null;
+			LanguageExpression languageExpression = ownedDefaultExpression != null ? PivotUtil.getPivot(LanguageExpression.class,  ownedDefaultExpression) : null;
 			contextProperty.setOwnedExpression(languageExpression);
 		}
 		context.refreshComments(contextProperty, propertyContextDecl);
@@ -371,7 +372,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 	public Continuation<?> visitDefOperationCS(@NonNull DefOperationCS csElement) {
 		@NonNull Operation contextOperation = refreshNamedElement(Operation.class, PivotPackage.Literals.OPERATION, csElement);
 		context.refreshPivotList(Parameter.class, contextOperation.getOwnedParameters(), csElement.getOwnedParameters());
-		ExpressionInOCL pivotSpecification = PivotUtilInternal.getPivot(ExpressionInOCL.class, csElement.getOwnedSpecification());
+		ExpressionInOCL pivotSpecification = PivotUtil.getPivot(ExpressionInOCL.class, csElement.getOwnedSpecification());
 		contextOperation.setBodyExpression(pivotSpecification);
 		return null;
 	}
@@ -384,7 +385,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		contextProperty.setIsTransient(true);
 		contextProperty.setIsVolatile(true);
 		contextProperty.setIsResolveProxies(false);
-		ExpressionInOCL pivotSpecification = PivotUtilInternal.getPivot(ExpressionInOCL.class, csElement.getOwnedSpecification());
+		ExpressionInOCL pivotSpecification = PivotUtil.getPivot(ExpressionInOCL.class, csElement.getOwnedSpecification());
 		contextProperty.setOwnedExpression(pivotSpecification);
 		return null;
 	}
@@ -394,7 +395,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		super.visitImportCS(csElement);
 		Namespace namespace = csElement.getReferredNamespace();													// Resolve the proxy to perform the import.
 		if ((namespace != null) && !namespace.eIsProxy()) {
-			Import pivotElement = PivotUtilInternal.getPivot(Import.class, csElement);
+			Import pivotElement = PivotUtil.getPivot(Import.class, csElement);
 			if (pivotElement != null) {
 				Namespace oldNamespace = pivotElement.getImportedNamespace();
 				if (namespace != oldNamespace) {

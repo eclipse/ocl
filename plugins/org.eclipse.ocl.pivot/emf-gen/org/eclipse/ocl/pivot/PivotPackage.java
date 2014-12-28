@@ -589,10 +589,10 @@ public interface PivotPackage
 	int VOID_TYPE = 120;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.utilities.Pivotable <em>Pivotable</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.utilities.Pivotable <em>Pivotable</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.pivot.internal.utilities.Pivotable
+	 * @see org.eclipse.ocl.pivot.utilities.Pivotable
 	 * @see org.eclipse.ocl.pivot.internal.PivotPackageImpl#getPivotable()
 	 * @generated
 	 */
@@ -1267,10 +1267,10 @@ public interface PivotPackage
 	int LAMBDA_TYPE = 49;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.utilities.MorePivotable <em>More Pivotable</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.utilities.MorePivotable <em>More Pivotable</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.pivot.internal.utilities.MorePivotable
+	 * @see org.eclipse.ocl.pivot.utilities.MorePivotable
 	 * @see org.eclipse.ocl.pivot.internal.PivotPackageImpl#getMorePivotable()
 	 * @generated
 	 */
@@ -24387,11 +24387,11 @@ public interface PivotPackage
 	EReference getMessageType_ReferredOperation();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.internal.utilities.MorePivotable <em>More Pivotable</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.utilities.MorePivotable <em>More Pivotable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>More Pivotable</em>'.
-	 * @see org.eclipse.ocl.pivot.internal.utilities.MorePivotable
+	 * @see org.eclipse.ocl.pivot.utilities.MorePivotable
 	 * @generated
 	 */
 	EClass getMorePivotable();
@@ -25359,11 +25359,11 @@ public interface PivotPackage
 	EReference getWildcardType_UpperBound();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.internal.utilities.Pivotable <em>Pivotable</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.utilities.Pivotable <em>Pivotable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Pivotable</em>'.
-	 * @see org.eclipse.ocl.pivot.internal.utilities.Pivotable
+	 * @see org.eclipse.ocl.pivot.utilities.Pivotable
 	 * @generated
 	 */
 	EClass getPivotable();
@@ -29081,10 +29081,10 @@ public interface PivotPackage
 		EReference MESSAGE_TYPE__REFERRED_OPERATION = eINSTANCE.getMessageType_ReferredOperation();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.internal.utilities.MorePivotable <em>More Pivotable</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.utilities.MorePivotable <em>More Pivotable</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.pivot.internal.utilities.MorePivotable
+		 * @see org.eclipse.ocl.pivot.utilities.MorePivotable
 		 * @see org.eclipse.ocl.pivot.internal.PivotPackageImpl#getMorePivotable()
 		 * @generated
 		 */
@@ -29881,10 +29881,10 @@ public interface PivotPackage
 		EReference WILDCARD_TYPE__UPPER_BOUND = eINSTANCE.getWildcardType_UpperBound();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.internal.utilities.Pivotable <em>Pivotable</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.utilities.Pivotable <em>Pivotable</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.pivot.internal.utilities.Pivotable
+		 * @see org.eclipse.ocl.pivot.utilities.Pivotable
 		 * @see org.eclipse.ocl.pivot.internal.PivotPackageImpl#getPivotable()
 		 * @generated
 		 */

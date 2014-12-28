@@ -18,9 +18,9 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.NamedElement;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
-import org.eclipse.ocl.pivot.internal.utilities.BaseResource;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.xtext.base.as2cs.AS2CS;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.xtext.nodemodel.INode;
@@ -29,7 +29,7 @@ import org.eclipse.xtext.util.Triple;
 /**
  * BaseResource defines the Xtext-dependent extended interface for a Concrete Syntax resource.
  */
-public interface BaseCSResource extends BaseResource
+public interface BaseCSResource extends CSResource
 {
 	/**
 	 * Add the unresolved reference message for EReference in EObject at INode.
@@ -37,20 +37,20 @@ public interface BaseCSResource extends BaseResource
 	void createAndAddDiagnostic(Triple<EObject, EReference, INode> triple);
 
 	/**
-	 * Create the AS2CS converter for the cs2asResourceMap conversions using metaModelManager.
+	 * Create the AS2CS converter for the cs2asResourceMap conversions using metamodelManager.
 	 */
-	@NonNull AS2CS createAS2CS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull MetaModelManager metaModelManager);
+	@NonNull AS2CS createAS2CS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull MetamodelManager metamodelManager);
 
 	/**
-	 * Create the CS2AS converter for the cs2asResourceMap conversions using metaModelManager.
+	 * Create the CS2AS converter for the cs2asResourceMap conversions using metamodelManager.
 	 */
-	@NonNull CS2AS createCS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull MetaModelManager metaModelManager);
+	@NonNull CS2AS createCS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull MetamodelManager metamodelManager);
 
 	/**
-	 * Return a MetaModelManager for use with this CS resource, unless one can be located
+	 * Return a MetamodelManager for use with this CS resource, unless one can be located
 	 * via a CS2AS adapter.
 	 */
-	@NonNull MetaModelManager createMetaModelManager();
+	@NonNull MetamodelManager createMetamodelManager();
 
 	/**
 	 * Return the CS2AS adapter for this resource, or null if none installed.
@@ -69,10 +69,10 @@ public interface BaseCSResource extends BaseResource
 
 	/**
 	 * Return the CS2AS adapter for this resource.
-	 * If no CS2AS adapter installed, one is created and installed using the provided metaModelManager,
+	 * If no CS2AS adapter installed, one is created and installed using the provided metamodelManager,
 	 * which if null is also created. 
 	 */
-	@NonNull CS2ASResourceAdapter getCS2ASAdapter(@Nullable MetaModelManager metaModelManager);
+	@NonNull CS2ASResourceAdapter getCS2ASAdapter(@Nullable MetamodelManager metamodelManager);
 	
 	/**
 	 * Return the name of the editor for use in diagnostics.

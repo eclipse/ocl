@@ -19,7 +19,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 
 /**
  * EInvocationContext supports parsing OCL expressions in the context of a query,
@@ -30,8 +30,8 @@ public class EInvocationContext extends EClassContext
 	private final Map<String, EClassifier> eParameters;
 	private Map<String, Type> parameters = null;
 	
-	public EInvocationContext(@NonNull MetaModelManager metaModelManager, @Nullable URI uri, @Nullable EClassifier eClassContext, @Nullable Map<String, EClassifier> eParameters) {
-		super(metaModelManager, uri, eClassContext);
+	public EInvocationContext(@NonNull MetamodelManager metamodelManager, @Nullable URI uri, @Nullable EClassifier eClassContext, @Nullable Map<String, EClassifier> eParameters) {
+		super(metamodelManager, uri, eClassContext);
 		this.eParameters = eParameters;
 	}
 
@@ -40,7 +40,7 @@ public class EInvocationContext extends EClassContext
 			parameters = new HashMap<String, Type>();
 			if (eParameters != null) {
 				for (Map.Entry<String, EClassifier> entry : eParameters.entrySet()) {
-					Type type = metaModelManager.getPivotOfEcore(Type.class, entry.getValue());
+					Type type = metamodelManager.getPivotOfEcore(Type.class, entry.getValue());
 					parameters.put(entry.getKey(), type);
 				}
 			}

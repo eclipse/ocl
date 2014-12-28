@@ -17,7 +17,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 /**
@@ -28,8 +28,8 @@ public class EObjectContext extends AbstractParserContext
 	protected final @Nullable EObject eObject;
 	private /*@LazyNonNull*/ Type classContext = null;
 
-	public EObjectContext(@NonNull MetaModelManager metaModelManager, @Nullable URI uri, @Nullable EObject eObject) {
-		super(metaModelManager, uri);
+	public EObjectContext(@NonNull MetamodelManager metamodelManager, @Nullable URI uri, @Nullable EObject eObject) {
+		super(metamodelManager, uri);
 		this.eObject = eObject;
 	}
 
@@ -39,26 +39,26 @@ public class EObjectContext extends AbstractParserContext
 		if (classContext2 == null) {
 			try {
 				if (eObject instanceof Type) {
-					classContext2 = metaModelManager.getMetaclass((Type)eObject);
+					classContext2 = metamodelManager.getMetaclass((Type)eObject);
 				}
 //				else if (eObject instanceof NamedElement) {
 //					classContext = eObject;
 //				}
 //				else if (eObject instanceof EClassifier) {
-//					Type type = metaModelManager.getPivotOf(Type.class, eObject);
+//					Type type = metamodelManager.getPivotOf(Type.class, eObject);
 //					if (type != null) {
-//						classContext = metaModelManager.getMetaclass(type);
+//						classContext = metamodelManager.getMetaclass(type);
 //					}
 //				}
 				else if (eObject != null) {
-					classContext2 = metaModelManager.getPivotOf(Type.class, eObject.eClass());
+					classContext2 = metamodelManager.getPivotOf(Type.class, eObject.eClass());
 				}
 			} catch (ParserException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			if (classContext2 == null) {
-				classContext2 = metaModelManager.getStandardLibrary().getOclVoidType();
+				classContext2 = metamodelManager.getStandardLibrary().getOclVoidType();
 			}
 			classContext = classContext2;
 		}

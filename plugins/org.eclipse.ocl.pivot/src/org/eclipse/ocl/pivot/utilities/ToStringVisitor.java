@@ -11,7 +11,7 @@
  *   Adolfo Sanchez- Barbudo Herrera - 228841 Fix NPE in VariableExp
  *******************************************************************************/
 
-package org.eclipse.ocl.pivot.internal.utilities;
+package org.eclipse.ocl.pivot.utilities;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -94,10 +94,10 @@ import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.WildcardType;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
-import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.Unlimited;
 
 /**

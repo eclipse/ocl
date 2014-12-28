@@ -35,10 +35,10 @@ import org.eclipse.ocl.examples.validity.plugin.OCLValidityPlugin;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Namespace;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.utilities.BaseResource;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.internal.validation.PivotEObjectValidator.ValidationAdapter;
+import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;
 
@@ -55,12 +55,12 @@ public class PivotConstraintLocator extends AbstractConstraintLocator
 				return null;
 			}
 			Resource asResource = null;
-			if (resource instanceof BaseResource) {
-				asResource = ((BaseResource) resource).getASResource(null);
+			if (resource instanceof CSResource) {
+				asResource = ((CSResource) resource).getASResource(null);
 			}
 			if (asResource != null) {
-				MetaModelManager metaModelManager = PivotUtilInternal.findMetaModelManager(asResource);
-				if (metaModelManager != null) {
+				MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(asResource);
+				if (metamodelManager != null) {
 					for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {
 						if (monitor.isCanceled()) {
 							return null;
@@ -71,7 +71,7 @@ public class PivotConstraintLocator extends AbstractConstraintLocator
 							Namespace constrainedElement = pConstraint.getContext();
 							if (constrainedElement != null) {
 								@SuppressWarnings("null")@NonNull String label = String.valueOf(pConstraint.getName());
-								EModelElement eTarget = metaModelManager.getEcoreOfPivot(EModelElement.class, constrainedElement);
+								EModelElement eTarget = metamodelManager.getEcoreOfPivot(EModelElement.class, constrainedElement);
 								if (eTarget != null) {
 									assert resource != null;
 									map = createLeafConstrainingNode(map, validityModel, eTarget, pConstraint, label);

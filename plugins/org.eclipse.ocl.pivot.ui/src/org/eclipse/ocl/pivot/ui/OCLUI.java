@@ -6,11 +6,12 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.helper.OCLHelper;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.utilities.BaseResource;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironment;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.resource.CSResource;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLRuntimeModule;
 import org.eclipse.ocl.xtext.completeocl.ui.CompleteOCLUiModule;
 import org.eclipse.ocl.xtext.completeocl.utilities.CompleteOCLPlugin;
@@ -83,27 +84,27 @@ public class OCLUI
 	 * @param contextObject
 	 * @return the metamodelManager
 	 */
-	protected MetaModelManager getMetaModelManager(EObject contextObject) {
-		MetaModelManager metaModelManager = PivotUtilInternal.findMetaModelManager(contextObject);
-		if (metaModelManager != null) {
-			return metaModelManager;
+	protected MetamodelManager getMetamodelManager(EObject contextObject) {
+		MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(contextObject);
+		if (metamodelManager != null) {
+			return metamodelManager;
 		}
-		if (metaModelManager == null) {
-			metaModelManager = new MetaModelManager();
+		if (metamodelManager == null) {
+			metamodelManager = new MetamodelManager();
 		}
-		return metaModelManager;
+		return metamodelManager;
 	}
 
 	/**
 	 * Evaluate an oclExpression using selfObject as the OCL self object. Returns a boxed value.
 	 */
 	public static Object evaluate(@Nullable EObject selfObject, @NonNull String oclExpression) throws Exception {
-		MetaModelManager metaModelManager = PivotUtilInternal.findMetaModelManager(selfObject);
-		if (metaModelManager == null) {
-			metaModelManager = new MetaModelManager();
+		MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(selfObject);
+		if (metamodelManager == null) {
+			metamodelManager = new MetamodelManager();
 			// FIXME install
 		}
-		PivotEnvironmentFactory envFactory = new PivotEnvironmentFactory(null, metaModelManager);
+		PivotEnvironmentFactory envFactory = new PivotEnvironmentFactory(null, metamodelManager);
 		PivotEnvironment environment = envFactory.createEnvironment();
 		OCL ocl = OCL.newInstance(environment);
 		OCLHelper oclHelper = ocl.createOCLHelper(selfObject);
@@ -118,8 +119,8 @@ public class OCLUI
 	 * Configure a csResource to use eObject as its OCL self context.
 	 */
 	public static void setParserContext(@NonNull XtextResource csResource, EObject eObject) throws Exception {
-		if (csResource instanceof BaseResource) {
-			PivotUtilInternal.setParserContext((BaseResource) csResource, eObject);
+		if (csResource instanceof CSResource) {
+			PivotUtil.setParserContext((CSResource) csResource, eObject);
 		}
 	}
 }

@@ -63,19 +63,19 @@ import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.PivotStandaloneSetup;
 import org.eclipse.ocl.pivot.internal.delegate.ValidationDelegate;
 import org.eclipse.ocl.pivot.internal.ecore.AS2Ecore;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceAdapter;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
-import org.eclipse.ocl.pivot.internal.utilities.BaseResource;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
+import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.resource.CSResource;
+import org.eclipse.ocl.pivot.resource.ProjectMap;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.pivot.utilities.ProjectMap;
-import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.Bag;
 import org.eclipse.ocl.pivot.values.Value;
@@ -115,7 +115,7 @@ public class PivotTestCase extends TestCase
 	{
 //		DEBUG_GC = true; 
 //		DEBUG_ID = true;
-//		MetaModelManager.liveMetaModelManagers = new WeakHashMap<MetaModelManager,Object>();	// Prints the create/finalize of each MetaModelManager
+//		MetamodelManager.liveMetamodelManagers = new WeakHashMap<MetamodelManager,Object>();	// Prints the create/finalize of each MetamodelManager
 //		StandaloneProjectMap.liveStandaloneProjectMaps = new WeakHashMap<StandaloneProjectMap,Object>();	// Prints the create/finalize of each StandaloneProjectMap
 //		ResourceSetImpl.liveResourceSets = new WeakHashMap<ResourceSet,Object>();				// Requires edw-debug privater EMF branch
 	}
@@ -165,7 +165,7 @@ public class PivotTestCase extends TestCase
 //		csResourceSet.getPackageRegistry().put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
 //		Resource csResource = csResourceSet.createResource(uri);
 //		URI oclinecoreURI = ecoreResource.getURI().appendFileExtension("oclinecore");
-		ocl.as2cs(asResource, (BaseResource) xtextResource);
+		ocl.as2cs(asResource, (CSResource) xtextResource);
 		assertNoResourceErrors("Conversion failed", xtextResource);
 //		csResource.save(null);
 		//
@@ -303,7 +303,7 @@ public class PivotTestCase extends TestCase
 	public static void assertNoValidationErrors(@NonNull String string, @NonNull EObject eObject) {
 		Map<Object, Object> validationContext = LabelUtil.createDefaultContext(Diagnostician.INSTANCE);
 		Resource eResource = ClassUtil.nonNullState(eObject.eResource());
-		PivotUtilInternal.getMetaModelManager(eResource);	// FIXME oclIsKindOf fails because ExecutableStandardLibrary.getMetaclass is bad
+		PivotUtilInternal.getMetamodelManager(eResource);	// FIXME oclIsKindOf fails because ExecutableStandardLibrary.getMetaclass is bad
 		Diagnostic diagnostic = Diagnostician.INSTANCE.validate(eObject, validationContext);
 		List<Diagnostic> children = diagnostic.getChildren();
 		if (children.size() <= 0) {
@@ -454,12 +454,12 @@ public class PivotTestCase extends TestCase
 	}
 	
 	public static @NonNull Resource cs2ecore(@NonNull OCL ocl, @NonNull String testDocument, @Nullable URI ecoreURI) throws IOException {
-		MetaModelManager metaModelManager = ocl.getMetaModelManager();
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		InputStream inputStream = new URIConverter.ReadableInputStream(testDocument, "UTF-8");
 		URI xtextURI = URI.createURI("test.oclinecore");
 		ResourceSet resourceSet = new ResourceSetImpl();
 		EssentialOCLCSResource xtextResource = ClassUtil.nonNullState((EssentialOCLCSResource) resourceSet.createResource(xtextURI, null));
-		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
+		MetamodelManagerResourceAdapter.getAdapter(xtextResource, metamodelManager);
 		xtextResource.load(inputStream, null);
 		assertNoResourceErrors("Loading Xtext", xtextResource);
 		Resource asResource = cs2as(ocl, xtextResource, null);
@@ -468,19 +468,19 @@ public class PivotTestCase extends TestCase
 	}
 	
 	public static @NonNull Resource cs2as(@NonNull OCL ocl, @NonNull String testDocument) throws IOException {
-		MetaModelManager metaModelManager = ocl.getMetaModelManager();
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		InputStream inputStream = new URIConverter.ReadableInputStream(testDocument, "UTF-8");
 		URI xtextURI = URI.createURI("test.oclinecore");
 		ResourceSet resourceSet = new ResourceSetImpl();
 		EssentialOCLCSResource xtextResource = ClassUtil.nonNullState((EssentialOCLCSResource) resourceSet.createResource(xtextURI, null));
-		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
+		MetamodelManagerResourceAdapter.getAdapter(xtextResource, metamodelManager);
 		xtextResource.load(inputStream, null);
 		assertNoResourceErrors("Loading Xtext", xtextResource);
 		Resource asResource = cs2as(ocl, xtextResource, null);
 		return asResource;
 	}
 	
-	public static @NonNull Resource cs2as(@NonNull OCL ocl, @NonNull BaseResource xtextResource, @Nullable URI pivotURI) throws IOException {
+	public static @NonNull Resource cs2as(@NonNull OCL ocl, @NonNull CSResource xtextResource, @Nullable URI pivotURI) throws IOException {
 		Resource asResource = ocl.cs2as(xtextResource);
 		assertNoUnresolvedProxies("Unresolved proxies", asResource);
 		if (pivotURI != null) {
@@ -634,26 +634,26 @@ public class PivotTestCase extends TestCase
 		resourceSet.eAdapters().clear();
 	}
 	
-	public @NonNull URI createEcoreFile(@NonNull MetaModelManager metaModelManager, @NonNull String fileName, @NonNull String fileContent) throws IOException {
-		return createEcoreFile(metaModelManager, fileName, fileContent, false);
+	public @NonNull URI createEcoreFile(@NonNull MetamodelManager metamodelManager, @NonNull String fileName, @NonNull String fileContent) throws IOException {
+		return createEcoreFile(metamodelManager, fileName, fileContent, false);
 	}
 	
 	@SuppressWarnings("null")
-	public @NonNull URI createEcoreFile(@NonNull MetaModelManager metaModelManager, @NonNull String fileName, @NonNull String fileContent, boolean assignIds) throws IOException {
+	public @NonNull URI createEcoreFile(@NonNull MetamodelManager metamodelManager, @NonNull String fileName, @NonNull String fileContent, boolean assignIds) throws IOException {
 		String inputName = fileName + ".oclinecore";
 		createOCLinEcoreFile(inputName, fileContent);
 		URI inputURI = getProjectFileURI(inputName);
 		URI ecoreURI = getProjectFileURI(fileName + ".ecore");
 		CS2ASResourceAdapter adapter = null;
 		try {
-			ResourceSet resourceSet2 = metaModelManager.getExternalResourceSet();
+			ResourceSet resourceSet2 = metamodelManager.getExternalResourceSet();
 			BaseCSResource xtextResource = ClassUtil.nonNullState((BaseCSResource) resourceSet2.getResource(inputURI, true));
 			assertNoResourceErrors("Load failed", xtextResource);
 			adapter = xtextResource.getCS2ASAdapter(null);
 			Resource asResource = adapter.getASResource(xtextResource);
 			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
 			assertNoValidationErrors("Pivot validation errors", asResource.getContents().get(0));
-			XMLResource ecoreResource = AS2Ecore.createResource(metaModelManager, asResource, ecoreURI, null);
+			XMLResource ecoreResource = AS2Ecore.createResource(metamodelManager, asResource, ecoreURI, null);
 			assertNoResourceErrors("To Ecore errors", ecoreResource);
 			if (assignIds) {
 				for (TreeIterator<EObject> tit = ecoreResource.getAllContents(); tit.hasNext(); ) {
@@ -749,7 +749,7 @@ public class PivotTestCase extends TestCase
 			makeCopyOfGlobalState = null;
 			System.gc();
 			System.runFinalization();
-//			MetaModelManagerResourceAdapter.INSTANCES.show();
+//			MetamodelManagerResourceAdapter.INSTANCES.show();
 		}
 		if (DEBUG_ID) {
 			debugPrintln("==> Finish " + getName());

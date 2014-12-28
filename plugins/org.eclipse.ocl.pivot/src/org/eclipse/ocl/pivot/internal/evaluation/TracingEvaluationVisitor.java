@@ -51,8 +51,8 @@ import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.plugin.PivotInternalPlugin;
+import org.eclipse.ocl.pivot.internal.helper.HelperUtil;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 
 
 /**
@@ -106,8 +106,8 @@ public class TracingEvaluationVisitor extends EvaluationVisitorDecorator {
 	}
 
 	@Override
-	public @NonNull MetaModelManager getMetaModelManager() {
-		return delegate.getMetaModelManager();
+	public @NonNull MetamodelManager getMetamodelManager() {
+		return delegate.getMetamodelManager();
 	}
 
 	@Override
@@ -162,8 +162,8 @@ public class TracingEvaluationVisitor extends EvaluationVisitorDecorator {
     
     protected @Nullable Object trace(@NonNull Element expression, @Nullable Object value) {
         try {
-            PivotInternalPlugin.trace("Evaluate: " + expression); //$NON-NLS-1$
-            PivotInternalPlugin.trace("Result  : " + //$NON-NLS-1$
+        	HelperUtil.trace("Evaluate: " + expression); //$NON-NLS-1$
+        	HelperUtil.trace("Result  : " + //$NON-NLS-1$
                 (value != null ? TypeId.OCL_INVALID_NAME : String.valueOf(value))); //$NON-NLS-1$
         } catch (Exception e) {
             // tracing must not interfere with evaluation

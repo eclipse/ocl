@@ -59,7 +59,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.ids.ElementId;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.library.LibraryIteration;
 import org.eclipse.ocl.pivot.library.iterator.AnyIteration;
 import org.eclipse.ocl.pivot.library.iterator.CollectIteration;
@@ -187,8 +187,8 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 	private /*@LazyNonNull*/ Object annotationReader = null;
 	private /*@LazyNonNull*/ Method annotationReader_getIsNonNull = null;
 	
-	public JavaCodeGenerator(@NonNull MetaModelManager metaModelManager) {
-		super(metaModelManager);
+	public JavaCodeGenerator(@NonNull MetamodelManager metamodelManager) {
+		super(metamodelManager);
 	}
 
 	@Override
@@ -217,11 +217,11 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 
 	@Override
 	protected @NonNull GenModelHelper createGenModelHelper() {
-		return new AbstractGenModelHelper(metaModelManager);
+		return new AbstractGenModelHelper(metamodelManager);
 	}
 
 	protected @NonNull Id2EClassVisitor createId2EClassVisitor() {
-		return new Id2EClassVisitor(metaModelManager);
+		return new Id2EClassVisitor(metamodelManager);
 	}
 
 	protected @NonNull Id2BoxedDescriptorVisitor createId2BoxedDescriptorVisitor() {
@@ -327,7 +327,7 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 
 	@Override
 	public @Nullable Iteration2Java getIterationHelper(@NonNull Iteration asIteration) {
-		LibraryIteration libraryIteration = (LibraryIteration) metaModelManager.getImplementation(asIteration);
+		LibraryIteration libraryIteration = (LibraryIteration) metamodelManager.getImplementation(asIteration);
 		if (asIteration.getOwnedIterators().size() != 1) {
 			return null;
 		}

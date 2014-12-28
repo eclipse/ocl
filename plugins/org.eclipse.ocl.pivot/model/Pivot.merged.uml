@@ -1991,10 +1991,10 @@
   <Ecore:EDataType xmi:id="PA.Ppivot.TLibraryFeature" instanceClassName="org.eclipse.ocl.pivot.library.LibraryFeature" base_PrimitiveType="Ppivot.TLibraryFeature"/>
   <Ecore:EDataType xmi:id="PA.Ppivot.TObject" instanceClassName="java.lang.Object" base_PrimitiveType="Ppivot.TObject"/>
   <Ecore:EDataType xmi:id="PA.Ppivot.TThrowable" instanceClassName="java.lang.Throwable" base_PrimitiveType="Ppivot.TThrowable"/>
-  <Ecore:EClass xmi:id="PA.Ppivot.TMorePivotable" instanceClassName="org.eclipse.ocl.pivot.internal.utilities.MorePivotable" base_Interface="Ppivot.TMorePivotable"
+  <Ecore:EClass xmi:id="PA.Ppivot.TMorePivotable" instanceClassName="org.eclipse.ocl.pivot.utilities.MorePivotable" base_Interface="Ppivot.TMorePivotable"
       className="MorePivotable"/>
   <Ecore:EClass xmi:id="PA.Ppivot.TNameable" instanceClassName="org.eclipse.ocl.pivot.Nameable" base_Interface="Ppivot.TNameable" className="Nameable"/>
-  <Ecore:EClass xmi:id="PA.Ppivot.TPivotable" instanceClassName="org.eclipse.ocl.pivot.internal.utilities.Pivotable" base_Interface="Ppivot.TPivotable"
+  <Ecore:EClass xmi:id="PA.Ppivot.TPivotable" instanceClassName="org.eclipse.ocl.pivot.utilities.Pivotable" base_Interface="Ppivot.TPivotable"
       className="Pivotable"/>
   <Ecore:EAttribute xmi:id="PA.Ppivot.TPrecedence.Porder" base_Property="Ppivot.TPrecedence.Porder"/>
   <Ecore:EDataType xmi:id="PA.Ppivot.TBoolean" instanceClassName="boolean" base_PrimitiveType="Ppivot.TBoolean"/>

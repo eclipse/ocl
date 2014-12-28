@@ -40,8 +40,9 @@ import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.basecs.AnnotationCS;
@@ -89,13 +90,13 @@ import org.eclipse.ocl.xtext.basecs.util.VisitableCS;
 
 public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Continuation<?>, CS2ASConversion>
 {
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull MetamodelManager metamodelManager;
 	protected final @NonNull StandardLibraryInternal standardLibrary;
 
 	public BaseCSContainmentVisitor(@NonNull CS2ASConversion context) {
 		super(context);
-		this.metaModelManager = context.getMetaModelManager();
-		this.standardLibrary = metaModelManager.getStandardLibrary();
+		this.metamodelManager = context.getMetamodelManager();
+		this.standardLibrary = metamodelManager.getStandardLibrary();
 	}
 
 	protected PackageId getPackageId(@NonNull PackageCS csElement) {
@@ -173,7 +174,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		}
 		T pivotElement;
 		if (pivotObject == null) {
-			pivotElement = metaModelManager.createPackage(pivotClass, pivotEClass, name, csElement.getNsURI(), getPackageId(csElement));
+			pivotElement = metamodelManager.createPackage(pivotClass, pivotEClass, name, csElement.getNsURI(), getPackageId(csElement));
 		}
 		else {
 			if (!pivotClass.isAssignableFrom(pivotObject.getClass())) {
@@ -227,7 +228,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		String newExternalURI = csURI != null ? csURI.toString() : null;
 		T pivotElement;
 		if (pivotObject == null) {
-			pivotElement = metaModelManager.createModel(pivotClass, pivotEClass, newExternalURI);
+			pivotElement = metamodelManager.createModel(pivotClass, pivotEClass, newExternalURI);
 		}
 		else {
 			if (!pivotClass.isAssignableFrom(pivotObject.getClass())) {
@@ -273,7 +274,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 	public Continuation<?> visitConstraintCS(@NonNull ConstraintCS csElement) {
 		@SuppressWarnings("null") @NonNull EClass eClass = PivotPackage.Literals.CONSTRAINT;
 		Constraint pivotElement = refreshNamedElement(Constraint.class, eClass, csElement);
-		pivotElement.setOwnedSpecification(PivotUtilInternal.getPivot(ExpressionInOCL.class, csElement.getOwnedSpecification()));
+		pivotElement.setOwnedSpecification(PivotUtil.getPivot(ExpressionInOCL.class, csElement.getOwnedSpecification()));
 		return null;
 	}
 
@@ -389,7 +390,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		context.refreshPivotList(Constraint.class, pivotElement.getOwnedPostconditions(), csElement.getOwnedPostconditions());
 		List<SpecificationCS> csBodyExpressions = csElement.getOwnedBodyExpressions();
 		SpecificationCS csBodyExpression = csBodyExpressions.size() > 0 ? csBodyExpressions.get(0) : null;
-		pivotElement.setBodyExpression(PivotUtilInternal.getPivot(ExpressionInOCL.class, csBodyExpression));
+		pivotElement.setBodyExpression(PivotUtil.getPivot(ExpressionInOCL.class, csBodyExpression));
 		return null;
 	}
 
@@ -431,7 +432,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		if (csImports.size() > 0) {
 			List<Import> newImports = new ArrayList<Import>(csImports.size());
 			for (ImportCS csImport : csImports) {
-				Import pivotElement = PivotUtilInternal.getPivot(Import.class, csImport);
+				Import pivotElement = PivotUtil.getPivot(Import.class, csImport);
 				if (pivotElement != null) {
 					pivotElement.setImportedNamespace(csImport.getReferredNamespace());
 				}
@@ -478,7 +479,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		pivotElement.setDefaultValueString(csElement.getDefault());
 		List<SpecificationCS> csDefaultExpressions = csElement.getOwnedDefaultExpressions();
 		SpecificationCS csDefaultExpression = csDefaultExpressions.size() > 0 ? csDefaultExpressions.get(0) : null;
-		pivotElement.setOwnedExpression(PivotUtilInternal.getPivot(ExpressionInOCL.class, csDefaultExpression));
+		pivotElement.setOwnedExpression(PivotUtil.getPivot(ExpressionInOCL.class, csDefaultExpression));
 		return null;
 	}
 
@@ -506,7 +507,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		List<TemplateParameter> newPivotTemplateParameters = new ArrayList<TemplateParameter>();
 		List<TemplateParameterCS> csTemplateParameters = csElement.getOwnedParameters();
 		for (TemplateParameterCS csTemplateParameter : csTemplateParameters) {
-			TemplateParameter pivotTemplateParameter = PivotUtilInternal.getPivot(TemplateParameter.class, csTemplateParameter);
+			TemplateParameter pivotTemplateParameter = PivotUtil.getPivot(TemplateParameter.class, csTemplateParameter);
 			if (pivotTemplateParameter != null) {
 				newPivotTemplateParameters.add(pivotTemplateParameter);
 			}

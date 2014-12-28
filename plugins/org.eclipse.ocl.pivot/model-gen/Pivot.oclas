@@ -784,7 +784,7 @@
       <ownedProperties xmi:id="p.pivot.Model.CompleteModel" isImplicit="true" name="CompleteModel"
           opposite="#p.pivot.CompleteModel.partialModels" type="#//@ownedPackages.1/@ownedClasses.5"/>
     </ownedClasses>
-    <ownedClasses xmi:id="T.pivot.MorePivotable" instanceClassName="org.eclipse.ocl.pivot.internal.utilities.MorePivotable"
+    <ownedClasses xmi:id="T.pivot.MorePivotable" instanceClassName="org.eclipse.ocl.pivot.utilities.MorePivotable"
         isAbstract="true" isInterface="true" name="MorePivotable" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclElement"/>
     <ownedClasses xmi:id="T.pivot.Nameable" instanceClassName="org.eclipse.ocl.pivot.Nameable"
         isAbstract="true" isInterface="true" name="Nameable" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclElement"/>
@@ -1003,7 +1003,7 @@
       <ownedProperties xmi:id="p.pivot.Parameter.Variable" isImplicit="true" name="Variable"
           opposite="#p.pivot.Variable.representedParameter" type="#//@ownedPackages.1/@ownedClasses.36"/>
     </ownedClasses>
-    <ownedClasses xmi:id="T.pivot.Pivotable" instanceClassName="org.eclipse.ocl.pivot.internal.utilities.Pivotable"
+    <ownedClasses xmi:id="T.pivot.Pivotable" instanceClassName="org.eclipse.ocl.pivot.utilities.Pivotable"
         isAbstract="true" isInterface="true" name="Pivotable" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclElement"/>
     <ownedClasses xmi:id="T.pivot.Precedence" name="Precedence" superClasses="#T.pivot.NamedElement">
       <ownedProperties xmi:id="p.pivot.Precedence.associativity" defaultValueString="left"

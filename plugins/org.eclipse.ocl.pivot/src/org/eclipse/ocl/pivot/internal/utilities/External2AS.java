@@ -14,9 +14,9 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagedAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagedAdapter;
 
-public interface External2AS extends MetaModelManagedAdapter
+public interface External2AS extends MetamodelManagedAdapter
 {
 	@Nullable Resource getResource();
 	@NonNull URI getURI();

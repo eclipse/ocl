@@ -31,7 +31,7 @@ import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.internal.registry.CompleteOCLRegistry;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
@@ -65,10 +65,10 @@ public class DebugDialog extends Dialog
 				if (selectedURI != null) {
 					Resource eResource = selectedObject.eResource();
 					if (eResource != null) {
-						MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(eResource);
+						MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(eResource);
 						Element resource = null;
 						try {
-							resource = metaModelManager.loadResource(selectedURI, null, null);
+							resource = metamodelManager.loadResource(selectedURI, null, null);
 						} catch (ParserException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();

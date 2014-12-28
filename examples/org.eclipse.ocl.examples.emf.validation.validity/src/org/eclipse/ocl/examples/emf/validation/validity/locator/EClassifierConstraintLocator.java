@@ -25,7 +25,7 @@ import org.eclipse.jdt.annotation.Nullable;
 //import org.eclipse.ocl.pivot.PivotConstants;
 //import org.eclipse.ocl.pivot.PivotFactory;
 //import org.eclipse.ocl.pivot.UMLReflection;
-//import org.eclipse.ocl.pivot.manager.MetaModelManager;
+//import org.eclipse.ocl.pivot.manager.MetamodelManager;
 import org.eclipse.ocl.examples.emf.validation.validity.LeafConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityModel;
 

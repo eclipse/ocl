@@ -16,7 +16,7 @@ import org.eclipse.ocl.pivot.DataType
 import org.eclipse.ocl.pivot.Package
 import org.eclipse.ocl.pivot.Model
 
-public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
+public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 {
 	protected override String declareEnumerations(Package pkg) {
 		var allEnumerations = pkg.getRootPackage().getSortedEnumerations();
@@ -95,8 +95,8 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 			 *******************************************************************************
 			 * This code is 100% auto-generated
 			 * from: «sourceFile»
-			 * by: org.eclipse.ocl.examples.build.xtend.GenerateOCLMetaModel.xtend
-			 * and: org.eclipse.ocl.examples.build.GeneratePivotMetaModel.mwe2
+			 * by: org.eclipse.ocl.examples.build.xtend.GenerateOCLmetamodel.xtend
+			 * and: org.eclipse.ocl.examples.build.GeneratePivotMetamodel.mwe2
 			 *
 			 * Do not edit it.
 			 *******************************************************************************/
@@ -116,6 +116,7 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 			import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 			import org.eclipse.ocl.pivot.internal.resource.ASResourceImpl;
 			import org.eclipse.ocl.pivot.internal.resource.OCLASResourceFactory;
+			import org.eclipse.ocl.pivot.internal.utilities.AbstractContents;
 			import org.eclipse.ocl.pivot.library.LibraryFeature;
 			import org.eclipse.ocl.pivot.model.OCLstdlib;
 			import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -141,7 +142,7 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 					return contents.metamodel;
 				}
 			
-				protected OCLMetaModel(@NonNull URI uri) {
+				protected OCLmetamodel(@NonNull URI uri) {
 					super(uri, OCLASResourceFactory.INSTANCE);
 				}
 			

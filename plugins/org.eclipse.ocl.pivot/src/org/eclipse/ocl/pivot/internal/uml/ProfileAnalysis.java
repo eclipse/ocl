@@ -22,7 +22,7 @@ import org.eclipse.ocl.pivot.Profile;
 import org.eclipse.ocl.pivot.Stereotype;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.StereotypeExtender;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.uml.UML2AS.Outer;
 
 /**
@@ -31,7 +31,7 @@ import org.eclipse.ocl.pivot.internal.uml.UML2AS.Outer;
 public class ProfileAnalysis
 {
 	protected final @NonNull Outer converter;
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull MetamodelManager metamodelManager;
 
 	/**
 	 * All metatypes that are extended by a TypeExtension.
@@ -69,7 +69,7 @@ public class ProfileAnalysis
 
 	public ProfileAnalysis(@NonNull Outer converter) {
 		this.converter = converter;
-		this.metaModelManager = converter.getMetaModelManager();
+		this.metamodelManager = converter.getMetamodelManager();
 	}
 	
 	public void addStereotype(@NonNull Stereotype asStereotype) {
@@ -320,7 +320,7 @@ public class ProfileAnalysis
 			if (asMetatype != null) {
 				Set<Stereotype> asMetatypeClosure = new HashSet<Stereotype>();
 				metatype2stereotypeClosureClosure.put(asMetatype, asMetatypeClosure);
-				for (DomainType asSuperMetatype : metaModelManager.getAllSuperClasses(asMetatype)) {
+				for (DomainType asSuperMetatype : metamodelManager.getAllSuperClasses(asMetatype)) {
 					if (asSuperMetatype instanceof TypeServer) {
 						asSuperMetatype = ((TypeServer)asSuperMetatype).getPivotType();
 					}
@@ -351,7 +351,7 @@ public class ProfileAnalysis
 				if (subMetatype != null) {
 					Set<Type> superMetatypeClosure = new HashSet<Type>();
 					metatype2superMetatypeClosure.put(subMetatype, superMetatypeClosure);
-					for (CompleteClass superCompleteClass : metaModelManager.getAllSuperCompleteClasses(subMetatype)) {
+					for (CompleteClass superCompleteClass : metamodelManager.getAllSuperCompleteClasses(subMetatype)) {
 						org.eclipse.ocl.pivot.Class asSuperMetatype = superCompleteClass.getPivotClass();
 						superMetatypeClosure.add(asSuperMetatype);
 						Set<Type> subMetatypeClosure = metatype2subMetatypeClosure.get(asSuperMetatype);
@@ -371,8 +371,8 @@ public class ProfileAnalysis
 			if (subStereotype != null) {
 				Set<Stereotype> superStereotypeClosure = new HashSet<Stereotype>();
 				stereotype2superStereotypeClosure.put(subStereotype, superStereotypeClosure);
-//				for (DomainClass asSuperStereotype : metaModelManager.getAllSuperClasses(subStereotype)) {
-				for (CompleteClass superCompleteClass : metaModelManager.getAllSuperCompleteClasses(subStereotype)) {
+//				for (DomainClass asSuperStereotype : metamodelManager.getAllSuperClasses(subStereotype)) {
+				for (CompleteClass superCompleteClass : metamodelManager.getAllSuperCompleteClasses(subStereotype)) {
 					org.eclipse.ocl.pivot.Class asSuperStereotype = superCompleteClass.getPivotClass();
 					if (asSuperStereotype instanceof Stereotype) {
 						superStereotypeClosure.add((Stereotype)asSuperStereotype);

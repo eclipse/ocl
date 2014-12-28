@@ -23,8 +23,8 @@ import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManageable;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManageable;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.library.ecore.EcoreExecutorPackage;
 import org.eclipse.ocl.pivot.library.executor.ExecutableStandardLibrary;
@@ -32,30 +32,30 @@ import org.eclipse.ocl.pivot.library.executor.ExecutorType;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
-public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary implements MetaModelManageable
+public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary implements MetamodelManageable
 {
-//	public static final PivotExecutorStandardLibrary INSTANCE = new PivotExecutorStandardLibrary(new MetaModelManager(), OCLstdlib.STDLIB_URI);
+//	public static final PivotExecutorStandardLibrary INSTANCE = new PivotExecutorStandardLibrary(new MetamodelManager(), OCLstdlib.STDLIB_URI);
 
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull MetamodelManager metamodelManager;
 	private Map<Type, org.eclipse.ocl.pivot.Class> typeMap = null;
 	private Map<org.eclipse.ocl.pivot.Package, org.eclipse.ocl.pivot.Package> packageMap = null;
 	
-//	public PivotExecutorStandardLibrary(MetaModelManager metaModelManager, String stdlibURI) {
-//		this.metaModelManager = metaModelManager;
-//		metaModelManager.setDefaultStandardLibraryURI(stdlibURI);
+//	public PivotExecutorStandardLibrary(MetamodelManager metamodelManager, String stdlibURI) {
+//		this.metamodelManager = metamodelManager;
+//		metamodelManager.setDefaultStandardLibraryURI(stdlibURI);
 //		PivotTables.PACKAGE.getClass();
 //	}
 
 	public PivotExecutorStandardLibrary(EcoreExecutorPackage... execPackages) {
 		OCLstdlibTables.PACKAGE.getClass();
-		this.metaModelManager = new MetaModelManager();
-		metaModelManager.getStandardLibrary().setDefaultStandardLibraryURI(LibraryConstants.STDLIB_URI);
+		this.metamodelManager = new MetamodelManager();
+		metamodelManager.getStandardLibrary().setDefaultStandardLibraryURI(LibraryConstants.STDLIB_URI);
 		PivotTables.PACKAGE.getClass();
 	}
 	
 //	@Override
 //	public @NonNull Evaluator createEvaluator(@NonNull EObject contextObject, @Nullable Map<Object, Object> contextMap) {
-//		return new PivotEcoreExecutorManager(contextObject, contextMap, this, getMetaModelManager());
+//		return new PivotEcoreExecutorManager(contextObject, contextMap, this, getMetamodelManager());
 //	}
 
 	protected @NonNull org.eclipse.ocl.pivot.Package createPackage(@NonNull org.eclipse.ocl.pivot.Package domainPackage) {
@@ -79,22 +79,22 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getClassType() {
-		return metaModelManager.getStandardLibrary().getClassType();
+		return metamodelManager.getStandardLibrary().getClassType();
 	}
 
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getEnumerationType() {
-		return metaModelManager.getStandardLibrary().getEnumerationType();
+		return metamodelManager.getStandardLibrary().getEnumerationType();
 	}
 
 	@Override
 	public @NonNull CompleteInheritance getInheritance(@NonNull org.eclipse.ocl.pivot.Class type) {
-		return metaModelManager.getInheritance(type);
+		return metamodelManager.getInheritance(type);
 	}
 
 	@Override
-	public @NonNull MetaModelManager getMetaModelManager() {
-		return metaModelManager;
+	public @NonNull MetamodelManager getMetamodelManager() {
+		return metamodelManager;
 	}
 
 	@Override
@@ -117,7 +117,7 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 	protected org.eclipse.ocl.pivot.Class getType(Type typeType) {
 		if (typeType instanceof CollectionType) {
 			CollectionType domainCollectionType = (CollectionType)typeType;
-			return metaModelManager.getCompleteEnvironment().getCollectionType(domainCollectionType.getContainerType(), domainCollectionType.getElementType(), null, null);
+			return metamodelManager.getCompleteEnvironment().getCollectionType(domainCollectionType.getContainerType(), domainCollectionType.getElementType(), null, null);
 		}
 		if (typeMap == null) {
 			typeMap = new HashMap<Type, org.eclipse.ocl.pivot.Class>();
@@ -136,18 +136,18 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 		if (pivotPackage == null) {
 			String nsURI = domainPackage.getURI();
 			if (nsURI != null) {
-				pivotPackage = metaModelManager.getPrimaryPackage(nsURI);
+				pivotPackage = metamodelManager.getPrimaryPackage(nsURI);
 			}
 			if (pivotPackage == null) {
 				pivotPackage = createPackage(domainPackage);
 			}
 		}
-		@NonNull CompletePackage completePackage = metaModelManager.getCompletePackage(pivotPackage);
+		@NonNull CompletePackage completePackage = metamodelManager.getCompletePackage(pivotPackage);
 		return completePackage.getMemberType(typeType.getName());
 	}
 
 	public @NonNull Type getType(@NonNull EClassifier eClassifier) {
-		Ecore2AS ecore2as = Ecore2AS.getAdapter(ClassUtil.nonNullEMF(eClassifier.eResource()), metaModelManager);
+		Ecore2AS ecore2as = Ecore2AS.getAdapter(ClassUtil.nonNullEMF(eClassifier.eResource()), metamodelManager);
 		Type pivotType = ecore2as.getCreated(Type.class, eClassifier);
 		return ClassUtil.nonNullState(pivotType);
 	}

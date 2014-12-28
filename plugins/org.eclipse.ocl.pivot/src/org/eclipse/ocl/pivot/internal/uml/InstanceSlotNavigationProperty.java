@@ -23,7 +23,7 @@ import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitorImpl;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.library.AbstractProperty;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -74,16 +74,16 @@ public class InstanceSlotNavigationProperty extends AbstractProperty
 						ValueSpecification valueSpecification = values.get(0);
 						if (valueSpecification instanceof OpaqueExpression) {
 							try {
-								MetaModelManager metaModelManager = ((EvaluationVisitorImpl)evaluator).getMetaModelManager();
-								ExpressionInOCL specification = metaModelManager.getPivotOf(ExpressionInOCL.class, valueSpecification);
+								MetamodelManager metamodelManager = ((EvaluationVisitorImpl)evaluator).getMetamodelManager();
+								ExpressionInOCL specification = metamodelManager.getPivotOf(ExpressionInOCL.class, valueSpecification);
 								if (specification == null) {
 									throw new InvalidValueException("Missing spec for " + specification);
 								}
-								ExpressionInOCL query = metaModelManager.getQueryOrThrow(specification);
+								ExpressionInOCL query = metamodelManager.getQueryOrThrow(specification);
 								OCLExpression bodyExpression = query.getOwnedBody();
 								assert bodyExpression != null;
 								Object umlValue = evaluator.evaluate(bodyExpression);
-								return metaModelManager.getIdResolver().boxedValueOf(umlValue);
+								return metamodelManager.getIdResolver().boxedValueOf(umlValue);
 							} catch (ParserException e) {
 								throw new InvalidValueException(e, "Parse fail for " + valueSpecification);
 							}

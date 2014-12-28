@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.uml25.XMI252UMLResourceFactoryImpl;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.XMI2UMLResource;
 
@@ -118,10 +118,10 @@ public class UML25LoadTests extends LoadTests
 	} */
 	
 	@Override
-	protected MetaModelManager createMetaModelManager() {
-		MetaModelManager metaModelManager = super.createMetaModelManager();
-		XMI252UMLResourceFactoryImpl.install(metaModelManager.getExternalResourceSet(), URI.createPlatformResourceURI("/org.eclipse.ocl.examples.uml25/model/", true));
-		return metaModelManager;
+	protected MetamodelManager createMetamodelManager() {
+		MetamodelManager metamodelManager = super.createMetamodelManager();
+		XMI252UMLResourceFactoryImpl.install(metamodelManager.getExternalResourceSet(), URI.createPlatformResourceURI("/org.eclipse.ocl.examples.uml25/model/", true));
+		return metamodelManager;
 	}
 	
 	@Override
@@ -138,17 +138,17 @@ public class UML25LoadTests extends LoadTests
 
 /* FIXME 2 OperationReturnCompatibility warnings
 	public void testLoad_Eclipse_UML_2_5() throws IOException, InterruptedException, ParserException {
-		if (metaModelManager == null) {
-			metaModelManager = new MetaModelManager();
+		if (metamodelManager == null) {
+			metamodelManager = new MetamodelManager();
 		}
-		final MetaModelManager metaModelManager = this.metaModelManager;
-		metaModelManager.setAutoLoadASMetamodel(false);
+		final MetamodelManager metamodelManager = this.metamodelManager;
+		metamodelManager.setAutoLoadASmetamodel(false);
 		StandardLibraryContribution.REGISTRY.put(XMI2UMLResource.UML_METAMODEL_NS_URI, new OCLstdlib.Loader());
 		URI uml_2_5 = URI.createURI(UMLResource.UML_METAMODEL_URI, true);
 		doLoadUML(uml_2_5, true, true, true);
 		StandardLibraryContribution.REGISTRY.put(XMI2UMLResource.UML_METAMODEL_NS_URI, new OCLstdlib.RenamingLoader(XMI2UMLResource.UML_METAMODEL_NS_URI));
-		this.metaModelManager.dispose();
-		this.metaModelManager = null;
+		this.metamodelManager.dispose();
+		this.metamodelManager = null;
 	} */
 	
 	public void testLoad_UML_2_5_Final_DC() throws IOException, InterruptedException, ParserException {

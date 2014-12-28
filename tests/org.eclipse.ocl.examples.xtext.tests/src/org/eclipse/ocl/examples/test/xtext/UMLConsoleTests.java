@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.OCL;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 
 /**
  * Tests that exercise the Xtext OCL Console using a UML model.
@@ -25,8 +25,8 @@ public class UMLConsoleTests extends AbstractConsoleTests
 {	
 	public void testConsole_Bug419556() throws Exception {
 		OCL ocl = OCL.newInstance();
-		MetaModelManager metaModelManager = ocl.getMetaModelManager();
-		ResourceSet resourceSet = metaModelManager.getExternalResourceSet();
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
+		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
 
 		URI testModelURI = getProjectFileURI("Bug419556.uml");
         Resource umlResource = resourceSet.getResource(testModelURI, true);
@@ -45,8 +45,8 @@ public class UMLConsoleTests extends AbstractConsoleTests
 
 	public void testConsole_Bug437715() throws Exception {
 		OCL ocl = OCL.newInstance();
-		MetaModelManager metaModelManager = ocl.getMetaModelManager();
-		ResourceSet resourceSet = metaModelManager.getExternalResourceSet();
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
+		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
 
 		URI testModelURI = getProjectFileURI("Bug437715.uml");
         Resource umlResource = resourceSet.getResource(testModelURI, true);
@@ -68,8 +68,8 @@ public class UMLConsoleTests extends AbstractConsoleTests
 	@SuppressWarnings({"unused"})
 	public void testConsole_UML() throws Exception {
 		OCL ocl = OCL.newInstance();
-		MetaModelManager metaModelManager = ocl.getMetaModelManager();
-		ResourceSet resourceSet = metaModelManager.getExternalResourceSet();
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
+		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
 
         Resource umlResource = resourceSet.getResource(getTestModelURI("model/InternationalizedClasses.uml"), true);
         Resource umlProfileResource = resourceSet.getResource(getTestModelURI("model/Internationalized.profile.uml"), true);
@@ -82,12 +82,12 @@ public class UMLConsoleTests extends AbstractConsoleTests
         org.eclipse.uml2.uml.Stereotype umlInEnglishStereotype = umlProfile.getOwnedStereotype("InEnglish");
         org.eclipse.uml2.uml.Stereotype umlInFrenchStereotype = umlProfile.getOwnedStereotype("InFrench");
         org.eclipse.uml2.uml.Stereotype umlInGermanStereotype = umlProfile.getOwnedStereotype("InGerman");
-        Type asEnglishClass = metaModelManager.getPivotOf(Type.class, umlEnglishClass);
+        Type asEnglishClass = metamodelManager.getPivotOf(Type.class, umlEnglishClass);
 //        Type englishClass = ClassUtil.getNamedElement(modelPackage.getOwnedType(), "EnglishClass");
 //        Type frenchClass = ClassUtil.getNamedElement(modelPackage.getOwnedType(), "FrenchClass");
 //        Type germanClass = ClassUtil.getNamedElement(modelPackage.getOwnedType(), "GermanClass");
 //        Type plainClass = ClassUtil.getNamedElement(modelPackage.getOwnedType(), "PlainClass");
-//        PackageServer profile = metaModelManager.getPackageManager().getPackageByURI("http://www.eclipse.org/ocl/examples/Internationalized");
+//        PackageServer profile = metamodelManager.getPackageManager().getPackageByURI("http://www.eclipse.org/ocl/examples/Internationalized");
 //        Type inEnglishStereotype = profile.getMemberType("InEnglish");
 //        Type inFrenchStereotype = profile.getMemberType("InFrench");
 //        Type inGermanStereotype = profile.getMemberType("InGerman");

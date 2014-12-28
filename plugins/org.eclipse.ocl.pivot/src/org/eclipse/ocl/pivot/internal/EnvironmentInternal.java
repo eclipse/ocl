@@ -21,7 +21,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 
 /**
  * An Environment stores the variables created while evaluating an OCL expression,
@@ -111,7 +111,7 @@ public interface EnvironmentInternal extends Environment
 	 */
 	@Nullable Property getContextProperty();
 
-	@NonNull MetaModelManager getMetaModelManager();
+	@NonNull MetamodelManager getMetamodelManager();
 
     /**
      * Obtains the collection of core types representing the OCL Standard

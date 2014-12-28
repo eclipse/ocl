@@ -116,7 +116,7 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 		return OCLstdlibTables.Types._Integer;
 	}
 
-	// FIXME cf MetaModelManager
+	// FIXME cf MetamodelManager
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getMetaclass(@NonNull Type classType) {
 		org.eclipse.ocl.pivot.Class metaType = null;

@@ -19,7 +19,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.core.EvaluationContext;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
@@ -44,14 +44,14 @@ public class OCLEvaluationContext extends EvaluationContext
 		this.contextURI = contextURI;
 	}
 
-	protected @Nullable MetaModelManager findMetaModelManager() {
+	protected @Nullable MetamodelManager findMetamodelManager() {
 		ExpressionInOCL expressionObject2 = expressionObject;
 		if (expressionObject2 != null) {
 			Resource eResource = expressionObject2.eResource();
 			if (eResource != null) {
-				MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(eResource);
-				if (metaModelManager != null) {
-					return metaModelManager;
+				MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(eResource);
+				if (metamodelManager != null) {
+					return metamodelManager;
 				}
 			}
 		}
@@ -59,9 +59,9 @@ public class OCLEvaluationContext extends EvaluationContext
 		if (contextObject2 != null) {
 			Resource eResource = contextObject2.eResource();
 			if (eResource != null) {
-				MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(eResource);
-				if (metaModelManager != null) {
-					return metaModelManager;
+				MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(eResource);
+				if (metamodelManager != null) {
+					return metamodelManager;
 				}
 			}
 		}

@@ -51,7 +51,7 @@ import org.eclipse.ocl.examples.debug.vm.response.VMStackFrameResponse;
 import org.eclipse.ocl.examples.debug.vm.utils.DebugOptions;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
 
 public abstract class VMVirtualMachine implements IVMVirtualMachineShell
@@ -176,7 +176,7 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 	private final BlockingQueue<VMEvent> fEvents = new ArrayBlockingQueue<VMEvent>(50);	
 		
 	protected final @NonNull DebuggableRunner runner;
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull MetamodelManager metamodelManager;
 	private final @NonNull IVMDebuggerShell fDebuggerShell;
 	
 	private final @NonNull VMBreakpointManager fBreakpointManager;
@@ -191,7 +191,7 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 	
 	protected VMVirtualMachine(@NonNull DebuggableRunner runner, @NonNull VMDebuggableExecutorAdapter executorAdapter) {
 		this.runner = runner;
-		this.metaModelManager = runner.getMetaModelManager();
+		this.metamodelManager = runner.getMetamodelManager();
 		fExecutor = executorAdapter;
 		fDebuggerShell = new DebuggerShell();
 		fBreakpointManager = new VMBreakpointManager(this, executorAdapter.getUnit());
@@ -254,8 +254,8 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 		return fInterpreter2.getEvaluationEnvironment();
 	}
 
-	public @NonNull MetaModelManager getMetaModelManager() {
-		return metaModelManager;
+	public @NonNull MetamodelManager getMetamodelManager() {
+		return metamodelManager;
 	}
 
 	public @NonNull DebuggableRunner getRunner() {

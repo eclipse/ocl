@@ -25,7 +25,7 @@ import org.eclipse.ocl.examples.debug.vm.ValidBreakpointLocator;
 import org.eclipse.ocl.examples.debug.vm.core.EvaluationContext;
 import org.eclipse.ocl.examples.debug.vm.launching.DebuggableRunner;
 import org.eclipse.ocl.examples.debug.vm.launching.DebuggableRunnerFactory;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 
 public class OCLDebuggableRunnerFactory extends DebuggableRunnerFactory
 {
@@ -63,8 +63,8 @@ public class OCLDebuggableRunnerFactory extends DebuggableRunnerFactory
 		if(diagnostic.getSeverity() == Diagnostic.ERROR) {
 			throw new DiagnosticException(diagnostic);
 		} */
-		MetaModelManager metaModelManager = evaluationContext.getMetaModelManager();
-		OCLVMEnvironmentFactory environmentFactory = new OCLVMEnvironmentFactory(packageRegistry, metaModelManager);
+		MetamodelManager metamodelManager = evaluationContext.getMetamodelManager();
+		OCLVMEnvironmentFactory environmentFactory = new OCLVMEnvironmentFactory(packageRegistry, metamodelManager);
 		DebuggableRunner runner = new DebuggableRunner(this, oclEvaluationContext.getConstraintURI(), new OCLInternalDebuggableExecutor(oclEvaluationContext, environmentFactory));
 		
 /*		if(traceFileURI != null) {

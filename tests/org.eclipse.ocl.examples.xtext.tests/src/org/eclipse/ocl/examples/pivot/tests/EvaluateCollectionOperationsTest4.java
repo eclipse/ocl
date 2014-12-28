@@ -332,15 +332,15 @@ public class EvaluateCollectionOperationsTest4 extends PivotTestSuite
 	}
 
 	@Test public void testCollectionElementType() {
-		StandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+		StandardLibrary standardLibrary = metamodelManager.getStandardLibrary();
 		assertQueryEquals(null, standardLibrary.getStringType(), "Sequence{'1', '2', '3'}->oclType().elementType");
 		assertQueryEquals(null, standardLibrary.getOclAnyType(), "Sequence{1, 2.0, '3'}->oclType().elementType");
 		assertQueryEquals(null, standardLibrary.getIntegerType(), "Sequence{1, 2, 3}->oclType().elementType");
 		assertQueryEquals(null, standardLibrary.getIntegerType(), "Sequence{1, 2, 3}->oclAsType(Collection(Real))->oclType().elementType");
 // FIXME fails because common type is Set(T) and then because T is not type-servable and has no OclAny inheritance
-//		assertQueryEquals(null, metaModelManager.getSetType(), "Sequence{Set{1}, Set{2.0}, Set{'3'}}->elementType");
+//		assertQueryEquals(null, metamodelManager.getSetType(), "Sequence{Set{1}, Set{2.0}, Set{'3'}}->elementType");
 // FIXME fails because common type is inadequate for implicit collect
-//				assertQueryEquals(null, metaModelManager.getOclAnyType(), "Sequence{Set{1}, Set{2.0}, Set{'3'}}.elementType");
+//				assertQueryEquals(null, metamodelManager.getOclAnyType(), "Sequence{Set{1}, Set{2.0}, Set{'3'}}.elementType");
 	}
 
 	@Test public void testCollectionEqual() {		
@@ -1669,7 +1669,7 @@ public class EvaluateCollectionOperationsTest4 extends PivotTestSuite
 	}
 
 	@Test public void testCollectionSum() {
-		StandardLibrary standardLibrary = metaModelManager.getStandardLibrary();
+		StandardLibrary standardLibrary = metamodelManager.getStandardLibrary();
 		assertQueryEquals(null, 0, "let s : Sequence(Integer) = Sequence{} in s->sum()");
 		assertQueryEquals(null, 0.0, "let b : Bag(Real) = Bag{} in b->sum()");
 		assertQueryEquals(null, 0.0, "let s : Set(Real) = Set{} in s->sum()");

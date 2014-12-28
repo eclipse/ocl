@@ -28,16 +28,16 @@ import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.internal.library.StandardLibraryContribution;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.internal.scoping.ScopeView;
 import org.eclipse.ocl.pivot.internal.utilities.IllegalLibraryException;
-import org.eclipse.ocl.pivot.internal.utilities.Pivotable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.Pivotable;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS.UnresolvedProxyMessageProvider;
 import org.eclipse.ocl.xtext.base.cs2as.ValidationDiagnostic;
@@ -95,8 +95,8 @@ public class LibraryCSAttribution extends AbstractAttribution implements Unresol
 			if (contribution != null) {
 				Resource resource = contribution.getResource();
 				try {
-					MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-					metaModelManager.installResource(resource);
+					MetamodelManager metamodelManager = environmentView.getMetamodelManager();
+					metamodelManager.installResource(resource);
 					for (EObject root : resource.getContents()) {
 						if (root instanceof Model) {
 							for (Element pkg : ((Model)root).getOwnedPackages()) {
@@ -131,8 +131,8 @@ public class LibraryCSAttribution extends AbstractAttribution implements Unresol
 			}
 			List<EObject> importedElements = new ArrayList<EObject>();
 			ResourceSet csResourceSet = ClassUtil.nonNullState(csResource.getResourceSet());
-			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-			MetaModelManagerResourceSetAdapter.getAdapter(csResourceSet, metaModelManager);
+			MetamodelManager metamodelManager = environmentView.getMetamodelManager();
+			MetamodelManagerResourceSetAdapter.getAdapter(csResourceSet, metamodelManager);
 			try {
 				Resource importedResource = csResourceSet.createResource(uri2);
 				AbstractJavaClassScope outerClassScope = AbstractJavaClassScope.findAdapter(csResource);

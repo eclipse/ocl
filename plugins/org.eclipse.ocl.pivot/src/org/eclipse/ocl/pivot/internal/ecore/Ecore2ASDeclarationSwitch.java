@@ -74,12 +74,13 @@ import org.eclipse.ocl.pivot.internal.PackageImpl;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.delegate.SettingBehavior;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.uml.UML2AS;
 import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
 import org.eclipse.ocl.pivot.internal.utilities.AliasAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -100,11 +101,11 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 	}
 
 	protected final AbstractEcore2AS converter;
-	protected final MetaModelManager metaModelManager;
+	protected final MetamodelManager metamodelManager;
 	
 	public Ecore2ASDeclarationSwitch(AbstractEcore2AS converter) {
 		this.converter = converter;
-		this.metaModelManager = converter.getMetaModelManager();
+		this.metamodelManager = converter.getMetamodelManager();
 	}
 	
 	@Override
@@ -268,8 +269,8 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 		copyDataTypeOrEnum(pivotElement, eObject2);
 		if (!isPrimitive && (instanceClass != null)) {
 			try {
-				MetaModelManager metaModelManager = converter.getMetaModelManager();
-		    	StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
+				MetamodelManager metamodelManager = converter.getMetamodelManager();
+		    	StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
 				if (instanceClass == boolean.class) {
 					pivotElement.setBehavioralClass(standardLibrary.getBooleanType());
 				}
@@ -336,7 +337,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 			} catch (Exception e) {
 			}
 		}
-		pivotElement.getSuperClasses().add(metaModelManager.getStandardLibrary().getOclAnyType());
+		pivotElement.getSuperClasses().add(metamodelManager.getStandardLibrary().getOclAnyType());
 		return pivotElement;
 	}
 
@@ -356,8 +357,8 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 		pivotElement.setName(newName);
 		copyDataTypeOrEnum(pivotElement, eObject2);
 		doSwitchAll(pivotElement.getOwnedLiterals(), eObject2.getELiterals());
-//		pivotElement.getSuperClass().add(metaModelManager.getOclAnyType());
-		pivotElement.getSuperClasses().add(metaModelManager.getStandardLibrary().getEnumerationType());
+//		pivotElement.getSuperClass().add(metamodelManager.getOclAnyType());
+		pivotElement.getSuperClasses().add(metamodelManager.getStandardLibrary().getEnumerationType());
 		return pivotElement;
 	}
 
@@ -436,17 +437,17 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 			}
 			else if (eObject2 instanceof UMLPackage) {
 				@SuppressWarnings("null")@NonNull String nsUri = UMLPackage.eNS_URI;
-				metaModelManager.getCompleteModel().addPackageURI2completeURI(nsUri, PivotConstantsInternal.UML_METAMODEL_NAME);
+				metamodelManager.getCompleteModel().addPackageURI2completeURI(nsUri, PivotConstantsInternal.UML_METAMODEL_NAME);
 				((PackageImpl)pivotElement).setPackageId(IdManager.getRootPackageId(PivotConstantsInternal.UML_METAMODEL_NAME));
 			}
 			else if (eObject2 instanceof TypesPackage) {
 				@SuppressWarnings("null")@NonNull String nsUri = TypesPackage.eNS_URI;
-				metaModelManager.getCompleteModel().addPackageURI2completeURI(nsUri, PivotConstantsInternal.TYPES_METAMODEL_NAME);
+				metamodelManager.getCompleteModel().addPackageURI2completeURI(nsUri, PivotConstantsInternal.TYPES_METAMODEL_NAME);
 				((PackageImpl)pivotElement).setPackageId(IdManager.getRootPackageId(PivotConstantsInternal.TYPES_METAMODEL_NAME));
 			}
 			else {
 				String nsURI = eObject2.getNsURI();
-				String sharedNsURI = metaModelManager.getCompleteModel().getCompleteURI(nsURI);
+				String sharedNsURI = metamodelManager.getCompleteModel().getCompleteURI(nsURI);
 				if ((sharedNsURI != null) && !sharedNsURI.equals(nsURI)) {
 					((PackageImpl)pivotElement).setPackageId(IdManager.getRootPackageId(sharedNsURI));
 				}
@@ -912,7 +913,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 					// Rescue any deprecated format message expressions
 					String message = oclAnnotationDetails.get(invariantName + messageAnnotationDetailSuffix);
 					if ((value != null) && (message != null)) {
-						value = PivotUtilInternal.createTupleValuedConstraint(value, null, message);
+						value = PivotUtil.createTupleValuedConstraint(value, null, message);
 					}
 					expression.setBody(value);
 					if (newInvariants == null) {

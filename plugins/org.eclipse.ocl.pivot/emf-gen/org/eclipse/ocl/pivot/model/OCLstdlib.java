@@ -41,10 +41,11 @@ import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.internal.library.StandardLibraryContribution;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceImpl;
 import org.eclipse.ocl.pivot.internal.resource.OCLASResourceFactory;
 import org.eclipse.ocl.pivot.internal.utilities.AS2XMIid;
+import org.eclipse.ocl.pivot.internal.utilities.AbstractContents;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
@@ -58,7 +59,7 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
  * This Standard Library may be registered as the definition of a Standard Library for
  * the OCL evaluation framework by invoking {@link #install}.
  * <p>
- * The Standard Library is normally activated when the MetaModelManager attempts
+ * The Standard Library is normally activated when the MetamodelManager attempts
  * to locate a library type when its default Standard Library URI is the same
  * as this Standard Library.
  */

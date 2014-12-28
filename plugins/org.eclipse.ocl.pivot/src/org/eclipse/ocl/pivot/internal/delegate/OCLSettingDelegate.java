@@ -23,7 +23,7 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationException;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.Query;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
@@ -57,12 +57,12 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 	protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
 		try {
 			OCL ocl = delegateDomain.getOCL();
-			MetaModelManager metaModelManager = ocl.getEnvironment().getMetaModelManager();
-			IdResolver idResolver = metaModelManager.getIdResolver();
+			MetamodelManager metamodelManager = ocl.getEnvironment().getMetamodelManager();
+			IdResolver idResolver = metamodelManager.getIdResolver();
 			ExpressionInOCL query2 = query;
 			if (query2 == null) {
 				Property property2 = getProperty();
-				query2 = query = SettingBehavior.INSTANCE.getQueryOrThrow(metaModelManager, property2);
+				query2 = query = SettingBehavior.INSTANCE.getQueryOrThrow(metamodelManager, property2);
 				SettingBehavior.INSTANCE.validate(property2);
 			}
 			Query query = ocl.createQuery(query2);

@@ -46,7 +46,7 @@ public class AutoCompleteOCLCSContainmentVisitor
     public AutoCompleteOCLCSContainmentVisitor(@NonNull CS2ASConversion context) {
         super(context);
         this.converter = context.getConverter();
-        this.idResolver = converter.getMetaModelManager().getIdResolver();
+        this.idResolver = converter.getMetamodelManager().getIdResolver();
     }
     
     @Override

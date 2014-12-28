@@ -27,12 +27,12 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.internal.context.EInvocationContext;
 import org.eclipse.ocl.pivot.internal.context.EObjectContext;
-import org.eclipse.ocl.pivot.internal.manager.AbstractMetaModelManagerResourceAdapter;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceAdapter;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
+import org.eclipse.ocl.pivot.internal.manager.AbstractMetamodelManagerResourceAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.scoping.Attribution;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.xtext.base.attributes.RootCSAttribution;
 import org.eclipse.ocl.xtext.base.ui.BaseUiModule;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
@@ -85,21 +85,21 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 
 	@Override
 	public void disposeInput() {
-		MetaModelManager metaModelManager = readOnly(new IUnitOfWork<MetaModelManager, XtextResource>()
+		MetamodelManager metamodelManager = readOnly(new IUnitOfWork<MetamodelManager, XtextResource>()
 			{
 				@Override
-				public MetaModelManager exec(@Nullable XtextResource resource) throws Exception {
+				public MetamodelManager exec(@Nullable XtextResource resource) throws Exception {
 					if (resource != null) {
-						AbstractMetaModelManagerResourceAdapter<?> adapter = MetaModelManagerResourceAdapter.findAdapter(resource);
+						AbstractMetamodelManagerResourceAdapter<?> adapter = MetamodelManagerResourceAdapter.findAdapter(resource);
 						if (adapter != null) {
-							return adapter.getMetaModelManager();
+							return adapter.getMetamodelManager();
 						}
 					}
 					return null;
 				}
 			});
-		if (metaModelManager != null) {
-			metaModelManager.dispose();
+		if (metamodelManager != null) {
+			metamodelManager.dispose();
 		}
 		super.disposeInput();
 	}
@@ -183,8 +183,8 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 				if (resource instanceof BaseCSResource) {
 					BaseCSResource csResource = (BaseCSResource)resource;
 					CS2ASResourceAdapter csAdapter = csResource.getCS2ASAdapter(null);
-					MetaModelManager metaModelManager = csAdapter.getMetaModelManager();
-					csResource.setParserContext(new EInvocationContext(metaModelManager, resource.getURI(), ecoreContext, ecoreParameters));
+					MetamodelManager metamodelManager = csAdapter.getMetamodelManager();
+					csResource.setParserContext(new EInvocationContext(metamodelManager, resource.getURI(), ecoreContext, ecoreParameters));
 				}
 				return null;
 			}
@@ -196,8 +196,8 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 
 	public @Nullable Object setContext(@NonNull BaseCSResource resource, @Nullable EObject eObject) {
 		CS2ASResourceAdapter csAdapter = resource.getCS2ASAdapter(null);
-		MetaModelManager metaModelManager = csAdapter.getMetaModelManager();
-		resource.setParserContext(new EObjectContext(metaModelManager, resource.getURI(), eObject));
+		MetamodelManager metamodelManager = csAdapter.getMetamodelManager();
+		resource.setParserContext(new EObjectContext(metamodelManager, resource.getURI(), eObject));
 		return null;
 	}
 }

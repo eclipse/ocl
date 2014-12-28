@@ -12,7 +12,7 @@ package org.eclipse.ocl.xtext.basecs;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.internal.utilities.Pivotable;
+import org.eclipse.ocl.pivot.utilities.Pivotable;
 
 /**
  * <!-- begin-user-doc -->

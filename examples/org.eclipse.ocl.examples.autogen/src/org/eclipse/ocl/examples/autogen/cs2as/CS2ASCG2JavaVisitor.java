@@ -80,7 +80,7 @@ public class CS2ASCG2JavaVisitor extends AutoCG2JavaVisitor<CS2ASCodeGenerator>
 		js.pushIndentation(null);
 		js.append("super(context);\n");
 		js.append("this.converter = context.getConverter();\n");
-		js.append("this.idResolver = converter.getMetaModelManager().getIdResolver();\n");
+		js.append("this.idResolver = converter.getMetamodelManager().getIdResolver();\n");
 		js.popIndentation();
 		js.append("}\n");
 	}

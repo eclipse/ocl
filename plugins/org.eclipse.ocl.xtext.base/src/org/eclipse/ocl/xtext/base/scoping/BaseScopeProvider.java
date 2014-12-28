@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
@@ -47,13 +47,13 @@ public class BaseScopeProvider extends AbstractDeclarativeScopeProvider
 		if (csResource == null) {
 			return IScope.NULLSCOPE;
 		}
-		MetaModelManager metaModelManager = PivotUtilInternal.findMetaModelManager(csResource);
-		if (metaModelManager == null) {
+		MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(csResource);
+		if (metamodelManager == null) {
 			return IScope.NULLSCOPE;
 		}
 		ElementCS csElement = (ElementCS) context;
 		@SuppressWarnings("unused")
 		CS2ASResourceAdapter resourceAdapter = ((BaseCSResource)csResource).getCS2ASAdapter(null);
-		return BaseScopeView.getScopeView(metaModelManager, csElement, reference);
+		return BaseScopeView.getScopeView(metamodelManager, csElement, reference);
 	}
 }

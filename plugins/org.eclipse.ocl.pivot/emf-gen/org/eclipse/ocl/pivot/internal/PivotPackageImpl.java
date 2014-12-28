@@ -143,11 +143,11 @@ import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.Vertex;
 import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.WildcardType;
-import org.eclipse.ocl.pivot.internal.utilities.MorePivotable;
-import org.eclipse.ocl.pivot.internal.utilities.Pivotable;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
 import org.eclipse.ocl.pivot.util.PivotValidator;
 import org.eclipse.ocl.pivot.util.Visitable;
+import org.eclipse.ocl.pivot.utilities.MorePivotable;
+import org.eclipse.ocl.pivot.utilities.Pivotable;
 
 /**
  * <!-- begin-user-doc -->
@@ -8220,6 +8220,23 @@ public class PivotPackageImpl
 	}
 
 	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/OCL/ASMetamodel</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createASMetamodelAnnotations()
+	{
+		String source = "http://www.eclipse.org/OCL/ASMetamodel"; //$NON-NLS-1$	
+		addAnnotation
+		  (this, 
+		   source, 
+		   new String[] 
+		   {
+		   });
+	}
+
+	/**
 	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8342,23 +8359,6 @@ public class PivotPackageImpl
 		   new String[] 
 		   {
 			 "body", "typedElement" //$NON-NLS-1$ //$NON-NLS-2$
-		   });
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://www.eclipse.org/OCL/ASMetamodel</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createASMetamodelAnnotations()
-	{
-		String source = "http://www.eclipse.org/OCL/ASMetamodel"; //$NON-NLS-1$	
-		addAnnotation
-		  (this, 
-		   source, 
-		   new String[] 
-		   {
 		   });
 	}
 } //PivotPackageImpl

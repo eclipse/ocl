@@ -25,7 +25,7 @@ import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.FeatureFilter;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.ids.ParametersId;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
@@ -66,7 +66,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 			return m2 - m1;
 		}
 
-		public void sort(@NonNull MetaModelManager metaModelManager) {
+		public void sort(@NonNull MetamodelManager metamodelManager) {
 			int size = size();
 			keys = new Integer[size];
 			metrics = new Integer[size];
@@ -76,7 +76,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 				int metric = 0;
 				if (operation != null) {
 					org.eclipse.ocl.pivot.Class owningClass = operation.getOwningClass();
-					CompleteInheritance inheritance = owningClass.getInheritance(metaModelManager.getStandardLibrary());
+					CompleteInheritance inheritance = owningClass.getInheritance(metamodelManager.getStandardLibrary());
 					int depth = inheritance.getDepth();
 //					int isRedefinition = (operation instanceof Operation) && (((Operation)operation).getRedefinedOperation().size() > 0) ? 1 : 0;
 					metric = depth;
@@ -131,12 +131,12 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 			assert list != null;
 			if ((list.size() > 1) && !sorted) {
 				// FIXME redefinitions
-				final MetaModelManager metaModelManager = completeClass.getOwningCompletePackage().getCompleteModel().getMetaModelManager();
+				final MetamodelManager metamodelManager = completeClass.getOwningCompletePackage().getCompleteModel().getMetamodelManager();
 				if (nonStaticOperations != null) {
-					nonStaticOperations.sort(metaModelManager);
+					nonStaticOperations.sort(metamodelManager);
 				}
 				if (staticOperations != null) {
-					staticOperations.sort(metaModelManager);
+					staticOperations.sort(metamodelManager);
 				}
 				sorted = true;
 			}

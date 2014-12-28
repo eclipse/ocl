@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Property;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
@@ -24,8 +24,8 @@ public class PropertyContext extends ClassContext
 {
 //	private final Property propertyContext;
 	
-	public PropertyContext(@NonNull MetaModelManager metaModelManager, @Nullable URI uri, @NonNull Property propertyContext) {
-		super(metaModelManager, uri, ClassUtil.nonNullModel(propertyContext.getOwningClass()), null);
+	public PropertyContext(@NonNull MetamodelManager metamodelManager, @Nullable URI uri, @NonNull Property propertyContext) {
+		super(metamodelManager, uri, ClassUtil.nonNullModel(propertyContext.getOwningClass()), null);
 //		this.propertyContext = propertyContext;
 	}
 }

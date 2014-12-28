@@ -39,12 +39,12 @@ import org.eclipse.ocl.pivot.internal.library.ImplicitNonCompositionProperty;
 import org.eclipse.ocl.pivot.internal.library.StaticProperty;
 import org.eclipse.ocl.pivot.internal.library.StereotypeProperty;
 import org.eclipse.ocl.pivot.internal.library.TuplePartProperty;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
 import org.eclipse.ocl.pivot.internal.uml.UML2AS;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
 import org.eclipse.ocl.pivot.library.LibraryOperation;
 import org.eclipse.ocl.pivot.library.LibraryProperty;
 import org.eclipse.ocl.pivot.library.UnsupportedOperation;
+import org.eclipse.ocl.pivot.resource.ASResource;
 
 /**
  * ImplementationManager encapsulates the knowledge about known feature implementations.
@@ -65,15 +65,15 @@ public class ImplementationManager
 		}
 	}
 
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull MetamodelManager metamodelManager;
 
 	/**
 	 * ClassLoaders that may be able to load a library implementation.
 	 */
 	private List<ClassLoader> classLoaders = null;
 	
-	protected ImplementationManager(@NonNull MetaModelManager metaModelManager) {
-		this.metaModelManager = metaModelManager;
+	protected ImplementationManager(@NonNull MetamodelManager metamodelManager) {
+		this.metamodelManager = metamodelManager;
 	}
 
 	public void addClassLoader(@NonNull ClassLoader classLoader) {
@@ -87,13 +87,13 @@ public class ImplementationManager
 		List<ClassLoader> classLoaders2 = classLoaders;
 		if (classLoaders2 == null) {
 			classLoaders2 = classLoaders = new ArrayList<ClassLoader>();
-			classLoaders2.add(metaModelManager.getClass().getClassLoader());
+			classLoaders2.add(metamodelManager.getClass().getClassLoader());
 		}
 		return classLoaders2;
 	}
 
 	protected @NonNull LibraryOperation getOperationImplementation(@NonNull Operation operation) {
-		LibraryFeature implementation = metaModelManager.getImplementation(operation);
+		LibraryFeature implementation = metamodelManager.getImplementation(operation);
 		String implementationClassName = operation.getImplementationClass();
 		if (implementationClassName != null) {
 			if (!implementation.getClass().getName().equals(implementationClassName)) {
@@ -108,7 +108,7 @@ public class ImplementationManager
 				return UnsupportedOperation.INSTANCE;
 			}
 		}
-		ExpressionInOCL specification = metaModelManager.getBodyExpression(operation);
+		ExpressionInOCL specification = metamodelManager.getBodyExpression(operation);
 		if (specification != null) {
 			return new ConstrainedOperation(specification);
 		}
@@ -138,7 +138,7 @@ public class ImplementationManager
 //		if (property.getOwningType() instanceof Stereotype) {
 //			return new BaseProperty(property);
 //		}
-		ExpressionInOCL specification = metaModelManager.getDefaultExpression(property);
+		ExpressionInOCL specification = metamodelManager.getDefaultExpression(property);
 		if (property.isDerived() && (specification != null)) {
 			return new ConstrainedProperty(property);
 		}

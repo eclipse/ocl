@@ -32,7 +32,7 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitorImpl;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.util.AbstractWrappingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 
@@ -217,8 +217,8 @@ public abstract class OCLVMEvaluationVisitor extends AbstractWrappingVisitor<Obj
 	}
 
 	@Override
-	public @NonNull MetaModelManager getMetaModelManager() {
-		return delegate.getMetaModelManager();
+	public @NonNull MetamodelManager getMetamodelManager() {
+		return delegate.getMetamodelManager();
 	}
 
 	@Override

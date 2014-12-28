@@ -19,7 +19,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.library.executor.LazyModelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
@@ -27,12 +27,12 @@ public class PivotModelManager extends LazyModelManager
 {	
 	private static final Logger logger = Logger.getLogger(PivotModelManager.class);
 
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull MetamodelManager metamodelManager;
 	private boolean generatedErrorMessage = false;
 	
-	public PivotModelManager(@NonNull MetaModelManager metaModelManager, EObject context) {
+	public PivotModelManager(@NonNull MetamodelManager metamodelManager, EObject context) {
 		super(context);
-		this.metaModelManager = metaModelManager;
+		this.metamodelManager = metamodelManager;
 	}
 
 	@Override
@@ -42,11 +42,11 @@ public class PivotModelManager extends LazyModelManager
 		Type objectType = null;
 		if (ePackage == PivotPackage.eINSTANCE) {
 			String name = ClassUtil.nonNullEMF(eClass.getName());
-			objectType = metaModelManager.getPivotType(name);
+			objectType = metamodelManager.getPivotType(name);
 		}
 		else {
 			try {
-				objectType = metaModelManager.getPivotOf(Type.class,  eClass);
+				objectType = metamodelManager.getPivotOf(Type.class,  eClass);
 			} catch (ParserException e) {
 				if (!generatedErrorMessage) {
 					generatedErrorMessage = true;
@@ -54,6 +54,6 @@ public class PivotModelManager extends LazyModelManager
 				}
 			}
 		}
-	    return (objectType != null) && objectType.conformsTo(metaModelManager.getStandardLibrary(), requiredType);
+	    return (objectType != null) && objectType.conformsTo(metamodelManager.getStandardLibrary(), requiredType);
 	}
 }

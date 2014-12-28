@@ -24,16 +24,16 @@ import org.eclipse.emf.ecore.xmi.XMIException;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.AbstractConversion;
 import org.eclipse.ocl.pivot.util.Visitable;
 
 public class AS2UML extends AbstractConversion
 {
-	public static List<EObject> createResource(@NonNull MetaModelManager metaModelManager, @NonNull Resource asResource) {
+	public static List<EObject> createResource(@NonNull MetamodelManager metamodelManager, @NonNull Resource asResource) {
 		@SuppressWarnings("null")
 		@NonNull List<EObject> pivotModels = asResource.getContents();
-		AS2UML converter = new AS2UML(metaModelManager);
+		AS2UML converter = new AS2UML(metamodelManager);
 		return converter.convertAll(pivotModels);
 	}
 
@@ -57,8 +57,8 @@ public class AS2UML extends AbstractConversion
 //	protected final Resource csResource;
 //	protected final XMLResource eResource;
 
-	public AS2UML(@NonNull MetaModelManager metaModelManager/*ResourceSet resourceSet, Resource csResource, URI ecoreURI*/) {
-		super(metaModelManager);
+	public AS2UML(@NonNull MetamodelManager metamodelManager/*ResourceSet resourceSet, Resource csResource, URI ecoreURI*/) {
+		super(metamodelManager);
 //		this.resourceSet = resourceSet;
 //		this.csResource = csResource;
 //		this.eResource = (XMLResource) new EcoreResourceFactoryImpl().createResource(ecoreURI);

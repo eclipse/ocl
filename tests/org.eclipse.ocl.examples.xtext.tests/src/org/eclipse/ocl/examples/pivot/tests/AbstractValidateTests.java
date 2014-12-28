@@ -34,15 +34,15 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.uml.UMLOCLEValidator;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.values.BagImpl;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
+import org.eclipse.ocl.pivot.resource.ProjectMap;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
-import org.eclipse.ocl.pivot.utilities.ProjectMap;
-import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.values.Bag;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -107,13 +107,13 @@ public abstract class AbstractValidateTests extends PivotTestCase
 
 	@SuppressWarnings("null")
 	public Resource doLoadOCLinEcore(OCL ocl, String stem) throws IOException {
-		MetaModelManager metaModelManager = ocl.getMetaModelManager();
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		String inputName = stem + ".oclinecore";
 		String ecoreName = stem + ".ecore";
 		URI inputURI = getProjectFileURI(inputName);
 		URI ecoreURI = getProjectFileURI(ecoreName);
-		BaseCSResource xtextResource = (BaseCSResource) metaModelManager.getExternalResourceSet().createResource(inputURI);
-		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
+		BaseCSResource xtextResource = (BaseCSResource) metamodelManager.getExternalResourceSet().createResource(inputURI);
+		MetamodelManagerResourceAdapter.getAdapter(xtextResource, metamodelManager);
 		xtextResource.load(null);
 		assertNoResourceErrors("Load failed", xtextResource);
 		Resource asResource = ocl.cs2as(xtextResource);
@@ -124,19 +124,19 @@ public abstract class AbstractValidateTests extends PivotTestCase
 	}
 
 	public Resource doLoadUML(OCL ocl, String stem) throws IOException {
-		MetaModelManager metaModelManager = ocl.getMetaModelManager();
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		String umlName = stem + ".uml";
 		URI umlURI = getProjectFileURI(umlName);
-		return metaModelManager.getExternalResourceSet().getResource(umlURI, true);
+		return metamodelManager.getExternalResourceSet().getResource(umlURI, true);
 	}
 
 	@SuppressWarnings("null")
 	public @NonNull List<Diagnostic> doValidateOCLinEcore(OCL ocl, String stem, String... validationDiagnostics) throws IOException {
-		MetaModelManager metaModelManager = ocl.getMetaModelManager();
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		String inputName = stem + ".oclinecore";
 		URI inputURI = getProjectFileURI(inputName);
-		BaseCSResource xtextResource = (BaseCSResource) metaModelManager.getExternalResourceSet().createResource(inputURI);
-		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
+		BaseCSResource xtextResource = (BaseCSResource) metamodelManager.getExternalResourceSet().createResource(inputURI);
+		MetamodelManagerResourceAdapter.getAdapter(xtextResource, metamodelManager);
 		xtextResource.load(null);
 		assertNoResourceErrors("Load failed", xtextResource);
 		Resource asResource = ocl.cs2as(xtextResource);

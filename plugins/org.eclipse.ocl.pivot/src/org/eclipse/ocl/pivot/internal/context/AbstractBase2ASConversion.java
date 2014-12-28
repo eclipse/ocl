@@ -28,11 +28,12 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableDeclaration;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.AbstractConversion;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 /**
  * AbstractBase2ASConversion provides the Xtext independent support for Concrete Syntax
@@ -47,8 +48,8 @@ public abstract class AbstractBase2ASConversion extends AbstractConversion imple
 	 */
 	private HashSet<TypedElement> underspecifiedTypedElements = null;
 
-	protected AbstractBase2ASConversion(@NonNull MetaModelManager metaModelManager) {
-		super(metaModelManager);
+	protected AbstractBase2ASConversion(@NonNull MetamodelManager metamodelManager) {
+		super(metamodelManager);
 	}
 
 	protected void addUnderspecifiedTypedElement(@NonNull TypedElement pivotElement) {
@@ -197,20 +198,20 @@ public abstract class AbstractBase2ASConversion extends AbstractConversion imple
 	}
 	public void setType(@NonNull OCLExpression pivotElement, Type type, boolean isRequired, @Nullable Type typeValue) {
 		setType(pivotElement, type, isRequired);
-		Type primaryTypeValue = typeValue != null ? metaModelManager.getPrimaryType(typeValue) : null;
+		Type primaryTypeValue = typeValue != null ? metamodelManager.getPrimaryType(typeValue) : null;
 		if (primaryTypeValue != pivotElement.getTypeValue()) {
 			pivotElement.setTypeValue(primaryTypeValue);
 		}
 	}
 	public void setType(@NonNull VariableDeclaration pivotElement, Type type, boolean isRequired, @Nullable Type typeValue) {
 		setType(pivotElement, type, isRequired);
-		Type primaryTypeValue = typeValue != null ? metaModelManager.getPrimaryType(typeValue) : null;
+		Type primaryTypeValue = typeValue != null ? metamodelManager.getPrimaryType(typeValue) : null;
 		if (primaryTypeValue != pivotElement.getTypeValue()) {
 			pivotElement.setTypeValue(primaryTypeValue);
 		}
 	}
 	public void setType(@NonNull TypedElement pivotElement, Type type, boolean isRequired) {
-		Type primaryType = type != null ? metaModelManager.getPrimaryType(type) : null;
+		Type primaryType = type != null ? metamodelManager.getPrimaryType(type) : null;
 		if (primaryType != pivotElement.getType()) {
 			pivotElement.setType(primaryType);
 		}
@@ -219,7 +220,7 @@ public abstract class AbstractBase2ASConversion extends AbstractConversion imple
 			pivotElement.setIsRequired(isRequired);
 		}
 		if (primaryType != null) {
-			PivotUtilInternal.debugWellContainedness(primaryType);
+			PivotUtil.debugWellContainedness(primaryType);
 		}
 	}
 }

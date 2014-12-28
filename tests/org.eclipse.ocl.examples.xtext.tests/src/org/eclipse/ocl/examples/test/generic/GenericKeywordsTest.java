@@ -41,11 +41,11 @@ public abstract class GenericKeywordsTest
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-		StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
+		StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
 
         // create a little test model for a Smalltalk-like collection class that
         // defines operations corresponding to OCL iterators
-        smalltalk = metaModelManager.createPackage(org.eclipse.ocl.pivot.Package.class, ClassUtil.nonNullEMF(PivotPackage.Literals.PACKAGE), "Smalltalk", null, null);
+        smalltalk = metamodelManager.createPackage(org.eclipse.ocl.pivot.Package.class, ClassUtil.nonNullEMF(PivotPackage.Literals.PACKAGE), "Smalltalk", null, null);
         registerPackage(smalltalk, "st", "foo://smalltalk");
 
         org.eclipse.ocl.pivot.Class object = createOwnedClass(smalltalk, "Object", false);

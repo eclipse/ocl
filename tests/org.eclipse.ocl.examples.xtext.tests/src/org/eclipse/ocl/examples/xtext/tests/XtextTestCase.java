@@ -63,15 +63,15 @@ import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.context.ModelContext;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.ecore.AS2Ecore;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceSetAdapter;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.internal.values.BagImpl;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
+import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.resource.ProjectMap;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
-import org.eclipse.ocl.pivot.utilities.ProjectMap;
 import org.eclipse.ocl.pivot.values.Bag;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
@@ -287,10 +287,10 @@ public class XtextTestCase extends PivotTestCase
 		ResourceSet reloadResourceSet = new ResourceSetImpl();
 //		reloadResourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("pivot", new EcoreResourceFactoryImpl());
 		Resource reloadedPivotResource = reloadResourceSet.getResource(pivotURI, true);
-		MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(reloadedPivotResource);
+		MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(reloadedPivotResource);
 		assertNoValidationErrors("Pivot reload validation problems", reloadedPivotResource);
 		unloadResourceSet(reloadResourceSet);
-		metaModelManager.dispose();
+		metamodelManager.dispose();
 	}
 	
 	public static void assertSameModel(@NonNull Resource expectedResource, @NonNull Resource actualResource) throws IOException, InterruptedException {
@@ -308,10 +308,10 @@ public class XtextTestCase extends PivotTestCase
 	}
 
 	protected void doBadLoadFromString(@NonNull String fileName, @NonNull String testFile, @NonNull Bag<String> expectedErrorMessages) throws Exception {
-		MetaModelManager metaModelManager = new MetaModelManager();
-		metaModelManager.addClassLoader(ClassUtil.nonNullState(getClass().getClassLoader()));
+		MetamodelManager metamodelManager = new MetamodelManager();
+		metamodelManager.addClassLoader(ClassUtil.nonNullState(getClass().getClassLoader()));
 		try {
-			MetaModelManagerResourceSetAdapter.getAdapter(ClassUtil.nonNullState(resourceSet), metaModelManager);
+			MetamodelManagerResourceSetAdapter.getAdapter(ClassUtil.nonNullState(resourceSet), metamodelManager);
 			URI libraryURI = getProjectFileURI(fileName);
 			@SuppressWarnings("null")@NonNull BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(libraryURI);
 			@SuppressWarnings("null")@NonNull ClassLoader classLoader = getClass().getClassLoader();
@@ -327,44 +327,44 @@ public class XtextTestCase extends PivotTestCase
 				fail("Inconsistent load errors (expected/actual) message" + s);
 			}
 		} finally {
-			metaModelManager.dispose();
+			metamodelManager.dispose();
 		}
 	}
 
 	protected void doLoadFromString(@NonNull String fileName, @NonNull String testFile) throws Exception {
 		URI libraryURI = getProjectFileURI(fileName);
-		MetaModelManager metaModelManager = new MetaModelManager();
+		MetamodelManager metamodelManager = new MetamodelManager();
 		ResourceSet resourceSet = new ResourceSetImpl();
-		MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
+		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(libraryURI);
 		InputStream inputStream = new URIConverter.ReadableInputStream(testFile, "UTF-8");
 		xtextResource.load(inputStream, null);
 		assertNoResourceErrors("Load failed", xtextResource);
-		CS2ASResourceAdapter adapter = xtextResource.getCS2ASAdapter(metaModelManager);
+		CS2ASResourceAdapter adapter = xtextResource.getCS2ASAdapter(metamodelManager);
 		Resource asResource = adapter.getASResource(xtextResource);
 		assert asResource != null;
 		assertNoResourceErrors("File Model", asResource);
 		assertNoUnresolvedProxies("File Model", asResource);
 		assertNoValidationErrors("File Model", asResource);
-//		MetaModelManagerResourceSetAdapter adapter2 = MetaModelManagerResourceSetAdapter.findAdapter(resourceSet);
+//		MetamodelManagerResourceSetAdapter adapter2 = MetamodelManagerResourceSetAdapter.findAdapter(resourceSet);
 //		if (adapter2 != null) {
-//			MetaModelManager metaModelManager2 = adapter2.getMetaModelManager();
-//			if (metaModelManager2 != null) {
-//				metaModelManager2.dispose();
-//				metaModelManager2 = null;
+//			MetamodelManager metamodelManager2 = adapter2.getMetamodelManager();
+//			if (metamodelManager2 != null) {
+//				metamodelManager2.dispose();
+//				metamodelManager2 = null;
 //			}
 //			adapter2 = null;
 //		}
 		adapter.dispose();
-		metaModelManager.dispose();
-		metaModelManager = null;
+		metamodelManager.dispose();
+		metamodelManager = null;
 		resourceSet = null;
 		adapter = null;
 	}
 
-	protected ASResource doLoadASResourceFromString(@NonNull MetaModelManager metaModelManager, @NonNull String fileName, @NonNull String testFile) throws Exception {
+	protected ASResource doLoadASResourceFromString(@NonNull MetamodelManager metamodelManager, @NonNull String fileName, @NonNull String testFile) throws Exception {
 		URI libraryURI = getProjectFileURI(fileName);
-		ModelContext modelContext = new ModelContext(metaModelManager, libraryURI);
+		ModelContext modelContext = new ModelContext(metamodelManager, libraryURI);
 		BaseCSResource xtextResource = (BaseCSResource) modelContext.createBaseResource(testFile);
 		assertNoResourceErrors("Load failed", xtextResource);
 		CS2ASResourceAdapter adapter = xtextResource.getCS2ASAdapter(null);
@@ -559,21 +559,21 @@ public class XtextTestCase extends PivotTestCase
 	protected ResourceSet resourceSet;
 	
 	@SuppressWarnings("null")
-	public @NonNull String createEcoreString(@NonNull MetaModelManager metaModelManager, @NonNull String fileName, @NonNull String fileContent, boolean assignIds) throws IOException {
+	public @NonNull String createEcoreString(@NonNull MetamodelManager metamodelManager, @NonNull String fileName, @NonNull String fileContent, boolean assignIds) throws IOException {
 		String inputName = fileName + ".oclinecore";
 		createOCLinEcoreFile(inputName, fileContent);
 		URI inputURI = getProjectFileURI(inputName);
 		URI ecoreURI = getProjectFileURI(fileName + ".ecore");
 		CS2ASResourceAdapter adapter = null;
 		try {
-			ResourceSet resourceSet2 = metaModelManager.getExternalResourceSet();
+			ResourceSet resourceSet2 = metamodelManager.getExternalResourceSet();
 			BaseCSResource xtextResource = ClassUtil.nonNullState((BaseCSResource) resourceSet2.getResource(inputURI, true));
 			assertNoResourceErrors("Load failed", xtextResource);
 			adapter = xtextResource.getCS2ASAdapter(null);
 			Resource asResource = adapter.getASResource(xtextResource);
 			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
 			assertNoValidationErrors("Pivot validation errors", asResource.getContents().get(0));
-			XMLResource ecoreResource = AS2Ecore.createResource(metaModelManager, asResource, ecoreURI, null);
+			XMLResource ecoreResource = AS2Ecore.createResource(metamodelManager, asResource, ecoreURI, null);
 			assertNoResourceErrors("To Ecore errors", ecoreResource);
 			if (assignIds) {
 				for (TreeIterator<EObject> tit = ecoreResource.getAllContents(); tit.hasNext(); ) {

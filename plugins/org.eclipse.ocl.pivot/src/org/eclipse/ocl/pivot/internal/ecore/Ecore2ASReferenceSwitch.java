@@ -51,7 +51,7 @@ import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.library.JavaCompareToOperation;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
@@ -72,13 +72,13 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
     public static final Object PROPERTY_OPPOSITE_ROLE_UPPER_KEY = "Property.oppositeUpper"; //$NON-NLS-1$
 
     protected final @NonNull Ecore2AS converter;
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull MetamodelManager metamodelManager;
 	protected final @NonNull StandardLibraryInternal standardLibrary;
 	
 	public Ecore2ASReferenceSwitch(@NonNull Ecore2AS converter) {
 		this.converter = converter;
-		this.metaModelManager = converter.getMetaModelManager();
-		this.standardLibrary = metaModelManager.getStandardLibrary();
+		this.metamodelManager = converter.getMetamodelManager();
+		this.standardLibrary = metamodelManager.getStandardLibrary();
 	}
 	
 	@Override
@@ -219,10 +219,10 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 						upper = unlimitedOne;
 					}
 					if (localType == null) {
-						localType = metaModelManager.getStandardLibrary().getOclInvalidType();
+						localType = metamodelManager.getStandardLibrary().getOclInvalidType();
 					}
 					if (upper != one) {
-						oppositeProperty.setType(metaModelManager.getCollectionType(isOrdered, isUnique, localType, lower, upper));
+						oppositeProperty.setType(metamodelManager.getCollectionType(isOrdered, isUnique, localType, lower, upper));
 						oppositeProperty.setIsRequired(true);
 					}
 					else {
@@ -268,7 +268,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 								boolean isUnique = uniqueValue != null ? Boolean.valueOf(uniqueValue) : PivotConstantsInternal.ANNOTATED_IMPLICIT_OPPOSITE_UNIQUE;
 								String orderedValue = details.get("ordered");
 								boolean isOrdered = orderedValue != null ? Boolean.valueOf(orderedValue) : PivotConstantsInternal.ANNOTATED_IMPLICIT_OPPOSITE_ORDERED;
-								oppositeProperty.setType(metaModelManager.getCollectionType(isOrdered, isUnique, localType, lower, upper));
+								oppositeProperty.setType(metamodelManager.getCollectionType(isOrdered, isUnique, localType, lower, upper));
 								oppositeProperty.setIsRequired(true);
 							}
 							else {
@@ -286,7 +286,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 			pivotElement.setOpposite(oppositeProperty);
 		}
 //		else if (eObject.eContainer() instanceof EClass) {		// Skip annotation references
-//			metaModelManager.installPropertyDeclaration(pivotElement);
+//			metamodelManager.installPropertyDeclaration(pivotElement);
 //		}
 		return null;
 	}
@@ -393,7 +393,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 								}
 								else {
 									isRequired = true;
-									pivotType = metaModelManager.getCollectionType(isOrdered, isUnique, pivotType, lowerValue, upperValue);
+									pivotType = metamodelManager.getCollectionType(isOrdered, isUnique, pivotType, lowerValue, upperValue);
 								}
 							}
 							else {
@@ -415,7 +415,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 					EEnum eEnum = (EEnum)eType;
 					EEnumLiteral unboxedValue = eEnum.getEEnumLiteral(defaultValueLiteral);
 					if (unboxedValue != null) {
-						boxedDefaultValue = metaModelManager.getPivotOfEcore(EnumerationLiteral.class, unboxedValue);
+						boxedDefaultValue = metamodelManager.getPivotOfEcore(EnumerationLiteral.class, unboxedValue);
 					}
 					else {
 //						converter.addError("Unknown enumeration literal");
@@ -433,7 +433,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 				}
 				else {
 					URI uri = URI.createURI(defaultValueLiteral);
-					EObject defaultEObject = metaModelManager.getExternalResourceSet().getEObject(uri, false);
+					EObject defaultEObject = metamodelManager.getExternalResourceSet().getEObject(uri, false);
 					if (defaultEObject instanceof Element) {
 						boxedDefaultValue = defaultEObject;
 					}
@@ -469,7 +469,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 					if (pivotType != null) {
 						IntegerValue lowerValue = ValueUtil.integerValueOf(lower);
 						UnlimitedNaturalValue upperValue = upper != -1 ? ValueUtil.unlimitedNaturalValueOf(upper) : ValueUtil.UNLIMITED_VALUE;
-						pivotType = metaModelManager.getCollectionType(isOrdered, isUnique, pivotType, lowerValue, upperValue);
+						pivotType = metamodelManager.getCollectionType(isOrdered, isUnique, pivotType, lowerValue, upperValue);
 					}
 				}
 			}

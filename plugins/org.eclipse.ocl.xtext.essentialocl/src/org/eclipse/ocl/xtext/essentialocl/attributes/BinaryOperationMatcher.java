@@ -15,17 +15,17 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.essentialoclcs.ExpCS;
 
 public class BinaryOperationMatcher extends AbstractOperationMatcher
 {
 	protected final OCLExpression asArgument;
 	
-	public BinaryOperationMatcher(@NonNull MetaModelManager metaModelManager, @Nullable Type sourceType, @Nullable Type sourceTypeValue, @Nullable ExpCS csArgument) {
-		super(metaModelManager, sourceType, sourceTypeValue);
-		this.asArgument = PivotUtilInternal.getPivot(OCLExpression.class, csArgument);
+	public BinaryOperationMatcher(@NonNull MetamodelManager metamodelManager, @Nullable Type sourceType, @Nullable Type sourceTypeValue, @Nullable ExpCS csArgument) {
+		super(metamodelManager, sourceType, sourceTypeValue);
+		this.asArgument = PivotUtil.getPivot(OCLExpression.class, csArgument);
 	}
 
 	@Override

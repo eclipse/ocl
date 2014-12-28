@@ -52,7 +52,7 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.PivotIdResolver;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
@@ -72,14 +72,14 @@ public class UMLUIConstraintLocator extends UMLConstraintLocator implements Cons
     protected static class DebugStarter implements IRunnableWithProgress
 	{
 		protected final @NonNull Shell shell;
-    	protected final @NonNull MetaModelManager metaModelManager;
+    	protected final @NonNull MetamodelManager metamodelManager;
     	protected final @Nullable EObject contextObject;
     	protected final @NonNull String expression;
     	private @Nullable ILaunch launch = null;
 
-		public DebugStarter(@NonNull Shell shell, @NonNull MetaModelManager metaModelManager, @Nullable EObject contextObject, @NonNull String expression) {
+		public DebugStarter(@NonNull Shell shell, @NonNull MetamodelManager metamodelManager, @Nullable EObject contextObject, @NonNull String expression) {
 			this.shell = shell;
-			this.metaModelManager = metaModelManager;
+			this.metamodelManager = metamodelManager;
 			this.contextObject = contextObject;
 			this.expression = expression;
 		}
@@ -89,9 +89,9 @@ public class UMLUIConstraintLocator extends UMLConstraintLocator implements Cons
 		 * Returns its URI.
 		 */
 		protected @NonNull URI createDocument(IProgressMonitor monitor) throws IOException, CoreException {
-			PivotIdResolver idResolver = metaModelManager.getIdResolver();
+			PivotIdResolver idResolver = metamodelManager.getIdResolver();
 			org.eclipse.ocl.pivot.Class staticType = idResolver.getStaticTypeOf(contextObject);
-			org.eclipse.ocl.pivot.Class contextType = metaModelManager.getType(staticType);
+			org.eclipse.ocl.pivot.Class contextType = metamodelManager.getType(staticType);
 //			if (contextType instanceof Metaclass) {
 //				contextType = (org.eclipse.ocl.pivot.Class)((Metaclass<?>)contextType).getInstanceType();	// FIXME cast
 //			}
@@ -108,7 +108,7 @@ public class UMLUIConstraintLocator extends UMLConstraintLocator implements Cons
 				if (containingRoot == null) {
 					externalURI = contextPackage.getURI();
 				}
-				else if (containingRoot != PivotUtil.getContainingRoot(metaModelManager.getStandardLibrary().getOclAnyType())) {
+				else if (containingRoot != PivotUtil.getContainingRoot(metamodelManager.getStandardLibrary().getOclAnyType())) {
 					externalURI = containingRoot.getExternalURI();
 					if (PivotUtilInternal.isASURI(externalURI)) {
 						@SuppressWarnings("null")
@@ -227,7 +227,7 @@ public class UMLUIConstraintLocator extends UMLConstraintLocator implements Cons
 				}
 				ExpressionInOCL query;
 				try {
-					query = ElementUtil.getFirstQuery(metaModelManager, csResource);
+					query = ElementUtil.getFirstQuery(metamodelManager, csResource);
 				} catch (ParserException e) {
 					openError(debug_FailLoad, e);
 					return;
@@ -265,10 +265,10 @@ public class UMLUIConstraintLocator extends UMLConstraintLocator implements Cons
 		if (eResource == null) {
 			return false;
 		}
-		MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(eResource);
+		MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(eResource);
 		Constraint constraint = null;
 		try {
-			constraint = metaModelManager.getPivotOf(Constraint.class, umlConstraint);
+			constraint = metamodelManager.getPivotOf(Constraint.class, umlConstraint);
 		} catch (ParserException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -297,7 +297,7 @@ public class UMLUIConstraintLocator extends UMLConstraintLocator implements Cons
 		if (shell == null) {
 			return false;
 		}
-		DebugStarter runnable = new DebugStarter(shell, metaModelManager, eObject, expression);
+		DebugStarter runnable = new DebugStarter(shell, metamodelManager, eObject, expression);
 		
 		
 //		IProgressService progressService = PlatformUI.getWorkbench().getProgressService();

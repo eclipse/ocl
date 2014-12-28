@@ -29,14 +29,14 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.compatibility.UML_4_2;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.AbstractConversion;
 import org.eclipse.ocl.pivot.internal.utilities.External2AS;
 
 public abstract class AbstractEcore2AS extends AbstractConversion implements External2AS, PivotConstantsInternal
 {
-	protected AbstractEcore2AS(@NonNull MetaModelManager metaModelManager) {
-		super(metaModelManager);
+	protected AbstractEcore2AS(@NonNull MetamodelManager metamodelManager) {
+		super(metamodelManager);
 	}
 	
 	public abstract void addGenericType(@NonNull EGenericType eObject);

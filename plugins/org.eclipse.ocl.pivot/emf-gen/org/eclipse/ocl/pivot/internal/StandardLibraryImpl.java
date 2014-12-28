@@ -54,7 +54,7 @@ import org.eclipse.ocl.pivot.ids.PrimitiveTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.utilities.IllegalLibraryException;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
@@ -376,7 +376,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	private @Nullable Map<String, org.eclipse.ocl.pivot.Class> nameToLibraryTypeMap = null;
 	
 	protected /*final*/ /*@NonNull*/ CompleteModelInternal completeModel;
-	protected /*final*/ /*@NonNull*/ MetaModelManager metaModelManager;
+	protected /*final*/ /*@NonNull*/ MetamodelManager metamodelManager;
 
 	@Override
 	public @Nullable Operation basicGetOclInvalidOperation() {
@@ -418,7 +418,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 
 	@Override
 	public @NonNull Iterable<? extends CompletePackage> getAllCompletePackages() {
-		return metaModelManager.getAllCompletePackages();
+		return metamodelManager.getAllCompletePackages();
 	}
 
 	@Override
@@ -460,7 +460,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	@Override
 	public @NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType,
 			@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
-		return metaModelManager.getCompleteEnvironment().getCollectionType(containerType, elementType, lower, upper);
+		return metamodelManager.getCompleteEnvironment().getCollectionType(containerType, elementType, lower, upper);
 	}
 
 	@Override
@@ -485,7 +485,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	@Override
 	@NonNull
 	public CompleteInheritance getInheritance(@NonNull org.eclipse.ocl.pivot.Class type) {
-		return metaModelManager.getInheritance(type);
+		return metamodelManager.getInheritance(type);
 	}
 
 	@Override
@@ -509,7 +509,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getMetaclass(@NonNull Type classType) {
-		return metaModelManager.getMetaclass(classType);
+		return metamodelManager.getMetaclass(classType);
 	}
 
 	@Override
@@ -646,7 +646,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 
 	@Override
 	public Type getOclType(@NonNull String typeName) {
-		return metaModelManager.getOclType(typeName);
+		return metamodelManager.getOclType(typeName);
 	}
 
 	@Override
@@ -706,7 +706,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	 */
 	@Override
 	public @Nullable org.eclipse.ocl.pivot.Class getPivotType(@NonNull String className) {
-		return metaModelManager.getPivotType(className);
+		return metamodelManager.getPivotType(className);
 	}	
 
 	@Override
@@ -745,7 +745,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 		Package rootPackage = completeModel.getRootPackage(completeURIorName);
 		if (rootPackage == null) {
 			if (PivotConstants.METAMODEL_NAME.equals(completeURIorName)) {
-				metaModelManager.getASMetamodel();
+				metamodelManager.getASmetamodel();
 				rootPackage = completeModel.getRootPackage(completeURIorName);
 			}
 		}
@@ -800,7 +800,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	@Override
 	public @NonNull StandardLibraryInternal  init(@NonNull CompleteModelInternal completeModel) {
 		this.completeModel = completeModel;
-		this.metaModelManager = completeModel.getMetaModelManager();
+		this.metamodelManager = completeModel.getMetamodelManager();
 		return this;
 	}
 
@@ -826,7 +826,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 
 	@Override
 	public @Nullable Resource loadDefaultLibrary(@Nullable String uri) {
-		return metaModelManager.loadDefaultLibrary(uri);
+		return metamodelManager.loadDefaultLibrary(uri);
 	}
 
 	public void resetLibrary() {

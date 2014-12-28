@@ -8,7 +8,7 @@
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.pivot.utilities;
+package org.eclipse.ocl.pivot.resource;
 
 import java.io.IOException;
 import java.io.InputStream;

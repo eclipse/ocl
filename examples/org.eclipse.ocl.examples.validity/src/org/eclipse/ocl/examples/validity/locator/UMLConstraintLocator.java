@@ -40,7 +40,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityModel;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -282,30 +282,30 @@ public class UMLConstraintLocator extends AbstractPivotConstraintLocator
 		if (umlConstraint == null) {
 			return;
 		}
-		MetaModelManager metaModelManager = PivotUtilInternal.findMetaModelManager(umlConstraint);
-		if (metaModelManager == null) {
+		MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(umlConstraint);
+		if (metamodelManager == null) {
 			Resource eResource = umlConstraint.eResource();
 			if (eResource == null) {
 				return;
 			}
-			metaModelManager = PivotUtilInternal.getMetaModelManager(eResource);
+			metamodelManager = PivotUtilInternal.getMetamodelManager(eResource);
 		}
 		Severity severity = Severity.UNKNOWN;
 		try {
-			final org.eclipse.ocl.pivot.Constraint pivotConstraint = metaModelManager.getPivotOf(org.eclipse.ocl.pivot.Constraint.class, umlConstraint);
+			final org.eclipse.ocl.pivot.Constraint pivotConstraint = metamodelManager.getPivotOf(org.eclipse.ocl.pivot.Constraint.class, umlConstraint);
 			if (pivotConstraint == null) {
 				throw new ParserException("Failed to create pivot Constraint");
 			}
 			ResourceSet resourceSet = contextObject.eResource().getResourceSet();
 			if (resourceSet != null) {
-				ExpressionInOCL query = getQuery(metaModelManager, pivotConstraint);
-				EvaluationVisitor evaluationVisitor = createEvaluationVisitor(metaModelManager, query, contextObject, monitor);
-				ConstraintEvaluator<Diagnostic> constraintEvaluator = new AbstractConstraintLocator(metaModelManager, query, contextObject)
+				ExpressionInOCL query = getQuery(metamodelManager, pivotConstraint);
+				EvaluationVisitor evaluationVisitor = createEvaluationVisitor(metamodelManager, query, contextObject, monitor);
+				ConstraintEvaluator<Diagnostic> constraintEvaluator = new AbstractConstraintLocator(metamodelManager, query, contextObject)
 				{
 					@Override
 					protected String getObjectLabel() {
 						org.eclipse.ocl.pivot.Type type = PivotUtil.getContainingType(pivotConstraint);
-						org.eclipse.ocl.pivot.Type primaryType = type != null ? metaModelManager.getPrimaryType(type) : null;
+						org.eclipse.ocl.pivot.Type primaryType = type != null ? metamodelManager.getPrimaryType(type) : null;
 						Classifier classifier = primaryType != null ?  (Classifier)primaryType.getETarget() : null;
 						return classifier != null ? classifier.getName() : "??";
 //									return ClassUtil.getLabel(classifier, object, context);

@@ -132,7 +132,7 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryIn
 		EvaluationEnvironment evaluationEnvironment = createEvaluationEnvironment();
 		Variable contextVariable = expression.getOwnedContext();
 		if (contextVariable != null) {
-			PivotIdResolver idResolver = getMetaModelManager().getIdResolver();
+			PivotIdResolver idResolver = getMetamodelManager().getIdResolver();
 			Object value = idResolver.boxedValueOf(context);
 			evaluationEnvironment.add(contextVariable, value);
 		}

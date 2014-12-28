@@ -23,14 +23,14 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 /**
  * Adds the http://www.eclipse.org/OCL/ASMetamodel annotation.
  */
-public class SetASMetamodel extends WorkflowComponentWithModelSlot
+public class SetASmetamodel extends WorkflowComponentWithModelSlot
 {
 	private Logger log = Logger.getLogger(getClass());
 
 	@Override
 	public void invokeInternal(WorkflowContext ctx, ProgressMonitor arg1, Issues arg2) {
 		Resource resource = (Resource) ctx.get(getModelSlot());
-		log.info("Adding ASMetamodel annotation in '" + resource.getURI() + "'");
+		log.info("Adding ASmetamodel annotation in '" + resource.getURI() + "'");
 		for (EObject eObject : resource.getContents()) {
 			if (eObject instanceof EPackage) {
 				ClassUtil.getMetamodelAnnotation((EPackage) eObject);	// Install EAnnotation

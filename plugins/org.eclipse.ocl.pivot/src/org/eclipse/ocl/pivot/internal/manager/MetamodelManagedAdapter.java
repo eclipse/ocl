@@ -10,17 +10,10 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.internal.manager;
 
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.jdt.annotation.NonNull;
 
-/**
- * A MetaModelManagerListener reports MetaModelManager changes; most notably disposal.
- */
-public interface MetaModelManagerListener
-{
-	/**
-	 * Respond to disposal of the MetaModelManager by eliminating all further usage.
-	 * 
-	 * @param metaModelManager 
-	 */
-	void metaModelManagerDisposed(@NonNull MetaModelManager metaModelManager);
+public interface MetamodelManagedAdapter extends Adapter.Internal, MetamodelManagerListener
+{		
+	boolean isAdapterFor(@NonNull MetamodelManager metamodelManager);
 }

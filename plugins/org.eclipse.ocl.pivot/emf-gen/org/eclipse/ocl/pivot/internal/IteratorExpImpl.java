@@ -39,7 +39,7 @@ import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.TemplateParameterSubstitutionVisitor;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
@@ -105,7 +105,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 			return true;
 		}
 		Diagnostic diagnostic = null;
-		MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(ClassUtil.nonNullState(eResource()));
+		MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(ClassUtil.nonNullState(eResource()));
 		Type bodyType = getOwnedBody().getType();
 		if (bodyType instanceof CollectionType) {
 			bodyType = ((CollectionType)bodyType).getElementType();
@@ -113,7 +113,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		Type bodyType2 = ClassUtil.nonNullState(bodyType);
 		Type iteratorType = ClassUtil.nonNullState(getOwnedIterators().get(0).getType());
 //		TemplateParameterSubstitutions bindings = null; //new HashMap<TemplateParameter, Type>();
-		if (!metaModelManager.conformsTo(bodyType2, TemplateParameterSubstitutions.EMPTY, iteratorType, TemplateParameterSubstitutions.EMPTY)) {
+		if (!metamodelManager.conformsTo(bodyType2, TemplateParameterSubstitutions.EMPTY, iteratorType, TemplateParameterSubstitutions.EMPTY)) {
 			if (diagnostics == null) {
 				return false;
 			}
@@ -138,8 +138,8 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 			return true;
 		}
 		Diagnostic diagnostic = null;
-		MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(ClassUtil.nonNullState(eResource()));
-		StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
+		MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(ClassUtil.nonNullState(eResource()));
+		StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
 		try {
 			org.eclipse.ocl.pivot.Class oclComparableType = standardLibrary.getOclComparableType();
 			CompleteInheritance comparableInheritance = oclComparableType.getInheritance(standardLibrary);
@@ -157,10 +157,10 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 				Type sourceType = source2.getType();
 				Type sourceTypeValue = source2.getTypeValue();
 				Type bodyType = body2.getType();
-				Type specializedBodyType = bodyType != null ? TemplateParameterSubstitutionVisitor.specializeType(bodyType, this, metaModelManager, sourceType, sourceTypeValue) : null;
+				Type specializedBodyType = bodyType != null ? TemplateParameterSubstitutionVisitor.specializeType(bodyType, this, metamodelManager, sourceType, sourceTypeValue) : null;
 				boolean isOk = false;
 				if (bodyType != null) {
-					if ((specializedBodyType != null) && metaModelManager.conformsTo(specializedBodyType, TemplateParameterSubstitutions.EMPTY, oclComparableType, TemplateParameterSubstitutions.EMPTY)) {
+					if ((specializedBodyType != null) && metamodelManager.conformsTo(specializedBodyType, TemplateParameterSubstitutions.EMPTY, oclComparableType, TemplateParameterSubstitutions.EMPTY)) {
 						isOk = true;
 					}
 				}

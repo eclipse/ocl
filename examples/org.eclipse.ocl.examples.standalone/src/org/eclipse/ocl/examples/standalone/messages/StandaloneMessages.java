@@ -29,7 +29,7 @@ public final class StandaloneMessages
 	public static String OCLValidatorApplication_ModelLoadProblem;
 	public static String OCLValidatorApplication_OclLoadProblem;
 	public static String OCLValidatorApplication_OclUriProblem;
-	public static String OCLValidatorApplication_MetaModelsLoadProblem;
+	public static String OCLValidatorApplication_MetamodelsLoadProblem;
 
 	// Analyzer
 	// Missing keyword

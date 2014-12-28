@@ -52,7 +52,7 @@ import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompletePackageInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.manager.LambdaTypeManager;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.TupleTypeManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
@@ -355,7 +355,7 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 		}
 		return eDynamicIsSet(featureID);
 	}
-	protected /*final @NonNull*/ MetaModelManager metaModelManager;
+	protected /*final @NonNull*/ MetamodelManager metamodelManager;
 	protected /*final @NonNull*/ CompleteModelInternal ownedCompleteModel;
 	protected /*final @NonNull*/ StandardLibraryInternal ownedStandardLibrary;
 	protected final @NonNull Map<org.eclipse.ocl.pivot.Class, CompleteClassInternal> class2completeClass = new WeakHashMap<org.eclipse.ocl.pivot.Class, CompleteClassInternal>();
@@ -586,7 +586,7 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 	
 	@Override
 	public @NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
-		return getCollectionType((CollectionType)metaModelManager.getType(containerType), metaModelManager.getType(elementType), lower, upper);
+		return getCollectionType((CollectionType)metamodelManager.getType(containerType), metamodelManager.getType(elementType), lower, upper);
 	}
 
 	@Override
@@ -670,21 +670,21 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 	}
 
 	@Override
-	public @NonNull MetaModelManager getMetaModelManager() {
-		assert metaModelManager != null;
-		return metaModelManager;
+	public @NonNull MetamodelManager getMetamodelManager() {
+		assert metamodelManager != null;
+		return metamodelManager;
 	}
 
 	@Override
 	public org.eclipse.ocl.pivot.Package getNestedPackage(@NonNull org.eclipse.ocl.pivot.Package domainPackage, @NonNull String name) {
-		CompletePackage completePackage = metaModelManager.getCompletePackage(domainPackage);
+		CompletePackage completePackage = metamodelManager.getCompletePackage(domainPackage);
 		CompletePackage memberPackage = completePackage.getOwnedCompletePackage(name);
 		return memberPackage != null ? memberPackage.getPivotPackage() : null;
 	}
 
 	@Override
 	public org.eclipse.ocl.pivot.Class getNestedType(@NonNull org.eclipse.ocl.pivot.Package domainPackage, @NonNull String name) {
-		CompletePackage completePackage = metaModelManager.getCompletePackage(domainPackage);
+		CompletePackage completePackage = metamodelManager.getCompletePackage(domainPackage);
 		return completePackage.getMemberType(name);
 	}
 
@@ -756,7 +756,7 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 					Type templateArgument = substitutions.get(templateParameter);
 					templateArguments.add(templateArgument != null ? templateArgument : templateParameter);
 				}
-				return metaModelManager.getLibraryType(unspecializedType, templateArguments);
+				return metamodelManager.getLibraryType(unspecializedType, templateArguments);
 			}
 		}
 		return type;
@@ -783,8 +783,8 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 	}
 
 	@Override
-	public @NonNull CompleteEnvironmentInternal init(@NonNull MetaModelManager metaModelManager) {
-		this.metaModelManager = metaModelManager;
+	public @NonNull CompleteEnvironmentInternal init(@NonNull MetamodelManager metamodelManager) {
+		this.metamodelManager = metamodelManager;
 		CompleteModelInternal completeModelInternal = ((CompleteModelInternal)PivotFactory.eINSTANCE.createCompleteModel()).init(this);
 		setOwnedCompleteModel(completeModelInternal);
 		setOwnedStandardLibrary(((StandardLibraryInternal)PivotFactory.eINSTANCE.createStandardLibrary()).init(completeModelInternal));

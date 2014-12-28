@@ -35,17 +35,17 @@ import org.eclipse.ocl.common.internal.preferences.CommonPreferenceInitializer;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.uml.UML2AS;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.values.IntIntegerValueImpl;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.xtext.completeocl.utilities.CompleteOCLLoader;
 import org.eclipse.ocl.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
@@ -138,7 +138,7 @@ public class UMLValidateTest extends AbstractValidateTests
 //		org.eclipse.uml2.uml.InstanceSpecification confusingBook = (org.eclipse.uml2.uml.InstanceSpecification) model.getOwnedMember("4) Opaque expressions and other things");
 //		org.eclipse.uml2.uml.Slot slot = confusingBook.getSlots().get(0);
 //		org.eclipse.uml2.uml.OpaqueExpression opaqueExpression = (org.eclipse.uml2.uml.OpaqueExpression) slot.getOwnedElements().get(0);
-//		Property asPrice = ocl.getMetaModelManager().getPivotOf(Property.class, price);
+//		Property asPrice = ocl.getMetamodelManager().getPivotOf(Property.class, price);
 		assertUMLOCLValidationDiagnostics(ocl, "UML Load", umlResource,
 //			ClassUtil.bind(UMLMessages.BodyLanguageSupportError, IllegalStateException.class.getName() + ": " + NLS.bind(UMLMessages.MissingBodyLanguageSupport, "Natural language"), ClassUtil.getLabel(opaqueExpression)),
 			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, book.getName(), constraint.getName(), LabelUtil.getLabel(invalidBook)),
@@ -204,12 +204,12 @@ public class UMLValidateTest extends AbstractValidateTests
 				return false;
 			}
 		};
-		MetaModelManager metaModelManager = helper.getMetaModelManager();
-		StandaloneProjectMap projectMap = metaModelManager.getProjectMap();
-		projectMap.configure(metaModelManager.getExternalResourceSet(), StandaloneProjectMap.LoadGeneratedPackageStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
+		MetamodelManager metamodelManager = helper.getMetamodelManager();
+		StandaloneProjectMap projectMap = metamodelManager.getProjectMap();
+		projectMap.configure(metamodelManager.getExternalResourceSet(), StandaloneProjectMap.LoadGeneratedPackageStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
 		@SuppressWarnings("unused")Resource oclResource = helper.loadResource(oclURI);
-		if (!helper.loadMetaModels()) {
-			fail("Failed to loadMetaModels");
+		if (!helper.loadMetamodels()) {
+			fail("Failed to loadMetamodels");
 		}
 		//
 		//	Load all the documents
@@ -246,12 +246,12 @@ public class UMLValidateTest extends AbstractValidateTests
 		assertValidationDiagnostics("Loading", umlResource);
 		URI oclURI = getProjectFileURI("Bug404882.ocl");
 		LoaderWithLog helper = new LoaderWithLog(resourceSet);
-		MetaModelManager metaModelManager = helper.getMetaModelManager();
-		StandaloneProjectMap projectMap = metaModelManager.getProjectMap();
-		projectMap.configure(metaModelManager.getExternalResourceSet(), StandaloneProjectMap.LoadGeneratedPackageStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
+		MetamodelManager metamodelManager = helper.getMetamodelManager();
+		StandaloneProjectMap projectMap = metamodelManager.getProjectMap();
+		projectMap.configure(metamodelManager.getExternalResourceSet(), StandaloneProjectMap.LoadGeneratedPackageStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
 		@SuppressWarnings("unused")Resource oclResource = helper.loadResource(oclURI);
-		if (!helper.loadMetaModels()) {
-			fail("Failed to loadMetaModels :\n" + helper.toString());
+		if (!helper.loadMetamodels()) {
+			fail("Failed to loadMetamodels :\n" + helper.toString());
 		}
 		//
 		//	Load all the documents

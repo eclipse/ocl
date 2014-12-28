@@ -35,7 +35,7 @@ import org.eclipse.ocl.pivot.ProfileApplication;
 import org.eclipse.ocl.pivot.Stereotype;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.StereotypeExtender;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.uml.UML2AS.Outer;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
@@ -74,7 +74,7 @@ public class ModelAnalysis
 
 	protected final @NonNull Outer converter;
 	protected final @NonNull ProfileAnalysis profileAnalysis;
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull MetamodelManager metamodelManager;
 
 	/**
 	 *	Map of all Profiles Applied to each Package, populated initially by the explicit ProfileApplications and expanded to cover the
@@ -114,7 +114,7 @@ public class ModelAnalysis
 	public ModelAnalysis(@NonNull Outer converter, @NonNull ProfileAnalysis profileAnalysis) {
 		this.converter = converter;
 		this.profileAnalysis = profileAnalysis;
-		this.metaModelManager = converter.getMetaModelManager();
+		this.metamodelManager = converter.getMetamodelManager();
 	}
 
 	public void addProfile(@NonNull Profile asProfile) {
@@ -185,7 +185,7 @@ public class ModelAnalysis
 					asStereotype = converter.resolveStereotype(umlStereotypeApplication, umlStereotypedElements);		// FIXME debugging
 				}
 				if (asStereotype != null) {
-					ElementExtension elementExtension = metaModelManager.getElementExtension(asStereotypedElement, asStereotype);
+					ElementExtension elementExtension = metamodelManager.getElementExtension(asStereotypedElement, asStereotype);
 					converter.setOriginalMapping(elementExtension, umlStereotypeApplication);
 					elementExtension.setIsApplied(true);
 					stereotype2extension.put(asStereotype, elementExtension);
@@ -222,9 +222,9 @@ public class ModelAnalysis
 										org.eclipse.uml2.uml.Type umlStereotypedElement = umlOtherEnd.getType();
 										if (umlStereotypedElement != null) {
 											try {
-												Type asStereotypedElement = metaModelManager.getPivotOf(Type.class, umlStereotypedElement);
+												Type asStereotypedElement = metamodelManager.getPivotOf(Type.class, umlStereotypedElement);
 												if (asStereotypedElement != null) {
-													ElementExtension asElementExtension = metaModelManager.getElementExtension(asStereotypedElement, asStereotype);
+													ElementExtension asElementExtension = metamodelManager.getElementExtension(asStereotypedElement, asStereotype);
 	//												setOriginalMapping(asElementExtension, umlStereotype);
 													asElementExtension.setIsApplied(true);
 													List<ElementExtension> asElementExtensions = element2elementExtension.get(asStereotypedElement);
@@ -405,7 +405,7 @@ public class ModelAnalysis
 		for (StereotypeExtender typeExtension : typeExtensions) {
 			Stereotype stereotype = typeExtension.getOwningStereotype();
 			if (stereotype != null) {
-				ElementExtension elementExtension = metaModelManager.getElementExtension(asElement, stereotype);
+				ElementExtension elementExtension = metamodelManager.getElementExtension(asElement, stereotype);
 				elementExtension.setIsRequired(true);
 				stereotype2extension.put(stereotype, elementExtension);
 				if (UML2AS.ADD_ELEMENT_EXTENSION.isActive()) {

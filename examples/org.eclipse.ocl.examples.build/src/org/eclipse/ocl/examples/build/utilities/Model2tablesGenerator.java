@@ -30,10 +30,10 @@ import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreTables;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
 
 /**
  * Generates the javaFolder/'javaPackageName'Tables.java file defining
@@ -67,9 +67,9 @@ public class Model2tablesGenerator extends AbstractWorkflowComponent
 		log.info("Loading Gen Model '" + genModelURI);
 		ResourceSet resourceSet = getResourceSet();
 		if (genOCLstdlib) {
-			final MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.findAdapter(resourceSet);
+			final MetamodelManagerResourceSetAdapter adapter = MetamodelManagerResourceSetAdapter.findAdapter(resourceSet);
 			if (adapter != null) {
-				adapter.getMetaModelManager().setLibraryLoadInProgress(true);
+				adapter.getMetamodelManager().setLibraryLoadInProgress(true);
 			}
 		}
 		try {

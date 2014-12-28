@@ -54,20 +54,20 @@ import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.ecore.AS2Ecore;
 import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceAdapter;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.uml.UML2AS;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
+import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.resource.ProjectMap;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IPackageDescriptor;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IProjectDescriptor;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.pivot.utilities.ProjectMap;
-import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
-import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.IPackageDescriptor;
-import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.IProjectDescriptor;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.Unlimited;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
@@ -86,7 +86,7 @@ import org.eclipse.xtext.resource.impl.ListBasedDiagnosticConsumer;
 @SuppressWarnings("null")
 public class LoadTests extends XtextTestCase
 {	
-	protected MetaModelManager metaModelManager = null;
+	protected MetamodelManager metamodelManager = null;
 //	CS2ASResourceAdapter cs2asAdapter = null;
 	protected BaseCSResource xtextResource = null;
 
@@ -119,8 +119,8 @@ public class LoadTests extends XtextTestCase
 		}
 	} */
 	
-	protected MetaModelManager createMetaModelManager() {
-		return new MetaModelManager();
+	protected MetamodelManager createMetamodelManager() {
+		return new MetamodelManager();
 	}
 
 	protected ResourceSet createResourceSet() {
@@ -139,10 +139,10 @@ public class LoadTests extends XtextTestCase
 		URI inputURI = getProjectFileURI(inputName);
 		URI outputURI = getProjectFileURI(outputName);
 		URI output2URI = getProjectFileURI(output2Name);
-		if (metaModelManager == null) {
-			metaModelManager = new MetaModelManager();
+		if (metamodelManager == null) {
+			metamodelManager = new MetamodelManager();
 		}
-		MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
+		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
 		Resource xtextResource = null;
 		try {
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
@@ -169,7 +169,7 @@ public class LoadTests extends XtextTestCase
 				CS2ASResourceAdapter adapter = ((BaseCSResource)xtextResource).getCS2ASAdapter(null);
 				adapter.dispose();
 			}
-			metaModelManager.dispose();
+			metamodelManager.dispose();
 		}
 		Resource xmiResource = resourceSet.createResource(outputURI);
 		xmiResource.getContents().addAll(xtextResource.getContents());
@@ -191,10 +191,10 @@ public class LoadTests extends XtextTestCase
 		String output2Name = stem + ".saved." + extension;
 		URI outputURI = getProjectFileURI(outputName);
 		URI output2URI = getProjectFileURI(output2Name);
-		if (metaModelManager == null) {
-			metaModelManager = new MetaModelManager();
+		if (metamodelManager == null) {
+			metamodelManager = new MetamodelManager();
 		}
-		MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
+		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
 		
 		Resource xtextResource = null;
 		try {
@@ -218,8 +218,8 @@ public class LoadTests extends XtextTestCase
 				CS2ASResourceAdapter adapter = ((BaseCSResource)xtextResource).getCS2ASAdapter(null);
 				adapter.dispose();
 			}
-			metaModelManager.dispose();
-			metaModelManager = null;
+			metamodelManager.dispose();
+			metamodelManager = null;
 		}
 		Resource xmiResource = resourceSet.createResource(outputURI);
 		xmiResource.getContents().addAll(xtextResource.getContents());
@@ -239,10 +239,10 @@ public class LoadTests extends XtextTestCase
 		String output2Name = stem + ".saved." + extension;
 //		URI outputURI = getProjectFileURI(outputName);
 		URI output2URI = getProjectFileURI(output2Name);
-		if (metaModelManager == null) {
-			metaModelManager = new MetaModelManager();
+		if (metamodelManager == null) {
+			metamodelManager = new MetamodelManager();
 		}
-		MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
+		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
 		Resource ecoreResource = null;
 		try {
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
@@ -263,7 +263,7 @@ public class LoadTests extends XtextTestCase
 			ecoreResource.setURI(inputURI);
 		}
 		finally {
-			metaModelManager.dispose();
+			metamodelManager.dispose();
 		}		
 //		Resource xmiResource = resourceSet.createResource(outputURI);
 //		xmiResource.getContents().addAll(xtextResource.getContents());
@@ -294,9 +294,9 @@ public class LoadTests extends XtextTestCase
 			return ignoreNonExistence;
 		}
 
-		public void postLoad(@NonNull MetaModelManager metaModelManager, @NonNull ASResource asResource) {}
+		public void postLoad(@NonNull MetamodelManager metamodelManager, @NonNull ASResource asResource) {}
 
-		public void validateCompleteOCL(@NonNull MetaModelManager metaModelManager, @NonNull BaseCSResource reloadCS) throws IOException {
+		public void validateCompleteOCL(@NonNull MetamodelManager metamodelManager, @NonNull BaseCSResource reloadCS) throws IOException {
 			if (validateCompleteOCL) {
 				reloadCS.load(null);
 				assertNoResourceErrors("Load failed", reloadCS);
@@ -315,8 +315,8 @@ public class LoadTests extends XtextTestCase
 
 	public static interface ILoadCallBack {
 		boolean ignoreNonExistence();
-		void postLoad(@NonNull MetaModelManager metaModelManager, @NonNull ASResource asResource);
-		void validateCompleteOCL(@NonNull MetaModelManager metaModelManager, @NonNull BaseCSResource reloadCS) throws IOException;
+		void postLoad(@NonNull MetamodelManager metamodelManager, @NonNull ASResource asResource);
+		void validateCompleteOCL(@NonNull MetamodelManager metamodelManager, @NonNull BaseCSResource reloadCS) throws IOException;
 		void validateEmbeddedOCL(@NonNull OCL ocl, @NonNull Constraint eObject) throws ParserException;
 	}
 	
@@ -342,10 +342,10 @@ public class LoadTests extends XtextTestCase
 //		URI outputURI = getProjectFileURI(outputName);
 		URI output2URI = getProjectFileURI(output2Name);
 		URI oclURI = getProjectFileURI(oclName);
-		if (metaModelManager == null) {
-			metaModelManager = new MetaModelManager();
+		if (metamodelManager == null) {
+			metamodelManager = new MetamodelManager();
 		}
-		MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
+		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
 		Resource umlResource = null;
 		try {
 //			System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
@@ -364,7 +364,7 @@ public class LoadTests extends XtextTestCase
 //			System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
 			assertNoResourceErrors("Save failed", umlResource);
 			umlResource.setURI(inputURI);
-			UML2AS adapter = UML2AS.getAdapter(umlResource, metaModelManager);
+			UML2AS adapter = UML2AS.getAdapter(umlResource, metamodelManager);
 			UML2AS.Outer rootAdapter = adapter.getRoot();
 			Model pivotModel = rootAdapter.getPivotModel();
 			List<Resource> allResources = new ArrayList<Resource>();
@@ -372,13 +372,13 @@ public class LoadTests extends XtextTestCase
 			List<Resource> importedResources = rootAdapter.getImportedResources();
 			if (importedResources != null) {
 				for (Resource uResource : importedResources) {
-					UML2AS anAdapter = UML2AS.getAdapter(uResource, metaModelManager);
+					UML2AS anAdapter = UML2AS.getAdapter(uResource, metamodelManager);
 					Model asModel = anAdapter.getPivotModel();
 					Resource asResource = asModel.eResource();
 					allResources.add(asResource);
 				}
 			}
-			OCL ocl = OCL.newInstance(new PivotEnvironmentFactory(null, metaModelManager));
+			OCL ocl = OCL.newInstance(new PivotEnvironmentFactory(null, metamodelManager));
 			int exceptions = 0;
 //			int parses = 0;
 			StringBuilder s = new StringBuilder();
@@ -418,33 +418,33 @@ public class LoadTests extends XtextTestCase
 				assertNoValidationErrors("Overall validation", asResource);
 			}
 			assertEquals(s.toString(), 0, exceptions);
-			loadCallBacks.postLoad(metaModelManager, asResource);
+			loadCallBacks.postLoad(metamodelManager, asResource);
 			//
 			//	Split off any embedded OCL to a separate file
 			//		
-			ASResource oclResource = CompleteOCLSplitter.separate(metaModelManager, allResources.get(0));
+			ASResource oclResource = CompleteOCLSplitter.separate(metamodelManager, allResources.get(0));
 			if (oclResource != null) {
 				URI xtextURI = oclURI;// != null ? URI.createPlatformResourceURI(oclURI, true) : uri.trimFileExtension().appendFileExtension("ocl");
 				ResourceSetImpl csResourceSet = new ResourceSetImpl();
-				MetaModelManagerResourceSetAdapter.getAdapter(csResourceSet, metaModelManager);
+				MetamodelManagerResourceSetAdapter.getAdapter(csResourceSet, metamodelManager);
 				BaseCSResource xtextResource = (BaseCSResource) csResourceSet.createResource(xtextURI, OCLinEcoreCSPackage.eCONTENT_TYPE);
 				if (xtextResource != null) {
-					xtextResource.updateFrom(oclResource, metaModelManager);
+					xtextResource.updateFrom(oclResource, metamodelManager);
 					xtextResource.save(null);
 				}
 				//
 				//	Check that the split off file is loadable
 				//		
-				MetaModelManager metaModelManager2 = createMetaModelManager();
-				ResourceSet resourceSet2 = metaModelManager2.getExternalResourceSet();
+				MetamodelManager metamodelManager2 = createMetamodelManager();
+				ResourceSet resourceSet2 = metamodelManager2.getExternalResourceSet();
 				BaseCSResource reloadCS = (BaseCSResource) resourceSet2.createResource(oclURI);
-				MetaModelManagerResourceAdapter.getAdapter(reloadCS, metaModelManager2);
-				loadCallBacks.validateCompleteOCL(metaModelManager2, reloadCS);
-				metaModelManager2.dispose();
+				MetamodelManagerResourceAdapter.getAdapter(reloadCS, metamodelManager2);
+				loadCallBacks.validateCompleteOCL(metamodelManager2, reloadCS);
+				metamodelManager2.dispose();
 			}
 		}
 		finally {
-			metaModelManager.dispose();
+			metamodelManager.dispose();
 			unloadResourceSet(resourceSet);
 		}		
 //		Resource xmiResource = resourceSet.createResource(outputURI);
@@ -506,7 +506,7 @@ public class LoadTests extends XtextTestCase
 		URI savedURI = getProjectFileURI(savedName);
 		xtextResource = (BaseCSResource) resourceSet.createResource(inputURI);
 		JavaClassScope.getAdapter(xtextResource,  getClass().getClassLoader());
-		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
+		MetamodelManagerResourceAdapter.getAdapter(xtextResource, metamodelManager);
 		xtextResource.load(null);
 		assertNoResourceErrors("Load failed", xtextResource);
 		Resource asResource = xtextResource.getASResource(null);
@@ -534,10 +534,10 @@ public class LoadTests extends XtextTestCase
 		URI inputURI = getProjectFileURI(inputName);
 //		URI outputURI = getProjectFileURI(outputName);
 //		URI output2URI = getProjectFileURI(output2Name);
-		if (metaModelManager == null) {
-			metaModelManager = new MetaModelManager();
+		if (metamodelManager == null) {
+			metamodelManager = new MetamodelManager();
 		}
-		MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
+		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
 		Resource asResource = null;
 		try {
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
@@ -561,7 +561,7 @@ public class LoadTests extends XtextTestCase
 //				CS2ASResourceAdapter adapter = CS2ASResourceAdapter.getAdapter((BaseCSResource)xtextResource, null);
 //				adapter.dispose();
 //			}
-//			unloadPivot(metaModelManager);
+//			unloadPivot(metamodelManager);
 		}
 		return asResource;
 	}
@@ -591,21 +591,21 @@ public class LoadTests extends XtextTestCase
 			CS2ASResourceAdapter cs2asAdapter = xtextResource.findCS2ASAdapter();
 			if (cs2asAdapter != null) {
 				cs2asAdapter.dispose();
-				cs2asAdapter.getMetaModelManager().dispose();
+				cs2asAdapter.getMetamodelManager().dispose();
 				cs2asAdapter = null;
 			}
 			xtextResource = null;
 		}
-		MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.findAdapter(resourceSet);
+		MetamodelManagerResourceSetAdapter adapter = MetamodelManagerResourceSetAdapter.findAdapter(resourceSet);
 		if (adapter != null) {
-			MetaModelManager metaModelManager = adapter.getMetaModelManager();
-			if (metaModelManager != null) {
-				metaModelManager.dispose();
+			MetamodelManager metamodelManager = adapter.getMetamodelManager();
+			if (metamodelManager != null) {
+				metamodelManager.dispose();
 			}
 		}
-		if (metaModelManager != null) {
-			metaModelManager.dispose();
-			metaModelManager = null;
+		if (metamodelManager != null) {
+			metamodelManager.dispose();
+			metamodelManager = null;
 		}
 		super.tearDown();
 	}
@@ -627,14 +627,14 @@ public class LoadTests extends XtextTestCase
 	}	
 
 	public void testLoad_Expression_oclinecore() throws IOException, InterruptedException {
-		metaModelManager = new MetaModelManager();
-//		metaModelManager.loadLibrary(OCLstdlib.INSTANCE);
+		metamodelManager = new MetamodelManager();
+//		metamodelManager.loadLibrary(OCLstdlib.INSTANCE);
 		Resource asResource = doLoad_Concrete("Expression", "oclinecore");
 		String ecoreName = "Expression" + ".saved.ecore";
 		URI ecoreURI = getProjectFileURI(ecoreName);
 		Map<String,Object> options = new HashMap<String,Object>();
 		options.put(PivotConstantsInternal.PRIMITIVE_TYPES_URI_PREFIX, "primitives.ecore#//");
-		XMLResource ecoreResource = AS2Ecore.createResource(metaModelManager, asResource, ecoreURI, options);
+		XMLResource ecoreResource = AS2Ecore.createResource(metamodelManager, asResource, ecoreURI, options);
 		ecoreResource.save(null);
 	}	
 
@@ -706,7 +706,7 @@ public class LoadTests extends XtextTestCase
 				"	{\n" + 
 				"		property nestedPackages#completePackage : Set(CompletePackage) { composes };\n" + 
 				"	}\n" + 
-				"	/** MetaModelManager/PackageManager API */\n" + 
+				"	/** MetamodelManager/PackageManager API */\n" + 
 				"	class CompleteModel extends CompletePackageParent\n" + 
 				"	{\n" + 
 				"	}\n" + 
@@ -748,15 +748,15 @@ public class LoadTests extends XtextTestCase
 	}	
 
 	public void testLoad_oclstdlib_oclstdlib() throws IOException, InterruptedException {
-		metaModelManager = new MetaModelManager();
-//		StandardLibraryContribution.REGISTRY.put(MetaModelManager.DEFAULT_OCL_STDLIB_URI, StandardLibraryContribution.NULL);
+		metamodelManager = new MetamodelManager();
+//		StandardLibraryContribution.REGISTRY.put(MetamodelManager.DEFAULT_OCL_STDLIB_URI, StandardLibraryContribution.NULL);
 		Resource asResource = doLoad_Concrete("oclstdlib", "oclstdlib");
 //		checkMonikers(asResource);
 		String ecoreName = "oclstdlib" + ".saved.ecore";
 		URI ecoreURI = getProjectFileURI(ecoreName);
 		Map<String,Object> options = new HashMap<String,Object>();
 		options.put(PivotConstantsInternal.PRIMITIVE_TYPES_URI_PREFIX, "primitives.ecore#//");
-		XMLResource ecoreResource = AS2Ecore.createResource(metaModelManager, asResource, ecoreURI, options);
+		XMLResource ecoreResource = AS2Ecore.createResource(metamodelManager, asResource, ecoreURI, options);
 		ecoreResource.save(null);
 	}
 
@@ -934,7 +934,7 @@ public class LoadTests extends XtextTestCase
 			fail("Took " + 0.001*(end - start) + " seconds");
 		}
 		CS2ASResourceAdapter resourceAdapter = ((BaseCSResource)csResource).getCS2ASAdapter(null);
-		resourceAdapter.getMetaModelManager().dispose();
+		resourceAdapter.getMetamodelManager().dispose();
 	}
 
 	public void testLoad_Bug450950_ocl() throws IOException, InterruptedException {
@@ -968,7 +968,7 @@ public class LoadTests extends XtextTestCase
 	
 	public void testLoad_Bug441620_completeocl() throws IOException {
 		BaseCSResource csResource = (BaseCSResource) doLoad_Pivot("Bug441620", "ocl");
-		Resource oclResource = csResource.getASResource(metaModelManager);
+		Resource oclResource = csResource.getASResource(metamodelManager);
 		Model root = (Model) oclResource.getContents().get(0);
 		org.eclipse.ocl.pivot.Package oclDocPackage = root.getOwnedPackages().get(0);
 		assertEquals("pivot", oclDocPackage.getName());
@@ -982,12 +982,12 @@ public class LoadTests extends XtextTestCase
 		assertEquals("pivot", nSpace.getName());
 		assertEquals("http://www.eclipse.org/ocl/2015/Pivot", refPackage.getURI());
 		assertNotSame(oclDocPackage, nSpace);
-		assertEquals(metaModelManager.getPrimaryPackage(oclDocPackage), metaModelManager.getPrimaryPackage(refPackage));
+		assertEquals(metamodelManager.getPrimaryPackage(oclDocPackage), metamodelManager.getPrimaryPackage(refPackage));
 	}
 	
 	public void testLoad_Bug441620b_completeocl() throws IOException {
 		BaseCSResource csResource = (BaseCSResource) doLoad_Pivot("Bug441620b", "ocl");
-		Resource oclResource = csResource.getASResource(metaModelManager);
+		Resource oclResource = csResource.getASResource(metamodelManager);
 		Model root = (Model) oclResource.getContents().get(0);
 		org.eclipse.ocl.pivot.Package oclDocPackage = root.getOwnedPackages().get(0);
 		assertEquals("ocl", oclDocPackage.getName());
@@ -1001,7 +1001,7 @@ public class LoadTests extends XtextTestCase
 		assertEquals("pivot", nSpace.getName());
 		assertEquals("http://www.eclipse.org/ocl/2015/Pivot", ((org.eclipse.ocl.pivot.Package)nSpace).getURI());
 		assertNotSame(oclDocPackage, nSpace);
-		assertEquals(metaModelManager.getPrimaryPackage(oclDocPackage), metaModelManager.getPrimaryPackage(refPackage));
+		assertEquals(metamodelManager.getPrimaryPackage(oclDocPackage), metamodelManager.getPrimaryPackage(refPackage));
 	}
 	
 	private void checkMultiplicity(TypedElement typedElement, int lower, int upper) {
@@ -1019,8 +1019,8 @@ public class LoadTests extends XtextTestCase
 	}
 
 	public void testLoad_Fruit_ocl() throws IOException, InterruptedException {
-		metaModelManager = new MetaModelManager();
-		ResourceSet resourceSet = metaModelManager.getExternalResourceSet();
+		metamodelManager = new MetamodelManager();
+		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
 		assertNull(OCL.initialize(resourceSet));
 		UMLPackage.eINSTANCE.getClass();
 		doLoad("Fruit", "ocl");
@@ -1065,11 +1065,11 @@ public class LoadTests extends XtextTestCase
 		URI uri = getProjectFileURI("StereotypeApplications.uml");
 		doLoadUML(uri, new AbstractLoadCallBack(false, false, false) {
 			@Override
-			public void postLoad(@NonNull MetaModelManager metaModelManager, @NonNull ASResource asResource) {
+			public void postLoad(@NonNull MetamodelManager metamodelManager, @NonNull ASResource asResource) {
 		        for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {
 		            EObject obj = tit.next();
 		            if (obj instanceof Type) {
-		                metaModelManager.getAllInvariants((Type) obj);		// This gives the Bug 422938 CCE
+		                metamodelManager.getAllInvariants((Type) obj);		// This gives the Bug 422938 CCE
 		            }
 		        }
 			}
@@ -1078,28 +1078,28 @@ public class LoadTests extends XtextTestCase
 	}
 
 	public void testReload_AsReload() throws Exception {
-		MetaModelManager metaModelManager1 = new MetaModelManager();
+		MetamodelManager metamodelManager1 = new MetamodelManager();
 		String oclinecoreFileA =
 				"package PackageA : nsPrefixA = 'http://A3'{\n" +
 				"    class ClassA {\n" +
 				"    	invariant InvA: self.toString() = 'ClassA';\n" +
 				"    }\n" +
 				"}\n";
-		String ecoreFileA = createEcoreString(metaModelManager1, "Bug382230A", oclinecoreFileA, false);
+		String ecoreFileA = createEcoreString(metamodelManager1, "Bug382230A", oclinecoreFileA, false);
 		String oclinecoreFileB =
 				"package PackageB : nsPrefixB = 'http://A3'{\n" +
 				"    datatype ClassB {\n" +
 				"    	invariant InvB: self.toString() = 'ClassB';\n" +
 				"    }\n" +
 				"}\n";
-		String ecoreFileB = createEcoreString(metaModelManager1, "Bug382230B", oclinecoreFileB, false);
+		String ecoreFileB = createEcoreString(metamodelManager1, "Bug382230B", oclinecoreFileB, false);
 		String ecoreFileName = "Bug382230.ecore";
-		metaModelManager1.dispose();
-		MetaModelManager metaModelManager2 = new MetaModelManager();
+		metamodelManager1.dispose();
+		MetamodelManager metamodelManager2 = new MetamodelManager();
 		URI ecoreURI = URI.createURI(ecoreFileName);
-		XMLResource ecoreResource = (XMLResource) metaModelManager2.getExternalResourceSet().createResource(ecoreURI, null);
+		XMLResource ecoreResource = (XMLResource) metamodelManager2.getExternalResourceSet().createResource(ecoreURI, null);
 		ecoreResource.load(new URIConverter.ReadableInputStream(ecoreFileA), null);
-		Ecore2AS conversion = Ecore2AS.getAdapter(ecoreResource, metaModelManager2);
+		Ecore2AS conversion = Ecore2AS.getAdapter(ecoreResource, metamodelManager2);
 		Resource asResource = conversion.getPivotModel().eResource();
 		assertEquals(1, asResource.getContents().size());
 		Model pivotModel1 = (Model) asResource.getContents().get(0);
@@ -1129,8 +1129,8 @@ public class LoadTests extends XtextTestCase
 		assertEquals("DataType", pivotType2.eClass().getName());
 //		
 		List<org.eclipse.ocl.pivot.Package> allPackages = new ArrayList<org.eclipse.ocl.pivot.Package>();
-//		for (org.eclipse.ocl.pivot.Package aPackage : metaModelManager2.getAllPackages()) {
-		for (CompletePackage completePackage : metaModelManager2.getStandardLibrary().getAllCompletePackages()) {
+//		for (org.eclipse.ocl.pivot.Package aPackage : metamodelManager2.getAllPackages()) {
+		for (CompletePackage completePackage : metamodelManager2.getStandardLibrary().getAllCompletePackages()) {
 			org.eclipse.ocl.pivot.Package aPackage = completePackage.getPivotPackage();
 			if (aPackage instanceof Model) {}
 			else if (aPackage instanceof Library) {}
@@ -1140,11 +1140,11 @@ public class LoadTests extends XtextTestCase
 			}
 		}
 		assertEquals(1, allPackages.size());
-		metaModelManager2.dispose();
+		metamodelManager2.dispose();
 	}
 
 	public void testReload_AsUpdate() throws Exception {
-		MetaModelManager metaModelManager1 = new MetaModelManager();
+		MetamodelManager metamodelManager1 = new MetamodelManager();
 		String oclinecoreFileXXX =
 				"package PackageXXX : nsPrefixXXX = 'http://XXX'{\n" +
 				"    class MutableXXX {\n" +
@@ -1155,17 +1155,17 @@ public class LoadTests extends XtextTestCase
 				"    	property toXXX#fromXXX: ClassXXX;\n" +
 				"    }\n" +
 				"}\n";
-		String ecoreFileXXX = createEcoreString(metaModelManager1, "Bug382230", oclinecoreFileXXX, true);
+		String ecoreFileXXX = createEcoreString(metamodelManager1, "Bug382230", oclinecoreFileXXX, true);
 		String ecoreFileYYY = ecoreFileXXX
 				.replaceFirst("xsi:type=\"ecore:EClass\"", "xsi:type=\"ecore:EDataType\"")
 				.replaceAll("XXX", "YYY");
 		String ecoreFileName = "Bug382230.ecore";
-		metaModelManager1.dispose();
-		MetaModelManager metaModelManager2 = new MetaModelManager();
+		metamodelManager1.dispose();
+		MetamodelManager metamodelManager2 = new MetamodelManager();
 		URI ecoreURI = URI.createURI(ecoreFileName);
-		XMLResource ecoreResource = (XMLResource) metaModelManager2.getExternalResourceSet().createResource(ecoreURI, null);
+		XMLResource ecoreResource = (XMLResource) metamodelManager2.getExternalResourceSet().createResource(ecoreURI, null);
 		ecoreResource.load(new URIConverter.ReadableInputStream(ecoreFileXXX), null);
-		Ecore2AS conversion = Ecore2AS.getAdapter(ecoreResource, metaModelManager2);
+		Ecore2AS conversion = Ecore2AS.getAdapter(ecoreResource, metamodelManager2);
 		Resource asResource = conversion.getPivotModel().eResource();
 		assertEquals(1, asResource.getContents().size());
 		Model pivotModelXXX = (Model) asResource.getContents().get(0);
@@ -1216,8 +1216,8 @@ public class LoadTests extends XtextTestCase
 		
 //		
 		List<org.eclipse.ocl.pivot.Package> allPackages = new ArrayList<org.eclipse.ocl.pivot.Package>();
-//		for (org.eclipse.ocl.pivot.Package aPackage : metaModelManager2.getAllPackages()) {
-		for (CompletePackage completePackage : metaModelManager2.getStandardLibrary().getAllCompletePackages()) {
+//		for (org.eclipse.ocl.pivot.Package aPackage : metamodelManager2.getAllPackages()) {
+		for (CompletePackage completePackage : metamodelManager2.getStandardLibrary().getAllCompletePackages()) {
 			org.eclipse.ocl.pivot.Package aPackage = completePackage.getPivotPackage();
 			if (aPackage instanceof Model) {}
 			else if (aPackage instanceof Library) {}
@@ -1227,25 +1227,25 @@ public class LoadTests extends XtextTestCase
 			}
 		}
 		assertEquals(1, allPackages.size());
-		metaModelManager2.dispose();
+		metamodelManager2.dispose();
 	}
 
 	public void testReload_As418412() throws Exception {
-		MetaModelManager metaModelManager1 = new MetaModelManager();
+		MetamodelManager metamodelManager1 = new MetamodelManager();
 		String oclinecoreFileXXX =
 				"package PackageXXX : nsPrefixXXX = 'http://XXX'{\n" +
 				"    class ClassXXX {\n" +
 				"    	property children: ClassXXX[*];\n" +
 				"    }\n" +
 				"}\n";
-		String ecoreFileXXX = createEcoreString(metaModelManager1, "Bug418412", oclinecoreFileXXX, true);
+		String ecoreFileXXX = createEcoreString(metamodelManager1, "Bug418412", oclinecoreFileXXX, true);
 		String ecoreFileName = "Bug418412.ecore";
-		metaModelManager1.dispose();
-		MetaModelManager metaModelManager2 = new MetaModelManager();
+		metamodelManager1.dispose();
+		MetamodelManager metamodelManager2 = new MetamodelManager();
 		URI ecoreURI = URI.createURI(ecoreFileName);
-		XMLResource ecoreResource = (XMLResource) metaModelManager2.getExternalResourceSet().createResource(ecoreURI, null);
+		XMLResource ecoreResource = (XMLResource) metamodelManager2.getExternalResourceSet().createResource(ecoreURI, null);
 		ecoreResource.load(new URIConverter.ReadableInputStream(ecoreFileXXX), null);
-		Ecore2AS conversion = Ecore2AS.getAdapter(ecoreResource, metaModelManager2);
+		Ecore2AS conversion = Ecore2AS.getAdapter(ecoreResource, metamodelManager2);
 		ASResource asResource = (ASResource) conversion.getPivotModel().eResource();
 		//
 		//	Save the *.oclas and cache that the xmi:ids
@@ -1280,7 +1280,7 @@ public class LoadTests extends XtextTestCase
 //			System.out.println(id + " ==> " + eObject);
 			assertEquals(eObject2id.get(eObject), id);
 		}
-		metaModelManager2.dispose();
+		metamodelManager2.dispose();
 		//
 		//	Load the *.oclas in a relatively standard EMF ResourceSet and check that the xmi:ids are consistent
 		//

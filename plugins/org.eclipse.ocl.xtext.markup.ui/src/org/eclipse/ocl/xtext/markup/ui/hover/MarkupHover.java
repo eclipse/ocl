@@ -62,7 +62,7 @@ public class MarkupHover extends AbstractEObjectHover
 	@Override
 	protected Pair<EObject, IRegion> getXtextElementAt(XtextResource resource, int offset) {
 		//
-		// Overrides to return the CS node so that the MetaModelManager is accessible for documentation.
+		// Overrides to return the CS node so that the MetamodelManager is accessible for documentation.
 		//
 		TextRegion textRegion = new TextRegion(offset, 0);
 		IParseResult parseResult = resource.getParseResult();

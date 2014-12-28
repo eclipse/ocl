@@ -19,14 +19,14 @@ import org.eclipse.ocl.examples.codegen.analyzer.AnalysisVisitor;
 import org.eclipse.ocl.examples.codegen.analyzer.NameManager;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.internal.manager.FinalAnalysis;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 
 public abstract class AbstractCodeGenerator implements CodeGenerator
 {
 	public static final @NonNull String ORG_ECLIPSE_JDT_ANNOTATION_NON_NULL = "org.eclipse.jdt.annotation.NonNull";
 	public static final @NonNull String ORG_ECLIPSE_JDT_ANNOTATION_NULLABLE = "org.eclipse.jdt.annotation.Nullable";
 
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull MetamodelManager metamodelManager;
 	protected final @NonNull NameManager nameManager;
 	protected final @NonNull GenModelHelper genModelHelper;
 	private /*@LazyNonNull*/ CodeGenOptions options = null;
@@ -34,15 +34,15 @@ public abstract class AbstractCodeGenerator implements CodeGenerator
 	private /*@LazyNonNull*/ List<Exception> problems = null;
 	private @NonNull String defaultIndent = "    ";
 
-	protected AbstractCodeGenerator(@NonNull MetaModelManager metaModelManager) {
-		this.metaModelManager = metaModelManager;
+	protected AbstractCodeGenerator(@NonNull MetamodelManager metamodelManager) {
+		this.metamodelManager = metamodelManager;
 		this.nameManager = createNameManager();
 		this.genModelHelper = createGenModelHelper();
 	}
 
-	protected AbstractCodeGenerator(@NonNull MetaModelManager metaModelManager, @NonNull NameManager nameManager,
+	protected AbstractCodeGenerator(@NonNull MetamodelManager metamodelManager, @NonNull NameManager nameManager,
 			@NonNull GenModelHelper genModelHelper) {
-		this.metaModelManager = metaModelManager;
+		this.metamodelManager = metamodelManager;
 		this.nameManager = nameManager;
 		this.genModelHelper = genModelHelper;
 	}
@@ -80,8 +80,8 @@ public abstract class AbstractCodeGenerator implements CodeGenerator
 	}
 
 	@Override
-	public @NonNull MetaModelManager getMetaModelManager() {
-		return metaModelManager;
+	public @NonNull MetamodelManager getMetamodelManager() {
+		return metamodelManager;
 	}
 
 	@Override
@@ -100,20 +100,20 @@ public abstract class AbstractCodeGenerator implements CodeGenerator
 
 	@Override
 	public @Nullable Operation isFinal(@NonNull Operation anOperation, @NonNull org.eclipse.ocl.pivot.Class staticType) {
-		FinalAnalysis finalAnalysis = metaModelManager.getFinalAnalysis();
-		return finalAnalysis.isFinal(anOperation, metaModelManager.getCompleteClass(staticType));
+		FinalAnalysis finalAnalysis = metamodelManager.getFinalAnalysis();
+		return finalAnalysis.isFinal(anOperation, metamodelManager.getCompleteClass(staticType));
 	}
 
 	/**
 	 * Return true if anOperation has an overload for invalid values.
 	 *
 	public boolean mayEvaluateForInvalid(@NonNull Operation anOperation) {
-		Type targetType = metaModelManager.getOclInvalidType();
+		Type targetType = metamodelManager.getOclInvalidType();
 		String name = anOperation.getName();
 		if (name == null) {
 			return false;
 		}
-		DomainInheritance inheritance = targetType.getInheritance(metaModelManager);
+		DomainInheritance inheritance = targetType.getInheritance(metamodelManager);
 		DomainInheritance[] arguments;
 		List<Parameter> parameters = anOperation.getOwnedParameter();
 		int iSize = parameters.size();
@@ -128,13 +128,13 @@ public abstract class AbstractCodeGenerator implements CodeGenerator
 				if (type.getOwningTemplateParameter() != null) {
 					return false;					// FIX ME invalid not supported for templated operations
 				}
-				arguments[i] = type.getInheritance(metaModelManager);
+				arguments[i] = type.getInheritance(metamodelManager);
 			}
 		}
 		else {
 			arguments = DomainInheritance.EMPTY_ARRAY;
 		}
-		DomainOperation localOperation = inheritance.lookupLocalOperation(metaModelManager, name, arguments);
+		DomainOperation localOperation = inheritance.lookupLocalOperation(metamodelManager, name, arguments);
 		return localOperation != null;
 	} */
 	

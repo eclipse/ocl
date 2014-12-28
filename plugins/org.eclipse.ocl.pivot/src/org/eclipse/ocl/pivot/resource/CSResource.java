@@ -8,29 +8,28 @@
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.pivot.internal.utilities;
+package org.eclipse.ocl.pivot.resource;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.internal.context.ParserContext;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 
 /**
- * BaseResource defines the Xtext-independent extended interface for a Concrete Syntax resource
+ * CSResource defines the Xtext-independent extended interface for a Concrete Syntax resource
  * for which a ParserContext defines how the Abstract Syntax elements should
  * be initialized.
  */
-public interface BaseResource extends Resource
+public interface CSResource extends Resource
 {
 	/**
-	 * Return the Abstract Syntax representation of thjis Concrete Syntax resource
-	 * under the supervision of metaModelManager.
+	 * Return the Abstract Syntax representation of this Concrete Syntax resource
+	 * under the supervision of metamodelManager.
 	 */
-	@NonNull ASResource getASResource(@Nullable MetaModelManager metaModelManager);
+	@NonNull ASResource getASResource(@Nullable MetamodelManager metamodelManager);
 	
 	@Nullable ParserContext getParserContext();
 	void setParserContext(@Nullable ParserContext parserContext);
-	void updateFrom(@NonNull ASResource asResource, @NonNull MetaModelManager metaModelManager);
+	void updateFrom(@NonNull ASResource asResource, @NonNull MetamodelManager metamodelManager);
 }

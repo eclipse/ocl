@@ -26,14 +26,14 @@ import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.OCL;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
 import org.eclipse.ocl.pivot.internal.uml.UML2AS;
-import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
-import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.IPackageDescriptor;
-import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.IProjectDescriptor;
+import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IPackageDescriptor;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IProjectDescriptor;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.basecs.ImportCS;
@@ -96,9 +96,9 @@ public class SerializeTests extends XtextTestCase
 		OCL ocl1 = OCL.newInstance();
 		XtextResource xtextResource1 = null;
 		try {
-			MetaModelManager metaModelManager1 = ocl1.getMetaModelManager();
+			MetamodelManager metamodelManager1 = ocl1.getMetamodelManager();
 			if (resourceSetInitializer != null) {
-				resourceSetInitializer.initializeResourceSet(metaModelManager1.getExternalResourceSet());
+				resourceSetInitializer.initializeResourceSet(metamodelManager1.getExternalResourceSet());
 			}
 			ASResource asResource = ocl1.ecore2as(ecoreResource);
 			assertNoResourceErrors("Normalisation failed", asResource);
@@ -115,12 +115,12 @@ public class SerializeTests extends XtextTestCase
 		}
 		OCL ocl2 = OCL.newInstance();
 		try {
-			MetaModelManager metaModelManager2 = ocl2.getMetaModelManager();
+			MetamodelManager metamodelManager2 = ocl2.getMetamodelManager();
 			if (resourceSetInitializer != null) {
-				resourceSetInitializer.initializeResourceSet(metaModelManager2.getExternalResourceSet());
+				resourceSetInitializer.initializeResourceSet(metamodelManager2.getExternalResourceSet());
 			}
 			BaseCSResource xtextResource2 = (BaseCSResource) resourceSet.createResource(outputURI);
-			MetaModelManagerResourceAdapter.getAdapter(xtextResource2, metaModelManager2);
+			MetamodelManagerResourceAdapter.getAdapter(xtextResource2, metamodelManager2);
 			xtextResource2.load(null);
 			Object cs2asErrors = options != null ? options.get("cs2asErrors") : null;
 			if (cs2asErrors != null) {
@@ -174,9 +174,9 @@ public class SerializeTests extends XtextTestCase
 		OCL ocl1 = OCL.newInstance(EPackage.Registry.INSTANCE);
 		XtextResource xtextResource = null;
 		try {
-			MetaModelManager metaModelManager1 = ocl1.getMetaModelManager();
+			MetamodelManager metamodelManager1 = ocl1.getMetamodelManager();
 			@SuppressWarnings("unused")
-			Resource asResource = getPivotFromUML(metaModelManager1, umlResource);
+			Resource asResource = getPivotFromUML(metamodelManager1, umlResource);
 			//
 			//	Pivot to CS
 			/*		
@@ -211,17 +211,17 @@ public class SerializeTests extends XtextTestCase
 		//
 		//
 		assertSameModel(asResource, pivotResource2);
-		UML2Ecore2AS uml2ecore2as = UML2Ecore2Pivot.getAdapter(umlResource, metaModelManager);	// FIXME Use UML2AS
+		UML2Ecore2AS uml2ecore2as = UML2Ecore2Pivot.getAdapter(umlResource, metamodelManager);	// FIXME Use UML2AS
 		Resource ecoreResource = uml2ecore2as.getEcoreResource();
 		assertSameModel(ecoreResource, ecoreResource2);		*/
 		return xtextResource;
 	}
 
 	@SuppressWarnings("null")
-	protected Resource getPivotFromUML(MetaModelManager metaModelManager, Resource umlResource) throws ParserException {
-//		String problem = UML2AS.initialize(metaModelManager.getExternalResourceSet());
+	protected Resource getPivotFromUML(MetamodelManager metamodelManager, Resource umlResource) throws ParserException {
+//		String problem = UML2AS.initialize(metamodelManager.getExternalResourceSet());
 //		assertNull(problem);
-		UML2AS uml2as = UML2AS.getAdapter(umlResource, metaModelManager);
+		UML2AS uml2as = UML2AS.getAdapter(umlResource, metamodelManager);
 		Model pivotModel = uml2as.getPivotModel();
 		Resource asResource = pivotModel.eResource();
 		assertNoResourceErrors("Normalisation failed", asResource);
@@ -231,7 +231,7 @@ public class SerializeTests extends XtextTestCase
 
 	@SuppressWarnings("null")
 	protected Resource loadUML(URI inputURI) {
-//		ResourceSet resourceSet = metaModelManager.getExternalResourceSet();
+//		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
 		assertNull(OCL.initialize(resourceSet));
 		Resource umlResource = resourceSet.getResource(inputURI, true);
 		mapOwnURI(umlResource);

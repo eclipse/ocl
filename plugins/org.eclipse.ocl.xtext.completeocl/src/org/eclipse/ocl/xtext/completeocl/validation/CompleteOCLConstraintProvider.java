@@ -20,9 +20,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.validation.model.Category;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.utilities.BaseResource;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.validation.LoadableConstraintProvider;
+import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 /**
@@ -88,11 +88,11 @@ public class CompleteOCLConstraintProvider extends LoadableConstraintProvider
 	}
 
 	@Override
-	protected boolean load(@NonNull MetaModelManager metaModelManager,@NonNull URI uri, @NonNull Set<Category> categories) {
-		ResourceSet resourceSet = metaModelManager.getExternalResourceSet();
-		BaseResource xtextResource = null;
+	protected boolean load(@NonNull MetamodelManager metamodelManager,@NonNull URI uri, @NonNull Set<Category> categories) {
+		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
+		CSResource xtextResource = null;
 		try {
-			xtextResource = (BaseResource) resourceSet.getResource(uri, true);
+			xtextResource = (CSResource) resourceSet.getResource(uri, true);
 		}
 		catch (WrappedException e) {
 			logger.error("Failed to load '" + uri, e);
@@ -105,7 +105,7 @@ public class CompleteOCLConstraintProvider extends LoadableConstraintProvider
 			logger.error("Failed to load '" + uri + message);
 			return false;
 		}
-		Resource asResource = xtextResource.getASResource(metaModelManager);
+		Resource asResource = xtextResource.getASResource(metamodelManager);
 		return installResource(asResource, categories);
 	}
 }

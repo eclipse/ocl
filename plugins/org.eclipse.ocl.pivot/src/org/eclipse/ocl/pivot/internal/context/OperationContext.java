@@ -15,7 +15,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Operation;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
@@ -26,8 +26,8 @@ public class OperationContext extends ClassContext
 	private final @NonNull Operation operationContext;
 	private final @Nullable String resultVariableName;		// Null for none
 	
-	public OperationContext(@NonNull MetaModelManager metaModelManager, @Nullable URI uri, @NonNull Operation operationContext, @Nullable String resultVariableName) {
-		super(metaModelManager, uri, ClassUtil.nonNullModel(operationContext.getOwningClass()), null);
+	public OperationContext(@NonNull MetamodelManager metamodelManager, @Nullable URI uri, @NonNull Operation operationContext, @Nullable String resultVariableName) {
+		super(metamodelManager, uri, ClassUtil.nonNullModel(operationContext.getOwningClass()), null);
 		this.operationContext = operationContext;
 		this.resultVariableName = resultVariableName;
 	}

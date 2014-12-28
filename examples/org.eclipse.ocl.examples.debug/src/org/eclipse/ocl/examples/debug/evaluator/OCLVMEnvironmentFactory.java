@@ -22,7 +22,7 @@ import org.eclipse.ocl.pivot.Environment;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
@@ -31,8 +31,8 @@ public class OCLVMEnvironmentFactory extends PivotEnvironmentFactory implements 
 	private IVMDebuggerShell shell;
 	private long envId = 0;
 	
-	public OCLVMEnvironmentFactory(EPackage.Registry reg, @NonNull MetaModelManager metaModelManager) {
-		super(reg, metaModelManager);
+	public OCLVMEnvironmentFactory(EPackage.Registry reg, @NonNull MetamodelManager metamodelManager) {
+		super(reg, metamodelManager);
 	}
 
 	@Override
@@ -70,8 +70,8 @@ public class OCLVMEnvironmentFactory extends PivotEnvironmentFactory implements 
 		return new OCLVMRootEvaluationVisitor(env, evalEnv, ClassUtil.nonNullState(shell));
 	}
 
-	public @NonNull OCLVMModelManager createModelManager(@NonNull MetaModelManager metaModelManager) {
-		return new OCLVMModelManager(metaModelManager);
+	public @NonNull OCLVMModelManager createModelManager(@NonNull MetamodelManager metamodelManager) {
+		return new OCLVMModelManager(metamodelManager);
 	}
 
 	public boolean keepDebug() {

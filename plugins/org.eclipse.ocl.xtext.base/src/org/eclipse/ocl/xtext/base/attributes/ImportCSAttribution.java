@@ -24,7 +24,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.internal.compatibility.EMF_2_9;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
@@ -85,8 +85,8 @@ public class ImportCSAttribution extends AbstractAttribution implements Unresolv
 			if (name == null) {
 				return;
 			}
-			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-			CompletePackage completePackage = metaModelManager.getCompleteModel().getCompletePackageByURI(name);
+			MetamodelManager metamodelManager = environmentView.getMetamodelManager();
+			CompletePackage completePackage = metamodelManager.getCompleteModel().getCompletePackageByURI(name);
 			if (completePackage != null) {
 				importedElement = completePackage.getPivotPackage();
 				throwable = null;
@@ -111,7 +111,7 @@ public class ImportCSAttribution extends AbstractAttribution implements Unresolv
 				return;
 			}
 			try {
-				importedElement = metaModelManager.loadResource(uri2, target.getName(), null);				
+				importedElement = metamodelManager.loadResource(uri2, target.getName(), null);				
 				Resource importedResource = importedElement.eResource();
 				if (importedResource != null) {
 					List<Resource.Diagnostic> warnings = importedResource.getWarnings();

@@ -44,16 +44,16 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerListener;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceAdapter;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerListener;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.resource.OCLASResourceFactory;
-import org.eclipse.ocl.pivot.internal.utilities.BaseResource;
-import org.eclipse.ocl.pivot.utilities.ProjectMap;
-import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
-import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.IProjectDescriptor;
-import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.MapToFirstConflictHandlerWithLog;
+import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.resource.CSResource;
+import org.eclipse.ocl.pivot.resource.ProjectMap;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IProjectDescriptor;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.MapToFirstConflictHandlerWithLog;
 import org.eclipse.ocl.xtext.base.ui.BaseUiModule;
 import org.eclipse.ocl.xtext.base.ui.BaseUiPluginHelper;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
@@ -69,7 +69,7 @@ import org.eclipse.xtext.validation.IConcreteSyntaxValidator.InvalidConcreteSynt
  * QVTimperativeDocumentProvider orchestrates the load and saving of optional XMI content
  * externally while maintaining the serialised human friendly form internally. 
  */
-public abstract class BaseDocumentProvider extends XtextDocumentProvider implements MetaModelManagerListener
+public abstract class BaseDocumentProvider extends XtextDocumentProvider implements MetamodelManagerListener
 {
 	private static final Logger log = Logger.getLogger(BaseDocumentProvider.class);
 	
@@ -91,7 +91,7 @@ public abstract class BaseDocumentProvider extends XtextDocumentProvider impleme
 
 	private Map<IDocument, URI> uriMap = new HashMap<IDocument, URI>();		// Helper for setDocumentContent
 	
-	private MetaModelManager metaModelManager = null;
+	private MetamodelManager metamodelManager = null;
 
 	public static InputStream createResettableInputStream(InputStream inputStream) throws IOException {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -172,12 +172,12 @@ public abstract class BaseDocumentProvider extends XtextDocumentProvider impleme
 	protected abstract @NonNull String getFileExtension();
 	
 	@SuppressWarnings("null")
-	protected @NonNull MetaModelManager getMetaModelManager() {
-		if (metaModelManager == null) {
-			metaModelManager = new MetaModelManager();
-			metaModelManager.addListener(this);
+	protected @NonNull MetamodelManager getMetamodelManager() {
+		if (metamodelManager == null) {
+			metamodelManager = new MetamodelManager();
+			metamodelManager.addListener(this);
 		}
-		return metaModelManager;
+		return metamodelManager;
 	}
 
 	@Override
@@ -267,14 +267,14 @@ public abstract class BaseDocumentProvider extends XtextDocumentProvider impleme
 	@Override
 	protected void loadResource(XtextResource resource, String document, String encoding) throws CoreException {
 		assert resource != null;
-		MetaModelManagerResourceAdapter.getAdapter(resource, getMetaModelManager());
+		MetamodelManagerResourceAdapter.getAdapter(resource, getMetamodelManager());
 		super.loadResource(resource, document, encoding);
 	}
 
 	@Override
-	public void metaModelManagerDisposed(@NonNull MetaModelManager metaModelManager) {
-		metaModelManager.removeListener(this);
-		this.metaModelManager = null;
+	public void metamodelManagerDisposed(@NonNull MetamodelManager metamodelManager) {
+		metamodelManager.removeListener(this);
+		this.metamodelManager = null;
 	}
 
 	@Override
@@ -294,7 +294,7 @@ public abstract class BaseDocumentProvider extends XtextDocumentProvider impleme
 			boolean isXML = isXML(inputStream);		
 			String persistAs = PERSIST_AS_TEXT;
 			if (isXML) {
-				ResourceSet resourceSet = getMetaModelManager().getExternalResourceSet();
+				ResourceSet resourceSet = getMetamodelManager().getExternalResourceSet();
 				StandaloneProjectMap projectMap = ProjectMap.getAdapter(resourceSet);
 				StandaloneProjectMap.IConflictHandler conflictHandler = MapToFirstConflictHandlerWithLog.INSTANCE; //null; 			// FIXME
 				projectMap.configure(resourceSet, StandaloneProjectMap.LoadFirstStrategy.INSTANCE, conflictHandler);
@@ -349,9 +349,9 @@ public abstract class BaseDocumentProvider extends XtextDocumentProvider impleme
 				ResourceSetImpl csResourceSet = (ResourceSetImpl)resourceSet;
 				csResourceSet.getPackageRegistry().put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
 				URI textURI = xmiResource.getURI().appendFileExtension(getFileExtension());
-				BaseResource csResource = (BaseResource) resourceSet.getResource(textURI, false);
+				CSResource csResource = (CSResource) resourceSet.getResource(textURI, false);
 				if (csResource == null) {
-					csResource = (BaseResource) resourceSet.createResource(textURI, getCScontentType());
+					csResource = (CSResource) resourceSet.createResource(textURI, getCScontentType());
 				    Map<URI, Resource> map = csResourceSet.getURIResourceMap();
 				    map.put(textURI, csResource);
 					csResource.setURI(xmiResource.getURI());
@@ -361,7 +361,7 @@ public abstract class BaseDocumentProvider extends XtextDocumentProvider impleme
 				//		Ecore XMI resource with *.ecore URI, possibly in URIResourceMap as *.ecore
 				//		QVTimperative CS resource with *.ecore URI, in URIResourceMap as *.ecore.oclinecore
 				//
-				csResource.updateFrom(asResource, getMetaModelManager());
+				csResource.updateFrom(asResource, getMetamodelManager());
 				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 				try {
 					csResource.save(outputStream, null);

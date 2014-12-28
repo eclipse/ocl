@@ -37,7 +37,7 @@ import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
@@ -48,12 +48,12 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
 public class AS2EcoreTypeRefVisitor
 	extends AbstractExtendingVisitor<EObject, AS2Ecore>
 {
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull MetamodelManager metamodelManager;
 	protected final @NonNull StandardLibraryInternal standardLibrary;
 	
 	public AS2EcoreTypeRefVisitor(@NonNull AS2Ecore context) {
 		super(context);
-		this.metaModelManager = context.getMetaModelManager();
+		this.metamodelManager = context.getMetamodelManager();
 		this.standardLibrary = context.getStandardLibrary();
 	}
 
@@ -72,7 +72,7 @@ public class AS2EcoreTypeRefVisitor
 	@Override
 	public EObject safeVisit(@Nullable Visitable v) {
 		if (v instanceof Type) {
-			v = metaModelManager.getPrimaryType((Type)v);
+			v = metamodelManager.getPrimaryType((Type)v);
 		}
 		return (v == null) ? null : v.accept(this);
 	}
@@ -105,8 +105,8 @@ public class AS2EcoreTypeRefVisitor
 			if (eClassifier != null) {
 				return eClassifier;
 			}
-			if (metaModelManager.isTypeServeable(pivotType)) {
-				for (org.eclipse.ocl.pivot.Class type : metaModelManager.getPartialClasses(pivotType)) {
+			if (metamodelManager.isTypeServeable(pivotType)) {
+				for (org.eclipse.ocl.pivot.Class type : metamodelManager.getPartialClasses(pivotType)) {
 					if (type instanceof PivotObjectImpl) {
 						EObject eTarget = ((PivotObjectImpl)type).getETarget();
 						if (eTarget != null) {
@@ -163,7 +163,7 @@ public class AS2EcoreTypeRefVisitor
 			context.putCreated(pivotType, eClassifier);
 			return eClassifier;
 		}
-		CompleteClass completeClass = metaModelManager.getCompleteClass(pivotType);
+		CompleteClass completeClass = metamodelManager.getCompleteClass(pivotType);
 		for (org.eclipse.ocl.pivot.Class aType : completeClass.getPartialClasses()) {
 			if (!(aType instanceof PrimitiveType)) {
 				eClassifier = context.getCreated(EDataType.class, pivotType);

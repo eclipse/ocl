@@ -10,7 +10,7 @@
  *
  * Run As->MWE2 Workflow to regenerate the pivot model.
  *******************************************************************************/
-module GenerateOCLMetaModel
+module GenerateOCLmetamodel
 
 import org.eclipse.ocl.examples.build.utilities.*
 import org.eclipse.ocl.examples.build.xtend.*
@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.resource.impl.*
 var projectName = "org.eclipse.ocl.pivot"
 
 /**
- *	Generate the OCL Meta Model, by converting Pivot.ecore to OCLMetaModel.java.
+ *	Generate the OCL Meta Model, by converting Pivot.ecore to OCLmetamodel.java.
  */
 Workflow {
 	bean = ResourceSetImpl : resourceSet {}
@@ -32,13 +32,13 @@ Workflow {
 //    bean = StandaloneSetup { resourceSet = resourceSet
 //    	platformUri = ".."
  //   }
-    component = GenerateOCLMetaModelXtend { resourceSet = resourceSet
+    component = GenerateOCLmetamodelXtend { resourceSet = resourceSet
     	projectName = "${projectName}"
     	modelFile = "model/Pivot.ecore"
     	uri = "http://www.eclipse.org/ocl/2015/Pivot"
     	javaFolder = "emf-gen/temp"
     	javaPackageName = "${projectName}.model"
-    	javaClassName = "OCLMetaModel"
+    	javaClassName = "OCLmetamodel"
     }
 }
 

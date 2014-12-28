@@ -20,9 +20,9 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Model;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.AbstractASResourceFactory;
+import org.eclipse.ocl.pivot.resource.ASResource;
 
 public final class EcoreASResourceFactory extends AbstractASResourceFactory
 {
@@ -41,8 +41,8 @@ public final class EcoreASResourceFactory extends AbstractASResourceFactory
 	}
 
 	@Override
-	public @Nullable <T extends Element> T getASElement(@NonNull MetaModelManager metaModelManager, @NonNull Class<T> pivotClass, @NonNull EObject eObject) {
-		return metaModelManager.getPivotOfEcore(pivotClass, eObject);
+	public @Nullable <T extends Element> T getASElement(@NonNull MetamodelManager metamodelManager, @NonNull Class<T> pivotClass, @NonNull EObject eObject) {
+		return metamodelManager.getPivotOfEcore(pivotClass, eObject);
 	}
 
 	@Override
@@ -79,8 +79,8 @@ public final class EcoreASResourceFactory extends AbstractASResourceFactory
 		return null;
 	}
 	@Override
-	public @Nullable Element importFromResource(@NonNull MetaModelManager metaModelManager, @NonNull Resource ecoreResource, @Nullable URI uri) {
-		Ecore2AS conversion = Ecore2AS.getAdapter(ecoreResource, metaModelManager);
+	public @Nullable Element importFromResource(@NonNull MetamodelManager metamodelManager, @NonNull Resource ecoreResource, @Nullable URI uri) {
+		Ecore2AS conversion = Ecore2AS.getAdapter(ecoreResource, metamodelManager);
 		conversion.setEcoreURI(uri);
 		Model pivotModel = conversion.getPivotModel();
 		String uriFragment = uri != null ? uri.fragment() : null;

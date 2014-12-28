@@ -54,25 +54,25 @@ import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.AliasAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
+import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
 
 public class Ecore2AS extends AbstractEcore2AS
 {
-	public static @Nullable Ecore2AS findAdapter(@NonNull Resource resource, @NonNull MetaModelManager metaModelManager) {
+	public static @Nullable Ecore2AS findAdapter(@NonNull Resource resource, @NonNull MetamodelManager metamodelManager) {
 		for (Adapter adapter : resource.eAdapters()) {
 			if (adapter instanceof Ecore2AS) {
 				Ecore2AS ecore2as = (Ecore2AS)adapter;
-				if (ecore2as.getMetaModelManager() == metaModelManager) {
+				if (ecore2as.getMetamodelManager() == metamodelManager) {
 					return ecore2as;
 				}
 			}
@@ -80,18 +80,18 @@ public class Ecore2AS extends AbstractEcore2AS
 		return null;
 	}
 
-	public static Ecore2AS getAdapter(@NonNull Resource resource, @Nullable MetaModelManager metaModelManager) {
+	public static Ecore2AS getAdapter(@NonNull Resource resource, @Nullable MetamodelManager metamodelManager) {
 		Ecore2AS adapter;
-		if (metaModelManager == null) {
-			metaModelManager = new MetaModelManager();
+		if (metamodelManager == null) {
+			metamodelManager = new MetamodelManager();
 		}
 		else {
-			adapter = findAdapter(resource, metaModelManager);
+			adapter = findAdapter(resource, metamodelManager);
 			if (adapter != null) {
 				return adapter;
 			}
 		}
-		adapter = new Ecore2AS(resource, metaModelManager);
+		adapter = new Ecore2AS(resource, metamodelManager);
 		List<Adapter> eAdapters = resource.eAdapters();
 		eAdapters.add(adapter);
 		return adapter;
@@ -105,8 +105,8 @@ public class Ecore2AS extends AbstractEcore2AS
 	 * 
 	 * @return the Pivot root package
 	 */
-	public static @NonNull Model importFromEcore(@NonNull MetaModelManager metaModelManager, String alias, @NonNull Resource ecoreResource) {
-		Ecore2AS conversion = getAdapter(ecoreResource, metaModelManager);
+	public static @NonNull Model importFromEcore(@NonNull MetamodelManager metamodelManager, String alias, @NonNull Resource ecoreResource) {
+		Ecore2AS conversion = getAdapter(ecoreResource, metamodelManager);
 		return conversion.getPivotModel();
 	}
 
@@ -121,18 +121,18 @@ public class Ecore2AS extends AbstractEcore2AS
 	}
 
 	public static Ecore2AS loadFromEcore(@NonNull ASResource ecoreASResource, @NonNull URI ecoreURI) {
-		MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(ecoreASResource);
-		ResourceSet resourceSet = metaModelManager.getExternalResourceSet();
+		MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(ecoreASResource);
+		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
 		Resource ecoreResource = resourceSet.getResource(ecoreURI, true);
 		if (ecoreResource == null) {
 			return null;
 		}
-		Ecore2AS conversion = getAdapter(ecoreResource, metaModelManager);
+		Ecore2AS conversion = getAdapter(ecoreResource, metamodelManager);
 		conversion.loadImports(ecoreResource);
 //		if (asMetamodels != null) {
 //			
 //		}
-		conversion.pivotModel = metaModelManager.createModel(ecoreASResource.getURI().toString());
+		conversion.pivotModel = metamodelManager.createModel(ecoreASResource.getURI().toString());
 //		conversion.installImports();
 		conversion.update(ecoreASResource, ClassUtil.nonNullEMF(ecoreResource.getContents()));
 		
@@ -147,16 +147,16 @@ public class Ecore2AS extends AbstractEcore2AS
 				pivotAliasMap.put(element, alias);
 			}
 		}
-		metaModelManager.installResource(ecoreASResource);
+		metamodelManager.installResource(ecoreASResource);
 		conversion.installImports();
 		return conversion;
 	}
 
-/*	public static Ecore2AS createConverter(MetaModelManager metaModelManager, Resource ecoreResource) {
+/*	public static Ecore2AS createConverter(MetamodelManager metamodelManager, Resource ecoreResource) {
 		EList<Adapter> eAdapters = ecoreResource.eAdapters();
 		Ecore2AS conversion = (Ecore2AS) EcoreUtil.getAdapter(eAdapters, Ecore2AS.class);
 		if (conversion == null) {
-			conversion = new Ecore2AS(metaModelManager);
+			conversion = new Ecore2AS(metamodelManager);
 			eAdapters.add(conversion);
 		}
 		return conversion;
@@ -169,9 +169,9 @@ public class Ecore2AS extends AbstractEcore2AS
 	 * 
 	 * @return the pivot element
 	 */
-	public static Element importFromEcore(@NonNull MetaModelManager metaModelManager, String alias, @NonNull EObject eObject) {
+	public static Element importFromEcore(@NonNull MetamodelManager metamodelManager, String alias, @NonNull EObject eObject) {
 		Resource ecoreResource = ClassUtil.nonNullEMF(eObject.eResource());
-		Ecore2AS conversion = getAdapter(ecoreResource, metaModelManager);
+		Ecore2AS conversion = getAdapter(ecoreResource, metamodelManager);
 		@SuppressWarnings("unused")
 		Model pivotModel = conversion.getPivotModel();
 		return conversion.newCreateMap.get(eObject);
@@ -222,11 +222,11 @@ public class Ecore2AS extends AbstractEcore2AS
 	 */
 	private Set<EObject> importedEObjects = null;
 	
-	public Ecore2AS(@NonNull Resource ecoreResource, @Nullable MetaModelManager metaModelManager) {
-		super(metaModelManager != null ? metaModelManager : new MetaModelManager());
+	public Ecore2AS(@NonNull Resource ecoreResource, @Nullable MetamodelManager metamodelManager) {
+		super(metamodelManager != null ? metamodelManager : new MetamodelManager());
 		this.ecoreResource = ecoreResource;
-		this.metaModelManager.addExternalResource(this);
-		this.metaModelManager.addListener(this);
+		this.metamodelManager.addExternalResource(this);
+		this.metamodelManager.addListener(this);
 	}
 	
 	protected void addCreated(EObject eObject, Element pivotElement) {
@@ -277,12 +277,12 @@ public class Ecore2AS extends AbstractEcore2AS
 	}
 
 	public void dispose() {
-		metaModelManager.removeExternalResource(this);
+		metamodelManager.removeExternalResource(this);
 		Notifier target = getTarget();
 		if (target != null) {
 			target.eAdapters().remove(this);
 		}
-		metaModelManager.removeListener(this);
+		metamodelManager.removeListener(this);
 	}
 
 	@Override
@@ -302,7 +302,7 @@ public class Ecore2AS extends AbstractEcore2AS
 			return null;
 		}
 		if (ClassUtil.isRegistered(ecoreResource)) {
-			StandaloneProjectMap projectMap = metaModelManager.getProjectMap();
+			StandaloneProjectMap projectMap = metamodelManager.getProjectMap();
 			StandaloneProjectMap.IPackageDescriptor packageDescriptor = projectMap.getPackageDescriptor(ecoreURI);
 			if (packageDescriptor == null) {
 				return null;
@@ -358,7 +358,7 @@ public class Ecore2AS extends AbstractEcore2AS
 		if (element == null) {
 			Resource resource = eObject.eResource();
 			if ((resource != ecoreResource) && (resource != null)) {
-				Ecore2AS converter = getAdapter(resource, metaModelManager);
+				Ecore2AS converter = getAdapter(resource, metamodelManager);
 				if (allConverters.add(converter)) {
 					converter.getPivotModel();
 					for (Map.Entry<EObject, Element> entry : converter.newCreateMap.entrySet()) {
@@ -384,7 +384,7 @@ public class Ecore2AS extends AbstractEcore2AS
 		if (pivotElement == null) {
 			Resource resource = eObject.eResource();
 			if ((resource != ecoreResource) && (resource != null)) {
-				Ecore2AS converter = getAdapter(resource, metaModelManager);
+				Ecore2AS converter = getAdapter(resource, metamodelManager);
 				if (allConverters.add(converter)) {
 					converter.getPivotModel();
 //					allEClassifiers.addAll(converter.allEClassifiers);
@@ -425,7 +425,7 @@ public class Ecore2AS extends AbstractEcore2AS
 					pivotAliasMap.put(element, alias);
 				}
 			}
-			metaModelManager.installResource(asResource);
+			metamodelManager.installResource(asResource);
 			installImports();
 		}
 		return pivotModel2;
@@ -462,15 +462,15 @@ public class Ecore2AS extends AbstractEcore2AS
 			Model containingRoot = PivotUtil.getContainingRoot(asLibrary);
 			return ClassUtil.nonNullModel(containingRoot);
 		}
-		@NonNull ASResource asResource = metaModelManager.getResource(pivotURI, ASResource.ECORE_CONTENT_TYPE);
+		@NonNull ASResource asResource = metamodelManager.getResource(pivotURI, ASResource.ECORE_CONTENT_TYPE);
 //		try {
-			if ((metaModelManager.getLibraryResource() == null) && isPivot(ecoreContents)) {
+			if ((metamodelManager.getLibraryResource() == null) && isPivot(ecoreContents)) {
 				String nsURI = ((EPackage)ecoreContents.iterator().next()).getNsURI();
 				if (nsURI != null) {
 					String stdlibASUri = LibraryConstants.STDLIB_URI + PivotConstantsInternal.DOT_OCL_AS_FILE_EXTENSION;
 					OCLstdlib library = OCLstdlib.create(stdlibASUri, "ocl", "ocl", OCLstdlib.STDLIB_URI);
-					metaModelManager.installResource(library);
-//					metaModelManager.installAs(nsURI, OCLstdlibTables.PACKAGE);
+					metamodelManager.installResource(library);
+//					metamodelManager.installAs(nsURI, OCLstdlibTables.PACKAGE);
 				}
 			}
 			URI uri = ecoreURI != null ? ecoreURI : ecoreResource.getURI();
@@ -482,7 +482,7 @@ public class Ecore2AS extends AbstractEcore2AS
 				}
 			}
 			if (pivotModel2 == null) {
-				pivotModel2 = pivotModel = metaModelManager.createModel(uri.toString());
+				pivotModel2 = pivotModel = metamodelManager.createModel(uri.toString());
 			}
 			pivotModel = pivotModel2;
 //			installImports();
@@ -522,7 +522,7 @@ public class Ecore2AS extends AbstractEcore2AS
 						}
 						try {
 							assert uri != null;
-							Element importedObject = metaModelManager.loadResource(uri, null, ecoreResource.getResourceSet());
+							Element importedObject = metamodelManager.loadResource(uri, null, ecoreResource.getResourceSet());
 							if (importedObject instanceof Namespace) {
 								Import anImport = PivotFactory.eINSTANCE.createImport();
 								anImport.setName(key);
@@ -539,8 +539,8 @@ public class Ecore2AS extends AbstractEcore2AS
 	}
 
 	@Override
-	public boolean isAdapterFor(@NonNull MetaModelManager metaModelManager) {
-		return this.metaModelManager == metaModelManager;
+	public boolean isAdapterFor(@NonNull MetamodelManager metamodelManager) {
+		return this.metamodelManager == metamodelManager;
 	}
 
 	@Override
@@ -600,14 +600,14 @@ public class Ecore2AS extends AbstractEcore2AS
 				loadImports((EPackage)eContent, baseURI);
 			}
 		}
-		if ((asMetamodels != null) && (metaModelManager.getLibraryResource() == null)) {
+		if ((asMetamodels != null) && (metamodelManager.getLibraryResource() == null)) {
 			String nsURI = asMetamodels.iterator().next().getNsURI();
 			if (nsURI != null) {
 //				String stdlibASUri = LibraryConstants.STDLIB_URI + PivotConstants.DOT_OCL_AS_FILE_EXTENSION;
 				OCLstdlib library = OCLstdlib.getDefault(); //create(stdlibASUri, "ocl", "ocl", nsURI);
-//				metaModelManager.addPackageNsURISynonym(OCLstdlib.STDLIB_URI, PivotConstants.METAMODEL_URI);
-				metaModelManager.installResource(library);
-//				metaModelManager.installAs(nsURI, OCLstdlibTables.PACKAGE);
+//				metamodelManager.addPackageNsURISynonym(OCLstdlib.STDLIB_URI, PivotConstants.METAMODEL_URI);
+				metamodelManager.installResource(library);
+//				metamodelManager.installAs(nsURI, OCLstdlibTables.PACKAGE);
 			}
 		}
 	}
@@ -627,7 +627,7 @@ public class Ecore2AS extends AbstractEcore2AS
 					uri = uri.resolve(baseURI);
 				}
 				assert uri != null;
-				ResourceSet resourceSet = metaModelManager.getExternalResourceSet();
+				ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
 				EObject importedEObject = null;
 				String fragment = uri.fragment();
 				if (fragment == null) {
@@ -658,7 +658,7 @@ public class Ecore2AS extends AbstractEcore2AS
 	}
 
 	@Override
-	public void metaModelManagerDisposed(@NonNull MetaModelManager metaModelManager) {
+	public void metamodelManagerDisposed(@NonNull MetamodelManager metamodelManager) {
 		dispose();
 	}
 
@@ -743,7 +743,7 @@ public class Ecore2AS extends AbstractEcore2AS
 		}
 		org.eclipse.ocl.pivot.Class unspecializedPivotClass = unspecializedPivotType.isClass(); 
 		assert unspecializedPivotClass != null;			// FIXME
-		return metaModelManager.getLibraryType(unspecializedPivotClass, templateArguments);
+		return metamodelManager.getLibraryType(unspecializedPivotClass, templateArguments);
 	}
 
 	protected Type resolveSimpleType(@NonNull EClassifier eClassifier) {
@@ -804,7 +804,7 @@ public class Ecore2AS extends AbstractEcore2AS
 //			csTypeRef.setExtends(doSwitchAll(eGenericType.getExtends()));
 //			csTypeRef.setSuper(doSwitchAll(eGenericType.getSuper()));
 			return csTypeRef; */
-		return metaModelManager.createWildcardType(null, null);		// FIXME bounds
+		return metamodelManager.createWildcardType(null, null);		// FIXME bounds
 /*		org.eclipse.ocl.pivot.Class pivotElement = PivotFactory.eINSTANCE.createClass();
 		String name = PivotConstants.WILDCARD_NAME;
 		EStructuralFeature eFeature = eGenericType.eContainmentFeature();
@@ -877,7 +877,7 @@ public class Ecore2AS extends AbstractEcore2AS
 				if (pivotElement != null) {
 					Property oppositeProperty = pivotElement.getOpposite();
 					if ((oppositeProperty == null) && (eObject.eContainer() instanceof EClass)) {		// Skip annotation references
-						metaModelManager.installPropertyDeclaration(pivotElement);
+						metamodelManager.installPropertyDeclaration(pivotElement);
 					}
 				}
 			}

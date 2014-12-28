@@ -21,7 +21,7 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
  * DomainExecutorPackage uses the limited Domain interfaces to construct a package description for use
  * in contexts where no explicit ExecutorPackage is available.
  * 
- * This typically occurs when a dynamic Ecore model is used but no MetaModelManager is accessible.
+ * This typically occurs when a dynamic Ecore model is used but no MetamodelManager is accessible.
  */
 public class DomainReflectivePackage extends ReflectivePackage
 {

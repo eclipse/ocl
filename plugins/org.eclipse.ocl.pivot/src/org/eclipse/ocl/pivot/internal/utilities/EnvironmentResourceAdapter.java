@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
@@ -50,8 +50,8 @@ public class EnvironmentResourceAdapter implements Adapter
 		this.environment = environment;
 	}
 
-	public MetaModelManager createMetaModelManager() {
-		return new MetaModelManager();
+	public MetamodelManager createMetamodelManager() {
+		return new MetamodelManager();
 	}
 
 	@Override
@@ -63,8 +63,8 @@ public class EnvironmentResourceAdapter implements Adapter
 		return environment;
 	}
 	
-//	public MetaModelManager getMetaModelManager() {
-//		return metaModelManager;
+//	public MetamodelManager getMetamodelManager() {
+//		return metamodelManager;
 //	}
 
 	@Override

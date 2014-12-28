@@ -30,25 +30,24 @@ import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.AbstractMetaModelManagerResourceAdapter;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceAdapter;
+import org.eclipse.ocl.pivot.internal.manager.AbstractMetamodelManagerResourceAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
-import org.eclipse.ocl.pivot.internal.utilities.BaseResource;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.internal.utilities.Pivotable;
+import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.Pivotable;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 
 public abstract class AbstractParserContext /*extends AdapterImpl*/ implements ParserContext
 {
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull MetamodelManager metamodelManager;
 	protected final @NonNull URI uri;
 	protected @Nullable Element rootElement = null;
 
-	protected AbstractParserContext(@NonNull MetaModelManager metaModelManager, @Nullable URI uri) {
-		this.metaModelManager = metaModelManager;
+	protected AbstractParserContext(@NonNull MetamodelManager metamodelManager, @Nullable URI uri) {
+		this.metamodelManager = metamodelManager;
 		if (uri != null) {
 			this.uri = uri;
 		}
@@ -58,7 +57,7 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 	}
 
 	@Override
-	public @NonNull BaseResource createBaseResource(@NonNull String expression) throws IOException, ParserException {
+	public @NonNull CSResource createBaseResource(@NonNull String expression) throws IOException, ParserException {
 		InputStream inputStream = new URIConverter.ReadableInputStream(expression, "UTF-8");
 		try {
 			ResourceSetImpl resourceSet = new ResourceSetImpl();
@@ -66,11 +65,11 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 			if (resource == null) {
 				throw new ParserException("Failed to load '" + uri + "'");
 			}
-			if (!(resource instanceof BaseResource)) {
+			if (!(resource instanceof CSResource)) {
 				throw new ParserException("Failed to create Xtext resource for '" + uri + "'\n\tMake sure EssentialOCL has been initialized.");
 			}
-			BaseResource baseResource = (BaseResource)resource;
-			MetaModelManagerResourceAdapter.getAdapter(resource, metaModelManager);
+			CSResource baseResource = (CSResource)resource;
+			MetamodelManagerResourceAdapter.getAdapter(resource, metamodelManager);
 			baseResource.setParserContext(this);
 			baseResource.load(inputStream, null);
 			return baseResource;
@@ -90,7 +89,7 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 	}
 
 	@Override
-	public @NonNull ExpressionInOCL getExpression(@NonNull BaseResource resource) throws ParserException {
+	public @NonNull ExpressionInOCL getExpression(@NonNull CSResource resource) throws ParserException {
 		List<EObject> contents = resource.getContents();
 		int size = contents.size();
 		if (size < 1) {
@@ -110,8 +109,8 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 	}
 
 	@Override
-	public @NonNull MetaModelManager getMetaModelManager() {
-		return metaModelManager;
+	public @NonNull MetamodelManager getMetamodelManager() {
+		return metamodelManager;
 	}
 
 	@Override
@@ -128,7 +127,7 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 
 	@Override
 	public @NonNull ExpressionInOCL parse(@Nullable EObject owner, @NonNull String expression) throws ParserException {
-		BaseResource resource = null;
+		CSResource resource = null;
 		try {
 			resource = createBaseResource(expression);
 			String childName = owner instanceof Nameable ? ((Nameable)owner).getName() : "<unknown>";
@@ -141,8 +140,8 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 		} catch (IOException e) {
 //				throw new ParserException("Failed to load expression", e);
 			@SuppressWarnings("null")@NonNull ExpressionInOCL specification = PivotFactory.eINSTANCE.createExpressionInOCL();
-			OCLExpression invalidValueBody = metaModelManager.createInvalidExpression();
-			PivotUtilInternal.setBody(specification, invalidValueBody, null);
+			OCLExpression invalidValueBody = metamodelManager.createInvalidExpression();
+			PivotUtil.setBody(specification, invalidValueBody, null);
 			return specification;
 		} finally {
 			if (resource != null) {
@@ -151,7 +150,7 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 				if (resourceSet != null) {
 					resourceSet.getResources().remove(resource);
 				}
-				AbstractMetaModelManagerResourceAdapter.disposeAll(resource);
+				AbstractMetamodelManagerResourceAdapter.disposeAll(resource);
 			}
 		}
 	}

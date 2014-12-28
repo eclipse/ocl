@@ -8,7 +8,7 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.pivot.internal.resource;
+package org.eclipse.ocl.pivot.resource;
 
 import java.util.Map;
 
@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
+import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 
 /**
  * A resource for an OCL Abstract Syntax (Pivot) Model

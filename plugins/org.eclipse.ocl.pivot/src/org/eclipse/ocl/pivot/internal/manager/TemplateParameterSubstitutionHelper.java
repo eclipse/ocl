@@ -35,7 +35,7 @@ public abstract class TemplateParameterSubstitutionHelper
 {
 	public void resolveUnmodeledTemplateParameterSubstitutions(@NonNull TemplateParameterSubstitutionVisitor templateParameterSubstitutions, @NonNull CallExp callExp) {}
 
-	public @Nullable Type resolveReturnType(@NonNull MetaModelManager metaModelManager, @NonNull CallExp callExp, @Nullable Type returnType) {
+	public @Nullable Type resolveReturnType(@NonNull MetamodelManager metamodelManager, @NonNull CallExp callExp, @Nullable Type returnType) {
 		return returnType;
 	}
 
@@ -55,7 +55,7 @@ public abstract class TemplateParameterSubstitutionHelper
 	private static class CollectionCollectHelper extends TemplateParameterSubstitutionHelper
 	{
 		@Override
-		public @Nullable Type resolveReturnType(@NonNull MetaModelManager metaModelManager, @NonNull CallExp callExp, @Nullable Type returnType) {
+		public @Nullable Type resolveReturnType(@NonNull MetamodelManager metamodelManager, @NonNull CallExp callExp, @Nullable Type returnType) {
 			LoopExp loopExp = (LoopExp)callExp;
 			OCLExpression body = loopExp.getOwnedBody();
 			Type asType = body != null ? body.getType() : null;
@@ -71,7 +71,7 @@ public abstract class TemplateParameterSubstitutionHelper
 					}
 //				}
 				boolean isOrdered = (returnType instanceof CollectionType) && ((CollectionType)returnType).isOrdered();
-				returnType = metaModelManager.getCollectionType(isOrdered, false, elementType, null, null);	// FIXME null, null
+				returnType = metamodelManager.getCollectionType(isOrdered, false, elementType, null, null);	// FIXME null, null
 			}
 			return returnType;
 		}

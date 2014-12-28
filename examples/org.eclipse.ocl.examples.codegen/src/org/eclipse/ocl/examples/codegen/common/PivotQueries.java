@@ -15,31 +15,31 @@ import java.util.LinkedHashSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 public class PivotQueries
 {
 	public static @NonNull LinkedHashSet<Operation> getOperations(@NonNull org.eclipse.ocl.pivot.Class type) {
-		MetaModelManager metaModelManager = ClassUtil.nonNullState(PivotUtilInternal.findMetaModelManager(type));
+		MetamodelManager metamodelManager = ClassUtil.nonNullState(PivotUtilInternal.findMetamodelManager(type));
 		LinkedHashSet<Operation> operations = new LinkedHashSet<Operation>();
-		for (Operation operation : metaModelManager.getMemberOperations(type, false)) {
+		for (Operation operation : metamodelManager.getMemberOperations(type, false)) {
 			operations.add(operation);
 		}
-		for (Operation operation : metaModelManager.getMemberOperations(type, true)) {
+		for (Operation operation : metamodelManager.getMemberOperations(type, true)) {
 			operations.add(operation);
 		}
 		return operations;
 	}
 	
 	public static @NonNull LinkedHashSet<Property> getProperties(@NonNull org.eclipse.ocl.pivot.Class type) {
-		MetaModelManager metaModelManager = ClassUtil.nonNullState(PivotUtilInternal.findMetaModelManager(type));
+		MetamodelManager metamodelManager = ClassUtil.nonNullState(PivotUtilInternal.findMetamodelManager(type));
 		LinkedHashSet<Property> properties = new LinkedHashSet<Property>();
-		for (Property property : metaModelManager.getMemberProperties(type, false)) {
+		for (Property property : metamodelManager.getMemberProperties(type, false)) {
 			properties.add(property);
 		}
-		for (Property property : metaModelManager.getMemberProperties(type, true)) {
+		for (Property property : metamodelManager.getMemberProperties(type, true)) {
 			properties.add(property);
 		}
 		return properties;

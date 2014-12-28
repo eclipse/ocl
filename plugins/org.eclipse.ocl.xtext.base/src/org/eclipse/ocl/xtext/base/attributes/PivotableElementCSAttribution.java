@@ -16,7 +16,7 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.internal.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.internal.scoping.ScopeView;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.basecs.PivotableElementCS;
 
 public class PivotableElementCSAttribution extends AbstractAttribution
@@ -25,7 +25,7 @@ public class PivotableElementCSAttribution extends AbstractAttribution
 
 	@Override
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
-		Element pivot = PivotUtilInternal.getPivot(Element.class, (PivotableElementCS)target);
+		Element pivot = PivotUtil.getPivot(Element.class, (PivotableElementCS)target);
 		if ((pivot != null) && (pivot.eResource() != null)) {
 			environmentView.computeLookups(pivot, null); //PivotUtil.getPivot(Element.class, scopeView.getChild());	
 		}

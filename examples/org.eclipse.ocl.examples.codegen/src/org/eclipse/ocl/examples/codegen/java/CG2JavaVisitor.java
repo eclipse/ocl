@@ -114,7 +114,7 @@ import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
 import org.eclipse.ocl.pivot.ids.NestedTypeId;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.internal.values.IntIntegerValueImpl;
 import org.eclipse.ocl.pivot.internal.values.LongIntegerValueImpl;
@@ -529,8 +529,8 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		return null;
 	}
 
-	protected @NonNull MetaModelManager getMetaModelManager() {
-		return context.getMetaModelManager();
+	protected @NonNull MetamodelManager getMetamodelManager() {
+		return context.getMetamodelManager();
 	}
 
 	protected @NonNull String getSymbolName(@Nullable Object anObject, @Nullable String... nameHints) {
@@ -576,9 +576,9 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		if (type instanceof Enumeration) {
 			return false;
 		}
-		MetaModelManager metaModelManager = getMetaModelManager();
-		Type oclTypeType = metaModelManager.getStandardLibrary().getOclTypeType();
-		return metaModelManager.conformsTo(type, TemplateParameterSubstitutions.EMPTY, oclTypeType, TemplateParameterSubstitutions.EMPTY);
+		MetamodelManager metamodelManager = getMetamodelManager();
+		Type oclTypeType = metamodelManager.getStandardLibrary().getOclTypeType();
+		return metamodelManager.conformsTo(type, TemplateParameterSubstitutions.EMPTY, oclTypeType, TemplateParameterSubstitutions.EMPTY);
 	}
 
 	protected boolean isEnumerationLiteral(@NonNull CGValuedElement cgValue) {
@@ -1003,7 +1003,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		if (nsURI == null) {
 			throw new IllegalStateException("No EPackage NsURI for " + cgConstructorExp + " in CG2JavaVisitor.visitCGEcoreDataTypeConstructorExp()");
 		}
-		GenPackage genPackage = getMetaModelManager().getGenPackage(nsURI);
+		GenPackage genPackage = getMetamodelManager().getGenPackage(nsURI);
 		if (genPackage == null) {
 			throw new IllegalStateException("No GenPackage for " + cgConstructorExp + " in CG2JavaVisitor.visitCGEcoreDataTypeConstructorExp()");
 		}

@@ -20,7 +20,7 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.internal.EnvironmentInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.util.Visitor;
 
 /**
@@ -66,7 +66,7 @@ public interface EvaluationVisitor extends Visitor<Object>, Evaluator
 	@Override
 	@NonNull ModelManager getModelManager();
 
-	@NonNull MetaModelManager getMetaModelManager();
+	@NonNull MetamodelManager getMetamodelManager();
 
 	@Nullable Monitor getMonitor();
 

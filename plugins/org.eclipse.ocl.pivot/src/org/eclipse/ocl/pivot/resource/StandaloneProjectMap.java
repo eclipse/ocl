@@ -10,7 +10,7 @@
  * 
  * The standalone functionality is heavily influenced by org.eclipse.emf.mwe.utils.StandaloneSetup.
  *******************************************************************************/
-package org.eclipse.ocl.pivot.utilities;
+package org.eclipse.ocl.pivot.resource;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -58,6 +58,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.internal.compatibility.EMF_2_9;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.TracingOption;
 import org.w3c.dom.Document;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -2714,7 +2717,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 	}
 
 	/**
-	 * Leak debugging aid. Set non-null to diagnose MetaModelManager construction and finalization.
+	 * Leak debugging aid. Set non-null to diagnose MetamodelManager construction and finalization.
 	 */
 	public static WeakHashMap<StandaloneProjectMap,Object> liveStandaloneProjectMaps = null;
 

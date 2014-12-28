@@ -19,7 +19,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Namespace;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 
 /**
  * PrettyPrintOptions defines the capability to provide options to the PrettyPrinter
@@ -37,7 +37,7 @@ public abstract class PrettyPrintOptions
 		private final @NonNull Set<String> restrictedNames = new HashSet<String>();
 		private @NonNull Map<Namespace, String> namespace2alias = new HashMap<Namespace, String>();
 		private @Nullable URI baseURI = null;
-		private @Nullable MetaModelManager metaModelManager = null;
+		private @Nullable MetamodelManager metamodelManager = null;
 		
 		public Global(@Nullable Namespace scope) {
 			super(scope);
@@ -93,8 +93,8 @@ public abstract class PrettyPrintOptions
 		}
 
 		@Override
-		public @Nullable MetaModelManager getMetaModelManager() {
-			return metaModelManager;
+		public @Nullable MetamodelManager getMetamodelManager() {
+			return metamodelManager;
 		}
 		
 		@Override
@@ -125,8 +125,8 @@ public abstract class PrettyPrintOptions
 			this.linelength = linelength;
 		}
 
-		public void setMetaModelManager(MetaModelManager metaModelManager) {
-			this.metaModelManager = metaModelManager;
+		public void setMetamodelManager(MetamodelManager metamodelManager) {
+			this.metamodelManager = metamodelManager;
 		}
 	}
 	
@@ -226,8 +226,8 @@ public abstract class PrettyPrintOptions
 		return getGlobalOptions().getLinelength();
 	}
 
-	public @Nullable MetaModelManager getMetaModelManager() {
-		return getGlobalOptions().getMetaModelManager();
+	public @Nullable MetamodelManager getMetamodelManager() {
+		return getGlobalOptions().getMetamodelManager();
 	}
 
 	public abstract @Nullable Set<String> getReservedNames();

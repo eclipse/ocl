@@ -49,9 +49,9 @@ public class TupleTypeManager
 	{
 		private final TemplateParameterReferencesVisitor referencesVisitor;
 
-		private TupleIdResolver(@NonNull MetaModelManager metaModelManager,
+		private TupleIdResolver(@NonNull MetamodelManager metamodelManager,
 				TemplateParameterReferencesVisitor referencesVisitor) {
-			super(metaModelManager);
+			super(metamodelManager);
 			this.referencesVisitor = referencesVisitor;
 		}
 
@@ -96,8 +96,8 @@ public class TupleTypeManager
 	{
 		protected final @NonNull Map<Integer, TemplateParameter> templateParameters = new HashMap<Integer, TemplateParameter>();
 		
-		public TemplateParameterReferencesVisitor(@NonNull MetaModelManager metaModelManager, Collection<? extends Type> partValues) {
-			super(metaModelManager, null, null);
+		public TemplateParameterReferencesVisitor(@NonNull MetamodelManager metamodelManager, Collection<? extends Type> partValues) {
+			super(metamodelManager, null, null);
 			for (Type partValue : partValues) {
 				analyzeType(partValue, partValue);
 			}
@@ -111,7 +111,7 @@ public class TupleTypeManager
 	}
 
 	protected final @NonNull CompleteEnvironmentInternal completeEnvironment;
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull MetamodelManager metamodelManager;
 	protected final @NonNull org.eclipse.ocl.pivot.Class oclTupleType;
 	
 	/**
@@ -121,8 +121,8 @@ public class TupleTypeManager
 	
 	public TupleTypeManager(@NonNull CompleteEnvironmentInternal allCompleteClasses) {
 		this.completeEnvironment = allCompleteClasses;
-		this.metaModelManager = allCompleteClasses.getMetaModelManager();
-		this.oclTupleType = metaModelManager.getStandardLibrary().getOclTupleType();
+		this.metamodelManager = allCompleteClasses.getMetamodelManager();
+		this.oclTupleType = metamodelManager.getStandardLibrary().getOclTupleType();
 	}
 
 	public void dispose() {
@@ -159,12 +159,12 @@ public class TupleTypeManager
 			if (rightPropertyType == null) {
 				return null;				// Never happens
 			}
-			Type commonType = metaModelManager.getCommonType(leftPropertyType, leftSubstitutions, rightPropertyType, rightSubstitutions);
+			Type commonType = metamodelManager.getCommonType(leftPropertyType, leftSubstitutions, rightPropertyType, rightSubstitutions);
 			TuplePartId commonPartId = IdManager.getTuplePartId(i, name, commonType.getTypeId());
 			commonPartIds.add(commonPartId);
 		}
 		TupleTypeId commonTupleTypeId = IdManager.getTupleTypeId(TypeId.TUPLE_NAME, commonPartIds);
-		return getTupleType(metaModelManager.getIdResolver(), commonTupleTypeId);
+		return getTupleType(metamodelManager.getIdResolver(), commonTupleTypeId);
 	}
 
 	public @NonNull TupleType getTupleType(@NonNull IdResolver idResolver, @NonNull TupleTypeId tupleTypeId) {
@@ -187,7 +187,7 @@ public class TupleTypeManager
 					List<Property> ownedAttributes = tupleType.getOwnedProperties();
 					for (TuplePartId partId : partIds) {
 						Type partType = idResolver.getType(partId.getTypeId(), tupleType);
-						Type partType2 = metaModelManager.getType(partType);
+						Type partType2 = metamodelManager.getType(partType);
 						ownedAttributes.add(new TuplePartImpl(partId, partType2));
 					}
 					tupleType.getSuperClasses().add(oclTupleType);
@@ -205,7 +205,7 @@ public class TupleTypeManager
 		for (TypedElement part : parts) {
 			Type type1 = part.getType();
 			if (type1 != null) {
-				Type type2 = metaModelManager.getType(type1);
+				Type type2 = metamodelManager.getType(type1);
 				Type type3 = completeEnvironment.getSpecializedType(type2, usageBindings);
 				partMap.put(part.getName(), type3);
 			}
@@ -221,7 +221,7 @@ public class TupleTypeManager
 		//	Find the outgoing template parameter references
 		// FIXME this should be more readily and reliably computed in the caller
 		@SuppressWarnings("null")@NonNull Collection<? extends Type> partValues = parts.values();
-		final TemplateParameterReferencesVisitor referencesVisitor = new TemplateParameterReferencesVisitor(metaModelManager, partValues);	// FIXME this isn't realistically extensible
+		final TemplateParameterReferencesVisitor referencesVisitor = new TemplateParameterReferencesVisitor(metamodelManager, partValues);	// FIXME this isn't realistically extensible
 		//
 		//	Create the tuple part ids
 		//
@@ -242,11 +242,11 @@ public class TupleTypeManager
 		//	Create the tuple type id (and then specialize it)
 		//
 		TupleTypeId tupleTypeId = IdManager.getOrderedTupleTypeId(tupleName, newPartIds);
-		PivotIdResolver pivotIdResolver = new TupleIdResolver(metaModelManager, referencesVisitor);
+		PivotIdResolver pivotIdResolver = new TupleIdResolver(metamodelManager, referencesVisitor);
 		//
 		//	Finally create the (specialize) tuple type
 		//
-		TupleType tupleType = getTupleType(pivotIdResolver /*metaModelManager.getIdResolver()*/, tupleTypeId);
+		TupleType tupleType = getTupleType(pivotIdResolver /*metamodelManager.getIdResolver()*/, tupleTypeId);
 		return tupleType;
 	}
 
@@ -280,7 +280,7 @@ public class TupleTypeManager
 				partIds.add(tuplePartId);
 			}
 			TupleTypeId tupleTypeId = IdManager.getTupleTypeId(ClassUtil.nonNullModel(type.getName()), partIds);
-			specializedTupleType = getTupleType(metaModelManager.getIdResolver(), tupleTypeId);
+			specializedTupleType = getTupleType(metamodelManager.getIdResolver(), tupleTypeId);
 			return specializedTupleType;
 		}
 		else {

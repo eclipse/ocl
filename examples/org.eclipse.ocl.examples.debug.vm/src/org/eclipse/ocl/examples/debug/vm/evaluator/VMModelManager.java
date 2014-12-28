@@ -12,7 +12,7 @@
 package org.eclipse.ocl.examples.debug.vm.evaluator;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 
 /**
  * OCL Domain Manager is the class responsible for managing the OCL virtual
@@ -22,13 +22,13 @@ import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
  */
 public abstract class VMModelManager implements IVMModelManager
 {
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull MetamodelManager metamodelManager;
 
-	protected VMModelManager(@NonNull MetaModelManager metaModelManager) {
-		this.metaModelManager = metaModelManager;
+	protected VMModelManager(@NonNull MetamodelManager metamodelManager) {
+		this.metamodelManager = metamodelManager;
 	}
 
-	public @NonNull MetaModelManager getMetaModelManager() {
-		return metaModelManager;
+	public @NonNull MetamodelManager getMetamodelManager() {
+		return metamodelManager;
 	}
 }

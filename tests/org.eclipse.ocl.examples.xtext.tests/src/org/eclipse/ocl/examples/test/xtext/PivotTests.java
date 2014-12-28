@@ -25,9 +25,9 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceAdapter;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
+import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.xtext.base.as2cs.AS2CS;
 import org.eclipse.ocl.xtext.base.cs2as.BaseCS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
@@ -51,8 +51,8 @@ public class PivotTests extends XtextTestCase
 		}
 
 		public void assertContainedBy(@NonNull CS2AS thatConverter) {
-/*			Map<String, MonikeredElement> thisMoniker2asMap = metaModelManager.computeMoniker2asMap(getPivotResources());
-			Map<String, MonikeredElement> thatMoniker2asMap = metaModelManager.computeMoniker2asMap(thatConverter.getPivotResources());
+/*			Map<String, MonikeredElement> thisMoniker2asMap = metamodelManager.computeMoniker2asMap(getPivotResources());
+			Map<String, MonikeredElement> thatMoniker2asMap = metamodelManager.computeMoniker2asMap(thatConverter.getPivotResources());
 			List<String> theseMonikers = new ArrayList<String>(thisMoniker2asMap.keySet());
 			List<String> thoseMonikers = new ArrayList<String>(thatMoniker2asMap.keySet());
 			Collections.sort(theseMonikers);
@@ -67,7 +67,7 @@ public class PivotTests extends XtextTestCase
 		}
 
 		public void assertSameContents() { // WIP
-/*			Map<String, MonikeredElement> moniker2asMap = metaModelManager.computeMoniker2asMap(getPivotResources());
+/*			Map<String, MonikeredElement> moniker2asMap = metamodelManager.computeMoniker2asMap(getPivotResources());
 			Collection<? extends Resource> csResources = cs2asResourceMap.keySet();
 			for (Resource csResource : csResources) {
 				for (TreeIterator<EObject> tit = csResource.getAllContents(); tit.hasNext(); ) {
@@ -171,13 +171,13 @@ public class PivotTests extends XtextTestCase
 		}
 	} */
 	
-	protected MetaModelManager metaModelManager = null;
+	protected MetamodelManager metamodelManager = null;
 
 	@SuppressWarnings("null")
 	public BaseCSResource doLoadOCLstdlib(@NonNull String stem, @NonNull String extension) throws IOException {
 		resourceSet = new ResourceSetImpl();
-		MetaModelManager metaModelManager =  new MetaModelManager();
-//		CS2ASResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
+		MetamodelManager metamodelManager =  new MetamodelManager();
+//		CS2ASResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
 //		long startTime = System.currentTimeMillis();
 //		System.out.println("Start at " + startTime);
 		String inputName = stem + "." + extension;
@@ -189,7 +189,7 @@ public class PivotTests extends XtextTestCase
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(inputURI);
 		JavaClassScope.getAdapter(xtextResource, getClass().getClassLoader());
-		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
+		MetamodelManagerResourceAdapter.getAdapter(xtextResource, metamodelManager);
 		xtextResource.load(null);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " gotResource()");
 		assertNoResourceErrors("Load failed", xtextResource);
@@ -259,15 +259,15 @@ public class PivotTests extends XtextTestCase
 //		damager.assertSameContents();
 		//
 		assertPivotIsValid(pivotURI);
-		MetaModelManager metaModelManager = adapter.getMetaModelManager();
+		MetamodelManager metamodelManager = adapter.getMetamodelManager();
 		adapter.dispose();
-		metaModelManager.dispose();
+		metamodelManager.dispose();
 	}
 	
 	@SuppressWarnings("null")
 	public void doPivotTestEcore(@NonNull String stem) throws IOException {
-		metaModelManager = new MetaModelManager();
-		ResourceSet asResourceSet = metaModelManager.getASResourceSet();
+		metamodelManager = new MetamodelManager();
+		ResourceSet asResourceSet = metamodelManager.getASResourceSet();
 //		long startTime = System.currentTimeMillis();
 //		System.out.println("Start at " + startTime);
 //		String libraryName = "oclstdlib.pivot";
@@ -289,7 +289,7 @@ public class PivotTests extends XtextTestCase
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " resolveProxies()");
 		assertNoUnresolvedProxies("Unresolved proxies", ecoreResource);
 //		EcoreAliasCreator.createPackageAliases(ecoreResource);
-		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metaModelManager);
+		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager);
 		Model pivotModel = ecore2as.getPivotModel();
 		
 		
@@ -323,7 +323,7 @@ public class PivotTests extends XtextTestCase
 		Resource csResource = csResourceSet.createResource(csURI);
 		Map<BaseCSResource, ASResource> cs2asResourceMap = new HashMap<BaseCSResource, ASResource>();
 //		cs2asResourceMap.put(csResource, asResource);
-		AS2CS as2cs = new OCLinEcoreAS2CS(cs2asResourceMap, metaModelManager);
+		AS2CS as2cs = new OCLinEcoreAS2CS(cs2asResourceMap, metamodelManager);
 		as2cs.update();
 		csResource.save(null);
 //		adapter.dispose();
@@ -352,9 +352,9 @@ public class PivotTests extends XtextTestCase
 
 	@Override
 	protected void tearDown() throws Exception {
-		if (metaModelManager != null) {
-			metaModelManager.dispose();
-			metaModelManager = null;
+		if (metamodelManager != null) {
+			metamodelManager.dispose();
+			metamodelManager = null;
 		}		
 		super.tearDown();
 	}

@@ -44,10 +44,10 @@ import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.scoping.Attribution;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.xtext.base.attributes.RootCSAttribution;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.ImportDiagnostic;
@@ -244,7 +244,7 @@ public class ElementUtil
 	 * Extract the first embedded ExpressionInOCL.
 	 * @throws ParserException 
 	 */
-	public static @Nullable ExpressionInOCL getFirstQuery(@NonNull MetaModelManager metaModelManager, BaseCSResource csResource) throws ParserException {
+	public static @Nullable ExpressionInOCL getFirstQuery(@NonNull MetamodelManager metamodelManager, BaseCSResource csResource) throws ParserException {
 		CS2ASResourceAdapter cs2asAdapter = csResource.findCS2ASAdapter();
 		if (cs2asAdapter != null) {
 			ASResource asResource = cs2asAdapter.getASResource(csResource);
@@ -255,13 +255,13 @@ public class ElementUtil
 							for (Constraint asConstraint : asType.getOwnedInvariants()) {
 								LanguageExpression specification = asConstraint.getOwnedSpecification();
 								if (specification != null) {
-									return metaModelManager.getQueryOrThrow(specification);
+									return metamodelManager.getQueryOrThrow(specification);
 								}
 							}
 							for (Operation asOperation : asType.getOwnedOperations()) {
 								LanguageExpression specification = asOperation.getBodyExpression();
 								if (specification != null) {
-									return metaModelManager.getQueryOrThrow(specification);
+									return metamodelManager.getQueryOrThrow(specification);
 								}
 							}
 						}

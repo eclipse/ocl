@@ -17,7 +17,7 @@ import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.internal.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.internal.scoping.ScopeView;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.essentialoclcs.LetExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.VariableCS;
 
@@ -30,7 +30,7 @@ public class LetExpCSAttribution extends AbstractAttribution
 		if (environmentView.accepts(PivotPackage.Literals.VARIABLE)) {
 			LetExpCS targetElement = (LetExpCS)target;
 			for (VariableCS csVariable : targetElement.getOwnedVariables()) {
-				Variable variable = PivotUtilInternal.getPivot(Variable.class, csVariable);
+				Variable variable = PivotUtil.getPivot(Variable.class, csVariable);
 				if (variable != null) {		// Maybe null while resolving namespaces
 					environmentView.addNamedElement(variable);
 				}

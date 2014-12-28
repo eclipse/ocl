@@ -12,7 +12,7 @@ package org.eclipse.ocl.examples.build.utilities;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ocl.pivot.utilities.ProjectMap;
+import org.eclipse.ocl.pivot.resource.ProjectMap;
 
 /**
  * Initializes Eclipse standalone support.

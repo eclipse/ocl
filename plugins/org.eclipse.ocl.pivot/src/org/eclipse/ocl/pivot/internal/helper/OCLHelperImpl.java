@@ -29,7 +29,7 @@ import org.eclipse.ocl.pivot.internal.context.ModelContext;
 import org.eclipse.ocl.pivot.internal.context.OperationContext;
 import org.eclipse.ocl.pivot.internal.context.ParserContext;
 import org.eclipse.ocl.pivot.internal.context.PropertyContext;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 /**
@@ -39,7 +39,7 @@ public class OCLHelperImpl implements OCLHelper
 {
     private final @NonNull OCL ocl;
 	protected final @NonNull EnvironmentInternal rootEnvironment;
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull MetamodelManager metamodelManager;
 
 	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 	private EnvironmentInternal env;
@@ -56,7 +56,7 @@ public class OCLHelperImpl implements OCLHelper
     public OCLHelperImpl(@NonNull OCL ocl) {
         this.ocl = ocl;
 		this.rootEnvironment = ocl.getEnvironment();
-		this.metaModelManager = rootEnvironment.getMetaModelManager();
+		this.metamodelManager = rootEnvironment.getMetamodelManager();
 		this.environmentFactory = rootEnvironment.getEnvironmentFactory();
 	}
 
@@ -66,7 +66,7 @@ public class OCLHelperImpl implements OCLHelper
 		if (contextOperation == null) {
 			throw new IllegalStateException("Undefined contextOperation");
 		}
-		ParserContext parserContext = new OperationContext(metaModelManager, null, contextOperation, null);
+		ParserContext parserContext = new OperationContext(metamodelManager, null, contextOperation, null);
 		return parserContext.parse(contextOperation, expression);
 	}
 
@@ -76,7 +76,7 @@ public class OCLHelperImpl implements OCLHelper
 		if (contextProperty == null) {
 			throw new IllegalStateException("Undefined contextProperty");
 		}
-		ParserContext parserContext = new PropertyContext(metaModelManager, null, contextProperty);
+		ParserContext parserContext = new PropertyContext(metamodelManager, null, contextProperty);
 		return parserContext.parse(contextProperty, expression);
 	}
 
@@ -86,7 +86,7 @@ public class OCLHelperImpl implements OCLHelper
 		if (contextClassifier == null) {
 			throw new IllegalStateException("Undefined contextClassifier");
 		}
-		ParserContext parserContext = new ClassContext(metaModelManager, null, contextClassifier, null);
+		ParserContext parserContext = new ClassContext(metamodelManager, null, contextClassifier, null);
 		return parserContext.parse(contextClassifier, expression);
 	}
 
@@ -96,7 +96,7 @@ public class OCLHelperImpl implements OCLHelper
 		if (contextOperation == null) {
 			throw new IllegalStateException("Undefined contextOperation");
 		}
-		ParserContext parserContext = new OperationContext(metaModelManager, null, contextOperation, PivotConstants.RESULT_NAME);
+		ParserContext parserContext = new OperationContext(metamodelManager, null, contextOperation, PivotConstants.RESULT_NAME);
 		return parserContext.parse(contextOperation, expression);
 	}
 
@@ -106,7 +106,7 @@ public class OCLHelperImpl implements OCLHelper
 		if (contextOperation == null) {
 			throw new IllegalStateException("Undefined contextOperation");
 		}
-		ParserContext parserContext = new OperationContext(metaModelManager, null, contextOperation, null);
+		ParserContext parserContext = new OperationContext(metamodelManager, null, contextOperation, null);
 		return parserContext.parse(contextOperation, expression);
 	}
 
@@ -115,10 +115,10 @@ public class OCLHelperImpl implements OCLHelper
 		org.eclipse.ocl.pivot.Class contextClassifier = getEnvironment().getContextClassifier();
 		ParserContext parserContext;
 		if (contextClassifier != null) {
-			parserContext = new ClassContext(metaModelManager, null, contextClassifier, null);
+			parserContext = new ClassContext(metamodelManager, null, contextClassifier, null);
 		}
 		else {
-			parserContext = new ModelContext(metaModelManager, null);
+			parserContext = new ModelContext(metamodelManager, null);
 		}
 		return parserContext.parse(contextClassifier, expression);
 	}
@@ -128,7 +128,7 @@ public class OCLHelperImpl implements OCLHelper
 		if (contextClassifier == null) {
 			throw new IllegalStateException("Undefined contextClassifier");
 		}
-		ParserContext parserContext = new ClassContext(metaModelManager, null, contextClassifier, null);
+		ParserContext parserContext = new ClassContext(metamodelManager, null, contextClassifier, null);
 		return parserContext.parse(contextClassifier, expression);
 	}
 	
@@ -153,8 +153,8 @@ public class OCLHelperImpl implements OCLHelper
 		return env == null ? rootEnvironment : env;
 	}
 	
-	public final @NonNull MetaModelManager getMetaModelManager() {
-		return metaModelManager;
+	public final @NonNull MetamodelManager getMetamodelManager() {
+		return metamodelManager;
 	}
 	
 	@Override
@@ -174,7 +174,7 @@ public class OCLHelperImpl implements OCLHelper
 
 	@Override
 	public void setContext(@NonNull EClassifier context) {
-		org.eclipse.ocl.pivot.Class pContext = metaModelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Class.class, context);
+		org.eclipse.ocl.pivot.Class pContext = metamodelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Class.class, context);
 		if (pContext != null) {
 			setContext(pContext);
 		}
@@ -208,8 +208,8 @@ public class OCLHelperImpl implements OCLHelper
 
 	@Override
 	public void setOperationContext(@NonNull EClassifier context, @NonNull EOperation operation) {
-		org.eclipse.ocl.pivot.Class pContext = metaModelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Class.class, context);
-		Operation pOperation = metaModelManager.getPivotOfEcore(Operation.class, operation);
+		org.eclipse.ocl.pivot.Class pContext = metamodelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Class.class, context);
+		Operation pOperation = metamodelManager.getPivotOfEcore(Operation.class, operation);
 		if ((pContext != null) && (pOperation != null)) {
 			setOperationContext(pContext, pOperation);
 		}
@@ -223,8 +223,8 @@ public class OCLHelperImpl implements OCLHelper
 	
 	@Override
 	public void setPropertyContext(@NonNull EClassifier context, @NonNull EStructuralFeature property) {
-		org.eclipse.ocl.pivot.Class pContext = metaModelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Class.class, context);
-		Property pProperty = metaModelManager.getPivotOfEcore(Property.class, property);
+		org.eclipse.ocl.pivot.Class pContext = metamodelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Class.class, context);
+		Property pProperty = metamodelManager.getPivotOfEcore(Property.class, property);
 		if ((pContext != null) && (pProperty != null)) {
 			setPropertyContext(pContext, pProperty);
 		}

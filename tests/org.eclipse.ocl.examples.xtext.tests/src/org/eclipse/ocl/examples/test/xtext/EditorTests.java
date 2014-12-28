@@ -38,7 +38,7 @@ import org.eclipse.ocl.examples.xtext.tests.TestCaseLogger;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -75,11 +75,11 @@ public class EditorTests extends XtextTestCase
 {	
 	protected FileEditorInput createEcoreFileEditorInput(String projectName, String fileName, String testDocument)throws IOException, CoreException {
 		OCL ocl0 = OCL.newInstance();
-		MetaModelManager metaModelManager0 = ocl0.getMetaModelManager();
-		String ecoreString = createEcoreString(metaModelManager0, fileName, testDocument, true);
+		MetamodelManager metamodelManager0 = ocl0.getMetamodelManager();
+		String ecoreString = createEcoreString(metamodelManager0, fileName, testDocument, true);
 		InputStream inputStream = new URIConverter.ReadableInputStream(ecoreString, "UTF-8");
 		FileEditorInput fileEditorInput = createFileEditorInput(projectName, fileName, inputStream);
-		metaModelManager0.dispose();
+		metamodelManager0.dispose();
 		return fileEditorInput;
 	}
 
@@ -103,17 +103,17 @@ public class EditorTests extends XtextTestCase
 
 	protected void doTearDown(XtextEditor editor) {
 		IXtextDocument document = editor.getDocument();
-		MetaModelManager metaModelManager = document.modify(new IUnitOfWork<MetaModelManager, XtextResource>() {				// Cancel validation
+		MetamodelManager metamodelManager = document.modify(new IUnitOfWork<MetamodelManager, XtextResource>() {				// Cancel validation
 			@Override
-			public MetaModelManager exec(@Nullable XtextResource state) throws Exception {
-				return PivotUtilInternal.findMetaModelManager(state);
+			public MetamodelManager exec(@Nullable XtextResource state) throws Exception {
+				return PivotUtilInternal.findMetamodelManager(state);
 			}
 		});
 		flushEvents();
 		editor.close(false);
 		flushEvents();
-		if (metaModelManager != null) {
-			metaModelManager.dispose();
+		if (metamodelManager != null) {
+			metamodelManager.dispose();
 		}
 	}
 

@@ -19,7 +19,7 @@ import org.eclipse.ocl.pivot.InheritanceFragment;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.SetType;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
@@ -35,12 +35,12 @@ public class InheritanceTests extends PivotSimpleTestSuite
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        helper.setContext(metaModelManager.getStandardLibrary().getClassType());
+        helper.setContext(metamodelManager.getStandardLibrary().getClassType());
     }
 
 	public void test_Inheritance_Boolean() {
-		MetaModelManager metaModelManager = new MetaModelManager();
-		StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
+		MetamodelManager metamodelManager = new MetamodelManager();
+		StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
 		try {
 			CompleteInheritance oclAnyInheritance = standardLibrary.getInheritance(standardLibrary.getOclAnyType());
 			PrimitiveType booleanType = standardLibrary.getBooleanType();
@@ -57,13 +57,13 @@ public class InheritanceTests extends PivotSimpleTestSuite
 			assert depth1Inheritances.next().getBaseInheritance() == booleanInheritance;
 			assert !depth1Inheritances.hasNext();
 		} finally {
-			metaModelManager.dispose();
+			metamodelManager.dispose();
 		}
 	}
 
 	public void test_Inheritance_OclAny() {
-		MetaModelManager metaModelManager = new MetaModelManager();
-		StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
+		MetamodelManager metamodelManager = new MetamodelManager();
+		StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
 		try {
 			AnyType oclAnyType = standardLibrary.getOclAnyType();
 			CompleteInheritance oclAnyInheritance = standardLibrary.getInheritance(oclAnyType);
@@ -75,16 +75,16 @@ public class InheritanceTests extends PivotSimpleTestSuite
 			assert depth0Inheritances.next().getBaseInheritance() == oclAnyInheritance;
 			assert !depth0Inheritances.hasNext();
 		} finally {
-			metaModelManager.dispose();
+			metamodelManager.dispose();
 		}
 	}
 
 	public void test_Inheritance_Set() {
-		MetaModelManager metaModelManager = new MetaModelManager();
-		StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
+		MetamodelManager metamodelManager = new MetamodelManager();
+		StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
 		try {
 			CompleteInheritance oclAnyInheritance = standardLibrary.getInheritance(standardLibrary.getOclAnyType());
-	//		InheritanceInheritance collectionInheritance = metaModelManager.getStandardLibrary().getInheritance(metaModelManager.getStandardLibrary().getCollectionType());
+	//		InheritanceInheritance collectionInheritance = metamodelManager.getStandardLibrary().getInheritance(metamodelManager.getStandardLibrary().getCollectionType());
 			SetType setType = standardLibrary.getSetType();
 			CompleteInheritance setInheritance = standardLibrary.getInheritance(setType);
 			assert setInheritance.getDepth() == 3;
@@ -107,13 +107,13 @@ public class InheritanceTests extends PivotSimpleTestSuite
 			assert depth3Inheritances.next().getBaseInheritance() == setInheritance;
 			assert !depth3Inheritances.hasNext();
 		} finally {
-			metaModelManager.dispose();
+			metamodelManager.dispose();
 		}
 	}
 
 	public void test_Inheritance_IfExp() {
-		MetaModelManager metaModelManager = new MetaModelManager();
-		StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
+		MetamodelManager metamodelManager = new MetamodelManager();
+		StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
 		try {
 			CompleteInheritance oclAnyInheritance = standardLibrary.getInheritance(standardLibrary.getOclAnyType());
 			CompleteInheritance ifInheritance = standardLibrary.getInheritance(ClassUtil.nonNullState(standardLibrary.getPivotType("IfExp")));
@@ -140,13 +140,13 @@ public class InheritanceTests extends PivotSimpleTestSuite
 			assert !ifInheritance.isSuperInheritanceOf(loopExpInheritance);
 			assert !loopExpInheritance.isSuperInheritanceOf(ifInheritance);
 		} finally {
-			metaModelManager.dispose();
+			metamodelManager.dispose();
 		}
 	}
 
 	public void test_Inheritance_UnlimitedNatural() {
-		MetaModelManager metaModelManager = new MetaModelManager();
-		StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
+		MetamodelManager metamodelManager = new MetamodelManager();
+		StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
 		try {
 			CompleteInheritance oclAnyInheritance = standardLibrary.getInheritance(standardLibrary.getOclAnyType());
 //			DomainInheritance realTypeInheritance = standardLibrary.getInheritance(standardLibrary.getRealType());
@@ -168,7 +168,7 @@ public class InheritanceTests extends PivotSimpleTestSuite
 			assertEquals(unlimitedNaturalTypeInheritance, depth2Inheritances.next().getBaseInheritance());
 			assert !depth2Inheritances.hasNext();
 		} finally {
-			metaModelManager.dispose();
+			metamodelManager.dispose();
 		}
 	}
 
@@ -176,8 +176,8 @@ public class InheritanceTests extends PivotSimpleTestSuite
 	 * Check that an inheritance loop is diagnosed. 
 	 */
 	public void test_Inheritance_Loop() {
-		MetaModelManager metaModelManager = new MetaModelManager();
-		StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
+		MetamodelManager metamodelManager = new MetamodelManager();
+		StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
 		try {
 			CompleteInheritance integerTypeInheritance = standardLibrary.getInheritance(standardLibrary.getIntegerType());
 			assertEquals(3, integerTypeInheritance.getDepth());
@@ -191,7 +191,7 @@ public class InheritanceTests extends PivotSimpleTestSuite
 				standardLibrary.getOclComparableType().getSuperClasses().remove(standardLibrary.getIntegerType());
 			}
 		} finally {
-			metaModelManager.dispose();
+			metamodelManager.dispose();
 		}
 	}
 
@@ -199,8 +199,8 @@ public class InheritanceTests extends PivotSimpleTestSuite
 	 * Check that addition of a supertype invalidates cached inheritances. 
 	 */
 	public void test_Inheritance_Addition() {
-		MetaModelManager metaModelManager = new MetaModelManager();
-		StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
+		MetamodelManager metamodelManager = new MetamodelManager();
+		StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
 		try {
 			CompleteInheritance integerTypeInheritance = standardLibrary.getInheritance(standardLibrary.getIntegerType());
 			assertEquals(3, integerTypeInheritance.getDepth());
@@ -212,7 +212,7 @@ public class InheritanceTests extends PivotSimpleTestSuite
 				standardLibrary.getRealType().getSuperClasses().remove(standardLibrary.getStringType());
 			}
 		} finally {
-			metaModelManager.dispose();
+			metamodelManager.dispose();
 		}
 	}
 
@@ -221,8 +221,8 @@ public class InheritanceTests extends PivotSimpleTestSuite
 	 * Check that removal of a supertype invalidates cached inheritances. 
 	 */
 	public void test_Inheritance_Removal() {
-		MetaModelManager metaModelManager = new MetaModelManager();
-		StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
+		MetamodelManager metamodelManager = new MetamodelManager();
+		StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
 		try {
 			CompleteInheritance integerTypeInheritance = standardLibrary.getInheritance(standardLibrary.getIntegerType());
 			assertEquals(3, integerTypeInheritance.getDepth());
@@ -237,7 +237,7 @@ public class InheritanceTests extends PivotSimpleTestSuite
 				standardLibrary.getRealType().getSuperClasses().add(standardLibrary.getOclSummableType());
 			}
 		} finally {
-			metaModelManager.dispose();
+			metamodelManager.dispose();
 		}
 	}
 }

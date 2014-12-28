@@ -44,21 +44,21 @@ import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceAdapter;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
-import org.eclipse.ocl.pivot.internal.utilities.ASSaver;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
+import org.eclipse.ocl.pivot.internal.resource.ASSaver;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
+import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IPackageDescriptor;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IProjectDescriptor;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.LoadDynamicResourceStrategy;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
-import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.IPackageDescriptor;
-import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.IProjectDescriptor;
-import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.LoadDynamicResourceStrategy;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 
-public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
+public abstract class GenerateOCLmetamodel extends GenerateOCLCommonXtend
 {	
 	protected final @NonNull Comparator<CollectionType> collectionTypeComparator = new Comparator<CollectionType>()
 	{
@@ -207,16 +207,16 @@ public abstract class GenerateOCLMetaModel extends GenerateOCLCommonXtend
 		OCLstdlib.install();
 		log.info("Loading Pivot Model '" + inputURI);
 		try {
-			MetaModelManager metaModelManager = MetaModelManager.getAdapter(resourceSet);
-			NameQueries.setMetaModelManager(metaModelManager);
+			MetamodelManager metamodelManager = MetamodelManager.getAdapter(resourceSet);
+			NameQueries.setMetamodelManager(metamodelManager);
 			Resource ecoreResource = ClassUtil.nonNullState(resourceSet.getResource(inputURI, true));
-			MetaModelManagerResourceAdapter.getAdapter(ecoreResource, metaModelManager);
+			MetamodelManagerResourceAdapter.getAdapter(ecoreResource, metamodelManager);
 			String ecoreErrorsString = PivotUtil.formatResourceDiagnostics(ClassUtil.nonNullEMF(ecoreResource.getErrors()), "Loading " + inputURI, "\n");
 			if (ecoreErrorsString != null) {
 				issues.addError(this, ecoreErrorsString, null, null, null);
 				return;
 			}
-			Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metaModelManager);
+			Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager);
 			Model pivotModel = ecore2as.getPivotModel();
 			Resource asResource = pivotModel.eResource();
 			String pivotErrorsString = PivotUtil.formatResourceDiagnostics(ClassUtil.nonNullEMF(asResource.getErrors()), "Converting " + inputURI, "\n");

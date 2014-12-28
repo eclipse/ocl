@@ -30,9 +30,9 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Nameable;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerListener;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerListener;
+import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.xtext.basecs.ElementCS;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;
@@ -45,10 +45,10 @@ import org.eclipse.ocl.xtext.basecs.ModelElementCS;
  * The mapping is also created during a AS2CS conversion to allow subsequent CS2AS
  * conversions to reuse the original Pivot elements.  
  */
-public class CSI2ASMapping extends AdapterImpl implements MetaModelManagerListener
+public class CSI2ASMapping extends AdapterImpl implements MetamodelManagerListener
 {
-	public static @NonNull CSI2ASMapping getAdapter(@NonNull MetaModelManager metaModelManager) {
-		List<Adapter> eAdapters = metaModelManager.getASResourceSet().eAdapters();
+	public static @NonNull CSI2ASMapping getAdapter(@NonNull MetamodelManager metamodelManager) {
+		List<Adapter> eAdapters = metamodelManager.getASResourceSet().eAdapters();
 		for (Adapter adapter : eAdapters) {
 			if (adapter instanceof CSI2ASMapping) {
 				return (CSI2ASMapping) adapter;
@@ -483,7 +483,7 @@ public class CSI2ASMapping extends AdapterImpl implements MetaModelManagerListen
 	}
 
 	@Override
-	public void metaModelManagerDisposed(@NonNull MetaModelManager metaModelManager) {
+	public void metamodelManagerDisposed(@NonNull MetamodelManager metamodelManager) {
 		clear();
 	}
 

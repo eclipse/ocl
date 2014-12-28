@@ -101,9 +101,9 @@ mapping String::createCreatePackage(someCreatePackages : OrderedSet(UML2EcoreCon
 	var nsURIs := myCreatePackages.nsURI->asSet()->excluding(null);
 	if (nsURIs->size() > 1) log("Ambiguous nsURI for ", self);
 	if (nsURIs->size() = 1) result.nsURI := nsURIs->any(true);
-	var isASMetamodels := myCreatePackages.isASMetamodel->asSet()->excluding(null);
-	if (isASMetamodels->size() > 1) log("Ambiguous isASMetaModel for ", self);
-	if (isASMetamodels->size() = 1) result.isASMetamodel := isASMetamodels->any(true);
+	var isASmetamodels := myCreatePackages.isASmetamodel->asSet()->excluding(null);
+	if (isASmetamodels->size() > 1) log("Ambiguous isASmetamodel for ", self);
+	if (isASmetamodels->size() = 1) result.isASmetamodel := isASmetamodels->any(true);
 	var ecoreFileStems := myCreatePackages.ecoreFileStem->asSet()->excluding(null);
 	if (ecoreFileStems->size() > 1) log("Ambiguous ecoreFileStem for ", self);
 	if (ecoreFileStems->size() = 1) result.ecoreFileStem := ecoreFileStems->any(true);

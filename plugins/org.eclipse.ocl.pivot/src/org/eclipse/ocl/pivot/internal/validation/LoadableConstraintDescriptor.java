@@ -29,9 +29,9 @@ import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.OCL;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.plugin.PivotInternalPlugin;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
@@ -148,7 +148,7 @@ public abstract class LoadableConstraintDescriptor<T> extends AbstractConstraint
 
 	@Override
 	public String getPluginId() {
-		return PivotInternalPlugin.getPluginId();
+		return PivotPlugin.PLUGIN_ID;
 	}
 
 	@Override
@@ -175,11 +175,11 @@ public abstract class LoadableConstraintDescriptor<T> extends AbstractConstraint
 		OCL ocl = LoadableConstraintProvider.getOCL();
 		ExpressionInOCL query2 = query;
 		if (query2 == null) {
-			MetaModelManager metaModelManager = ocl.getMetaModelManager();
+			MetamodelManager metamodelManager = ocl.getMetamodelManager();
 			EClass eClass = target.eClass();
 			NamedElement contextElement = null;
 			try {
-				contextElement = metaModelManager.getPivotOf(NamedElement.class, eClass);
+				contextElement = metamodelManager.getPivotOf(NamedElement.class, eClass);
 			} catch (ParserException e) {
 				logger.error("Failed to convert " + eClass, e);
 			}
@@ -191,7 +191,7 @@ public abstract class LoadableConstraintDescriptor<T> extends AbstractConstraint
 				return ctx.createFailureStatus(target);
 			}
 			try {
-				query = query2 = metaModelManager.getQueryOrThrow(specification);
+				query = query2 = metamodelManager.getQueryOrThrow(specification);
 			} catch (ParserException e) {
 				return ctx.createFailureStatus(e.getLocalizedMessage());
 			}

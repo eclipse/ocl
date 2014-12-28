@@ -17,7 +17,7 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.internal.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.internal.scoping.ScopeView;
-import org.eclipse.ocl.pivot.internal.utilities.Pivotable;
+import org.eclipse.ocl.pivot.utilities.Pivotable;
 
 public class ClassAttribution extends AbstractAttribution
 {
@@ -39,8 +39,8 @@ public class ClassAttribution extends AbstractAttribution
 		environmentView.addAllProperties(targetClass, null);
 		environmentView.addAllStates(targetClass);
 //		if (!environmentView.hasFinalResult()) {
-//			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-//			Type metatype = metaModelManager.getPivotType(targetClass.eClass().getName());		// FIXME getMetaType
+//			MetamodelManager metamodelManager = environmentView.getMetamodelManager();
+//			Type metatype = metamodelManager.getPivotType(targetClass.eClass().getName());		// FIXME getMetaType
 //			if (metatype != null) {
 //				environmentView.addAllOperations(metatype, FeatureFilter.SELECT_STATIC);
 //				environmentView.addAllProperties(metatype, FeatureFilter.SELECT_STATIC);

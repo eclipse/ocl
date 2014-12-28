@@ -21,7 +21,7 @@ import org.eclipse.ocl.examples.debug.vm.evaluator.VMModelManager;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
@@ -41,8 +41,8 @@ public class OCLVMModelManager extends VMModelManager
 	 * Instantiates a new OCL Domain Manager. Responsible for creating new
 	 * instances of the middle model and the middle model EFactory.
 	 */
-	public OCLVMModelManager(@NonNull MetaModelManager metaModelManager) {
-	    super(metaModelManager);
+	public OCLVMModelManager(@NonNull MetamodelManager metamodelManager) {
+	    super(metamodelManager);
 //	    this.allInstancesTypes = transformationAnalysis.getAllInstancesTypes();
 	}
 
@@ -73,11 +73,11 @@ public class OCLVMModelManager extends VMModelManager
 		Type objectType = null;
 		if (ePackage == PivotPackage.eINSTANCE) {
 			String name = ClassUtil.nonNullEMF(eClass.getName());
-			objectType = metaModelManager.getPivotType(name);
+			objectType = metamodelManager.getPivotType(name);
 		}
 		else {
 			try {
-				objectType = metaModelManager.getPivotOf(Type.class,  eClass);
+				objectType = metamodelManager.getPivotOf(Type.class,  eClass);
 			} catch (ParserException e) {
 // FIXME				if (!generatedErrorMessage) {
 //					generatedErrorMessage = true;
@@ -85,6 +85,6 @@ public class OCLVMModelManager extends VMModelManager
 //				}
 			}
 		}
-	    return (objectType != null) && objectType.conformsTo(metaModelManager.getStandardLibrary(), requiredType);
+	    return (objectType != null) && objectType.conformsTo(metamodelManager.getStandardLibrary(), requiredType);
 	}
 }

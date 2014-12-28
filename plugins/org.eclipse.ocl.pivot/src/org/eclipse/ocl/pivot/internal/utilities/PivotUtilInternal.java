@@ -20,12 +20,8 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -34,513 +30,83 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.AnyType;
-import org.eclipse.ocl.pivot.AssociativityKind;
-import org.eclipse.ocl.pivot.BagType;
-import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.Enumeration;
-import org.eclipse.ocl.pivot.EnumerationLiteral;
-import org.eclipse.ocl.pivot.ExpressionInOCL;
-import org.eclipse.ocl.pivot.InvalidType;
-import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.LanguageExpression;
-import org.eclipse.ocl.pivot.LetExp;
 import org.eclipse.ocl.pivot.Model;
-import org.eclipse.ocl.pivot.NamedElement;
-import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
-import org.eclipse.ocl.pivot.OperationCallExp;
-import org.eclipse.ocl.pivot.OrderedSetType;
-import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.Parameter;
-import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PivotTables;
-import org.eclipse.ocl.pivot.Precedence;
-import org.eclipse.ocl.pivot.PrimitiveType;
-import org.eclipse.ocl.pivot.Property;
-import org.eclipse.ocl.pivot.PropertyCallExp;
 import org.eclipse.ocl.pivot.SelfType;
-import org.eclipse.ocl.pivot.SequenceType;
-import org.eclipse.ocl.pivot.SetType;
-import org.eclipse.ocl.pivot.StringLiteralExp;
-import org.eclipse.ocl.pivot.TemplateBinding;
-import org.eclipse.ocl.pivot.TemplateParameter;
-import org.eclipse.ocl.pivot.TemplateParameterSubstitution;
-import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
-import org.eclipse.ocl.pivot.Variable;
-import org.eclipse.ocl.pivot.VariableExp;
-import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
-import org.eclipse.ocl.pivot.ids.PackageId;
-import org.eclipse.ocl.pivot.internal.PackageImpl;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
-import org.eclipse.ocl.pivot.internal.context.ParserContext;
 import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.AbstractMetaModelManagerResourceAdapter;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceAdapter;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.AbstractMetamodelManagerResourceAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.manager.PivotExecutorManager;
 import org.eclipse.ocl.pivot.internal.scoping.Attribution;
 import org.eclipse.ocl.pivot.internal.scoping.NullAttribution;
-import org.eclipse.ocl.pivot.library.LibraryFeature;
 import org.eclipse.ocl.pivot.library.ecore.EcoreExecutorManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.Pivotable;
 
-public class PivotUtilInternal extends PivotUtil
+public class PivotUtilInternal //extends PivotUtil
 {	
 	private static final Logger logger = Logger.getLogger(PivotUtilInternal.class);
-
-	public static @NonNull AnyType createAnyType(@NonNull String name) {
-		AnyType pivotType = PivotFactory.eINSTANCE.createAnyType();
-		pivotType.setName(name);
-		return pivotType;
-	}
-
-	public static @NonNull BagType createBagType(@NonNull BagType unspecializedType, @NonNull Type elementType) {
-		return createCollectionType(PivotFactory.eINSTANCE.createBagType(), unspecializedType, elementType);
-	}
-
-	public static @NonNull org.eclipse.ocl.pivot.Class createClass(/*@NonNull*/ EClass eClass) {
-		org.eclipse.ocl.pivot.Class pivotType = PivotFactory.eINSTANCE.createClass();
-		pivotType.setName(eClass.getName());
-		((PivotObjectImpl)pivotType).setTarget(eClass);
-		return pivotType;
-	}
-
-	public static @NonNull org.eclipse.ocl.pivot.Class createClass(@NonNull String name) {
-		org.eclipse.ocl.pivot.Class pivotType = PivotFactory.eINSTANCE.createClass();
-		pivotType.setName(name);
-		return pivotType;
-	}
-
-	public static @NonNull CollectionType createCollectionType(@NonNull CollectionType unspecializedType, @NonNull Type elementType) {
-		return createCollectionType(PivotFactory.eINSTANCE.createCollectionType(), unspecializedType, elementType);
-	}
-
-	protected static @NonNull  <T extends CollectionType> T createCollectionType(/*@NonNull*/ T specializedType, @NonNull T unspecializedType, @NonNull Type instanceType) {
-		specializedType.setName(unspecializedType.getName());
-		specializedType.setLower(unspecializedType.getLower());
-		specializedType.setUpper(unspecializedType.getUpper());
-		specializedType.setUnspecializedElement(unspecializedType);
-		specializedType.setElementType(instanceType);
-		return specializedType;
-	}
-
-	public static @NonNull DataType createDataType(/*@NonNull*/ EDataType eDataType) {
-		DataType pivotType = PivotFactory.eINSTANCE.createDataType();
-		pivotType.setName(eDataType.getName());
-		((PivotObjectImpl)pivotType).setTarget(eDataType);
-		return pivotType;
-	}
-
-	public static @NonNull DataType createDataType(@NonNull String name) {
-		DataType pivotType = PivotFactory.eINSTANCE.createDataType();
-		pivotType.setName(name);
-		return pivotType;
-	}
 	
-	public static @NonNull Enumeration createEnumeration(/*@NonNull*/ EEnum eEnum) {
-		Enumeration pivotType = PivotFactory.eINSTANCE.createEnumeration();
-		pivotType.setName(eEnum.getName());
-		((PivotObjectImpl)pivotType).setTarget(eEnum);
-		return pivotType;
-	}
-	
-	public static @NonNull Enumeration createEnumeration(@NonNull String name) {
-		Enumeration pivotType = PivotFactory.eINSTANCE.createEnumeration();
-		pivotType.setName(name);
-		return pivotType;
-	}
-	
-	public static @NonNull EnumerationLiteral createEnumerationLiteral(/*@NonNull*/ EEnumLiteral eEnumLiteral) {
-		EnumerationLiteral pivotEnumerationLiteral = PivotFactory.eINSTANCE.createEnumerationLiteral();
-		pivotEnumerationLiteral.setName(eEnumLiteral.getName());
-		((PivotObjectImpl)pivotEnumerationLiteral).setTarget(eEnumLiteral);
-		return pivotEnumerationLiteral;
-	}
-
-	public static @NonNull EnumerationLiteral createEnumerationLiteral(@NonNull String name) {
-		EnumerationLiteral pivotEnumerationLiteral = PivotFactory.eINSTANCE.createEnumerationLiteral();
-		pivotEnumerationLiteral.setName(name);
-		return pivotEnumerationLiteral;
-	}
-
-	public static @NonNull ExpressionInOCL createExpressionInOCL(@Nullable Variable asContextVariable, @NonNull OCLExpression asExpression, /*@NonNUll*/ Variable... asParameterVariables) {
-		ExpressionInOCL asExpressionInOCL = PivotFactory.eINSTANCE.createExpressionInOCL();
-		asExpressionInOCL.setOwnedContext(asContextVariable);
-		if (asParameterVariables != null) {
-			for (Variable asParameterVariable : asParameterVariables) {
-				asExpressionInOCL.getOwnedParameters().add(asParameterVariable);
-			}
-		}
-		asExpressionInOCL.setOwnedBody(asExpression);
-		asExpressionInOCL.setType(asExpression.getType());
-		asExpressionInOCL.setIsRequired(asExpression.isRequired());
-		return asExpressionInOCL;
-	}
-
-	public static @NonNull ExpressionInOCL createExpressionInOCLError(@NonNull String string) {
-		@SuppressWarnings("null")@NonNull ExpressionInOCL expressionInOCL = PivotFactory.eINSTANCE.createExpressionInOCL();
-		StringLiteralExp stringLiteral = PivotFactory.eINSTANCE.createStringLiteralExp();
-		stringLiteral.setStringSymbol(string); //createTupleValuedConstraint("false", null, string));
-		expressionInOCL.setOwnedBody(stringLiteral);
-		expressionInOCL.setType(stringLiteral.getType());
-		return expressionInOCL;
-	}
-
-	public static @NonNull InvalidType createInvalidType(@NonNull String name) {
-		InvalidType pivotType = PivotFactory.eINSTANCE.createInvalidType();
-		pivotType.setName(name);
-		return pivotType;
-	}
-	
-	public static @NonNull Iteration createIteration(@NonNull String name, @NonNull Type type, @Nullable String implementationClass, @NonNull LibraryFeature implementation) {
-		Iteration pivotIteration = PivotFactory.eINSTANCE.createIteration();
-		pivotIteration.setName(name);
-		pivotIteration.setType(type);
-		pivotIteration.setImplementationClass(implementationClass);
-		pivotIteration.setImplementation(implementation);
-		return pivotIteration;
-	}
-	
-	public static @NonNull LambdaType createLambdaType(@NonNull String name) {
-		LambdaType pivotType = PivotFactory.eINSTANCE.createLambdaType();
-		pivotType.setName(name);
-		return pivotType;
-	}
-
-	public static @NonNull LetExp createLetExp(@NonNull Variable asVariable, @NonNull OCLExpression asIn) {
-		LetExp asLetExp = PivotFactory.eINSTANCE.createLetExp();
-		asLetExp.setOwnedIn(asIn);
-		asLetExp.setType(asIn.getType());
-		asLetExp.setIsRequired(asIn.isRequired());
-		asLetExp.setOwnedVariable(asVariable);
-		return asLetExp;
-	}
-
-	public static @NonNull Model createModel(@NonNull String externalURI) {
-		Model pivotModel = PivotFactory.eINSTANCE.createModel();
-		pivotModel.setExternalURI(externalURI);
-		return pivotModel;
-	}
-	
-	public static @NonNull Operation createOperation(@NonNull String name, @NonNull Type type, @Nullable String implementationClass, @Nullable LibraryFeature implementation) {
-		Operation pivotOperation = PivotFactory.eINSTANCE.createOperation();
-		pivotOperation.setName(name);
-		pivotOperation.setType(type);
-		pivotOperation.setImplementationClass(implementationClass);
-		pivotOperation.setImplementation(implementation);
-		return pivotOperation;
-	}
-	
-	public static @NonNull Operation createOperation(/*@NonNull*/ EOperation eOperation, @NonNull Type type, @Nullable String implementationClass, @Nullable LibraryFeature implementation) {
-		Operation pivotOperation = PivotFactory.eINSTANCE.createOperation();
-		pivotOperation.setName(eOperation.getName());
-		pivotOperation.setType(type);
-		pivotOperation.setImplementationClass(implementationClass);
-		pivotOperation.setImplementation(implementation);
-		((PivotObjectImpl)pivotOperation).setTarget(eOperation);
-		return pivotOperation;
-	}
-
-	public static @NonNull Operation createOperation(@NonNull String name, @NonNull ExpressionInOCL asExpressionInOCL) {
-		Operation asOperation = PivotFactory.eINSTANCE.createOperation();
-		asOperation.setName(name);
-		initOperation(asOperation, asExpressionInOCL);
-		return asOperation;
-	}
-
-	public static @NonNull OperationCallExp createOperationCallExp(@NonNull OCLExpression asSource, @NonNull Operation asOperation, /*@NonNull*/ OCLExpression... asArguments) {
-		OperationCallExp asCallExp = PivotFactory.eINSTANCE.createOperationCallExp();
-		asCallExp.setReferredOperation(asOperation);
-		asCallExp.setOwnedSource(asSource);
-		if (asArguments != null) {
-			List<OCLExpression> asCallArguments = asCallExp.getOwnedArguments();
-			for (OCLExpression asArgument : asArguments) {
-				asCallArguments.add(ClassUtil.nonNullState(asArgument));
-			}
-		}
-		asCallExp.setType(asOperation.getType());
-		asCallExp.setIsRequired(asOperation.isRequired());
-		return asCallExp;
-	}
-
-	public static @NonNull OrderedSetType createOrderedSetType(@NonNull OrderedSetType unspecializedType, @NonNull Type elementType) {
-		return createCollectionType(PivotFactory.eINSTANCE.createOrderedSetType(), unspecializedType, elementType);
-	}
-
-	public static @NonNull Package createPackage(/*@NonNull*/ EPackage ePackage, @Nullable String nsPrefix, @NonNull String nsURI) {
-		Package pivotPackage = PivotFactory.eINSTANCE.createPackage();
-		pivotPackage.setName(ePackage.getName());
-		pivotPackage.setNsPrefix(nsPrefix);
-		pivotPackage.setURI(nsURI);
-		((PivotObjectImpl)pivotPackage).setTarget(ePackage);
-		return pivotPackage;
-	}
-
-	public static @NonNull Package createPackage(@NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI, @Nullable PackageId packageId) {
-		Package pivotPackage = PivotFactory.eINSTANCE.createPackage();
-		pivotPackage.setName(name);
-		pivotPackage.setNsPrefix(nsPrefix);
-		if (packageId != null) {
-			((PackageImpl)pivotPackage).setPackageId(packageId);  // FIXME Add to API
-		}
-		pivotPackage.setURI(nsURI);
-		return pivotPackage;
-	}
-
-	public static @NonNull Parameter createParameter(@NonNull String name, @NonNull Type asType, boolean isRequired) {
-		Parameter asParameter = PivotFactory.eINSTANCE.createParameter();
-		asParameter.setName(name);
-		asParameter.setType(asType);
-		asParameter.setIsRequired(isRequired);
-		return asParameter;
-	}
-	
-	public static @NonNull Precedence createPrecedence(@NonNull String name, /*@NonNull*/ AssociativityKind kind) {
-		assert kind != null;
-		Precedence pivotPrecedence = PivotFactory.eINSTANCE.createPrecedence();
-		pivotPrecedence.setName(name);
-		pivotPrecedence.setAssociativity(kind);
-		return pivotPrecedence;
-	}
-	
-	public static @NonNull PrimitiveType createPrimitiveType(@NonNull String name) {
-		PrimitiveType pivotType = PivotFactory.eINSTANCE.createPrimitiveType();
-		pivotType.setName(name);
-		return pivotType;
-	}
-	
-	public static @NonNull Property createProperty(/*@NonNull*/ EStructuralFeature eFeature, @NonNull Type type) {
-		Property pivotProperty = PivotFactory.eINSTANCE.createProperty();
-		pivotProperty.setName(eFeature.getName());
-		pivotProperty.setType(type);
-		((PivotObjectImpl)pivotProperty).setTarget(eFeature);
-		return pivotProperty;
-	}
-	
-	public static @NonNull Property createProperty(@NonNull String name, @NonNull Type type) {
-		Property pivotProperty = PivotFactory.eINSTANCE.createProperty();
-		pivotProperty.setName(name);
-		pivotProperty.setType(type);
-		return pivotProperty;
-	}
-
-	public static @NonNull PropertyCallExp createPropertyCallExp(@NonNull OCLExpression asSource, @NonNull Property asProperty) {
-		PropertyCallExp asChild = PivotFactory.eINSTANCE.createPropertyCallExp();
-		asChild.setOwnedSource(asSource);
-		asChild.setReferredProperty(asProperty);
-		asChild.setType(asProperty.getType());
-		asChild.setIsRequired(asProperty.isRequired());
-		return asChild;
-	}
-
-	public static @NonNull SelfType createSelfType(@NonNull String name) {
-		SelfType pivotType = PivotFactory.eINSTANCE.createSelfType();
-		pivotType.setName(name);
-		return pivotType;
-	}
-
-	public static @NonNull SequenceType createSequenceType(@NonNull SequenceType unspecializedType, @NonNull Type elementType) {
-		return createCollectionType(PivotFactory.eINSTANCE.createSequenceType(), unspecializedType, elementType);
-	}
-
-	public static @NonNull SetType createSetType(@NonNull SetType unspecializedType, @NonNull Type elementType) {
-		return createCollectionType(PivotFactory.eINSTANCE.createSetType(), unspecializedType, elementType);
-	}
-
-	public static @NonNull TemplateBinding createTemplateBinding(TemplateParameterSubstitution... templateParameterSubstitutions) {
-		TemplateBinding pivotTemplateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
-		List<TemplateParameterSubstitution> parameterSubstitutions = pivotTemplateBinding.getOwnedSubstitutions();
-		for (TemplateParameterSubstitution templateParameterSubstitution : templateParameterSubstitutions) {
-			parameterSubstitutions.add(templateParameterSubstitution);
-		}
-		return pivotTemplateBinding;
-	}
-
-	public static @NonNull TemplateParameter createTemplateParameter(@NonNull String name, @Nullable org.eclipse.ocl.pivot.Class lowerBound, @Nullable org.eclipse.ocl.pivot.Class upperBound) {
-		TemplateParameter pivotTemplateParameter = PivotFactory.eINSTANCE.createTemplateParameter();
-		pivotTemplateParameter.setName(name);
-		pivotTemplateParameter.setLowerBound(lowerBound);
-		pivotTemplateParameter.setUpperBound(upperBound);
-		return pivotTemplateParameter;
-	}
-
-	public static @NonNull TemplateParameterSubstitution createTemplateParameterSubstitution(@NonNull TemplateParameter formal, @NonNull Type actual) {
-		TemplateParameterSubstitution pivotTemplateParameterSubstitution = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-		pivotTemplateParameterSubstitution.setFormal(formal);
-		pivotTemplateParameterSubstitution.setActual(actual);
-		return pivotTemplateParameterSubstitution;
-	}
-
-	public static @NonNull TemplateSignature createTemplateSignature(@NonNull TemplateableElement templateableElement, TemplateParameter... templateParameters) {
-		TemplateSignature pivotTemplateSignature = PivotFactory.eINSTANCE.createTemplateSignature();
-		List<TemplateParameter> parameters = pivotTemplateSignature.getOwnedParameters();
-		for (TemplateParameter templateParameter : templateParameters) {
-			parameters.add(templateParameter);
-		}
-		pivotTemplateSignature.setOwningElement(templateableElement);
-		return pivotTemplateSignature;
-	}
-	
-	public static @NonNull TupleType createTupleType(@NonNull String name, Property... properties) {
-		TupleType pivotType = PivotFactory.eINSTANCE.createTupleType();
-		pivotType.setName(name);
-		List<Property> ownedProperties = pivotType.getOwnedProperties();
-		for (Property property : properties) {
-			ownedProperties.add(property);
-		}
-		return pivotType;
-	}
-
-	public static @NonNull String createTupleValuedConstraint(@NonNull String statusText, @Nullable Integer severity, @Nullable String messageText) {
-		if ((severity == null) && (messageText == null)) {
-			return statusText;
-		}
-		StringBuilder s = new StringBuilder();
-		s.append("Tuple {");
-		if (messageText != null) {
-			s.append("\n\t" + PivotConstantsInternal.MESSAGE_PART_NAME + " : String = " + messageText + ",");
-		}
-		if (severity != null) {
-			s.append("\n\t" + PivotConstantsInternal.SEVERITY_PART_NAME + " : Integer = " + severity + ",");
-		}
-		s.append("\n\t" + PivotConstantsInternal.STATUS_PART_NAME + " : Boolean = " + statusText);		// NB parts in alphabetical order
-		s.append("\n}."+ PivotConstantsInternal.STATUS_PART_NAME);
-		@SuppressWarnings("null")@NonNull String string = s.toString();
-		return string;
-	}
-
-	public static @NonNull Variable createVariable(@NonNull String name, @NonNull OCLExpression asInitExpression) {
-		Variable asVariable = PivotFactory.eINSTANCE.createVariable();
-		asVariable.setName(name);
-		asVariable.setType(asInitExpression.getType());
-		asVariable.setIsRequired(asInitExpression.isRequired());
-		asVariable.setOwnedInit(asInitExpression);
-		return asVariable;
-	}
-
-	public static @NonNull Variable createVariable(@NonNull String name, @NonNull Type asType, boolean isRequired, @Nullable OCLExpression asInitExpression) {
-		Variable asVariable = PivotFactory.eINSTANCE.createVariable();
-		asVariable.setName(name);
-		asVariable.setType(asType);
-		asVariable.setIsRequired(isRequired);
-		asVariable.setOwnedInit(asInitExpression);
-		return asVariable;
-	}
-
-	public static @NonNull VariableExp createVariableExp(@NonNull Variable asVariable) {
-		VariableExp asVariableExp = PivotFactory.eINSTANCE.createVariableExp();
-		asVariableExp.setReferredVariable(asVariable);
-		asVariableExp.setType(asVariable.getType());
-		asVariableExp.setIsRequired(asVariable.isRequired());
-		return asVariableExp;
-	}
-
-	public static @NonNull VoidType createVoidType(@NonNull String name) {
-		VoidType pivotType = PivotFactory.eINSTANCE.createVoidType();
-		pivotType.setName(name);
-		return pivotType;
-	}
-
-	public static void debugObjectUsage(String prefix, EObject element) {
-		StringBuilder s = new StringBuilder();
-		s.append(prefix);
-		if (element != null) {
-			s.append(element.eClass().getName());
-			s.append("@");
-			s.append(Integer.toHexString(element.hashCode()));
-			Resource eResource = element.eResource();
-			if (eResource != null) {
-				if (element instanceof Element) {
-					s.append(" ");
-					s.append(AS2Moniker.toString((Element) element));
-				}
-				s.append(" ");
-				s.append(eResource.getURI());
-			}
-			else if (element instanceof NamedElement) {
-				s.append(" ");
-				s.append(String.valueOf(((NamedElement) element).getName()));
-			}
-		}
-		else {
-			s.append("null");
-		}
-		System.out.println(s.toString());
-	}
-
-	public static boolean debugWellContainedness(Type type) {
-		if (type.eResource() == null) {
-			PivotUtilInternal.debugObjectUsage("Badly contained ", type);
-			return false;
-		}
-		if (type instanceof CollectionType) {
-			Type elementType = ((CollectionType)type).getElementType();
-			if ((elementType != null) && !debugWellContainedness(elementType)) {
-				PivotUtilInternal.debugObjectUsage("Badly contained ", type);
-				return false;
-			}
-		}
-		return true;
-	}
-	
-	public static @Nullable MetaModelManager findMetaModelManager(@NonNull EObject eObject) {
+	public static @Nullable MetamodelManager findMetamodelManager(@NonNull EObject eObject) {
 		EObject eRoot = EcoreUtil.getRootContainer(eObject);
 		if (eRoot != null) {
 			Resource resource = eRoot.eResource();
 			if (resource != null) {
 //				if (eObject instanceof ElementCS) {
-					AbstractMetaModelManagerResourceAdapter<?> adapter = AbstractMetaModelManagerResourceAdapter.findAdapter(resource);
+					AbstractMetamodelManagerResourceAdapter<?> adapter = AbstractMetamodelManagerResourceAdapter.findAdapter(resource);
 					if (adapter != null) {
-						return adapter.getMetaModelManager();
+						return adapter.getMetamodelManager();
 					}
 //				}
-				return findMetaModelManager(resource);
+				return findMetamodelManager(resource);
 			}
 		}
 		return null;
 	}
 
-	public static @Nullable MetaModelManager findMetaModelManager(@NonNull Resource resource) {
+	public static @Nullable MetamodelManager findMetamodelManager(@NonNull Resource resource) {
 		for (Adapter adapter : resource.eAdapters()) {
-			if (adapter instanceof AbstractMetaModelManagerResourceAdapter) {
-				return ((AbstractMetaModelManagerResourceAdapter<?>)adapter).getMetaModelManager();
+			if (adapter instanceof AbstractMetamodelManagerResourceAdapter) {
+				return ((AbstractMetamodelManagerResourceAdapter<?>)adapter).getMetamodelManager();
 			}
 		}
 		ResourceSet resourceSet = resource.getResourceSet();
-		return resourceSet != null ? findMetaModelManager(resourceSet) : null;
+		return resourceSet != null ? findMetamodelManager(resourceSet) : null;
 	}
 
-	public static MetaModelManager findMetaModelManager(@NonNull ResourceSet resourceSet) {
-		MetaModelManager metaModelManager = MetaModelManager.findAdapter(resourceSet);
-		if (metaModelManager != null) {
-			return metaModelManager;
+	public static MetamodelManager findMetamodelManager(@NonNull ResourceSet resourceSet) {
+		MetamodelManager metamodelManager = MetamodelManager.findAdapter(resourceSet);
+		if (metamodelManager != null) {
+			return metamodelManager;
 		}
-		MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.findAdapter(resourceSet);
+		MetamodelManagerResourceSetAdapter adapter = MetamodelManagerResourceSetAdapter.findAdapter(resourceSet);
 		if (adapter != null) {
-			return adapter.getMetaModelManager();
+			return adapter.getMetamodelManager();
 		}
 		return null;
 	}
 
-	public static Type findTypeOf(@NonNull MetaModelManager metaModelManager, @NonNull EClassifier eClass) {
+	public static Type findTypeOf(@NonNull MetamodelManager metamodelManager, @NonNull EClassifier eClass) {
 		Resource resource = eClass.eResource();
 		if (resource != null) {
-			Ecore2AS adapter = Ecore2AS.findAdapter(resource, metaModelManager);
+			Ecore2AS adapter = Ecore2AS.findAdapter(resource, metamodelManager);
 			if (adapter != null) {
 				Type type = adapter.getCreated(Type.class, eClass);
 				if (type != null) {
@@ -626,43 +192,29 @@ public class PivotUtilInternal extends PivotUtil
 		return umlBody;
 	}
 
-	/**
-	 * Return the number of containers of eObject, 0 if eObject is a root.
-	 */
-	public static int getContainmentDepth(EObject eObject) {
-		int depth = 0;
-		for (EObject eContainer = eObject.eContainer(); eContainer != null; eContainer = eContainer.eContainer()) {
-			depth++;
-			if (depth > 100000) {
-				return depth;
-			}
-		}
-		return depth;
-	}
-
 	public static @NonNull Evaluator getEvaluator(@NonNull EObject eObject) {
 		Resource asResource = eObject.eResource();
 		if (asResource != null) {
-			MetaModelManager metaModelManager = findMetaModelManager(asResource);
-			if (metaModelManager != null) {
-				return new PivotExecutorManager(metaModelManager, eObject);
+			MetamodelManager metamodelManager = findMetamodelManager(asResource);
+			if (metamodelManager != null) {
+				return new PivotExecutorManager(metamodelManager, eObject);
 			}
 		}
 		return new EcoreExecutorManager(eObject, PivotTables.LIBRARY);
 	}
 
-	public static @NonNull MetaModelManager getMetaModelManager(@NonNull Resource resource) {
-		MetaModelManager metaModelManager = findMetaModelManager(resource);
-		if (metaModelManager == null) {
-			MetaModelManagerResourceAdapter adapter = MetaModelManagerResourceAdapter.getAdapter(resource, null);
-			metaModelManager = adapter.getMetaModelManager();
-			assert metaModelManager != null;
+	public static @NonNull MetamodelManager getMetamodelManager(@NonNull Resource resource) {
+		MetamodelManager metamodelManager = findMetamodelManager(resource);
+		if (metamodelManager == null) {
+			MetamodelManagerResourceAdapter adapter = MetamodelManagerResourceAdapter.getAdapter(resource, null);
+			metamodelManager = adapter.getMetamodelManager();
+			assert metamodelManager != null;
 			ResourceSet resourceSet = resource.getResourceSet();
-			if ((resourceSet != null) && (findMetaModelManager(resourceSet) == null)) {
-				MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
+			if ((resourceSet != null) && (findMetamodelManager(resourceSet) == null)) {
+				MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
 			}
 		}
-		return metaModelManager;
+		return metamodelManager;
 	}
 
 	@SuppressWarnings("null")
@@ -790,22 +342,6 @@ public class PivotUtilInternal extends PivotUtil
 		}
 	}
 
-	public static @Nullable <T extends Element> T getPivot(@NonNull Class<T> pivotClass, @Nullable Pivotable pivotableElement) {
-		if (pivotableElement == null) {
-			return null;
-		}
-		Element pivotElement = pivotableElement.getPivot();
-		if (pivotElement == null) {
-			return null;
-		}
-		if (!pivotClass.isAssignableFrom(pivotElement.getClass())) {
-			throw new ClassCastException(pivotElement.getClass().getName() + " is not assignable to " + pivotClass.getName());
-		}
-		@SuppressWarnings("unchecked")
-		T castElement = (T) pivotElement;
-		return castElement;
-	}
-
 	public static String getSpecificationRole(@NonNull LanguageExpression specification) {
 		EReference eContainmentFeature = specification.eContainmentFeature();
 		if (eContainmentFeature == PivotPackage.Literals.NAMESPACE__OWNED_CONSTRAINTS) {
@@ -885,20 +421,6 @@ public class PivotUtilInternal extends PivotUtil
 			}
 		}
 		return type;
-	}
-
-	public static @NonNull Operation initOperation(@NonNull Operation asOperation, @NonNull ExpressionInOCL asExpressionInOCL) {
-		for (Variable asParameterVariable : asExpressionInOCL.getOwnedParameters()) {
-			String parameterName = ClassUtil.nonNullState(asParameterVariable.getName());
-			Type parameterType = ClassUtil.nonNullState(asParameterVariable.getType());
-			Parameter asParameter = createParameter(parameterName, parameterType, asParameterVariable.isRequired());
-			asParameterVariable.setRepresentedParameter(asParameter);
-			asOperation.getOwnedParameters().add(asParameter);
-		}
-		asOperation.setBodyExpression(asExpressionInOCL);
-		asOperation.setType(asExpressionInOCL.getType());
-		asOperation.setIsRequired(asExpressionInOCL.isRequired());
-		return asOperation;
 	}
 
 	public static boolean isASURI(@Nullable String uri) {
@@ -1039,61 +561,6 @@ public class PivotUtilInternal extends PivotUtil
 					}
 				}
 			}
-		}
-	}
-
-	/**
-	 * Define oclExpression as the bodyExpression of an expressionInOCL, and if non-null
-	 * also define stringExpression as the OCL-languaged body.
-	 */
-	public static void setBody(@NonNull ExpressionInOCL expressionInOCL, @Nullable OCLExpression oclExpression, @Nullable String stringExpression) {
-		setBody(expressionInOCL, stringExpression);
-		expressionInOCL.setOwnedBody(oclExpression);
-	}
-
-	/**
-	 * Define oclExpression as the bodyExpression of an expressionInOCL, and if non-null
-	 * also define stringExpression as the OCL-languaged body.
-	 */
-	@Deprecated
-	public static void setBody(@NonNull ExpressionInOCL opaqueExpression, @Nullable String stringExpression) {
-		opaqueExpression.setBody(stringExpression);
-	}
-
-	/**
-	 * Configure resource to support parsing in the context of an eObject. Throws a ParserException
-	 * if a pivot element cannot be identified for eObject.eClass(). Return false if a pivot element
-	 * can be identified, but it is not one that supports constraint parsing.
-	 *
-	 * @throws ParserException if eObject cannot be converted to a Pivot element
-	 */
-	public static boolean setParserContext(@NonNull BaseResource resource, @NonNull EObject eObject, Object... todoParameters) throws ParserException {
-		AbstractMetaModelManagerResourceAdapter<?> adapter = MetaModelManagerResourceAdapter.findAdapter(resource);
-		MetaModelManager metaModelManager = adapter != null ? adapter.getMetaModelManager() : null;
-		if (metaModelManager == null) {
-			ResourceSet resourceSet = ClassUtil.nonNullState(resource.getResourceSet());
-			metaModelManager = MetaModelManager.getAdapter(resourceSet);
-		}
-		Element pivotElement;
-		if (eObject instanceof Element) {
-			pivotElement = (Element) eObject;
-		}
-		else {
-			pivotElement = metaModelManager.getPivotOf(Element.class, eObject);
-			if ((eObject instanceof org.eclipse.uml2.uml.Constraint) && (pivotElement instanceof Constraint) && (pivotElement.eContainer() == null)) {
-				pivotElement = metaModelManager.getPivotOf(Element.class, ((org.eclipse.uml2.uml.Constraint)eObject).getSpecification());
-			}
-		}
-		if (pivotElement == null) {
-			return false;
-		}
-		ParserContext parserContext = metaModelManager.getParserContext(pivotElement, todoParameters);
-		if (parserContext == null) {
-			return false;
-		}
-		else {
-			resource.setParserContext(parserContext);
-			return true;
 		}
 	}
 }

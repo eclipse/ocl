@@ -116,7 +116,6 @@ import org.eclipse.ocl.pivot.internal.library.ConstrainedOperation;
 import org.eclipse.ocl.pivot.internal.library.EInvokeOperation;
 import org.eclipse.ocl.pivot.internal.library.StandardLibraryContribution;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.utilities.AS2XMIid;
@@ -125,20 +124,21 @@ import org.eclipse.ocl.pivot.internal.utilities.External2AS;
 import org.eclipse.ocl.pivot.internal.utilities.IllegalLibraryException;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.internal.utilities.Pivotable;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
 import org.eclipse.ocl.pivot.library.LibraryProperty;
 import org.eclipse.ocl.pivot.library.UnsupportedOperation;
-import org.eclipse.ocl.pivot.model.OCLMetaModel;
+import org.eclipse.ocl.pivot.model.OCLmetamodel;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
+import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.resource.ProjectMap;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.DelegatedSinglePackageResource;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.pivot.utilities.ProjectMap;
-import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
-import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.DelegatedSinglePackageResource;
+import org.eclipse.ocl.pivot.utilities.Pivotable;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
 import org.eclipse.ocl.pivot.utilities.TypeUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
@@ -150,7 +150,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 import com.google.common.collect.Iterables;
 
-public class MetaModelManager implements Adapter.Internal, MetaModelManageable
+public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 {		
 	public class CompleteTypeOperationsIterable extends CompleteElementIterable<org.eclipse.ocl.pivot.Class, Operation>
 	{
@@ -215,7 +215,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		}
 	}
 	
-	private static final Logger logger = Logger.getLogger(MetaModelManager.class);
+	private static final Logger logger = Logger.getLogger(MetamodelManager.class);
 
 	public static final @NonNull TracingOption CREATE_MUTABLE_CLONE = new TracingOption(PivotPlugin.PLUGIN_ID, "mm/createMutableClone");
 	
@@ -241,25 +241,25 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 	public static final @NonNull List<Type> EMPTY_TYPE_LIST = Collections.<Type>emptyList();
 
 	/**
-	 * Leak debugging aid. Set non-null to diagnose MetaModelManager construction and finalization.
+	 * Leak debugging aid. Set non-null to diagnose MetamodelManager construction and finalization.
 	 */
-	public static WeakHashMap<MetaModelManager,Object> liveMetaModelManagers = null;
+	public static WeakHashMap<MetamodelManager,Object> liveMetamodelManagers = null;
 
-	public static @Nullable MetaModelManager findAdapter(@Nullable ResourceSet resourceSet) {
+	public static @Nullable MetamodelManager findAdapter(@Nullable ResourceSet resourceSet) {
 		if (resourceSet == null) {
 			return null;
 		}
-		return ClassUtil.getAdapter(MetaModelManager.class, resourceSet);
+		return ClassUtil.getAdapter(MetamodelManager.class, resourceSet);
 	}
 
-	public static @NonNull MetaModelManager getAdapter(@NonNull ResourceSet resourceSet) {
+	public static @NonNull MetamodelManager getAdapter(@NonNull ResourceSet resourceSet) {
 		List<Adapter> eAdapters = ClassUtil.nonNullEMF(resourceSet.eAdapters());
-		MetaModelManager adapter = ClassUtil.getAdapter(MetaModelManager.class, eAdapters);
+		MetamodelManager adapter = ClassUtil.getAdapter(MetamodelManager.class, eAdapters);
 		if (adapter == null) {
 			if (resourceSet.getResourceFactoryRegistry().getContentTypeToFactoryMap().get(ASResource.CONTENT_TYPE) == null) {
-				MetaModelManager.initializeASResourceSet(resourceSet);
+				MetamodelManager.initializeASResourceSet(resourceSet);
 			}
-			adapter = new MetaModelManager(resourceSet);
+			adapter = new MetamodelManager(resourceSet);
 //			eAdapters.add(adapter);
 		}
 		return adapter;
@@ -329,11 +329,11 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 	private @Nullable EAnnotation lockingAnnotation = null;
 	
 	/**
-	 * MetaModelManagerListener instances to be notified of significant state changes; most notably disposal.
+	 * MetamodelManagerListener instances to be notified of significant state changes; most notably disposal.
 	 */
-	private @Nullable List<MetaModelManagerListener> listeners = null;
+	private @Nullable List<MetamodelManagerListener> listeners = null;
 
-	private boolean autoLoadASMetamodel = true;
+	private boolean autoLoadASmetamodel = true;
 	
 	private @Nullable Map<String, GenPackage> genPackageMap = null;
 	
@@ -342,24 +342,24 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 	 */
 	private @Nullable FinalAnalysis finalAnalysis = null;
 	
-	public MetaModelManager() {
+	public MetamodelManager() {
 		this(new ResourceSetImpl());
 //		initializePivotResourceSet(asResourceSet);
 	}
 	
 	/**
-	 * Construct a MetaModelManager that will use projectMap to assist in locating resources.
+	 * Construct a MetamodelManager that will use projectMap to assist in locating resources.
 	 */
-	public MetaModelManager(@NonNull StandaloneProjectMap projectMap) {
+	public MetamodelManager(@NonNull StandaloneProjectMap projectMap) {
 		this();
 		asResourceSet.eAdapters().add(projectMap);
 	}
 
 	/**
-	 * Construct a MetaModelManager that will use asResourceSet to contain pivot copies
+	 * Construct a MetamodelManager that will use asResourceSet to contain pivot copies
 	 * of meta-models, and {@link ProjectMap#getAdapter(ResourceSet)} to assist in locating resources.
 	 */
-	public MetaModelManager(@NonNull ResourceSet asResourceSet) {
+	public MetamodelManager(@NonNull ResourceSet asResourceSet) {
 		completeEnvironment = ((CompleteEnvironmentInternal)PivotFactory.eINSTANCE.createCompleteEnvironment()).init(this);
 		standardLibrary = completeEnvironment.getOwnedStandardLibrary();
 		completeModel = completeEnvironment.getOwnedCompleteModel();
@@ -370,8 +370,8 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 //		System.out.println("ctor " + this);
 		this.asResourceSet = asResourceSet;
 		asResourceSet.eAdapters().add(this);
-		if (liveMetaModelManagers != null) {
-			liveMetaModelManagers.put(this, null);
+		if (liveMetamodelManagers != null) {
+			liveMetamodelManagers.put(this, null);
 			System.out.println(Thread.currentThread().getName() + " Create " + NameUtil.debugSimpleName(this)
 				+ " " + NameUtil.debugSimpleName(asResourceSet));	
 		}
@@ -440,10 +440,10 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return globalTypes.addAll(types);
 	}
 
-	public void addListener(@NonNull MetaModelManagerListener listener) {
-		List<MetaModelManagerListener> listeners2 = listeners;
+	public void addListener(@NonNull MetamodelManagerListener listener) {
+		List<MetamodelManagerListener> listeners2 = listeners;
 		if (listeners2 == null) {
-			listeners = listeners2 = new ArrayList<MetaModelManagerListener>();
+			listeners = listeners2 = new ArrayList<MetamodelManagerListener>();
 		}
 		if (!listeners2.contains(listener)) {
 			listeners2.add(listener);
@@ -696,10 +696,10 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 
 	public void dispose() {
 		if (listeners != null) {
-			List<MetaModelManagerListener> savedListeners = listeners;
+			List<MetamodelManagerListener> savedListeners = listeners;
 			listeners = null;
-			for (MetaModelManagerListener listener : savedListeners) {
-				listener.metaModelManagerDisposed(this);
+			for (MetamodelManagerListener listener : savedListeners) {
+				listener.metamodelManagerDisposed(this);
 			}
 		}
 //		System.out.println("dispose AS " + ClassUtil.debugSimpleName(asResourceSet));
@@ -749,14 +749,14 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 
 	@Override
 	protected void finalize() throws Throwable {
-		if (liveMetaModelManagers != null) {
+		if (liveMetamodelManagers != null) {
 			System.out.println("Finalize " + NameUtil.debugSimpleName(this));		
-			List<MetaModelManager> keySet = new ArrayList<MetaModelManager>(liveMetaModelManagers.keySet());
+			List<MetamodelManager> keySet = new ArrayList<MetamodelManager>(liveMetamodelManagers.keySet());
 			if (!keySet.isEmpty()) {
 				StringBuilder s = new StringBuilder();
 				s.append(" live");
-				for (MetaModelManager metaModelManager : keySet) {
-					s.append(" @" + Integer.toHexString(metaModelManager.hashCode()));		
+				for (MetamodelManager metamodelManager : keySet) {
+					s.append(" @" + Integer.toHexString(metamodelManager.hashCode()));		
 				}
 				System.out.println(s);		
 			}
@@ -765,7 +765,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 
 	public @NonNull Iterable<CompletePackageInternal> getAllCompletePackages() {
 		if (!libraryLoadInProgress && (asMetamodel == null))  {
-			getASMetamodel();
+			getASmetamodel();
 		}
 		return completeModel.getAllCompletePackages();
 	}
@@ -801,7 +801,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 /*	@Override
 	public @NonNull Iterable<org.eclipse.ocl.pivot.Package> getAllPackages() {
 		if (!libraryLoadInProgress && (asMetamodel == null))  {
-			getASMetamodel();
+			getASmetamodel();
 		}
 		return packageManager.getAllPackages();
 	} */
@@ -857,15 +857,15 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return filter;
 	}
 	
-	public @Nullable org.eclipse.ocl.pivot.Package getASMetamodel() {
-		if ((asMetamodel == null) && autoLoadASMetamodel) {
+	public @Nullable org.eclipse.ocl.pivot.Package getASmetamodel() {
+		if ((asMetamodel == null) && autoLoadASmetamodel) {
 			org.eclipse.ocl.pivot.Package stdlibPackage = null;
 			standardLibrary.getOclAnyType();				// Load a default library if necessary.
 			if (!asLibraries.isEmpty()) {
 				stdlibPackage = asLibraries.get(0);
 			}
 			if (stdlibPackage != null) {
-				loadASMetamodel(stdlibPackage);				
+				loadASmetamodel(stdlibPackage);
 			}
 		}
 		return asMetamodel;
@@ -955,7 +955,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 
 	public @NonNull CompleteClassInternal getCompleteClass(@NonNull Type pivotType) {
 		if (!libraryLoadInProgress && (asMetamodel == null) && !(pivotType instanceof CollectionType) && !(pivotType instanceof VoidType) && !(pivotType instanceof InvalidType)) {
-			getASMetamodel();
+			getASmetamodel();
 		}
 		return completeModel.getCompleteClass(pivotType);
 	}
@@ -970,7 +970,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 	
 	public @NonNull CompletePackage getCompletePackage(@NonNull org.eclipse.ocl.pivot.Package asPackage) {
 		if (!libraryLoadInProgress && asMetamodel == null) {
-			getASMetamodel();
+			getASmetamodel();
 		}
 		return completeModel.getCompletePackage(asPackage);
 	}
@@ -1059,7 +1059,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 			StandaloneProjectMap projectMap = getProjectMap();
 			projectMap.initializeResourceSet(externalResourceSet2);			
 			externalResourceSet2.getResourceFactoryRegistry().getExtensionToFactoryMap().put("emof", new EMOFResourceFactoryImpl()); //$NON-NLS-1$
-			MetaModelManagerResourceSetAdapter.getAdapter(externalResourceSet2, this);
+			MetamodelManagerResourceSetAdapter.getAdapter(externalResourceSet2, this);
 			ASResourceFactoryRegistry.INSTANCE.configureResourceSet(externalResourceSet2);
 		}
 		return externalResourceSet2;
@@ -1288,7 +1288,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 	}
 
 	@Override
-	public @NonNull MetaModelManager getMetaModelManager() {
+	public @NonNull MetamodelManager getMetamodelManager() {
 		return this;
 	}
 
@@ -1383,8 +1383,8 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 				String uriString = ClassUtil.nonNullModel(asResource.getURI().toString());
 				clonedResource = OCLstdlib.create(uriString, name, nsPrefix, nsURI);
 			}
-			else if (asResource instanceof OCLMetaModel) {
-				org.eclipse.ocl.pivot.Package mutableMetamodel = OCLMetaModel.create(standardLibrary, name, nsPrefix, nsURI);
+			else if (asResource instanceof OCLmetamodel) {
+				org.eclipse.ocl.pivot.Package mutableMetamodel = OCLmetamodel.create(standardLibrary, name, nsPrefix, nsURI);
 				clonedResource = mutableMetamodel.eResource();
 			}
 			if (clonedResource != null) {
@@ -1553,9 +1553,9 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		return null;
 	}
 
-	public @NonNull Iterable<? extends org.eclipse.ocl.pivot.Package> getPartialPackages(@NonNull org.eclipse.ocl.pivot.Package pkg, boolean loadASMetamodelFirst) {
-		if (!libraryLoadInProgress && loadASMetamodelFirst && (asMetamodel == null)) {
-			getASMetamodel();
+	public @NonNull Iterable<? extends org.eclipse.ocl.pivot.Package> getPartialPackages(@NonNull org.eclipse.ocl.pivot.Package pkg, boolean loadASmetamodelFirst) {
+		if (!libraryLoadInProgress && loadASmetamodelFirst && (asMetamodel == null)) {
+			getASmetamodel();
 		}
 		CompletePackage completePackage = completeModel.getCompletePackage(pkg);
 		return completePackage.getPartialPackages();
@@ -1596,7 +1596,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 	 */
 	public @Nullable org.eclipse.ocl.pivot.Class getPivotType(@NonNull String className) {
 		if (asMetamodel == null) {
-			getASMetamodel();
+			getASmetamodel();
 			if (asMetamodel == null) {
 				return null;
 			}
@@ -1807,7 +1807,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 				message = "";
 			}
 			logger.error(message);
-			return PivotUtilInternal.createExpressionInOCLError(message);
+			return PivotUtil.createExpressionInOCLError(message);
 		}
 	}
 
@@ -1860,7 +1860,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 	
 	public Iterable<CompleteClass> getSuperCompleteClasses(@NonNull org.eclipse.ocl.pivot.Class pivotType) {
 		if (!libraryLoadInProgress && (asMetamodel == null) && (pivotType == standardLibrary.getClassType()))  {
-			getASMetamodel();
+			getASmetamodel();
 		}
 		CompleteClass completeClass = getCompleteClass(pivotType);
 		return getSuperCompleteClasses(completeClass);
@@ -1996,13 +1996,13 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		}
 	}
 
-	public boolean isAdapterFor(@NonNull MetaModelManager metaModelManager) {
-		return this == metaModelManager;
+	public boolean isAdapterFor(@NonNull MetamodelManager metamodelManager) {
+		return this == metamodelManager;
 	}
 
 	@Override
 	public boolean isAdapterForType(Object type) {
-		return type == MetaModelManager.class;
+		return type == MetamodelManager.class;
 	}
 
 	public boolean isLibraryLoadInProgress() {
@@ -2063,7 +2063,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 	}
 
 	/**
-	 * Load the Pivot MetaModel of the Pivot Model to accompany a given asLibrary.
+	 * Load the Pivot Metamodel of the Pivot Model to accompany a given asLibrary.
 	 * 
 	 * If this asLibrary has an Element type it is assumed to be a complete custom meta-model and it is used as such.
 	 * 
@@ -2071,18 +2071,18 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 	 * 
 	 * @param asLibrary
 	 */
-	protected void loadASMetamodel(@NonNull org.eclipse.ocl.pivot.Package asLibrary) {
+	protected void loadASmetamodel(@NonNull org.eclipse.ocl.pivot.Package asLibrary) {
 		for (org.eclipse.ocl.pivot.Package libPackage : getPartialPackages(asLibrary, false)) {
 			if (NameUtil.getNameable(libPackage.getOwnedClasses(), PivotPackage.Literals.ELEMENT.getName()) != null) {
-				setASMetamodel(libPackage);	// Custom meta-model
+				setASmetamodel(libPackage);	// Custom meta-model
 				return;
 			}
 		}
 		String name = ClassUtil.nonNullState(asLibrary.getName());
 //		String nsURI = ClassUtil.nonNullState(asLibrary.getNsURI());
-		org.eclipse.ocl.pivot.Package oclMetamodel = OCLMetaModel.create(standardLibrary, name, asLibrary.getNsPrefix(), OCLMetaModel.PIVOT_URI);
+		org.eclipse.ocl.pivot.Package oclMetamodel = OCLmetamodel.create(standardLibrary, name, asLibrary.getNsPrefix(), OCLmetamodel.PIVOT_URI);
 		asResourceSet.getResources().add(oclMetamodel.eResource());
-		setASMetamodel(oclMetamodel);		// Standard meta-model
+		setASmetamodel(oclMetamodel);		// Standard meta-model
 		@SuppressWarnings("null")
 		@NonNull Resource asResource = oclMetamodel.eResource();
 //		asResourceSet.getResources().add(asResource);
@@ -2297,13 +2297,13 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		external2asMap.remove(external2as.getURI());
 	}
 
-	public void removeListener(@NonNull MetaModelManagerListener listener) {
+	public void removeListener(@NonNull MetamodelManagerListener listener) {
 		if (listeners != null) {
 			listeners.remove(listener);
 		}
 	}
 
-	public void setASMetamodel(org.eclipse.ocl.pivot.Package asPackage) {
+	public void setASmetamodel(org.eclipse.ocl.pivot.Package asPackage) {
 		asMetamodel = asPackage;
 		String uri = asMetamodel.getURI();
 		if (uri != null) {
@@ -2311,8 +2311,8 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 		}
 	}
 
-	public void setAutoLoadASMetamodel(boolean autoLoadASMetamodel) {
-		this.autoLoadASMetamodel  = autoLoadASMetamodel;
+	public void setAutoLoadASmetamodel(boolean autoLoadASmetamodel) {
+		this.autoLoadASmetamodel  = autoLoadASmetamodel;
 	}
 
 	public void setLibraryLoadInProgress(boolean libraryLoadInProgress) {
@@ -2325,7 +2325,7 @@ public class MetaModelManager implements Adapter.Internal, MetaModelManageable
 //				StandardLibraryContribution.REGISTRY.put(metaNsURI, new OCLstdlib.Loader());
 //			}
 //			setDefaultStandardLibraryURI(metaNsURI);
-			getASMetamodel();
+			getASmetamodel();
 		}
 		else if (!metaNsURI.equals(asMetamodel.getURI())) {
 			completeModel.addPackageURI2completeURI(metaNsURI, PivotConstantsInternal.METAMODEL_NAME);

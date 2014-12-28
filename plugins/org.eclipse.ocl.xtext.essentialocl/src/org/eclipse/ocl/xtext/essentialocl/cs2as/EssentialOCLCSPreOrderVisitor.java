@@ -14,10 +14,10 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.PrecedenceManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
@@ -76,13 +76,13 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 
 		@Override
 		public BasicContinuation<?> execute() {
-			MetaModelManager metaModelManager = context.getMetaModelManager();
+			MetamodelManager metamodelManager = context.getMetamodelManager();
 			TypedRefCS csElementType = csElement.getOwnedType();
 			Type type = null;
 			String name = csElement.getName();
 			assert name != null;
 			if (csElementType != null) {
-				Type elementType = PivotUtilInternal.getPivot(Type.class, csElementType);
+				Type elementType = PivotUtil.getPivot(Type.class, csElementType);
 				if (elementType != null) {
 					IntegerValue lowerValue;
 					UnlimitedNaturalValue upperValue;
@@ -96,11 +96,11 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 						lowerValue = null;
 						upperValue = null;
 					}
-					type = metaModelManager.getCollectionType(name, elementType, lowerValue, upperValue);
+					type = metamodelManager.getCollectionType(name, elementType, lowerValue, upperValue);
 				}
 			}
 			if (type == null) {
-				type = metaModelManager.getStandardLibrary().getLibraryType(name);
+				type = metamodelManager.getStandardLibrary().getLibraryType(name);
 			}
 			csElement.setPivot(type);
 			return null;
@@ -115,9 +115,9 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 
 		@Override
 		public BasicContinuation<?> execute() {
-			MetaModelManager metaModelManager = context.getMetaModelManager();
+			MetamodelManager metamodelManager = context.getMetamodelManager();
 			String operatorName = csElement.getName();
-			Precedence precedence = operatorName != null ? metaModelManager.getInfixPrecedence(operatorName) : null;
+			Precedence precedence = operatorName != null ? metamodelManager.getInfixPrecedence(operatorName) : null;
 			csElement.setPrecedence(precedence);
 			return super.execute();
 		}
@@ -131,9 +131,9 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 
 		@Override
 		public BasicContinuation<?> execute() {
-			MetaModelManager metaModelManager = context.getMetaModelManager();
+			MetamodelManager metamodelManager = context.getMetamodelManager();
 			String operatorName = csElement.getName();
-			Precedence precedence = operatorName != null ? metaModelManager.getPrefixPrecedence(operatorName) : null;
+			Precedence precedence = operatorName != null ? metamodelManager.getPrefixPrecedence(operatorName) : null;
 			csElement.setPrecedence(precedence);
 			return super.execute();
 		}

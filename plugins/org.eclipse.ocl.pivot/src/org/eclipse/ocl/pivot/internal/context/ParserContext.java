@@ -19,8 +19,8 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.utilities.BaseResource;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.resource.CSResource;
 
 /**
  * A ParserContext captures the context in which source text is parsed.
@@ -42,7 +42,7 @@ public interface ParserContext // extends Adapter
 	 * @throws IOException if resource loading fails
 	 * @throws ParserException 
 	 */
-	@NonNull BaseResource createBaseResource(@NonNull String expression) throws IOException, ParserException;
+	@NonNull CSResource createBaseResource(@NonNull String expression) throws IOException, ParserException;
 	
 	/**
 	 * Return the type of the self variable.
@@ -54,12 +54,12 @@ public interface ParserContext // extends Adapter
 	 * 
 	 * @throws ParserException if parsing fails
 	 */
-	@Nullable ExpressionInOCL getExpression(@NonNull BaseResource resource) throws ParserException;
+	@Nullable ExpressionInOCL getExpression(@NonNull CSResource resource) throws ParserException;
 
 	/**
-	 * Returbn the MetaModelManager in use.
+	 * Returbn the MetamodelManager in use.
 	 */
-	@NonNull MetaModelManager getMetaModelManager();
+	@NonNull MetamodelManager getMetamodelManager();
 
 	/**
 	 * Optional pre-existing AS root element to be updated by the parse.

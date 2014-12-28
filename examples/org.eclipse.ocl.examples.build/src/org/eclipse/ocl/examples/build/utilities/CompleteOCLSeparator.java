@@ -20,9 +20,9 @@ import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.WorkflowComponentWithModelSlot;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceSetAdapter;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 import org.eclipse.ocl.xtext.completeocl.as2cs.CompleteOCLSplitter;
@@ -79,14 +79,14 @@ public class CompleteOCLSeparator extends WorkflowComponentWithModelSlot
 		URI uri = resource.getURI();
 		ResourceSet resourceSet = resource.getResourceSet();
 		assert resourceSet != null;
-		MetaModelManager metaModelManager = MetaModelManager.getAdapter(resourceSet);
-		ASResource oclResource = CompleteOCLSplitter.separate(metaModelManager, resource);
+		MetamodelManager metamodelManager = MetamodelManager.getAdapter(resourceSet);
+		ASResource oclResource = CompleteOCLSplitter.separate(metamodelManager, resource);
 		URI xtextURI = oclURI != null ? URI.createPlatformResourceURI(oclURI, true) : uri.trimFileExtension().appendFileExtension("ocl");
 		ResourceSetImpl csResourceSet = new ResourceSetImpl();
-		MetaModelManagerResourceSetAdapter.getAdapter(csResourceSet, metaModelManager);
+		MetamodelManagerResourceSetAdapter.getAdapter(csResourceSet, metamodelManager);
 		BaseCSResource xtextResource = (BaseCSResource) csResourceSet.createResource(xtextURI, OCLinEcoreCSPackage.eCONTENT_TYPE);
 		if (oclResource != null) {
-			xtextResource.updateFrom(oclResource, metaModelManager);
+			xtextResource.updateFrom(oclResource, metamodelManager);
 		}
 		return xtextResource;
 	}

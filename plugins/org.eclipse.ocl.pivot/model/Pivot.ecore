@@ -1131,8 +1131,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedImports" upperBound="-1" eType="#//Import" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPackages" ordered="false" upperBound="-1" eType="#//Package" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MorePivotable" instanceClassName="org.eclipse.ocl.pivot.internal.utilities.MorePivotable"
-      abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MorePivotable" instanceClassName="org.eclipse.ocl.pivot.utilities.MorePivotable" abstract="true"
+      interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Nameable" instanceClassName="org.eclipse.ocl.pivot.Nameable" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="#//Element #//Nameable">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1318,7 +1318,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Pivotable" instanceClassName="org.eclipse.ocl.pivot.internal.utilities.Pivotable" abstract="true"
+  <eClassifiers xsi:type="ecore:EClass" name="Pivotable" instanceClassName="org.eclipse.ocl.pivot.utilities.Pivotable" abstract="true"
       interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Precedence" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="associativity" eType="#//AssociativityKind" defaultValueLiteral="left"/>

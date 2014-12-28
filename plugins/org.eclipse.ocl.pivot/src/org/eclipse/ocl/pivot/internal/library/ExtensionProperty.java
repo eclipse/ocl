@@ -60,7 +60,7 @@ public class ExtensionProperty extends AbstractProperty
 		}
 		else {
 			try {
-				element = ((EvaluationVisitorImpl)evaluator).getMetaModelManager().getPivotOf(Element.class, (EObject)sourceValue);
+				element = ((EvaluationVisitorImpl)evaluator).getMetamodelManager().getPivotOf(Element.class, (EObject)sourceValue);
 			} catch (ParserException e) {
 				return new InvalidValueException(e, "Failed to parse " + property);
 			}

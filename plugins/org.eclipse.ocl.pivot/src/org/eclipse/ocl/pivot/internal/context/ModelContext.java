@@ -13,11 +13,11 @@ package org.eclipse.ocl.pivot.internal.context;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 
 public class ModelContext extends AbstractParserContext
 {
-	public ModelContext(@NonNull MetaModelManager metaModelManager, @Nullable URI uri) {
-		super(metaModelManager, uri);
+	public ModelContext(@NonNull MetamodelManager metamodelManager, @Nullable URI uri) {
+		super(metamodelManager, uri);
 	}
 }

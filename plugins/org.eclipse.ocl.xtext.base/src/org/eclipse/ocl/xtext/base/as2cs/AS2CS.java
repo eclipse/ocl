@@ -20,9 +20,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Namespace;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.AbstractConversion;
+import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CSI2ASMapping;
 
@@ -49,13 +49,13 @@ public class AS2CS extends AbstractConversion
 	 */
 	protected final @NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap;
 	
-	public AS2CS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull MetaModelManager metaModelManager) {
-		super(metaModelManager);
+	public AS2CS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull MetamodelManager metamodelManager) {
+		super(metamodelManager);
 		this.cs2asResourceMap = cs2asResourceMap;
 	}
 	
 	public AS2CS(@NonNull AS2CS aConverter) {
-		super(aConverter.metaModelManager);
+		super(aConverter.metamodelManager);
 		this.cs2asResourceMap = aConverter.cs2asResourceMap;
 	}
 
@@ -98,7 +98,7 @@ public class AS2CS extends AbstractConversion
 				conversion.update(csResource);
 			}
 		}
-		CSI2ASMapping csi2asMapping = CSI2ASMapping.getAdapter(metaModelManager);
+		CSI2ASMapping csi2asMapping = CSI2ASMapping.getAdapter(metamodelManager);
 		csi2asMapping.add(cs2asResourceMap);
 		csi2asMapping.update(/*csResources*/);
 	}

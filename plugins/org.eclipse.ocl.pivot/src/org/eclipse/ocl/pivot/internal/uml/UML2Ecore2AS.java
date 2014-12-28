@@ -27,7 +27,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.uml2.uml.util.UMLUtil;
@@ -35,11 +35,11 @@ import org.eclipse.uml2.uml.util.UMLUtil.UML2EcoreConverter;
 
 public class UML2Ecore2AS extends Ecore2AS
 {
-/*	private static final class Factory implements MetaModelManager.Factory
+/*	private static final class Factory implements MetamodelManager.Factory
 	{
 		private Factory() {
 			UMLPackage.eINSTANCE.getClass();
-			MetaModelManager.addFactory(this);
+			MetamodelManager.addFactory(this);
 		}
 
 		public boolean canHandle(Resource resource) {
@@ -60,22 +60,22 @@ public class UML2Ecore2AS extends Ecore2AS
 			return null;
 		}
 
-		public Element importFromResource(MetaModelManager metaModelManager, Resource umlResource, String uriFragment) {
+		public Element importFromResource(MetamodelManager metamodelManager, Resource umlResource, String uriFragment) {
 			if (umlResource == null) {
 				return null;
 			}
-			UML2Ecore2AS conversion = findAdapter(umlResource, metaModelManager);
+			UML2Ecore2AS conversion = findAdapter(umlResource, metamodelManager);
 			if ((conversion == null) && (umlResource.getContents().size() > 0)) {
 				EObject firstContent = umlResource.getContents().get(0);
 				for (EObject eContainer = firstContent.eContainer(); eContainer != null; eContainer = eContainer.eContainer()) {
-					conversion = findAdapter(eContainer.eResource(), metaModelManager);
+					conversion = findAdapter(eContainer.eResource(), metamodelManager);
 					if (conversion != null) {
 						break;
 					}
 				}
 			}
 			if (conversion == null) {
-				conversion = getAdapter(umlResource, metaModelManager);
+				conversion = getAdapter(umlResource, metamodelManager);
 			}
 			Root pivotModel = conversion.getPivotModel();
 			if (uriFragment == null) {
@@ -114,11 +114,11 @@ public class UML2Ecore2AS extends Ecore2AS
 	}
 
 
-	public static UML2Ecore2AS findAdapter(@NonNull Resource resource, @Nullable MetaModelManager metaModelManager) {
+	public static UML2Ecore2AS findAdapter(@NonNull Resource resource, @Nullable MetamodelManager metamodelManager) {
 		for (Adapter adapter : resource.eAdapters()) {
 			if (adapter instanceof UML2Ecore2AS) {
 				UML2Ecore2AS ecore2as = (UML2Ecore2AS)adapter;
-				if (ecore2as.getMetaModelManager() == metaModelManager) {
+				if (ecore2as.getMetamodelManager() == metamodelManager) {
 					return ecore2as;
 				}
 			}
@@ -126,13 +126,13 @@ public class UML2Ecore2AS extends Ecore2AS
 		return null;
 	}
 
-	public static UML2Ecore2AS getAdapter(@NonNull Resource resource, @NonNull MetaModelManager metaModelManager) {
+	public static UML2Ecore2AS getAdapter(@NonNull Resource resource, @NonNull MetamodelManager metamodelManager) {
 		List<Adapter> eAdapters = resource.eAdapters();
 		UML2Ecore2AS adapter = ClassUtil.getAdapter(UML2Ecore2AS.class, resource);
 		if (adapter != null) {
 			return adapter;
 		}
-		adapter = new UML2Ecore2AS(resource, metaModelManager);
+		adapter = new UML2Ecore2AS(resource, metamodelManager);
 		eAdapters.add(adapter);
 		return adapter;
 	}
@@ -145,8 +145,8 @@ public class UML2Ecore2AS extends Ecore2AS
 	 * 
 	 * @return the Pivot root package
 	 */
-	public static Model importFromUML(@NonNull MetaModelManager metaModelManager, String alias, @NonNull Resource umlResource) {
-		UML2Ecore2AS conversion = getAdapter(umlResource, metaModelManager);
+	public static Model importFromUML(@NonNull MetamodelManager metamodelManager, String alias, @NonNull Resource umlResource) {
+		UML2Ecore2AS conversion = getAdapter(umlResource, metamodelManager);
 		return conversion.getPivotModel();
 	}
 
@@ -164,8 +164,8 @@ public class UML2Ecore2AS extends Ecore2AS
 	private UML2EcoreConverterWithReverseMap uml2EcoreConverter = null;
 	private Map<String, String> options = null;
 
-	public UML2Ecore2AS(@NonNull Resource umlResource, @NonNull MetaModelManager metaModelManager) {
-		super(ClassUtil.nonNullState(metaModelManager.getExternalResourceSet().createResource(umlResource.getURI().appendFileExtension("ecore"))), metaModelManager);
+	public UML2Ecore2AS(@NonNull Resource umlResource, @NonNull MetamodelManager metamodelManager) {
+		super(ClassUtil.nonNullState(metamodelManager.getExternalResourceSet().createResource(umlResource.getURI().appendFileExtension("ecore"))), metamodelManager);
 		this.umlResource = umlResource;
 	}
 

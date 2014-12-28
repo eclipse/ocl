@@ -50,7 +50,7 @@ import org.eclipse.ocl.pivot.internal.context.ParserContext;
 import org.eclipse.ocl.pivot.internal.delegate.InvocationBehavior;
 import org.eclipse.ocl.pivot.internal.delegate.SettingBehavior;
 import org.eclipse.ocl.pivot.internal.delegate.ValidationBehavior;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
@@ -316,12 +316,12 @@ public class EcoreOCLEValidator implements EValidator
 		EAnnotation eAnnotation = OCLCommon.getDelegateAnnotation(eClassifier);
 		if (eAnnotation != null) {
 			OCL ocl = getOCL(context);
-			MetaModelManager metaModelManager = ocl.getMetaModelManager();
+			MetamodelManager metamodelManager = ocl.getMetamodelManager();
 			StandardLibraryInternal standardLibrary = ocl.getStandardLibrary();
 			EMap<String, String> details = eAnnotation.getDetails();
 			for (String constraintName : details.keySet()) {
 				String value = details.get(constraintName);
-				allOk = validateExpression(metaModelManager, eClassifier, value, standardLibrary.getBooleanType(), constraintName, diagnostics, context);
+				allOk = validateExpression(metamodelManager, eClassifier, value, standardLibrary.getBooleanType(), constraintName, diagnostics, context);
 			}
 			if (constraintsAnnotation == null) {
 				if (diagnostics != null) {
@@ -433,7 +433,7 @@ public class EcoreOCLEValidator implements EValidator
 		EAnnotation eAnnotation = OCLCommon.getDelegateAnnotation(eOperation);
 		if (eAnnotation != null) {
 			OCL ocl = getOCL(context);
-			MetaModelManager metaModelManager = ocl.getMetaModelManager();
+			MetamodelManager metamodelManager = ocl.getMetamodelManager();
 			StandardLibraryInternal standardLibrary = ocl.getStandardLibrary();
 			EMap<String, String> details = eAnnotation.getDetails();
 			Set<String> knownKeys = new HashSet<String>();
@@ -441,17 +441,17 @@ public class EcoreOCLEValidator implements EValidator
 				knownKeys.add(InvocationBehavior.BODY_CONSTRAINT_KEY);
 				String value = details.get(InvocationBehavior.BODY_CONSTRAINT_KEY);
 				Type requiredType = EcoreUtil.isInvariant(eOperation) ? standardLibrary.getBooleanType() : null;
-				allOk = validateExpression(metaModelManager, eOperation, value, requiredType, InvocationBehavior.BODY_CONSTRAINT_KEY, diagnostics, context);
+				allOk = validateExpression(metamodelManager, eOperation, value, requiredType, InvocationBehavior.BODY_CONSTRAINT_KEY, diagnostics, context);
 			}
 			if (details.containsKey("pre")) {
 				knownKeys.add("pre");
 				String value = details.get("pre");
-				allOk = validateExpression(metaModelManager, eOperation, value, standardLibrary.getBooleanType(), "pre", diagnostics, context);
+				allOk = validateExpression(metamodelManager, eOperation, value, standardLibrary.getBooleanType(), "pre", diagnostics, context);
 			}
 			if (details.containsKey("post")) {
 				knownKeys.add("post");
 				String value = details.get("post");
-				allOk = validateExpression(metaModelManager, eOperation, value, standardLibrary.getBooleanType(), "post", diagnostics, context);
+				allOk = validateExpression(metamodelManager, eOperation, value, standardLibrary.getBooleanType(), "post", diagnostics, context);
 			}
 			Set<String> actualKeys = details.keySet();
 			Set<String> unknownKeys = new HashSet<String>(actualKeys);
@@ -534,14 +534,14 @@ public class EcoreOCLEValidator implements EValidator
 			}
 			else {
 				OCL ocl = getOCL(context);
-				MetaModelManager metaModelManager = ocl.getMetaModelManager();
-				allOk = validateExpression(metaModelManager, eStructuralFeature, value, null, null, diagnostics, context);
+				MetamodelManager metamodelManager = ocl.getMetamodelManager();
+				allOk = validateExpression(metamodelManager, eStructuralFeature, value, null, null, diagnostics, context);
 			}
 		}
 		return allOk;
 	}
 
-	protected boolean validateExpression(@NonNull MetaModelManager metaModelManager, @NonNull ENamedElement eNamedElement, @Nullable String expression, @Nullable Type requiredType, @Nullable String role, DiagnosticChain diagnostics, @NonNull Map<Object, Object> context) {
+	protected boolean validateExpression(@NonNull MetamodelManager metamodelManager, @NonNull ENamedElement eNamedElement, @Nullable String expression, @Nullable Type requiredType, @Nullable String role, DiagnosticChain diagnostics, @NonNull Map<Object, Object> context) {
 		if (expression == null) {
 			if (diagnostics != null) {
 				String objectLabel = EObjectValidator.getObjectLabel(eNamedElement, context);
@@ -555,9 +555,9 @@ public class EcoreOCLEValidator implements EValidator
 			}
 		}
 		try {
-			NamedElement asNamedElement = metaModelManager.getPivotOf(NamedElement.class, eNamedElement);
+			NamedElement asNamedElement = metamodelManager.getPivotOf(NamedElement.class, eNamedElement);
 			if (asNamedElement != null) {
-				ParserContext parserContext = metaModelManager.getParserContext(asNamedElement);
+				ParserContext parserContext = metamodelManager.getParserContext(asNamedElement);
 				if (parserContext == null) {
 					throw new ParserException(PivotMessagesInternal.UnknownContextType_ERROR_, NameUtil.qualifiedNameFor(asNamedElement), PivotConstantsInternal.OWNED_CONSTRAINT_ROLE);
 				}
@@ -575,8 +575,8 @@ public class EcoreOCLEValidator implements EValidator
 				}
 				assert asType != null;
 				assert asExpressionType != null;
-				if (!metaModelManager.conformsTo(asExpressionType, TemplateParameterSubstitutions.EMPTY, asType, TemplateParameterSubstitutions.EMPTY)) {
-//					metaModelManager.conformsTo(asExpressionType, TemplateParameterSubstitutions.EMPTY, asType, TemplateParameterSubstitutions.EMPTY);			// Debugging
+				if (!metamodelManager.conformsTo(asExpressionType, TemplateParameterSubstitutions.EMPTY, asType, TemplateParameterSubstitutions.EMPTY)) {
+//					metamodelManager.conformsTo(asExpressionType, TemplateParameterSubstitutions.EMPTY, asType, TemplateParameterSubstitutions.EMPTY);			// Debugging
 					if (diagnostics != null) {
 						String objectLabel = EObjectValidator.getObjectLabel(eNamedElement, context);
 						String message = role == null ? StringUtil.bind(INCOMPATIBLE_TYPE_1, asExpressionType, objectLabel)
@@ -609,14 +609,14 @@ public class EcoreOCLEValidator implements EValidator
 	 * Return an OCL AST from a string in the context of a NamedElement. If it is necessary
 	 * to parse OCL concrete syntax and errors result, a ParserException is thrown.
 	 *
-	public static @NonNull ExpressionInOCL getValidExpressionInOCL(@NonNull MetaModelManager metaModelManager, @NonNull NamedElement contextElement, @NonNull String expression) throws ParserException {
+	public static @NonNull ExpressionInOCL getValidExpressionInOCL(@NonNull MetamodelManager metamodelManager, @NonNull NamedElement contextElement, @NonNull String expression) throws ParserException {
 //			Resource resource = contextElement.eResource();
 //			if (resource == null) {
 //				throw new ParserException("No containing resource for " + contextElement);
 //			}
 //			ResourceSet resourceSet = ClassUtil.nonNullState(resource.getResourceSet());
-//			MetaModelManager metaModelManager = MetaModelManager.getAdapter(resourceSet);
-			ParserContext parserContext = metaModelManager.getParserContext(contextElement);
+//			MetamodelManager metamodelManager = MetamodelManager.getAdapter(resourceSet);
+			ParserContext parserContext = metamodelManager.getParserContext(contextElement);
 			if (parserContext == null) {
 				throw new ParserException(OCLMessages.UnknownContextType_ERROR_, EcoreUtils.qualifiedNameFor(contextElement), PivotConstants.UNKNOWN_ROLE/*getSpecificationRole(specification)* /);
 			}

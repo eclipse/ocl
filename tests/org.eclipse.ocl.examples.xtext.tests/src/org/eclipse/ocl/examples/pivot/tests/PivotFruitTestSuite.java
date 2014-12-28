@@ -122,7 +122,7 @@ public abstract class PivotFruitTestSuite extends PivotTestSuite
 		Resource ecoreResource = resourceSet.getResource(uri, true);
 		fruitEPackage = (EPackage)ecoreResource.getContents().get(0);
 		fruitEFactory = fruitEPackage.getEFactoryInstance();
-		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metaModelManager);
+		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager);
 		fruitPackage = NameUtil.getNameable(ecore2as.getPivotModel().getOwnedPackages(), "fruit");
 		
 		fruit = (EClass) getEClassifier(fruitEPackage, "Fruit");
@@ -195,6 +195,6 @@ public abstract class PivotFruitTestSuite extends PivotTestSuite
 	@Override
     protected void setUp() throws Exception {
         super.setUp();
-//		metaModelManager.addGlobalNamespace(PivotConstants.OCL_NAME, metaModelManager.getASMetamodel());
+//		metamodelManager.addGlobalNamespace(PivotConstants.OCL_NAME, metamodelManager.getASmetamodel());
     }
 }

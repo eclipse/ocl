@@ -30,7 +30,7 @@ import org.eclipse.ocl.examples.debug.vm.utils.CompiledUnit;
 import org.eclipse.ocl.examples.debug.vm.utils.ExecutionDiagnostic;
 import org.eclipse.ocl.examples.debug.vm.utils.IVMStackTraceElement;
 import org.eclipse.ocl.pivot.NamedElement;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 
 public class DebuggableRunner
 {	
@@ -152,8 +152,8 @@ public class DebuggableRunner
 		return executor;
 	};
 	
-	public @NonNull MetaModelManager getMetaModelManager() {
-		return executor.getEvaluator().getMetaModelManager();
+	public @NonNull MetamodelManager getMetamodelManager() {
+		return executor.getEvaluator().getMetamodelManager();
 	}
 
 	public @NonNull IDebuggableRunnerFactory getRunnerFactory() {

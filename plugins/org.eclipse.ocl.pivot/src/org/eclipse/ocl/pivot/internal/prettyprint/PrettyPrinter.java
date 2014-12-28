@@ -41,12 +41,12 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintOptions.Global;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.internal.utilities.PathElement;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.util.AbstractVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
@@ -453,19 +453,19 @@ public class PrettyPrinter
 					append(parentSeparator);
 					return;
 				}
-	            MetaModelManager metaModelManager = options.getGlobalOptions().getMetaModelManager();
-	            if ((metaModelManager != null) && (parent instanceof Type)) {
-	            	parent = metaModelManager.getPrimaryType((Type) parent);
+	            MetamodelManager metamodelManager = options.getGlobalOptions().getMetamodelManager();
+	            if ((metamodelManager != null) && (parent instanceof Type)) {
+	            	parent = metamodelManager.getPrimaryType((Type) parent);
 	            }
 				if (parent == scope) {
 					return;
 				}
 	            if (parent instanceof Visitable) {
-	                List<PathElement> parentPath = PathElement.getPath(parent, metaModelManager);
+	                List<PathElement> parentPath = PathElement.getPath(parent, metamodelManager);
 	                int iMax = parentPath.size();
 	                int i = 0;
 	                if (scope != null) {
-	                    List<PathElement> scopePath = PathElement.getPath(scope, metaModelManager);
+	                    List<PathElement> scopePath = PathElement.getPath(scope, metamodelManager);
 	                    i = PathElement.getCommonLength(parentPath, scopePath);
 	                }
 	                if (i < iMax) {
@@ -493,14 +493,14 @@ public class PrettyPrinter
     public void appendQualifiedType(@NonNull Element element) {
     	Mode savedMode = pushMode(Mode.TYPE);
     	try {
-	        MetaModelManager metaModelManager = options.getGlobalOptions().getMetaModelManager();
+	        MetamodelManager metamodelManager = options.getGlobalOptions().getMetamodelManager();
 	        Namespace parent = PivotUtil.getNamespace(element.eContainer());
-	        List<PathElement> parentPath = PathElement.getPath(parent, metaModelManager);
+	        List<PathElement> parentPath = PathElement.getPath(parent, metamodelManager);
 	        int iMax = parentPath.size();
 	        int i = 0;
 	        Namespace scope = options.getScope();
 	        if (scope != null) {
-				List<PathElement> scopePath = PathElement.getPath(scope, metaModelManager);
+				List<PathElement> scopePath = PathElement.getPath(scope, metamodelManager);
 	            i = PathElement.getCommonLength(parentPath, scopePath);
 	        }
 	        if ((i == 0) && (i < iMax)) {

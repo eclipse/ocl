@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.SemanticException;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.HTMLBuffer;
 import org.eclipse.ocl.xtext.markup.MarkupStandaloneSetup;
 import org.eclipse.ocl.xtext.markup.MarkupToHTML;
@@ -37,20 +37,20 @@ import org.eclipse.ocl.xtext.markupcs.NewLineElement;
 
 public class MarkupTests extends XtextTestCase
 {	
-	protected MetaModelManager metaModelManager = null;
+	protected MetamodelManager metamodelManager = null;
 
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		MarkupStandaloneSetup.doSetup();
 		MarkupPackage.eINSTANCE.eClass();
-		metaModelManager = new MetaModelManager();
+		metamodelManager = new MetamodelManager();
 	}
 
 	@Override
 	protected void tearDown() throws Exception {
-		metaModelManager.dispose();
-		metaModelManager = null;
+		metamodelManager.dispose();
+		metamodelManager = null;
 		super.tearDown();
 	}
 
@@ -80,7 +80,7 @@ public class MarkupTests extends XtextTestCase
 		try {
 			Markup markup = doDecode(testString);
 			@SuppressWarnings({"unused", "null"})
-			String testResult = MarkupToHTML.toString(metaModelManager, null, markup);
+			String testResult = MarkupToHTML.toString(metamodelManager, null, markup);
 			fail(toPrintable(testString) + " expected " + exceptionClass.getName());
 		} catch (Exception e) {
 			assertEquals(toPrintable(testString), exceptionClass, e.getClass());
@@ -91,7 +91,7 @@ public class MarkupTests extends XtextTestCase
 		Markup markup = doDecode(testString);
 		//		System.out.println(MarkupToTree.toString(markup));
 		@SuppressWarnings("null")
-		String testResult = MarkupToHTML.toString(metaModelManager, context, markup);
+		String testResult = MarkupToHTML.toString(metamodelManager, context, markup);
 		assertEquals(toPrintable(testString), expected, testResult);
 	}
 

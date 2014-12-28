@@ -39,7 +39,7 @@ import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.ids.UnspecifiedId;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
@@ -48,11 +48,11 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 public class Id2JavaExpressionVisitor implements IdVisitor<Object>
 {
 	protected final @NonNull JavaStream js;
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull MetamodelManager metamodelManager;
 
 	public Id2JavaExpressionVisitor(@NonNull JavaStream js) {
 		this.js = js;
-		this.metaModelManager = js.getCodeGenerator().getMetaModelManager();
+		this.metamodelManager = js.getCodeGenerator().getMetamodelManager();
 	}
 
 	@Override
@@ -142,7 +142,7 @@ public class Id2JavaExpressionVisitor implements IdVisitor<Object>
 	public @Nullable Object visitNsURIPackageId(@NonNull NsURIPackageId id) {
 		String nsURI = id.getNsURI();
 		String nsPrefix = id.getNsPrefix();
-		GenPackage genPackage = metaModelManager.getGenPackage(nsURI);
+		GenPackage genPackage = metamodelManager.getGenPackage(nsURI);
 		js.appendClassReference(IdManager.class);
 		js.append(".getNsURIPackageId(");
 		js.appendString(nsURI);

@@ -11,9 +11,9 @@
 package org.eclipse.ocl.examples.build.xtend
 
 import org.eclipse.emf.ecore.EPackage
+import org.eclipse.ocl.pivot.internal.resource.ASSaver
 import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker
 import org.eclipse.ocl.pivot.internal.utilities.AS2XMIid
-import org.eclipse.ocl.pivot.internal.utilities.ASSaver
 import org.eclipse.jdt.annotation.NonNull
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
 

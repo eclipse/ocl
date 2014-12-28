@@ -38,7 +38,7 @@ public abstract class PivotSimpleTestSuite extends PivotTestSuite
 	@Override
     protected void setUp() throws Exception {
         super.setUp();
-		metaModelManager.addGlobalNamespace(PivotConstantsInternal.OCL_NAME, metaModelManager.getASMetamodel());
+		metamodelManager.addGlobalNamespace(PivotConstantsInternal.OCL_NAME, metamodelManager.getASmetamodel());
 
         // need a metamodel that has a reflexive EReference.
         // Ecore will do nicely. Create the following structure:

@@ -38,7 +38,7 @@ import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.ids.UnspecifiedId;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.values.IntegerRange;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -59,8 +59,8 @@ public abstract class AbstractId2JavaClassVisitor implements IdVisitor<Class<?>>
 	@Override
 	public @NonNull Class<?> visitClassId(@NonNull ClassId id) {
 //		return visiting(id);
-		MetaModelManager metaModelManager = genModelHelper.getMetaModelManager();
-		Type type = metaModelManager.getIdResolver().getType(id, null);
+		MetamodelManager metamodelManager = genModelHelper.getMetamodelManager();
+		Type type = metamodelManager.getIdResolver().getType(id, null);
 		EClass eClass = (EClass) type.getETarget();
 		if (eClass != null) {
 			try {

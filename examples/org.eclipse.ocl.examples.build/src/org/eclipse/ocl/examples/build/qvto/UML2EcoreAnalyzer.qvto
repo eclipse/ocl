@@ -107,7 +107,7 @@ mapping UML2EcoreControl::CreatePackage::createRenamePackage() : UML2EcoreMappin
 	result.newName := self.newName;
 	result.nsPrefix := self.nsPrefix;
 	result.nsURI := self.nsURI;
-	result.isASMetamodel := self.isASMetamodel;
+	result.isASmetamodel := self.isASmetamodel;
 	result.oldPackages := self.oldPackages;	
 	result.typeMappings += deleteTypes->sortedBy(oldName);	 
 	result.typeMappings += createTypes->union(copyTypes)->sortedBy(newName);

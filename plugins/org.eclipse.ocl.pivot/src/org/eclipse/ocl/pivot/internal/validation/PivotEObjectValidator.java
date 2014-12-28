@@ -42,7 +42,7 @@ import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.EnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
@@ -79,7 +79,7 @@ public class PivotEObjectValidator implements EValidator
 	 * 
 	 * For Pivot applications the ValidationAdapter adapts the ResourceSet containing the validatable
 	 * metamodel elements. Validation is invoked for validatable (Pivot) elements so a redirection via
-	 * the MetaModelManager is needed to find the ValidationAdapter on the externalResourceSet.
+	 * the MetamodelManager is needed to find the ValidationAdapter on the externalResourceSet.
 	 */
 	public static class ValidationAdapter extends AdapterImpl
 	{
@@ -89,9 +89,9 @@ public class PivotEObjectValidator implements EValidator
 					return (ValidationAdapter)adapter;
 				}
 			}
-			MetaModelManager metaModelManager = PivotUtilInternal.findMetaModelManager(resourceSet);
-			if (metaModelManager != null) {
-				ResourceSet externalResourceSet = metaModelManager.getExternalResourceSet();
+			MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(resourceSet);
+			if (metamodelManager != null) {
+				ResourceSet externalResourceSet = metamodelManager.getExternalResourceSet();
 				for (Adapter adapter : externalResourceSet.eAdapters()) {
 					if (adapter instanceof ValidationAdapter) {
 						return (ValidationAdapter)adapter;
@@ -101,18 +101,18 @@ public class PivotEObjectValidator implements EValidator
 			return null;
 		}
 
-		protected final @NonNull MetaModelManager metaModelManager;
+		protected final @NonNull MetamodelManager metamodelManager;
 		protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 		protected final @NonNull EnvironmentInternal rootEnvironment;
 		
-		public ValidationAdapter(@NonNull MetaModelManager metaModelManager) {
-			this.metaModelManager = metaModelManager;
-			this.environmentFactory = new PivotEnvironmentFactory(null, metaModelManager);
+		public ValidationAdapter(@NonNull MetamodelManager metamodelManager) {
+			this.metamodelManager = metamodelManager;
+			this.environmentFactory = new PivotEnvironmentFactory(null, metamodelManager);
 			this.rootEnvironment = environmentFactory.createEnvironment();
 		}
 
-		public @NonNull MetaModelManager getMetaModelManager() {
-			return metaModelManager;
+		public @NonNull MetamodelManager getMetamodelManager() {
+			return metamodelManager;
 		}
 
 		/**
@@ -121,9 +121,9 @@ public class PivotEObjectValidator implements EValidator
 		 */
 		public boolean validate(@NonNull EClassifier eClassifier, @Nullable Object object, @Nullable DiagnosticChain diagnostics, @Nullable Map<Object, Object> context) {
 			boolean allOk = true;
-			Type type = metaModelManager.getPivotOfEcore(Type.class, eClassifier);
+			Type type = metamodelManager.getPivotOfEcore(Type.class, eClassifier);
 			if (type != null) {
-				for (Constraint constraint : metaModelManager.getAllInvariants(type)) {
+				for (Constraint constraint : metamodelManager.getAllInvariants(type)) {
 					if (constraint !=  null) {
 						Diagnostic diagnostic = validate(constraint, object, context);
 						if (diagnostic != null) {
@@ -158,7 +158,7 @@ public class PivotEObjectValidator implements EValidator
 //			}
 			ExpressionInOCL query;
 			try {
-				query = metaModelManager.getQueryOrThrow(specification);
+				query = metamodelManager.getQueryOrThrow(specification);
 			} catch (ParserException e) {
 				String message = e.getLocalizedMessage();
 				return new BasicDiagnostic(Diagnostic.ERROR, EObjectValidator.DIAGNOSTIC_SOURCE, 0, message, new Object [] { object });
@@ -191,7 +191,7 @@ public class PivotEObjectValidator implements EValidator
 				@Override
 				protected String getObjectLabel() {
 					Type type = PivotUtil.getContainingType(constraint);
-					Type primaryType = type != null ? metaModelManager.getPrimaryType(type) : null;
+					Type primaryType = type != null ? metamodelManager.getPrimaryType(type) : null;
 					EObject eTarget = primaryType != null ? primaryType.getETarget() : null;
 					EClassifier eClassifier = eTarget instanceof EClassifier ?  (EClassifier)eTarget : null;
 					return LabelUtil.getLabel(eClassifier, object, context);
@@ -243,17 +243,17 @@ public class PivotEObjectValidator implements EValidator
 	private static final @NonNull PivotEObjectValidator INSTANCE = new PivotEObjectValidator();
 
 	/**
-	 * Install Complete OCL validation support in resourceSet for metaModelManager.
+	 * Install Complete OCL validation support in resourceSet for metamodelManager.
 	 */
-	public static @NonNull ValidationAdapter install(@NonNull ResourceSet resourceSet, @NonNull MetaModelManager metaModelManager) {
+	public static @NonNull ValidationAdapter install(@NonNull ResourceSet resourceSet, @NonNull MetamodelManager metamodelManager) {
 		ValidationAdapter validationAdapter = ValidationAdapter.findAdapter(resourceSet);
 		if (validationAdapter != null) {
-			if (validationAdapter.getMetaModelManager() != metaModelManager) {
-				throw new IllegalArgumentException("Inconsistent metaModelManager");
+			if (validationAdapter.getMetamodelManager() != metamodelManager) {
+				throw new IllegalArgumentException("Inconsistent metamodelManager");
 			}
 		}
 		else {
-			validationAdapter = new ValidationAdapter(metaModelManager);
+			validationAdapter = new ValidationAdapter(metamodelManager);
 			resourceSet.eAdapters().add(validationAdapter);
 		}
 		return validationAdapter;

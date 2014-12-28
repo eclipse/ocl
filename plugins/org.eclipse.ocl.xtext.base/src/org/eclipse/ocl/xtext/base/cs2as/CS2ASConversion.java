@@ -61,14 +61,15 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.context.AbstractBase2ASConversion;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
 import org.eclipse.ocl.pivot.internal.scoping.ScopeFilter;
 import org.eclipse.ocl.pivot.internal.utilities.IllegalLibraryException;
-import org.eclipse.ocl.pivot.internal.utilities.MorePivotable;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.internal.utilities.Pivotable;
+import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.MorePivotable;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.Pivotable;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
@@ -156,7 +157,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 	private final IDiagnosticConsumer diagnosticsConsumer;
 	
 	public CS2ASConversion(@NonNull CS2AS converter, @NonNull IDiagnosticConsumer diagnosticsConsumer, @NonNull Collection<? extends BaseCSResource> csResources) {
-		super(converter.getMetaModelManager());
+		super(converter.getMetamodelManager());
 		this.converter = converter;
 		this.diagnosticsConsumer = diagnosticsConsumer;
 		this.csResources = csResources;
@@ -176,7 +177,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		INode node = NodeModelUtils.getNode(csElement);
 		Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, boundMessage);
 		csElement.eResource().getErrors().add(resourceDiagnostic);
-		InvalidLiteralExp invalidLiteralExp = metaModelManager.createInvalidExpression();
+		InvalidLiteralExp invalidLiteralExp = metamodelManager.createInvalidExpression();
 		csElement.setPivot(invalidLiteralExp);
 		return invalidLiteralExp;
 	}
@@ -261,7 +262,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 /*	private void enforceConformance(AnyType oclAny) {
 		Collection<? extends Resource> pivotResources = converter.getPivotResources();
 		Collection<Notifier> allPivotResources = new ArrayList<Notifier>(pivotResources);
-		allPivotResources.add(metaModelManager.getOrphanPackage());
+		allPivotResources.add(metamodelManager.getOrphanPackage());
 		for (TreeIterator<Object> tit = EcoreUtil.getAllContents(allPivotResources); tit.hasNext(); ) {
 			Object object = tit.next();
 			if (object instanceof org.eclipse.ocl.pivot.Package) {
@@ -271,7 +272,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 						if (superClasses.isEmpty()) {
 							if (type != oclAny) {
 								if (type instanceof org.eclipse.ocl.pivot.Enumeration) {
-									superClasses.add(metaModelManager.getEnumerationType());
+									superClasses.add(metamodelManager.getEnumerationType());
 								}
 								else {
 									superClasses.add(oclAny);
@@ -308,7 +309,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 	 *  
 	 * Wanted pivot elements are
 	 * - all elements in all libraries
-	 * - all elements locked via MetaModelManager.addLockedElement()
+	 * - all elements locked via MetamodelManager.addLockedElement()
 	 * - all elements transitively in/referenced from the above
 	 * - all elements referenced by incoming CS resources
 	 * - all elements in all incoming pivot resources
@@ -316,20 +317,20 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 	 *     this is what we're cleaning up
 	 */
 	public void garbageCollect(@NonNull Map<? extends Resource, ? extends ASResource> cs2asResourceMap) {
-//		org.eclipse.ocl.pivot.Class orphanClass = metaModelManager.getOrphanClass();
-//		org.eclipse.ocl.pivot.Package orphanPackage = metaModelManager.getOrphanPackage();
+//		org.eclipse.ocl.pivot.Class orphanClass = metamodelManager.getOrphanClass();
+//		org.eclipse.ocl.pivot.Package orphanPackage = metamodelManager.getOrphanPackage();
 //		Resource orphanResource = orphanPackage.eResource();
 		final Collection<Notifier> prunableResources = new ArrayList<Notifier>(cs2asResourceMap.values());
 //		prunableResources.add(orphanResource);
-		Collection<Notifier> allPivotResources = new ArrayList<Notifier>(metaModelManager.getASResourceSet().getResources());
+		Collection<Notifier> allPivotResources = new ArrayList<Notifier>(metamodelManager.getASResourceSet().getResources());
 //		allPivotResources.removeAll(prunableResources);					// Dead elements in orphanage or pivot of CS can be pruned
-		EObject lockingObject = metaModelManager.getLockingObject();
+		EObject lockingObject = metamodelManager.getLockingObject();
 		if (lockingObject != null) {
 			allPivotResources.add(lockingObject);						// Locked elements are not dead
 		}
-		allPivotResources.addAll(metaModelManager.getLibraries());			// Library elements are not dead
+		allPivotResources.addAll(metamodelManager.getLibraries());			// Library elements are not dead
 		allPivotResources.addAll(cs2asResourceMap.keySet());			// Incoming elements are not dead
-		allPivotResources.remove(metaModelManager.getCompleteModel().getOrphanage().eResource());
+		allPivotResources.remove(metamodelManager.getCompleteModel().getOrphanage().eResource());
 		@SuppressWarnings("serial")
 		Map<EObject, Collection<Setting>> referencesToOrphans = new EcoreUtil.CrossReferencer(allPivotResources)
 		{
@@ -454,17 +455,17 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 				}
 				EObject eContainer = referencedOrphan.eContainer();
 				if (eContainer != null) {
-					PivotUtilInternal.debugObjectUsage("  container ", eContainer);
+					PivotUtil.debugObjectUsage("  container ", eContainer);
 					referencedOrphan.eSet(referencedOrphan.eContainingFeature(), null);
 				}
-//WIP			metaModelManager.kill(referencedOrphan);
+//WIP			metamodelManager.kill(referencedOrphan);
 			}
 		}
 //		for (MonikeredElement element : oldMoniker2asMap.values()) {
 //			if (element.eResource() == null) {
 //				PivotUtil.debugObjectUsage("Final Old residue ", element);
 				// This is a bit late: a notification of non-containment would be sharper.
-//				metaModelManager.kill(element);
+//				metamodelManager.kill(element);
 //			}
 //		}
 //		for (MonikeredElement element : newMoniker2asMap.values()) {
@@ -755,7 +756,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 			}
 			IntegerValue lowerValue = ValueUtil.integerValueOf(lower);
 			UnlimitedNaturalValue upperValue = upper != -1 ? ValueUtil.unlimitedNaturalValueOf(upper) : ValueUtil.UNLIMITED_VALUE;
-			CollectionType pivotCollectionType = metaModelManager.getCollectionType(isOrdered, isUnique, pivotType, lowerValue, upperValue);
+			CollectionType pivotCollectionType = metamodelManager.getCollectionType(isOrdered, isUnique, pivotType, lowerValue, upperValue);
 			installPivotReference(csElement, pivotCollectionType, BaseCSPackage.Literals.PIVOTABLE_ELEMENT_CS__PIVOT);
 		}
 	}
@@ -764,7 +765,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		Resource asResource = converter.getPivotResource(csResource);
 		if (asResource != null) {
 			asResource.getContents().add(pivotElement);
-			metaModelManager.installResource(asResource);
+			metamodelManager.installResource(asResource);
 		}
 	}
 
@@ -786,7 +787,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 			return false;
 		}
 		for (ParameterCS csParameter : csOperation.getOwnedParameters()) {
-			Parameter pivot = PivotUtilInternal.getPivot(Parameter.class, csParameter);
+			Parameter pivot = PivotUtil.getPivot(Parameter.class, csParameter);
 			if (pivot == null) {
 				return true;
 			}
@@ -989,7 +990,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		if (!pivotElements.isEmpty() ||!csElements.isEmpty()) {
 			List<T> newPivotElements = new ArrayList<T>();
 			for (PivotableElementCS csElement : csElements) {
-				T pivotElement = PivotUtilInternal.getPivot(pivotClass, csElement);
+				T pivotElement = PivotUtil.getPivot(pivotClass, csElement);
 				if ((pivotElement == null) && (csElement instanceof ModelElementCS)) {
 					pivotElement = converter.getPivotElement(pivotClass, (ModelElementCS)csElement);
 				}
@@ -1020,7 +1021,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		}
 		List<T> newPivotElements = new ArrayList<T>();
 		for (ModelElementCS csElement : csElements) {
-			T pivotElement = PivotUtilInternal.getPivot(pivotClass, csElement);
+			T pivotElement = PivotUtil.getPivot(pivotClass, csElement);
 			if (pivotElement != null) {
 				newPivotElements.add(pivotElement);
 			}
@@ -1033,7 +1034,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		Type pivotType = null;
 		boolean isRequired = false;
 		if (ownedType != null) {
-			pivotType = PivotUtilInternal.getPivot(Type.class, ownedType);
+			pivotType = PivotUtil.getPivot(Type.class, ownedType);
 			int lower = ElementUtil.getLower(csTypedElement);
 			int upper = ElementUtil.getUpper(csTypedElement);
 			if (upper == 1) {
@@ -1044,7 +1045,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 			}
 		}
 		if (pivotType == null) {
-			pivotType = metaModelManager.getStandardLibrary().getOclVoidType();
+			pivotType = metamodelManager.getStandardLibrary().getOclVoidType();
 			isRequired = false;
 		}
 		setType(pivotElement, pivotType, isRequired);
@@ -1059,7 +1060,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 			}
 			return;
 		}
-		TemplateSignature pivotTemplateSignature = PivotUtilInternal.getPivot(TemplateSignature.class, csTemplateSignature);
+		TemplateSignature pivotTemplateSignature = PivotUtil.getPivot(TemplateSignature.class, csTemplateSignature);
 		if (pivotTemplateableElement.getOwnedSignature() != pivotTemplateSignature) {
 			pivotTemplateableElement.setOwnedSignature(pivotTemplateSignature);
 		}
@@ -1192,7 +1193,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 				templateParameterSubstitution.setActual(null);		// null is the wildcard
 			}
 			else {
-				Type pivotActualParameter = PivotUtilInternal.getPivot(Type.class, csActualParameter);
+				Type pivotActualParameter = PivotUtil.getPivot(Type.class, csActualParameter);
 				templateParameterSubstitution.setActual(pivotActualParameter);
 			}
 			converter.installPivotDefinition(csTemplateParameterSubstitution, templateParameterSubstitution);
@@ -1217,20 +1218,20 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		//
 		//	Refresh the pivot specialization root
 		//
-		org.eclipse.ocl.pivot.Class specializedPivotElement = PivotUtilInternal.getPivot(org.eclipse.ocl.pivot.Class.class, csElement);
+		org.eclipse.ocl.pivot.Class specializedPivotElement = PivotUtil.getPivot(org.eclipse.ocl.pivot.Class.class, csElement);
 		if (specializedPivotElement == null) {
 			if (unspecializedPivotElement instanceof CollectionType) {
 				TemplateParameterSubstitutionCS csTemplateParameterSubstitution = ownedTemplateBinding.getOwnedSubstitutions().get(0);
-				Type templateArgument = PivotUtilInternal.getPivot(Type.class, csTemplateParameterSubstitution.getOwnedActualParameter());
+				Type templateArgument = PivotUtil.getPivot(Type.class, csTemplateParameterSubstitution.getOwnedActualParameter());
 				specializedPivotElement = templateArgument != null ? completeEnvironment.getCollectionType((CollectionType) unspecializedPivotElement, templateArgument, null, null) : unspecializedPivotElement;
 			}
 			else {
 				List<Type> templateArguments = new ArrayList<Type>();
 				for (TemplateParameterSubstitutionCS csTemplateParameterSubstitution : ownedTemplateBinding.getOwnedSubstitutions()) {
-					Type templateArgument = PivotUtilInternal.getPivot(Type.class, csTemplateParameterSubstitution.getOwnedActualParameter());
+					Type templateArgument = PivotUtil.getPivot(Type.class, csTemplateParameterSubstitution.getOwnedActualParameter());
 					templateArguments.add(templateArgument);
 				}
-				specializedPivotElement = metaModelManager.getLibraryType(unspecializedPivotElement, templateArguments);
+				specializedPivotElement = metamodelManager.getLibraryType(unspecializedPivotElement, templateArguments);
 			}
 		}
 		installPivotReference(csElement, specializedPivotElement, BaseCSPackage.Literals.TYPED_TYPE_REF_CS__REFERRED_TYPE);
@@ -1335,7 +1336,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		//	Load the library. 
 		//
 		@SuppressWarnings("unused")
-		AnyType oclAnyType = metaModelManager.getStandardLibrary().getOclAnyType();
+		AnyType oclAnyType = metamodelManager.getStandardLibrary().getOclAnyType();
 		//
 		//	Perform the post-order traversal to create and install the bulk of non-package/class
 		//	elements.

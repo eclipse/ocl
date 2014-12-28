@@ -33,7 +33,7 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
     protected void setUp() throws Exception {
 		BaseLinkingService.DEBUG_RETRY.setState(true);
         super.setUp();
-        helper.setContext(metaModelManager.getStandardLibrary().getClassType());
+        helper.setContext(metamodelManager.getStandardLibrary().getClassType());
     }
 
 	/**
@@ -93,7 +93,7 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
 	 * Tests the oclContents() operator.
 	 */
 	public void test_oclContents() {
-    	@SuppressWarnings("null") @NonNull Type packageType = metaModelManager.getPivotType("Package");
+    	@SuppressWarnings("null") @NonNull Type packageType = metamodelManager.getPivotType("Package");
 		CollectionTypeId typeId = TypeId.SET.getSpecializedId(packageType.getTypeId());
 		assertSemanticErrorQuery("invalid.oclContents()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "OclInvalid", "oclContents");
 		assertQueryInvalid(pkg2, "let s : OclElement = invalid in s.oclContents()");

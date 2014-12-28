@@ -13,7 +13,7 @@ package org.eclipse.ocl.examples.debug.vm.evaluator;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 
 /**
  * VM Domain Manager is the class responsible for managing the virtual
@@ -24,5 +24,5 @@ import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 public interface IVMModelManager extends ModelManager
 {
 	void dispose();
-	@NonNull MetaModelManager getMetaModelManager();
+	@NonNull MetamodelManager getMetamodelManager();
 }

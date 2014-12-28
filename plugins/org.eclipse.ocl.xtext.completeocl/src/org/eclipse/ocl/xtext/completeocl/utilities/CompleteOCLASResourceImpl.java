@@ -17,12 +17,12 @@ import java.util.Map;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceImpl;
 import org.eclipse.ocl.pivot.internal.utilities.AS2XMIid;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 
@@ -53,11 +53,11 @@ public class CompleteOCLASResourceImpl extends ASResourceImpl
 	@Override
 	public void load(Map<?, ?> options) throws IOException {
 		@SuppressWarnings("null")@NonNull URI oclURI = uri.trimFileExtension();
-		MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(this);
-		BaseCSResource csResource = (BaseCSResource) metaModelManager.getExternalResourceSet().getResource(oclURI, true);
+		MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(this);
+		BaseCSResource csResource = (BaseCSResource) metamodelManager.getExternalResourceSet().getResource(oclURI, true);
 		CS2ASResourceAdapter adapter = null;
 //		try {
-			adapter = csResource.getCS2ASAdapter(metaModelManager);
+			adapter = csResource.getCS2ASAdapter(metamodelManager);
 			ASResource asResource = adapter.getASResource(csResource);
 			@SuppressWarnings("unused")
 			List<EObject> pivotContents = asResource.getContents();
@@ -68,7 +68,7 @@ public class CompleteOCLASResourceImpl extends ASResourceImpl
 //				adapter.dispose();
 //			}
 //		}
-//		Resource csResource = metaModelManager.getExternalResourceSet().getResource(oclURI, true);
+//		Resource csResource = metamodelManager.getExternalResourceSet().getResource(oclURI, true);
 //		CS2AS.loadFromEcore(this, ecoreURI);
 		super.load(options);
 	}

@@ -75,11 +75,11 @@ import org.eclipse.ocl.examples.pivot.tests.PivotTestSuite;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.internal.helper.OCLHelper;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
@@ -328,12 +328,12 @@ public class UsageTests
 			project.open(null);
 			createManifest(project, testProjectName);
 		}
-		MetaModelManager metaModelManager2 = new MetaModelManager(getProjectMap());
-		createEcoreFile(metaModelManager2, testFileStem, oclinecoreFile);
+		MetamodelManager metamodelManager2 = new MetamodelManager(getProjectMap());
+		createEcoreFile(metamodelManager2, testFileStem, oclinecoreFile);
 		createGenModelFile(testFileStem + ".genmodel", genmodelFile);
 		URI fileURI = getProjectFileURI(testFileStem + ".genmodel");
 		// System.out.println("Generating Ecore Model using '" + fileURI + "'");
-		metaModelManager2.dispose();
+		metamodelManager2.dispose();
 		return fileURI;
 	}
 
@@ -458,15 +458,15 @@ public class UsageTests
 				project.create(null);
 			}
 		}
-//		MetaModelManager metaModelManager2 = new MetaModelManager();
-//		metaModelManager = metaModelManager2;
+//		MetamodelManager metamodelManager2 = new MetamodelManager();
+//		metamodelManager = metamodelManager2;
 //		GeneratorAdapterFactory.Descriptor.Registry.INSTANCE.addDescriptor( org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.eNS_URI, OCLinEcoreGeneratorAdapterFactory.DESCRIPTOR);
 		URI fileURI = genmodelURI; //getProjectFileURI(testFileStem + ".genmodel");
 		// System.out.println("Generating Ecore Model using '" + fileURI + "'");
-//		metaModelManager2.dispose();
-		MetaModelManager metaModelManager = new MetaModelManager(getProjectMap());
-		ResourceSet resourceSet = metaModelManager.getExternalResourceSet();
-		StandaloneProjectMap projectMap = metaModelManager.getProjectMap();
+//		metamodelManager2.dispose();
+		MetamodelManager metamodelManager = new MetamodelManager(getProjectMap());
+		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
+		StandaloneProjectMap projectMap = metamodelManager.getProjectMap();
 		projectMap.configure(resourceSet, StandaloneProjectMap.LoadFirstStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
 		resourceSet.getPackageRegistry().put(org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.eNS_URI,  org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.eINSTANCE);
 		//FIXME this is needed so long as Pivot.merged.genmodel is a UML genmodel
@@ -540,7 +540,7 @@ public class UsageTests
 			String s = PivotUtil.formatDiagnostics(diagnostic, "\n");
 			fail("Generation failure" + s);
 		}
-		metaModelManager.dispose();
+		metamodelManager.dispose();
 	}
 
 	public void testBug370824() throws Exception {
@@ -743,7 +743,7 @@ public class UsageTests
 			//
 			EObject eObject = eFactory.create(eClass);
 			OCLHelper helper = getHelper();
-			org.eclipse.ocl.pivot.Class contextType = helper.getOCL().getMetaModelManager().getType(idResolver.getStaticTypeOf(eObject));
+			org.eclipse.ocl.pivot.Class contextType = helper.getOCL().getMetamodelManager().getType(idResolver.getStaticTypeOf(eObject));
 			helper.setContext(contextType);
 //			ExpressionInOCL query = helper.createQuery("test(3, 2, 1)");
 //			assertCallCount(query, null, 2);
@@ -785,9 +785,9 @@ public class UsageTests
 		String testProjectName = "SysML_ValueTypes_QUDV";
 		String testProjectPath = EMFPlugin.IS_ECLIPSE_RUNNING ? testProjectName : ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS;
 		doDelete(testProjectName);
-		//		MetaModelManager metaModelManager2 = new MetaModelManager();
-//		createEcoreFile(metaModelManager2, "Dummy" + testFileStem, "");
-//		metaModelManager2.dispose();
+		//		MetamodelManager metamodelManager2 = new MetamodelManager();
+//		createEcoreFile(metamodelManager2, "Dummy" + testFileStem, "");
+//		metamodelManager2.dispose();
 		@SuppressWarnings("null")@NonNull URI genModelURI = URI.createPlatformResourceURI("/" + ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS + "/model/SysML_ValueTypes_QUDV.genmodel", true);
 		if (!resourceSet.getURIConverter().exists(genModelURI, null)) {
 			return;

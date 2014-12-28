@@ -12,8 +12,8 @@ package org.eclipse.ocl.xtext.oclstdlib.utilities;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
 import org.eclipse.ocl.pivot.internal.resource.AbstractASResourceFactory;
+import org.eclipse.ocl.pivot.resource.ASResource;
 
 public final class OCLstdlibASResourceFactory extends AbstractASResourceFactory
 {

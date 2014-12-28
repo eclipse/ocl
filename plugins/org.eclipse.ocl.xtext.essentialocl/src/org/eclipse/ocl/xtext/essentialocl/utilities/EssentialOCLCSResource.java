@@ -37,11 +37,11 @@ import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.context.ParserContext;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceSetAdapter;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.IllegalLibraryException;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.xtext.base.as2cs.AS2CS;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
@@ -201,8 +201,8 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 
 	@Override
 	public @NonNull CS2AS createCS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap,
-			@NonNull MetaModelManager metaModelManager) {
-		return new EssentialOCLCS2AS(cs2asResourceMap, metaModelManager);
+			@NonNull MetamodelManager metamodelManager) {
+		return new EssentialOCLCS2AS(cs2asResourceMap, metamodelManager);
 	}
 
 	@Override			// FIXME Bug 380232 workaround
@@ -224,20 +224,20 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 
 	@Override
 	public @NonNull AS2CS createAS2CS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap,
-			@NonNull MetaModelManager metaModelManager) {
-		return new EssentialOCLAS2CS(cs2asResourceMap, metaModelManager);
+			@NonNull MetamodelManager metamodelManager) {
+		return new EssentialOCLAS2CS(cs2asResourceMap, metamodelManager);
 	}
 
 	@Override
-	public @NonNull MetaModelManager createMetaModelManager() {
+	public @NonNull MetamodelManager createMetamodelManager() {
 		ResourceSet resourceSet = getResourceSet();
 		if (resourceSet != null) {
-			MetaModelManagerResourceSetAdapter resourceSetAdapter = MetaModelManagerResourceSetAdapter.findAdapter(resourceSet);
+			MetamodelManagerResourceSetAdapter resourceSetAdapter = MetamodelManagerResourceSetAdapter.findAdapter(resourceSet);
 			if (resourceSetAdapter != null) {
-				return resourceSetAdapter.getMetaModelManager();
+				return resourceSetAdapter.getMetamodelManager();
 			}
 		}
-		return new MetaModelManager();
+		return new MetamodelManager();
 	}
 
 	@Override
@@ -278,26 +278,26 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	}
 	
 	@Override
-	public final @NonNull CS2ASResourceAdapter getCS2ASAdapter(@Nullable MetaModelManager metaModelManager) {
+	public final @NonNull CS2ASResourceAdapter getCS2ASAdapter(@Nullable MetamodelManager metamodelManager) {
 		CS2ASResourceAdapter adapter = ClassUtil.getAdapter(CS2ASResourceAdapter.class, this);
 		if (adapter == null) {
-			if (metaModelManager == null) {
-				metaModelManager = PivotUtilInternal.findMetaModelManager(this);					
-				if (metaModelManager == null) {
-					metaModelManager = createMetaModelManager();
+			if (metamodelManager == null) {
+				metamodelManager = PivotUtilInternal.findMetamodelManager(this);					
+				if (metamodelManager == null) {
+					metamodelManager = createMetamodelManager();
 					ResourceSet csResourceSet = getResourceSet();
 					if (csResourceSet != null) {
-						MetaModelManagerResourceSetAdapter.getAdapter(csResourceSet, metaModelManager);
+						MetamodelManagerResourceSetAdapter.getAdapter(csResourceSet, metamodelManager);
 					}
 				}
 				ClassLoader classLoader = getClass().getClassLoader();
 				if (classLoader != null) {
-					metaModelManager.addClassLoader(classLoader);
+					metamodelManager.addClassLoader(classLoader);
 				}
 			}
-			@SuppressWarnings("null")@NonNull Registry resourceFactoryRegistry = metaModelManager.getASResourceSet().getResourceFactoryRegistry();
+			@SuppressWarnings("null")@NonNull Registry resourceFactoryRegistry = metamodelManager.getASResourceSet().getResourceFactoryRegistry();
 			initializeResourceFactory(resourceFactoryRegistry);
-			adapter = new CS2ASResourceAdapter(this, metaModelManager);
+			adapter = new CS2ASResourceAdapter(this, metamodelManager);
 			eAdapters().add(adapter);
 		}
 		return adapter;
@@ -314,8 +314,8 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	}
 
 	@Override
-	public final @NonNull ASResource getASResource(@Nullable MetaModelManager metaModelManager) {
-		CS2ASResourceAdapter adapter = getCS2ASAdapter(metaModelManager);
+	public final @NonNull ASResource getASResource(@Nullable MetamodelManager metamodelManager) {
+		CS2ASResourceAdapter adapter = getCS2ASAdapter(metamodelManager);
 		ASResource asResource = adapter.getASResource(this);
 		if (asResource == null) {
 			throw new IllegalStateException("No Pivot Resource created");
@@ -407,11 +407,11 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 		if (ElementUtil.hasSyntaxError(errors)) {
 			return;
 		}
-		MetaModelManager metaModelManager = PivotUtilInternal.findMetaModelManager(this);
-		if (metaModelManager != null) {
-			StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
-//			if (metaModelManager.getLibraryResource() != org.eclipse.ocl.library.oclstdlib.OCLstdlib.INSTANCE) {
-//				metaModelManager.resetLibrary();		// FIXME is this needed; if so test it
+		MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(this);
+		if (metamodelManager != null) {
+			StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
+//			if (metamodelManager.getLibraryResource() != org.eclipse.ocl.library.oclstdlib.OCLstdlib.INSTANCE) {
+//				metamodelManager.resetLibrary();		// FIXME is this needed; if so test it
 //			}
 			try {
 				standardLibrary.getOclAnyType();
@@ -526,10 +526,10 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	}
 
 	@Override
-	public void updateFrom(@NonNull ASResource asResource, @NonNull MetaModelManager metaModelManager) {		
+	public void updateFrom(@NonNull ASResource asResource, @NonNull MetamodelManager metamodelManager) {		
 		Map<BaseCSResource, ASResource> cs2asResourceMap = new HashMap<BaseCSResource, ASResource>();
 		cs2asResourceMap.put(this, asResource);
-		AS2CS as2cs = createAS2CS(cs2asResourceMap, metaModelManager);
+		AS2CS as2cs = createAS2CS(cs2asResourceMap, metamodelManager);
 		as2cs.update();
 	}
 }

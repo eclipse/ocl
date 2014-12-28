@@ -10,7 +10,7 @@
  *   Radek Dvorak - Bug 261128
  *******************************************************************************/
 
-package org.eclipse.ocl.pivot.internal.utilities;
+package org.eclipse.ocl.pivot.internal.helper;
 
 import java.util.Iterator;
 import java.util.List;
@@ -32,10 +32,9 @@ import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.ProblemAware;
 import org.eclipse.ocl.pivot.internal.Query;
 import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.pivot.internal.helper.HelperUtil;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
-import org.eclipse.ocl.pivot.internal.plugin.PivotInternalPlugin;
+import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
@@ -46,8 +45,8 @@ import org.eclipse.ocl.pivot.utilities.ValueUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.internal.utilities.QueryImpl#getModelManager <em>Extent Map</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.utilities.QueryImpl#getExpression <em>Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.helper.QueryImpl#getModelManager <em>Extent Map</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.helper.QueryImpl#getExpression <em>Expression</em>}</li>
  * </ul>
  * </p>
  *
@@ -77,7 +76,7 @@ public class QueryImpl implements Query, ProblemAware
 		if (resultType() != environment.getStandardLibrary().getBooleanType()) {
 			IllegalArgumentException error = new IllegalArgumentException(
 					PivotMessagesInternal.BooleanQuery_ERROR_);
-			PivotInternalPlugin.throwing(getClass(), "check", error);//$NON-NLS-1$
+			HelperUtil.throwing(getClass(), "check", error);//$NON-NLS-1$
 			throw error;
 		}
 		
@@ -97,14 +96,14 @@ public class QueryImpl implements Query, ProblemAware
 		if (objList == null) {
 			IllegalArgumentException error = new IllegalArgumentException(
 					PivotMessagesInternal.NullArgExpectlist_ERROR_);
-			PivotInternalPlugin.throwing(getClass(), "check", error);//$NON-NLS-1$
+			HelperUtil.throwing(getClass(), "check", error);//$NON-NLS-1$
 			throw error;
 		}
 		
 		if (resultType() != environment.getStandardLibrary().getBooleanType()) {
 			IllegalArgumentException error = new IllegalArgumentException(
 					PivotMessagesInternal.BooleanQuery_ERROR_);
-			PivotInternalPlugin.throwing(getClass(), "check", error);//$NON-NLS-1$
+			HelperUtil.throwing(getClass(), "check", error);//$NON-NLS-1$
 			throw error;
 		}
 		
@@ -145,7 +144,7 @@ public class QueryImpl implements Query, ProblemAware
 			result = expression.accept(ev);
 		} catch (EvaluationHaltedException e) {
 			evalProblems = e.getDiagnostic();
-//			result = environment.getMetaModelManager().getValueFactory().createInvalidValue(null, null, evalProblems.toString(), e);
+//			result = environment.getMetamodelManager().getValueFactory().createInvalidValue(null, null, evalProblems.toString(), e);
 			throw e;
 		}
 		
@@ -159,7 +158,7 @@ public class QueryImpl implements Query, ProblemAware
 		if (obj == null) {
 			IllegalArgumentException error = new IllegalArgumentException(
 				PivotMessagesInternal.NullArgExpectEObj_ERROR_);
-			PivotInternalPlugin.throwing(getClass(), "evaluate", error);//$NON-NLS-1$
+			HelperUtil.throwing(getClass(), "evaluate", error);//$NON-NLS-1$
 			throw error;
 		}
 
@@ -170,9 +169,9 @@ public class QueryImpl implements Query, ProblemAware
 		// lazily create the evaluation environment, if not already done by
 		//    the client.  Initialize it with the "self" context variable
 		EvaluationEnvironment myEnv = getEvaluationEnvironment();
-		MetaModelManager metaModelManager = environment.getEnvironmentFactory().getMetaModelManager();
+		MetamodelManager metamodelManager = environment.getEnvironmentFactory().getMetamodelManager();
 		Variable contextVariable = ClassUtil.nonNullState(query.getOwnedContext());
-		myEnv.add(contextVariable, metaModelManager.getIdResolver().boxedValueOf(obj));
+		myEnv.add(contextVariable, metamodelManager.getIdResolver().boxedValueOf(obj));
 //		Variable resultVariable = specification.getResultVariable();
 //		if (resultVariable != null) {
 //			myEnv.add(resultVariable, null);
@@ -206,7 +205,7 @@ public class QueryImpl implements Query, ProblemAware
 		if (objList == null) {
 			IllegalArgumentException error = new IllegalArgumentException(
 					PivotMessagesInternal.NullArgExpectlist_ERROR_);
-			PivotInternalPlugin.throwing(getClass(), "evaluate", error);//$NON-NLS-1$
+			HelperUtil.throwing(getClass(), "evaluate", error);//$NON-NLS-1$
 			throw error;
 		}
 		
@@ -274,7 +273,7 @@ public class QueryImpl implements Query, ProblemAware
 		if (nextEvalProblems != null) {
 			if (batchEvalProblems == null) {
 				BasicDiagnostic rootDiagnostic = new BasicDiagnostic(
-					nextEvalProblems.getSeverity(), PivotInternalPlugin.getPluginId(),
+					nextEvalProblems.getSeverity(), PivotPlugin.PLUGIN_ID,
 					nextEvalProblems.getCode(), nextEvalProblems.getMessage(),
 					null);
 
@@ -295,7 +294,7 @@ public class QueryImpl implements Query, ProblemAware
 		if (objList == null) {
 			IllegalArgumentException error = new IllegalArgumentException(
 					PivotMessagesInternal.NullArgExpectlist_ERROR_);
-			PivotInternalPlugin.throwing(getClass(), "reject", error);//$NON-NLS-1$
+			HelperUtil.throwing(getClass(), "reject", error);//$NON-NLS-1$
 			throw error;
 		}
 		
@@ -325,7 +324,7 @@ public class QueryImpl implements Query, ProblemAware
 		if (objList == null) {
 			IllegalArgumentException error = new IllegalArgumentException(
 					PivotMessagesInternal.NullArgExpectlist_ERROR_);
-			PivotInternalPlugin.throwing(getClass(), "select", error);//$NON-NLS-1$
+			HelperUtil.throwing(getClass(), "select", error);//$NON-NLS-1$
 			throw error;
 		}
 		

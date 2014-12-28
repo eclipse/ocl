@@ -31,7 +31,7 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
@@ -41,13 +41,13 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
  */
 public class JUnitCodeGenerator extends JavaCodeGenerator
 {
-	public static @NonNull String generateClassFile(@NonNull MetaModelManager metaModelManager, @NonNull ExpressionInOCL query,
+	public static @NonNull String generateClassFile(@NonNull MetamodelManager metamodelManager, @NonNull ExpressionInOCL query,
 			@NonNull String packageName, @NonNull String className) {
-		CompleteEnvironmentInternal completeEnvironment = metaModelManager.getCompleteEnvironment();
+		CompleteEnvironmentInternal completeEnvironment = metamodelManager.getCompleteEnvironment();
 		boolean savedIsCodeGenerator = completeEnvironment.isCodeGeneration();
 		try {
 			completeEnvironment.setCodeGeneration(true);		// Workaround for BUG 452621
-			JUnitCodeGenerator expressionInOCL2Class = new JUnitCodeGenerator(metaModelManager, true);
+			JUnitCodeGenerator expressionInOCL2Class = new JUnitCodeGenerator(metamodelManager, true);
 			return expressionInOCL2Class.generate(query, packageName, className);
 		}
 		finally {
@@ -58,8 +58,8 @@ public class JUnitCodeGenerator extends JavaCodeGenerator
 	protected final @NonNull JavaGlobalContext<JUnitCodeGenerator> globalContext = new JavaGlobalContext<JUnitCodeGenerator>(this);
 	protected final @NonNull CodeGenAnalyzer cgAnalyzer;
 
-	protected JUnitCodeGenerator(@NonNull MetaModelManager metaModelManager, boolean useNullAnnotations) {
-		super(metaModelManager);
+	protected JUnitCodeGenerator(@NonNull MetamodelManager metamodelManager, boolean useNullAnnotations) {
+		super(metamodelManager);
 		getOptions().setUseNullAnnotations(useNullAnnotations);
 		cgAnalyzer = new CodeGenAnalyzer(this);
 	}

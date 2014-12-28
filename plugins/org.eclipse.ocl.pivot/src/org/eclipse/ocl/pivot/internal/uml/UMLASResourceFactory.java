@@ -32,9 +32,9 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.ecore.AbstractEcore2AS;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.AbstractASResourceFactory;
+import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
@@ -65,13 +65,13 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 	}
 
 	@Override
-	public @Nullable <T extends Element> T getASElement(@NonNull MetaModelManager metaModelManager,
+	public @Nullable <T extends Element> T getASElement(@NonNull MetamodelManager metamodelManager,
 			@NonNull Class<T> pivotClass, @NonNull EObject eObject) throws ParserException {
 		Resource metaModel = eObject.eResource();
 		if (metaModel == null) {
 			return null;
 		}
-		UML2AS uml2as = UML2AS.getAdapter(metaModel, metaModelManager);
+		UML2AS uml2as = UML2AS.getAdapter(metaModel, metamodelManager);
 		uml2as.getPivotModel();
 		EClass eClass = eObject.eClass();
 		EPackage ePackage = eClass.getEPackage();
@@ -252,8 +252,8 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 	}
 
 	@Override
-	public @Nullable Element importFromResource(@NonNull MetaModelManager metaModelManager, @NonNull Resource umlResource, @Nullable URI uri) throws ParserException {
-		UML2AS conversion = UML2AS.getAdapter(umlResource, metaModelManager);
+	public @Nullable Element importFromResource(@NonNull MetamodelManager metamodelManager, @NonNull Resource umlResource, @Nullable URI uri) throws ParserException {
+		UML2AS conversion = UML2AS.getAdapter(umlResource, metamodelManager);
 		conversion.setUMLURI(uri);
 		Model pivotModel = conversion.getPivotModel();
 		String uriFragment = uri != null ? uri.fragment() : null;

@@ -203,7 +203,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 	 */
 	protected @NonNull Operation getNonNullOperation(@Nullable Operation asOperation) {
 		if (asOperation == null) {
-			asOperation = context.getMetaModelManager().getStandardLibrary().getOclInvalidOperation();
+			asOperation = context.getMetamodelManager().getStandardLibrary().getOclInvalidOperation();
 		}
 		return asOperation;
 	}
@@ -213,7 +213,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 	 */
 	protected @NonNull Property getNonNullProperty(@Nullable Property asProperty) {
 		if (asProperty == null) {
-			asProperty = context.getMetaModelManager().getStandardLibrary().getOclInvalidProperty();
+			asProperty = context.getMetamodelManager().getStandardLibrary().getOclInvalidProperty();
 		}
 		return asProperty;
 	}
@@ -223,7 +223,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 	 */
 	protected @NonNull Type getNonNullType(@Nullable Type asType) {
 		if (asType == null) {
-			asType = context.getMetaModelManager().getStandardLibrary().getOclInvalidType();
+			asType = context.getMetamodelManager().getStandardLibrary().getOclInvalidType();
 		}
 		return asType;
 	}

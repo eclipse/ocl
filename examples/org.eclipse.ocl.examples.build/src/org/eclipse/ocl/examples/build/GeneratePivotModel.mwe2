@@ -89,7 +89,7 @@ Workflow {
     component = PruneSuperClasses { skipOnErrors = true
     	modelSlot = "${ecoreSlot}"
     }
-    component = SetASMetamodel { skipOnErrors = true
+    component = SetASmetamodel { skipOnErrors = true
     	modelSlot = "${ecoreSlot}"
     }
 //    component = PivotWorkarounds { skipOnErrors = true
@@ -155,21 +155,21 @@ Workflow {
 //    	visitablePackageName = "${projectName}.util"
     	visitableClassName = "Visitable"
     }
-//  	component = @GenerateOCLMetaModel {}
-/*    component = OCLMetaModelCodeGenerator { resourceSet = resourceSet
+//  	component = @GenerateOCLmetamodel {}
+/*    component = OCLmetamodelCodeGenerator { resourceSet = resourceSet
     	projectName = "${projectName}"
     	libraryFile = "model/Pivot.ecore"
     	javaFolder = "emf-gen"
     	javaPackageName = "${projectName}.model"
-    	javaClassName = "OCLMetaModel"
+    	javaClassName = "OCLmetamodel"
     } */
-    component = GenerateOCLMetaModelXtend { //resourceSet = resourceSet
+    component = GenerateOCLmetamodelXtend { //resourceSet = resourceSet
     	projectName = "${internalProjectName}"
     	modelFile = "model/Pivot.ecore"
     	uri = "http://www.eclipse.org/ocl/2015/Pivot"
     	javaFolder = "emf-gen"
     	javaPackageName = "${projectName}.model"
-    	javaClassName = "OCLMetaModel"
+    	javaClassName = "OCLmetamodel"
     }
 //    component = @GeneratePivotTables {}
 //    component = Model2tablesGenerator { resourceSet = resourceSet

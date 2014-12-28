@@ -29,7 +29,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.ids.ElementId;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 
 public interface CodeGenerator
 {
@@ -47,7 +47,7 @@ public interface CodeGenerator
 	@NonNull GlobalContext getGlobalContext();
 	@NonNull GlobalPlace getGlobalPlace();
 	@Nullable IterationHelper getIterationHelper(@NonNull Iteration iteration);
-	@NonNull MetaModelManager getMetaModelManager();
+	@NonNull MetamodelManager getMetamodelManager();
 	@NonNull NameManager getNameManager();
 	@NonNull CodeGenOptions getOptions();
 	@NonNull ReferencesVisitor createReferencesVisitor();

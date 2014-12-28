@@ -30,7 +30,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.TemplateParameterSubstitutionVisitor;
 import org.eclipse.ocl.pivot.internal.prettyprint.EssentialOCLPrettyPrintVisitor;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintVisitor;
@@ -39,11 +39,8 @@ import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
 import org.eclipse.ocl.pivot.internal.utilities.AS2MonikerVisitor;
 import org.eclipse.ocl.pivot.internal.utilities.AS2XMIid;
 import org.eclipse.ocl.pivot.internal.utilities.AS2XMIidVisitor;
-import org.eclipse.ocl.pivot.internal.utilities.ASSaver;
-import org.eclipse.ocl.pivot.internal.utilities.ASSaverLocateVisitor;
-import org.eclipse.ocl.pivot.internal.utilities.ASSaverNormalizeVisitor;
-import org.eclipse.ocl.pivot.internal.utilities.ASSaverResolveVisitor;
-import org.eclipse.ocl.pivot.internal.utilities.ToStringVisitor;
+import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.utilities.ToStringVisitor;
 
 /**
  * AbstractASResourceFactory provides the abstract functionality for creating and maintaining
@@ -121,8 +118,8 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 	}
 	
 	@Override
-	public @NonNull TemplateParameterSubstitutionVisitor createTemplateParameterSubstitutionVisitor(@NonNull MetaModelManager metaModelManager, @Nullable Type selfType, @Nullable Type selfTypeValue) {
-		return new TemplateParameterSubstitutionVisitor(metaModelManager, selfType, selfTypeValue);
+	public @NonNull TemplateParameterSubstitutionVisitor createTemplateParameterSubstitutionVisitor(@NonNull MetamodelManager metamodelManager, @Nullable Type selfType, @Nullable Type selfTypeValue) {
+		return new TemplateParameterSubstitutionVisitor(metamodelManager, selfType, selfTypeValue);
 	}
 
 	@Override
@@ -142,7 +139,7 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 	}
 
 	@Override
-	public @Nullable <T extends Element> T getASElement(@NonNull MetaModelManager metaModelManager,
+	public @Nullable <T extends Element> T getASElement(@NonNull MetamodelManager metamodelManager,
 			@NonNull Class<T> pivotClass, @NonNull EObject eObject) throws ParserException {
 		throw new UnsupportedOperationException(getClass().getName() + ".getPivotOf");
 	}
@@ -191,7 +188,7 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 	}
 
 	@Override
-	public @Nullable Element importFromResource(@NonNull MetaModelManager metaModelManager,
+	public @Nullable Element importFromResource(@NonNull MetamodelManager metamodelManager,
 			@NonNull Resource resource, @Nullable URI uri) throws ParserException {
 		if (resource instanceof ASResource) {
 			if (uri == null) {

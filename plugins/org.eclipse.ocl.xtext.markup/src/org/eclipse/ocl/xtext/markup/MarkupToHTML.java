@@ -24,7 +24,7 @@ import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.helper.OCLHelper;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.internal.utilities.HTMLBuffer;
@@ -58,8 +58,8 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 		}		
 	}
 	
-	public static String toString(@NonNull MetaModelManager metaModelManager, @Nullable Object context, @NonNull MarkupElement element) throws Exception {
-		MarkupToHTML toString = new MarkupToHTML(metaModelManager, context);
+	public static String toString(@NonNull MetamodelManager metamodelManager, @Nullable Object context, @NonNull MarkupElement element) throws Exception {
+		MarkupToHTML toString = new MarkupToHTML(metamodelManager, context);
 		try {
 			return toString.doSwitch(element).toString();
 		} catch (InvalidMarkupException e) {
@@ -68,12 +68,12 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 	}
 	
 	private @Nullable OCL ocl = null;
-	private @NonNull MetaModelManager metaModelManager;
+	private @NonNull MetamodelManager metamodelManager;
 	protected final @Nullable Object context;
 	protected final @NonNull HTMLBuffer s = new HTMLBuffer();
 
-	public MarkupToHTML(@NonNull MetaModelManager metaModelManager, @Nullable Object context) {
-		this.metaModelManager = metaModelManager;
+	public MarkupToHTML(@NonNull MetamodelManager metamodelManager, @Nullable Object context) {
+		this.metamodelManager = metamodelManager;
 		this.context = context;
 	}	
 
@@ -261,11 +261,11 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 			EClass eClass = ((EObject)context).eClass();
 			String name = eClass.getName();
 			assert name != null;
-			org.eclipse.ocl.pivot.Class pivotType = metaModelManager.getPivotType(name);
+			org.eclipse.ocl.pivot.Class pivotType = metamodelManager.getPivotType(name);
 			if (pivotType == null) {
 				Resource resource = eClass.eResource();
 				if (resource != null) {
-					Ecore2AS ecore2as = Ecore2AS.getAdapter(resource, metaModelManager);
+					Ecore2AS ecore2as = Ecore2AS.getAdapter(resource, metamodelManager);
 					pivotType = ecore2as.getCreated(org.eclipse.ocl.pivot.Class.class, eClass);
 				}
 			}
@@ -288,7 +288,7 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 		OCL ocl2 = ocl;
 		if (ocl2 == null) {
 			Registry packageRegistry = null; //resourceSet.getPackageRegistry();
-			PivotEnvironmentFactory envFactory = new PivotEnvironmentFactory(packageRegistry, metaModelManager);
+			PivotEnvironmentFactory envFactory = new PivotEnvironmentFactory(packageRegistry, metamodelManager);
 			ocl2 = ocl = OCL.newInstance(envFactory);
 		}
 		return ocl2;

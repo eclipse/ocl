@@ -16,7 +16,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.internal.AbstractEnvironment;
 import org.eclipse.ocl.pivot.internal.EnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 
 /**
  * Implementation of the {@link EnvironmentInternal} for parsing OCL expressions on
@@ -48,12 +48,12 @@ public class PivotEnvironment extends AbstractEnvironment
 	}
 
 	@Override
-	public @NonNull MetaModelManager getMetaModelManager() {
-		return getEnvironmentFactory().getMetaModelManager();
+	public @NonNull MetamodelManager getMetamodelManager() {
+		return getEnvironmentFactory().getMetamodelManager();
 	}
 
 	@Override
 	public @NonNull StandardLibraryInternal getStandardLibrary() {
-		return getMetaModelManager().getStandardLibrary();
+		return getMetamodelManager().getStandardLibrary();
 	}
 }

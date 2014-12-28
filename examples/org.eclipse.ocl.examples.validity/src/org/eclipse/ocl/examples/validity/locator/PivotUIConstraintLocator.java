@@ -41,7 +41,7 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
@@ -57,14 +57,14 @@ public class PivotUIConstraintLocator extends PivotConstraintLocator implements 
     protected static class DebugStarter implements IRunnableWithProgress
 	{
 		protected final @NonNull Shell shell;
-    	protected final @NonNull MetaModelManager metaModelManager;
+    	protected final @NonNull MetamodelManager metamodelManager;
     	protected final @Nullable EObject contextObject;
     	protected final @NonNull ExpressionInOCL constraint;
     	private @Nullable ILaunch launch = null;
 
-		public DebugStarter(@NonNull Shell shell, @NonNull MetaModelManager metaModelManager, @Nullable EObject contextObject, @NonNull ExpressionInOCL constraint) {
+		public DebugStarter(@NonNull Shell shell, @NonNull MetamodelManager metamodelManager, @Nullable EObject contextObject, @NonNull ExpressionInOCL constraint) {
 			this.shell = shell;
-			this.metaModelManager = metaModelManager;
+			this.metamodelManager = metamodelManager;
 			this.contextObject = contextObject;
 			this.constraint = constraint;
 		}
@@ -133,7 +133,7 @@ public class PivotUIConstraintLocator extends PivotConstraintLocator implements 
 		if (eResource == null) {
 			return false;
 		}
-		MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(eResource);
+		MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(eResource);
 		Constraint asConstraint = null;
 		Object constrainingObject = resultConstrainingNode.getParent().getConstrainingObject();
 		if (constrainingObject instanceof Constraint) {
@@ -150,7 +150,7 @@ public class PivotUIConstraintLocator extends PivotConstraintLocator implements 
 		}
 		ExpressionInOCL query;
 		try {
-			query = metaModelManager.getQueryOrThrow(specification);
+			query = metamodelManager.getQueryOrThrow(specification);
 		} catch (ParserException e) {
 			IStatus status = createStatus(e, PivotMessagesInternal.InvalidSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(asConstraint), PivotConstantsInternal.OWNED_CONSTRAINT_ROLE);
 			throw new CoreException(status);
@@ -165,7 +165,7 @@ public class PivotUIConstraintLocator extends PivotConstraintLocator implements 
 		if (shell == null) {
 			return false;
 		}
-		DebugStarter runnable = new DebugStarter(shell, metaModelManager, eObject, query);
+		DebugStarter runnable = new DebugStarter(shell, metamodelManager, eObject, query);
 		runnable.run(monitor);
 		return runnable.getLaunch() != null;
 	}

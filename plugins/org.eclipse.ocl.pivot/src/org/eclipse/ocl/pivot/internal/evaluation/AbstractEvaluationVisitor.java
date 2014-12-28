@@ -32,7 +32,7 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.EnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.util.Visitor;
@@ -60,7 +60,7 @@ public abstract class AbstractEvaluationVisitor
 	
 	protected final @NonNull EvaluationEnvironment evaluationEnvironment;
 	protected final @NonNull EnvironmentInternal environment;
-	protected final @NonNull MetaModelManager metaModelManager;	
+	protected final @NonNull MetamodelManager metamodelManager;	
 	protected final @NonNull CompleteEnvironmentInternal completeEnvironment;
 	protected final @NonNull StandardLibraryInternal standardLibrary;
 	protected final @NonNull ModelManager modelManager;
@@ -98,8 +98,8 @@ public abstract class AbstractEvaluationVisitor
         super(Object.class);						// Useless dummy object as context
         this.evaluationEnvironment = evalEnv;
         this.environment = env;
-        this.metaModelManager = env.getMetaModelManager();
-		this.completeEnvironment = metaModelManager.getCompleteEnvironment();
+        this.metamodelManager = env.getMetamodelManager();
+		this.completeEnvironment = metamodelManager.getCompleteEnvironment();
 		this.standardLibrary = completeEnvironment.getOwnedStandardLibrary();
         this.modelManager = modelManager;
         this.undecoratedVisitor = this;  // assume I have no decorator
@@ -148,7 +148,7 @@ public abstract class AbstractEvaluationVisitor
 
 	@Override
 	public @NonNull IdResolver getIdResolver() {
-		return metaModelManager.getIdResolver();
+		return metamodelManager.getIdResolver();
 	}
 
 	@Override
@@ -157,8 +157,8 @@ public abstract class AbstractEvaluationVisitor
 	}
 
 	@Override
-	public @NonNull MetaModelManager getMetaModelManager() {
-		return metaModelManager;
+	public @NonNull MetamodelManager getMetamodelManager() {
+		return metamodelManager;
 	}
 	
     // implements the interface method
@@ -206,17 +206,17 @@ public abstract class AbstractEvaluationVisitor
 
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value) {
-		return metaModelManager.getIdResolver().getStaticTypeOf(value);
+		return metamodelManager.getIdResolver().getStaticTypeOf(value);
 	}
 
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Object... values) {
-		return metaModelManager.getIdResolver().getStaticTypeOf(value, values);
+		return metamodelManager.getIdResolver().getStaticTypeOf(value, values);
 	}
  
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
-		return metaModelManager.getIdResolver().getStaticTypeOf(value, values);
+		return metamodelManager.getIdResolver().getStaticTypeOf(value, values);
 	}
  
     /**
@@ -299,7 +299,7 @@ public abstract class AbstractEvaluationVisitor
 			throw new IllegalArgumentException("constraint has no body expression"); //$NON-NLS-1$
 		}
 		
-//		if (isBoolean && !(body.getType() != metaModelManager.getBooleanType())) {
+//		if (isBoolean && !(body.getType() != metamodelManager.getBooleanType())) {
 //			throw new IllegalArgumentException("constraint is not boolean"); //$NON-NLS-1$
 //		}
 		

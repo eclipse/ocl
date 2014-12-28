@@ -42,7 +42,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.AbstractConversion;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.util.Visitable;
@@ -96,7 +96,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 	private @Nullable BaseCSResource csResource = null;;
 	
 	public AS2CSConversion(@NonNull AS2CS converter) {
-		super(converter.getMetaModelManager());
+		super(converter.getMetamodelManager());
 		this.converter = converter;
 		this.defaultDeclarationVisitor = converter.createDefaultDeclarationVisitor(this);
 		this.defaultReferenceVisitor = converter.createDefaultReferenceVisitor(this);
@@ -115,9 +115,9 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 	public void createImports(@NonNull RootCS documentCS, @NonNull Map<Namespace, List<String>> importedNamespaces) {
 		BaseCSResource csResource = (BaseCSResource) ClassUtil.nonNullState(documentCS.eResource());
 		AliasAnalysis.dispose(csResource);			// Force reanalysis
-		MetaModelManager metaModelManager = PivotUtilInternal.findMetaModelManager(csResource);
-		if (metaModelManager == null) {
-			throw new IllegalStateException("No MetaModelManager");
+		MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(csResource);
+		if (metamodelManager == null) {
+			throw new IllegalStateException("No MetamodelManager");
 		}
 		AliasAnalysis aliasAnalysis = null;
 		URI csURI = csResource.getURI();
@@ -125,19 +125,19 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 		for (Namespace importedNamespace : importedNamespaces.keySet()) {
 			if (importedNamespace != null) {
 				if (importedNamespace instanceof org.eclipse.ocl.pivot.Package){
-					Package pivotPackage = metaModelManager.getCompletePackage((org.eclipse.ocl.pivot.Package)importedNamespace).getPivotPackage();
+					Package pivotPackage = metamodelManager.getCompletePackage((org.eclipse.ocl.pivot.Package)importedNamespace).getPivotPackage();
 		//			ModelElementCS csElement = createMap.get(importedPackage);
 		//			if ((csElement != null) && (csElement.eResource() == xtextResource)) {
 		//				continue;		// Don't import defined packages
 		//			}
-					if (metaModelManager.getLibraries().contains(pivotPackage)) {
+					if (metamodelManager.getLibraries().contains(pivotPackage)) {
 						continue;
 					}
 				}
 				List<String> aliases = importedNamespaces.get(importedNamespace);
 				if ((aliases == null) || aliases.isEmpty()) {
 					if (aliasAnalysis == null) {
-						aliasAnalysis = AliasAnalysis.getAdapter(csResource, metaModelManager);
+						aliasAnalysis = AliasAnalysis.getAdapter(csResource, metamodelManager);
 					}
 					String alias = aliasAnalysis.getAlias(importedNamespace, null);
 					aliases = Collections.singletonList(alias);
@@ -174,7 +174,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 		if (aliasAnalysis != null) {
 			aliasAnalysis.dispose();
 		}
-		aliasAnalysis = AliasAnalysis.getAdapter(csResource, metaModelManager);
+		aliasAnalysis = AliasAnalysis.getAdapter(csResource, metamodelManager);
 		for (ImportCS csImport : imports) {
 			Namespace namespace = csImport.getReferredNamespace();
 			String alias = csImport.getName();
@@ -206,8 +206,8 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 			public int compare(ImportCS o1, ImportCS o2) {
 				Namespace ns1 = o1.getReferredNamespace();
 				Namespace ns2 = o2.getReferredNamespace();
-				int d1 = PivotUtilInternal.getContainmentDepth(ns1);
-				int d2 = PivotUtilInternal.getContainmentDepth(ns2);
+				int d1 = PivotUtil.getContainmentDepth(ns1);
+				int d2 = PivotUtil.getContainmentDepth(ns2);
 				if (d1 != d2) {
 					return d1 - d2;
 				}
@@ -293,7 +293,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 	}
 
 	public void importNamespace(@NonNull Namespace importNamespace, @Nullable String alias) {
-		Namespace primaryNamespace = metaModelManager.getPrimaryElement(importNamespace);
+		Namespace primaryNamespace = metamodelManager.getPrimaryElement(importNamespace);
 		List<String> aliases = importedNamespaces.get(primaryNamespace);
 		if (aliases == null) {
 			aliases = new ArrayList<String>();
@@ -359,7 +359,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 	 */
 	public void refreshPathName(@NonNull PathNameCS csPathName, @NonNull Element element, @Nullable Namespace scope) {//, @Nullable Resource csResource) {
 		Namespace safeScope = scope;
-		Element primaryElement = metaModelManager.getPrimaryElement(element);
+		Element primaryElement = metamodelManager.getPrimaryElement(element);
 		if ((safeScope != null) && (primaryElement instanceof Type)) {
 			String name = ((Type)primaryElement).getName();
 			for (EObject eObject = safeScope; eObject != null; eObject = eObject.eContainer()) {
@@ -367,7 +367,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 					safeScope = (Namespace) eObject;
 				}
 				if (eObject instanceof org.eclipse.ocl.pivot.Package) {
-					CompletePackage completePackage = metaModelManager.getCompletePackage((org.eclipse.ocl.pivot.Package)eObject);
+					CompletePackage completePackage = metamodelManager.getCompletePackage((org.eclipse.ocl.pivot.Package)eObject);
 					org.eclipse.ocl.pivot.Class memberType = completePackage.getMemberType(name);
 					if (memberType == primaryElement) {
 						if ((eObject != scope) && (eObject != PivotUtil.getContainingPackage(scope))) {
@@ -395,7 +395,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 				return;				// Skip root package
 			}
 			for (EObject aScope = safeScope; aScope != null; aScope = aScope.eContainer()) {
-				if (metaModelManager.getPrimaryElement(aScope) == metaModelManager.getPrimaryElement(eContainer)) { 		// If element ancestor is scope or an ancestor
+				if (metamodelManager.getPrimaryElement(aScope) == metamodelManager.getPrimaryElement(eContainer)) { 		// If element ancestor is scope or an ancestor
 					return;							// no need for further qualification
 				}
 			}
@@ -465,7 +465,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 		final Type type = object.getType();
 		final Type elementType;
 		if ((type instanceof CollectionType) && (((CollectionType)type).getUnspecializedElement() != standardLibrary.getCollectionType())) {
-			PivotUtilInternal.debugWellContainedness(type);
+			PivotUtil.debugWellContainedness(type);
 			elementType = ((CollectionType)type).getElementType();
 		}
 		else if (type instanceof VoidType) {
@@ -475,7 +475,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 			elementType = type;
 		}
 		if (elementType != null) {
-			PivotUtilInternal.debugWellContainedness(elementType);
+			PivotUtil.debugWellContainedness(elementType);
 			TypedRefCS typeRef = visitReference(TypedRefCS.class, elementType, null);
 			csElement.setOwnedType(typeRef);
 		}

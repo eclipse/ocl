@@ -49,18 +49,18 @@ import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.delegate.DelegateInstaller;
 import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerListener;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceAdapter;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerListener;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.resource.OCLASResourceFactory;
 import org.eclipse.ocl.pivot.internal.uml.UML2AS;
-import org.eclipse.ocl.pivot.internal.utilities.BaseResource;
+import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.resource.CSResource;
+import org.eclipse.ocl.pivot.resource.ProjectMap;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IProjectDescriptor;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.MapToFirstConflictHandlerWithLog;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.pivot.utilities.ProjectMap;
-import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
-import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.IProjectDescriptor;
-import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap.MapToFirstConflictHandlerWithLog;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.xtext.oclinecore.ui.OCLinEcoreUiModule;
@@ -77,7 +77,7 @@ import org.eclipse.xtext.validation.IConcreteSyntaxValidator.InvalidConcreteSynt
  * OCLinEcoreDocumentProvider orchestrates the load and saving of optional XMI content
  * externally while maintaining the serialised human friendly form internally. 
  */
-public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements MetaModelManagerListener
+public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements MetamodelManagerListener
 {
 	private static final Logger log = Logger.getLogger(OCLinEcoreDocumentProvider.class);
 	
@@ -102,7 +102,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 
 	private Map<IDocument, URI> uriMap = new HashMap<IDocument, URI>();		// Helper for setDocumentContent
 	
-	private MetaModelManager metaModelManager = null;
+	private MetamodelManager metamodelManager = null;
 
 	public static InputStream createResettableInputStream(InputStream inputStream) throws IOException {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -199,12 +199,12 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 	}
 	
 	@SuppressWarnings("null")
-	protected @NonNull MetaModelManager getMetaModelManager() {
-		if (metaModelManager == null) {
-			metaModelManager = new MetaModelManager();
-			metaModelManager.addListener(this);
+	protected @NonNull MetamodelManager getMetamodelManager() {
+		if (metamodelManager == null) {
+			metamodelManager = new MetamodelManager();
+			metamodelManager.addListener(this);
 		}
-		return metaModelManager;
+		return metamodelManager;
 	}
 
 	@Override
@@ -294,14 +294,14 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 	@Override
 	protected void loadResource(XtextResource resource, String document, String encoding) throws CoreException {
 		assert resource != null;
-		MetaModelManagerResourceAdapter.getAdapter(resource, getMetaModelManager());
+		MetamodelManagerResourceAdapter.getAdapter(resource, getMetamodelManager());
 		super.loadResource(resource, document, encoding);
 	}
 
 	@Override
-	public void metaModelManagerDisposed(@NonNull MetaModelManager metaModelManager) {
-		metaModelManager.removeListener(this);
-		this.metaModelManager = null;
+	public void metamodelManagerDisposed(@NonNull MetamodelManager metamodelManager) {
+		metamodelManager.removeListener(this);
+		this.metamodelManager = null;
 	}
 
 	@Override
@@ -321,7 +321,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 			boolean isXML = isXML(inputStream);		
 			String persistAs = PERSIST_AS_OCLINECORE;
 			if (isXML) {
-				ResourceSet resourceSet = getMetaModelManager().getExternalResourceSet();
+				ResourceSet resourceSet = getMetamodelManager().getExternalResourceSet();
 				StandaloneProjectMap projectMap = ProjectMap.getAdapter(resourceSet);
 				StandaloneProjectMap.IConflictHandler conflictHandler = MapToFirstConflictHandlerWithLog.INSTANCE; //null; 			// FIXME
 				projectMap.configure(resourceSet, StandaloneProjectMap.LoadFirstStrategy.INSTANCE, conflictHandler);
@@ -363,7 +363,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 				if (contents.size() > 0) {
 					EObject xmiRoot = contents.get(0);
 					if (xmiRoot instanceof EPackage) {
-						Ecore2AS ecore2as = Ecore2AS.getAdapter(xmiResource, getMetaModelManager());
+						Ecore2AS ecore2as = Ecore2AS.getAdapter(xmiResource, getMetamodelManager());
 						Model pivotModel = ecore2as.getPivotModel();
 						asResource = (ASResource) pivotModel.eResource();
 						if (asResource != null) {
@@ -380,7 +380,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 						persistAs = PERSIST_AS_PIVOT;
 					}
 					else if (xmiRoot instanceof org.eclipse.uml2.uml.Package) {
-						UML2AS uml2as = UML2AS.getAdapter(xmiResource, getMetaModelManager());
+						UML2AS uml2as = UML2AS.getAdapter(xmiResource, getMetamodelManager());
 						Model pivotModel = uml2as.getPivotModel();
 						asResource = (ASResource) pivotModel.eResource();
 						persistAs = PERSIST_AS_OCLINECORE;		// FIXME
@@ -394,9 +394,9 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 				ResourceSetImpl csResourceSet = (ResourceSetImpl)resourceSet;
 				csResourceSet.getPackageRegistry().put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
 				URI oclinecoreURI = xmiResource.getURI().appendFileExtension("oclinecore");
-				BaseResource csResource = (BaseResource) resourceSet.getResource(oclinecoreURI, false);
+				CSResource csResource = (CSResource) resourceSet.getResource(oclinecoreURI, false);
 				if (csResource == null) {
-					csResource = (BaseResource) resourceSet.createResource(oclinecoreURI, OCLinEcoreCSPackage.eCONTENT_TYPE);
+					csResource = (CSResource) resourceSet.createResource(oclinecoreURI, OCLinEcoreCSPackage.eCONTENT_TYPE);
 				    Map<URI, Resource> map = csResourceSet.getURIResourceMap();
 				    map.put(oclinecoreURI, csResource);
 					csResource.setURI(xmiResource.getURI());
@@ -406,7 +406,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 				//		Ecore XMI resource with *.ecore URI, possibly in URIResourceMap as *.ecore
 				//		OCLinEcore CS resource with *.ecore URI, in URIResourceMap as *.ecore.oclinecore
 				//
-				csResource.updateFrom(asResource, getMetaModelManager());
+				csResource.updateFrom(asResource, getMetamodelManager());
 				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 				try {
 					csResource.save(outputStream, null);

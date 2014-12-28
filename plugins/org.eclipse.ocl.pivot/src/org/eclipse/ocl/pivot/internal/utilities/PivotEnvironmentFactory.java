@@ -23,7 +23,7 @@ import org.eclipse.ocl.pivot.internal.AbstractEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.evaluation.PivotEvaluationEnvironment;
 import org.eclipse.ocl.pivot.internal.evaluation.PivotModelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.values.ObjectValue;
 
 
@@ -51,7 +51,7 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
      */
 	public static void disposeGlobalRegistryInstance() {
 		if (globalRegistryInstance != null) {
-			globalRegistryInstance.getMetaModelManager().dispose();
+			globalRegistryInstance.getMetamodelManager().dispose();
 			globalRegistryInstance = null;
 		}
 	}
@@ -64,7 +64,7 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
 		return globalRegistryInstance2;
 	}
 	
-    protected final @NonNull MetaModelManager metaModelManager;
+    protected final @NonNull MetamodelManager metamodelManager;
 
 	private final @Nullable EPackage.Registry registry;
 
@@ -81,12 +81,12 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
      * environments I create will use to look up packages.
      * 
      * @param reg my package registry
-	 * @param metaModelManager 
+	 * @param metamodelManager 
 	 */
-	public PivotEnvironmentFactory(@Nullable EPackage.Registry reg, @Nullable MetaModelManager metaModelManager) {
+	public PivotEnvironmentFactory(@Nullable EPackage.Registry reg, @Nullable MetamodelManager metamodelManager) {
 		super();
 		this.registry = reg;
-		this.metaModelManager = metaModelManager != null ? metaModelManager : new MetaModelManager();
+		this.metamodelManager = metamodelManager != null ? metamodelManager : new MetamodelManager();
 	}
 	
     // implements the inherited specification
@@ -139,19 +139,19 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
 			object = ((ObjectValue) object).getObject();
 		}
 		if (object instanceof EObject) {
-			return new PivotModelManager(metaModelManager, (EObject) object);
+			return new PivotModelManager(metamodelManager, (EObject) object);
 		}
 		return ModelManager.NULL;
 	}
 
 	@Override
 	protected @NonNull org.eclipse.ocl.pivot.Class getClassifier(@NonNull Object context) {
-		org.eclipse.ocl.pivot.Class dType = metaModelManager.getIdResolver().getStaticTypeOf(context);
-		return metaModelManager.getType(dType);
+		org.eclipse.ocl.pivot.Class dType = metamodelManager.getIdResolver().getStaticTypeOf(context);
+		return metamodelManager.getType(dType);
 	}
 	
 	@Override
-	public @NonNull MetaModelManager getMetaModelManager() {
-		return metaModelManager;
+	public @NonNull MetamodelManager getMetamodelManager() {
+		return metamodelManager;
 	}
 }

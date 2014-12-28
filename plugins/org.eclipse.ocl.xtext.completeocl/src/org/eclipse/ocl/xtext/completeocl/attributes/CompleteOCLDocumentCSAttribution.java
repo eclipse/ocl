@@ -15,7 +15,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Namespace;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.internal.scoping.ScopeView;
 import org.eclipse.ocl.xtext.base.scoping.AbstractRootCSAttribution;
@@ -29,7 +29,7 @@ public class CompleteOCLDocumentCSAttribution extends AbstractRootCSAttribution
 	@Override
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		CompleteOCLDocumentCS targetElement = (CompleteOCLDocumentCS)target;
-		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
+		MetamodelManager metamodelManager = environmentView.getMetamodelManager();
 		for (ImportCS anImport : targetElement.getOwnedImports()) {
 			Namespace namespace = anImport.getReferredNamespace();
 			if ((namespace != null) && !namespace.eIsProxy()) {
@@ -62,8 +62,8 @@ public class CompleteOCLDocumentCSAttribution extends AbstractRootCSAttribution
 			}
 		}
 		if (!environmentView.hasFinalResult()) {
-			metaModelManager.getStandardLibrary().getOclAnyType();
-			for (Library library : metaModelManager.getLibraries()) {
+			metamodelManager.getStandardLibrary().getOclAnyType();
+			for (Library library : metamodelManager.getLibraries()) {
 				assert library != null;
 				environmentView.addNamedElement(library);
 			}

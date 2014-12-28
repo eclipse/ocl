@@ -33,7 +33,7 @@ import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.Query;
 import org.eclipse.ocl.pivot.internal.delegate.InvocationBehavior;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
@@ -65,20 +65,20 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
 		try {
 			OCL ocl = delegateDomain.getOCL();
-			MetaModelManager metaModelManager = ocl.getMetaModelManager();
-			IdResolver idResolver = metaModelManager.getIdResolver();
+			MetamodelManager metamodelManager = ocl.getMetamodelManager();
+			IdResolver idResolver = metamodelManager.getIdResolver();
 			ExpressionInOCL specification2 = specification;
 			if (specification2 == null) {
 				Operation operation2 = operation;
 				NamedElement namedElement = delegateDomain.getPivot(NamedElement.class, ClassUtil.nonNullEMF(eOperation));
 				if (namedElement instanceof Operation) {
 					operation2 = operation = (Operation) namedElement;
-					specification2 = specification = InvocationBehavior.INSTANCE.getQueryOrThrow(metaModelManager, operation2);
+					specification2 = specification = InvocationBehavior.INSTANCE.getQueryOrThrow(metamodelManager, operation2);
 					InvocationBehavior.INSTANCE.validate(operation2);
 				}
 				else if (namedElement instanceof Constraint) {
 					Constraint constraint = (Constraint)namedElement;
-					specification2 = specification = getExpressionInOCL(metaModelManager, constraint);
+					specification2 = specification = getExpressionInOCL(metamodelManager, constraint);
 					ValidationBehavior.INSTANCE.validate(constraint);
 				}
 				else {
@@ -112,11 +112,11 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 		}
 	}
 
-	public @NonNull ExpressionInOCL getExpressionInOCL(@NonNull MetaModelManager metaModelManager, @NonNull Constraint constraint) {
+	public @NonNull ExpressionInOCL getExpressionInOCL(@NonNull MetamodelManager metamodelManager, @NonNull Constraint constraint) {
 		ExpressionInOCL query = null;
 		Type contextType = (Type) constraint.getContext();
 		if (contextType != null) {
-			query = ValidationBehavior.INSTANCE.getQueryOrThrow(metaModelManager, constraint);
+			query = ValidationBehavior.INSTANCE.getQueryOrThrow(metamodelManager, constraint);
 		}
 		if (query == null) {
 			String message = StringUtil.bind(PivotMessagesInternal.MissingBodyForInvocationDelegate_ERROR_, constraint.getContext());

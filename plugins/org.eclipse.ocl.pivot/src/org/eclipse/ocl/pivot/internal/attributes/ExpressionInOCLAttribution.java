@@ -20,7 +20,7 @@ import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.internal.scoping.ScopeView;
@@ -43,12 +43,12 @@ public class ExpressionInOCLAttribution extends AbstractAttribution
 		}
 		if (contextVariable != null) {
 			Type type = contextVariable.getType();
-			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
+			MetamodelManager metamodelManager = environmentView.getMetamodelManager();
 			if (type != null) {
 				environmentView.addNamedElement(contextVariable);
 			}
 			else {
-				type = metaModelManager.getStandardLibrary().getOclVoidType();
+				type = metamodelManager.getStandardLibrary().getOclVoidType();
 			}
 			if (!environmentView.hasFinalResult()) {
 				Type userType = /*type instanceof Metaclass<?> ? ((Metaclass<?>)type).getInstanceType() :*/ type;// FIXME is this really right - needed by test_stereotypeM2Navigation for implicit self of an base_xxx
@@ -68,14 +68,14 @@ public class ExpressionInOCLAttribution extends AbstractAttribution
 							if (!environmentView.hasFinalResult()) {
 								environmentView.addElementsOfScope(contextPackage, scopeView);
 								if (environmentView.accepts(PivotPackage.Literals.TYPE)) {
-									for (Type gType : metaModelManager.getGlobalTypes()) {
+									for (Type gType : metamodelManager.getGlobalTypes()) {
 										if (gType != null) {
 											environmentView.addNamedElement(gType);
 										}
 									}
 								}
 								if (environmentView.accepts(PivotPackage.Literals.NAMESPACE)) {
-									for (Map.Entry<String, Namespace> entry : metaModelManager.getGlobalNamespaces()) {
+									for (Map.Entry<String, Namespace> entry : metamodelManager.getGlobalNamespaces()) {
 										String key = entry.getKey();
 										Namespace value = entry.getValue();
 										if ((key != null) && (value != null)) {

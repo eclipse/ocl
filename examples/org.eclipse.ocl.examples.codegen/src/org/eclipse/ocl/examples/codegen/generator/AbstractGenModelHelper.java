@@ -35,7 +35,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TypedElement;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.library.AbstractBinaryOperation;
 import org.eclipse.ocl.pivot.library.AbstractOperation;
 import org.eclipse.ocl.pivot.library.AbstractTernaryOperation;
@@ -130,10 +130,10 @@ public class AbstractGenModelHelper implements GenModelHelper
 		return string;
 	}
 	
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull MetamodelManager metamodelManager;
 
-	public AbstractGenModelHelper(@NonNull MetaModelManager metaModelManager) {
-		this.metaModelManager = metaModelManager;
+	public AbstractGenModelHelper(@NonNull MetamodelManager metamodelManager) {
+		this.metamodelManager = metamodelManager;
 	}
 	
 	@Override
@@ -344,7 +344,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 				}
 			}
 		}
-		for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Class partialType : metaModelManager.getPartialClasses(type)) {
+		for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Class partialType : metamodelManager.getPartialClasses(type)) {
 			genPackage = getGenPackage(partialType);
 			if (genPackage != null) {
 				String name = partialType.getName();
@@ -441,7 +441,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 		if (eContainer instanceof Model) {
 			String nsURI = ((Model)eContainer).getExternalURI();
 			if (nsURI != null) {
-				GenPackage genPackage = metaModelManager.getGenPackage(nsURI);
+				GenPackage genPackage = metamodelManager.getGenPackage(nsURI);
 				if (genPackage != null) {
 					return genPackage;
 				}
@@ -451,7 +451,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 		if (nsURI == null) {
 			return null;
 		}
-		return metaModelManager.getGenPackage(nsURI);
+		return metamodelManager.getGenPackage(nsURI);
 	}
 
 	@Override
@@ -476,7 +476,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 		if (nsURI == null) {
 			return null;
 		}
-		return metaModelManager.getGenPackage(nsURI);
+		return metamodelManager.getGenPackage(nsURI);
 	}
 	
 	@Override
@@ -537,8 +537,8 @@ public class AbstractGenModelHelper implements GenModelHelper
 	}
 
 	@Override
-	public @NonNull MetaModelManager getMetaModelManager() {
-		return metaModelManager;
+	public @NonNull MetamodelManager getMetamodelManager() {
+		return metamodelManager;
 	}
 
 	@Override

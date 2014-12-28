@@ -21,45 +21,45 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
- * A MetaModelManagerResourceAdapter enhances the Resource for a Concrete Syntax model
+ * A MetamodelManagerResourceAdapter enhances the Resource for a Concrete Syntax model
  * to support synchronization with a Pivot model representation.
  */
-public abstract class AbstractMetaModelManagerResourceAdapter<T extends Resource> implements MetaModelManagedAdapter
+public abstract class AbstractMetamodelManagerResourceAdapter<T extends Resource> implements MetamodelManagedAdapter
 {		
 	public static void disposeAll(@NonNull Resource resource) {
 		List<Adapter> eAdapters = resource.eAdapters();
 		for (int i = eAdapters.size(); --i >= 0; ) {
 			Adapter adapter = eAdapters.get(i);
-			if (adapter instanceof AbstractMetaModelManagerResourceAdapter) {
+			if (adapter instanceof AbstractMetamodelManagerResourceAdapter) {
 				eAdapters.remove(i);
 			}
 		}
 	}
 
-	public static @Nullable AbstractMetaModelManagerResourceAdapter<?> findAdapter(@NonNull Resource resource) {
-		return ClassUtil.getAdapter(AbstractMetaModelManagerResourceAdapter.class, resource);
+	public static @Nullable AbstractMetamodelManagerResourceAdapter<?> findAdapter(@NonNull Resource resource) {
+		return ClassUtil.getAdapter(AbstractMetamodelManagerResourceAdapter.class, resource);
 	}
 	
-//	public static LiveInstances<MetaModelManagerResourceAdapter> INSTANCES = new LiveInstances(MetaModelManagerResourceAdapter.class);
+//	public static LiveInstances<MetamodelManagerResourceAdapter> INSTANCES = new LiveInstances(MetamodelManagerResourceAdapter.class);
 	
 	protected final @NonNull T resource;
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull MetamodelManager metamodelManager;
 	
-	public AbstractMetaModelManagerResourceAdapter(@NonNull T resource, @NonNull MetaModelManager metaModelManager) {
+	public AbstractMetamodelManagerResourceAdapter(@NonNull T resource, @NonNull MetamodelManager metamodelManager) {
 		this.resource = resource;
-		this.metaModelManager = metaModelManager;
-		metaModelManager.addListener(this);
+		this.metamodelManager = metamodelManager;
+		metamodelManager.addListener(this);
 //		INSTANCES.add(this);		
 	}
 
 	public void dispose() {
 //		INSTANCES.remove(this);
 		resource.eAdapters().remove(this);
-		metaModelManager.removeListener(this);
+		metamodelManager.removeListener(this);
 	}
 	
-	public @NonNull MetaModelManager getMetaModelManager() {
-		return metaModelManager;
+	public @NonNull MetamodelManager getMetamodelManager() {
+		return metamodelManager;
 	}
 
 	@Override
@@ -68,17 +68,17 @@ public abstract class AbstractMetaModelManagerResourceAdapter<T extends Resource
 	}
 
 	@Override
-	public boolean isAdapterFor(@NonNull MetaModelManager metaModelManager) {
-		return this.metaModelManager == metaModelManager;
+	public boolean isAdapterFor(@NonNull MetamodelManager metamodelManager) {
+		return this.metamodelManager == metamodelManager;
 	}
 
 	@Override
 	public boolean isAdapterForType(Object type) {
-		return type == AbstractMetaModelManagerResourceAdapter.class;
+		return type == AbstractMetamodelManagerResourceAdapter.class;
 	}	
 
 	@Override
-	public void metaModelManagerDisposed(@NonNull MetaModelManager metaModelManager) {
+	public void metamodelManagerDisposed(@NonNull MetamodelManager metamodelManager) {
 		dispose();
 	}
 

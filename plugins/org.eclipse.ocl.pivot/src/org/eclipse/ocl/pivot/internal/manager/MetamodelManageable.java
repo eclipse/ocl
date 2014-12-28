@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.internal.manager;
 
-public interface MetaModelManageable
+public interface MetamodelManageable
 {
-	MetaModelManager getMetaModelManager();
+	MetamodelManager getMetamodelManager();
 }

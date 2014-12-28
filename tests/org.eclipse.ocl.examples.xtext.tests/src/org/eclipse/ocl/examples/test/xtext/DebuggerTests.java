@@ -45,7 +45,7 @@ import org.eclipse.jface.dialogs.MessageDialogWithToggle;
 import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.Constraint;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ui.IWorkbench;
@@ -133,9 +133,9 @@ public class DebuggerTests extends XtextTestCase
 		@SuppressWarnings("unchecked")List<EObject> customers = (List<EObject>) xmiRoot.eGet(ref_RandL_Customer);
 		EObject eObject = customers.get(0);
 		
-		MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(oclResource);
-		org.eclipse.ocl.pivot.Class customerClass = metaModelManager.getPivotOf(org.eclipse.ocl.pivot.Class.class, eObject.eClass());
-		Iterable<Constraint> customerInvariants = metaModelManager.getAllInvariants(customerClass);
+		MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(oclResource);
+		org.eclipse.ocl.pivot.Class customerClass = metamodelManager.getPivotOf(org.eclipse.ocl.pivot.Class.class, eObject.eClass());
+		Iterable<Constraint> customerInvariants = metamodelManager.getAllInvariants(customerClass);
 		Constraint constraint = NameUtil.getNameable(customerInvariants, "invariant_sizesAgree");
 
 		ILaunchConfigurationWorkingCopy launchConfiguration = createLaunchConfiguration(iProject, constraint, eObject);

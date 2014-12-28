@@ -47,7 +47,7 @@ import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.ecore.AS2Ecore;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.options.OCLinEcoreOptions;
@@ -196,12 +196,12 @@ public class DelegateInstaller
 		return needsDelegates;
 	}
 
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull MetamodelManager metamodelManager;
 	protected final @NonNull Map<String, Object> options;
 	protected final @Nullable String exportDelegateURI;
 
-	public DelegateInstaller(@NonNull MetaModelManager metaModelManager, @Nullable Map<String, Object> options) {
-		this.metaModelManager = metaModelManager;
+	public DelegateInstaller(@NonNull MetamodelManager metamodelManager, @Nullable Map<String, Object> options) {
+		this.metamodelManager = metamodelManager;
 		this.options = options != null ? options : new HashMap<String,Object>();
 		this.exportDelegateURI = getExportDelegateURI(this.options);
 	}
@@ -276,8 +276,8 @@ public class DelegateInstaller
 		return exportDelegateURI;
 	}
 
-	public @NonNull MetaModelManager getMetaModelManager() {
-		return metaModelManager;
+	public @NonNull MetamodelManager getMetamodelManager() {
+		return metamodelManager;
 	}
 
 	/**
@@ -285,13 +285,13 @@ public class DelegateInstaller
 	 */
 	public void installDelegates(@NonNull CompletePackage completePackage) {
 		boolean hasDelegates = false;
-//		for (Type aType : metaModelManager.getLocalClasses(pivotPackage)) {
+//		for (Type aType : metamodelManager.getLocalClasses(pivotPackage)) {
 		for (CompleteClass completeClass : completePackage.getOwnedCompleteClasses()) {
 			if (installDelegates(completeClass.getPivotClass())) {
 				hasDelegates = true;
 			}
 		}
-//		PackageServer packageServer = metaModelManager.getPackageServer(pivotPackage);
+//		PackageServer packageServer = metamodelManager.getPackageServer(pivotPackage);
 		EPackage ePackage = completePackage.getEPackage();
 		if ((ePackage != null) && hasDelegates) {
 			installDelegates(ePackage);
@@ -306,17 +306,17 @@ public class DelegateInstaller
 	/**
 	 * Install all Constraints from pivotType and its operations as OCL Delegates. Returning true if any OCL Delegate installed.
 	 * 
-	 * @param metaModelManager
+	 * @param metamodelManager
 	 * @param pivotPackage
 	 */
 	private boolean installDelegates(@NonNull org.eclipse.ocl.pivot.Class pivotType) {
 		boolean hasDelegates = false;
-		Type primaryType = metaModelManager.getPrimaryType(pivotType);
+		Type primaryType = metamodelManager.getPrimaryType(pivotType);
 		EObject eTarget = primaryType.getETarget();
 		if (eTarget instanceof EClassifier) {
 			@NonNull EClassifier eClassifier = (EClassifier)eTarget;
 			removeDelegateAnnotations(eClassifier, null);
-			for (Constraint constraint : metaModelManager.getLocalInvariants(pivotType)) {
+			for (Constraint constraint : metamodelManager.getLocalInvariants(pivotType)) {
 				if (constraint.isCallable()) {
 					EOperation eContext = null;
 					String name = constraint.getName();
@@ -347,25 +347,25 @@ public class DelegateInstaller
 					hasDelegates = true;
 				}
 			}
-			for (Operation anOperation : metaModelManager.getMemberOperations(pivotType, false)) {
+			for (Operation anOperation : metamodelManager.getMemberOperations(pivotType, false)) {
 				EOperation eOperation = (EOperation)anOperation.getETarget();
 				if (eOperation != null) {
 					installDelegate(eOperation);
 				}
 			}
-			for (Operation anOperation : metaModelManager.getMemberOperations(pivotType, true)) {
+			for (Operation anOperation : metamodelManager.getMemberOperations(pivotType, true)) {
 				EOperation eOperation = (EOperation)anOperation.getETarget();
 				if (eOperation != null) {
 					installDelegate(eOperation);
 				}
 			}
-			for (Property aProperty : metaModelManager.getMemberProperties(pivotType, false)) {
+			for (Property aProperty : metamodelManager.getMemberProperties(pivotType, false)) {
 				EStructuralFeature eFeature = (EStructuralFeature)aProperty.getETarget();
 				if (eFeature != null) {
 					installDelegate(eFeature);
 				}
 			}
-			for (Property aProperty : metaModelManager.getMemberProperties(pivotType, true)) {
+			for (Property aProperty : metamodelManager.getMemberProperties(pivotType, true)) {
 				EStructuralFeature eFeature = (EStructuralFeature)aProperty.getETarget();
 				if (eFeature != null) {
 					installDelegate(eFeature);
@@ -411,7 +411,7 @@ public class DelegateInstaller
 	
 	public void installDelegates(@NonNull EClassifier eClassifier, @NonNull org.eclipse.ocl.pivot.Class pivotType) {
 		StringBuilder s = null;
-		for (Constraint pivotConstraint : metaModelManager.getLocalInvariants(pivotType)) {
+		for (Constraint pivotConstraint : metamodelManager.getLocalInvariants(pivotType)) {
 			String constraintName = pivotConstraint.getName();
 			if (!pivotConstraint.isCallable() && (constraintName != null)) {
 				if (s == null) {

@@ -23,7 +23,7 @@ import org.eclipse.ocl.pivot.LoopExp;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Variable;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.basecs.ConstraintCS;
 import org.eclipse.ocl.xtext.basecs.ElementCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ContextCS;
@@ -55,7 +55,7 @@ public abstract class AbstractImplicitSourceNamedElementIterator<T extends Named
 	 */
 	protected boolean doNext(@NonNull ElementCS csParent, @NonNull ElementCS csChild) {
 		if (csParent instanceof ContextCS) {
-			ExpressionInOCL asContext = PivotUtilInternal.getPivot(ExpressionInOCL.class, (ContextCS)csParent);
+			ExpressionInOCL asContext = PivotUtil.getPivot(ExpressionInOCL.class, (ContextCS)csParent);
 			if (asContext != null) {
 				Variable asVariable = asContext.getOwnedContext();
 				if (asVariable != null) {
@@ -65,7 +65,7 @@ public abstract class AbstractImplicitSourceNamedElementIterator<T extends Named
 			return DONE; // no more parents
 		}
 		else if (csParent instanceof ConstraintCS) {
-			Constraint asConstraint = PivotUtilInternal.getPivot(Constraint.class, (ConstraintCS)csParent);
+			Constraint asConstraint = PivotUtil.getPivot(Constraint.class, (ConstraintCS)csParent);
 			if (asConstraint != null) {
 				LanguageExpression asContext = asConstraint.getOwnedSpecification();
 				if (asContext instanceof ExpressionInOCL) {
@@ -87,7 +87,7 @@ public abstract class AbstractImplicitSourceNamedElementIterator<T extends Named
 			}
 		}
 		else if ((csParent instanceof NameExpCS) && (((NameExpCS)csParent).getOwnedRoundBracketedClause() != null)){
-			OCLExpression asCallExp = PivotUtilInternal.getPivot(OCLExpression.class, (NameExpCS)csParent);
+			OCLExpression asCallExp = PivotUtil.getPivot(OCLExpression.class, (NameExpCS)csParent);
 			if (asCallExp instanceof LoopExp) {
 				List<Variable> asIterators = ((LoopExp)asCallExp).getOwnedIterators();
 				if (asIterators.size() == 1) {

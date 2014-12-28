@@ -23,7 +23,7 @@ import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.OCL;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.junit.After;
@@ -77,17 +77,17 @@ public class EvaluateUMLTest4 extends PivotStateMachineTestSuite
 	@Test public void test_oclIsInState() throws InvocationTargetException, ParserException {
 		initStateMachinePackage();
 		EObject context = statefulEFactory.create(c1Class);
-		org.eclipse.ocl.pivot.Class contextType = metaModelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Class.class, c1Class);
+		org.eclipse.ocl.pivot.Class contextType = metamodelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Class.class, c1Class);
 		assert contextType != null;
 		assertSemanticErrorQuery2(contextType, "self.oclIsInState(S2b)", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Model::C1", "S2b");	
 		assertQueryInvalid(context, "self.oclIsInState(S1a)", "Failed to evaluate OclAny::oclIsInState(OclState) : Boolean", UnsupportedOperationException.class);	
 	}
 
 	public EObject doLoadUML(OCL ocl, String stem, String fragment) throws IOException {
-		MetaModelManager metaModelManager = ocl.getMetaModelManager();
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		String umlName = stem + ".uml";
 		URI umlURI = getProjectFileURI(umlName).appendFragment(fragment);
-		return metaModelManager.getExternalResourceSet().getEObject(umlURI, true);
+		return metamodelManager.getExternalResourceSet().getEObject(umlURI, true);
 	}
 	
 	/**
@@ -103,7 +103,7 @@ public class EvaluateUMLTest4 extends PivotStateMachineTestSuite
 //		AbstractTypeServer.ADD_EXTENSION_PROPERTY.setState(true);
 		EObject context = doLoadUML(ocl, "Bug431638", "Bug431638Model.Class1.Attribute1");
 		assertNotNull(context);
-		org.eclipse.ocl.pivot.Class contextType = metaModelManager.getIdResolver().getStaticTypeOf(context);
+		org.eclipse.ocl.pivot.Class contextType = metamodelManager.getIdResolver().getStaticTypeOf(context);
 		org.eclipse.ocl.pivot.Package contextPackage = contextType.getOwningPackage();
 //		assertEquals(XMI2UMLResource.UML_METAMODEL_NS_URI, contextPackage.getNsURI());
 //		assertEquals(IdManager.METAMODEL, contextPackage.getPackageId());
@@ -135,7 +135,7 @@ public class EvaluateUMLTest4 extends PivotStateMachineTestSuite
 	@Test public void test_enumerations_Bug455394() throws Exception {
 		EObject context = doLoadUML(ocl, "Bug455394", "Model.Class1.class2");
 		assertNotNull(context);
-		org.eclipse.ocl.pivot.Class contextType = metaModelManager.getIdResolver().getStaticTypeOf(context);
+		org.eclipse.ocl.pivot.Class contextType = metamodelManager.getIdResolver().getStaticTypeOf(context);
 		assertQueryTrue(context, "self.aggregation=UML::AggregationKind::composite");	
 		assertQueryResults(context, "UML::AggregationKind::composite", "self.aggregation");	
 		EObject associationContext = doLoadUML(ocl, "Bug455394", "Model.A_class2_class1");

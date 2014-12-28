@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.completeoclcs;
 
-import org.eclipse.ocl.pivot.internal.utilities.MorePivotable;
+import org.eclipse.ocl.pivot.utilities.MorePivotable;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
 

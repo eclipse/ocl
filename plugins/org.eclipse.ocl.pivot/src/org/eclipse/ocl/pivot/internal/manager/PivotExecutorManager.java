@@ -31,26 +31,26 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
  */
 public class PivotExecutorManager extends ExecutorManager
 {
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull MetamodelManager metamodelManager;
 	protected final @NonNull PivotIdResolver idResolver;
 	protected final @NonNull EObject contextObject;
 	private @Nullable ModelManager modelManager = null;
 
-	public PivotExecutorManager(@NonNull MetaModelManager metaModelManager, @NonNull EObject contextObject) {
-		super(metaModelManager.getCompleteEnvironment());
-		this.metaModelManager = metaModelManager;
-		this.idResolver = metaModelManager.getIdResolver();
+	public PivotExecutorManager(@NonNull MetamodelManager metamodelManager, @NonNull EObject contextObject) {
+		super(metamodelManager.getCompleteEnvironment());
+		this.metamodelManager = metamodelManager;
+		this.idResolver = metamodelManager.getIdResolver();
 		this.contextObject = contextObject;
 		idResolver.addRoot(ClassUtil.nonNullEMF(EcoreUtil.getRootContainer(contextObject)));
 	}
 
 	protected @NonNull IdResolver createIdResolver() {
-		return metaModelManager.getIdResolver();
+		return metamodelManager.getIdResolver();
 	}
 
 	@Override
 	public @NonNull Evaluator createNestedEvaluator() {
-		return new PivotExecutorManager(metaModelManager, contextObject);
+		return new PivotExecutorManager(metamodelManager, contextObject);
 	}
 
 	@Override

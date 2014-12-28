@@ -47,11 +47,11 @@ public class PivotIdResolver extends AbstractIdResolver
 {
 	private static final Logger logger = Logger.getLogger(PivotIdResolver.class);
 
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull MetamodelManager metamodelManager;
 	
-	public PivotIdResolver(@NonNull MetaModelManager metaModelManager) {
-		super(metaModelManager.getCompleteEnvironment());
-		this.metaModelManager = metaModelManager;
+	public PivotIdResolver(@NonNull MetamodelManager metamodelManager) {
+		super(metamodelManager.getCompleteEnvironment());
+		this.metamodelManager = metamodelManager;
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class PivotIdResolver extends AbstractIdResolver
 		org.eclipse.ocl.pivot.Package asPackage = nsURI2package.get(nsURI);
 		if (asPackage == null) {
 			PackageId packageId = IdManager.getPackageId(ePackage);
-			asPackage = metaModelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Package.class, ePackage);
+			asPackage = metamodelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Package.class, ePackage);
 			assert asPackage != null;
 			nsURI2package.put(nsURI, asPackage);
 			if (packageId instanceof RootPackageId) {
@@ -75,7 +75,7 @@ public class PivotIdResolver extends AbstractIdResolver
 		if (unboxedValue instanceof org.eclipse.uml2.uml.EnumerationLiteral) {				// FIXME make extensible
 			org.eclipse.uml2.uml.EnumerationLiteral umlEnumerationLiteral = (org.eclipse.uml2.uml.EnumerationLiteral) unboxedValue;
 			try {
-				EnumerationLiteral asEnumerationLiteral = metaModelManager.getPivotOf(EnumerationLiteral.class, umlEnumerationLiteral);
+				EnumerationLiteral asEnumerationLiteral = metamodelManager.getPivotOf(EnumerationLiteral.class, umlEnumerationLiteral);
 				if (asEnumerationLiteral != null) {
 					return asEnumerationLiteral.getEnumerationLiteralId();
 				}
@@ -97,7 +97,7 @@ public class PivotIdResolver extends AbstractIdResolver
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getDynamicTypeOf(@Nullable Object value) {
 		if (value instanceof org.eclipse.uml2.uml.Element) {
-			org.eclipse.ocl.pivot.Class metaType = UML2ASUtil.getMetaType(metaModelManager, (org.eclipse.uml2.uml.Element)value);
+			org.eclipse.ocl.pivot.Class metaType = UML2ASUtil.getMetaType(metamodelManager, (org.eclipse.uml2.uml.Element)value);
 			if (metaType != null) {
 				return metaType;
 			}
@@ -105,8 +105,8 @@ public class PivotIdResolver extends AbstractIdResolver
 		else if (value instanceof UMLElementExtension) {
 			org.eclipse.uml2.uml.Stereotype umlStereotype = ((UMLElementExtension)value).getDynamicStereotype();
 			try {
-				Stereotype asStereotype = metaModelManager.getPivotOf(Stereotype.class, umlStereotype);
-				return asStereotype != null ? asStereotype : metaModelManager.getStandardLibrary().getOclInvalidType();
+				Stereotype asStereotype = metamodelManager.getPivotOf(Stereotype.class, umlStereotype);
+				return asStereotype != null ? asStereotype : metamodelManager.getStandardLibrary().getOclInvalidType();
 			} catch (ParserException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -117,7 +117,7 @@ public class PivotIdResolver extends AbstractIdResolver
 
 	@Override
 	public @NonNull CompleteInheritance getInheritance(@NonNull EClassifier eClassifier) {
-		return metaModelManager.getInheritance(getType(eClassifier));
+		return metamodelManager.getInheritance(getType(eClassifier));
 	}
 
 	@Override
@@ -125,9 +125,9 @@ public class PivotIdResolver extends AbstractIdResolver
 		if (value instanceof org.eclipse.uml2.uml.Element) {
 			try {				// FIXME Find a more efficient way to ensure Profiles are imported and applied
 				org.eclipse.uml2.uml.Element umlElement = (org.eclipse.uml2.uml.Element)value;
-				metaModelManager.getPivotOf(Element.class, umlElement); // Needed by test_stereotypes_Bug431638
+				metamodelManager.getPivotOf(Element.class, umlElement); // Needed by test_stereotypes_Bug431638
 				EClass umlEClass = umlElement.eClass();
-				org.eclipse.ocl.pivot.Class umlAStype = metaModelManager.getPivotOf(org.eclipse.ocl.pivot.Class.class, umlEClass);
+				org.eclipse.ocl.pivot.Class umlAStype = metamodelManager.getPivotOf(org.eclipse.ocl.pivot.Class.class, umlEClass);
 				if (umlAStype != null) {
 					return umlAStype;
 				}
@@ -136,7 +136,7 @@ public class PivotIdResolver extends AbstractIdResolver
 				// TODO Auto-generated catch block
 //				e.printStackTrace();
 			}
-			org.eclipse.ocl.pivot.Class metaType = UML2ASUtil.getMetaType(metaModelManager, (org.eclipse.uml2.uml.Element)value);
+			org.eclipse.ocl.pivot.Class metaType = UML2ASUtil.getMetaType(metamodelManager, (org.eclipse.uml2.uml.Element)value);
 			if (metaType != null) {
 				return metaType;
 			}
@@ -144,8 +144,8 @@ public class PivotIdResolver extends AbstractIdResolver
 		else if (value instanceof UMLElementExtension) {
 			org.eclipse.uml2.uml.Stereotype umlStereotype = ((UMLElementExtension)value).getStaticStereotype();
 			try {
-				Stereotype asStereotype = metaModelManager.getPivotOf(Stereotype.class, umlStereotype);
-				return asStereotype != null ? asStereotype : metaModelManager.getStandardLibrary().getOclInvalidType();
+				Stereotype asStereotype = metamodelManager.getPivotOf(Stereotype.class, umlStereotype);
+				return asStereotype != null ? asStereotype : metamodelManager.getStandardLibrary().getOclInvalidType();
 			} catch (ParserException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -154,14 +154,14 @@ public class PivotIdResolver extends AbstractIdResolver
 		}
 		else if (value instanceof ElementExtension) {
 			Stereotype asStereotype = ((ElementExtension)value).getStereotype();
-			return asStereotype != null ? asStereotype : metaModelManager.getStandardLibrary().getOclInvalidType();
+			return asStereotype != null ? asStereotype : metamodelManager.getStandardLibrary().getOclInvalidType();
 		}
 		return super.getStaticTypeOf(value);
 	}
 
 	@Override
 	public @NonNull TupleType getTupleType(@NonNull TupleTypeId typeId) {
-		TupleTypeManager tupleManager = metaModelManager.getCompleteModel().getTupleManager();
+		TupleTypeManager tupleManager = metamodelManager.getCompleteModel().getTupleManager();
 		return tupleManager.getTupleType(this, typeId);
 	}
 
@@ -173,17 +173,17 @@ public class PivotIdResolver extends AbstractIdResolver
 			// ?? getPivotOf to discover the pivoted type name, then getPivotType for the pivoted name
 			String typeName = eClassifier.getName();
 			if (typeName != null) {
-				org.eclipse.ocl.pivot.Package asMetamodel = metaModelManager.getASMetamodel();
+				org.eclipse.ocl.pivot.Package asMetamodel = metamodelManager.getASmetamodel();
 				if (asMetamodel != null) {
-					CompletePackage completePackage = metaModelManager.getCompletePackage(asMetamodel);
+					CompletePackage completePackage = metamodelManager.getCompletePackage(asMetamodel);
 					org.eclipse.ocl.pivot.Class pivotType = completePackage.getMemberType(typeName);
 					if (pivotType != null) {
 						return pivotType;
 					}
 				}
 			}
-/*			URI umlMetaModelURI = URI.createURI(UMLResource.UML_METAMODEL_URI).appendFragment("/");
-			EObject umlMetaPackage = metaModelManager.getExternalResourceSet().getEObject(umlMetaModelURI, true);		// FIXME cache me
+/*			URI umlMetamodelURI = URI.createURI(UMLResource.UML_METAMODEL_URI).appendFragment("/");
+			EObject umlMetaPackage = metamodelManager.getExternalResourceSet().getEObject(umlMetamodelURI, true);		// FIXME cache me
 			if (umlMetaPackage instanceof org.eclipse.uml2.uml.Package) {
 				org.eclipse.uml2.uml.Type umlClassifier = ((org.eclipse.uml2.uml.Package)umlMetaPackage).getOwnedType(eClassifier.getName());
 				if (umlClassifier != null) {
@@ -196,7 +196,7 @@ public class PivotIdResolver extends AbstractIdResolver
 			String stereotypeName = UMLUtil.getOriginalName(eClassifier);
 			org.eclipse.uml2.uml.Stereotype umlStereotype = umlProfile.getOwnedStereotype(stereotypeName);
 			try {
-				Stereotype stereotype = metaModelManager.getPivotOf(Stereotype.class, umlStereotype);
+				Stereotype stereotype = metamodelManager.getPivotOf(Stereotype.class, umlStereotype);
 				if (stereotype != null) {
 					return stereotype;
 				}
@@ -208,9 +208,9 @@ public class PivotIdResolver extends AbstractIdResolver
 		if (ePackage == PivotPackage.eINSTANCE){
 			String typeName = eClassifier.getName();
 			if (typeName != null) {
-				org.eclipse.ocl.pivot.Package asMetamodel = metaModelManager.getASMetamodel();
+				org.eclipse.ocl.pivot.Package asMetamodel = metamodelManager.getASmetamodel();
 				if (asMetamodel != null) {
-					CompletePackage completePackage = metaModelManager.getCompletePackage(asMetamodel);
+					CompletePackage completePackage = metamodelManager.getCompletePackage(asMetamodel);
 					org.eclipse.ocl.pivot.Class pivotType = completePackage.getMemberType(typeName);
 					if (pivotType != null) {
 						return pivotType;
@@ -220,15 +220,15 @@ public class PivotIdResolver extends AbstractIdResolver
 		}
 		org.eclipse.ocl.pivot.Class pivotType;
 		try {
-			pivotType = metaModelManager.getPivotOf(org.eclipse.ocl.pivot.Class.class, eType);
+			pivotType = metamodelManager.getPivotOf(org.eclipse.ocl.pivot.Class.class, eType);
 			if (pivotType != null) {
-				return metaModelManager.getPrimaryType(pivotType);
+				return metamodelManager.getPrimaryType(pivotType);
 			}
 		} catch (ParserException e) {
 			logger.error("Failed to convert '" + eType + "'", e);
 		}
 //		return new DomainInvalidTypeImpl(standardLibrary, "No object created by Ecore2AS");
-		return metaModelManager.getStandardLibrary().getOclInvalidType();
+		return metamodelManager.getStandardLibrary().getOclInvalidType();
 	}
 
 	@Override
@@ -267,8 +267,8 @@ public class PivotIdResolver extends AbstractIdResolver
 		if (nsURIPackage != null) {
 			return nsURIPackage;
 		}
-		metaModelManager.setAutoLoadASMetamodel(true);
-		org.eclipse.ocl.pivot.Package asMetamodel = metaModelManager.getASMetamodel();
+		metamodelManager.setAutoLoadASmetamodel(true);
+		org.eclipse.ocl.pivot.Package asMetamodel = metamodelManager.getASmetamodel();
 		if ((asMetamodel != null) && PivotPackage.eNS_URI.equals(nsURI)) {
 			return asMetamodel;
 		}
@@ -284,7 +284,7 @@ public class PivotIdResolver extends AbstractIdResolver
 		String completeURIorName = id.getName();
 		org.eclipse.ocl.pivot.Package rootPackage = standardLibrary.getRootPackage(completeURIorName);
 		if (rootPackage == null) {
-			Orphanage orphanage = metaModelManager.getCompleteModel().getOrphanage();
+			Orphanage orphanage = metamodelManager.getCompleteModel().getOrphanage();
 			rootPackage = NameUtil.getNameable(orphanage.getOwnedPackages(), completeURIorName);
 			if (rootPackage == null) {
 //				return super.visitRootPackageId(id);

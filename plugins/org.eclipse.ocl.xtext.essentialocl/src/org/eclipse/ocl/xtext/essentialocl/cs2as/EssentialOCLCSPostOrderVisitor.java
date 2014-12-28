@@ -20,8 +20,9 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.TupleLiteralPart;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.cs2as.BasicContinuation;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.xtext.base.cs2as.Continuation;
@@ -54,7 +55,7 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 			// a) refreshing an OpaqueExpression that originated from Ecore2AS 
 			// b) refreshing an ExpressionInOCL for a simple statusExpression 
 			// c) refreshing an ExpressionInOCL+PropertyCallExp of a TupleLiteralExp for statusExpression+messageExpression
-			Constraint asConstraint = PivotUtilInternal.getPivot(Constraint.class, csElement);
+			Constraint asConstraint = PivotUtil.getPivot(Constraint.class, csElement);
 			ExpSpecificationCS csStatusSpecification = (ExpSpecificationCS)csElement.getOwnedSpecification();
 			if ((asConstraint != null) && (csStatusSpecification != null)) {
 				ExpCS csStatusExpression = csStatusSpecification.getOwnedExpression();
@@ -68,7 +69,7 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 						asSpecification.setOwnedBody(asExpression);
 						boolean isRequired = (asExpression != null) && asExpression.isRequired();
 						context.setType(asSpecification, asExpression != null ? asExpression.getType() : null, isRequired);
-						PivotUtilInternal.setBody(asSpecification, asExpression, statusText);
+						PivotUtil.setBody(asSpecification, asExpression, statusText);
 					}
 					else {
 						TupleLiteralPart asStatusTuplePart = PivotUtilInternal.getNonNullAst(TupleLiteralPart.class, csStatusSpecification);
@@ -81,8 +82,8 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 						@SuppressWarnings("null")@NonNull OCLExpression asTuplePartExp = asSpecification.getOwnedBody();
 						context.setType(asSpecification, asTuplePartExp.getType(), true);
 						String messageText = csMessageExpression != null ? ElementUtil.getExpressionText(csMessageExpression) : "null";
-						String tupleText = PivotUtilInternal.createTupleValuedConstraint(statusText, null, messageText);
-						PivotUtilInternal.setBody(asSpecification, asTuplePartExp, tupleText);					
+						String tupleText = PivotUtil.createTupleValuedConstraint(statusText, null, messageText);
+						PivotUtil.setBody(asSpecification, asTuplePartExp, tupleText);					
 					}
 				}
 				else {
@@ -115,13 +116,13 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 
 		@Override
 		public BasicContinuation<?> execute() {
-			ExpressionInOCL asSpecification = PivotUtilInternal.getPivot(ExpressionInOCL.class, csElement);
+			ExpressionInOCL asSpecification = PivotUtil.getPivot(ExpressionInOCL.class, csElement);
 			if (asSpecification != null) {
 				context.refreshContextVariable(asSpecification);
 				ExpCS csExpression = csElement.getOwnedExpression();
 				OCLExpression asExpression = csExpression != null ? context.visitLeft2Right(OCLExpression.class, csExpression) : null;
 				String statusText = csExpression != null ? ElementUtil.getExpressionText(csExpression) : "null";
-				PivotUtilInternal.setBody(asSpecification, asExpression, statusText);
+				PivotUtil.setBody(asSpecification, asExpression, statusText);
 				boolean isRequired = (asExpression != null) && asExpression.isRequired();
 				context.setType(asSpecification, asExpression != null ? asExpression.getType() : null, isRequired);
 			}
@@ -129,25 +130,25 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 		}
 	}
 
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull MetamodelManager metamodelManager;
 	
 	public EssentialOCLCSPostOrderVisitor(@NonNull CS2ASConversion context) {
 		super(context);
-		this.metaModelManager = context.getMetaModelManager();
+		this.metamodelManager = context.getMetamodelManager();
 	}
 
 	@Override
 	public Continuation<?> visitCollectionTypeCS(@NonNull CollectionTypeCS csCollectionType) {
 		// FIXME untemplated collections need type deduction here
-/*		MetaModelManager metaModelManager = context.getMetaModelManager();
+/*		MetamodelManager metamodelManager = context.getMetamodelManager();
 		TypedRefCS csElementType = csCollectionType.getOwnedType();
 		Type type;
 		if (csElementType != null) {
 			Type elementType = PivotUtil.getPivot(Type.class, csElementType);
-			type = metaModelManager.getLibraryType(csCollectionType.getName(), Collections.singletonList(elementType));
+			type = metamodelManager.getLibraryType(csCollectionType.getName(), Collections.singletonList(elementType));
 		}
 		else {
-			type = metaModelManager.getLibraryType(csCollectionType.getName());
+			type = metamodelManager.getLibraryType(csCollectionType.getName());
 		}
 		context.reusePivotElement(csCollectionType, type);
 */		return null;

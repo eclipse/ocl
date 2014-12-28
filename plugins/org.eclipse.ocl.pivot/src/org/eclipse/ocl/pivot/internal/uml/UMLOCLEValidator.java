@@ -34,7 +34,7 @@ import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
@@ -289,8 +289,8 @@ public class UMLOCLEValidator implements EValidator
 					Resource umlResource = umlStereotypeApplications.get(0).eClass().eResource();
 					if (umlResource != null) {
 						OCL ocl = getOCL(context);
-						MetaModelManager metaModelManager = ocl.getMetaModelManager();
-						UML2AS uml2as = UML2AS.getAdapter(umlResource, metaModelManager);
+						MetamodelManager metamodelManager = ocl.getMetamodelManager();
+						UML2AS uml2as = UML2AS.getAdapter(umlResource, metamodelManager);
 						uml2as.getPivotModel();
 						Map<EObject, List<org.eclipse.uml2.uml.Element>> umlStereotypeApplication2umlStereotypedElements = UML2ASUtil.computeAppliedStereotypes(umlStereotypeApplications);
 						for (@SuppressWarnings("null")@NonNull EObject umlStereotypeApplication : umlStereotypeApplications) {
@@ -304,7 +304,7 @@ public class UMLOCLEValidator implements EValidator
 									LanguageExpression specification = constraint.getOwnedSpecification();
 									if (specification != null) {
 										try {
-											ExpressionInOCL query = metaModelManager.getQueryOrThrow(specification);
+											ExpressionInOCL query = metamodelManager.getQueryOrThrow(specification);
 											EvaluationVisitor evaluationVisitor = ocl.createEvaluationVisitor(umlStereotypeApplication, query);
 											ConstraintEvaluator<Boolean> constraintEvaluator;
 											if (diagnostics != null) {
@@ -485,8 +485,8 @@ public class UMLOCLEValidator implements EValidator
 		OCL ocl = getOCL(context);
 		ExpressionInOCL asQuery = null;
 		try {
-			MetaModelManager metaModelManager = ocl.getMetaModelManager();
-			org.eclipse.ocl.pivot.ExpressionInOCL asSpecification = metaModelManager.getPivotOf(org.eclipse.ocl.pivot.ExpressionInOCL.class, opaqueElement);
+			MetamodelManager metamodelManager = ocl.getMetamodelManager();
+			org.eclipse.ocl.pivot.ExpressionInOCL asSpecification = metamodelManager.getPivotOf(org.eclipse.ocl.pivot.ExpressionInOCL.class, opaqueElement);
 			if (asSpecification == null) {
 				if (diagnostics != null) {
 					String objectLabel = LabelUtil.getLabel(opaqueElement);
@@ -499,7 +499,7 @@ public class UMLOCLEValidator implements EValidator
 				}
 				return false;
 			}
-			asQuery = metaModelManager.getQueryOrThrow(asSpecification);
+			asQuery = metamodelManager.getQueryOrThrow(asSpecification);
 		} catch (ParserException e) {
 			if (diagnostics != null) {
 				String objectLabel = LabelUtil.getLabel(opaqueElement);

@@ -24,7 +24,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
@@ -42,8 +42,8 @@ public abstract class GenerateLaTeXForASModel extends GenerateLaTeXUtils
 		folder.mkdirs();
 		OCL ocl = OCL.newInstance();
 		try {
-			MetaModelManager metaModelManager = ocl.getMetaModelManager();
-			ResourceSet resourceSet = metaModelManager.getExternalResourceSet();
+			MetamodelManager metamodelManager = ocl.getMetamodelManager();
+			ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
 			String sourceFile = "/" + projectName + "/" + modelFile;
 			URI fileURI = URI.createPlatformResourceURI(sourceFile, true);
 			log.info("Loading Model '" + fileURI);
@@ -52,7 +52,7 @@ public abstract class GenerateLaTeXForASModel extends GenerateLaTeXUtils
 				issues.addError(this, "No eResource for + ;" + fileURI + "'", null, null, null);
 				return;
 			}
-			Ecore2AS adapter = Ecore2AS.getAdapter(eResource, metaModelManager);
+			Ecore2AS adapter = Ecore2AS.getAdapter(eResource, metamodelManager);
 			Model asModel = adapter.getPivotModel();
 			org.eclipse.ocl.pivot.Package asPackage = asModel.getOwnedPackages().get(0);
 			String message = PivotUtil.formatResourceDiagnostics(ClassUtil.nonNullEMF(eResource.getErrors()), "OCLstdlib parse failure", "\n");

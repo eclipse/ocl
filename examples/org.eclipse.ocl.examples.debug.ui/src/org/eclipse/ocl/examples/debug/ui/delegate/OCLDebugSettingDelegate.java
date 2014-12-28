@@ -41,7 +41,7 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.delegate.OCLSettingDelegate;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbench;
@@ -58,14 +58,14 @@ public class OCLDebugSettingDelegate extends OCLSettingDelegate
     protected static class DebugStarter implements IRunnableWithProgress
 	{
 		protected final @NonNull Display display;
-    	protected final @NonNull MetaModelManager metaModelManager;
+    	protected final @NonNull MetamodelManager metamodelManager;
     	protected final @Nullable Object contextObject;
     	protected final @NonNull ExpressionInOCL constraint;
     	private @Nullable ILaunch launch = null;
 
-		public DebugStarter(@NonNull Display display, @NonNull MetaModelManager metaModelManager, @Nullable Object contextObject, @NonNull ExpressionInOCL constraint) {
+		public DebugStarter(@NonNull Display display, @NonNull MetamodelManager metamodelManager, @Nullable Object contextObject, @NonNull ExpressionInOCL constraint) {
 			this.display = display;
-			this.metaModelManager = metaModelManager;
+			this.metamodelManager = metamodelManager;
 			this.contextObject = contextObject;
 			this.constraint = constraint;
 		}
@@ -124,9 +124,9 @@ public class OCLDebugSettingDelegate extends OCLSettingDelegate
 
 	@Override
 	protected @Nullable Object evaluate(@NonNull OCL ocl, @NonNull ExpressionInOCL query, @Nullable Object contextObject) {
-		MetaModelManager metaModelManager = ocl.getMetaModelManager();
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		@SuppressWarnings("null")@NonNull Display display = Display.getCurrent();
-		DebugStarter runnable = new DebugStarter(display, metaModelManager, contextObject, query);
+		DebugStarter runnable = new DebugStarter(display, metamodelManager, contextObject, query);
 		runnable.run(new NullProgressMonitor());
 		ILaunch launch = runnable.getLaunch();
 		if (launch != null) {

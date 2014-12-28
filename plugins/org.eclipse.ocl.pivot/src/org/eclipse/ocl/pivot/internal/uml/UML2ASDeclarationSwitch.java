@@ -71,7 +71,7 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.PackageImpl;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.ecore.Ecore2ASDeclarationSwitch;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -85,13 +85,13 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 
 	protected final Ecore2ASDeclarationSwitch ecoreSwitch;
 	protected final UML2AS converter;
-	protected final MetaModelManager metaModelManager;
+	protected final MetamodelManager metamodelManager;
 	protected final StandardLibraryInternal standardLibrary;
 	
 	public UML2ASDeclarationSwitch(UML2AS converter) {
 		this.converter = converter;
 		this.ecoreSwitch = new Ecore2ASDeclarationSwitch(converter);
-		this.metaModelManager = converter.getMetaModelManager();
+		this.metamodelManager = converter.getMetamodelManager();
 		this.standardLibrary = converter.getStandardLibrary();
 	}
 	
@@ -142,7 +142,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 		pivotElement.setName(((org.eclipse.uml2.uml.Type)umlBehavior).getName());
 		doSwitchAll(pivotElement.getOwnedAnnotations(), ((org.eclipse.uml2.uml.Element)umlBehavior).getOwnedElements(), null);
 		EClass umlMetaClass = umlBehavior.eClass();
-		Type metaType = metaModelManager.getPivotOfEcore(Type.class, umlMetaClass);
+		Type metaType = metamodelManager.getPivotOfEcore(Type.class, umlMetaClass);
 		pivotElement.setMetaType(metaType);
 		return pivotElement;
 	}
@@ -216,7 +216,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 		Enumeration pivotElement = converter.refreshNamedElement(Enumeration.class, PivotPackage.Literals.ENUMERATION, umlEnumeration);
 		copyDataTypeOrEnum(pivotElement, umlEnumeration);
 		doSwitchAll(pivotElement.getOwnedLiterals(), umlEnumeration.getOwnedLiterals(), null);
-//		pivotElement.getSuperClass().add(metaModelManager.getOclAnyType());
+//		pivotElement.getSuperClass().add(metamodelManager.getOclAnyType());
 		pivotElement.getSuperClasses().add(standardLibrary.getEnumerationType());
 		return pivotElement;
 	}
@@ -257,7 +257,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 			if (metapackage != null) {
 				String metaNsURI = metapackage.getURI();
 				if (metaNsURI != null) {
-					metaModelManager.setMetamodelNsURI(metaNsURI);
+					metamodelManager.setMetamodelNsURI(metaNsURI);
 				}
 			}
 		} */
@@ -280,7 +280,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 			if (umlMetapackage != null) {
 				String nsURI = umlMetapackage.getURI();
 				if (nsURI != null) {
-					metaModelManager.getCompleteModel().addPackageURI2completeURI(nsURI, PivotConstants.UML_METAMODEL_NAME);
+					metamodelManager.getCompleteModel().addPackageURI2completeURI(nsURI, PivotConstants.UML_METAMODEL_NAME);
 				}
 				converter.addImportedPackage(umlMetapackage);
 			}
@@ -440,14 +440,14 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 			pivotElement = converter.refreshNamedElement(PrimitiveType.class, PivotPackage.Literals.PRIMITIVE_TYPE, umlPrimitiveType);
 		}
 		if (primaryElement != null) {
-//			@SuppressWarnings("unused")TypeServer typeServer1 = metaModelManager.getTypeServer(primaryElement);
-//			@SuppressWarnings("unused")TypeServer typeServer2 = metaModelManager.getTypeServer(pivotElement);
+//			@SuppressWarnings("unused")TypeServer typeServer1 = metamodelManager.getTypeServer(primaryElement);
+//			@SuppressWarnings("unused")TypeServer typeServer2 = metamodelManager.getTypeServer(pivotElement);
 			pivotElement.setBehavioralClass(primaryElement);
 			org.eclipse.uml2.uml.Package umlPackage = umlPrimitiveType.getPackage();
 			if (umlPackage != null) {
 				String nsURI = umlPackage.getURI();
 				if (nsURI != null) {
-//					metaModelManager.getPackageManager().addPackageNsURISynonym(nsURI, PackageId.METAMODEL_NAME);
+//					metamodelManager.getPackageManager().addPackageNsURISynonym(nsURI, PackageId.METAMODEL_NAME);
 				}
 			}
 		}
@@ -624,7 +624,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 //			doSwitch(umlType);
 			Type pivotObject = (Type) doSwitch(umlType);
 			if (pivotObject != null) {
-				metaModelManager.addOrphanClass(pivotObject);
+				metamodelManager.addOrphanClass(pivotObject);
 			}
 		} */
 //		doSwitchAll(pivotElement.getNestedClassifier(), umlClass.getNestedClassifiers(), null);
@@ -730,7 +730,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 				if ("UML".equals(packageName)) {		// OMG's 
 					for (org.eclipse.uml2.uml.Type umlType : umlPackage.getOwnedTypes()) {
 						if ((umlType instanceof org.eclipse.uml2.uml.Class) && "Class".equals(umlType.getName())) {
-							metaModelManager.getCompleteModel().addPackageURI2completeURI(nsURI2, PivotConstants.UML_METAMODEL_NAME);;
+							metamodelManager.getCompleteModel().addPackageURI2completeURI(nsURI2, PivotConstants.UML_METAMODEL_NAME);;
 							((PackageImpl)pivotElement).setIgnoreInvariants(true);
 							break;
 						}
@@ -739,13 +739,13 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 				else if ("PrimitiveTypes".equals(packageName)) {
 					for (org.eclipse.uml2.uml.Type umlType : umlPackage.getOwnedTypes()) {
 						if ((umlType instanceof org.eclipse.uml2.uml.PrimitiveType) && "Boolean".equals(umlType.getName())) {
-							metaModelManager.getCompleteModel().addPackageURI2completeURI(nsURI2, PivotConstants.TYPES_METAMODEL_NAME);;
+							metamodelManager.getCompleteModel().addPackageURI2completeURI(nsURI2, PivotConstants.TYPES_METAMODEL_NAME);;
 							break;
 						}
 					}
 				}
 			}
-			String sharedURI = metaModelManager.getCompleteModel().getCompleteURI(nsURI2);
+			String sharedURI = metamodelManager.getCompleteModel().getCompleteURI(nsURI2);
 			if ((sharedURI != null) && !sharedURI.equals(nsURI)) {
 				((PackageImpl)pivotElement).setPackageId(IdManager.getRootPackageId(sharedURI));
 			}
@@ -923,7 +923,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 		converter.setOriginalMapping(pivotElement, umlObject);
 		doSwitchAll(pivotElement.getOwnedAnnotations(), ((org.eclipse.uml2.uml.Element)umlObject).getOwnedElements(), null);
 		EClass umlMetaClass = umlObject.eClass();
-		Type metaType = metaModelManager.getPivotOfEcore(Type.class, umlMetaClass);
+		Type metaType = metamodelManager.getPivotOfEcore(Type.class, umlMetaClass);
 		pivotElement.setMetaType(metaType);
 		if (umlObject instanceof org.eclipse.uml2.uml.Slot) {
 			converter.queueUse(umlObject);

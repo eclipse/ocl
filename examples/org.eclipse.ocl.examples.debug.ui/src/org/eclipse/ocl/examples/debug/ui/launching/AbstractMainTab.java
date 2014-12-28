@@ -22,7 +22,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbench;
@@ -35,7 +35,7 @@ public abstract class AbstractMainTab extends AbstractLaunchConfigurationTab
 {
 	private static final Logger logger = Logger.getLogger(AbstractMainTab.class);
 
-	protected @Nullable MetaModelManager metaModelManager;		// FIXME Add a dispose() when not visible for a long time
+	protected @Nullable MetamodelManager metamodelManager;		// FIXME Add a dispose() when not visible for a long time
 	
 	/**
 	 * Internal flag to suppress redundant recursive updates while initializing controls.
@@ -44,20 +44,20 @@ public abstract class AbstractMainTab extends AbstractLaunchConfigurationTab
 	
 	@Override
 	public void dispose() {
-		MetaModelManager metaModelManager2 = metaModelManager;
-		if (metaModelManager2 != null) {
-			metaModelManager2.dispose();
-			metaModelManager = null;
+		MetamodelManager metamodelManager2 = metamodelManager;
+		if (metamodelManager2 != null) {
+			metamodelManager2.dispose();
+			metamodelManager = null;
 		}
 		super.dispose();
 	}
 
-	protected @NonNull MetaModelManager getMetaModelManager() {
-		MetaModelManager metaModelManager2 = metaModelManager;
-		if (metaModelManager2 == null) {
-			metaModelManager = metaModelManager2 = new MetaModelManager();
+	protected @NonNull MetamodelManager getMetamodelManager() {
+		MetamodelManager metamodelManager2 = metamodelManager;
+		if (metamodelManager2 == null) {
+			metamodelManager = metamodelManager2 = new MetamodelManager();
 		}
-		return metaModelManager2;
+		return metamodelManager2;
 	}
 
 	public @NonNull String getName() {

@@ -17,11 +17,11 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.internal.manager.AbstractMetaModelManagerResourceAdapter;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
+import org.eclipse.ocl.pivot.internal.manager.AbstractMetamodelManagerResourceAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceImpl;
 import org.eclipse.ocl.pivot.internal.resource.AbstractASResourceFactory;
+import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
 
@@ -29,7 +29,7 @@ import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
  * A CS2ASResourceAdapter enhances the Resource for a Concrete Syntax model
  * to support synchronization with a Pivot model representation.
  */
-public class CS2ASResourceAdapter extends AbstractMetaModelManagerResourceAdapter<BaseCSResource>
+public class CS2ASResourceAdapter extends AbstractMetamodelManagerResourceAdapter<BaseCSResource>
 {
 	public static class TransientASResourceFactory extends AbstractASResourceFactory
 	{
@@ -62,21 +62,21 @@ public class CS2ASResourceAdapter extends AbstractMetaModelManagerResourceAdapte
 
 	private final @NonNull CS2AS converter;
 	
-	public CS2ASResourceAdapter(@NonNull BaseCSResource csResource, @NonNull MetaModelManager metaModelManager) {
-		super(csResource, metaModelManager);
-		Map<BaseCSResource, ASResource> cs2asResourceMap = computeCS2ASResourceMap(csResource, metaModelManager);
-		converter = csResource.createCS2AS(cs2asResourceMap, metaModelManager);
+	public CS2ASResourceAdapter(@NonNull BaseCSResource csResource, @NonNull MetamodelManager metamodelManager) {
+		super(csResource, metamodelManager);
+		Map<BaseCSResource, ASResource> cs2asResourceMap = computeCS2ASResourceMap(csResource, metamodelManager);
+		converter = csResource.createCS2AS(cs2asResourceMap, metamodelManager);
 	}
 
-	public @NonNull Map<BaseCSResource, ASResource> computeCS2ASResourceMap(@NonNull BaseCSResource csResource, @NonNull MetaModelManager metaModelManager) {
-		metaModelManager.getProjectMap();					// Ensures ProjectMap is notified of loaded resources
-		final ResourceSet asResourceSet = metaModelManager.getTarget();
+	public @NonNull Map<BaseCSResource, ASResource> computeCS2ASResourceMap(@NonNull BaseCSResource csResource, @NonNull MetamodelManager metamodelManager) {
+		metamodelManager.getProjectMap();					// Ensures ProjectMap is notified of loaded resources
+		final ResourceSet asResourceSet = metamodelManager.getTarget();
 		Map<BaseCSResource,ASResource> cs2asResourceMap = new HashMap<BaseCSResource,ASResource>();
 		URI uri = csResource.getURI();
 		if ((uri != null) && (csResource.getContents().size() > 0) && (asResourceSet != null)) {
 			URI asURI = csResource.getASURI(uri);
 			Resource asResource = null;
-			if (uri.fileExtension().equals("essentialocl")) {	// FIXME use csResource.getASResource(metaModelManager);
+			if (uri.fileExtension().equals("essentialocl")) {	// FIXME use csResource.getASResource(metamodelManager);
 				asResource = new TransientASResource(asResourceSet, asURI);
 			}
 			else {

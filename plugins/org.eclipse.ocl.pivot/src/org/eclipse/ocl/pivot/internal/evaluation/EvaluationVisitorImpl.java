@@ -161,7 +161,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		assert propertyType != null;
 		EvaluationVisitor evaluationVisitor = undecoratedVisitor;
 		Object sourceValue = source != null ? evaluationVisitor.evaluate(source) : null;
-		LibraryProperty implementation = metaModelManager.getImplementation(sourceValue, referredProperty);
+		LibraryProperty implementation = metamodelManager.getImplementation(sourceValue, referredProperty);
 		try {
 			return implementation.evaluate(this, propertyType.getTypeId(), sourceValue);
 		}
@@ -181,7 +181,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	}
 
 	public @NonNull LibraryFeature lookupImplementation(@NonNull org.eclipse.ocl.pivot.Class dynamicType, @NonNull Operation staticOperation) {
-		CompleteInheritance inheritance = metaModelManager.getInheritance(dynamicType);
+		CompleteInheritance inheritance = metamodelManager.getInheritance(dynamicType);
 		return inheritance.getType().lookupImplementation(standardLibrary, staticOperation);
 	}
 
@@ -475,15 +475,15 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		OCLExpression source = iterateExp.getOwnedSource();
 		Object acceptedValue = source.accept(undecoratedVisitor);
 		CollectionValue sourceValue = ValueUtil.asCollectionValue(acceptedValue);
-		org.eclipse.ocl.pivot.Class dynamicSourceType = metaModelManager.getIdResolver().getClass(sourceValue.getTypeId(), null);
+		org.eclipse.ocl.pivot.Class dynamicSourceType = metamodelManager.getIdResolver().getClass(sourceValue.getTypeId(), null);
 		LibraryIteration implementation = (LibraryIteration) dynamicSourceType.lookupImplementation(standardLibrary, staticIteration);
-/*		Operation dynamicIteration = metaModelManager.getDynamicOperation((org.eclipse.ocl.pivot.Type) dynamicSourceType, staticIteration);
+/*		Operation dynamicIteration = metamodelManager.getDynamicOperation((org.eclipse.ocl.pivot.Type) dynamicSourceType, staticIteration);
  		if (dynamicIteration == null) {
  			dynamicIteration = staticIteration;
  		}
  		LibraryIteration implementation1;
 		try {
-			implementation = (LibraryIteration) metaModelManager.getImplementation(dynamicIteration);
+			implementation = (LibraryIteration) metamodelManager.getImplementation(dynamicIteration);
 		} catch (Exception e) {
 			String implementationClass = dynamicIteration.getImplementationClass();
 			if (implementationClass != null) {
@@ -550,15 +550,15 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 //		} catch (InvalidValueException e) {
 //			return evaluationEnvironment.throwInvalidEvaluation(e);
 //		}
-		org.eclipse.ocl.pivot.Class dynamicSourceType = metaModelManager.getIdResolver().getClass(sourceValue.getTypeId(), null);
+		org.eclipse.ocl.pivot.Class dynamicSourceType = metamodelManager.getIdResolver().getClass(sourceValue.getTypeId(), null);
 		LibraryIteration implementation = (LibraryIteration) dynamicSourceType.lookupImplementation(standardLibrary, staticIteration);
-/*		Operation dynamicIteration = metaModelManager.getDynamicOperation((org.eclipse.ocl.pivot.Type) dynamicSourceType, staticIteration);
+/*		Operation dynamicIteration = metamodelManager.getDynamicOperation((org.eclipse.ocl.pivot.Type) dynamicSourceType, staticIteration);
  		if (dynamicIteration == null) {
  			dynamicIteration = staticIteration;
  		}
  		LibraryIteration implementation;
 		try {
-			implementation = (LibraryIteration) metaModelManager.getImplementation(dynamicIteration);
+			implementation = (LibraryIteration) metamodelManager.getImplementation(dynamicIteration);
 		} catch (Exception e) {
 			String implementationClass = dynamicIteration.getImplementationClass();
 			if (implementationClass != null) {
@@ -698,7 +698,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 				actualOperation = apparentOperation;
 			}
 			else {
-		 		PivotIdResolver idResolver = metaModelManager.getIdResolver();
+		 		PivotIdResolver idResolver = metamodelManager.getIdResolver();
 				org.eclipse.ocl.pivot.Class actualSourceType = idResolver.getStaticTypeOf(sourceValue);
 				if (onlyArgument != null) {
 					org.eclipse.ocl.pivot.Class actualArgType = idResolver.getStaticTypeOf(onlyArgument);
@@ -706,7 +706,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 				}
 				actualOperation = actualSourceType.lookupActualOperation(standardLibrary, apparentOperation);
 			}
-			LibraryBinaryOperation implementation = (LibraryBinaryOperation) metaModelManager.getImplementation(actualOperation);
+			LibraryBinaryOperation implementation = (LibraryBinaryOperation) metamodelManager.getImplementation(actualOperation);
 			try {
 				Object result = implementation.evaluate(evaluator, operationCallExp.getTypeId(), sourceValue, onlyArgument);
 				assert !(result instanceof NullValue);
@@ -728,11 +728,11 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 				actualOperation = apparentOperation;
 			}
 			else {
-		 		PivotIdResolver idResolver = metaModelManager.getIdResolver();
+		 		PivotIdResolver idResolver = metamodelManager.getIdResolver();
 				org.eclipse.ocl.pivot.Class actualSourceType = idResolver.getStaticTypeOf(sourceValue);
 				actualOperation = actualSourceType.lookupActualOperation(standardLibrary, apparentOperation);
 			}
-			LibraryOperation implementation = (LibraryOperation) metaModelManager.getImplementation(actualOperation);
+			LibraryOperation implementation = (LibraryOperation) metamodelManager.getImplementation(actualOperation);
 			try {
 				Object result = implementation.dispatch(evaluator, operationCallExp, sourceValue);
 				assert !(result instanceof NullValue);
@@ -813,7 +813,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			// Set the tuple field with the value of the init expression
 			propertyValues.put(part.getPartId(), part.accept(undecoratedVisitor));
 		}
-//		TupleType tupleType = metaModelManager.getTupleType(type.getName(), propertyValues.keySet());
+//		TupleType tupleType = metamodelManager.getTupleType(type.getName(), propertyValues.keySet());
 		return ValueUtil.createTupleValue(((TupleType) type).getTupleTypeId(), propertyValues);
 	}
 	

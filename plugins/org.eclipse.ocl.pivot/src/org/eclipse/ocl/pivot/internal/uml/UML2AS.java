@@ -58,16 +58,16 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.ecore.AbstractEcore2AS;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.internal.utilities.AliasAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
-import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
 import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.OpaqueExpression;
@@ -92,11 +92,11 @@ public abstract class UML2AS extends AbstractEcore2AS
 
 	private static final Logger logger = Logger.getLogger(UML2AS.class);
 
-	public static @Nullable UML2AS findAdapter(@NonNull Resource resource, @NonNull MetaModelManager metaModelManager) {
+	public static @Nullable UML2AS findAdapter(@NonNull Resource resource, @NonNull MetamodelManager metamodelManager) {
 		for (Adapter adapter : resource.eAdapters()) {
 			if (adapter instanceof UML2AS) {
 				UML2AS uml2as = (UML2AS)adapter;
-				if (uml2as.getMetaModelManager() == metaModelManager) {
+				if (uml2as.getMetamodelManager() == metamodelManager) {
 					return uml2as;
 				}
 			}
@@ -104,18 +104,18 @@ public abstract class UML2AS extends AbstractEcore2AS
 		return null;
 	}
 
-	public static @NonNull UML2AS getAdapter(@NonNull Resource resource, @Nullable MetaModelManager metaModelManager) {
+	public static @NonNull UML2AS getAdapter(@NonNull Resource resource, @Nullable MetamodelManager metamodelManager) {
 		UML2AS adapter;
-		if (metaModelManager == null) {
-			metaModelManager = new MetaModelManager();
+		if (metamodelManager == null) {
+			metamodelManager = new MetamodelManager();
 		}
 		else {
-			adapter = findAdapter(resource, metaModelManager);
+			adapter = findAdapter(resource, metamodelManager);
 			if (adapter != null) {
 				return adapter;
 			}
 		}
-		adapter = new Outer(resource, metaModelManager);
+		adapter = new Outer(resource, metamodelManager);
 		return adapter;
 	}
 
@@ -147,11 +147,11 @@ public abstract class UML2AS extends AbstractEcore2AS
 	 * @return the Pivot root package
 	 * @throws ParserException 
 	 */
-	public static Model importFromUML(@NonNull MetaModelManager metaModelManager, String alias, Resource umlResource) throws ParserException {
+	public static Model importFromUML(@NonNull MetamodelManager metamodelManager, String alias, Resource umlResource) throws ParserException {
 		if (umlResource == null) {
 			return null;
 		}
-		UML2AS conversion = getAdapter(umlResource, metaModelManager);
+		UML2AS conversion = getAdapter(umlResource, metamodelManager);
 		return conversion.getPivotModel();
 	}
 
@@ -163,7 +163,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 	 * @return the pivot element
 	 * @throws ParserException 
 	 */
-	public static Element importFromUML(@NonNull MetaModelManager metaModelManager, String alias, EObject eObject) throws ParserException {
+	public static Element importFromUML(@NonNull MetamodelManager metamodelManager, String alias, EObject eObject) throws ParserException {
 		if (eObject == null) {
 			return null;
 		}
@@ -171,7 +171,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 		if (umlResource == null) {
 			return null;
 		}
-		UML2AS conversion = getAdapter(umlResource, metaModelManager);
+		UML2AS conversion = getAdapter(umlResource, metamodelManager);
 		@SuppressWarnings("unused")
 		Model pivotModel = conversion.getPivotModel();
 		return conversion.getCreated(Element.class, eObject);
@@ -253,19 +253,19 @@ public abstract class UML2AS extends AbstractEcore2AS
 	}
 
 	public static UML2AS loadFromUML(@NonNull ASResource umlASResource, @NonNull URI umlURI) {
-		MetaModelManager metaModelManager = PivotUtilInternal.getMetaModelManager(umlASResource);
-		Resource umlResource = metaModelManager.getExternalResourceSet().getResource(umlURI, true);
+		MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(umlASResource);
+		Resource umlResource = metamodelManager.getExternalResourceSet().getResource(umlURI, true);
 		if (umlResource == null) {
 			return null;
 		}
-		UML2AS conversion = getAdapter(umlResource, metaModelManager);
+		UML2AS conversion = getAdapter(umlResource, metamodelManager);
 		try {
 			conversion.getPivotModel();
 		} catch (ParserException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-/*		conversion.pivotModel = metaModelManager.createModel(umlURI.lastSegment(), umlResource.getURI().toString());
+/*		conversion.pivotModel = metamodelManager.createModel(umlURI.lastSegment(), umlResource.getURI().toString());
 		conversion.update(umlASResource, umlResource.getContents());
 		
 		AliasAdapter ecoreAdapter = AliasAdapter.findAdapter(umlResource);
@@ -279,7 +279,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 				pivotAliasMap.put(element, alias);
 			}
 		}
-		metaModelManager.installResource(umlASResource);
+		metamodelManager.installResource(umlASResource);
 		conversion.installImports(); */
 		return conversion;
 	}
@@ -293,7 +293,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 		protected final @NonNull Outer root;
 		
 		protected Inner(@NonNull Resource umlResource, @NonNull Outer root) {
-			super(umlResource, root.getMetaModelManager());
+			super(umlResource, root.getMetamodelManager());
 			this.root = root;
 		}
 		
@@ -367,7 +367,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 					throw new IllegalStateException("Missing containing resource");
 				}
 //				installAliases(asResource);
-				metaModelManager.installResource(asResource);
+				metamodelManager.installResource(asResource);
 			}
 			return pivotModel2;
 		}
@@ -432,8 +432,8 @@ public abstract class UML2AS extends AbstractEcore2AS
 		private @NonNull Map<org.eclipse.ocl.pivot.Class, List<Property>> type2properties = new HashMap<org.eclipse.ocl.pivot.Class, List<Property>>();
 //		private @NonNull Map<Type, List<Property>> stereotypeProperties = new HashMap<Type, List<Property>>();
 
-		protected Outer(@NonNull Resource umlResource, @NonNull MetaModelManager metaModelManager) {
-			super(umlResource, metaModelManager);
+		protected Outer(@NonNull Resource umlResource, @NonNull MetamodelManager metamodelManager) {
+			super(umlResource, metamodelManager);
 		}
 		
 		@Override
@@ -593,7 +593,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 			Model pivotModel2 = pivotModel;
 			if (pivotModel2 == null) {
 				URI pivotURI = createPivotURI();
-				ASResource asResource = metaModelManager.getResource(pivotURI, ASResource.UML_CONTENT_TYPE);
+				ASResource asResource = metamodelManager.getResource(pivotURI, ASResource.UML_CONTENT_TYPE);
 				try {
 					pivotModel2 = installDeclarations(asResource);					
 //					Map<String, Type> resolvedSpecializations = new HashMap<String, Type>();
@@ -603,7 +603,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 //					}
 //					for (List<TemplateableElement> pivotElements : specializations.values()) {
 //						for (TemplateableElement pivotElement : pivotElements) {
-//							metaModelManager.addOrphanType((Type)pivotElement);
+//							metamodelManager.addOrphanType((Type)pivotElement);
 //						}
 //					}
 					installImports();
@@ -623,10 +623,10 @@ public abstract class UML2AS extends AbstractEcore2AS
 					asResource.getErrors().addAll(errors);
 				}
 				installAliases(asResource);
-				metaModelManager.installResource(asResource);
+				metamodelManager.installResource(asResource);
 				ResourceSet resourceSet = umlResource.getResourceSet();
 				if (resourceSet != null) {
-					metaModelManager.addExternalResources(resourceSet);
+					metamodelManager.addExternalResources(resourceSet);
 				}
 			}
 			return pivotModel2;
@@ -638,7 +638,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 			if (pivotElement == null) {
 				Resource resource = eObject.eResource();
 				if ((resource != umlResource) && (resource != null)) {
-					UML2AS converter = getAdapter(resource, metaModelManager);
+					UML2AS converter = getAdapter(resource, metamodelManager);
 					if (allConverters.add(converter)) {
 						try {
 							converter.getPivotModel();
@@ -692,17 +692,17 @@ public abstract class UML2AS extends AbstractEcore2AS
 					Resource importedResource = importedResources.get(i);
 					if (importedResource != null) {
 						if (UMLASResourceFactory.INSTANCE.getHandlerPriority(importedResource) != ASResourceFactory.CAN_HANDLE) {
-							metaModelManager.loadResource(importedResource, null);
+							metamodelManager.loadResource(importedResource, null);
 						}
 						else {
-							UML2AS adapter = UML2AS.findAdapter(importedResource, metaModelManager);
+							UML2AS adapter = UML2AS.findAdapter(importedResource, metamodelManager);
 							if (adapter == null) {
 								Inner importedAdapter = new Inner(importedResource, this);
 								URI pivotURI = importedAdapter.createPivotURI();
-								ASResource asResource = metaModelManager.getResource(pivotURI, ASResource.UML_CONTENT_TYPE);
+								ASResource asResource = metamodelManager.getResource(pivotURI, ASResource.UML_CONTENT_TYPE);
 								importedAdapter.installDeclarations(asResource);
 								adapter = importedAdapter;
-								metaModelManager.installResource(asResource);
+								metamodelManager.installResource(asResource);
 							}
 	//					adapter.getPivotRoot();
 						}
@@ -824,16 +824,16 @@ public abstract class UML2AS extends AbstractEcore2AS
 	protected Model pivotModel = null;	// Set by installDeclarations
 	private URI umlURI = null;;
 	
-	protected UML2AS(@NonNull Resource umlResource, @NonNull MetaModelManager metaModelManager) {
-		super(metaModelManager);
+	protected UML2AS(@NonNull Resource umlResource, @NonNull MetamodelManager metamodelManager) {
+		super(metamodelManager);
 		if (CONVERT_RESOURCE.isActive()) {
 			CONVERT_RESOURCE.println(umlResource.getURI().toString());
 		}
 		this.umlResource = umlResource;
 		umlResource.eAdapters().add(this);
-		metaModelManager.addExternalResource(this);
-		metaModelManager.addListener(this);
-		CompleteModel completeModel = metaModelManager.getCompleteModel();
+		metamodelManager.addExternalResource(this);
+		metamodelManager.addListener(this);
+		CompleteModel completeModel = metamodelManager.getCompleteModel();
 		completeModel.addPackageURI2completeURI(ClassUtil.nonNullEMF(UMLPackage.eNS_URI), PivotConstantsInternal.UML_METAMODEL_NAME);
 		completeModel.addPackageURI2completeURI(ClassUtil.nonNullEMF(TypesPackage.eNS_URI), PivotConstantsInternal.TYPES_METAMODEL_NAME);		// FIXME All known synonyms
 		// FIXME All known synonyms
@@ -888,9 +888,9 @@ public abstract class UML2AS extends AbstractEcore2AS
 	}
 
 	public void dispose() {
-		metaModelManager.removeExternalResource(this);
+		metamodelManager.removeExternalResource(this);
 		getTarget().eAdapters().remove(this);
-		metaModelManager.removeListener(this);
+		metamodelManager.removeListener(this);
 	}
 	
 	@Override
@@ -923,7 +923,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 
 	protected @NonNull Model installDeclarations(@NonNull Resource asResource) {
 		URI pivotURI = asResource.getURI();
-		Model pivotModel2 = pivotModel = metaModelManager.createModel(umlURI != null ? umlURI.toString() : pivotURI.toString());
+		Model pivotModel2 = pivotModel = metamodelManager.createModel(umlURI != null ? umlURI.toString() : pivotURI.toString());
 		asResource.getContents().add(pivotModel2);
 		UML2ASDeclarationSwitch declarationPass = getDeclarationPass();
 		List<org.eclipse.ocl.pivot.Package> rootPackages = new ArrayList<org.eclipse.ocl.pivot.Package>();
@@ -941,8 +941,8 @@ public abstract class UML2AS extends AbstractEcore2AS
 	}
 
 	@Override
-	public boolean isAdapterFor(@NonNull MetaModelManager metaModelManager) {
-		return this.metaModelManager == metaModelManager;
+	public boolean isAdapterFor(@NonNull MetamodelManager metamodelManager) {
+		return this.metamodelManager == metamodelManager;
 	}
 
 	@Override
@@ -975,7 +975,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 	}
 
 	@Override
-	public void metaModelManagerDisposed(@NonNull MetaModelManager metaModelManager) {
+	public void metamodelManagerDisposed(@NonNull MetamodelManager metamodelManager) {
 		dispose();
 	}
 
@@ -1072,7 +1072,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 		ClassUtil.nonNullState(pivotModel);
 		EClass umlStereotypeEClass = umlStereotypeApplication.eClass();
 		if (!(umlStereotypeApplication instanceof DynamicEObjectImpl)) {					// If stereotyped element has been genmodelled
-			Stereotype asStereotype = metaModelManager.getPivotOfEcore(Stereotype.class, umlStereotypeEClass);
+			Stereotype asStereotype = metamodelManager.getPivotOfEcore(Stereotype.class, umlStereotypeEClass);
 			return asStereotype;		// then it is already a Type rather than a Stereotype
 		}
 		//

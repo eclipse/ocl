@@ -49,7 +49,7 @@ import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.Vertex;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
@@ -63,13 +63,13 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 	private static final Logger logger = Logger.getLogger(UML2ASUseSwitch.class);
 
 	protected final @NonNull UML2AS converter;
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull MetamodelManager metamodelManager;
 	protected final @NonNull StandardLibraryInternal standardLibrary;
 	private Set<EClass> doneWarnings = null;
 	
 	public UML2ASUseSwitch(@NonNull UML2AS converter) {
 		this.converter = converter;
-		this.metaModelManager = converter.getMetaModelManager();
+		this.metamodelManager = converter.getMetamodelManager();
 		this.standardLibrary = converter.getStandardLibrary();
 	}
 	
@@ -87,7 +87,7 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 		if (pivotElement != null) {
 //			doSwitchAll(Type.class, pivotElement.getSuperClass(), umlClass.getSuperClasses());
 //			if (pivotElement.getSuperClass().isEmpty()) {
-//				org.eclipse.ocl.pivot.Class oclElementType = metaModelManager.getOclElementType();
+//				org.eclipse.ocl.pivot.Class oclElementType = metamodelManager.getOclElementType();
 //				pivotElement.getSuperClass().add(oclElementType);
 //			}
 			List<org.eclipse.uml2.uml.Constraint> invariants = umlClass.getOwnedRules();
@@ -501,7 +501,7 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 				if (pivotElement == null) {
 					Resource eResource = eObject.eResource();
 					if (eResource != null) {
-						UML2AS adapter = UML2AS.findAdapter(eResource, metaModelManager);
+						UML2AS adapter = UML2AS.findAdapter(eResource, metamodelManager);
 						if (adapter != null) {
 							pivotElement = adapter.getCreated(pivotClass,
 								eObject);
@@ -558,7 +558,7 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 					boolean isUnique = umlMultiplicity.isUnique();
 					IntegerValue lowerValue = ValueUtil.integerValueOf(lower);
 					UnlimitedNaturalValue upperValue = upper == -1 ? ValueUtil.UNLIMITED_VALUE : ValueUtil.unlimitedNaturalValueOf(upper);
-					pivotType = metaModelManager.getCollectionType(isOrdered, isUnique, pivotType, lowerValue, upperValue);
+					pivotType = metamodelManager.getCollectionType(isOrdered, isUnique, pivotType, lowerValue, upperValue);
 				}
 			}
 			pivotElement.setType(pivotType);

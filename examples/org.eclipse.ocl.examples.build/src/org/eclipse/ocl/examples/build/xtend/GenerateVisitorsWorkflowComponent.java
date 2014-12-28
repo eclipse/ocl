@@ -28,8 +28,8 @@ import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
 
 import com.google.common.base.Objects;
 
@@ -194,11 +194,11 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 	
 	private void registerGenModel(@NonNull GenModel genModel) {
 		@SuppressWarnings("null")@NonNull ResourceSet resourceSet2 = resourceSet;
-		MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.getAdapter(resourceSet2, null); // We prepare the mManager for the whole resourceSet
-		MetaModelManager metaModelManager = adapter.getMetaModelManager();
-		metaModelManager.addGenModel(genModel);
+		MetamodelManagerResourceSetAdapter adapter = MetamodelManagerResourceSetAdapter.getAdapter(resourceSet2, null); // We prepare the mManager for the whole resourceSet
+		MetamodelManager metamodelManager = adapter.getMetamodelManager();
+		metamodelManager.addGenModel(genModel);
 		for (@SuppressWarnings("null")@NonNull GenPackage usedGenPackage : genModel.getUsedGenPackages()) {
-			metaModelManager.addGenPackage(usedGenPackage);
+			metamodelManager.addGenPackage(usedGenPackage);
 		}
 	}
 

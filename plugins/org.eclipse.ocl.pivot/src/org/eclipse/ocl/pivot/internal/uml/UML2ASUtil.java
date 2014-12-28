@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 
 /**
@@ -79,7 +79,7 @@ public class UML2ASUtil
 	/**
 	 * Return the metaType of umlElement using the UML meta namespace identifiable from stereotype applications.
 	 */
-	public static @Nullable org.eclipse.ocl.pivot.Class getMetaType(@NonNull MetaModelManager metaModelManager, @NonNull org.eclipse.uml2.uml.Element umlElement) {
+	public static @Nullable org.eclipse.ocl.pivot.Class getMetaType(@NonNull MetamodelManager metamodelManager, @NonNull org.eclipse.uml2.uml.Element umlElement) {
 		EClass umlEClass = umlElement.eClass();
 		for (org.eclipse.uml2.uml.Stereotype umlStereotype : umlElement.getApplicableStereotypes()) {
 			for (org.eclipse.uml2.uml.Class umlMetaclass : umlStereotype.getAllExtendedMetaclasses()) {
@@ -87,7 +87,7 @@ public class UML2ASUtil
 				org.eclipse.uml2.uml.Type umlType = umlPackage.getOwnedType(umlEClass.getName());
 				if (umlType != null) {
 					try {
-						org.eclipse.ocl.pivot.Class umlAStype = metaModelManager.getPivotOf(org.eclipse.ocl.pivot.Class.class, umlType);
+						org.eclipse.ocl.pivot.Class umlAStype = metamodelManager.getPivotOf(org.eclipse.ocl.pivot.Class.class, umlType);
 						if (umlAStype != null) {
 							return umlAStype;
 						}

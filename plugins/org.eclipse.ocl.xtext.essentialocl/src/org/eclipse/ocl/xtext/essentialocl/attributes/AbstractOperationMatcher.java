@@ -29,7 +29,7 @@ import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.TemplateParameterSubstitutionVisitor;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -85,20 +85,20 @@ public abstract class AbstractOperationMatcher
 		}
 	};
 
-	protected final @NonNull MetaModelManager metaModelManager;
+	protected final @NonNull MetamodelManager metamodelManager;
 	protected final @Nullable Type sourceType;
 	protected final @Nullable Type sourceTypeValue;
 	private @Nullable List<Operation> ambiguities = null;
 
-	protected AbstractOperationMatcher(@NonNull MetaModelManager metaModelManager, @Nullable Type sourceType, @Nullable Type sourceTypeValue) {
-		this.metaModelManager = metaModelManager;
+	protected AbstractOperationMatcher(@NonNull MetamodelManager metamodelManager, @Nullable Type sourceType, @Nullable Type sourceTypeValue) {
+		this.metamodelManager = metamodelManager;
 		this.sourceType = sourceType != null ? PivotUtilInternal.getType(sourceType) : null;		// FIXME redundant
 		this.sourceTypeValue = sourceTypeValue;
 	}
 
 	protected int compareMatches(@NonNull Object match1, @NonNull TemplateParameterSubstitutions referenceBindings,
 			@NonNull Object match2, @NonNull TemplateParameterSubstitutions candidateBindings, boolean useCoercions) {
-		CompleteModelInternal completeModel = metaModelManager.getCompleteModel();
+		CompleteModelInternal completeModel = metamodelManager.getCompleteModel();
 		@NonNull Operation reference = (Operation) match1;
 		@NonNull Operation candidate = (Operation) match2;
 		org.eclipse.ocl.pivot.Class referenceClass = reference.getOwningClass();
@@ -113,10 +113,10 @@ public abstract class AbstractOperationMatcher
 				return iteratorCountDelta;
 			}
 			if (referenceType != candidateType) {
-				if (metaModelManager.conformsTo(specializedReferenceType, TemplateParameterSubstitutions.EMPTY, specializedCandidateType, TemplateParameterSubstitutions.EMPTY)) {
+				if (metamodelManager.conformsTo(specializedReferenceType, TemplateParameterSubstitutions.EMPTY, specializedCandidateType, TemplateParameterSubstitutions.EMPTY)) {
 					return 1;
 				}
-				else if (metaModelManager.conformsTo(specializedCandidateType, TemplateParameterSubstitutions.EMPTY, specializedReferenceType, TemplateParameterSubstitutions.EMPTY)) {
+				else if (metamodelManager.conformsTo(specializedCandidateType, TemplateParameterSubstitutions.EMPTY, specializedReferenceType, TemplateParameterSubstitutions.EMPTY)) {
 					return -1;
 				}
 			}
@@ -163,7 +163,7 @@ public abstract class AbstractOperationMatcher
 		if (candidateConversions != referenceConversions) {
 			return candidateConversions - referenceConversions;
 		}
-		int verdict = metaModelManager.compareOperationMatches(reference, referenceBindings, candidate, candidateBindings);
+		int verdict = metamodelManager.compareOperationMatches(reference, referenceBindings, candidate, candidateBindings);
 		if (verdict != 0) {
 			return verdict;
 		}
@@ -193,10 +193,10 @@ public abstract class AbstractOperationMatcher
 			return indexDiff;
 		}
 		if ((specializedReferenceType != null) && (specializedCandidateType != null)) {
-			if (metaModelManager.conformsTo(specializedReferenceType, referenceBindings, specializedCandidateType, candidateBindings)) {
+			if (metamodelManager.conformsTo(specializedReferenceType, referenceBindings, specializedCandidateType, candidateBindings)) {
 				return 1;
 			}
-			else if (metaModelManager.conformsTo(specializedCandidateType, candidateBindings, specializedReferenceType, referenceBindings)) {
+			else if (metamodelManager.conformsTo(specializedCandidateType, candidateBindings, specializedReferenceType, referenceBindings)) {
 				return -1;
 			}
 		}
@@ -270,7 +270,7 @@ public abstract class AbstractOperationMatcher
 		if (iSize != candidateParameters.size()) {
 			return null;
 		}
-		TemplateParameterSubstitutions bindings = TemplateParameterSubstitutionVisitor.createBindings(metaModelManager, sourceType, sourceTypeValue, candidateOperation);
+		TemplateParameterSubstitutions bindings = TemplateParameterSubstitutionVisitor.createBindings(metamodelManager, sourceType, sourceTypeValue, candidateOperation);
 		for (int i = 0; i < iSize; i++) {
 			Parameter candidateParameter = candidateParameters.get(i);
 			if (candidateParameter != null) {
@@ -286,15 +286,15 @@ public abstract class AbstractOperationMatcher
 				if (expressionType == null) {
 					return null;
 				}
-				if (!metaModelManager.conformsTo(expressionType, TemplateParameterSubstitutions.EMPTY, candidateType, bindings)) {
+				if (!metamodelManager.conformsTo(expressionType, TemplateParameterSubstitutions.EMPTY, candidateType, bindings)) {
 					boolean coerceable = false;
 					if (useCoercions) {
-						CompleteClass completeClass = metaModelManager.getCompleteClass(expressionType);
+						CompleteClass completeClass = metamodelManager.getCompleteClass(expressionType);
 						for (org.eclipse.ocl.pivot.Class partialClass : completeClass.getPartialClasses()) {
 							if (partialClass instanceof PrimitiveType) {
 								for (Operation coercion : ((PrimitiveType)partialClass).getCoercions()) {
 									Type corcedSourceType = coercion.getType();
-									if ((corcedSourceType != null) && metaModelManager.conformsTo(corcedSourceType, TemplateParameterSubstitutions.EMPTY, candidateType, TemplateParameterSubstitutions.EMPTY)) {
+									if ((corcedSourceType != null) && metamodelManager.conformsTo(corcedSourceType, TemplateParameterSubstitutions.EMPTY, candidateType, TemplateParameterSubstitutions.EMPTY)) {
 										coerceable = true;
 										break;
 									}

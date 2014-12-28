@@ -20,7 +20,7 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.FeatureFilter;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.Operation;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.xtext.basecs.PathElementCS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
 import org.eclipse.ocl.xtext.essentialoclcs.AbstractNameExpCS;
@@ -63,7 +63,7 @@ public class NavigationUtil
 		}
 	}
 
-	public static boolean isIteration(@NonNull MetaModelManager metaModelManager, @NonNull RoundBracketedClauseCS csRoundBracketedClause, @NonNull CollectionType type) {
+	public static boolean isIteration(@NonNull MetamodelManager metamodelManager, @NonNull RoundBracketedClauseCS csRoundBracketedClause, @NonNull CollectionType type) {
 		for (NavigatingArgCS csArg : csRoundBracketedClause.getOwnedArguments()) {
 			if (csArg.getRole() != NavigationRole.EXPRESSION) {
 				return true;
@@ -82,7 +82,7 @@ public class NavigationUtil
 		}
 		String name = csPathElement.toString();
 		assert name != null;
-		for (Operation operation : metaModelManager.getAllOperations(type, FeatureFilter.SELECT_NON_STATIC, name)) {
+		for (Operation operation : metamodelManager.getAllOperations(type, FeatureFilter.SELECT_NON_STATIC, name)) {
 			return operation instanceof Iteration;		// mixed overload are not allowed
 		}
 		return false;

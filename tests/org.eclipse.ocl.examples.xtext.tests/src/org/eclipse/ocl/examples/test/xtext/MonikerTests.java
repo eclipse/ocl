@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.ecore.Ecore2Moniker;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.xtext.oclstdlib.scoping.JavaClassScope;
@@ -189,8 +189,8 @@ public class MonikerTests extends XtextTestCase
 //		Map<String, MonikeredElementCS> csMonikerMap = checkCSMonikers(csResource);
 //		checkCShasPivots(csResource, csMonikerMap);
 //		checkCSandPivotMonikers(csMonikerMap);
-		MetaModelManager metaModelManager = adapter.getMetaModelManager();
-//		Map<String, MonikeredElement> pivotMonikerMap = checkPivotMonikers(metaModelManager.getPivotResourceSet());
+		MetamodelManager metamodelManager = adapter.getMetamodelManager();
+//		Map<String, MonikeredElement> pivotMonikerMap = checkPivotMonikers(metamodelManager.getPivotResourceSet());
 /*		{
 			StringBuilder s = null;
 			for (String m : csMonikerMap.keySet()) {
@@ -227,7 +227,7 @@ public class MonikerTests extends XtextTestCase
 		} */
 //		assertEquals(csMonikerMap.size(), pivotMonikerMap.size());
 		adapter.dispose();
-		metaModelManager.dispose();
+		metamodelManager.dispose();
 	}
 
 	public void testMoniker_Ecore_ecore() throws IOException, InterruptedException {

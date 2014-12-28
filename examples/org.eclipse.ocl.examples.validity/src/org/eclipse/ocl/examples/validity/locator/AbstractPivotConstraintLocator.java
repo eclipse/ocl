@@ -26,7 +26,7 @@ import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.EnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
@@ -37,12 +37,12 @@ public abstract class AbstractPivotConstraintLocator extends AbstractConstraintL
 {
 	protected static abstract class AbstractConstraintLocator extends ConstraintEvaluator<Diagnostic>
 	{
-		protected final @NonNull MetaModelManager metaModelManager;
+		protected final @NonNull MetamodelManager metamodelManager;
 		protected final @Nullable Object object;
 
-		protected AbstractConstraintLocator(@NonNull MetaModelManager metaModelManager, @NonNull ExpressionInOCL expression, @Nullable Object object) {
+		protected AbstractConstraintLocator(@NonNull MetamodelManager metamodelManager, @NonNull ExpressionInOCL expression, @Nullable Object object) {
 			super(expression);
-			this.metaModelManager = metaModelManager;
+			this.metamodelManager = metamodelManager;
 			this.object = object;
 		}
 
@@ -78,19 +78,19 @@ public abstract class AbstractPivotConstraintLocator extends AbstractConstraintL
 		}
 	}
 
-	protected @NonNull EvaluationVisitor createEvaluationVisitor(@NonNull MetaModelManager metaModelManager,
+	protected @NonNull EvaluationVisitor createEvaluationVisitor(@NonNull MetamodelManager metamodelManager,
 			@NonNull ExpressionInOCL query, @Nullable Object contextObject, @Nullable Monitor monitor) {
-		PivotEnvironmentFactory environmentFactory = new PivotEnvironmentFactory(null, metaModelManager);
+		PivotEnvironmentFactory environmentFactory = new PivotEnvironmentFactory(null, metamodelManager);
 		EnvironmentInternal rootEnvironment = environmentFactory.createEnvironment();
 		EvaluationVisitor evaluationVisitor = environmentFactory.createEvaluationVisitor(rootEnvironment, contextObject, query, null);
 		evaluationVisitor.setMonitor(monitor);
 		return evaluationVisitor;
 	}
 
-	protected @NonNull ExpressionInOCL getQuery(@NonNull MetaModelManager metaModelManager, @NonNull Constraint constraint) throws ParserException {
+	protected @NonNull ExpressionInOCL getQuery(@NonNull MetamodelManager metamodelManager, @NonNull Constraint constraint) throws ParserException {
 		LanguageExpression specification = constraint.getOwnedSpecification();
 		assert specification != null;
-		return metaModelManager.getQueryOrThrow(specification);
+		return metamodelManager.getQueryOrThrow(specification);
 	}
 
 	@Override

@@ -23,7 +23,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.SemanticException;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
@@ -79,13 +79,13 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 	 * definition.
 	 * @throws OCLDelegateException 
 	 */
-	public @NonNull ExpressionInOCL getQueryOrThrow(@NonNull MetaModelManager metaModelManager, @NonNull Operation operation) throws OCLDelegateException {
+	public @NonNull ExpressionInOCL getQueryOrThrow(@NonNull MetamodelManager metamodelManager, @NonNull Operation operation) throws OCLDelegateException {
 		LanguageExpression specification = operation.getBodyExpression();
 		if (specification == null) {
 			throw new OCLDelegateException(new SemanticException(PivotMessagesInternal.MissingSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(operation), PivotConstantsInternal.BODY_EXPRESSION_ROLE));
 		}
 		try {
-			return metaModelManager.getQueryOrThrow(specification);
+			return metamodelManager.getQueryOrThrow(specification);
 		} catch (ParserException e) {
 			throw new OCLDelegateException(e);
 		}

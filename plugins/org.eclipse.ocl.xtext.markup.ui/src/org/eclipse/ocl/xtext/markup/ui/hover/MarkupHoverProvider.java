@@ -34,12 +34,13 @@ import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.VariableDeclaration;
 import org.eclipse.ocl.pivot.VariableExp;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.internal.utilities.HTMLBuffer;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.internal.utilities.Pivotable;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.Pivotable;
 import org.eclipse.ocl.xtext.basecs.ElementCS;
 import org.eclipse.ocl.xtext.markup.MarkupUtils;
 import org.eclipse.ocl.xtext.markupcs.Markup;
@@ -124,11 +125,11 @@ public class MarkupHoverProvider extends DefaultEObjectHoverProvider
 			return null;
 		}
 		try {
-			MetaModelManager metaModelManager = PivotUtilInternal.findMetaModelManager(resource);
-			if (metaModelManager == null) {
+			MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(resource);
+			if (metamodelManager == null) {
 				return null;
 			}
-			return MarkupUtils.toHTML(metaModelManager, o, markup);
+			return MarkupUtils.toHTML(metamodelManager, o, markup);
 		} catch (Exception e) {
 			StringWriter s = new StringWriter();
 			e.printStackTrace(new PrintWriter(s));
@@ -176,7 +177,7 @@ public class MarkupHoverProvider extends DefaultEObjectHoverProvider
 //		System.out.println("getFirstLine " + eObject.eClass().getName());
 		Element pivotElement = null;
 		if (eObject instanceof Pivotable) {
-			pivotElement = PivotUtilInternal.getPivot(Element.class, (Pivotable)eObject);
+			pivotElement = PivotUtil.getPivot(Element.class, (Pivotable)eObject);
 		}
 		else if (eObject instanceof Element) {
 			pivotElement = (Element)eObject;
@@ -200,9 +201,9 @@ public class MarkupHoverProvider extends DefaultEObjectHoverProvider
 				}				
 			};
 			if (namespace != null) {
-				MetaModelManager metaModelManager = PivotUtilInternal.findMetaModelManager(namespace);
-				if (metaModelManager != null) {
-					prettyPrintOptions.setMetaModelManager(metaModelManager);
+				MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(namespace);
+				if (metamodelManager != null) {
+					prettyPrintOptions.setMetamodelManager(metamodelManager);
 				}
 			}
 			if (pivotElement instanceof CallExp) {

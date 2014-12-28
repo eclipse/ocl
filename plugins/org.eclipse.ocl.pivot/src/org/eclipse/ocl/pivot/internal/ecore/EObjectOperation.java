@@ -25,7 +25,7 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitorImpl;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.library.AbstractOperation;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -51,8 +51,8 @@ public class EObjectOperation extends AbstractOperation
 		if (specification.getOwnedBody() == null) {		
 			try {
 				EvaluationVisitor evaluationVisitor = (EvaluationVisitor)evaluator;
-				MetaModelManager metaModelManager = evaluationVisitor.getMetaModelManager();
-				metaModelManager.getQueryOrThrow(specification);
+				MetamodelManager metamodelManager = evaluationVisitor.getMetamodelManager();
+				metamodelManager.getQueryOrThrow(specification);
 			} catch (ParserException e) {
 				throw new InvalidValueException(e, "parse failure", evaluator.getEvaluationEnvironment(), sourceValue, callExp);
 			}

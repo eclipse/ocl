@@ -35,9 +35,9 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.resource.ASResource;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.util.PivotSwitch;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
@@ -47,7 +47,7 @@ import org.eclipse.ocl.pivot.utilities.NameUtil;
  */
 public class CompleteOCLSplitter
 {
-	public static @Nullable ASResource separate(@NonNull MetaModelManager metaModelManager, @NonNull Resource resource) {
+	public static @Nullable ASResource separate(@NonNull MetamodelManager metamodelManager, @NonNull Resource resource) {
 		List<Constraint> allConstraints = new ArrayList<Constraint>();
 		List<LanguageExpression> allExpressionInOCLs = new ArrayList<LanguageExpression>();
 		for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
@@ -79,26 +79,26 @@ public class CompleteOCLSplitter
 		URI oclASuri = PivotUtilInternal.getASURI(oclURI);	// xxx.ocl.ocl.oclas
 		ASResource oclResource = (ASResource) resource.getResourceSet().createResource(oclASuri, ASResource.COMPLETE_OCL_CONTENT_TYPE);	
 		if (oclResource != null) {
-			Separator separator = new Separator(metaModelManager, oclResource);
+			Separator separator = new Separator(metamodelManager, oclResource);
 			for (Constraint constraint : allConstraints) {
 				separator.doSwitch(constraint);
 			}
 			for (LanguageExpression opaqueExpression : allExpressionInOCLs) {
 				separator.doSwitch(opaqueExpression);
 			}
-			metaModelManager.installResource(oclResource);
+			metamodelManager.installResource(oclResource);
 		}
 		return oclResource;
 	}
 	
 	public static class Separator extends PivotSwitch<EObject>
 	{
-		protected final @NonNull MetaModelManager metaModelManager;
+		protected final @NonNull MetamodelManager metamodelManager;
 		protected final @NonNull Resource separateResource;
 		private final @NonNull Map<NamedElement, NamedElement> map = new HashMap<NamedElement, NamedElement>();
 
-		public Separator(@NonNull MetaModelManager metaModelManager, @NonNull Resource separateResource) {
-			this.metaModelManager = metaModelManager;
+		public Separator(@NonNull MetamodelManager metamodelManager, @NonNull Resource separateResource) {
+			this.metamodelManager = metamodelManager;
 			this.separateResource = separateResource;
 		}
 
@@ -152,7 +152,7 @@ public class CompleteOCLSplitter
 				separateObject = PivotFactory.eINSTANCE.createModel();
 				separateObject.setExternalURI(separateResource.getURI().toString());
 				separateSiblings.add(separateObject);
-//				metaModelManager.addRoot(separateObject);
+//				metamodelManager.addRoot(separateObject);
 			}
 			return separateObject;
 		}

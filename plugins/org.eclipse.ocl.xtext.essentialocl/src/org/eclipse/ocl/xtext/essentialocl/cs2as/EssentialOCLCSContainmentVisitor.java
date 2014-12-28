@@ -52,9 +52,9 @@ import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.context.ParserContext;
-import org.eclipse.ocl.pivot.internal.utilities.BaseResource;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.Unlimited;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
@@ -175,14 +175,14 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 		ExpSpecificationCS csStatusSpecification = (ExpSpecificationCS)csElement.getOwnedSpecification();
 		ExpSpecificationCS csMessageSpecification = (ExpSpecificationCS)csElement.getOwnedMessageSpecification();
 		if (csMessageSpecification == null) {
-			ExpressionInOCL asSpecification = PivotUtilInternal.getPivot(ExpressionInOCL.class, csStatusSpecification);
+			ExpressionInOCL asSpecification = PivotUtil.getPivot(ExpressionInOCL.class, csStatusSpecification);
 			asConstraint.setOwnedSpecification(asSpecification);
 		}
 		else {
 			Map<String, Type> tupleParts = new HashMap<String, Type>();
 			tupleParts.put(PivotConstantsInternal.MESSAGE_PART_NAME, standardLibrary.getStringType());
 			tupleParts.put(PivotConstantsInternal.STATUS_PART_NAME, standardLibrary.getBooleanType());
-			TupleType tupleType = metaModelManager.getCompleteModel().getTupleManager().getTupleType("Tuple", tupleParts);
+			TupleType tupleType = metamodelManager.getCompleteModel().getTupleManager().getTupleType("Tuple", tupleParts);
 			Property statusProperty = NameUtil.getNameable(tupleType.getOwnedProperties(), PivotConstantsInternal.STATUS_PART_NAME);
 			LanguageExpression asSpecification = asConstraint.getOwnedSpecification();
 			//
@@ -220,8 +220,8 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 			asTupleLiteralExp.setType(tupleType);
 			asTupleLiteralExp.setIsRequired(true);
 			List<TupleLiteralPart> parts = new ArrayList<TupleLiteralPart>();
-			TupleLiteralPart asStatusPart = PivotUtilInternal.getPivot(TupleLiteralPart.class, csStatusSpecification);
-			TupleLiteralPart asMessagePart = PivotUtilInternal.getPivot(TupleLiteralPart.class, csMessageSpecification);
+			TupleLiteralPart asStatusPart = PivotUtil.getPivot(TupleLiteralPart.class, csStatusSpecification);
+			TupleLiteralPart asMessagePart = PivotUtil.getPivot(TupleLiteralPart.class, csMessageSpecification);
 			if ((asMessagePart != null) && (asStatusPart != null)) {
 				parts.add(asMessagePart);
 				parts.add(asStatusPart);
@@ -240,10 +240,10 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 	@Override
 	public Continuation<?> visitContextCS(@NonNull ContextCS csElement) {
 		@NonNull ExpressionInOCL pivotElement = context.refreshModelElement(ExpressionInOCL.class, PivotPackage.Literals.EXPRESSION_IN_OCL, csElement);
-		PivotUtilInternal.setBody(pivotElement, null, null);
+		PivotUtil.setBody(pivotElement, null, null);
 		Resource resource = csElement.eResource();
-		if (resource instanceof BaseResource) {	
-			ParserContext parserContext = ((BaseResource)resource).getParserContext();
+		if (resource instanceof CSResource) {	
+			ParserContext parserContext = ((CSResource)resource).getParserContext();
 			if (parserContext != null) {
 				parserContext.initialize(context, pivotElement);
 			}

@@ -41,16 +41,16 @@ import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceAdapter;
-import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
-import org.eclipse.ocl.pivot.model.OCLMetaModel;
+import org.eclipse.ocl.pivot.model.OCLmetamodel;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
-import org.eclipse.ocl.pivot.utilities.ProjectMap;
+import org.eclipse.ocl.pivot.resource.ProjectMap;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.xtext.oclstdlib.scoping.JavaClassScope;
@@ -75,7 +75,7 @@ public class OCLstdlibTests extends XtextTestCase
 		}
 	}
 
-	protected MetaModelManager metaModelManager = null;
+	protected MetamodelManager metamodelManager = null;
 
 	public Map<String, Element> computeMoniker2ASMap(Collection<? extends Resource> pivotResources) {
 		Map<String, Element> map = new HashMap<String, Element>();
@@ -189,20 +189,20 @@ public class OCLstdlibTests extends XtextTestCase
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		metaModelManager = new MetaModelManager();
+		metamodelManager = new MetamodelManager();
 	}
 
 	@Override
 	protected void tearDown() throws Exception {
-		MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.findAdapter(resourceSet);
+		MetamodelManagerResourceSetAdapter adapter = MetamodelManagerResourceSetAdapter.findAdapter(resourceSet);
 		if (adapter != null) {
-			MetaModelManager metaModelManager = adapter.getMetaModelManager();
-			if (metaModelManager != null) {
-				metaModelManager.dispose();
+			MetamodelManager metamodelManager = adapter.getMetamodelManager();
+			if (metamodelManager != null) {
+				metamodelManager.dispose();
 			}
 		}
-		metaModelManager.dispose();
-		metaModelManager = null;
+		metamodelManager.dispose();
+		metamodelManager = null;
 		super.tearDown();
 	}
 	
@@ -239,12 +239,12 @@ public class OCLstdlibTests extends XtextTestCase
 			"       }\n"+
 			"    }\n"+
 			"}\n";		
-		Resource asResource = doLoadASResourceFromString(metaModelManager, "string.oclstdlib", testFile);
-		MetaModelManager metaModelManager = MetaModelManager.getAdapter(asResource.getResourceSet());
-		AnyType oclAnyType = metaModelManager.getStandardLibrary().getOclAnyType();
-		Iterable<Operation> ownedOperations = metaModelManager.getAllOperations(oclAnyType, FeatureFilter.SELECT_NON_STATIC);
+		Resource asResource = doLoadASResourceFromString(metamodelManager, "string.oclstdlib", testFile);
+		MetamodelManager metamodelManager = MetamodelManager.getAdapter(asResource.getResourceSet());
+		AnyType oclAnyType = metamodelManager.getStandardLibrary().getOclAnyType();
+		Iterable<Operation> ownedOperations = metamodelManager.getAllOperations(oclAnyType, FeatureFilter.SELECT_NON_STATIC);
 		assertEquals(2, Iterables.size(ownedOperations));		// one from OclAny::=
-		metaModelManager.dispose();
+		metamodelManager.dispose();
 	}
 	
 	/**
@@ -261,7 +261,7 @@ public class OCLstdlibTests extends XtextTestCase
 		URI libraryURI = URI.createPlatformResourceURI("org.eclipse.ocl.pivot/model/OCL-2.5.oclstdlib", true);
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(libraryURI);
 		JavaClassScope.getAdapter(xtextResource, getClass().getClassLoader());
-		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
+		MetamodelManagerResourceAdapter.getAdapter(xtextResource, metamodelManager);
 		xtextResource.load(null);
 		CS2ASResourceAdapter adapter = xtextResource.findCS2ASAdapter();
 		assertNoResourceErrors("Load failed", xtextResource);
@@ -368,7 +368,7 @@ public class OCLstdlibTests extends XtextTestCase
 		//
 		Resource javaResource = OCLstdlib.getDefault();
 		Resource asResource = doLoadAS(resourceSet, libraryURI, javaResource, true);
-		PivotUtilInternal.getMetaModelManager(asResource).dispose();
+		PivotUtilInternal.getMetamodelManager(asResource).dispose();
 	}
 	
 	/**
@@ -386,11 +386,11 @@ public class OCLstdlibTests extends XtextTestCase
 		//
 		//	Load OCLmetamodel as pre-code-generated Java.
 		//
-		StandardLibraryInternal standardLibrary = metaModelManager.getStandardLibrary();
+		StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
 		Library asLibrary = (Library) standardLibrary.getPackage();
-		org.eclipse.ocl.pivot.Package oclMetamodel = OCLMetaModel.create(standardLibrary, asLibrary.getName(), asLibrary.getNsPrefix(), OCLMetaModel.PIVOT_URI);
+		org.eclipse.ocl.pivot.Package oclMetamodel = OCLmetamodel.create(standardLibrary, asLibrary.getName(), asLibrary.getNsPrefix(), OCLmetamodel.PIVOT_URI);
 		Resource javaResource = oclMetamodel.eResource();
 		Resource asResource = doLoadAS(resourceSet, pivotURI, javaResource, false);		// FIXME Contents are far from identical
-		PivotUtilInternal.getMetaModelManager(asResource).dispose();
+		PivotUtilInternal.getMetamodelManager(asResource).dispose();
 	}
 }

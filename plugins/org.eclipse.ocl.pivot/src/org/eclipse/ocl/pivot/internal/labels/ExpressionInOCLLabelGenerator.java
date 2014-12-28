@@ -8,33 +8,25 @@
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.pivot.internal.utilities;
+package org.eclipse.ocl.pivot.internal.labels;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.labels.AbstractLabelGenerator;
 
-public final class ModelLabelGenerator extends AbstractLabelGenerator<Model>
+public class ExpressionInOCLLabelGenerator extends AbstractLabelGenerator<ExpressionInOCL>
 {
 	public static void initialize(Registry registry) {
-		registry.install(Model.class, new ModelLabelGenerator());		
+		registry.install(ExpressionInOCL.class, new ExpressionInOCLLabelGenerator());		
 	}
 	
-	public ModelLabelGenerator() {
-		super(Model.class);
+	public ExpressionInOCLLabelGenerator() {
+		super(ExpressionInOCL.class);
 	}
 
 	@Override
-	public void buildLabelFor(@NonNull Builder labelBuilder, @NonNull Model object) {
-		if (object == labelBuilder.getLabelledObject()) {
-			String name = object.getExternalURI();
-			if (name != null)
-				labelBuilder.appendString(name);
-			else {
-				labelBuilder.appendString("<null-uri-");
-				labelBuilder.appendString(object.getClass().getSimpleName());
-				labelBuilder.appendString(">");
-			}
-		}
+	public void buildLabelFor(@NonNull Builder labelBuilder, @NonNull ExpressionInOCL object) {
+		labelBuilder.appendString(PivotUtilInternal.getSpecificationRole(object));
 	}
 }
