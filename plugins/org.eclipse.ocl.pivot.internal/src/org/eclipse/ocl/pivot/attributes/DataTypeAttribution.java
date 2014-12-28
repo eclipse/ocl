@@ -14,11 +14,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.scoping.Attribution;
 import org.eclipse.ocl.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.scoping.ScopeView;
-import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 
 public class DataTypeAttribution extends AbstractAttribution
 {

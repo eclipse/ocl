@@ -12,11 +12,11 @@ package org.eclipse.ocl.pivot.executor;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.library.executor.ReflectiveFragment;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.complete.CompleteInheritanceImpl;
 import org.eclipse.ocl.pivot.ids.ParametersId;
+import org.eclipse.ocl.pivot.library.executor.ReflectiveFragment;
 
 public class PivotReflectiveFragment extends ReflectiveFragment
 {

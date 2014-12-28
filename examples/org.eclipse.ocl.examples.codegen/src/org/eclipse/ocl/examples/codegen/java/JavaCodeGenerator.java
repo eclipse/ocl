@@ -54,22 +54,22 @@ import org.eclipse.ocl.examples.codegen.java.types.UnboxedDescriptor;
 import org.eclipse.ocl.examples.codegen.utilities.AbstractCGModelResourceFactory;
 import org.eclipse.ocl.examples.codegen.utilities.CGModelResource;
 import org.eclipse.ocl.examples.codegen.utilities.CGModelResourceFactory;
-import org.eclipse.ocl.library.iterator.AnyIteration;
-import org.eclipse.ocl.library.iterator.CollectIteration;
-import org.eclipse.ocl.library.iterator.CollectNestedIteration;
-import org.eclipse.ocl.library.iterator.ExistsIteration;
-import org.eclipse.ocl.library.iterator.ForAllIteration;
-import org.eclipse.ocl.library.iterator.IsUniqueIteration;
-import org.eclipse.ocl.library.iterator.IterateIteration;
-import org.eclipse.ocl.library.iterator.OneIteration;
-import org.eclipse.ocl.library.iterator.RejectIteration;
-import org.eclipse.ocl.library.iterator.SelectIteration;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.ids.ElementId;
 import org.eclipse.ocl.pivot.library.LibraryIteration;
+import org.eclipse.ocl.pivot.library.iterator.AnyIteration;
+import org.eclipse.ocl.pivot.library.iterator.CollectIteration;
+import org.eclipse.ocl.pivot.library.iterator.CollectNestedIteration;
+import org.eclipse.ocl.pivot.library.iterator.ExistsIteration;
+import org.eclipse.ocl.pivot.library.iterator.ForAllIteration;
+import org.eclipse.ocl.pivot.library.iterator.IsUniqueIteration;
+import org.eclipse.ocl.pivot.library.iterator.IterateIteration;
+import org.eclipse.ocl.pivot.library.iterator.OneIteration;
+import org.eclipse.ocl.pivot.library.iterator.RejectIteration;
+import org.eclipse.ocl.pivot.library.iterator.SelectIteration;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
@@ -104,25 +104,25 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 		java.lang.Object.class,
 		java.lang.Package.class,
 		java.util.Iterator.class,
-		org.eclipse.ocl.library.ecore.EcoreExecutorEnumeration.class,
-		org.eclipse.ocl.library.ecore.EcoreExecutorEnumerationLiteral.class,
-		org.eclipse.ocl.library.ecore.EcoreExecutorInvalidType.class,
-		org.eclipse.ocl.library.ecore.EcoreExecutorManager.class,
-		org.eclipse.ocl.library.ecore.EcoreExecutorPackage.class,
-		org.eclipse.ocl.library.ecore.EcoreExecutorProperty.class,
-		org.eclipse.ocl.library.ecore.EcoreExecutorType.class,
-		org.eclipse.ocl.library.ecore.EcoreExecutorVoidType.class,
-		org.eclipse.ocl.library.executor.ExecutorDoubleIterationManager.class,
-		org.eclipse.ocl.library.executor.ExecutorFragment.class,
-		org.eclipse.ocl.library.executor.ExecutorLambdaType.class,
-		org.eclipse.ocl.library.executor.ExecutorOperation.class,
-		org.eclipse.ocl.library.executor.ExecutorProperty.class,
-		org.eclipse.ocl.library.executor.ExecutorPropertyWithImplementation.class,
-		org.eclipse.ocl.library.executor.ExecutorSingleIterationManager.class,
-		org.eclipse.ocl.library.executor.ExecutorSpecializedType.class,
-		org.eclipse.ocl.library.executor.ExecutorStandardLibrary.class,
-		org.eclipse.ocl.library.executor.ExecutorType.class,
-		org.eclipse.ocl.library.executor.ExecutorTypeParameter.class,
+		org.eclipse.ocl.pivot.library.ecore.EcoreExecutorEnumeration.class,
+		org.eclipse.ocl.pivot.library.ecore.EcoreExecutorEnumerationLiteral.class,
+		org.eclipse.ocl.pivot.library.ecore.EcoreExecutorInvalidType.class,
+		org.eclipse.ocl.pivot.library.ecore.EcoreExecutorManager.class,
+		org.eclipse.ocl.pivot.library.ecore.EcoreExecutorPackage.class,
+		org.eclipse.ocl.pivot.library.ecore.EcoreExecutorProperty.class,
+		org.eclipse.ocl.pivot.library.ecore.EcoreExecutorType.class,
+		org.eclipse.ocl.pivot.library.ecore.EcoreExecutorVoidType.class,
+		org.eclipse.ocl.pivot.library.executor.ExecutorDoubleIterationManager.class,
+		org.eclipse.ocl.pivot.library.executor.ExecutorFragment.class,
+		org.eclipse.ocl.pivot.library.executor.ExecutorLambdaType.class,
+		org.eclipse.ocl.pivot.library.executor.ExecutorOperation.class,
+		org.eclipse.ocl.pivot.library.executor.ExecutorProperty.class,
+		org.eclipse.ocl.pivot.library.executor.ExecutorPropertyWithImplementation.class,
+		org.eclipse.ocl.pivot.library.executor.ExecutorSingleIterationManager.class,
+		org.eclipse.ocl.pivot.library.executor.ExecutorSpecializedType.class,
+		org.eclipse.ocl.pivot.library.executor.ExecutorStandardLibrary.class,
+		org.eclipse.ocl.pivot.library.executor.ExecutorType.class,
+		org.eclipse.ocl.pivot.library.executor.ExecutorTypeParameter.class,
 		org.eclipse.ocl.pivot.CollectionType.class,
 		org.eclipse.ocl.pivot.Element.class,
 		org.eclipse.ocl.pivot.ParameterTypes.class,
@@ -169,7 +169,7 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 		org.eclipse.ocl.pivot.values.Value.class,
 		org.eclipse.ocl.pivot.values.InvalidValueException.class,
 		org.eclipse.ocl.pivot.utilities.ClassUtil.class,
-		org.eclipse.ocl.pivot.utilities.PivotUtilInternal.class,
+		org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal.class,
 		org.eclipse.ocl.pivot.utilities.ValueUtil.class,
 		org.eclipse.osgi.util.NLS.class
 	};

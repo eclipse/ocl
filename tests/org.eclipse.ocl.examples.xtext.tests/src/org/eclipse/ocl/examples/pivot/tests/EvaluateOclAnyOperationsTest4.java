@@ -32,7 +32,7 @@ import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
+import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;

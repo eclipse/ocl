@@ -11,7 +11,7 @@
 
 package org.eclipse.ocl.pivot;
 
-import org.eclipse.ocl.pivot.util.PivotInternalPlugin;
+import org.eclipse.ocl.pivot.internal.plugin.PivotInternalPlugin;
 
 
 /**

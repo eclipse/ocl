@@ -18,7 +18,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.xtext.AbstractRule;
 import org.eclipse.xtext.Grammar;

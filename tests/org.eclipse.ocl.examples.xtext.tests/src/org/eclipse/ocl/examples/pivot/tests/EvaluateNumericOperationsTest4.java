@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
+import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.impl.BigIntegerValueImpl;
 import org.eclipse.ocl.pivot.values.impl.IntIntegerValueImpl;

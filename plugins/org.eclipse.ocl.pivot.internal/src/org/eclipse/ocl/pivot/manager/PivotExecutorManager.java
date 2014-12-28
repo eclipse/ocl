@@ -15,12 +15,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.library.executor.ExecutorManager;
-import org.eclipse.ocl.library.executor.LazyModelManager;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.library.executor.ExecutorManager;
+import org.eclipse.ocl.pivot.library.executor.LazyModelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**

@@ -29,12 +29,12 @@ import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.ids.IdManager;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResourceImpl;
 import org.eclipse.ocl.pivot.resource.OCLASResourceFactory;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 
 /**
  * This is the http://www.eclipse.org/ocl/2015/Pivot Pivot Model of the Pivot Model

@@ -21,7 +21,7 @@ import org.eclipse.ocl.pivot.EnvironmentInternal;
 import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.elements.AbstractBasicEnvironment;
-import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
+import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.osgi.util.NLS;
 

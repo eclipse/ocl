@@ -22,7 +22,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.Precedence;
-import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 
 /**
  * PrecedenceManager encapsulates the knowledge about known precedences.

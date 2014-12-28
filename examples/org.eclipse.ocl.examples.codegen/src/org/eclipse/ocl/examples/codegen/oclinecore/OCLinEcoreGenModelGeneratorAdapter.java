@@ -61,7 +61,6 @@ import org.eclipse.ocl.common.internal.options.CodeGenerationMode;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.examples.codegen.common.PivotQueries;
 import org.eclipse.ocl.examples.codegen.generator.AbstractGenModelHelper;
-import org.eclipse.ocl.library.LibraryConstants;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Operation;
@@ -69,13 +68,13 @@ import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.ecore.AS2Ecore;
 import org.eclipse.ocl.pivot.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
-import org.eclipse.ocl.pivot.util.PivotInternalPlugin;
-import org.eclipse.ocl.pivot.utilities.AS2Moniker;
+import org.eclipse.ocl.pivot.plugin.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.uml2.codegen.ecore.genmodel.util.UML2GenModelUtil;
 
 public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
@@ -253,11 +252,8 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 	    try {
 			if ((projectType == MODEL_PROJECT_TYPE) && !useDelegates(genModel) && (hasDelegates(genModel) || hadDelegates.contains(genModel))) {
 				List<String> modelPluginVariables = genModel.getModelPluginVariables();
-				if (!modelPluginVariables.contains(LibraryConstants.PLUGIN_ID)) {
-					modelPluginVariables.add(LibraryConstants.PLUGIN_ID);
-				}				
-				if (!modelPluginVariables.contains(PivotInternalPlugin.PLUGIN_ID)) {	// FIXME delete me BUG 401862
-					modelPluginVariables.add(PivotInternalPlugin.PLUGIN_ID);
+				if (!modelPluginVariables.contains(PivotPlugin.PLUGIN_ID)) {	// FIXME delete me BUG 401862
+					modelPluginVariables.add(PivotPlugin.PLUGIN_ID);
 				}				
 				if (!modelPluginVariables.contains("org.eclipse.ocl.examples.codegen")) {	// FIXME delete me BUG 401862
 					modelPluginVariables.add("org.eclipse.ocl.examples.codegen");

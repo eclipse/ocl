@@ -15,15 +15,15 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.library.collection.CollectionFlattenOperation;
-import org.eclipse.ocl.library.iterator.CollectIteration;
 import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.LoopExp;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
-import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.library.collection.CollectionFlattenOperation;
+import org.eclipse.ocl.pivot.library.iterator.CollectIteration;
 
 /**
  * TemplateParameterSubstitutionHelper instances support irregular YemplateParameterSubstitution deduction for difficult to

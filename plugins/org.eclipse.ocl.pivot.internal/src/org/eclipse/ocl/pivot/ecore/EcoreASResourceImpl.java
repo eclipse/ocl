@@ -16,9 +16,9 @@ import java.util.Map;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.internal.utilities.AS2XMIid;
 import org.eclipse.ocl.pivot.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.resource.ASResourceImpl;
-import org.eclipse.ocl.pivot.utilities.AS2XMIid;
 
 public class EcoreASResourceImpl extends ASResourceImpl
 {

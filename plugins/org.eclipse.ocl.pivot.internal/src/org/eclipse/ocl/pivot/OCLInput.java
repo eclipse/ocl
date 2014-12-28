@@ -19,7 +19,7 @@ import java.io.UnsupportedEncodingException;
 import java.nio.CharBuffer;
 import java.nio.charset.Charset;
 
-import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
+import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 
 /**
  * Encapsulation of an OCL document, which may be obtained from a string or from

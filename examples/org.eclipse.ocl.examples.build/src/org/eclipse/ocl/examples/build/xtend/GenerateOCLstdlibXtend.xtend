@@ -75,12 +75,14 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 			import org.eclipse.ocl.pivot.Package;
 			import org.eclipse.ocl.pivot.ids.IdManager;
 			import org.eclipse.ocl.pivot.ids.PackageId;
+			import org.eclipse.ocl.pivot.internal.utilities.AS2XMIid;
+			import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 			import org.eclipse.ocl.pivot.library.StandardLibraryContribution;
 			import org.eclipse.ocl.pivot.manager.MetaModelManager;
 			import org.eclipse.ocl.pivot.resource.ASResourceImpl;
 			import org.eclipse.ocl.pivot.resource.OCLASResourceFactory;
-			import org.eclipse.ocl.pivot.utilities.AS2XMIid;
 			import org.eclipse.ocl.pivot.utilities.ClassUtil;
+			import org.eclipse.ocl.pivot.utilities.PivotConstants;
 			import org.eclipse.ocl.pivot.utilities.PivotUtil;
 			
 			/**
@@ -220,7 +222,7 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 				 */
 				private «javaClassName»(@NonNull String asURI, @NonNull Model libraryModel) {
 					super(ClassUtil.nonNullState(URI.createURI(asURI)), OCLASResourceFactory.INSTANCE);
-					assert PivotUtil.isASURI(asURI);
+					assert PivotUtilInternal.isASURI(asURI);
 					getContents().add(libraryModel);
 			//		System.out.println(Thread.currentThread().getName() + " Create " + debugSimpleName(this));		
 			//		liveOCLstdlibs.put(this, null);

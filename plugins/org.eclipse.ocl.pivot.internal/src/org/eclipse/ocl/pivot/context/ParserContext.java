@@ -19,8 +19,8 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.internal.utilities.BaseResource;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.utilities.BaseResource;
 
 /**
  * A ParserContext captures the context in which source text is parsed.

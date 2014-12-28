@@ -109,21 +109,21 @@
   <pivot:Package xmi:id="$orphanage" name="$orphanage">
     <ownedType xsi:type="pivot:Class" xmi:id="$orphanage!$orphanage" name="$orphanage">
       <ownedOperation xmi:id="ocl!OrderedCollection{T}!first[my!BType]()" name="first"
-          type="#my!BType" implementationClass="org.eclipse.ocl.library.collection.OrderedCollectionFirstOperation">
+          type="#my!BType" implementationClass="org.eclipse.ocl.pivot.library.collection.OrderedCollectionFirstOperation">
         <templateBinding signature="http://www.eclipse.org/ocl/2015/Library#//@ownedType.14/@ownedTemplateSignature">
           <parameterSubstitution formal="http://www.eclipse.org/ocl/2015/Library#//@ownedType.14/@ownedTemplateSignature/@ownedParameter.0"
               actual="#my!BType"/>
         </templateBinding>
       </ownedOperation>
       <ownedOperation xmi:id="ocl!Collection{T}!asSequence[my!BType]()" name="asSequence"
-          type="#ocl!Sequence[my!BType]" implementationClass="org.eclipse.ocl.library.collection.CollectionAsSequenceOperation">
+          type="#ocl!Sequence[my!BType]" implementationClass="org.eclipse.ocl.pivot.library.collection.CollectionAsSequenceOperation">
         <templateBinding signature="http://www.eclipse.org/ocl/2015/Library#//@ownedType.3/@ownedTemplateSignature">
           <parameterSubstitution formal="http://www.eclipse.org/ocl/2015/Library#//@ownedType.3/@ownedTemplateSignature/@ownedParameter.0"
               actual="#my!BType"/>
         </templateBinding>
       </ownedOperation>
       <ownedOperation xsi:type="pivot:Iteration" xmi:id="ocl!Set{T}!select[my!BType](my!BType|Lambda~my!BType()Boolean)"
-          name="select" type="#ocl!Set[my!BType]" implementationClass="org.eclipse.ocl.library.iterator.SelectIteration">
+          name="select" type="#ocl!Set[my!BType]" implementationClass="org.eclipse.ocl.pivot.library.iterator.SelectIteration">
         <templateBinding signature="http://www.eclipse.org/ocl/2015/Library#//@ownedType.18/@ownedTemplateSignature">
           <parameterSubstitution formal="http://www.eclipse.org/ocl/2015/Library#//@ownedType.18/@ownedTemplateSignature/@ownedParameter.0"
               actual="#my!BType"/>
@@ -134,7 +134,7 @@
             name="i" type="#my!BType"/>
       </ownedOperation>
       <ownedOperation xmi:id="ocl!Classifier{T}!allInstances[my!BType,my!BType]()"
-          name="allInstances" isStatic="true" type="#ocl!Set[my!BType]" implementationClass="org.eclipse.ocl.library.classifier.ClassifierAllInstancesOperation">
+          name="allInstances" isStatic="true" type="#ocl!Set[my!BType]" implementationClass="org.eclipse.ocl.pivot.library.classifier.ClassifierAllInstancesOperation">
         <templateBinding signature="http://www.eclipse.org/ocl/2015/Library#//@ownedType.2/@ownedTemplateSignature">
           <parameterSubstitution formal="http://www.eclipse.org/ocl/2015/Library#//@ownedType.2/@ownedTemplateSignature/@ownedParameter.0"
               actual="#my!BType"/>
@@ -145,7 +145,7 @@
         </templateBinding>
       </ownedOperation>
       <ownedOperation xmi:id="ocl!Collection{T}!includes[my!AType](ocl!OclAny)" name="includes"
-          type="http://www.eclipse.org/ocl/2015/Library#//@ownedType.1" implementationClass="org.eclipse.ocl.library.collection.CollectionIncludesOperation">
+          type="http://www.eclipse.org/ocl/2015/Library#//@ownedType.1" implementationClass="org.eclipse.ocl.pivot.library.collection.CollectionIncludesOperation">
         <templateBinding signature="http://www.eclipse.org/ocl/2015/Library#//@ownedType.3/@ownedTemplateSignature">
           <parameterSubstitution formal="http://www.eclipse.org/ocl/2015/Library#//@ownedType.3/@ownedTemplateSignature/@ownedParameter.0"
               actual="#my!AType"/>

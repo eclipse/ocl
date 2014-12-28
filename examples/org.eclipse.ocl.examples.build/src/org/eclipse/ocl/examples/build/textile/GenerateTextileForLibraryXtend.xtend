@@ -22,7 +22,7 @@ public class GenerateTextileForLibraryXtend extends GenerateTextileForLibraryUti
 		h1(#StandardLibrary). The OCL Standard Library
 		
 		This documentation on the OCL Standard Library is auto-generated from the
-		org.eclipse.ocl.library/model/OCL-2.5.oclstdlib that defines
+		org.eclipse.ocl.pivot/model/OCL-2.5.oclstdlib that defines
 		the behaviour of the Pivot evaluator and the Xtext editors. It is similar to the OCL 2.4 functionality.
 		It is a prototype of functionality for OCL 2.5 where the use of models may eliminate ambiguities.
 		

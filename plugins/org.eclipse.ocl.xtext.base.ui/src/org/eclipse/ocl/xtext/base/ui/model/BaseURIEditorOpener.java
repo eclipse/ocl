@@ -12,8 +12,8 @@ package org.eclipse.ocl.xtext.base.ui.model;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.xtext.ui.editor.GlobalURIEditorOpener;
 

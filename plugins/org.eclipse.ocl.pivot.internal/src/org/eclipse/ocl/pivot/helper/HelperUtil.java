@@ -15,7 +15,7 @@ package org.eclipse.ocl.pivot.helper;
 import org.eclipse.ocl.pivot.EnvironmentInternal;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.OCLExpression;
-import org.eclipse.ocl.pivot.util.PivotInternalPlugin;
+import org.eclipse.ocl.pivot.internal.plugin.PivotInternalPlugin;
 
 /**
  * Utility class in support of the implementation of the {@link OCLHelper}

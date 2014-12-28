@@ -194,7 +194,7 @@ public class ValidateTests extends AbstractValidateTests
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {			
 			getProjectMap().initializeResourceSet(resourceSet);
 		}
-		Resource resource = resourceSet.getResource(URI.createPlatformResourceURI("org.eclipse.ocl.library/model-gen/OCL-2.5.oclas", true), true);
+		Resource resource = resourceSet.getResource(URI.createPlatformResourceURI("org.eclipse.ocl.pivot/model-gen/OCL-2.5.oclas", true), true);
 		assertNoValidationErrors("Validating", ClassUtil.nonNullState(resource));
 	}
 

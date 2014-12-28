@@ -1,0 +1,66 @@
+/*******************************************************************************
+ * Copyright (c) 2012 E.D.Willink and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   E.D.Willink - Initial API and implementation
+ *******************************************************************************/
+package org.eclipse.ocl.pivot.library.executor;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.CompleteInheritance;
+import org.eclipse.ocl.pivot.FeatureFilter;
+import org.eclipse.ocl.pivot.InheritanceFragment;
+import org.eclipse.ocl.pivot.Property;
+
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
+
+
+public class DomainProperties
+{
+	protected final @NonNull CompleteInheritance inheritance;
+	protected final @NonNull Map<String, Property> name2property = new HashMap<String, Property>();
+
+	public DomainProperties(@NonNull CompleteInheritance inheritance) {
+		this.inheritance = inheritance;
+		init(inheritance.getAllSuperFragments());
+	}
+
+	protected void init(@NonNull Iterable<InheritanceFragment> allSuperFragments) {
+		for (InheritanceFragment fragment : allSuperFragments) {
+			for (Property property : fragment.getLocalProperties()) {
+				name2property.put(property.getName(), property);
+			}		
+		}		
+	}
+
+	public @NonNull Iterable<? extends Property> getAllProperties(final @Nullable FeatureFilter featureFilter) {
+		@SuppressWarnings("null")@NonNull Collection<Property> values = name2property.values();
+		if (featureFilter == null) {
+			return values;
+		}
+		@SuppressWarnings("null")
+		@NonNull Iterable<Property> subItOps = Iterables.filter(values,
+			new Predicate<Property>()
+			{
+				@Override
+				public boolean apply(Property domainProperty) {
+					return (domainProperty != null) && featureFilter.accept(domainProperty);
+				}
+			});
+		return subItOps;
+	}
+
+	public @Nullable Property getMemberProperty(@NonNull String name) {
+		return name2property.get(name);
+	}
+}

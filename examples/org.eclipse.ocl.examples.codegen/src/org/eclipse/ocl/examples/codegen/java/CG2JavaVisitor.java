@@ -95,8 +95,6 @@ import org.eclipse.ocl.examples.codegen.cgmodel.util.AbstractExtendingCGModelVis
 import org.eclipse.ocl.examples.codegen.generator.GenModelHelper;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.library.NativeVisitorOperation;
-import org.eclipse.ocl.library.executor.ExecutorDoubleIterationManager;
-import org.eclipse.ocl.library.executor.ExecutorSingleIterationManager;
 import org.eclipse.ocl.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Enumeration;
@@ -121,6 +119,8 @@ import org.eclipse.ocl.pivot.library.LibraryOperation;
 import org.eclipse.ocl.pivot.library.LibraryProperty;
 import org.eclipse.ocl.pivot.library.LibrarySimpleOperation;
 import org.eclipse.ocl.pivot.library.LibraryUntypedOperation;
+import org.eclipse.ocl.pivot.library.executor.ExecutorDoubleIterationManager;
+import org.eclipse.ocl.pivot.library.executor.ExecutorSingleIterationManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;

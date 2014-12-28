@@ -54,10 +54,10 @@ import org.eclipse.ocl.pivot.complete.CompleteInheritanceImpl;
 import org.eclipse.ocl.pivot.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.complete.CompletePackageInternal;
 import org.eclipse.ocl.pivot.complete.StandardLibraryInternal;
+import org.eclipse.ocl.pivot.internal.utilities.IllegalLibraryException;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 
 /**
  * An EnvironmentView provides a selective view of the environment visible at

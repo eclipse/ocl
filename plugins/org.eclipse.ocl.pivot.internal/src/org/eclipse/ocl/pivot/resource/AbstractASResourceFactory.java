@@ -30,20 +30,20 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
+import org.eclipse.ocl.pivot.internal.utilities.AS2MonikerVisitor;
+import org.eclipse.ocl.pivot.internal.utilities.AS2XMIid;
+import org.eclipse.ocl.pivot.internal.utilities.AS2XMIidVisitor;
+import org.eclipse.ocl.pivot.internal.utilities.ASSaver;
+import org.eclipse.ocl.pivot.internal.utilities.ASSaverLocateVisitor;
+import org.eclipse.ocl.pivot.internal.utilities.ASSaverNormalizeVisitor;
+import org.eclipse.ocl.pivot.internal.utilities.ASSaverResolveVisitor;
+import org.eclipse.ocl.pivot.internal.utilities.ToStringVisitor;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.TemplateParameterSubstitutionVisitor;
 import org.eclipse.ocl.pivot.prettyprint.EssentialOCLPrettyPrintVisitor;
 import org.eclipse.ocl.pivot.prettyprint.PrettyPrintVisitor;
 import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
-import org.eclipse.ocl.pivot.utilities.AS2Moniker;
-import org.eclipse.ocl.pivot.utilities.AS2MonikerVisitor;
-import org.eclipse.ocl.pivot.utilities.AS2XMIid;
-import org.eclipse.ocl.pivot.utilities.AS2XMIidVisitor;
-import org.eclipse.ocl.pivot.utilities.ASSaver;
-import org.eclipse.ocl.pivot.utilities.ASSaverLocateVisitor;
-import org.eclipse.ocl.pivot.utilities.ASSaverNormalizeVisitor;
-import org.eclipse.ocl.pivot.utilities.ASSaverResolveVisitor;
-import org.eclipse.ocl.pivot.utilities.ToStringVisitor;
 
 /**
  * AbstractASResourceFactory provides the abstract functionality for creating and maintaining

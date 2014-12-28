@@ -13,7 +13,7 @@ package org.eclipse.ocl.xtext.oclinecore.services;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.xtext.base.services.BaseValueConverterService;
 import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.GrammarUtil;

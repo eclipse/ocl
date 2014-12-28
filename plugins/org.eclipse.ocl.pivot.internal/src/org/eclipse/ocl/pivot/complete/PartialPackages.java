@@ -20,7 +20,7 @@ import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.impl.CompletePackageImpl;
 import org.eclipse.ocl.pivot.impl.PackageImpl;
-import org.eclipse.ocl.pivot.util.PivotInternalPlugin;
+import org.eclipse.ocl.pivot.internal.plugin.PivotInternalPlugin;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
 
 import com.google.common.base.Function;

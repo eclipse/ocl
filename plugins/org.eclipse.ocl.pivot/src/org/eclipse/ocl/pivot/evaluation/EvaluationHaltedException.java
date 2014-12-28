@@ -13,6 +13,7 @@ package org.eclipse.ocl.pivot.evaluation;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.pivot.messages.StatusCodes;
+import org.eclipse.ocl.pivot.plugin.PivotPlugin;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
@@ -46,7 +47,7 @@ public class EvaluationHaltedException extends InvalidValueException
 	 * 
 	 */
 	public EvaluationHaltedException(String message) {
-		this(new BasicDiagnostic(Diagnostic.CANCEL, StatusCodes.PLUGIN_ID,
+		this(new BasicDiagnostic(Diagnostic.CANCEL, PivotPlugin.PLUGIN_ID,
 			StatusCodes.EVALUATION_HALTED, message, null));
 	}
 
@@ -74,7 +75,7 @@ public class EvaluationHaltedException extends InvalidValueException
 	 */
 	public EvaluationHaltedException(String message, Throwable cause) {
 		super(message, cause);
-		diagnostic = new BasicDiagnostic(Diagnostic.ERROR, StatusCodes.PLUGIN_ID,
+		diagnostic = new BasicDiagnostic(Diagnostic.ERROR, PivotPlugin.PLUGIN_ID,
 			StatusCodes.EVALUATION_HALTED, message,
 			new Object[]{cause});
 	}

@@ -20,7 +20,7 @@ import org.eclipse.emf.mwe2.runtime.workflow.*
  */
 Workflow {
 	component = @GenerateLaTeXForLibrary {
-		sourceName="org.eclipse.ocl.library"
+		sourceName="org.eclipse.ocl.pivot"
 		modelFile="model/OCL-2.5.oclstdlib"
 		latexFileName="ocl-standard-library"
 //		labelPrefix="ocl:StandardLibrary:"

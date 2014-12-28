@@ -12,7 +12,7 @@
 package org.eclipse.ocl.examples.debug.evaluator;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.utilities.PivotEnvironment;
+import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironment;
 
 public class OCLVMEnvironment extends PivotEnvironment
 {

@@ -51,7 +51,7 @@ import org.eclipse.ocl.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.TupleType;
-import org.eclipse.ocl.pivot.utilities.AS2Moniker;
+import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
 import org.eclipse.xtext.util.Strings;
 
 @SuppressWarnings("all")

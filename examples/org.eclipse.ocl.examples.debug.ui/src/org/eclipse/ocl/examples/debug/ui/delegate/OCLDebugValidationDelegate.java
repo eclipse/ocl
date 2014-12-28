@@ -24,7 +24,7 @@ import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.delegate.OCLValidationDelegate;
 import org.eclipse.ocl.pivot.evaluation.EvaluationException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.pivot.utilities.ConstraintEvaluator;
+import org.eclipse.ocl.pivot.internal.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 
 /**

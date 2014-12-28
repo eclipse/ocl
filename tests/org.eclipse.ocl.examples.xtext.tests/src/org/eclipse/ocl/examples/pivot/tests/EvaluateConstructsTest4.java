@@ -15,8 +15,8 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
-import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
 import org.eclipse.osgi.util.NLS;
 import org.junit.After;
 import org.junit.Before;

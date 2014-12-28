@@ -21,7 +21,7 @@ import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.PackageId;
-import org.eclipse.ocl.pivot.utilities.IllegalMetamodelException;
+import org.eclipse.ocl.pivot.internal.utilities.IllegalMetamodelException;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 public class CompleteURIs

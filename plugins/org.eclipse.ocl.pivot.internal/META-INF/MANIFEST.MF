@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.ocl.pivot.internal;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: org.eclipse.ocl.pivot.util.PivotInternalPlugin$Implementation
+Bundle-Activator: org.eclipse.ocl.pivot.internal.plugin.PivotInternalPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
@@ -18,10 +18,11 @@ Export-Package: org.eclipse.ocl.pivot,
  org.eclipse.ocl.pivot.executor,
  org.eclipse.ocl.pivot.helper,
  org.eclipse.ocl.pivot.impl,
+ org.eclipse.ocl.pivot.internal.messages,
+ org.eclipse.ocl.pivot.internal.utilities,
  org.eclipse.ocl.pivot.library,
  org.eclipse.ocl.pivot.lookup,
  org.eclipse.ocl.pivot.manager,
- org.eclipse.ocl.pivot.messages,
  org.eclipse.ocl.pivot.model,
  org.eclipse.ocl.pivot.prettyprint,
  org.eclipse.ocl.pivot.registry,
@@ -29,7 +30,6 @@ Export-Package: org.eclipse.ocl.pivot,
  org.eclipse.ocl.pivot.scoping,
  org.eclipse.ocl.pivot.uml,
  org.eclipse.ocl.pivot.util,
- org.eclipse.ocl.pivot.utilities,
  org.eclipse.ocl.pivot.validation
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.5.0,4.0.0)",
  org.eclipse.emf.codegen.ecore;bundle-version="[2.7.0,3.0.0)",
@@ -39,7 +39,7 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.5.0,4.0.0)",
  org.eclipse.uml2.codegen.ecore;bundle-version="[1.8.0,3.0.0)",
  org.eclipse.uml2.uml.resources;bundle-version="[4.0.0,6.0.0)",
  org.eclipse.ocl.common;bundle-version="[1.0.0,2.0.0)";visibility:=reexport,
- org.eclipse.ocl.library;bundle-version="[1.0.0,2.0.0)";visibility:=reexport
+ org.eclipse.ocl.pivot;bundle-version="[1.0.0,2.0.0)";visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Import-Package: com.google.common.base,
  com.google.common.collect,

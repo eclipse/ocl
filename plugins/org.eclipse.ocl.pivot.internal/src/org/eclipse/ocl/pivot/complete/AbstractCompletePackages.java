@@ -21,7 +21,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.impl.NamedElementImpl;
-import org.eclipse.ocl.pivot.util.PivotInternalPlugin;
+import org.eclipse.ocl.pivot.internal.plugin.PivotInternalPlugin;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
 
 public abstract class AbstractCompletePackages extends EObjectContainmentWithInverseEList<CompletePackage>

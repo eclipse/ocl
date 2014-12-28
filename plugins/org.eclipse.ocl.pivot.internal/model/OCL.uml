@@ -568,7 +568,7 @@
   <Ecore:EReference xmi:id="_b3swsH9cEeOrlIuDtf7a6A" isTransient="true" isVolatile="true" isResolveProxies="false"/>
   <Ecore:EReference xmi:id="_j37U8BpPEeSM9LreJtBwBg" isTransient="true" isVolatile="true" isResolveProxies="false"/>
   <Ecore:EReference xmi:id="_mWx9AhpPEeSM9LreJtBwBg" isTransient="true" isVolatile="true" isResolveProxies="false"/>
-  <Ecore:EClass xmi:id="_o2C70DQZEeSSpuK_vlIP6g" instanceClassName="org.eclipse.ocl.library.executor.ReflectivePackage"/>
+  <Ecore:EClass xmi:id="_o2C70DQZEeSSpuK_vlIP6g" instanceClassName="org.eclipse.ocl.pivot.library.executor.ReflectivePackage"/>
   <Ecore:EReference xmi:id="_1I1xoDmUEeSB95ugQCao7g" isTransient="true" base_Property="_O7klUDmUEeSB95ugQCao7g" isResolveProxies="false"/>
   <Ecore:EReference xmi:id="_6uAqYDmUEeSB95ugQCao7g" isTransient="true" base_Property="_UlEkcDmUEeSB95ugQCao7g" isResolveProxies="false"/>
   <Ecore:EReference xmi:id="_4tv5IIROEeSkK9BZX90Ljg" isTransient="true" isResolveProxies="false"/>

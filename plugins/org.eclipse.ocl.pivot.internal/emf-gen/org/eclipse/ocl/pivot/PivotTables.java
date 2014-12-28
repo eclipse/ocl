@@ -21,19 +21,8 @@
 package org.eclipse.ocl.pivot;
 
 import java.lang.String;
+
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.library.ecore.EcoreExecutorEnumeration;
-import org.eclipse.ocl.library.ecore.EcoreExecutorEnumerationLiteral;
-import org.eclipse.ocl.library.ecore.EcoreExecutorPackage;
-import org.eclipse.ocl.library.ecore.EcoreExecutorProperty;
-import org.eclipse.ocl.library.ecore.EcoreExecutorType;
-import org.eclipse.ocl.library.ecore.EcoreLibraryOppositeProperty;
-import org.eclipse.ocl.library.executor.ExecutorFragment;
-import org.eclipse.ocl.library.executor.ExecutorOperation;
-import org.eclipse.ocl.library.executor.ExecutorProperty;
-import org.eclipse.ocl.library.executor.ExecutorPropertyWithImplementation;
-import org.eclipse.ocl.library.executor.ExecutorStandardLibrary;
-import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.ParameterTypes;
 import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.TemplateParameters;
@@ -46,6 +35,18 @@ import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.PropertyId;
 import org.eclipse.ocl.pivot.ids.RootPackageId;
 import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.library.ecore.EcoreExecutorEnumeration;
+import org.eclipse.ocl.pivot.library.ecore.EcoreExecutorEnumerationLiteral;
+import org.eclipse.ocl.pivot.library.ecore.EcoreExecutorPackage;
+import org.eclipse.ocl.pivot.library.ecore.EcoreExecutorProperty;
+import org.eclipse.ocl.pivot.library.ecore.EcoreExecutorType;
+import org.eclipse.ocl.pivot.library.ecore.EcoreLibraryOppositeProperty;
+import org.eclipse.ocl.pivot.library.executor.ExecutorFragment;
+import org.eclipse.ocl.pivot.library.executor.ExecutorOperation;
+import org.eclipse.ocl.pivot.library.executor.ExecutorProperty;
+import org.eclipse.ocl.pivot.library.executor.ExecutorPropertyWithImplementation;
+import org.eclipse.ocl.pivot.library.executor.ExecutorStandardLibrary;
+import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.utilities.TypeUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
@@ -1920,7 +1921,7 @@ public class PivotTables
 			1, TemplateParameters.EMPTY_LIST, null);
 
 		public static final @NonNull ExecutorOperation _Enumeration__allInstances = new ExecutorOperation("allInstances", Parameters._, Types._Enumeration,
-			0, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.library.enumeration.EnumerationAllInstancesOperation.INSTANCE);
+			0, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.enumeration.EnumerationAllInstancesOperation.INSTANCE);
 
 		public static final @NonNull ExecutorOperation _Property__isAttribute = new ExecutorOperation("isAttribute", Parameters._Property, Types._Property,
 			0, TemplateParameters.EMPTY_LIST, null);
@@ -1937,7 +1938,7 @@ public class PivotTables
 			0, TemplateParameters.EMPTY_LIST, null);
 
 		public static final @NonNull ExecutorOperation _Type__conformsTo = new ExecutorOperation("conformsTo", Parameters._Type, Types._Type,
-			0, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.library.classifier.OclTypeConformsToOperation.INSTANCE);
+			0, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.classifier.OclTypeConformsToOperation.INSTANCE);
 		public static final @NonNull ExecutorOperation _Type__flattenedType = new ExecutorOperation("flattenedType", Parameters._, Types._Type,
 			1, TemplateParameters.EMPTY_LIST, null);
 		public static final @NonNull ExecutorOperation _Type__isClass = new ExecutorOperation("isClass", Parameters._, Types._Type,

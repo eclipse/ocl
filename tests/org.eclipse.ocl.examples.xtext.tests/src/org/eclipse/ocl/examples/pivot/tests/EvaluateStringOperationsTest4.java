@@ -16,8 +16,8 @@ import java.util.Collection;
 import java.util.regex.PatternSyntaxException;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
-import org.eclipse.ocl.pivot.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.osgi.util.NLS;
 import org.junit.After;

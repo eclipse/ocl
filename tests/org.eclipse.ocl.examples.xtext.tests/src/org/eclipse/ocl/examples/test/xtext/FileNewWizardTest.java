@@ -35,7 +35,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ocl.examples.test.xtext.models.ParserModels;
-import org.eclipse.ocl.library.LibraryConstants;
+import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.xtext.base.ui.messages.BaseUIMessages;
 import org.eclipse.ocl.xtext.base.ui.wizards.AbstractFileNewWizardPage;
 import org.eclipse.ocl.xtext.completeocl.ui.messages.CompleteOCLUIMessages;

@@ -41,6 +41,8 @@ import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.complete.StandardLibraryInternal;
+import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceAdapter;
@@ -48,8 +50,6 @@ import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.pivot.model.OCLMetaModel;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResourceFactoryRegistry;
-import org.eclipse.ocl.pivot.utilities.AS2Moniker;
-import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ProjectMap;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
@@ -258,7 +258,7 @@ public class OCLstdlibTests extends XtextTestCase
 		//	Load OCL stdlib as a file.
 		//
 		new ProjectMap().initializeResourceSet(resourceSet);
-		URI libraryURI = URI.createPlatformResourceURI("org.eclipse.ocl.library/model/OCL-2.5.oclstdlib", true);
+		URI libraryURI = URI.createPlatformResourceURI("org.eclipse.ocl.pivot/model/OCL-2.5.oclstdlib", true);
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(libraryURI);
 		JavaClassScope.getAdapter(xtextResource, getClass().getClassLoader());
 		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
@@ -362,7 +362,7 @@ public class OCLstdlibTests extends XtextTestCase
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {			
 			new ProjectMap().initializeResourceSet(resourceSet);
 		}
-		URI libraryURI = URI.createPlatformResourceURI("org.eclipse.ocl.library/model-gen/OCL-2.5.oclas", true);
+		URI libraryURI = URI.createPlatformResourceURI("org.eclipse.ocl.pivot/model-gen/OCL-2.5.oclas", true);
 		//
 		//	Load 'oclstdlib.oclstdlib' as pre-code-generated Java.
 		//

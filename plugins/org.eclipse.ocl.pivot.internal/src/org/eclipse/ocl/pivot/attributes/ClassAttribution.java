@@ -14,10 +14,10 @@ package org.eclipse.ocl.pivot.attributes;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.internal.utilities.Pivotable;
 import org.eclipse.ocl.pivot.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.scoping.ScopeView;
-import org.eclipse.ocl.pivot.utilities.Pivotable;
 
 public class ClassAttribution extends AbstractAttribution
 {

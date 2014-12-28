@@ -15,11 +15,6 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.library.LibraryConstants;
-import org.eclipse.ocl.library.ecore.EcoreExecutorPackage;
-import org.eclipse.ocl.library.executor.ExecutableStandardLibrary;
-import org.eclipse.ocl.library.executor.ExecutorType;
-import org.eclipse.ocl.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.CompletePackage;
@@ -28,8 +23,13 @@ import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.library.LibraryConstants;
+import org.eclipse.ocl.pivot.library.ecore.EcoreExecutorPackage;
+import org.eclipse.ocl.pivot.library.executor.ExecutableStandardLibrary;
+import org.eclipse.ocl.pivot.library.executor.ExecutorType;
 import org.eclipse.ocl.pivot.manager.MetaModelManageable;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary implements MetaModelManageable

@@ -7,9 +7,16 @@
 <plugin>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/ocl/2015/Library"
+            class="org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage"
+            genModel="model/oclstdlib.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated Values NOT -->
       <!--package
-            uri="http://ww.eclipse.org/oc;/2015/Values"
+            uri="http://ww.eclipse.org/ocl/2015/Values"
             class="org.eclipse.ocl.pivot.values.ValuesPackage"
             genModel="model/Values.genmodel"/-->
       <package

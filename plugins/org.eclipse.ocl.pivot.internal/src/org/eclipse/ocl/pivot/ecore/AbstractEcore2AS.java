@@ -29,9 +29,9 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.compatibility.UML_4_2;
+import org.eclipse.ocl.pivot.internal.utilities.AbstractConversion;
+import org.eclipse.ocl.pivot.internal.utilities.External2AS;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.utilities.AbstractConversion;
-import org.eclipse.ocl.pivot.utilities.External2AS;
 
 public abstract class AbstractEcore2AS extends AbstractConversion implements External2AS, PivotConstantsInternal
 {

@@ -158,9 +158,9 @@
       <generator for="org.eclipse.ocl.pivot.uml.UMLElementExtension"
       	class="org.eclipse.ocl.pivot.uml.UMLElementExtensionLabelGenerator"/>
       <generator for="org.eclipse.ocl.pivot.ExpressionInOCL"
-      	class="org.eclipse.ocl.pivot.utilities.ExpressionInOCLLabelGenerator"/>
+      	class="org.eclipse.ocl.pivot.internal.utilities.ExpressionInOCLLabelGenerator"/>
       <generator for="org.eclipse.ocl.pivot.Model"
-      	class="org.eclipse.ocl.pivot.utilities.ModelLabelGenerator"/>
+      	class="org.eclipse.ocl.pivot.internal.utilities.ModelLabelGenerator"/>
    </extension>
 
 </plugin>

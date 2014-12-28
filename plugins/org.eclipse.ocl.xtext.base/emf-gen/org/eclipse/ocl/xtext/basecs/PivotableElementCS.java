@@ -11,7 +11,7 @@
 package org.eclipse.ocl.xtext.basecs;
 
 import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.utilities.Pivotable;
+import org.eclipse.ocl.pivot.internal.utilities.Pivotable;
 
 /**
  * <!-- begin-user-doc -->

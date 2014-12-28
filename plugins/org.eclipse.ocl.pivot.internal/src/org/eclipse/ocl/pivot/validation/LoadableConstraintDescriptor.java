@@ -29,9 +29,9 @@ import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.internal.plugin.PivotInternalPlugin;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
-import org.eclipse.ocl.pivot.util.PivotInternalPlugin;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**

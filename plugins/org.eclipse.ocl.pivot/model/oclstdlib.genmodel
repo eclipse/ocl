@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    copyrightText="Copyright (c) 2010,2014 E.D.Willink and others.&#xD;&#xA;All rights reserved. This program and the accompanying materials&#xD;&#xA;are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;which accompanies this distribution, and is available at&#xD;&#xA;http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;&#xD;&#xA;Contributors:&#xD;&#xA;  E.D.Willink - Initial API and implementation"
+    modelDirectory="/org.eclipse.ocl.pivot/emf-gen" editDirectory="/org.eclipse.ocl.pivot.edit/emf-gen"
+    editorDirectory="/org.eclipse.ocl.pivot.editor/emf-gen" modelPluginID="org.eclipse.ocl.pivot"
+    modelName="OCLstdlib" nonNLSMarkers="true" suppressInterfaces="true" importerID="org.eclipse.emf.importer.ecore"
+    bundleManifest="false" complianceLevel="6.0" copyrightFields="false" runtimeVersion="2.7"
+    interfaceNamePattern="">
+  <genAnnotations source="http://www.eclipse.org/OCL/GenModel">
+    <details key="Use Delegates" value="false"/>
+    <details key="Use Null Annotations" value="true"/>
+  </genAnnotations>
+  <foreignModel>../model-gen/oclstdlib.ecore</foreignModel>
+  <modelPluginVariables>org.eclipse.ocl.pivot</modelPluginVariables>
+  <modelPluginVariables>org.eclipse.ocl.examples.codegen</modelPluginVariables>
+  <modelPluginVariables>org.eclipse.jdt.annotation</modelPluginVariables>
+  <genPackages prefix="OCLstdlib" basePackage="org.eclipse.ocl.pivot" disposableProviderFactory="true"
+      ecorePackage="../model-gen/oclstdlib.ecore#/">
+    <genDataTypes ecoreDataType="../model-gen/oclstdlib.ecore#//Boolean"/>
+    <genDataTypes ecoreDataType="../model-gen/oclstdlib.ecore#//Integer"/>
+    <genDataTypes ecoreDataType="../model-gen/oclstdlib.ecore#//Real"/>
+    <genDataTypes ecoreDataType="../model-gen/oclstdlib.ecore#//String"/>
+    <genDataTypes ecoreDataType="../model-gen/oclstdlib.ecore#//UnlimitedNatural"/>
+    <genDataTypes ecoreDataType="../model-gen/oclstdlib.ecore#//Bag">
+      <genTypeParameters ecoreTypeParameter="../model-gen/oclstdlib.ecore#//Bag/T"/>
+    </genDataTypes>
+    <genDataTypes ecoreDataType="../model-gen/oclstdlib.ecore#//Collection">
+      <genTypeParameters ecoreTypeParameter="../model-gen/oclstdlib.ecore#//Collection/T"/>
+    </genDataTypes>
+    <genDataTypes ecoreDataType="../model-gen/oclstdlib.ecore#//OrderedSet">
+      <genTypeParameters ecoreTypeParameter="../model-gen/oclstdlib.ecore#//OrderedSet/T"/>
+    </genDataTypes>
+    <genDataTypes ecoreDataType="../model-gen/oclstdlib.ecore#//Sequence">
+      <genTypeParameters ecoreTypeParameter="../model-gen/oclstdlib.ecore#//Sequence/T"/>
+    </genDataTypes>
+    <genDataTypes ecoreDataType="../model-gen/oclstdlib.ecore#//Set">
+      <genTypeParameters ecoreTypeParameter="../model-gen/oclstdlib.ecore#//Set/T"/>
+    </genDataTypes>
+    <genDataTypes ecoreDataType="../model-gen/oclstdlib.ecore#//UniqueCollection">
+      <genTypeParameters ecoreTypeParameter="../model-gen/oclstdlib.ecore#//UniqueCollection/T"/>
+    </genDataTypes>
+    <genDataTypes ecoreDataType="../model-gen/oclstdlib.ecore#//OclAny"/>
+    <genClasses ecoreClass="../model-gen/oclstdlib.ecore#//OclInvalid"/>
+    <genClasses ecoreClass="../model-gen/oclstdlib.ecore#//OclVoid"/>
+  </genPackages>
+</genmodel:GenModel>

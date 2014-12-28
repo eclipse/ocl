@@ -13,8 +13,6 @@ package org.eclipse.ocl.pivot.messages;
 
 public final class StatusCodes
 {	
-	public static final String PLUGIN_ID = "org.eclipse.ocl.domain";	
-
 	public static final int OK = 0;
 
 	public static final int ERROR = 4;

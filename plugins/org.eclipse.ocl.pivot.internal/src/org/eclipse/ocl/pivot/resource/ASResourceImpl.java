@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.xmi.XMLSave;
 import org.eclipse.emf.ecore.xmi.impl.XMIHelperImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.utilities.PivotSaveImpl;
+import org.eclipse.ocl.pivot.internal.utilities.PivotSaveImpl;
 
 public class ASResourceImpl extends XMIResourceImpl implements ASResource
 {

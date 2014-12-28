@@ -11,7 +11,7 @@
 package org.eclipse.ocl.xtext.base.services;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.xtext.resource.impl.DefaultResourceServiceProvider;
 
 /**

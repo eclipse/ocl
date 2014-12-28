@@ -73,10 +73,10 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreGeneratorAdapterFactory;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestSuite;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
-import org.eclipse.ocl.library.oclstdlib.OCLstdlibPackage;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.helper.OCLHelper;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
@@ -276,7 +276,7 @@ public class UsageTests
 		if (usedGenPackages != null) {
 			s.append(usedGenPackages + " ");
 		}
-		s.append("platform:/resource/org.eclipse.ocl.library/model/oclstdlib.genmodel#//oclstdlib\"\n");
+		s.append("platform:/resource/org.eclipse.ocl.pivot/model/oclstdlib.genmodel#//oclstdlib\"\n");
 		s.append("    updateClasspath=\"false\">\n");
 		s.append("  <genAnnotations source=\"http://www.eclipse.org/OCL/GenModel\">\n");
 		s.append("    <details key=\"Use Delegates\" value=\"false\"/>\n");
@@ -342,7 +342,6 @@ public class UsageTests
 		classpathProjects.add("org.eclipse.emf.common");
 		classpathProjects.add("org.eclipse.emf.ecore");
 		classpathProjects.add("org.eclipse.ocl.pivot");
-		classpathProjects.add("org.eclipse.ocl.library");
 		classpathProjects.add("org.eclipse.ocl.pivot.internal");
 		classpathProjects.add("org.eclipse.ocl.jdt.annotation7");
 		for (String extraClasspathProject : extraClasspathProjects) {

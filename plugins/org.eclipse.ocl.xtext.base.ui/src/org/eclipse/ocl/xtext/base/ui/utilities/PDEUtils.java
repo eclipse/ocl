@@ -17,8 +17,8 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.plugin.PivotPlugin;
 import org.eclipse.ocl.pivot.registry.CompleteOCLRegistry;
-import org.eclipse.ocl.pivot.util.PivotInternalPlugin;
 import org.eclipse.osgi.service.resolver.BundleDescription;
 import org.eclipse.pde.core.plugin.IPluginAttribute;
 import org.eclipse.pde.core.plugin.IPluginElement;
@@ -42,7 +42,7 @@ public class PDEUtils
 			if (activeModel != null) {
 				for (IPluginExtension pluginExtension : activeModel.getExtensions().getExtensions()) {
 					String point = pluginExtension.getPoint();
-					if (PivotInternalPlugin.COMPLETE_OCL_REGISTRY_QPID.equals(point)) {
+					if (PivotPlugin.COMPLETE_OCL_REGISTRY_QPID.equals(point)) {
 						URI location = getLocation(activeModel);
 						readCompleteOCLRegistryExtensionPoints(registry, location, pluginExtension);
 					}

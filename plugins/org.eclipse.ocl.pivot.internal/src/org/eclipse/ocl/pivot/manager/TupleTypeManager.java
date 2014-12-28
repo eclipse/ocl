@@ -35,9 +35,9 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.impl.TuplePartImpl;
 import org.eclipse.ocl.pivot.impl.TupleTypeImpl;
 import org.eclipse.ocl.pivot.impl.TypedElementImpl;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.values.TemplateParameterSubstitutions;
 
 /**

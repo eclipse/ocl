@@ -18,13 +18,19 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.jdt.annotation.NonNull;
 
 public final class PivotPlugin extends EMFPlugin
 {
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.ocl.domain";
-	public static final PivotPlugin INSTANCE = new PivotPlugin();
-	public static final String LABEL_GENERATOR_PPID = "label_generator";
+	public static final @NonNull String PLUGIN_ID = "org.eclipse.ocl.pivot";
+	public static final @NonNull PivotPlugin INSTANCE = new PivotPlugin();
+
+	public static final @NonNull String LABEL_GENERATOR_PPID = "label_generator";
+	public static final @NonNull String STANDARD_LIBRARY_PPID = "standard_library";
+	public static final @NonNull String COMPLETE_OCL_REGISTRY_PID = "complete_ocl_registry";
+	public static final @NonNull String COMPLETE_OCL_REGISTRY_QPID = PLUGIN_ID + "." + COMPLETE_OCL_REGISTRY_PID;
+
 	private static Implementation plugin;
 
 	public PivotPlugin() {

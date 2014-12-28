@@ -18,7 +18,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.plugin.RegistryReader;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.util.PivotInternalPlugin;
+import org.eclipse.ocl.pivot.plugin.PivotPlugin;
 
 /**
  * A plugin extension reader that populates the Complete OCL resource registry.
@@ -35,7 +35,7 @@ class CompleteOCLRegistryReader extends RegistryReader
 	protected final @NonNull CompleteOCLRegistry registry;
 
 	public CompleteOCLRegistryReader(@NonNull CompleteOCLRegistry registry) {
-		super(Platform.getExtensionRegistry(), PivotInternalPlugin.PLUGIN_ID, PivotInternalPlugin.COMPLETE_OCL_REGISTRY_PID);
+		super(Platform.getExtensionRegistry(), PivotPlugin.PLUGIN_ID, PivotPlugin.COMPLETE_OCL_REGISTRY_PID);
 		this.registry = registry;
 	}
 

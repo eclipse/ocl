@@ -143,11 +143,11 @@ import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.Vertex;
 import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.WildcardType;
+import org.eclipse.ocl.pivot.internal.utilities.MorePivotable;
+import org.eclipse.ocl.pivot.internal.utilities.Pivotable;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
 import org.eclipse.ocl.pivot.util.PivotValidator;
 import org.eclipse.ocl.pivot.util.Visitable;
-import org.eclipse.ocl.pivot.utilities.MorePivotable;
-import org.eclipse.ocl.pivot.utilities.Pivotable;
 
 /**
  * <!-- begin-user-doc -->

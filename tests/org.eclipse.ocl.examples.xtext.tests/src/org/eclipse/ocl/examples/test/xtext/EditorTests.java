@@ -36,12 +36,12 @@ import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseLogger;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
-import org.eclipse.ocl.library.LibraryConstants;
 import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.PivotConstantsInternal;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtilInternal;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
@@ -281,7 +281,7 @@ public class EditorTests extends XtextTestCase
 	}	
 	
 	public void testEditor_OpenOCLStdLibEditor4OCL_OCLstdlib() throws Exception {
-		URI uri = URI.createPlatformPluginURI("org.eclipse.ocl.library/model/OCL-2.5.oclstdlib", true);
+		URI uri = URI.createPlatformPluginURI("org.eclipse.ocl.pivot/model/OCL-2.5.oclstdlib", true);
 		String documentText = doTestEditor(OCLstdlibUiModule.EDITOR_ID, uri);
 		assertTrue(documentText.contains("type UniqueCollection(T) : CollectionType conformsTo Collection(T) {"));
 	}	

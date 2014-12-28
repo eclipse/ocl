@@ -19,8 +19,8 @@ import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.PrimitiveType;
-import org.eclipse.ocl.pivot.utilities.AS2XMIid;
-import org.eclipse.ocl.pivot.utilities.AS2XMIidVisitor;
+import org.eclipse.ocl.pivot.internal.utilities.AS2XMIid;
+import org.eclipse.ocl.pivot.internal.utilities.AS2XMIidVisitor;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 public class CompleteOCLAS2XMIidVisitor extends AS2XMIidVisitor
