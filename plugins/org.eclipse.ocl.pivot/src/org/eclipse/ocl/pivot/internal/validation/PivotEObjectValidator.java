@@ -45,7 +45,6 @@ import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.utilities.ConstraintEvaluator;
-import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -107,7 +106,7 @@ public class PivotEObjectValidator implements EValidator
 		
 		public ValidationAdapter(@NonNull MetamodelManager metamodelManager) {
 			this.metamodelManager = metamodelManager;
-			this.environmentFactory = new PivotEnvironmentFactory(null, metamodelManager);
+			this.environmentFactory = metamodelManager.getEnvironmentFactory();
 			this.rootEnvironment = environmentFactory.createEnvironment();
 		}
 

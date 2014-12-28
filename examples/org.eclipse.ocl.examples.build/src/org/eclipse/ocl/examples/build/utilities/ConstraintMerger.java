@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
@@ -41,6 +40,7 @@ import org.eclipse.ocl.pivot.internal.library.StandardLibraryContribution;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.manager.Orphanage;
+import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
@@ -84,10 +84,10 @@ public class ConstraintMerger extends AbstractProjectComponent
 		EPackage ecorePivotPackage = (EPackage) ecoreResource.getContents().get(0);
 		final String pivotNsURI = ClassUtil.nonNullState(ecorePivotPackage.getNsURI());
 //		IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(URI.createURI(pivotNsURI));
-		ResourceSet resourceSet = new ResourceSetImpl();
 //		packageDescriptor.setUseModel(true, null);				// Hide packages installed by CompleteOCLStandaloneSetup
 			
-		MetamodelManager metamodelManager = MetamodelManager.getAdapter(resourceSet);
+		MetamodelManager metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
+		ResourceSet asResourceSet = metamodelManager.getASResourceSet();
 //		metamodelManager.setLibraryLoadInProgress(true);
 		metamodelManager.getExternalResourceSet().getResources().add(ecoreResource);		// Don't load another copy
 		metamodelManager.getStandardLibrary().setDefaultStandardLibraryURI(pivotNsURI);
@@ -110,7 +110,7 @@ public class ConstraintMerger extends AbstractProjectComponent
 			EssentialOCLCSResource xtextResource = ClassUtil.nonNullState((EssentialOCLCSResource) metamodelManager.getExternalResourceSet().createResource(inputURI, null));
 			MetamodelManagerResourceAdapter.getAdapter(xtextResource, metamodelManager);
 			xtextResource.load(null);
-			ResourceUtils.checkResourceSet(resourceSet);
+			ResourceUtils.checkResourceSet(asResourceSet);
 //			CS2ASResourceAdapter cs2as = CS2ASResourceAdapter.getAdapter(xtextResource, metamodelManager);
 //			Resource oclResource = cs2as.getPivotResource(xtextResource);
 //			Set<Resource> primaryPivotResources = new HashSet<Resource>();

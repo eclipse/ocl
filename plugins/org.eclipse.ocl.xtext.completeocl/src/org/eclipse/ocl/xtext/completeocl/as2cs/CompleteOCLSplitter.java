@@ -47,10 +47,10 @@ import org.eclipse.ocl.pivot.utilities.NameUtil;
  */
 public class CompleteOCLSplitter
 {
-	public static @Nullable ASResource separate(@NonNull MetamodelManager metamodelManager, @NonNull Resource resource) {
+	public static @Nullable ASResource separate(@NonNull MetamodelManager metamodelManager, @NonNull Resource asResource) {
 		List<Constraint> allConstraints = new ArrayList<Constraint>();
 		List<LanguageExpression> allExpressionInOCLs = new ArrayList<LanguageExpression>();
-		for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
+		for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
 			if (eObject instanceof Constraint) {
 				allConstraints.add((Constraint) eObject);
@@ -74,10 +74,10 @@ public class CompleteOCLSplitter
 		if (allConstraints.isEmpty()) {
 			return null;
 		}
-		URI uri = resource.getURI();
+		URI uri = asResource.getURI();
 		@SuppressWarnings("null")@NonNull URI oclURI = PivotUtilInternal.getNonASURI(uri).appendFileExtension("ocl");
 		URI oclASuri = PivotUtilInternal.getASURI(oclURI);	// xxx.ocl.ocl.oclas
-		ASResource oclResource = (ASResource) resource.getResourceSet().createResource(oclASuri, ASResource.COMPLETE_OCL_CONTENT_TYPE);	
+		ASResource oclResource = (ASResource) asResource.getResourceSet().createResource(oclASuri, ASResource.COMPLETE_OCL_CONTENT_TYPE);	
 		if (oclResource != null) {
 			Separator separator = new Separator(metamodelManager, oclResource);
 			for (Constraint constraint : allConstraints) {

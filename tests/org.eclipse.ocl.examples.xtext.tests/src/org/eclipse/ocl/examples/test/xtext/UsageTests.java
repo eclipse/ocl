@@ -76,6 +76,7 @@ import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.internal.helper.OCLHelper;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -328,7 +329,8 @@ public class UsageTests
 			project.open(null);
 			createManifest(project, testProjectName);
 		}
-		MetamodelManager metamodelManager2 = new MetamodelManager(getProjectMap());
+		PivotEnvironmentFactory environmentFactory2 = new PivotEnvironmentFactory(getProjectMap(), null);
+		MetamodelManager metamodelManager2 = environmentFactory2.getMetamodelManager();
 		createEcoreFile(metamodelManager2, testFileStem, oclinecoreFile);
 		createGenModelFile(testFileStem + ".genmodel", genmodelFile);
 		URI fileURI = getProjectFileURI(testFileStem + ".genmodel");
@@ -464,7 +466,8 @@ public class UsageTests
 		URI fileURI = genmodelURI; //getProjectFileURI(testFileStem + ".genmodel");
 		// System.out.println("Generating Ecore Model using '" + fileURI + "'");
 //		metamodelManager2.dispose();
-		MetamodelManager metamodelManager = new MetamodelManager(getProjectMap());
+		PivotEnvironmentFactory environmentFactory = new PivotEnvironmentFactory(getProjectMap(), null);
+		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
 		StandaloneProjectMap projectMap = metamodelManager.getProjectMap();
 		projectMap.configure(resourceSet, StandaloneProjectMap.LoadFirstStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);

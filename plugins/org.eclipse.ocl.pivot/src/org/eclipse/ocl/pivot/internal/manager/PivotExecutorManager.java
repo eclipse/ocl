@@ -32,7 +32,7 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 public class PivotExecutorManager extends ExecutorManager
 {
 	protected final @NonNull MetamodelManager metamodelManager;
-	protected final @NonNull PivotIdResolver idResolver;
+	protected final @NonNull IdResolver idResolver;
 	protected final @NonNull EObject contextObject;
 	private @Nullable ModelManager modelManager = null;
 

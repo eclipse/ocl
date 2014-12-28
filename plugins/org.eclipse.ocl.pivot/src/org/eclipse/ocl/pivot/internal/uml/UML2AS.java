@@ -61,6 +61,7 @@ import org.eclipse.ocl.pivot.internal.ecore.AbstractEcore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.internal.utilities.AliasAdapter;
+import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
@@ -107,7 +108,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 	public static @NonNull UML2AS getAdapter(@NonNull Resource resource, @Nullable MetamodelManager metamodelManager) {
 		UML2AS adapter;
 		if (metamodelManager == null) {
-			metamodelManager = new MetamodelManager();
+			metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
 		}
 		else {
 			adapter = findAdapter(resource, metamodelManager);

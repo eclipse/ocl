@@ -52,8 +52,8 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.PivotIdResolver;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
@@ -89,7 +89,7 @@ public class UMLUIConstraintLocator extends UMLConstraintLocator implements Cons
 		 * Returns its URI.
 		 */
 		protected @NonNull URI createDocument(IProgressMonitor monitor) throws IOException, CoreException {
-			PivotIdResolver idResolver = metamodelManager.getIdResolver();
+			IdResolver idResolver = metamodelManager.getIdResolver();
 			org.eclipse.ocl.pivot.Class staticType = idResolver.getStaticTypeOf(contextObject);
 			org.eclipse.ocl.pivot.Class contextType = metamodelManager.getType(staticType);
 //			if (contextType instanceof Metaclass) {

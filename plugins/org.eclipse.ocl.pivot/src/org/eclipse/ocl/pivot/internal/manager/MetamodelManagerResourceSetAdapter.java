@@ -18,6 +18,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
@@ -35,7 +36,7 @@ public class MetamodelManagerResourceSetAdapter implements MetamodelManagedAdapt
 		MetamodelManagerResourceSetAdapter adapter = ClassUtil.getAdapter(MetamodelManagerResourceSetAdapter.class, eAdapters);
 		if (adapter == null) {
 			if (metamodelManager == null) {
-				metamodelManager = new MetamodelManager();
+				metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
 			}
 			adapter = new MetamodelManagerResourceSetAdapter(resourceSet, metamodelManager);
 			eAdapters.add(adapter);

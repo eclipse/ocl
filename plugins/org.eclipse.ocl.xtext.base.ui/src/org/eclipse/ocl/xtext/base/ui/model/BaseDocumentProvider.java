@@ -48,6 +48,7 @@ import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerListener;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.resource.OCLASResourceFactory;
+import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.resource.ProjectMap;
@@ -174,7 +175,7 @@ public abstract class BaseDocumentProvider extends XtextDocumentProvider impleme
 	@SuppressWarnings("null")
 	protected @NonNull MetamodelManager getMetamodelManager() {
 		if (metamodelManager == null) {
-			metamodelManager = new MetamodelManager();
+			metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
 			metamodelManager.addListener(this);
 		}
 		return metamodelManager;

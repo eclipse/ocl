@@ -4,10 +4,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.helper.OCLHelper;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironment;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.CSResource;
@@ -90,7 +90,7 @@ public class OCLUI
 			return metamodelManager;
 		}
 		if (metamodelManager == null) {
-			metamodelManager = new MetamodelManager();
+			metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
 		}
 		return metamodelManager;
 	}
@@ -101,12 +101,11 @@ public class OCLUI
 	public static Object evaluate(@Nullable EObject selfObject, @NonNull String oclExpression) throws Exception {
 		MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(selfObject);
 		if (metamodelManager == null) {
-			metamodelManager = new MetamodelManager();
+			metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
 			// FIXME install
 		}
-		PivotEnvironmentFactory envFactory = new PivotEnvironmentFactory(null, metamodelManager);
-		PivotEnvironment environment = envFactory.createEnvironment();
-		OCL ocl = OCL.newInstance(environment);
+		EnvironmentFactoryInternal envFactory = metamodelManager.getEnvironmentFactory();
+		OCL ocl = OCL.newInstance(envFactory);
 		OCLHelper oclHelper = ocl.createOCLHelper(selfObject);
 		if (selfObject != null) {
 			oclHelper.setContext(selfObject.eClass());

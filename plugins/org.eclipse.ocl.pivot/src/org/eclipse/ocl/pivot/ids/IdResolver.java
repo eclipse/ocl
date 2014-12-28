@@ -15,6 +15,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -39,6 +40,8 @@ import org.eclipse.ocl.pivot.values.SetValue;
  */
 public interface IdResolver extends IdVisitor<Element>
 {
+	void addRoot(@NonNull EObject eObject);
+	
 	@Nullable Object boxedValueOf(@Nullable Object unboxedValue);
 	
 	@Nullable Object boxedValueOf(@NonNull Object unboxedValue, @Nullable EClassifier eClassifier);
@@ -88,6 +91,8 @@ public interface IdResolver extends IdVisitor<Element>
 	@NonNull org.eclipse.ocl.pivot.Class getJavaType(@NonNull Class<?> javaClass);
 
 	@NonNull Operation getOperation(@NonNull OperationId operationId);
+	
+	@NonNull org.eclipse.ocl.pivot.Package getPackage(@NonNull PackageId packageId);
 
 	@NonNull Property getProperty(@NonNull PropertyId propertyId);
 

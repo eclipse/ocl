@@ -47,6 +47,7 @@ import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.resource.ASSaver;
+import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
@@ -198,18 +199,22 @@ public abstract class GenerateOCLmetamodel extends GenerateOCLCommonXtend
 		}
 		@SuppressWarnings("null")@NonNull URI nsURI = URI.createURI(PivotPackage.eNS_URI);
 		IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(nsURI);
-	    if (packageDescriptor != null) {
-	    	packageDescriptor.configure(resourceSet, LoadDynamicResourceStrategy.INSTANCE, null);
-	    }
+//	    if (packageDescriptor != null) {
+//	    	packageDescriptor.configure(asResourceSet, LoadDynamicResourceStrategy.INSTANCE, null);
+//	    }
 		assert modelFile != null;
 		URI inputURI = projectDescriptor.getPlatformResourceURI(modelFile);
 		File outputFolder = projectDescriptor.getLocationFile(javaFolder + '/' + javaPackageName.replace('.', '/'));
 		OCLstdlib.install();
 		log.info("Loading Pivot Model '" + inputURI);
 		try {
-			MetamodelManager metamodelManager = MetamodelManager.getAdapter(resourceSet);
+			MetamodelManager metamodelManager = new PivotEnvironmentFactory(projectMap, null).getMetamodelManager();
+			ResourceSet asResourceSet = metamodelManager.getASResourceSet();
+		    if (packageDescriptor != null) {
+		    	packageDescriptor.configure(asResourceSet, LoadDynamicResourceStrategy.INSTANCE, null);
+		    }
 			NameQueries.setMetamodelManager(metamodelManager);
-			Resource ecoreResource = ClassUtil.nonNullState(resourceSet.getResource(inputURI, true));
+			Resource ecoreResource = ClassUtil.nonNullState(asResourceSet.getResource(inputURI, true));
 			MetamodelManagerResourceAdapter.getAdapter(ecoreResource, metamodelManager);
 			String ecoreErrorsString = PivotUtil.formatResourceDiagnostics(ClassUtil.nonNullEMF(ecoreResource.getErrors()), "Loading " + inputURI, "\n");
 			if (ecoreErrorsString != null) {

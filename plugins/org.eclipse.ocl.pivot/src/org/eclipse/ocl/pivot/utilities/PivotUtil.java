@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.AnyType;
@@ -825,13 +824,9 @@ public class PivotUtil
 	 *
 	 * @throws ParserException if eObject cannot be converted to a Pivot element
 	 */
-	public static boolean setParserContext(@NonNull CSResource resource, @NonNull EObject eObject, Object... todoParameters) throws ParserException {
-		AbstractMetamodelManagerResourceAdapter<?> adapter = MetamodelManagerResourceAdapter.findAdapter(resource);
-		MetamodelManager metamodelManager = adapter != null ? adapter.getMetamodelManager() : null;
-		if (metamodelManager == null) {
-			ResourceSet resourceSet = ClassUtil.nonNullState(resource.getResourceSet());
-			metamodelManager = MetamodelManager.getAdapter(resourceSet);
-		}
+	public static boolean setParserContext(@NonNull CSResource csResource, @NonNull EObject eObject, Object... todoParameters) throws ParserException {
+		AbstractMetamodelManagerResourceAdapter<?> adapter = MetamodelManagerResourceAdapter.getAdapter(csResource, null);
+		MetamodelManager metamodelManager = adapter.getMetamodelManager();
 		Element pivotElement;
 		if (eObject instanceof Element) {
 			pivotElement = (Element) eObject;
@@ -850,7 +845,7 @@ public class PivotUtil
 			return false;
 		}
 		else {
-			resource.setParserContext(parserContext);
+			csResource.setParserContext(parserContext);
 			return true;
 		}
 	}

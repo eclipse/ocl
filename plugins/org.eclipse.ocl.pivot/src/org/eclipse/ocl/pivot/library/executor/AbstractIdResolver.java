@@ -295,6 +295,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		}
 	}
 
+	@Override
 	public void addRoot(@NonNull EObject eObject) {
 		directRoots.add(eObject);
 	}
@@ -748,6 +749,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		throw new IllegalStateException("No " + operationId); //$NON-NLS-1$
 	}
 
+	@Override
 	public @NonNull org.eclipse.ocl.pivot.Package getPackage(@NonNull PackageId packageId) {
 		Element element = packageId.accept(this);
 		if (element instanceof org.eclipse.ocl.pivot.Package) {

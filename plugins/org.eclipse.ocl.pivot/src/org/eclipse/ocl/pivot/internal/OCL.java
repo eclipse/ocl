@@ -37,8 +37,8 @@ import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.SemanticException;
 import org.eclipse.ocl.pivot.StandardLibrary;
-import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.evaluation.EvaluationHaltedException;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.ecore.AS2Ecore;
 import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
@@ -52,6 +52,7 @@ import org.eclipse.ocl.pivot.internal.uml.UML2AS;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.CSResource;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ObjectUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
@@ -102,7 +103,7 @@ public class OCL {
      * @return the new <code>OCL</code>
      */
 	public static @NonNull OCL newInstance() {
-		return newInstance(new PivotEnvironmentFactory(null, new MetamodelManager()));
+		return newInstance(new PivotEnvironmentFactory(null, null));
 	}
 	
     /**
@@ -112,8 +113,19 @@ public class OCL {
      * @param reg Ecore package registry
      * @return the new <code>OCL</code>
      */
+	public static @NonNull OCL newInstance(@Nullable StandaloneProjectMap projectMap, @Nullable ModelManager modelManager) {	
+		return newInstance(new PivotEnvironmentFactory(projectMap, modelManager));
+	}
+	
+    /**
+     * Creates a new <code>OCL</code> using the specified Ecore package registry.
+     * This automatically creates an new EnvironmentFactory and MetaModelManager.
+     * 
+     * @param reg Ecore package registry
+     * @return the new <code>OCL</code>
+     */
 	public static @NonNull OCL newInstance(@NonNull EPackage.Registry reg) {	
-		return newInstance(new PivotEnvironmentFactory(reg, new MetamodelManager()));
+		return newInstance(new PivotEnvironmentFactory(null, null));
 	}
 	
     /**
@@ -421,10 +433,10 @@ public class OCL {
 		// forget the constraints
 		getConstraints().clear();
 
-		if (environmentFactory != PivotEnvironmentFactory.basicGetGlobalRegistryInstance()) { // dispose of my environment
+//		if (environmentFactory != PivotEnvironmentFactory.basicGetGlobalRegistryInstance()) { // dispose of my environment
 			getEnvironment().dispose();
 			getMetamodelManager().dispose();
-		}
+//		}
 	}
 
 	/**

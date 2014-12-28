@@ -12,6 +12,7 @@
 
 package org.eclipse.ocl.pivot.internal;
 
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Environment;
@@ -23,8 +24,11 @@ import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
+import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 
 /**
  * A factory for creating OCL parser {@link EnvironmentInternal}s.  Clients of the OCL
@@ -43,8 +47,19 @@ import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
  *
  * @author Christian W. Damus (cdamus)
  */
-public interface EnvironmentFactoryInternal extends EnvironmentFactory {
-	
+public interface EnvironmentFactoryInternal extends EnvironmentFactory
+{
+	/**
+	 * Create and initialize the AS ResourceSet used by metamodelManager to contain the AS forms of CS and Ecore/UML resources.
+	 */
+	@NonNull ResourceSetImpl createASResourceSet(@NonNull MetamodelManager metamodelManager);
+	@NonNull CompleteEnvironmentInternal createCompleteEnvironment(@NonNull MetamodelManager metamodelManager);
+
+	/**
+	 * Create and initialize the IdResolver used by metamodelManager to convert Ids to Elements.
+	 */
+	@NonNull IdResolver createIdResolver(@NonNull MetamodelManager metamodelManager);
+
 	/**
 	 * Creates a root environment, in which package contexts and/or classifier
      * contexts will be created as nested environments.  All operation body
@@ -102,6 +117,8 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory {
      * @see StandardLibrary#getOclAnyType()
      */
 	@NonNull EnvironmentInternal createInstanceContext(@NonNull EnvironmentInternal parent, @NonNull Object context);
+	
+	@NonNull MetamodelManager createMetamodelManager();
     
 	/**
 	 * Creates an environment suitable for parsing OCL expressions on the
@@ -152,4 +169,6 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory {
 	@NonNull EvaluationVisitor createEvaluationVisitor(@NonNull EnvironmentInternal env, @NonNull EvaluationEnvironment evalEnv, @NonNull ModelManager modelManager);
 
 	@NonNull MetamodelManager getMetamodelManager();
+
+	@Nullable StandaloneProjectMap getProjectMap();
 }

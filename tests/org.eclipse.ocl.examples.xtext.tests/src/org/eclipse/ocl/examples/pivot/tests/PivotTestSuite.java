@@ -36,7 +36,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
@@ -1044,12 +1043,12 @@ public abstract class PivotTestSuite extends PivotTestCase
 	}
 
 	protected @NonNull MetamodelManager createMetamodelManager() {
-		return new MetamodelManager(getProjectMap());
+		PivotEnvironmentFactory environmentFactory = new PivotEnvironmentFactory(getProjectMap(), null);
+		return environmentFactory.getMetamodelManager();
 	}
 
 	protected @NonNull OCL createOCL() {
-		Registry packageRegistry = resourceSet.getPackageRegistry();
-		PivotEnvironmentFactory envFactory = new PivotEnvironmentFactory(packageRegistry, metamodelManager);
+		EnvironmentFactoryInternal envFactory = metamodelManager.getEnvironmentFactory();
 		return OCL.newInstance(envFactory);
 	}
 

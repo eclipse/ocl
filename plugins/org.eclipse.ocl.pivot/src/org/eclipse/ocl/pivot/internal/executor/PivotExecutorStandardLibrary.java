@@ -25,6 +25,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManageable;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.library.ecore.EcoreExecutorPackage;
 import org.eclipse.ocl.pivot.library.executor.ExecutableStandardLibrary;
@@ -48,7 +49,7 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 
 	public PivotExecutorStandardLibrary(EcoreExecutorPackage... execPackages) {
 		OCLstdlibTables.PACKAGE.getClass();
-		this.metamodelManager = new MetamodelManager();
+		this.metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
 		metamodelManager.getStandardLibrary().setDefaultStandardLibraryURI(LibraryConstants.STDLIB_URI);
 		PivotTables.PACKAGE.getClass();
 	}

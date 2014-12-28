@@ -11,7 +11,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.debug.evaluator;
 
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.IVMDebuggerShell;
@@ -22,8 +21,10 @@ import org.eclipse.ocl.pivot.Environment;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 public class OCLVMEnvironmentFactory extends PivotEnvironmentFactory implements IVMEnvironmentFactory
@@ -31,8 +32,8 @@ public class OCLVMEnvironmentFactory extends PivotEnvironmentFactory implements 
 	private IVMDebuggerShell shell;
 	private long envId = 0;
 	
-	public OCLVMEnvironmentFactory(EPackage.Registry reg, @NonNull MetamodelManager metamodelManager) {
-		super(reg, metamodelManager);
+	public OCLVMEnvironmentFactory(@Nullable StandaloneProjectMap projectMap, @Nullable ModelManager modelManager) {
+		super(projectMap, modelManager); //createModelManager(object));
 	}
 
 	@Override

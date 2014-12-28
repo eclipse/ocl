@@ -83,11 +83,11 @@ public class JavaStream
 		PrettyPrintOptions.Global createOptions = PrettyPrinter.createOptions(scope);
 		createOptions.setLinelength(80);
 		if (element instanceof EObject) {
-			Resource resource = EcoreUtil.getRootContainer((EObject)element).eResource();
-			if (resource != null) {
-				ResourceSet resourceSet = resource.getResourceSet();
-				if (resourceSet != null) {
-					MetamodelManager metamodelManager = MetamodelManager.getAdapter(resourceSet);
+			Resource asResource = EcoreUtil.getRootContainer((EObject)element).eResource();
+			if (asResource != null) {
+				ResourceSet asResourceSet = asResource.getResourceSet();
+				if (asResourceSet != null) {
+					MetamodelManager metamodelManager = MetamodelManager.getAdapter(asResourceSet);
 					createOptions.setMetamodelManager(metamodelManager);
 				}
 			}

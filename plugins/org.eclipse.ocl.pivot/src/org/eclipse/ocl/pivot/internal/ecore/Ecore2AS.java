@@ -56,6 +56,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.AliasAdapter;
+import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
@@ -83,7 +84,7 @@ public class Ecore2AS extends AbstractEcore2AS
 	public static Ecore2AS getAdapter(@NonNull Resource resource, @Nullable MetamodelManager metamodelManager) {
 		Ecore2AS adapter;
 		if (metamodelManager == null) {
-			metamodelManager = new MetamodelManager();
+			metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
 		}
 		else {
 			adapter = findAdapter(resource, metamodelManager);
@@ -223,7 +224,7 @@ public class Ecore2AS extends AbstractEcore2AS
 	private Set<EObject> importedEObjects = null;
 	
 	public Ecore2AS(@NonNull Resource ecoreResource, @Nullable MetamodelManager metamodelManager) {
-		super(metamodelManager != null ? metamodelManager : new MetamodelManager());
+		super(metamodelManager != null ? metamodelManager : new PivotEnvironmentFactory(null, null).getMetamodelManager());
 		this.ecoreResource = ecoreResource;
 		this.metamodelManager.addExternalResource(this);
 		this.metamodelManager.addListener(this);

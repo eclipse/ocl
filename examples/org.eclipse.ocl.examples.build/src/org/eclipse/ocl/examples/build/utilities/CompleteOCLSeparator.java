@@ -74,13 +74,13 @@ public class CompleteOCLSeparator extends WorkflowComponentWithModelSlot
 		return oclURI;
 	}
 
-	private Resource separateCompleteOCL(@NonNull Resource resource) {
+	private Resource separateCompleteOCL(@NonNull Resource asResource) {
 		CompleteOCLStandaloneSetup.doSetup();
-		URI uri = resource.getURI();
-		ResourceSet resourceSet = resource.getResourceSet();
-		assert resourceSet != null;
-		MetamodelManager metamodelManager = MetamodelManager.getAdapter(resourceSet);
-		ASResource oclResource = CompleteOCLSplitter.separate(metamodelManager, resource);
+		URI uri = asResource.getURI();
+		ResourceSet asResourceSet = asResource.getResourceSet();
+		assert asResourceSet != null;
+		MetamodelManager metamodelManager = MetamodelManager.getAdapter(asResourceSet);
+		ASResource oclResource = CompleteOCLSplitter.separate(metamodelManager, asResource);
 		URI xtextURI = oclURI != null ? URI.createPlatformResourceURI(oclURI, true) : uri.trimFileExtension().appendFileExtension("ocl");
 		ResourceSetImpl csResourceSet = new ResourceSetImpl();
 		MetamodelManagerResourceSetAdapter.getAdapter(csResourceSet, metamodelManager);

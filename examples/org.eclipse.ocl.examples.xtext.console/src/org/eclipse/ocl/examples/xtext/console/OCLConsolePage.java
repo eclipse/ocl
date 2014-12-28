@@ -54,10 +54,11 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
-import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationHaltedException;
+import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.EnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.context.ClassContext;
@@ -68,8 +69,6 @@ import org.eclipse.ocl.pivot.internal.helper.OCLHelper;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerListener;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
-import org.eclipse.ocl.pivot.internal.manager.PivotIdResolver;
-import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironment;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.CSResource;
@@ -215,8 +214,8 @@ public class OCLConsolePage extends Page implements MetamodelManagerListener
 			if (expressionInOCL != null) {
 	//			monitor.worked(2);
 				monitor.subTask(ConsoleMessages.Progress_Extent);
-				PivotEnvironmentFactory envFactory = new PivotEnvironmentFactory(null, metamodelManager);
-				PivotEnvironment environment = envFactory.createEnvironment();
+				EnvironmentFactoryInternal envFactory = metamodelManager.getEnvironmentFactory();
+				EnvironmentInternal environment = envFactory.createEnvironment();
 				EvaluationEnvironment evaluationEnvironment = envFactory.createEvaluationEnvironment();
 				Object contextValue = metamodelManager.getIdResolver().boxedValueOf(contextObject);
 				evaluationEnvironment.add(ClassUtil.nonNullModel(expressionInOCL.getOwnedContext()), contextValue);
@@ -850,7 +849,7 @@ public class OCLConsolePage extends Page implements MetamodelManagerListener
 		}
 		MetamodelManager nullMetamodelManager2 = nullMetamodelManager;
 		if (nullMetamodelManager2 == null) {
-			nullMetamodelManager2 = nullMetamodelManager = new MetamodelManager();
+			nullMetamodelManager2 = nullMetamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
 			nullMetamodelManager2.addListener(this);
 		}
 		return nullMetamodelManager2;
@@ -898,7 +897,7 @@ public class OCLConsolePage extends Page implements MetamodelManagerListener
 		    	}
 		    	
 			    MetamodelManager metamodelManager = getMetamodelManager(contextObject);
-				PivotIdResolver idResolver = metamodelManager.getIdResolver();
+				IdResolver idResolver = metamodelManager.getIdResolver();
 //				DomainType staticType = idResolver.getStaticTypeOf(selectedObject);
 				org.eclipse.ocl.pivot.Class staticType = idResolver.getStaticTypeOf(contextObject);
 				org.eclipse.ocl.pivot.Class contextType = metamodelManager.getType(staticType);

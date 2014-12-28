@@ -64,7 +64,7 @@ public class OCLDebuggableRunnerFactory extends DebuggableRunnerFactory
 			throw new DiagnosticException(diagnostic);
 		} */
 		MetamodelManager metamodelManager = evaluationContext.getMetamodelManager();
-		OCLVMEnvironmentFactory environmentFactory = new OCLVMEnvironmentFactory(packageRegistry, metamodelManager);
+		OCLVMEnvironmentFactory environmentFactory = (OCLVMEnvironmentFactory) metamodelManager.getEnvironmentFactory();
 		DebuggableRunner runner = new DebuggableRunner(this, oclEvaluationContext.getConstraintURI(), new OCLInternalDebuggableExecutor(oclEvaluationContext, environmentFactory));
 		
 /*		if(traceFileURI != null) {

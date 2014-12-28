@@ -33,6 +33,7 @@ import org.eclipse.ocl.common.delegate.VirtualDelegateMapping;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerListener;
@@ -164,9 +165,9 @@ public class OCLDelegateDomain implements DelegateDomain, MetamodelManagerListen
 		this.ePackage = ePackage;
 	}
 
-	private @NonNull PivotEnvironmentFactory getEnvironmentFactory() {
+	private @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
 		Resource res = ePackage.eResource();
-		PivotEnvironmentFactory envFactory = null;
+		EnvironmentFactoryInternal envFactory = null;
 		if (res != null) {
 			MetamodelManager metamodelManager = null;
 			ResourceSet resourceSet = res.getResourceSet();
@@ -176,8 +177,13 @@ public class OCLDelegateDomain implements DelegateDomain, MetamodelManagerListen
 					metamodelManager = rsAdapter.getMetamodelManager();
 				}
 				// it's a dynamic package. Use the local package registry
-				EPackage.Registry packageRegistry = resourceSet.getPackageRegistry();
-				envFactory = new PivotEnvironmentFactory(packageRegistry, metamodelManager);
+//				EPackage.Registry packageRegistry = resourceSet.getPackageRegistry();
+				if (metamodelManager != null) {
+					envFactory = metamodelManager.getEnvironmentFactory();
+				}
+				else {
+					envFactory = new PivotEnvironmentFactory(null, null);
+				}
 				DelegateResourceAdapter.getAdapter(res);
 			}
 		}

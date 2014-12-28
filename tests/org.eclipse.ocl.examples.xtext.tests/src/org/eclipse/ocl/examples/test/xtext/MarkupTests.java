@@ -25,6 +25,7 @@ import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.SemanticException;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.HTMLBuffer;
+import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.xtext.markup.MarkupStandaloneSetup;
 import org.eclipse.ocl.xtext.markup.MarkupToHTML;
 import org.eclipse.ocl.xtext.markup.MarkupToString;
@@ -44,7 +45,7 @@ public class MarkupTests extends XtextTestCase
 		super.setUp();
 		MarkupStandaloneSetup.doSetup();
 		MarkupPackage.eINSTANCE.eClass();
-		metamodelManager = new MetamodelManager();
+		metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
 	}
 
 	@Override

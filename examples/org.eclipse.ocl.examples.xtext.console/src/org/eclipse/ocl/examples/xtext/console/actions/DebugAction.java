@@ -53,10 +53,11 @@ import org.eclipse.ocl.examples.xtext.console.messages.ConsoleMessages;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.PivotIdResolver;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.ui.model.BaseDocument;
@@ -96,7 +97,7 @@ public final class DebugAction extends Action
 		 * Returns its URI.
 		 */
 		protected @NonNull URI createDocument(IProgressMonitor monitor) throws IOException, CoreException {
-			PivotIdResolver idResolver = metamodelManager.getIdResolver();
+			IdResolver idResolver = metamodelManager.getIdResolver();
 			org.eclipse.ocl.pivot.Class staticType = idResolver.getStaticTypeOf(contextObject);
 			org.eclipse.ocl.pivot.Class contextType = metamodelManager.getType(staticType);
 //			if (contextType instanceof Metaclass) {
@@ -163,7 +164,7 @@ public final class DebugAction extends Action
 		 * @throws IOException 
 		 */
 		protected @Nullable BaseCSResource loadDocument(IProgressMonitor monitor, @NonNull URI documentURI) throws Exception {
-			MetamodelManager metamodelManager = new MetamodelManager();
+			MetamodelManager metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
 			ResourceSet externalResourceSet = metamodelManager.getExternalResourceSet();
 			if (contextObject != null) {
 				Resource contextResource = contextObject.eResource();

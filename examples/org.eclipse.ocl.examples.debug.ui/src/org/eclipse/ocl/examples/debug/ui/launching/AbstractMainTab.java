@@ -23,6 +23,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbench;
@@ -55,7 +56,7 @@ public abstract class AbstractMainTab extends AbstractLaunchConfigurationTab
 	protected @NonNull MetamodelManager getMetamodelManager() {
 		MetamodelManager metamodelManager2 = metamodelManager;
 		if (metamodelManager2 == null) {
-			metamodelManager = metamodelManager2 = new MetamodelManager();
+			metamodelManager = metamodelManager2 = new PivotEnvironmentFactory(null, null).getMetamodelManager();
 		}
 		return metamodelManager2;
 	}

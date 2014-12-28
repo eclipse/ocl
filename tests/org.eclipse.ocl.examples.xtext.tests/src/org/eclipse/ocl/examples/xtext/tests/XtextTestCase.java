@@ -65,6 +65,7 @@ import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.ecore.AS2Ecore;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.internal.values.BagImpl;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
@@ -308,7 +309,7 @@ public class XtextTestCase extends PivotTestCase
 	}
 
 	protected void doBadLoadFromString(@NonNull String fileName, @NonNull String testFile, @NonNull Bag<String> expectedErrorMessages) throws Exception {
-		MetamodelManager metamodelManager = new MetamodelManager();
+		MetamodelManager metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
 		metamodelManager.addClassLoader(ClassUtil.nonNullState(getClass().getClassLoader()));
 		try {
 			MetamodelManagerResourceSetAdapter.getAdapter(ClassUtil.nonNullState(resourceSet), metamodelManager);
@@ -333,7 +334,7 @@ public class XtextTestCase extends PivotTestCase
 
 	protected void doLoadFromString(@NonNull String fileName, @NonNull String testFile) throws Exception {
 		URI libraryURI = getProjectFileURI(fileName);
-		MetamodelManager metamodelManager = new MetamodelManager();
+		MetamodelManager metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
 		ResourceSet resourceSet = new ResourceSetImpl();
 		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(libraryURI);

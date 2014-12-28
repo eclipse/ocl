@@ -21,8 +21,8 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.AbstractASResourceFactory;
 import org.eclipse.ocl.pivot.internal.utilities.AS2XMIid;
-import org.eclipse.ocl.pivot.internal.utilities.AS2XMIidVisitor;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.utilities.AS2XMIidVisitor;
 
 public class CompleteOCLASResourceFactory extends AbstractASResourceFactory
 {

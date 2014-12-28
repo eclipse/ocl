@@ -51,7 +51,7 @@ public class EnvironmentResourceAdapter implements Adapter
 	}
 
 	public MetamodelManager createMetamodelManager() {
-		return new MetamodelManager();
+		return new PivotEnvironmentFactory(null, null).getMetamodelManager();
 	}
 
 	@Override

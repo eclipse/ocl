@@ -75,10 +75,10 @@ import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.IterationManager;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.EnvironmentInternal;
-import org.eclipse.ocl.pivot.internal.manager.PivotIdResolver;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.EvaluatorMultipleIterationManager;
 import org.eclipse.ocl.pivot.library.EvaluatorSingleIterationManager;
@@ -698,7 +698,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 				actualOperation = apparentOperation;
 			}
 			else {
-		 		PivotIdResolver idResolver = metamodelManager.getIdResolver();
+		 		IdResolver idResolver = metamodelManager.getIdResolver();
 				org.eclipse.ocl.pivot.Class actualSourceType = idResolver.getStaticTypeOf(sourceValue);
 				if (onlyArgument != null) {
 					org.eclipse.ocl.pivot.Class actualArgType = idResolver.getStaticTypeOf(onlyArgument);
@@ -728,7 +728,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 				actualOperation = apparentOperation;
 			}
 			else {
-		 		PivotIdResolver idResolver = metamodelManager.getIdResolver();
+		 		IdResolver idResolver = metamodelManager.getIdResolver();
 				org.eclipse.ocl.pivot.Class actualSourceType = idResolver.getStaticTypeOf(sourceValue);
 				actualOperation = actualSourceType.lookupActualOperation(standardLibrary, apparentOperation);
 			}

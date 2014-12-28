@@ -14,13 +14,13 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.helper.OCLHelper;
@@ -287,8 +287,7 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 	protected @NonNull OCL getOCL() {
 		OCL ocl2 = ocl;
 		if (ocl2 == null) {
-			Registry packageRegistry = null; //resourceSet.getPackageRegistry();
-			PivotEnvironmentFactory envFactory = new PivotEnvironmentFactory(packageRegistry, metamodelManager);
+			EnvironmentFactoryInternal envFactory = metamodelManager.getEnvironmentFactory();
 			ocl2 = ocl = OCL.newInstance(envFactory);
 		}
 		return ocl2;

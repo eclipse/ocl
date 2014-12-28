@@ -73,7 +73,6 @@ import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.lookup.Environment;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.Orphanage;
-import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -109,7 +108,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(ClassUtil.nonNullState(ePackage.eResource()));
 		URI projectResourceURI = URI.createPlatformResourceURI("/" + projectName + "/", true);
 		@SuppressWarnings("null")@NonNull URI nameResoURI = URI.createURI("model/PivotLookup.ocl").resolve(projectResourceURI);
-		OCL ocl = OCL.newInstance(new PivotEnvironmentFactory(null, metamodelManager));
+		OCL ocl = OCL.newInstance(metamodelManager.getEnvironmentFactory());
 //		Resource resource = metamodelManager.getResource(nameResoURI, CompleteOCL);
 		Resource resource = ClassUtil.nonNullState(ocl.parse(nameResoURI));
 //		Root root = (Root) resource.getContents().get(0);

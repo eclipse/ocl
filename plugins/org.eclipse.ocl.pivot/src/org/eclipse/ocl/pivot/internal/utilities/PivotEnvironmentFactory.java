@@ -13,7 +13,6 @@
 package org.eclipse.ocl.pivot.internal.utilities;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Environment;
@@ -24,6 +23,7 @@ import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.evaluation.PivotEvaluationEnvironment;
 import org.eclipse.ocl.pivot.internal.evaluation.PivotModelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.values.ObjectValue;
 
 
@@ -59,22 +59,29 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
 	public static @NonNull PivotEnvironmentFactory getGlobalRegistryInstance() {
 		PivotEnvironmentFactory globalRegistryInstance2 = globalRegistryInstance;
 		if (globalRegistryInstance2 == null) {
-			globalRegistryInstance = globalRegistryInstance2 = new PivotEnvironmentFactory();
+			globalRegistryInstance = globalRegistryInstance2 = new PivotEnvironmentFactory(null, null);
 		}
 		return globalRegistryInstance2;
 	}
-	
-    protected final @NonNull MetamodelManager metamodelManager;
-
-	private final @Nullable EPackage.Registry registry;
 
 	/**
 	 * Initializes me.  Environments that I create will use the global package
      * registry to look up packages.
 	 */
-	public PivotEnvironmentFactory() {
-		this(EPackage.Registry.INSTANCE, null);
-	}
+//	public PivotEnvironmentFactory() {
+//		this(EPackage.Registry.INSTANCE, null);
+//	}
+	
+	/**
+	 * Initializes me with an <code>EPackage.Registry</code> that the
+     * environments I create will use to look up packages.
+     * 
+     * @param reg my package registry
+	 * @param metaModelManager 
+	 */
+//	public PivotEnvironmentFactory(@Nullable EPackage.Registry reg, @Nullable MetamodelManager metamodelManager) {
+//		super(reg, metamodelManager);
+//	}
 	
 	/**
 	 * Initializes me with an <code>EPackage.Registry</code> that the
@@ -83,10 +90,8 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
      * @param reg my package registry
 	 * @param metamodelManager 
 	 */
-	public PivotEnvironmentFactory(@Nullable EPackage.Registry reg, @Nullable MetamodelManager metamodelManager) {
-		super();
-		this.registry = reg;
-		this.metamodelManager = metamodelManager != null ? metamodelManager : new MetamodelManager();
+	public PivotEnvironmentFactory(@Nullable StandaloneProjectMap projectMap, @Nullable ModelManager modelManager) {
+		super(projectMap, modelManager);
 	}
 	
     // implements the inherited specification
@@ -106,16 +111,6 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
 		
 		PivotEnvironment result = new PivotEnvironment((PivotEnvironment) parent);
 		return result;
-	}
-	
-    /**
-     * Obtains the package registry used by environment that I create to look
-     * up packages.
-     * 
-     * @return my package registry
-     */
-	public final @Nullable EPackage.Registry getEPackageRegistry() {
-		return registry;
 	}
 
     // implements the inherited specification
@@ -153,5 +148,10 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
 	@Override
 	public @NonNull MetamodelManager getMetamodelManager() {
 		return metamodelManager;
+	}
+
+	@Override
+	public @Nullable StandaloneProjectMap getProjectMap() {
+		return null;
 	}
 }

@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.internal;
 
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Adaptable;
@@ -19,14 +21,20 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.PivotFactory;
+import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Variable;
-import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
+import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitorImpl;
 import org.eclipse.ocl.pivot.internal.evaluation.TracingEvaluationVisitor;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.PivotIdResolver;
+import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 /**
@@ -36,12 +44,43 @@ import org.eclipse.ocl.pivot.utilities.PivotConstants;
 public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryInternal, Adaptable {
 
     private boolean traceEvaluation;
-    
+    protected final @Nullable StandaloneProjectMap projectMap;
+    protected final @NonNull MetamodelManager metamodelManager;
+    protected final @Nullable ModelManager modelManager;
+	
 	/**
+	 * Initializes me with an <code>EPackage.Registry</code> that the
+     * environments I create will use to look up packages.
+     * 
+     * @param reg my package registry
+	 * @param metaModelManager 
+	 */
+ //   protected AbstractEnvironmentFactory(@Nullable EPackage.Registry reg, @Nullable MetamodelManager metamodelManager) {
+//		this.metamodelManager = metamodelManager != null ? metamodelManager : createMetamodelManager();
+//		this.modelManager = reg != null ? createModelManager(reg) : null;
+//	}
+
+    /**
 	 * Initializes me.
 	 */
-	protected AbstractEnvironmentFactory() {
-		super();
+	protected AbstractEnvironmentFactory(@Nullable StandaloneProjectMap projectMap, @Nullable ModelManager modelManager) {
+		this.projectMap = projectMap;
+		this.metamodelManager = createMetamodelManager();
+		this.modelManager = modelManager;
+	}
+
+	@Override
+	public @NonNull ResourceSetImpl createASResourceSet(@NonNull MetamodelManager metamodelManager) {
+		ResourceSetImpl asResourceSet = new ResourceSetImpl();
+		StandaloneProjectMap.initializeURIResourceMap(asResourceSet);
+		ASResourceFactoryRegistry.INSTANCE.configureResourceSet(asResourceSet);
+		EPackage.Registry packageRegistry = asResourceSet.getPackageRegistry();
+		packageRegistry.put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
+		asResourceSet.eAdapters().add(metamodelManager);
+		if (projectMap != null) {
+			asResourceSet.eAdapters().add(projectMap);
+		}
+		return asResourceSet;
 	}
 	
     /**
@@ -81,12 +120,29 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryIn
         
         return result;
 	}
+
+	@Override
+	public @NonNull CompleteEnvironmentInternal createCompleteEnvironment(@NonNull MetamodelManager metamodelManager) {
+		CompleteEnvironmentInternal completeEnvironment = (CompleteEnvironmentInternal)PivotFactory.eINSTANCE.createCompleteEnvironment();
+		completeEnvironment.init(metamodelManager);
+		return completeEnvironment;
+	}
+
+	@Override
+	public  @NonNull PivotIdResolver createIdResolver(@NonNull MetamodelManager metamodelManager) {
+		return new PivotIdResolver(metamodelManager);
+	}
     
     // implements the interface method
     @Override
 	public @NonNull EnvironmentInternal createInstanceContext(@NonNull EnvironmentInternal parent, @NonNull Object context) {       
         return createClassifierContext(parent, getClassifier(context));
     }
+
+	@Override
+	public @NonNull MetamodelManager createMetamodelManager() {
+		return new MetamodelManager(this);
+	}
 	
     // implements the interface method
 	@Override
@@ -132,7 +188,7 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryIn
 		EvaluationEnvironment evaluationEnvironment = createEvaluationEnvironment();
 		Variable contextVariable = expression.getOwnedContext();
 		if (contextVariable != null) {
-			PivotIdResolver idResolver = getMetamodelManager().getIdResolver();
+			IdResolver idResolver = getMetamodelManager().getIdResolver();
 			Object value = idResolver.boxedValueOf(context);
 			evaluationEnvironment.add(contextVariable, value);
 		}

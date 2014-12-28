@@ -34,6 +34,7 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.validation.PivotEObjectValidator;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -60,7 +61,7 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 	 */
 	public CompleteOCLEObjectValidator(@NonNull EPackage ePackage, @NonNull URI oclURI, @Nullable MetamodelManager metamodelManager) {
 		if (metamodelManager == null) {
-			metamodelManager = new MetamodelManager();
+			metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
 		}
 		this.metamodelManager = metamodelManager;
 		this.ePackage = ePackage;

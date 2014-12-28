@@ -95,8 +95,10 @@ import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.WildcardType;
 import org.eclipse.ocl.pivot.ids.IdManager;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.PackageImpl;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.compatibility.EMF_2_9;
@@ -245,34 +247,24 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 	 */
 	public static WeakHashMap<MetamodelManager,Object> liveMetamodelManagers = null;
 
-	public static @Nullable MetamodelManager findAdapter(@Nullable ResourceSet resourceSet) {
-		if (resourceSet == null) {
-			return null;
-		}
-		return ClassUtil.getAdapter(MetamodelManager.class, resourceSet);
+	/**
+	 * Return the non-null MetamodelManager for which resourceSet is an AS ResourceSet, or null if not an AS ResourceSet.
+	 */
+	public static @Nullable MetamodelManager findAdapter(@NonNull ResourceSet resourceSet) {
+		@SuppressWarnings("null")@NonNull List<Adapter> eAdapters = resourceSet.eAdapters();
+		return ClassUtil.getAdapter(MetamodelManager.class, eAdapters);
 	}
 
-	public static @NonNull MetamodelManager getAdapter(@NonNull ResourceSet resourceSet) {
-		List<Adapter> eAdapters = ClassUtil.nonNullEMF(resourceSet.eAdapters());
+	/**
+	 * Return the non-null MetamodelManager for the asResourceSet.
+	 */
+	public static @NonNull MetamodelManager getAdapter(@NonNull ResourceSet asResourceSet) {
+		@SuppressWarnings("null")@NonNull List<Adapter> eAdapters = asResourceSet.eAdapters();
 		MetamodelManager adapter = ClassUtil.getAdapter(MetamodelManager.class, eAdapters);
-		if (adapter == null) {
-			if (resourceSet.getResourceFactoryRegistry().getContentTypeToFactoryMap().get(ASResource.CONTENT_TYPE) == null) {
-				MetamodelManager.initializeASResourceSet(resourceSet);
-			}
-			adapter = new MetamodelManager(resourceSet);
-//			eAdapters.add(adapter);
-		}
-		return adapter;
-	}
-
-	public static void initializeASResourceSet(@NonNull ResourceSet asResourceSet) {
-//		System.out.println("initializeASResourceSet " + ClassUtil.debugSimpleName(asResourceSet));
-		StandaloneProjectMap.initializeURIResourceMap(asResourceSet);
-		ASResourceFactoryRegistry.INSTANCE.configureResourceSet(asResourceSet);
-		EPackage.Registry packageRegistry = asResourceSet.getPackageRegistry();
-		packageRegistry.put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
+		return ClassUtil.nonNullState(adapter);
 	}
 	
+	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 	private final @NonNull StandardLibraryInternal standardLibrary;
 	private final @NonNull CompleteEnvironmentInternal completeEnvironment;
 
@@ -321,7 +313,7 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 	/**
 	 * The resolver for Ids and EObjects
 	 */
-	protected final @NonNull PivotIdResolver idResolver;
+	protected final @NonNull IdResolver idResolver;
 
 	/**
 	 * Elements protected from garbage collection
@@ -341,35 +333,20 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 	 * Lazily computed, eagerly invalidated analysis of final classes and operations.
 	 */
 	private @Nullable FinalAnalysis finalAnalysis = null;
-	
-	public MetamodelManager() {
-		this(new ResourceSetImpl());
-//		initializePivotResourceSet(asResourceSet);
-	}
-	
-	/**
-	 * Construct a MetamodelManager that will use projectMap to assist in locating resources.
-	 */
-	public MetamodelManager(@NonNull StandaloneProjectMap projectMap) {
-		this();
-		asResourceSet.eAdapters().add(projectMap);
-	}
 
 	/**
-	 * Construct a MetamodelManager that will use asResourceSet to contain pivot copies
-	 * of meta-models, and {@link ProjectMap#getAdapter(ResourceSet)} to assist in locating resources.
+	 * Construct a MetamodelManager that will use environmentFactory to create its artefacts
+	 * such as an asREsourceSet to contain pivot copies of meta-models.
 	 */
-	public MetamodelManager(@NonNull ResourceSet asResourceSet) {
-		completeEnvironment = ((CompleteEnvironmentInternal)PivotFactory.eINSTANCE.createCompleteEnvironment()).init(this);
+	public MetamodelManager(@NonNull EnvironmentFactoryInternal environmentFactory) {
+		this.environmentFactory = environmentFactory;
+		asResourceSet = environmentFactory.createASResourceSet(this);
+		completeEnvironment = environmentFactory.createCompleteEnvironment(this);
 		standardLibrary = completeEnvironment.getOwnedStandardLibrary();
 		completeModel = completeEnvironment.getOwnedCompleteModel();
-		if (asResourceSet.getResourceFactoryRegistry().getContentTypeToFactoryMap().get(ASResource.CONTENT_TYPE) == null) {
-			initializeASResourceSet(asResourceSet);
-		}
-		idResolver = createIdResolver();
+		idResolver = environmentFactory.createIdResolver(this);
 //		System.out.println("ctor " + this);
-		this.asResourceSet = asResourceSet;
-		asResourceSet.eAdapters().add(this);
+//		initializePivotResourceSet(asResourceSet);
 		if (liveMetamodelManagers != null) {
 			liveMetamodelManagers.put(this, null);
 			System.out.println(Thread.currentThread().getName() + " Create " + NameUtil.debugSimpleName(this)
@@ -579,10 +556,6 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 		asBoolean.setType(standardLibrary.getBooleanType());
 		asBoolean.setIsRequired(true);
 		return asBoolean;
-	}
-
-	protected @NonNull PivotIdResolver createIdResolver() {
-		return new PivotIdResolver(this);
 	}
 
 	public @NonNull IfExp createIfExp(@NonNull OperationCallExp asCondition, @NonNull OCLExpression asThen, @NonNull OCLExpression asElse) {
@@ -1052,6 +1025,10 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 		return asElementExtension;
 	}
 
+	public @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
+		return environmentFactory;
+	}
+
 	public @NonNull ResourceSet getExternalResourceSet() {
 		ResourceSetImpl externalResourceSet2 = externalResourceSet;
 		if (externalResourceSet2 == null) {
@@ -1107,7 +1084,7 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 		return globalTypes;
 	}
 
-	public @NonNull PivotIdResolver getIdResolver() {
+	public @NonNull IdResolver getIdResolver() {
 		return idResolver;
 	}
 	

@@ -1169,7 +1169,7 @@ public class DelegatesTest extends PivotTestSuite
 	}
 
 	public void validateTutorial(@NonNull String ecoreURI, @NonNull String message) {
-		MetamodelManager metamodelManager = new MetamodelManager();
+		MetamodelManager metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
 		try {
 			ResourceSet resourceSet = new ResourceSetImpl();
 			MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);

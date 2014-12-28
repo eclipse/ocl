@@ -17,6 +17,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.utils.Log;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerListener;
+import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 
 public abstract class EvaluationContext implements MetamodelManagerListener
 {
@@ -40,7 +41,7 @@ public abstract class EvaluationContext implements MetamodelManagerListener
 				metamodelManager2 = findMetamodelManager();
 			}
 			if (metamodelManager2 == null) {
-				metamodelManager2 = new MetamodelManager();
+				metamodelManager2 = new PivotEnvironmentFactory(null, null).getMetamodelManager();
 			}
 			metamodelManager = metamodelManager2;
 			metamodelManager2.addListener(this);
