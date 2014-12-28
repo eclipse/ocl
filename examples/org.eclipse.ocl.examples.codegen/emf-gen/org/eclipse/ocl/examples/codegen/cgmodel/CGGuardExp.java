@@ -22,10 +22,10 @@ package org.eclipse.ocl.examples.codegen.cgmodel;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGGuardExp#getMessage <em>Message</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGGuardExp()
  * @generated

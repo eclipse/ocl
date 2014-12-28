@@ -14,9 +14,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.FeatureFilter;
-import org.eclipse.ocl.pivot.scoping.AbstractAttribution;
-import org.eclipse.ocl.pivot.scoping.EnvironmentView;
-import org.eclipse.ocl.pivot.scoping.ScopeView;
+import org.eclipse.ocl.pivot.internal.scoping.AbstractAttribution;
+import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
+import org.eclipse.ocl.pivot.internal.scoping.ScopeView;
 import org.eclipse.ocl.xtext.completeoclcs.ClassifierContextDeclCS;
 import org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage;
 

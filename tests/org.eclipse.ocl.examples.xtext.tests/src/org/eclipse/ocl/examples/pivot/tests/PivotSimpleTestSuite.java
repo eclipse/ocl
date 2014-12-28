@@ -12,7 +12,7 @@
 package org.eclipse.ocl.examples.pivot.tests;
 
 import org.eclipse.ocl.pivot.Model;
-import org.eclipse.ocl.pivot.PivotConstantsInternal;
+import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 
 /**
  * Test suite with a simple model.

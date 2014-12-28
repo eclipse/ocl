@@ -35,6 +35,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.library.AbstractBinaryOperation;
 import org.eclipse.ocl.pivot.library.AbstractOperation;
 import org.eclipse.ocl.pivot.library.AbstractTernaryOperation;
@@ -43,7 +44,6 @@ import org.eclipse.ocl.pivot.library.LibraryBinaryOperation;
 import org.eclipse.ocl.pivot.library.LibraryOperation;
 import org.eclipse.ocl.pivot.library.LibraryTernaryOperation;
 import org.eclipse.ocl.pivot.library.LibraryUnaryOperation;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 public class AbstractGenModelHelper implements GenModelHelper

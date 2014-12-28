@@ -21,15 +21,15 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.emf.validation.validity.LeafConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.locator.AbstractConstraintLocator;
 import org.eclipse.ocl.pivot.Constraint;
-import org.eclipse.ocl.pivot.EnvironmentInternal;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.pivot.internal.EnvironmentInternal;
+import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 

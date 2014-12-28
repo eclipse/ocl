@@ -18,8 +18,8 @@ import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.InheritanceFragment;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.SetType;
-import org.eclipse.ocl.pivot.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**

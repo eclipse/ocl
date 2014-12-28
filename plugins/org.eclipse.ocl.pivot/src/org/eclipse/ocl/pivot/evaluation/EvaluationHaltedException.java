@@ -13,7 +13,7 @@ package org.eclipse.ocl.pivot.evaluation;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.pivot.messages.StatusCodes;
-import org.eclipse.ocl.pivot.plugin.PivotPlugin;
+import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**

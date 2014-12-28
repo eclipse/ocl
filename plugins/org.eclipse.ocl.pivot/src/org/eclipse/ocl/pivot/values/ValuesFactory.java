@@ -28,6 +28,6 @@ public interface ValuesFactory extends EFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
-	ValuesFactory eINSTANCE = org.eclipse.ocl.pivot.values.impl.ValuesFactoryImpl.init();
+	ValuesFactory eINSTANCE = org.eclipse.ocl.pivot.internal.values.ValuesFactoryImpl.init();
 
 } //ValuesFactory

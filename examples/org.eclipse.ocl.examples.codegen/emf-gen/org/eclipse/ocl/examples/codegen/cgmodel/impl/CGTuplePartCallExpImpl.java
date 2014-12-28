@@ -26,11 +26,12 @@ import org.eclipse.ocl.pivot.ids.TuplePartId;
  * An implementation of the model object '<em><b>CG Tuple Part Call Exp</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGTuplePartCallExpImpl#getAstTuplePartId <em>Ast Tuple Part Id</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

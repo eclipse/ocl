@@ -12,7 +12,7 @@ package org.eclipse.ocl.pivot.options;
 
 import org.eclipse.ocl.common.delegate.VirtualDelegateMapping;
 import org.eclipse.ocl.common.internal.preferences.StringPreference;
-import org.eclipse.ocl.pivot.plugin.PivotPlugin;
+import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 public class OCLinEcoreOptions

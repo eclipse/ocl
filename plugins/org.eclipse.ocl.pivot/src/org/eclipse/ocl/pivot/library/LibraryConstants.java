@@ -12,7 +12,7 @@ package org.eclipse.ocl.pivot.library;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.plugin.PivotPlugin;
+import org.eclipse.ocl.pivot.util.PivotPlugin;
 
 public interface LibraryConstants
 {

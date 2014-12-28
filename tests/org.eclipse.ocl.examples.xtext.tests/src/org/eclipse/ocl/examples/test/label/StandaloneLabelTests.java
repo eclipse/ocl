@@ -13,9 +13,9 @@ package org.eclipse.ocl.examples.test.label;
 import junit.framework.TestCase;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.ocl.pivot.internal.labels.EcoreURILabelGenerator;
 import org.eclipse.ocl.pivot.labels.ILabelGenerator;
 import org.eclipse.ocl.pivot.labels.LabelGeneratorRegistry;
-import org.eclipse.ocl.pivot.labels.impl.EcoreURILabelGenerator;
 
 public class StandaloneLabelTests extends TestCase
 {

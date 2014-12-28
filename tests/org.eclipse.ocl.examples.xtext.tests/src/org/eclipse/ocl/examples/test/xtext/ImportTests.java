@@ -16,16 +16,16 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
+import org.eclipse.ocl.pivot.internal.resource.ASResource;
+import org.eclipse.ocl.pivot.internal.values.BagImpl;
 import org.eclipse.ocl.pivot.library.AbstractSimpleUnaryOperation;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.Bag;
 import org.eclipse.ocl.pivot.values.Value;
-import org.eclipse.ocl.pivot.values.impl.BagImpl;
 
 /**
  * Tests that load a model and verify that there are no unresolved proxies as a result.

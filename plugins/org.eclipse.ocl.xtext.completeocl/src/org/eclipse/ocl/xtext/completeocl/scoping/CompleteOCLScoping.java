@@ -13,7 +13,7 @@ package org.eclipse.ocl.xtext.completeocl.scoping;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.ocl.pivot.scoping.Attribution;
+import org.eclipse.ocl.pivot.internal.scoping.Attribution;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.completeocl.attributes.ClassifierContextCSAttribution;
 import org.eclipse.ocl.xtext.completeocl.attributes.CompleteOCLDocumentCSAttribution;

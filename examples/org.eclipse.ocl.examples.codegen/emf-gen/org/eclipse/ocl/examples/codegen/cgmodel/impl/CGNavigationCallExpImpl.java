@@ -26,11 +26,12 @@ import org.eclipse.ocl.pivot.Property;
  * An implementation of the model object '<em><b>CG Navigation Call Exp</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGNavigationCallExpImpl#getReferredProperty <em>Referred Property</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

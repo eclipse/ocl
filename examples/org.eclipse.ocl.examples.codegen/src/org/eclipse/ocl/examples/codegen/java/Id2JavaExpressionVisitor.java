@@ -39,7 +39,7 @@ import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.ids.UnspecifiedId;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**

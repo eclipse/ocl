@@ -29,9 +29,9 @@ import org.eclipse.ocl.examples.codegen.java.JavaGlobalContext;
 import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Variable;
-import org.eclipse.ocl.pivot.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**

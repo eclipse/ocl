@@ -37,12 +37,13 @@ import org.eclipse.ocl.examples.codegen.cse.OuterStackPlace;
  * An implementation of the model object '<em><b>CG Callable</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGCallableImpl#getParameters <em>Parameters</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGCallableImpl#getBody <em>Body</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

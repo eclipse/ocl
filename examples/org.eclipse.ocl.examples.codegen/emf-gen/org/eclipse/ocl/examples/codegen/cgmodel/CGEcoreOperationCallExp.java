@@ -19,10 +19,10 @@ import org.eclipse.emf.ecore.EOperation;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOperationCallExp#getEOperation <em>EOperation</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGEcoreOperationCallExp()
  * @generated

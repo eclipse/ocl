@@ -112,12 +112,12 @@ public class GenerateOCLMetaModelXtend extends GenerateOCLMetaModel
 			import org.eclipse.ocl.pivot.*;
 			import org.eclipse.ocl.pivot.Class;
 			import org.eclipse.ocl.pivot.Package;
-			import org.eclipse.ocl.pivot.complete.StandardLibraryInternal;
 			import org.eclipse.ocl.pivot.ids.IdManager;
+			import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
+			import org.eclipse.ocl.pivot.internal.resource.ASResourceImpl;
+			import org.eclipse.ocl.pivot.internal.resource.OCLASResourceFactory;
 			import org.eclipse.ocl.pivot.library.LibraryFeature;
 			import org.eclipse.ocl.pivot.model.OCLstdlib;
-			import org.eclipse.ocl.pivot.resource.ASResourceImpl;
-			import org.eclipse.ocl.pivot.resource.OCLASResourceFactory;
 			import org.eclipse.ocl.pivot.utilities.ClassUtil;
 			import org.eclipse.ocl.pivot.utilities.PivotUtil;
 			

@@ -36,11 +36,11 @@ import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseLogger;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
-import org.eclipse.ocl.pivot.OCL;
-import org.eclipse.ocl.pivot.PivotConstantsInternal;
+import org.eclipse.ocl.pivot.internal.OCL;
+import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
@@ -245,7 +245,7 @@ public class EditorTests extends XtextTestCase
 	}	
 	
 	public void testEditor_OpenCompleteOCLEditor4Pivot_OCL() throws Exception {
-		URI uri = URI.createPlatformPluginURI("org.eclipse.ocl.pivot.internal/model/Pivot.ocl", true);
+		URI uri = URI.createPlatformPluginURI("org.eclipse.ocl.pivot/model/Pivot.ocl", true);
 		String documentText = doTestEditor(CompleteOCLUiModule.EDITOR_ID, uri);
 		assertTrue(documentText.contains("inv CollectNestedTypeIsBag: name = 'collectNested' implies type.oclIsKindOf(BagType)"));
 	}	
@@ -269,7 +269,7 @@ public class EditorTests extends XtextTestCase
 	}	
 	
 	public void testEditor_OpenOCLinEcoreEditor4Pivot() throws Exception {
-		URI uri = URI.createPlatformPluginURI("org.eclipse.ocl.pivot.internal/model/Pivot.ecore", true);
+		URI uri = URI.createPlatformPluginURI("org.eclipse.ocl.pivot/model/Pivot.ecore", true);
 		String documentText = doTestEditor(OCLinEcoreUiModule.EDITOR_ID, uri);
 		assertTrue(documentText.contains("primitive datatype _'Boolean'"));
 	}	

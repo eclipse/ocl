@@ -15,10 +15,10 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.IterationManager;
 import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.internal.values.SetValueImpl;
 import org.eclipse.ocl.pivot.library.AbstractIteration;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
-import org.eclipse.ocl.pivot.values.impl.SetValueImpl;
 
 /**
  * IsUniqueIteration realizes the Collection::isUnique() library iteration.

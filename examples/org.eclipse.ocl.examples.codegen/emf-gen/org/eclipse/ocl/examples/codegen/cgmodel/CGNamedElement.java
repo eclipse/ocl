@@ -21,11 +21,11 @@ import org.eclipse.ocl.pivot.Nameable;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGNamedElement#getAst <em>Ast</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGNamedElement#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGNamedElement()
  * @generated

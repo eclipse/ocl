@@ -19,10 +19,10 @@ import org.eclipse.ocl.pivot.library.LibraryOperation;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryOperationCallExp#getLibraryOperation <em>Library Operation</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGLibraryOperationCallExp()
  * @generated

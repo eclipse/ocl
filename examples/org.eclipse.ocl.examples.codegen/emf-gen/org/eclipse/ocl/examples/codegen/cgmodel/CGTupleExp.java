@@ -19,10 +19,10 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGTupleExp#getParts <em>Parts</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGTupleExp()
  * @generated

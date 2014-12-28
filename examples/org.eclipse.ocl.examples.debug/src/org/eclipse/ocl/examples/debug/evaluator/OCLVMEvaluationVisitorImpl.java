@@ -18,8 +18,8 @@ import org.eclipse.ocl.examples.debug.vm.evaluator.IVMModelManager;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
-import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.pivot.evaluation.EvaluationVisitorImpl;
+import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitorImpl;
 
 /**
  * OCLVMEvaluationVisitorImpl is the class for ...

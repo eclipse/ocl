@@ -26,7 +26,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TypedElement;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 
 public interface GenModelHelper
 {

@@ -23,7 +23,7 @@ import org.eclipse.uml2.uml.resource.XMI2UMLResource
 var ecoreSlot = "ecore"
 var umlSlot = "uml"
 var projectName = "org.eclipse.ocl.pivot"
-var internalProjectName = "org.eclipse.ocl.pivot.internal"
+var internalProjectName = "org.eclipse.ocl.pivot"
 //var platformURI = ".."
 
 /**

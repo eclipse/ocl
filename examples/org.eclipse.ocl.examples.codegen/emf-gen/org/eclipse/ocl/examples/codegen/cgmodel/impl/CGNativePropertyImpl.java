@@ -25,7 +25,6 @@ import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
  * An implementation of the model object '<em><b>CG Native Property</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * </p>
  *
  * @generated
  */

@@ -11,7 +11,7 @@
 package org.eclipse.ocl.xtext.base.scoping;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.scoping.ScopeView;
+import org.eclipse.ocl.pivot.internal.scoping.ScopeView;
 import org.eclipse.xtext.scoping.IScope;
 
 /**

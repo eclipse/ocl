@@ -30,11 +30,12 @@ import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
  * An implementation of the model object '<em><b>CG Ecore Opposite Property Call Exp</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGEcoreOppositePropertyCallExpImpl#getEStructuralFeature <em>EStructural Feature</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -28,12 +28,13 @@ import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
  * An implementation of the model object '<em><b>CG Is Equal Exp</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGIsEqualExpImpl#getArgument <em>Argument</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGIsEqualExpImpl#isNotEquals <em>Not Equals</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

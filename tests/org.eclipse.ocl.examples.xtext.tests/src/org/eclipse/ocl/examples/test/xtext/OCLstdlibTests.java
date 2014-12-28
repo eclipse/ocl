@@ -40,16 +40,16 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
-import org.eclipse.ocl.pivot.complete.StandardLibraryInternal;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceAdapter;
-import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.pivot.model.OCLMetaModel;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
-import org.eclipse.ocl.pivot.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.utilities.ProjectMap;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
@@ -382,7 +382,7 @@ public class OCLstdlibTests extends XtextTestCase
 		ResourceSet resourceSet = new ResourceSetImpl();
 		new ProjectMap().initializeResourceSet(resourceSet);
 		ASResourceFactoryRegistry.INSTANCE.configureResourceSet(resourceSet);
-		URI pivotURI = URI.createPlatformResourceURI("org.eclipse.ocl.pivot.internal/model-gen/Pivot.oclas", true);
+		URI pivotURI = URI.createPlatformResourceURI("org.eclipse.ocl.pivot/model-gen/Pivot.oclas", true);
 		//
 		//	Load OCLmetamodel as pre-code-generated Java.
 		//

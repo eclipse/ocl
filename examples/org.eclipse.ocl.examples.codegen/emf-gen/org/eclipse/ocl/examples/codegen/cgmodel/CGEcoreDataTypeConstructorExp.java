@@ -19,11 +19,11 @@ import org.eclipse.emf.ecore.EDataType;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeConstructorExp#getEDataType <em>EData Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeConstructorExp#getString <em>String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGEcoreDataTypeConstructorExp()
  * @generated

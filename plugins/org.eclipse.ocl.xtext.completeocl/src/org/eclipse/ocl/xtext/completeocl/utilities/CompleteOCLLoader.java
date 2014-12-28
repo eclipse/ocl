@@ -32,13 +32,13 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.BaseResource;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.validation.PivotEObjectValidator;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.pivot.validation.PivotEObjectValidator;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 
 public abstract class CompleteOCLLoader

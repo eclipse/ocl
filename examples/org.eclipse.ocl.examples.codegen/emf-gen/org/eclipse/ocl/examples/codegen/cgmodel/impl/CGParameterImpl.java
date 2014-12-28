@@ -41,11 +41,12 @@ import org.eclipse.ocl.examples.codegen.cse.StackPlace;
  * An implementation of the model object '<em><b>CG Parameter</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGParameterImpl#getCallable <em>Callable</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

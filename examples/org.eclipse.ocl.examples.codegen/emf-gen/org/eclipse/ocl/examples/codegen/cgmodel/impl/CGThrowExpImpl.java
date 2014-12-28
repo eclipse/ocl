@@ -28,7 +28,6 @@ import org.eclipse.ocl.examples.codegen.cse.ThrowPlace;
  * An implementation of the model object '<em><b>CG Throw Exp</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * </p>
  *
  * @generated
  */

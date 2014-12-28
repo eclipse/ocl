@@ -16,8 +16,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Namespace;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.resource.ASResource;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 
 public class BaseAS2CS extends AS2CS

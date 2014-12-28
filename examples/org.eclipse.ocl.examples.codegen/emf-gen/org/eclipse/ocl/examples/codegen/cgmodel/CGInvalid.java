@@ -24,11 +24,11 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGInvalid#getMessageTemplate <em>Message Template</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGInvalid#getBindings <em>Bindings</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGInvalid()
  * @generated

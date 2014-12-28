@@ -30,8 +30,8 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGProperty;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGVariable;
 import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**

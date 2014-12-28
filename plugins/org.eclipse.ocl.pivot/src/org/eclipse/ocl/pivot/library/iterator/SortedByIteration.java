@@ -26,6 +26,7 @@ import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.IterationManager;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.internal.values.ValueImpl;
 import org.eclipse.ocl.pivot.library.AbstractIteration;
 import org.eclipse.ocl.pivot.library.LibraryBinaryOperation;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
@@ -35,7 +36,6 @@ import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.Value;
-import org.eclipse.ocl.pivot.values.impl.ValueImpl;
 
 /**
  * SelectIteration realizes the Collection::sortedBy() library iteration.

@@ -8,7 +8,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedInvariants" upperBound="-1"
         eType="ecore:EClass ../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//ConstraintCS"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referredClass" eType="ecore:EClass ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Class"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredClass" eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Class"
         changeable="false" volatile="true" transient="true" derived="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="selfName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -40,7 +40,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IncludeCS" eSuperTypes="../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//NamespaceCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referredNamespace" eType="ecore:EClass ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Namespace"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredNamespace" eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Namespace"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OCLMessageArgCS" eSuperTypes="../../org.eclipse.ocl.xtext.essentialocl/model/EssentialOCLCS.ecore#//ExpCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="OperationContextDeclCS" eSuperTypes="#//FeatureContextDeclCS ../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//TemplateableElementCS">
@@ -58,7 +58,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedResult" eType="ecore:EClass ../../org.eclipse.ocl.xtext.essentialocl/model/EssentialOCLCS.ecore#//VariableCS"
         transient="true" derived="true" containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referredOperation" eType="ecore:EClass ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Operation"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredOperation" eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Operation"
         changeable="false" volatile="true" transient="true" derived="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PackageDeclarationCS" eSuperTypes="#//PathNameDeclCS">
@@ -67,10 +67,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedInvariants" upperBound="-1"
         eType="ecore:EClass ../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//ConstraintCS"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referredPackage" eType="ecore:EClass ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Package"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredPackage" eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Package"
         changeable="false" volatile="true" transient="true" derived="true" resolveProxies="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PathNameDeclCS" abstract="true" eSuperTypes="../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//ModelElementCS ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//MorePivotable">
+  <eClassifiers xsi:type="ecore:EClass" name="PathNameDeclCS" abstract="true" eSuperTypes="../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//ModelElementCS ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//MorePivotable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPathName" eType="ecore:EClass ../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//PathNameCS"
         containment="true"/>
   </eClassifiers>
@@ -81,7 +81,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedDerivedInvariants"
         upperBound="-1" eType="ecore:EClass ../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//ConstraintCS"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referredProperty" eType="ecore:EClass ../../org.eclipse.ocl.pivot.internal/model/Pivot.ecore#//Property"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredProperty" eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Property"
         changeable="false" volatile="true" transient="true" derived="true" resolveProxies="false"/>
   </eClassifiers>
 </ecore:EPackage>

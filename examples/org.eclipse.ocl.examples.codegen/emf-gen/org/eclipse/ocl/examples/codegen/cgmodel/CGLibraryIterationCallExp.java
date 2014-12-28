@@ -19,10 +19,10 @@ import org.eclipse.ocl.pivot.library.LibraryIteration;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryIterationCallExp#getLibraryIteration <em>Library Iteration</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGLibraryIterationCallExp()
  * @generated

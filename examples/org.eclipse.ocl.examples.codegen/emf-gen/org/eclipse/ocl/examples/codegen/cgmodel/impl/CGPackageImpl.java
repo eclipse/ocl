@@ -34,13 +34,14 @@ import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
  * An implementation of the model object '<em><b>CG Package</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGPackageImpl#getClasses <em>Classes</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGPackageImpl#getPackages <em>Packages</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGPackageImpl#getContainingPackage <em>Containing Package</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

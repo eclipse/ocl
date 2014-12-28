@@ -22,11 +22,11 @@ import org.eclipse.ocl.pivot.Operation;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGOperationCallExp#getArguments <em>Arguments</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGOperationCallExp#getReferredOperation <em>Referred Operation</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGOperationCallExp()
  * @generated

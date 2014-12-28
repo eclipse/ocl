@@ -19,12 +19,12 @@ package org.eclipse.ocl.examples.codegen.cgmodel;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGIfExp#getCondition <em>Condition</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGIfExp#getThenExpression <em>Then Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGIfExp#getElseExpression <em>Else Expression</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGIfExp()
  * @generated

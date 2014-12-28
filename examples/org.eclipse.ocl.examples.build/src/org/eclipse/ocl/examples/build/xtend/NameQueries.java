@@ -24,7 +24,7 @@ import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 public class NameQueries

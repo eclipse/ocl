@@ -16,10 +16,10 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
+import org.eclipse.ocl.pivot.internal.scoping.ScopeFilter;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.scoping.EnvironmentView;
-import org.eclipse.ocl.pivot.scoping.ScopeFilter;
 import org.eclipse.ocl.xtext.basecs.ParameterCS;
 import org.eclipse.ocl.xtext.completeoclcs.OperationContextDeclCS;
 

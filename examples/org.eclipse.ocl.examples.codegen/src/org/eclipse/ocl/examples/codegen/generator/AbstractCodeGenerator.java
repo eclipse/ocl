@@ -18,8 +18,8 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.analyzer.AnalysisVisitor;
 import org.eclipse.ocl.examples.codegen.analyzer.NameManager;
 import org.eclipse.ocl.pivot.Operation;
-import org.eclipse.ocl.pivot.manager.FinalAnalysis;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.FinalAnalysis;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 
 public abstract class AbstractCodeGenerator implements CodeGenerator
 {

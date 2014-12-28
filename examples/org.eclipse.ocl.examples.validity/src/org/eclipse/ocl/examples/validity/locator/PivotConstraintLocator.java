@@ -35,10 +35,10 @@ import org.eclipse.ocl.examples.validity.plugin.OCLValidityPlugin;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Namespace;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.internal.utilities.BaseResource;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.validation.PivotEObjectValidator.ValidationAdapter;
+import org.eclipse.ocl.pivot.internal.validation.PivotEObjectValidator.ValidationAdapter;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;
 

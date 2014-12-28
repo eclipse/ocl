@@ -41,7 +41,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.uml.UMLXMIID;
+import org.eclipse.ocl.pivot.internal.uml.UMLXMIID;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;

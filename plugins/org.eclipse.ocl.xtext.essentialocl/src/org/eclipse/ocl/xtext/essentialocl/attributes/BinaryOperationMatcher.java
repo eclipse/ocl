@@ -15,8 +15,8 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.xtext.essentialoclcs.ExpCS;
 
 public class BinaryOperationMatcher extends AbstractOperationMatcher

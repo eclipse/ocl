@@ -25,9 +25,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.PivotConstantsInternal;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.uml.UML2AS;
+import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.uml.UML2AS;
 import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.UML2EcoreConverter;
 

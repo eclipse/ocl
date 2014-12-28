@@ -20,7 +20,7 @@ import org.eclipse.ocl.pivot.Annotation;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Namespace;
-import org.eclipse.ocl.pivot.PivotConstantsInternal;
+import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.xtext.base.as2cs.AS2CSConversion;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.basecs.DetailCS;

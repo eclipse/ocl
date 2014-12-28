@@ -21,11 +21,11 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentBody#getContainmentVisit <em>Containment Visit</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentBody#getParts <em>Parts</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.autogen.autocgmodel.AutoCGModelPackage#getCGContainmentBody()
  * @model

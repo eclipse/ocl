@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
 import org.eclipse.ocl.xtext.basecs.impl.ModelElementCSImpl;
 import org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage;

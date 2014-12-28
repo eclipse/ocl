@@ -1,0 +1,785 @@
+/*******************************************************************************
+ * Copyright (c) 2010, 2013 E.D.Willink and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   E.D.Willink - Initial API and implementation
+ *******************************************************************************/
+package org.eclipse.ocl.pivot.internal;
+
+import java.util.Collection;
+import java.util.List;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.Class;
+import org.eclipse.ocl.pivot.Comment;
+import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.ElementExtension;
+import org.eclipse.ocl.pivot.InstanceSpecification;
+import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.ProfileApplication;
+import org.eclipse.ocl.pivot.ids.IdManager;
+import org.eclipse.ocl.pivot.ids.PackageId;
+import org.eclipse.ocl.pivot.internal.complete.PackageListeners;
+import org.eclipse.ocl.pivot.util.Visitor;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Package</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.PackageImpl#getURI <em>URI</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.PackageImpl#getImportedPackages <em>Imported Packages</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.PackageImpl#getNsPrefix <em>Ns Prefix</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.PackageImpl#getOwnedClasses <em>Owned Classes</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.PackageImpl#getOwnedInstances <em>Owned Instances</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.PackageImpl#getOwnedPackages <em>Owned Packages</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.PackageImpl#getOwnedProfileApplications <em>Owned Profile Applications</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.PackageImpl#getOwningPackage <em>Owning Package</em>}</li>
+ * </ul>
+ *
+ * @generated
+ */
+public class PackageImpl
+		extends NamespaceImpl
+		implements org.eclipse.ocl.pivot.Package {
+		
+	/**
+	 * The default value of the '{@link #getURI() <em>URI</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getURI()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String URI_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getURI() <em>URI</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getURI()
+	 * @generated
+	 * @ordered
+	 */
+	protected String uri = URI_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getImportedPackages() <em>Imported Packages</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getImportedPackages()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<org.eclipse.ocl.pivot.Package> importedPackages;
+
+	/**
+	 * The default value of the '{@link #getNsPrefix() <em>Ns Prefix</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNsPrefix()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NS_PREFIX_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getNsPrefix() <em>Ns Prefix</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNsPrefix()
+	 * @generated
+	 * @ordered
+	 */
+	protected String nsPrefix = NS_PREFIX_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getOwnedClasses() <em>Owned Classes</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedClasses()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<org.eclipse.ocl.pivot.Class> ownedClasses;
+
+	/**
+	 * The cached value of the '{@link #getOwnedInstances() <em>Owned Instances</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedInstances()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<InstanceSpecification> ownedInstances;
+
+	/**
+	 * The cached value of the '{@link #getOwnedPackages() <em>Owned Packages</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedPackages()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<org.eclipse.ocl.pivot.Package> ownedPackages;
+
+	/**
+	 * The cached value of the '{@link #getOwnedProfileApplications() <em>Owned Profile Applications</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedProfileApplications()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ProfileApplication> ownedProfileApplications;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PackageImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return PivotPackage.Literals.PACKAGE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getNsPrefix() {
+		return nsPrefix;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setNsPrefix(String newNsPrefix) {
+		String oldNsPrefix = nsPrefix;
+		nsPrefix = newNsPrefix;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PACKAGE__NS_PREFIX, oldNsPrefix, nsPrefix));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setURIGen(String newURI) {
+		String oldURI = uri;
+		uri = newURI;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PACKAGE__URI, oldURI, uri));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getURI() {
+		return uri;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	@SuppressWarnings("null")
+	public @NonNull List<org.eclipse.ocl.pivot.Package> getImportedPackages()
+	{
+		if (importedPackages == null)
+		{
+			importedPackages = new EObjectResolvingEList<org.eclipse.ocl.pivot.Package>(org.eclipse.ocl.pivot.Package.class, this, PivotPackage.PACKAGE__IMPORTED_PACKAGES);
+		}
+		return importedPackages;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public List<InstanceSpecification> getOwnedInstances()
+	{
+		if (ownedInstances == null)
+		{
+			ownedInstances = new EObjectContainmentWithInverseEList<InstanceSpecification>(InstanceSpecification.class, this, PivotPackage.PACKAGE__OWNED_INSTANCES, PivotPackage.INSTANCE_SPECIFICATION__OWNING_PACKAGE);
+		}
+		return ownedInstances;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public org.eclipse.ocl.pivot.Package getOwningPackage() {
+		if (eContainerFeatureID() != PivotPackage.PACKAGE__OWNING_PACKAGE) return null;
+		return (org.eclipse.ocl.pivot.Package)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwningPackage(org.eclipse.ocl.pivot.Package newOwningPackage, NotificationChain msgs)
+	{
+		msgs = eBasicSetContainer((InternalEObject)newOwningPackage, PivotPackage.PACKAGE__OWNING_PACKAGE, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwningPackage(
+			org.eclipse.ocl.pivot.Package newOwningPackage) {
+		if (newOwningPackage != eInternalContainer() || (eContainerFeatureID() != PivotPackage.PACKAGE__OWNING_PACKAGE && newOwningPackage != null))
+		{
+			if (EcoreUtil.isAncestor(this, newOwningPackage))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwningPackage != null)
+				msgs = ((InternalEObject)newOwningPackage).eInverseAdd(this, PivotPackage.PACKAGE__OWNED_PACKAGES, org.eclipse.ocl.pivot.Package.class, msgs);
+			msgs = basicSetOwningPackage(newOwningPackage, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PACKAGE__OWNING_PACKAGE, newOwningPackage, newOwningPackage));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
+		switch (featureID)
+		{
+			case PivotPackage.PACKAGE__ANNOTATING_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAnnotatingComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.PACKAGE__OWNED_COMMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedComments()).basicAdd(otherEnd, msgs);
+			case PivotPackage.PACKAGE__OWNED_EXTENSIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedExtensions()).basicAdd(otherEnd, msgs);
+			case PivotPackage.PACKAGE__OWNED_CLASSES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedClasses()).basicAdd(otherEnd, msgs);
+			case PivotPackage.PACKAGE__OWNED_INSTANCES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedInstances()).basicAdd(otherEnd, msgs);
+			case PivotPackage.PACKAGE__OWNED_PACKAGES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedPackages()).basicAdd(otherEnd, msgs);
+			case PivotPackage.PACKAGE__OWNED_PROFILE_APPLICATIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedProfileApplications()).basicAdd(otherEnd, msgs);
+			case PivotPackage.PACKAGE__OWNING_PACKAGE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwningPackage((org.eclipse.ocl.pivot.Package)otherEnd, msgs);
+		}
+		return eDynamicInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
+		switch (featureID)
+		{
+			case PivotPackage.PACKAGE__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PACKAGE__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PACKAGE__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PACKAGE__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PACKAGE__OWNED_CONSTRAINTS:
+				return ((InternalEList<?>)getOwnedConstraints()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PACKAGE__OWNED_CLASSES:
+				return ((InternalEList<?>)getOwnedClasses()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PACKAGE__OWNED_INSTANCES:
+				return ((InternalEList<?>)getOwnedInstances()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PACKAGE__OWNED_PACKAGES:
+				return ((InternalEList<?>)getOwnedPackages()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PACKAGE__OWNED_PROFILE_APPLICATIONS:
+				return ((InternalEList<?>)getOwnedProfileApplications()).basicRemove(otherEnd, msgs);
+			case PivotPackage.PACKAGE__OWNING_PACKAGE:
+				return basicSetOwningPackage(null, msgs);
+		}
+		return eDynamicInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
+		switch (eContainerFeatureID())
+		{
+			case PivotPackage.PACKAGE__OWNING_PACKAGE:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.PACKAGE__OWNED_PACKAGES, org.eclipse.ocl.pivot.Package.class, msgs);
+		}
+		return eDynamicBasicRemoveFromContainer(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID)
+		{
+			case PivotPackage.PACKAGE__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.PACKAGE__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.PACKAGE__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.PACKAGE__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
+			case PivotPackage.PACKAGE__NAME:
+				return getName();
+			case PivotPackage.PACKAGE__OWNED_CONSTRAINTS:
+				return getOwnedConstraints();
+			case PivotPackage.PACKAGE__URI:
+				return getURI();
+			case PivotPackage.PACKAGE__IMPORTED_PACKAGES:
+				return getImportedPackages();
+			case PivotPackage.PACKAGE__NS_PREFIX:
+				return getNsPrefix();
+			case PivotPackage.PACKAGE__OWNED_CLASSES:
+				return getOwnedClasses();
+			case PivotPackage.PACKAGE__OWNED_INSTANCES:
+				return getOwnedInstances();
+			case PivotPackage.PACKAGE__OWNED_PACKAGES:
+				return getOwnedPackages();
+			case PivotPackage.PACKAGE__OWNED_PROFILE_APPLICATIONS:
+				return getOwnedProfileApplications();
+			case PivotPackage.PACKAGE__OWNING_PACKAGE:
+				return getOwningPackage();
+		}
+		return eDynamicGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID)
+		{
+			case PivotPackage.PACKAGE__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
+				return;
+			case PivotPackage.PACKAGE__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
+				return;
+			case PivotPackage.PACKAGE__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
+				return;
+			case PivotPackage.PACKAGE__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
+				return;
+			case PivotPackage.PACKAGE__NAME:
+				setName((String)newValue);
+				return;
+			case PivotPackage.PACKAGE__OWNED_CONSTRAINTS:
+				getOwnedConstraints().clear();
+				getOwnedConstraints().addAll((Collection<? extends Constraint>)newValue);
+				return;
+			case PivotPackage.PACKAGE__URI:
+				setURI((String)newValue);
+				return;
+			case PivotPackage.PACKAGE__IMPORTED_PACKAGES:
+				getImportedPackages().clear();
+				getImportedPackages().addAll((Collection<? extends org.eclipse.ocl.pivot.Package>)newValue);
+				return;
+			case PivotPackage.PACKAGE__NS_PREFIX:
+				setNsPrefix((String)newValue);
+				return;
+			case PivotPackage.PACKAGE__OWNED_CLASSES:
+				getOwnedClasses().clear();
+				getOwnedClasses().addAll((Collection<? extends org.eclipse.ocl.pivot.Class>)newValue);
+				return;
+			case PivotPackage.PACKAGE__OWNED_INSTANCES:
+				getOwnedInstances().clear();
+				getOwnedInstances().addAll((Collection<? extends InstanceSpecification>)newValue);
+				return;
+			case PivotPackage.PACKAGE__OWNED_PACKAGES:
+				getOwnedPackages().clear();
+				getOwnedPackages().addAll((Collection<? extends org.eclipse.ocl.pivot.Package>)newValue);
+				return;
+			case PivotPackage.PACKAGE__OWNED_PROFILE_APPLICATIONS:
+				getOwnedProfileApplications().clear();
+				getOwnedProfileApplications().addAll((Collection<? extends ProfileApplication>)newValue);
+				return;
+			case PivotPackage.PACKAGE__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.pivot.Package)newValue);
+				return;
+		}
+		eDynamicSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID)
+		{
+			case PivotPackage.PACKAGE__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				return;
+			case PivotPackage.PACKAGE__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				return;
+			case PivotPackage.PACKAGE__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				return;
+			case PivotPackage.PACKAGE__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				return;
+			case PivotPackage.PACKAGE__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case PivotPackage.PACKAGE__OWNED_CONSTRAINTS:
+				getOwnedConstraints().clear();
+				return;
+			case PivotPackage.PACKAGE__URI:
+				setURI(URI_EDEFAULT);
+				return;
+			case PivotPackage.PACKAGE__IMPORTED_PACKAGES:
+				getImportedPackages().clear();
+				return;
+			case PivotPackage.PACKAGE__NS_PREFIX:
+				setNsPrefix(NS_PREFIX_EDEFAULT);
+				return;
+			case PivotPackage.PACKAGE__OWNED_CLASSES:
+				getOwnedClasses().clear();
+				return;
+			case PivotPackage.PACKAGE__OWNED_INSTANCES:
+				getOwnedInstances().clear();
+				return;
+			case PivotPackage.PACKAGE__OWNED_PACKAGES:
+				getOwnedPackages().clear();
+				return;
+			case PivotPackage.PACKAGE__OWNED_PROFILE_APPLICATIONS:
+				getOwnedProfileApplications().clear();
+				return;
+			case PivotPackage.PACKAGE__OWNING_PACKAGE:
+				setOwningPackage((org.eclipse.ocl.pivot.Package)null);
+				return;
+		}
+		eDynamicUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID)
+		{
+			case PivotPackage.PACKAGE__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.PACKAGE__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.PACKAGE__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.PACKAGE__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
+			case PivotPackage.PACKAGE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.PACKAGE__OWNED_CONSTRAINTS:
+				return ownedConstraints != null && !ownedConstraints.isEmpty();
+			case PivotPackage.PACKAGE__URI:
+				return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
+			case PivotPackage.PACKAGE__IMPORTED_PACKAGES:
+				return importedPackages != null && !importedPackages.isEmpty();
+			case PivotPackage.PACKAGE__NS_PREFIX:
+				return NS_PREFIX_EDEFAULT == null ? nsPrefix != null : !NS_PREFIX_EDEFAULT.equals(nsPrefix);
+			case PivotPackage.PACKAGE__OWNED_CLASSES:
+				return ownedClasses != null && !ownedClasses.isEmpty();
+			case PivotPackage.PACKAGE__OWNED_INSTANCES:
+				return ownedInstances != null && !ownedInstances.isEmpty();
+			case PivotPackage.PACKAGE__OWNED_PACKAGES:
+				return ownedPackages != null && !ownedPackages.isEmpty();
+			case PivotPackage.PACKAGE__OWNED_PROFILE_APPLICATIONS:
+				return ownedProfileApplications != null && !ownedProfileApplications.isEmpty();
+			case PivotPackage.PACKAGE__OWNING_PACKAGE:
+				return getOwningPackage() != null;
+		}
+		return eDynamicIsSet(featureID);
+	}
+
+	private PackageId packageId = null;
+	private @Nullable PackageListeners<PackageListeners.IPackageListener> packageListeners = null;
+	private boolean ignoreInvariants = false;		// FIXME Model this (used to suppress bad OMG UML 2.5 invariants)
+
+	@Override
+	public <R> R accept(@NonNull Visitor<R> visitor) {
+		return visitor.visitPackage(this);
+	}
+
+	public synchronized void addPackageListener(@NonNull PackageListeners.IPackageListener packageListener) {
+		PackageListeners<PackageListeners.IPackageListener> packageListeners2 = packageListeners;
+		if (packageListeners2 == null) {
+			packageListeners2 = packageListeners = new PackageListeners<PackageListeners.IPackageListener>();
+		}
+		packageListeners2.addListener(packageListener);
+	}
+
+	public @Nullable PackageId basicGetPackageId() {
+		return packageId;
+	}
+
+	protected void didAddClass(@NonNull org.eclipse.ocl.pivot.Class partialClass) {
+		if (packageListeners != null) {
+			packageListeners.didAddClass(partialClass);
+		}
+	}
+
+	protected void didAddPackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
+		if (packageListeners != null) {
+			packageListeners.didAddPackage(partialPackage);
+		}
+	}
+
+	protected void didRemoveClass(@NonNull org.eclipse.ocl.pivot.Class partialClass) {
+		if (packageListeners != null) {
+			packageListeners.didRemoveClass(partialClass);
+		}
+	}
+
+	protected void didRemovePackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
+		if (packageListeners != null) {
+			packageListeners.didRemovePackage(partialPackage);
+		}
+	}
+
+	@Override
+	public @Nullable EPackage getEPackage() {
+		EObject eTarget = getETarget();
+		return eTarget instanceof EPackage ? (EPackage) eTarget : null;
+	}
+
+	@Override
+	
+	public @Nullable org.eclipse.ocl.pivot.Class getOwnedClass(String className) {
+		return NameUtil.getNameable(getOwnedClasses(), className);
+	}
+
+	@Override
+	public @NonNull List<org.eclipse.ocl.pivot.Class> getOwnedClasses()
+	{
+		EList<Class> ownedClasses2 = ownedClasses;
+		if (ownedClasses2 == null)
+		{
+			ownedClasses2 = ownedClasses = new EObjectContainmentWithInverseEList<org.eclipse.ocl.pivot.Class>(org.eclipse.ocl.pivot.Class.class, this, PivotPackage.PACKAGE__OWNED_CLASSES, PivotPackage.CLASS__OWNING_PACKAGE)
+			{
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				protected void didRemove(int index, org.eclipse.ocl.pivot.Class partialClass) {
+					assert partialClass != null;
+					didRemoveClass(partialClass);
+				}
+
+				@Override
+				public NotificationChain inverseAdd(org.eclipse.ocl.pivot.Class partialClass, NotificationChain notifications) {
+					assert partialClass != null;
+					NotificationChain inverseAdd = super.inverseAdd(partialClass, notifications);
+					didAddClass(partialClass);
+					return inverseAdd;
+				}
+			};
+		}
+		return ownedClasses2;
+	}
+
+	@Override
+	public @NonNull List<org.eclipse.ocl.pivot.Package> getOwnedPackages()
+	{
+		EList<org.eclipse.ocl.pivot.Package> ownedPackages2 = ownedPackages;
+		if (ownedPackages2 == null)
+		{
+			ownedPackages = ownedPackages2 = new EObjectContainmentWithInverseEList<org.eclipse.ocl.pivot.Package>(org.eclipse.ocl.pivot.Package.class, this, PivotPackage.PACKAGE__OWNED_PACKAGES, PivotPackage.PACKAGE__OWNING_PACKAGE)
+			{
+				private static final long serialVersionUID = 1L;
+	
+				@Override
+				protected void didRemove(int index, org.eclipse.ocl.pivot.Package partialPackage) {
+					assert partialPackage != null;
+					didRemovePackage(partialPackage);
+				}
+
+				@Override
+				public NotificationChain inverseAdd(org.eclipse.ocl.pivot.Package partialPackage, NotificationChain notifications) {
+					assert partialPackage != null;
+					NotificationChain inverseAdd = super.inverseAdd(partialPackage, notifications);
+					didAddPackage(partialPackage);
+					return inverseAdd;
+				}
+			};
+		}
+		return ownedPackages2;
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public List<ProfileApplication> getOwnedProfileApplications()
+	{
+		if (ownedProfileApplications == null)
+		{
+			ownedProfileApplications = new EObjectContainmentWithInverseEList<ProfileApplication>(ProfileApplication.class, this, PivotPackage.PACKAGE__OWNED_PROFILE_APPLICATIONS, PivotPackage.PROFILE_APPLICATION__OWNING_PACKAGE);
+		}
+		return ownedProfileApplications;
+	}
+
+	@Override
+	public @NonNull PackageId getPackageId() {
+		PackageId packageId2 = packageId;
+		if (packageId2 == null) {
+			synchronized (this) {
+				packageId2 = packageId;
+				if (packageId2 == null) {
+					synchronized (this) {
+						packageId = packageId2 = IdManager.getPackageId(this);
+					}
+				}
+			}
+		}
+		return packageId2;
+	}
+	
+	public boolean isIgnoreInvariants() {
+		return ignoreInvariants;
+	}
+
+	public synchronized void removePackageListener(@NonNull PackageListeners.IPackageListener packageListener) {
+		PackageListeners<PackageListeners.IPackageListener> packageListeners2 = packageListeners;
+		if ((packageListeners2 != null) && packageListeners2.removeListener(packageListener)) {
+			packageListeners = null;
+		}
+	}
+	
+	public void setIgnoreInvariants(boolean ignoreInvariants) {
+		this.ignoreInvariants = ignoreInvariants;
+	}
+
+	@Override
+	public void setName(String newName) {
+		String oldName = name;
+		EObject eContainer = eContainer();
+		if ((oldName != null) && !oldName.equals(newName)) {
+			if (eContainer instanceof ModelImpl) {
+				((ModelImpl)eContainer).didRemovePackage(this);
+			}
+			else if (eContainer instanceof PackageImpl) {
+				((PackageImpl)eContainer).didRemovePackage(this);
+			}
+		}
+		super.setName(newName);
+		if ((newName != null) && !newName.equals(oldName)) {
+			if (eContainer instanceof ModelImpl) {
+				((ModelImpl)eContainer).didAddPackage(this);
+			}
+			else if (eContainer instanceof PackageImpl) {
+				((PackageImpl)eContainer).didAddPackage(this);
+			}
+		}
+	}
+	
+	public void setPackageId(@NonNull PackageId packageId) {
+		assert this.packageId == null;
+		this.packageId = packageId;
+	}
+
+	@Override
+	public void setURI(String newURI) {
+		setURIGen(newURI);
+		if ((packageId == null) && (newURI != null)) {
+			setPackageId(IdManager.getPackageId(this));
+		}
+	}
+
+	@Override
+	public String toString() {
+		return super.toString();
+	}
+} //PackageImpl

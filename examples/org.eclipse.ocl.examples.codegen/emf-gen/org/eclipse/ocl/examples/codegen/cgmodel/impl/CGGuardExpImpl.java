@@ -25,11 +25,12 @@ import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
  * An implementation of the model object '<em><b>CG Guard Exp</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGGuardExpImpl#getMessage <em>Message</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -21,11 +21,11 @@ import org.eclipse.ocl.pivot.ids.TypeId;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGTypedElement#getTypeId <em>Type Id</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGTypedElement#isRequired <em>Required</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGTypedElement()
  * @generated

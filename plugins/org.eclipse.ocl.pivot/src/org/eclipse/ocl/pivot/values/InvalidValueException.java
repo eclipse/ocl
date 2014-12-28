@@ -21,7 +21,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.OclInvalidTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.values.impl.UndefinedValueImpl;
+import org.eclipse.ocl.pivot.internal.values.UndefinedValueImpl;
 
 /**
  * An InvalidValueException wraps an InvalidValue and is used to return the InvalidValue

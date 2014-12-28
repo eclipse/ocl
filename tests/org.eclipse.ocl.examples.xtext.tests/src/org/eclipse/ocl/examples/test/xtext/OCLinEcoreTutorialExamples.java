@@ -31,11 +31,11 @@ import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestCase;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
-import org.eclipse.ocl.pivot.OCL;
-import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.pivot.ecore.Ecore2AS;
-import org.eclipse.ocl.pivot.helper.OCLHelper;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.OCL;
+import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.internal.helper.OCLHelper;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
@@ -200,7 +200,7 @@ public class OCLinEcoreTutorialExamples extends PivotTestCase
 			
 			helper.setContext(bookType);
 			ExpressionInOCL query = helper.createQuery("isAvailable()");
-			org.eclipse.ocl.pivot.Query queryEval = ocl.createQuery(query);
+			org.eclipse.ocl.pivot.internal.Query queryEval = ocl.createQuery(query);
 			Object b2Available = queryEval.evaluate(b2Book);
 		    assertFalse(ValueUtil.asBoolean(b2Available));
 		    

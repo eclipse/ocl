@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.ocl.pivot.PivotPackage;
-import org.eclipse.ocl.pivot.scoping.ScopeFilter;
+import org.eclipse.ocl.pivot.internal.scoping.ScopeFilter;
 import org.eclipse.ocl.xtext.basecs.AnnotationCS;
 import org.eclipse.ocl.xtext.basecs.AnnotationElementCS;
 import org.eclipse.ocl.xtext.basecs.AttributeCS;

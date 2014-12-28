@@ -21,9 +21,9 @@ import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.internal.values.OrderedSetImpl;
 import org.eclipse.ocl.pivot.library.AbstractProperty;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
-import org.eclipse.ocl.pivot.values.impl.OrderedSetImpl;
 
 /**
  * EnumerationOwnedLiteralProperty realizes the Enumeration::ownedLiteral() library property.

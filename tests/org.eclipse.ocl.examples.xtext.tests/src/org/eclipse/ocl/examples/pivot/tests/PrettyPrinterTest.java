@@ -15,7 +15,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 
 /**
  * Tests for OclAny operations.

@@ -1,0 +1,95 @@
+/*******************************************************************************
+ * Copyright (c) 2011, 2014 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *******************************************************************************/
+package org.eclipse.ocl.pivot.internal.library;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.ElementExtension;
+import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.Stereotype;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.ids.CollectionTypeId;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitorImpl;
+import org.eclipse.ocl.pivot.internal.uml.UMLElementExtension;
+import org.eclipse.ocl.pivot.library.AbstractProperty;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
+
+/**
+ * The static instance of ExplicitNavigationProperty supports evaluation of
+ * a property call that navigates a relationship.
+ */
+public class ExtensionProperty extends AbstractProperty
+{
+	protected @NonNull Property property;
+	
+	public ExtensionProperty(@NonNull Property property) {
+		this.property = property;
+	}
+	
+	@Override
+	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
+		Type staticType = property.getType();
+		if (staticType == null) {
+			return null;
+		}
+		if (sourceValue instanceof org.eclipse.uml2.uml.Element) {
+			if (staticType instanceof Stereotype) {
+				return UMLElementExtension.getUMLElementExtension((Stereotype)staticType, (org.eclipse.uml2.uml.Element)sourceValue);
+			}
+		}
+		Element element = null;
+		if (sourceValue instanceof Element) {
+			element = (Element)sourceValue;
+		}
+		else {
+			try {
+				element = ((EvaluationVisitorImpl)evaluator).getMetaModelManager().getPivotOf(Element.class, (EObject)sourceValue);
+			} catch (ParserException e) {
+				return new InvalidValueException(e, "Failed to parse " + property);
+			}
+		}
+		if (element != null) {
+			List<ElementExtension> selectedExtensions = null;
+			for (ElementExtension elementExtension : element.getOwnedExtensions()) {
+				Stereotype dynamicStereotype = elementExtension.getStereotype();
+				if (dynamicStereotype.conformsTo(evaluator.getStandardLibrary(), staticType)) {
+					if (selectedExtensions == null) {
+						selectedExtensions = new ArrayList<ElementExtension>();
+					}
+					selectedExtensions.add(elementExtension);
+				}
+			}
+			if (selectedExtensions == null) {
+				return null;
+			}
+			TypeId typeId = property.getTypeId();
+			if (typeId instanceof CollectionTypeId) {
+				return ValueUtil.createSetValue((CollectionTypeId) typeId, selectedExtensions);
+			}
+			else if (selectedExtensions.size() == 1) {
+				return selectedExtensions.get(0);
+			}
+			else {
+				return new InvalidValueException("Multiple applied stereotypes for " + property);
+			}
+		}
+		return staticType; 
+	}
+}

@@ -20,7 +20,6 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGOppositePropertyCallExp;
  * An implementation of the model object '<em><b>CG Opposite Property Call Exp</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * </p>
  *
  * @generated
  */

@@ -114,6 +114,10 @@ import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
 import org.eclipse.ocl.pivot.ids.NestedTypeId;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.pivot.internal.values.IntIntegerValueImpl;
+import org.eclipse.ocl.pivot.internal.values.LongIntegerValueImpl;
 import org.eclipse.ocl.pivot.library.LibraryIteration;
 import org.eclipse.ocl.pivot.library.LibraryOperation;
 import org.eclipse.ocl.pivot.library.LibraryProperty;
@@ -121,16 +125,12 @@ import org.eclipse.ocl.pivot.library.LibrarySimpleOperation;
 import org.eclipse.ocl.pivot.library.LibraryUntypedOperation;
 import org.eclipse.ocl.pivot.library.executor.ExecutorDoubleIterationManager;
 import org.eclipse.ocl.pivot.library.executor.ExecutorSingleIterationManager;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.pivot.values.TupleValue;
-import org.eclipse.ocl.pivot.values.impl.IntIntegerValueImpl;
-import org.eclipse.ocl.pivot.values.impl.LongIntegerValueImpl;
 import org.eclipse.xtext.util.Strings;
 
 /**

@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestSuite;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.complete.StandardLibraryInternal;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**

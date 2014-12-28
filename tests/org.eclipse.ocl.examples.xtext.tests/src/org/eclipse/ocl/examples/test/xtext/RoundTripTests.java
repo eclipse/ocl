@@ -32,18 +32,18 @@ import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Model;
-import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.PivotConstantsInternal;
-import org.eclipse.ocl.pivot.delegate.DelegateInstaller;
-import org.eclipse.ocl.pivot.ecore.AS2Ecore;
-import org.eclipse.ocl.pivot.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.internal.OCL;
+import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
+import org.eclipse.ocl.pivot.internal.delegate.DelegateInstaller;
+import org.eclipse.ocl.pivot.internal.ecore.AS2Ecore;
+import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.resource.ASResource;
+import org.eclipse.ocl.pivot.internal.uml.AS2UML;
+import org.eclipse.ocl.pivot.internal.uml.UML2AS;
 import org.eclipse.ocl.pivot.internal.utilities.BaseResource;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
-import org.eclipse.ocl.pivot.resource.ASResource;
-import org.eclipse.ocl.pivot.uml.AS2UML;
-import org.eclipse.ocl.pivot.uml.UML2AS;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ProjectMap;
 import org.eclipse.ocl.pivot.utilities.StandaloneProjectMap;
@@ -556,7 +556,7 @@ public class RoundTripTests extends XtextTestCase
 	}
 
 	public void testPivotRoundTrip() throws IOException, InterruptedException, ParserException {
-		URI uri = URI.createPlatformResourceURI("/org.eclipse.ocl.pivot.internal/model/Pivot.ecore", true);
+		URI uri = URI.createPlatformResourceURI("/org.eclipse.ocl.pivot/model/Pivot.ecore", true);
 		doRoundTripFromEcore(uri, uri, null);
 	}
 

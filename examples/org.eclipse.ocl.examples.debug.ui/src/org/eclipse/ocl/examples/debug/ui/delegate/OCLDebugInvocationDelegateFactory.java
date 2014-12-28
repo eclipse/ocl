@@ -15,8 +15,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
-import org.eclipse.ocl.pivot.delegate.AbstractOCLDelegateFactory;
-import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.pivot.internal.delegate.AbstractOCLDelegateFactory;
+import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 

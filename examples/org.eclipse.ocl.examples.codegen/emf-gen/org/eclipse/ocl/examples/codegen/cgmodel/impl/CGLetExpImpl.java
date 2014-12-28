@@ -34,12 +34,13 @@ import org.eclipse.ocl.examples.codegen.utilities.EquivalenceUtils;
  * An implementation of the model object '<em><b>CG Let Exp</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGLetExpImpl#getInit <em>Init</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGLetExpImpl#getIn <em>In</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

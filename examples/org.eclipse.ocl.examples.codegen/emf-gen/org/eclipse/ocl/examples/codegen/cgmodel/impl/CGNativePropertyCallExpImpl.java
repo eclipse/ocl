@@ -31,11 +31,12 @@ import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
  * An implementation of the model object '<em><b>CG Field Property Call Exp</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGNativePropertyCallExpImpl#getField <em>Field</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

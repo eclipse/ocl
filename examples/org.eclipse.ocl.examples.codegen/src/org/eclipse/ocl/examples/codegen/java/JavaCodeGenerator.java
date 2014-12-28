@@ -59,6 +59,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.ids.ElementId;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.library.LibraryIteration;
 import org.eclipse.ocl.pivot.library.iterator.AnyIteration;
 import org.eclipse.ocl.pivot.library.iterator.CollectIteration;
@@ -70,7 +71,6 @@ import org.eclipse.ocl.pivot.library.iterator.IterateIteration;
 import org.eclipse.ocl.pivot.library.iterator.OneIteration;
 import org.eclipse.ocl.pivot.library.iterator.RejectIteration;
 import org.eclipse.ocl.pivot.library.iterator.SelectIteration;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**

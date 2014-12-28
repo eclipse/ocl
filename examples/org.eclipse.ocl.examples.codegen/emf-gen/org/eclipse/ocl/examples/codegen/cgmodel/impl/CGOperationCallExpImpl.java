@@ -34,12 +34,13 @@ import org.eclipse.ocl.pivot.Operation;
  * An implementation of the model object '<em><b>CG Operation Call Exp</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGOperationCallExpImpl#getArguments <em>Arguments</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGOperationCallExpImpl#getReferredOperation <em>Referred Operation</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

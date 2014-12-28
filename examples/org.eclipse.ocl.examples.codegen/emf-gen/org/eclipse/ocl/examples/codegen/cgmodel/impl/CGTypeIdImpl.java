@@ -24,7 +24,6 @@ import org.eclipse.ocl.pivot.ids.TypeId;
  * An implementation of the model object '<em><b>CG Type Id</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * </p>
  *
  * @generated
  */

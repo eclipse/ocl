@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.compatibility.EMF_2_9;
+import org.eclipse.ocl.pivot.internal.compatibility.EMF_2_9;
 
 /**
  * ProjectMap extends {@link StandaloneProjectMap} to support polymorphic access in either plugin or standalone environments

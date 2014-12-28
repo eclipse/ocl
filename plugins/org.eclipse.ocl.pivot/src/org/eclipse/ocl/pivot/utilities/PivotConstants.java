@@ -19,7 +19,7 @@ public interface PivotConstants
 	 * EPackage annotation indicating that the EPackage is an Ecore serialisation of an OCL AS Metamodel.
 	 * No details are defined for this EAnnotation.
 	 * <p>
-	 * This annotation is used by /org.eclipse.ocl.pivot.internal/model/Pivot.ecore. It is not
+	 * This annotation is used by /org.eclipse.ocl.pivot/model/Pivot.ecore. It is not
 	 * intended to be used by client code.
 	 */
 	static final @NonNull String AS_METAMODEL_ANNOTATION_SOURCE = "http://www.eclipse.org/OCL/ASMetamodel";

@@ -22,12 +22,13 @@ import org.eclipse.ocl.pivot.Element;
  * An implementation of the model object '<em><b>CG Named Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGNamedElementImpl#getAst <em>Ast</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGNamedElementImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

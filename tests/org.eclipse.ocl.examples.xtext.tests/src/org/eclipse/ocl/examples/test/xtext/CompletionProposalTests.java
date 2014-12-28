@@ -31,9 +31,9 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
-import org.eclipse.ocl.pivot.OCL;
+import org.eclipse.ocl.pivot.internal.OCL;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.xtext.oclinecore.ui.OCLinEcoreUiModule;
 import org.eclipse.ocl.xtext.oclinecore.ui.internal.OCLinEcoreActivator;
@@ -337,13 +337,13 @@ public class CompletionProposalTests extends XtextTestCase
 			//
 			//	Completion proposal that probably resolves to a folder entry.
 			//
-			IReferenceCompletionProposal proposal3a = new ReferenceConfigurableCompletionProposal("org.eclipse.ocl.pivot.ids.impl.OclInvalidTypeIdImpl");
-			IReferenceCompletionProposal proposal3b = new ReferenceConfigurableCompletionProposal("org.eclipse.ocl.pivot.ids.impl.OclVoidTypeIdImpl");
+			IReferenceCompletionProposal proposal3a = new ReferenceConfigurableCompletionProposal("org.eclipse.ocl.pivot.internal.ids.OclInvalidTypeIdImpl");
+			IReferenceCompletionProposal proposal3b = new ReferenceConfigurableCompletionProposal("org.eclipse.ocl.pivot.internal.ids.OclVoidTypeIdImpl");
 			doTestEditor(
 				"import 'http://www.eclipse.org/ocl/2015/Library';\n" +
 				"library ocl : ocl = 'http://www.eclipse.org/ocl/2015/Library' {\n" +
 				"	type Complex : PrimitiveType {\n" +
-				"		operation testing() : String => 'org.eclipse.ocl.pivot.ids.impl.O$';\n" +
+				"		operation testing() : String => 'org.eclipse.ocl.pivot.internal.ids.O$';\n" +
 				"	}\n" +
 				"}';\n",
 				new IReferenceCompletionProposal[]{proposal3a, proposal3b}, null);

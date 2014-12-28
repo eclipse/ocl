@@ -41,8 +41,8 @@ import org.eclipse.ocl.examples.standalone.StandaloneApplication;
 import org.eclipse.ocl.examples.standalone.StandaloneCommand;
 import org.eclipse.ocl.examples.standalone.StandaloneResponse;
 import org.eclipse.ocl.examples.standalone.messages.StandaloneMessages;
-import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
-import org.eclipse.ocl.pivot.validation.PivotEObjectValidator.ValidationAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.validation.PivotEObjectValidator.ValidationAdapter;
 import org.eclipse.ocl.xtext.completeocl.utilities.CompleteOCLLoader;
 
 /**

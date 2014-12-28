@@ -30,13 +30,14 @@ import org.eclipse.ocl.examples.codegen.utilities.EquivalenceUtils;
  * An implementation of the model object '<em><b>CG Constructor Part</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGConstructorPartImpl#getInit <em>Init</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGConstructorPartImpl#getConstructorExp <em>Constructor Exp</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGConstructorPartImpl#getExecutorPart <em>Executor Part</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

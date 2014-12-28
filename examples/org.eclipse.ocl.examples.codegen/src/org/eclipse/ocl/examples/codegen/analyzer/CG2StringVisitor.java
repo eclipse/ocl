@@ -74,11 +74,11 @@ import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.OppositePropertyCallExp;
-import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.PropertyCallExp;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 
 /**
  * Converts an OCL expression to a string for debugging. This is not intended to

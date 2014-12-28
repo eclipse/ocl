@@ -19,7 +19,7 @@ import org.eclipse.ocl.pivot.AssociativityKind;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.Precedence;
-import org.eclipse.ocl.pivot.manager.PrecedenceManager;
+import org.eclipse.ocl.pivot.internal.manager.PrecedenceManager;
 
 /**
  * Tests the PrecedenceManager and Precedence relationships.

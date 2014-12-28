@@ -35,12 +35,13 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
  * An implementation of the model object '<em><b>CG Constructor Exp</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGConstructorExpImpl#getParts <em>Parts</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGConstructorExpImpl#getExecutorType <em>Executor Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

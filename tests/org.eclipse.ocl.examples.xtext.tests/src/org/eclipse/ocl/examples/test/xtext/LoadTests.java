@@ -43,25 +43,25 @@ import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Namespace;
-import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.VariableDeclaration;
 import org.eclipse.ocl.pivot.VariableExp;
-import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.pivot.ecore.AS2Ecore;
-import org.eclipse.ocl.pivot.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.internal.OCL;
+import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
+import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.pivot.internal.ecore.AS2Ecore;
+import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
+import org.eclipse.ocl.pivot.internal.resource.ASResource;
+import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
+import org.eclipse.ocl.pivot.internal.uml.UML2AS;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceAdapter;
-import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
-import org.eclipse.ocl.pivot.resource.ASResource;
-import org.eclipse.ocl.pivot.resource.ASResourceFactoryRegistry;
-import org.eclipse.ocl.pivot.uml.UML2AS;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.ProjectMap;
@@ -1042,7 +1042,7 @@ public class LoadTests extends XtextTestCase
 
 	public void testLoad_Pivot_ocl() throws IOException, InterruptedException {
 //		Abstract2Moniker.TRACE_MONIKERS.setState(true);
-		doLoad_OCL(URI.createPlatformResourceURI("/org.eclipse.ocl.pivot.internal/model/Pivot.ocl", true));
+		doLoad_OCL(URI.createPlatformResourceURI("/org.eclipse.ocl.pivot/model/Pivot.ocl", true));
 	}	
 
 	public void testLoad_RoyalAndLoyal_ocl() throws IOException, InterruptedException {

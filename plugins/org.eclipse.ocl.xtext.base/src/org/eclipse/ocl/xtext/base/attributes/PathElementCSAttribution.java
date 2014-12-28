@@ -17,10 +17,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.NamedElement;
-import org.eclipse.ocl.pivot.scoping.AbstractAttribution;
-import org.eclipse.ocl.pivot.scoping.EnvironmentView;
-import org.eclipse.ocl.pivot.scoping.ScopeFilter;
-import org.eclipse.ocl.pivot.scoping.ScopeView;
+import org.eclipse.ocl.pivot.internal.scoping.AbstractAttribution;
+import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
+import org.eclipse.ocl.pivot.internal.scoping.ScopeFilter;
+import org.eclipse.ocl.pivot.internal.scoping.ScopeView;
 import org.eclipse.ocl.xtext.basecs.PathElementCS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
 

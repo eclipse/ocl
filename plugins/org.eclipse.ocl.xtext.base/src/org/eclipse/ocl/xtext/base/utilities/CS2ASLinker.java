@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.context.ParserContext;
+import org.eclipse.ocl.pivot.internal.context.ParserContext;
 import org.eclipse.ocl.pivot.internal.utilities.IllegalLibraryException;
 import org.eclipse.ocl.xtext.base.cs2as.LibraryDiagnostic;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;

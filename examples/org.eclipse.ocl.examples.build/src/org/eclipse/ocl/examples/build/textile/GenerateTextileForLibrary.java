@@ -31,7 +31,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Precedence;
-import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.internal.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;

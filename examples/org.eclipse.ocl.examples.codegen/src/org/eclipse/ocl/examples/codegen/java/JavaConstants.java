@@ -17,10 +17,10 @@ import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.ids.impl.WeakHashMapOfWeakReference;
-import org.eclipse.ocl.pivot.library.UnboxedCompositionProperty;
-import org.eclipse.ocl.pivot.library.UnboxedExplicitNavigationProperty;
-import org.eclipse.ocl.pivot.library.UnboxedOppositeNavigationProperty;
+import org.eclipse.ocl.pivot.internal.ids.WeakHashMapOfWeakReference;
+import org.eclipse.ocl.pivot.internal.library.UnboxedCompositionProperty;
+import org.eclipse.ocl.pivot.internal.library.UnboxedExplicitNavigationProperty;
+import org.eclipse.ocl.pivot.internal.library.UnboxedOppositeNavigationProperty;
 
 public class JavaConstants
 {

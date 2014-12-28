@@ -51,7 +51,7 @@ import org.eclipse.ocl.examples.debug.vm.response.VMStackFrameResponse;
 import org.eclipse.ocl.examples.debug.vm.utils.DebugOptions;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
 
 public abstract class VMVirtualMachine implements IVMVirtualMachineShell

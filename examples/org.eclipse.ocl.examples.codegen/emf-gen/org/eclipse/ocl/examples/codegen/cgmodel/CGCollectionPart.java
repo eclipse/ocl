@@ -18,12 +18,12 @@ package org.eclipse.ocl.examples.codegen.cgmodel;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionPart#getFirst <em>First</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionPart#getLast <em>Last</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionPart#getCollectionExp <em>Collection Exp</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGCollectionPart()
  * @generated

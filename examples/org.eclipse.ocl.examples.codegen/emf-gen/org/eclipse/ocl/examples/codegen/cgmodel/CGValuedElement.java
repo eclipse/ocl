@@ -25,11 +25,11 @@ import org.eclipse.jdt.annotation.Nullable;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement#getDependsOn <em>Depends On</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement#getOwns <em>Owns</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGValuedElement()
  * @generated

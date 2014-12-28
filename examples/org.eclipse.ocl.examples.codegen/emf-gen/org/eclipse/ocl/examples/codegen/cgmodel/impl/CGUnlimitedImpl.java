@@ -24,7 +24,6 @@ import org.eclipse.ocl.pivot.utilities.ValueUtil;
  * An implementation of the model object '<em><b>CG Infinity</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * </p>
  *
  * @generated
  */

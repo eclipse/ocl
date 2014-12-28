@@ -13,7 +13,7 @@ package org.eclipse.ocl.xtext.essentialocl.ui.quickfix;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.xtext.base.ui.quickfix.BaseQuickfixProvider;
 import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.resource.IEObjectDescription;

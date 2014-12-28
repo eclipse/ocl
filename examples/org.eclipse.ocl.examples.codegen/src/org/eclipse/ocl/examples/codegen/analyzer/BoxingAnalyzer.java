@@ -60,9 +60,9 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.ids.ElementId;
 import org.eclipse.ocl.pivot.ids.OperationId;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.library.LibraryIteration;
 import org.eclipse.ocl.pivot.library.iterator.IterateIteration;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
 
 /**
  * A BoxingAnalyzer performs a bottom up tree-traversal inserting:

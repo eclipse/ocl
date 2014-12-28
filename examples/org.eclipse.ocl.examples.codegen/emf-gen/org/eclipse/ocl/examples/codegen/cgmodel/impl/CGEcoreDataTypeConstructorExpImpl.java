@@ -27,12 +27,13 @@ import org.eclipse.ocl.examples.codegen.utilities.EquivalenceUtils;
  * An implementation of the model object '<em><b>CG Ecore Data Type Constructor Exp</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGEcoreDataTypeConstructorExpImpl#getEDataType <em>EData Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGEcoreDataTypeConstructorExpImpl#getString <em>String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

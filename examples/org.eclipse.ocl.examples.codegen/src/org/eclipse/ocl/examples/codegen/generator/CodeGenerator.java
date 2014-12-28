@@ -29,7 +29,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.ids.ElementId;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 
 public interface CodeGenerator
 {

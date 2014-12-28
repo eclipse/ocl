@@ -74,8 +74,8 @@ import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreGeneratorAdapterFac
 import org.eclipse.ocl.examples.pivot.tests.PivotTestSuite;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.pivot.PivotPackage;
-import org.eclipse.ocl.pivot.helper.OCLHelper;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.helper.OCLHelper;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -342,7 +342,6 @@ public class UsageTests
 		classpathProjects.add("org.eclipse.emf.common");
 		classpathProjects.add("org.eclipse.emf.ecore");
 		classpathProjects.add("org.eclipse.ocl.pivot");
-		classpathProjects.add("org.eclipse.ocl.pivot.internal");
 		classpathProjects.add("org.eclipse.ocl.jdt.annotation7");
 		for (String extraClasspathProject : extraClasspathProjects) {
 			classpathProjects.add(extraClasspathProject);
@@ -896,7 +895,7 @@ public class UsageTests
 			+ "    datatype MyString : 'java.lang.String' { serializable };\n"
 			+ "    class ClassExtension extends pivot::Class {}\n"
 			+ "}\n";
-		String genmodelFile = createGenModelContent(testProjectPath, testFileStem, "platform:/plugin/org.eclipse.ocl.pivot.internal/model/Pivot.merged.genmodel#//pivot");
+		String genmodelFile = createGenModelContent(testProjectPath, testFileStem, "platform:/plugin/org.eclipse.ocl.pivot/model/Pivot.merged.genmodel#//pivot");
 		doDelete(testProjectName);
 		URI fileURI = createModels(testProjectPath, testFileStem, oclinecoreFile, genmodelFile);
 		doGenModel(testProjectPath, fileURI);

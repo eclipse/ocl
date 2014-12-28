@@ -39,7 +39,9 @@ import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
  * An implementation of the model object '<em><b>CG Class</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGClassImpl#getContainingPackage <em>Containing Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGClassImpl#getOperations <em>Operations</em>}</li>
@@ -49,7 +51,6 @@ import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGClassImpl#isInterface <em>Interface</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGClassImpl#getTemplateParameters <em>Template Parameters</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

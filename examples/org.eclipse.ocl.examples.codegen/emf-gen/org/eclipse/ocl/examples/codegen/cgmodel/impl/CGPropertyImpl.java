@@ -34,12 +34,13 @@ import org.eclipse.ocl.examples.codegen.cse.OuterStackPlace;
  * An implementation of the model object '<em><b>CG Property</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGPropertyImpl#getContainingClass <em>Containing Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGPropertyImpl#getBody <em>Body</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

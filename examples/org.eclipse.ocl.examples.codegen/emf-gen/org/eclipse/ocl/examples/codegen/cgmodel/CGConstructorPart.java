@@ -18,12 +18,12 @@ package org.eclipse.ocl.examples.codegen.cgmodel;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorPart#getInit <em>Init</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorPart#getConstructorExp <em>Constructor Exp</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorPart#getExecutorPart <em>Executor Part</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGConstructorPart()
  * @generated

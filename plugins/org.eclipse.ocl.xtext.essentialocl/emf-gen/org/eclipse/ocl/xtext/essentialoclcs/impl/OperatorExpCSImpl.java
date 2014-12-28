@@ -21,7 +21,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.AssociativityKind;
 import org.eclipse.ocl.pivot.Nameable;
 import org.eclipse.ocl.pivot.Precedence;
-import org.eclipse.ocl.pivot.manager.PrecedenceManager;
+import org.eclipse.ocl.pivot.internal.manager.PrecedenceManager;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
 import org.eclipse.ocl.xtext.basecs.ElementCS;
 import org.eclipse.ocl.xtext.basecs.NamedElementCS;

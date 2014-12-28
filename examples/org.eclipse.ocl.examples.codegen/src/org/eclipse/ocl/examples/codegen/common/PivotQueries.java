@@ -15,8 +15,8 @@ import java.util.LinkedHashSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 public class PivotQueries

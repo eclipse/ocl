@@ -14,7 +14,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ids.IdVisitor;
 import org.eclipse.ocl.pivot.ids.PrimitiveTypeId;
-import org.eclipse.ocl.pivot.ids.impl.UnscopedId;
+import org.eclipse.ocl.pivot.internal.ids.UnscopedId;
 
 /**
  * A JavaTypeId enables a Java class to be represented as a typeid singleton.

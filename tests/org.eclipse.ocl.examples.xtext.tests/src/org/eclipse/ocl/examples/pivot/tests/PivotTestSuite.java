@@ -54,12 +54,9 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
-import org.eclipse.ocl.pivot.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.EnvironmentInternal;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Namespace;
-import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.Parameter;
@@ -71,22 +68,25 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.SemanticException;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.context.ClassContext;
-import org.eclipse.ocl.pivot.context.ParserContext;
-import org.eclipse.ocl.pivot.ecore.Ecore2AS;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
-import org.eclipse.ocl.pivot.helper.OCLHelper;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
+import org.eclipse.ocl.pivot.internal.EnvironmentInternal;
+import org.eclipse.ocl.pivot.internal.OCL;
+import org.eclipse.ocl.pivot.internal.context.ClassContext;
+import org.eclipse.ocl.pivot.internal.context.ParserContext;
+import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.internal.helper.OCLHelper;
+import org.eclipse.ocl.pivot.internal.manager.AbstractMetaModelManagerResourceAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.utilities.BaseResource;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironment;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.library.LibraryUnaryOperation;
 import org.eclipse.ocl.pivot.library.ecore.EcoreExecutorManager;
-import org.eclipse.ocl.pivot.manager.AbstractMetaModelManagerResourceAdapter;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -1258,7 +1258,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	@SuppressWarnings("null")
 	public CodeGenHelper getCodeGenHelper(@NonNull MetaModelManager metaModelManager) throws IOException {
 		URI genModelURI = URI.createPlatformResourceURI(
-				"/org.eclipse.ocl.pivot.internal/model/Pivot.merged.genmodel",
+				"/org.eclipse.ocl.pivot/model/Pivot.merged.genmodel",
 				true);
 //		ResourceSet resourceSet = getResourceSet();
 		Resource genModelResource = resourceSet.getResource(genModelURI, true);

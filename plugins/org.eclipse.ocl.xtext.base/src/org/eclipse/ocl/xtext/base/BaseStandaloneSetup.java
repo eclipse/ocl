@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.ocl.pivot.PivotStandaloneSetup;
+import org.eclipse.ocl.pivot.internal.PivotStandaloneSetup;
 import org.eclipse.ocl.xtext.base.scoping.BaseScoping;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
 import org.eclipse.ocl.xtext.basecs.util.BaseCSValidator;

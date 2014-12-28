@@ -20,10 +20,10 @@ import org.eclipse.ocl.pivot.ids.TuplePartId;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGTuplePartCallExp#getAstTuplePartId <em>Ast Tuple Part Id</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGTuplePartCallExp()
  * @generated

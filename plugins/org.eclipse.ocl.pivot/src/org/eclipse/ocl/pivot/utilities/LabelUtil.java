@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Labelable;
+import org.eclipse.ocl.pivot.internal.labels.LabelSubstitutionLabelProvider;
 import org.eclipse.ocl.pivot.labels.AbstractLabelGenerator;
 //import org.eclipse.ocl.ecore.Constraint;
 //import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
@@ -43,7 +44,6 @@ import org.eclipse.ocl.pivot.labels.AbstractLabelGenerator;
 //import org.eclipse.ocl.utilities.UMLReflection;
 import org.eclipse.ocl.pivot.labels.ILabelGenerator;
 import org.eclipse.ocl.pivot.labels.LabelGeneratorRegistry;
-import org.eclipse.ocl.pivot.labels.impl.LabelSubstitutionLabelProvider;
 
 public class LabelUtil
 {	

@@ -33,12 +33,12 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.ids.PrimitiveTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.internal.values.CollectionTypeParametersImpl;
 import org.eclipse.ocl.pivot.types.ParameterTypesImpl;
 import org.eclipse.ocl.pivot.types.TemplateParametersImpl;
 import org.eclipse.ocl.pivot.values.CollectionTypeParameters;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
-import org.eclipse.ocl.pivot.values.impl.CollectionTypeParametersImpl;
 
 public class TypeUtil
 {

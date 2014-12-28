@@ -13,6 +13,7 @@ package org.eclipse.ocl.examples.debug.ui.delegate;
 import java.util.HashMap;
 import java.util.Map;
 
+
 //import org.eclipse.core.filesystem.EFS;
 //import org.eclipse.core.filesystem.IFileStore;
 import org.eclipse.core.runtime.CoreException;
@@ -37,10 +38,10 @@ import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
 import org.eclipse.ocl.examples.debug.ui.OCLDebugUIPlugin;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
-import org.eclipse.ocl.pivot.OCL;
-import org.eclipse.ocl.pivot.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.pivot.delegate.OCLSettingDelegate;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.OCL;
+import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.pivot.internal.delegate.OCLSettingDelegate;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbench;

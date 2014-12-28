@@ -9,7 +9,7 @@
  *   E.D.Willink - Initial API and implementation
  *
  * This code is auto-generated
- * from: org.eclipse.ocl.pivot.internal/model/Pivot.merged.genmodel
+ * from: org.eclipse.ocl.pivot/model/Pivot.merged.genmodel
  *
  * Only the copyright statement is editable.
  *******************************************************************************/

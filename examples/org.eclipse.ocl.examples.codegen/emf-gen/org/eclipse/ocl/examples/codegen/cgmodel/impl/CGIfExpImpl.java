@@ -34,13 +34,14 @@ import org.eclipse.ocl.examples.codegen.utilities.EquivalenceUtils;
  * An implementation of the model object '<em><b>CG If Exp</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGIfExpImpl#getCondition <em>Condition</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGIfExpImpl#getThenExpression <em>Then Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGIfExpImpl#getElseExpression <em>Else Expression</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

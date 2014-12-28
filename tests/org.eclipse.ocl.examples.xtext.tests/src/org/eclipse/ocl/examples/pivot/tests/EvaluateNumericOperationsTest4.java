@@ -18,10 +18,10 @@ import java.util.Collection;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
+import org.eclipse.ocl.pivot.internal.values.BigIntegerValueImpl;
+import org.eclipse.ocl.pivot.internal.values.IntIntegerValueImpl;
+import org.eclipse.ocl.pivot.internal.values.LongIntegerValueImpl;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
-import org.eclipse.ocl.pivot.values.impl.BigIntegerValueImpl;
-import org.eclipse.ocl.pivot.values.impl.IntIntegerValueImpl;
-import org.eclipse.ocl.pivot.values.impl.LongIntegerValueImpl;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;

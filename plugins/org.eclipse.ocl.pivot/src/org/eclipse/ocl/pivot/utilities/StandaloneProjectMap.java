@@ -57,7 +57,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.compatibility.EMF_2_9;
+import org.eclipse.ocl.pivot.internal.compatibility.EMF_2_9;
 import org.w3c.dom.Document;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;

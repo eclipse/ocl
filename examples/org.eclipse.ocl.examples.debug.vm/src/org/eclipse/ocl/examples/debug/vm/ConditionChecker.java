@@ -20,7 +20,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationVisitor;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.OCLExpression;
-import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
 
 public class ConditionChecker {
 

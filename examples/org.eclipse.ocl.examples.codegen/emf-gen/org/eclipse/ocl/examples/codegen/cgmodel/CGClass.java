@@ -21,6 +21,7 @@ import org.eclipse.jdt.annotation.NonNull;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGClass#getContainingPackage <em>Containing Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGClass#getOperations <em>Operations</em>}</li>
@@ -30,7 +31,6 @@ import org.eclipse.jdt.annotation.NonNull;
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGClass#isInterface <em>Interface</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGClass#getTemplateParameters <em>Template Parameters</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGClass()
  * @generated

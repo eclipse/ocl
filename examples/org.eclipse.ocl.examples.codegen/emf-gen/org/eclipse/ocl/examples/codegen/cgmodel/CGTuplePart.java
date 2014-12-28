@@ -18,11 +18,11 @@ package org.eclipse.ocl.examples.codegen.cgmodel;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGTuplePart#getInit <em>Init</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGTuplePart#getTupleExp <em>Tuple Exp</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGTuplePart()
  * @generated

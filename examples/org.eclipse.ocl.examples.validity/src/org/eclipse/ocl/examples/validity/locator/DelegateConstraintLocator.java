@@ -43,10 +43,10 @@ import org.eclipse.ocl.examples.validity.plugin.OCLValidityPlugin;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.internal.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 

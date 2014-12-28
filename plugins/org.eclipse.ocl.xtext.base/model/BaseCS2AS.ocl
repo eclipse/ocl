@@ -1,5 +1,5 @@
 import 'BaseCS.ecore'
---import '/resource/org.eclipse.ocl.pivot.internal/model/Pivot.ecore'
+--import '/resource/org.eclipse.ocl.pivot/model/Pivot.ecore'
 package basecs
 
 context  AnnotationCS

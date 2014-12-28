@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.scoping.ScopeFilter;
+import org.eclipse.ocl.pivot.internal.scoping.ScopeFilter;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
 import org.eclipse.ocl.xtext.basecs.ElementCS;
 import org.eclipse.ocl.xtext.basecs.PathElementCS;

@@ -12,8 +12,8 @@ package org.eclipse.ocl.xtext.oclinecore.cs2as;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Annotation;
-import org.eclipse.ocl.pivot.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.xtext.oclinecorecs.SysMLCS;

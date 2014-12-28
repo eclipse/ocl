@@ -29,12 +29,13 @@ import org.eclipse.ocl.examples.codegen.utilities.EquivalenceUtils;
  * An implementation of the model object '<em><b>CG Tuple Part</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGTuplePartImpl#getInit <em>Init</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGTuplePartImpl#getTupleExp <em>Tuple Exp</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

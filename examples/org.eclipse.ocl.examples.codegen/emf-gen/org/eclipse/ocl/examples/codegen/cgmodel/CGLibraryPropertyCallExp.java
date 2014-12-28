@@ -20,10 +20,10 @@ import org.eclipse.ocl.pivot.library.LibraryProperty;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryPropertyCallExp#getLibraryProperty <em>Library Property</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGLibraryPropertyCallExp()
  * @generated

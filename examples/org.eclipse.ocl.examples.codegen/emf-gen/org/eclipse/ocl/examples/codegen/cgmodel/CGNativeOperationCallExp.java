@@ -19,10 +19,10 @@ import java.lang.reflect.Method;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGNativeOperationCallExp#getMethod <em>Method</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGNativeOperationCallExp()
  * @generated

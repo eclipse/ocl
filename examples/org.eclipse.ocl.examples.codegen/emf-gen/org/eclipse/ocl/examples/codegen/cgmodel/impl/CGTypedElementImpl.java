@@ -25,12 +25,13 @@ import org.eclipse.ocl.pivot.ids.TypeId;
  * An implementation of the model object '<em><b>CG Typed Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGTypedElementImpl#getTypeId <em>Type Id</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGTypedElementImpl#isRequired <em>Required</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

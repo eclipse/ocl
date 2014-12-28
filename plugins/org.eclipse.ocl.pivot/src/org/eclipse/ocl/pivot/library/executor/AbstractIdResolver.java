@@ -77,6 +77,8 @@ import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.ids.UnspecifiedId;
+import org.eclipse.ocl.pivot.internal.values.BagImpl;
+import org.eclipse.ocl.pivot.internal.values.OrderedSetImpl;
 import org.eclipse.ocl.pivot.types.AbstractTuplePart;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
@@ -94,8 +96,6 @@ import org.eclipse.ocl.pivot.values.SetValue;
 import org.eclipse.ocl.pivot.values.Unlimited;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.pivot.values.Value;
-import org.eclipse.ocl.pivot.values.impl.BagImpl;
-import org.eclipse.ocl.pivot.values.impl.OrderedSetImpl;
 
 public abstract class AbstractIdResolver implements IdResolver
 {

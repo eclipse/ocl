@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.NamedElement;
-import org.eclipse.ocl.pivot.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 
 public class TestPrettyPrinter extends XtextTestCase

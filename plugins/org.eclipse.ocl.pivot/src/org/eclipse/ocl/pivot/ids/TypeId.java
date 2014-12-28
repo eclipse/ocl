@@ -12,8 +12,8 @@ package org.eclipse.ocl.pivot.ids;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.ids.impl.OclInvalidTypeIdImpl;
-import org.eclipse.ocl.pivot.ids.impl.OclVoidTypeIdImpl;
+import org.eclipse.ocl.pivot.internal.ids.OclInvalidTypeIdImpl;
+import org.eclipse.ocl.pivot.internal.ids.OclVoidTypeIdImpl;
 
 /**
  * A TypeId provides a unique hierarchical semantic identifier for type which may have many 'actual' type variants.

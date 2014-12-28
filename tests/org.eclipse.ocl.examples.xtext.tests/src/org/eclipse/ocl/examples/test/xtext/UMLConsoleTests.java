@@ -14,9 +14,9 @@ package org.eclipse.ocl.examples.test.xtext;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ocl.pivot.OCL;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.OCL;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 
 /**
  * Tests that exercise the Xtext OCL Console using a UML model.

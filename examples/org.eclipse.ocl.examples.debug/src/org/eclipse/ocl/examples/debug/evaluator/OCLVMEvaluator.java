@@ -25,7 +25,7 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Variable;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 
 /**
  * A OCLVMEvaluator supports loading a transformation as source then loading models, performing a transformation

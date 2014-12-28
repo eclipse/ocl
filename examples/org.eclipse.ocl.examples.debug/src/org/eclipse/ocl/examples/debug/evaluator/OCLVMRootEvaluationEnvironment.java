@@ -27,12 +27,12 @@ import org.eclipse.ocl.examples.debug.vm.utils.ASTBindingHelper;
 import org.eclipse.ocl.examples.debug.vm.utils.VMRuntimeException;
 import org.eclipse.ocl.examples.debug.vm.utils.VMStackTraceBuilder;
 import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Variable;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 public class OCLVMRootEvaluationEnvironment extends VMRootEvaluationEnvironment<ExpressionInOCL> implements IOCLVMEvaluationEnvironment

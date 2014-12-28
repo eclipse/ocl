@@ -39,13 +39,14 @@ import org.eclipse.ocl.pivot.Iteration;
  * An implementation of the model object '<em><b>CG Iteration Call Exp</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGIterationCallExpImpl#getReferredIteration <em>Referred Iteration</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGIterationCallExpImpl#getIterators <em>Iterators</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGIterationCallExpImpl#getBody <em>Body</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

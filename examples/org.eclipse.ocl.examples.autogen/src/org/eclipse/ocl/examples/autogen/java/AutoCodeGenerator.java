@@ -48,7 +48,7 @@ import org.eclipse.ocl.examples.codegen.java.ImportUtils;
 import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
 import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreGenModelGeneratorAdapter;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 

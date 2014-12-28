@@ -37,12 +37,13 @@ import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
  * An implementation of the model object '<em><b>CG Containment Body</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.autogen.autocgmodel.impl.CGContainmentBodyImpl#getContainmentVisit <em>Containment Visit</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.autogen.autocgmodel.impl.CGContainmentBodyImpl#getParts <em>Parts</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

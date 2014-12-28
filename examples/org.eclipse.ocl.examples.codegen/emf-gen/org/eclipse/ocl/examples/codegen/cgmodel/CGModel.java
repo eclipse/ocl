@@ -19,11 +19,11 @@ import java.util.List;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGModel#getGlobals <em>Globals</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGModel#getPackages <em>Packages</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGModel()
  * @generated

@@ -41,12 +41,13 @@ import org.eclipse.ocl.examples.codegen.cse.ControlPlace;
  * An implementation of the model object '<em><b>CG Valued Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGValuedElementImpl#getDependsOn <em>Depends On</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGValuedElementImpl#getOwns <em>Owns</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

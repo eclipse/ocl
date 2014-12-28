@@ -19,12 +19,12 @@ package org.eclipse.ocl.examples.codegen.cgmodel;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGCallExp#isInvalidating <em>Invalidating</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGCallExp#isValidating <em>Validating</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGCallExp#getSource <em>Source</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGCallExp()
  * @generated

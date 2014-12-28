@@ -27,7 +27,6 @@ import org.eclipse.ocl.examples.codegen.cse.ControlPlace;
  * An implementation of the model object '<em><b>CG Iterator</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * </p>
  *
  * @generated
  */

@@ -18,17 +18,17 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.internal.labels.DynamicEObjectImplLabelGenerator;
+import org.eclipse.ocl.pivot.internal.labels.EAnnotationLabelGenerator;
+import org.eclipse.ocl.pivot.internal.labels.EGenericTypeLabelGenerator;
+import org.eclipse.ocl.pivot.internal.labels.ENamedElementLabelGenerator;
+import org.eclipse.ocl.pivot.internal.labels.EObjectLabelGenerator;
+import org.eclipse.ocl.pivot.internal.labels.EcoreURILabelGenerator;
+import org.eclipse.ocl.pivot.internal.labels.ElementIdLabelGenerator;
+import org.eclipse.ocl.pivot.internal.labels.NameableLabelGenerator;
+import org.eclipse.ocl.pivot.internal.labels.StringLabelGenerator;
+import org.eclipse.ocl.pivot.internal.plugin.LabelGeneratorRegistryReader;
 import org.eclipse.ocl.pivot.labels.ILabelGenerator.Descriptor;
-import org.eclipse.ocl.pivot.labels.impl.DynamicEObjectImplLabelGenerator;
-import org.eclipse.ocl.pivot.labels.impl.EAnnotationLabelGenerator;
-import org.eclipse.ocl.pivot.labels.impl.EGenericTypeLabelGenerator;
-import org.eclipse.ocl.pivot.labels.impl.ENamedElementLabelGenerator;
-import org.eclipse.ocl.pivot.labels.impl.EObjectLabelGenerator;
-import org.eclipse.ocl.pivot.labels.impl.EcoreURILabelGenerator;
-import org.eclipse.ocl.pivot.labels.impl.ElementIdLabelGenerator;
-import org.eclipse.ocl.pivot.labels.impl.NameableLabelGenerator;
-import org.eclipse.ocl.pivot.labels.impl.StringLabelGenerator;
-import org.eclipse.ocl.pivot.plugin.LabelGeneratorRegistryReader;
 
 /**
  * DebugString supports generation of debug identification of objects, determining a name usuing

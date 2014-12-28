@@ -31,12 +31,13 @@ import org.eclipse.ocl.pivot.utilities.ValueUtil;
  * An implementation of the model object '<em><b>CG Invalid</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGInvalidImpl#getMessageTemplate <em>Message Template</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGInvalidImpl#getBindings <em>Bindings</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

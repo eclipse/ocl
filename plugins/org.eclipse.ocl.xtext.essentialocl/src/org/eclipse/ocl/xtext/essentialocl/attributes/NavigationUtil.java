@@ -20,7 +20,7 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.FeatureFilter;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.Operation;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 import org.eclipse.ocl.xtext.basecs.PathElementCS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
 import org.eclipse.ocl.xtext.essentialoclcs.AbstractNameExpCS;

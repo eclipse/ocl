@@ -22,12 +22,12 @@ import org.eclipse.jdt.annotation.Nullable;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGOperation#getPreconditions <em>Preconditions</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGOperation#getPostconditions <em>Postconditions</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGOperation#getContainingClass <em>Containing Class</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGOperation()
  * @generated

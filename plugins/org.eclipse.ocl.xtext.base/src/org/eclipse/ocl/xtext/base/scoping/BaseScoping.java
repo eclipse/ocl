@@ -19,7 +19,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
-import org.eclipse.ocl.pivot.scoping.Attribution;
+import org.eclipse.ocl.pivot.internal.scoping.Attribution;
 import org.eclipse.ocl.xtext.base.attributes.ElementCSAttribution;
 import org.eclipse.ocl.xtext.base.attributes.ImportCSAttribution;
 import org.eclipse.ocl.xtext.base.attributes.LibraryCSAttribution;

@@ -23,10 +23,10 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOppositePropertyCallExp#getEStructuralFeature <em>EStructural Feature</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGEcoreOppositePropertyCallExp()
  * @generated

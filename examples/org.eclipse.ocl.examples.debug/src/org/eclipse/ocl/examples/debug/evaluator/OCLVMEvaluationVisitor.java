@@ -29,10 +29,10 @@ import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
-import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.pivot.evaluation.EvaluationVisitorImpl;
 import org.eclipse.ocl.pivot.ids.IdResolver;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitorImpl;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 import org.eclipse.ocl.pivot.util.AbstractWrappingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 

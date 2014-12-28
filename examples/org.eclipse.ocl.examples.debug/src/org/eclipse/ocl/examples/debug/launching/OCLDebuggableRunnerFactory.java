@@ -25,7 +25,7 @@ import org.eclipse.ocl.examples.debug.vm.ValidBreakpointLocator;
 import org.eclipse.ocl.examples.debug.vm.core.EvaluationContext;
 import org.eclipse.ocl.examples.debug.vm.launching.DebuggableRunner;
 import org.eclipse.ocl.examples.debug.vm.launching.DebuggableRunnerFactory;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
 
 public class OCLDebuggableRunnerFactory extends DebuggableRunnerFactory
 {

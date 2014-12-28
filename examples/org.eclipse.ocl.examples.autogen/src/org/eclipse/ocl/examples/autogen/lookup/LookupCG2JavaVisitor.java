@@ -21,7 +21,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.JavaConstants;
 import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.lookup.Environment;
+import org.eclipse.ocl.pivot.internal.lookup.Environment;
 import org.eclipse.ocl.pivot.util.Visitable;
 
 /**

@@ -15,7 +15,7 @@ import java.io.IOException;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.plugin.PivotPlugin;
+import org.eclipse.ocl.pivot.util.PivotPlugin;
 
 public final class TracingOption implements Appendable
 {

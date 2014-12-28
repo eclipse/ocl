@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.pivot.AssociationClass;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
-import org.eclipse.ocl.pivot.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.uml2.uml.Association;
 

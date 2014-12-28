@@ -19,13 +19,13 @@ import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
-import org.eclipse.ocl.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.pivot.manager.MetaModelManagerResourceAdapter;
+import org.eclipse.ocl.pivot.internal.values.BagImpl;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.Bag;
-import org.eclipse.ocl.pivot.values.impl.BagImpl;
 import org.eclipse.ocl.xtext.essentialocl.utilities.EssentialOCLCSResource;
 
 /**
