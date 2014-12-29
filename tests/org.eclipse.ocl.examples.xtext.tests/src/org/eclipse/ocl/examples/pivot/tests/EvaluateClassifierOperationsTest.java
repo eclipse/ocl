@@ -33,29 +33,30 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
     protected void setUp() throws Exception {
 		BaseLinkingService.DEBUG_RETRY.setState(true);
         super.setUp();
-        helper.setContext(metamodelManager.getStandardLibrary().getClassType());
+//        helper.setContext(metamodelManager.getStandardLibrary().getClassType());
     }
 
 	/**
 	 * Tests the allInstances() operator.
 	 */
 	public void test_allInstances() {
+		org.eclipse.ocl.pivot.Class classType = metamodelManager.getStandardLibrary().getClassType();
 		assertQueryResults(null, "Set{CollectionKind::Bag,CollectionKind::Collection,CollectionKind::_'OrderedSet',CollectionKind::_'Sequence',CollectionKind::_'Set'}", "CollectionKind.allInstances()");
 		assertQueryResults(null, "Set{true,false}", "Boolean.allInstances()");
 		assertQueryResults(null, "Set{null}", "OclVoid.allInstances()");
 		assertQueryResults(null, "Set{}", "ocl::Package.allInstances()");
 		assertQueryEquals(pkg1, 8, "Package.allInstances()->size()");
-		assertSemanticErrorQuery("Integer.allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "Integer", "allInstances", "");
-		assertSemanticErrorQuery("String.allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "String", "allInstances", "");
-		assertSemanticErrorQuery("Set(Integer).allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "Set(Integer)", "allInstances", "");
-		assertSemanticErrorQuery("Tuple(a:Integer).allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "Tuple(a:Integer)", "allInstances", "");
-		assertSemanticErrorQuery("OclAny.allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "OclAny", "allInstances", "");
-		assertSemanticErrorQuery("4.allInstances()", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Integer", "allInstances", "");
-		assertSemanticErrorQuery("true.allInstances()", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Boolean", "allInstances", "");
+		assertSemanticErrorQuery(classType, "Integer.allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "Integer", "allInstances", "");
+		assertSemanticErrorQuery(classType, "String.allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "String", "allInstances", "");
+		assertSemanticErrorQuery(classType, "Set(Integer).allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "Set(Integer)", "allInstances", "");
+		assertSemanticErrorQuery(classType, "Tuple(a:Integer).allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "Tuple(a:Integer)", "allInstances", "");
+		assertSemanticErrorQuery(classType, "OclAny.allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "OclAny", "allInstances", "");
+		assertSemanticErrorQuery(classType, "4.allInstances()", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Integer", "allInstances", "");
+		assertSemanticErrorQuery(classType, "true.allInstances()", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Boolean", "allInstances", "");
 //		assertQueryInvalid(null, "true.allInstances()");
 //		assertQueryResults(null, "Set{true,false}", "true.allInstances()");
-		assertSemanticErrorQuery("Set{1}.allInstances()", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Set(Integer)", "allInstances", "");
-		assertSemanticErrorQuery("Tuple{a:Integer=1}.allInstances()", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Tuple(a:Integer)", "allInstances", "");
+		assertSemanticErrorQuery(classType, "Set{1}.allInstances()", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Set(Integer)", "allInstances", "");
+		assertSemanticErrorQuery(classType, "Tuple{a:Integer=1}.allInstances()", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Tuple(a:Integer)", "allInstances", "");
 		assertQueryInvalid(null, "OclInvalid.allInstances()");
 	}
 	
@@ -80,28 +81,30 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
 	 * Tests the oclContainer() operator.
 	 */
 	public void test_oclContainer() {
-		assertSemanticErrorQuery("invalid.oclContainer()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "OclInvalid", "oclContainer");
+		org.eclipse.ocl.pivot.Class classType = metamodelManager.getStandardLibrary().getClassType();
+		assertSemanticErrorQuery(classType, "invalid.oclContainer()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "OclInvalid", "oclContainer");
 		assertQueryInvalid(pkg2, "let s : OclElement = invalid in s.oclContainer()");
-		assertSemanticErrorQuery("null.oclContainer()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "OclVoid", "oclContainer");
+		assertSemanticErrorQuery(classType, "null.oclContainer()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "OclVoid", "oclContainer");
 		assertQueryInvalid(pkg2, "let s : OclElement = null in s.oclContainer()");
 		assertQueryResults(root, "null", "oclContainer()");
 		assertQueryEquals(pkg2, pkg1, "oclContainer()");
-		assertSemanticErrorQuery("1.oclContainer()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Integer", "oclContainer");
+		assertSemanticErrorQuery(classType, "1.oclContainer()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Integer", "oclContainer");
 	}
 	
 	/**
 	 * Tests the oclContents() operator.
 	 */
 	public void test_oclContents() {
+		org.eclipse.ocl.pivot.Class classType = metamodelManager.getStandardLibrary().getClassType();
     	@SuppressWarnings("null") @NonNull Type packageType = metamodelManager.getPivotType("Package");
 		CollectionTypeId typeId = TypeId.SET.getSpecializedId(packageType.getTypeId());
-		assertSemanticErrorQuery("invalid.oclContents()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "OclInvalid", "oclContents");
+		assertSemanticErrorQuery(classType, "invalid.oclContents()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "OclInvalid", "oclContents");
 		assertQueryInvalid(pkg2, "let s : OclElement = invalid in s.oclContents()");
-		assertSemanticErrorQuery("null.oclContents()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "OclVoid", "oclContents");
+		assertSemanticErrorQuery(classType, "null.oclContents()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "OclVoid", "oclContents");
 		assertQueryInvalid(pkg2, "let s : OclElement = null in s.oclContents()");
 		assertQueryEquals(pkg1, idResolver.createSetOfEach(typeId, bob, pkg2, pkg3), "oclContents()");
 		assertQueryEquals(pkg2, idResolver.createSetOfEach(typeId, jim), "oclContents()");
 		assertQueryEquals(george, idResolver.createSetOfEach(typeId), "oclContents()");
-		assertSemanticErrorQuery("1.oclContents()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Integer", "oclContents");
+		assertSemanticErrorQuery(classType, "1.oclContents()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Integer", "oclContents");
 	}
 }

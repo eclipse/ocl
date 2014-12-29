@@ -12,7 +12,9 @@
 package org.eclipse.ocl.pivot.internal.helper;
 
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
@@ -58,6 +60,47 @@ public class OCLHelperImpl implements OCLHelper
 		this.rootEnvironment = ocl.getEnvironment();
 		this.metamodelManager = rootEnvironment.getMetamodelManager();
 		this.environmentFactory = rootEnvironment.getEnvironmentFactory();
+	}
+
+	public OCLHelperImpl(@NonNull OCL ocl, @Nullable EObject context) {
+        this.ocl = ocl;
+		this.rootEnvironment = ocl.getEnvironment();
+		this.metamodelManager = rootEnvironment.getMetamodelManager();
+		this.environmentFactory = rootEnvironment.getEnvironmentFactory();
+        if (context instanceof org.eclipse.ocl.pivot.Class) {
+        	setContext((org.eclipse.ocl.pivot.Class)context);
+        }
+        else if (context instanceof Operation) {
+        	Operation operation = (Operation)context;
+        	org.eclipse.ocl.pivot.Class owningType = operation.getOwningClass();
+			if (owningType != null) {
+				setOperationContext(owningType, operation);
+			}
+        }
+        else if (context instanceof Property) {
+        	Property property = (Property)context;
+        	org.eclipse.ocl.pivot.Class owningType = property.getOwningClass();
+			if (owningType != null) {
+				setPropertyContext(owningType, property);
+			}
+        }
+        else if (context instanceof EClassifier) {
+        	setContext((EClassifier)context);
+        }
+        else if (context instanceof EOperation) {
+        	EOperation operation = (EOperation)context;
+			EClass eContainingClass = operation.getEContainingClass();
+			if (eContainingClass != null) {
+				setOperationContext(eContainingClass, operation);
+			}
+        }
+        else if (context instanceof EStructuralFeature) {
+        	EStructuralFeature property = (EStructuralFeature)context;
+			EClass eContainingClass = property.getEContainingClass();
+			if (eContainingClass != null) {
+				setPropertyContext(eContainingClass, property);
+			}
+        }
 	}
 
 	@Override

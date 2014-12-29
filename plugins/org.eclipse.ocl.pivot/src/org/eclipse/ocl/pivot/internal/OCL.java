@@ -16,12 +16,8 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
@@ -32,9 +28,7 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.OCLExpression;
-import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.SemanticException;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.evaluation.EvaluationHaltedException;
@@ -297,6 +291,17 @@ public class OCL {
 	}
 
 	/**
+	 * Parse oclExpression using selfType as the type of each run-time self object.
+	 * @param self
+	 * @param string
+	 * @return
+	 * @throws ParserException 
+	 */
+	public @NonNull ExpressionInOCL createInvariant(@NonNull EObject context, @NonNull String oclExpression) throws ParserException {
+		return createOCLHelper(context).createInvariant(oclExpression);
+	}
+
+	/**
 	 * Creates a new {@link OCLHelper} instance for convenient parsing of
 	 * embedded constraints and query expressions in this environment. The
 	 * helper is particularly useful for parsing constraints embedded in the
@@ -305,58 +310,25 @@ public class OCL {
 	 * 
 	 * @return a new helper object
 	 */
-    public @NonNull OCLHelper createOCLHelper() {
-        return new OCLHelperImpl(this);
-     }
+//    public @NonNull OCLHelper createOCLHelper() {
+//        return new OCLHelperImpl(this);
+//     }
     
 	/**
 	 * Creates a new {@link OCLHelper} instance for convenient parsing of
-	 * embedded constraints and query expressions in the nested environment
-	 * of a specified element which mya be a Type, Operation or Property. The
-	 * helper is particulary useful for parsing constraints embedded in the
-	 * model, in which case the context of a constraint is determined by its
-	 * placement and the textual context declarations are unnecessary.
+	 * embedded constraints and query expressions for the specified context
+	 * which may be an Ecore EClassifier/EOPeration/EStructuralFeature or
+	 * or Pivot Class/Operation/Property.
 	 * 
 	 * @return a new helper object
 	 */
-    public @NonNull OCLHelper createOCLHelper(@NonNull EObject element) {
-        OCLHelperImpl helper = new OCLHelperImpl(this);
-        if (element instanceof org.eclipse.ocl.pivot.Class) {
-        	helper.setContext((org.eclipse.ocl.pivot.Class)element);
-        }
-        else if (element instanceof Operation) {
-        	Operation operation = (Operation)element;
-        	org.eclipse.ocl.pivot.Class owningType = operation.getOwningClass();
-			if (owningType != null) {
-				helper.setOperationContext(owningType, operation);
-			}
-        }
-        else if (element instanceof Property) {
-        	Property property = (Property)element;
-        	org.eclipse.ocl.pivot.Class owningType = property.getOwningClass();
-			if (owningType != null) {
-				helper.setPropertyContext(owningType, property);
-			}
-        }
-        else if (element instanceof EClassifier) {
-        	helper.setContext((EClassifier)element);
-        }
-        else if (element instanceof EOperation) {
-        	EOperation operation = (EOperation)element;
-			EClass eContainingClass = operation.getEContainingClass();
-			if (eContainingClass != null) {
-				helper.setOperationContext(eContainingClass, operation);
-			}
-        }
-        else if (element instanceof EStructuralFeature) {
-        	EStructuralFeature property = (EStructuralFeature)element;
-			EClass eContainingClass = property.getEContainingClass();
-			if (eContainingClass != null) {
-				helper.setPropertyContext(eContainingClass, property);
-			}
-        }
-		return helper;
+    public @NonNull OCLHelper createOCLHelper(@Nullable EObject context) {
+        return new OCLHelperImpl(this, context);
      }
+
+	public @NonNull ExpressionInOCL createQuery(@Nullable EObject context, @NonNull String oclExpression) throws ParserException {
+		return createOCLHelper(context).createQuery(oclExpression);
+	}
 
 	/**
 	 * Creates a new {@link Query} encapsulating a query expression with the
@@ -433,10 +405,11 @@ public class OCL {
 		// forget the constraints
 		getConstraints().clear();
 
-//		if (environmentFactory != PivotEnvironmentFactory.basicGetGlobalRegistryInstance()) { // dispose of my environment
+		if (environmentFactory != PivotEnvironmentFactory.basicGetGlobalRegistryInstance()) { // dispose of my environment
 			getEnvironment().dispose();
-			getMetamodelManager().dispose();
-//		}
+//			getMetamodelManager().dispose();
+			environmentFactory.dispose();
+		}
 	}
 
 	/**

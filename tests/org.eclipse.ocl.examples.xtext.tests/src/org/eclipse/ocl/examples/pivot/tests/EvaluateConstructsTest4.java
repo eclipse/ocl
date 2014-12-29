@@ -69,7 +69,7 @@ public class EvaluateConstructsTest4 extends PivotTestSuite
 		assertQueryEquals(null, 3.0, "if true then 3 else 4.0 endif");
 		assertQueryEquals(null, 4.0, "if false then 3 else 4.0 endif");
 		//
-		assertValidationErrorQuery2(null, "if null then 1 else 2 endif",
+		assertValidationErrorQuery(null, "if null then 1 else 2 endif",
 			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "IfExp", "ConditionTypeIsBoolean", "if null then 1 else 2 endif");
 		assertQueryInvalid(null, "if null then 1 else 2 endif");
 		assertQueryInvalid(null, "if invalid then 1 else 2 endif");
@@ -92,7 +92,7 @@ public class EvaluateConstructsTest4 extends PivotTestSuite
 		assertQueryEquals(null, 7, "1 + let a : Integer = 2 in a * 3");
 		assertQueryEquals(null, 4/2+5*3, "4/2 + let a : Integer = 5 in a * 3");
 		assertQueryEquals(null, 4/2+3*5*7, "4/2 + (let a : Integer = 5 in 3 * (let b : Integer = 7 in a * b))");
-		assertSemanticErrorQuery("4/2 + (let a : Integer = 5 in 3) * (let b : Integer = 7 in a * b)",
+		assertSemanticErrorQuery(null, "4/2 + (let a : Integer = 5 in 3) * (let b : Integer = 7 in a * b)",
 			PivotMessagesInternal.UnresolvedProperty_ERROR_, "", "a");
 		assertQueryEquals(null, 4/2+3*5*7, "4/2 + let a : Integer = 5 in 3 * let b : Integer = 7 in a * b");
 		assertQueryEquals(null, (64.0 / 16) / (8 / 4), "(64 / 16) / (let b : Integer = 0 in 8 / (let c : Integer = 0 in 4 ))");

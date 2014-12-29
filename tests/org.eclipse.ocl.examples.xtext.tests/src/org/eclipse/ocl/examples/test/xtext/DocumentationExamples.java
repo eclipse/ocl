@@ -35,7 +35,6 @@ import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.Query;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.helper.OCLHelper;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
@@ -179,7 +178,6 @@ public class DocumentationExamples extends PivotTestCase
 		OCL ocl = OCL.newInstance(resourceSet.getPackageRegistry());
 		try {
 			MetamodelManager metamodelManager = ocl.getMetamodelManager();
-			OCLHelper helper = ocl.createOCLHelper();
 	
 			Ecore2AS ecore2as = Ecore2AS.getAdapter(b2Book.eClass().eResource(), metamodelManager);
 			org.eclipse.ocl.pivot.Class bookType = ecore2as.getCreated(org.eclipse.ocl.pivot.Class.class, b2Book.eClass());
@@ -197,8 +195,7 @@ public class DocumentationExamples extends PivotTestCase
 //			assert settingDelegate instanceof org.eclipse.ocl.pivot.delegate.OCLSettingDelegate;
 			assertEquals(false, ((Boolean)b2IsAvailable).booleanValue());
 			
-			helper.setContext(bookType);
-			ExpressionInOCL query = helper.createQuery("isAvailable()");
+			ExpressionInOCL query = ocl.createQuery(bookType, "isAvailable()");
 			Query queryEval = ocl.createQuery(query);
 			Object b2Available = queryEval.evaluate(b2Book);
 		    assertFalse(ValueUtil.asBoolean(b2Available));

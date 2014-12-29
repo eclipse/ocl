@@ -86,14 +86,14 @@ public class EvaluateTupleOperationsTest4 extends PivotTestSuite
 		CollectionTypeId collectionTypeId = TypeId.SET.getSpecializedId(TypeId.OCL_ANY);
 		SetValue setValue = ValueUtil.createSetOfEach(collectionTypeId,  aValue, bValue);
 		assertQueryEquals(null, setValue, "Set{Tuple{a = 3}, Tuple{b = 4}, Tuple{a = 3}}");						// BUG 4404404
-		assertValidationErrorQuery2(null, "let s : Set(Tuple(a:Integer)) = Set{Tuple{a = 3}, Tuple{b = 4}} in s",
+		assertValidationErrorQuery(null, "let s : Set(Tuple(a:Integer)) = Set{Tuple{a = 3}, Tuple{b = 4}} in s",
 			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Variable", "CompatibleInitialiserType",
 			"s : Set(Tuple(a:Integer)) = Set{Tuple{a : Integer = 3}, Tuple{b : Integer = 4}}");
 		assertQueryEquals(null, setValue, "let s : Set(OclAny) = Set{Tuple{a = 3}, Tuple{b = 4}} in s");
 	}
 
 	@Test public void testTupleType_Conformance() {
-		assertSemanticErrorQuery("let s : Sequence(OclAny) = Sequence{Tuple{a = 3}, Tuple{b = 4}} in s->first().a", PivotMessagesInternal.UnresolvedProperty_ERROR_, "OclAny", "a");
+		assertSemanticErrorQuery(null, "let s : Sequence(OclAny) = Sequence{Tuple{a = 3}, Tuple{b = 4}} in s->first().a", PivotMessagesInternal.UnresolvedProperty_ERROR_, "OclAny", "a");
 		assertQueryEquals(null, 3, "let s : Sequence(OclAny) = Sequence{Tuple{a = 3}, Tuple{b = 4}} in s->first().oclAsType(Tuple(a:Integer)).a");
 // BUG 440453		assertQueryEquals(null, 3, "let s : Sequence(OclAny) = Sequence{Tuple{a = 3}, Tuple{b = 4}} in s->first().oclAsType(Tuple(b:UnlimitedNatural)).b");
 //
@@ -128,13 +128,13 @@ public class EvaluateTupleOperationsTest4 extends PivotTestSuite
 	}
 
 	@Test public void testTupleType_Parts() {
-//		assertSemanticErrorQuery("let s : Sequence(OclAny) = Sequence{Tuple{a = 3}, Tuple{b = 4}} in s->first().a", OCLMessages.UnresolvedProperty_ERROR_, "a", "OclAny");
+//		assertSemanticErrorQuery2(null, "let s : Sequence(OclAny) = Sequence{Tuple{a = 3}, Tuple{b = 4}} in s->first().a", OCLMessages.UnresolvedProperty_ERROR_, "a", "OclAny");
 		assertQueryEquals(null, 3, "Tuple{a = 3, b = '4'}.a");
 		assertQueryEquals(null, 3, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.a");
 		assertQueryEquals(null, "3", "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.b.a");
 		assertQueryEquals(null, 3.1, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.b.b.a");
-		assertSemanticErrorQuery("Tuple{}.a", "no viable alternative at ''{''");
-		assertSemanticErrorQuery("Tuple{a = 3, b = '4'}.c", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Tuple(a:Integer,b:String)", "c");
+		assertSemanticErrorQuery(null, "Tuple{}.a", "no viable alternative at ''{''");
+		assertSemanticErrorQuery(null, "Tuple{a = 3, b = '4'}.c", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Tuple(a:Integer,b:String)", "c");
 // FIXME Duplicate parts warning		assertQueryEquals(null, 3, "Tuple{a = 1, a = 1}.a");
 	}
 }

@@ -135,7 +135,7 @@ public class IteratorsTest4 extends PivotTestSuite
         pkg5 = createPackage(pkg3, "pkg5");
         george = createPackage(pkg5, "george");
         metamodelManager.installRoot(ClassUtil.nonNullState(root));
-        helper.setContext(ClassUtil.nonNullState(metamodelManager.getPivotType("Package")));
+//        helper.setContext(ClassUtil.nonNullState(metamodelManager.getPivotType("Package")));
     }
 
 	@Override
@@ -358,7 +358,7 @@ public class IteratorsTest4 extends PivotTestSuite
      */
     @Test public void test_implicitCollect_unknownAttribute_232669() {
         assertBadInvariant(SemanticException.class, Diagnostic.ERROR,
-    		"ownedPackages.unknownAttribute",
+        	metamodelManager.getPivotType("Package"), "ownedPackages.unknownAttribute",
         	PivotMessagesInternal.UnresolvedProperty_ERROR_, "Set(Package)", "unknownAttribute");
    }
 
@@ -369,7 +369,7 @@ public class IteratorsTest4 extends PivotTestSuite
      */
     @Test public void test_implicitCollect_unknownOperation_232669() {
     	assertBadInvariant(SemanticException.class, Diagnostic.ERROR,
-    		"ownedPackages.unknownOperation(self)",
+    		metamodelManager.getPivotType("Package"), "ownedPackages.unknownOperation(self)",
         	PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Set(Package)", "unknownOperation", PivotConstants.SELF_NAME);
    }
 
@@ -549,13 +549,13 @@ public class IteratorsTest4 extends PivotTestSuite
         @SuppressWarnings("unused")
 		Operation getSubFakes = createOwnedOperation(fake, "getSubFakes", null, null, completeEnvironment.getSetType(subFake, null, null), true);
  
-        helper.setContext(subFake);
+//        helper.setContext(subFake);
 
         // this should not parse because the result of the closure
         // expression
         // is more general than the iterator variable, so cannot be
         // assigned recursively
-        assertValidationErrorQuery("self->closure(getFakes())",
+        assertValidationErrorQuery(subFake, "self->closure(getFakes())",
         	PivotMessagesInternal.IncompatibleBodyType_WARNING_, fake, subFake);
 
         // this should parse OK because the result of the closure expression
@@ -573,7 +573,7 @@ public class IteratorsTest4 extends PivotTestSuite
         Property owningPackage = getAttribute(packageMetaclass, "owningPackage", packageMetaclass);
         SetValue expected = idResolver.createSetOfEach(typeId, owningPackage, packageMetaclass, packageMetaclass.eContainer(), packageMetaclass.eContainer().eContainer());
         assertQueryEquals(owningPackage, expected, "self->closure(i : OclElement | i.oclContainer())");
-		assertValidationErrorQuery2(propertyMetaclass, "self->closure(oclContainer())", PivotMessagesInternal.IncompatibleBodyType_WARNING_, "OclElement", "Property");
+		assertValidationErrorQuery(propertyMetaclass, "self->closure(oclContainer())", PivotMessagesInternal.IncompatibleBodyType_WARNING_, "OclElement", "Property");
     }
 
     @SuppressWarnings("unchecked")
@@ -870,35 +870,35 @@ public class IteratorsTest4 extends PivotTestSuite
      */
     @Test public void test_invalidMultipleIteratorVariables() {
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,		// FIXME Bug 296990
-        	"Sequence{'a', 'b', 'c'}->exists(e1, e2, e3 | e1 = e2)",
+        	null, "Sequence{'a', 'b', 'c'}->exists(e1, e2, e3 | e1 = e2)",
         	PivotMessagesInternal.UnresolvedIterationCall_ERROR_, "Sequence(String)", "exists", "e1, e2, e3| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,		// FIXME Bug 296990
-        	"Sequence{'a', 'b', 'c'}->forAll(e1, e2, e3 | e1 = e2)",
+        	null, "Sequence{'a', 'b', 'c'}->forAll(e1, e2, e3 | e1 = e2)",
         	PivotMessagesInternal.UnresolvedIterationCall_ERROR_, "Sequence(String)", "forAll", "e1, e2, e3| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
-        	"Sequence{'a', 'b', 'c'}->collect(e1, e2 | Tuple{a : String = e1, b : String = e2})",
+        	null, "Sequence{'a', 'b', 'c'}->collect(e1, e2 | Tuple{a : String = e1, b : String = e2})",
         	PivotMessagesInternal.UnresolvedIterationCall_ERROR_, "Sequence(String)", "collect", "e1, e2| Tuple{a : String = e1, b : String = e2}");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
-        	"Sequence{'a', 'b', 'c'}->any(e1, e2 | e1 = e2)",
+        	null, "Sequence{'a', 'b', 'c'}->any(e1, e2 | e1 = e2)",
         	PivotMessagesInternal.UnresolvedIterationCall_ERROR_, "Sequence(String)", "any", "e1, e2| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
-        	"Sequence{'a', 'b', 'c'}->one(e1, e2 | e1 = e2)",
+        	null, "Sequence{'a', 'b', 'c'}->one(e1, e2 | e1 = e2)",
         	PivotMessagesInternal.UnresolvedIterationCall_ERROR_, "Sequence(String)", "one", "e1, e2| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
-        	"Sequence{'a', 'b', 'c'}->select(e1, e2 | e1 = e2)",
+        	null, "Sequence{'a', 'b', 'c'}->select(e1, e2 | e1 = e2)",
         	PivotMessagesInternal.UnresolvedIterationCall_ERROR_, "Sequence(String)", "select", "e1, e2| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
-        	"Sequence{'a', 'b', 'c'}->reject(e1, e2 | e1 = e2)",
+        	null, "Sequence{'a', 'b', 'c'}->reject(e1, e2 | e1 = e2)",
         	PivotMessagesInternal.UnresolvedIterationCall_ERROR_, "Sequence(String)", "reject", "e1, e2| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
-        	"Sequence{'a', 'b', 'c'}->isUnique(e1, e2 | e1 = e2)",
+        	null, "Sequence{'a', 'b', 'c'}->isUnique(e1, e2 | e1 = e2)",
         	PivotMessagesInternal.UnresolvedIterationCall_ERROR_, "Sequence(String)", "isUnique", "e1, e2| e1 = e2");
     }
 
@@ -909,7 +909,7 @@ public class IteratorsTest4 extends PivotTestSuite
     @Test public void test_sortedByRequiresComparability_192729() {
     	org.eclipse.ocl.pivot.Class context = metamodelManager.getPivotType("Package");
     	org.eclipse.ocl.pivot.Class type = metamodelManager.getPivotType("Class");
-     	assertValidationErrorQuery("ownedClasses->sortedBy(e | e)",
+     	assertValidationErrorQuery(context, "ownedClasses->sortedBy(e | e)",
         	PivotMessagesInternal.UnresolvedOperation_ERROR_, type + "", LibraryConstants.COMPARE_TO);
        
     	assertQuery(context, "ownedClasses->sortedBy(e | e.name)");

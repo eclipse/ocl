@@ -30,12 +30,12 @@ public class PrettyPrinterTest extends PivotSimpleTestSuite
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        helper.setContext(metamodelManager.getStandardLibrary().getClassType());
+//        helper.setContext(metamodelManager.getStandardLibrary().getClassType());
     }
     
 	protected @Nullable Object assertPrintResults(@Nullable Object context, @NonNull String expression) {
 		try {
-			ExpressionInOCL query = helper.createQuery(expression);
+			ExpressionInOCL query = ocl.createQuery(getContextType(context), expression);
 			String prettyExpression = PrettyPrinter.print(query);
 			assertEquals(expression, prettyExpression);
 		} catch (ParserException e) {
@@ -46,7 +46,7 @@ public class PrettyPrinterTest extends PivotSimpleTestSuite
     
 	protected @Nullable Object assertPrintResults(@Nullable Object context, @NonNull String expression, @NonNull String expectedExpression) {
 		try {
-			ExpressionInOCL query = helper.createQuery(expression);
+			ExpressionInOCL query = ocl.createQuery(getContextType(context), expression);
 			String prettyExpression = PrettyPrinter.print(query);
 			assertEquals(expectedExpression, prettyExpression);
 		} catch (ParserException e) {

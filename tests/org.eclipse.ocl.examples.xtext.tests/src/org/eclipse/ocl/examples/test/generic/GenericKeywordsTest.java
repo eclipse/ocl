@@ -158,10 +158,8 @@ public abstract class GenericKeywordsTest
     }
 
 	public void test_unexpectedCharacter_283509() {
-        helper.setContext(property);
-
         try {
-            helper.createInvariant("self = #self");
+            ocl.createInvariant(property, "self = #self");
             fail("Missing exception");
         } catch (Exception e) {
             assertEquals("2:6 \"#\" unexpected character ignored", e.getLocalizedMessage());

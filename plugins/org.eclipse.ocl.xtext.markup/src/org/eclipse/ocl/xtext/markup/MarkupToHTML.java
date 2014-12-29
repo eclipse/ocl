@@ -28,7 +28,6 @@ import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.internal.utilities.HTMLBuffer;
-import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.xtext.markupcs.BulletElement;
 import org.eclipse.ocl.xtext.markupcs.CompoundElement;
 import org.eclipse.ocl.xtext.markupcs.FigureElement;
@@ -255,13 +254,13 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 	}
 
 	protected @NonNull ExpressionInOCL createQuery(@NonNull String oclString) throws ParserException {
+		org.eclipse.ocl.pivot.Class pivotType = null;
 		OCL ocl = getOCL();
-		OCLHelper helper = ocl.createOCLHelper();
 		if (context instanceof EObject) {
 			EClass eClass = ((EObject)context).eClass();
 			String name = eClass.getName();
 			assert name != null;
-			org.eclipse.ocl.pivot.Class pivotType = metamodelManager.getPivotType(name);
+			pivotType = metamodelManager.getPivotType(name);
 			if (pivotType == null) {
 				Resource resource = eClass.eResource();
 				if (resource != null) {
@@ -269,10 +268,8 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 					pivotType = ecore2as.getCreated(org.eclipse.ocl.pivot.Class.class, eClass);
 				}
 			}
-			if (pivotType != null) {
-				helper.setContext(pivotType);
-			}
 		}
+		OCLHelper helper = ocl.createOCLHelper(pivotType);
 		return helper.createQuery(oclString);
 	}
 

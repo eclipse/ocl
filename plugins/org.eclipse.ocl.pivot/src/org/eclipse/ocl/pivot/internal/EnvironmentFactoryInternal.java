@@ -171,4 +171,6 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 	@NonNull MetamodelManager getMetamodelManager();
 
 	@Nullable StandaloneProjectMap getProjectMap();
+
+	void dispose();
 }

@@ -134,20 +134,16 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
 			object = ((ObjectValue) object).getObject();
 		}
 		if (object instanceof EObject) {
-			return new PivotModelManager(metamodelManager, (EObject) object);
+			return new PivotModelManager(getMetamodelManager(), (EObject) object);
 		}
 		return ModelManager.NULL;
 	}
 
 	@Override
 	protected @NonNull org.eclipse.ocl.pivot.Class getClassifier(@NonNull Object context) {
+		MetamodelManager metamodelManager = getMetamodelManager();
 		org.eclipse.ocl.pivot.Class dType = metamodelManager.getIdResolver().getStaticTypeOf(context);
 		return metamodelManager.getType(dType);
-	}
-	
-	@Override
-	public @NonNull MetamodelManager getMetamodelManager() {
-		return metamodelManager;
 	}
 
 	@Override

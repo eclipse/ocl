@@ -99,8 +99,8 @@ public class EvaluateNumericOperationsTest4 extends PivotTestSuite
     
 	@Test public void testNumber() {
 		assertQueryEquals(null, 0, "0");
-//		assertSemanticErrorQuery("00", "extraneous input ''{0}'' expecting EOF", "0");
-//		assertSemanticErrorQuery("01", "extraneous input ''{0}'' expecting EOF", "1");
+//		assertSemanticErrorQuery2(null, "00", "extraneous input ''{0}'' expecting EOF", "0");
+//		assertSemanticErrorQuery2(null, "01", "extraneous input ''{0}'' expecting EOF", "1");
 		assertQueryEquals(null, 3, "3");
 		assertQueryEquals(null, 3.1, "3.1");
 		assertQueryEquals(null, 3.1e1, "3.1e1");
@@ -125,11 +125,11 @@ public class EvaluateNumericOperationsTest4 extends PivotTestSuite
 		assertQueryEquals(null, 3e1, "( 3e1 )");
 		assertQueryEquals(null, 3e+1, "( 3e+1 )");
 		assertQueryEquals(null, 3e-1, "( 3e-1 )");
-		assertSemanticErrorQuery("3 .1", "bad navigation argument");
-		assertSemanticErrorQuery("3. 1", "bad navigation argument");
-		assertSemanticErrorQuery("3.1 e1", "extraneous input ''{0}'' expecting EOF", "e1");
-		assertSemanticErrorQuery("3.1e 1", "no viable alternative at ''{0}''", "e");
-		assertSemanticErrorQuery("3.1e+ 1", "no viable alternative at ''{0}''", "e");
+		assertSemanticErrorQuery(null, "3 .1", "bad navigation argument");
+		assertSemanticErrorQuery(null, "3. 1", "bad navigation argument");
+		assertSemanticErrorQuery(null, "3.1 e1", "extraneous input ''{0}'' expecting EOF", "e1");
+		assertSemanticErrorQuery(null, "3.1e 1", "no viable alternative at ''{0}''", "e");
+		assertSemanticErrorQuery(null, "3.1e+ 1", "no viable alternative at ''{0}''", "e");
 	}
     
 	@Test public void testNumberAbs() {
@@ -820,11 +820,11 @@ public class EvaluateNumericOperationsTest4 extends PivotTestSuite
 	}
 
 	@Test public void testUnlimitedAbs() {
-		assertSemanticErrorQuery("*.abs()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "UnlimitedNatural", "abs");
+		assertSemanticErrorQuery(null, "*.abs()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "UnlimitedNatural", "abs");
 		// invalid
-		assertSemanticErrorQuery("let u : UnlimitedNatural = invalid in u.abs()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "UnlimitedNatural", "abs");
+		assertSemanticErrorQuery(null, "let u : UnlimitedNatural = invalid in u.abs()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "UnlimitedNatural", "abs");
 		// null
-		assertSemanticErrorQuery("let u : UnlimitedNatural = null in u.abs()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "UnlimitedNatural", "abs");
+		assertSemanticErrorQuery(null, "let u : UnlimitedNatural = null in u.abs()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "UnlimitedNatural", "abs");
 
 	}
 
@@ -847,25 +847,25 @@ public class EvaluateNumericOperationsTest4 extends PivotTestSuite
 	} */
 
 	@Test public void testUnlimitedDivide() {
-		assertSemanticErrorQuery("1 / *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Integer", "/", "UnlimitedNatural");
-		assertSemanticErrorQuery("* / 1", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "/", "Integer");
+		assertSemanticErrorQuery(null, "1 / *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Integer", "/", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "* / 1", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "/", "Integer");
 
-		assertSemanticErrorQuery("1.0 / *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Real", "/", "UnlimitedNatural");
-		assertSemanticErrorQuery("* / 1.0", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "/", "Real");
+		assertSemanticErrorQuery(null, "1.0 / *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Real", "/", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "* / 1.0", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "/", "Real");
 
-		assertSemanticErrorQuery("* / *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "/", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "* / *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "/", "UnlimitedNatural");
 
 		// invalid
-		assertSemanticErrorQuery("let u : UnlimitedNatural = invalid in * / u", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "/", "UnlimitedNatural");
-		assertSemanticErrorQuery("let u : UnlimitedNatural = invalid in u / *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "/", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "let u : UnlimitedNatural = invalid in * / u", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "/", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "let u : UnlimitedNatural = invalid in u / *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "/", "UnlimitedNatural");
 
-		assertSemanticErrorQuery("let u1 : UnlimitedNatural = invalid, u2 : UnlimitedNatural = invalid in u1 / u2", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "/", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "let u1 : UnlimitedNatural = invalid, u2 : UnlimitedNatural = invalid in u1 / u2", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "/", "UnlimitedNatural");
 
 		// null
-		assertSemanticErrorQuery("let u : UnlimitedNatural = null in * / u", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "/", "UnlimitedNatural");
-		assertSemanticErrorQuery("let u : UnlimitedNatural = null in u / *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "/", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "let u : UnlimitedNatural = null in * / u", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "/", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "let u : UnlimitedNatural = null in u / *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "/", "UnlimitedNatural");
 
-		assertSemanticErrorQuery("let u1 : UnlimitedNatural = null, u2 : UnlimitedNatural = null in u1 / u2", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "/", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "let u1 : UnlimitedNatural = null, u2 : UnlimitedNatural = null in u1 / u2", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "/", "UnlimitedNatural");
 	}
 
 	@Test public void testUnlimitedEqual() {
@@ -890,13 +890,13 @@ public class EvaluateNumericOperationsTest4 extends PivotTestSuite
 	}
 
 	@Test public void testUnlimitedFloor() {
-		assertSemanticErrorQuery("*.floor()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "UnlimitedNatural", "floor");
+		assertSemanticErrorQuery(null, "*.floor()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "UnlimitedNatural", "floor");
 
 		// invalid
-		assertSemanticErrorQuery("let u : UnlimitedNatural = invalid in u.floor()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "UnlimitedNatural", "floor");
+		assertSemanticErrorQuery(null, "let u : UnlimitedNatural = invalid in u.floor()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "UnlimitedNatural", "floor");
 
 		// null
-		assertSemanticErrorQuery("let u : UnlimitedNatural = null in u.floor()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "UnlimitedNatural", "floor");
+		assertSemanticErrorQuery(null, "let u : UnlimitedNatural = null in u.floor()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "UnlimitedNatural", "floor");
 	}
 
 	@Test public void testUnlimitedGreaterThan() {
@@ -993,8 +993,8 @@ public class EvaluateNumericOperationsTest4 extends PivotTestSuite
 		assertQueryInvalid(null, "(-1).max(*)");
 		assertQueryInvalid(null, "*.max(-1)");
 
-		assertSemanticErrorQuery("(1.0).max(*)", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Real", "max", "UnlimitedNatural");
-		assertSemanticErrorQuery("*.max(1.0)", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "max", "Real");
+		assertSemanticErrorQuery(null, "(1.0).max(*)", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Real", "max", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "*.max(1.0)", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "max", "Real");
 
 		assertQueryUnlimited(null, "*.max(*)");
 
@@ -1021,8 +1021,8 @@ public class EvaluateNumericOperationsTest4 extends PivotTestSuite
 		assertQueryInvalid(null, "(-1).min(*)");
 		assertQueryInvalid(null, "*.min(-1)");
 
-		assertSemanticErrorQuery("(1.0).min(*)", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Real", "min", "UnlimitedNatural");
-		assertSemanticErrorQuery("*.min(1.0)", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "min", "Real");
+		assertSemanticErrorQuery(null, "(1.0).min(*)", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Real", "min", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "*.min(1.0)", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "min", "Real");
 
 		assertQueryUnlimited(null, "*.min(*)");
 
@@ -1040,25 +1040,25 @@ public class EvaluateNumericOperationsTest4 extends PivotTestSuite
 	}
 
 	@Test public void testUnlimitedMinus() {
-		assertSemanticErrorQuery("1 - *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Integer", "-", "UnlimitedNatural");
-		assertSemanticErrorQuery("* - 1", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "-", "Integer");
+		assertSemanticErrorQuery(null, "1 - *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Integer", "-", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "* - 1", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "-", "Integer");
 
-		assertSemanticErrorQuery("1.0 - *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Real", "-", "UnlimitedNatural");
-		assertSemanticErrorQuery("* - 1.0", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "-", "Real");
+		assertSemanticErrorQuery(null, "1.0 - *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Real", "-", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "* - 1.0", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "-", "Real");
 
-		assertSemanticErrorQuery("* - *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "-", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "* - *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "-", "UnlimitedNatural");
 
 		// invalid
-		assertSemanticErrorQuery("let u : UnlimitedNatural = invalid in * - u", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "-", "UnlimitedNatural");
-		assertSemanticErrorQuery("let u : UnlimitedNatural = invalid in u - *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "-", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "let u : UnlimitedNatural = invalid in * - u", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "-", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "let u : UnlimitedNatural = invalid in u - *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "-", "UnlimitedNatural");
 
-		assertSemanticErrorQuery("let u1 : UnlimitedNatural = invalid, u2 : UnlimitedNatural = invalid in u1 - u2", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "-", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "let u1 : UnlimitedNatural = invalid, u2 : UnlimitedNatural = invalid in u1 - u2", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "-", "UnlimitedNatural");
 
 		// null
-		assertSemanticErrorQuery("let u : UnlimitedNatural = null in * - u", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "-", "UnlimitedNatural");
-		assertSemanticErrorQuery("let u : UnlimitedNatural = null in u - *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "-", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "let u : UnlimitedNatural = null in * - u", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "-", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "let u : UnlimitedNatural = null in u - *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "-", "UnlimitedNatural");
 
-		assertSemanticErrorQuery("let u1 : UnlimitedNatural = null, u2 : UnlimitedNatural = null in u1 - u2", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "-", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "let u1 : UnlimitedNatural = null, u2 : UnlimitedNatural = null in u1 - u2", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "-", "UnlimitedNatural");
 	}
 
 /* FIXME	@Test public void testUnlimitedMod() {
@@ -1082,9 +1082,9 @@ public class EvaluateNumericOperationsTest4 extends PivotTestSuite
 	} */
 
 	@Test public void testUnlimitedNegate() {
-		assertSemanticErrorQuery("-*", PivotMessagesInternal.UnresolvedOperation_ERROR_, "UnlimitedNatural", "-");
+		assertSemanticErrorQuery(null, "-*", PivotMessagesInternal.UnresolvedOperation_ERROR_, "UnlimitedNatural", "-");
 		// invalid
-		assertSemanticErrorQuery("let u : UnlimitedNatural = invalid in -u", PivotMessagesInternal.UnresolvedOperation_ERROR_, "UnlimitedNatural", "-");
+		assertSemanticErrorQuery(null, "let u : UnlimitedNatural = invalid in -u", PivotMessagesInternal.UnresolvedOperation_ERROR_, "UnlimitedNatural", "-");
 		// null
 	}
 
@@ -1110,49 +1110,49 @@ public class EvaluateNumericOperationsTest4 extends PivotTestSuite
 	}
 
 	@Test public void testUnlimitedPlus() {
-		assertSemanticErrorQuery("1 + *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Integer", "+", "UnlimitedNatural");
-		assertSemanticErrorQuery("* + 1", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "+", "Integer");
+		assertSemanticErrorQuery(null, "1 + *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Integer", "+", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "* + 1", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "+", "Integer");
 
-		assertSemanticErrorQuery("1.0 + *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Real", "+", "UnlimitedNatural");
-		assertSemanticErrorQuery("* + 1.0", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "+", "Real");
+		assertSemanticErrorQuery(null, "1.0 + *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Real", "+", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "* + 1.0", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "+", "Real");
 
-		assertSemanticErrorQuery("* + *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "+", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "* + *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "+", "UnlimitedNatural");
 		// invalid
-		assertSemanticErrorQuery("let u : UnlimitedNatural = invalid in * + u", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "+", "UnlimitedNatural");
-		assertSemanticErrorQuery("let u : UnlimitedNatural = invalid in u + *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "+", "UnlimitedNatural");
-		assertSemanticErrorQuery("let u1 : UnlimitedNatural = invalid, u2 : UnlimitedNatural = invalid in u1 + u2", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "+", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "let u : UnlimitedNatural = invalid in * + u", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "+", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "let u : UnlimitedNatural = invalid in u + *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "+", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "let u1 : UnlimitedNatural = invalid, u2 : UnlimitedNatural = invalid in u1 + u2", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "+", "UnlimitedNatural");
 		// null
-		assertSemanticErrorQuery("let u : UnlimitedNatural = null in * + u", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "+", "UnlimitedNatural");
-		assertSemanticErrorQuery("let u : UnlimitedNatural = null in u + *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "+", "UnlimitedNatural");
-		assertSemanticErrorQuery("let u1 : UnlimitedNatural = null, u2 : UnlimitedNatural = null in u1 + u2", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "+", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "let u : UnlimitedNatural = null in * + u", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "+", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "let u : UnlimitedNatural = null in u + *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "+", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "let u1 : UnlimitedNatural = null, u2 : UnlimitedNatural = null in u1 + u2", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "+", "UnlimitedNatural");
 	}
 
 	@Test public void testUnlimitedRound() {
-		assertSemanticErrorQuery("*.round()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "UnlimitedNatural", "round");
+		assertSemanticErrorQuery(null, "*.round()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "UnlimitedNatural", "round");
 		// invalid
-		assertSemanticErrorQuery("let u : UnlimitedNatural = invalid in u.round()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "UnlimitedNatural", "round");
+		assertSemanticErrorQuery(null, "let u : UnlimitedNatural = invalid in u.round()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "UnlimitedNatural", "round");
 		// null
-		assertSemanticErrorQuery("let u : UnlimitedNatural = null in u.round()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "UnlimitedNatural", "round");
+		assertSemanticErrorQuery(null, "let u : UnlimitedNatural = null in u.round()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "UnlimitedNatural", "round");
 	}
 
 	@Test public void testUnlimitedTimes() {
-		assertSemanticErrorQuery("1 * *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Integer", "*", "UnlimitedNatural");
-		assertSemanticErrorQuery("* * 1", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "*", "Integer");
+		assertSemanticErrorQuery(null, "1 * *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Integer", "*", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "* * 1", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "*", "Integer");
 
-		assertSemanticErrorQuery("1.0 * *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Real", "*", "UnlimitedNatural");
-		assertSemanticErrorQuery("* * 1.0", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "*", "Real");
+		assertSemanticErrorQuery(null, "1.0 * *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Real", "*", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "* * 1.0", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "*", "Real");
 
-		assertSemanticErrorQuery("* * *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "*", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "* * *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "*", "UnlimitedNatural");
 
 		// invalid
-		assertSemanticErrorQuery("let u : UnlimitedNatural = invalid in * * u", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "*", "UnlimitedNatural");
-		assertSemanticErrorQuery("let u : UnlimitedNatural = invalid in u * *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "*", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "let u : UnlimitedNatural = invalid in * * u", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "*", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "let u : UnlimitedNatural = invalid in u * *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "*", "UnlimitedNatural");
 
-		assertSemanticErrorQuery("let u1 : UnlimitedNatural = invalid, u2 : UnlimitedNatural = invalid in u1 * u2", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "*", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "let u1 : UnlimitedNatural = invalid, u2 : UnlimitedNatural = invalid in u1 * u2", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "*", "UnlimitedNatural");
 		// null
-		assertSemanticErrorQuery("let u : UnlimitedNatural = null in * * u", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "*", "UnlimitedNatural");
-		assertSemanticErrorQuery("let u : UnlimitedNatural = null in u * *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "*", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "let u : UnlimitedNatural = null in * * u", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "*", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "let u : UnlimitedNatural = null in u * *", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "*", "UnlimitedNatural");
 
-		assertSemanticErrorQuery("let u1 : UnlimitedNatural = null, u2 : UnlimitedNatural = null in u1 * u2", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "*", "UnlimitedNatural");
+		assertSemanticErrorQuery(null, "let u1 : UnlimitedNatural = null, u2 : UnlimitedNatural = null in u1 * u2", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "UnlimitedNatural", "*", "UnlimitedNatural");
 	}
 }

@@ -28,7 +28,7 @@ public class DebugTest extends GenericDebugTest {
         super.setUp();
         Model root = metamodelManager.createModel(null);
         pkg1 = createPackage(root, "pkg1");
-        helper.setContext(getMetaclass("Model"));
+//        helper.setContext(getMetaclass("Model"));
     }
 
 	/**

@@ -45,8 +45,8 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryIn
 
     private boolean traceEvaluation;
     protected final @Nullable StandaloneProjectMap projectMap;
-    protected final @NonNull MetamodelManager metamodelManager;
     protected final @Nullable ModelManager modelManager;
+    private /*@LazyNonNull*/ MetamodelManager metamodelManager;
 	
 	/**
 	 * Initializes me with an <code>EPackage.Registry</code> that the
@@ -65,8 +65,8 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryIn
 	 */
 	protected AbstractEnvironmentFactory(@Nullable StandaloneProjectMap projectMap, @Nullable ModelManager modelManager) {
 		this.projectMap = projectMap;
-		this.metamodelManager = createMetamodelManager();
 		this.modelManager = modelManager;
+		this.metamodelManager = null;
 	}
 
 	@Override
@@ -81,27 +81,6 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryIn
 			asResourceSet.eAdapters().add(projectMap);
 		}
 		return asResourceSet;
-	}
-	
-    /**
-     * Creates an environment for the specified package context.
-     * 
-     * @param parent the parent environment of the environment to be created
-     * @param context the package context (must not be <code>null</code>)
-     * @return the new nested environment
-     */
-	protected EnvironmentInternal createPackageContext(@NonNull EnvironmentInternal parent,
-			@NonNull org.eclipse.ocl.pivot.Package context) {
-		
-		EnvironmentInternal result =
-			createEnvironment(parent);
-		
-		if (result instanceof AbstractEnvironment) {
-			((AbstractEnvironment) result)
-				.setContextPackage(context);
-		}
-		
-		return result;
 	}
 	
     // implements the interface method
@@ -126,6 +105,48 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryIn
 		CompleteEnvironmentInternal completeEnvironment = (CompleteEnvironmentInternal)PivotFactory.eINSTANCE.createCompleteEnvironment();
 		completeEnvironment.init(metamodelManager);
 		return completeEnvironment;
+	}
+
+	@Override
+		public @NonNull EvaluationVisitor createEvaluationVisitor(@Nullable EnvironmentInternal environment, @Nullable Object context, @NonNull ExpressionInOCL expression, @Nullable ModelManager modelManager) {
+			if (environment == null) {
+				environment = createEnvironment();
+			}
+			// can determine a more appropriate context from the context
+			// variable of the expression, to account for stereotype constraints
+	//		context = HelperUtil.getConstraintContext(rootEnvironment, context, expression);
+			EvaluationEnvironment evaluationEnvironment = createEvaluationEnvironment();
+			Variable contextVariable = expression.getOwnedContext();
+			if (contextVariable != null) {
+				IdResolver idResolver = getMetamodelManager().getIdResolver();
+				Object value = idResolver.boxedValueOf(context);
+				evaluationEnvironment.add(contextVariable, value);
+			}
+			for (Variable parameterVariable : expression.getOwnedParameters()) {
+				if (parameterVariable != null) {
+					evaluationEnvironment.add(parameterVariable, null);
+				}
+			}
+			ModelManager extents = modelManager;
+			if (extents == null) {
+				// let the evaluation environment create one
+				extents = createModelManager(context);
+			}
+			return createEvaluationVisitor(environment, evaluationEnvironment, extents);
+		}
+
+	// implements the interface method
+	@Override
+	public @NonNull EvaluationVisitor createEvaluationVisitor(@NonNull EnvironmentInternal env, @NonNull EvaluationEnvironment evalEnv,
+			@NonNull ModelManager modelManager) {
+	    EvaluationVisitor result = new EvaluationVisitorImpl(env, evalEnv, modelManager);
+	    
+	    if (isEvaluationTracingEnabled()) {
+	        // decorate the evaluation visitor with tracing support
+	        result = new TracingEvaluationVisitor(result);
+	    }
+	    
+	    return result;
 	}
 
 	@Override
@@ -162,7 +183,28 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryIn
 		return result;
 	}
 	
-    // implements the interface method
+    /**
+	 * Creates an environment for the specified package context.
+	 * 
+	 * @param parent the parent environment of the environment to be created
+	 * @param context the package context (must not be <code>null</code>)
+	 * @return the new nested environment
+	 */
+	protected EnvironmentInternal createPackageContext(@NonNull EnvironmentInternal parent,
+			@NonNull org.eclipse.ocl.pivot.Package context) {
+		
+		EnvironmentInternal result =
+			createEnvironment(parent);
+		
+		if (result instanceof AbstractEnvironment) {
+			((AbstractEnvironment) result)
+				.setContextPackage(context);
+		}
+		
+		return result;
+	}
+
+	// implements the interface method
 	@Override
 	public @NonNull EnvironmentInternal createPropertyContext(@NonNull EnvironmentInternal parent, @NonNull Property property) {
 		
@@ -178,48 +220,36 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryIn
 	}
 
 	@Override
-	public @NonNull EvaluationVisitor createEvaluationVisitor(@Nullable EnvironmentInternal environment, @Nullable Object context, @NonNull ExpressionInOCL expression, @Nullable ModelManager modelManager) {
-		if (environment == null) {
-			environment = createEnvironment();
+	public void dispose() {
+		if (metamodelManager != null) {
+			metamodelManager.dispose();
+			metamodelManager = null;
 		}
-		// can determine a more appropriate context from the context
-		// variable of the expression, to account for stereotype constraints
-//		context = HelperUtil.getConstraintContext(rootEnvironment, context, expression);
-		EvaluationEnvironment evaluationEnvironment = createEvaluationEnvironment();
-		Variable contextVariable = expression.getOwnedContext();
-		if (contextVariable != null) {
-			IdResolver idResolver = getMetamodelManager().getIdResolver();
-			Object value = idResolver.boxedValueOf(context);
-			evaluationEnvironment.add(contextVariable, value);
-		}
-		for (Variable parameterVariable : expression.getOwnedParameters()) {
-			if (parameterVariable != null) {
-				evaluationEnvironment.add(parameterVariable, null);
-			}
-		}
-		ModelManager extents = modelManager;
-		if (extents == null) {
-			// let the evaluation environment create one
-			extents = createModelManager(context);
-		}
-		return createEvaluationVisitor(environment, evaluationEnvironment, extents);
-	}
-	
-    // implements the interface method
-	@Override
-	public @NonNull EvaluationVisitor createEvaluationVisitor(@NonNull EnvironmentInternal env, @NonNull EvaluationEnvironment evalEnv,
-			@NonNull ModelManager modelManager) {
-        EvaluationVisitor result = new EvaluationVisitorImpl(env, evalEnv, modelManager);
-        
-        if (isEvaluationTracingEnabled()) {
-            // decorate the evaluation visitor with tracing support
-            result = new TracingEvaluationVisitor(result);
-        }
-        
-        return result;
 	}
 
-    /**
+	/**
+	 * The abstract environment factory implementation is adaptable.  The
+	 * default implementation adapts to and interface actually implemented by
+	 * the receiver.
+	 * <p>
+	 * Subclasses may override or extend this implementation.
+	 * </p>
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public <T> T getAdapter(java.lang.Class<T> adapterType) {
+		T result;
+		
+		if (adapterType.isAssignableFrom(getClass())) {
+			result = (T) this;
+		} else {
+			result = null;
+		}
+		
+		return result;
+	}
+
+	/**
      * Obtains client metamodel's classifier for the specified
      * <code>context</code> object, which may be an instance of a classifier
      * in the user model or may actually be a classifier in the user model.
@@ -229,6 +259,15 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryIn
      *     context itself if it is a classifier
      */
     protected abstract @NonNull org.eclipse.ocl.pivot.Class getClassifier(@NonNull Object context);
+
+	@Override
+	public @NonNull MetamodelManager getMetamodelManager() {
+		MetamodelManager metamodelManager2 = metamodelManager;
+		if (metamodelManager2 == null) {
+			metamodelManager = metamodelManager2 = createMetamodelManager();
+		}
+		return metamodelManager2;
+	}
     
     /**
      * Queries whether tracing of evaluation is enabled.  Tracing
@@ -263,26 +302,4 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryIn
     public void setEvaluationTracingEnabled(boolean b) {
         traceEvaluation = b;
     }
-
-	/**
-	 * The abstract environment factory implementation is adaptable.  The
-	 * default implementation adapts to and interface actually implemented by
-	 * the receiver.
-	 * <p>
-	 * Subclasses may override or extend this implementation.
-	 * </p>
-	 */
-	@Override
-	@SuppressWarnings("unchecked")
-	public <T> T getAdapter(java.lang.Class<T> adapterType) {
-		T result;
-		
-		if (adapterType.isAssignableFrom(getClass())) {
-			result = (T) this;
-		} else {
-			result = null;
-		}
-		
-		return result;
-	}
 }
