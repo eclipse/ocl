@@ -37,7 +37,6 @@ import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
-import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * An implementation of a query delegate for OCL expressions.
@@ -74,7 +73,7 @@ public class OCLQueryDelegate implements QueryDelegate
 	}
 
 	protected@Nullable Object evaluate(@NonNull Query query, @Nullable Object target) {
-		return query.evaluate(target);
+		return query.evaluateEcore(target);
 	}
 
 	/**
@@ -153,8 +152,7 @@ public class OCLQueryDelegate implements QueryDelegate
 //				String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, PivotUtil.getBody(specification));
 //				throw new InvocationTargetException(new OCLDelegateException(message));
 //			}
-			Object unboxedValue = idResolver.unboxedValueOf(result);
-			return ValueUtil.ecoreValueOf(unboxedValue, null);
+			return idResolver.ecoreValueOf(null, result);
 		}
 		catch (InvocationTargetException e) {
 			throw e;

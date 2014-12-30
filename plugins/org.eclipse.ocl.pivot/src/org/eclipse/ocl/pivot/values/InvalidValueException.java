@@ -15,6 +15,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
@@ -81,7 +82,7 @@ public class InvalidValueException extends UndefinedValueImpl implements Invalid
 	}
 	
 	@Override
-	public @NonNull List<Object> asEcoreObject(@NonNull IdResolver idResolver) {
+	public @NonNull List<Object> asEcoreObject(@NonNull IdResolver idResolver, @Nullable Class<?> instanceClass) {
 		throw new InvalidValueException(this, "asEcoreObject");
 	}
 
@@ -133,6 +134,11 @@ public class InvalidValueException extends UndefinedValueImpl implements Invalid
 	@Override
 	public @NonNull SetValue asSetValue() {
 		throw new InvalidValueException(this, "asSetValue");
+	}
+	
+	@Override
+	public @NonNull List<Object> asUnboxedObject(@NonNull IdResolver idResolver) {
+		throw new InvalidValueException(this, "asUnboxedObject");
 	}
 
 	@Override

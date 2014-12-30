@@ -15,11 +15,11 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
@@ -81,6 +81,15 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
 	public @NonNull SequenceValue asSequenceValue() {
         return this;
     }
+		
+	@Override
+	public @NonNull List<Object> asUnboxedObject(@NonNull IdResolver idResolver) {
+		List<Object> unboxedValues = new ArrayList<Object>();
+		for (Object boxedValue : elements) {
+			unboxedValues.add(idResolver.unboxedValueOf(boxedValue));
+		}
+		return unboxedValues;
+	}
 
     @Override
 	public @Nullable Object at(int index) {

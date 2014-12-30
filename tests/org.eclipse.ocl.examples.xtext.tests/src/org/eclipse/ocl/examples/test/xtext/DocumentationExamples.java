@@ -197,7 +197,7 @@ public class DocumentationExamples extends PivotTestCase
 			
 			ExpressionInOCL query = ocl.createQuery(bookType, "isAvailable()");
 			Query queryEval = ocl.createQuery(query);
-			Object b2Available = queryEval.evaluate(b2Book);
+			Object b2Available = queryEval.evaluateEcore(b2Book);
 		    assertFalse(ValueUtil.asBoolean(b2Available));
 		    
 			Map<Object, Object> validationContext = LabelUtil.createDefaultContext(Diagnostician.INSTANCE);
@@ -205,14 +205,14 @@ public class DocumentationExamples extends PivotTestCase
 		    assertEquals(3, diagnostics.getChildren().size());
 		    
 		    b2Book.eSet(bookCopies, BigInteger.valueOf(4));
-			b2Available = queryEval.evaluate(b2Book);
+			b2Available = queryEval.evaluateEcore(b2Book);
 		    assertTrue(ValueUtil.asBoolean(b2Available));
 		    
 		    diagnostics = Diagnostician.INSTANCE.validate(xmiLibrary, validationContext);
 		    assertEquals(2, diagnostics.getChildren().size());
 		    
 		    b2Book.eSet(bookCopies, BigInteger.valueOf(3));
-			b2Available = queryEval.evaluate(b2Book);
+			b2Available = queryEval.evaluateEcore(b2Book);
 		    assertFalse(ValueUtil.asBoolean(b2Available));
 		    
 		    List<?> b2loans = (List<?>)b2Book.eGet(bookLoans);

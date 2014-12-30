@@ -86,7 +86,7 @@ public abstract class ValueImpl extends ValueUtil implements Value
 	}
 	
 	@Override
-	public @Nullable Object asEcoreObject(@NonNull IdResolver idResolver) {
+	public @Nullable Object asEcoreObject(@NonNull IdResolver idResolver, @Nullable Class<?> instanceClass) {
 		return asObject();
 	}
 
@@ -154,6 +154,11 @@ public abstract class ValueImpl extends ValueUtil implements Value
 	@Override
 	public @NonNull UniqueCollectionValue asUniqueCollectionValue() {
 		throw new InvalidValueException(PivotMessages.TypedValueRequired, "Unique Collection", getTypeName());
+	}
+	
+	@Override
+	public @Nullable Object asUnboxedObject(@NonNull IdResolver idResolver) {
+		return asObject();
 	}
 
 	@Override

@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -86,6 +87,15 @@ public class SetValueImpl extends CollectionValueImpl implements SetValue
 	public @NonNull SetValue asSetValue() {
         return this;
     }
+		
+	@Override
+	public @NonNull Set<Object> asUnboxedObject(@NonNull IdResolver idResolver) {
+		Set<Object> unboxedValues = new HashSet<Object>();
+		for (Object boxedValue : elements) {
+			unboxedValues.add(idResolver.unboxedValueOf(boxedValue));
+		}
+		return unboxedValues;
+	}
 
 	@Override
 	public boolean equals(Object obj) {

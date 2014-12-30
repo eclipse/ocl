@@ -39,7 +39,6 @@ import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
-import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * An implementation of a query delegate for OCL expressions.
@@ -138,22 +137,8 @@ public class OCLQueryDelegate implements QueryDelegate
 				}
 				env.add(parameterVariable, value);
 			}
-			Object result = query.evaluate(target);
-//			if (result.isInvalid()) {
-//				String message = ClassUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, getOperationName());
-//				throw new OCLDelegateException(message);
-//			}
-	//		if ((result == null) / * || ocl.isInvalid(result) * /) {
-	//			String message = ClassUtil.bind(OCLMessages.EvaluationResultIsNull_ERROR_, getOperationName());
-	//			throw new OCLDelegateException(message);
-	//		}
-	//		return converter.convert(ocl, result);
-//			if (result == null) {
-//				String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, PivotUtil.getBody(specification));
-//				throw new InvocationTargetException(new OCLDelegateException(message));
-//			}
-			Object unboxedValue = idResolver.unboxedValueOf(result);
-			return ValueUtil.ecoreValueOf(unboxedValue, null);
+			Object result = query.evaluateEcore(target);
+			return result;
 		}
 		catch (InvocationTargetException e) {
 			throw e;

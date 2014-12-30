@@ -71,8 +71,21 @@ public interface IdResolver extends IdVisitor<Element>
 	@NonNull SetValue createSetOfEach(@NonNull CollectionTypeId typeId, @NonNull Object... unboxedValues);
 
 	void dispose();
+
+	/**
+	 * Return a value adjusted to Ecore calling conventions.
+	 * <p>
+	 * A numeric value is adjusted to the precision indicated by instanceClass.
+	 * <p>
+	 * An enumeration literal is converted to an Enumerator.
+	 * <p>
+	 * Collections are converted to EcoreEList.UnmodifiableEList
+	 */
+	@Nullable Object ecoreValueOf(@Nullable Class<?> instanceClass, @Nullable Object value);
+
+	@NonNull EList<Object> ecoreValuesOfAll(@Nullable Class<?> instanceClass, @NonNull Iterable<Object> values);
 	
-	@NonNull EList<Object> ecoreValuesOfEach(@NonNull Object... boxedValues);
+	@NonNull EList<Object> ecoreValuesOfEach(@Nullable Class<?> instanceClass, @NonNull Object... values);
 
 	@NonNull org.eclipse.ocl.pivot.Class getClass(@NonNull TypeId typeId, @Nullable Object context);
 

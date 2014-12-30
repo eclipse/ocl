@@ -310,7 +310,6 @@ public class OCL {
 	 * @see #createQuery(ExpressionInOCL)
 	 */
 	public @NonNull Query createQuery(@NonNull ExpressionInOCL query) {
-		ClassUtil.nonNullState(query.getOwnedBody());
 		return new QueryImpl(this, query);
 	}
 

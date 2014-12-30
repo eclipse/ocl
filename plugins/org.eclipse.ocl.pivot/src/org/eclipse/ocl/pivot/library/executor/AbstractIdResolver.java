@@ -97,6 +97,8 @@ import org.eclipse.ocl.pivot.values.Unlimited;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.pivot.values.Value;
 
+import com.google.common.collect.Iterables;
+
 public abstract class AbstractIdResolver implements IdResolver
 {
 	public static final class Id2InstanceVisitor implements IdVisitor<Object>
@@ -593,13 +595,81 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	@Override
-	public @NonNull EList<Object> ecoreValuesOfEach(@NonNull Object... boxedValues) {
-		Object[] unboxedValues = new Object[boxedValues.length];
-		int i= 0;
-		for (Object boxedValue : boxedValues) {
-			unboxedValues[i++] = ValueUtil.ecoreValueOf(unboxedValueOf(boxedValue), null);
+	public @Nullable Object ecoreValueOf(@Nullable Class<?> instanceClass, @Nullable Object value) {
+		if (value instanceof Value) {
+			return ((Value)value).asEcoreObject(this, instanceClass);
 		}
-		return new EcoreEList.UnmodifiableEList<Object>(null, null, boxedValues.length, unboxedValues);
+		else if (value instanceof Number) {
+			Number number = (Number)value;
+			if ((instanceClass == Double.class) || (instanceClass == double.class)) {
+				return number.doubleValue();
+			}
+			else if ((instanceClass == Float.class) || (instanceClass == float.class)) {
+				return number.floatValue();
+			}
+			else if ((instanceClass == Short.class) || (instanceClass == short.class)) {
+				return number.shortValue();
+			}
+			else if ((instanceClass == Integer.class) || (instanceClass == int.class)) {
+				return number.intValue();
+			}
+			else if ((instanceClass == Long.class) || (instanceClass == long.class)) {
+				return number.longValue();
+			}
+			else if (instanceClass == BigDecimal.class) {
+				return BigDecimal.valueOf(number.doubleValue());
+			}
+			else if (instanceClass == BigInteger.class) {
+				return BigInteger.valueOf(number.longValue());
+			}
+			else {					// instanceClass is null, make a best guess
+				if ((number instanceof BigDecimal) || (number instanceof Double) || (number instanceof Float)) {
+					return number.doubleValue();
+				}
+				else {
+					return number.intValue();
+				}
+			}
+		}
+		else if (value instanceof EnumerationLiteralId) {
+			return unboxedValueOf((EnumerationLiteralId)value);
+		}
+		else if (value instanceof EEnumLiteral) {
+			return ((EEnumLiteral)value).getInstance();
+		}
+		else if (value instanceof Iterable<?>) {
+			if (value instanceof EcoreEList.UnmodifiableEList<?>) {
+				return value;
+			}
+			else {
+				@SuppressWarnings("unchecked") Iterable<Object> values = (Iterable<Object>)value;
+				return ecoreValuesOfAll(instanceClass, values);
+			}
+	}
+		else {
+			return value;
+		}
+	}
+
+	@Override
+	public @NonNull EList<Object> ecoreValuesOfAll(@Nullable Class<?> instanceClass, @NonNull Iterable<Object> values) {
+		
+		Object[] ecoreValues = new Object[Iterables.size(values)];
+		int i= 0;
+		for (Object value : values) {
+			ecoreValues[i++] = ecoreValueOf(instanceClass, value);
+		}
+		return new EcoreEList.UnmodifiableEList<Object>(null, null, ecoreValues.length, ecoreValues);
+	}
+
+	@Override
+	public @NonNull EList<Object> ecoreValuesOfEach(@Nullable Class<?> instanceClass, @NonNull Object... values) {
+		Object[] ecoreValues = new Object[values.length];
+		int i= 0;
+		for (Object value : values) {
+			ecoreValues[i++] = ecoreValueOf(instanceClass, value);
+		}
+		return new EcoreEList.UnmodifiableEList<Object>(null, null, ecoreValues.length, ecoreValues);
 	}
 
 	@Override
@@ -1076,7 +1146,7 @@ public abstract class AbstractIdResolver implements IdResolver
 	@Override
 	public @Nullable Object unboxedValueOf(@Nullable Object boxedValue) {
 		if (boxedValue instanceof Value) {
-			return ((Value)boxedValue).asEcoreObject(this);
+			return ((Value)boxedValue).asUnboxedObject(this);
 		}
 		else if (boxedValue instanceof EnumerationLiteralId) {
 			return unboxedValueOf((EnumerationLiteralId)boxedValue);

@@ -27,7 +27,6 @@ import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.delegate.OCLInvocationDelegate;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * An implementation of an operation-invocation delegate for OCL body expressions.
@@ -55,12 +54,7 @@ public class OCLDebugInvocationDelegate extends OCLInvocationDelegate
 				env.add(ClassUtil.nonNullModel(parms.get(i)), value);
 			}
 		}
-		Object result = query2.evaluate(target);
-//			if (result == null) {
-//				String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, operation);
-//				throw new InvocationTargetException(new OCLDelegateException(message));
-//			}
-		Object unboxedValue = idResolver.unboxedValueOf(result);
-		return ValueUtil.ecoreValueOf(unboxedValue, eOperation.getEType().getInstanceClass());
+		Object ecoreResult = query2.evaluateEcore(eOperation.getEType().getInstanceClass(), target);
+		return ecoreResult;
 	}
 }

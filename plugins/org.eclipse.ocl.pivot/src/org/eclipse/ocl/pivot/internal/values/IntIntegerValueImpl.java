@@ -84,12 +84,6 @@ public class IntIntegerValueImpl extends IntegerValueImpl
 	}
 
 	@Override
-	public @NonNull Object asEcoreObject(@NonNull IdResolver idResolver) {
-		@SuppressWarnings("null") @NonNull Integer result = Integer.valueOf(value);
-		return result;
-	}
-
-	@Override
 	public @NonNull Integer asInteger() {
 		@SuppressWarnings("null") @NonNull Integer result = Integer.valueOf(value);
 		return result;
@@ -103,6 +97,12 @@ public class IntIntegerValueImpl extends IntegerValueImpl
 
 	@Override
 	public @NonNull Object asObject() {
+		@SuppressWarnings("null") @NonNull Integer result = Integer.valueOf(value);
+		return result;
+	}
+
+	@Override
+	public @NonNull Object asUnboxedObject(@NonNull IdResolver idResolver) {
 		@SuppressWarnings("null") @NonNull Integer result = Integer.valueOf(value);
 		return result;
 	}

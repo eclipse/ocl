@@ -236,12 +236,12 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 	}
 		
 	@Override
-	public @NonNull List<Object> asEcoreObject(@NonNull IdResolver idResolver) {
+	public @NonNull List<Object> asEcoreObject(@NonNull IdResolver idResolver, @Nullable Class<?> instanceClass) {
 		Object[] unboxedValues = new Object[elements.size()];
 		int i= 0;
 		for (Object element : elements) {
 			if (element instanceof Value)
-				unboxedValues[i++] = ((Value)element).asEcoreObject(idResolver);
+				unboxedValues[i++] = ((Value)element).asEcoreObject(idResolver, instanceClass);
 			else if (element instanceof EnumerationLiteralId) {
 				unboxedValues[i++] = idResolver.unboxedValueOf(element);
 			}
@@ -254,8 +254,8 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 	
 	@Override
 	@SuppressWarnings("unchecked")			// FIXME check element types
-	public @NonNull <T> List<T> asEcoreObjects(@NonNull IdResolver idResolver, @NonNull Class<T> elementClass) {
-		return (List<T>) asEcoreObject(idResolver);
+	public @Nullable <T> List<T> asEcoreObjects(@NonNull IdResolver idResolver, @Nullable Class<T> instanceClass) {
+		return (List<T>) asEcoreObject(idResolver, instanceClass);
 	}
 
 	public @NonNull List<? extends Object> asList() {

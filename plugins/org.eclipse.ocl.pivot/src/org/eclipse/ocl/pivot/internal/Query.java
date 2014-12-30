@@ -13,12 +13,15 @@ package org.eclipse.ocl.pivot.internal;
 
 import java.util.List;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.pivot.evaluation.EvaluationException;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
 
 /**
  * An OCL constraint or query.  The query is validated for correctness
@@ -32,7 +35,95 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
  * @author Edith Schonberg (edith)
  * @author Christian W. Damus (cdamus)
  */
-public interface Query {
+public interface Query
+{
+	/**
+	 * Evaluates the query on a boxedObject. The query must be a boolean valued
+	 * constraint.
+	 * 
+	 * @param boxedObject an <code>Object</code> or <code>null</code> if the query
+	 *     does not require an OCL 'self' context
+	 * @return boolean <code>true</code> or <code>false</code> according to
+	 *     whether the constraint is met
+	 * 
+	 * @see #check(List)
+	 */
+	public boolean checkBoxed(@Nullable Object boxedObject);
+		
+	/**
+	 * Evaluates the query on an ecoreObject. The query must be a boolean valued
+	 * constraint.
+	 * 
+	 * @param ecoreObject an <code>Object</code> or <code>null</code> if the query
+	 *     does not require an OCL 'self' context
+	 * @return boolean <code>true</code> or <code>false</code> according to
+	 *     whether the constraint is met
+	 * 
+	 * @see #check(List)
+	 */
+	public boolean checkEcore(@Nullable Object ecoreObject); 
+
+	/**
+	* Determines whether all of the boxedObjects satisfy the query.
+	* The query must be a boolean-valued constraint.
+	* 
+	* @param boxedObjects a list of objects to evaluate the constraint on
+	* @return <code>true</code> if all of the <code>objects</code> satisfy
+	*     the constraint (including the trivial case of an empty input list);
+	*     <code>false</code>, otherwise
+	* 
+	* @see #check(Object)
+	*/
+	public boolean checkBoxed(@NonNull Iterable<?> boxedObjects); 
+
+	/**
+	* Determines whether all of the ecoreObjects satisfy the query.
+	* The query must be a boolean-valued constraint.
+	* 
+	* @param ecoreObjects a list of objects to evaluate the constraint on
+	* @return <code>true</code> if all of the <code>objects</code> satisfy
+	*     the constraint (including the trivial case of an empty input list);
+	*     <code>false</code>, otherwise
+	* 
+	* @see #check(Object)
+	*/
+	public boolean checkEcore(@NonNull Iterable<?> ecoreObjects); 
+
+	/**
+	 * Evaluates the query on the boxedObject to return a boxedResult.
+	 */
+	public @Nullable Object evaluateBoxed(@Nullable Object boxedObject);
+
+	/**
+	 * Evaluates the query on each of boxedObjects to return a list of boxedResults.
+	 */
+	public @NonNull List<?> evaluateBoxed(@NonNull Iterable<?> boxedObjects);
+	
+	/**
+	 * Evaluates the query on the ecoreObject to return an ecoreResult using Integer/Double for numerics.
+	 */
+	public @Nullable Object evaluateEcore(@Nullable Object ecoreObject) throws EvaluationException;
+	
+	/**
+	 * Evaluates the query on the ecoreObject to return an ecoreResult coerced, if non-null, to instanceClass.
+	 */
+	public @Nullable Object evaluateEcore(@Nullable Class<?> instanceClass, @Nullable Object ecoreObject) throws EvaluationException;
+
+	/**
+	 * Evaluates the query on each of ecoreObjects to return a list of ecoreResults using Integer/Double for numerics.
+	 */
+	public @NonNull EList<?> evaluateEcore(@NonNull Iterable<?> ecoreObjects);
+
+	/**
+	 * Evaluates the query on each of ecoreObjects to return a list of ecoreResults coerced, if non-null, to instanceClass.
+	 */
+	public @NonNull EList<?> evaluateEcore(@Nullable Class<?> instanceClass, @NonNull Iterable<?> ecoreObjects);
+
+	/**
+	 * Evaluates the query on the unboxedObject to return an unboxedResult.
+	 */
+	public @Nullable Object evaluateUnboxed(@Nullable Object unboxedObject);
+
 	/**
 	 * Obtains the evaluation environment that I use to evaluate OCL expressions.
 	 * 
@@ -41,97 +132,44 @@ public interface Query {
 	EvaluationEnvironment getEvaluationEnvironment();
 	
 	/**
-	 * Evaluates the query on the object.
+	 * Obtains the expression that I evaluate (or check as a boolean constraint).
 	 * 
-	 * @param obj an <code>Object</code>
-	 * 
-	 * @return the result of the query, which may be one or more
-	 *    {@link EObject}s, Java objects, a mixture, or even <code>null</code>.
-	 *    In any case, the results conform to the expression's
-	 *    {@linkplain #resultType() result type}
-	 * 
-	 * @see #evaluate()
-	 * @see #evaluate(List)
-	 * @see #resultType()
+	 * @return my OCL expression
 	 */
-	public Object evaluate(Object obj);
-	
+	OCLExpression getExpression();
+
 	/**
-	 * Evaluates the query. This method is used when there is no 'self' context
-	 * required by the query.
-	 * Either the query is constant, or uses <code>allInstances()</code>
-	 * exclusively for evaluation.
+	 * Obtains the mapping of classes to their extents (sets of all instances).
 	 * 
-	 * @return the result of the query, which may be one or more
-	 *    {@link EObject}s, Java objects, a mixture, or even <code>null</code>.
-	 *    In any case, the results conform to the expression's
-	 *    {@linkplain #resultType() result type}
-	 * 
-	 * @see #resultType()
+	 * @return the map of classes to their extents
 	 */
-	public Object evaluate();  
-	
+	public ModelManager getModelManager();
+
 	/**
-	 * Evaluates the query on an object. The query must be a boolean valued
-	 * constraint.
+	 * <p>
+	 * Obtains the {@link OCL} that created me.
+	 * </p>
 	 * 
-	 * @param obj an <code>Object</code> or <code>null</code> if the query
-	 *     does not require an OCL 'self' context
-	 * @return boolean <code>true</code> or <code>false</code> according to
-	 *     whether the constraint is met
-	 * 
-	 * @see #check(List)
+	 * @return my originating <tt>OCL</tt> instance
 	 */
-	public boolean check(Object obj);
-	
+	@NonNull OCL getOCL();
+
 	/**
-	 * Evaluates the query on the input list.
-	 * The results are returned in a corresponding list of results.
+	 * Translates the query back to an OCL text string.
 	 * 
-	 * @param objects a list of objects to evaluate the query on
-	 * @return a list of results, corresponding one-for-one with the
-	 *     <code>objects</code>.  Note that result elements may, themselves,
-	 *     be collections of multiple results for a single input object.
-	 *    In any case, the results conform to the expression's
-	 *    {@linkplain #resultType() result type}
-	 * 
-	 * @see #evaluate(Object)
-	 * @see #resultType()
+	 * @return the text of the OCL query expression
 	 */
-	public List<?> evaluate(List<?> objects);
-			
+	public String queryText();
+
 	/**
-	 * Determines whether all of the input objects satisfy the query.
-	 * The query must be a boolean-valued constraint.
-	 * 
-	 * @param objects a list of objects to evaluate the constraint on
-	 * @return <code>true</code> if all of the <code>objects</code> satisfy
-	 *     the constraint (including the trivial case of an empty input list);
-	 *     <code>false</code>, otherwise
-	 * 
-	 * @see #check(Object)
-	 */
-	public boolean check(List<?> objects); 
-	
-	/**
-	 * Determines the subset of input objects that satisfy the query.
-	 * The query must be a boolean valued constraint.
-	 * 
-	 * @param objects a list of objects to evaluate the constraint on
-	 * @return the subset (possibly empty) of the <code>objects</code> that
-	 *      satisfy the constraint
-	 */
-	public <T> List<T> select(List<T> objects);
-	
-	/**
-	 * Determines the subset of input objects that do not satisfy the
+	 * Determines the subset of ecoreObjects that do not satisfy the
 	 * query.  The query must be a boolean valued constraint.
 	 * 
-	 * @param objects a list of objects to evaluate the constraint on
+	 * @param ecoreObjects a list of objects to evaluate the constraint on
 	 * @return the subset (possibly empty) of the <code>objects</code> that
 	 *      do not satisfy the constraint
 	 */
-	public <T> List<T> reject(List<T> objects);
+	public @NonNull <T> List<T> rejectEcore(@NonNull Iterable<T> ecoreObjects);
 		
 	/**
 	 * Obtains the OCL result type of the query.  This may be a classifier
@@ -140,36 +178,16 @@ public interface Query {
 	 * 
 	 * @return the query's result type
 	 */
-	public Type resultType(); 
-	
+	public Type resultType();
+
 	/**
-	 * Translates the query back to an OCL text string.
+	 * Determines the subset of ecoreObjects that satisfy the query.
+	 * The query must be a boolean valued constraint.
 	 * 
-	 * @return the text of the OCL query expression
+	 * @param ecoreObjects a list of objects to evaluate the constraint on
+	 * @return the subset (possibly empty) of the <code>objects</code> that
+	 *      satisfy the constraint
 	 */
-	public String queryText();
-	
-	/**
-	 * Obtains the mapping of classes to their extents (sets of all instances).
-	 * 
-	 * @return the map of classes to their extents
-	 */
-	public ModelManager getModelManager();
-	
-	/**
-	 * Obtains the expression that I evaluate (or check as a boolean constraint).
-     * 
-     * @return my OCL expression
-	 */
-	OCLExpression getExpression();
-    
-	/**
-	 * <p>
-	 * Obtains the {@link OCL} that created me.
-	 * </p>
-     * 
-     * @return my originating <tt>OCL</tt> instance
-	 */
-    OCL getOCL();
+	public @NonNull <T> List<T> selectEcore(@NonNull Iterable<T> ecoreObjects);
 }
 

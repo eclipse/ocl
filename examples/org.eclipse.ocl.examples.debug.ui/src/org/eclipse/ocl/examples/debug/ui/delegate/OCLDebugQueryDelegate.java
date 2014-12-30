@@ -28,7 +28,7 @@ public class OCLDebugQueryDelegate extends OCLQueryDelegate
 		super(delegateDomain, context, parameters, expression);
 	}
 
-	protected@Nullable Object evaluate(@NonNull Query query, @Nullable Object target) {
-		return query.evaluate(target);
+	protected@Nullable Object evaluateEcore(@NonNull Query query, @Nullable Object target) {
+		return query.evaluateEcore(target);
 	}
 }

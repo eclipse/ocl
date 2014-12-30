@@ -10,13 +10,17 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.internal.values;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.values.BagValue;
@@ -84,6 +88,37 @@ public abstract class NumberValueImpl extends Number implements NumberValue
 	@Override
 	public @NonNull Double asDouble() {
 		throw new InvalidValueException(PivotMessages.TypedValueRequired, "Double", getTypeName());
+	}
+
+	@Override
+	public Object asEcoreObject(@NonNull IdResolver idResolver, @Nullable Class<?> instanceClass) {
+		//
+		//	This partial implementation returns null to signal to the derived invoker to make a type-dependent guess 
+		//
+		if ((instanceClass == Double.class) || (instanceClass == double.class)) {
+			return doubleValue();
+		}
+		else if ((instanceClass == Float.class) || (instanceClass == float.class)) {
+			return floatValue();
+		}
+		else if ((instanceClass == Short.class) || (instanceClass == short.class)) {
+			return shortValue();
+		}
+		else if ((instanceClass == Integer.class) || (instanceClass == int.class)) {
+			return intValue();
+		}
+		else if ((instanceClass == Long.class) || (instanceClass == long.class)) {
+			return longValue();
+		}
+		else if (instanceClass == BigDecimal.class) {
+			return BigDecimal.valueOf(doubleValue());
+		}
+		else if (instanceClass == BigInteger.class) {
+			return BigInteger.valueOf(longValue());
+		}
+		else {					// instanceClass is null, leave derived class to make a best guess
+			return null;
+		}
 	}
 
 	@Override

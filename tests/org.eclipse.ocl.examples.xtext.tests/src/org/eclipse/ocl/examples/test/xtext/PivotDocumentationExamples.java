@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,11 +29,14 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.examples.extlibrary.Book;
 import org.eclipse.emf.examples.extlibrary.BookCategory;
 import org.eclipse.emf.examples.extlibrary.EXTLibraryFactory;
 import org.eclipse.emf.examples.extlibrary.EXTLibraryPackage;
 import org.eclipse.emf.examples.extlibrary.Library;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
@@ -66,8 +68,13 @@ public class PivotDocumentationExamples extends XtextTestCase
 		return getTestModelURI(fileName);
 	}
 	
-	private List<Library> getLibraries() {
-		return Collections.emptyList();
+	private @NonNull List<Library> getLibraries() {
+		URI uri = getProjectFileURI("PivotDocumentationExamples.extlibrary");
+		ResourceSet resourceSet = new ResourceSetImpl();
+		resourceSet.getPackageRegistry().put(EXTLibraryPackage.eNS_URI, EXTLibraryPackage.eINSTANCE);
+		Resource resource = resourceSet.getResource(uri, true);
+		@SuppressWarnings("unchecked") List<Library> libraries = (List<Library>)(List<?>)resource.getContents();
+		return libraries;
 	}
 
 	public Library getLibrary() {
@@ -142,10 +149,10 @@ public class PivotDocumentationExamples extends XtextTestCase
 
 		// only print the set of book categories for valid libraries
 		for (Library next : libraries) {
-		    if (constraintEval.check(next)) {
+		    if (constraintEval.checkEcore(next)) {
 		        // the OCL result type of our query expression is Set(BookCategory)
 		        @SuppressWarnings("unchecked")
-		        Set<BookCategory> categories = (Set<BookCategory>) queryEval.evaluate(next);
+		        Set<BookCategory> categories = (Set<BookCategory>) queryEval.evaluateUnboxed(next);
 		        
 		        debugPrintf("%s: %s%n\n", next.getName(), categories);
 		    }
@@ -162,9 +169,9 @@ public class PivotDocumentationExamples extends XtextTestCase
 		// MoreSuccinct
 
 		// only print the set of book categories for valid libraries
-		for (Library next : constraintEval.select(libraries)) {
+		for (Library next : constraintEval.selectEcore(libraries)) {
 		    @SuppressWarnings("unchecked")
-		    Set<BookCategory> categories = (Set<BookCategory>) queryEval.evaluate(next);
+		    Set<BookCategory> categories = (Set<BookCategory>) queryEval.evaluateUnboxed(next);
 		    
 		    debugPrintf("%s: %s%n\n", next.getName(), categories);
 		}

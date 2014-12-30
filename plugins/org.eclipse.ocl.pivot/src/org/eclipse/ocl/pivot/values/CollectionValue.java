@@ -40,12 +40,12 @@ public interface CollectionValue extends Value, Iterable<Object>
 	 * @generated NOT
 	 */
 	@Override
-	@Nullable List<?> asEcoreObject(@NonNull IdResolver idResolver);
+	@Nullable List<?> asEcoreObject(@NonNull IdResolver idResolver, @Nullable Class<?> instanceClass);
 
 	/**
 	 * @generated NOT
 	 */
-	@Nullable <T> List<T> asEcoreObjects(@NonNull IdResolver idResolver, @NonNull Class<T> elementClass);
+	@Nullable <T> List<T> asEcoreObjects(@NonNull IdResolver idResolver, @Nullable Class<T> instanceClass);
 
 	/**
 	 * @generated NOT

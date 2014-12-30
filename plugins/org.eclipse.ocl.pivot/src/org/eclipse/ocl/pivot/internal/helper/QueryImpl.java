@@ -12,13 +12,15 @@
 
 package org.eclipse.ocl.pivot.internal.helper;
 
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Type;
@@ -27,6 +29,8 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationHaltedException;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
+import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.ProblemAware;
 import org.eclipse.ocl.pivot.internal.Query;
@@ -53,23 +57,23 @@ import org.eclipse.ocl.pivot.utilities.ValueUtil;
  */
 public class QueryImpl implements Query, ProblemAware
 {
-	private final OCL ocl;
-	private final ExpressionInOCL query;
-	private final OCLExpression expression;
+	private final @NonNull OCL ocl;
+	private final @NonNull ExpressionInOCL query;
+	private final @NonNull OCLExpression expression;
 	private ModelManager modelManager = null;
-	private EvaluationEnvironment evalEnv;
+	private EvaluationEnvironment evaluationEnvironment;
 	private Diagnostic evalProblems;
 	private BasicDiagnostic batchEvalProblems;
 	
 	public QueryImpl(@NonNull OCL ocl, @NonNull ExpressionInOCL query) {		
 		this.ocl = ocl;
 		this.query = query;
-		this.expression = query.getOwnedBody();
+		this.expression = ClassUtil.nonNullState(query.getOwnedBody());
 		this.modelManager = ocl.getModelManager();
 	}
 
 	@Override
-	public boolean check(Object obj) {
+	public boolean checkBoxed(@Nullable Object boxedObject) {
 		if (resultType() != ocl.getStandardLibrary().getBooleanType()) {
 			IllegalArgumentException error = new IllegalArgumentException(
 					PivotMessagesInternal.BooleanQuery_ERROR_);
@@ -77,26 +81,29 @@ public class QueryImpl implements Query, ProblemAware
 			throw error;
 		}
 		
-		Object result;
-		
-		if (obj == null) {
-			result = evaluate();
-		} else {
-			result = evaluate(obj);
-		}
-		
+		Object result = evaluateBoxed(boxedObject);
 		return result == ValueUtil.TRUE_VALUE;
 	}
 	
 	@Override
-	public boolean check(List<?> objList) {
-		if (objList == null) {
+	public boolean checkBoxed(@NonNull Iterable<?> boxedObjects) {
+		if (resultType() != ocl.getStandardLibrary().getBooleanType()) {
 			IllegalArgumentException error = new IllegalArgumentException(
-					PivotMessagesInternal.NullArgExpectlist_ERROR_);
+					PivotMessagesInternal.BooleanQuery_ERROR_);
 			HelperUtil.throwing(getClass(), "check", error);//$NON-NLS-1$
 			throw error;
 		}
-		
+		for (Object boxedObject : boxedObjects) {
+			Object result = evaluateBoxed(boxedObject);
+			if (result != ValueUtil.TRUE_VALUE) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public boolean checkEcore(@Nullable Object ecoreObject) {
 		if (resultType() != ocl.getStandardLibrary().getBooleanType()) {
 			IllegalArgumentException error = new IllegalArgumentException(
 					PivotMessagesInternal.BooleanQuery_ERROR_);
@@ -104,13 +111,24 @@ public class QueryImpl implements Query, ProblemAware
 			throw error;
 		}
 		
-		Iterator <?>iter = objList.iterator();
-		while (iter.hasNext()) {
-			if (!check(iter.next())) {
+		Object result = evaluateEcore(null, ecoreObject);
+		return result == ValueUtil.TRUE_VALUE;
+	}
+	
+	@Override
+	public boolean checkEcore(@NonNull Iterable<?> ecoreObjects) {
+		if (resultType() != ocl.getStandardLibrary().getBooleanType()) {
+			IllegalArgumentException error = new IllegalArgumentException(
+					PivotMessagesInternal.BooleanQuery_ERROR_);
+			HelperUtil.throwing(getClass(), "check", error);//$NON-NLS-1$
+			throw error;
+		}
+		for (Object ecoreObject : ecoreObjects) {
+			Object result = evaluateEcore(null, ecoreObject);
+			if (result != ValueUtil.TRUE_VALUE) {
 				return false;
 			}
 		}
-		
 		return true;
 	}
 
@@ -124,59 +142,24 @@ public class QueryImpl implements Query, ProblemAware
 	}
 
 	@Override
-	public Object evaluate() throws EvaluationException {
-		evalProblems = null;
-		
-		// lazily create the evaluation environment, if not already done by
-		//    the client.  There is no "self" context variable
-		EvaluationVisitor ev =
-			ocl.getEnvironmentFactory().createEvaluationVisitor(getEvaluationEnvironment(), getModelManager());
-		
-		Object result;
-		
-		try {
-			result = expression.accept(ev);
-		} catch (EvaluationHaltedException e) {
-			evalProblems = e.getDiagnostic();
-//			result = environment.getMetamodelManager().getValueFactory().createInvalidValue(null, null, evalProblems.toString(), e);
-			throw e;
-		}
-		
-		return result;
-	}
-
-	@Override
-	public Object evaluate(Object obj) throws EvaluationException {
-		evalProblems = null;
-		
-		if (obj == null) {
-			IllegalArgumentException error = new IllegalArgumentException(
-				PivotMessagesInternal.NullArgExpectEObj_ERROR_);
-			HelperUtil.throwing(getClass(), "evaluate", error);//$NON-NLS-1$
-			throw error;
-		}
-
-		// can determine a more appropriate context from the context
-		//   variable of the expression, to account for stereotype constraints
-//		obj = HelperUtil.getConstraintContext(null, obj, expression);
-		
+	public @Nullable Object evaluateBoxed(@Nullable Object boxedValue) {
 		// lazily create the evaluation environment, if not already done by
 		//    the client.  Initialize it with the "self" context variable
 		EvaluationEnvironment myEnv = getEvaluationEnvironment();
-		MetamodelManager metamodelManager = ocl.getEnvironmentFactory().getMetamodelManager();
 		Variable contextVariable = ClassUtil.nonNullState(query.getOwnedContext());
-		myEnv.add(contextVariable, metamodelManager.getIdResolver().boxedValueOf(obj));
+		myEnv.add(contextVariable, boxedValue);
 //		Variable resultVariable = specification.getResultVariable();
 //		if (resultVariable != null) {
 //			myEnv.add(resultVariable, null);
 //		}
 		
-		EvaluationVisitor ev = ocl.getEnvironmentFactory().createEvaluationVisitor(myEnv, getModelManager());
+		EnvironmentFactoryInternal environmentFactory = ocl.getEnvironmentFactory();
+		EvaluationVisitor ev = environmentFactory.createEvaluationVisitor(myEnv, getModelManager());
 		
-		Object result;
+		Object boxedResult;
 		
 		try {
-			result = expression.accept(ev);
+			boxedResult = expression.accept(ev);
 		} catch (EvaluationHaltedException e) {
 			evalProblems = e.getDiagnostic();
 //			result = valueFactory.createInvalidValue(obj, null, evalProblems.toString(), e);
@@ -187,42 +170,76 @@ public class QueryImpl implements Query, ProblemAware
 //				myEnv.add(resultVariable, null);
 //			}
 		}
-		
-		return result;
+		return boxedResult;
 	}
 
 	@Override
-	public List<?> evaluate(List<?> objList) {
-		if (objList == null) {
-			IllegalArgumentException error = new IllegalArgumentException(
-					PivotMessagesInternal.NullArgExpectlist_ERROR_);
-			HelperUtil.throwing(getClass(), "evaluate", error);//$NON-NLS-1$
-			throw error;
-		}
-		
-		List<Object> result = new BasicEList<Object>();
-		Iterator<?> iter = objList.iterator();
+	public @NonNull List<?> evaluateBoxed(@NonNull Iterable<?> boxedObjects) {
+		List<Object> boxedResults = new ArrayList<Object>();
 		try {
-			while (iter.hasNext()) {
-				result.add(evaluate(iter.next()));
-				
+			for (Object boxedObject : boxedObjects) {
+				boxedResults.add(evaluateBoxed(boxedObject));
 				handleNextEvaluateProblems();
 			}
 		} finally {
 			commitBatchEvaluateProblems();
 		}
-
-		return result;
+		return boxedResults;
 	}
 
 	@Override
-	@SuppressWarnings("null")
-	public @NonNull EvaluationEnvironment getEvaluationEnvironment() {
-		if (evalEnv == null) {
-			evalEnv = ocl.getEnvironmentFactory().createEvaluationEnvironment();
+	public @Nullable Object evaluateEcore(@Nullable Object ecoreObject) throws EvaluationException {
+		return evaluateEcore(null, ecoreObject);
+	}
+
+	@Override
+	public @Nullable Object evaluateEcore(@Nullable Class<?> instanceClass, @Nullable Object ecoreObject) throws EvaluationException {
+		evalProblems = null;
+		EnvironmentFactoryInternal environmentFactory = ocl.getEnvironmentFactory();
+		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+		IdResolver idResolver = metamodelManager.getIdResolver();
+		Object boxedValue = idResolver.boxedValueOf(ecoreObject);
+		Object boxedResult = evaluateBoxed(boxedValue);
+		return idResolver.ecoreValueOf(instanceClass, boxedResult);
+	}
+
+	@Override
+	public @NonNull EList<?> evaluateEcore(@NonNull Iterable<?> ecoreObjects) throws EvaluationException {
+		return evaluateEcore(null, ecoreObjects);
+	}
+
+	@Override
+	public @NonNull EList<?> evaluateEcore(@Nullable Class<?> instanceClass, @NonNull Iterable<?> ecoreObjects) {
+		EList<Object> ecoreResults = new BasicEList<Object>();
+		try {
+			for (Object ecoreObject : ecoreObjects) {
+				ecoreResults.add(evaluateEcore(instanceClass, ecoreObject));
+				handleNextEvaluateProblems();
+			}
+		} finally {
+			commitBatchEvaluateProblems();
 		}
-		
-		return evalEnv;
+		return ecoreResults;
+	}
+
+	@Override
+	public @Nullable Object evaluateUnboxed(@Nullable Object unboxedObject) throws EvaluationException {
+		evalProblems = null;
+		EnvironmentFactoryInternal environmentFactory = ocl.getEnvironmentFactory();
+		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+		IdResolver idResolver = metamodelManager.getIdResolver();
+		Object boxedValue = idResolver.boxedValueOf(unboxedObject);
+		Object boxedResult = evaluateBoxed(boxedValue);
+		return idResolver.unboxedValueOf(boxedResult);
+	}
+
+	@Override
+	public @NonNull EvaluationEnvironment getEvaluationEnvironment() {
+		EvaluationEnvironment evaluationEnvironment2 = evaluationEnvironment;
+		if (evaluationEnvironment2 == null) {
+			evaluationEnvironment = evaluationEnvironment2 = ocl.getEnvironmentFactory().createEvaluationEnvironment();
+		}
+		return evaluationEnvironment2;
 	}
 
 	@Override
@@ -231,21 +248,18 @@ public class QueryImpl implements Query, ProblemAware
 	}
 
 	@Override
-	@SuppressWarnings("null")
 	public @NonNull ModelManager getModelManager() {
-		if (modelManager == null) {
+		ModelManager modelManager2 = modelManager;
+		if (modelManager2 == null) {
 			EvaluationEnvironment myEnv = getEvaluationEnvironment();
-			
-			Object context = myEnv.getValueOf(query.getOwnedContext());
-			
-			modelManager = ocl.getEnvironmentFactory().createModelManager(context);
+			Variable ownedContext = query.getOwnedContext();
+			Object context = ownedContext != null ? myEnv.getValueOf(ownedContext) : null;
+			modelManager = modelManager2 = ocl.getEnvironmentFactory().createModelManager(context);
 		}
-		
-		return modelManager;
+		return modelManager2;
 	}
 
 	@Override
-	@SuppressWarnings("null")
 	public @NonNull OCL getOCL() {
 		return ocl;
 	}
@@ -281,27 +295,18 @@ public class QueryImpl implements Query, ProblemAware
 	}
 
 	@Override
-	public <T> List<T> reject(List<T> objList) {
-		if (objList == null) {
-			IllegalArgumentException error = new IllegalArgumentException(
-					PivotMessagesInternal.NullArgExpectlist_ERROR_);
-			HelperUtil.throwing(getClass(), "reject", error);//$NON-NLS-1$
-			throw error;
-		}
-		
+	public @NonNull <T> List<T> rejectEcore(@NonNull Iterable<T> ecoreObjects) {
 		List<T> result = new BasicEList<T>();
 		try {
-			for (T obj : objList) {
-				if (!check(obj)) {
-					result.add(obj);
+			for (T ecoreObject : ecoreObjects) {
+				if (!checkEcore(ecoreObject)) {
+					result.add(ecoreObject);
 				}
-
 				handleNextEvaluateProblems();
 			}
 		} finally {
 			commitBatchEvaluateProblems();
 		}
-
 		return result;
 	}
 
@@ -311,27 +316,18 @@ public class QueryImpl implements Query, ProblemAware
 	}
 
 	@Override
-	public <T> List<T> select(List<T> objList) {
-		if (objList == null) {
-			IllegalArgumentException error = new IllegalArgumentException(
-					PivotMessagesInternal.NullArgExpectlist_ERROR_);
-			HelperUtil.throwing(getClass(), "select", error);//$NON-NLS-1$
-			throw error;
-		}
-		
+	public @NonNull <T> List<T> selectEcore(@NonNull Iterable<T> ecoreObjects) {
 		List<T> result = new BasicEList<T>();
 		try {
-			for (T obj : objList) {
-				if (check(obj)) {
-					result.add(obj);
+			for (T ecoreObject : ecoreObjects) {
+				if (checkEcore(ecoreObject)) {
+					result.add(ecoreObject);
 				}
-
 				handleNextEvaluateProblems();
 			}
 		} finally {
 			commitBatchEvaluateProblems();
 		}
-
 		return result;
 	}
 	

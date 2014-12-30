@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
@@ -53,12 +54,17 @@ public class NullValueImpl extends UndefinedValueImpl implements NullValue
 	}
 	
 	@Override
-	public List<Object> asEcoreObject(@NonNull IdResolver idResolver) {
+	public List<Object> asEcoreObject(@NonNull IdResolver idResolver, @Nullable Class<?> instanceClass) {
 		return null;
 	}
 
 	@Override
 	public Element asElement() {
+		return null;
+	}
+	
+	@Override
+	public List<Object> asUnboxedObject(@NonNull IdResolver idResolver) {
 		return null;
 	}
 

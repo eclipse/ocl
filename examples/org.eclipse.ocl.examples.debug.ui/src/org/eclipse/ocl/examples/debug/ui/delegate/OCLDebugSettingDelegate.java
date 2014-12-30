@@ -123,7 +123,7 @@ public class OCLDebugSettingDelegate extends OCLSettingDelegate
 	}
 
 	@Override
-	protected @Nullable Object evaluate(@NonNull OCL ocl, @NonNull ExpressionInOCL query, @Nullable Object contextObject) {
+	protected @Nullable Object evaluateEcore(@NonNull OCL ocl, @NonNull ExpressionInOCL query, @Nullable Object contextObject) {
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		@SuppressWarnings("null")@NonNull Display display = Display.getCurrent();
 		DebugStarter runnable = new DebugStarter(display, metamodelManager, contextObject, query);

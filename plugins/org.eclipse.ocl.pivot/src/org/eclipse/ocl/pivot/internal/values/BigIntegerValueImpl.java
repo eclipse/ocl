@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
@@ -58,8 +59,13 @@ public class BigIntegerValueImpl extends IntegerValueImpl
 	}
 
 	@Override
-	public @NonNull Object asEcoreObject(@NonNull IdResolver idResolver) {
-		return value;
+	public Object asEcoreObject(@NonNull IdResolver idResolver, @Nullable Class<?> instanceClass) {
+		if (instanceClass == BigInteger.class) {
+			return value;
+		}
+		else {
+			return super.asEcoreObject(idResolver, instanceClass);
+		}
 	}
 	
 	@Override
@@ -75,6 +81,11 @@ public class BigIntegerValueImpl extends IntegerValueImpl
 
 	@Override
 	public @NonNull Object asObject() {
+		return value;
+	}
+
+	@Override
+	public @NonNull Object asUnboxedObject(@NonNull IdResolver idResolver) {
 		return value;
 	}
 

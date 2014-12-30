@@ -19,7 +19,6 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.SemanticException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationException;
-import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.Query;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
@@ -27,7 +26,6 @@ import org.eclipse.ocl.pivot.internal.delegate.SettingBehavior;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * An implementation of a setting delegate that computes OCL derived features.
@@ -57,7 +55,6 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 		try {
 			OCL ocl = delegateDomain.getOCL();
 			MetamodelManager metamodelManager = ocl.getMetamodelManager();
-			IdResolver idResolver = metamodelManager.getIdResolver();
 			ExpressionInOCL specification2 = specification;
 			if (specification2 == null) {
 				Property property2 = getProperty();
@@ -65,13 +62,8 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 				SettingBehavior.INSTANCE.validate(property2);
 			}
 			Query query = ocl.createQuery(specification2);
-			Object result = query.evaluate(owner);
-//			if (result == null) {
-//				String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, property);
-//				throw new OCLDelegateException(message);
-//			}
-			Object unboxedValue = idResolver.unboxedValueOf(result);
-			return ValueUtil.ecoreValueOf(unboxedValue, eStructuralFeature.getEType().getInstanceClass());
+			Object ecoreResult = query.evaluateEcore(eStructuralFeature.getEType().getInstanceClass(), owner);
+			return ecoreResult;
 		}
 		catch (EvaluationException e) {
 			throw new OCLDelegateException(new EvaluationException(e, PivotMessagesInternal.EvaluationResultIsInvalid_ERROR_, property));

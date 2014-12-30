@@ -17,6 +17,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
@@ -139,6 +140,12 @@ public abstract class IntegerValueImpl extends NumberValueImpl implements Intege
 	@Override
 	public @NonNull RealValue divideReal(@NonNull RealValue right) {
 		return RealValueImpl.divideBigDecimal(bigDecimalValue(), right.bigDecimalValue());
+	}
+
+	@Override
+	public Object asEcoreObject(@NonNull IdResolver idResolver, @Nullable Class<?> instanceClass) {
+		Object ecoreValue = super.asEcoreObject(idResolver, instanceClass);
+		return ecoreValue != null ? ecoreValue : intValue();
 	}
 
 	@Override

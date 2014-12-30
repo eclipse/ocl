@@ -76,12 +76,6 @@ public class LongIntegerValueImpl extends IntegerValueImpl
 		@SuppressWarnings("null") @NonNull Double result = Double.valueOf(value);
 		return result;
 	}
-
-	@Override
-	public @NonNull Object asEcoreObject(@NonNull IdResolver idResolver) {
-		@SuppressWarnings("null") @NonNull Long result = Long.valueOf(value);
-		return result;
-	}
 	
 	@Override
 	public @NonNull Integer asInteger() {
@@ -97,6 +91,12 @@ public class LongIntegerValueImpl extends IntegerValueImpl
 
 	@Override
 	public @NonNull Object asObject() {
+		@SuppressWarnings("null") @NonNull Long result = Long.valueOf(value);
+		return result;
+	}
+
+	@Override
+	public @NonNull Object asUnboxedObject(@NonNull IdResolver idResolver) {
 		@SuppressWarnings("null") @NonNull Long result = Long.valueOf(value);
 		return result;
 	}

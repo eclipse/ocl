@@ -135,7 +135,7 @@ public abstract class UndefinedValueImpl extends EvaluationException implements 
 	}
 	
 	@Override
-	public @NonNull <T> List<T> asEcoreObjects(@NonNull IdResolver idResolver, @NonNull Class<T> elementClass) {
+	public @NonNull <T> List<T> asEcoreObjects(@NonNull IdResolver idResolver, @Nullable Class<T> elementClass) {
 		throw new InvalidValueException(this, "asEcoreObjects");
 	}
 

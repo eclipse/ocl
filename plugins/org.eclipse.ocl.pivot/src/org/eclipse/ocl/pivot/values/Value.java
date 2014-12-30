@@ -13,6 +13,7 @@ package org.eclipse.ocl.pivot.values;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -63,17 +64,20 @@ public interface Value
 	@NonNull Double asDouble();
 	
 	/**
-	 * Return the Ecore representation of this value.
+	 * Return the Ecore representation of this value, which should be fully compatible with the Ecore return
+	 * from a similarly typed eGet(). The instanceClass may be used to ensure that numeric values use the
+	 * appropriate BigInteger/Long/Short/... class. If instanceClass is null for numerics, Double or Long
+	 * are used.
 	 * <p>
-	 * An thrown exception for an invalid OCL value.
+	 * A thrown exception for an invalid OCL value.
 	 * <p>
 	 * Java-null for a null OCL value
 	 * <p>
-	 * Objects for other things
+	 * Objects for other things, List<?> for collections
 	 * 
 	 * @generated NOT
 	 */
-	Object asEcoreObject(@NonNull IdResolver idResolver);
+	Object asEcoreObject(@NonNull IdResolver idResolver, @Nullable Class<?> instanceClass);
 
 	/**
 	 * @generated NOT
@@ -134,6 +138,19 @@ public interface Value
 	 * @generated NOT
 	 */
 	@NonNull TupleValue asTupleValue();
+	
+	/**
+	 * Return the unboxed representation of this value.
+	 * <p>
+	 * A thrown exception for an invalid OCL value.
+	 * <p>
+	 * Java-null for a null OCL value
+	 * <p>
+	 * Objects for other things, Bag/Set/OrderedSet/List for collections
+	 * 
+	 * @generated NOT
+	 */
+	Object asUnboxedObject(@NonNull IdResolver idResolver);
 
 	/**
 	 * @generated NOT

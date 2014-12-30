@@ -49,8 +49,8 @@ public class UnlimitedValueImpl extends NumberValueImpl implements UnlimitedValu
 	public UnlimitedValueImpl() {}
 
 	@Override
-	public @NonNull Object asEcoreObject(@NonNull IdResolver idResolver) {
-		return Unlimited.INSTANCE;
+	public Object asEcoreObject(@NonNull IdResolver idResolver, @Nullable Class<?> instanceClass) {
+		return -1;
 	}
 
 	@Override
@@ -61,6 +61,11 @@ public class UnlimitedValueImpl extends NumberValueImpl implements UnlimitedValu
 	@Override
 	public @NonNull RealValue asRealValue() {
 		throw new InvalidValueException(PivotMessages.InvalidOperation, "asRealValue", "UnlimitedValue");
+	}
+
+	@Override
+	public @NonNull Object asUnboxedObject(@NonNull IdResolver idResolver) {
+		return Unlimited.INSTANCE;
 	}
 
 	@Override

@@ -114,8 +114,14 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 	}
 
 	@Override
-	public @NonNull Object asEcoreObject(@NonNull IdResolver idResolver) {
-		return value;
+	public Object asEcoreObject(@NonNull IdResolver idResolver, @Nullable Class<?> instanceClass) {
+		if (instanceClass == BigDecimal.class) {
+			return value;
+		}
+		else {
+			Object ecoreValue = super.asEcoreObject(idResolver, instanceClass);
+			return ecoreValue != null ? ecoreValue : doubleValue();
+		}
 	}
 	
 	@Override
@@ -131,6 +137,11 @@ public class RealValueImpl extends NumberValueImpl implements RealValue
 	@Override
 	public @NonNull RealValue asRealValue() {
 		return this;
+	}
+
+	@Override
+	public @NonNull Object asUnboxedObject(@NonNull IdResolver idResolver) {
+		return value;
 	}
 
 	@Override

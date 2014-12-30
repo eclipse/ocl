@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.values.Bag;
 import org.eclipse.ocl.pivot.values.BagValue;
@@ -73,6 +74,15 @@ public class BagValueImpl extends CollectionValueImpl implements BagValue
 	public @NonNull BagValue asBagValue() {
         return this;
     }
+
+	@Override
+	public @NonNull Bag<Object> asUnboxedObject(@NonNull IdResolver idResolver) {
+		Bag<Object> unboxedValues = new BagImpl<Object>();
+		for (Object boxedValue : elements) {
+			unboxedValues.add(idResolver.unboxedValueOf(boxedValue));
+		}
+		return unboxedValues;
+	}
 
 	@Override
 	public boolean equals(Object obj) {

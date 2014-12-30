@@ -519,49 +519,6 @@ public abstract class ValueUtil
 	public static @NonNull TupleValue createTupleOfEach(@NonNull TupleTypeId typeId, @NonNull Object... values) {
 		return new TupleValueImpl(typeId, values);
 	}
-
-	/**
-	 * Return an unboxedValue adjusted to Ecore calling conventions.
-	 * <p>
-	 * A numeric value is adjusted to the precision indicated by instanceClass.
-	 * <p>
-	 * An enumeration literal is converted to an Enumerator.
-	 */
-	public static Object ecoreValueOf(Object unboxedValue, Class<?> instanceClass) {
-		if (unboxedValue instanceof Number) {
-			Number number = (Number)unboxedValue;
-			if ((instanceClass == Double.class) || (instanceClass == double.class)) {
-				return number.doubleValue();
-			}
-			else if ((instanceClass == Float.class) || (instanceClass == float.class)) {
-				return number.floatValue();
-			}
-			else if ((instanceClass == Short.class) || (instanceClass == short.class)) {
-				return number.shortValue();
-			}
-			else if ((instanceClass == Integer.class) || (instanceClass == int.class)) {
-				return number.intValue();
-			}
-			else if ((instanceClass == Long.class) || (instanceClass == long.class)) {
-				return number.longValue();
-			}
-			else if (number instanceof BigDecimal) {
-				return number.doubleValue();
-			}
-			else if (number instanceof BigInteger) {
-				return number.longValue();
-			}
-			else {
-				return number;
-			}
-		}
-		else if (unboxedValue instanceof EEnumLiteral) {
-			return ((EEnumLiteral)unboxedValue).getInstance();
-		}
-		else {
-			return unboxedValue;
-		}
-	}
 	
 	public static String getTypeName(@Nullable Object value) {
 		if (value instanceof Boolean) {
