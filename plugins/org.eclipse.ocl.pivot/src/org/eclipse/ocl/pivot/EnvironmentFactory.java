@@ -12,10 +12,12 @@
 
 package org.eclipse.ocl.pivot;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
+import org.eclipse.ocl.pivot.internal.context.ParserContext;
 
 /**
  * A factory for creating OCL parser {@link Environment}s.  Clients of the OCL
@@ -36,28 +38,6 @@ import org.eclipse.ocl.pivot.evaluation.ModelManager;
  */
 public interface EnvironmentFactory
 {
-	
-	/**
-	 * Creates a root environment, in which package contexts and/or classifier
-     * contexts will be created as nested environments.  All operation body
-     * constraints, attribute initial/derived value constraints, and definitions
-     * of additional attributes and operations should be maintained by the root
-     * environment, so that they will be accessible from constraints parsed in
-     * any nested environment.
-	 * 
-	 * @return a new root environment
-	 */
-	@NonNull Environment createEnvironment();
-	
-	/**
-	 * Creates a child environment of a specified <code>parent</code>, for
-	 * definition of nested scopes.
-	 * 
-	 * @param parent the parent environment
-	 * @return the child environment
-	 */
-	@NonNull Environment createEnvironment(@NonNull Environment parent);
-
 	/**
 	 * Creates a new evaluation environment to track the values of variables in
 	 * an OCL expression as it is evaluated.
@@ -97,4 +77,11 @@ public interface EnvironmentFactory
 	 * @return the extent map
 	 */
 	@NonNull ModelManager createModelManager(@Nullable Object object);
+
+	/**
+	 * Create a ParserContext that may be used to parse OCL expressions in the given context,
+	 * which may be an EClassifier/EOperation/EStructuralFeature or Type/Operation/Property.
+	 * Returns a ModelContext if no more specfic context can be determined if none can be created.
+	 */
+	@NonNull ParserContext createParserContext(@Nullable EObject context);
 }

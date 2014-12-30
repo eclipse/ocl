@@ -21,6 +21,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.OCLExpression;
@@ -29,7 +30,7 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
-import org.eclipse.ocl.pivot.internal.EnvironmentInternal;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
@@ -58,8 +59,8 @@ public abstract class AbstractEvaluationVisitor
 	// this is the same as HashMap's default load factor
 	private static final float DEFAULT_REGEX_CACHE_LOAD_FACTOR = 0.75f;
 	
+	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 	protected final @NonNull EvaluationEnvironment evaluationEnvironment;
-	protected final @NonNull EnvironmentInternal environment;
 	protected final @NonNull MetamodelManager metamodelManager;	
 	protected final @NonNull CompleteEnvironmentInternal completeEnvironment;
 	protected final @NonNull StandardLibraryInternal standardLibrary;
@@ -93,12 +94,11 @@ public abstract class AbstractEvaluationVisitor
 	 * @param evalEnv an evaluation environment (map of variable names to values)
 	 * @param modelManager a map of classes to their instance sets
 	 */
-	protected AbstractEvaluationVisitor(@NonNull EnvironmentInternal env, @NonNull EvaluationEnvironment evalEnv,
-			@NonNull ModelManager modelManager) {
+	protected AbstractEvaluationVisitor(@NonNull EvaluationEnvironment evalEnv, @NonNull ModelManager modelManager) {
         super(Object.class);						// Useless dummy object as context
+        this.environmentFactory = (EnvironmentFactoryInternal) evalEnv.getEnvironmentFactory();
         this.evaluationEnvironment = evalEnv;
-        this.environment = env;
-        this.metamodelManager = env.getMetamodelManager();
+        this.metamodelManager = environmentFactory.getMetamodelManager();
 		this.completeEnvironment = metamodelManager.getCompleteEnvironment();
 		this.standardLibrary = completeEnvironment.getOwnedStandardLibrary();
         this.modelManager = modelManager;
@@ -134,13 +134,11 @@ public abstract class AbstractEvaluationVisitor
 		return completeEnvironment;
 	}
 
-    // implements the interface method
-	@Override
-	public @NonNull EnvironmentInternal getEnvironment() {
-		return environment;
+    @Override
+	public @NonNull EnvironmentFactory getEnvironmentFactory() {
+		return environmentFactory;
 	}
     
-    // implements the interface method
 	@Override
 	public @NonNull EvaluationEnvironment getEvaluationEnvironment() {
 		return evaluationEnvironment;

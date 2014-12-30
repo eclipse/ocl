@@ -25,7 +25,6 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.EnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
@@ -81,8 +80,7 @@ public abstract class AbstractPivotConstraintLocator extends AbstractConstraintL
 	protected @NonNull EvaluationVisitor createEvaluationVisitor(@NonNull MetamodelManager metamodelManager,
 			@NonNull ExpressionInOCL query, @Nullable Object contextObject, @Nullable Monitor monitor) {
 		EnvironmentFactoryInternal environmentFactory = metamodelManager.getEnvironmentFactory();
-		EnvironmentInternal rootEnvironment = environmentFactory.createEnvironment();
-		EvaluationVisitor evaluationVisitor = environmentFactory.createEvaluationVisitor(rootEnvironment, contextObject, query, null);
+		EvaluationVisitor evaluationVisitor = environmentFactory.createEvaluationVisitor(contextObject, query, null);
 		evaluationVisitor.setMonitor(monitor);
 		return evaluationVisitor;
 	}

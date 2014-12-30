@@ -12,11 +12,11 @@
 package org.eclipse.ocl.pivot.internal;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -33,6 +33,7 @@ import org.eclipse.ocl.pivot.SemanticException;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.evaluation.EvaluationHaltedException;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.ecore.AS2Ecore;
 import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
@@ -48,7 +49,6 @@ import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.ObjectUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
@@ -118,7 +118,7 @@ public class OCL {
      * @param reg Ecore package registry
      * @return the new <code>OCL</code>
      */
-	public static @NonNull OCL newInstance(@NonNull EPackage.Registry reg) {	
+	public static @NonNull OCL newInstance(@NonNull EPackage.Registry reg) {			// FIXME exploit reg to give narrower MetamodelManager capability
 		return newInstance(new PivotEnvironmentFactory(null, null));
 	}
 	
@@ -130,40 +130,11 @@ public class OCL {
      * @return the new <code>OCL</code>
      */
 	public static @NonNull OCL newInstance(@NonNull EnvironmentFactoryInternal envFactory) {	
-		return new OCL(envFactory, envFactory.createEnvironment());
-	}
-	
-    /**
-     * Creates a new <code>OCL</code> using the specified Ecore environment
-     * factory and a resource from which to load the initial environment.
-     * 
-     * @param envFactory an environment factory for Ecore
-     * @param resource the resource containing a persistent environment
-     *    (which may be empty for an initially empty environment)
-     * @return the new <code>OCL</code>
-     *
-	public static @NonNull OCL newInstance(@NonNull EnvironmentFactoryInternal envFactory, @NonNull Resource resource) {	
-		return new OCL(envFactory, envFactory.loadEnvironment(resource));
-	} */
-	
-    /**
-     * Creates a new <code>OCL</code> using the specified initial Ecore
-     * environment.
-     * 
-     * @param env an environment for Ecore
-     * @return the new <code>OCL</code>
-     */
-	public static @NonNull OCL newInstance(@NonNull EnvironmentInternal env) {	
-		return new OCL(env.getEnvironmentFactory(), env);
+		return new OCL(envFactory);
 	}
 	
 	private final @NonNull EnvironmentFactoryInternal environmentFactory;
-
-	private final @NonNull EnvironmentInternal rootEnvironment;
-
 	private @Nullable ModelManager modelManager;
-
-	private @NonNull List<Constraint> constraints = new java.util.ArrayList<Constraint>();
 
 	private @Nullable Diagnostic problems;
 	private @Nullable Diagnostic evaluationProblems;	
@@ -182,10 +153,8 @@ public class OCL {
 	 * @param rootEnv
 	 *            my root environment
 	 */
-	protected OCL(@NonNull EnvironmentFactoryInternal envFactory, @NonNull EnvironmentInternal rootEnv) {
+	protected OCL(@NonNull EnvironmentFactoryInternal envFactory) {
 		this.environmentFactory = envFactory;
-		this.rootEnvironment = rootEnv;
-
 		if (envFactory instanceof AbstractEnvironmentFactory) {
 			AbstractEnvironmentFactory abstractFactory = (AbstractEnvironmentFactory) envFactory;
 
@@ -270,7 +239,7 @@ public class OCL {
 	 *             if the constraint expression is not boolean-valued
 	 */
 	public boolean check(Object context, @NonNull ExpressionInOCL specification) {
-		StandardLibrary stdlib = getEnvironment().getStandardLibrary();
+		StandardLibrary stdlib = getStandardLibrary();
 		if (specification.getOwnedBody().getType() != stdlib.getBooleanType()) {
 			throw new IllegalArgumentException("constraint is not boolean"); //$NON-NLS-1$
 		}
@@ -287,7 +256,7 @@ public class OCL {
      * The evaluationVisitor reuses any previously established ModelManager.
      */
 	public @NonNull EvaluationVisitor createEvaluationVisitor(@Nullable Object context, @NonNull ExpressionInOCL expression) {
-		return environmentFactory.createEvaluationVisitor(rootEnvironment, context, expression, modelManager);
+		return environmentFactory.createEvaluationVisitor(context, expression, modelManager);
 	}
 
 	/**
@@ -297,37 +266,28 @@ public class OCL {
 	 * @return
 	 * @throws ParserException 
 	 */
-	public @NonNull ExpressionInOCL createInvariant(@NonNull EObject context, @NonNull String oclExpression) throws ParserException {
-		return createOCLHelper(context).createInvariant(oclExpression);
+	public @NonNull ExpressionInOCL createInvariant(@NonNull EObject contextElement, @NonNull String oclExpression) throws ParserException {
+		return createOCLHelper(contextElement).createInvariant(oclExpression);
 	}
-
-	/**
-	 * Creates a new {@link OCLHelper} instance for convenient parsing of
-	 * embedded constraints and query expressions in this environment. The
-	 * helper is particularly useful for parsing constraints embedded in the
-	 * model, in which case the context of a constraint is determined by its
-	 * placement and the textual context declarations are unnecessary.
-	 * 
-	 * @return a new helper object
-	 */
-//    public @NonNull OCLHelper createOCLHelper() {
-//        return new OCLHelperImpl(this);
-//     }
+	
+	public ExpressionInOCL createPostcondition(@NonNull EOperation contextOperation, @NonNull String oclExpression) throws ParserException {
+		return createOCLHelper(contextOperation).createPostcondition(oclExpression);
+	}
     
 	/**
 	 * Creates a new {@link OCLHelper} instance for convenient parsing of
 	 * embedded constraints and query expressions for the specified context
-	 * which may be an Ecore EClassifier/EOPeration/EStructuralFeature or
+	 * which may be an Ecore EClassifier/EOperation/EStructuralFeature or
 	 * or Pivot Class/Operation/Property.
 	 * 
 	 * @return a new helper object
 	 */
-    public @NonNull OCLHelper createOCLHelper(@Nullable EObject context) {
-        return new OCLHelperImpl(this, context);
+    public @NonNull OCLHelper createOCLHelper(@Nullable EObject contextElement) {
+        return new OCLHelperImpl(this, contextElement);
      }
 
-	public @NonNull ExpressionInOCL createQuery(@Nullable EObject context, @NonNull String oclExpression) throws ParserException {
-		return createOCLHelper(context).createQuery(oclExpression);
+	public @NonNull ExpressionInOCL createQuery(@Nullable EObject contextElement, @NonNull String oclExpression) throws ParserException {
+		return createOCLHelper(contextElement).createQuery(oclExpression);
 	}
 
 	/**
@@ -394,20 +354,7 @@ public class OCL {
 	 * my environment.
 	 */
 	public void dispose() {
-		// dispose of constraints by clearing their adapters
-		for (Constraint constraint : getConstraints()) {
-			EObject eObject = constraint;
-			if (eObject.eResource() == null) {
-				ObjectUtil.dispose(constraint);
-			}
-		}
-
-		// forget the constraints
-		getConstraints().clear();
-
 		if (environmentFactory != PivotEnvironmentFactory.basicGetGlobalRegistryInstance()) { // dispose of my environment
-			getEnvironment().dispose();
-//			getMetamodelManager().dispose();
 			environmentFactory.dispose();
 		}
 	}
@@ -439,7 +386,7 @@ public class OCL {
 	 */
 	public @Nullable Object evaluate(@Nullable Object context, @NonNull ExpressionInOCL expression) {
 		evaluationProblems = null;
-		EvaluationVisitor evaluationVisitor = environmentFactory.createEvaluationVisitor(rootEnvironment, context, expression, modelManager);
+		EvaluationVisitor evaluationVisitor = environmentFactory.createEvaluationVisitor(context, expression, modelManager);
 		try {
 			Object result = expression.accept(evaluationVisitor);
 			return result;
@@ -449,25 +396,11 @@ public class OCL {
 		}
 	}
 
-	/**
-	 * Obtains all of the constraints parsed hitherto by this OCL instance.
-	 * These accumulate with every document that is parsed.
-	 * 
-	 * @return the constraints that I have parsed
-	 * 
-	 * @see #parse(URI)
-	 */
-	public @NonNull List<Constraint> getConstraints() {
-		return constraints;
-	}
-
-	/**
-	 * Obtains the root OCL parsing environment.
-	 * 
-	 * @return the parsing environment
-	 */
-	public @NonNull EnvironmentInternal getEnvironment() {
-		return rootEnvironment;
+	public @NonNull org.eclipse.ocl.pivot.Class getContextType(@Nullable Object contextObject) {
+		MetamodelManager metamodelManager = getMetamodelManager();
+		IdResolver idResolver = metamodelManager.getIdResolver();
+		org.eclipse.ocl.pivot.Class staticTypeOf = idResolver.getStaticTypeOf(contextObject);
+		return metamodelManager.getType(staticTypeOf);
 	}
 
 	public @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
@@ -485,7 +418,7 @@ public class OCL {
 	}
 
 	public @NonNull MetamodelManager getMetamodelManager() {
-		return rootEnvironment.getMetamodelManager();
+		return environmentFactory.getMetamodelManager();
 	}
 
 	/**
@@ -549,7 +482,7 @@ public class OCL {
 	}
 
 	public @NonNull StandardLibraryInternal getStandardLibrary() {
-		return rootEnvironment.getStandardLibrary();
+		return getMetamodelManager().getStandardLibrary();
 	}
 
 	/**

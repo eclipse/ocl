@@ -22,9 +22,11 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -40,6 +42,7 @@ import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.Query;
 import org.eclipse.ocl.pivot.internal.helper.OCLHelper;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 
 
 
@@ -80,43 +83,40 @@ public class PivotDocumentationExamples extends XtextTestCase
 	 * in org.eclipse.ocl.doc/doc/6310-pivot-parsing-constraints.textile
 	 */
 	public void test_parsingConstraintsExample() throws IOException, ParserException {
-		// create an OCL instance for Ecore
+		// create an OCL instance
 		OCL ocl = OCL.newInstance();
 
-		// create an OCL helper object
-		OCLHelper helper = ocl.createOCLHelper(EXTLibraryPackage.Literals.LIBRARY);
-
-		ExpressionInOCL invariant = helper.createInvariant(
+		EClass contextEClass = EXTLibraryPackage.Literals.LIBRARY;
+		ExpressionInOCL invariant = ocl.createInvariant(contextEClass,
 		    "books->forAll(b1, b2 | b1 <> b2 implies b1.title <> b2.title)");
-		   
-		ExpressionInOCL query = helper.createQuery(
+		ExpressionInOCL query = ocl.createQuery(contextEClass,
 		    "books->collect(b : Book | b.category)->asSet()");
-
-		EOperation oper = null;
-		for (EOperation next : EcorePackage.Literals.EMODEL_ELEMENT.getEOperations()) {
-		    if ("getEAnnotation".equals(next.getName())) {
-		        oper = next;
-		        break;
-		    }
-		}
 
 		// define a post-condition specifying the value of EModelElement::getEAnnotation(EString).
 		// This operation environment includes variables representing the operation
 		// parameters (in this case, only "source : String") and the operation result
-		helper.setOperationContext(EcorePackage.Literals.ECLASS, oper);
-		ExpressionInOCL body = helper.createPostcondition(
+		EOperation contextEOperation = NameUtil.getENamedElement(
+			EcorePackage.Literals.EMODEL_ELEMENT.getEOperations(), "getEAnnotation");
+		ExpressionInOCL body = ocl.createPostcondition(contextEOperation, 
 		    "result = self.eAnnotations->any(ann | ann.source = source)");
 
 		// define a derivation constraint for the EReference::eReferenceType property
-		helper.setPropertyContext(
-		    EcorePackage.Literals.EREFERENCE,
-		    EcorePackage.Literals.EREFERENCE__EREFERENCE_TYPE);
-		ExpressionInOCL derive = helper.createDerivedValueExpression(
+		EReference contextEReference = EcorePackage.Literals.EREFERENCE__EREFERENCE_TYPE;
+		ExpressionInOCL derive = ocl.createQuery(contextEReference,
 		    "self.eType->any(true).oclAsType(EClass)");
-	
-		if ((body == derive) && (invariant == query)) { /* the yellow markers go away */ }
+
+		// syntax errors such as bad text or semantic errors such as bad names throw a ParserException
+		try {
+			ocl.createInvariant(contextEClass, "books->forall(true)");
+		}
+		catch (ParserException e) {
+			/*e.printStackTrace();*/
+		}
 		
+		// ensure that resources are released
 		ocl.dispose();
+
+		if ((body == derive) && (invariant == query)) { /* Suppress the unused variable markers */ }
 	}
 	
 	

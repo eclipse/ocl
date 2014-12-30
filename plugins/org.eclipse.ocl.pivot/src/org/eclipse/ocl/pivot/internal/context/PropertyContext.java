@@ -22,10 +22,14 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
  */
 public class PropertyContext extends ClassContext
 {
-//	private final Property propertyContext;
+	protected final @NonNull Property property;
+
+	public PropertyContext(@NonNull MetamodelManager metamodelManager, @Nullable URI uri, @NonNull Property property) {
+		super(metamodelManager, uri, ClassUtil.nonNullModel(property.getOwningClass()), null);
+		this.property = property;
+	}
 	
-	public PropertyContext(@NonNull MetamodelManager metamodelManager, @Nullable URI uri, @NonNull Property propertyContext) {
-		super(metamodelManager, uri, ClassUtil.nonNullModel(propertyContext.getOwningClass()), null);
-//		this.propertyContext = propertyContext;
+	public @NonNull Property getProperty() {
+		return property;
 	}
 }

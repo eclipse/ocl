@@ -73,8 +73,8 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 	private final @NonNull Stack<OCLVMEvaluationVisitor> visitorStack = new Stack<OCLVMEvaluationVisitor>();
 	private final @NonNull Variable invalidVariable;
 
-	public OCLVMRootEvaluationVisitor(@NonNull OCLVMEnvironment env, @NonNull IOCLVMEvaluationEnvironment evalEnv, @NonNull IVMDebuggerShell shell) {
-		super(new OCLVMEvaluationVisitorImpl(env, evalEnv));
+	public OCLVMRootEvaluationVisitor(@NonNull IOCLVMEvaluationEnvironment evalEnv, @NonNull IVMDebuggerShell shell) {
+		super(new OCLVMEvaluationVisitorImpl(evalEnv));
 		fDebugShell = shell;
 		fBPM = shell.getBreakPointManager();
 		fIterateBPHelper = new IterateBreakpointHelper(fBPM);
@@ -85,7 +85,7 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 		invalidVariable = ClassUtil.nonNullEMF(PivotFactory.eINSTANCE.createVariable());
 		invalidVariable.setName("$invalid");
 		String typeName = ClassUtil.nonNullEMF(PivotPackage.Literals.OCL_EXPRESSION.getName());
-		invalidVariable.setType(env.getMetamodelManager().getPivotType(typeName));
+		invalidVariable.setType(getEnvironmentFactory().getMetamodelManager().getPivotType(typeName));
 	}
 
 	@Override

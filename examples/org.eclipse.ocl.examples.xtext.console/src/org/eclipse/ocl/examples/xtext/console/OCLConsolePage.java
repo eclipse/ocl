@@ -60,7 +60,6 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.EnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.context.ClassContext;
 import org.eclipse.ocl.pivot.internal.context.ParserContext;
 import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
@@ -135,16 +134,15 @@ public class OCLConsolePage extends Page implements MetamodelManagerListener
     {
 		private final @NonNull IProgressMonitor monitor;
 		
-		protected CancelableEvaluationVisitor(@NonNull IProgressMonitor monitor, @NonNull EnvironmentInternal env, @NonNull EvaluationEnvironment evalEnv, @NonNull ModelManager modelManager) {
-			super(env, evalEnv, modelManager);
+		protected CancelableEvaluationVisitor(@NonNull IProgressMonitor monitor, @NonNull EvaluationEnvironment evalEnv, @NonNull ModelManager modelManager) {
+			super(evalEnv, modelManager);
 			this.monitor = monitor;
 		}
 		
 		@Override
 		public @NonNull EvaluationVisitor createNestedEvaluator() {
-			EnvironmentFactoryInternal factory = environment.getEnvironmentFactory();
-	    	EvaluationEnvironment nestedEvalEnv = factory.createEvaluationEnvironment(evaluationEnvironment);
-			CancelableEvaluationVisitor nestedVisitor = new CancelableEvaluationVisitor(monitor, environment, nestedEvalEnv, modelManager);
+	    	EvaluationEnvironment nestedEvalEnv = environmentFactory.createEvaluationEnvironment(evaluationEnvironment);
+			CancelableEvaluationVisitor nestedVisitor = new CancelableEvaluationVisitor(monitor, nestedEvalEnv, modelManager);
 			nestedVisitor.setLogger(getLogger());
 			return nestedVisitor;
 		}
@@ -214,20 +212,19 @@ public class OCLConsolePage extends Page implements MetamodelManagerListener
 			if (expressionInOCL != null) {
 	//			monitor.worked(2);
 				monitor.subTask(ConsoleMessages.Progress_Extent);
-				EnvironmentFactoryInternal envFactory = metamodelManager.getEnvironmentFactory();
-				EnvironmentInternal environment = envFactory.createEnvironment();
-				EvaluationEnvironment evaluationEnvironment = envFactory.createEvaluationEnvironment();
+				EnvironmentFactoryInternal environmentFactory = metamodelManager.getEnvironmentFactory();
+				EvaluationEnvironment evaluationEnvironment = environmentFactory.createEvaluationEnvironment();
 				Object contextValue = metamodelManager.getIdResolver().boxedValueOf(contextObject);
 				evaluationEnvironment.add(ClassUtil.nonNullModel(expressionInOCL.getOwnedContext()), contextValue);
 	//			if (modelManager == null) {
 					// let the evaluation environment create one
-					@NonNull ModelManager modelManager2 = modelManager = envFactory.createModelManager(contextObject);
+					@NonNull ModelManager modelManager2 = modelManager = environmentFactory.createModelManager(contextObject);
 	//			}
 				monitor.worked(2);
 				monitor.subTask(ConsoleMessages.Progress_Evaluating);
 				try {
 	//				metamodelManager.setMonitor(monitor);
-					CancelableEvaluationVisitor evaluationVisitor = new CancelableEvaluationVisitor(monitor, environment, evaluationEnvironment, modelManager2);
+					CancelableEvaluationVisitor evaluationVisitor = new CancelableEvaluationVisitor(monitor, evaluationEnvironment, modelManager2);
 					evaluationVisitor.setLogger(new EvaluationLogger()
 					{
 						@Override

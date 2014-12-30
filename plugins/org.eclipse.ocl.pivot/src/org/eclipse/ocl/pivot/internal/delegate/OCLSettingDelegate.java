@@ -57,7 +57,7 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 	protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
 		try {
 			OCL ocl = delegateDomain.getOCL();
-			MetamodelManager metamodelManager = ocl.getEnvironment().getMetamodelManager();
+			MetamodelManager metamodelManager = ocl.getMetamodelManager();
 			IdResolver idResolver = metamodelManager.getIdResolver();
 			ExpressionInOCL query2 = query;
 			if (query2 == null) {

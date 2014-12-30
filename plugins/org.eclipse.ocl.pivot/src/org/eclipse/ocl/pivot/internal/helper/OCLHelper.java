@@ -11,10 +11,6 @@
 
 package org.eclipse.ocl.pivot.internal.helper;
 
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
@@ -22,7 +18,6 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.EnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.OCL;
 
 /**
@@ -57,61 +52,11 @@ import org.eclipse.ocl.pivot.internal.OCL;
 public interface OCLHelper
 {
 	/**
-	 * Sets the classifier context of the OCL expression for which syntax or
-     * parsing help is to be provided.
-	 *
-	 * @param context the OCL context classifier
-	 * 
-	 * @see #setOperationContext(Type, Operation)
-     * @see #setPropertyContext(Type, Property)
-	 */
-	void setContext(@NonNull EClassifier context);
-
-	/**
-	 * Sets the classifier context of the OCL expression for which syntax or
-     * parsing help is to be provided.
-	 *
-	 * @param context the OCL context classifier
-	 * 
-	 * @see #setOperationContext(Type, Operation)
-     * @see #setPropertyContext(Type, Property)
-	 */
-	void setContext(@NonNull org.eclipse.ocl.pivot.Class context);
-
-	/**
 	 * Obtains my OCL context classifier as a classifier.
 	 * 
 	 * @return my context classifier (never <code>null</code>)
 	 */
-	@Nullable org.eclipse.ocl.pivot.Class getContextClassifier();
-	
-	/**
-	 * Sets the operation context of the OCL expression for which syntax or
-     * parsing help is to be provided.  The operation is the model element
-     * against which the OCL will be parsed as an operation applicable to an
-     * OCL type.  Note that the operation needs not necessarily be defined by
-     * the specified context classifier; it could be inherited.
-	 *
-	 * @param context the OCL context classifier
-	 * @param operation the OCL context operation
-	 * 
-	 * @see #setContext(EClassifier)
-	 */
-	void setOperationContext(@NonNull EClassifier context, @NonNull EOperation operation);
-	
-	/**
-	 * Sets the operation context of the OCL expression for which syntax or
-     * parsing help is to be provided.  The operation is the model element
-     * against which the OCL will be parsed as an operation applicable to an
-     * OCL type.  Note that the operation needs not necessarily be defined by
-     * the specified context classifier; it could be inherited.
-	 *
-	 * @param context the OCL context classifier
-	 * @param operation the OCL context operation
-	 * 
-	 * @see #setContext(Type)
-	 */
-	void setOperationContext(@NonNull org.eclipse.ocl.pivot.Class context, @NonNull Operation operation);
+	@Nullable Type getContextClass();
 
 	/**
 	 * Obtains my context operation, if my environment is an operation context.
@@ -120,34 +65,6 @@ public interface OCLHelper
 	 *     classifier or attribute context
 	 */
 	@Nullable Operation getContextOperation();
-	
-	/**
-	 * Sets the attribute context of the OCL expression for which syntax or
-     * parsing help is to be provided.  The attribute is the model element
-     * against which the OCL will be parsed as an attribute available in an OCL
-     * classifier.  Note that the attribute needs not necessarily be defined by
-     * the specified context classifier; it could be inherited.
-	 *
-	 * @param context the OCL context classifier
-	 * @param property the OCL context attribute
-	 * 
-	 * @see #setContext(Type)
-	 */
-	void setPropertyContext(@NonNull org.eclipse.ocl.pivot.Class context, @NonNull Property property);
-	
-	/**
-	 * Sets the attribute context of the OCL expression for which syntax or
-     * parsing help is to be provided.  The attribute is the model element
-     * against which the OCL will be parsed as an attribute available in an OCL
-     * classifier.  Note that the attribute needs not necessarily be defined by
-     * the specified context classifier; it could be inherited.
-	 *
-	 * @param context the OCL context classifier
-	 * @param property the OCL context attribute
-	 * 
-	 * @see #setContext(EClassifier)
-	 */
-	void setPropertyContext(@NonNull EClassifier context, @NonNull EStructuralFeature property);
 
 	/**
 	 * Obtains my context attribute, if my environment is an attribute context.
@@ -156,53 +73,6 @@ public interface OCLHelper
 	 *     classifier or operation context
 	 */
 	@Nullable Property getContextProperty();
-    
-    /**
-     * Sets the classifier context implied by the specified instance.  The
-     * appropriate classifier will be determined from the run-time type of this
-     * object, if possible.  If not possible, <tt>OclAny</tt> is assumed.
-     * <p>
-     * This method is convenient for ad hoc parsing and evaluation of
-     * OCL constraints or expressions in the context of a model instance.
-     * </p>
-     * 
-     * @param instance the OCL context instance
-     * 
-     * @see #setContext(EClassifier)
-     */
-    void setInstanceContext(@NonNull Object instance);
-    
-    /**
-     * Sets the operation context implied by the specified instance.  The
-     * appropriate classifier will be determined from the run-time type of this
-     * object, if possible.  If not possible, <tt>OclAny</tt> is assumed.
-     * <p>
-     * This method is convenient for ad hoc parsing and evaluation of
-     * OCL constraints or expressions in the context of a model instance.
-     * </p>
-     * 
-     * @param instance the OCL context instance
-     * @param operation the OCL context operation
-     * 
-     * @see #setOperationContext(Type, Operation)
-     */
-    void setInstanceOperationContext(@NonNull Object instance, @NonNull Operation operation);
-    
-    /**
-     * Sets the operation context implied by the specified instance.  The
-     * appropriate classifier will be determined from the run-time type of this
-     * object, if possible.  If not possible, <tt>OclAny</tt> is assumed.
-     * <p>
-     * This method is convenient for ad hoc parsing and evaluation of
-     * OCL constraints or expressions in the context of a model instance.
-     * </p>
-     * 
-     * @param instance the OCL context instance
-     * @param property the OCL context attribute
-     * 
-     * @see #setPropertyContext(Type, Property)
-     */
-    void setInstancePropertyContext(@NonNull Object instance, @NonNull Property property);
 	
     /**
      * Obtains the OCL instance that created me.  Note that many of the generic
@@ -212,23 +82,6 @@ public interface OCLHelper
      * @return the OCL instance that created me
      */
     @NonNull OCL getOCL();
-    
-    /**
-     * Obtains the environment defining my current
-     * {@linkplain #getContextClassifier() classifier},
-     * {@linkplain #getContextOperation() operation}, or
-     * {@linkplain #getContextProperty() attribute} context.  Accessing the
-     * environment is convenient for, e.g., adding variable definitions to
-     * insert global objects into the OCL context.
-     * 
-     * @return my current context environment, or <code>null</code> if I have
-     *    not yet been assigned a context
-     * 
-     * @see #setContext(Type)
-     * @see #setOperationContext(Type, Operation)
-     * @see #setPropertyContext(Type, Property)
-     */
-    @NonNull EnvironmentInternal getEnvironment();
     
 	/**
 	 * Queries whether I validate the expressions that I parse.  Validation
@@ -240,14 +93,14 @@ public interface OCLHelper
 	 * @return whether I validate the expressions that I parse.  Validation is
 	 *    on by default
 	 */
-	boolean isValidating();
+//	boolean isValidating();
 	
 	/**
 	 * Sets whether I should validate the expressions that I parse.
 	 * 
 	 * @param validating whether I should validate parsed expressions
 	 */
-	void setValidating(boolean validating);
+//	void setValidating(boolean validating);
 
     /**
      * Creates a query expression in the current classifier context.  This may
@@ -413,5 +266,5 @@ public interface OCLHelper
      * 
      * @return parsing problems or <code>null</code> if all was OK
      */
-    Diagnostic getProblems();
+//    Diagnostic getProblems();
 }

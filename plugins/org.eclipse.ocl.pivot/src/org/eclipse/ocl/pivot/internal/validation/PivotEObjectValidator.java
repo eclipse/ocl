@@ -40,7 +40,6 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.EnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
@@ -102,12 +101,10 @@ public class PivotEObjectValidator implements EValidator
 
 		protected final @NonNull MetamodelManager metamodelManager;
 		protected final @NonNull EnvironmentFactoryInternal environmentFactory;
-		protected final @NonNull EnvironmentInternal rootEnvironment;
 		
 		public ValidationAdapter(@NonNull MetamodelManager metamodelManager) {
 			this.metamodelManager = metamodelManager;
 			this.environmentFactory = metamodelManager.getEnvironmentFactory();
-			this.rootEnvironment = environmentFactory.createEnvironment();
 		}
 
 		public @NonNull MetamodelManager getMetamodelManager() {
@@ -174,7 +171,7 @@ public class PivotEObjectValidator implements EValidator
 			if (context != null) {
 				oldModelManager = (ModelManager) context.get(ModelManager.class);
 			}
-			EvaluationVisitor evaluationVisitor = environmentFactory.createEvaluationVisitor(rootEnvironment, object, query, oldModelManager);
+			EvaluationVisitor evaluationVisitor = environmentFactory.createEvaluationVisitor(object, query, oldModelManager);
 			if (context != null) {
 				ModelManager newModelManager = evaluationVisitor.getModelManager();
 				if (newModelManager != oldModelManager) {

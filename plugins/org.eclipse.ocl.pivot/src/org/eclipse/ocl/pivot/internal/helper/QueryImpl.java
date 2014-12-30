@@ -27,7 +27,6 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationHaltedException;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
-import org.eclipse.ocl.pivot.internal.EnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.ProblemAware;
 import org.eclipse.ocl.pivot.internal.Query;
@@ -55,7 +54,6 @@ import org.eclipse.ocl.pivot.utilities.ValueUtil;
 public class QueryImpl implements Query, ProblemAware
 {
 	private final OCL ocl;
-	private final EnvironmentInternal environment;
 	private final ExpressionInOCL query;
 	private final OCLExpression expression;
 	private ModelManager modelManager = null;
@@ -65,7 +63,6 @@ public class QueryImpl implements Query, ProblemAware
 	
 	public QueryImpl(@NonNull OCL ocl, @NonNull ExpressionInOCL query) {		
 		this.ocl = ocl;
-		this.environment = ocl.getEnvironment();
 		this.query = query;
 		this.expression = query.getOwnedBody();
 		this.modelManager = ocl.getModelManager();
@@ -73,7 +70,7 @@ public class QueryImpl implements Query, ProblemAware
 
 	@Override
 	public boolean check(Object obj) {
-		if (resultType() != environment.getStandardLibrary().getBooleanType()) {
+		if (resultType() != ocl.getStandardLibrary().getBooleanType()) {
 			IllegalArgumentException error = new IllegalArgumentException(
 					PivotMessagesInternal.BooleanQuery_ERROR_);
 			HelperUtil.throwing(getClass(), "check", error);//$NON-NLS-1$
@@ -100,7 +97,7 @@ public class QueryImpl implements Query, ProblemAware
 			throw error;
 		}
 		
-		if (resultType() != environment.getStandardLibrary().getBooleanType()) {
+		if (resultType() != ocl.getStandardLibrary().getBooleanType()) {
 			IllegalArgumentException error = new IllegalArgumentException(
 					PivotMessagesInternal.BooleanQuery_ERROR_);
 			HelperUtil.throwing(getClass(), "check", error);//$NON-NLS-1$
@@ -132,11 +129,8 @@ public class QueryImpl implements Query, ProblemAware
 		
 		// lazily create the evaluation environment, if not already done by
 		//    the client.  There is no "self" context variable
-		@SuppressWarnings("null")
-		@NonNull EnvironmentInternal nonNullEnvironment = environment;
 		EvaluationVisitor ev =
-			nonNullEnvironment.getEnvironmentFactory().createEvaluationVisitor(
-					nonNullEnvironment, getEvaluationEnvironment(), getModelManager());
+			ocl.getEnvironmentFactory().createEvaluationVisitor(getEvaluationEnvironment(), getModelManager());
 		
 		Object result;
 		
@@ -164,12 +158,12 @@ public class QueryImpl implements Query, ProblemAware
 
 		// can determine a more appropriate context from the context
 		//   variable of the expression, to account for stereotype constraints
-		obj = HelperUtil.getConstraintContext(environment, obj, expression);
+//		obj = HelperUtil.getConstraintContext(null, obj, expression);
 		
 		// lazily create the evaluation environment, if not already done by
 		//    the client.  Initialize it with the "self" context variable
 		EvaluationEnvironment myEnv = getEvaluationEnvironment();
-		MetamodelManager metamodelManager = environment.getEnvironmentFactory().getMetamodelManager();
+		MetamodelManager metamodelManager = ocl.getEnvironmentFactory().getMetamodelManager();
 		Variable contextVariable = ClassUtil.nonNullState(query.getOwnedContext());
 		myEnv.add(contextVariable, metamodelManager.getIdResolver().boxedValueOf(obj));
 //		Variable resultVariable = specification.getResultVariable();
@@ -177,10 +171,7 @@ public class QueryImpl implements Query, ProblemAware
 //			myEnv.add(resultVariable, null);
 //		}
 		
-		@SuppressWarnings("null")
-		@NonNull EnvironmentInternal nonNullEnvironment = environment;
-		EvaluationVisitor ev = nonNullEnvironment.getEnvironmentFactory().createEvaluationVisitor(
-					nonNullEnvironment, myEnv, getModelManager());
+		EvaluationVisitor ev = ocl.getEnvironmentFactory().createEvaluationVisitor(myEnv, getModelManager());
 		
 		Object result;
 		
@@ -228,7 +219,7 @@ public class QueryImpl implements Query, ProblemAware
 	@SuppressWarnings("null")
 	public @NonNull EvaluationEnvironment getEvaluationEnvironment() {
 		if (evalEnv == null) {
-			evalEnv = environment.getEnvironmentFactory().createEvaluationEnvironment();
+			evalEnv = ocl.getEnvironmentFactory().createEvaluationEnvironment();
 		}
 		
 		return evalEnv;
@@ -247,7 +238,7 @@ public class QueryImpl implements Query, ProblemAware
 			
 			Object context = myEnv.getValueOf(query.getOwnedContext());
 			
-			modelManager = environment.getEnvironmentFactory().createModelManager(context);
+			modelManager = ocl.getEnvironmentFactory().createModelManager(context);
 		}
 		
 		return modelManager;

@@ -63,7 +63,6 @@ public class OCLVMEvaluator implements IVMEvaluator
 	protected final @NonNull MetamodelManager metamodelManager;
 	protected final @NonNull ExpressionInOCL expressionInOCL;
 	protected final @NonNull OCLVMEnvironmentFactory envFactory;
-	protected final @NonNull OCLVMEnvironment env;
 	protected final @NonNull IVMModelManager modelManager;
 	private @Nullable EObject context;
 	private boolean suspendOnStartup = false;
@@ -80,7 +79,6 @@ public class OCLVMEvaluator implements IVMEvaluator
     	this.envFactory = envFactory;
     	this.metamodelManager = envFactory.getMetamodelManager();
     	this.expressionInOCL = expressionInOCL;
-    	this.env = envFactory.createEnvironment();
     	this.modelManager = envFactory.createModelManager(metamodelManager);
     	this.context = context;
     }
@@ -96,7 +94,7 @@ public class OCLVMEvaluator implements IVMEvaluator
 		if (contextVariable != null) {
 			evalEnv.add(contextVariable, context);
 		}
-        OCLVMRootEvaluationVisitor visitor = envFactory.createEvaluationVisitor(env, evalEnv);
+        OCLVMRootEvaluationVisitor visitor = envFactory.createEvaluationVisitor(evalEnv);
         visitor.start(suspendOnStartup);
         return expressionInOCL.accept(visitor);
 	}
@@ -104,10 +102,6 @@ public class OCLVMEvaluator implements IVMEvaluator
 	@Override
 	public @NonNull ExpressionInOCL getDebuggable() {
 		return getExpressionInOCL();
-	}
-
-	public final @NonNull OCLVMEnvironment getEnvironment() {
-		return env;
 	}
 
 	public final @NonNull OCLVMEnvironmentFactory getEnvironmentFactory() {

@@ -15,7 +15,6 @@ package org.eclipse.ocl.pivot.internal.utilities;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.Environment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.internal.AbstractEnvironmentFactory;
@@ -63,54 +62,13 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
 		}
 		return globalRegistryInstance2;
 	}
-
-	/**
-	 * Initializes me.  Environments that I create will use the global package
-     * registry to look up packages.
-	 */
-//	public PivotEnvironmentFactory() {
-//		this(EPackage.Registry.INSTANCE, null);
-//	}
 	
 	/**
-	 * Initializes me with an <code>EPackage.Registry</code> that the
-     * environments I create will use to look up packages.
-     * 
-     * @param reg my package registry
-	 * @param metaModelManager 
-	 */
-//	public PivotEnvironmentFactory(@Nullable EPackage.Registry reg, @Nullable MetamodelManager metamodelManager) {
-//		super(reg, metamodelManager);
-//	}
-	
-	/**
-	 * Initializes me with an <code>EPackage.Registry</code> that the
-     * environments I create will use to look up packages.
-     * 
-     * @param reg my package registry
-	 * @param metamodelManager 
+	 * Initializes me with an optional <code>StandaloneProjectMap</code> of accessible resources and
+	 * an optional <code>ModelManager</code> for loaded instances.
 	 */
 	public PivotEnvironmentFactory(@Nullable StandaloneProjectMap projectMap, @Nullable ModelManager modelManager) {
 		super(projectMap, modelManager);
-	}
-	
-    // implements the inherited specification
-    @Override
-	public @NonNull PivotEnvironment createEnvironment() {
-		PivotEnvironment result = new PivotEnvironment(this);
-		return result;
-	}
-
-    // implements the inherited specification
-	@Override
-	public @NonNull PivotEnvironment createEnvironment(@NonNull Environment parent) {
-		if (!(parent instanceof PivotEnvironment)) {
-			throw new IllegalArgumentException(
-				"Parent environment must be a Pivot environment: " + parent); //$NON-NLS-1$
-		}
-		
-		PivotEnvironment result = new PivotEnvironment((PivotEnvironment) parent);
-		return result;
 	}
 
     // implements the inherited specification

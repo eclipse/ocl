@@ -35,7 +35,8 @@ public class PrettyPrinterTest extends PivotSimpleTestSuite
     
 	protected @Nullable Object assertPrintResults(@Nullable Object context, @NonNull String expression) {
 		try {
-			ExpressionInOCL query = ocl.createQuery(getContextType(context), expression);
+			org.eclipse.ocl.pivot.Class contextType = ocl.getContextType(context);
+			ExpressionInOCL query = ocl.createQuery(contextType, expression);
 			String prettyExpression = PrettyPrinter.print(query);
 			assertEquals(expression, prettyExpression);
 		} catch (ParserException e) {
@@ -46,7 +47,8 @@ public class PrettyPrinterTest extends PivotSimpleTestSuite
     
 	protected @Nullable Object assertPrintResults(@Nullable Object context, @NonNull String expression, @NonNull String expectedExpression) {
 		try {
-			ExpressionInOCL query = ocl.createQuery(getContextType(context), expression);
+			org.eclipse.ocl.pivot.Class contextType = ocl.getContextType(context);
+			ExpressionInOCL query = ocl.createQuery(contextType, expression);
 			String prettyExpression = PrettyPrinter.print(query);
 			assertEquals(expectedExpression, prettyExpression);
 		} catch (ParserException e) {

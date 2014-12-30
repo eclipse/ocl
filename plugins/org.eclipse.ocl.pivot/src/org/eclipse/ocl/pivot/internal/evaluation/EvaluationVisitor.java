@@ -14,12 +14,12 @@ package org.eclipse.ocl.pivot.internal.evaluation;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
-import org.eclipse.ocl.pivot.internal.EnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.util.Visitor;
 
@@ -40,12 +40,11 @@ public interface EvaluationVisitor extends Visitor<Object>, Evaluator
 	@Nullable Object evaluate(@NonNull OCLExpression body);
 	
 	/**
-     * Obtains the environment that provides the metamodel semantics for the
-     * expression to be evaluated.
+     * Obtains the environment factory that created me.
      *  
-	 * @return the environment
+	 * @return the environment factory
 	 */
-	@NonNull EnvironmentInternal getEnvironment();
+	@NonNull EnvironmentFactory getEnvironmentFactory();
 
 	/**
      * Obtains the evaluation environment that keeps track of variable values

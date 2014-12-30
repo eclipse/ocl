@@ -71,7 +71,6 @@ import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.EnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.context.ClassContext;
 import org.eclipse.ocl.pivot.internal.context.ParserContext;
@@ -187,12 +186,10 @@ public abstract class PivotTestSuite extends PivotTestCase
 	protected MetamodelManager metamodelManager;
 	protected IdResolver idResolver;
 	protected OCL ocl;
-	protected EnvironmentInternal environment;
 	protected final boolean useCodeGen;
 
 	protected PivotTestSuite() {
 		this.useCodeGen = false;
-//		System.out.println(getName());
 	}
 
 	protected PivotTestSuite(boolean useCodeGen) {
@@ -212,9 +209,7 @@ public abstract class PivotTestSuite extends PivotTestCase
     		@NonNull String expression, /*@NonNull*/ String messageTemplate, Object... bindings) {
 		CSResource resource = null;
         try {
-//    		PivotEnvironment environment = (PivotEnvironment) ocl.getEnvironment();
-    		MetamodelManager metamodelManager = environment.getMetamodelManager();
-//    		org.eclipse.ocl.pivot.Class contextClassifier = environment.getContextClassifier();
+    		MetamodelManager metamodelManager = ocl.getMetamodelManager();
     		ParserContext semanticContext = new ClassContext(metamodelManager, null, contextType, null);
 			resource = semanticContext.createBaseResource(expression);
 			PivotUtil.checkResourceErrors(StringUtil.bind(PivotMessagesInternal.ErrorsInResource, expression), resource);
@@ -729,7 +724,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		   String messageTemplate, Object... bindings) {
 		BaseCSResource csResource = null;
 		try {
-	   		MetamodelManager metamodelManager = environment.getMetamodelManager();
+	   		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 	   		ParserContext classContext = new ClassContext(metamodelManager, null, contextType, null);
 	   		csResource = (BaseCSResource) classContext.createBaseResource(expression);
 			PivotUtil.checkResourceErrors(StringUtil.bind(PivotMessagesInternal.ErrorsInResource, expression), csResource);
@@ -791,9 +786,8 @@ public abstract class PivotTestSuite extends PivotTestCase
 	} */
     
     protected boolean check(Object context, @NonNull String expression) throws ParserException {
-        
-    	ExpressionInOCL constraint = ocl.createInvariant(getContextType(context), expression);
-//		DomainStandardLibrary stdlib = ocl.getEnvironment().getOCLStandardLibrary();
+		org.eclipse.ocl.pivot.Class contextType = ocl.getContextType(context);
+    	ExpressionInOCL constraint = ocl.createInvariant(contextType, expression);
 		if (constraint.getOwnedBody().getType() != metamodelManager.getStandardLibrary().getBooleanType()) {
 			throw new IllegalArgumentException("constraint is not boolean"); //$NON-NLS-1$
 		}
@@ -1086,7 +1080,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	}
 
 	protected @Nullable Object evaluate(Object unusedHelper, @Nullable Object context, @NonNull String expression) throws Exception {
-		org.eclipse.ocl.pivot.Class classContext = getContextType(context);
+		org.eclipse.ocl.pivot.Class classContext = ocl.getContextType(context);
 		MetamodelManager metamodelManager2 = metamodelManager;
 		assert metamodelManager2 != null;
 		ParserContext parserContext = new ClassContext(metamodelManager2, null, classContext, (context instanceof Type) && !(context instanceof ElementExtension) ? (Type)context : null);
@@ -1100,7 +1094,7 @@ public abstract class PivotTestSuite extends PivotTestCase
     }
 
 	protected @Nullable Object evaluateWithoutValidation(@Nullable Object unusedHelper, @Nullable Object context, @NonNull String expression) throws Exception {
-		org.eclipse.ocl.pivot.Class contextType = getContextType(context);
+		org.eclipse.ocl.pivot.Class contextType = ocl.getContextType(context);
 		ExpressionInOCL query = ocl.createQuery(contextType, expression);
         try {
         	return evaluate(query, context);
@@ -1110,7 +1104,8 @@ public abstract class PivotTestSuite extends PivotTestCase
     }
 
 	protected @Nullable Object evaluateLocal(@Nullable Object context, @NonNull String expression) throws Exception {
-		ExpressionInOCL query = ocl.createQuery(getContextType(context), expression);
+		org.eclipse.ocl.pivot.Class contextType = ocl.getContextType(context);
+		ExpressionInOCL query = ocl.createQuery(contextType, expression);
         try {
     		return ocl.evaluate(context, query);
 		} finally {
@@ -1186,11 +1181,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 //		return new GenModelCodeGenHelper(genModel, metamodelManager);
 	}
 
-	public @NonNull org.eclipse.ocl.pivot.Class getContextType(@Nullable Object contextObject) {
-		return metamodelManager.getType(idResolver.getStaticTypeOf(contextObject));
-	}
-   
-    /**
+	/**
      * Obtains the diagnostic describing the problem in the last failed parse,
      * asserting that it is not <code>null</code>.
      * 
@@ -1230,7 +1221,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	}
 	
 	protected @NonNull StandardLibrary getStandardLibrary() {
-		return ocl.getEnvironment().getStandardLibrary();
+		return ocl.getStandardLibrary();
 	}
 
 	protected @NonNull String getTestPackageName() {
@@ -1419,8 +1410,6 @@ public abstract class PivotTestSuite extends PivotTestCase
 		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
 //		debugPrintln("==> Start  " + getName());
 		ocl = createOCL();
-		environment = ocl.getEnvironment();
-//		reflection = staticReflection.createReflection(environment);
 		String repairs = System.getProperty(PLUGIN_ID + ".repairs");
 		if (repairs != null)
 			ocl.setParserRepairCount(Integer.parseInt(repairs));

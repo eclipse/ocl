@@ -35,16 +35,14 @@ public class OCLVMEvaluationVisitorImpl extends EvaluationVisitorImpl implements
      * @param evalEnv
      *            the eval env
      */
-    public OCLVMEvaluationVisitorImpl(@NonNull OCLVMEnvironment env, @NonNull IOCLVMEvaluationEnvironment evalEnv) {
-        super(env, evalEnv, evalEnv.getModelManager());
+    public OCLVMEvaluationVisitorImpl(@NonNull IOCLVMEvaluationEnvironment evalEnv) {
+        super(evalEnv, evalEnv.getModelManager());
     }
 
     @Override
     public @NonNull IOCLVMEvaluationVisitor createNestedEvaluator() { // FIXME Pass 'operation'
-    	OCLVMEnvironment vmEnvironment = getEnvironment();
-    	OCLVMEnvironmentFactory factory = vmEnvironment.getEnvironmentFactory();
-    	IOCLVMEvaluationEnvironment nestedEvalEnv = factory.createEvaluationEnvironment(evaluationEnvironment);
-        OCLVMEvaluationVisitorImpl ne = new OCLVMEvaluationVisitorImpl(vmEnvironment, nestedEvalEnv);
+    	IOCLVMEvaluationEnvironment nestedEvalEnv = (IOCLVMEvaluationEnvironment) environmentFactory.createEvaluationEnvironment(evaluationEnvironment);
+        OCLVMEvaluationVisitorImpl ne = new OCLVMEvaluationVisitorImpl(nestedEvalEnv);
         return ne;
     }
 
@@ -65,12 +63,7 @@ public class OCLVMEvaluationVisitorImpl extends EvaluationVisitorImpl implements
 	public @NonNull IVMEvaluationVisitor<ExpressionInOCL> getClonedEvaluator() {
 		IOCLVMEvaluationEnvironment oldEvaluationEnvironment = getEvaluationEnvironment();
 		IOCLVMEvaluationEnvironment clonedEvaluationEnvironment = oldEvaluationEnvironment.createClonedEvaluationEnvironment();
-		return new OCLVMEvaluationVisitorImpl(getEnvironment(), clonedEvaluationEnvironment);
-	}
-
-    @Override
-	public @NonNull OCLVMEnvironment getEnvironment() {
-		return (OCLVMEnvironment) super.getEnvironment();
+		return new OCLVMEvaluationVisitorImpl(clonedEvaluationEnvironment);
 	}
 
 	@Override

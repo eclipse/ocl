@@ -16,9 +16,6 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.ExpressionInOCL;
-import org.eclipse.ocl.pivot.OCLExpression;
-import org.eclipse.ocl.pivot.internal.EnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.OCLDebugOptions;
 import org.eclipse.ocl.pivot.messages.StatusCodes;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
@@ -62,23 +59,6 @@ public class HelperUtil {
 	}
 
 	/**
-	 * Creates an {@link OCLHelper} for the specified EMF metamodel.  The
-	 * factory creates OCL environments (with the packages, classifiers, states,
-	 * etc.) from the instances of the metaclasses that mimic OCL/UML
-	 * classifiers.
-	 * <p>
-	 * The new helper validates the OCL expressions that it parses.
-	 * </p>
-	 * 
-	 * @param ocl the metamodel-specific OCL environment	
-	 * 
-	 * @return the new OCL helper
-	 */
-//	public static OCLHelper createOCLHelper(OCLBase ocl) {
-//		return new OCLBaseHelperImpl(ocl);
-//	}
-
-	/**
 	 * convenience method for serviceability support tracing exceptions thrown
 	 * @param exception the exception to be thrown
 	 * @param clazz the metaclass of the java object that owns the method
@@ -100,55 +80,7 @@ public class HelperUtil {
 		String methodName) {
 		catching(clazz, methodName, exception);
 	}
-	
-	public static
-	Object getConstraintContext(
-			EnvironmentInternal env,
-			Object element,
-			OCLExpression expr) {
-		
-		Object result = element;
 
-/*		if (expr.eContainer() instanceof ExpressionInOCL) {
-			ExpressionInOCL specification = (ExpressionInOCL) expr.eContainer();
-			
-			Variable contextVariable = specification.getContextVariable();
-			if (contextVariable != null) {
-				Type contextClassifier = contextVariable.getType();
-				
-				if ((contextClassifier != null) && env.getUMLReflection().isStereotype(
-						contextClassifier)) {
-					
-					Object application = env.getUMLReflection().getStereotypeApplication(
-							element, contextClassifier);
-					
-					if (application != null) {
-						result = application;
-					}
-				}
-			}
-		} */
-		
-		return result;
-	}
-	public static
-	Object getConstraintContext(EnvironmentInternal env, Object element, ExpressionInOCL expr) {		
-		throw new UnsupportedOperationException();
-/*		Object result = element;
-		Variable contextVariable = expr.getContextVariable();
-		if (contextVariable != null) {
-			Type contextClassifier = contextVariable.getType();			
-			if ((contextClassifier != null) && env.getUMLReflection().isStereotype(
-					contextClassifier)) {				
-				Object application = env.getUMLReflection().getStereotypeApplication(
-						element, contextClassifier);				
-				if (application != null) {
-					result = application;
-				}
-			}
-		}
-		return result; */
-	}
 	public static final @NonNull String EMPTY_STRING = ""; //$NON-NLS-1$
 
 	private static final @NonNull String PREFIX_THROWING = "THROWN "; //$NON-NLS-1$

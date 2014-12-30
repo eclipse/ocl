@@ -17,7 +17,6 @@ import org.eclipse.ocl.examples.debug.vm.IVMDebuggerShell;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEnvironmentFactory;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMModelManager;
-import org.eclipse.ocl.pivot.Environment;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
@@ -36,23 +35,6 @@ public class OCLVMEnvironmentFactory extends PivotEnvironmentFactory implements 
 		super(projectMap, modelManager); //createModelManager(object));
 	}
 
-	@Override
-	public @NonNull OCLVMEnvironment createEnvironment() {
-		OCLVMEnvironment result = new OCLVMEnvironment(this);
-		return result;
-	}
-
-	@Override
-	public @NonNull OCLVMEnvironment createEnvironment(@NonNull Environment parent) {
-		if (!(parent instanceof OCLVMEnvironment)) {
-			throw new IllegalArgumentException(
-				"Parent environment must be an OCLVM environment: " + parent); //$NON-NLS-1$
-		}
-		
-		OCLVMEnvironment result = new OCLVMEnvironment((OCLVMEnvironment) parent);
-		return result;
-	}
-
 	public @NonNull IOCLVMEvaluationEnvironment createEvaluationEnvironment(@NonNull IVMModelManager modelManager, @NonNull ExpressionInOCL expressionInOCL) {
 		return new OCLVMRootEvaluationEnvironment(this, modelManager, expressionInOCL, ++envId);
 	}
@@ -67,8 +49,8 @@ public class OCLVMEnvironmentFactory extends PivotEnvironmentFactory implements 
 		return new OCLVMNestedEvaluationEnvironment((IOCLVMEvaluationEnvironment) parent, ++envId, operation);
 	}
 
-	public @NonNull OCLVMRootEvaluationVisitor createEvaluationVisitor(@NonNull OCLVMEnvironment env, @NonNull IOCLVMEvaluationEnvironment evalEnv) {
-		return new OCLVMRootEvaluationVisitor(env, evalEnv, ClassUtil.nonNullState(shell));
+	public @NonNull OCLVMRootEvaluationVisitor createEvaluationVisitor(@NonNull IOCLVMEvaluationEnvironment evalEnv) {
+		return new OCLVMRootEvaluationVisitor(evalEnv, ClassUtil.nonNullState(shell));
 	}
 
 	public @NonNull OCLVMModelManager createModelManager(@NonNull MetamodelManager metamodelManager) {

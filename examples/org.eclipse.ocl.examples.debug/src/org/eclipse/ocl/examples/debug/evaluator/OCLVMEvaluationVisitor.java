@@ -47,13 +47,13 @@ public abstract class OCLVMEvaluationVisitor extends AbstractWrappingVisitor<Obj
 	public @NonNull EvaluationVisitor getClonedEvaluator() {
 		IOCLVMEvaluationEnvironment oldEvaluationEnvironment = getEvaluationEnvironment();
 		IOCLVMEvaluationEnvironment clonedEvaluationEnvironment = oldEvaluationEnvironment.createClonedEvaluationEnvironment();
-		return new EvaluationVisitorImpl(getEnvironment(), clonedEvaluationEnvironment, getModelManager());
+		return new EvaluationVisitorImpl(clonedEvaluationEnvironment, getModelManager());
 	}
 
 	public abstract int getDepth();
 
-	public @NonNull OCLVMEnvironment getEnvironment() {
-		return (OCLVMEnvironment) delegate.getEnvironment();
+	public @NonNull OCLVMEnvironmentFactory getEnvironmentFactory() {
+		return (OCLVMEnvironmentFactory) delegate.getEnvironmentFactory();
 	}
 
 	public @NonNull IOCLVMEvaluationEnvironment getEvaluationEnvironment() {

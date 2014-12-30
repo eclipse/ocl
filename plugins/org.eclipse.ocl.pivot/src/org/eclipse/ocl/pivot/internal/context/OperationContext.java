@@ -23,22 +23,26 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
  */
 public class OperationContext extends ClassContext
 {
-	private final @NonNull Operation operationContext;
+	private final @NonNull Operation operation;
 	private final @Nullable String resultVariableName;		// Null for none
 	
-	public OperationContext(@NonNull MetamodelManager metamodelManager, @Nullable URI uri, @NonNull Operation operationContext, @Nullable String resultVariableName) {
-		super(metamodelManager, uri, ClassUtil.nonNullModel(operationContext.getOwningClass()), null);
-		this.operationContext = operationContext;
+	public OperationContext(@NonNull MetamodelManager metamodelManager, @Nullable URI uri, @NonNull Operation operation, @Nullable String resultVariableName) {
+		super(metamodelManager, uri, ClassUtil.nonNullModel(operation.getOwningClass()), null);
+		this.operation = operation;
 		this.resultVariableName = resultVariableName;
 	}
 
 	@Override
 	public void initialize(@NonNull Base2ASConversion conversion, @NonNull ExpressionInOCL expression) {
 		super.initialize(conversion, expression);
-		conversion.setParameterVariables(expression, ClassUtil.nonNullEMF(operationContext.getOwnedParameters()));
+		conversion.setParameterVariables(expression, ClassUtil.nonNullEMF(operation.getOwnedParameters()));
 		String resultVariableName2 = resultVariableName;
 		if (resultVariableName2 != null) {
-			conversion.setResultVariable(expression, operationContext, resultVariableName2);
+			conversion.setResultVariable(expression, operation, resultVariableName2);
 		}
+	}
+
+	public @NonNull Operation getOperation() {
+		return operation;
 	}
 }

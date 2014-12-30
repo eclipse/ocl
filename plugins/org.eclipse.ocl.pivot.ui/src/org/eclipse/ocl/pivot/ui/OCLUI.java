@@ -6,7 +6,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.OCL;
-import org.eclipse.ocl.pivot.internal.helper.OCLHelper;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
@@ -106,11 +105,8 @@ public class OCLUI
 		}
 		EnvironmentFactoryInternal envFactory = metamodelManager.getEnvironmentFactory();
 		OCL ocl = OCL.newInstance(envFactory);
-		OCLHelper oclHelper = ocl.createOCLHelper(selfObject);
-		if (selfObject != null) {
-			oclHelper.setContext(selfObject.eClass());
-		}
-		ExpressionInOCL createQuery = oclHelper.createQuery(oclExpression);
+		org.eclipse.ocl.pivot.Class selfType = ocl.getContextType(selfObject);
+		ExpressionInOCL createQuery = ocl.createQuery(selfType, oclExpression);
 		return ocl.evaluate(selfObject, createQuery);
 	}
 	

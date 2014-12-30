@@ -41,9 +41,9 @@ public abstract class GenericFruitTestSuite
     protected void setUp() throws Exception {
 		super.setUp();
 		initFruitPackage();
-		if (environment instanceof InitEnvironment) {
-			((InitEnvironment)environment).init();
-		}
+//		if (environment instanceof InitEnvironment) {
+//			((InitEnvironment)environment).init();
+//		}
 	}
 
 	@Override
