@@ -47,7 +47,7 @@ public class EssentialOCLStandaloneSetup extends EssentialOCLStandaloneSetupGene
 	public static void init() {
 		BaseStandaloneSetup.doSetup();
 		EssentialOCLScoping.init();
-		EssentialOCLASResourceFactory.INSTANCE.getClass();
+		EssentialOCLASResourceFactory.getInstance();
 //		EssentialOCLCS2AS.FACTORY.getClass();
 //		EssentialOCLAS2CS.FACTORY.getClass();
 		EPackage.Registry.INSTANCE.put(EssentialOCLCSPackage.eNS_URI, EssentialOCLCSPackage.eINSTANCE);

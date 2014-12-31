@@ -47,7 +47,7 @@ public class Orphanage extends PackageImpl
 	protected static class OrphanResource extends ASResourceImpl
 	{
 		protected OrphanResource(@NonNull URI uri) {
-			super(uri, OCLASResourceFactory.INSTANCE);
+			super(uri, OCLASResourceFactory.getInstance());
 		}
 
 		@Override

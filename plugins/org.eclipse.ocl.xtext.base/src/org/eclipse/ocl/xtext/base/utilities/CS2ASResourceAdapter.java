@@ -36,7 +36,7 @@ public class CS2ASResourceAdapter extends AbstractMetamodelManagerResourceAdapte
 		public static @NonNull TransientASResourceFactory INSTANCE = new TransientASResourceFactory();
 		
 		public TransientASResourceFactory() {
-			super("xyzzy", "essentialocl");
+			super("transient");
 		}
 	}
 

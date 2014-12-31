@@ -114,11 +114,13 @@ import org.eclipse.ocl.pivot.internal.context.ParserContext;
 import org.eclipse.ocl.pivot.internal.context.PropertyContext;
 import org.eclipse.ocl.pivot.internal.ecore.AS2Ecore;
 import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.internal.ecore.EcoreASResourceFactory;
 import org.eclipse.ocl.pivot.internal.library.ConstrainedOperation;
 import org.eclipse.ocl.pivot.internal.library.EInvokeOperation;
 import org.eclipse.ocl.pivot.internal.library.StandardLibraryContribution;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
+import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryContribution;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.utilities.AS2XMIid;
 import org.eclipse.ocl.pivot.internal.utilities.CompleteElementIterable;
@@ -1270,8 +1272,8 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 	}
 
 	public @Nullable String getMetamodelNsURI(@NonNull EPackage ePackage) {
-		for (ASResourceFactory asResourceFactory : ASResourceFactoryRegistry.INSTANCE.getResourceFactories()) {
-			String metamodelNsURI = asResourceFactory.getMetamodelNsURI(ePackage);
+		for (ASResourceFactoryContribution asResourceFactory : ASResourceFactoryRegistry.INSTANCE.getResourceFactories()) {
+			String metamodelNsURI = asResourceFactory.getASResourceFactory().getMetamodelNsURI(ePackage);
 			if (metamodelNsURI != null) {
 				return metamodelNsURI;
 			}
@@ -1545,7 +1547,9 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 
 	public @Nullable <T extends Element> T getPivotOf(@NonNull Class<T> pivotClass, @Nullable EObject eObject) throws ParserException {
 		if (eObject != null) {
-			ASResourceFactory bestHelper = ASResourceFactoryRegistry.INSTANCE.getResourceFactory(eObject);
+			Resource eResource = eObject.eResource();
+			ASResourceFactory bestHelper = eResource != null ? ASResourceFactoryRegistry.INSTANCE.getASResourceFactory(eResource) : EcoreASResourceFactory.getInstance();
+//			ASResourceFactory bestHelper = ASResourceFactoryRegistry.INSTANCE.getResourceFactory(eObject);
 			if (bestHelper != null) {
 				return bestHelper.getASElement(this, pivotClass, eObject);
 			}
@@ -2198,8 +2202,8 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 					if (contents.size() > 0) {
 						EObject firstContent = contents.get(0);
 						if (firstContent != null) {
-							for (ASResourceFactory resourceFactory : ASResourceFactoryRegistry.INSTANCE.getResourceFactories()) {
-								URI packageURI = resourceFactory.getPackageURI(firstContent);
+							for (ASResourceFactoryContribution resourceFactory : ASResourceFactoryRegistry.INSTANCE.getResourceFactories()) {
+								URI packageURI = resourceFactory.getASResourceFactory().getPackageURI(firstContent);
 								if (packageURI != null) {
 									External2AS external2as2 = external2asMap.get(packageURI);
 									if (external2as2 != null) {
@@ -2219,7 +2223,7 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 													}
 												}
 											}
-											if (!resourceFactory.isCompatibleResource(resource, knownResource)) {
+											if (!resourceFactory.getASResourceFactory().isCompatibleResource(resource, knownResource)) {
 												logger.error("Resource '" + resource.getURI() + "' already loaded as '" + knownResource.getURI() + "'");
 											}
 //											resource.unload();
@@ -2251,7 +2255,7 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 	}
 
 	public @Nullable Element loadResource(@NonNull Resource resource, @Nullable URI uri) throws ParserException {
-		ASResourceFactory bestFactory = ASResourceFactoryRegistry.INSTANCE.getResourceFactory(resource);
+		ASResourceFactory bestFactory = ASResourceFactoryRegistry.INSTANCE.getASResourceFactory(resource);
 		if (bestFactory != null) {
 			ResourceSet resourceSet = resource.getResourceSet();
 			if ((resourceSet != null) && (resourceSet != externalResourceSet)) {

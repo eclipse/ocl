@@ -16,8 +16,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.PivotPackage;
-import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 /**
  * A resource for an OCL Abstract Syntax (Pivot) Model
@@ -51,7 +51,7 @@ public interface ASResource extends XMIResource
 	/**
 	 * The file extension for OCL Abstract Syntax resources.
 	 */
-	@NonNull String FILE_EXTENSION = PivotConstantsInternal.OCL_AS_FILE_EXTENSION;
+	@NonNull String FILE_EXTENSION = PivotConstants.OCL_AS_FILE_EXTENSION;
 
 	/**
 	 * The default encoding for OCL Abstract Syntax resources.
@@ -60,12 +60,12 @@ public interface ASResource extends XMIResource
 
 	@NonNull String CONTENT_TYPE = PivotPackage.eCONTENT_TYPE;
 
-	@NonNull String COMPLETE_OCL_CONTENT_TYPE = CONTENT_TYPE + ".ocl";
+	@NonNull String COMPLETE_OCL_CONTENT_TYPE = CONTENT_TYPE + "." + PivotConstants.OCL_FILE_EXTENSION;
 	@NonNull String ECORE_CONTENT_TYPE = CONTENT_TYPE + ".ecore";
-	@NonNull String ESSENTIALOCL_CONTENT_TYPE = CONTENT_TYPE + ".essentialocl";
-	@NonNull String LIBRARY_CONTENT_TYPE = CONTENT_TYPE + ".library";
-	@NonNull String OCLINECORE_CONTENT_TYPE = CONTENT_TYPE + ".oclinecore";
-	@NonNull String OCLSTDLIB_CONTENT_TYPE = CONTENT_TYPE + ".oclstdlib";
+	@NonNull String ESSENTIALOCL_CONTENT_TYPE = CONTENT_TYPE + "." + PivotConstants.ESSENTIAL_OCL_FILE_EXTENSION;;
+//	@NonNull String LIBRARY_CONTENT_TYPE = CONTENT_TYPE + ".library";
+	@NonNull String OCLINECORE_CONTENT_TYPE = CONTENT_TYPE + "." + PivotConstants.OCLINECORE_FILE_EXTENSION;
+	@NonNull String OCLSTDLIB_CONTENT_TYPE = CONTENT_TYPE + "." + PivotConstants.OCLSTDLIB_FILE_EXTENSION;
 	@NonNull String UML_CONTENT_TYPE = CONTENT_TYPE + ".uml";
 	
 	/**

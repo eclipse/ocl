@@ -59,7 +59,6 @@ import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.ecore.AbstractEcore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.internal.utilities.AliasAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
@@ -691,22 +690,19 @@ public abstract class UML2AS extends AbstractEcore2AS
 			if (importedResources != null) {
 				for (int i = 0; i < importedResources.size(); i++) {			// List may grow re-entrantly
 					Resource importedResource = importedResources.get(i);
-					if (importedResource != null) {
-						if (UMLASResourceFactory.INSTANCE.getHandlerPriority(importedResource) != ASResourceFactory.CAN_HANDLE) {
-							metamodelManager.loadResource(importedResource, null);
+					if (importedResource instanceof UMLResource) {
+						UML2AS adapter = UML2AS.findAdapter(importedResource, metamodelManager);
+						if (adapter == null) {
+							Inner importedAdapter = new Inner(importedResource, this);
+							URI pivotURI = importedAdapter.createPivotURI();
+							ASResource asResource = metamodelManager.getResource(pivotURI, ASResource.UML_CONTENT_TYPE);
+							importedAdapter.installDeclarations(asResource);
+							adapter = importedAdapter;
+							metamodelManager.installResource(asResource);
 						}
-						else {
-							UML2AS adapter = UML2AS.findAdapter(importedResource, metamodelManager);
-							if (adapter == null) {
-								Inner importedAdapter = new Inner(importedResource, this);
-								URI pivotURI = importedAdapter.createPivotURI();
-								ASResource asResource = metamodelManager.getResource(pivotURI, ASResource.UML_CONTENT_TYPE);
-								importedAdapter.installDeclarations(asResource);
-								adapter = importedAdapter;
-								metamodelManager.installResource(asResource);
-							}
-	//					adapter.getPivotRoot();
-						}
+					}
+					else if (importedResource != null) {
+						metamodelManager.loadResource(importedResource, null);
 					}
 				}
 			}

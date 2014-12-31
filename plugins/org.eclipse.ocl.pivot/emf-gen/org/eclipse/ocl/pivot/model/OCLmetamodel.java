@@ -58,7 +58,7 @@ public class OCLmetamodel extends ASResourceImpl
 	}
 
 	protected OCLmetamodel(@NonNull URI uri) {
-		super(uri, OCLASResourceFactory.INSTANCE);
+		super(uri, OCLASResourceFactory.getInstance());
 	}
 
 	protected static class LibraryContents extends AbstractContents

@@ -20,27 +20,37 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryContribution;
+import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.resource.AbstractASResourceFactory;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.xtext.basecs.PackageCS;
 import org.eclipse.ocl.xtext.basecs.RootPackageCS;
 
 public final class OCLinEcoreASResourceFactory extends AbstractASResourceFactory
 {
-	public static final @NonNull OCLinEcoreASResourceFactory INSTANCE = new OCLinEcoreASResourceFactory();
-	
-	protected OCLinEcoreASResourceFactory() {
-		super(ASResource.OCLINECORE_CONTENT_TYPE, null);
+	private static @Nullable OCLinEcoreASResourceFactory INSTANCE = null;
+
+	public static @NonNull OCLinEcoreASResourceFactory getInstance() {
+		if (INSTANCE == null) {
+			ASResourceFactoryContribution asResourceRegistry = ASResourceFactoryRegistry.INSTANCE.get(ASResource.OCLINECORE_CONTENT_TYPE);
+			if (asResourceRegistry != null) {
+				asResourceRegistry.getASResourceFactory();						// Create the registered singleton
+			}
+			if (INSTANCE == null) {
+				new OCLinEcoreASResourceFactory();							// Create our own singleton
+			}
+			assert INSTANCE != null;
+			INSTANCE.install(PivotConstants.OCLINECORE_FILE_EXTENSION, null);
+		}
+		assert INSTANCE != null;
+		return INSTANCE;
 	}
 
-	@Override
-	public int getHandlerPriority(@NonNull Resource resource) {
-		return resource instanceof OCLinEcoreCSResource ? CAN_HANDLE : CANNOT_HANDLE;
-	}
-
-	@Override
-	public int getHandlerPriority(@NonNull URI uri) {
-		return "oclinecore".equals(uri.fileExtension()) ? CAN_HANDLE : CANNOT_HANDLE;
+	public OCLinEcoreASResourceFactory() {
+		super(ASResource.OCLINECORE_CONTENT_TYPE);
+		INSTANCE = this;
 	}
 
 	@Override

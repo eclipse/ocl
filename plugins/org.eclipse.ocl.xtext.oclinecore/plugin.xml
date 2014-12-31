@@ -32,6 +32,12 @@
          </describer>
       </content-type>
    </extension>
+
+  <extension point="org.eclipse.ocl.pivot.as_resource_factory">
+     <factory class="org.eclipse.ocl.xtext.oclinecore.utilities.OCLinEcoreASResourceFactory"
+     	extension="oclinecore" contentType="org.eclipse.ocl.oclas.oclinecore"/>
+  </extension>
+
    <extension point="org.eclipse.team.core.fileTypes">
       <fileTypes extension="oclinecore" type="text" />
    </extension>

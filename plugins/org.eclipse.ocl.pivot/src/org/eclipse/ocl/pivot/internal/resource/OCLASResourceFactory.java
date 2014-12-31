@@ -10,14 +10,19 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.internal.resource;
 
+import java.util.Map;
+
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ContentHandler;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.xmi.impl.RootXMLContentHandlerImpl;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.internal.ecore.EcoreASResourceFactory;
 import org.eclipse.ocl.pivot.internal.library.StandardLibraryContribution;
 import org.eclipse.ocl.pivot.resource.ASResource;
 
@@ -26,7 +31,24 @@ import org.eclipse.ocl.pivot.resource.ASResource;
  */
 public class OCLASResourceFactory extends AbstractASResourceFactory
 {
-	public static final @NonNull OCLASResourceFactory INSTANCE = new OCLASResourceFactory();
+	private static @Nullable OCLASResourceFactory INSTANCE = null;
+
+	public static @NonNull OCLASResourceFactory getInstance() {
+		if (INSTANCE == null) {
+			Map<String, Object> extensionToFactoryMap = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();
+			Object object = extensionToFactoryMap.get(ASResource.FILE_EXTENSION);
+			if (object instanceof Resource.Factory.Descriptor) {
+				((Resource.Factory.Descriptor)object).createFactory();	// Create the registered singleton
+			}
+			if (INSTANCE == null) {
+				new OCLASResourceFactory();									// Create our own singleton
+			}
+			assert INSTANCE != null;
+			INSTANCE.install(null,  null);
+		}
+		assert INSTANCE != null;
+		return INSTANCE;
+	}
 
 	private static final @NonNull ContentHandler PIVOT_CONTENT_HANDLER = new RootXMLContentHandlerImpl(
 		ASResource.CONTENT_TYPE, new String[]{ASResource.FILE_EXTENSION},
@@ -40,11 +62,22 @@ public class OCLASResourceFactory extends AbstractASResourceFactory
 	 * Creates an instance of the resource factory.
 	 */
 	public OCLASResourceFactory() {
-		super(ASResource.CONTENT_TYPE, ASResource.FILE_EXTENSION);
+		super(ASResource.CONTENT_TYPE);
+		INSTANCE = this;
+	}
+
+	@Override
+	public void configure(@NonNull ResourceSet resourceSet) {
+		Resource.Factory.Registry resourceFactoryRegistry = resourceSet.getResourceFactoryRegistry();
+		resourceFactoryRegistry.getExtensionToFactoryMap().put(ASResource.FILE_EXTENSION, this);
 	}
 
 	@Override
 	public Resource createResource(URI uri) {
+//		String fileExtension = uri.fileExtension();
+//		if (fileExtension == null) {			// Must be an Ecore Package registration
+//			return EcoreASResourceFactory.INSTANCE.createResource(uri);
+//		}
 		//
 		//	If *.oclas exists use it.
 		//
@@ -72,7 +105,12 @@ public class OCLASResourceFactory extends AbstractASResourceFactory
 		if (standardLibraryContribution != null) {
 			return standardLibraryContribution.getResource();
 		}
-		ASResourceFactory asResourceFactory = ASResourceFactoryRegistry.INSTANCE.getResourceFactory(nonASuri);
-	    return asResourceFactory != null ? asResourceFactory.createResource(uri) : null;
+		String oclasExtension = nonASuri.fileExtension();
+		ASResourceFactory asResourceFactory = ASResourceFactoryRegistry.INSTANCE.getASResourceFactoryForExtension(oclasExtension);
+		if (asResourceFactory == null) {			// Must be an Ecore Package registration possibly with a confusing 'extension'
+			asResourceFactory = EcoreASResourceFactory.getInstance();
+		}
+		assert !(asResourceFactory instanceof OCLASResourceFactory);
+	    return asResourceFactory.createResource(uri);
 	}
 }

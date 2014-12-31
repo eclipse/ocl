@@ -68,9 +68,9 @@ public class PivotStandaloneSetup //implements ISetup
 	public static void init() {
 //		OCLDelegateDomain.initialize(null);
 		OCLstdlib.lazyInstall();
-		EcoreASResourceFactory.INSTANCE.getClass();
-		UMLASResourceFactory.INSTANCE.getClass();
-		OCLASResourceFactory.INSTANCE.getClass();
+		EcoreASResourceFactory.getInstance();
+		UMLASResourceFactory.getInstance();
+		OCLASResourceFactory.getInstance();
 		EcorePackage.eINSTANCE.getClass();
 		ImplementationManager.addExplicitNavgator(UMLExplicitNavigator.INSTANCE);
 		try {

@@ -15,6 +15,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.internal.context.ParserContext;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 
 /**
  * CSResource defines the Xtext-independent extended interface for a Concrete Syntax resource
@@ -28,6 +29,8 @@ public interface CSResource extends Resource
 	 * under the supervision of metamodelManager.
 	 */
 	@NonNull ASResource getASResource(@Nullable MetamodelManager metamodelManager);
+
+	@NonNull ASResourceFactory getASResourceFactory();
 	
 	@Nullable ParserContext getParserContext();
 	void setParserContext(@Nullable ParserContext parserContext);

@@ -39,6 +39,7 @@ import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.context.ParserContext;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.internal.utilities.IllegalLibraryException;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
@@ -322,6 +323,11 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 			throw new IllegalStateException("No Pivot Resource created");
 		}
 		return asResource;
+	}
+
+	@Override
+	public @NonNull ASResourceFactory getASResourceFactory() {
+		return EssentialOCLASResourceFactory.getInstance();
 	}
 
 	@Override

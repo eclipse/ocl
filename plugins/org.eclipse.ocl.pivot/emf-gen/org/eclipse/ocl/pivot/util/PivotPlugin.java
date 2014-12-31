@@ -19,6 +19,7 @@ import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.internal.PivotStandaloneSetup;
+import org.eclipse.ocl.pivot.internal.plugin.ASResourceFactoryRegistryReader;
 import org.eclipse.ocl.pivot.internal.plugin.StandardLibraryRegistryReader;
 import org.osgi.framework.BundleContext;
 
@@ -33,6 +34,7 @@ public final class PivotPlugin extends EMFPlugin
 	// The plug-in ID
 	public static final @NonNull String PLUGIN_ID = "org.eclipse.ocl.pivot";
 
+	public static final @NonNull String AS_RESOURCE_FACTORY_PPID = "as_resource_factory";
 	public static final @NonNull String LABEL_GENERATOR_PPID = "label_generator";
 	public static final @NonNull String STANDARD_LIBRARY_PPID = "standard_library";
 	public static final @NonNull String COMPLETE_OCL_REGISTRY_PID = "complete_ocl_registry";
@@ -154,6 +156,7 @@ public final class PivotPlugin extends EMFPlugin
 		@Override
 		public void start(BundleContext context) throws Exception {
 			super.start(context);
+			new ASResourceFactoryRegistryReader().readRegistry();
 			new StandardLibraryRegistryReader().readRegistry();
 			PivotStandaloneSetup.doSetup();
 		}

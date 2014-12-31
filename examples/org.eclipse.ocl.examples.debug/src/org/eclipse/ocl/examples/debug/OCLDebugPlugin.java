@@ -12,7 +12,6 @@ package org.eclipse.ocl.examples.debug;
 
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.xtext.completeocl.utilities.CompleteOCLASResourceFactory;
 import org.osgi.framework.BundleContext;
 
 public class OCLDebugPlugin extends Plugin
@@ -28,7 +27,7 @@ public class OCLDebugPlugin extends Plugin
 	public void start(BundleContext bundleContext) throws Exception {
 		super.start(bundleContext);
 		plugin = this;
-		CompleteOCLASResourceFactory.INSTANCE.getClass();		// FIXME An extension point should do this
+//		CompleteOCLASResourceFactory.getInstance();		// FIXME An extension point should do this
 	}
 
 	public void stop(BundleContext bundleContext) throws Exception {

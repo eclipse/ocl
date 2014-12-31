@@ -11,25 +11,44 @@
 package org.eclipse.ocl.pivot.internal.ecore;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryContribution;
+import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.resource.AbstractASResourceFactory;
+import org.eclipse.ocl.pivot.internal.validation.EcoreOCLEValidator;
 import org.eclipse.ocl.pivot.resource.ASResource;
 
 public final class EcoreASResourceFactory extends AbstractASResourceFactory
 {
-	public static final @NonNull EcoreASResourceFactory INSTANCE = new EcoreASResourceFactory();
+	private static @Nullable EcoreASResourceFactory INSTANCE = null;
+
+	public static @NonNull EcoreASResourceFactory getInstance() {
+		if (INSTANCE == null) {
+			ASResourceFactoryContribution asResourceRegistry = ASResourceFactoryRegistry.INSTANCE.get(ASResource.ECORE_CONTENT_TYPE);
+			if (asResourceRegistry != null) {
+				asResourceRegistry.getASResourceFactory();						// Create the registered singleton
+			}
+			if (INSTANCE == null) {
+				new EcoreASResourceFactory();									// Create our own singleton
+			}
+			assert INSTANCE != null;
+			INSTANCE.install("ecore", null);
+		}
+		assert INSTANCE != null;
+		return INSTANCE;
+	}
 
 	public EcoreASResourceFactory() {
-		super(ASResource.ECORE_CONTENT_TYPE, null);
+		super(ASResource.ECORE_CONTENT_TYPE);
+		INSTANCE = this;
 	}
 
 	@Override
@@ -43,29 +62,6 @@ public final class EcoreASResourceFactory extends AbstractASResourceFactory
 	@Override
 	public @Nullable <T extends Element> T getASElement(@NonNull MetamodelManager metamodelManager, @NonNull Class<T> pivotClass, @NonNull EObject eObject) {
 		return metamodelManager.getPivotOfEcore(pivotClass, eObject);
-	}
-
-	@Override
-	public int getHandlerPriority(@NonNull EObject eObject) {
-		if (eObject instanceof ENamedElement) {  // Not EModelElement which could be UML
-			return MAY_HANDLE;
-		}
-		else if (eObject instanceof DynamicEObjectImpl) {
-			return MAY_HANDLE;
-		}
-		else {
-			return CANNOT_HANDLE;
-		}
-	}
-
-	@Override
-	public int getHandlerPriority(@NonNull Resource resource) {
-		return Ecore2AS.isEcore(resource) ? MAY_HANDLE : CANNOT_HANDLE;
-	}
-
-	@Override
-	public int getHandlerPriority(@NonNull URI uri) {
-		return "ecore".equals(uri.fileExtension()) ? CAN_HANDLE : MAY_HANDLE;
 	}
 
 	@Override
@@ -94,5 +90,10 @@ public final class EcoreASResourceFactory extends AbstractASResourceFactory
 			}
 			return conversion.newCreateMap.get(eObject);
 		}
+	}
+
+	@Override
+	public void initializeEValidatorRegistry(@NonNull org.eclipse.emf.ecore.EValidator.Registry eValidatorRegistry) {
+		eValidatorRegistry.put(EcorePackage.eINSTANCE, EcoreOCLEValidator.NO_NEW_LINES);
 	}
 }

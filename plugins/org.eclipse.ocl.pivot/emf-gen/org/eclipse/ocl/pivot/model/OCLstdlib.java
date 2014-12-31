@@ -187,7 +187,7 @@ public class OCLstdlib extends ASResourceImpl
 	 *	Construct an OCL Standard Library with specified resource URI and library content.
 	 */
 	private OCLstdlib(@NonNull String asURI, @NonNull Model libraryModel) {
-		super(ClassUtil.nonNullState(URI.createURI(asURI)), OCLASResourceFactory.INSTANCE);
+		super(ClassUtil.nonNullState(URI.createURI(asURI)), OCLASResourceFactory.getInstance());
 		assert PivotUtilInternal.isASURI(asURI);
 		getContents().add(libraryModel);
 //		System.out.println(Thread.currentThread().getName() + " Create " + debugSimpleName(this));		

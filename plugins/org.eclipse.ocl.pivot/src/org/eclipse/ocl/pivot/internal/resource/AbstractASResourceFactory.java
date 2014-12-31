@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.ContentHandler;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -63,21 +64,15 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 	}
 
 	protected final @NonNull String contentType;
-	protected final @Nullable String fileExtension;
 
-	protected AbstractASResourceFactory(@NonNull String contentType, @Nullable String fileExtension) {
+	protected AbstractASResourceFactory(@NonNull String contentType) {
 		this.contentType = contentType;
-		this.fileExtension = fileExtension;
-		ASResourceFactoryRegistry.INSTANCE.addASResourceFactory(contentType, this);
 	}
 
 	@Override
 	public void configure(@NonNull ResourceSet resourceSet) {
-		Registry resourceFactoryRegistry = resourceSet.getResourceFactoryRegistry();
+		Resource.Factory.Registry resourceFactoryRegistry = resourceSet.getResourceFactoryRegistry();
 		resourceFactoryRegistry.getContentTypeToFactoryMap().put(contentType, this);
-		if (fileExtension != null) {
-			resourceFactoryRegistry.getExtensionToFactoryMap().put(fileExtension, this);
-		}
 	}
 
 	protected void configureResource(@NonNull ASResource asResource) {
@@ -148,6 +143,16 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 	}
 
 	@Override
+	public @NonNull ASResourceFactory getASResourceFactory() {
+		return this;
+	}
+
+	@Override
+	public @NonNull ASResourceFactoryContribution getContribution() {
+		return this;
+	}
+
+	@Override
 	public @NonNull String getContentType() {
 		return contentType;
 	}
@@ -160,24 +165,6 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 	@Override
 	public @Nullable EReference getEReference(@NonNull ASResource asResource, @NonNull EObject eObject) {
 		return null;
-	}
-	
-	@Override
-	public int getHandlerPriority(@NonNull EObject eObject) {
-		return CANNOT_HANDLE;
-	}
-
-	@Override
-	public int getHandlerPriority(@NonNull Resource resource) {
-		if ((resource instanceof ASResource) && (((ASResource)resource).getASResourceFactory() == this)) {
-			return CAN_HANDLE;
-		}
-		return CANNOT_HANDLE;
-	}
-
-	@Override
-	public int getHandlerPriority(@NonNull URI uri) {
-		return CANNOT_HANDLE;
 	}
 
 	@Override
@@ -210,6 +197,13 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 			}
 		}
 		throw new UnsupportedOperationException(getClass().getName() + ".importFromResource");
+	}
+
+	@Override
+	public void initializeEValidatorRegistry(@NonNull EValidator.Registry eValidatorRegistry) {}
+
+	protected void install(@Nullable String oclasExtension, @Nullable String resourceClassName) {
+		ASResourceFactoryRegistry.INSTANCE.addASResourceFactory(contentType, oclasExtension, resourceClassName, this);
 	}
 
 	@Override

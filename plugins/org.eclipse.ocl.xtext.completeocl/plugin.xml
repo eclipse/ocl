@@ -28,4 +28,9 @@
       <fileTypes extension="ocl" type="text" />
    </extension>
 
+  <extension point="org.eclipse.ocl.pivot.as_resource_factory">
+     <factory class="org.eclipse.ocl.xtext.completeocl.utilities.CompleteOCLASResourceFactory"
+     	extension="ocl" contentType="org.eclipse.ocl.oclas.ocl"/>
+  </extension>
+
 </plugin>

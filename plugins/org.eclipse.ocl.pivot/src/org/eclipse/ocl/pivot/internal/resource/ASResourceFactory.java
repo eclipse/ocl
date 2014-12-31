@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
@@ -41,12 +42,8 @@ import org.eclipse.ocl.pivot.utilities.ToStringVisitor;
  * without requiring a corresponding Resource to exist. It is therefore typically used to 
  * create ASResource-related artefacts.
  */
-public interface ASResourceFactory extends Resource.Factory
+public interface ASResourceFactory extends Resource.Factory, ASResourceFactoryContribution
 {
-	int CANNOT_HANDLE = -100;
-	int MAY_HANDLE = 0;
-	int CAN_HANDLE = 100;
-	
 	/**
 	 * Configure the MetamodelManager's external ResourceSet. Implementations may install
 	 * any required extension or content to factory mappings in the resource factory registry.
@@ -99,10 +96,7 @@ public interface ASResourceFactory extends Resource.Factory
 	 * the correspondence and ensuring that the result is of asClass.
 	 */
 	@Nullable <T extends Element> T getASElement(@NonNull MetamodelManager metamodelManager, @NonNull Class<T> asClass, @NonNull EObject eObject) throws ParserException;
-
-	/**
-	 * Return the Content Type Identifier supported by this ASResourceFactory.
-	 */
+	
 	@NonNull String getContentType();
 
 	/**
@@ -114,24 +108,6 @@ public interface ASResourceFactory extends Resource.Factory
 	@Nullable EOperation getEOperation(@NonNull ASResource asResource, @NonNull EObject eObject);
 
 	@Nullable EReference getEReference(@NonNull ASResource asResource, @NonNull EObject eObject);
-
-	/**
-	 * Return a positive handler priority if this factory can handle creation of an OCL AS type from the
-	 * available object, negative if it cannot. Generic handlers such as Ecore return a low priority.
-	 */
-	int getHandlerPriority(@NonNull EObject eObject);
-
-	/**
-	 * Return a positive handler priority if this factory can handle creation of an OCL AS resource from the
-	 * available resource, negative if it cannot. Generic handlers such as Ecore return a low priority.
-	 */
-	int getHandlerPriority(@NonNull Resource resource);
-
-	/**
-	 * Return a positive handler priority if this factory can handle creation of an OCL AS resource from the
-	 * available URI, negative if it cannot. Generic handlers such as Ecore return a low priority.
-	 */
-	int getHandlerPriority(@NonNull URI uri);
 
 	/**
 	 * Return a specific metamodel NsURI if ePackage has particular requirements as is the case for UML.
@@ -149,6 +125,8 @@ public interface ASResourceFactory extends Resource.Factory
 	 * @throws ParserException 
 	 */
 	@Nullable Element importFromResource(@NonNull MetamodelManager metamodelManager, @NonNull Resource resource, @Nullable URI uri) throws ParserException;
+
+	void initializeEValidatorRegistry(@NonNull EValidator.Registry eValidatorRegistry);
 
 	/**
 	 * Return true if newResource can be ignored in favour of an already loaded oldResource.

@@ -37,7 +37,7 @@ public class OCLinEcoreStandaloneSetup extends OCLinEcoreStandaloneSetupGenerate
 	}
 
 	public static void init() {
-		OCLinEcoreASResourceFactory.INSTANCE.getClass();
+		OCLinEcoreASResourceFactory.getInstance();
 //		OCLinEcoreAS2CS.FACTORY.getClass();
 		EPackage.Registry.INSTANCE.put(OCLinEcoreCSPackage.eNS_URI, OCLinEcoreCSPackage.eINSTANCE);
 	}

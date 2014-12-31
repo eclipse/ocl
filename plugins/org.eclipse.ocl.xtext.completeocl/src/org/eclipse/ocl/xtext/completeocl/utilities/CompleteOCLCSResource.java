@@ -14,6 +14,7 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.xtext.base.as2cs.AS2CS;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
@@ -39,6 +40,11 @@ public class CompleteOCLCSResource extends EssentialOCLCSResource
 	@Override
 	public @NonNull String getASContentType() {
 		return ASResource.COMPLETE_OCL_CONTENT_TYPE;
+	}
+
+	@Override
+	public @NonNull ASResourceFactory getASResourceFactory() {
+		return CompleteOCLASResourceFactory.getInstance();
 	}
 
 	@Override

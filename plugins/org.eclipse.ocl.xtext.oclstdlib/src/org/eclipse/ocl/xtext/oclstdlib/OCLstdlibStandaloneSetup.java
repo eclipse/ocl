@@ -39,7 +39,7 @@ public class OCLstdlibStandaloneSetup extends OCLstdlibStandaloneSetupGenerated
 
 	public static void init() {
 		OCLstdlibCSPackage.eINSTANCE.getName();
-		OCLstdlibASResourceFactory.INSTANCE.getClass();
+		OCLstdlibASResourceFactory.getInstance();
 //		OCLstdlibCS2AS.FACTORY.getClass();
 		EPackage.Registry.INSTANCE.put(OCLstdlibCSPackage.eNS_URI, OCLstdlibCSPackage.eINSTANCE);
 		EValidator.Registry.INSTANCE.put(OCLstdlibCSPackage.eINSTANCE, OCLstdlibCSValidator.INSTANCE);

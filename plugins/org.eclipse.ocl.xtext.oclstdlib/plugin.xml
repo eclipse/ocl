@@ -15,6 +15,12 @@
             class="org.eclipse.ocl.xtext.oclstdlibcs.OCLstdlibCSPackage"
             genModel="model/OCLstdlibCS.genmodel"/>
    </extension>
+
+  <extension point="org.eclipse.ocl.pivot.as_resource_factory">
+     <factory class="org.eclipse.ocl.xtext.oclstdlib.utilities.OCLstdlibASResourceFactory"
+     	extension="oclstdlib" contentType="org.eclipse.ocl.oclas.oclstdlib"/>
+  </extension>
+
    <extension point="org.eclipse.team.core.fileTypes">
       <fileTypes extension="oclstdlib" type="text" />
    </extension>

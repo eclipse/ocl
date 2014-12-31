@@ -202,7 +202,7 @@ public class ValidateTests extends AbstractValidateTests
 		ResourceSet resourceSet = new ResourceSetImpl();
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {			
 			getProjectMap().initializeResourceSet(resourceSet);
-			OCLASResourceFactory.INSTANCE.configure(resourceSet);
+			OCLASResourceFactory.getInstance().configure(resourceSet);
 		}
 		Resource resource = resourceSet.getResource(URI.createPlatformResourceURI("org.eclipse.ocl.pivot/model-gen/Pivot.oclas", true), true);
 		assertNoValidationErrors("Validating", ClassUtil.nonNullState(resource));

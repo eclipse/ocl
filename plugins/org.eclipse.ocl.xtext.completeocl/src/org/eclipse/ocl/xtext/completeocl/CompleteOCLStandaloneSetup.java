@@ -37,7 +37,7 @@ public class CompleteOCLStandaloneSetup extends CompleteOCLStandaloneSetupGenera
 
 	public static void init() {
 		CompleteOCLScoping.init();
-		CompleteOCLASResourceFactory.INSTANCE.getClass();
+		CompleteOCLASResourceFactory.getInstance();
 		EPackage.Registry.INSTANCE.put(CompleteOCLCSPackage.eNS_URI, CompleteOCLCSPackage.eINSTANCE);
 	}
 	

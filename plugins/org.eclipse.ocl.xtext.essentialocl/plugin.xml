@@ -19,4 +19,9 @@
       <fileTypes extension="essentialocl" type="text" />
    </extension>
 
+  <extension point="org.eclipse.ocl.pivot.as_resource_factory">
+     <factory class="org.eclipse.ocl.xtext.essentialocl.utilities.EssentialOCLASResourceFactory"
+     	extension="essentialocl" contentType="org.eclipse.ocl.oclas.essentialocl"/>
+  </extension>
+
 </plugin>

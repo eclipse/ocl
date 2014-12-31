@@ -33,6 +33,8 @@ import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.ecore.AbstractEcore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryContribution;
+import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.resource.AbstractASResourceFactory;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.uml2.uml.Type;
@@ -43,10 +45,27 @@ import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
 
 public final class UMLASResourceFactory extends AbstractASResourceFactory
 {
-	public static final @NonNull UMLASResourceFactory INSTANCE = new UMLASResourceFactory();
+	private static @Nullable UMLASResourceFactory INSTANCE;
+
+	public static @NonNull UMLASResourceFactory getInstance() {
+		if (INSTANCE == null) {
+			ASResourceFactoryContribution asResourceRegistry = ASResourceFactoryRegistry.INSTANCE.get(ASResource.UML_CONTENT_TYPE);
+			if (asResourceRegistry != null) {
+				asResourceRegistry.getASResourceFactory();						// Create the registered singleton
+			}
+			if (INSTANCE == null) {
+				new UMLASResourceFactory();										// Create our own singleton
+			}
+			assert INSTANCE != null;
+			INSTANCE.install("uml", UMLResource.class.getName());
+		}
+		assert INSTANCE != null;
+		return INSTANCE;
+	}
 	
-	protected UMLASResourceFactory() {
-		super(ASResource.UML_CONTENT_TYPE, null);
+	public UMLASResourceFactory() {
+		super(ASResource.UML_CONTENT_TYPE);
+		INSTANCE = this;
 	}
 
 	@Override
@@ -209,27 +228,6 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 	}
 
 	@Override
-	public int getHandlerPriority(@NonNull EObject eObject) {
-		if (eObject instanceof org.eclipse.uml2.uml.Element) {
-			return CAN_HANDLE;
-		}
-		if (eObject.eResource() instanceof UMLResource) {
-			return CAN_HANDLE;		// e.g. A StereotypeApplication
-		}
-		return CANNOT_HANDLE;
-	}
-
-	@Override
-	public int getHandlerPriority(@NonNull Resource resource) {
-		return UML2AS.isUML(resource) ? CAN_HANDLE : CANNOT_HANDLE;
-	}
-
-	@Override
-	public int getHandlerPriority(@NonNull URI uri) {
-		return "uml".equals(uri.fileExtension()) ? CAN_HANDLE : CANNOT_HANDLE;
-	}
-
-	@Override
 	public @Nullable String getMetamodelNsURI(@NonNull EPackage ePackage) {
 		if (ePackage instanceof UMLPackage) {
 			return XMI2UMLResource.UML_METAMODEL_NS_URI;
@@ -267,5 +265,10 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 			}
 			return conversion.getCreated(Element.class, eObject);
 		}
+	}
+
+	@Override
+	public void initializeEValidatorRegistry(@NonNull org.eclipse.emf.ecore.EValidator.Registry eValidatorRegistry) {
+		eValidatorRegistry.put(UMLPackage.eINSTANCE, UMLOCLEValidator.NO_NEW_LINES);
 	}
 }

@@ -335,7 +335,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 			rewriteOperationCalls(asOperations);
 			convertOperations(cgClass, asOperations);
 		}
-		Resource dummyResource = EssentialOCLASResourceFactory.INSTANCE.createResource(URI.createURI("dummy.essentialocl"));
+		Resource dummyResource = EssentialOCLASResourceFactory.getInstance().createResource(URI.createURI("dummy.essentialocl"));
 		dummyResource.getContents().addAll(asOperations);		// PrettyPrinter needs containment
 		return cgPackage;
 	}
