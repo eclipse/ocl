@@ -12,17 +12,26 @@
 
 package org.eclipse.ocl.pivot.internal;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.ids.PackageId;
+import org.eclipse.ocl.pivot.ids.RootPackageId;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.library.LibraryProperty;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 
 /**
@@ -78,9 +87,25 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
      */
 	@NonNull EvaluationVisitor createEvaluationVisitor(@NonNull EvaluationEnvironment evalEnv, @NonNull ModelManager modelManager);
 
+	String getExtensionName(@NonNull Element asStereotypedElement);
+
+	RootPackageId getMetamodelId(@NonNull EPackage ePackage);
+
 	@NonNull MetamodelManager getMetamodelManager();
+
+	@NonNull PackageId getMetapackageId(@NonNull org.eclipse.ocl.pivot.Package asPackage);
+
+	@Nullable Element getParseableElement(@NonNull EObject eObject) throws ParserException;
 
 	@Nullable StandaloneProjectMap getProjectMap();
 
 	void dispose();
+	
+	boolean isStereotype(@NonNull EClass eClass);
+	
+	@NonNull LibraryProperty createStereotypePropertyImplementation(@NonNull Property property);
+
+	@NonNull LibraryProperty createExtensionPropertyImplementation(@NonNull Property property);
+
+	@NonNull LibraryProperty createBasePropertyImplementation(@NonNull Property property);
 }

@@ -25,4 +25,9 @@
       <fileTypes extension="oclstdlib" type="text" />
    </extension>
 
+  <extension point="org.eclipse.ocl.pivot.as_resource_factory">
+     <factory class="org.eclipse.ocl.xtext.oclstdlib.utilities.OCLstdlibASResourceFactory"
+     	extension="oclinecore" contentType="org.eclipse.ocl.oclas.oclinecore"/>
+  </extension>
+
 </plugin>

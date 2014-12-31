@@ -25,6 +25,8 @@ import org.eclipse.ocl.pivot.internal.labels.ENamedElementLabelGenerator;
 import org.eclipse.ocl.pivot.internal.labels.EObjectLabelGenerator;
 import org.eclipse.ocl.pivot.internal.labels.EcoreURILabelGenerator;
 import org.eclipse.ocl.pivot.internal.labels.ElementIdLabelGenerator;
+import org.eclipse.ocl.pivot.internal.labels.ExpressionInOCLLabelGenerator;
+import org.eclipse.ocl.pivot.internal.labels.ModelLabelGenerator;
 import org.eclipse.ocl.pivot.internal.labels.NameableLabelGenerator;
 import org.eclipse.ocl.pivot.internal.labels.StringLabelGenerator;
 import org.eclipse.ocl.pivot.internal.plugin.LabelGeneratorRegistryReader;
@@ -122,6 +124,8 @@ public class LabelGeneratorRegistry implements ILabelGenerator.Registry
 		EObjectLabelGenerator.initialize(registry);
 		EcoreURILabelGenerator.initialize(registry);
 		ElementIdLabelGenerator.initialize(registry);
+		ExpressionInOCLLabelGenerator.initialize(registry);
+		ModelLabelGenerator.initialize(registry);
 		NameableLabelGenerator.initialize(registry);
 		StringLabelGenerator.initialize(registry);
 	}

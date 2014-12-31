@@ -32,7 +32,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EValidator;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EValidatorRegistryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -54,14 +53,14 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.pivot.internal.uml.UMLOCLEValidator;
-import org.eclipse.ocl.pivot.internal.validation.EcoreOCLEValidator;
+import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
+import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryContribution;
+import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ISetSelectionTarget;
 import org.eclipse.uml2.uml.Profile;
-import org.eclipse.uml2.uml.UMLPackage;
 
 public class ValidateCommand extends ValidateAction
 {
@@ -174,8 +173,9 @@ public class ValidateCommand extends ValidateAction
 	protected Diagnostician createDiagnostician(final AdapterFactory adapterFactory, final IProgressMonitor progressMonitor) {
 		final ResourceSet resourceSet = domain.getResourceSet();
 		EValidatorRegistryImpl registry = new EValidatorRegistryImpl();
-		registry.put(EcorePackage.eINSTANCE, EcoreOCLEValidator.NO_NEW_LINES);
-		registry.put(UMLPackage.eINSTANCE, UMLOCLEValidator.NO_NEW_LINES);
+		for (ASResourceFactoryContribution asResourceFactory : ASResourceFactoryRegistry.INSTANCE.getResourceFactories()) {
+			asResourceFactory.getASResourceFactory().initializeEValidatorRegistry(registry);
+		}
 		if (diagnosticianHasDoValidate == null) {
 			diagnosticianHasDoValidate = false;
 			for (Method method : Diagnostician.class.getDeclaredMethods()) {

@@ -27,7 +27,7 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.uml.UML2AS;
+import org.eclipse.ocl.pivot.uml.internal.UML2AS;
 import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.UML2EcoreConverter;
 

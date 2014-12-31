@@ -60,7 +60,7 @@ import org.eclipse.ocl.pivot.internal.ClassImpl;
 import org.eclipse.ocl.pivot.internal.CompleteClassImpl;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.Orphanage;
-import org.eclipse.ocl.pivot.internal.uml.UML2AS;
+import org.eclipse.ocl.pivot.util.DerivedConstants;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -184,7 +184,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 		Stereotype stereotype = stereotypeInstance.getStereotype();
 		Map<String, PartialProperties> name2partialProperties2 = name2partialProperties;
 		assert name2partialProperties2 != null;
-		String extensionPropertyName = UML2AS.STEREOTYPE_EXTENSION_PREFIX + stereotype.getName();
+		String extensionPropertyName = DerivedConstants.STEREOTYPE_EXTENSION_PREFIX + stereotype.getName();
 		Property extensionProperty = null;
 		PartialProperties partialProperties = name2partialProperties2.get(extensionPropertyName);
 		if (partialProperties == null) {
@@ -870,7 +870,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 			Package pivotPackage = rootCompletePackage.getPivotPackage();
 			if (pivotPackage != null) {
 				MetamodelManager metamodelManager = getMetamodelManager();
-				PackageId metapackageId = metamodelManager.getMetapackageId(pivotPackage);
+				PackageId metapackageId = metamodelManager.getEnvironmentFactory().getMetapackageId(pivotPackage);
 				org.eclipse.ocl.pivot.Package metapackage = metamodelManager.getIdResolver().getPackage(metapackageId);
 				CompletePackage metaCompletePackage = metamodelManager.getCompletePackage(metapackage);
 				Type metatype = metaCompletePackage.getType(metatypeName);

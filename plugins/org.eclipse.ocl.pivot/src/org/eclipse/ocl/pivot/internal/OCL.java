@@ -43,7 +43,6 @@ import org.eclipse.ocl.pivot.internal.helper.OCLHelper;
 import org.eclipse.ocl.pivot.internal.helper.OCLHelperImpl;
 import org.eclipse.ocl.pivot.internal.helper.QueryImpl;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.uml.UML2AS;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.CSResource;
@@ -630,18 +629,6 @@ public class OCL {
 	 */
 	public void setParseTracingEnabled(boolean b) {
 		traceParsing = b;
-	}
-
-	/**
-	 * Return the Pivot resource counterpart of a umlResource.
-	 * @throws ParserException 
-	 */
-	public @NonNull ASResource uml2as(@NonNull Resource umlResource) throws ParserException {
-		MetamodelManager metamodelManager = getMetamodelManager();
-		UML2AS uml2as = UML2AS.getAdapter(umlResource, metamodelManager);
-		Model pivotModel = uml2as.getPivotModel();
-		ASResource asResource = (ASResource) pivotModel.eResource();
-		return ClassUtil.nonNullModel(asResource);
 	}
 
 	/**

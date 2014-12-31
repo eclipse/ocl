@@ -30,11 +30,13 @@ import org.eclipse.ocl.pivot.Profile;
 import org.eclipse.ocl.pivot.Stereotype;
 import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
-import org.eclipse.ocl.pivot.internal.uml.UML2AS;
-import org.eclipse.ocl.pivot.internal.uml.UMLElementExtension;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.resource.ProjectMap;
+import org.eclipse.ocl.pivot.uml.UMLOCL;
+import org.eclipse.ocl.pivot.uml.internal.UML2AS;
+import org.eclipse.ocl.pivot.uml.internal.UMLElementExtension;
+import org.eclipse.ocl.pivot.uml.internal.UMLEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -155,6 +157,11 @@ public class StereotypesTest extends PivotTestSuite
 	InternationalizedProfile mmm = null;
 	InternationalizedMetamodel mm = null;
 	InternationalizedModel m = null;
+
+	protected @NonNull OCL createOCL() {
+		UMLOCL newInstance = UMLOCL.newInstance(new UMLEnvironmentFactory(null, null));
+		return newInstance;
+	}
 	
     @Override
     protected void setUp() throws Exception {
@@ -179,7 +186,7 @@ public class StereotypesTest extends PivotTestSuite
         org.eclipse.uml2.uml.Package umlPackage = (org.eclipse.uml2.uml.Package) umlResource.getContents().get(0);
 		URI testProfileURI = getTestModelURI("model/Internationalized.profile.uml");
 		org.eclipse.uml2.uml.Profile umlProfile = (org.eclipse.uml2.uml.Profile) resourceSet.getResource(testProfileURI, true).getContents().get(0);
-		ocl.uml2as(umlResource);				// FIXME BUG 437826 must do full model conversion
+		((UMLOCL)ocl).uml2as(umlResource);				// FIXME BUG 437826 must do full model conversion
 		mmm = new InternationalizedProfile(umlProfile);
 		mm = new InternationalizedMetamodel(mmm, umlPackage);
 		URI ecoreURI = getTestModelURI("Languages.ecore");

@@ -18,7 +18,7 @@ import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.WorkflowComponentWithModelSlot;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
-import org.eclipse.ocl.pivot.internal.uml.UMLXMIID;
+import org.eclipse.ocl.pivot.uml.internal.UMLXMIID;
 
 /**
  * Writes a designated <tt>modelSlot</tt> to a specified <tt>uri</tt>.

@@ -19,7 +19,6 @@ import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.internal.uml.UMLElementExtension;
 import org.eclipse.ocl.pivot.library.AbstractProperty;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 
@@ -29,7 +28,7 @@ import org.eclipse.ocl.pivot.utilities.NameUtil;
  */
 public class BaseProperty extends AbstractProperty
 {
-	protected @NonNull Property property;
+	protected final @NonNull Property property;
 	
 	public BaseProperty(@NonNull Property property) {
 		this.property = property;
@@ -40,9 +39,6 @@ public class BaseProperty extends AbstractProperty
 //		return property.getType(); 
 		if (sourceValue instanceof ElementExtension) {
 			return ((ElementExtension)sourceValue).eContainer(); 
-		}
-		if (sourceValue instanceof UMLElementExtension) {
-			return ((UMLElementExtension)sourceValue).getTarget(); 
 		}
 		if (sourceValue instanceof EObject) {
 			EObject eObject = (EObject)sourceValue;

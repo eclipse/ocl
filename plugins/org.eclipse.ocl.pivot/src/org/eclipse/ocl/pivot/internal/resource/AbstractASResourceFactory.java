@@ -67,7 +67,7 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 
 	protected AbstractASResourceFactory(@NonNull String contentType) {
 		this.contentType = contentType;
-	}
+}
 
 	@Override
 	public void configure(@NonNull ResourceSet resourceSet) {

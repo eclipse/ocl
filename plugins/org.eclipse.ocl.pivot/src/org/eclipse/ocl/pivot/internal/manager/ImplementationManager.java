@@ -29,22 +29,19 @@ import org.eclipse.ocl.pivot.Stereotype;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
-import org.eclipse.ocl.pivot.internal.library.BaseProperty;
 import org.eclipse.ocl.pivot.internal.library.CompositionProperty;
 import org.eclipse.ocl.pivot.internal.library.ConstrainedOperation;
 import org.eclipse.ocl.pivot.internal.library.ConstrainedProperty;
 import org.eclipse.ocl.pivot.internal.library.ExplicitNavigationProperty;
-import org.eclipse.ocl.pivot.internal.library.ExtensionProperty;
 import org.eclipse.ocl.pivot.internal.library.ImplicitNonCompositionProperty;
 import org.eclipse.ocl.pivot.internal.library.StaticProperty;
-import org.eclipse.ocl.pivot.internal.library.StereotypeProperty;
 import org.eclipse.ocl.pivot.internal.library.TuplePartProperty;
-import org.eclipse.ocl.pivot.internal.uml.UML2AS;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
 import org.eclipse.ocl.pivot.library.LibraryOperation;
 import org.eclipse.ocl.pivot.library.LibraryProperty;
 import org.eclipse.ocl.pivot.library.UnsupportedOperation;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.util.DerivedConstants;
 
 /**
  * ImplementationManager encapsulates the knowledge about known feature implementations.
@@ -132,8 +129,8 @@ public class ImplementationManager
 			}
 		}
 		Type type = property.getType();
-		if ((type instanceof Stereotype) && property.getName().startsWith(UML2AS.STEREOTYPE_EXTENSION_PREFIX)) {
-			return new ExtensionProperty(property);
+		if ((type instanceof Stereotype) && property.getName().startsWith(DerivedConstants.STEREOTYPE_EXTENSION_PREFIX)) {
+			return metamodelManager.getEnvironmentFactory().createExtensionPropertyImplementation(property);
 		}
 //		if (property.getOwningType() instanceof Stereotype) {
 //			return new BaseProperty(property);
@@ -145,7 +142,7 @@ public class ImplementationManager
 		Property opposite = property.getOpposite();
 		if ((opposite != null) && opposite.isComposite()) {
 			if (property.eContainer() instanceof Stereotype) {
-				return new BaseProperty(property);
+				return metamodelManager.getEnvironmentFactory().createBasePropertyImplementation(property);
 			}
 			if (type != null) {
 				EObject eTarget = opposite.getETarget();
@@ -191,7 +188,7 @@ public class ImplementationManager
 		}
 		if ((property.getOwningClass() instanceof ElementExtension)			// direct access to extension property
 			  || (property.getOwningClass() instanceof Stereotype)) {			// indirect access from a Stereotype operation
-			return new StereotypeProperty(property);
+			return metamodelManager.getEnvironmentFactory().createStereotypePropertyImplementation(property);
 		}
 		for (ExplicitNavigator explicitNavigator : explicitNavigators) {
 			LibraryProperty libraryProperty = explicitNavigator.getPropertyImplementation(sourceValue, property);

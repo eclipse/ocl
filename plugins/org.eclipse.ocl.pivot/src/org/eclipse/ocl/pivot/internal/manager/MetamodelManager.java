@@ -51,7 +51,6 @@ import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.DataType;
-import org.eclipse.ocl.pivot.DynamicElement;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
@@ -67,7 +66,6 @@ import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.LoopExp;
 import org.eclipse.ocl.pivot.Model;
-import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.NullLiteralExp;
 import org.eclipse.ocl.pivot.OCLExpression;
@@ -94,7 +92,6 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.WildcardType;
-import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -126,7 +123,6 @@ import org.eclipse.ocl.pivot.internal.utilities.AS2XMIid;
 import org.eclipse.ocl.pivot.internal.utilities.CompleteElementIterable;
 import org.eclipse.ocl.pivot.internal.utilities.External2AS;
 import org.eclipse.ocl.pivot.internal.utilities.IllegalLibraryException;
-import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
 import org.eclipse.ocl.pivot.library.LibraryProperty;
@@ -149,8 +145,6 @@ import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.uml2.types.TypesPackage;
-import org.eclipse.uml2.uml.UMLPackage;
 
 import com.google.common.collect.Iterables;
 
@@ -1011,16 +1005,7 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 		}
 		@SuppressWarnings("null")@NonNull ElementExtension asElementExtension = PivotFactory.eINSTANCE.createElementExtension();
 		asElementExtension.setStereotype(asStereotype);
-		String name = "????";
-		if (asStereotypedElement instanceof NamedElement) {
-			name = ((NamedElement)asStereotypedElement).getName();
-		}
-		else if (asStereotypedElement instanceof DynamicElement) {
-			EObject eObject = ((DynamicElement)asStereotypedElement).getETarget();
-			if (eObject instanceof org.eclipse.uml2.uml.NamedElement) {
-				name = ((org.eclipse.uml2.uml.NamedElement)eObject).getName();
-			}
-		}
+		String name = environmentFactory.getExtensionName(asStereotypedElement);
 		asElementExtension.setName(name + "$" + asStereotype.getName());	// FIXME cast
 //		asElementExtension.getSuperClass().add(getOclAnyType());
 		extensions.add(asElementExtension);
@@ -1312,28 +1297,6 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 			return metaType;
 		}
 		return standardLibrary.getClassType();
-	}
-
-	public @NonNull PackageId getMetapackageId(@NonNull org.eclipse.ocl.pivot.Package dPackage) {
-		if (dPackage instanceof PivotObjectImpl) {
-			EObject eTarget = ((PivotObjectImpl)dPackage).getETarget();
-			if (eTarget != null) {
-				EClass eClass = eTarget.eClass();
-				if (eClass != null) {
-					EPackage ePackage = eClass.getEPackage();
-					if (ePackage instanceof UMLPackage) {
-						return IdManager.getRootPackageId(PivotConstantsInternal.UML_METAMODEL_NAME);
-					}
-					else if (ePackage instanceof TypesPackage) {
-						return IdManager.getRootPackageId(PivotConstantsInternal.TYPES_METAMODEL_NAME);
-					}
-//					if (ePackage instanceof EcorePackage) {
-//						return IdManager.getRootPackageId(DomainConstants.ECORE_METAMODEL_NAME);
-//					}
-				}
-			}
-		}
-		return IdManager.METAMODEL;
 	}
 
 	protected @NonNull org.eclipse.ocl.pivot.Class getMutable(@NonNull org.eclipse.ocl.pivot.Class asType) {

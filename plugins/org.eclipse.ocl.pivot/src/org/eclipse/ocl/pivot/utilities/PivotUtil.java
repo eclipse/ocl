@@ -827,16 +827,7 @@ public class PivotUtil
 	public static boolean setParserContext(@NonNull CSResource csResource, @NonNull EObject eObject, Object... todoParameters) throws ParserException {
 		AbstractMetamodelManagerResourceAdapter<?> adapter = MetamodelManagerResourceAdapter.getAdapter(csResource, null);
 		MetamodelManager metamodelManager = adapter.getMetamodelManager();
-		Element pivotElement;
-		if (eObject instanceof Element) {
-			pivotElement = (Element) eObject;
-		}
-		else {
-			pivotElement = metamodelManager.getPivotOf(Element.class, eObject);
-			if ((eObject instanceof org.eclipse.uml2.uml.Constraint) && (pivotElement instanceof Constraint) && (pivotElement.eContainer() == null)) {
-				pivotElement = metamodelManager.getPivotOf(Element.class, ((org.eclipse.uml2.uml.Constraint)eObject).getSpecification());
-			}
-		}
+		Element pivotElement = metamodelManager.getEnvironmentFactory().getParseableElement(eObject);
 		if (pivotElement == null) {
 			return false;
 		}

@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.internal;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
@@ -21,15 +22,21 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Adaptable;
+import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
+import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.ids.PackageId;
+import org.eclipse.ocl.pivot.ids.RootPackageId;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.context.ClassContext;
 import org.eclipse.ocl.pivot.internal.context.ModelContext;
@@ -39,10 +46,16 @@ import org.eclipse.ocl.pivot.internal.context.PropertyContext;
 import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitorImpl;
 import org.eclipse.ocl.pivot.internal.evaluation.TracingEvaluationVisitor;
+import org.eclipse.ocl.pivot.internal.library.BaseProperty;
+import org.eclipse.ocl.pivot.internal.library.ExtensionProperty;
+import org.eclipse.ocl.pivot.internal.library.StereotypeProperty;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.PivotIdResolver;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
+import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
+import org.eclipse.ocl.pivot.library.LibraryProperty;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
  * Partial implementation of the {@link EnvironmentFactoryInternal} interface, useful
@@ -177,6 +190,21 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryIn
 	}
 
 	@Override
+	public @NonNull LibraryProperty createExtensionPropertyImplementation(@NonNull Property property) {
+		return new ExtensionProperty(property);
+	}
+
+	@Override
+	public @NonNull LibraryProperty createBasePropertyImplementation(@NonNull Property property) {
+		return new BaseProperty(property);
+	}
+
+	@Override
+	public @NonNull LibraryProperty createStereotypePropertyImplementation(@NonNull Property property) {
+		return new StereotypeProperty(property);
+	}
+
+	@Override
 	public void dispose() {
 		if (metamodelManager != null) {
 			metamodelManager.dispose();
@@ -218,6 +246,33 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryIn
     protected abstract @NonNull org.eclipse.ocl.pivot.Class getClassifier(@NonNull Object context);
 
 	@Override
+	public String getExtensionName(@NonNull Element asStereotypedElement) {
+		String name = "????";
+		if (asStereotypedElement instanceof NamedElement) {
+			name = ((NamedElement)asStereotypedElement).getName();
+		}
+		return name;
+	}
+
+	@Override
+	public RootPackageId getMetamodelId(@NonNull EPackage ePackage) {
+		assert !"http://www.eclipse.org/uml2/5.0.0/UML".equals(ePackage.getNsURI());
+		assert !"http://www.eclipse.org/uml2/5.0.0/Types".equals(ePackage.getNsURI());
+		RootPackageId metamodel = null;
+		if (ClassUtil.basicGetMetamodelAnnotation(ePackage) != null) {
+			metamodel = IdManager.METAMODEL;
+		}
+		else {
+			String nsURI = ePackage.getNsURI();
+			String sharedNsURI = getMetamodelManager().getCompleteModel().getCompleteURI(nsURI);
+			if ((sharedNsURI != null) && !sharedNsURI.equals(nsURI)) {
+				metamodel = IdManager.getRootPackageId(sharedNsURI);
+			}
+		}
+		return metamodel;
+	}
+
+	@Override
 	public @NonNull MetamodelManager getMetamodelManager() {
 		MetamodelManager metamodelManager2 = metamodelManager;
 		if (metamodelManager2 == null) {
@@ -225,7 +280,37 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryIn
 		}
 		return metamodelManager2;
 	}
-    
+
+	@Override
+	public @NonNull PackageId getMetapackageId(@NonNull org.eclipse.ocl.pivot.Package asPackage) {
+		if (asPackage instanceof PivotObjectImpl) {
+			EObject eTarget = ((PivotObjectImpl)asPackage).getETarget();
+			if (eTarget != null) {
+				EClass eClass = eTarget.eClass();
+				if (eClass != null) {
+					EPackage ePackage = eClass.getEPackage();
+					assert !"http://www.eclipse.org/uml2/5.0.0/UML".equals(ePackage.getNsURI());
+					assert !"http://www.eclipse.org/uml2/5.0.0/Types".equals(ePackage.getNsURI());
+				}
+			}
+		}
+		return IdManager.METAMODEL;
+	}
+
+	@Override
+	public @Nullable Element getParseableElement(@NonNull EObject eObject) throws ParserException {
+		if (eObject instanceof Element) {
+			return (Element) eObject;
+		}
+		else {
+			return null;
+		}
+	}
+
+	@Override
+	public @Nullable StandaloneProjectMap getProjectMap() {
+		return null;
+	}
     /**
      * Queries whether tracing of evaluation is enabled.  Tracing
      * logs the progress of evaluation to the console, which may
@@ -242,6 +327,18 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryIn
     protected boolean isEvaluationTracingEnabled() {
         return traceEvaluation;
     }
+
+	@Override
+	public boolean isStereotype(@NonNull EClass eClass) {
+		for (EStructuralFeature eFeature : eClass.getEAllStructuralFeatures()) {
+			EClassifier eType = eFeature.getEType();
+			if (eType != null) {
+				EPackage ePackage = eType.getEPackage();
+				assert !"http://www.eclipse.org/uml2/5.0.0/UML".equals(ePackage.getNsURI());
+			}
+		}
+		return false;
+	}
     
     /**
      * Sets whether tracing of evaluation is enabled.  Tracing logs

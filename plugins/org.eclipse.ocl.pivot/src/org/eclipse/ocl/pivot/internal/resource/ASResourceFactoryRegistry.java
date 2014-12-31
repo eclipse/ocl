@@ -31,7 +31,6 @@ public class ASResourceFactoryRegistry
 {
 	public static final @NonNull ASResourceFactoryRegistry INSTANCE = new ASResourceFactoryRegistry();
 	
-//	protected final @NonNull Set<ASResourceFactoryContribution> asResourceFactories = new HashSet<ASResourceFactoryContribution>();
 	protected final @NonNull Map<String, ASResourceFactoryContribution> contentType2resourceFactory = new HashMap<String, ASResourceFactoryContribution>();
 	protected final @NonNull Map<String, ASResourceFactoryContribution> extension2resourceFactory = new HashMap<String, ASResourceFactoryContribution>();
 	protected final @NonNull Map<String, ASResourceFactoryContribution> resourceClassName2resourceFactory = new HashMap<String, ASResourceFactoryContribution>();
@@ -39,7 +38,6 @@ public class ASResourceFactoryRegistry
 	public synchronized Object addASResourceFactory(@Nullable String contentType, @Nullable String oclasExtension, @Nullable String resourceClassName, @NonNull ASResourceFactoryContribution asResourceFactory) {
 		ASResourceFactoryContribution oldASResourceFactory;
 		if (contentType != null) {
-//			asResourceFactories.add(asResourceFactory);
 			oldASResourceFactory = contentType2resourceFactory.put(contentType, asResourceFactory);
 			assert (oldASResourceFactory == null) || (oldASResourceFactory == asResourceFactory)
 				|| (oldASResourceFactory.getContribution() == asResourceFactory);

@@ -69,20 +69,18 @@ import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.TypedElement;
-import org.eclipse.ocl.pivot.ids.IdManager;
+import org.eclipse.ocl.pivot.ids.RootPackageId;
 import org.eclipse.ocl.pivot.internal.PackageImpl;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.delegate.SettingBehavior;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.uml.UML2AS;
 import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
 import org.eclipse.ocl.pivot.internal.utilities.AliasAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.util.DerivedConstants;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
-import org.eclipse.uml2.types.TypesPackage;
-import org.eclipse.uml2.uml.UMLPackage;
 
 public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 {
@@ -145,7 +143,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 	public Object caseEClass(EClass eObject) {
 		@SuppressWarnings("null") @NonNull EClass eObject2 = eObject;
 		org.eclipse.ocl.pivot.Class pivotElement;
-		if (isStereotype(eObject2)) {
+		if (metamodelManager.getEnvironmentFactory().isStereotype(eObject2)) {
 			pivotElement = converter.refreshElement(Stereotype.class, PivotPackage.Literals.STEREOTYPE, eObject2);
 		}
 		else {
@@ -432,25 +430,9 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 		}
 		pivotElement.setName(newName);
 		if (eObject2.eIsSet(EcorePackage.Literals.EPACKAGE__NS_URI)) {
-			if (ClassUtil.basicGetMetamodelAnnotation(eObject2) != null) {
-				((PackageImpl)pivotElement).setPackageId(IdManager.METAMODEL);
-			}
-			else if (eObject2 instanceof UMLPackage) {
-				@SuppressWarnings("null")@NonNull String nsUri = UMLPackage.eNS_URI;
-				metamodelManager.getCompleteModel().addPackageURI2completeURI(nsUri, PivotConstantsInternal.UML_METAMODEL_NAME);
-				((PackageImpl)pivotElement).setPackageId(IdManager.getRootPackageId(PivotConstantsInternal.UML_METAMODEL_NAME));
-			}
-			else if (eObject2 instanceof TypesPackage) {
-				@SuppressWarnings("null")@NonNull String nsUri = TypesPackage.eNS_URI;
-				metamodelManager.getCompleteModel().addPackageURI2completeURI(nsUri, PivotConstantsInternal.TYPES_METAMODEL_NAME);
-				((PackageImpl)pivotElement).setPackageId(IdManager.getRootPackageId(PivotConstantsInternal.TYPES_METAMODEL_NAME));
-			}
-			else {
-				String nsURI = eObject2.getNsURI();
-				String sharedNsURI = metamodelManager.getCompleteModel().getCompleteURI(nsURI);
-				if ((sharedNsURI != null) && !sharedNsURI.equals(nsURI)) {
-					((PackageImpl)pivotElement).setPackageId(IdManager.getRootPackageId(sharedNsURI));
-				}
+			RootPackageId metamodel = metamodelManager.getEnvironmentFactory().getMetamodelId(eObject2);
+			if (metamodel != null) {
+				((PackageImpl)pivotElement).setPackageId(metamodel);
 			}
 			pivotElement.setURI(eObject2.getNsURI());
 		}
@@ -549,10 +531,10 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 		String value = null;
 		EAnnotation eAnnotation = OCLCommon.getDelegateAnnotation(eOperation);
 		if (eAnnotation == null) {
-			eAnnotation = eOperation.getEAnnotation(org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage.eNS_URI);
+			eAnnotation = eOperation.getEAnnotation(DerivedConstants.UML2_GEN_MODEL_PACKAGE_2_0_NS_URI);
 		}
 		if (eAnnotation == null) {
-			eAnnotation = eOperation.getEAnnotation("http://www.eclipse.org/uml2/1.1.0/GenModel");
+			eAnnotation = eOperation.getEAnnotation(DerivedConstants.UML2_GEN_MODEL_PACKAGE_1_1_NS_URI);
 		}
 		if (eAnnotation != null) {
 			value = eAnnotation.getDetails().get("body");
@@ -595,10 +577,10 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 		}
 		EAnnotation oclAnnotation = OCLCommon.getDelegateAnnotation(eOperation);
 		if (oclAnnotation == null) {
-			oclAnnotation = eOperation.getEAnnotation(org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage.eNS_URI);
+			oclAnnotation = eOperation.getEAnnotation(DerivedConstants.UML2_GEN_MODEL_PACKAGE_2_0_NS_URI);
 		}
 		if (oclAnnotation == null) {
-			oclAnnotation = eOperation.getEAnnotation("http://www.eclipse.org/uml2/1.1.0/GenModel");
+			oclAnnotation = eOperation.getEAnnotation(DerivedConstants.UML2_GEN_MODEL_PACKAGE_1_1_NS_URI);
 		}
 		if (oclAnnotation != null) {
 			if (excludedAnnotations == null) {
@@ -840,22 +822,6 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 		for (EObject eObject : eObjects) {
 			doSwitch(eObject);
 		}
-	}
-
-	private boolean isStereotype(@NonNull EClass eClass) {
-		for (EStructuralFeature eFeature : eClass.getEAllStructuralFeatures()) {
-			EClassifier eType = eFeature.getEType();
-			if (eType != null) {
-				EPackage ePackage = eType.getEPackage();
-				if (ePackage == UMLPackage.eINSTANCE) {					// ?? is this too narrow ?? SysML ??
-					String name = eFeature.getName();
-					if ((name != null) && name.startsWith(UML2AS.STEREOTYPE_BASE_PREFIX)) {
-						return true;
-					}
-				}
-			}
-		}
-		return false;
 	}
 
 	protected List<EAnnotation> refreshTypeConstraints(@NonNull org.eclipse.ocl.pivot.Class pivotElement, @NonNull EClassifier eClassifier, @Nullable List<EAnnotation> excludedAnnotations) {

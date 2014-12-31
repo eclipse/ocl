@@ -26,7 +26,6 @@ import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitorImpl;
-import org.eclipse.ocl.pivot.internal.uml.UMLElementExtension;
 import org.eclipse.ocl.pivot.library.AbstractProperty;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -37,7 +36,7 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
  */
 public class ExtensionProperty extends AbstractProperty
 {
-	protected @NonNull Property property;
+	protected final @NonNull Property property;
 	
 	public ExtensionProperty(@NonNull Property property) {
 		this.property = property;
@@ -48,11 +47,6 @@ public class ExtensionProperty extends AbstractProperty
 		Type staticType = property.getType();
 		if (staticType == null) {
 			return null;
-		}
-		if (sourceValue instanceof org.eclipse.uml2.uml.Element) {
-			if (staticType instanceof Stereotype) {
-				return UMLElementExtension.getUMLElementExtension((Stereotype)staticType, (org.eclipse.uml2.uml.Element)sourceValue);
-			}
 		}
 		Element element = null;
 		if (sourceValue instanceof Element) {

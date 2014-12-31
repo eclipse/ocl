@@ -27,7 +27,6 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitorImpl;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.uml.UMLElementExtension;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
@@ -44,16 +43,8 @@ public class StereotypeProperty extends ConstrainedProperty
 	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		IdResolver idResolver = evaluator.getIdResolver();
 		EObject eObject = asNavigableObject(sourceValue, property, evaluator);
-//		if (eObject instanceof Metaclass<?>) {
-//			eObject = ((Metaclass<?>)eObject).getInstanceType();
-//		}
 		Object boxedValue = null;
-		if (eObject instanceof UMLElementExtension) {
-			Object unboxedValue = ((UMLElementExtension)eObject).getValue(idResolver, property);
-			boxedValue = unboxedValue != null ? idResolver.boxedValueOf(unboxedValue/*, eFeature, returnTypeId*/) : null;
-			return boxedValue;
-		}
-		else if (eObject instanceof ElementExtension) {
+		if (eObject instanceof ElementExtension) {
 			ElementExtension elementExtension = (ElementExtension)eObject;
 			String propertyName = property.getName();
 			Property extensionProperty = NameUtil.getNameable(elementExtension.getOwnedProperties(), propertyName);

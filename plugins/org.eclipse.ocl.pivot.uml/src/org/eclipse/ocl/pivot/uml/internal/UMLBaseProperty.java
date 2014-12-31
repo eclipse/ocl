@@ -1,0 +1,31 @@
+package org.eclipse.ocl.pivot.uml.internal;
+
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.ElementExtension;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.internal.library.BaseProperty;
+
+/**
+ * The static instance of ExplicitNavigationProperty supports evaluation of
+ * a property call that navigates a relationship.
+ */
+public class UMLBaseProperty extends BaseProperty
+{
+	public UMLBaseProperty(@NonNull Property property) {
+		super(property);
+	}
+	
+	@Override
+	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
+		if (sourceValue instanceof ElementExtension) {
+			return ((ElementExtension)sourceValue).eContainer(); 
+		}
+		if (sourceValue instanceof UMLElementExtension) {
+			return ((UMLElementExtension)sourceValue).getTarget(); 
+		}
+		return super.evaluate(evaluator, returnTypeId, sourceValue);
+	}
+}

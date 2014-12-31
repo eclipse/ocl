@@ -103,9 +103,4 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
 		org.eclipse.ocl.pivot.Class dType = metamodelManager.getIdResolver().getStaticTypeOf(context);
 		return metamodelManager.getType(dType);
 	}
-
-	@Override
-	public @Nullable StandaloneProjectMap getProjectMap() {
-		return null;
-	}
 }

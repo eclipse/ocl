@@ -21,8 +21,8 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.validation.model.Category;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.validation.LoadableConstraintProvider;
 import org.eclipse.ocl.pivot.resource.CSResource;
+import org.eclipse.ocl.pivot.uml.internal.validation.LoadableConstraintProvider;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 /**

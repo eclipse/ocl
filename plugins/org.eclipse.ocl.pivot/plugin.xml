@@ -96,104 +96,13 @@
        class = "org.eclipse.ocl.pivot.internal.delegate.OCLValidationDelegateFactory$Global" />
   </extension>
 
-   <extension point="org.eclipse.emf.validation.constraintParsers">
-      <constraintParser lang="Path"
-            class="org.eclipse.ocl.pivot.internal.validation.PathConstraintParser"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.validation.constraintProviders"
-         id="org.eclipse.ocl.xtext.completeocl.validation.provider">
-      <category id="org.eclipse.ocl.pivot.validation.UMLProfile"
-            name="UML Profiles">
-         Constraints determined by analyzing UML Profiles
-      </category>
-  </extension>
-
-   <extension point="org.eclipse.emf.validation.traversal">
-      <traversalStrategy
-            class="org.eclipse.ocl.pivot.internal.uml.UMLTraversalStrategy"
-            namespaceUri="http://www.eclipse.org/uml2/2.0.0/UML">
-         <eclass name="Model"/>
-      </traversalStrategy>
-      <traversalStrategy
-            class="org.eclipse.ocl.pivot.internal.uml.UMLTraversalStrategy"
-            namespaceUri="http://www.eclipse.org/uml2/3.0.0/UML">
-         <eclass name="Model"/>
-      </traversalStrategy>
-      <traversalStrategy
-            class="org.eclipse.ocl.pivot.internal.uml.UMLTraversalStrategy"
-            namespaceUri="http://www.eclipse.org/uml2/4.0.0/UML">
-         <eclass name="Model"/>
-      </traversalStrategy>
-      <traversalStrategy
-            class="org.eclipse.ocl.pivot.internal.uml.UMLTraversalStrategy"
-            namespaceUri="http://www.eclipse.org/uml2/5.0.0/UML">
-         <eclass name="Model"/>
-      </traversalStrategy>
-   </extension>
-
   <extension point="org.eclipse.ocl.pivot.as_resource_factory">
      <factory class="org.eclipse.ocl.pivot.internal.ecore.EcoreASResourceFactory"
      	extension="ecore" contentType="org.eclipse.ocl.oclas.ecore"/>
      <!--factory class="org.eclipse.ocl.pivot.internal.resource.OCLASResourceFactory"
      	extension="oclas" contentType="org.eclipse.ocl.oclas"
      	uri="http://www.eclipse.org/ocl/2015/Pivot"/-->
-     <factory class="org.eclipse.ocl.pivot.internal.uml.UMLASResourceFactory"
-     	extension="uml" contentType="org.eclipse.ocl.oclas.uml"
-     	resourceClass="org.eclipse.uml2.uml.resource.UMLResource"/>
   </extension>
-
-   <extension point="org.eclipse.ocl.pivot.label_generator">
-      <generator for="org.eclipse.emf.ecore.impl.DynamicEObjectImpl"
-      	class="org.eclipse.ocl.pivot.internal.labels.DynamicEObjectImplLabelGenerator"/>
-      <generator for="org.eclipse.emf.ecore.EAnnotation"
-      	class="org.eclipse.ocl.pivot.internal.labels.EAnnotationLabelGenerator"/>
-      <generator for="org.eclipse.emf.common.util.URI"
-      	class="org.eclipse.ocl.pivot.internal.labels.EcoreURILabelGenerator"/>
-      <generator for="org.eclipse.emf.ecore.EGenericType"
-      	class="org.eclipse.ocl.pivot.internal.labels.EGenericTypeLabelGenerator"/>
-      <generator for="org.eclipse.emf.ecore.ENamedElement"
-      	class="org.eclipse.ocl.pivot.internal.labels.ENamedElementLabelGenerator"/>
-      <generator for="org.eclipse.emf.ecore.EObject"
-      	class="org.eclipse.ocl.pivot.internal.labels.EObjectLabelGenerator"/>
-      <generator for="org.eclipse.ocl.pivot.ids.ElementId"
-      	class="org.eclipse.ocl.pivot.internal.labels.ElementIdLabelGenerator"/>
-      <generator for="org.eclipse.ocl.pivot.ExpressionInOCL"
-      	class="org.eclipse.ocl.pivot.internal.labels.ExpressionInOCLLabelGenerator"/>
-      <generator for="org.eclipse.ocl.pivot.Model"
-      	class="org.eclipse.ocl.pivot.internal.labels.ModelLabelGenerator"/>
-      <generator for="org.eclipse.ocl.pivot.Nameable"
-      	class="org.eclipse.ocl.pivot.internal.labels.NameableLabelGenerator"/>
-      <generator for="java.lang.String"
-      	class="org.eclipse.ocl.pivot.internal.labels.StringLabelGenerator"/>
-   </extension>
-
-   <extension point="org.eclipse.ocl.pivot.label_generator">
-      <generator for="org.eclipse.uml2.uml.Comment"
-      	class="org.eclipse.ocl.pivot.internal.uml.CommentLabelGenerator"/>
-      <generator for="org.eclipse.uml2.uml.LiteralBoolean"
-      	class="org.eclipse.ocl.pivot.internal.uml.LiteralBooleanLabelGenerator"/>
-      <generator for="org.eclipse.uml2.uml.LiteralInteger"
-      	class="org.eclipse.ocl.pivot.internal.uml.LiteralIntegerLabelGenerator"/>
-      <generator for="org.eclipse.uml2.uml.LiteralNull"
-      	class="org.eclipse.ocl.pivot.internal.uml.LiteralNullLabelGenerator"/>
-      <generator for="org.eclipse.uml2.uml.LiteralReal"
-      	class="org.eclipse.ocl.pivot.internal.uml.LiteralRealLabelGenerator"/>
-      <generator for="org.eclipse.uml2.uml.LiteralString"
-      	class="org.eclipse.ocl.pivot.internal.uml.LiteralStringLabelGenerator"/>
-      <generator for="org.eclipse.uml2.uml.LiteralUnlimitedNatural"
-      	class="org.eclipse.ocl.pivot.internal.uml.LiteralUnlimitedNaturalLabelGenerator"/>
-      <generator for="org.eclipse.uml2.uml.NamedElement"
-      	class="org.eclipse.ocl.pivot.internal.uml.NamedElementLabelGenerator"/>
-      <generator for="org.eclipse.uml2.uml.OpaqueExpression"
-      	class="org.eclipse.ocl.pivot.internal.uml.OpaqueExpressionLabelGenerator"/>
-      <generator for="org.eclipse.uml2.uml.PackageImport"
-      	class="org.eclipse.ocl.pivot.internal.uml.PackageImportLabelGenerator"/>
-      <generator for="org.eclipse.uml2.uml.Slot"
-      	class="org.eclipse.ocl.pivot.internal.uml.SlotLabelGenerator"/>
-      <generator for="org.eclipse.ocl.pivot.internal.uml.UMLElementExtension"
-      	class="org.eclipse.ocl.pivot.internal.uml.UMLElementExtensionLabelGenerator"/>
-   </extension>
 
    <extension point="org.eclipse.ocl.pivot.standard_library"
          id="ocl_stdlib" name="OCL Stdlib">
