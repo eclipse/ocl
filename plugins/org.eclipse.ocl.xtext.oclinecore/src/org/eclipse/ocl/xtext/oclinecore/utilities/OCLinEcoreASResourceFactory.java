@@ -20,8 +20,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryContribution;
-import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
+import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.internal.resource.AbstractASResourceFactory;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
@@ -32,15 +31,15 @@ public final class OCLinEcoreASResourceFactory extends AbstractASResourceFactory
 {
 	private static @Nullable OCLinEcoreASResourceFactory INSTANCE = null;
 
-	public static @NonNull OCLinEcoreASResourceFactory getInstance() {
+	public static synchronized @NonNull OCLinEcoreASResourceFactory getInstance() {
 		if (INSTANCE == null) {
-			ASResourceFactoryContribution asResourceRegistry = ASResourceFactoryRegistry.INSTANCE.get(ASResource.OCLINECORE_CONTENT_TYPE);
-			if (asResourceRegistry != null) {
-				asResourceRegistry.getASResourceFactory();						// Create the registered singleton
-			}
-			if (INSTANCE == null) {
-				new OCLinEcoreASResourceFactory();							// Create our own singleton
-			}
+//			ASResourceFactoryContribution asResourceRegistry = ASResourceFactoryRegistry.INSTANCE.get(ASResource.OCLINECORE_CONTENT_TYPE);
+//			if (asResourceRegistry != null) {
+//				INSTANCE = (OCLinEcoreASResourceFactory) asResourceRegistry.getASResourceFactory();		// Create the registered singleton
+//			}
+//			else {
+				INSTANCE = new OCLinEcoreASResourceFactory();											// Create our own singleton
+//			}
 			assert INSTANCE != null;
 			INSTANCE.install(PivotConstants.OCLINECORE_FILE_EXTENSION, null);
 		}
@@ -50,7 +49,11 @@ public final class OCLinEcoreASResourceFactory extends AbstractASResourceFactory
 
 	public OCLinEcoreASResourceFactory() {
 		super(ASResource.OCLINECORE_CONTENT_TYPE);
-		INSTANCE = this;
+	}
+
+	@Override
+	public @NonNull ASResourceFactory getASResourceFactory() {
+		return getInstance();
 	}
 
 	@Override

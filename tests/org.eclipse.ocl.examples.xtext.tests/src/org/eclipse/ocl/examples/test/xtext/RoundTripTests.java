@@ -33,11 +33,10 @@ import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.delegate.DelegateInstaller;
-import org.eclipse.ocl.pivot.internal.ecore.AS2Ecore;
-import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
+import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
@@ -47,9 +46,12 @@ import org.eclipse.ocl.pivot.resource.ProjectMap;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IPackageDescriptor;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IProjectDescriptor;
-import org.eclipse.ocl.pivot.uml.internal.AS2UML;
-import org.eclipse.ocl.pivot.uml.internal.UML2AS;
+import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
+import org.eclipse.ocl.pivot.uml.internal.as2es.AS2UML;
+import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
+import org.eclipse.ocl.pivot.uml.internal.utilities.UMLEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS.MessageBinder;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
@@ -145,7 +147,7 @@ public class RoundTripTests extends XtextTestCase
 //			String inputName = stem + ".ocl";
 //			String outputName = stem + ".regenerated.ocl";
 			URI outputURI = inputURI.trimFileExtension().appendFileExtension("regenerated.ocl");
-			PivotEnvironmentFactory environmentFactory1 = new PivotEnvironmentFactory(projectMap, null);
+			PivotEnvironmentFactory environmentFactory1 = new UMLEnvironmentFactory(projectMap, null);
 			MetamodelManager metamodelManager1 = environmentFactory1.getMetamodelManager();
 			MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager1);
 			BaseCSResource xtextResource1 = createXtextFromURI(metamodelManager1, inputURI);
@@ -156,7 +158,7 @@ public class RoundTripTests extends XtextTestCase
 			metamodelManager1.dispose();
 			metamodelManager1 = null;
 			//
-			PivotEnvironmentFactory environmentFactory3 = new PivotEnvironmentFactory(projectMap, null);
+			PivotEnvironmentFactory environmentFactory3 = new UMLEnvironmentFactory(projectMap, null);
 			MetamodelManager metamodelManager3 = environmentFactory3.getMetamodelManager();
 			BaseCSResource xtextResource3 = createXtextFromURI(metamodelManager3, outputURI);
 			@SuppressWarnings("unused")
@@ -529,6 +531,7 @@ public class RoundTripTests extends XtextTestCase
 	}
 
 	public void testCompleteOCLRoundTrip_Fruit() throws IOException, InterruptedException {
+//		UMLStandaloneSetup.init();
 		Map<URI, URI> uriMap = resourceSet.getURIConverter().getURIMap();
 		uriMap.putAll(UML402UMLExtendedMetaData.getURIMap());
 //		EssentialOCLLinkingService.DEBUG_RETRY = true;
@@ -593,6 +596,7 @@ public class RoundTripTests extends XtextTestCase
 	} */
 
 	public void testUML25RoundTrip() throws IOException, InterruptedException, ParserException {
+		UMLStandaloneSetup.init();
 //		EssentialOCLLinkingService.DEBUG_RETRY = true;
 		URI uri = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.uml25/model/UML.ecore", true);
 		Map<String,Object> options = new HashMap<String, Object>();
@@ -600,7 +604,7 @@ public class RoundTripTests extends XtextTestCase
 		options.put(DelegateInstaller.OPTION_BOOLEAN_INVARIANTS, true);
 		options.put(OCLConstants.OCL_DELEGATE_URI, OCLConstants.OCL_DELEGATE_URI);
 		options.put(DelegateInstaller.OPTION_OMIT_SETTING_DELEGATES, true);
-		doRoundTripFromEcore(uri, uri, options);
+		doRoundTripFromEcore(new UMLEnvironmentFactory(null, null).getMetamodelManager(), uri, uri, options);
 	}
 
 	public void testSysMLRoundTrip() throws IOException, InterruptedException {

@@ -15,9 +15,9 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.internal.Query;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.delegate.OCLQueryDelegate;
+import org.eclipse.ocl.pivot.utilities.Query;
 
 /**
  * An implementation of a query delegate for OCL expressions.

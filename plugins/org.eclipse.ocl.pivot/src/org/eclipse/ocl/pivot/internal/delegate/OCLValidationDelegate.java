@@ -30,7 +30,6 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.SemanticException;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.EvaluationException;
-import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
@@ -39,6 +38,7 @@ import org.eclipse.ocl.pivot.internal.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
@@ -205,7 +205,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 			throw new ClassCastException(namedElement.getClass().getName() + " does not provide a Constraint");
 		}
 		else {
-			throw new ClassCastException(invariant.eClass().getName() + " does not provide a Constraint");
+			throw new IllegalStateException(invariant.eClass().getName() + " does not provide a Constraint");
 		}
 	}
 

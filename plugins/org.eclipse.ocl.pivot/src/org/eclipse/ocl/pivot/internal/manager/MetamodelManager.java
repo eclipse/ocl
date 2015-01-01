@@ -109,15 +109,15 @@ import org.eclipse.ocl.pivot.internal.context.ClassContext;
 import org.eclipse.ocl.pivot.internal.context.OperationContext;
 import org.eclipse.ocl.pivot.internal.context.ParserContext;
 import org.eclipse.ocl.pivot.internal.context.PropertyContext;
-import org.eclipse.ocl.pivot.internal.ecore.AS2Ecore;
-import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.ecore.EcoreASResourceFactory;
+import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
+import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.library.ConstrainedOperation;
 import org.eclipse.ocl.pivot.internal.library.EInvokeOperation;
+import org.eclipse.ocl.pivot.internal.library.ImplementationManager;
 import org.eclipse.ocl.pivot.internal.library.StandardLibraryContribution;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
-import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryContribution;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.utilities.AS2XMIid;
 import org.eclipse.ocl.pivot.internal.utilities.CompleteElementIterable;
@@ -565,10 +565,6 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 		asIf.setIsRequired(true);
 		return asIf;
 	}
-	
-	protected @NonNull ImplementationManager createImplementationManager() {
-		return new ImplementationManager(this);
-	}
 
 	public @NonNull IntegerLiteralExp createIntegerLiteralExp(@NonNull Number integerSymbol) {
 		IntegerLiteralExp asInteger = PivotFactory.eINSTANCE.createIntegerLiteralExp();
@@ -1006,7 +1002,7 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 		@SuppressWarnings("null")@NonNull ElementExtension asElementExtension = PivotFactory.eINSTANCE.createElementExtension();
 		asElementExtension.setStereotype(asStereotype);
 		String name = environmentFactory.getExtensionName(asStereotypedElement);
-		asElementExtension.setName(name + "$" + asStereotype.getName());	// FIXME cast
+		asElementExtension.setName(name + "$" + asStereotype.getName());
 //		asElementExtension.getSuperClass().add(getOclAnyType());
 		extensions.add(asElementExtension);
 		return asElementExtension;
@@ -1175,7 +1171,7 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 	public @NonNull ImplementationManager getImplementationManager() {
 		ImplementationManager implementationManager2 = implementationManager;
 		if (implementationManager2 == null) {
-			implementationManager2 = implementationManager = createImplementationManager();
+			implementationManager2 = implementationManager = environmentFactory.createImplementationManager();
 		}
 		return implementationManager2;
 	}
@@ -1254,16 +1250,6 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 	@Override
 	public @NonNull MetamodelManager getMetamodelManager() {
 		return this;
-	}
-
-	public @Nullable String getMetamodelNsURI(@NonNull EPackage ePackage) {
-		for (ASResourceFactoryContribution asResourceFactory : ASResourceFactoryRegistry.INSTANCE.getResourceFactories()) {
-			String metamodelNsURI = asResourceFactory.getASResourceFactory().getMetamodelNsURI(ePackage);
-			if (metamodelNsURI != null) {
-				return metamodelNsURI;
-			}
-		}
-		return null;
 	}
 
 	public @NonNull Iterable<Property> getMemberProperties(@NonNull org.eclipse.ocl.pivot.Class type, boolean selectStatic) {
@@ -1524,11 +1510,11 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 		if (eObject == null) {
 			return null;
 		}
-		Resource metaModel = eObject.eResource();
-		if (metaModel == null) {
+		Resource metamodel = eObject.eResource();
+		if (metamodel == null) {
 			return null;
 		}
-		Ecore2AS ecore2as = Ecore2AS.getAdapter(metaModel, this);
+		Ecore2AS ecore2as = Ecore2AS.getAdapter(metamodel, this);
 		if (ecore2as == null) {
 			return null;
 		}
@@ -2165,8 +2151,8 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 					if (contents.size() > 0) {
 						EObject firstContent = contents.get(0);
 						if (firstContent != null) {
-							for (ASResourceFactoryContribution resourceFactory : ASResourceFactoryRegistry.INSTANCE.getResourceFactories()) {
-								URI packageURI = resourceFactory.getASResourceFactory().getPackageURI(firstContent);
+							for (ASResourceFactory resourceFactory : ASResourceFactoryRegistry.INSTANCE.getLoadedResourceFactories()) {
+								URI packageURI = resourceFactory.getPackageURI(firstContent);
 								if (packageURI != null) {
 									External2AS external2as2 = external2asMap.get(packageURI);
 									if (external2as2 != null) {

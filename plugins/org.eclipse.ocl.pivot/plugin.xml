@@ -98,7 +98,7 @@
 
   <extension point="org.eclipse.ocl.pivot.as_resource_factory">
      <factory class="org.eclipse.ocl.pivot.internal.ecore.EcoreASResourceFactory"
-     	extension="ecore" contentType="org.eclipse.ocl.oclas.ecore"/>
+     	extension="ecore" contentType="org.eclipse.ocl.oclas.ecore" externalPriority="100"/>
      <!--factory class="org.eclipse.ocl.pivot.internal.resource.OCLASResourceFactory"
      	extension="oclas" contentType="org.eclipse.ocl.oclas"
      	uri="http://www.eclipse.org/ocl/2015/Pivot"/-->

@@ -31,6 +31,8 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.TemplateParameterSubstitutionVisitor;
 import org.eclipse.ocl.pivot.internal.prettyprint.EssentialOCLPrettyPrintVisitor;
@@ -38,7 +40,9 @@ import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintVisitor;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
 import org.eclipse.ocl.pivot.internal.utilities.AS2XMIid;
+import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.AS2MonikerVisitor;
 import org.eclipse.ocl.pivot.utilities.AS2XMIidVisitor;
 import org.eclipse.ocl.pivot.utilities.ASSaverLocateVisitor;
@@ -67,7 +71,12 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 
 	protected AbstractASResourceFactory(@NonNull String contentType) {
 		this.contentType = contentType;
-}
+	}
+
+	@Override
+	public @NonNull ASResourceFactory basicGetASResourceFactory() {
+		return this;
+	}
 
 	@Override
 	public void configure(@NonNull ResourceSet resourceSet) {
@@ -109,6 +118,11 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 	public @NonNull ASSaverResolveVisitor createASSaverResolveVisitor(@NonNull ASSaver saver) {
 		return new ASSaverResolveVisitor(saver);
 	}
+
+	@Override
+	public @NonNull EnvironmentFactoryInternal createEnvironmentFactory(@Nullable StandaloneProjectMap projectMap, @Nullable ModelManager modelManager) {
+		return new PivotEnvironmentFactory(projectMap, modelManager);
+	}
 	
 	@Override
 	public @NonNull PrettyPrintVisitor createPrettyPrintVisitor(@NonNull PrettyPrinter prettyPrinter) {
@@ -143,12 +157,7 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 	}
 
 	@Override
-	public @NonNull ASResourceFactory getASResourceFactory() {
-		return this;
-	}
-
-	@Override
-	public @NonNull ASResourceFactoryContribution getContribution() {
+	public @NonNull ASResourceFactory getContribution() {
 		return this;
 	}
 
@@ -174,6 +183,16 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 
 	@Override
 	public @Nullable URI getPackageURI(@NonNull EObject eObject) {
+		return null;
+	}
+
+	@Override
+	public @Nullable Integer getPriority() {
+		return null;
+	}
+
+	@Override
+	public @Nullable String getResourceClassName() {
 		return null;
 	}
 

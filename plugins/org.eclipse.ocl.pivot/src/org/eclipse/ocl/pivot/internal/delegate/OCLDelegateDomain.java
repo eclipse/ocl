@@ -34,12 +34,13 @@ import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerListener;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 /**
@@ -182,7 +183,7 @@ public class OCLDelegateDomain implements DelegateDomain, MetamodelManagerListen
 					envFactory = metamodelManager.getEnvironmentFactory();
 				}
 				else {
-					envFactory = new PivotEnvironmentFactory(null, null);
+					envFactory = ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(resourceSet, null, null);
 				}
 				DelegateResourceAdapter.getAdapter(res);
 			}

@@ -18,7 +18,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.OCL;
+import org.eclipse.ocl.pivot.utilities.OCL;
 
 /**
  * A utility object that provides OCL syntax completion suggestions for OCL

@@ -12,7 +12,7 @@ package org.eclipse.ocl.pivot.uml.internal.labels;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.labels.AbstractLabelGenerator;
-import org.eclipse.ocl.pivot.uml.internal.UMLElementExtension;
+import org.eclipse.ocl.pivot.uml.internal.library.UMLElementExtension;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 
 public final class UMLElementExtensionLabelGenerator extends AbstractLabelGenerator<UMLElementExtension>

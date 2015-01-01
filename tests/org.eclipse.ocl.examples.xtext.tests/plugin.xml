@@ -24,7 +24,7 @@ The actual constraints are lazily loaded by the first validation run that uses t
             </constraint>
          </constraints>
       </constraintProvider>
-      <constraintProvider class="org.eclipse.ocl.pivot.uml.UMLProfileConstraintProvider">
+      <constraintProvider class="org.eclipse.ocl.pivot.uml.internal.validation.UMLProfileConstraintProvider">
          <package namespaceUri="http://www.eclipse.org/ocl/examples/Internationalized"/>
          <constraints categories="org.eclipse.ocl.pivot.validation.UMLProfile/Internationalized.profile.uml">
             <constraint id="placeholderB" lang="Path" statusCode="101"
@@ -41,7 +41,7 @@ The actual constraints are lazily loaded by the first validation run that uses t
   </extension>
    <extension point="org.eclipse.emf.validation.constraintBindings">
       <clientContext id="umlProvider.context" default="false">
-         <selector class="org.eclipse.ocl.pivot.validation.PivotClientSelector"/>
+         <selector class="org.eclipse.ocl.pivot.uml.internal.validation.PivotClientSelector"/>
       </clientContext>
       <binding context="umlProvider.context"
             category="org.eclipse.ocl.pivot.validation.UMLProfile/Internationalized.profile.uml"/>

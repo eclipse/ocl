@@ -63,7 +63,7 @@ import org.eclipse.ocl.pivot.ids.ParametersId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
@@ -800,7 +800,7 @@ public class OCLinEcoreTablesUtils
 		Resource genModelResource = genPackage.eResource();
 		ResourceSet genModelResourceSet = genModelResource.getResourceSet();
 		assert genModelResourceSet != null;
-		org.eclipse.ocl.pivot.Package metaModelPackage = metamodelManager.getASmetamodel();
+		org.eclipse.ocl.pivot.Package metamodelPackage = metamodelManager.getASmetamodel();
 		org.eclipse.ocl.pivot.Package libraryPackage = metamodelManager.getLibraries().get(0);
 		if (asPackage == libraryPackage) {
 			GenPackage libraryGenPackage = getLibraryGenPackage(usedGenPackages);
@@ -809,12 +809,12 @@ public class OCLinEcoreTablesUtils
 			}
 			return libraryGenPackage;
 		}
-		if (asPackage == metaModelPackage) {
-			GenPackage metaModelGenPackage = getMetamodelGenPackage(usedGenPackages);
-			if (metaModelGenPackage == null) {
-				metaModelGenPackage = loadGenPackage(genModelResourceSet, PivotConstantsInternal.GEN_MODEL_URI);
+		if (asPackage == metamodelPackage) {
+			GenPackage metamodelGenPackage = getMetamodelGenPackage(usedGenPackages);
+			if (metamodelGenPackage == null) {
+				metamodelGenPackage = loadGenPackage(genModelResourceSet, PivotConstantsInternal.GEN_MODEL_URI);
 			}
-			return metaModelGenPackage;
+			return metamodelGenPackage;
 		}
 		String nsURI = asPackage.getURI();
 		if (nsURI != null) {

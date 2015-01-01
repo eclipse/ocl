@@ -40,8 +40,8 @@ import org.eclipse.ocl.pivot.internal.context.ParserContext;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
+import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.utilities.IllegalLibraryException;
-import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -239,7 +239,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 				return resourceSetAdapter.getMetamodelManager();
 			}
 		}
-		return new PivotEnvironmentFactory(null, null).getMetamodelManager();
+		return ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(resourceSet, null, null).getMetamodelManager();
 	}
 
 	@Override

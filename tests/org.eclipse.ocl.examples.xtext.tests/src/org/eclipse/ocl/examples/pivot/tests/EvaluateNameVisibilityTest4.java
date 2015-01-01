@@ -42,7 +42,7 @@ import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
-import org.eclipse.ocl.pivot.uml.internal.UML2AS;
+import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.xtext.oclinecore.OCLinEcoreStandaloneSetup;
@@ -225,15 +225,15 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
 			OCLinEcoreStandaloneSetup.doSetup();
 		}
-		String metaModelText =
+		String metamodelText =
 				"import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/';\n" +
 				"package pkg : pkg = 'pkg' {\n" +
 				"  class A {\n" +
 				"    invariant True : true;\n" +
 				"  }\n" +
 				"}\n";
-		Resource metaModel = cs2as(getOCL(), metaModelText);
-		Model pivotModel = (Model) metaModel.getContents().get(0);
+		Resource metamodel = cs2as(getOCL(), metamodelText);
+		Model pivotModel = (Model) metamodel.getContents().get(0);
 		org.eclipse.ocl.pivot.Package pivotPackage = pivotModel.getOwnedPackages().get(0);
 		org.eclipse.ocl.pivot.Class pivotType = pivotPackage.getOwnedClasses().get(0);
 		Constraint pivotConstraint = pivotType.getOwnedInvariants().get(0);
@@ -246,7 +246,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 			OCLinEcoreStandaloneSetup.doSetup();
 			OCLDelegateDomain.initialize(null);
 		}
-		String metaModelText =
+		String metamodelText =
 				"import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/';\n" +
 				"package pkg : pkg = 'pkg' {\n" +
 				"  class A {\n" +
@@ -254,8 +254,8 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 				"    operation derivedDerivedOperation(p : Integer) : Integer { body: 2 * derivedOperation(p);}\n" +
 				"  }\n" +
 				"}\n";
-		Resource metaModel = cs2as(getOCL(), metaModelText);
-		Root pivotModel = (Root) metaModel.getContents().get(0);
+		Resource metamodel = cs2as(getOCL(), metamodelText);
+		Root pivotModel = (Root) metamodel.getContents().get(0);
 		org.eclipse.ocl.pivot.Package pivotPackage = pivotModel.getNestedPackage().get(0);
 		Type pivotType = pivotPackage.getOwnedType().get(0);
 		EClass eClass = metamodelManager.getEcoreOfPivot(EClass.class, pivotType);
@@ -269,7 +269,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 			OCLinEcoreStandaloneSetup.doSetup();
 			OCLDelegateDomain.initialize(null);
 		}
-		String metaModelText =
+		String metamodelText =
 				"import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/';\n" +
 				"package pkg : pkg = 'pkg' {\n" +
 				"  class A {\n" +
@@ -277,8 +277,8 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 				"    property derivedDerivedInteger : Integer { derivation: 2 * derivedInteger;}\n" +
 				"  }\n" +
 				"}\n";
-		Resource metaModel = cs2as(getOCL(), metaModelText);
-		Model pivotModel = (Model) metaModel.getContents().get(0);
+		Resource metamodel = cs2as(getOCL(), metamodelText);
+		Model pivotModel = (Model) metamodel.getContents().get(0);
 		org.eclipse.ocl.pivot.Package pivotPackage = pivotModel.getOwnedPackages().get(0);
 		org.eclipse.ocl.pivot.Class pivotType = pivotPackage.getOwnedClasses().get(0);
 		EClass eClass = metamodelManager.getEcoreOfPivot(EClass.class, pivotType);
@@ -292,7 +292,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 			OCLinEcoreStandaloneSetup.doSetup();
 			OCLDelegateDomain.initialize(null);
 		}
-		String metaModelText =
+		String metamodelText =
 				"package scope = 'abc'\n" + 
 				"{\n" + 
 				"	class A\n" + 
@@ -310,8 +310,8 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 				"		property as : A[*] { ordered composes };\n" + 
 				"	}\n" + 
 				"}\n";
-		Resource metaModel = cs2as(getOCL(), metaModelText);
-		Model pivotModel = (Model) metaModel.getContents().get(0);
+		Resource metamodel = cs2as(getOCL(), metamodelText);
+		Model pivotModel = (Model) metamodel.getContents().get(0);
 		org.eclipse.ocl.pivot.Package pivotPackage = pivotModel.getOwnedPackages().get(0);
 		org.eclipse.ocl.pivot.Class pivotTypeA = NameUtil.getNameable(pivotPackage.getOwnedClasses(), "A");
 		org.eclipse.ocl.pivot.Class pivotTypeB = NameUtil.getNameable(pivotPackage.getOwnedClasses(), "B");
@@ -474,7 +474,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 			OCLinEcoreStandaloneSetup.doSetup();
 			OCLDelegateDomain.initialize(null);
 		}
-		String metaModelText =
+		String metamodelText =
 				"package Bug411154 : pfx = 'Bug411154.ecore'\n" +
 				"{\n" +
 				"	class Domain {\n" +
@@ -521,8 +521,8 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 				"		operation op7() : String { body: 'T4::op7'; }\n" +
 				"	}\n" +
 				"}\n";
-		Resource metaModel = cs2as(getOCL(), metaModelText);
-		Model pivotModel = (Model) metaModel.getContents().get(0);
+		Resource metamodel = cs2as(getOCL(), metamodelText);
+		Model pivotModel = (Model) metamodel.getContents().get(0);
 		org.eclipse.ocl.pivot.Package pivotPackage = pivotModel.getOwnedPackages().get(0);
 		org.eclipse.ocl.pivot.Class pivotTypeDomain = NameUtil.getNameable(pivotPackage.getOwnedClasses(), "Domain");
 //		org.eclipse.ocl.pivot.Class pivotTypeT1 = ClassUtil.getNamedElement(pivotPackage.getOwnedType(), "T1");

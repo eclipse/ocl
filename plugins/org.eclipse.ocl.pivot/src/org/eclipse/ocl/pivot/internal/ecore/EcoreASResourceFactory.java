@@ -19,9 +19,9 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryContribution;
-import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
+import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.internal.resource.AbstractASResourceFactory;
 import org.eclipse.ocl.pivot.internal.validation.EcoreOCLEValidator;
 import org.eclipse.ocl.pivot.resource.ASResource;
@@ -30,15 +30,15 @@ public final class EcoreASResourceFactory extends AbstractASResourceFactory
 {
 	private static @Nullable EcoreASResourceFactory INSTANCE = null;
 
-	public static @NonNull EcoreASResourceFactory getInstance() {
+	public static synchronized @NonNull EcoreASResourceFactory getInstance() {
 		if (INSTANCE == null) {
-			ASResourceFactoryContribution asResourceRegistry = ASResourceFactoryRegistry.INSTANCE.get(ASResource.ECORE_CONTENT_TYPE);
-			if (asResourceRegistry != null) {
-				asResourceRegistry.getASResourceFactory();						// Create the registered singleton
-			}
-			if (INSTANCE == null) {
-				new EcoreASResourceFactory();									// Create our own singleton
-			}
+//			ASResourceFactoryContribution asResourceRegistry = ASResourceFactoryRegistry.INSTANCE.get(ASResource.ECORE_CONTENT_TYPE);
+//			if (asResourceRegistry != null) {
+//				INSTANCE = (EcoreASResourceFactory) asResourceRegistry.getASResourceFactory();	// Create the registered singleton
+//			}
+//			else {
+				INSTANCE = new EcoreASResourceFactory();										// Create our own singleton
+//			}
 			assert INSTANCE != null;
 			INSTANCE.install("ecore", null);
 		}
@@ -48,7 +48,6 @@ public final class EcoreASResourceFactory extends AbstractASResourceFactory
 
 	public EcoreASResourceFactory() {
 		super(ASResource.ECORE_CONTENT_TYPE);
-		INSTANCE = this;
 	}
 
 	@Override
@@ -65,6 +64,11 @@ public final class EcoreASResourceFactory extends AbstractASResourceFactory
 	}
 
 	@Override
+	public @NonNull ASResourceFactory getASResourceFactory() {
+		return getInstance();
+	}
+
+	@Override
 	public @Nullable URI getPackageURI(@NonNull EObject eObject) {
 		if (eObject instanceof EPackage) {
 			String uri = ((EPackage)eObject).getNsURI();
@@ -74,6 +78,12 @@ public final class EcoreASResourceFactory extends AbstractASResourceFactory
 		}
 		return null;
 	}
+
+	@Override
+	public @Nullable Integer getPriority() {
+		return 100;
+	}
+	
 	@Override
 	public @Nullable Element importFromResource(@NonNull MetamodelManager metamodelManager, @NonNull Resource ecoreResource, @Nullable URI uri) {
 		Ecore2AS conversion = Ecore2AS.getAdapter(ecoreResource, metamodelManager);
@@ -88,7 +98,7 @@ public final class EcoreASResourceFactory extends AbstractASResourceFactory
 			if (eObject == null) {
 				return null;
 			}
-			return conversion.newCreateMap.get(eObject);
+			return conversion.getCreated(eObject);
 		}
 	}
 

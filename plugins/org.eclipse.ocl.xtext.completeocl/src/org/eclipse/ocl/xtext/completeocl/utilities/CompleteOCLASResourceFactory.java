@@ -19,8 +19,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryContribution;
-import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
+import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.internal.resource.AbstractASResourceFactory;
 import org.eclipse.ocl.pivot.internal.utilities.AS2XMIid;
 import org.eclipse.ocl.pivot.resource.ASResource;
@@ -31,15 +30,15 @@ public class CompleteOCLASResourceFactory extends AbstractASResourceFactory
 {
 	private static @Nullable CompleteOCLASResourceFactory INSTANCE = null;
 
-	public static @NonNull CompleteOCLASResourceFactory getInstance() {
+	public static synchronized @NonNull CompleteOCLASResourceFactory getInstance() {
 		if (INSTANCE == null) {
-			ASResourceFactoryContribution asResourceRegistry = ASResourceFactoryRegistry.INSTANCE.get(ASResource.COMPLETE_OCL_CONTENT_TYPE);
-			if (asResourceRegistry != null) {
-				asResourceRegistry.getASResourceFactory();						// Create the registered singleton
-			}
-			if (INSTANCE == null) {
-				new CompleteOCLASResourceFactory();							// Create our own singleton
-			}
+//			ASResourceFactoryContribution asResourceRegistry = ASResourceFactoryRegistry.INSTANCE.get(ASResource.COMPLETE_OCL_CONTENT_TYPE);
+//			if (asResourceRegistry != null) {
+//				INSTANCE = (CompleteOCLASResourceFactory) asResourceRegistry.getASResourceFactory();	// Create the registered singleton
+//			}
+//			else {
+				INSTANCE = new CompleteOCLASResourceFactory();											// Create our own singleton
+//			}
 			assert INSTANCE != null;
 			INSTANCE.install(PivotConstants.OCL_FILE_EXTENSION, null);
 		}
@@ -49,7 +48,6 @@ public class CompleteOCLASResourceFactory extends AbstractASResourceFactory
 
 	public CompleteOCLASResourceFactory() {
 		super(ASResource.COMPLETE_OCL_CONTENT_TYPE);
-		INSTANCE = this;
 	}
 
 	@Override
@@ -63,6 +61,11 @@ public class CompleteOCLASResourceFactory extends AbstractASResourceFactory
 		ASResource asResource = new CompleteOCLASResourceImpl(uri, this);
 		configureResource(asResource);
 	    return asResource;
+	}
+
+	@Override
+	public @NonNull ASResourceFactory getASResourceFactory() {
+		return getInstance();
 	}
 
 	@Override

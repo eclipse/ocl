@@ -39,7 +39,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.PivotPackage;
-import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.delegate.InvocationBehavior;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.delegate.SettingBehavior;
@@ -49,9 +48,13 @@ import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter
 import org.eclipse.ocl.pivot.internal.resource.OCLASResourceFactory;
 import org.eclipse.ocl.pivot.internal.validation.EcoreOCLEValidator;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
+import org.eclipse.ocl.pivot.resource.ProjectMap;
+import org.eclipse.ocl.pivot.uml.UMLOCL;
+import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
@@ -344,10 +347,21 @@ public class ValidateTests extends AbstractValidateTests
 
 	public void testValidate_Validate_completeocl_Bug422583() throws IOException, InterruptedException {
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
-		ResourceSet resourceSet = createResourceSet();
+		OCL ocl = UMLOCL.newInstance();
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
+		ResourceSet resourceSet = metamodelManager.getExternalResourceSet(); //createResourceSet();
+
+		ProjectMap.initializeURIResourceMap(resourceSet);
+		Map<URI, URI> uriMap = resourceSet.getURIConverter().getURIMap();
+    	if (EMFPlugin.IS_ECLIPSE_RUNNING) {
+    		uriMap.putAll(EcorePlugin.computePlatformURIMap(false));
+    	}
+		UML2AS.initialize(resourceSet);
+		
+		
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
 		OCLDelegateDomain.initialize(resourceSet, PivotConstants.OCL_DELEGATE_URI_PIVOT);			
-		MetamodelManagerResourceSetAdapter adapter = MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, null);
+//		MetamodelManagerResourceSetAdapter adapter = MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
 		//
 		URI umlURI = getProjectFileURI("Names.uml");
 		URI oclURI = getProjectFileURI("Bug422583.ocl");
@@ -405,8 +419,9 @@ public class ValidateTests extends AbstractValidateTests
 			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Class", "IsClassWrtLeaf", objectLabel1)/*,
 			ClassUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "NamedElement", "visibility_needs_ownership", objectLabel3),	// FIXME BUG 437450
 			ClassUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "NamedElement", "visibility_needs_ownership", objectLabel4)*/);	// FIXME BUG 437450
-		adapter.getMetamodelManager().dispose();
-		disposeResourceSet(resourceSet);
+//		adapter.getMetamodelManager().dispose();
+//		disposeResourceSet(resourceSet);
+		ocl.dispose();
 	}
 
 	@SuppressWarnings("null")

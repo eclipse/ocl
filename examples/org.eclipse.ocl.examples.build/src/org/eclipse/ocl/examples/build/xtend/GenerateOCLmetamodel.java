@@ -43,7 +43,7 @@ import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.resource.ASSaver;
@@ -239,10 +239,10 @@ public abstract class GenerateOCLmetamodel extends GenerateOCLCommonXtend
 			String fileName = outputFolder + "/" + javaClassName + ".java";
 			log.info("Generating '" + fileName + "'");
 			assert asRoot instanceof Model;
-			String metaModel = generateMetamodel((Model)asRoot);
+			String metamodel = generateMetamodel((Model)asRoot);
 			MergeWriter fw = new MergeWriter(fileName);
-			if (metaModel != null) {
-				fw.append(metaModel);
+			if (metamodel != null) {
+				fw.append(metamodel);
 			}
 			fw.close();
 			String saveFile = "/" + projectName + "/" + modelFile.replace("model", "model-gen").replace("ecore", "oclas");

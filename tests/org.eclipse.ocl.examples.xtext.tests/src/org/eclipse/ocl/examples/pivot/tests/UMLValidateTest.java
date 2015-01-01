@@ -33,7 +33,6 @@ import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.common.internal.preferences.CommonPreferenceInitializer;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
@@ -41,10 +40,13 @@ import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.values.IntIntegerValueImpl;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
-import org.eclipse.ocl.pivot.uml.internal.UML2AS;
+import org.eclipse.ocl.pivot.uml.UMLOCL;
+import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
+import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.xtext.completeocl.utilities.CompleteOCLLoader;
@@ -105,6 +107,9 @@ public class UMLValidateTest extends AbstractValidateTests
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
+		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
+			UMLStandaloneSetup.init();
+		}
 		EValidator.Registry.INSTANCE.put(null, new OCLinEcoreEObjectValidator());
 
 //		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
@@ -126,7 +131,7 @@ public class UMLValidateTest extends AbstractValidateTests
 		//
 		//	Create model
 		//
-		OCL ocl = OCL.newInstance();
+		OCL ocl = UMLOCL.newInstance();
 		Resource umlResource = doLoadUML(ocl, "Bug417062");
 		org.eclipse.uml2.uml.Model model = (org.eclipse.uml2.uml.Model) umlResource.getContents().get(0);
 		org.eclipse.uml2.uml.Class book = (org.eclipse.uml2.uml.Class) model.getOwnedType("Book");
@@ -376,7 +381,7 @@ public class UMLValidateTest extends AbstractValidateTests
 //		OCLDelegateDomain.initializePivotOnlyDiagnosticianResourceSet(resourceSet);
 //		URI uri = getProjectFileURI("Bug436945.uml");
 //		Resource umlResource = ClassUtil.nonNullState(resourceSet.getResource(uri, true));
-		OCL ocl = OCL.newInstance();
+		OCL ocl = UMLOCL.newInstance();
 		@SuppressWarnings("null")@NonNull Resource umlResource = doLoadUML(ocl, "Bug436945");
 		assertNoResourceErrors("Loading", umlResource);
 		Map<Object, Object> validationContext = LabelUtil.createDefaultContext(Diagnostician.INSTANCE);
@@ -405,7 +410,7 @@ public class UMLValidateTest extends AbstractValidateTests
 		ResourceSet resourceSet = createResourceSet();
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
 		OCLDelegateDomain.initializePivotOnlyDiagnosticianResourceSet(resourceSet);
-		OCL ocl = OCL.newInstance();
+		OCL ocl = UMLOCL.newInstance();
 		@SuppressWarnings("null")@NonNull Resource umlResource = doLoadUML(ocl, "Bug448470");
 		assertNoResourceErrors("Loading", umlResource);
 		Map<Object, Object> validationContext = LabelUtil.createDefaultContext(Diagnostician.INSTANCE);
@@ -432,7 +437,7 @@ public class UMLValidateTest extends AbstractValidateTests
 		ResourceSet resourceSet = createResourceSet();
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
 		OCLDelegateDomain.initializePivotOnlyDiagnosticianResourceSet(resourceSet);
-		OCL ocl = OCL.newInstance();
+		OCL ocl = UMLOCL.newInstance();
 		@SuppressWarnings("null")@NonNull Resource umlResource = doLoadUML(ocl, "Bug452621");
 		assertNoResourceErrors("Loading", umlResource);
 		Map<Object, Object> validationContext = LabelUtil.createDefaultContext(Diagnostician.INSTANCE);

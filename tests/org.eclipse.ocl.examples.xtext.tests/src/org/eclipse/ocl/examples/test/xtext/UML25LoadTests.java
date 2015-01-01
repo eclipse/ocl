@@ -18,6 +18,8 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.uml25.XMI252UMLResourceFactoryImpl;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
+import org.eclipse.ocl.pivot.uml.internal.utilities.UMLEnvironmentFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.XMI2UMLResource;
 
@@ -119,7 +121,8 @@ public class UML25LoadTests extends LoadTests
 	
 	@Override
 	protected MetamodelManager createMetamodelManager() {
-		MetamodelManager metamodelManager = super.createMetamodelManager();
+		UMLStandaloneSetup.init();
+		MetamodelManager metamodelManager = new UMLEnvironmentFactory(null, null).getMetamodelManager();
 		XMI252UMLResourceFactoryImpl.install(metamodelManager.getExternalResourceSet(), URI.createPlatformResourceURI("/org.eclipse.ocl.examples.uml25/model/", true));
 		return metamodelManager;
 	}

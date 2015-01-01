@@ -22,10 +22,15 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.AssociationClass;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
-import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
+import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
+import org.eclipse.ocl.pivot.uml.internal.utilities.UMLEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.uml2.uml.Association;
 
@@ -95,6 +100,13 @@ public abstract class PivotFruitTestSuite extends PivotTestSuite
 
 	public PivotFruitTestSuite(boolean useCodeGen) {
 		super(useCodeGen);
+	}
+
+	@Override
+	protected @NonNull MetamodelManager createMetamodelManager() {
+		UMLStandaloneSetup.init();
+		PivotEnvironmentFactory environmentFactory = new UMLEnvironmentFactory(getProjectMap(), null);
+		return environmentFactory.getMetamodelManager();
 	}
 
 	private EEnumLiteral getELiteral(EEnum eEnum, String name) {

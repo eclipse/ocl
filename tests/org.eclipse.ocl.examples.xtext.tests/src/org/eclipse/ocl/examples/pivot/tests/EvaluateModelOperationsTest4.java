@@ -28,10 +28,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.Value;
 import org.junit.After;
@@ -114,7 +114,7 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 	 * Test that Ecore Data Types can be used. Inspired by Bug 358713.
 	 */
 	@Test public void test_ecoreDataTypes() throws IOException {
-		String metaModelText =
+		String metamodelText =
 			"import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/';\n" +
 			"package pkg : pkg = 'pkg' {\n" +
 			"  class A {\n" +
@@ -139,8 +139,8 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 			"    property anEString : ecore::EString;\n" +
 			"  }\n" +
 			"}\n";
-		Resource metaModel = cs2ecore(getOCL(), metaModelText, null);
-		EPackage ePackage = (EPackage) metaModel.getContents().get(0);
+		Resource metamodel = cs2ecore(getOCL(), metamodelText, null);
+		EPackage ePackage = (EPackage) metamodel.getContents().get(0);
 		EClass eClass = ClassUtil.nonNullState((EClass) ePackage.getEClassifiers().get(0));
 //        helper.setContext(metamodelManager.getIdResolver().getType(eClass));
         EObject eObject = eCreate(eClass);
@@ -256,7 +256,7 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 	 * Test implicit collect and oclAsSet() therein. Inspired by Bug 351512.
 	 */
 	@Test public void test_oclAsSet_351512() throws IOException {
-		String metaModelText =
+		String metamodelText =
 			"import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/';\n" +
 			"package pkg : pkg = 'pkg' {\n" +
 			"  class A {\n" +
@@ -270,8 +270,8 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 			"    attribute name : String;\n" +
 			"  }\n" +
 			"}\n";
-		Resource metaModel = cs2ecore(getOCL(), metaModelText, null);
-		EPackage ePackage = (EPackage) metaModel.getContents().get(0);
+		Resource metamodel = cs2ecore(getOCL(), metamodelText, null);
+		EPackage ePackage = (EPackage) metamodel.getContents().get(0);
 		EClass aClass = ClassUtil.nonNullState((EClass) ePackage.getEClassifier("A"));
 		EClass bClass = (EClass) ePackage.getEClassifier("B");
 		EClass cClass = (EClass) ePackage.getEClassifier("C");
@@ -310,7 +310,7 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 	 * Test container/containment navigation.
 	 */
 	@Test public void test_containment_navigation() throws IOException {
-		String metaModelText =
+		String metamodelText =
 			"package containment : pfx = 'http://containment'\n" +
 			"{\n" +
 			"	class Parent\n" +
@@ -336,8 +336,8 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 			"	}\n" +
 			"}\n";
 		OCL ocl1 = OCL.newInstance();
-		Resource metaModel = cs2ecore(ocl1, metaModelText, null);
-		EPackage ePackage = (EPackage) metaModel.getContents().get(0);
+		Resource metamodel = cs2ecore(ocl1, metamodelText, null);
+		EPackage ePackage = (EPackage) metamodel.getContents().get(0);
 		EClass parentClass = ClassUtil.nonNullState((EClass) ePackage.getEClassifier("Parent"));
 		EClass child1Class = ClassUtil.nonNullState((EClass) ePackage.getEClassifier("Child1"));
 		EClass child2Class = ClassUtil.nonNullState((EClass) ePackage.getEClassifier("Child2"));
@@ -421,7 +421,7 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 	 * Test multi-container navigation inspired by Bug 394152.
 	 */
 	@Test public void test_multi_container_394152() throws IOException {
-		String metaModelText =
+		String metamodelText =
 			"package bug394152 : pfx = 'http://bug394152'\n" +
 			"{\n" +
 			"	class Parent\n" +
@@ -435,8 +435,8 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 			"		property right#right : Parent[?] { ordered };\n" +
 			"	}\n" +
 			"}\n";
-		Resource metaModel = cs2ecore(getOCL(), metaModelText, null);
-		EPackage ePackage = (EPackage) metaModel.getContents().get(0);
+		Resource metamodel = cs2ecore(getOCL(), metamodelText, null);
+		EPackage ePackage = (EPackage) metamodel.getContents().get(0);
 		EClass parentClass = (EClass) ePackage.getEClassifier("Parent");
 		EClass childClass = ClassUtil.nonNullState((EClass) ePackage.getEClassifier("Child"));
         EObject parent = eCreate(parentClass);

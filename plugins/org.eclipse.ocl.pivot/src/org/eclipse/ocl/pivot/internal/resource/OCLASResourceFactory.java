@@ -33,15 +33,15 @@ public class OCLASResourceFactory extends AbstractASResourceFactory
 {
 	private static @Nullable OCLASResourceFactory INSTANCE = null;
 
-	public static @NonNull OCLASResourceFactory getInstance() {
+	public static synchronized @NonNull OCLASResourceFactory getInstance() {
 		if (INSTANCE == null) {
 			Map<String, Object> extensionToFactoryMap = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();
 			Object object = extensionToFactoryMap.get(ASResource.FILE_EXTENSION);
 			if (object instanceof Resource.Factory.Descriptor) {
-				((Resource.Factory.Descriptor)object).createFactory();	// Create the registered singleton
+				INSTANCE = (OCLASResourceFactory) ((Resource.Factory.Descriptor)object).createFactory();	// Create the registered singleton
 			}
-			if (INSTANCE == null) {
-				new OCLASResourceFactory();									// Create our own singleton
+			else {
+				INSTANCE = new OCLASResourceFactory();														// Create our own singleton
 			}
 			assert INSTANCE != null;
 			INSTANCE.install(null,  null);
@@ -63,7 +63,6 @@ public class OCLASResourceFactory extends AbstractASResourceFactory
 	 */
 	public OCLASResourceFactory() {
 		super(ASResource.CONTENT_TYPE);
-		INSTANCE = this;
 	}
 
 	@Override
@@ -112,5 +111,10 @@ public class OCLASResourceFactory extends AbstractASResourceFactory
 		}
 		assert !(asResourceFactory instanceof OCLASResourceFactory);
 	    return asResourceFactory.createResource(uri);
+	}
+
+	@Override
+	public @NonNull ASResourceFactory getASResourceFactory() {
+		return getInstance();
 	}
 }

@@ -7,13 +7,13 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
-import org.eclipse.ocl.pivot.uml.internal.UML2AS;
-import org.eclipse.ocl.pivot.uml.internal.UMLEnvironmentFactory;
+import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
+import org.eclipse.ocl.pivot.uml.internal.utilities.UMLEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.OCL;
 
 /**
  * Convenient subclass of the <code>OCL</code> fa&ccedil;ade that binds the
@@ -28,6 +28,17 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
  */
 public class UMLOCL extends OCL
 {
+    /**
+     * Creates a new <code>OCL</code> using the specified Ecore package registry.
+     * This automatically creates an new EnvironmentFactory and MetamodelManager.
+     * 
+     * @param reg Ecore package registry
+     * @return the new <code>OCL</code>
+     */
+	public static @NonNull UMLOCL newInstance() {	
+		return newInstance(new UMLEnvironmentFactory(null, null));
+	}
+	
     /**
      * Creates a new <code>OCL</code> using the specified Ecore package registry.
      * This automatically creates an new EnvironmentFactory and MetamodelManager.
@@ -50,7 +61,7 @@ public class UMLOCL extends OCL
 		return new UMLOCL(envFactory);
 	}
 
-	protected UMLOCL(EnvironmentFactoryInternal envFactory) {
+	protected UMLOCL(@NonNull EnvironmentFactoryInternal envFactory) {
 		super(envFactory);
 	}
 

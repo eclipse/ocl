@@ -18,9 +18,9 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.internal.PivotStandaloneSetup;
 import org.eclipse.ocl.pivot.internal.plugin.ASResourceFactoryRegistryReader;
 import org.eclipse.ocl.pivot.internal.plugin.StandardLibraryRegistryReader;
+import org.eclipse.ocl.pivot.utilities.PivotStandaloneSetup;
 import org.osgi.framework.BundleContext;
 
 /**

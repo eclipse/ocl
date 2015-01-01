@@ -54,7 +54,6 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
-import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryContribution;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -173,8 +172,8 @@ public class ValidateCommand extends ValidateAction
 	protected Diagnostician createDiagnostician(final AdapterFactory adapterFactory, final IProgressMonitor progressMonitor) {
 		final ResourceSet resourceSet = domain.getResourceSet();
 		EValidatorRegistryImpl registry = new EValidatorRegistryImpl();
-		for (ASResourceFactoryContribution asResourceFactory : ASResourceFactoryRegistry.INSTANCE.getResourceFactories()) {
-			asResourceFactory.getASResourceFactory().initializeEValidatorRegistry(registry);
+		for (ASResourceFactory asResourceFactory : ASResourceFactoryRegistry.INSTANCE.getExternalResourceFactories()) {
+			asResourceFactory.initializeEValidatorRegistry(registry);
 		}
 		if (diagnosticianHasDoValidate == null) {
 			diagnosticianHasDoValidate = false;

@@ -19,9 +19,11 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.internal.manager.AbstractMetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceImpl;
 import org.eclipse.ocl.pivot.internal.resource.AbstractASResourceFactory;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
 
@@ -37,6 +39,11 @@ public class CS2ASResourceAdapter extends AbstractMetamodelManagerResourceAdapte
 		
 		public TransientASResourceFactory() {
 			super("transient");
+		}
+
+		@Override
+		public @NonNull ASResourceFactory getASResourceFactory() {
+			return INSTANCE;
 		}
 	}
 
@@ -76,7 +83,7 @@ public class CS2ASResourceAdapter extends AbstractMetamodelManagerResourceAdapte
 		if ((uri != null) && (csResource.getContents().size() > 0) && (asResourceSet != null)) {
 			URI asURI = csResource.getASURI(uri);
 			Resource asResource = null;
-			if (uri.fileExtension().equals("essentialocl")) {	// FIXME use csResource.getASResource(metamodelManager);
+			if (uri.fileExtension().equals(PivotConstants.ESSENTIAL_OCL_FILE_EXTENSION)) {	// FIXME use csResource.getASResource(metamodelManager);
 				asResource = new TransientASResource(asResourceSet, asURI);
 			}
 			else {

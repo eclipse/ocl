@@ -22,7 +22,7 @@ There is no need for the Ecore/UML template parameters that parameterize the equ
 p. 
 
 Behind the scenes, the unified Pivot variants of the primary UML, OCL and user and meta-models, complementing Complete OCL documents and Standard Libraries are maintained by a
-"@MetaModelManager@":http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/manager/MetaModelManager.html, which also maintains all the collection and tuple specialization singletons so that they can be shared by subsequent processing. A distinct @MetaModelManager@ is required for each combination of primary meta-models and complementing Complete OCL documents and so for safety a new @MetaModelManager@ is created for each OCL session. Increased metya-model sharing can be achieved by re-using @MetaModelManager@ s when constructing a
+"@MetamodelManager@":http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/manager/MetamodelManager.html, which also maintains all the collection and tuple specialization singletons so that they can be shared by subsequent processing. A distinct @MetamodelManager@ is required for each combination of primary meta-models and complementing Complete OCL documents and so for safety a new @MetamodelManager@ is created for each OCL session. Increased metya-model sharing can be achieved by re-using @MetamodelManager@ s when constructing a
 "@PivotEnvironmentFactory@":http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/utilities/PivotEnvironmentFactory.html.
 
 An OCL parsing activity maintains the root and nested parsing context in

@@ -27,7 +27,7 @@
   <packagedElement xmi:type="uml:Class" xmi:id="_TTWUoLOdEeGKhtB08mBSJw" name="PivotStandardLibrary">
     <generalization xmi:id="_WXy9ELOdEeGKhtB08mBSJw" general="_aBH0MLOdEeGKhtB08mBSJw"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_Ucu-kLOdEeGKhtB08mBSJw" name="MetaModelManager">
+  <packagedElement xmi:type="uml:Class" xmi:id="_Ucu-kLOdEeGKhtB08mBSJw" name="MetamodelManager">
     <generalization xmi:id="_rtTiELOdEeGKhtB08mBSJw" general="_TTWUoLOdEeGKhtB08mBSJw"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Interface" xmi:id="_XfSJkLOdEeGKhtB08mBSJw" name="Environment"/>
@@ -35,7 +35,7 @@
   <packagedElement xmi:type="uml:Interface" xmi:id="_skOjALOdEeGKhtB08mBSJw" name="EnvironmentFactory"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_u4E08LOdEeGKhtB08mBSJw" name="PivotEnvironmentFactory">
     <generalization xmi:id="_0TqT4LOdEeGKhtB08mBSJw" general="_skOjALOdEeGKhtB08mBSJw"/>
-    <ownedAttribute xmi:id="_BaKQELOeEeGKhtB08mBSJw" name="metaModelManager" type="_Ucu-kLOdEeGKhtB08mBSJw" association="_BaK3ILOeEeGKhtB08mBSJw">
+    <ownedAttribute xmi:id="_BaKQELOeEeGKhtB08mBSJw" name="metamodelManager" type="_Ucu-kLOdEeGKhtB08mBSJw" association="_BaK3ILOeEeGKhtB08mBSJw">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_BaKQEbOeEeGKhtB08mBSJw" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_BaKQErOeEeGKhtB08mBSJw" value="1"/>
     </ownedAttribute>

@@ -1154,7 +1154,7 @@ assertQueryResults(null,&nbsp;"Set{'b'}",&nbsp;"Set{'a',&nbsp;'b',&nbsp;'c'}&nbs
 <p>Essential OCL Xtext editor</p>
 </li>
 <li class="listitem">
-<p>Pivot MetaModel</p>
+<p>Pivot Metamodel</p>
 </li>
 <li class="listitem">
 <p>OCL-2.5.oclstdlib library</p>
@@ -11337,7 +11337,7 @@ endif)<br>
 <div>
 <div>
 <h4 class="title">
-<a name="TheTutorialMetaModel"></a>The Tutorial Meta-Model</h4>
+<a name="TheTutorialMetamodel"></a>The Tutorial Meta-Model</h4>
 </div>
 </div>
 </div>
@@ -13648,7 +13648,7 @@ inv&nbsp;UpperName&nbsp;:&nbsp;name&nbsp;=&nbsp;name.toUpperCase()<br>
 					<span class="italic">If the Validity View was already visible, close it and re-show it since in Luna addition of a Complete OCL document fails to refresh correctly.</span>
 				
 </p>
-<p>In the Validity View, uncheck the top two MetaModel Constraint contributions retaining just the ExtraEcoreValidation.ocl contributions. Click the plus icon in the Metamodel Constraint tool bar to expand all entries.</p>
+<p>In the Validity View, uncheck the top two Metamodel Constraint contributions retaining just the ExtraEcoreValidation.ocl contributions. Click the plus icon in the Metamodel Constraint tool bar to expand all entries.</p>
 <p>
 					
 </p>
@@ -19349,12 +19349,12 @@ org.eclipse.xtext<br>
 <p></p>
 <p>Behind the scenes, the unified Pivot variants of the primary UML, OCL and user and meta-models, complementing Complete OCL documents and Standard Libraries are maintained by a
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/manager/MetaModelManager.html" target="_new">
-						<code class="code">MetaModelManager</code>
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/manager/MetamodelManager.html" target="_new">
+						<code class="code">MetamodelManager</code>
 					</a>, which also maintains all the collection and tuple specialization singletons so that they can be shared by subsequent processing. A distinct 
-					<code class="code">MetaModelManager</code> is required for each combination of primary meta-models and complementing Complete OCL documents and so for safety a new 
-					<code class="code">MetaModelManager</code> is created for each OCL session. Increased metya-model sharing can be achieved by re-using 
-					<code class="code">MetaModelManager</code> s when constructing a
+					<code class="code">MetamodelManager</code> is required for each combination of primary meta-models and complementing Complete OCL documents and so for safety a new 
+					<code class="code">MetamodelManager</code> is created for each OCL session. Increased metya-model sharing can be achieved by re-using 
+					<code class="code">MetamodelManager</code> s when constructing a
 
 					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/utilities/PivotEnvironmentFactory.html" target="_new">
 						<code class="code">PivotEnvironmentFactory</code>
@@ -19936,7 +19936,7 @@ org.eclipse.xtext<br>
 </div>
 <p>There are therefore two Class objects named 
 					<code class="code">Library</code>, one for each Resource. The objects are distinct in so far as they belong to different resources, which can be separately serialized, and in so far as they may appear distinct to OCL expressions that use reflective access. However they are logically merged and the 
-					<code class="code">MetaModelManager</code> provides utility methods that allow the multiple objects to be accessed as a merged object.
+					<code class="code">MetamodelManager</code> provides utility methods that allow the multiple objects to be accessed as a merged object.
 				</p>
 <p>Given the 
 					<code class="code">URI</code> of an OCL document, simply ask an 

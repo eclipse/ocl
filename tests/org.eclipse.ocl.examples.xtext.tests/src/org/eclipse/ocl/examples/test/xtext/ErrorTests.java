@@ -40,7 +40,7 @@ public class ErrorTests extends XtextTestCase
 	 */
 	public void test_BadIterate() throws IOException {
 		MetamodelManager metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
-		String metaModelText =
+		String metamodelText =
 			"package test : tst = 'http://test'\n" +
 			"{\n" +
 			"	class Test\n" +
@@ -49,7 +49,7 @@ public class ErrorTests extends XtextTestCase
 			"		invariant loop: Test.allInstances()->iterate(w, h; acc : String = '' | true);\n" +
 			"	}\n" +
 			"}\n";
-		InputStream inputStream = new URIConverter.ReadableInputStream(metaModelText, "UTF-8");
+		InputStream inputStream = new URIConverter.ReadableInputStream(metamodelText, "UTF-8");
 		URI xtextURI = URI.createURI("test.oclinecore");
 		ResourceSet resourceSet = new ResourceSetImpl();
 		EssentialOCLCSResource xtextResource = ClassUtil.nonNullState((EssentialOCLCSResource) resourceSet.createResource(xtextURI, null));
@@ -66,7 +66,7 @@ public class ErrorTests extends XtextTestCase
 	 */
 	public void test_BadProperty() throws IOException {
 		MetamodelManager metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
-		String metaModelText =
+		String metamodelText =
 			"package test : tst = 'http://test'\n" +
 			"{\n" +
 			"	class Test\n" +
@@ -74,7 +74,7 @@ public class ErrorTests extends XtextTestCase
 			"		invariant loop: Test.allInstances->iterate(w, h; acc : String = '' | true);\n" +
 			"	}\n" +
 			"}\n";
-		InputStream inputStream = new URIConverter.ReadableInputStream(metaModelText, "UTF-8");
+		InputStream inputStream = new URIConverter.ReadableInputStream(metamodelText, "UTF-8");
 		URI xtextURI = URI.createURI("test.oclinecore");
 		ResourceSet resourceSet = new ResourceSetImpl();
 		EssentialOCLCSResource xtextResource = ClassUtil.nonNullState((EssentialOCLCSResource) resourceSet.createResource(xtextURI, null));

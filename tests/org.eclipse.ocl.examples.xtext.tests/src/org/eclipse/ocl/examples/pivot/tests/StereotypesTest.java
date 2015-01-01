@@ -28,16 +28,18 @@ import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Profile;
 import org.eclipse.ocl.pivot.Stereotype;
-import org.eclipse.ocl.pivot.internal.OCL;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.resource.ProjectMap;
 import org.eclipse.ocl.pivot.uml.UMLOCL;
-import org.eclipse.ocl.pivot.uml.internal.UML2AS;
-import org.eclipse.ocl.pivot.uml.internal.UMLElementExtension;
-import org.eclipse.ocl.pivot.uml.internal.UMLEnvironmentFactory;
+import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
+import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
+import org.eclipse.ocl.pivot.uml.internal.library.UMLElementExtension;
+import org.eclipse.ocl.pivot.uml.internal.utilities.UMLEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.uml2.uml.util.UMLUtil;
@@ -158,9 +160,18 @@ public class StereotypesTest extends PivotTestSuite
 	InternationalizedMetamodel mm = null;
 	InternationalizedModel m = null;
 
+	@Override
 	protected @NonNull OCL createOCL() {
-		UMLOCL newInstance = UMLOCL.newInstance(new UMLEnvironmentFactory(null, null));
+		UMLOCL newInstance = UMLOCL.newInstance(metamodelManager.getEnvironmentFactory());
 		return newInstance;
+	}
+	
+	@Override
+	protected MetamodelManager createMetamodelManager() {
+		UMLStandaloneSetup.init();
+		MetamodelManager metamodelManager = new UMLEnvironmentFactory(null, null).getMetamodelManager();
+//		XMI252UMLResourceFactoryImpl.install(metamodelManager.getExternalResourceSet(), URI.createPlatformResourceURI("/org.eclipse.ocl.examples.uml25/model/", true));
+		return metamodelManager;
 	}
 	
     @Override

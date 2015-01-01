@@ -31,6 +31,7 @@ public class ASResourceFactoryRegistryReader extends RegistryReader
 	static final @NonNull String TAG_FACTORY = "factory";
 	static final @NonNull String ATT_CONTENT_TYPE = "contentType";
 	static final @NonNull String ATT_EXTENSION = "extension";
+	static final @NonNull String ATT_PRIORITY = "priority";
 	static final @NonNull String ATT_RESOURCE_CLASS = "resourceClass";
 	static final @NonNull String ATT_CLASS = "class";
 
@@ -45,12 +46,14 @@ public class ASResourceFactoryRegistryReader extends RegistryReader
 			String contentType = element.getAttribute(ATT_CONTENT_TYPE);
 			String extension = element.getAttribute(ATT_EXTENSION);
 			String resourceClass = element.getAttribute(ATT_RESOURCE_CLASS);
+			String priorityString = element.getAttribute(ATT_PRIORITY);
+			Integer priority = priorityString != null ? Integer.parseInt(priorityString) : null;
 			if (contentType == null) {
 				logMissingAttribute(element, ATT_CONTENT_TYPE);
 			} else if (element.getAttribute(ATT_CLASS) == null) {
 				logMissingAttribute(element, ATT_CLASS);
 			} else if (add) {
-				ASResourceFactoryContribution.Descriptor newDescriptor = new ASResourceFactoryContribution.Descriptor(element, ATT_CLASS);
+				ASResourceFactoryContribution.Descriptor newDescriptor = new ASResourceFactoryContribution.Descriptor(element, priority, ATT_CLASS);
 				Object previous = ASResourceFactoryRegistry.INSTANCE.addASResourceFactory(contentType, extension, resourceClass, newDescriptor);
 				if (previous instanceof ASResourceFactoryContribution.Descriptor) {
 					ASResourceFactoryContribution.Descriptor descriptor = (ASResourceFactoryContribution.Descriptor) previous;

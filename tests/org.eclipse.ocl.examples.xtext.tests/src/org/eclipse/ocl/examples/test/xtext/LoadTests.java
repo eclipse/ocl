@@ -49,11 +49,10 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.VariableDeclaration;
 import org.eclipse.ocl.pivot.VariableExp;
-import org.eclipse.ocl.pivot.internal.OCL;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.pivot.internal.ecore.AS2Ecore;
-import org.eclipse.ocl.pivot.internal.ecore.Ecore2AS;
+import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
+import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
@@ -65,8 +64,11 @@ import org.eclipse.ocl.pivot.resource.ProjectMap;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IPackageDescriptor;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IProjectDescriptor;
-import org.eclipse.ocl.pivot.uml.internal.UML2AS;
+import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
+import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
+import org.eclipse.ocl.pivot.uml.internal.utilities.UMLEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.Unlimited;
@@ -321,6 +323,7 @@ public class LoadTests extends XtextTestCase
 	}
 	
 	public void doLoadUML(@NonNull URI inputURI, ILoadCallBack loadCallBacks) throws IOException, ParserException {
+		UMLStandaloneSetup.init();
 //		long startTime = System.currentTimeMillis();
 //		System.out.println("Start at " + startTime);
 		ResourceSet resourceSet = createResourceSet();
@@ -343,7 +346,7 @@ public class LoadTests extends XtextTestCase
 		URI output2URI = getProjectFileURI(output2Name);
 		URI oclURI = getProjectFileURI(oclName);
 		if (metamodelManager == null) {
-			metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
+			metamodelManager = new UMLEnvironmentFactory(null, null).getMetamodelManager();
 		}
 		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
 		Resource umlResource = null;
@@ -1019,7 +1022,8 @@ public class LoadTests extends XtextTestCase
 	}
 
 	public void testLoad_Fruit_ocl() throws IOException, InterruptedException {
-		metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
+		UMLStandaloneSetup.init();
+		metamodelManager = new UMLEnvironmentFactory(null, null).getMetamodelManager();
 		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
 		assertNull(OCL.initialize(resourceSet));
 		UMLPackage.eINSTANCE.getClass();

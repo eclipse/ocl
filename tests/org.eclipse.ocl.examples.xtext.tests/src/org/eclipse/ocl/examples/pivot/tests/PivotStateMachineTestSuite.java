@@ -27,7 +27,8 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.uml.internal.UML2AS;
+import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
+import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
 import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.UML2EcoreConverter;
 
@@ -61,6 +62,7 @@ public abstract class PivotStateMachineTestSuite extends PivotTestSuite
 	}
 	
 	protected Resource initStateMachinePackage() throws ParserException {
+		UMLStandaloneSetup.init();
 		ResourceSet resourceSet2 = resourceSet;
 		assert resourceSet2 != null;
 		UML2AS.initialize(resourceSet2);

@@ -53,7 +53,7 @@ In the Indigo (3.1) release, the Pivot metamodel prototype was introduced and us
 
 Therefore when using the OCL Xtext Console the contributing tools are
 * Essential OCL Xtext editor
-* Pivot MetaModel
+* Pivot Metamodel
 * OCL-2.5.oclstdlib library
 * Pivot Evaluator
 * Pivot Debugger

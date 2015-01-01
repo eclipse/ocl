@@ -46,7 +46,7 @@ The complemented Abstract Syntax Resource
 * containing a Class named @Library@
 * and a Class named @Book@
 
-There are therefore two Class objects named @Library@, one for each Resource. The objects are distinct in so far as they belong to different resources, which can be separately serialized, and in so far as they may appear distinct to OCL expressions that use reflective access. However they are logically merged and the @MetaModelManager@ provides utility methods that allow the multiple objects to be accessed as a merged object.
+There are therefore two Class objects named @Library@, one for each Resource. The objects are distinct in so far as they belong to different resources, which can be separately serialized, and in so far as they may appear distinct to OCL expressions that use reflective access. However they are logically merged and the @MetamodelManager@ provides utility methods that allow the multiple objects to be accessed as a merged object.
 
 Given the @URI@ of an OCL document, simply ask an @OCL@ to parse it:
 

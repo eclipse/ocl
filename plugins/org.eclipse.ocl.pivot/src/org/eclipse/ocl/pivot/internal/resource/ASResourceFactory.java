@@ -23,6 +23,8 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.TemplateParameterSubstitutionVisitor;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintVisitor;
@@ -30,6 +32,7 @@ import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
 import org.eclipse.ocl.pivot.internal.utilities.AS2XMIid;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.AS2MonikerVisitor;
 import org.eclipse.ocl.pivot.utilities.AS2XMIidVisitor;
 import org.eclipse.ocl.pivot.utilities.ASSaverLocateVisitor;
@@ -76,6 +79,8 @@ public interface ASResourceFactory extends Resource.Factory, ASResourceFactoryCo
 	 */
 	@NonNull ASSaverResolveVisitor createASSaverResolveVisitor(@NonNull ASSaver asSaver);
 
+	@NonNull EnvironmentFactoryInternal createEnvironmentFactory(@Nullable StandaloneProjectMap projectMap, @Nullable ModelManager modelManager);
+
 	/**
 	 * Create a visitor to provide a pretty printed representation of one or more elements in the resource. 
 	 */
@@ -118,6 +123,8 @@ public interface ASResourceFactory extends Resource.Factory, ASResourceFactoryCo
 	 * Return the URI of an eObject if it can be treated as a Package.
 	 */
 	@Nullable URI getPackageURI(@NonNull EObject eObject);
+
+	@Nullable String getResourceClassName();
 	
 	/**
 	 * Return the root element in the Pivot resource resulting from import of the available

@@ -17,9 +17,16 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.ecore.EcoreASResourceFactory;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.CSResource;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
+
+import com.google.common.base.Function;
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
 
 /**
  * The ASResourceFactoryRegistry maintains the mapping from known ASResource content type
@@ -29,6 +36,36 @@ import org.eclipse.ocl.pivot.resource.CSResource;
  */
 public class ASResourceFactoryRegistry
 {
+	public static final class ContributionFunction implements Function<ASResourceFactoryContribution, ASResourceFactory>
+	{
+		public static final @NonNull ContributionFunction INSTANCE = new ContributionFunction();
+
+		@Override
+		public ASResourceFactory apply(ASResourceFactoryContribution asResourceFactoryContribution) {
+			return asResourceFactoryContribution.getASResourceFactory();
+		}
+	}
+
+	public static final class ExternalResourcePredicate implements Predicate<ASResourceFactoryContribution>
+	{
+		public static final @NonNull ExternalResourcePredicate INSTANCE = new ExternalResourcePredicate();
+
+		@Override
+		public boolean apply(ASResourceFactoryContribution asResourceFactoryContribution) {
+			return asResourceFactoryContribution.getPriority() != null;
+		}
+	}
+
+	public static final class LoadedResourcePredicate implements Predicate<ASResourceFactoryContribution>
+	{
+		public static final @NonNull LoadedResourcePredicate INSTANCE = new LoadedResourcePredicate();
+
+		@Override
+		public boolean apply(ASResourceFactoryContribution asResourceFactoryContribution) {
+			return (asResourceFactoryContribution.getPriority() != null) || (asResourceFactoryContribution.basicGetASResourceFactory() != null);
+		}
+	}
+
 	public static final @NonNull ASResourceFactoryRegistry INSTANCE = new ASResourceFactoryRegistry();
 	
 	protected final @NonNull Map<String, ASResourceFactoryContribution> contentType2resourceFactory = new HashMap<String, ASResourceFactoryContribution>();
@@ -36,38 +73,62 @@ public class ASResourceFactoryRegistry
 	protected final @NonNull Map<String, ASResourceFactoryContribution> resourceClassName2resourceFactory = new HashMap<String, ASResourceFactoryContribution>();
 	
 	public synchronized Object addASResourceFactory(@Nullable String contentType, @Nullable String oclasExtension, @Nullable String resourceClassName, @NonNull ASResourceFactoryContribution asResourceFactory) {
-		ASResourceFactoryContribution oldASResourceFactory;
+		ASResourceFactoryContribution oldASResourceFactory1 = null;
 		if (contentType != null) {
-			oldASResourceFactory = contentType2resourceFactory.put(contentType, asResourceFactory);
-			assert (oldASResourceFactory == null) || (oldASResourceFactory == asResourceFactory)
-				|| (oldASResourceFactory.getContribution() == asResourceFactory);
+			oldASResourceFactory1 = contentType2resourceFactory.put(contentType, asResourceFactory);
+			assert (oldASResourceFactory1 == null) || (oldASResourceFactory1 == asResourceFactory)
+				|| (oldASResourceFactory1.basicGetASResourceFactory() == asResourceFactory)
+				|| (oldASResourceFactory1.basicGetASResourceFactory() == null);
 		}
 		if (oclasExtension != null) {
-			oldASResourceFactory = extension2resourceFactory.put(oclasExtension, asResourceFactory);
-			assert (oldASResourceFactory == null) || (oldASResourceFactory == asResourceFactory)
-				|| (oldASResourceFactory.getContribution() == asResourceFactory);
+			ASResourceFactoryContribution oldASResourceFactory2 = extension2resourceFactory.put(oclasExtension, asResourceFactory);
+			assert (oldASResourceFactory2 == null) || (oldASResourceFactory2 == asResourceFactory)
+				|| (oldASResourceFactory2.basicGetASResourceFactory() == asResourceFactory)
+				|| (oldASResourceFactory2.basicGetASResourceFactory() == null);
 		}
 		if (resourceClassName != null) {
-			oldASResourceFactory = resourceClassName2resourceFactory.put(resourceClassName, asResourceFactory);
-			assert (oldASResourceFactory == null) || (oldASResourceFactory == asResourceFactory)
-				|| (oldASResourceFactory.getContribution() == asResourceFactory);
+			ASResourceFactoryContribution oldASResourceFactory3 = resourceClassName2resourceFactory.put(resourceClassName, asResourceFactory);
+			assert (oldASResourceFactory3 == null) || (oldASResourceFactory3 == asResourceFactory)
+				|| (oldASResourceFactory3.basicGetASResourceFactory() == asResourceFactory)
+				|| (oldASResourceFactory3.basicGetASResourceFactory() == null);
 		}
-		return null;
+		return oldASResourceFactory1;
 	}
 
 	public synchronized void configureResourceSet(@NonNull ResourceSet resourceSet) {
-		for (ASResourceFactoryContribution asResourceFactory : getResourceFactories()) {
-			asResourceFactory.getASResourceFactory().configure(resourceSet);
+		for (ASResourceFactoryContribution asResourceFactoryContribution : contentType2resourceFactory.values()) {
+			ASResourceFactory asResourceFactory = asResourceFactoryContribution.basicGetASResourceFactory();
+			if (asResourceFactory != null) {
+				asResourceFactory.configure(resourceSet);
+			}
+			else if (asResourceFactoryContribution.getPriority() != null) {
+				asResourceFactoryContribution.getASResourceFactory().configure(resourceSet);
+			}
 		}
+	}
+
+	/**
+	 * Create a new EnvironmentFactory appropriate to the resources in ResourceSet.
+	 */
+	public @NonNull EnvironmentFactoryInternal createEnvironmentFactory(@Nullable ResourceSet resourceSet,
+			@Nullable StandaloneProjectMap projectMap, @Nullable ModelManager modelManager) {
+		Integer bestPriority = null;
+		ASResourceFactory bestASResourceFactory = null;
+		for (ASResourceFactory asResourceFactory : getExternalResourceFactories()) {
+			Integer priority = asResourceFactory.getPriority();
+			if ((bestPriority == null) || ((priority != null) && (priority > bestPriority))) {
+				bestPriority = priority;
+				bestASResourceFactory = asResourceFactory;
+			}
+		}
+		if (bestASResourceFactory == null) {
+			bestASResourceFactory = EcoreASResourceFactory.getInstance();
+		}
+		return bestASResourceFactory.createEnvironmentFactory(projectMap, modelManager);
 	}
 
 	public @Nullable ASResourceFactoryContribution get(@NonNull String contentType) {
 		return contentType2resourceFactory.get(contentType);
-	}
-
-	@SuppressWarnings("null")
-	public @NonNull Iterable<ASResourceFactoryContribution> getResourceFactories() {
-		return contentType2resourceFactory.values();
 	}
 
 	/**
@@ -129,7 +190,15 @@ public class ASResourceFactoryRegistry
 
 	public @Nullable ASResourceFactory getASResourceFactoryForExtension(@Nullable String extension) {
 		ASResourceFactoryContribution asResourceFactoryContribution = extension2resourceFactory.get(extension);
-		return asResourceFactoryContribution != null ?asResourceFactoryContribution.getASResourceFactory() : null;
+		return asResourceFactoryContribution != null ? asResourceFactoryContribution.getASResourceFactory() : null;
+	}
+
+	public Iterable<ASResourceFactory> getExternalResourceFactories() {
+		return Iterables.transform(Iterables.filter(contentType2resourceFactory.values(), ExternalResourcePredicate.INSTANCE), ContributionFunction.INSTANCE);
+	}
+
+	public Iterable<ASResourceFactory> getLoadedResourceFactories() {
+		return Iterables.transform(Iterables.filter(contentType2resourceFactory.values(), LoadedResourcePredicate.INSTANCE), ContributionFunction.INSTANCE);
 	}
 
 	public synchronized void remove(@Nullable String contentType, @Nullable String extension, @Nullable String resourceClassName) {

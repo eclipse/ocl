@@ -88,6 +88,17 @@
                </documentation>
             </annotation>
          </attribute>
+         <attribute name="externalPriority" type="string">
+            <annotation>
+               <documentation>
+                  A non-null externalPriority identifies an ASResourceFactory that may need to participate in configuration and metamodel identification activities. Plugins conatining such ASResourceFactories are loaded as soon as OCL starts being loaded.
+
+Null externalPriority declarations are for ASREsourceFactory declaration associated with concreate or abstyract syntax representations.
+
+The highest priority identifies the default ASResourceFactory that creates default EnvioronmentFactory instances. The EcoreASResourceFactory has priority 100. The optional UMLASResourceFactory has priority 200.
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 

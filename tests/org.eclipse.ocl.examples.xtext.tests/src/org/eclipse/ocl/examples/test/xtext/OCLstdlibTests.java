@@ -226,7 +226,7 @@ public class OCLstdlibTests extends XtextTestCase
 			"    type String : PrimitiveType conformsTo OclAny {}\n"+
 			"    type UnlimitedNatural : PrimitiveType conformsTo Integer {}\n"+
 			"}\n";		
-		doLoadFromString("string.oclstdlib", testFile);
+		doLoadFromString("string.oclstdlib", testFile, false);
 	}
 	
 	public void testImport() throws Exception {

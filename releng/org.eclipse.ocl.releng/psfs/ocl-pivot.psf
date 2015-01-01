@@ -4,10 +4,9 @@
 ocl-pivot.psf
 -->
 <provider id="org.eclipse.egit.core.GitProvider">
-<project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,plugins/org.eclipse.ocl.library"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,plugins/org.eclipse.ocl.pivot"/>
-<project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,plugins/org.eclipse.ocl.pivot.internal"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,plugins/org.eclipse.ocl.pivot.ui"/>
+<project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,plugins/org.eclipse.ocl.pivot.uml"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,plugins/org.eclipse.ocl.xtext.base"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,plugins/org.eclipse.ocl.xtext.base.ui"/>
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,plugins/org.eclipse.ocl.xtext.completeocl"/>
@@ -36,10 +35,9 @@ ocl-pivot.psf
 <project reference="1.0,http://git.eclipse.org/gitroot/ocl/org.eclipse.ocl,master,tests/org.eclipse.ocl.examples.xtext.tests"/>
 </provider>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1346923266231_5" label="OCL Pivot" name="OCL Pivot">
-<item elementID="=org.eclipse.ocl.library" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.ocl.pivot" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.ocl.pivot.internal" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.ocl.pivot.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.ocl.pivot.uml" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.ocl.xtext.base" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.ocl.xtext.base.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.ocl.xtext.completeocl" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>

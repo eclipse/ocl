@@ -12,27 +12,45 @@ package org.eclipse.ocl.pivot.internal.resource;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.internal.library.RegisteredContribution;
 
-public interface ASResourceFactoryContribution extends RegisteredContribution<ASResourceFactoryContribution>
+public interface ASResourceFactoryContribution extends RegisteredContribution<ASResourceFactory>
 {
-	public static class Descriptor extends AbstractDescriptor<ASResourceFactoryContribution> implements ASResourceFactoryContribution
+	public static class Descriptor extends AbstractDescriptor<ASResourceFactory> implements ASResourceFactoryContribution
 	{
-		public Descriptor(@NonNull IConfigurationElement e, @NonNull String attrName) {
+		protected final @Nullable Integer priority;
+
+		public Descriptor(@NonNull IConfigurationElement e, @Nullable Integer priority, @NonNull String attrName) {
 			super(e, attrName);
+			this.priority = priority;
 		}
 
 		@Override
-		protected ASResourceFactoryContribution createContribution() {
+		public @Nullable ASResourceFactory basicGetASResourceFactory() {
+			return contribution;
+		}
+
+		@Override
+		public ASResourceFactory createContribution() {
 			Object createInstance = createInstance();
-			return (ASResourceFactoryContribution) createInstance;
+			return ((ASResourceFactory) createInstance).getASResourceFactory();
 		}
 
 		@Override
 		public @NonNull ASResourceFactory getASResourceFactory() {
 			return getContribution().getASResourceFactory();
 		}
+		
+		@Override
+		public @Nullable Integer getPriority() {
+			return priority;
+		}
 	}
+
+	@Nullable ASResourceFactory basicGetASResourceFactory();
 	
 	@NonNull ASResourceFactory getASResourceFactory();
+	
+	@Nullable Integer getPriority();
 }

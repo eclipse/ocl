@@ -13,6 +13,7 @@
 package org.eclipse.ocl.pivot.internal;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -22,7 +23,6 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
@@ -30,9 +30,10 @@ import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.ids.RootPackageId;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.pivot.internal.library.ImplementationManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.library.LibraryProperty;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.utilities.AbstractEnvironmentFactory;
 
 /**
  * A factory for creating OCL parser {@link EnvironmentInternal}s.  Clients of the OCL
@@ -102,10 +103,8 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 	void dispose();
 	
 	boolean isStereotype(@NonNull EClass eClass);
+
+	@NonNull ImplementationManager createImplementationManager();
 	
-	@NonNull LibraryProperty createStereotypePropertyImplementation(@NonNull Property property);
-
-	@NonNull LibraryProperty createExtensionPropertyImplementation(@NonNull Property property);
-
-	@NonNull LibraryProperty createBasePropertyImplementation(@NonNull Property property);
+	String getOriginalName(@NonNull ENamedElement eNamedElement);
 }

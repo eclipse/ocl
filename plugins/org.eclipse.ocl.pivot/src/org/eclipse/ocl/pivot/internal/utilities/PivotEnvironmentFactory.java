@@ -12,17 +12,18 @@
 
 package org.eclipse.ocl.pivot.internal.utilities;
 
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
-import org.eclipse.ocl.pivot.internal.AbstractEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.evaluation.PivotEvaluationEnvironment;
 import org.eclipse.ocl.pivot.internal.evaluation.PivotModelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.utilities.AbstractEnvironmentFactory;
 import org.eclipse.ocl.pivot.values.ObjectValue;
 
 
@@ -102,5 +103,10 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
 		MetamodelManager metamodelManager = getMetamodelManager();
 		org.eclipse.ocl.pivot.Class dType = metamodelManager.getIdResolver().getStaticTypeOf(context);
 		return metamodelManager.getType(dType);
+	}
+
+	@Override
+	public String getOriginalName(@NonNull ENamedElement eNamedElement) {
+		return eNamedElement.getName();
 	}
 }
