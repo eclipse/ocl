@@ -11,6 +11,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.ecore.impl;
 
+import java.util.Collection;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -172,6 +173,7 @@ public class CollectionTypeImpl
 	 */
 	protected CollectionTypeImpl() {
 		super();
+		setInstanceClass(Collection.class);
 	}
 
 	/**
