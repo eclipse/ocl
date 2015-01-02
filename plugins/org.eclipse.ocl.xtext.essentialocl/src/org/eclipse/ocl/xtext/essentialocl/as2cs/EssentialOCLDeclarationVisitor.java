@@ -403,7 +403,11 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 	public @Nullable ElementCS visitEnumLiteralExp(@NonNull EnumLiteralExp asEnumLiteralExp) {
 		EnumerationLiteral asEnumLiteral = asEnumLiteralExp.getReferredLiteral();
 		if (asEnumLiteral != null) {
-			return createNameExpCS(asEnumLiteral);
+			NameExpCS csNameExp = createNameExpCS(asEnumLiteral.getOwningEnumeration());
+			PathElementCS csPathElement = BaseCSFactory.eINSTANCE.createPathElementCS();
+			csPathElement.setReferredElement(asEnumLiteralExp.getReferredLiteral());
+			csNameExp.getOwnedPathName().getOwnedPathElements().add(csPathElement);
+			return csNameExp;
 		}
 		else {
 			InvalidLiteralExpCS csInvalidLiteralExp = EssentialOCLCSFactory.eINSTANCE.createInvalidLiteralExpCS();
