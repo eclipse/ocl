@@ -18,6 +18,7 @@ import org.eclipse.ocl.xtext.essentialocl.services.EssentialOCLGrammarAccess.Col
 import org.eclipse.ocl.xtext.essentialocl.services.EssentialOCLGrammarAccess.CurlyBracketedClauseCSElements;
 import org.eclipse.ocl.xtext.essentialocl.services.EssentialOCLGrammarAccess.ElseIfThenExpCSElements;
 import org.eclipse.ocl.xtext.essentialocl.services.EssentialOCLGrammarAccess.EssentialOCLNavigationOperatorNameElements;
+import org.eclipse.ocl.xtext.essentialocl.services.EssentialOCLGrammarAccess.ExpCSElements;
 import org.eclipse.ocl.xtext.essentialocl.services.EssentialOCLGrammarAccess.IfExpCSElements;
 import org.eclipse.ocl.xtext.essentialocl.services.EssentialOCLGrammarAccess.LetExpCSElements;
 import org.eclipse.ocl.xtext.essentialocl.services.EssentialOCLGrammarAccess.NameExpCSElements;
@@ -47,6 +48,10 @@ public abstract class AbstractEssentialOCLFormatter extends BaseFormatter
 	protected void configureCollectionTypeCS(FormattingConfig c, CollectionTypeCSElements a) {
 		c.setNoSpace().around(a.getLeftParenthesisKeyword_1_0());
 		c.setNoSpace().before(a.getRightParenthesisKeyword_1_2());
+	}
+
+	protected void configureExpCS(FormattingConfig c, ExpCSElements a) {
+		c.setNoSpace().around(a.getNameAssignment_0_1_1());
 	}
 
 	protected void configureIfExpCS(FormattingConfig c, IfExpCSElements a) {
