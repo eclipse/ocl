@@ -32,7 +32,7 @@ public class OCLinEcoreValueConverterService extends BaseValueConverterService
 
 		protected static Set<String> computeEnumerationLiteralKeywords(Grammar grammar) {
 			Set<String> keywords = new HashSet<String>(GrammarUtil.getAllKeywords(grammar));
-			Set<String> enumerationLiteralNames = getAllKeywords(grammar, "EnumerationLiteralName");
+			Set<String> enumerationLiteralNames = getAllKeywords(grammar, "EnumerationLiteralName", true);
 			keywords.removeAll(enumerationLiteralNames);
 			return keywords;
 		}

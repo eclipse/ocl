@@ -51,7 +51,7 @@ public abstract class AbstractEssentialOCLFormatter extends BaseFormatter
 	}
 
 	protected void configureExpCS(FormattingConfig c, ExpCSElements a) {
-		c.setNoSpace().around(a.getNameAssignment_0_1_1());
+		c.setNoSpace().around(a.getNameAssignment_0_1_1());		// BaseValueConverterService.BinaryOperatorNameConverter wraps spaces
 	}
 
 	protected void configureIfExpCS(FormattingConfig c, IfExpCSElements a) {

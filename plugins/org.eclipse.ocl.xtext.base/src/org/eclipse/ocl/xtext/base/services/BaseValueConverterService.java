@@ -60,6 +60,36 @@ public class BaseValueConverterService extends AbstractDeclarativeValueConverter
 		}
 	}
 
+	protected static class BinaryOperatorNameConverter implements IValueConverter<String>
+	{	
+		private final Set<String> navigationOperatorNameKeywords;
+
+		protected static Set<String> computeKeywords(Grammar grammar) {
+			Set<String> keywords = getAllKeywords(grammar, "NavigationOperatorName", false);
+			return keywords;
+		}
+
+		public BinaryOperatorNameConverter(Grammar grammar) {
+			navigationOperatorNameKeywords = computeKeywords(grammar);
+//			printKeywords("NavigationOperatorName", navigationOperatorNameKeywords);
+		}
+
+		@Override
+		public String toValue(String string, INode node) {
+			return string.trim();
+		}
+		
+		@Override
+		public String toString(String value) {
+			if (navigationOperatorNameKeywords.contains(value)) {
+				return value.toString();
+			}
+			else {
+				return " " + value.toString() + " ";
+			}
+		}
+	}
+
 	protected static class DoubleQuotedStringConverter extends AbstractNullSafeConverter<String>
 	{
 		@Override
@@ -134,11 +164,11 @@ public class BaseValueConverterService extends AbstractDeclarativeValueConverter
 
 		protected static Set<String> computeKeywords(Grammar grammar) {
 			Set<String> keywords = new HashSet<String>(GrammarUtil.getAllKeywords(grammar));
-			keywords.removeAll(getAllKeywords(grammar, "UnrestrictedName"));
-			keywords.removeAll(getAllKeywords(grammar, "EssentialOCLReservedKeyword"));
-			keywords.removeAll(getAllKeywords(grammar, "RestrictedKeywords"));
-			keywords.removeAll(getAllKeywords(grammar, "CollectionTypeIdentifier"));
-			keywords.removeAll(getAllKeywords(grammar, "PrimitiveTypeIdentifier"));
+			keywords.removeAll(getAllKeywords(grammar, "UnrestrictedName", true));
+			keywords.removeAll(getAllKeywords(grammar, "EssentialOCLReservedKeyword", true));
+			keywords.removeAll(getAllKeywords(grammar, "RestrictedKeywords", true));
+			keywords.removeAll(getAllKeywords(grammar, "CollectionTypeIdentifier", true));
+			keywords.removeAll(getAllKeywords(grammar, "PrimitiveTypeIdentifier", true));
 			return keywords;
 		}
 
@@ -254,7 +284,7 @@ public class BaseValueConverterService extends AbstractDeclarativeValueConverter
 		protected static Set<String> computeReservedKeywords(Grammar grammar) {
 			Set<String> keywords = new HashSet<String>(GrammarUtil.getAllKeywords(grammar));
 //			printKeywords("All", keywords);
-			Set<String> unreservedNames = getAllKeywords(grammar, "UnreservedName");
+			Set<String> unreservedNames = getAllKeywords(grammar, "UnreservedName", true);
 //			printKeywords("Unreserved", unreservedNames);
 			keywords.removeAll(unreservedNames);
 			return keywords;
@@ -285,7 +315,7 @@ public class BaseValueConverterService extends AbstractDeclarativeValueConverter
 
 		protected static Set<String> computeRestrictedKeywords(Grammar grammar) {
 			Set<String> keywords = new HashSet<String>(GrammarUtil.getAllKeywords(grammar));
-			Set<String> unrestrictedNames = getAllKeywords(grammar, "UnrestrictedName");
+			Set<String> unrestrictedNames = getAllKeywords(grammar, "UnrestrictedName", true);
 //			printKeywords("Unrestricted", unrestrictedNames);
 			keywords.removeAll(unrestrictedNames);
 			return keywords;
@@ -314,28 +344,28 @@ public class BaseValueConverterService extends AbstractDeclarativeValueConverter
 		return "_'" + value + "'";
 	}
 
-	public static Set<String> getAllKeywords(Grammar g, String name) {
+	public static Set<String> getAllKeywords(Grammar g, String name, boolean validIdentifiersOnly) {
 		Set<String> kws = new HashSet<String>();
 		List<ParserRule> rules = GrammarUtil.allParserRules(g);
 		for (ParserRule parserRule : rules) {
 			if (parserRule.getName().equals(name)) {
-				getAllKeywords(kws, parserRule);
+				getAllKeywords(kws, parserRule, validIdentifiersOnly);
 			}
 		}
 		return kws;
 	}
 
-	private static void getAllKeywords(Set<String> kws, AbstractRule parserRule) {
+	private static void getAllKeywords(Set<String> kws, AbstractRule parserRule, boolean validIdentifiersOnly) {
 		for (TreeIterator<EObject> tit = parserRule.eAllContents(); tit.hasNext(); ) {
 			Object ele = tit.next();
 			if (ele instanceof Keyword) {
 				String value = ((Keyword)ele).getValue();
-				if (PivotUtilInternal.isValidIdentifier(value)) {
+				if (!validIdentifiersOnly || PivotUtilInternal.isValidIdentifier(value)) {
 					kws.add(value);
 				}
 			}
 			else if (ele instanceof RuleCall) {
-				getAllKeywords(kws, ((RuleCall)ele).getRule());
+				getAllKeywords(kws, ((RuleCall)ele).getRule(), validIdentifiersOnly);
 			}
 		}
 	}
@@ -346,18 +376,27 @@ public class BaseValueConverterService extends AbstractDeclarativeValueConverter
 //		System.out.println(prefix + ": " + StringUtils.splice(list, ", "));
 //	}
 
+	private BinaryOperatorNameConverter binaryOperatorNameConverter = null;			// not static - grammar-dependent
 	private static DoubleQuotedStringConverter doubleQuotedStringConverter = null;
 	private static EscapedIDConverter escapedIDConverter = null;
-	private IDConverter idConverter = null; 				// not static - grammar-dependent
+	private IDConverter idConverter = null; 										// not static - grammar-dependent
 	private static MultiLineSingleQuotedStringConverter multiLineSingleQuotedStringConverter = null;
-	private NameConverter nameConverter = null; 				// not static - grammar-dependent
+	private NameConverter nameConverter = null; 									// not static - grammar-dependent
 	private static NumberConverter numberConverter = null;
 	private static SimpleIDConverter simpleIDConverter = null;
 	private static SingleQuotedStringConverter singleQuotedStringConverter = null;
 	private static UnquotedStringConverter unquotedStringConverter = null;
 	private UnreservedNameConverter unreservedNameConverter = null; 				// not static - grammar-dependent
-	private UnrestrictedNameConverter unrestrictedNameConverter = null; 				// not static - grammar-dependent
+	private UnrestrictedNameConverter unrestrictedNameConverter = null; 			// not static - grammar-dependent
 	private static SingleQuotedStringConverter uriConverter = null;
+	
+	@ValueConverter(rule = "BinaryOperatorName")
+	public IValueConverter<String> BinaryOperatorName() {
+		if (binaryOperatorNameConverter == null) {
+			binaryOperatorNameConverter = new BinaryOperatorNameConverter(getGrammar());
+		}
+		return binaryOperatorNameConverter;
+	}
 
 	@ValueConverter(rule = "DOUBLE_QUOTED_STRING")
 	public IValueConverter<String> DOUBLE_QUOTED_STRING() {
