@@ -156,6 +156,8 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 	@SuppressWarnings("unused")
 	private final IDiagnosticConsumer diagnosticsConsumer;
 	
+	private boolean hasFailed = false;
+	
 	public CS2ASConversion(@NonNull CS2AS converter, @NonNull IDiagnosticConsumer diagnosticsConsumer, @NonNull Collection<? extends BaseCSResource> csResources) {
 		super(converter.getMetamodelManager());
 		this.converter = converter;
@@ -1425,8 +1427,16 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 			@SuppressWarnings("null")@NonNull String message = e.getMessage();
 			addDiagnostic(csElement, message);
 		} catch (Throwable e) {
-			@SuppressWarnings("null")@NonNull String message = String.valueOf(e);
-			addDiagnostic(csElement, message);
+			if (!hasFailed) {
+				hasFailed = true;
+				logger.error("Conversion failed for '" + csElement.eClass().getName() + "'\n" + csElement, e);
+				@NonNull String message = String.valueOf(e) + " - see error log for details";
+				addDiagnostic(csElement, message);
+			}
+			else {
+				@SuppressWarnings("null")@NonNull String message = String.valueOf(e);
+				addDiagnostic(csElement, message);
+			}
 		}
 	}
 
