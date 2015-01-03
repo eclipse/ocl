@@ -12,8 +12,8 @@
 package org.eclipse.ocl.examples.consumers.tests;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.domain.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.examples.test.ecore.AbstractProjectMapTest;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 import org.eclipse.papyrus.sysml.SysmlPackage;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 

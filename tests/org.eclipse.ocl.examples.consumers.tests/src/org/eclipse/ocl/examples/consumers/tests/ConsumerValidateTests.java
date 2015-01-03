@@ -13,10 +13,10 @@ package org.eclipse.ocl.examples.consumers.tests;
 import java.io.IOException;
 
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.tests.AbstractValidateTests;
-import org.eclipse.ocl.pivot.OCL;
-import org.eclipse.ocl.pivot.messages.OCLMessages;
+import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
+import org.eclipse.ocl.pivot.utilities.OCL;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 
 /**
  * Tests that OCL validation works on consumer models such as SysML.
@@ -32,7 +32,7 @@ public class ConsumerValidateTests extends AbstractValidateTests
 		assertNotNull(umlResource);
 		assert umlResource != null;
 		assertUMLOCLValidationDiagnostics(ocl, "UML Load", umlResource,
-			DomainUtil.bind(OCLMessages.ParsingError, "UMLRealTime::Capsule::A deliberately bad constraint::This is not OCL",
+			StringUtil.bind(PivotMessagesInternal.ParsingError, "UMLRealTime::Capsule::A deliberately bad constraint::This is not OCL",
 				"The 'UMLRealTime::Capsule' constraint is invalid: 'This is not OCL'\n1: no viable alternative at input 'is'")
 			);
 		ocl.dispose();

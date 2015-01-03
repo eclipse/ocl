@@ -25,7 +25,7 @@ import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.xtext2lpg.XBNF.Syntax;
 import org.eclipse.ocl.examples.xtext2lpg.XBNF.XBNFPackage;
-import org.eclipse.ocl.pivot.PivotStandaloneSetup;
+import org.eclipse.ocl.pivot.utilities.PivotStandaloneSetup;
 import org.eclipse.xtext.XtextStandaloneSetup;
 
 /**
