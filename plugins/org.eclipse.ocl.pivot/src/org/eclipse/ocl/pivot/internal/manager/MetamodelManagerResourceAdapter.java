@@ -16,8 +16,8 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.OCL;
 
 /**
  * A MetamodelManagerResourceAdapter enhances the Resource for a Concrete Syntax model
@@ -41,7 +41,7 @@ public class MetamodelManagerResourceAdapter extends AbstractMetamodelManagerRes
 //		}
 		if (adapter == null) {
 			if (metamodelManager == null) {
-				metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
+				metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
 			}
 			adapter = new MetamodelManagerResourceAdapter(resource, metamodelManager);
 			eAdapters.add(adapter);

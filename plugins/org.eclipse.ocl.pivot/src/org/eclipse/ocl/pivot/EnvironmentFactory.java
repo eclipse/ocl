@@ -18,6 +18,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.internal.context.ParserContext;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 
 /**
  * A factory for creating OCL parser {@link Environment}s.  Clients of the OCL
@@ -84,4 +85,8 @@ public interface EnvironmentFactory
 	 * Returns a ModelContext if no more specfic context can be determined if none can be created.
 	 */
 	@NonNull ParserContext createParserContext(@Nullable EObject context);
+
+	void dispose();
+
+	@NonNull MetamodelManager getMetamodelManager();
 }

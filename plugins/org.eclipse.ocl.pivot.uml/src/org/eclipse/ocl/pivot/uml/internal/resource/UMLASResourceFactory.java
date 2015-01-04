@@ -30,7 +30,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
@@ -79,8 +78,8 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 	}
 
 	@Override
-	public @NonNull EnvironmentFactoryInternal createEnvironmentFactory(@Nullable StandaloneProjectMap projectMap, @Nullable ModelManager modelManager) {
-		return new UMLEnvironmentFactory(projectMap, modelManager);
+	public @NonNull EnvironmentFactoryInternal createEnvironmentFactory(@Nullable StandaloneProjectMap projectMap) {
+		return new UMLEnvironmentFactory(projectMap);
 	}
 
 	@Override

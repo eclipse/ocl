@@ -92,15 +92,11 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 
 	RootPackageId getMetamodelId(@NonNull EPackage ePackage);
 
-	@NonNull MetamodelManager getMetamodelManager();
-
 	@NonNull PackageId getMetapackageId(@NonNull org.eclipse.ocl.pivot.Package asPackage);
 
 	@Nullable Element getParseableElement(@NonNull EObject eObject) throws ParserException;
 
 	@Nullable StandaloneProjectMap getProjectMap();
-
-	void dispose();
 	
 	boolean isStereotype(@NonNull EClass eClass);
 

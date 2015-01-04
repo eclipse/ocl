@@ -32,8 +32,8 @@ import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.common.delegate.VirtualDelegateMapping;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerListener;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
@@ -166,9 +166,9 @@ public class OCLDelegateDomain implements DelegateDomain, MetamodelManagerListen
 		this.ePackage = ePackage;
 	}
 
-	private @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
+	private @NonNull EnvironmentFactory getEnvironmentFactory() {
 		Resource res = ePackage.eResource();
-		EnvironmentFactoryInternal envFactory = null;
+		EnvironmentFactory envFactory = null;
 		if (res != null) {
 			MetamodelManager metamodelManager = null;
 			ResourceSet resourceSet = res.getResourceSet();
@@ -183,7 +183,7 @@ public class OCLDelegateDomain implements DelegateDomain, MetamodelManagerListen
 					envFactory = metamodelManager.getEnvironmentFactory();
 				}
 				else {
-					envFactory = ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(resourceSet, null, null);
+					envFactory = ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(resourceSet, null);
 				}
 				DelegateResourceAdapter.getAdapter(res);
 			}

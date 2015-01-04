@@ -27,8 +27,8 @@ import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
-import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.xtext.base.as2cs.AS2CS;
 import org.eclipse.ocl.xtext.base.cs2as.BaseCS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
@@ -177,7 +177,7 @@ public class PivotTests extends XtextTestCase
 	@SuppressWarnings("null")
 	public BaseCSResource doLoadOCLstdlib(@NonNull String stem, @NonNull String extension) throws IOException {
 		resourceSet = new ResourceSetImpl();
-		MetamodelManager metamodelManager =  new PivotEnvironmentFactory(null, null).getMetamodelManager();
+		MetamodelManager metamodelManager =  OCL.createEnvironmentFactory(null).getMetamodelManager();
 //		CS2ASResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
 //		long startTime = System.currentTimeMillis();
 //		System.out.println("Start at " + startTime);
@@ -267,7 +267,7 @@ public class PivotTests extends XtextTestCase
 	
 	@SuppressWarnings("null")
 	public void doPivotTestEcore(@NonNull String stem) throws IOException {
-		metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
+		metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
 		ResourceSet asResourceSet = metamodelManager.getASResourceSet();
 //		long startTime = System.currentTimeMillis();
 //		System.out.println("Start at " + startTime);

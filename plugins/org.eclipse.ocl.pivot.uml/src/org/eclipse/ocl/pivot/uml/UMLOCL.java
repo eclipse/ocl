@@ -3,15 +3,14 @@ package org.eclipse.ocl.pivot.uml;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
-import org.eclipse.ocl.pivot.uml.internal.utilities.UMLEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 
@@ -36,7 +35,7 @@ public class UMLOCL extends OCL
      * @return the new <code>OCL</code>
      */
 	public static @NonNull UMLOCL newInstance() {	
-		return newInstance(new UMLEnvironmentFactory(null, null));
+		return newInstance(OCL.createEnvironmentFactory(null));
 	}
 	
     /**
@@ -46,8 +45,8 @@ public class UMLOCL extends OCL
      * @param reg Ecore package registry
      * @return the new <code>OCL</code>
      */
-	public static @NonNull UMLOCL newInstance(@Nullable StandaloneProjectMap projectMap, @Nullable ModelManager modelManager) {	
-		return newInstance(new UMLEnvironmentFactory(projectMap, modelManager));
+	public static @NonNull UMLOCL newInstance(@Nullable StandaloneProjectMap projectMap) {	
+		return newInstance(OCL.createEnvironmentFactory(projectMap));
 	}
 	
     /**
@@ -57,8 +56,8 @@ public class UMLOCL extends OCL
      * @param envFactory an environment factory for Ecore
      * @return the new <code>OCL</code>
      */
-	public static @NonNull UMLOCL newInstance(@NonNull EnvironmentFactoryInternal envFactory) {	
-		return new UMLOCL(envFactory);
+	public static @NonNull UMLOCL newInstance(@NonNull EnvironmentFactory envFactory) {	
+		return new UMLOCL((EnvironmentFactoryInternal) envFactory);
 	}
 
 	protected UMLOCL(@NonNull EnvironmentFactoryInternal envFactory) {

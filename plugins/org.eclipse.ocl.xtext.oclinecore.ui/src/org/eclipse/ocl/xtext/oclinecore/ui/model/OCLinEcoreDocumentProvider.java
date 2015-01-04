@@ -53,7 +53,6 @@ import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerListener;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.resource.OCLASResourceFactory;
-import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.resource.ProjectMap;
@@ -61,6 +60,7 @@ import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IProjectDescriptor;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.MapToFirstConflictHandlerWithLog;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
@@ -202,7 +202,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 	@SuppressWarnings("null")
 	protected @NonNull MetamodelManager getMetamodelManager() {
 		if (metamodelManager == null) {
-			metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
+			metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
 			metamodelManager.addListener(this);
 		}
 		return metamodelManager;

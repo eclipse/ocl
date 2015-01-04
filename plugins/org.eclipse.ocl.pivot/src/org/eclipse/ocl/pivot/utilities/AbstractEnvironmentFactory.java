@@ -23,6 +23,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Adaptable;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
@@ -58,11 +59,38 @@ import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
  * Partial implementation of the {@link EnvironmentFactoryInternal} interface, useful
  * for subclassing to define the Pivot binding for a metamodel.
  */
-public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryInternal, Adaptable {
+public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryInternal, Adaptable
+{
+	/**
+     * A convenient shared instance of the environment factory, that creates
+     * environments using the global package registry.
+	 */
+    private static @Nullable EnvironmentFactory globalRegistryInstance = null;
+
+	public static @Nullable EnvironmentFactory basicGetGlobalRegistryInstance() {
+		return globalRegistryInstance;
+	}
+
+    /**
+     * Dispose of the global instance; this is intended for leakage detection in tests.
+     */
+	public static void disposeGlobalRegistryInstance() {
+		if (globalRegistryInstance != null) {
+			globalRegistryInstance.getMetamodelManager().dispose();
+			globalRegistryInstance = null;
+		}
+	}
+	
+	public static @NonNull EnvironmentFactory getGlobalRegistryInstance() {
+		EnvironmentFactory globalRegistryInstance2 = globalRegistryInstance;
+		if (globalRegistryInstance2 == null) {
+			globalRegistryInstance = globalRegistryInstance2 = OCL.createEnvironmentFactory(null);
+		}
+		return globalRegistryInstance2;
+	}
 
     private boolean traceEvaluation;
     protected final @Nullable StandaloneProjectMap projectMap;
-    protected final @Nullable ModelManager modelManager;
     private /*@LazyNonNull*/ MetamodelManager metamodelManager;
 	
 	/**
@@ -80,9 +108,8 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryIn
     /**
 	 * Initializes me.
 	 */
-	protected AbstractEnvironmentFactory(@Nullable StandaloneProjectMap projectMap, @Nullable ModelManager modelManager) {
+	protected AbstractEnvironmentFactory(@Nullable StandaloneProjectMap projectMap) {
 		this.projectMap = projectMap;
-		this.modelManager = modelManager;
 		this.metamodelManager = null;
 	}
 

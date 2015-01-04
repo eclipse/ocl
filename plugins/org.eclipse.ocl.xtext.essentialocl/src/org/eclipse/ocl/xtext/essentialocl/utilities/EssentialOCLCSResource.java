@@ -239,7 +239,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 				return resourceSetAdapter.getMetamodelManager();
 			}
 		}
-		return ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(resourceSet, null, null).getMetamodelManager();
+		return ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(resourceSet, null).getMetamodelManager();
 	}
 
 	@Override

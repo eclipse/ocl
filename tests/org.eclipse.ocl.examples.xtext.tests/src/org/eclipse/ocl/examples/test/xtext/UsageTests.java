@@ -73,12 +73,13 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreGeneratorAdapterFactory;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestSuite;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ui.IWorkbench;
@@ -328,7 +329,7 @@ public class UsageTests
 			project.open(null);
 			createManifest(project, testProjectName);
 		}
-		PivotEnvironmentFactory environmentFactory2 = new PivotEnvironmentFactory(getProjectMap(), null);
+		EnvironmentFactory environmentFactory2 = OCL.createEnvironmentFactory(getProjectMap());
 		MetamodelManager metamodelManager2 = environmentFactory2.getMetamodelManager();
 		createEcoreFile(metamodelManager2, testFileStem, oclinecoreFile);
 		createGenModelFile(testFileStem + ".genmodel", genmodelFile);
@@ -465,7 +466,7 @@ public class UsageTests
 		URI fileURI = genmodelURI; //getProjectFileURI(testFileStem + ".genmodel");
 		// System.out.println("Generating Ecore Model using '" + fileURI + "'");
 //		metamodelManager2.dispose();
-		PivotEnvironmentFactory environmentFactory = new PivotEnvironmentFactory(getProjectMap(), null);
+		EnvironmentFactory environmentFactory = OCL.createEnvironmentFactory(getProjectMap());
 		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
 		StandaloneProjectMap projectMap = metamodelManager.getProjectMap();

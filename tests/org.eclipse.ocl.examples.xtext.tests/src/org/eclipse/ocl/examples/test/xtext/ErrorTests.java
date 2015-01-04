@@ -22,9 +22,9 @@ import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
-import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.values.BagImpl;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.Bag;
 import org.eclipse.ocl.xtext.essentialocl.utilities.EssentialOCLCSResource;
@@ -39,7 +39,7 @@ public class ErrorTests extends XtextTestCase
 	 * Test a bad operation for bad iterate arguments. Inspired by Bug 352386.
 	 */
 	public void test_BadIterate() throws IOException {
-		MetamodelManager metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
 		String metamodelText =
 			"package test : tst = 'http://test'\n" +
 			"{\n" +
@@ -65,7 +65,7 @@ public class ErrorTests extends XtextTestCase
 	 * Test a bad operation for bad iterate arguments. Inspired by Bug 352386.
 	 */
 	public void test_BadProperty() throws IOException {
-		MetamodelManager metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
 		String metamodelText =
 			"package test : tst = 'http://test'\n" +
 			"{\n" +

@@ -19,14 +19,13 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
-import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
-import org.eclipse.ocl.pivot.uml.internal.utilities.UMLEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.junit.After;
@@ -66,7 +65,7 @@ public class EvaluateUMLTest4 extends PivotStateMachineTestSuite
 	@Override
 	protected @NonNull MetamodelManager createMetamodelManager() {
 		UMLStandaloneSetup.init();
-		PivotEnvironmentFactory environmentFactory = new UMLEnvironmentFactory(getProjectMap(), null);
+		EnvironmentFactory environmentFactory = OCL.createEnvironmentFactory(getProjectMap());
 		return environmentFactory.getMetamodelManager();
 	}
 

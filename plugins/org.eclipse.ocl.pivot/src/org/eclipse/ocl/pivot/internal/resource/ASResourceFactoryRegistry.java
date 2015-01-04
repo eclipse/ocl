@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.ecore.EcoreASResourceFactory;
 import org.eclipse.ocl.pivot.resource.ASResource;
@@ -111,7 +110,7 @@ public class ASResourceFactoryRegistry
 	 * Create a new EnvironmentFactory appropriate to the resources in ResourceSet.
 	 */
 	public @NonNull EnvironmentFactoryInternal createEnvironmentFactory(@Nullable ResourceSet resourceSet,
-			@Nullable StandaloneProjectMap projectMap, @Nullable ModelManager modelManager) {
+			@Nullable StandaloneProjectMap projectMap) {
 		Integer bestPriority = null;
 		ASResourceFactory bestASResourceFactory = null;
 		for (ASResourceFactory asResourceFactory : getExternalResourceFactories()) {
@@ -124,7 +123,7 @@ public class ASResourceFactoryRegistry
 		if (bestASResourceFactory == null) {
 			bestASResourceFactory = EcoreASResourceFactory.getInstance();
 		}
-		return bestASResourceFactory.createEnvironmentFactory(projectMap, modelManager);
+		return bestASResourceFactory.createEnvironmentFactory(projectMap);
 	}
 
 	public @Nullable ASResourceFactoryContribution get(@NonNull String contentType) {

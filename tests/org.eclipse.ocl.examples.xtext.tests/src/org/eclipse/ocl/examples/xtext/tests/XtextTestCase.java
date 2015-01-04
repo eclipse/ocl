@@ -64,13 +64,11 @@ import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
-import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.internal.values.BagImpl;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.ProjectMap;
-import org.eclipse.ocl.pivot.uml.internal.utilities.UMLEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
@@ -310,7 +308,7 @@ public class XtextTestCase extends PivotTestCase
 	}
 
 	protected void doBadLoadFromString(@NonNull String fileName, @NonNull String testFile, @NonNull Bag<String> expectedErrorMessages) throws Exception {
-		MetamodelManager metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
 		metamodelManager.addClassLoader(ClassUtil.nonNullState(getClass().getClassLoader()));
 		try {
 			MetamodelManagerResourceSetAdapter.getAdapter(ClassUtil.nonNullState(resourceSet), metamodelManager);
@@ -335,7 +333,7 @@ public class XtextTestCase extends PivotTestCase
 
 	protected void doLoadFromString(@NonNull String fileName, @NonNull String testFile, boolean useUML) throws Exception {
 		URI libraryURI = getProjectFileURI(fileName);
-		MetamodelManager metamodelManager = (useUML ? new UMLEnvironmentFactory(null, null) : new PivotEnvironmentFactory(null, null)).getMetamodelManager();
+		MetamodelManager metamodelManager = (useUML ? OCL.createEnvironmentFactory(null) : OCL.createEnvironmentFactory(null)).getMetamodelManager();
 		ResourceSet resourceSet = new ResourceSetImpl();
 		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(libraryURI);

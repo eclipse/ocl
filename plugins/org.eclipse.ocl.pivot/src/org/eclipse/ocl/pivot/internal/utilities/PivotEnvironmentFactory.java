@@ -34,42 +34,14 @@ import org.eclipse.ocl.pivot.values.ObjectValue;
  *
  * @author Christian W. Damus (cdamus)
  */
-public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
-	
-	/**
-     * A convenient shared instance of the environment factory, that creates
-     * environments using the global package registry.
-	 */
-    private static @Nullable PivotEnvironmentFactory globalRegistryInstance = null;
-
-	public static @Nullable PivotEnvironmentFactory basicGetGlobalRegistryInstance() {
-		return globalRegistryInstance;
-	}
-
-    /**
-     * Dispose of the global instance; this is intended for leakage detection in tests.
-     */
-	public static void disposeGlobalRegistryInstance() {
-		if (globalRegistryInstance != null) {
-			globalRegistryInstance.getMetamodelManager().dispose();
-			globalRegistryInstance = null;
-		}
-	}
-	
-	public static @NonNull PivotEnvironmentFactory getGlobalRegistryInstance() {
-		PivotEnvironmentFactory globalRegistryInstance2 = globalRegistryInstance;
-		if (globalRegistryInstance2 == null) {
-			globalRegistryInstance = globalRegistryInstance2 = new PivotEnvironmentFactory(null, null);
-		}
-		return globalRegistryInstance2;
-	}
-	
+public class PivotEnvironmentFactory extends AbstractEnvironmentFactory
+{
 	/**
 	 * Initializes me with an optional <code>StandaloneProjectMap</code> of accessible resources and
 	 * an optional <code>ModelManager</code> for loaded instances.
 	 */
-	public PivotEnvironmentFactory(@Nullable StandaloneProjectMap projectMap, @Nullable ModelManager modelManager) {
-		super(projectMap, modelManager);
+	public PivotEnvironmentFactory(@Nullable StandaloneProjectMap projectMap) {
+		super(projectMap);
 	}
 
     // implements the inherited specification

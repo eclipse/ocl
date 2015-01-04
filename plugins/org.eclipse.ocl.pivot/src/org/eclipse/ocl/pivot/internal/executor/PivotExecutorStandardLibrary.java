@@ -25,13 +25,13 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManageable;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.library.ecore.EcoreExecutorPackage;
 import org.eclipse.ocl.pivot.library.executor.ExecutableStandardLibrary;
 import org.eclipse.ocl.pivot.library.executor.ExecutorType;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.OCL;
 
 public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary implements MetamodelManageable
 {
@@ -49,7 +49,7 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 
 	public PivotExecutorStandardLibrary(EcoreExecutorPackage... execPackages) {
 		OCLstdlibTables.PACKAGE.getClass();
-		this.metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
+		this.metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
 		metamodelManager.getStandardLibrary().setDefaultStandardLibraryURI(LibraryConstants.STDLIB_URI);
 		PivotTables.PACKAGE.getClass();
 	}

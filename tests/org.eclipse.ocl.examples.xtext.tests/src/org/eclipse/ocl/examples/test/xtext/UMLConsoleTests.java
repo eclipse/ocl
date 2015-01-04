@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.uml.internal.utilities.UMLEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.OCL;
 
 /**
@@ -25,7 +24,7 @@ import org.eclipse.ocl.pivot.utilities.OCL;
 public class UMLConsoleTests extends AbstractConsoleTests
 {	
 	public void testConsole_Bug419556() throws Exception {
-		OCL ocl = OCL.newInstance(new UMLEnvironmentFactory(null, null));
+		OCL ocl = OCL.newInstance(OCL.createEnvironmentFactory(null));
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
 
@@ -45,7 +44,7 @@ public class UMLConsoleTests extends AbstractConsoleTests
 	}
 
 	public void testConsole_Bug437715() throws Exception {
-		OCL ocl = OCL.newInstance(new UMLEnvironmentFactory(null, null));
+		OCL ocl = OCL.newInstance(OCL.createEnvironmentFactory(null));
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
 
@@ -68,7 +67,7 @@ public class UMLConsoleTests extends AbstractConsoleTests
 
 	@SuppressWarnings({"unused"})
 	public void testConsole_UML() throws Exception {
-		OCL ocl = OCL.newInstance(new UMLEnvironmentFactory(null, null));
+		OCL ocl = OCL.newInstance(OCL.createEnvironmentFactory(null));
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
 

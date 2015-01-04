@@ -37,7 +37,6 @@ import org.eclipse.ocl.pivot.uml.UMLOCL;
 import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
 import org.eclipse.ocl.pivot.uml.internal.library.UMLElementExtension;
-import org.eclipse.ocl.pivot.uml.internal.utilities.UMLEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
@@ -169,7 +168,7 @@ public class StereotypesTest extends PivotTestSuite
 	@Override
 	protected MetamodelManager createMetamodelManager() {
 		UMLStandaloneSetup.init();
-		MetamodelManager metamodelManager = new UMLEnvironmentFactory(null, null).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
 //		XMI252UMLResourceFactoryImpl.install(metamodelManager.getExternalResourceSet(), URI.createPlatformResourceURI("/org.eclipse.ocl.examples.uml25/model/", true));
 		return metamodelManager;
 	}

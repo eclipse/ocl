@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Model;
@@ -63,8 +64,12 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
  * 
  * @see EnvironmentFactoryInternal
  */
-public class OCL {
-
+public class OCL
+{
+	public static @NonNull EnvironmentFactory createEnvironmentFactory(@Nullable StandaloneProjectMap projectMap) {
+		return ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(null, projectMap);
+	}
+	
 	/**
 	 * Initialize registries to support OCL and Ecore usage. This method is
 	 * intended for initialization of standalone behaviors for which plugin extension
@@ -97,7 +102,7 @@ public class OCL {
      * @return the new <code>OCL</code>
      */
 	public static @NonNull OCL newInstance() {
-		return newInstance(new PivotEnvironmentFactory(null, null));
+		return newInstance(OCL.createEnvironmentFactory(null));
 	}
 	
     /**
@@ -107,8 +112,8 @@ public class OCL {
      * @param reg Ecore package registry
      * @return the new <code>OCL</code>
      */
-	public static @NonNull OCL newInstance(@Nullable StandaloneProjectMap projectMap, @Nullable ModelManager modelManager) {	
-		return newInstance(new PivotEnvironmentFactory(projectMap, modelManager));
+	public static @NonNull OCL newInstance(@Nullable StandaloneProjectMap projectMap) {	
+		return newInstance(OCL.createEnvironmentFactory(projectMap));
 	}
 	
     /**
@@ -119,7 +124,7 @@ public class OCL {
      * @return the new <code>OCL</code>
      */
 	public static @NonNull OCL newInstance(@NonNull EPackage.Registry reg) {			// FIXME exploit reg to give narrower MetamodelManager capability
-		return newInstance(new PivotEnvironmentFactory(null, null));
+		return newInstance(OCL.createEnvironmentFactory(null));
 	}
 	
     /**
@@ -127,7 +132,7 @@ public class OCL {
      * This automatically creates an new EnvironmentFactory and MetamodelManager.
      */
 	public static @NonNull OCL newInstance(@NonNull ResourceSet resourceSet) {
-		EnvironmentFactoryInternal environmentFactory = ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(resourceSet, null, null);
+		EnvironmentFactoryInternal environmentFactory = ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(resourceSet, null);
 		return newInstance(environmentFactory);
 	}
 	
@@ -138,8 +143,8 @@ public class OCL {
      * @param envFactory an environment factory for Ecore
      * @return the new <code>OCL</code>
      */
-	public static @NonNull OCL newInstance(@NonNull EnvironmentFactoryInternal envFactory) {	
-		return new OCL(envFactory);
+	public static @NonNull OCL newInstance(@NonNull EnvironmentFactory envFactory) {	
+		return new OCL((EnvironmentFactoryInternal)envFactory);
 	}
 	
 	private final @NonNull EnvironmentFactoryInternal environmentFactory;

@@ -40,12 +40,12 @@ import org.eclipse.ocl.pivot.internal.library.StandardLibraryContribution;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.manager.Orphanage;
-import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IProjectDescriptor;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 import org.eclipse.ocl.xtext.essentialocl.utilities.EssentialOCLCSResource;
 
@@ -86,7 +86,7 @@ public class ConstraintMerger extends AbstractProjectComponent
 //		IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(URI.createURI(pivotNsURI));
 //		packageDescriptor.setUseModel(true, null);				// Hide packages installed by CompleteOCLStandaloneSetup
 			
-		MetamodelManager metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
 		ResourceSet asResourceSet = metamodelManager.getASResourceSet();
 //		metamodelManager.setLibraryLoadInProgress(true);
 		metamodelManager.getExternalResourceSet().getResources().add(ecoreResource);		// Don't load another copy

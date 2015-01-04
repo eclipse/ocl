@@ -20,7 +20,6 @@ import org.eclipse.ocl.examples.debug.vm.evaluator.IVMModelManager;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
-import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
@@ -31,8 +30,8 @@ public class OCLVMEnvironmentFactory extends PivotEnvironmentFactory implements 
 	private IVMDebuggerShell shell;
 	private long envId = 0;
 	
-	public OCLVMEnvironmentFactory(@Nullable StandaloneProjectMap projectMap, @Nullable ModelManager modelManager) {
-		super(projectMap, modelManager); //createModelManager(object));
+	public OCLVMEnvironmentFactory(@Nullable StandaloneProjectMap projectMap) {
+		super(projectMap);
 	}
 
 	public @NonNull IOCLVMEvaluationEnvironment createEvaluationEnvironment(@NonNull IVMModelManager modelManager, @NonNull ExpressionInOCL expressionInOCL) {

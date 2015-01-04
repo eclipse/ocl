@@ -53,6 +53,7 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Namespace;
@@ -79,7 +80,6 @@ import org.eclipse.ocl.pivot.internal.manager.AbstractMetamodelManagerResourceAd
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
-import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.library.LibraryUnaryOperation;
 import org.eclipse.ocl.pivot.library.ecore.EcoreExecutorManager;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
@@ -958,7 +958,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	}
 
 	protected @NonNull MetamodelManager createMetamodelManager() {
-		PivotEnvironmentFactory environmentFactory = new PivotEnvironmentFactory(getProjectMap(), null);
+		EnvironmentFactory environmentFactory = OCL.createEnvironmentFactory(getProjectMap());
 		return environmentFactory.getMetamodelManager();
 	}
 

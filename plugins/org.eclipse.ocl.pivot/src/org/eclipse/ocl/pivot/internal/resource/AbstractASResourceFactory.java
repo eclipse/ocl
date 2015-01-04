@@ -31,7 +31,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.TemplateParameterSubstitutionVisitor;
@@ -120,8 +119,8 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 	}
 
 	@Override
-	public @NonNull EnvironmentFactoryInternal createEnvironmentFactory(@Nullable StandaloneProjectMap projectMap, @Nullable ModelManager modelManager) {
-		return new PivotEnvironmentFactory(projectMap, modelManager);
+	public @NonNull EnvironmentFactoryInternal createEnvironmentFactory(@Nullable StandaloneProjectMap projectMap) {
+		return new PivotEnvironmentFactory(projectMap);
 	}
 	
 	@Override

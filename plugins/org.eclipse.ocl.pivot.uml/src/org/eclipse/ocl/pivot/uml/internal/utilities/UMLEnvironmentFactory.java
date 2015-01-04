@@ -26,7 +26,6 @@ import org.eclipse.ocl.pivot.DynamicElement;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.ids.RootPackageId;
@@ -50,8 +49,8 @@ public class UMLEnvironmentFactory extends PivotEnvironmentFactory
 	 * Initializes me with an optional <code>StandaloneProjectMap</code> of accessible resources and
 	 * an optional <code>ModelManager</code> for loaded instances.
 	 */
-	public UMLEnvironmentFactory(@Nullable StandaloneProjectMap projectMap, @Nullable ModelManager modelManager) {
-		super(projectMap, modelManager);
+	public UMLEnvironmentFactory(@Nullable StandaloneProjectMap projectMap) {
+		super(projectMap);
 		UMLStandaloneSetup.assertInitialized();
 	}
 

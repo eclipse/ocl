@@ -65,10 +65,10 @@ import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
-import org.eclipse.ocl.pivot.uml.internal.utilities.UMLEnvironmentFactory;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
 import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.OpaqueExpression;
@@ -110,7 +110,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 		UMLStandaloneSetup.assertInitialized();
 		UML2AS adapter;
 		if (metamodelManager == null) {
-			metamodelManager = new UMLEnvironmentFactory(null, null).getMetamodelManager();
+			metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
 		}
 		else {
 			adapter = findAdapter(resource, metamodelManager);

@@ -68,10 +68,10 @@ import org.eclipse.ocl.pivot.internal.helper.OCLHelper;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerListener;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
-import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.Pivotable;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
@@ -846,7 +846,7 @@ public class OCLConsolePage extends Page implements MetamodelManagerListener
 		}
 		MetamodelManager nullMetamodelManager2 = nullMetamodelManager;
 		if (nullMetamodelManager2 == null) {
-			nullMetamodelManager2 = nullMetamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
+			nullMetamodelManager2 = nullMetamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
 			nullMetamodelManager2.addListener(this);
 		}
 		return nullMetamodelManager2;

@@ -18,11 +18,11 @@ import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
-import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.values.BagImpl;
 import org.eclipse.ocl.pivot.library.AbstractSimpleUnaryOperation;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.Bag;
@@ -71,7 +71,7 @@ public class ImportTests extends XtextTestCase
 
 	protected void createTestImport_OCLinEcore_Bug353793_Files()
 			throws IOException {
-		MetamodelManager metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
 		String testFileA =
 				"package A1 : A2 = 'http://A3'{\n" +
 				"    class A;\n" +
@@ -428,7 +428,7 @@ public class ImportTests extends XtextTestCase
 				"package ocl\n" +				
 				"endpackage\n";
 		
-		ASResource resource = doLoadASResourceFromString(new PivotEnvironmentFactory(null, null).getMetamodelManager(), "importer.ocl", testFile);
+		ASResource resource = doLoadASResourceFromString(OCL.createEnvironmentFactory(null).getMetamodelManager(), "importer.ocl", testFile);
 		Model root = (Model) resource.getContents().get(0);
 		assertEquals(1, root.getOwnedImports().size());
 		assertNotNull(root.getOwnedImports().get(0));

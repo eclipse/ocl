@@ -47,7 +47,6 @@ import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.resource.ASSaver;
-import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
@@ -55,6 +54,7 @@ import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IPackageDescriptor;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IProjectDescriptor;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.LoadDynamicResourceStrategy;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
@@ -208,7 +208,7 @@ public abstract class GenerateOCLmetamodel extends GenerateOCLCommonXtend
 		OCLstdlib.install();
 		log.info("Loading Pivot Model '" + inputURI);
 		try {
-			MetamodelManager metamodelManager = new PivotEnvironmentFactory(projectMap, null).getMetamodelManager();
+			MetamodelManager metamodelManager = OCL.createEnvironmentFactory(projectMap).getMetamodelManager();
 			ResourceSet asResourceSet = metamodelManager.getASResourceSet();
 		    if (packageDescriptor != null) {
 		    	packageDescriptor.configure(asResourceSet, LoadDynamicResourceStrategy.INSTANCE, null);

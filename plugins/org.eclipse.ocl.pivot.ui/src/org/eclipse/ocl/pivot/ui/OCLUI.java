@@ -6,7 +6,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.OCL;
@@ -89,7 +88,7 @@ public class OCLUI
 			return metamodelManager;
 		}
 		if (metamodelManager == null) {
-			metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
+			metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
 		}
 		return metamodelManager;
 	}
@@ -100,7 +99,7 @@ public class OCLUI
 	public static Object evaluate(@Nullable EObject selfObject, @NonNull String oclExpression) throws Exception {
 		MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(selfObject);
 		if (metamodelManager == null) {
-			metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
+			metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
 			// FIXME install
 		}
 		EnvironmentFactoryInternal envFactory = metamodelManager.getEnvironmentFactory();

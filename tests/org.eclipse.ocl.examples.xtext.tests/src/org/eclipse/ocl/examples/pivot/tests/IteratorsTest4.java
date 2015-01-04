@@ -46,10 +46,10 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
-import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
@@ -581,7 +581,7 @@ public class IteratorsTest4 extends PivotTestSuite
     	if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
     		OCLinEcoreStandaloneSetup.doSetup();
     	}
-		MetamodelManager metamodelManager = new PivotEnvironmentFactory(null, null).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
 		String nodeModel =
 			"package nodes : nodes = 'http://nodes'{\n" +
 //			"    class Root {\n" +
