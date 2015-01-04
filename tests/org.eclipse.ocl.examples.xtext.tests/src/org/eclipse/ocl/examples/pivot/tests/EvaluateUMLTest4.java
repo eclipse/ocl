@@ -22,6 +22,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
@@ -85,6 +86,7 @@ public class EvaluateUMLTest4 extends PivotStateMachineTestSuite
 	 */
 	@Test public void test_oclIsInState() throws InvocationTargetException, ParserException {
 		initStateMachinePackage();
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		EObject context = statefulEFactory.create(c1Class);
 		org.eclipse.ocl.pivot.Class contextType = metamodelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Class.class, c1Class);
 		assert contextType != null;
@@ -110,9 +112,10 @@ public class EvaluateUMLTest4 extends PivotStateMachineTestSuite
 //		UML2AS.CONVERT_RESOURCE.setState(true);
 //		AbstractTypeServer.ADD_BASE_PROPERTY.setState(true);
 //		AbstractTypeServer.ADD_EXTENSION_PROPERTY.setState(true);
+		IdResolver idResolver = ocl.getIdResolver();
 		EObject context = doLoadUML(ocl, "Bug431638", "Bug431638Model.Class1.Attribute1");
 		assertNotNull(context);
-		org.eclipse.ocl.pivot.Class contextType = metamodelManager.getIdResolver().getStaticTypeOf(context);
+		org.eclipse.ocl.pivot.Class contextType = idResolver.getStaticTypeOf(context);
 		org.eclipse.ocl.pivot.Package contextPackage = contextType.getOwningPackage();
 //		assertEquals(XMI2UMLResource.UML_METAMODEL_NS_URI, contextPackage.getNsURI());
 //		assertEquals(IdManager.METAMODEL, contextPackage.getPackageId());
@@ -142,9 +145,10 @@ public class EvaluateUMLTest4 extends PivotStateMachineTestSuite
 	 * Tests construction of a type instance with property values
 	 */
 	@Test public void test_enumerations_Bug455394() throws Exception {
+		IdResolver idResolver = ocl.getIdResolver();
 		EObject context = doLoadUML(ocl, "Bug455394", "Model.Class1.class2");
 		assertNotNull(context);
-		org.eclipse.ocl.pivot.Class contextType = metamodelManager.getIdResolver().getStaticTypeOf(context);
+		org.eclipse.ocl.pivot.Class contextType = idResolver.getStaticTypeOf(context);
 		assertQueryTrue(context, "self.aggregation=UML::AggregationKind::composite");	
 		assertQueryResults(context, "UML::AggregationKind::composite", "self.aggregation");	
 		EObject associationContext = doLoadUML(ocl, "Bug455394", "Model.A_class2_class1");

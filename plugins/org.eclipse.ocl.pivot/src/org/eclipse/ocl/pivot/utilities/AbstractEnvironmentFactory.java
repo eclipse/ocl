@@ -94,6 +94,11 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
     private boolean traceEvaluation;
     protected final @Nullable StandaloneProjectMap projectMap;
     private /*@LazyNonNull*/ MetamodelManager metamodelManager;
+    
+    /**
+     * Count of the number of OCL instances that are using the EnvironmentFactory. auto-disposes on cunbt down to zero.
+     */
+    private int attachCount = 0;;
 	
 	/**
 	 * Initializes me with an <code>EPackage.Registry</code> that the
@@ -113,6 +118,12 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	protected AbstractEnvironmentFactory(@Nullable StandaloneProjectMap projectMap) {
 		this.projectMap = projectMap;
 		this.metamodelManager = null;
+	}
+
+	@Override
+	public synchronized void attach(Object object) {
+		assert attachCount >= 0;
+		attachCount++;
 	}
 
 	@Override
@@ -238,10 +249,19 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	}
 
 	@Override
-	public void dispose() {
-		if (metamodelManager != null) {
-			metamodelManager.dispose();
-			metamodelManager = null;
+	public synchronized void detach(Object object) {
+		assert attachCount > 0;
+		if (--attachCount <= 0) {
+			dispose();
+		}
+	}
+
+	protected void dispose() {
+		if (this != basicGetGlobalRegistryInstance()) { // dispose of my environment
+			if (metamodelManager != null) {
+				metamodelManager.dispose();
+				metamodelManager = null;
+			}
 		}
 	}
 
@@ -293,7 +313,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 
 	@Override
 	public @NonNull IdResolver getIdResolver() {
-		return metamodelManager.getIdResolver();
+		return getMetamodelManager().getIdResolver();
 	}
 
 	@Override
@@ -405,7 +425,8 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
      * 
      * @see #isEvaluationTracingEnabled()
      */
-    public void setEvaluationTracingEnabled(boolean b) {
+    @Override
+	public void setEvaluationTracingEnabled(boolean b) {
         traceEvaluation = b;
     }
 }

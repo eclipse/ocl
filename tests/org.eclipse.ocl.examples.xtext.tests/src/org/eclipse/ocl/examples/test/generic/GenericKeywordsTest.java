@@ -18,6 +18,7 @@ import org.eclipse.ocl.examples.pivot.tests.PivotTestSuite;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
@@ -41,6 +42,7 @@ public abstract class GenericKeywordsTest
     @Override
     protected void setUp() throws Exception {
         super.setUp();
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
 
         // create a little test model for a Smalltalk-like collection class that

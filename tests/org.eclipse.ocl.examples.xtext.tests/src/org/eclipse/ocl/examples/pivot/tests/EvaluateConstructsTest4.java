@@ -84,7 +84,7 @@ public class EvaluateConstructsTest4 extends PivotTestSuite
 			NLS.bind(PivotMessages.TypedValueRequired, "Boolean", "Integer"), null);
 		assertQueryEquals(null, 4, "if 4=4 then 4 else 4 endif");
 		//
-		assertValidQuery(metamodelManager.getStandardLibrary().getOclAnyType(), "let a : Boolean = false in if true then OrderedSet{5} else OrderedSet{} endif->first()+5");
+		assertValidQuery(ocl.getStandardLibrary().getOclAnyType(), "let a : Boolean = false in if true then OrderedSet{5} else OrderedSet{} endif->first()+5");
 	}
 
 	@Test public void testConstruct_let() {		

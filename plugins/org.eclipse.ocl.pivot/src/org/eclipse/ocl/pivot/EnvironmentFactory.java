@@ -100,8 +100,6 @@ public interface EnvironmentFactory extends Adaptable, Customizable
 	 */
 	@NonNull ParserContext createParserContext(@Nullable EObject context);
 
-	void dispose();
-
 	@NonNull IdResolver getIdResolver();
 
 	@NonNull MetamodelManager getMetamodelManager();

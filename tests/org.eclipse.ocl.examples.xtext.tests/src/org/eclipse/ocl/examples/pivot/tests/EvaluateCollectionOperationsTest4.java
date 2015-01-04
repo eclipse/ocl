@@ -332,7 +332,7 @@ public class EvaluateCollectionOperationsTest4 extends PivotTestSuite
 	}
 
 	@Test public void testCollectionElementType() {
-		StandardLibrary standardLibrary = metamodelManager.getStandardLibrary();
+		StandardLibrary standardLibrary = ocl.getStandardLibrary();
 		assertQueryEquals(null, standardLibrary.getStringType(), "Sequence{'1', '2', '3'}->oclType().elementType");
 		assertQueryEquals(null, standardLibrary.getOclAnyType(), "Sequence{1, 2.0, '3'}->oclType().elementType");
 		assertQueryEquals(null, standardLibrary.getIntegerType(), "Sequence{1, 2, 3}->oclType().elementType");
@@ -1669,7 +1669,7 @@ public class EvaluateCollectionOperationsTest4 extends PivotTestSuite
 	}
 
 	@Test public void testCollectionSum() {
-		StandardLibrary standardLibrary = metamodelManager.getStandardLibrary();
+		StandardLibrary standardLibrary = ocl.getStandardLibrary();
 		assertQueryEquals(null, 0, "let s : Sequence(Integer) = Sequence{} in s->sum()");
 		assertQueryEquals(null, 0.0, "let b : Bag(Real) = Bag{} in b->sum()");
 		assertQueryEquals(null, 0.0, "let s : Set(Real) = Set{} in s->sum()");

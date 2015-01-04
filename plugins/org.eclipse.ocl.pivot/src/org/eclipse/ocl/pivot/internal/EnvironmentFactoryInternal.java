@@ -91,4 +91,10 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 	@NonNull ImplementationManager createImplementationManager();
 	
 	String getOriginalName(@NonNull ENamedElement eNamedElement);
+
+	void setEvaluationTracingEnabled(boolean b);
+	
+	void attach(Object object);
+	
+	void detach(Object object);
 }

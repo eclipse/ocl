@@ -28,6 +28,7 @@ import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Profile;
 import org.eclipse.ocl.pivot.Stereotype;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
@@ -68,6 +69,7 @@ public class StereotypesTest extends PivotTestSuite
 	        umlInFrenchStereotype = umlProfile.getOwnedStereotype("InFrench");
 	        umlInGermanStereotype = umlProfile.getOwnedStereotype("InGerman");
 	        umlFace = (org.eclipse.uml2.uml.Enumeration) umlProfile.getOwnedType("Face");
+			MetamodelManager metamodelManager = ocl.getMetamodelManager();
 	        asProfile = metamodelManager.getPivotOf(Profile.class, umlProfile);
 	        asInEnglishStereotype = metamodelManager.getPivotOf(Stereotype.class, umlInEnglishStereotype);
 	        asInFrenchStereotype = metamodelManager.getPivotOf(Stereotype.class, umlInFrenchStereotype);
@@ -95,6 +97,7 @@ public class StereotypesTest extends PivotTestSuite
 	    ElementExtension asGermanClassInEnglish;
 	    
 	    public InternationalizedMetamodel(@NonNull InternationalizedProfile mmm, org.eclipse.uml2.uml.Package umlPackage) throws ParserException {
+			MetamodelManager metamodelManager = ocl.getMetamodelManager();
 	    	this.umlPackage = umlPackage;
 //	        umlMMM = metamodelManager.getPivotOf(Element.class, umlRoot.eClass());
 //	        asResource = ocl.uml2as(umlResource);
@@ -161,8 +164,7 @@ public class StereotypesTest extends PivotTestSuite
 
 	@Override
 	protected @NonNull OCL createOCL() {
-		UMLOCL newInstance = UMLOCL.newInstance(metamodelManager.getEnvironmentFactory());
-		return newInstance;
+		return UMLOCL.newInstance();
 	}
 	
 	@Override
@@ -236,6 +238,7 @@ public class StereotypesTest extends PivotTestSuite
      * Tests M2 navigations using base_XXX and extension_YYY.
      */
     public void test_stereotypeM2Navigation() throws Exception {
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
     	assertQueryEquals(mm.umlEnglishClass, "EnglishClass", "self.NamedElement::name");
     	assertQueryEquals(mm.umlEnglishClass, "EnglishClass", "self.name");
 //    	assertQueryEquals(mm.asEnglishClass, "EnglishClass", "self.NamedElement::name");	// FIXME fails because wrong NamedElement::name chosen
@@ -270,6 +273,7 @@ public class StereotypesTest extends PivotTestSuite
      * Tests allInstances in a stereotyped context.
      */
     public void test_stereotyped_allInstances_382981() {
+		IdResolver idResolver = ocl.getIdResolver();
 //M0
     	assertQueryEquals(m.eEnglishObject, idResolver.createSetOfEach(null, m.eEnglishObject), "EnglishClass.allInstances()");
     	assertQueryEquals(m.eEnglishObject, idResolver.createSetOfEach(null, m.eGermanObject), "GermanClass.allInstances()");
@@ -287,6 +291,7 @@ public class StereotypesTest extends PivotTestSuite
      * Tests getAppliedStereotypes.
      */
     public void test_MDT_UML2_operations_382978() {
+		IdResolver idResolver = ocl.getIdResolver();
 //    	assertQueryEquals(mm.asEnglishClass, mm.asEnglishClassInEnglish, "self.extension_Internationalized");
 //    	org.eclipse.uml2.uml.Element uml_EnglishClass = (org.eclipse.uml2.uml.Element)((PivotObjectImpl)mm.umlEnglishClass).getETarget();
 //M0

@@ -15,7 +15,9 @@ package org.eclipse.ocl.examples.pivot.tests;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.xtext.base.services.BaseLinkingService;
 
@@ -40,6 +42,7 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
 	 * Tests the allInstances() operator.
 	 */
 	public void test_allInstances() {
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		org.eclipse.ocl.pivot.Class classType = metamodelManager.getStandardLibrary().getClassType();
 		assertQueryResults(null, "Set{CollectionKind::Bag,CollectionKind::Collection,CollectionKind::_'OrderedSet',CollectionKind::_'Sequence',CollectionKind::_'Set'}", "CollectionKind.allInstances()");
 		assertQueryResults(null, "Set{true,false}", "Boolean.allInstances()");
@@ -81,6 +84,7 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
 	 * Tests the oclContainer() operator.
 	 */
 	public void test_oclContainer() {
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		org.eclipse.ocl.pivot.Class classType = metamodelManager.getStandardLibrary().getClassType();
 		assertSemanticErrorQuery(classType, "invalid.oclContainer()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "OclInvalid", "oclContainer");
 		assertQueryInvalid(pkg2, "let s : OclElement = invalid in s.oclContainer()");
@@ -95,6 +99,8 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
 	 * Tests the oclContents() operator.
 	 */
 	public void test_oclContents() {
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
+		IdResolver idResolver = metamodelManager.getIdResolver();
 		org.eclipse.ocl.pivot.Class classType = metamodelManager.getStandardLibrary().getClassType();
     	@SuppressWarnings("null") @NonNull Type packageType = metamodelManager.getPivotType("Package");
 		CollectionTypeId typeId = TypeId.SET.getSpecializedId(packageType.getTypeId());

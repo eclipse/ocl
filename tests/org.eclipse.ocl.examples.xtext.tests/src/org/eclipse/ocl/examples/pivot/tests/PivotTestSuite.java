@@ -183,8 +183,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		initialized = true;
 	}
 
-	protected MetamodelManager metamodelManager;
-	protected IdResolver idResolver;
+//	protected MetamodelManager metamodelManager;
 	protected OCL ocl;
 	protected final boolean useCodeGen;
 
@@ -241,6 +240,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	 */
     @SuppressWarnings("null")
 	protected void assertBadQuery(@NonNull Class<?> exception, int severity, @Nullable org.eclipse.ocl.pivot.Class contextType, @NonNull String expression, /*@NonNull*/ String messageTemplate, Object... bindings) {
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		BaseCSResource csResource = null;
 		try {
 			ParserContext classContext = new ClassContext(metamodelManager, null, contextType, null);
@@ -331,6 +331,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	 * an AssertionFailedError is thrown with the given message.
 	 */
 	public void assertOCLEquals(String message, Object expected, Object actual) {
+		IdResolver idResolver = ocl.getIdResolver();
 		if (idResolver.oclEquals(expected, actual))
 			return;
 		failNotEquals(message, expected, actual);
@@ -383,6 +384,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	 * @return the evaluation result
 	 */
 	protected @Nullable Object assertQueryEquals(@Nullable Object context, @Nullable Object expected, @NonNull String expression) {
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		try {
 			Object expectedValue = expected instanceof Value ? expected : metamodelManager.getIdResolver().boxedValueOf(expected);
 //			typeManager.addLockedElement(expectedValue.getType());
@@ -433,6 +435,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	 */
 	protected Object assertQueryEquals(Object context, @NonNull Number expected, @NonNull String expression, double tolerance) {
 		try {
+			IdResolver idResolver = ocl.getIdResolver();
 			Object expectedValue = idResolver.boxedValueOf(expected);
 			Object value = evaluate(null, context, expression);
 			@SuppressWarnings("null")
@@ -786,6 +789,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	} */
     
     protected boolean check(Object context, @NonNull String expression) throws ParserException {
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		org.eclipse.ocl.pivot.Class contextType = ocl.getContextType(context);
     	ExpressionInOCL constraint = ocl.createInvariant(contextType, expression);
 		if (constraint.getOwnedBody().getType() != metamodelManager.getStandardLibrary().getBooleanType()) {
@@ -883,6 +887,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	}
 
 	protected @NonNull Model createModel() {
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		Model aRoot = metamodelManager.createModel(null);
 		return aRoot;
 	}
@@ -963,11 +968,11 @@ public abstract class PivotTestSuite extends PivotTestCase
 	}
 
 	protected @NonNull OCL createOCL() {
-		EnvironmentFactoryInternal envFactory = metamodelManager.getEnvironmentFactory();
-		return OCL.newInstance(envFactory);
+		return OCL.newInstance();
 	}
 
 	protected @NonNull org.eclipse.ocl.pivot.Package createPackage(@NonNull Model parentRoot, @NonNull String name) {
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		@SuppressWarnings("null")
 		org.eclipse.ocl.pivot.Package aPackage = metamodelManager.createPackage(org.eclipse.ocl.pivot.Package.class, PivotPackage.Literals.PACKAGE, name, null, null);
 		parentRoot.getOwnedPackages().add(aPackage);
@@ -975,6 +980,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	}
 
 	protected @NonNull org.eclipse.ocl.pivot.Package createPackage(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name) {
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		@SuppressWarnings("null")
 		org.eclipse.ocl.pivot.Package aPackage = metamodelManager.createPackage(org.eclipse.ocl.pivot.Package.class, PivotPackage.Literals.PACKAGE, name, null, null);
 		parentPackage.getOwnedPackages().add(aPackage);
@@ -1080,20 +1086,20 @@ public abstract class PivotTestSuite extends PivotTestCase
 	}
 
 	protected @Nullable Object evaluate(Object unusedHelper, @Nullable Object context, @NonNull String expression) throws Exception {
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		org.eclipse.ocl.pivot.Class classContext = ocl.getContextType(context);
-		MetamodelManager metamodelManager2 = metamodelManager;
-		assert metamodelManager2 != null;
-		ParserContext parserContext = new ClassContext(metamodelManager2, null, classContext, (context instanceof Type) && !(context instanceof ElementExtension) ? (Type)context : null);
+		ParserContext parserContext = new ClassContext(metamodelManager, null, classContext, (context instanceof Type) && !(context instanceof ElementExtension) ? (Type)context : null);
 		ExpressionInOCL query = parserContext.parse(classContext, expression);
 		assertNoValidationErrors(expression, query);
         try {
         	return evaluate(query, context);
 		} finally {
-			metamodelManager2.getASResourceSet().getResources().remove(query.eResource());
+			metamodelManager.getASResourceSet().getResources().remove(query.eResource());
 		}
     }
 
 	protected @Nullable Object evaluateWithoutValidation(@Nullable Object unusedHelper, @Nullable Object context, @NonNull String expression) throws Exception {
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		org.eclipse.ocl.pivot.Class contextType = ocl.getContextType(context);
 		ExpressionInOCL query = ocl.createQuery(contextType, expression);
         try {
@@ -1104,6 +1110,7 @@ public abstract class PivotTestSuite extends PivotTestCase
     }
 
 	protected @Nullable Object evaluateLocal(@Nullable Object context, @NonNull String expression) throws Exception {
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		org.eclipse.ocl.pivot.Class contextType = ocl.getContextType(context);
 		ExpressionInOCL query = ocl.createQuery(contextType, expression);
         try {
@@ -1126,7 +1133,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 				resourceSet.getPackageRegistry().put(org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.eNS_URI, org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.eINSTANCE);
 				resourceSet.getPackageRegistry().put(org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage.eNS_URI, org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage.eINSTANCE);
 
-				@SuppressWarnings("null")
+				MetamodelManager metamodelManager = ocl.getMetamodelManager();
 				CodeGenHelper genModelHelper = getCodeGenHelper(metamodelManager);
 
 				File targetFolder = new File("../" + ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS + "/src-gen");
@@ -1193,22 +1200,23 @@ public abstract class PivotTestSuite extends PivotTestCase
     }
 
     protected @NonNull Value getEmptyBagValue() {
-		return idResolver.createBagOfEach(TypeId.BAG.getSpecializedId(TypeId.OCL_VOID));
+		return ocl.getIdResolver().createBagOfEach(TypeId.BAG.getSpecializedId(TypeId.OCL_VOID));
 	}
 
 	protected @NonNull Value getEmptyOrderedSetValue() {
-		return idResolver.createOrderedSetOfEach(TypeId.ORDERED_SET.getSpecializedId(TypeId.OCL_VOID));
+		return ocl.getIdResolver().createOrderedSetOfEach(TypeId.ORDERED_SET.getSpecializedId(TypeId.OCL_VOID));
 	}
 
 	protected @NonNull Value getEmptySequenceValue() {
-		return idResolver.createSequenceOfEach(TypeId.SEQUENCE.getSpecializedId(TypeId.OCL_VOID));
+		return ocl.getIdResolver().createSequenceOfEach(TypeId.SEQUENCE.getSpecializedId(TypeId.OCL_VOID));
 	}
 
 	protected @NonNull Value getEmptySetValue() {
-		return idResolver.createSetOfEach(TypeId.SET.getSpecializedId(TypeId.OCL_VOID));
+		return ocl.getIdResolver().createSetOfEach(TypeId.SET.getSpecializedId(TypeId.OCL_VOID));
 	}
    
 	protected @NonNull org.eclipse.ocl.pivot.Class getMetaclass(@NonNull String name) {
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		return metamodelManager.getStandardLibrary().getRequiredLibraryType(name);
 	}
 	
@@ -1237,6 +1245,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	}
 
 	protected @NonNull org.eclipse.ocl.pivot.Package getUMLMetamodel() {
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		return ClassUtil.nonNullState(metamodelManager.getASmetamodel());
 	}
 	
@@ -1255,6 +1264,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	
 	@SuppressWarnings("null")
 	public void loadEPackage(@NonNull String alias, /*@NonNull*/ EPackage ePackage) {		
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		Element ecoreElement = Ecore2AS.importFromEcore(metamodelManager, alias, ePackage);
 		metamodelManager.addGlobalNamespace(alias, (Namespace) ecoreElement);
 	}
@@ -1393,8 +1403,6 @@ public abstract class PivotTestSuite extends PivotTestCase
 		TestCaseAppender.INSTANCE.install();
  		OCLstdlib.install();
  		doEssentialOCLSetup();
-		metamodelManager = createMetamodelManager();
-		idResolver = metamodelManager.getIdResolver();
 		if ((resourceSet != null) && DISPOSE_RESOURCE_SET) {
         	disposeResourceSet();
         }
@@ -1407,9 +1415,9 @@ public abstract class PivotTestSuite extends PivotTestCase
 		if (resourceSet == null) {
 			initializeResourceSet();
 		}
-		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
-//		debugPrintln("==> Start  " + getName());
 		ocl = createOCL();
+		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, ocl.getMetamodelManager());
+//		debugPrintln("==> Start  " + getName());
 		String repairs = System.getProperty(PLUGIN_ID + ".repairs");
 		if (repairs != null)
 			ocl.setParserRepairCount(Integer.parseInt(repairs));
@@ -1494,20 +1502,6 @@ public abstract class PivotTestSuite extends PivotTestCase
 		if (ocl != null) {
 			ocl.dispose();
 			ocl = null;
-		}
-	}
-
-	protected void tearDown_idResolver() {
-		if (idResolver != null) {
-			idResolver.dispose();
-			idResolver = null;
-		}
-	}
-
-	protected void tearDown_metamodelManager() {
-		if (metamodelManager != null) {
-			metamodelManager.dispose();
-			metamodelManager = null;
 		}
 	}
     

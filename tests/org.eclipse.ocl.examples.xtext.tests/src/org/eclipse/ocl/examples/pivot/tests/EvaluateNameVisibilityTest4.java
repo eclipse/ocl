@@ -38,8 +38,10 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
@@ -116,7 +118,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	}
 
     @Test public void test_implicit_source() {
-		StandardLibrary standardLibrary = metamodelManager.getStandardLibrary();
+		StandardLibrary standardLibrary = ocl.getStandardLibrary();
         assertQueryTrue(standardLibrary.getPackage(), "ownedClasses->select(name = 'Integer') = Set{Integer}");
         assertQueryTrue(standardLibrary.getPackage(), "let name : String = 'String' in ownedClasses->select(name = 'Integer') = Set{Integer}");
         assertQueryTrue(-1, "let type : Class = oclType() in type.owningPackage.ownedClasses->select(name = type.name) = Set{Integer}");
@@ -172,7 +174,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	 * Tests a guarded let if in operator. This gave CG problems.
 	 */
 	@Test public void test_cg_let_implies() {
-		StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
+		StandardLibraryInternal standardLibrary = ocl.getStandardLibrary();
 		String textQuery = 
 			    "let bodyConstraint : Constraint = null\n" + 
 			    "in bodyConstraint <> null implies\n" +
@@ -184,7 +186,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	}
 	
 	@Test public void test_let_implies_let_implies() {
-		StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
+		StandardLibraryInternal standardLibrary = ocl.getStandardLibrary();
 		String textQuery = 
 			    "let bodyConstraint : Constraint = oclType().ownedInvariants->any(name = 'body')\n" + 
 			    "in bodyConstraint <> null implies\n" +
@@ -203,7 +205,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	}
 	
 	@Test public void test_cg_implies_calls() throws ParserException {
-		StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
+		StandardLibraryInternal standardLibrary = ocl.getStandardLibrary();
 		ExpressionInOCL query = ocl.createQuery(standardLibrary.getOclVoidType(), "self->any(true)");
 		String textQuery = 
 			    "name = 'closure' implies\n" +
@@ -212,7 +214,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	}
 	
 	@Test public void test_cg_caught_if() throws ParserException {
-		StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
+		StandardLibraryInternal standardLibrary = ocl.getStandardLibrary();
 		ExpressionInOCL query = ocl.createQuery(standardLibrary.getOclVoidType(), "self->any(true)");
 		String textQuery = 
 			    "name = 'closure' implies\n" +
@@ -269,6 +271,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 			OCLinEcoreStandaloneSetup.doSetup();
 			OCLDelegateDomain.initialize(null);
 		}
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		String metamodelText =
 				"import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/';\n" +
 				"package pkg : pkg = 'pkg' {\n" +
@@ -292,6 +295,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 			OCLinEcoreStandaloneSetup.doSetup();
 			OCLDelegateDomain.initialize(null);
 		}
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		String metamodelText =
 				"package scope = 'abc'\n" + 
 				"{\n" + 
@@ -358,6 +362,8 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	 */
 	@Test public void test_container_navigation() throws InvocationTargetException {
 		initFruitPackage();
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
+		IdResolver idResolver = metamodelManager.getIdResolver();
 		metamodelManager.addGlobalNamespace("fruit", fruitPackage);
 		//
 		//	Simple model: aTree contains redApple
@@ -395,6 +401,8 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	 */
 	@Test public void test_nested_names() throws InvocationTargetException {
 		initFruitPackage();
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
+		IdResolver idResolver = metamodelManager.getIdResolver();
 		org.eclipse.ocl.pivot.Class appleType = metamodelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Class.class, apple);
 		//
 		//	Simple model: appleTree contains redApple
@@ -459,6 +467,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	 * @throws ParserException 
 	 */
 	@Test public void test_uml_primitives_399378() throws ParserException {
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		UML2AS.initialize(resourceSet);
 		URI uri = getTestModelURI("model/Fruit.uml");
 		Element element = metamodelManager.loadResource(uri, null, resourceSet);
@@ -474,6 +483,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 			OCLinEcoreStandaloneSetup.doSetup();
 			OCLDelegateDomain.initialize(null);
 		}
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		String metamodelText =
 				"package Bug411154 : pfx = 'Bug411154.ecore'\n" +
 				"{\n" +

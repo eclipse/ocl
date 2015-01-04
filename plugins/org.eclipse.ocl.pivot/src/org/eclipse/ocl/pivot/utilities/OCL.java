@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
@@ -46,7 +47,6 @@ import org.eclipse.ocl.pivot.internal.helper.OCLHelperImpl;
 import org.eclipse.ocl.pivot.internal.helper.QueryImpl;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
-import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
@@ -146,7 +146,12 @@ public class OCL
 		return new OCL((EnvironmentFactoryInternal) envFactory);
 	}
 	
-	private final @NonNull EnvironmentFactoryInternal environmentFactory;
+	/**
+	 * The EnvironmentFactory that can create objects and which provides the MetamodelManager, CompleteEnvironment and StandardLibrary.
+	 * This is non-null until the OCL is disposed. Any subsequent usage will provoke NPEs.
+	 */
+	private /*@NonNull*/ EnvironmentFactoryInternal environmentFactory;			// Set null once disposed, so NPE is use after dispose
+	
 	private @Nullable ModelManager modelManager;
 
 	private @Nullable Diagnostic problems;
@@ -166,13 +171,10 @@ public class OCL
 	 * @param rootEnv
 	 *            my root environment
 	 */
-	protected OCL(@NonNull EnvironmentFactoryInternal envFactory) {
-		this.environmentFactory = envFactory;
-		if (envFactory instanceof AbstractEnvironmentFactory) {
-			AbstractEnvironmentFactory abstractFactory = (AbstractEnvironmentFactory) envFactory;
-
-			abstractFactory.setEvaluationTracingEnabled(traceEvaluation);
-		}
+	protected OCL(@NonNull EnvironmentFactoryInternal environmentFactory) {
+		this.environmentFactory = environmentFactory;
+		environmentFactory.attach(this);
+		environmentFactory.setEvaluationTracingEnabled(traceEvaluation);
 	}
 
 	/**
@@ -365,9 +367,11 @@ public class OCL
 	 * have parsed and {@linkplain EnvironmentInternal#dispose() disposing} of
 	 * my environment.
 	 */
-	public void dispose() {
-		if (environmentFactory != PivotEnvironmentFactory.basicGetGlobalRegistryInstance()) { // dispose of my environment
-			environmentFactory.dispose();
+	public synchronized void dispose() {
+		EnvironmentFactoryInternal environmentFactory2 = environmentFactory;
+		if (environmentFactory2 != null) {
+			environmentFactory = null;
+			environmentFactory2.detach(this);
 		}
 	}
 
@@ -408,6 +412,22 @@ public class OCL
 		}
 	}
 
+	/**
+	 * If the user neglects to dispose() then detach() the EnvironmentFactory to give it a chance to clean up.
+	 */
+	@Override
+	public synchronized void finalize() {
+		EnvironmentFactoryInternal environmentFactory2 = environmentFactory;
+		if (environmentFactory2 != null) {
+			environmentFactory = null;
+			environmentFactory2.detach(this);
+		}
+	}
+
+	public @NonNull CompleteEnvironment getCompleteEnvironment() {
+		return environmentFactory.getMetamodelManager().getCompleteEnvironment();
+	}
+
 	public @NonNull org.eclipse.ocl.pivot.Class getContextType(@Nullable Object contextObject) {
 		MetamodelManager metamodelManager = getMetamodelManager();
 		IdResolver idResolver = metamodelManager.getIdResolver();
@@ -415,6 +435,7 @@ public class OCL
 		return metamodelManager.getType(staticTypeOf);
 	}
 
+	@SuppressWarnings("null")
 	public @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
 		return environmentFactory;
 	}
@@ -427,6 +448,10 @@ public class OCL
 	 */
 	public @Nullable Diagnostic getEvaluationProblems() {
 		return evaluationProblems;
+	}
+
+	public @NonNull IdResolver getIdResolver() {
+		return environmentFactory.getIdResolver();
 	}
 
 	public @NonNull MetamodelManager getMetamodelManager() {
@@ -579,12 +604,7 @@ public class OCL
 	 */
 	public void setEvaluationTracingEnabled(boolean b) {
 		traceEvaluation = b;
-
-		if (environmentFactory instanceof AbstractEnvironmentFactory) {
-			AbstractEnvironmentFactory abstractFactory = (AbstractEnvironmentFactory) environmentFactory;
-
-			abstractFactory.setEvaluationTracingEnabled(traceEvaluation);
-		}
+		environmentFactory.setEvaluationTracingEnabled(traceEvaluation);
 	}
 
 	/**

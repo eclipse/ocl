@@ -63,6 +63,7 @@ public abstract class PivotStateMachineTestSuite extends PivotTestSuite
 	
 	protected Resource initStateMachinePackage() throws ParserException {
 		UMLStandaloneSetup.init();
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		ResourceSet resourceSet2 = resourceSet;
 		assert resourceSet2 != null;
 		UML2AS.initialize(resourceSet2);
@@ -103,6 +104,7 @@ public abstract class PivotStateMachineTestSuite extends PivotTestSuite
 	@Override
     protected void setUp() throws Exception {
         super.setUp();
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		metamodelManager.addGlobalNamespace(PivotConstantsInternal.OCL_NAME, metamodelManager.getASmetamodel());
     }
 }

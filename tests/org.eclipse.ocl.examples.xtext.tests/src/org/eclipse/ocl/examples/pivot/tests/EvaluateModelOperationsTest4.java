@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
@@ -256,6 +257,7 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 	 * Test implicit collect and oclAsSet() therein. Inspired by Bug 351512.
 	 */
 	@Test public void test_oclAsSet_351512() throws IOException {
+		IdResolver idResolver = ocl.getIdResolver();
 		String metamodelText =
 			"import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/';\n" +
 			"package pkg : pkg = 'pkg' {\n" +
@@ -310,6 +312,7 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 	 * Test container/containment navigation.
 	 */
 	@Test public void test_containment_navigation() throws IOException {
+		IdResolver idResolver = ocl.getIdResolver();
 		String metamodelText =
 			"package containment : pfx = 'http://containment'\n" +
 			"{\n" +
@@ -353,11 +356,11 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
         eAdd(parent, "children1", children1);
         eAdd(parent, "children2", children2);
 
-        org.eclipse.ocl.pivot.Class parentType = metamodelManager.getIdResolver().getType(parentClass);
-        org.eclipse.ocl.pivot.Class child1Type = metamodelManager.getIdResolver().getType(child1Class);
-        org.eclipse.ocl.pivot.Class child2Type = metamodelManager.getIdResolver().getType(child2Class);
-        org.eclipse.ocl.pivot.Class children1Type = metamodelManager.getIdResolver().getType(children1Class);
-        org.eclipse.ocl.pivot.Class children2Type = metamodelManager.getIdResolver().getType(children2Class);
+		org.eclipse.ocl.pivot.Class parentType = idResolver.getType(parentClass);
+        org.eclipse.ocl.pivot.Class child1Type = idResolver.getType(child1Class);
+        org.eclipse.ocl.pivot.Class child2Type = idResolver.getType(child2Class);
+        org.eclipse.ocl.pivot.Class children1Type = idResolver.getType(children1Class);
+        org.eclipse.ocl.pivot.Class children2Type = idResolver.getType(children2Class);
         //
 		OrderedSetValue kids1 = idResolver.createOrderedSetOfEach(TypeId.ORDERED_SET.getSpecializedId(children1Type.getTypeId()), children1);
 		OrderedSetValue kids2 = idResolver.createOrderedSetOfEach(TypeId.ORDERED_SET.getSpecializedId(children2Type.getTypeId()), children2);
