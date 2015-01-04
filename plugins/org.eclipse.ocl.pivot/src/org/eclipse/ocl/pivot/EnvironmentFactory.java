@@ -16,9 +16,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
-import org.eclipse.ocl.pivot.internal.context.ParserContext;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.utilities.ParserContext;
 
 /**
  * A factory for creating OCL parser {@link Environment}s.  Clients of the OCL
@@ -37,7 +39,7 @@ import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
  *
  * @author Christian W. Damus (cdamus)
  */
-public interface EnvironmentFactory
+public interface EnvironmentFactory extends Adaptable, Customizable
 {
 	/**
 	 * Creates a new evaluation environment to track the values of variables in
@@ -45,7 +47,7 @@ public interface EnvironmentFactory
 	 * 
 	 * @return a new evaluation environment
 	 */
-	@NonNull EvaluationEnvironment createEvaluationEnvironment();
+	@NonNull EvaluationEnvironment createEvaluationEnvironment(@NonNull NamedElement executableObject, @NonNull ModelManager modelManager);
 	
 	/**
 	 * Creates a new evaluation environment as a nested environment of the
@@ -54,7 +56,19 @@ public interface EnvironmentFactory
 	 * @param parent a nesting evaluation environment
 	 * @return a new nested evaluation environment
 	 */
-	@NonNull EvaluationEnvironment createEvaluationEnvironment(@NonNull EvaluationEnvironment parent);
+	@NonNull EvaluationEnvironment createEvaluationEnvironment(@NonNull EvaluationEnvironment parent, @NonNull NamedElement executableObject);
+	
+    /**
+     * Creates a new evaluation visitor, for the evaluation of OCL expressions.
+     * 
+     * @param env the environment in which the expression was originally parsed
+     *    (or some compatible environment)
+     * @param evalEnv the evaluation environment that the visitor is to use
+     *    for tracking variables, navigating properties, etc.
+     * @param modelManager the map of <tt>Class</tt>es to their extends
+     * @return the new evaluation visitor
+     */
+	@NonNull EvaluationVisitor createEvaluationVisitor(@NonNull EvaluationEnvironment evalEnv);
 
 	/**
 	 * Creates an extent map for invocation of <tt>OclType.allInstances()</tt>
@@ -87,6 +101,8 @@ public interface EnvironmentFactory
 	@NonNull ParserContext createParserContext(@Nullable EObject context);
 
 	void dispose();
+
+	@NonNull IdResolver getIdResolver();
 
 	@NonNull MetamodelManager getMetamodelManager();
 }

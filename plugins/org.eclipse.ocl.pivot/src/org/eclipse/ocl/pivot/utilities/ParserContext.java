@@ -8,7 +8,7 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.pivot.internal.context;
+package org.eclipse.ocl.pivot.utilities;
 
 import java.io.IOException;
 
@@ -19,6 +19,7 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.internal.context.Base2ASConversion;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.resource.CSResource;
 
@@ -57,7 +58,7 @@ public interface ParserContext // extends Adapter
 	@Nullable ExpressionInOCL getExpression(@NonNull CSResource resource) throws ParserException;
 
 	/**
-	 * Returbn the MetamodelManager in use.
+	 * Return the MetamodelManager in use.
 	 */
 	@NonNull MetamodelManager getMetamodelManager();
 

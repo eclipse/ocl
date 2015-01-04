@@ -12,21 +12,15 @@
 
 package org.eclipse.ocl.pivot.internal.utilities;
 
-import org.eclipse.emf.ecore.ENamedElement;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.evaluation.PivotEvaluationEnvironment;
-import org.eclipse.ocl.pivot.internal.evaluation.PivotModelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.evaluation.AbstractEvaluationEnvironment;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.AbstractEnvironmentFactory;
-import org.eclipse.ocl.pivot.values.ObjectValue;
-
-
 
 /**
  * Implementation of the {@link EnvironmentFactoryInternal} for parsing OCL expressions
@@ -34,8 +28,8 @@ import org.eclipse.ocl.pivot.values.ObjectValue;
  *
  * @author Christian W. Damus (cdamus)
  */
-public class PivotEnvironmentFactory extends AbstractEnvironmentFactory
-{
+public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
+	
 	/**
 	 * Initializes me with an optional <code>StandaloneProjectMap</code> of accessible resources and
 	 * an optional <code>ModelManager</code> for loaded instances.
@@ -44,41 +38,13 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory
 		super(projectMap);
 	}
 
-    // implements the inherited specification
 	@Override
-	public @NonNull EvaluationEnvironment createEvaluationEnvironment() {
-		return new PivotEvaluationEnvironment(this);
-	}
-
-    // implements the inherited specification
-	@Override
-	public @NonNull EvaluationEnvironment createEvaluationEnvironment(@NonNull EvaluationEnvironment parent) {
-		return new PivotEvaluationEnvironment(parent);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public @NonNull ModelManager createModelManager(@Nullable Object object) {
-		if (object instanceof ObjectValue) {
-			object = ((ObjectValue) object).getObject();
-		}
-		if (object instanceof EObject) {
-			return new PivotModelManager(getMetamodelManager(), (EObject) object);
-		}
-		return ModelManager.NULL;
+	public @NonNull EvaluationEnvironment createEvaluationEnvironment(@NonNull NamedElement executableObject, @NonNull ModelManager modelManager) {
+		return new AbstractEvaluationEnvironment(this, executableObject, modelManager);
 	}
 
 	@Override
-	protected @NonNull org.eclipse.ocl.pivot.Class getClassifier(@NonNull Object context) {
-		MetamodelManager metamodelManager = getMetamodelManager();
-		org.eclipse.ocl.pivot.Class dType = metamodelManager.getIdResolver().getStaticTypeOf(context);
-		return metamodelManager.getType(dType);
-	}
-
-	@Override
-	public String getOriginalName(@NonNull ENamedElement eNamedElement) {
-		return eNamedElement.getName();
+	public @NonNull EvaluationEnvironment createEvaluationEnvironment(@NonNull EvaluationEnvironment parent, @NonNull NamedElement executableObject) {
+		return new AbstractEvaluationEnvironment(parent, executableObject);
 	}
 }

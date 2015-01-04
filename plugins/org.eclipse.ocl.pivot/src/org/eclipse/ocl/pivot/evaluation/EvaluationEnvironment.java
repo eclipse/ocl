@@ -14,14 +14,17 @@ import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.BasicEnvironment;
+import org.eclipse.ocl.pivot.Adaptable;
+import org.eclipse.ocl.pivot.Customizable;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
+import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.TypedElement;
 
 /**
  * The evaluation environment keeps track of the current values of variables
  * in the evaluation of an OCL expression.
  */
-public interface EvaluationEnvironment extends BasicEnvironment
+public interface EvaluationEnvironment extends Adaptable, Customizable
 {
 	/**
 	 * Adds the supplied variable declaration and value binding to the
@@ -40,6 +43,8 @@ public interface EvaluationEnvironment extends BasicEnvironment
 	 * Clears the environment of variables.
 	 */
 	void clear();
+	void dispose();
+	@NonNull EnvironmentFactory getEnvironmentFactory();
 
 	/**
 	 * Returns the value associated with the supplied variable declaration
@@ -75,4 +80,8 @@ public interface EvaluationEnvironment extends BasicEnvironment
 	 *            the new value
 	 */
 	void replace(@NonNull TypedElement referredVariable, @Nullable Object value);
+
+	@NonNull ModelManager getModelManager();
+
+	@NonNull NamedElement getExecutableObject();
 }

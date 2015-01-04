@@ -71,9 +71,9 @@ import org.eclipse.ocl.pivot.VariableDeclaration;
 import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationHaltedException;
+import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.IterationManager;
-import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
@@ -99,7 +99,7 @@ import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 /**
  * An evaluation visitor implementation for OCL expressions.
  */
-public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
+public class OCLEvaluationVisitor extends AbstractEvaluationVisitor
 {
 	public static boolean isSimpleRange(@NonNull CollectionLiteralExp cl) {
 		List<CollectionLiteralPart> partsList = cl.getOwnedParts();
@@ -119,15 +119,16 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 * @param modelManager
 	 *            a map of classes to their instance lists
 	 */
-	public EvaluationVisitorImpl(@NonNull EvaluationEnvironment evalEnv, @NonNull ModelManager modelManager) {
-		super(evalEnv, modelManager);
+	public OCLEvaluationVisitor(@NonNull EvaluationEnvironment evalEnv) {
+		super(evalEnv);
 	}
 	
 	// FIXME Revise API so that cannot invoke createNestedEvaluator() by mistake
 	@Override
 	public @NonNull EvaluationVisitor createNestedEvaluator() {
-    	EvaluationEnvironment nestedEvalEnv = environmentFactory.createEvaluationEnvironment(getEvaluationEnvironment());
-		EvaluationVisitorImpl nestedEvaluationVisitor = new EvaluationVisitorImpl(nestedEvalEnv, getModelManager());
+    	EvaluationEnvironment evaluationEnvironment = getEvaluationEnvironment();
+		EvaluationEnvironment nestedEvalEnv = environmentFactory.createEvaluationEnvironment(evaluationEnvironment, evaluationEnvironment.getExecutableObject());
+		OCLEvaluationVisitor nestedEvaluationVisitor = new OCLEvaluationVisitor(nestedEvalEnv);
 		nestedEvaluationVisitor.setMonitor(getMonitor());
 		return nestedEvaluationVisitor;
 	}

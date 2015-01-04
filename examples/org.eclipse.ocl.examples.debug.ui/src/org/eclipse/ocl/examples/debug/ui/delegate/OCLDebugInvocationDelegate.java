@@ -41,7 +41,7 @@ public class OCLDebugInvocationDelegate extends OCLInvocationDelegate
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		IdResolver idResolver = metamodelManager.getIdResolver();
 		Query query2 = ocl.createQuery(query);
-		EvaluationEnvironment env = query2.getEvaluationEnvironment();
+		EvaluationEnvironment env = query2.getEvaluationEnvironment(target);
 		Object object = target;
 		Object value = idResolver.boxedValueOf(target);
 		env.add(ClassUtil.nonNullModel(query.getOwnedContext()), value);

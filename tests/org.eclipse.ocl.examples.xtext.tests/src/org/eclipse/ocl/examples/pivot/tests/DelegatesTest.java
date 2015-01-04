@@ -56,7 +56,6 @@ import org.eclipse.emf.examples.extlibrary.Library;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
-import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Model;
@@ -74,6 +73,7 @@ import org.eclipse.ocl.pivot.internal.delegate.DelegateInstaller;
 import org.eclipse.ocl.pivot.internal.delegate.InvocationBehavior;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomainFactory;
+import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateException;
 import org.eclipse.ocl.pivot.internal.delegate.OCLInvocationDelegate;
 import org.eclipse.ocl.pivot.internal.delegate.OCLInvocationDelegateFactory;
 import org.eclipse.ocl.pivot.internal.delegate.OCLQueryDelegateFactory;
@@ -83,7 +83,7 @@ import org.eclipse.ocl.pivot.internal.delegate.OCLValidationDelegateFactory;
 import org.eclipse.ocl.pivot.internal.delegate.SettingBehavior;
 import org.eclipse.ocl.pivot.internal.delegate.ValidationDelegate;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitorImpl;
+import org.eclipse.ocl.pivot.internal.evaluation.OCLEvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
@@ -758,7 +758,7 @@ public class DelegatesTest extends PivotTestSuite
 
 	/**
 	 * Caches an operation AST in the annotation used by the {@link SettingBehavior} implementation
-	 * and ensures that it's used by the delegate as well as the {@link EvaluationVisitorImpl}
+	 * and ensures that it's used by the delegate as well as the {@link OCLEvaluationVisitor}
 	 * @throws ParserException 
 	 * @throws InvocationTargetException 
 	 *
@@ -974,7 +974,7 @@ public class DelegatesTest extends PivotTestSuite
 	
 	/**
 	 * Caches an operation AST in the annotation used by the {@link InvocationBehavior} implementation
-	 * and ensures that it's used by the delegate as well as the {@link EvaluationVisitorImpl}.
+	 * and ensures that it's used by the delegate as well as the {@link OCLEvaluationVisitor}.
 	 * Implicitly, the test ensures that no modification is applied to the original textual annotation,
 	 * so that the annotation's contents are <em>not</em> used to cache the compiled AST because that
 	 * may make some clients expecting the metamodel resources to remain unchanged angry.

@@ -22,9 +22,9 @@ import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
-import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitorImpl;
+import org.eclipse.ocl.pivot.internal.evaluation.OCLEvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.library.AbstractOperation;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -66,8 +66,8 @@ public class EObjectOperation extends AbstractOperation
 			argumentValues[i] = evaluator.evaluate(argument);
 		}
 		Evaluator nestedEvaluator;
-		if (evaluator instanceof EvaluationVisitorImpl) {
-			nestedEvaluator = ((EvaluationVisitorImpl)evaluator).createNestedUndecoratedEvaluator(query);
+		if (evaluator instanceof OCLEvaluationVisitor) {
+			nestedEvaluator = ((OCLEvaluationVisitor)evaluator).createNestedUndecoratedEvaluator(query);
 		}
 		else {
 			nestedEvaluator = evaluator.createNestedEvaluator();

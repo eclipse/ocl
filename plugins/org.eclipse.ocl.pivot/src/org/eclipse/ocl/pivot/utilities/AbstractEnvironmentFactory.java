@@ -14,6 +14,7 @@ package org.eclipse.ocl.pivot.utilities;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -21,7 +22,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.Adaptable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
@@ -33,6 +33,7 @@ import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
@@ -43,10 +44,10 @@ import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.context.ClassContext;
 import org.eclipse.ocl.pivot.internal.context.ModelContext;
 import org.eclipse.ocl.pivot.internal.context.OperationContext;
-import org.eclipse.ocl.pivot.internal.context.ParserContext;
 import org.eclipse.ocl.pivot.internal.context.PropertyContext;
-import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitorImpl;
+import org.eclipse.ocl.pivot.internal.evaluation.AbstractCustomizable;
+import org.eclipse.ocl.pivot.internal.evaluation.OCLEvaluationVisitor;
+import org.eclipse.ocl.pivot.internal.evaluation.PivotModelManager;
 import org.eclipse.ocl.pivot.internal.evaluation.TracingEvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.library.ImplementationManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
@@ -54,12 +55,13 @@ import org.eclipse.ocl.pivot.internal.manager.PivotIdResolver;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.values.ObjectValue;
 
 /**
  * Partial implementation of the {@link EnvironmentFactoryInternal} interface, useful
  * for subclassing to define the Pivot binding for a metamodel.
  */
-public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryInternal, Adaptable
+public abstract class AbstractEnvironmentFactory extends AbstractCustomizable implements EnvironmentFactoryInternal
 {
 	/**
      * A convenient shared instance of the environment factory, that creates
@@ -135,34 +137,33 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryIn
 	}
 
 	@Override
-		public @NonNull EvaluationVisitor createEvaluationVisitor(@Nullable Object context, @NonNull ExpressionInOCL expression, @Nullable ModelManager modelManager) {
-			// can determine a more appropriate context from the context
-			// variable of the expression, to account for stereotype constraints
-	//		context = HelperUtil.getConstraintContext(rootEnvironment, context, expression);
-			EvaluationEnvironment evaluationEnvironment = createEvaluationEnvironment();
-			Variable contextVariable = expression.getOwnedContext();
-			if (contextVariable != null) {
-				IdResolver idResolver = getMetamodelManager().getIdResolver();
-				Object value = idResolver.boxedValueOf(context);
-				evaluationEnvironment.add(contextVariable, value);
-			}
-			for (Variable parameterVariable : expression.getOwnedParameters()) {
-				if (parameterVariable != null) {
-					evaluationEnvironment.add(parameterVariable, null);
-				}
-			}
-			ModelManager extents = modelManager;
-			if (extents == null) {
-				// let the evaluation environment create one
-				extents = createModelManager(context);
-			}
-			return createEvaluationVisitor(evaluationEnvironment, extents);
+	public @NonNull EvaluationVisitor createEvaluationVisitor(@Nullable Object context, @NonNull ExpressionInOCL expression, @Nullable ModelManager modelManager) {
+		if (modelManager == null) {
+			// let the evaluation environment create one
+			modelManager = createModelManager(context);
 		}
+		// can determine a more appropriate context from the context
+		// variable of the expression, to account for stereotype constraints
+//		context = HelperUtil.getConstraintContext(rootEnvironment, context, expression);
+		EvaluationEnvironment evaluationEnvironment = createEvaluationEnvironment(expression, modelManager);
+		Variable contextVariable = expression.getOwnedContext();
+		if (contextVariable != null) {
+			IdResolver idResolver = getMetamodelManager().getIdResolver();
+			Object value = idResolver.boxedValueOf(context);
+			evaluationEnvironment.add(contextVariable, value);
+		}
+		for (Variable parameterVariable : expression.getOwnedParameters()) {
+			if (parameterVariable != null) {
+				evaluationEnvironment.add(parameterVariable, null);
+			}
+		}
+		return createEvaluationVisitor(evaluationEnvironment);
+	}
 
 	// implements the interface method
 	@Override
-	public @NonNull EvaluationVisitor createEvaluationVisitor(@NonNull EvaluationEnvironment evalEnv, @NonNull ModelManager modelManager) {
-	    EvaluationVisitor result = new EvaluationVisitorImpl(evalEnv, modelManager);
+	public @NonNull EvaluationVisitor createEvaluationVisitor(@NonNull EvaluationEnvironment evalEnv) {
+	    EvaluationVisitor result = new OCLEvaluationVisitor(evalEnv);
 	    
 	    if (isEvaluationTracingEnabled()) {
 	        // decorate the evaluation visitor with tracing support
@@ -170,6 +171,24 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryIn
 	    }
 	    
 	    return result;
+	}
+
+	protected @NonNull ModelManager createModelManager() {
+		return ModelManager.NULL;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public @NonNull ModelManager createModelManager(@Nullable Object object) {
+		if (object instanceof ObjectValue) {
+			object = ((ObjectValue) object).getObject();
+		}
+		if (object instanceof EObject) {
+			return new PivotModelManager(getMetamodelManager(), (EObject) object);
+		}
+		return ModelManager.NULL;
 	}
 
 	@Override
@@ -257,7 +276,11 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryIn
      * @return the user model's classifier for this context object, or the
      *     context itself if it is a classifier
      */
-    protected abstract @NonNull org.eclipse.ocl.pivot.Class getClassifier(@NonNull Object context);
+	protected @NonNull org.eclipse.ocl.pivot.Class getClassifier(@NonNull Object context) {
+		MetamodelManager metamodelManager = getMetamodelManager();
+		org.eclipse.ocl.pivot.Class dType = metamodelManager.getIdResolver().getStaticTypeOf(context);
+		return metamodelManager.getType(dType);
+	}
 
 	@Override
 	public String getExtensionName(@NonNull Element asStereotypedElement) {
@@ -266,6 +289,11 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryIn
 			name = ((NamedElement)asStereotypedElement).getName();
 		}
 		return name;
+	}
+
+	@Override
+	public @NonNull IdResolver getIdResolver() {
+		return metamodelManager.getIdResolver();
 	}
 
 	@Override
@@ -309,6 +337,16 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactoryIn
 			}
 		}
 		return IdManager.METAMODEL;
+	}
+
+	@Override
+	public String getOriginalName(@NonNull ENamedElement eNamedElement) {
+		return eNamedElement.getName();
+	}
+
+	@Override
+	protected @Nullable EnvironmentFactoryInternal getParent() {
+		return null;
 	}
 
 	@Override

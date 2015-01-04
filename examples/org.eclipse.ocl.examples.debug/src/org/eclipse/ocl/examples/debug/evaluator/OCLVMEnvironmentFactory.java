@@ -13,54 +13,37 @@ package org.eclipse.ocl.examples.debug.evaluator;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.debug.vm.IVMDebuggerShell;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEnvironmentFactory;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
+import org.eclipse.ocl.examples.debug.vm.evaluator.AbstractVMEnvironmentFactory;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMModelManager;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
-public class OCLVMEnvironmentFactory extends PivotEnvironmentFactory implements IVMEnvironmentFactory
+public class OCLVMEnvironmentFactory extends AbstractVMEnvironmentFactory
 {
-	private IVMDebuggerShell shell;
-	private long envId = 0;
-	
 	public OCLVMEnvironmentFactory(@Nullable StandaloneProjectMap projectMap) {
 		super(projectMap);
 	}
 
-	public @NonNull IOCLVMEvaluationEnvironment createEvaluationEnvironment(@NonNull IVMModelManager modelManager, @NonNull ExpressionInOCL expressionInOCL) {
-		return new OCLVMRootEvaluationEnvironment(this, modelManager, expressionInOCL, ++envId);
+	@Override
+	public @NonNull IOCLVMEvaluationEnvironment createEvaluationEnvironment(@NonNull NamedElement executableObject, @NonNull ModelManager modelManager) {
+		return new OCLVMRootEvaluationEnvironment(this, (ExpressionInOCL)executableObject, (IVMModelManager)modelManager, getNextEnvironmentId());
 	}
 
 	@Override
-	public @NonNull IOCLVMEvaluationEnvironment createEvaluationEnvironment(@NonNull EvaluationEnvironment parent) { // FIXME Pass 'operation'
-		return new OCLVMNestedEvaluationEnvironment((IOCLVMEvaluationEnvironment) parent, ++envId, ((IOCLVMEvaluationEnvironment) parent).getOperation());
+	public @NonNull IOCLVMEvaluationEnvironment createEvaluationEnvironment(@NonNull EvaluationEnvironment parent, @NonNull NamedElement executableObject) {
+		return new OCLVMNestedEvaluationEnvironment((IOCLVMEvaluationEnvironment) parent, executableObject/*((IOCLVMEvaluationEnvironment) parent).getOperation()*/, getNextEnvironmentId());
 	}
 
-//	@Override
-	public @NonNull IOCLVMEvaluationEnvironment createEvaluationEnvironment(@NonNull IVMEvaluationEnvironment<?> parent, @NonNull NamedElement operation) {
-		return new OCLVMNestedEvaluationEnvironment((IOCLVMEvaluationEnvironment) parent, ++envId, operation);
-	}
-
-	public @NonNull OCLVMRootEvaluationVisitor createEvaluationVisitor(@NonNull IOCLVMEvaluationEnvironment evalEnv) {
-		return new OCLVMRootEvaluationVisitor(evalEnv, ClassUtil.nonNullState(shell));
+	@Override
+	public @NonNull OCLVMRootEvaluationVisitor createEvaluationVisitor(@NonNull EvaluationEnvironment evalEnv) {
+		return new OCLVMRootEvaluationVisitor((IOCLVMEvaluationEnvironment)evalEnv, getShell());
 	}
 
 	public @NonNull OCLVMModelManager createModelManager(@NonNull MetamodelManager metamodelManager) {
 		return new OCLVMModelManager(metamodelManager);
-	}
-
-	public boolean keepDebug() {
-		return true;
-	}
-
-	public void setShell(@Nullable IVMDebuggerShell shell) {
-		this.shell = shell;
 	}
 }

@@ -21,7 +21,6 @@ import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationException;
-import org.eclipse.ocl.pivot.evaluation.ModelManager;
 
 /**
  * An OCL constraint or query.  The query is validated for correctness
@@ -125,25 +124,21 @@ public interface Query
 	public @Nullable Object evaluateUnboxed(@Nullable Object unboxedObject);
 
 	/**
-	 * Obtains the evaluation environment that I use to evaluate OCL expressions.
+	 * Obtains the evaluation environment that I use to evaluate OCL expressions. The EvaluationEnvironment
+	 * is created lazily to suit the first evaluation and thereafter may be reused for the same query expression
+	 * on many different objects. The associated ModelManager is obtained from the OCL that created this query,
+	 * unless null in which case it is also created lazily to suit the first evaluation.
 	 * 
 	 * @return my environment
 	 */
-	EvaluationEnvironment getEvaluationEnvironment();
+	@NonNull EvaluationEnvironment getEvaluationEnvironment(@Nullable Object unboxedObject);
 	
 	/**
 	 * Obtains the expression that I evaluate (or check as a boolean constraint).
 	 * 
 	 * @return my OCL expression
 	 */
-	OCLExpression getExpression();
-
-	/**
-	 * Obtains the mapping of classes to their extents (sets of all instances).
-	 * 
-	 * @return the map of classes to their extents
-	 */
-	public ModelManager getModelManager();
+	@NonNull OCLExpression getExpression();
 
 	/**
 	 * <p>

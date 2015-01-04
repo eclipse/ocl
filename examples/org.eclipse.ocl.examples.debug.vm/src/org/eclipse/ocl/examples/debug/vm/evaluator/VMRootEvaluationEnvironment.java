@@ -17,15 +17,15 @@ import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 
 public abstract class VMRootEvaluationEnvironment<T extends NamedElement> extends VMEvaluationEnvironment<T> implements IVMRootEvaluationEnvironment<T>
 {
-    protected final @NonNull T debuggableElement;
-
-    public VMRootEvaluationEnvironment(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull IVMModelManager modelManager, @NonNull T debuggableElement) {
-		super(environmentFactory, modelManager);
-		this.debuggableElement = debuggableElement;
+    public VMRootEvaluationEnvironment(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull T executableObject, @NonNull IVMModelManager modelManager) {
+		super(environmentFactory, executableObject, modelManager);
 	}
 
+	@SuppressWarnings("unchecked")
 	public @NonNull T getDebuggableElement() {
-		return debuggableElement;
+		Object executableObject2 = executableObject;
+		assert executableObject2 != null;
+		return (T) executableObject2;
 	}
 
 	public @NonNull VMRootEvaluationEnvironment<T> getRootEvaluationEnvironment() {

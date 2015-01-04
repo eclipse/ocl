@@ -37,8 +37,8 @@ public class MetamodelManagerResourceSetAdapter implements MetamodelManagedAdapt
 		MetamodelManagerResourceSetAdapter adapter = ClassUtil.getAdapter(MetamodelManagerResourceSetAdapter.class, eAdapters);
 		if (adapter == null) {
 			if (metamodelManager == null) {
-				EnvironmentFactoryInternal environmentFactory = ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(resourceSet, null);
-				metamodelManager = environmentFactory/*OCL.createEnvironmentFactory(null)*/.getMetamodelManager();
+				EnvironmentFactoryInternal environmentFactory = ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(null);
+				metamodelManager = environmentFactory.getMetamodelManager();
 			}
 			adapter = new MetamodelManagerResourceSetAdapter(resourceSet, metamodelManager);
 			eAdapters.add(adapter);

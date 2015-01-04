@@ -15,15 +15,10 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 
 /**
- * Convenient subclass of the <code>OCL</code> fa&ccedil;ade that binds the
- * Ecore metamodel to the superclass's generic type parameters.  This frees
- * client code from the long list of parameter substitutions.  This subclass
- * also provides a shortcut to creating an <code>OCL</code> on the shared
- * {@link EnvironmentFactoryInternal} instance.
+ * Convenient subclass of the <code>OCL</code> fa&ccedil;ade that provides
+ * adduitional UML-specific functionality.
  * 
- * @author Christian W. Damus (cdamus)
- * 
- * @see EnvironmentFactoryInternal
+ * @see OCL
  */
 public class UMLOCL extends OCL
 {

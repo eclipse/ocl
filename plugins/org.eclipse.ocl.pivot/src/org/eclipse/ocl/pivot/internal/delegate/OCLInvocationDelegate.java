@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
@@ -92,7 +91,7 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		IdResolver idResolver = metamodelManager.getIdResolver();
 		Query query = ocl.createQuery(query2);
-		EvaluationEnvironment env = query.getEvaluationEnvironment();
+		EvaluationEnvironment env = query.getEvaluationEnvironment(target);
 		Object object = target;
 		Object value = idResolver.boxedValueOf(target);
 		env.add(ClassUtil.nonNullModel( query2.getOwnedContext()), value);

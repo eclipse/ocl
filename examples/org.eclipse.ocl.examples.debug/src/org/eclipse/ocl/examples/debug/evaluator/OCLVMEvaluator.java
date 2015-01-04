@@ -89,7 +89,7 @@ public class OCLVMEvaluator implements IVMEvaluator
 
 	public Object execute() {
         ExpressionInOCL expressionInOCL = getExpressionInOCL();
-		IOCLVMEvaluationEnvironment evalEnv = envFactory.createEvaluationEnvironment(modelManager, expressionInOCL);
+		IOCLVMEvaluationEnvironment evalEnv = envFactory.createEvaluationEnvironment(expressionInOCL, modelManager);
 		Variable contextVariable = expressionInOCL.getOwnedContext();
 		if (contextVariable != null) {
 			evalEnv.add(contextVariable, context);

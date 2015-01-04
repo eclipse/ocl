@@ -33,6 +33,7 @@ import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.SemanticException;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.evaluation.EvaluationHaltedException;
+import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
@@ -40,7 +41,6 @@ import org.eclipse.ocl.pivot.internal.OCLDebugOptions;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.helper.HelperUtil;
 import org.eclipse.ocl.pivot.internal.helper.OCLHelper;
 import org.eclipse.ocl.pivot.internal.helper.OCLHelperImpl;
@@ -67,7 +67,7 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
 public class OCL
 {
 	public static @NonNull EnvironmentFactory createEnvironmentFactory(@Nullable StandaloneProjectMap projectMap) {
-		return ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(null, projectMap);
+		return ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectMap);
 	}
 	
 	/**
@@ -102,7 +102,7 @@ public class OCL
      * @return the new <code>OCL</code>
      */
 	public static @NonNull OCL newInstance() {
-		return newInstance(OCL.createEnvironmentFactory(null));
+		return newInstance(createEnvironmentFactory(null));
 	}
 	
     /**
@@ -113,7 +113,7 @@ public class OCL
      * @return the new <code>OCL</code>
      */
 	public static @NonNull OCL newInstance(@Nullable StandaloneProjectMap projectMap) {	
-		return newInstance(OCL.createEnvironmentFactory(projectMap));
+		return newInstance(createEnvironmentFactory(projectMap));
 	}
 	
     /**
@@ -124,15 +124,15 @@ public class OCL
      * @return the new <code>OCL</code>
      */
 	public static @NonNull OCL newInstance(@NonNull EPackage.Registry reg) {			// FIXME exploit reg to give narrower MetamodelManager capability
-		return newInstance(OCL.createEnvironmentFactory(null));
+		return newInstance(createEnvironmentFactory(null));
 	}
 	
     /**
-     * Creates a new <code>OCL</code> suitble for the specifued resourceSet content.
+     * Creates a new <code>OCL</code> suitable for the specified resourceSet content.
      * This automatically creates an new EnvironmentFactory and MetamodelManager.
      */
 	public static @NonNull OCL newInstance(@NonNull ResourceSet resourceSet) {
-		EnvironmentFactoryInternal environmentFactory = ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(resourceSet, null);
+		EnvironmentFactory environmentFactory = OCL.createEnvironmentFactory(null);
 		return newInstance(environmentFactory);
 	}
 	
@@ -144,7 +144,7 @@ public class OCL
      * @return the new <code>OCL</code>
      */
 	public static @NonNull OCL newInstance(@NonNull EnvironmentFactory envFactory) {	
-		return new OCL((EnvironmentFactoryInternal)envFactory);
+		return new OCL((EnvironmentFactoryInternal) envFactory);
 	}
 	
 	private final @NonNull EnvironmentFactoryInternal environmentFactory;
@@ -399,7 +399,7 @@ public class OCL
 	 */
 	public @Nullable Object evaluate(@Nullable Object context, @NonNull ExpressionInOCL expression) {
 		evaluationProblems = null;
-		EvaluationVisitor evaluationVisitor = environmentFactory.createEvaluationVisitor(context, expression, modelManager);
+		EvaluationVisitor evaluationVisitor = createEvaluationVisitor(context, expression);
 		try {
 			Object result = expression.accept(evaluationVisitor);
 			return result;

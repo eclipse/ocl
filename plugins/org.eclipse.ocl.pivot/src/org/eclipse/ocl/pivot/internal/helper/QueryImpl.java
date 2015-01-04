@@ -28,11 +28,11 @@ import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationHaltedException;
+import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.ProblemAware;
-import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
@@ -61,11 +61,11 @@ public class QueryImpl implements Query, ProblemAware
 	private final @NonNull ExpressionInOCL query;
 	private final @NonNull OCLExpression expression;
 	private ModelManager modelManager = null;
-	private EvaluationEnvironment evaluationEnvironment;
+	private EvaluationEnvironment evaluationEnvironment = null;
 	private Diagnostic evalProblems;
 	private BasicDiagnostic batchEvalProblems;
 	
-	public QueryImpl(@NonNull OCL ocl, @NonNull ExpressionInOCL query) {		
+	public QueryImpl(@NonNull OCL ocl, @NonNull ExpressionInOCL query) {
 		this.ocl = ocl;
 		this.query = query;
 		this.expression = ClassUtil.nonNullState(query.getOwnedBody());
@@ -145,7 +145,7 @@ public class QueryImpl implements Query, ProblemAware
 	public @Nullable Object evaluateBoxed(@Nullable Object boxedValue) {
 		// lazily create the evaluation environment, if not already done by
 		//    the client.  Initialize it with the "self" context variable
-		EvaluationEnvironment myEnv = getEvaluationEnvironment();
+		EvaluationEnvironment myEnv = getEvaluationEnvironment(ocl.getEnvironmentFactory().getMetamodelManager().getIdResolver().unboxedValueOf(boxedValue));
 		Variable contextVariable = ClassUtil.nonNullState(query.getOwnedContext());
 		myEnv.add(contextVariable, boxedValue);
 //		Variable resultVariable = specification.getResultVariable();
@@ -154,7 +154,7 @@ public class QueryImpl implements Query, ProblemAware
 //		}
 		
 		EnvironmentFactoryInternal environmentFactory = ocl.getEnvironmentFactory();
-		EvaluationVisitor ev = environmentFactory.createEvaluationVisitor(myEnv, getModelManager());
+		EvaluationVisitor ev = environmentFactory.createEvaluationVisitor(myEnv);
 		
 		Object boxedResult;
 		
@@ -234,29 +234,21 @@ public class QueryImpl implements Query, ProblemAware
 	}
 
 	@Override
-	public @NonNull EvaluationEnvironment getEvaluationEnvironment() {
+	public @NonNull EvaluationEnvironment getEvaluationEnvironment(@Nullable Object unboxedObject) {
 		EvaluationEnvironment evaluationEnvironment2 = evaluationEnvironment;
 		if (evaluationEnvironment2 == null) {
-			evaluationEnvironment = evaluationEnvironment2 = ocl.getEnvironmentFactory().createEvaluationEnvironment();
+			ModelManager modelManager2 = modelManager;
+			if (modelManager2 == null) {
+				modelManager = modelManager2 = ocl.getEnvironmentFactory().createModelManager(unboxedObject);
+			}
+			evaluationEnvironment = evaluationEnvironment2 = ocl.getEnvironmentFactory().createEvaluationEnvironment(query, modelManager2);
 		}
 		return evaluationEnvironment2;
 	}
 
 	@Override
-	public OCLExpression getExpression() {
+	public @NonNull OCLExpression getExpression() {
 		return expression;
-	}
-
-	@Override
-	public @NonNull ModelManager getModelManager() {
-		ModelManager modelManager2 = modelManager;
-		if (modelManager2 == null) {
-			EvaluationEnvironment myEnv = getEvaluationEnvironment();
-			Variable ownedContext = query.getOwnedContext();
-			Object context = ownedContext != null ? myEnv.getValueOf(ownedContext) : null;
-			modelManager = modelManager2 = ocl.getEnvironmentFactory().createModelManager(context);
-		}
-		return modelManager2;
 	}
 
 	@Override

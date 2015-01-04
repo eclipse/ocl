@@ -18,9 +18,11 @@ import java.util.Set;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.EnvironmentFactory;
+import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.Option;
 import org.eclipse.ocl.pivot.TypedElement;
-import org.eclipse.ocl.pivot.elements.AbstractBasicEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.osgi.util.NLS;
@@ -37,18 +39,109 @@ import org.eclipse.osgi.util.NLS;
  * 
  * @author Christian W. Damus (cdamus)
  */
-public abstract class AbstractEvaluationEnvironment extends AbstractBasicEnvironment<EvaluationEnvironment>
-		implements EvaluationEnvironment {
+public class AbstractEvaluationEnvironment extends AbstractCustomizable implements EvaluationEnvironment
+{
+	protected final @NonNull EnvironmentFactory environmentFactory;
+	protected final @Nullable EvaluationEnvironment parent;					// parent in environment hierarchy, null at root
+	protected final @NonNull NamedElement executableObject;
+	protected final @NonNull ModelManager modelManager;
+	private final @NonNull Map<TypedElement, Object> variableValues = new HashMap<TypedElement, Object>();
+    
+    public AbstractEvaluationEnvironment(@NonNull EnvironmentFactory environmentFactory, @NonNull NamedElement executableObject, @NonNull ModelManager modelManager) {
+    	this.environmentFactory = environmentFactory;
+    	this.parent = null;
+    	this.executableObject = executableObject;
+    	this.modelManager = modelManager;
+    }
+    
+    public AbstractEvaluationEnvironment(@NonNull EvaluationEnvironment parent, @NonNull NamedElement executableObject) {	
+		this.environmentFactory = parent.getEnvironmentFactory();
+		this.parent = parent;
+    	this.executableObject = executableObject;
+    	this.modelManager = parent.getModelManager();
+    }
+
+	/**
+	 * Adds the supplied referredVariable and value binding to the environment
+	 * 
+	 * @param referredVariable
+	 *            the referredVariable to add
+	 * @param value
+	 *            the associated binding
+	 */
+	@Override
+	public void add(@NonNull TypedElement referredVariable, @Nullable Object value) {
+	    if (variableValues.containsKey(referredVariable)) {
+	    	Object oldValue = variableValues.get(referredVariable);
+	    	if ((oldValue != value) && ((oldValue == null) || !oldValue.equals(value))) {
+	            String message = NLS.bind(
+	            		PivotMessagesInternal.BindingExist_ERROR_,
+	            		referredVariable,
+	            		oldValue);
+	            throw new IllegalArgumentException(message);
+	    	}
+	    }
+	    variableValues.put(referredVariable, value);
+	}
 	
-    private final @NonNull Map<TypedElement, Object> variableValues = new HashMap<TypedElement, Object>();
-    
-    protected AbstractEvaluationEnvironment(@NonNull EnvironmentFactory environmentFactory) {
-    	super(environmentFactory);
-    }
-    
-    protected AbstractEvaluationEnvironment(@NonNull EvaluationEnvironment parent) {	
-    	super(parent);
-    }
+	/**
+	 * Clears the environment of variables.
+	 */
+	@Override
+	public void clear() {
+		variableValues.clear();
+	}
+
+	/**
+	 * Dispose of any owned objects.
+	 */
+	@Override
+	public void dispose() {}
+
+	/**
+	 * Implements the interface method by testing whether I am an instance of
+	 * the requested adapter type.
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public <T> T getAdapter(java.lang.Class<T> adapterType) {
+		if (adapterType.isInstance(this)) {
+			return (T) this;
+		} 
+		return null;
+	}
+	
+	@Override
+	public @NonNull EnvironmentFactory getEnvironmentFactory() {
+		return environmentFactory;
+	}
+
+	@Override
+	public @NonNull NamedElement getExecutableObject() {
+		return executableObject;
+	}
+
+	@Override
+	public @NonNull ModelManager getModelManager() {
+		return modelManager;
+	}
+
+	@Override
+	public @Nullable EvaluationEnvironment getParent() {
+		return parent;
+	}
+	
+	@Override
+	public @Nullable <T> T getValue(@NonNull Option<T> option) {
+		@SuppressWarnings("unchecked")
+		T result = (T) getOptions().get(option);
+		
+		if (result == null) {
+			EvaluationEnvironment parent2 = parent;
+			result = (parent2 != null) ? parent2.getValue(option) : option.getDefaultValue();
+		}		
+		return result;
+	}
     
     /**
      * Returns the value associated with the supplied referredVariable
@@ -79,44 +172,8 @@ public abstract class AbstractEvaluationEnvironment extends AbstractBasicEnviron
 	public @NonNull Set<TypedElement> getVariables() {
 		return variableValues.keySet();
 	}
-
-    /**
-     * Replaces the current value of the supplied referredVariable with the supplied value.
-     * 
-     * @param referredVariable
-     *            the referredVariable
-     * @param value
-     *            the new value
-     */
-    @Override
-	public void replace(@NonNull TypedElement referredVariable, @Nullable Object value) {
-    	variableValues.put(referredVariable, value);
-    }
-
-    /**
-     * Adds the supplied referredVariable and value binding to the environment
-     * 
-     * @param referredVariable
-     *            the referredVariable to add
-     * @param value
-     *            the associated binding
-     */
-    @Override
-	public void add(@NonNull TypedElement referredVariable, @Nullable Object value) {
-        if (variableValues.containsKey(referredVariable)) {
-        	Object oldValue = variableValues.get(referredVariable);
-        	if ((oldValue != value) && ((oldValue == null) || !oldValue.equals(value))) {
-	            String message = NLS.bind(
-	            		PivotMessagesInternal.BindingExist_ERROR_,
-	            		referredVariable,
-	            		oldValue);
-	            throw new IllegalArgumentException(message);
-        	}
-        }
-        variableValues.put(referredVariable, value);
-    }
-
-    /**
+	
+	/**
      * Removes the supplied referredVariable and binding from the environment (if it exists)
      * and returns it.
      * 
@@ -128,14 +185,19 @@ public abstract class AbstractEvaluationEnvironment extends AbstractBasicEnviron
    public @Nullable Object remove(@NonNull TypedElement referredVariable) {
     	return variableValues.remove(referredVariable);
     }
-
-    /**
-     * Clears the environment of variables.
-     */
-    @Override
-	public void clear() {
-    	variableValues.clear();
-    }
+	
+	/**
+	 * Replaces the current value of the supplied referredVariable with the supplied value.
+	 * 
+	 * @param referredVariable
+	 *            the referredVariable
+	 * @param value
+	 *            the new value
+	 */
+	@Override
+	public void replace(@NonNull TypedElement referredVariable, @Nullable Object value) {
+		variableValues.put(referredVariable, value);
+	}
 
     /**
      * Returns a string representation of the bindings

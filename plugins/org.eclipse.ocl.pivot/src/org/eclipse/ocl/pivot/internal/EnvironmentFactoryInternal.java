@@ -23,13 +23,12 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.ids.RootPackageId;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
-import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.library.ImplementationManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
@@ -75,22 +74,11 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
      * If modelManager is null, the context object's ResoutceSet is analyzed to create one.
      */
 	@NonNull EvaluationVisitor createEvaluationVisitor(@Nullable Object context, @NonNull ExpressionInOCL expression, @Nullable ModelManager modelManager);
-	
-    /**
-     * Creates a new evaluation visitor, for the evaluation of OCL expressions.
-     * 
-     * @param env the environment in which the expression was originally parsed
-     *    (or some compatible environment)
-     * @param evalEnv the evaluation environment that the visitor is to use
-     *    for tracking variables, navigating properties, etc.
-     * @param modelManager the map of <tt>Class</tt>es to their extends
-     * @return the new evaluation visitor
-     */
-	@NonNull EvaluationVisitor createEvaluationVisitor(@NonNull EvaluationEnvironment evalEnv, @NonNull ModelManager modelManager);
 
 	String getExtensionName(@NonNull Element asStereotypedElement);
 
 	RootPackageId getMetamodelId(@NonNull EPackage ePackage);
+
 
 	@NonNull PackageId getMetapackageId(@NonNull org.eclipse.ocl.pivot.Package asPackage);
 

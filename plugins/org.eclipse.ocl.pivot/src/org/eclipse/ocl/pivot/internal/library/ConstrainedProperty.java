@@ -19,11 +19,11 @@ import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Variable;
+import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitorImpl;
+import org.eclipse.ocl.pivot.internal.evaluation.OCLEvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.library.AbstractProperty;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -51,7 +51,7 @@ public class ConstrainedProperty extends AbstractProperty
 				throw new InvalidValueException("No defaultExpression for '{0}'", property);
 			}
 			try {
-				MetamodelManager metamodelManager = ((EvaluationVisitorImpl)evaluator).getMetamodelManager();
+				MetamodelManager metamodelManager = ((OCLEvaluationVisitor)evaluator).getMetamodelManager();
 				expression = expression2 = metamodelManager.getQueryOrThrow(defaultSpecification);
 			} catch (ParserException e) {
 				throw new InvalidValueException(e, "Bad defaultExpression for '{0}'", property);
@@ -60,8 +60,8 @@ public class ConstrainedProperty extends AbstractProperty
 		PivotUtil.checkExpression(expression2);
 		EvaluationVisitor evaluationVisitor = (EvaluationVisitor)evaluator;
 		EvaluationVisitor nestedVisitor;
-		if (evaluationVisitor instanceof EvaluationVisitorImpl) {
-			nestedVisitor = ((EvaluationVisitorImpl)evaluationVisitor).createNestedUndecoratedEvaluator(expression2);
+		if (evaluationVisitor instanceof OCLEvaluationVisitor) {
+			nestedVisitor = ((OCLEvaluationVisitor)evaluationVisitor).createNestedUndecoratedEvaluator(expression2);
 		}
 		else {
 			nestedVisitor = evaluationVisitor.createNestedEvaluator();

@@ -331,9 +331,9 @@ public class XtextTestCase extends PivotTestCase
 		}
 	}
 
-	protected void doLoadFromString(@NonNull String fileName, @NonNull String testFile, boolean useUML) throws Exception {
+	protected void doLoadFromString(@NonNull String fileName, @NonNull String testFile) throws Exception {
 		URI libraryURI = getProjectFileURI(fileName);
-		MetamodelManager metamodelManager = (useUML ? OCL.createEnvironmentFactory(null) : OCL.createEnvironmentFactory(null)).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
 		ResourceSet resourceSet = new ResourceSetImpl();
 		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(libraryURI);

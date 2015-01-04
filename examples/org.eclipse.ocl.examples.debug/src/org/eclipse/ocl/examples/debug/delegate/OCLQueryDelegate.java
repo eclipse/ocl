@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.ParserException;
@@ -32,6 +31,7 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationException;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.context.EInvocationContext;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateException;
 import org.eclipse.ocl.pivot.internal.delegate.OCLQueryDelegateFactory;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
@@ -46,7 +46,6 @@ import org.eclipse.ocl.pivot.utilities.StringUtil;
  * @see OCLQueryDelegateFactory
  * @since 3.1
  */
-@SuppressWarnings("restriction")
 public class OCLQueryDelegate implements QueryDelegate
 {
 	protected @NonNull OCLDelegateDomain delegateDomain;
@@ -119,7 +118,7 @@ public class OCLQueryDelegate implements QueryDelegate
 				throw new OCLDelegateException(new SemanticException(message));
 			}
 			Query query = ocl.createQuery(nonNullSpecification);
-			EvaluationEnvironment env = query.getEvaluationEnvironment();
+			EvaluationEnvironment env = query.getEvaluationEnvironment(target);
 			for (Variable parameterVariable : parameterVariables) {
 				// bind arguments to parameter names
 				String name = parameterVariable.getName();

@@ -12,6 +12,7 @@
 package org.eclipse.ocl.pivot.internal.evaluation;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 
 /**
  * A visitor that decorates another {@link EvaluationVisitor}, to intercept

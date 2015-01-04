@@ -17,25 +17,22 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.evaluation.PivotEvaluationEnvironment;
+import org.eclipse.ocl.pivot.internal.evaluation.AbstractEvaluationEnvironment;
 
-public abstract class VMEvaluationEnvironment<T extends NamedElement> extends PivotEvaluationEnvironment implements IVMEvaluationEnvironment<T>
+public abstract class VMEvaluationEnvironment<T extends NamedElement> extends AbstractEvaluationEnvironment implements IVMEvaluationEnvironment<T>
 {
-	protected final @NonNull IVMModelManager modelManager;
 	private final @NonNull Stack<StepperEntry> stepperStack = new Stack<StepperEntry>();
 	
-	protected VMEvaluationEnvironment(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull IVMModelManager modelManager) {
-		super(environmentFactory);
-		this.modelManager = modelManager;
+	protected VMEvaluationEnvironment(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull NamedElement executableObject, @NonNull IVMModelManager modelManager) {
+		super(environmentFactory, executableObject, modelManager);
 	}
 
-	protected VMEvaluationEnvironment(@NonNull IVMEvaluationEnvironment<T> evaluationEnvironment) {
-		super(evaluationEnvironment);
-		this.modelManager = evaluationEnvironment.getModelManager();
+	protected VMEvaluationEnvironment(@NonNull IVMEvaluationEnvironment<T> evaluationEnvironment, @NonNull NamedElement executableObject) {
+		super(evaluationEnvironment, executableObject);
 	}
 
 	public @NonNull IVMModelManager getModelManager() {
-		return modelManager;
+		return (IVMModelManager) modelManager;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -44,7 +41,7 @@ public abstract class VMEvaluationEnvironment<T extends NamedElement> extends Pi
 	}
 
 	@Override
-	public @NonNull Stack<org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment.StepperEntry> getStepperStack() {
+	public @NonNull Stack<IVMEvaluationEnvironment.StepperEntry> getStepperStack() {
 		return stepperStack;
 	}
 }

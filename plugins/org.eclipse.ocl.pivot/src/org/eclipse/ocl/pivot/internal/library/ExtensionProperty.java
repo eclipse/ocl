@@ -25,7 +25,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitorImpl;
+import org.eclipse.ocl.pivot.internal.evaluation.OCLEvaluationVisitor;
 import org.eclipse.ocl.pivot.library.AbstractProperty;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -54,7 +54,7 @@ public class ExtensionProperty extends AbstractProperty
 		}
 		else {
 			try {
-				element = ((EvaluationVisitorImpl)evaluator).getMetamodelManager().getPivotOf(Element.class, (EObject)sourceValue);
+				element = ((OCLEvaluationVisitor)evaluator).getMetamodelManager().getPivotOf(Element.class, (EObject)sourceValue);
 			} catch (ParserException e) {
 				return new InvalidValueException(e, "Failed to parse " + property);
 			}

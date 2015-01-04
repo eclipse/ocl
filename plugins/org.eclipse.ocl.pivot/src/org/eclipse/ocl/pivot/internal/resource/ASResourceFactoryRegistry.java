@@ -109,8 +109,7 @@ public class ASResourceFactoryRegistry
 	/**
 	 * Create a new EnvironmentFactory appropriate to the resources in ResourceSet.
 	 */
-	public @NonNull EnvironmentFactoryInternal createEnvironmentFactory(@Nullable ResourceSet resourceSet,
-			@Nullable StandaloneProjectMap projectMap) {
+	public @NonNull EnvironmentFactoryInternal createEnvironmentFactory(@Nullable StandaloneProjectMap projectMap) {
 		Integer bestPriority = null;
 		ASResourceFactory bestASResourceFactory = null;
 		for (ASResourceFactory asResourceFactory : getExternalResourceFactories()) {

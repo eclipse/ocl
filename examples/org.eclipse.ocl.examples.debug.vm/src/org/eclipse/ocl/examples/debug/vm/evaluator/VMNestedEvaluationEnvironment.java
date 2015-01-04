@@ -19,8 +19,8 @@ public abstract class VMNestedEvaluationEnvironment<T extends NamedElement> exte
 {
 	protected final @NonNull IVMRootEvaluationEnvironment<T> rootEvaluationEnvironment;
 	
-	public VMNestedEvaluationEnvironment(@NonNull IVMEvaluationEnvironment<T> evaluationEnvironment) {
-		super(evaluationEnvironment);
+	public VMNestedEvaluationEnvironment(@NonNull IVMEvaluationEnvironment<T> evaluationEnvironment, @NonNull NamedElement executableObject) {
+		super(evaluationEnvironment, executableObject);
 		rootEvaluationEnvironment = evaluationEnvironment.getRootEvaluationEnvironment();
 	}
 

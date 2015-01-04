@@ -29,16 +29,16 @@ import org.eclipse.ocl.pivot.Variable;
 public class OCLVMNestedEvaluationEnvironment extends VMNestedEvaluationEnvironment<ExpressionInOCL> implements IOCLVMEvaluationEnvironment
 {
 	private @NonNull Element myCurrentIP;
-	private @NonNull NamedElement myOperation;
+	private @NonNull NamedElement myOperation;		// Redundant if final
     private final int myStackDepth;
 	private final long id;
     
-	public OCLVMNestedEvaluationEnvironment(@NonNull IOCLVMEvaluationEnvironment evaluationEnvironment, long id, @NonNull NamedElement operation) {
-		super(evaluationEnvironment);
+	public OCLVMNestedEvaluationEnvironment(@NonNull IOCLVMEvaluationEnvironment evaluationEnvironment, @NonNull NamedElement executableObject, long id) {
+		super(evaluationEnvironment, executableObject);
 		myStackDepth = evaluationEnvironment.getDepth() + 1;
 		this.id = id;
-		this.myOperation = operation;
-		this.myCurrentIP = operation;
+		this.myOperation = executableObject;
+		this.myCurrentIP = executableObject;
 	}
 
 	@Override

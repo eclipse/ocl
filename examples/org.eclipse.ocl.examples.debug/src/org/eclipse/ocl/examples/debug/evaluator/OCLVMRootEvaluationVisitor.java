@@ -57,7 +57,7 @@ import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
-public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implements IVMRootEvaluationVisitor<ExpressionInOCL>
+public class OCLVMRootEvaluationVisitor extends AbstractOCLVMEvaluationVisitor implements IVMRootEvaluationVisitor<ExpressionInOCL>
 {
 	private final @NonNull IVMDebuggerShell fDebugShell;
 	private final @NonNull VMBreakpointManager fBPM;
@@ -70,11 +70,11 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 	private final @NonNull IterateBreakpointHelper fIterateBPHelper;
 //	private final List<UnitLocation> fLocationStack;
 	private @NonNull VMSuspension fCurrentStepMode;
-	private final @NonNull Stack<OCLVMEvaluationVisitor> visitorStack = new Stack<OCLVMEvaluationVisitor>();
+	private final @NonNull Stack<AbstractOCLVMEvaluationVisitor> visitorStack = new Stack<AbstractOCLVMEvaluationVisitor>();
 	private final @NonNull Variable invalidVariable;
 
 	public OCLVMRootEvaluationVisitor(@NonNull IOCLVMEvaluationEnvironment evalEnv, @NonNull IVMDebuggerShell shell) {
-		super(new OCLVMEvaluationVisitorImpl(evalEnv));
+		super(new OCLVMEvaluationVisitor(evalEnv));
 		fDebugShell = shell;
 		fBPM = shell.getBreakPointManager();
 		fIterateBPHelper = new IterateBreakpointHelper(fBPM);
@@ -143,7 +143,7 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 	}
 
 	public @NonNull UnitLocation getCurrentLocation() {
-		OCLVMEvaluationVisitor currentVisitor = visitorStack.peek();
+		AbstractOCLVMEvaluationVisitor currentVisitor = visitorStack.peek();
 		IVMEvaluationEnvironment<?> evaluationEnvironment = currentVisitor.getEvaluationEnvironment();
 		return evaluationEnvironment.getCurrentLocation();
 //		return fCurrentLocation;
@@ -316,7 +316,7 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 		if (VMVirtualMachine.VISITOR_STACK.isActive()) {
 			VMVirtualMachine.VISITOR_STACK.println("[" + Thread.currentThread().getName() + "] " + "Pop " + evaluationVisitor.toString());
 		}
-		OCLVMEvaluationVisitor poppedVisitor = visitorStack.pop();
+		AbstractOCLVMEvaluationVisitor poppedVisitor = visitorStack.pop();
 		assert poppedVisitor == evaluationVisitor;
 	}
 
@@ -401,7 +401,7 @@ public class OCLVMRootEvaluationVisitor extends OCLVMEvaluationVisitor implement
 		doProcessRequest(location, event);
 	}
 
-	public void pushVisitor(@NonNull OCLVMEvaluationVisitor evaluationVisitor) {
+	public void pushVisitor(@NonNull AbstractOCLVMEvaluationVisitor evaluationVisitor) {
 		if (VMVirtualMachine.VISITOR_STACK.isActive()) {
 			VMVirtualMachine.VISITOR_STACK.println("[" + Thread.currentThread().getName() + "] " + "Push " + evaluationVisitor.toString());
 		}

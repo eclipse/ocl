@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.debug.core.ILaunch;
+import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -57,13 +58,11 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationHaltedException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
+import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.context.ClassContext;
-import org.eclipse.ocl.pivot.internal.context.ParserContext;
-import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.pivot.internal.evaluation.EvaluationVisitorImpl;
 import org.eclipse.ocl.pivot.internal.helper.OCLHelper;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerListener;
@@ -72,6 +71,7 @@ import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
+import org.eclipse.ocl.pivot.utilities.ParserContext;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.Pivotable;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
@@ -126,28 +126,6 @@ import com.google.inject.Injector;
  */
 public class OCLConsolePage extends Page implements MetamodelManagerListener
 {
-	/**
-	 * CancelableEvaluationVisitor refines the EvaluationVisitor to poll the monitor for cancellation at a variety of significant
-	 * evaluation events, such as feature visits and {@link #createNestedEvaluator()}.
-	 */
-    protected static class CancelableEvaluationVisitor extends EvaluationVisitorImpl
-    {
-		private final @NonNull IProgressMonitor monitor;
-		
-		protected CancelableEvaluationVisitor(@NonNull IProgressMonitor monitor, @NonNull EvaluationEnvironment evalEnv, @NonNull ModelManager modelManager) {
-			super(evalEnv, modelManager);
-			this.monitor = monitor;
-		}
-		
-		@Override
-		public @NonNull EvaluationVisitor createNestedEvaluator() {
-	    	EvaluationEnvironment nestedEvalEnv = environmentFactory.createEvaluationEnvironment(evaluationEnvironment);
-			CancelableEvaluationVisitor nestedVisitor = new CancelableEvaluationVisitor(monitor, nestedEvalEnv, modelManager);
-			nestedVisitor.setLogger(getLogger());
-			return nestedVisitor;
-		}
-	}
-
     public static enum ColorChoices
     {
     	DEFAULT,
@@ -213,18 +191,16 @@ public class OCLConsolePage extends Page implements MetamodelManagerListener
 	//			monitor.worked(2);
 				monitor.subTask(ConsoleMessages.Progress_Extent);
 				EnvironmentFactoryInternal environmentFactory = metamodelManager.getEnvironmentFactory();
-				EvaluationEnvironment evaluationEnvironment = environmentFactory.createEvaluationEnvironment();
+				ModelManager modelManager = environmentFactory.createModelManager(contextObject);
+				EvaluationEnvironment evaluationEnvironment = environmentFactory.createEvaluationEnvironment(expressionInOCL, modelManager);
 				Object contextValue = metamodelManager.getIdResolver().boxedValueOf(contextObject);
 				evaluationEnvironment.add(ClassUtil.nonNullModel(expressionInOCL.getOwnedContext()), contextValue);
-	//			if (modelManager == null) {
-					// let the evaluation environment create one
-					@NonNull ModelManager modelManager2 = modelManager = environmentFactory.createModelManager(contextObject);
-	//			}
 				monitor.worked(2);
 				monitor.subTask(ConsoleMessages.Progress_Evaluating);
 				try {
 	//				metamodelManager.setMonitor(monitor);
-					CancelableEvaluationVisitor evaluationVisitor = new CancelableEvaluationVisitor(monitor, evaluationEnvironment, modelManager2);
+					EvaluationVisitor evaluationVisitor = environmentFactory.createEvaluationVisitor(evaluationEnvironment);
+					evaluationVisitor.setMonitor(BasicMonitor.toMonitor(monitor));
 					evaluationVisitor.setLogger(new EvaluationLogger()
 					{
 						@Override

@@ -45,14 +45,14 @@ public class OCLVMRootEvaluationEnvironment extends VMRootEvaluationEnvironment<
 //    private VMRuntimeException myException;
 //    private Trace myTraces;
 	private @NonNull Element myCurrentIP;
-	private @NonNull NamedElement myOperation;
+	private @NonNull NamedElement myOperation;		// FIXME redundant if final
 	private final long id;
 	private final @NonNull Variable pcVariable;
 
-    public OCLVMRootEvaluationEnvironment(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull IVMModelManager modelManager, @NonNull ExpressionInOCL expressionInOCL, long id) {
-		super(environmentFactory, modelManager, expressionInOCL);
-		myCurrentIP = expressionInOCL;
-		myOperation = expressionInOCL;
+    public OCLVMRootEvaluationEnvironment(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull ExpressionInOCL executableObject, @NonNull IVMModelManager modelManager, long id) {
+		super(environmentFactory, executableObject, modelManager);
+		myCurrentIP = executableObject;
+		myOperation = executableObject;
 		this.id = id;
 		pcVariable = ClassUtil.nonNullEMF(PivotFactory.eINSTANCE.createVariable());
 		pcVariable.setName("$pc");

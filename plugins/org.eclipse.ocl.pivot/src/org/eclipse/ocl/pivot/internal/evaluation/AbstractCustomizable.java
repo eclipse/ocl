@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2007, 2012 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
+ * Copyright (c) 2007, 2013 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,12 +7,9 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
- *             - Bugs 243976, 242236, 283509
- *   Zeligsoft - Bugs 245760, 243976, 242236
- *   Borland - Bug 266320
  *******************************************************************************/
-package org.eclipse.ocl.pivot.elements;
+
+package org.eclipse.ocl.pivot.internal.evaluation;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -20,42 +17,31 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.BasicEnvironment;
-import org.eclipse.ocl.pivot.EnvironmentFactory;
+import org.eclipse.ocl.pivot.Adaptable;
+import org.eclipse.ocl.pivot.Customizable;
 import org.eclipse.ocl.pivot.Option;
+import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 
 /**
- * Partial implementation of the {@link BasicEnvironment} interface, providing
- * default behaviours for most features.
+ * A partial implementation of the {@link EvaluationEnvironment} interface,
+ * providing some useful common behaviors.  Implementors of metamodel-specific
+ * environments are encourage to extend this class rather than implement
+ * an evaluation environment "from scratch."
+ * <p>
+ * See the {@link EnvironmentInternal} class for a description of the
+ * generic type parameters of this class. 
+ * </p>
+ * 
+ * @author Christian W. Damus (cdamus)
  */
-public abstract class AbstractBasicEnvironment<P extends BasicEnvironment> implements BasicEnvironment
-{	
+public abstract class AbstractCustomizable implements Adaptable, Customizable
+{
 	private final @NonNull Map<Option<?>, Object> options = new java.util.HashMap<Option<?>, Object>();
-	
-	protected final @NonNull EnvironmentFactory environmentFactory;
-
-	protected final @Nullable P parent;					// parent in environment hierarchy, null at root
-    
-    /**
-     * Initializes me as an environment root.
-     */
-    protected AbstractBasicEnvironment(@NonNull EnvironmentFactory environmentFactory) {
-		this.environmentFactory = environmentFactory;
-		this.parent = null;
-    }
-    
-    /**
-     * Initializes me as a child of parent.
-      */
-    protected AbstractBasicEnvironment(@NonNull P parent) {      
-		this.environmentFactory = parent.getEnvironmentFactory();
-		this.parent = parent;
-    }
 
 	protected final @NonNull Map<Option<?>, Object> basicGetOptions() {
 	    return options;
 	}
-	
+
 	@Override
 	public @NonNull Map<Option<?>, Object> clearOptions() {
 		Map<Option<?>, Object> myOptions = options;
@@ -67,12 +53,6 @@ public abstract class AbstractBasicEnvironment<P extends BasicEnvironment> imple
 		
 		return result;
 	}
-
-	/**
-	 * Dispose of any owned objects.
-	 */
-	@Override
-	public void dispose() {}
 
 	/**
 	 * Implements the interface method by testing whether I am an instance of
@@ -88,13 +68,8 @@ public abstract class AbstractBasicEnvironment<P extends BasicEnvironment> imple
 	}
 	
 	@Override
-	public @NonNull EnvironmentFactory getEnvironmentFactory() {
-		return environmentFactory;
-	}
-	
-	@Override
 	public Map<Option<?>, Object> getOptions() {
-		P parent2 = parent;
+		Customizable parent2 = getParent();
 		Map<Option<?>, Object> result = (parent2 != null)
 			? new HashMap<Option<?>, Object>(parent2.getOptions())
 		    : new HashMap<Option<?>, Object>();
@@ -104,10 +79,7 @@ public abstract class AbstractBasicEnvironment<P extends BasicEnvironment> imple
 		return result;
 	}
 
-    // implements the interface method
-	public final @Nullable P getParent() {
-		return parent;
-	}
+	protected abstract @Nullable Customizable getParent();
 	
 	@Override
 	public @Nullable <T> T getValue(@NonNull Option<T> option) {
@@ -115,25 +87,25 @@ public abstract class AbstractBasicEnvironment<P extends BasicEnvironment> imple
 		T result = (T) getOptions().get(option);
 		
 		if (result == null) {
-		    P parent2 = parent;
+			Customizable parent2 = getParent();
 			result = (parent2 != null) ? parent2.getValue(option) : option.getDefaultValue();
 		}		
 		return result;
 	}
-	
-	@Override
+
+    @Override
 	public boolean isEnabled(@NonNull Option<Boolean> option) {
 		Boolean result = getValue(option);
 		return (result == null)? false : result.booleanValue();
 	}
-	
+
 	@Override
 	public <T> void putOptions(@NonNull Map<? extends Option<T>, ? extends T> newOptions) {
 		Map<Option<?>, Object> myOptions = options;	
 		myOptions.clear();
 		myOptions.putAll(newOptions);
 	}
-	
+
 	@Override
 	public @Nullable <T> T removeOption(@NonNull Option<T> option) {
 		T result = getValue(option);	
@@ -153,7 +125,7 @@ public abstract class AbstractBasicEnvironment<P extends BasicEnvironment> imple
 		}		
 		return result;
 	}
-	
+
 	@Override
 	public <T> void setOption(@NonNull Option<T> option, @Nullable T value) {
 		options.put(option, value);

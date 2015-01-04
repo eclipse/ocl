@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.ParserException;
@@ -120,7 +119,7 @@ public class OCLQueryDelegate implements QueryDelegate
 				throw new OCLDelegateException(new SemanticException(message));
 			}
 			Query query = ocl.createQuery(nonNullSpecification);
-			EvaluationEnvironment env = query.getEvaluationEnvironment();
+			EvaluationEnvironment env = query.getEvaluationEnvironment(target);
 			for (Variable parameterVariable : parameterVariables) {
 				// bind arguments to parameter names
 				String name = parameterVariable.getName();

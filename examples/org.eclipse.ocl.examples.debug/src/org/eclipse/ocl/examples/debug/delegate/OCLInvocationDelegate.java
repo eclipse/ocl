@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.NamedElement;
@@ -31,6 +30,7 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationException;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.delegate.InvocationBehavior;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateException;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -42,7 +42,6 @@ import org.eclipse.ocl.pivot.utilities.StringUtil;
  * An implementation of an operation-invocation delegate for OCL body
  * expressions.
  */
-@SuppressWarnings("restriction")
 public class OCLInvocationDelegate extends BasicInvocationDelegate
 {
 	protected final OCLDelegateDomain delegateDomain;
@@ -85,7 +84,7 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 				}
 			}
 			Query query = ocl.createQuery(specification2);
-			EvaluationEnvironment env = query.getEvaluationEnvironment();
+			EvaluationEnvironment env = query.getEvaluationEnvironment(target);
 			Object object = target;
 			Object value = idResolver.boxedValueOf(target);
 			env.add(ClassUtil.nonNullModel(specification2.getOwnedContext()), value);

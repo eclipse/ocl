@@ -28,6 +28,7 @@ import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
+import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
@@ -83,7 +84,7 @@ public abstract class AbstractEvaluationVisitor
 	};
 
     /**
-     * Set non-nullby {@link #setMonitor} to terminate execution at next iteration/operation call.
+     * Set non-null by {@link #setMonitor} to terminate execution at next iteration/operation call.
      */
 	protected @Nullable Monitor monitor = null;
 	
@@ -94,14 +95,14 @@ public abstract class AbstractEvaluationVisitor
 	 * @param evalEnv an evaluation environment (map of variable names to values)
 	 * @param modelManager a map of classes to their instance sets
 	 */
-	protected AbstractEvaluationVisitor(@NonNull EvaluationEnvironment evalEnv, @NonNull ModelManager modelManager) {
+	protected AbstractEvaluationVisitor(@NonNull EvaluationEnvironment evalEnv) {
         super(Object.class);						// Useless dummy object as context
         this.environmentFactory = (EnvironmentFactoryInternal) evalEnv.getEnvironmentFactory();
         this.evaluationEnvironment = evalEnv;
         this.metamodelManager = environmentFactory.getMetamodelManager();
 		this.completeEnvironment = metamodelManager.getCompleteEnvironment();
 		this.standardLibrary = completeEnvironment.getOwnedStandardLibrary();
-        this.modelManager = modelManager;
+        this.modelManager = evalEnv.getModelManager();
         this.undecoratedVisitor = this;  // assume I have no decorator
     }
 	
