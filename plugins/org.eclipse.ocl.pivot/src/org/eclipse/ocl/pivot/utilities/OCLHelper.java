@@ -9,7 +9,7 @@
  *   IBM - Initial API and implementation
  *******************************************************************************/
 
-package org.eclipse.ocl.pivot.internal.helper;
+package org.eclipse.ocl.pivot.utilities;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -18,7 +18,6 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.utilities.OCL;
 
 /**
  * A utility object that provides OCL syntax completion suggestions for OCL
