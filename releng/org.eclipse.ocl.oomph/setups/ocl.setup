@@ -159,10 +159,10 @@
         userID="${bugzilla.id}"
         password="${eclipse.user.password}">
       <query
-          summary="New/Open"
+          summary="OCL New/Open"
           url="https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;classification=Modeling&amp;component=Core&amp;list_id=8653934&amp;product=MDT.OCL&amp;query_format=advanced"/>
       <query
-          summary="Resolved"
+          summary="OCL Resolved"
           url="https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;classification=Modeling&amp;component=Core&amp;list_id=8654045&amp;product=MDT.OCL&amp;query_format=advanced"/>
     </setupTask>
     <setupTask
@@ -253,6 +253,7 @@
             xsi:type="predicates:NamePredicate"
             pattern="org.eclipse.emf.examples.library"/>
       </sourceLocator>
+      <description>Development Projects</description>
     </setupTask>
     <setupTask
         xsi:type="setup.workingsets:WorkingSetTask">
@@ -369,7 +370,7 @@
         xsi:type="pde:APIBaselineTask"
         name="OCL APIBaseLine"
         version="Luna"
-        location="${installation.location/oclbaseline}"
+        location="${installation.location/baseline-ocl}"
         remoteURI="${ocl.git.clone.location|uri}/releng/org.eclipse.ocl.oomph/ApiBaseLine/ApiBaseLine-Luna.zip"/>
     <stream
         name="master"
@@ -403,10 +404,36 @@
           url="http://download.eclipse.org/tools/buckminster/updates-4.4"/>
     </setupTask>
     <setupTask
+        xsi:type="git:GitCloneTask"
+        id="simrel.git.clone"
+        remoteURI="simrel/org.eclipse.simrel.build"
+        checkoutBranch="${simrel.branch}">
+      <annotation
+          source="http://www.eclipse.org/oomph/setup/InducedChoices">
+        <detail
+            key="inherit">
+          <value>eclipse.git.remoteURIs</value>
+        </detail>
+        <detail
+            key="label">
+          <value>SimRel Git or Gerrit Repository</value>
+        </detail>
+        <detail
+            key="target">
+          <value>remoteURI</value>
+        </detail>
+      </annotation>
+      <description>Simultaneous Release Git repository</description>
+    </setupTask>
+    <setupTask
         xsi:type="projects:ProjectsImportTask">
       <sourceLocator
           rootFolder="${ocl.git.clone.location/releng}"
           locateNestedProjects="true"/>
+      <sourceLocator
+          rootFolder="${simrel.git.clone.location}"
+          locateNestedProjects="true"/>
+      <description>Releng projects</description>
     </setupTask>
     <setupTask
         xsi:type="setup.workingsets:WorkingSetTask">
@@ -421,14 +448,27 @@
         <predicate
             xsi:type="predicates:NamePredicate"
             pattern="org.eclipse.ocl.*build-feature"/>
+        <predicate
+            xsi:type="predicates:NamePredicate"
+            pattern="org.eclipse.simrel.build"/>
       </workingSet>
     </setupTask>
     <stream
         name="master"
-        label="Master (Mars)"/>
+        label="Master (Mars)">
+      <setupTask
+          xsi:type="setup:VariableTask"
+          name="simrel.branch"
+          value="master"/>
+    </stream>
     <stream
         name="maintenance/R5_0"
-        label="Maintenance (Luna)"/>
+        label="Maintenance (Luna)">
+      <setupTask
+          xsi:type="setup:VariableTask"
+          name="simrel.branch"
+          value="Luna_maintenance"/>
+    </stream>
   </project>
   <logicalProjectContainer
       xsi:type="setup:ProjectCatalog"
