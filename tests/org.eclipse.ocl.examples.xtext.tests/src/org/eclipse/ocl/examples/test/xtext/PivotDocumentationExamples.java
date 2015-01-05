@@ -91,7 +91,7 @@ public class PivotDocumentationExamples extends XtextTestCase
 	 */
 	public void test_parsingConstraintsExample() throws IOException, ParserException {
 		// create an OCL instance
-		OCL ocl = OCL.newInstance();
+		OCL ocl = OCL.newInstance(getProjectMap());
 
 		EClass contextEClass = EXTLibraryPackage.Literals.LIBRARY;
 		ExpressionInOCL invariant = ocl.createInvariant(contextEClass,
@@ -132,7 +132,7 @@ public class PivotDocumentationExamples extends XtextTestCase
 	 * in org.eclipse.ocl.doc/doc/6315-pivot-evaluating-constraints.textile
 	 */
 	public void test_evaluatingConstraintsExample() throws IOException, ParserException {
-		OCL ocl = OCL.newInstance();
+		OCL ocl = OCL.newInstance(getProjectMap());
 		OCLHelper helper = ocl.createOCLHelper(EXTLibraryPackage.Literals.LIBRARY);
 		ExpressionInOCL invariant = helper.createInvariant(
 		    "books->forAll(b1, b2 | b1 <> b2 implies b1.title <> b2.title)");

@@ -11,12 +11,15 @@
 
 package org.eclipse.ocl.pivot.utilities;
 
+import java.util.Map;
+
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.ecore.EcoreASResourceFactory;
 import org.eclipse.ocl.pivot.internal.resource.OCLASResourceFactory;
 import org.eclipse.ocl.pivot.internal.scoping.PivotScoping;
@@ -46,7 +49,7 @@ public class PivotStandaloneSetup //implements ISetup
 	}
 
 	public static void init() {
-//		OCLDelegateDomain.initialize(null);
+		OCLDelegateDomain.lazyInitializeGlobals(PivotConstants.OCL_DELEGATE_URI_PIVOT, false);
 		OCLstdlib.lazyInstall();
 		EcoreASResourceFactory.getInstance();
 		OCLASResourceFactory.getInstance();
@@ -66,11 +69,12 @@ public class PivotStandaloneSetup //implements ISetup
 	}
 
 	public Injector createInjector() {
-		if (Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().containsKey("xmi"))
-			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().remove("xmi");
-		if (!Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().containsKey(Resource.Factory.Registry.DEFAULT_EXTENSION))
-			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
-				Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
+		Map<String, Object> extensionToFactoryMap = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();
+		if (extensionToFactoryMap.containsKey("xmi"))
+			extensionToFactoryMap.remove("xmi");
+		String defaultExtension = Resource.Factory.Registry.DEFAULT_EXTENSION;
+		if (!extensionToFactoryMap.containsKey(defaultExtension))
+			extensionToFactoryMap.put(defaultExtension, new XMIResourceFactoryImpl());
 		injector = Guice.createInjector(/*new PivotRuntimeModule()*/);
 		return injector;
 	}

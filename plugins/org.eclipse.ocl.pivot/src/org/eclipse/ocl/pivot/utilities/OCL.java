@@ -46,6 +46,7 @@ import org.eclipse.ocl.pivot.internal.helper.HelperUtil;
 import org.eclipse.ocl.pivot.internal.helper.OCLHelperImpl;
 import org.eclipse.ocl.pivot.internal.helper.QueryImpl;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.CSResource;
@@ -66,6 +67,7 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
 public class OCL
 {
 	public static @NonNull EnvironmentFactory createEnvironmentFactory(@Nullable StandaloneProjectMap projectMap) {
+//		OCLstdlib.lazyInstall();
 		return ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectMap);
 	}
 	
@@ -132,6 +134,8 @@ public class OCL
      */
 	public static @NonNull OCL newInstance(@NonNull ResourceSet resourceSet) {
 		EnvironmentFactory environmentFactory = OCL.createEnvironmentFactory(null);
+		MetamodelManager metamodelManager = environmentFactory.createMetamodelManager(resourceSet);
+		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
 		return newInstance(environmentFactory);
 	}
 	
@@ -469,6 +473,10 @@ public class OCL
 		return modelManager;
 	}
 
+	public @NonNull EPackage.Registry getPackageRegistry() {
+		return ClassUtil.nonNullEMF(getResourceSet().getPackageRegistry());
+	}
+
 	/**
 	 * <p>
 	 * Queries the number of repairs to be made by the parser.
@@ -498,6 +506,10 @@ public class OCL
 	 */
 	public @Nullable Diagnostic getProblems() {
 		return problems;
+	}
+
+	public @NonNull ResourceSet getResourceSet() {
+		return getMetamodelManager().getExternalResourceSet();
 	}
 
 	/**

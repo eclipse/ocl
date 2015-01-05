@@ -605,7 +605,7 @@ public class IteratorsTest4 extends PivotTestSuite
     	if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
     		OCLinEcoreStandaloneSetup.doSetup();
     	}
-		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		String nodeModel =
 			"package nodes : nodes = 'http://nodes'{\n" +
 //			"    class Root {\n" +

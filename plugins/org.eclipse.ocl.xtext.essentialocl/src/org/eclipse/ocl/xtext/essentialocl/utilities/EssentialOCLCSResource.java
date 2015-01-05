@@ -42,6 +42,7 @@ import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.internal.utilities.IllegalLibraryException;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.ParserContext;
@@ -121,6 +122,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	private static final Logger logger = Logger.getLogger(EssentialOCLCSResource.class);
 	
 	private @Nullable ParserContext parserContext = null;
+	private @Nullable StandaloneProjectMap projectMap = null;
 	
 	public EssentialOCLCSResource() {
 		super();
@@ -239,7 +241,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 				return resourceSetAdapter.getMetamodelManager();
 			}
 		}
-		return OCL.createEnvironmentFactory(null).getMetamodelManager();
+		return OCL.createEnvironmentFactory(projectMap).getMetamodelManager();
 	}
 
 	@Override
@@ -339,6 +341,11 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	@SuppressWarnings("null")
 	public @NonNull URI getASURI(@NonNull URI csURI) {
 		return csURI.appendFileExtension(PivotConstantsInternal.OCL_AS_FILE_EXTENSION);
+	}
+
+	@Override
+	public @Nullable StandaloneProjectMap getProjectMap() {
+		return projectMap ;
 	}
 
 	protected boolean hasError(ElementCS csElement) {
@@ -535,6 +542,11 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	@Override
 	public final void setParserContext(@Nullable ParserContext parserContext) {
 		this.parserContext = parserContext;
+	}
+
+	@Override
+	public void setProjectMap(@Nullable StandaloneProjectMap projectMap) {
+		this.projectMap = projectMap;
 	}
 
 	@Override

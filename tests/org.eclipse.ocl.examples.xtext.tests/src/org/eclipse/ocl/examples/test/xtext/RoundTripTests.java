@@ -183,10 +183,10 @@ public class RoundTripTests extends XtextTestCase
 		URI inputURI = getProjectFileURI(inputName);
 		String referenceName = reference + ".ecore";
 		URI referenceURI = getProjectFileURI(referenceName);
-		doRoundTripFromEcore(OCL.createEnvironmentFactory(null).getMetamodelManager(), inputURI, referenceURI, saveOptions);
+		doRoundTripFromEcore(OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager(), inputURI, referenceURI, saveOptions);
 	}
 	public void doRoundTripFromEcore(URI inputURI, URI referenceURI, Map<String,Object> saveOptions) throws IOException, InterruptedException, ParserException {
-		doRoundTripFromEcore(OCL.createEnvironmentFactory(null).getMetamodelManager(), inputURI, referenceURI, saveOptions);
+		doRoundTripFromEcore(OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager(), inputURI, referenceURI, saveOptions);
 	}
 	protected void doRoundTripFromEcore(@NonNull MetamodelManager metamodelManager, URI inputURI, URI referenceURI, Map<String,Object> saveOptions) throws IOException, InterruptedException, ParserException {
 		String stem = inputURI.trimFileExtension().lastSegment();
@@ -264,14 +264,14 @@ public class RoundTripTests extends XtextTestCase
 		BaseCSResource xtextResource1 = createXtextFromURI(metamodelManager1, inputURI);
 		ASResource pivotResource1 = createPivotFromXtext(metamodelManager1, xtextResource1, 1);
 		Resource ecoreResource = createEcoreFromPivot(metamodelManager1, pivotResource1, ecoreURI);
-		MetamodelManager metamodelManager2 = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager2 = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		ASResource pivotResource2 = createPivotFromEcore(metamodelManager2, ecoreResource);
 		@SuppressWarnings("unused")
 		BaseCSResource xtextResource2 = createXtextFromPivot(metamodelManager2, pivotResource2, outputURI);
 		metamodelManager2.dispose();
 		metamodelManager2 = null;
 		//
-		MetamodelManager metamodelManager3 = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager3 = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		BaseCSResource xtextResource3 = createXtextFromURI(metamodelManager3, outputURI);
 		ASResource pivotResource3 = createPivotFromXtext(metamodelManager3, xtextResource3, 1);
 		String expected = EmfFormatter.listToStr(pivotResource1.getContents());
@@ -306,7 +306,7 @@ public class RoundTripTests extends XtextTestCase
 		assertNoResourceErrors("UML load", inputResource);
 		assertNoValidationErrors("UML load", inputResource);
 		
-		MetamodelManager pivotManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager pivotManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		UML2AS uml2as = UML2AS.getAdapter(inputResource, pivotManager);
 		Model pivotModel = uml2as.getPivotModel();
 		Resource asResource = pivotModel.eResource();
@@ -345,7 +345,7 @@ public class RoundTripTests extends XtextTestCase
 				"{\n" +
 				"class A;\n" +
 				"}\n";
-		MetamodelManager metamodelManager1 = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager1 = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		createEcoreFile(metamodelManager1, "Bug350894A", testFileA);
 		metamodelManager1.dispose();
 		String testFileB = 
@@ -360,7 +360,7 @@ public class RoundTripTests extends XtextTestCase
 				"}\n" +
 				"}\n";
 		createOCLinEcoreFile("Bug350894B.oclinecore", testFileB);
-		MetamodelManager metamodelManager2 = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager2 = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		doRoundTripFromOCLinEcore(metamodelManager2, "Bug350894B");
 		metamodelManager2.dispose();
 	}
@@ -375,7 +375,7 @@ public class RoundTripTests extends XtextTestCase
 			"	}\n" +
 			"}\n";
 		createOCLinEcoreFile("Bug356243.oclinecore", testFile);
-		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		doRoundTripFromOCLinEcore(metamodelManager, "Bug356243");
 		metamodelManager.dispose();
 	}
@@ -397,7 +397,7 @@ public class RoundTripTests extends XtextTestCase
 			"	}\n" +
 			"}\n";
 		createOCLinEcoreFile("Bug426927.oclinecore", testFile);
-		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		doRoundTripFromOCLinEcore(metamodelManager, "Bug426927");
 		metamodelManager.dispose();
 	}
@@ -424,7 +424,7 @@ public class RoundTripTests extends XtextTestCase
 				"}\n" +
 				"}\n";
 		createOCLinEcoreFile("Aggregates.oclinecore", testFile);
-		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		doRoundTripFromOCLinEcore(metamodelManager, "Aggregates");
 		metamodelManager.dispose();
 	}
@@ -447,7 +447,7 @@ public class RoundTripTests extends XtextTestCase
 				"}\n" +
 				"}\n";
 		createOCLinEcoreFile("Cardinality.oclinecore", testFile);
-		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		doRoundTripFromOCLinEcore(metamodelManager, "Cardinality");
 		metamodelManager.dispose();
 	}
@@ -474,7 +474,7 @@ public class RoundTripTests extends XtextTestCase
 				"}\n" +
 				"}\n";
 		createOCLinEcoreFile("Comments.oclinecore", testFile);
-		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		doRoundTripFromOCLinEcore(metamodelManager, "Comments");
 		metamodelManager.dispose();
 	}
@@ -504,7 +504,7 @@ public class RoundTripTests extends XtextTestCase
 				"}\n" +
 				"}\n";
 		createOCLinEcoreFile("InvariantComments.oclinecore", testFile);
-		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		doRoundTripFromOCLinEcore(metamodelManager, "InvariantComments");
 		metamodelManager.dispose();
 	}
@@ -553,7 +553,7 @@ public class RoundTripTests extends XtextTestCase
 	public void testOCLinEcoreCSTRoundTrip() throws IOException, InterruptedException, ParserException {
 		URI uri = URI.createPlatformResourceURI("/org.eclipse.ocl.xtext.oclinecore/model/OCLinEcoreCS.ecore", true);
 //		String stem = uri.trimFileExtension().lastSegment();
-		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor("org.eclipse.emf.ecore");
 		IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(URI.createURI(EcorePackage.eNS_URI));
 		packageDescriptor.configure(metamodelManager.getExternalResourceSet(), StandaloneProjectMap.LoadGeneratedPackageStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
@@ -603,7 +603,7 @@ public class RoundTripTests extends XtextTestCase
 		options.put(DelegateInstaller.OPTION_BOOLEAN_INVARIANTS, true);
 		options.put(OCLConstants.OCL_DELEGATE_URI, OCLConstants.OCL_DELEGATE_URI);
 		options.put(DelegateInstaller.OPTION_OMIT_SETTING_DELEGATES, true);
-		doRoundTripFromEcore(OCL.createEnvironmentFactory(null).getMetamodelManager(), uri, uri, options);
+		doRoundTripFromEcore(OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager(), uri, uri, options);
 	}
 
 	public void testSysMLRoundTrip() throws IOException, InterruptedException {
@@ -616,7 +616,7 @@ public class RoundTripTests extends XtextTestCase
 				"}\n" +
 				"}\n";
 		createOCLinEcoreFile("SysML.oclinecore", testFile);
-		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		doRoundTripFromOCLinEcore(metamodelManager, "SysML");
 		metamodelManager.dispose();
 	}
@@ -628,7 +628,7 @@ public class RoundTripTests extends XtextTestCase
 	public void testTypes_oclinecore() throws IOException, InterruptedException {
 //		BaseScopeProvider.LOOKUP.setState(true);
 //		EssentialOCLLinkingService.DEBUG_RETRY = true;
-		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		doRoundTripFromOCLinEcore(metamodelManager, "Types");
 		metamodelManager.dispose();
 	}

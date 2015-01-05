@@ -183,7 +183,6 @@ public abstract class PivotTestSuite extends PivotTestCase
 		initialized = true;
 	}
 
-//	protected MetamodelManager metamodelManager;
 	protected OCL ocl;
 	protected final boolean useCodeGen;
 
@@ -968,7 +967,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	}
 
 	protected @NonNull OCL createOCL() {
-		return OCL.newInstance();
+		return OCL.newInstance(getProjectMap());
 	}
 
 	protected @NonNull org.eclipse.ocl.pivot.Package createPackage(@NonNull Model parentRoot, @NonNull String name) {

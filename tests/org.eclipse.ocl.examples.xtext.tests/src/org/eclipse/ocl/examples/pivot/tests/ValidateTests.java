@@ -98,8 +98,8 @@ public class ValidateTests extends AbstractValidateTests
 		//
 		//	Create model
 		//
-		OCL ocl1 = OCL.newInstance();
-		OCL ocl2 = OCL.newInstance();
+		OCL ocl1 = OCL.newInstance(getProjectMap());
+		OCL ocl2 = OCL.newInstance(getProjectMap());
 		MetamodelManager metamodelManager2 = ocl2.getMetamodelManager();
 		Resource ecoreResource = doLoadOCLinEcore(ocl1, "Bug366229");
 		metamodelManager2.getExternalResourceSet().getResources().add(ecoreResource);
@@ -118,7 +118,7 @@ public class ValidateTests extends AbstractValidateTests
 		//
 		//	Create model
 		//
-		OCL ocl = OCL.newInstance();
+		OCL ocl = OCL.newInstance(getProjectMap());
 		Resource ecoreResource = doLoadEcore(ocl, "Bug418551");
 		EPackage temp = (EPackage) ecoreResource.getContents().get(0);
 		EClass tester = (EClass) temp.getEClassifier("Tester");
@@ -158,7 +158,7 @@ public class ValidateTests extends AbstractValidateTests
 				"	}\n" +
 				"}\n";
 		createOCLinEcoreFile("Bug418552.oclinecore", testDocument);
-		OCL ocl1 = OCL.newInstance();
+		OCL ocl1 = OCL.newInstance(getProjectMap());
 		MetamodelManager metamodelManager1 = ocl1.getMetamodelManager();
 		@NonNull List<Diagnostic> diagnostics = doValidateOCLinEcore(ocl1, "Bug418552",
 			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Property", "CompatibleDefaultExpression", "temp::Tester::total"));
@@ -176,7 +176,7 @@ public class ValidateTests extends AbstractValidateTests
 		//
 		//	Create model
 		//
-		OCL ocl = OCL.newInstance();
+		OCL ocl = OCL.newInstance(getProjectMap());
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		URI ecoreURI = URI.createPlatformResourceURI("/org.eclipse.ocl.pivot/model/Pivot.ecore", true);
 		Resource ecoreResource = metamodelManager.getExternalResourceSet().getResource(ecoreURI, true);
@@ -219,9 +219,9 @@ public class ValidateTests extends AbstractValidateTests
 		//	1 - the evolving complemented type system under test
 		//	2 - the stable complemented type system under test
 		//
-		OCL ocl0 = OCL.newInstance();
-		OCL ocl1 = OCL.newInstance();
-		OCL ocl2 = OCL.newInstance();
+		OCL ocl0 = OCL.newInstance(getProjectMap());
+		OCL ocl1 = OCL.newInstance(getProjectMap());
+		OCL ocl2 = OCL.newInstance(getProjectMap());
 		MetamodelManager metamodelManager0 = ocl0.getMetamodelManager();
 		MetamodelManager metamodelManager1 = ocl1.getMetamodelManager();
 		MetamodelManager metamodelManager2 = ocl2.getMetamodelManager();
@@ -429,7 +429,7 @@ public class ValidateTests extends AbstractValidateTests
 		//
 		//	Create model
 		//
-		OCL ocl1 = OCL.newInstance();
+		OCL ocl1 = OCL.newInstance(getProjectMap());
 		MetamodelManager metamodelManager1 = ocl1.getMetamodelManager();
 		Resource ecoreResource = doLoadOCLinEcore(ocl1, "Validate");
 		MetamodelManagerResourceSetAdapter.getAdapter(ecoreResource.getResourceSet(), metamodelManager1);

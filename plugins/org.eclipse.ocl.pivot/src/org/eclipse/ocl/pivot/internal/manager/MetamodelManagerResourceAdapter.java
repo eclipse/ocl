@@ -16,6 +16,8 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.resource.CSResource;
+import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 
@@ -41,7 +43,11 @@ public class MetamodelManagerResourceAdapter extends AbstractMetamodelManagerRes
 //		}
 		if (adapter == null) {
 			if (metamodelManager == null) {
-				metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+				StandaloneProjectMap projectMap = null;
+				if (resource instanceof CSResource) {
+					projectMap = ((CSResource)resource).getProjectMap();
+				}
+				metamodelManager = OCL.createEnvironmentFactory(projectMap).getMetamodelManager();
 			}
 			adapter = new MetamodelManagerResourceAdapter(resource, metamodelManager);
 			eAdapters.add(adapter);

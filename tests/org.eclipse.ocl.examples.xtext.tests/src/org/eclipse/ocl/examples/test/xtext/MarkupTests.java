@@ -45,7 +45,7 @@ public class MarkupTests extends XtextTestCase
 		super.setUp();
 		MarkupStandaloneSetup.doSetup();
 		MarkupPackage.eINSTANCE.eClass();
-		metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 	}
 
 	@Override

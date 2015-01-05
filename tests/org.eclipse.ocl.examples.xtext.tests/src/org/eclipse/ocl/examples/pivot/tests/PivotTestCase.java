@@ -501,7 +501,7 @@ public class PivotTestCase extends TestCase
 			CompleteOCLStandaloneSetup.doSetup();
     	}
     	else {
-			CompleteOCLStandaloneSetup.init();
+//			CompleteOCLStandaloneSetup.init();
     	}
 	}
 
@@ -510,7 +510,7 @@ public class PivotTestCase extends TestCase
 			EssentialOCLStandaloneSetup.doSetup();
 		}
 		else {
-			EssentialOCLStandaloneSetup.init();
+//			EssentialOCLStandaloneSetup.init();
 		}
 	}
 
@@ -519,7 +519,7 @@ public class PivotTestCase extends TestCase
     		OCLinEcoreStandaloneSetup.doSetup();
     	}
     	else {
-    		OCLinEcoreStandaloneSetup.init();
+//    		OCLinEcoreStandaloneSetup.init();
     	}
 	}
 
@@ -528,7 +528,7 @@ public class PivotTestCase extends TestCase
 			OCLstdlibStandaloneSetup.doSetup();			// FIXME BUG 382058
     	}
     	else {
-			OCLstdlibStandaloneSetup.init();
+//			OCLstdlibStandaloneSetup.init();
     	}
 	}
 

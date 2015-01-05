@@ -92,7 +92,7 @@ public class SerializeTests extends XtextTestCase
 		//
 		//	Ecore to Pivot
 		//		
-		OCL ocl1 = OCL.newInstance();
+		OCL ocl1 = OCL.newInstance(getProjectMap());
 		XtextResource xtextResource1 = null;
 		try {
 			MetamodelManager metamodelManager1 = ocl1.getMetamodelManager();
@@ -112,7 +112,7 @@ public class SerializeTests extends XtextTestCase
 			ocl1.dispose();
 			ocl1 = null;
 		}
-		OCL ocl2 = OCL.newInstance();
+		OCL ocl2 = OCL.newInstance(getProjectMap());
 		try {
 			MetamodelManager metamodelManager2 = ocl2.getMetamodelManager();
 			if (resourceSetInitializer != null) {

@@ -129,7 +129,6 @@ import org.eclipse.ocl.pivot.library.UnsupportedOperation;
 import org.eclipse.ocl.pivot.model.OCLmetamodel;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResource;
-import org.eclipse.ocl.pivot.resource.ProjectMap;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.DelegatedSinglePackageResource;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
@@ -296,7 +295,7 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 	 */
 	protected @Nullable Resource asLibraryResource = null;
 
-	protected @Nullable ResourceSetImpl externalResourceSet = null;
+	protected @Nullable ResourceSet externalResourceSet = null;
 	
 	private final @NonNull Map<String, Namespace> globalNamespaces = new HashMap<String, Namespace>();
 	private final @NonNull Set<Type> globalTypes = new HashSet<Type>();
@@ -334,9 +333,10 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 	 * Construct a MetamodelManager that will use environmentFactory to create its artefacts
 	 * such as an asREsourceSet to contain pivot copies of meta-models.
 	 */
-	public MetamodelManager(@NonNull EnvironmentFactoryInternal environmentFactory) {
+	public MetamodelManager(@NonNull EnvironmentFactoryInternal environmentFactory, @Nullable ResourceSet resourceSet) {
 		this.environmentFactory = environmentFactory;
 		asResourceSet = environmentFactory.createASResourceSet(this);
+		externalResourceSet = resourceSet;
 		completeEnvironment = environmentFactory.createCompleteEnvironment(this);
 		standardLibrary = completeEnvironment.getOwnedStandardLibrary();
 		completeModel = completeEnvironment.getOwnedCompleteModel();
@@ -681,14 +681,16 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 		asLibraries.clear();	
 		asLibraryResource = null;
 		StandaloneProjectMap.dispose(asResourceSet);
-		ResourceSetImpl externalResourceSet2 = externalResourceSet;
+		ResourceSet externalResourceSet2 = externalResourceSet;
 		if (externalResourceSet2 != null) {
 //			System.out.println("dispose CS " + ClassUtil.debugSimpleName(externalResourceSet));
 			StandaloneProjectMap.dispose(externalResourceSet2);
 			externalResourceSet2.setPackageRegistry(null);
 			externalResourceSet2.setResourceFactoryRegistry(null);
 			externalResourceSet2.setURIConverter(null);
-			externalResourceSet2.setURIResourceMap(null);
+			if (externalResourceSet2 instanceof ResourceSetImpl) {
+				((ResourceSetImpl)externalResourceSet2).setURIResourceMap(null);
+			}
 			for (Resource resource : new ArrayList<Resource>(externalResourceSet2.getResources())) {
 				resource.unload();
 			}
@@ -1013,7 +1015,7 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 	}
 
 	public @NonNull ResourceSet getExternalResourceSet() {
-		ResourceSetImpl externalResourceSet2 = externalResourceSet;
+		ResourceSet externalResourceSet2 = externalResourceSet;
 		if (externalResourceSet2 == null) {
 			externalResourceSet2 = externalResourceSet = new ResourceSetImpl();
 			StandaloneProjectMap projectMap = getProjectMap();
@@ -1723,7 +1725,14 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 	 * Return the ProjectMap used to resolve EPackages for the extertnalResourceSet.
 	 */
 	public @NonNull StandaloneProjectMap getProjectMap() {
-		return ProjectMap.getAdapter(asResourceSet);
+		StandaloneProjectMap projectMap = StandaloneProjectMap.findAdapter(asResourceSet);
+		if (projectMap == null) {
+			projectMap = environmentFactory.getProjectMap();
+//			adapter = new ProjectMap();
+			projectMap.initializeResourceSet(asResourceSet);
+		}
+		return projectMap;
+//		return ProjectMap.getAdapter(asResourceSet);
 	}
 
 	/**

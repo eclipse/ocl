@@ -15,6 +15,7 @@ package org.eclipse.ocl.examples.pivot.tests;
 import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
  * Tests for the OCL delegate implementations.
@@ -24,20 +25,23 @@ public class MoreDelegatesTest extends DelegatesTest
 {
 	// Passes in isolation; probably an adapter clean-up problem
 	public void test_eAttributeDerivation_registered() {
-		initPackageRegistrations();
-		doTest_eAttributeDerivation(COMPANY_XMI);
+		ResourceSet resourceSet = createResourceSet();
+		initPackageRegistrations(resourceSet);
+		doTest_eAttributeDerivation(resourceSet, COMPANY_XMI);
 	}
 
 	// Passes in isolation; probably an adapter clean-up problem
 	public void test_invariantValidation_withoutReflection_registered() {
-		initPackageRegistrations();
-		doTest_invariantValidation(NO_REFLECTION_COMPANY_XMI, true, Diagnostic.ERROR);
+		ResourceSet resourceSet = createResourceSet();
+		initPackageRegistrations(resourceSet);
+		doTest_invariantValidation(resourceSet, NO_REFLECTION_COMPANY_XMI, true, Diagnostic.ERROR);
 	}
 
 	// Passes in isolation; probably an adapter clean-up problem
 	public void test_operationInvocation_registered() throws InvocationTargetException {
-		initPackageRegistrations();
-		doTest_operationInvocation(COMPANY_XMI);
+		ResourceSet resourceSet = createResourceSet();
+		initPackageRegistrations(resourceSet);
+		doTest_operationInvocation(resourceSet, COMPANY_XMI);
 		assertFalse(usedLocalRegistry);
 	}
 }

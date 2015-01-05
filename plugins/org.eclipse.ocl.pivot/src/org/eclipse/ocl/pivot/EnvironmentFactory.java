@@ -13,6 +13,7 @@
 package org.eclipse.ocl.pivot;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
@@ -103,4 +104,6 @@ public interface EnvironmentFactory extends Adaptable, Customizable
 	@NonNull IdResolver getIdResolver();
 
 	@NonNull MetamodelManager getMetamodelManager();
+
+	@NonNull MetamodelManager createMetamodelManager(@NonNull ResourceSet resourceSet);
 }

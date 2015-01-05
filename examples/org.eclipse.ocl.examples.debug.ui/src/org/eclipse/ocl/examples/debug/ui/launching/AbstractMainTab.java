@@ -36,7 +36,7 @@ public abstract class AbstractMainTab extends AbstractLaunchConfigurationTab
 {
 	private static final Logger logger = Logger.getLogger(AbstractMainTab.class);
 
-	protected @Nullable MetamodelManager metamodelManager;		// FIXME Add a dispose() when not visible for a long time
+	protected @Nullable OCL ocl;		// FIXME Add a dispose() when not visible for a long time
 	
 	/**
 	 * Internal flag to suppress redundant recursive updates while initializing controls.
@@ -45,20 +45,20 @@ public abstract class AbstractMainTab extends AbstractLaunchConfigurationTab
 	
 	@Override
 	public void dispose() {
-		MetamodelManager metamodelManager2 = metamodelManager;
-		if (metamodelManager2 != null) {
-			metamodelManager2.dispose();
-			metamodelManager = null;
+		OCL ocl2 = ocl;
+		if (ocl2 != null) {
+			ocl2.dispose();
+			ocl = null;
 		}
 		super.dispose();
 	}
 
 	protected @NonNull MetamodelManager getMetamodelManager() {
-		MetamodelManager metamodelManager2 = metamodelManager;
-		if (metamodelManager2 == null) {
-			metamodelManager = metamodelManager2 = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		OCL ocl2 = ocl;
+		if (ocl2 == null) {
+			ocl = ocl2 = OCL.newInstance();
 		}
-		return metamodelManager2;
+		return ocl2.getMetamodelManager();
 	}
 
 	public @NonNull String getName() {

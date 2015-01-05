@@ -23,9 +23,9 @@ import org.eclipse.ocl.examples.debug.evaluator.OCLIsBreakpointableVisitor;
 import org.eclipse.ocl.examples.debug.evaluator.OCLVMEnvironmentFactory;
 import org.eclipse.ocl.examples.debug.vm.ValidBreakpointLocator;
 import org.eclipse.ocl.examples.debug.vm.core.EvaluationContext;
+import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEnvironmentFactory;
 import org.eclipse.ocl.examples.debug.vm.launching.DebuggableRunner;
 import org.eclipse.ocl.examples.debug.vm.launching.DebuggableRunnerFactory;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 
 public class OCLDebuggableRunnerFactory extends DebuggableRunnerFactory
 {
@@ -63,9 +63,9 @@ public class OCLDebuggableRunnerFactory extends DebuggableRunnerFactory
 		if(diagnostic.getSeverity() == Diagnostic.ERROR) {
 			throw new DiagnosticException(diagnostic);
 		} */
-		MetamodelManager metamodelManager = evaluationContext.getMetamodelManager();
-		OCLVMEnvironmentFactory environmentFactory = (OCLVMEnvironmentFactory) metamodelManager.getEnvironmentFactory();
-		DebuggableRunner runner = new DebuggableRunner(this, oclEvaluationContext.getConstraintURI(), new OCLInternalDebuggableExecutor(oclEvaluationContext, environmentFactory));
+		IVMEnvironmentFactory environmentFactory = evaluationContext.getEnvironmentFactory();
+		OCLInternalDebuggableExecutor executor = new OCLInternalDebuggableExecutor(oclEvaluationContext, (OCLVMEnvironmentFactory) environmentFactory);
+		DebuggableRunner runner = new DebuggableRunner(this, oclEvaluationContext.getConstraintURI(), executor);
 		
 /*		if(traceFileURI != null) {
 			try {

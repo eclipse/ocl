@@ -40,7 +40,7 @@ public class InheritanceTests extends PivotSimpleTestSuite
     }
 
 	public void test_Inheritance_Boolean() {
-		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
 		try {
 			CompleteInheritance oclAnyInheritance = standardLibrary.getInheritance(standardLibrary.getOclAnyType());
@@ -63,7 +63,7 @@ public class InheritanceTests extends PivotSimpleTestSuite
 	}
 
 	public void test_Inheritance_OclAny() {
-		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
 		try {
 			AnyType oclAnyType = standardLibrary.getOclAnyType();
@@ -81,7 +81,7 @@ public class InheritanceTests extends PivotSimpleTestSuite
 	}
 
 	public void test_Inheritance_Set() {
-		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
 		try {
 			CompleteInheritance oclAnyInheritance = standardLibrary.getInheritance(standardLibrary.getOclAnyType());
@@ -113,7 +113,7 @@ public class InheritanceTests extends PivotSimpleTestSuite
 	}
 
 	public void test_Inheritance_IfExp() {
-		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
 		try {
 			CompleteInheritance oclAnyInheritance = standardLibrary.getInheritance(standardLibrary.getOclAnyType());
@@ -146,7 +146,7 @@ public class InheritanceTests extends PivotSimpleTestSuite
 	}
 
 	public void test_Inheritance_UnlimitedNatural() {
-		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
 		try {
 			CompleteInheritance oclAnyInheritance = standardLibrary.getInheritance(standardLibrary.getOclAnyType());
@@ -177,7 +177,7 @@ public class InheritanceTests extends PivotSimpleTestSuite
 	 * Check that an inheritance loop is diagnosed. 
 	 */
 	public void test_Inheritance_Loop() {
-		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
 		try {
 			CompleteInheritance integerTypeInheritance = standardLibrary.getInheritance(standardLibrary.getIntegerType());
@@ -200,7 +200,7 @@ public class InheritanceTests extends PivotSimpleTestSuite
 	 * Check that addition of a supertype invalidates cached inheritances. 
 	 */
 	public void test_Inheritance_Addition() {
-		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
 		try {
 			CompleteInheritance integerTypeInheritance = standardLibrary.getInheritance(standardLibrary.getIntegerType());
@@ -222,7 +222,7 @@ public class InheritanceTests extends PivotSimpleTestSuite
 	 * Check that removal of a supertype invalidates cached inheritances. 
 	 */
 	public void test_Inheritance_Removal() {
-		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
 		try {
 			CompleteInheritance integerTypeInheritance = standardLibrary.getInheritance(standardLibrary.getIntegerType());

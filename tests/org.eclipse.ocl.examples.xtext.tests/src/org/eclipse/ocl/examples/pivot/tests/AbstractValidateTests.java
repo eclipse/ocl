@@ -32,12 +32,10 @@ import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
-import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.values.BagImpl;
-import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ProjectMap;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.uml.internal.validation.UMLOCLEValidator;
@@ -168,8 +166,8 @@ public abstract class AbstractValidateTests extends PivotTestCase
 		doCompleteOCLSetup();
 		doOCLinEcoreSetup();
 		doOCLstdlibSetup();
-		OCLstdlib.install();
-        OCLDelegateDomain.initialize(null);
+//		OCLstdlib.install();
+//        OCLDelegateDomain.initialize(null);
 	}
 
 	@Override

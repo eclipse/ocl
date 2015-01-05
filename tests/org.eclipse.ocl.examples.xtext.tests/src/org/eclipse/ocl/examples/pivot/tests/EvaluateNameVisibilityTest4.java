@@ -40,10 +40,10 @@ import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
+import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -85,6 +85,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 
     @Override
     @Before public void setUp() throws Exception {
+		UMLStandaloneSetup.init();
         super.setUp();
     }
 
@@ -269,7 +270,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	@Test public void test_cg_derived_property() throws ParserException, IOException {
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
 			OCLinEcoreStandaloneSetup.doSetup();
-			OCLDelegateDomain.initialize(null);
+//			OCLDelegateDomain.initialize(null);
 		}
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		String metamodelText =
@@ -293,7 +294,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	@Test public void test_cg_name_occlusion_401692() throws ParserException, IOException {
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
 			OCLinEcoreStandaloneSetup.doSetup();
-			OCLDelegateDomain.initialize(null);
+//			OCLDelegateDomain.initialize(null);
 		}
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		String metamodelText =
@@ -467,8 +468,8 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	 * @throws ParserException 
 	 */
 	@Test public void test_uml_primitives_399378() throws ParserException {
-		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		UML2AS.initialize(resourceSet);
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		URI uri = getTestModelURI("model/Fruit.uml");
 		Element element = metamodelManager.loadResource(uri, null, resourceSet);
 		org.eclipse.ocl.pivot.Package fruitPackage = ((Model)element).getOwnedPackages().get(0);
@@ -481,7 +482,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		if (useCodeGen) return;
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
 			OCLinEcoreStandaloneSetup.doSetup();
-			OCLDelegateDomain.initialize(null);
+//			OCLDelegateDomain.initialize(null);
 		}
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		String metamodelText =

@@ -84,7 +84,7 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 
 	@Nullable Element getParseableElement(@NonNull EObject eObject) throws ParserException;
 
-	@Nullable StandaloneProjectMap getProjectMap();
+	@NonNull StandaloneProjectMap getProjectMap();
 	
 	boolean isStereotype(@NonNull EClass eClass);
 

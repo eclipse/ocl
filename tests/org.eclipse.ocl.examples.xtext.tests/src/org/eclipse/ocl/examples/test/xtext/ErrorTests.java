@@ -39,7 +39,7 @@ public class ErrorTests extends XtextTestCase
 	 * Test a bad operation for bad iterate arguments. Inspired by Bug 352386.
 	 */
 	public void test_BadIterate() throws IOException {
-		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		String metamodelText =
 			"package test : tst = 'http://test'\n" +
 			"{\n" +
@@ -65,7 +65,7 @@ public class ErrorTests extends XtextTestCase
 	 * Test a bad operation for bad iterate arguments. Inspired by Bug 352386.
 	 */
 	public void test_BadProperty() throws IOException {
-		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		String metamodelText =
 			"package test : tst = 'http://test'\n" +
 			"{\n" +

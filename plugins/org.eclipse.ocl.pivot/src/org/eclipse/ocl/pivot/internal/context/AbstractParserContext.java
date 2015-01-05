@@ -16,6 +16,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
@@ -37,6 +38,7 @@ import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ParserContext;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.Pivotable;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
@@ -64,10 +66,10 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 			ResourceSetImpl resourceSet = new ResourceSetImpl();
 			Resource resource = resourceSet.createResource(uri);
 			if (resource == null) {
-				throw new ParserException("Failed to load '" + uri + "'");
+				throw new ParserException("Failed to load '" + uri + "'" + getDoSetupMessage());
 			}
 			if (!(resource instanceof CSResource)) {
-				throw new ParserException("Failed to create Xtext resource for '" + uri + "'\n\tMake sure EssentialOCL has been initialized.");
+				throw new ParserException("Failed to create Xtext resource for '" + uri + "'" + getDoSetupMessage());
 			}
 			CSResource baseResource = (CSResource)resource;
 			MetamodelManagerResourceAdapter.getAdapter(resource, metamodelManager);
@@ -83,6 +85,30 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 	@Override
 	public @Nullable Type getClassContext() {
 		return null;
+	}
+
+	protected @NonNull String getDoSetupMessage() {
+		if (EcorePlugin.IS_ECLIPSE_RUNNING) {
+			return "";
+		}
+		String doSetup = null;
+		String fileExtension = uri.fileExtension();
+		if (PivotConstants.ESSENTIAL_OCL_FILE_EXTENSION.equals(fileExtension)) {
+			doSetup = "EssentialOCLStandaloneSetup.doSetup()";
+		}
+		else if (PivotConstants.OCL_FILE_EXTENSION.equals(fileExtension)) {
+			doSetup = "CompleteOCLStandaloneSetup.doSetup()";
+		}
+		else if (PivotConstants.OCLINECORE_FILE_EXTENSION.equals(fileExtension)) {
+			doSetup = "OCLinEcoreStandaloneSetup.doSetup()";
+		}
+		else if (PivotConstants.OCLSTDLIB_FILE_EXTENSION.equals(fileExtension)) {
+			doSetup = "OCLstdlibStandaloneSetup.doSetup()";
+		}
+		else {
+			return "";
+		}
+		return "\n\tMake sure " + doSetup + " has been called.";
 	}
 
 	public @Nullable Type getInstanceContext() {

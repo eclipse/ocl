@@ -27,7 +27,7 @@ public class ConsumerValidateTests extends AbstractValidateTests
 		//
 		//	Create model
 		//
-		OCL ocl = OCL.newInstance();
+		OCL ocl = OCL.newInstance(getProjectMap());
 		Resource umlResource = doLoadUML(ocl, "umlrt.profile");
 		assertNotNull(umlResource);
 		assert umlResource != null;

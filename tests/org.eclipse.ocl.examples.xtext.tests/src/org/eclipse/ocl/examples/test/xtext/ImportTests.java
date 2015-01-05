@@ -71,7 +71,7 @@ public class ImportTests extends XtextTestCase
 
 	protected void createTestImport_OCLinEcore_Bug353793_Files()
 			throws IOException {
-		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		String testFileA =
 				"package A1 : A2 = 'http://A3'{\n" +
 				"    class A;\n" +
@@ -428,7 +428,7 @@ public class ImportTests extends XtextTestCase
 				"package ocl\n" +				
 				"endpackage\n";
 		
-		ASResource resource = doLoadASResourceFromString(OCL.createEnvironmentFactory(null).getMetamodelManager(), "importer.ocl", testFile);
+		ASResource resource = doLoadASResourceFromString(OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager(), "importer.ocl", testFile);
 		Model root = (Model) resource.getContents().get(0);
 		assertEquals(1, root.getOwnedImports().size());
 		assertNotNull(root.getOwnedImports().get(0));

@@ -170,7 +170,7 @@ public class StereotypesTest extends PivotTestSuite
 	@Override
 	protected MetamodelManager createMetamodelManager() {
 		UMLStandaloneSetup.init();
-		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 //		XMI252UMLResourceFactoryImpl.install(metamodelManager.getExternalResourceSet(), URI.createPlatformResourceURI("/org.eclipse.ocl.examples.uml25/model/", true));
 		return metamodelManager;
 	}

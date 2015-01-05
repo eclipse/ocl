@@ -74,7 +74,7 @@ import org.eclipse.xtext.validation.CheckMode;
 public class EditorTests extends XtextTestCase
 {	
 	protected FileEditorInput createEcoreFileEditorInput(String projectName, String fileName, String testDocument)throws IOException, CoreException {
-		OCL ocl0 = OCL.newInstance();
+		OCL ocl0 = OCL.newInstance(getProjectMap());
 		MetamodelManager metamodelManager0 = ocl0.getMetamodelManager();
 		String ecoreString = createEcoreString(metamodelManager0, fileName, testDocument, true);
 		InputStream inputStream = new URIConverter.ReadableInputStream(ecoreString, "UTF-8");

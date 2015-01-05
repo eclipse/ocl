@@ -338,7 +338,7 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 			"		property parent#children2 : Parent[?] { ordered };\n" +
 			"	}\n" +
 			"}\n";
-		OCL ocl1 = OCL.newInstance();
+		OCL ocl1 = OCL.newInstance(getProjectMap());
 		Resource metamodel = cs2ecore(ocl1, metamodelText, null);
 		EPackage ePackage = (EPackage) metamodel.getContents().get(0);
 		EClass parentClass = ClassUtil.nonNullState((EClass) ePackage.getEClassifier("Parent"));

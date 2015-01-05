@@ -2723,6 +2723,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 
 	public StandaloneProjectMap() {
 		super();
+		System.out.println("Create " + getClass().getSimpleName());
 		if (liveStandaloneProjectMaps != null) {
 			liveStandaloneProjectMaps.put(this, null);
 			System.out.println(Thread.currentThread().getName() + " Create " + getClass().getSimpleName()

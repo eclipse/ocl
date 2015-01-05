@@ -190,7 +190,7 @@ public class OCLstdlibTests extends XtextTestCase
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 	}
 
 	@Override

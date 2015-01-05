@@ -35,7 +35,7 @@ public class EcoreConsoleTests extends AbstractConsoleTests
 	}
 
 	public void testConsole_OCLinEcoreTutorial() throws Exception {
-		OCL ocl = OCL.newInstance();
+		OCL ocl = OCL.newInstance(getProjectMap());
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
 		URI testModelURI = getTestModelURI("model/OCLinEcoreTutorialForPivot.xmi");

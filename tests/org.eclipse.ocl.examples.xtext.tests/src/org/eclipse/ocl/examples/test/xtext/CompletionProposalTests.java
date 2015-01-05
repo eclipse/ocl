@@ -154,7 +154,7 @@ public class CompletionProposalTests extends XtextTestCase
 	protected XtextEditor editor = null;
 	
 	protected @NonNull FileEditorInput createEcoreFileEditorInput(@NonNull IContainer container, @NonNull String fileName, @NonNull String testDocument)throws IOException, CoreException {
-		OCL ocl0 = OCL.newInstance();
+		OCL ocl0 = OCL.newInstance(getProjectMap());
 		MetamodelManager metamodelManager0 = ocl0.getMetamodelManager();
 		String ecoreString = createEcoreString(metamodelManager0, fileName, testDocument, true);
 		InputStream inputStream = new URIConverter.ReadableInputStream(ecoreString, "UTF-8");

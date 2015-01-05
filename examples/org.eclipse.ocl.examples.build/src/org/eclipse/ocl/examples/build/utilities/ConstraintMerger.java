@@ -86,7 +86,8 @@ public class ConstraintMerger extends AbstractProjectComponent
 //		IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(URI.createURI(pivotNsURI));
 //		packageDescriptor.setUseModel(true, null);				// Hide packages installed by CompleteOCLStandaloneSetup
 			
-		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		OCL ocl = OCL.newInstance();
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		ResourceSet asResourceSet = metamodelManager.getASResourceSet();
 //		metamodelManager.setLibraryLoadInProgress(true);
 		metamodelManager.getExternalResourceSet().getResources().add(ecoreResource);		// Don't load another copy
@@ -171,6 +172,7 @@ public class ConstraintMerger extends AbstractProjectComponent
 //			EcoreUtil.resolveAll(resourceSet);
 //			ResourceUtils.checkResourceSet(resourceSet);
 //			ctx.set(getModelSlot(), resource);
+			ocl.dispose();
 		} catch (IOException e) {
 			throw new RuntimeException("Problems running " + getClass().getSimpleName(), e);
 		}

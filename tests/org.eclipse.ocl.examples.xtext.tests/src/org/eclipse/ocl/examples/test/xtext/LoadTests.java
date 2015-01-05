@@ -50,7 +50,6 @@ import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.VariableDeclaration;
 import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
-import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
@@ -120,7 +119,7 @@ public class LoadTests extends XtextTestCase
 	} */
 	
 	protected MetamodelManager createMetamodelManager() {
-		return OCL.createEnvironmentFactory(null).getMetamodelManager();
+		return OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 	}
 
 	protected ResourceSet createResourceSet() {
@@ -140,7 +139,7 @@ public class LoadTests extends XtextTestCase
 		URI outputURI = getProjectFileURI(outputName);
 		URI output2URI = getProjectFileURI(output2Name);
 		if (metamodelManager == null) {
-			metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+			metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		}
 		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
 		Resource xtextResource = null;
@@ -192,7 +191,7 @@ public class LoadTests extends XtextTestCase
 		URI outputURI = getProjectFileURI(outputName);
 		URI output2URI = getProjectFileURI(output2Name);
 		if (metamodelManager == null) {
-			metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+			metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		}
 		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
 		
@@ -240,7 +239,7 @@ public class LoadTests extends XtextTestCase
 //		URI outputURI = getProjectFileURI(outputName);
 		URI output2URI = getProjectFileURI(output2Name);
 		if (metamodelManager == null) {
-			metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+			metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		}
 		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
 		Resource ecoreResource = null;
@@ -344,7 +343,7 @@ public class LoadTests extends XtextTestCase
 		URI output2URI = getProjectFileURI(output2Name);
 		URI oclURI = getProjectFileURI(oclName);
 		if (metamodelManager == null) {
-			metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+			metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		}
 		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
 		Resource umlResource = null;
@@ -506,6 +505,7 @@ public class LoadTests extends XtextTestCase
 		URI pivotURI = getProjectFileURI(pivotName);
 		URI savedURI = getProjectFileURI(savedName);
 		xtextResource = (BaseCSResource) resourceSet.createResource(inputURI);
+		xtextResource.setProjectMap(getProjectMap());
 		JavaClassScope.getAdapter(xtextResource,  getClass().getClassLoader());
 		MetamodelManagerResourceAdapter.getAdapter(xtextResource, metamodelManager);
 		xtextResource.load(null);
@@ -536,7 +536,7 @@ public class LoadTests extends XtextTestCase
 //		URI outputURI = getProjectFileURI(outputName);
 //		URI output2URI = getProjectFileURI(output2Name);
 		if (metamodelManager == null) {
-			metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+			metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		}
 		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
 		Resource asResource = null;
@@ -628,7 +628,7 @@ public class LoadTests extends XtextTestCase
 	}	
 
 	public void testLoad_Expression_oclinecore() throws IOException, InterruptedException {
-		metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 //		metamodelManager.loadLibrary(OCLstdlib.INSTANCE);
 		Resource asResource = doLoad_Concrete("Expression", "oclinecore");
 		String ecoreName = "Expression" + ".saved.ecore";
@@ -659,7 +659,7 @@ public class LoadTests extends XtextTestCase
 	public void testLoad_Refresh_oclinecore() throws IOException, InterruptedException {
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
 		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
-			OCLDelegateDomain.initialize(null);
+//			OCLDelegateDomain.initialize(null);
 		}
 		String testFile = 
 				"package tutorial : tuttut = 'http://www.eclipse.org/mdt/ocl/oclinecore/tutorial'\n" +
@@ -692,7 +692,7 @@ public class LoadTests extends XtextTestCase
 	public void testLoad_Refresh2_oclinecore() throws IOException, InterruptedException {
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
 		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
-			OCLDelegateDomain.initialize(null);
+//			OCLDelegateDomain.initialize(null);
 		}
 		String testFile = 
 				"package example : ex = 'http://www.example.org/examples/example.ecore'\n" + 
@@ -749,7 +749,7 @@ public class LoadTests extends XtextTestCase
 	}	
 
 	public void testLoad_oclstdlib_oclstdlib() throws IOException, InterruptedException {
-		metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 //		StandardLibraryContribution.REGISTRY.put(MetamodelManager.DEFAULT_OCL_STDLIB_URI, StandardLibraryContribution.NULL);
 		Resource asResource = doLoad_Concrete("oclstdlib", "oclstdlib");
 //		checkMonikers(asResource);
@@ -1021,7 +1021,7 @@ public class LoadTests extends XtextTestCase
 
 	public void testLoad_Fruit_ocl() throws IOException, InterruptedException {
 		UMLStandaloneSetup.init();
-		metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
 		assertNull(OCL.initialize(resourceSet));
 		UMLPackage.eINSTANCE.getClass();
@@ -1080,7 +1080,7 @@ public class LoadTests extends XtextTestCase
 	}
 
 	public void testReload_AsReload() throws Exception {
-		MetamodelManager metamodelManager1 = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager1 = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		String oclinecoreFileA =
 				"package PackageA : nsPrefixA = 'http://A3'{\n" +
 				"    class ClassA {\n" +
@@ -1097,7 +1097,7 @@ public class LoadTests extends XtextTestCase
 		String ecoreFileB = createEcoreString(metamodelManager1, "Bug382230B", oclinecoreFileB, false);
 		String ecoreFileName = "Bug382230.ecore";
 		metamodelManager1.dispose();
-		MetamodelManager metamodelManager2 = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager2 = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		URI ecoreURI = URI.createURI(ecoreFileName);
 		XMLResource ecoreResource = (XMLResource) metamodelManager2.getExternalResourceSet().createResource(ecoreURI, null);
 		ecoreResource.load(new URIConverter.ReadableInputStream(ecoreFileA), null);
@@ -1146,7 +1146,7 @@ public class LoadTests extends XtextTestCase
 	}
 
 	public void testReload_AsUpdate() throws Exception {
-		MetamodelManager metamodelManager1 = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager1 = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		String oclinecoreFileXXX =
 				"package PackageXXX : nsPrefixXXX = 'http://XXX'{\n" +
 				"    class MutableXXX {\n" +
@@ -1163,7 +1163,7 @@ public class LoadTests extends XtextTestCase
 				.replaceAll("XXX", "YYY");
 		String ecoreFileName = "Bug382230.ecore";
 		metamodelManager1.dispose();
-		MetamodelManager metamodelManager2 = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager2 = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		URI ecoreURI = URI.createURI(ecoreFileName);
 		XMLResource ecoreResource = (XMLResource) metamodelManager2.getExternalResourceSet().createResource(ecoreURI, null);
 		ecoreResource.load(new URIConverter.ReadableInputStream(ecoreFileXXX), null);
@@ -1233,7 +1233,7 @@ public class LoadTests extends XtextTestCase
 	}
 
 	public void testReload_As418412() throws Exception {
-		MetamodelManager metamodelManager1 = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager1 = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		String oclinecoreFileXXX =
 				"package PackageXXX : nsPrefixXXX = 'http://XXX'{\n" +
 				"    class ClassXXX {\n" +
@@ -1243,7 +1243,7 @@ public class LoadTests extends XtextTestCase
 		String ecoreFileXXX = createEcoreString(metamodelManager1, "Bug418412", oclinecoreFileXXX, true);
 		String ecoreFileName = "Bug418412.ecore";
 		metamodelManager1.dispose();
-		MetamodelManager metamodelManager2 = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		MetamodelManager metamodelManager2 = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		URI ecoreURI = URI.createURI(ecoreFileName);
 		XMLResource ecoreResource = (XMLResource) metamodelManager2.getExternalResourceSet().createResource(ecoreURI, null);
 		ecoreResource.load(new URIConverter.ReadableInputStream(ecoreFileXXX), null);

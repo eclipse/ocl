@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.SequenceType;
@@ -40,7 +39,6 @@ import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteClassInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.internal.context.ModelContext;
-import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
@@ -80,7 +78,7 @@ public class EditTests extends XtextTestCase
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		ocl = OCL.newInstance();
+		ocl = OCL.newInstance(getProjectMap());
 	}
 
 	@Override
@@ -129,8 +127,8 @@ public class EditTests extends XtextTestCase
 	}	
 
 	public void testEdit_Paste_operation_394057() throws Exception {
-		OCLDelegateDomain.initialize(null);
-		OCLDelegateDomain.initialize(null, OCLConstants.OCL_DELEGATE_URI);
+//		OCLDelegateDomain.initialize(null);
+//		OCLDelegateDomain.initialize(null, OCLConstants.OCL_DELEGATE_URI);
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
 		String testDocument = 
 			"package tutorial : tuttut = 'http://www.eclipse.org/mdt/ocl/oclinecore/tutorial'\n" +
@@ -200,8 +198,8 @@ public class EditTests extends XtextTestCase
 				"}\n";
 		URI ecoreURI_class = getProjectFileURI("test-class.ecore");
 		URI ecoreURI_datatype = getProjectFileURI("test-datatype.ecore");
-		OCL ocl_class = OCL.newInstance();
-		OCL ocl_datatype = OCL.newInstance();
+		OCL ocl_class = OCL.newInstance(getProjectMap());
+		OCL ocl_datatype = OCL.newInstance(getProjectMap());
 		MetamodelManager metamodelManager_class = ocl_class.getMetamodelManager();
 		MetamodelManager metamodelManager_datatype = ocl_datatype.getMetamodelManager();
 		Resource ecoreResource_class = getEcoreFromCS1(ocl_class, testDocument_class, ecoreURI_class);
@@ -265,9 +263,9 @@ public class EditTests extends XtextTestCase
 		URI ecoreURI_uncommented = getProjectFileURI("test-uncommented.ecore");
 		URI ecoreURI_commented = getProjectFileURI("test-commented.ecore");
 		URI ecoreURI_recommented = getProjectFileURI("test-recommented.ecore");
-		OCL ocl_uncommented = OCL.newInstance();
-		OCL ocl_commented = OCL.newInstance();
-		OCL ocl_recommented = OCL.newInstance();
+		OCL ocl_uncommented = OCL.newInstance(getProjectMap());
+		OCL ocl_commented = OCL.newInstance(getProjectMap());
+		OCL ocl_recommented = OCL.newInstance(getProjectMap());
 		MetamodelManager metamodelManager_uncommented = ocl_uncommented.getMetamodelManager();
 		MetamodelManager metamodelManager_commented = ocl_commented.getMetamodelManager();
 		MetamodelManager metamodelManager_recommented = ocl_recommented.getMetamodelManager();
@@ -350,10 +348,10 @@ public class EditTests extends XtextTestCase
 	}
 
 	public void testEdit_Refresh_ecore_382230() throws Exception {
-		OCLDelegateDomain.initialize(null);
-		OCLDelegateDomain.initialize(null, OCLConstants.OCL_DELEGATE_URI);
+//		OCLDelegateDomain.initialize(null);
+//		OCLDelegateDomain.initialize(null, OCLConstants.OCL_DELEGATE_URI);
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
-		OCL ocl0 = OCL.newInstance();
+		OCL ocl0 = OCL.newInstance(getProjectMap());
 		MetamodelManager metamodelManager0 = ocl0.getMetamodelManager();
 		String testDocument = 
 			"package tutorial : tuttut = 'http://www.eclipse.org/mdt/ocl/oclinecore/tutorial'\n" +
@@ -374,7 +372,7 @@ public class EditTests extends XtextTestCase
 		//
 		//	Load and instrument test document
 		//
-		OCL ocl1 = OCL.newInstance();
+		OCL ocl1 = OCL.newInstance(getProjectMap());
 		MetamodelManager metamodelManager1 = ocl1.getMetamodelManager();
 		Resource ecoreResource = metamodelManager1.getExternalResourceSet().getResource(ecoreURI, true);
 		assertNoResourceErrors("Ecore load", ecoreResource);
@@ -459,7 +457,7 @@ public class EditTests extends XtextTestCase
 			"package p1 : p2 = 'p3' {\n" +
 			"}\n";
 		URI ecoreURI0 = getProjectFileURI("test0.ecore");
-		OCL ocl1 = OCL.newInstance();
+		OCL ocl1 = OCL.newInstance(getProjectMap());
 		MetamodelManager metamodelManager1 = ocl1.getMetamodelManager();
 		Resource ecoreResource0 = getEcoreFromCS1(ocl1, testDocument, ecoreURI0);
 		EssentialOCLCSResource xtextResource;
@@ -525,7 +523,7 @@ public class EditTests extends XtextTestCase
 			"	}\n" +
 			"}\n";
 		URI ecoreURI0 = getProjectFileURI("test0.ecore");
-		OCL ocl1 = OCL.newInstance();
+		OCL ocl1 = OCL.newInstance(getProjectMap());
 		MetamodelManager metamodelManager1 = ocl1.getMetamodelManager();
 		Resource ecoreResource0 = getEcoreFromCS1(ocl1, testDocument, ecoreURI0);
 		URI ecoreURI1 = getProjectFileURI("test1.ecore");
@@ -610,7 +608,7 @@ public class EditTests extends XtextTestCase
 			"}\n";
 		URI ecoreURI0 = getProjectFileURI("test0.ecore");
 //		System.out.println("*************load-reference*********************************************************");
-		OCL ocl1 = OCL.newInstance();
+		OCL ocl1 = OCL.newInstance(getProjectMap());
 		MetamodelManager metamodelManager1 = ocl1.getMetamodelManager();
 		Resource ecoreResource0 = getEcoreFromCS1(ocl1, testDocument, ecoreURI0);
 		URI ecoreURI1 = getProjectFileURI("test1.ecore");
@@ -693,8 +691,8 @@ public class EditTests extends XtextTestCase
 	}
 
 	public void testEdit_Paste_CompleteOCL() throws Exception {
-		OCLDelegateDomain.initialize(null);
-		OCLDelegateDomain.initialize(null, OCLConstants.OCL_DELEGATE_URI);
+//		OCLDelegateDomain.initialize(null);
+//		OCLDelegateDomain.initialize(null, OCLConstants.OCL_DELEGATE_URI);
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
 		String testDocument = 
 			"package ocl\n" +
@@ -753,8 +751,8 @@ public class EditTests extends XtextTestCase
 	public void testEdit_Paste_OCLstdlib() throws Exception {
 		String goodString = "coercion toUnlimitedNatural";
 		String badString = "coer cion toUnlimitedNatural";
-		OCLDelegateDomain.initialize(null);
-		OCLDelegateDomain.initialize(null, OCLConstants.OCL_DELEGATE_URI);
+//		OCLDelegateDomain.initialize(null);
+//		OCLDelegateDomain.initialize(null, OCLConstants.OCL_DELEGATE_URI);
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
 		EssentialOCLCSResource xtextResource;
 		Resource asResource;

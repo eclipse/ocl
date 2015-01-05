@@ -33,6 +33,18 @@ public interface CSResource extends Resource
 	@NonNull ASResourceFactory getASResourceFactory();
 	
 	@Nullable ParserContext getParserContext();
+	
+	/**
+	 * Return the map of known projects.
+	 */
+	@Nullable StandaloneProjectMap getProjectMap();
+
 	void setParserContext(@Nullable ParserContext parserContext);
+	
+	/**
+	 * Set the map of known projects.
+	 */
+	void setProjectMap(@Nullable StandaloneProjectMap projectMap);
+
 	void updateFrom(@NonNull ASResource asResource, @NonNull MetamodelManager metamodelManager);
 }

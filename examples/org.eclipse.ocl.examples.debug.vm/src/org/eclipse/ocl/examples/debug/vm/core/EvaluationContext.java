@@ -14,14 +14,14 @@ package org.eclipse.ocl.examples.debug.vm.core;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEnvironmentFactory;
 import org.eclipse.ocl.examples.debug.vm.utils.Log;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerListener;
 import org.eclipse.ocl.pivot.utilities.OCL;
 
-public abstract class EvaluationContext implements MetamodelManagerListener
+public abstract class EvaluationContext
 {
-	private @Nullable MetamodelManager metamodelManager;
+	private @Nullable OCL ocl;
 	private @Nullable Log log;
 	
 	public @Nullable Log getLog() {
@@ -34,24 +34,12 @@ public abstract class EvaluationContext implements MetamodelManagerListener
 
 	public abstract @NonNull URI getDebuggableURI();
 
-	public @NonNull MetamodelManager getMetamodelManager() {
-		MetamodelManager metamodelManager2 = metamodelManager;
-		if (metamodelManager2 == null) {
-			if (metamodelManager2 == null) {
-				metamodelManager2 = findMetamodelManager();
-			}
-			if (metamodelManager2 == null) {
-				metamodelManager2 = OCL.createEnvironmentFactory(null).getMetamodelManager();
-			}
-			metamodelManager = metamodelManager2;
-			metamodelManager2.addListener(this);
+	public @NonNull IVMEnvironmentFactory getEnvironmentFactory() {
+		OCL ocl2 = ocl;
+		if (ocl2 == null) {
+			ocl = ocl2 = OCL.newInstance();
 		}
-		return metamodelManager2;
-	}
-
-	@Override
-	public void metamodelManagerDisposed(@NonNull MetamodelManager metamodelManager) {
-		this.metamodelManager = null;
+		return (IVMEnvironmentFactory) ocl2.getEnvironmentFactory();
 	}
 
 	public void setLog(@NonNull Log log) {

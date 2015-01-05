@@ -24,7 +24,6 @@ import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.emf.validation.validity.export.ValidityExporterRegistry;
 import org.eclipse.ocl.examples.standalone.StandaloneCommand.CommandToken;
-import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 
 /**
@@ -62,7 +61,7 @@ public class StandaloneApplication implements IApplication
 		}
 	
 		// Plug the OCL validation mechanism.
-		OCLDelegateDomain.initialize(resourceSet);
+//		OCLDelegateDomain.initialize(resourceSet);
 	}
 	
 	/**

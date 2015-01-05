@@ -208,7 +208,8 @@ public abstract class GenerateOCLmetamodel extends GenerateOCLCommonXtend
 		OCLstdlib.install();
 		log.info("Loading Pivot Model '" + inputURI);
 		try {
-			MetamodelManager metamodelManager = OCL.createEnvironmentFactory(projectMap).getMetamodelManager();
+			OCL ocl = OCL.newInstance();
+			MetamodelManager metamodelManager = ocl.getMetamodelManager();
 			ResourceSet asResourceSet = metamodelManager.getASResourceSet();
 		    if (packageDescriptor != null) {
 		    	packageDescriptor.configure(asResourceSet, LoadDynamicResourceStrategy.INSTANCE, null);
@@ -262,6 +263,7 @@ public abstract class GenerateOCLmetamodel extends GenerateOCLCommonXtend
 			Map<String, Object> options = new HashMap<String, Object>();
 			options.put(ASResource.OPTION_NORMALIZE_CONTENTS, Boolean.TRUE);
 			asResource.save(options);
+			ocl.dispose();
 		} catch (RuntimeException e) {
 			throw e;
 		} catch (Exception e) {
