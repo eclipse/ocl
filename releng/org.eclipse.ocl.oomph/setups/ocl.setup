@@ -42,27 +42,6 @@
     <description>OCL Git repository clone</description>
   </setupTask>
   <setupTask
-      xsi:type="git:GitCloneTask"
-      id="emf.git.clone"
-      remoteURI="emf/org.eclipse.emf">
-    <annotation
-        source="http://www.eclipse.org/oomph/setup/InducedChoices">
-      <detail
-          key="inherit">
-        <value>eclipse.git.gerrit.remoteURIs</value>
-      </detail>
-      <detail
-          key="label">
-        <value>EMF Git or Gerrit Repository</value>
-      </detail>
-      <detail
-          key="target">
-        <value>remoteURI</value>
-      </detail>
-    </annotation>
-    <description>EMF Git repository clone</description>
-  </setupTask>
-  <setupTask
       xsi:type="setup:CompoundTask"
       name="Eclipse Installation">
     <setupTask
@@ -228,6 +207,28 @@
   <project name="dev"
       label="Development">
     <setupTask
+        xsi:type="git:GitCloneTask"
+        id="emf.git.clone"
+        remoteURI="emf/org.eclipse.emf"
+        checkoutBranch="${emf.branch}">
+      <annotation
+          source="http://www.eclipse.org/oomph/setup/InducedChoices">
+        <detail
+            key="inherit">
+          <value>eclipse.git.gerrit.remoteURIs</value>
+        </detail>
+        <detail
+            key="label">
+          <value>EMF Git or Gerrit Repository</value>
+        </detail>
+        <detail
+            key="target">
+          <value>remoteURI</value>
+        </detail>
+      </annotation>
+      <description>EMF Git repository clone</description>
+    </setupTask>
+    <setupTask
         xsi:type="projects:ProjectsImportTask">
       <sourceLocator
           rootFolder="${ocl.git.clone.location/plugins}"
@@ -365,10 +366,20 @@
     </setupTask>
     <stream
         name="master"
-        label="Master (Mars)"/>
+        label="Master (Mars)">
+      <setupTask
+          xsi:type="setup:VariableTask"
+          name="emf.branch"
+          value="master"/>
+    </stream>
     <stream
         name="maintenance/R5_0"
-        label="Maintenance (Luna)"/>
+        label="Maintenance (Luna)">
+      <setupTask
+          xsi:type="setup:VariableTask"
+          name="emf.branch"
+          value="R2_10_maintenance"/>
+    </stream>
     <description>The development environment for the OCL</description>
   </project>
   <project name="Releng">
