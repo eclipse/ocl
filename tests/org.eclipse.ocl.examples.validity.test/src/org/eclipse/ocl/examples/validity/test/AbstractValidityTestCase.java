@@ -41,10 +41,9 @@ import org.eclipse.ocl.examples.validity.locator.UMLConstraintLocator;
 import org.eclipse.ocl.examples.validity.test.ecoreTest.EcoreTestPackage;
 import org.eclipse.ocl.examples.validity.test.ecoreTest2.EcoreTest2Package;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
+import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.validation.PivotEObjectValidator.ValidationAdapter;
-import org.eclipse.ocl.pivot.resource.ProjectMap;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IProjectDescriptor;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
@@ -67,7 +66,7 @@ public abstract class AbstractValidityTestCase extends TestCase
 		}
 		else {
 			StandaloneProjectMap projectMap = new StandaloneProjectMap();
-			IProjectDescriptor projectDescriptor = projectMap.getProjectDescriptor(PLUGIN_ID);
+			StandaloneProjectMap.IProjectDescriptor projectDescriptor = projectMap.getProjectDescriptor(PLUGIN_ID);
 			TEST_PROJECT_LOCATION = projectDescriptor.getLocationURI().toString();
 			if (TEST_PROJECT_LOCATION.endsWith("/")) {
 				TEST_PROJECT_LOCATION = TEST_PROJECT_LOCATION.substring(0, TEST_PROJECT_LOCATION.length()-1);

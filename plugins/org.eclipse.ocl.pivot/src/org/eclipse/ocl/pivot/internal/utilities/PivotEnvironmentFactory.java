@@ -19,7 +19,7 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.evaluation.AbstractEvaluationEnvironment;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.AbstractEnvironmentFactory;
 
 /**
@@ -34,8 +34,8 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
 	 * Initializes me with an optional <code>StandaloneProjectMap</code> of accessible resources and
 	 * an optional <code>ModelManager</code> for loaded instances.
 	 */
-	public PivotEnvironmentFactory(@Nullable StandaloneProjectMap projectMap) {
-		super(projectMap);
+	public PivotEnvironmentFactory(@Nullable ProjectManager projectManager) {
+		super(projectManager);
 	}
 
 	@Override

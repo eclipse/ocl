@@ -47,12 +47,9 @@ import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.resource.ASSaver;
+import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResource;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IPackageDescriptor;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IProjectDescriptor;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.LoadDynamicResourceStrategy;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -192,13 +189,13 @@ public abstract class GenerateOCLmetamodel extends GenerateOCLCommonXtend
 		ResourceSet resourceSet = ClassUtil.nonNullState(getResourceSet());
 		StandaloneProjectMap projectMap = StandaloneProjectMap.getAdapter(resourceSet);
 		assert projectName != null;
-		IProjectDescriptor projectDescriptor = projectMap.getProjectDescriptor(projectName);
+		StandaloneProjectMap.IProjectDescriptor projectDescriptor = projectMap.getProjectDescriptor(projectName);
 		if (projectDescriptor == null) {
 			issues.addError(this, "Unknown project '" + projectName + "'", null, null, null);
 			return;
 		}
 		@SuppressWarnings("null")@NonNull URI nsURI = URI.createURI(PivotPackage.eNS_URI);
-		IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(nsURI);
+		StandaloneProjectMap.IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(nsURI);
 //	    if (packageDescriptor != null) {
 //	    	packageDescriptor.configure(asResourceSet, LoadDynamicResourceStrategy.INSTANCE, null);
 //	    }
@@ -212,7 +209,7 @@ public abstract class GenerateOCLmetamodel extends GenerateOCLCommonXtend
 			MetamodelManager metamodelManager = ocl.getMetamodelManager();
 			ResourceSet asResourceSet = metamodelManager.getASResourceSet();
 		    if (packageDescriptor != null) {
-		    	packageDescriptor.configure(asResourceSet, LoadDynamicResourceStrategy.INSTANCE, null);
+		    	packageDescriptor.configure(asResourceSet, StandaloneProjectMap.LoadDynamicResourceStrategy.INSTANCE, null);
 		    }
 			NameQueries.setMetamodelManager(metamodelManager);
 			Resource ecoreResource = ClassUtil.nonNullState(asResourceSet.getResource(inputURI, true));

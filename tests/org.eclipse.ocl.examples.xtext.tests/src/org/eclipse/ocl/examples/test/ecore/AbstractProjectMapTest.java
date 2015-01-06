@@ -22,10 +22,9 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestCase;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseLogger;
-import org.eclipse.ocl.pivot.resource.ProjectMap;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IPackageDescriptor;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IProjectDescriptor;
+import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
+import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
@@ -101,9 +100,9 @@ public abstract class AbstractProjectMapTest extends PivotTestCase
 		@SuppressWarnings("null")@NonNull URI nsURI = URI.createURI(ePackage.getNsURI());
 		@SuppressWarnings("null")@NonNull URI platformPluginEObjectURI = platformPluginURI.appendFragment(fragment);
 		@SuppressWarnings("null")@NonNull URI platformResourceEObjectURI = platformResourceURI.appendFragment(fragment);
-		IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor(project);
+		ProjectManager.IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor(project);
 		assert projectDescriptor != null;
-		IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(nsURI);
+		ProjectManager.IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(nsURI);
 		assert packageDescriptor != null;
 		{
 			ResourceSet resourceSet = new ResourceSetImpl();
@@ -212,9 +211,9 @@ public abstract class AbstractProjectMapTest extends PivotTestCase
 		@SuppressWarnings("null")@NonNull URI nsURI = URI.createURI(ePackage.getNsURI());
 		@SuppressWarnings("null")@NonNull URI platformPluginEObjectURI = platformPluginURI.appendFragment(fragment);
 		@SuppressWarnings("null")@NonNull URI platformResourceEObjectURI = platformResourceURI.appendFragment(fragment);
-		IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor(project);
+		ProjectManager.IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor(project);
 		assert projectDescriptor != null;
-		IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(nsURI);
+		ProjectManager.IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(nsURI);
 		assert packageDescriptor != null;
 		{
 			ResourceSet resourceSet = new ResourceSetImpl();
@@ -261,9 +260,9 @@ public abstract class AbstractProjectMapTest extends PivotTestCase
 		@SuppressWarnings("null")@NonNull URI nsURI = URI.createURI(ePackage.getNsURI());
 		@SuppressWarnings("null")@NonNull URI platformPluginEObjectURI = platformPluginURI.appendFragment(fragment);
 		@SuppressWarnings("null")@NonNull URI platformResourceEObjectURI = platformResourceURI.appendFragment(fragment);
-		IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor(project);
+		ProjectManager.IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor(project);
 		assert projectDescriptor != null;
-		IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(nsURI);
+		ProjectManager.IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(nsURI);
 		assert packageDescriptor != null;
 		{
 			ResourceSet resourceSet = new ResourceSetImpl();
@@ -315,9 +314,9 @@ public abstract class AbstractProjectMapTest extends PivotTestCase
 			@SuppressWarnings("null")@NonNull URI nsURI = URI.createURI(ePackage.getNsURI());
 			@SuppressWarnings("null")@NonNull URI platformPluginEObjectURI = platformPluginURI.appendFragment(fragment);
 			@SuppressWarnings("null")@NonNull URI platformResourceEObjectURI = platformResourceURI.appendFragment(fragment);
-			IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor(project);
+			ProjectManager.IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor(project);
 			assert projectDescriptor != null;
-			IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(nsURI);
+			ProjectManager.IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(nsURI);
 			assert packageDescriptor != null;
 			{
 				ResourceSet resourceSet = new ResourceSetImpl();

@@ -78,11 +78,11 @@ import org.eclipse.ocl.pivot.internal.manager.AbstractMetamodelManagerResourceAd
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
+import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.ocl.pivot.library.LibraryUnaryOperation;
 import org.eclipse.ocl.pivot.library.ecore.EcoreExecutorManager;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.CSResource;
-import org.eclipse.ocl.pivot.resource.ProjectMap;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;

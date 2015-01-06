@@ -10,7 +10,7 @@
  * 
  * The standalone functionality is heavily influenced by org.eclipse.emf.mwe.utils.StandaloneSetup.
  *******************************************************************************/
-package org.eclipse.ocl.pivot.resource;
+package org.eclipse.ocl.pivot.internal.resource;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -58,6 +58,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.internal.compatibility.EMF_2_9;
+import org.eclipse.ocl.pivot.resource.ProjectManager;
+import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
@@ -210,9 +212,9 @@ import org.xml.sax.helpers.DefaultHandler;
  * one or more IPackageDescriptors for in use IResourceDescriptors and IPackageDescriptors. The
  * IResourceLoadStatus is confugured with an IResourceLoadStrategy and an IConflictHandler.
  */
-public class StandaloneProjectMap extends SingletonAdapterImpl
+public class StandaloneProjectMap extends SingletonAdapterImpl implements ProjectManager
 {
-	private static final String PLUGIN_ID = "org.eclipse.ocl.domain";;
+	private static final String PLUGIN_ID = PivotPlugin.PLUGIN_ID;
 
 	private static final Logger logger = Logger.getLogger(StandaloneProjectMap.class);
 	private static @Nullable Set<String> alreadyLogged = null;
@@ -254,7 +256,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 
 		public @Nullable EPackage basicGetEPackage() {
 			IResourceLoadStatus resourceLoadStatus = packageLoadStatus.getResourceLoadStatus();
-			IResourceLoadStrategy2 resourceLoadStrategy = (IResourceLoadStrategy2) resourceLoadStatus.getResourceLoadStrategy();
+			IResourceLoadStrategy resourceLoadStrategy = resourceLoadStatus.getResourceLoadStrategy();
 			if (PROJECT_MAP_GET.isActive()) {
 				PROJECT_MAP_GET.println("BasicGet " + getURI() + " with " + resourceLoadStrategy + " in " + NameUtil.debugSimpleName(resourceLoadStatus.getPackageRegistry()));
 			}
@@ -301,235 +303,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		}
 	}
 
-	/**
-	 * An IResourceLoadStatus maintains the lazy load state of a resource associated with a genmodel
-	 * identified by an IResourceDescriptor within a ResourceSet.
-	 */
-	public static interface IResourceLoadStatus
-	{	
-		/**
-		 * Configure the ResourceSet.URIResourceMap to resolve platform:/plugin and platform:/resource
-		 * references to a pseudo resource that delegates to generated packages.
-		 */
-		void configureDelegatingResource();
-		
-		/**
-		 * Configure the EPackage.Registry to resolve namesapce URI references to the specified resource.
-		 */
-		void configureEPackageRegistry(@NonNull Resource resource);
-
-		/**
-		 * Configure the ResourceSet.URIResourceMap to resolve platform:/plugin and platform:/resource
-		 * references to the specified resource.
-		 */
-		void configureResourceSetURIResourceMap(@NonNull Resource resource);
-
-		/**
-		 * Dispose of all facilities used by the IResourceLoadStatus, and remove all EPackageDescriptor entries.
-		 */
-		void dispose();
-
-		/**
-		 * Return the EPackage to be used for a platform-resource/plugin URI after a namespace URI has already been loaded.
-		 */
-		@Nullable EPackage getConflictingDynamicResource(@NonNull EPackage ePackage);
-
-		/**
-		 * Return the first loaded EPackage which may be part of a model or a Java generated EPackageinstance..
-		 */
-		@Nullable EPackage getFirstEPackage();
-
-		/**
-		 * Return the package load status for the package identified by packageDescriptor 
-		 */
-		@Nullable IPackageLoadStatus getPackageLoadStatus(@NonNull IPackageDescriptor packageDescriptor);
-
-		/**
-		 * Return the descriptor for the resource.
-		 */
-		@NonNull IResourceDescriptor getResourceDescriptor();
-
-		/**
-		 * Return the configured resource loading strategy.
-		 */
-		@NonNull IResourceLoadStrategy getResourceLoadStrategy();
-		
-		/**
-		 * Return the package registry maintained by this resource load status
-		 */
-		@NonNull EPackage.Registry getPackageRegistry();
-
-		/**
-		 * Return the ResourceSet to which the resource logically belongs. (Note that generated EPackage may have
-		 * a null actual ResourceSet, but a non-null logical ResourceSet.)
-		 */
-		@Nullable ResourceSet getResourceSet();
-
-		/**
-		 * Load and return the EPackage appropriate to the platform resource or plugin resource using nsURI to identify
-		 * a conflicting nsURI access,
-		 */
-		@Nullable Resource loadDynamicResource(@NonNull URI nsURI);
-
-		/**
-		 * Load all the Java generated EPackage instances for the resource.
-		 */
-		void loadGeneratedPackages();
-
-		/**
-		 * Define a new conflict handler.
-		 */
-		void setConflictHandler(@Nullable IConflictHandler conflictHandler);
-
-		/**
-		 * Set true by AS2Ecore to inhibit auto-loading of newly added EPackages.
-		 */
-		void setGenerationInProgress(boolean isGenerating);
-
-		/**
-		 * Define the resource once it has been loaded.
-		 */
-		void setResource(@NonNull Resource resource);
-
-		/**
-		 * Define a new package load strategy.
-		 */
-		void setResourceLoadStrategy(@NonNull IResourceLoadStrategy resourceLoadStrategy);
-
-		/**
-		 * Reset the status following notification that the model has been unloaded.
-		 */
-		void unloadedResource();
-	}
-
-	/**
-	 * An IPackageLoadStatus maintains the lazy load state of a package within an EPackage.Registry
-	 */
-	public static interface IPackageLoadStatus
-	{
-		/**
-		 * Configure the resourceSet EPackage.Registry for this package to resolve to the defined
-		 * generated/loaded EPackage.
-		 */
-		void configureEPackageRegistry(@NonNull ResourceSet resourceSet);
-
-		/**
-		 * Dispose of all facilities used by the PackageLoadStatus, and remove all EPackageDescriptor entries.
-		 */
-		void dispose();
-
-		/**
-		 * Return the EPackage to be used for a namespace URI after a platform-resource/plugin URI has already been loaded.
-		 */
-		@Nullable EPackage getConflictingGeneratedPackage();
-
-		/**
-		 * Return the generated EPackage instance, or null if none loaded.
-		 */
-		@Nullable EPackage getEPackage();
-
-		/**
-		 * Return the generated EPackage instance without affecting the prevailing status.
-		 * Returns null if an instance cannot be loaded.
-		 */
-		@Nullable EPackage getEPackageInstance();
-
-		/**
-		 * Return the EPackage resolved by the first loadEPackageByModelURI/loadEPackageByNsURI, or null if none loaded.
-		 */
-		@Nullable EPackage getFirstEPackage();
-
-		/**
-		 * Return the loaded EPackages, or null if none loaded.
-		 */
-		@Nullable EPackage getModel();
-
-		/**
-		 * Return the descriptor for the package.
-		 */
-		@NonNull IPackageDescriptor getPackageDescriptor();
-
-		/**
-		 * Get the status of the resource containing this package.
-		 */
-		@NonNull IResourceLoadStatus getResourceLoadStatus();
-
-		/**
-		 * Load and return the generated EPackage instance appropriate to the namespace URI.
-		 */
-		@Nullable EPackage loadEPackage();
-
-		/**
-		 * Define the generated EPackage for this package.
-		 */
-		void setEPackage(@NonNull EPackage ePackage);
-
-		/**
-		 * Define the loaded EPackage for this package.
-		 */
-		void setModel(@NonNull EPackage ePackage);
-
-		/**
-		 * Reset the status following notiofication that the model has been unloaded.
-		 */
-		void unloadedResource();
-	}
-
-	/**
-	 * An IResourceLoadStrategy determines how each of the possible forms of URI reference to an EPackage should loaded.
-	 */
-	public static interface IResourceLoadStrategy
-	{
-		/**
-		 * Respond to the explicit addition of a yet to be loaded Ecore model in the user's ResourceSet.
-		 */
-		void addedDynamicResource(@NonNull IResourceLoadStatus resourceLoadStatus, @NonNull Resource resource);
-
-		/**
-		 * Respond to the explicit addition of a generated EPackage in the user's ResourceSet.
-		 */
-		void addedGeneratedPackage(@NonNull IPackageLoadStatus packageLoadStatus, @NonNull EPackage ePackage);
-
-		/**
-		 * Configure the resourceLoadStatus to udse this strategy and a conflictHandler.
-		 */
-		void configure(@NonNull IResourceLoadStatus resourceLoadStatus, @Nullable IConflictHandler conflictHandler);
-
-		/**
-		 * Load and return the EPackage in response to an EPackage.Registry access through an EPackageDescriptor.
-		 */
-		@Nullable EPackage getEPackage(@NonNull IPackageLoadStatus packageLoadStatus);
-
-		/**
-		 * Respond to the platform/plugin access to a resource with a resourceLoadStatus containing a
-		 * package already accessed as the Java generated ePackage,
-		 */
-		void handleConflictingDynamicResource(@NonNull IResourceLoadStatus resourceLoadStatus, @NonNull EPackage ePackage);
-
-		/**
-		 * Respond to the loading of a dynamic Ecore model in the user's ResourceSet.
-		 */
-		void loadedDynamicResource(@NonNull IResourceLoadStatus packageLoadStatus, @NonNull Resource resource);
-
-		/**
-		 * Respond to the notification that the resource has been unloaded.
-		 */
-		void unloadedResource(@NonNull IResourceLoadStatus resourceLoadStatus);
-
-		/**
-		 * Respond to the explicit notification of a generated resource.
-		 */
-		void useGeneratedResource(@NonNull IResourceLoadStatus resourceLoadStatus, @NonNull Resource resource);
-	}
-	public static interface IResourceLoadStrategy2 extends IResourceLoadStrategy
-	{
-		/**
-		 * Return the EPackage in response to an EPackage.Registry access through an EPackageDescriptor, null if not loaded.
-		 */
-		@Nullable EPackage basicGetEPackage(@NonNull IPackageLoadStatus packageLoadStatus);
-	}
-
-	protected static abstract class AbstractResourceLoadStrategy implements IResourceLoadStrategy2
+	protected static abstract class AbstractResourceLoadStrategy implements IResourceLoadStrategy
 	{			
 		@Override
 		public void addedDynamicResource(@NonNull IResourceLoadStatus resourceLoadStatus, @NonNull Resource resource) {
@@ -817,7 +591,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 	 */
 	public static final class LoadFirstStrategy extends AbstractResourceLoadStrategy
 	{
-		public static final @NonNull IResourceLoadStrategy2 INSTANCE = new LoadFirstStrategy();
+		public static final @NonNull IResourceLoadStrategy INSTANCE = new LoadFirstStrategy();
 		
 		@Override
 		public void addedDynamicResource(@NonNull IResourceLoadStatus resourceLoadStatus, @NonNull Resource resource) {
@@ -883,199 +657,6 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		public void unloadedResource(@NonNull IResourceLoadStatus packageLoadStatus) {}
 	}
 	
-	/**
-	 * An IResourceDescriptor describes the modeling capabilities of one or more known
-	 * model packages in a genmodel.
-	 */
-	public static interface IResourceDescriptor
-	{
-		void addedDynamicResource(@NonNull ResourceSet resourceSet, @NonNull Resource resource);
-
-		void addedGeneratedPackage(@NonNull ResourceSet resourceSet, @NonNull EPackage ePackage);
-
-		void configure(@Nullable ResourceSet resourceSet, @NonNull IResourceLoadStrategy resourceLoadStrategy, @Nullable IConflictHandler conflictHandler);
-
-		void configureResourceSetURIResourceMap(@NonNull ResourceSet resourceSet, @NonNull Resource resource);
-
-		/**
-		 * Return the project relative Gen Model URI.
-		 */
-		@NonNull URI getGenModelURI();
-
-		/**
-		 * Return the external filespace form of the model URI containing the package.
-		 * @throws IllegalStateException if there is no Ecore model.
-		 */
-		@NonNull URI getLocationURI();
-
-		/**
-		 * Return the descriptors for allpackages in this resource.
-		 */
-		Iterable<? extends IPackageDescriptor> getPackageDescriptors();
-
-		/**
-		 * Return the platform:/resource form of the model URI containing the package
-		 * @throws IllegalStateException if there is no Ecore model.
-		 */
-		@NonNull URI getPlatformResourceURI();
-
-		/**
-		 * Return the platform:/plugin form of the model URI containing the package
-		 * @throws IllegalStateException if there is no Ecore model.
-		 */
-		@NonNull URI getPlatformPluginURI();
-
-		/**
-		 * Return the Project Descriptor containing this resource.
-		 */
-		@NonNull IProjectDescriptor getProjectDescriptor();
-
-		@NonNull URI getProjectRelativeEcorePackageURI(@NonNull URI genModelRelativeEcorePackageURI);
-		
-		/**
-		 * Return IResourceLoadStatus for this resource in conjunction with resourceSet.
-		 */
-		@NonNull IResourceLoadStatus getResourceLoadStatus(@Nullable ResourceSet resourceSet);
-
-		/**
-		 * Return true if setEcoreModel has defined the Ecore Model context.
-		 */
-		boolean hasEcoreModel();
-
-		/**
-		 * Set the Ecore Model context of the resource from a list of URIs of the Ecore Packages relative to the
-		 * genModelURI, and a map of the package namespace URI to package descriptor.
-		 */
-		void setEcoreModel(@NonNull List<String> genModelRelativeEcorePackageUris, @NonNull Map<String, IPackageDescriptor> nsURI2packageDescriptor);
-
-		/**
-		 * Unload the package registry to force a reload.
-		 */
-		void unload(@NonNull ResourceSet resourceSet);
-	}
-	
-	/**
-	 * An IPackageDescriptor describes the modeling capabilities of a known
-	 * model package and may be installed under a variety of synonyms in an
-	 * EPackage.Registry to map multiple URIs to a single EPackage.
-	 */
-	public static interface IPackageDescriptor
-	{
-		/**
-		 * Configure the resourceSet-specific resource status of for this package to use
-		 * a strategy and a conflictHandler.
-		 */
-		void configure(@NonNull ResourceSet resourceSet, @NonNull IResourceLoadStrategy strategy, @Nullable IConflictHandler conflictHandler);
-		
-		/**
-		 * Return the classname defined in the generated_packaged extension point, or null if undefined.
-		 */
-		@Nullable String getClassName();
-
-		/**
-		 * Return the Package Namespace URI.
-		 */
-		@NonNull URI getNsURI();
-
-		/**
-		 * Return the IResourceDescriptor containing this package.
-		 */
-		@NonNull IResourceDescriptor getResourceDescriptor();
-	}
-
-	/**
-	 * An IProjectDescriptor describes the capabilities of a project.
-	 */
-	public static interface IProjectDescriptor
-	{
-		/**
-		 * Call back to add a packageDescriptor to the project.
-		 */
-		void addPackageDescriptor(@NonNull IPackageDescriptor packageDescriptor);
-
-		/**
-		 * Call back to add a resourceDescriptor to the project.
-		 */
-		void addResourceDescriptor(@NonNull IResourceDescriptor resourceDescriptor);
-
-		/**
-		 * Configure the resourceSet-specific status of for this resource to use
-		 * a strategy and a conflictHandler.
-		 */
-		void configure(@Nullable ResourceSet resourceSet, @NonNull IResourceLoadStrategy resourceLoadStrategy, @Nullable IConflictHandler conflictHandler);
-
-		/**
-		 * Create an IResourceDescriptor for a projectRelativeGenModelUri comprsising a map of NsURI to className. 
-		 */
-		@NonNull IResourceDescriptor createResourceDescriptor(@NonNull String projectRelativeGenModelUri, @NonNull Map<URI, String> nsURI2className);
-
-		/**
-		 * Return the physical location of this project.
-		 */
-		@NonNull URI getLocationURI();
-
-		/**
-		 * Return the physical location of a projectRelativeFileName as a URI.
-		 */
-		@NonNull URI getLocationURI(@NonNull String projectRelativeFileName);
-
-		/**
-		 * Return the physical location of a projectRelativeFileName as a File.
-		 */
-		@NonNull File getLocationFile(@NonNull String projectRelativeFileName);
-
-		/**
-		 * Return project name.
-		 */
-		@NonNull String getName();
-
-		/**
-		 * Return the location of this project as a platform:/plugin URI.
-		 */
-		@NonNull URI getPlatformPluginURI();
-
-		/**
-		 * Return the location of a projectRelativeFileName as a
-		 * platform:/resource URI.
-		 */
-		@NonNull URI getPlatformPluginURI(@NonNull String projectRelativeFileName);
-
-		/**
-		 * Return the location of this project as a platform:/resource URI.
-		 */
-		@NonNull URI getPlatformResourceURI();
-
-		/**
-		 * Return the location of a projectRelativeFileName as a
-		 * platform:/resource URI.
-		 */
-		@NonNull URI getPlatformResourceURI(@NonNull String projectRelativeFileName);
-
-		/**
-		 * Return the package descriptor for the package with a given nsURI or
-		 * null if none known in the project.
-		 */
-		@Nullable IPackageDescriptor getPackageDescriptor(@NonNull URI nsURI);
-
-		/**
-		 * Return the overall ProjectMap.
-		 */
-		@NonNull StandaloneProjectMap getProjectMap();
-
-		/**
-		 * Return all packages descriptors in the project.
-		 */
-		@Nullable Collection<IResourceDescriptor> getResourceDescriptors();
-
-		void initializeGenModelLocationMap(@NonNull Map<URI, IPackageDescriptor> nsURI2package);
-
-		void initializePlatformResourceMap();
-
-		void initializeURIMap(@NonNull Map<URI, URI> uriMap);
-		
-		void unload(@NonNull ResourceSet resourceSet);
-	}
-	
 	public static abstract class AbstractResourceLoadStatus implements IResourceLoadStatus, Adapter
 	{
 		protected final @NonNull IResourceDescriptor resourceDescriptor;
@@ -1091,7 +672,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		/**
 		 * The strategy to be used to resolve further URI to EPackage mappings.
 		 */
-		protected @NonNull IResourceLoadStrategy2 resourceLoadStrategy = LoadFirstStrategy.INSTANCE;
+		protected @NonNull IResourceLoadStrategy resourceLoadStrategy = LoadFirstStrategy.INSTANCE;
 
 		/**
 		 * Target of unload watching Adapter.
@@ -1191,7 +772,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		}
 
 		@Override
-		public @NonNull IResourceLoadStrategy2 getResourceLoadStrategy() {
+		public @NonNull IResourceLoadStrategy getResourceLoadStrategy() {
 			return resourceLoadStrategy;
 		}
 
@@ -1304,7 +885,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		private void loadedDynamicResource(@NonNull ResourceSet resourceSet, @NonNull EPackage ePackage) {
 			String nsURI = ePackage.getNsURI();
 			if (nsURI != null) {
-				StandaloneProjectMap projectMap = resourceDescriptor.getProjectDescriptor().getProjectMap();
+				ProjectManager projectMap = resourceDescriptor.getProjectDescriptor().getProjectManager();
 				@SuppressWarnings("null")@NonNull URI uri = URI.createURI(nsURI);
 				IPackageDescriptor packageDescriptor = projectMap.getPackageDescriptor(uri);
 				if (packageDescriptor != null) {
@@ -1393,7 +974,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 
 		@Override
 		public void setResourceLoadStrategy(@NonNull IResourceLoadStrategy resourceLoadStrategy) {
-			this.resourceLoadStrategy = (IResourceLoadStrategy2) resourceLoadStrategy;
+			this.resourceLoadStrategy = resourceLoadStrategy;
 			if (PROJECT_MAP_CONFIGURE.isActive()) {
 				PROJECT_MAP_CONFIGURE.println(this.toString());
 			}
@@ -1931,7 +1512,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 				platformResourceURI = relativeEcoreModelURI.resolve(resourceURI);
 				platformPluginURI = relativeEcoreModelURI.resolve(pluginURI);
 				locationURI = relativeEcoreModelURI.resolve(projectLocationURI);
-				projectDescriptor.getProjectMap().addResourceDescriptor(this);
+				projectDescriptor.getProjectManager().addResourceDescriptor(this);
 			}
 			hasEcoreModel = true;
 		}
@@ -2483,7 +2064,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		}
 
 		@Override
-		public @NonNull StandaloneProjectMap getProjectMap() {
+		public @NonNull StandaloneProjectMap getProjectManager() {
 			return projectMap;
 		}
 
@@ -2548,23 +2129,6 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		public String toString() {
 			return name + " => " + locationURI.toString();
 		}
-	}
-	
-	/**
-	 * An IConflictHandler confligures the hanling of conflicting access between generated packages and
-	 * dynamically loaded resources.
-	 */
-	public static interface IConflictHandler
-	{
-		/**
-		 * Return the EPackage to be used for a namespace URI reference after the model EPackage has already been used.
-		 */
-		@Nullable EPackage handleConflictingGeneratedPackage(@NonNull IPackageLoadStatus packageLoadStatus, @NonNull Resource resource);
-
-		/**
-		 * Return the EPackage to be used for a model URI reference after the namespace EPackage has already been used.
-		 */
-		@Nullable EPackage handleConflictingDynamicResource(@NonNull IResourceLoadStatus packageLoadStatus, @NonNull EPackage ePackage);
 	}
 	
 	/**
@@ -2756,6 +2320,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 	/**
 	 * Call-back to add a resourceDescriptor.
 	 */
+	@Override
 	public void addResourceDescriptor(@NonNull IResourceDescriptor resourceDescriptor) {
 		Map<URI, IResourceDescriptor> uri2resource2 = uri2resource;
 		if (uri2resource2 == null) {
@@ -2769,6 +2334,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 	 * Configure the PackageRegistry associated with ResourceSet to use a resourceLoadStrategy and conflictHandler when
 	 * resolving namespace ansd platform URIs.
 	 */
+	@Override
 	public void configure(@Nullable ResourceSet resourceSet, @NonNull IResourceLoadStrategy resourceLoadStrategy, @Nullable IConflictHandler conflictHandler) {
 		Map<String, IProjectDescriptor> projectDescriptors = getProjectDescriptors();
 		if (projectDescriptors != null) {
@@ -2802,6 +2368,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 	/**
 	 * Return the IPackageDescriptor for a given nsURI.
 	 */
+	@Override
 	public @Nullable IPackageDescriptor getPackageDescriptor(@NonNull URI nsURI) {
 		return nsURI2package != null ? nsURI2package.get(nsURI) : null;
 	}
@@ -2972,6 +2539,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 	 * A null ResourceSet may be used to provoke initialization of the global
 	 * EPackage.Registry.INSTANCE and URIConverter.URI_MAP.
 	 */
+	@Override
 	public void initializeResourceSet(@Nullable ResourceSet resourceSet) {
 		initializeURIResourceMap(resourceSet);
 		initializePlatformResourceMap(false);
@@ -3241,6 +2809,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 	 * Use a registered resource for use in conjunction with resourceSet. This must be invoked explicitly to ensure
 	 * that conflicting generated/model access is resolved consistently.
 	 */
+	@Override
 	public void useGeneratedResource(@NonNull Resource resource, @NonNull ResourceSet resourceSet) {
 		URI uri = resource.getURI();
 		if (uri != null) {

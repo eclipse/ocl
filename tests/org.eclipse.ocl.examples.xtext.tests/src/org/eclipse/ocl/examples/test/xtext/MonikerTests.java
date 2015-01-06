@@ -170,7 +170,7 @@ public class MonikerTests extends XtextTestCase
 		URI inputURI = getProjectFileURI(inputName);
 		URI pivotURI = getProjectFileURI(pivotName);
 		BaseCSResource csResource = (BaseCSResource) resourceSet.createResource(inputURI);
-		csResource.setProjectMap(getProjectMap());
+		csResource.setProjectManager(getProjectMap());
 		JavaClassScope.getAdapter(csResource, getClass().getClassLoader());
 		csResource.load(null);;
 		assertNoResourceErrors("Load failed", csResource);

@@ -20,11 +20,11 @@ import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.resource.ProjectManager;
 
 public class OCLVMEnvironmentFactory extends AbstractVMEnvironmentFactory
 {
-	public OCLVMEnvironmentFactory(@Nullable StandaloneProjectMap projectMap) {
+	public OCLVMEnvironmentFactory(@Nullable ProjectManager projectMap) {
 		super(projectMap);
 	}
 

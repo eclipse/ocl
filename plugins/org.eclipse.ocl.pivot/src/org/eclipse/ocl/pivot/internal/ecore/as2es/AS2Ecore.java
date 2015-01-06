@@ -48,13 +48,11 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.delegate.DelegateInstaller;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.AbstractConversion;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.options.OCLinEcoreOptions;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IPackageDescriptor;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IResourceDescriptor;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IResourceLoadStatus;
+import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 
 public class AS2Ecore extends AbstractConversion
@@ -418,13 +416,13 @@ public class AS2Ecore extends AbstractConversion
 	protected void setGenerationInProgress(@NonNull org.eclipse.ocl.pivot.Package asPackage, boolean isGenerating) {
 		String nsUri = asPackage.getURI();
 		if (nsUri != null) {
-			StandaloneProjectMap projectMap = metamodelManager.getProjectMap();
+			ProjectManager projectManager = metamodelManager.getProjectManager();
 			@SuppressWarnings("null")@NonNull URI nsURI = URI.createURI(nsUri);
-			IPackageDescriptor packageDescriptor = projectMap.getPackageDescriptor(nsURI);
+			StandaloneProjectMap.IPackageDescriptor packageDescriptor = projectManager.getPackageDescriptor(nsURI);
 			if (packageDescriptor != null) {
-				IResourceDescriptor resourceDescriptor = packageDescriptor.getResourceDescriptor();
+				StandaloneProjectMap.IResourceDescriptor resourceDescriptor = packageDescriptor.getResourceDescriptor();
 				ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
-				IResourceLoadStatus resourceLoadStatus = resourceDescriptor.getResourceLoadStatus(resourceSet);
+				StandaloneProjectMap.IResourceLoadStatus resourceLoadStatus = resourceDescriptor.getResourceLoadStatus(resourceSet);
 				resourceLoadStatus.setGenerationInProgress(isGenerating);
 			}
 		}

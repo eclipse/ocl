@@ -41,7 +41,7 @@ import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
 import org.eclipse.ocl.pivot.internal.utilities.AS2XMIid;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.resource.ASResource;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.AS2MonikerVisitor;
 import org.eclipse.ocl.pivot.utilities.AS2XMIidVisitor;
 import org.eclipse.ocl.pivot.utilities.ASSaverLocateVisitor;
@@ -119,8 +119,8 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 	}
 
 	@Override
-	public @NonNull EnvironmentFactoryInternal createEnvironmentFactory(@Nullable StandaloneProjectMap projectMap) {
-		return new PivotEnvironmentFactory(projectMap);
+	public @NonNull EnvironmentFactoryInternal createEnvironmentFactory(@Nullable ProjectManager projectManager) {
+		return new PivotEnvironmentFactory(projectManager);
 	}
 	
 	@Override

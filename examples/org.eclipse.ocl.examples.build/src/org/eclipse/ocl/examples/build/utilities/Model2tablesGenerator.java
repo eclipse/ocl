@@ -31,7 +31,7 @@ import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreTables;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 

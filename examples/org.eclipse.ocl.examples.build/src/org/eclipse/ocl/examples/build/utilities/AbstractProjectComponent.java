@@ -16,8 +16,7 @@ import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.WorkflowComponentWithModelSlot;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IProjectDescriptor;
+import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 
 public abstract class AbstractProjectComponent extends WorkflowComponentWithModelSlot
 {
@@ -32,7 +31,7 @@ public abstract class AbstractProjectComponent extends WorkflowComponentWithMode
 		}
 	}
 
-	protected @Nullable IProjectDescriptor getProjectDescriptor() {
+	protected @Nullable StandaloneProjectMap.IProjectDescriptor getProjectDescriptor() {
 		ResourceSet resourceSet = getResourceSet();
 		StandaloneProjectMap projectMap = StandaloneProjectMap.getAdapter(resourceSet);
 		assert projectName != null;

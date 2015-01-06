@@ -34,9 +34,8 @@ import org.eclipse.emf.importer.ModelImporter;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
-import org.eclipse.ocl.pivot.resource.ProjectMap;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IProjectDescriptor;
+import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
+import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.uml2.uml.ecore.importer.UMLImporter;
 
@@ -79,7 +78,7 @@ public class GenmodelReloader extends AbstractProjectComponent
 		URI genModelURI = URI.createPlatformResourceURI(genModel, true);
 		log.info("Reloading '" + genModelURI + "'");
 		Monitor monitor = showProgress ? new LoggerMonitor(log) : new BasicMonitor();
-		IProjectDescriptor projectDescriptor = ClassUtil.nonNullState(getProjectDescriptor());
+		StandaloneProjectMap.IProjectDescriptor projectDescriptor = ClassUtil.nonNullState(getProjectDescriptor());
 //		@SuppressWarnings("null")@NonNull URI nsURI = URI.createURI(PivotPackage.eNS_URI);
 //		IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(nsURI);
 //		packageDescriptor.configure(null, StandaloneProjectMap.LoadModelStrategy.INSTANCE, null);

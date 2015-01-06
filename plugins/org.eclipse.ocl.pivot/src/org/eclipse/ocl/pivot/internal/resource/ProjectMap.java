@@ -8,7 +8,7 @@
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.pivot.resource;
+package org.eclipse.ocl.pivot.internal.resource;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,9 +30,10 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.internal.compatibility.EMF_2_9;
+import org.eclipse.ocl.pivot.resource.ProjectManager;
 
 /**
- * ProjectMap extends {@link StandaloneProjectMap} to support polymorphic access in either plugin or standalone environments
+ * ProjectMap extends {@link ProjectManager} to support polymorphic access in either plugin or standalone environments
  * to EMF resources and EPackages.
  * 
  *<h4>Plugin Environment</h4>

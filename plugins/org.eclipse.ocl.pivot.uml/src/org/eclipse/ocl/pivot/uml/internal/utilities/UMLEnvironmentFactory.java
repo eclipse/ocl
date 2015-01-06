@@ -34,7 +34,7 @@ import org.eclipse.ocl.pivot.internal.library.ImplementationManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
 import org.eclipse.ocl.pivot.uml.internal.library.UMLImplementationManager;
 import org.eclipse.ocl.pivot.util.DerivedConstants;
@@ -49,8 +49,8 @@ public class UMLEnvironmentFactory extends PivotEnvironmentFactory
 	 * Initializes me with an optional <code>StandaloneProjectMap</code> of accessible resources and
 	 * an optional <code>ModelManager</code> for loaded instances.
 	 */
-	public UMLEnvironmentFactory(@Nullable StandaloneProjectMap projectMap) {
-		super(projectMap);
+	public UMLEnvironmentFactory(@Nullable ProjectManager projectManager) {
+		super(projectManager);
 		UMLStandaloneSetup.assertInitialized();
 	}
 

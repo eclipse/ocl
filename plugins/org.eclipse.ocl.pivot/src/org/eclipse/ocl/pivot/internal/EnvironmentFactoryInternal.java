@@ -31,7 +31,7 @@ import org.eclipse.ocl.pivot.ids.RootPackageId;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.library.ImplementationManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.AbstractEnvironmentFactory;
 
 /**
@@ -84,7 +84,7 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 
 	@Nullable Element getParseableElement(@NonNull EObject eObject) throws ParserException;
 
-	@NonNull StandaloneProjectMap getProjectMap();
+	@NonNull ProjectManager getProjectManager();
 	
 	boolean isStereotype(@NonNull EClass eClass);
 

@@ -46,7 +46,7 @@ import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.values.CollectionTypeParametersImpl;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.resource.ASResource;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
@@ -761,7 +761,7 @@ public class EditTests extends XtextTestCase
 //			InputStream inputStream = new URIConverter.ReadableInputStream(testDocument, "UTF-8");
 //			URI outputURI = getProjectFileURI("test.ocl");
 			MetamodelManager metamodelManager = ocl.getMetamodelManager();
-			StandaloneProjectMap projectMap = metamodelManager.getProjectMap();
+			ProjectManager projectMap = metamodelManager.getProjectManager();
 			projectMap.initializeResourceSet(resourceSet);
 			URI libURI = URI.createPlatformResourceURI("org.eclipse.ocl.pivot/model/OCL-2.5.oclstdlib", true);
 			xtextResource = (EssentialOCLCSResource) resourceSet.createResource(libURI, null);

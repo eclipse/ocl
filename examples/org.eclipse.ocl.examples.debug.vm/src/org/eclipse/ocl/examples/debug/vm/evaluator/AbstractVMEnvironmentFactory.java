@@ -14,7 +14,7 @@ package org.eclipse.ocl.examples.debug.vm.evaluator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.IVMDebuggerShell;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.AbstractEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
@@ -23,7 +23,7 @@ public abstract class AbstractVMEnvironmentFactory extends AbstractEnvironmentFa
 	private IVMDebuggerShell shell;
 	private long envId = 0;
 	
-	public AbstractVMEnvironmentFactory(@Nullable StandaloneProjectMap projectMap) {
+	public AbstractVMEnvironmentFactory(@Nullable ProjectManager projectMap) {
 		super(projectMap);
 	}
 

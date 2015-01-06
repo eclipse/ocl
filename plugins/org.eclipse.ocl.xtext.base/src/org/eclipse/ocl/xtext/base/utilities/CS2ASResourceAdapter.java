@@ -76,7 +76,7 @@ public class CS2ASResourceAdapter extends AbstractMetamodelManagerResourceAdapte
 	}
 
 	public @NonNull Map<BaseCSResource, ASResource> computeCS2ASResourceMap(@NonNull BaseCSResource csResource, @Nullable ASResource asResource, @NonNull MetamodelManager metamodelManager) {
-		metamodelManager.getProjectMap();					// Ensures ProjectMap is notified of loaded resources
+		metamodelManager.getProjectManager();					// Ensures ProjectMap is notified of loaded resources
 		final ResourceSet asResourceSet = metamodelManager.getTarget();
 		Map<BaseCSResource,ASResource> cs2asResourceMap = new HashMap<BaseCSResource,ASResource>();
 		URI uri = csResource.getURI();

@@ -25,7 +25,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.pivot.internal.registry.CompleteOCLRegistry;
 import org.eclipse.ocl.pivot.internal.registry.CompleteOCLRegistry.Registration;
-import org.eclipse.ocl.pivot.resource.ProjectMap;
+import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.xtext.junit.GlobalRegistries;
 import org.eclipse.xtext.junit.GlobalRegistries.GlobalStateMemento;
 import org.osgi.framework.Bundle;

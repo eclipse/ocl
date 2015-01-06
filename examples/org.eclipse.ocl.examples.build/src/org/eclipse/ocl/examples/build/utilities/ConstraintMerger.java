@@ -40,10 +40,9 @@ import org.eclipse.ocl.pivot.internal.library.StandardLibraryContribution;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.manager.Orphanage;
+import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IProjectDescriptor;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
@@ -76,7 +75,7 @@ public class ConstraintMerger extends AbstractProjectComponent
 
 	@Override
 	public void invokeInternal(WorkflowContext ctx, ProgressMonitor arg1, Issues arg2) {
-		IProjectDescriptor projectDescriptor = ClassUtil.nonNullState(getProjectDescriptor());
+		StandaloneProjectMap.IProjectDescriptor projectDescriptor = ClassUtil.nonNullState(getProjectDescriptor());
 		assert uri != null;
 		URI inputURI = projectDescriptor.getPlatformResourceURI(uri);
 		log.info("Merging '" + inputURI + "'");

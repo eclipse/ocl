@@ -56,13 +56,14 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.ecore.Ecore2Moniker;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.AliasAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResource;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
@@ -304,8 +305,8 @@ public class Ecore2AS extends AbstractEcore2AS
 			return null;
 		}
 		if (ClassUtil.isRegistered(ecoreResource)) {
-			StandaloneProjectMap projectMap = metamodelManager.getProjectMap();
-			StandaloneProjectMap.IPackageDescriptor packageDescriptor = projectMap.getPackageDescriptor(ecoreURI);
+			ProjectManager projectManager = metamodelManager.getProjectManager();
+			StandaloneProjectMap.IPackageDescriptor packageDescriptor = projectManager.getPackageDescriptor(ecoreURI);
 			if (packageDescriptor == null) {
 				return null;
 			}

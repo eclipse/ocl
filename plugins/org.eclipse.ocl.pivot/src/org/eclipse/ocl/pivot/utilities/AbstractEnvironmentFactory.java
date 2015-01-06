@@ -55,9 +55,10 @@ import org.eclipse.ocl.pivot.internal.library.ImplementationManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.PivotIdResolver;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
+import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
+import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
-import org.eclipse.ocl.pivot.resource.ProjectMap;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.values.ObjectValue;
 
 /**
@@ -95,7 +96,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	}
 
     private boolean traceEvaluation;
-    private /*@LazyNonNull*/ StandaloneProjectMap projectMap;
+    private /*@LazyNonNull*/ ProjectManager projectManager;
     private /*@LazyNonNull*/ MetamodelManager metamodelManager;
     
     /**
@@ -118,13 +119,8 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
     /**
 	 * Initializes me.
 	 */
-	protected AbstractEnvironmentFactory(@Nullable StandaloneProjectMap projectMap) {
-		if (projectMap != null) {
-			this.projectMap = projectMap;
-		}
-		else {
-			this.projectMap = projectMap;
-		}
+	protected AbstractEnvironmentFactory(@Nullable ProjectManager projectManager) {
+		this.projectManager = projectManager;
 		this.metamodelManager = null;
 	}
 
@@ -142,8 +138,8 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 		EPackage.Registry packageRegistry = asResourceSet.getPackageRegistry();
 		packageRegistry.put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
 		asResourceSet.eAdapters().add(metamodelManager);
-		if (projectMap != null) {
-			asResourceSet.eAdapters().add(projectMap);
+		if (projectManager != null) {
+			asResourceSet.eAdapters().add(projectManager);
 		}
 		return asResourceSet;
 	}
@@ -397,12 +393,12 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	}
 
 	@Override
-	public @NonNull StandaloneProjectMap getProjectMap() {
-		StandaloneProjectMap projectMap2 = projectMap;
-		if (projectMap2 == null) {
-			projectMap = projectMap2 = EcorePlugin.IS_ECLIPSE_RUNNING ? new StandaloneProjectMap() : new ProjectMap();
+	public @NonNull ProjectManager getProjectManager() {
+		ProjectManager projectManager2 = projectManager;
+		if (projectManager2 == null) {
+			projectManager = projectManager2 = EcorePlugin.IS_ECLIPSE_RUNNING ? new StandaloneProjectMap() : new ProjectMap();
 		}
-		return projectMap2;
+		return projectManager2;
 	}
     /**
      * Queries whether tracing of evaluation is enabled.  Tracing

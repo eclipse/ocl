@@ -48,12 +48,9 @@ import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerListener;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.resource.OCLASResourceFactory;
+import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.CSResource;
-import org.eclipse.ocl.pivot.resource.ProjectMap;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IProjectDescriptor;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.MapToFirstConflictHandlerWithLog;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.xtext.base.ui.BaseUiModule;
 import org.eclipse.ocl.xtext.base.ui.BaseUiPluginHelper;
@@ -296,10 +293,10 @@ public abstract class BaseDocumentProvider extends XtextDocumentProvider impleme
 			String persistAs = PERSIST_AS_TEXT;
 			if (isXML) {
 				ResourceSet resourceSet = getMetamodelManager().getExternalResourceSet();
-				StandaloneProjectMap projectMap = ProjectMap.getAdapter(resourceSet);
-				StandaloneProjectMap.IConflictHandler conflictHandler = MapToFirstConflictHandlerWithLog.INSTANCE; //null; 			// FIXME
+				StandaloneProjectMap projectMap = StandaloneProjectMap.getAdapter(resourceSet);
+				StandaloneProjectMap.IConflictHandler conflictHandler = StandaloneProjectMap.MapToFirstConflictHandlerWithLog.INSTANCE; //null; 			// FIXME
 				projectMap.configure(resourceSet, StandaloneProjectMap.LoadFirstStrategy.INSTANCE, conflictHandler);
-				IProjectDescriptor pivotPackageDescriptor = projectMap.getProjectDescriptor(PivotConstantsInternal.PLUGIN_ID);
+				StandaloneProjectMap.IProjectDescriptor pivotPackageDescriptor = projectMap.getProjectDescriptor(PivotConstantsInternal.PLUGIN_ID);
 				if (pivotPackageDescriptor != null) {
 					pivotPackageDescriptor.configure(resourceSet, StandaloneProjectMap.LoadBothStrategy.INSTANCE, conflictHandler);	
 				}

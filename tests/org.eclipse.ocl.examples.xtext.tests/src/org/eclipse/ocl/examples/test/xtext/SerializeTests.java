@@ -27,10 +27,8 @@ import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
+import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.resource.ASResource;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IPackageDescriptor;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IProjectDescriptor;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
@@ -55,10 +53,10 @@ public class SerializeTests extends XtextTestCase
 		options.put(ResourceSetInitializer.class, new ResourceSetInitializer()
 		{
 			public void initializeResourceSet(@NonNull ResourceSet resourceSet) {
-				IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor("org.eclipse.emf.ecore");
+				StandaloneProjectMap.IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor("org.eclipse.emf.ecore");
 				if (projectDescriptor != null) {
 					@SuppressWarnings("null")@NonNull URI ecoreURI = URI.createURI(EcorePackage.eNS_URI);
-					IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(ecoreURI);
+					StandaloneProjectMap.IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(ecoreURI);
 					if (packageDescriptor != null) {
 						packageDescriptor.configure(resourceSet, StandaloneProjectMap.LoadGeneratedPackageStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
 					}

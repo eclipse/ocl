@@ -50,7 +50,7 @@ import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.CSResource;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
@@ -66,9 +66,9 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
  */
 public class OCL
 {
-	public static @NonNull EnvironmentFactory createEnvironmentFactory(@Nullable StandaloneProjectMap projectMap) {
+	public static @NonNull EnvironmentFactory createEnvironmentFactory(@Nullable ProjectManager projectManager) {
 //		OCLstdlib.lazyInstall();
-		return ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectMap);
+		return ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectManager);
 	}
 	
 	/**
@@ -113,8 +113,8 @@ public class OCL
      * @param reg Ecore package registry
      * @return the new <code>OCL</code>
      */
-	public static @NonNull OCL newInstance(@Nullable StandaloneProjectMap projectMap) {	
-		return newInstance(createEnvironmentFactory(projectMap));
+	public static @NonNull OCL newInstance(@Nullable ProjectManager projectManager) {	
+		return newInstance(createEnvironmentFactory(projectManager));
 	}
 	
     /**

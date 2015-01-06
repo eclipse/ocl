@@ -36,10 +36,11 @@ import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
+import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.values.IntIntegerValueImpl;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.uml.UMLOCL;
 import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
@@ -210,7 +211,7 @@ public class UMLValidateTest extends AbstractValidateTests
 			}
 		};
 		MetamodelManager metamodelManager = helper.getMetamodelManager();
-		StandaloneProjectMap projectMap = metamodelManager.getProjectMap();
+		ProjectManager projectMap = metamodelManager.getProjectManager();
 		projectMap.configure(metamodelManager.getExternalResourceSet(), StandaloneProjectMap.LoadGeneratedPackageStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
 		@SuppressWarnings("unused")Resource oclResource = helper.loadResource(oclURI);
 		if (!helper.loadMetamodels()) {
@@ -252,7 +253,7 @@ public class UMLValidateTest extends AbstractValidateTests
 		URI oclURI = getProjectFileURI("Bug404882.ocl");
 		LoaderWithLog helper = new LoaderWithLog(resourceSet);
 		MetamodelManager metamodelManager = helper.getMetamodelManager();
-		StandaloneProjectMap projectMap = metamodelManager.getProjectMap();
+		ProjectManager projectMap = metamodelManager.getProjectManager();
 		projectMap.configure(metamodelManager.getExternalResourceSet(), StandaloneProjectMap.LoadGeneratedPackageStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
 		@SuppressWarnings("unused")Resource oclResource = helper.loadResource(oclURI);
 		if (!helper.loadMetamodels()) {

@@ -9,7 +9,7 @@ import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.resource.ASResource;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
@@ -40,8 +40,8 @@ public class UMLOCL extends OCL
      * @param reg Ecore package registry
      * @return the new <code>OCL</code>
      */
-	public static @NonNull UMLOCL newInstance(@Nullable StandaloneProjectMap projectMap) {	
-		return newInstance(OCL.createEnvironmentFactory(projectMap));
+	public static @NonNull UMLOCL newInstance(@Nullable ProjectManager projectManager) {	
+		return newInstance(OCL.createEnvironmentFactory(projectManager));
 	}
 	
     /**

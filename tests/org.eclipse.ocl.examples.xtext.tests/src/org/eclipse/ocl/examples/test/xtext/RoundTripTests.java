@@ -40,12 +40,10 @@ import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
+import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.CSResource;
-import org.eclipse.ocl.pivot.resource.ProjectMap;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IPackageDescriptor;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IProjectDescriptor;
 import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
 import org.eclipse.ocl.pivot.uml.internal.as2es.AS2UML;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
@@ -131,14 +129,14 @@ public class RoundTripTests extends XtextTestCase
 	
 	public void doRoundTripFromCompleteOCL(URI inputURI) throws IOException, InterruptedException {
 		MessageBinder savedMessageBinder = CS2AS.setMessageBinder(CS2AS.MessageBinderWithLineContext.INSTANCE);
-		StandaloneProjectMap projectMap = ProjectMap.getAdapter(resourceSet);
+		StandaloneProjectMap projectMap = StandaloneProjectMap.getAdapter(resourceSet);
 		try {
 			projectMap.initializeResourceSet(resourceSet);			
 			if (!resourceSet.getURIConverter().exists(inputURI, null)) {
 				return;
 			}			
 			if (!EMFPlugin.IS_ECLIPSE_RUNNING) {			
-				IProjectDescriptor projectDescriptor = projectMap.getProjectDescriptor("org.eclipse.uml2.uml");
+				StandaloneProjectMap.IProjectDescriptor projectDescriptor = projectMap.getProjectDescriptor("org.eclipse.uml2.uml");
 				projectDescriptor.initializeURIMap(URIConverter.URI_MAP);		// *.ecore2xml must be global
 			}
 //			UMLUtils.initializeContentHandlers(resourceSet);
@@ -554,8 +552,8 @@ public class RoundTripTests extends XtextTestCase
 		URI uri = URI.createPlatformResourceURI("/org.eclipse.ocl.xtext.oclinecore/model/OCLinEcoreCS.ecore", true);
 //		String stem = uri.trimFileExtension().lastSegment();
 		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
-		IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor("org.eclipse.emf.ecore");
-		IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(URI.createURI(EcorePackage.eNS_URI));
+		StandaloneProjectMap.IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor("org.eclipse.emf.ecore");
+		StandaloneProjectMap.IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(URI.createURI(EcorePackage.eNS_URI));
 		packageDescriptor.configure(metamodelManager.getExternalResourceSet(), StandaloneProjectMap.LoadGeneratedPackageStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
 		doRoundTripFromEcore(metamodelManager, uri, uri, null); //null);				// FIXME Compare is not quite right
 	}

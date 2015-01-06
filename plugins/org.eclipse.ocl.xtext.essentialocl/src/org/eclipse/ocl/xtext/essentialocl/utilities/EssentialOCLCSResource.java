@@ -42,7 +42,7 @@ import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.internal.utilities.IllegalLibraryException;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.ParserContext;
@@ -122,7 +122,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	private static final Logger logger = Logger.getLogger(EssentialOCLCSResource.class);
 	
 	private @Nullable ParserContext parserContext = null;
-	private @Nullable StandaloneProjectMap projectMap = null;
+	private @Nullable ProjectManager projectMap = null;
 	
 	public EssentialOCLCSResource() {
 		super();
@@ -344,7 +344,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	}
 
 	@Override
-	public @Nullable StandaloneProjectMap getProjectMap() {
+	public @Nullable ProjectManager getProjectManager() {
 		return projectMap ;
 	}
 
@@ -545,7 +545,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	}
 
 	@Override
-	public void setProjectMap(@Nullable StandaloneProjectMap projectMap) {
+	public void setProjectManager(@Nullable ProjectManager projectMap) {
 		this.projectMap = projectMap;
 	}
 

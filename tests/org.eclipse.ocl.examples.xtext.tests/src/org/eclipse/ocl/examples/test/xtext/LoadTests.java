@@ -57,11 +57,8 @@ import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
+import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.resource.ASResource;
-import org.eclipse.ocl.pivot.resource.ProjectMap;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IPackageDescriptor;
-import org.eclipse.ocl.pivot.resource.StandaloneProjectMap.IProjectDescriptor;
 import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
@@ -331,7 +328,7 @@ public class LoadTests extends XtextTestCase
 			TestCase.fail("No such resource + '" + inputURI + "'");			
 		}			
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {			
-			IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor("org.eclipse.uml2.uml");
+			StandaloneProjectMap.IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor("org.eclipse.uml2.uml");
 			projectDescriptor.initializeURIMap(URIConverter.URI_MAP);		// *.ecore2xml must be global
 		}
 		String extension = inputURI.fileExtension();
@@ -505,7 +502,7 @@ public class LoadTests extends XtextTestCase
 		URI pivotURI = getProjectFileURI(pivotName);
 		URI savedURI = getProjectFileURI(savedName);
 		xtextResource = (BaseCSResource) resourceSet.createResource(inputURI);
-		xtextResource.setProjectMap(getProjectMap());
+		xtextResource.setProjectManager(getProjectMap());
 		JavaClassScope.getAdapter(xtextResource,  getClass().getClassLoader());
 		MetamodelManagerResourceAdapter.getAdapter(xtextResource, metamodelManager);
 		xtextResource.load(null);
@@ -774,11 +771,11 @@ public class LoadTests extends XtextTestCase
 	}	
 	
 	public void testLoad_BaseCST_ecore() throws IOException, InterruptedException {
-		ProjectMap projectMap = getProjectMap();
+		StandaloneProjectMap projectMap = getProjectMap();
 		ResourceSet resourceSet = new ResourceSetImpl();
 		projectMap.initializeResourceSet(resourceSet);
-		IProjectDescriptor projectDescriptor = projectMap.getProjectDescriptor("org.eclipse.emf.ecore");
-		IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(URI.createURI(EcorePackage.eNS_URI));
+		StandaloneProjectMap.IProjectDescriptor projectDescriptor = projectMap.getProjectDescriptor("org.eclipse.emf.ecore");
+		StandaloneProjectMap.IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(URI.createURI(EcorePackage.eNS_URI));
 		packageDescriptor.configure(resourceSet, StandaloneProjectMap.LoadGeneratedPackageStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
 		URI uri = URI.createPlatformResourceURI("/org.eclipse.ocl.xtext.base/model/BaseCS.ecore", true);
 		try {
