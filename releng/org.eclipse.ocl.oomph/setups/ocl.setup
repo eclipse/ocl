@@ -172,7 +172,7 @@
         userID="${bugzilla.id}"
         password="${eclipse.user.password}">
       <query
-          summary="Gerrit Reviews">
+          summary="OCL Gerrit Reviews">
         <attribute
             key="gerrit query type"
             value="custom"/>
