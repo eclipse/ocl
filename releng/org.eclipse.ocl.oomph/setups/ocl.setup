@@ -238,9 +238,6 @@
           rootFolder="${ocl.git.clone.location/features}"
           locateNestedProjects="true"/>
       <sourceLocator
-          rootFolder="${ocl.git.clone.location/doc}"
-          locateNestedProjects="true"/>
-      <sourceLocator
           rootFolder="${ocl.git.clone.location/tests}"
           locateNestedProjects="true"/>
       <sourceLocator
@@ -259,9 +256,6 @@
         xsi:type="setup.workingsets:WorkingSetTask">
       <workingSet
           name="OCL Classic">
-        <predicate
-            xsi:type="predicates:NamePredicate"
-            pattern="org.eclipse.ocl.common"/>
         <predicate
             xsi:type="predicates:NamePredicate"
             pattern="org.eclipse.ocl.edit"/>
@@ -288,9 +282,6 @@
             pattern="org.eclipse.ocl.uml.ui"/>
         <predicate
             xsi:type="predicates:NamePredicate"
-            pattern="org.eclipse.ocl.common.ui"/>
-        <predicate
-            xsi:type="predicates:NamePredicate"
             pattern="org.eclipse.ocl.tests"/>
         <predicate
             xsi:type="predicates:NamePredicate"
@@ -300,16 +291,19 @@
             pattern="org.eclipse.ocl.uml.tests"/>
         <predicate
             xsi:type="predicates:NamePredicate"
-            pattern="org.eclipse.ocl.jdt.annotation7"/>
-        <predicate
-            xsi:type="predicates:NamePredicate"
-            pattern="org.eclipse.ocl.doc"/>
-        <predicate
-            xsi:type="predicates:NamePredicate"
             pattern="org.eclipse.ocl.capabilities"/>
       </workingSet>
       <workingSet
           name="OCL Unified (Pivot)">
+        <predicate
+            xsi:type="predicates:NamePredicate"
+            pattern="org.eclipse.ocl.common"/>
+        <predicate
+            xsi:type="predicates:NamePredicate"
+            pattern="org.eclipse.ocl.common.ui"/>
+        <predicate
+            xsi:type="predicates:NamePredicate"
+            pattern="org.eclipse.ocl.jdt.annotation7"/>
         <predicate
             xsi:type="predicates:NamePredicate"
             pattern="org.eclipse.ocl.pivot.*"/>
@@ -340,18 +334,30 @@
               xsi:type="predicates:NotPredicate">
             <operand
                 xsi:type="predicates:NamePredicate"
+                pattern="org.eclipse.ocl.examples.unified"/>
+          </operand>
+          <operand
+              xsi:type="predicates:NotPredicate">
+            <operand
+                xsi:type="predicates:NamePredicate"
                 pattern="org.eclipse.ocl.examples.*-feature"/>
           </operand>
         </predicate>
       </workingSet>
       <workingSet
-          name="OCL Features">
+          name="OCL Features + Doc">
+        <predicate
+            xsi:type="predicates:NamePredicate"
+            pattern="org.eclipse.ocl.doc"/>
         <predicate
             xsi:type="predicates:NamePredicate"
             pattern="org.eclipse.ocl.all"/>
         <predicate
             xsi:type="predicates:NamePredicate"
             pattern="org.eclipse.ocl.master"/>
+        <predicate
+            xsi:type="predicates:NamePredicate"
+            pattern="org.eclipse.ocl.examples.unified"/>
         <predicate
             xsi:type="predicates:AndPredicate">
           <operand
