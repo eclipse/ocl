@@ -92,7 +92,6 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.WildcardType;
-import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
@@ -306,11 +305,6 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 	private final @NonNull Map<URI, External2AS> external2asMap = new HashMap<URI, External2AS>();
 
 	/**
-	 * The resolver for Ids and EObjects
-	 */
-	protected final @NonNull IdResolver idResolver;
-
-	/**
 	 * Elements protected from garbage collection
 	 */
 	private @Nullable EAnnotation lockingAnnotation = null;
@@ -331,16 +325,16 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 
 	/**
 	 * Construct a MetamodelManager that will use environmentFactory to create its artefacts
-	 * such as an asREsourceSet to contain pivot copies of meta-models.
+	 * such as an asResourceSet to contain pivot copies of meta-models.
 	 */
 	public MetamodelManager(@NonNull EnvironmentFactoryInternal environmentFactory, @Nullable ResourceSet resourceSet) {
 		this.environmentFactory = environmentFactory;
-		asResourceSet = environmentFactory.createASResourceSet(this);
+		asResourceSet = environmentFactory.createASResourceSet();
+		asResourceSet.eAdapters().add(this);
 		externalResourceSet = resourceSet;
-		completeEnvironment = environmentFactory.createCompleteEnvironment(this);
-		standardLibrary = completeEnvironment.getOwnedStandardLibrary();
-		completeModel = completeEnvironment.getOwnedCompleteModel();
-		idResolver = environmentFactory.createIdResolver(this);
+		completeEnvironment = environmentFactory.getCompleteEnvironment();
+		standardLibrary = environmentFactory.getStandardLibrary();
+		completeModel = environmentFactory.getCompleteModel();
 //		System.out.println("ctor " + this);
 //		initializePivotResourceSet(asResourceSet);
 		if (liveMetamodelManagers != null) {
@@ -700,7 +694,6 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 		globalTypes.clear();
 		external2asMap.clear();
 		lockingAnnotation = null;
-		idResolver.dispose();
 		completeModel.dispose();
 		if (precedenceManager != null) {
 			precedenceManager.dispose();
@@ -928,7 +921,7 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 	}
 
 	public @NonNull CompleteEnvironmentInternal getCompleteEnvironment() {
-		return completeModel.getCompleteEnvironment();
+		return completeEnvironment;
 	}
 
 	public @NonNull CompleteModelInternal getCompleteModel() {
@@ -986,7 +979,7 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 		else {
 			ecoreURI = ClassUtil.nonNullEMF(externalURI.appendFileExtension("ecore"));
 		}
-		AS2Ecore converter = new AS2Ecore(this, ecoreURI, null);
+		AS2Ecore converter = new AS2Ecore(environmentFactory, ecoreURI, null);
 		converter.convertResource(asResource, ecoreURI);
 		return converter.getCreated(ecoreClass, element);
 	}
@@ -1069,10 +1062,6 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 
 	public @NonNull Iterable<Type> getGlobalTypes() {
 		return globalTypes;
-	}
-
-	public @NonNull IdResolver getIdResolver() {
-		return idResolver;
 	}
 	
 	public @NonNull LibraryFeature getImplementation(@NonNull Feature feature) throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
@@ -1375,11 +1364,11 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 			EObject pivotContainer = pivotElement.eContainer();
 			if (pivotContainer instanceof Operation) {							// Operation.bodyExpression
 				Operation pivotOperation = (Operation) pivotContainer;
-				return new OperationContext(this, null, pivotOperation, null);
+				return new OperationContext(environmentFactory, null, pivotOperation, null);
 			}
 			if (pivotContainer instanceof Property) {
 				Property pivotProperty = (Property) pivotContainer;
-				return new PropertyContext(this, null, pivotProperty);
+				return new PropertyContext(environmentFactory, null, pivotProperty);
 			}
 			if (pivotContainer instanceof Constraint) {							// Operation.pre/postCondition
 				EObject pivotContainerContainer = pivotContainer.eContainer();
@@ -1392,11 +1381,11 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 							resultName = PivotConstants.RESULT_NAME;
 						}
 					}
-					return new OperationContext(this, null, pivotOperation, resultName);
+					return new OperationContext(environmentFactory, null, pivotOperation, resultName);
 				}
 				if (pivotContainerContainer instanceof org.eclipse.ocl.pivot.Class) {				
 					org.eclipse.ocl.pivot.Class pivotType = (org.eclipse.ocl.pivot.Class) pivotContainerContainer;
-					return new ClassContext(this, null, pivotType, null);
+					return new ClassContext(environmentFactory, null, pivotType, null);
 				}
 			}
 			if (pivotContainer instanceof Slot) {
@@ -1404,7 +1393,7 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 				if (asDefiningFeature != null) {
 					org.eclipse.ocl.pivot.Class pivotType = asDefiningFeature.getOwningClass();
 					if (pivotType != null) {				
-						return new ClassContext(this, null, pivotType, null);
+						return new ClassContext(environmentFactory, null, pivotType, null);
 					}
 				}
 			}
@@ -1423,47 +1412,47 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 						resultName = PivotConstants.RESULT_NAME;
 					}
 				}
-				return new OperationContext(this, null, pivotOperation, resultName);
+				return new OperationContext(environmentFactory, null, pivotOperation, resultName);
 			}
 		}
 		else if (pivotElement instanceof ExpressionInOCL) {
 			EObject pivotContainer = pivotElement.eContainer();
 			if (pivotContainer instanceof Operation) {
 				Operation pivotOperation = (Operation) pivotContainer;
-				return new OperationContext(this, null, pivotOperation, null);
+				return new OperationContext(environmentFactory, null, pivotOperation, null);
 			}
 		}
 		if (pivotElement instanceof Property) {
-			return new PropertyContext(this, null, (Property) pivotElement);
+			return new PropertyContext(environmentFactory, null, (Property) pivotElement);
 		}
 		else if (pivotElement instanceof Operation) {
-			return new OperationContext(this, null, (Operation) pivotElement, null);
+			return new OperationContext(environmentFactory, null, (Operation) pivotElement, null);
 		}
 		else if (pivotElement instanceof OppositePropertyCallExp) {
 			Property referredOppositeProperty = ((OppositePropertyCallExp) pivotElement).getReferredProperty();
 			if (referredOppositeProperty != null) {
 				Property referredProperty = referredOppositeProperty.getOpposite();
 				if (referredProperty != null) {
-					return new PropertyContext(this, null, referredProperty);
+					return new PropertyContext(environmentFactory, null, referredProperty);
 				}
 			}
 		}
 		else if (pivotElement instanceof PropertyCallExp) {
 			Property referredProperty = ((PropertyCallExp) pivotElement).getReferredProperty();
 			if (referredProperty != null) {
-				return new PropertyContext(this, null, referredProperty);
+				return new PropertyContext(environmentFactory, null, referredProperty);
 			}
 		}
 		else if (pivotElement instanceof OperationCallExp) {
 			Operation referredOperation = ((OperationCallExp) pivotElement).getReferredOperation();
 			if (referredOperation != null) {
-				return new OperationContext(this, null, referredOperation, null);
+				return new OperationContext(environmentFactory, null, referredOperation, null);
 			}
 		}
 		else if (pivotElement instanceof LoopExp) {
 			Iteration referredIteration = ((LoopExp) pivotElement).getReferredIteration();
 			if (referredIteration != null) {
-				return new OperationContext(this, null, referredIteration, null);
+				return new OperationContext(environmentFactory, null, referredIteration, null);
 			}
 		}
 //		else if (pivotElement instanceof Stereotype) {
@@ -1478,7 +1467,7 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 		else {		// Class, Stereotype, State
 			for (EObject eObject = element; eObject != null; eObject = eObject.eContainer()) {
 				if ((eObject instanceof org.eclipse.ocl.pivot.Class) && (((org.eclipse.ocl.pivot.Class)eObject).getOwningPackage() != null)) {	// StateMachines etc do not have Packages
-					return new ClassContext(this, null, (org.eclipse.ocl.pivot.Class)eObject, null);
+					return new ClassContext(environmentFactory, null, (org.eclipse.ocl.pivot.Class)eObject, null);
 				}
 			}
 		}
@@ -1504,7 +1493,7 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 			ASResourceFactory bestHelper = eResource != null ? ASResourceFactoryRegistry.INSTANCE.getASResourceFactory(eResource) : EcoreASResourceFactory.getInstance();
 //			ASResourceFactory bestHelper = ASResourceFactoryRegistry.INSTANCE.getResourceFactory(eObject);
 			if (bestHelper != null) {
-				return bestHelper.getASElement(this, pivotClass, eObject);
+				return bestHelper.getASElement(environmentFactory, pivotClass, eObject);
 			}
 		}
 		return null;
@@ -1518,7 +1507,7 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 		if (metamodel == null) {
 			return null;
 		}
-		Ecore2AS ecore2as = Ecore2AS.getAdapter(metamodel, this);
+		Ecore2AS ecore2as = Ecore2AS.getAdapter(metamodel, environmentFactory);
 		if (ecore2as == null) {
 			return null;
 		}
@@ -2221,7 +2210,7 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 			if ((resourceSet != null) && (resourceSet != externalResourceSet)) {
 				addExternalResources(resourceSet);
 			}
-			return bestFactory.importFromResource(this, resource, uri);
+			return bestFactory.importFromResource(environmentFactory, resource, uri);
 		}
 		throw new ParserException("Cannot create pivot from '" + uri + "'");
 //		logger.warn("Cannot convert to pivot for package with URI '" + uri + "'");
@@ -2284,7 +2273,7 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 	 * using selfType as the value of OclSelf.
 	 */
 	public @NonNull Type specializeType(@NonNull Type type, @NonNull CallExp callExp, @NonNull Type selfType, @Nullable Type selfTypeValue) {
-		return TemplateParameterSubstitutionVisitor.specializeType(type, callExp, this, selfType, selfTypeValue);
+		return TemplateParameterSubstitutionVisitor.specializeType(type, callExp, environmentFactory, selfType, selfTypeValue);
 	}
 
 	@Override

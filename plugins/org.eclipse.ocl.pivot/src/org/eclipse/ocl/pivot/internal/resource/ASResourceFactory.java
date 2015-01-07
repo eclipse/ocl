@@ -21,10 +21,10 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.TemplateParameterSubstitutionVisitor;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintVisitor;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
@@ -88,7 +88,7 @@ public interface ASResourceFactory extends Resource.Factory, ASResourceFactoryCo
 	/**
 	 * Create a visitor to resolve template substitutions. 
 	 */
-	@NonNull TemplateParameterSubstitutionVisitor createTemplateParameterSubstitutionVisitor(@NonNull MetamodelManager metamodelManager, @Nullable Type selfType, @Nullable Type selfTypeValue);
+	@NonNull TemplateParameterSubstitutionVisitor createTemplateParameterSubstitutionVisitor(@NonNull EnvironmentFactory environmentFactory, @Nullable Type selfType, @Nullable Type selfTypeValue);
 
 	/**
 	 * Create a visitor to provide a debug representation of one or more elements in the resource. 
@@ -99,7 +99,7 @@ public interface ASResourceFactory extends Resource.Factory, ASResourceFactoryCo
 	 * Return the OCL AS element corresponding to eObject using metamodelManager to supervise
 	 * the correspondence and ensuring that the result is of asClass.
 	 */
-	@Nullable <T extends Element> T getASElement(@NonNull MetamodelManager metamodelManager, @NonNull Class<T> asClass, @NonNull EObject eObject) throws ParserException;
+	@Nullable <T extends Element> T getASElement(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Class<T> asClass, @NonNull EObject eObject) throws ParserException;
 	
 	@NonNull String getContentType();
 
@@ -130,7 +130,7 @@ public interface ASResourceFactory extends Resource.Factory, ASResourceFactoryCo
 	 * resource. 
 	 * @throws ParserException 
 	 */
-	@Nullable Element importFromResource(@NonNull MetamodelManager metamodelManager, @NonNull Resource resource, @Nullable URI uri) throws ParserException;
+	@Nullable Element importFromResource(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Resource resource, @Nullable URI uri) throws ParserException;
 
 	void initializeEValidatorRegistry(@NonNull EValidator.Registry eValidatorRegistry);
 

@@ -139,7 +139,7 @@ public class IncludeCSAttribution extends AbstractAttribution implements Unresol
 				return;
 			}
 			try {
-				MetamodelManager metamodelManager = environmentView.getMetamodelManager();
+				MetamodelManager metamodelManager = environmentView.getEnvironmentFactory().getMetamodelManager();
 				importedElement = metamodelManager.loadResource(uri2, target.getName(), csResource.getResourceSet());				
 				Resource importedResource = importedElement.eResource();
 				List<Resource.Diagnostic> warnings = importedResource.getWarnings();

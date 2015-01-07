@@ -39,7 +39,7 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 	
 	public Constraint getConstraint(@NonNull MetamodelManager metamodelManager, @NonNull EClassifier eClassifier, @NonNull String constraintName) throws OCLDelegateException {
 		Resource ecoreMetamodel = ClassUtil.nonNullEMF(eClassifier.eResource());
-		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreMetamodel, metamodelManager);
+		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreMetamodel, metamodelManager.getEnvironmentFactory());
 		Type type = ecore2as.getCreated(Type.class, eClassifier);
 		if (type != null) {
 			Constraint constraint = NameUtil.getNameable(metamodelManager.getAllInvariants(type), constraintName);

@@ -38,6 +38,7 @@ import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.VariableDeclaration;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagedAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
@@ -399,8 +400,8 @@ public abstract class CS2AS extends AbstractConversion implements MetamodelManag
 	 */
 	protected final @NonNull CSI2ASMapping csi2asMapping;
 
-	public CS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull MetamodelManager metamodelManager) {
-		super(metamodelManager);
+	public CS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull EnvironmentFactoryInternal environmentFactory) {
+		super(environmentFactory);
 		this.csi2asMapping = CSI2ASMapping.getAdapter(metamodelManager);
 		csi2asMapping.add(cs2asResourceMap);
 		this.csResources = ClassUtil.nonNullState(cs2asResourceMap.keySet());
@@ -409,7 +410,7 @@ public abstract class CS2AS extends AbstractConversion implements MetamodelManag
 	}
 	
 	protected CS2AS(@NonNull CS2AS aConverter) {
-		super(aConverter.metamodelManager);
+		super(aConverter.getEnvironmentFactory());
 		this.csResources = aConverter.csResources;
 		this.csi2asMapping = CSI2ASMapping.getAdapter(metamodelManager);
 	}
@@ -558,8 +559,8 @@ public abstract class CS2AS extends AbstractConversion implements MetamodelManag
 
 	public @Nullable VariableDeclaration lookupSelf(@NonNull ElementCS csElement) {
 		@SuppressWarnings("null") @NonNull EReference eReference = PivotPackage.Literals.EXPRESSION_IN_OCL__OWNED_CONTEXT;
-		EnvironmentView environmentView = new EnvironmentView(metamodelManager, eReference, PivotConstants.SELF_NAME);
-		ScopeView baseScopeView = BaseScopeView.getScopeView(metamodelManager, csElement, eReference);
+		EnvironmentView environmentView = new EnvironmentView(metamodelManager.getEnvironmentFactory(), eReference, PivotConstants.SELF_NAME);
+		ScopeView baseScopeView = BaseScopeView.getScopeView(metamodelManager.getEnvironmentFactory(), csElement, eReference);
 		environmentView.computeLookups(baseScopeView);
 		VariableDeclaration variableDeclaration = (VariableDeclaration) environmentView.getContent();
 		return variableDeclaration;

@@ -653,7 +653,7 @@ public class PivotTestCase extends TestCase
 			Resource asResource = adapter.getASResource(xtextResource);
 			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
 			assertNoValidationErrors("Pivot validation errors", asResource.getContents().get(0));
-			XMLResource ecoreResource = AS2Ecore.createResource(metamodelManager, asResource, ecoreURI, null);
+			XMLResource ecoreResource = AS2Ecore.createResource(metamodelManager.getEnvironmentFactory(), asResource, ecoreURI, null);
 			assertNoResourceErrors("To Ecore errors", ecoreResource);
 			if (assignIds) {
 				for (TreeIterator<EObject> tit = ecoreResource.getAllContents(); tit.hasNext(); ) {

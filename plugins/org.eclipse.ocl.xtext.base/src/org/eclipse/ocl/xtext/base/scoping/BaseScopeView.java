@@ -29,7 +29,7 @@ import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.scoping.Attribution;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.internal.scoping.NullAttribution;
@@ -128,28 +128,28 @@ public class BaseScopeView extends AbstractScope implements IScopeView
 		}
     };
 
-	public static @NonNull BaseScopeView getScopeView(@NonNull MetamodelManager metamodelManager, @NonNull ElementCS target, @NonNull EReference targetReference) {
-		return new BaseScopeView(metamodelManager, target, null, targetReference, false);
+	public static @NonNull BaseScopeView getScopeView(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull ElementCS target, @NonNull EReference targetReference) {
+		return new BaseScopeView(environmentFactory, target, null, targetReference, false);
 	}
 
-	private static @NonNull IScopeView getParent(@NonNull MetamodelManager metamodelManager, @NonNull ElementCS target, @NonNull EReference targetReference, boolean isQualified) {
+	private static @NonNull IScopeView getParent(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull ElementCS target, @NonNull EReference targetReference, boolean isQualified) {
 		ElementCS csParent = target.getParent();
 		if (csParent == null) {
 			return NULLSCOPEVIEW;
 		}
-		return new BaseScopeView(metamodelManager, csParent, target, targetReference, isQualified);
+		return new BaseScopeView(environmentFactory, csParent, target, targetReference, isQualified);
 	}
 	
-	protected final @NonNull MetamodelManager metamodelManager;
+	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 	protected final @NonNull ElementCS target;							// CS node in which a lookup is to be performed
 	protected final @Nullable ElementCS child;							// CS node from which a lookup is to be performed
 	protected final @NonNull EReference targetReference;				// The AST reference to the location at which the lookup is to be stored
 	protected final boolean isQualified;
 	private Attribution attribution = null;								// Lazily computed Attributes helper for the target CS node
 
-	protected BaseScopeView(@NonNull MetamodelManager metamodelManager, @NonNull ElementCS target, @Nullable ElementCS child, @NonNull EReference targetReference, boolean isQualified) {
-		super(getParent(metamodelManager, target, targetReference, isQualified), false);
-		this.metamodelManager = metamodelManager;
+	protected BaseScopeView(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull ElementCS target, @Nullable ElementCS child, @NonNull EReference targetReference, boolean isQualified) {
+		super(getParent(environmentFactory, target, targetReference, isQualified), false);
+		this.environmentFactory = environmentFactory;
 		this.target = target;
 		this.child = child;
 		this.targetReference = targetReference;
@@ -167,7 +167,7 @@ public class BaseScopeView extends AbstractScope implements IScopeView
 
 	@Override
 	public Iterable<IEObjectDescription> getAllElements() {
-		EnvironmentView environmentView = new EnvironmentView(metamodelManager, targetReference, null);
+		EnvironmentView environmentView = new EnvironmentView(environmentFactory, targetReference, null);
 		try {
 //			computeLookupWithParents(environmentView);
 			Attribution attribution = getAttribution();
@@ -182,7 +182,7 @@ public class BaseScopeView extends AbstractScope implements IScopeView
 
 	@Override
 	protected final Iterable<IEObjectDescription> getAllLocalElements() {
-		EnvironmentView environmentView = new EnvironmentView(metamodelManager, targetReference, null);
+		EnvironmentView environmentView = new EnvironmentView(environmentFactory, targetReference, null);
 		Attribution attribution = getAttribution();
 		attribution.computeLookup(target, environmentView, this);
 		return getDescriptions(environmentView);
@@ -254,7 +254,7 @@ public class BaseScopeView extends AbstractScope implements IScopeView
 	public /*@NonNull*/ Iterable<IEObjectDescription> getElements(QualifiedName name) {
 		if (name == null)
 			throw new NullPointerException("name"); //$NON-NLS-1$
-		EnvironmentView environmentView = new EnvironmentView(metamodelManager, targetReference, name.toString());
+		EnvironmentView environmentView = new EnvironmentView(environmentFactory, targetReference, name.toString());
 		int size = environmentView.computeLookups(this);
 		if (size <= 0) {
 			return Collections.emptyList();
@@ -299,7 +299,7 @@ public class BaseScopeView extends AbstractScope implements IScopeView
 				if (eResource == null) {
 					return Collections.emptyList();
 				}
-				AliasAnalysis aliasAnalysis = AliasAnalysis.getAdapter(eResource, metamodelManager);
+				AliasAnalysis aliasAnalysis = AliasAnalysis.getAdapter(eResource, environmentFactory);
 				Element context = csContext.getPivot();
 				if (context == null) {
 					return Collections.emptyList();
@@ -325,7 +325,7 @@ public class BaseScopeView extends AbstractScope implements IScopeView
 			if (eResource == null) {
 				return Collections.emptyList();
 			}
-			AliasAnalysis aliasAnalysis = AliasAnalysis.getAdapter(eResource, metamodelManager);
+			AliasAnalysis aliasAnalysis = AliasAnalysis.getAdapter(eResource, environmentFactory);
 			Element context = csContext.getPivot();
 			if (context == null) {
 				return Collections.emptyList();
@@ -344,9 +344,9 @@ public class BaseScopeView extends AbstractScope implements IScopeView
 		return super.getElements(object);		// FIXME Implement
 	}
 
-	public MetamodelManager getMetamodelManager() {
-		return metamodelManager;
-	}
+//	public MetamodelManager getMetamodelManager() {
+//		return metamodelManager;
+//	}
 	
 	private @Nullable String getNonASURI(@Nullable EObject object) {
 		URI uri = null;
@@ -403,7 +403,7 @@ public class BaseScopeView extends AbstractScope implements IScopeView
 	public @Nullable IEObjectDescription getSingleElement(QualifiedName name) {
 		if (name == null)
 			throw new NullPointerException("name"); //$NON-NLS-1$
-		EnvironmentView environmentView = new EnvironmentView(metamodelManager, targetReference, name.toString());
+		EnvironmentView environmentView = new EnvironmentView(environmentFactory, targetReference, name.toString());
 		int size = environmentView.computeLookups(this);
 		if (size <= 0) {
 			return null;

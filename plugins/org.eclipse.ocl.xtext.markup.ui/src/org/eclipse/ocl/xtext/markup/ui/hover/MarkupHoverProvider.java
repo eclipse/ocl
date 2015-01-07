@@ -129,7 +129,7 @@ public class MarkupHoverProvider extends DefaultEObjectHoverProvider
 			if (metamodelManager == null) {
 				return null;
 			}
-			return MarkupUtils.toHTML(metamodelManager, o, markup);
+			return MarkupUtils.toHTML(metamodelManager.getEnvironmentFactory(), o, markup);
 		} catch (Exception e) {
 			StringWriter s = new StringWriter();
 			e.printStackTrace(new PrintWriter(s));

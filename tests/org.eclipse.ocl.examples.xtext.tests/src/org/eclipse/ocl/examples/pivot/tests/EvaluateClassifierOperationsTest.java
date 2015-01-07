@@ -100,7 +100,7 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
 	 */
 	public void test_oclContents() {
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
-		IdResolver idResolver = metamodelManager.getIdResolver();
+		IdResolver idResolver = metamodelManager.getEnvironmentFactory().getIdResolver();
 		org.eclipse.ocl.pivot.Class classType = metamodelManager.getStandardLibrary().getClassType();
     	@SuppressWarnings("null") @NonNull Type packageType = metamodelManager.getPivotType("Package");
 		CollectionTypeId typeId = TypeId.SET.getSpecializedId(packageType.getTypeId());

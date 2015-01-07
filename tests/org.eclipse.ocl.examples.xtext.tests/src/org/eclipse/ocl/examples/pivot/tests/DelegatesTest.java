@@ -67,6 +67,7 @@ import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.SemanticException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationException;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.delegate.DelegateDomain;
 import org.eclipse.ocl.pivot.internal.delegate.DelegateEPackageAdapter;
@@ -102,7 +103,6 @@ import org.eclipse.ocl.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
 import codegen.company.CodegencompanyFactory;
 import codegen.company.CodegencompanyPackage;
 import codegen.company.util.CodegencompanyValidator;
-
 import company.CompanyFactory;
 import company.CompanyPackage;
 import company.util.CompanyValidator;
@@ -261,11 +261,12 @@ public class DelegatesTest extends PivotTestCase
 		Resource ecoreResource = initModelWithErrors(resourceSet);
 		OCL ocl = configureMetamodelManagerForDelegate(companyPackage);
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
-		EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, ocl.getEnvironmentFactory());
+		EnvironmentFactoryInternal environmentFactory = ocl.getEnvironmentFactory();
+		EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, environmentFactory);
 		String message = PivotUtil.formatResourceDiagnostics(ecoreResource.getErrors(), "Model load", "\n\t");
 		if (message != null)
 			fail(message);
-		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager);
+		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, environmentFactory);
 		Model pivotModel = ecore2as.getPivotModel();
 		message = PivotUtil.formatResourceDiagnostics(pivotModel.eResource().getErrors(), "Pivot load", "\n\t");
 		if (message != null)
@@ -275,11 +276,11 @@ public class DelegatesTest extends PivotTestCase
 		message = PivotUtil.formatResourceDiagnostics(xtextResource.getErrors(), "OCL load", "\n\t");
 		if (message != null)
 			fail(message);
-		Resource asResource = xtextResource.getASResource(metamodelManager);
+		Resource asResource = xtextResource.getASResource(environmentFactory);
 		message = PivotUtil.formatResourceDiagnostics(asResource.getErrors(), "Pivot OCL load", "\n\t");
 		if (message != null)
 			fail(message);
-		DelegateInstaller pivotInstaller = new DelegateInstaller(metamodelManager, null);
+		DelegateInstaller pivotInstaller = new DelegateInstaller(environmentFactory, null);
 		for (org.eclipse.ocl.pivot.Package nestedPackage : pivotModel.getOwnedPackages()) {
 			pivotInstaller.installDelegates(metamodelManager.getCompletePackage(nestedPackage));
 		}

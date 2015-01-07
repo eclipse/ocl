@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.ParserException;
@@ -89,7 +90,7 @@ public class OCLHelperImpl implements OCLHelper
 		if (contextOperation == null) {
 			throw new IllegalStateException("Undefined contextOperation");
 		}
-		ParserContext parserContext = new OperationContext(getMetamodelManager(), null, contextOperation, null);
+		ParserContext parserContext = new OperationContext(getEnvironmentFactory(), null, contextOperation, null);
 		return parserContext.parse(contextClass, expression);
 	}
 
@@ -99,7 +100,7 @@ public class OCLHelperImpl implements OCLHelper
 		if (contextProperty == null) {
 			throw new IllegalStateException("Undefined contextProperty");
 		}
-		ParserContext parserContext = new PropertyContext(getMetamodelManager(), null, contextProperty);
+		ParserContext parserContext = new PropertyContext(getEnvironmentFactory(), null, contextProperty);
 		return parserContext.parse(contextClass, expression);
 	}
 
@@ -108,7 +109,7 @@ public class OCLHelperImpl implements OCLHelper
 		if (contextClass == null) {
 			throw new IllegalStateException("Undefined contextClass");
 		}
-		ParserContext parserContext = new ClassContext(getMetamodelManager(), null, contextClass, null);
+		ParserContext parserContext = new ClassContext(getEnvironmentFactory(), null, contextClass, null);
 		return parserContext.parse(contextClass, expression);
 	}
 
@@ -118,7 +119,7 @@ public class OCLHelperImpl implements OCLHelper
 		if (contextOperation == null) {
 			throw new IllegalStateException("Undefined contextOperation");
 		}
-		ParserContext parserContext = new OperationContext(getMetamodelManager(), null, contextOperation, PivotConstants.RESULT_NAME);
+		ParserContext parserContext = new OperationContext(getEnvironmentFactory(), null, contextOperation, PivotConstants.RESULT_NAME);
 		return parserContext.parse(contextClass, expression);
 	}
 
@@ -128,7 +129,7 @@ public class OCLHelperImpl implements OCLHelper
 		if (contextOperation == null) {
 			throw new IllegalStateException("Undefined contextOperation");
 		}
-		ParserContext parserContext = new OperationContext(getMetamodelManager(), null, contextOperation, null);
+		ParserContext parserContext = new OperationContext(getEnvironmentFactory(), null, contextOperation, null);
 		return parserContext.parse(contextClass, expression);
 	}
 
@@ -136,10 +137,10 @@ public class OCLHelperImpl implements OCLHelper
 	public @NonNull ExpressionInOCL createQuery(@NonNull String expression) throws ParserException {
 		ParserContext parserContext ;
 		if (contextClass != null) {
-			parserContext = new ClassContext(getMetamodelManager(), null, contextClass, null);
+			parserContext = new ClassContext(getEnvironmentFactory(), null, contextClass, null);
 		}
 		else {
-			parserContext = new ModelContext(getMetamodelManager(), null);
+			parserContext = new ModelContext(getEnvironmentFactory(), null);
 		}
 		return parserContext.parse(contextClass, expression);
 	}
@@ -148,7 +149,7 @@ public class OCLHelperImpl implements OCLHelper
 		if (contextClass == null) {
 			throw new IllegalStateException("Undefined contextClassifier");
 		}
-		ParserContext parserContext = new ClassContext(getMetamodelManager(), null, contextClass, null);
+		ParserContext parserContext = new ClassContext(getEnvironmentFactory(), null, contextClass, null);
 		return parserContext.parse(contextClass, expression);
 	}
 	
@@ -165,6 +166,10 @@ public class OCLHelperImpl implements OCLHelper
 	@Override
 	public @Nullable Operation getContextOperation() {
 		return contextOperation;
+	}
+	
+	public @NonNull EnvironmentFactory getEnvironmentFactory() {
+		return ocl.getEnvironmentFactory();
 	}
 	
 	public @NonNull MetamodelManager getMetamodelManager() {

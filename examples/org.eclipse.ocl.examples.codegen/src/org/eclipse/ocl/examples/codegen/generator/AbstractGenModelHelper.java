@@ -29,6 +29,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.java.ImportUtils;
 import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
@@ -277,6 +278,11 @@ public class AbstractGenModelHelper implements GenModelHelper
 		} catch (GenModelException e) {
 			return null;
 		}
+	}
+
+	@Override
+	public @NonNull EnvironmentFactory getEnvironmentFactory() {
+		return metamodelManager.getEnvironmentFactory();
 	}
 	
 	protected @NonNull GenClass getGenClass(@NonNull org.eclipse.ocl.pivot.Class type) throws GenModelException {

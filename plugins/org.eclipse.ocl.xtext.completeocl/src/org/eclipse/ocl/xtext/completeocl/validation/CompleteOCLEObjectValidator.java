@@ -32,6 +32,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
@@ -50,7 +51,7 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 {	
 	private static final Logger logger = Logger.getLogger(CompleteOCLEObjectValidator.class);
 
-	protected final @NonNull EnvironmentFactory environmentFactory;
+	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 	protected final @NonNull EPackage ePackage;
 	protected final @NonNull URI oclURI;
 	private Ecore2AS ecore2as = null;
@@ -60,7 +61,7 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 	 * for the meta-models managed by metamodelManager.
 	 */
 	public CompleteOCLEObjectValidator(@NonNull EPackage ePackage, @NonNull URI oclURI, @NonNull EnvironmentFactory environmentFactory) {
-		this.environmentFactory = environmentFactory;
+		this.environmentFactory = (EnvironmentFactoryInternal) environmentFactory;
 		this.ePackage = ePackage;
 		this.oclURI = oclURI;
 		ResourceSet resourceSet = ePackage.eResource().getResourceSet();
@@ -89,7 +90,7 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 		if (ecoreResource == null) {
 			return false;
 		}
-		ecore2as = Ecore2AS.getAdapter(ecoreResource, environmentFactory.getMetamodelManager());
+		ecore2as = Ecore2AS.getAdapter(ecoreResource, environmentFactory);
 		ResourceSet resourceSet = new ResourceSetImpl();
 		EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, environmentFactory);
 		List<Diagnostic> errors = ecoreResource.getErrors();
@@ -136,7 +137,7 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 			logger.error("Failed to load '" + oclURI + message);
 			return false;
 		}
-		Resource asResource = xtextResource.getASResource(environmentFactory.getMetamodelManager());
+		Resource asResource = xtextResource.getASResource(environmentFactory);
 		errors = asResource.getErrors();
 		assert errors != null;
 		message = PivotUtil.formatResourceDiagnostics(errors, "", "\n");

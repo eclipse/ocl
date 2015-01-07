@@ -9,9 +9,9 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Stereotype;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.PivotIdResolver;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2ASUtil;
 import org.eclipse.ocl.pivot.uml.internal.library.UMLElementExtension;
@@ -22,8 +22,8 @@ public class UMLIdResolver extends PivotIdResolver
 {
 //	private static final Logger logger = Logger.getLogger(UMLIdResolver.class);
 	
-	public UMLIdResolver(@NonNull MetamodelManager metamodelManager) {
-		super(metamodelManager);
+	public UMLIdResolver(@NonNull EnvironmentFactory environmentFactory) {
+		super(environmentFactory);
 	}
 
 	@Override
@@ -46,7 +46,7 @@ public class UMLIdResolver extends PivotIdResolver
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getDynamicTypeOf(@Nullable Object value) {
 		if (value instanceof org.eclipse.uml2.uml.Element) {
-			org.eclipse.ocl.pivot.Class metaType = UML2ASUtil.getMetaType(metamodelManager, (org.eclipse.uml2.uml.Element)value);
+			org.eclipse.ocl.pivot.Class metaType = UML2ASUtil.getMetaType(metamodelManager.getEnvironmentFactory(), (org.eclipse.uml2.uml.Element)value);
 			if (metaType != null) {
 				return metaType;
 			}
@@ -80,7 +80,7 @@ public class UMLIdResolver extends PivotIdResolver
 				// TODO Auto-generated catch block
 //				e.printStackTrace();
 			}
-			org.eclipse.ocl.pivot.Class metaType = UML2ASUtil.getMetaType(metamodelManager, (org.eclipse.uml2.uml.Element)value);
+			org.eclipse.ocl.pivot.Class metaType = UML2ASUtil.getMetaType(metamodelManager.getEnvironmentFactory(), (org.eclipse.uml2.uml.Element)value);
 			if (metaType != null) {
 				return metaType;
 			}

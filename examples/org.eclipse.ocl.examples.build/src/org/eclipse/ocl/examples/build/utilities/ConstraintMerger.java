@@ -99,7 +99,7 @@ public class ConstraintMerger extends AbstractProjectComponent
 				ClassUtil.getMetamodelAnnotation(ePackage); // Install EAnnotation
 			}
 		}
-		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager);
+		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager.getEnvironmentFactory());
 		Model pivotModel = ecore2as.getPivotModel();
 //		metamodelManager.setPivotMetamodel(pivotModel.getNestedPackage().get(0));
 //		metamodelManager.setLibraryLoadInProgress(false);
@@ -156,7 +156,7 @@ public class ConstraintMerger extends AbstractProjectComponent
 //				System.out.println("AS2Ecore " + asResource.getURI());
 			Map<String,Object> options = new HashMap<String,Object>();
 			options.put(AS2Ecore.OPTION_SUPPRESS_DUPLICATES,  true);
-			Resource ecoreResource2 = AS2Ecore.createResource(metamodelManager, asResource, ecoreURI, options);
+			Resource ecoreResource2 = AS2Ecore.createResource(metamodelManager.getEnvironmentFactory(), asResource, ecoreURI, options);
 			ctx.set(getModelSlot(), ecoreResource2);
 			projectDescriptor.configure(ecoreResource2.getResourceSet(), StandaloneProjectMap.LoadBothStrategy.INSTANCE, null);
 			

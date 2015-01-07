@@ -23,6 +23,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Feature;
 import org.eclipse.ocl.pivot.IterateExp;
 import org.eclipse.ocl.pivot.Iteration;
@@ -71,14 +72,14 @@ import org.eclipse.ocl.pivot.values.TemplateParameterSubstitutions;
  */
 public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisitor<Object, Map<Integer, Type>> implements TemplateParameterSubstitutions
 {	
-	public static @NonNull TemplateParameterSubstitutions createBindings(@NonNull MetamodelManager metamodelManager, @NonNull Type formalType, @NonNull Type actualType) {
-		TemplateParameterSubstitutionVisitor visitor = createVisitor(actualType, metamodelManager, null, null);
+	public static @NonNull TemplateParameterSubstitutions createBindings(@NonNull EnvironmentFactory environmentFactory, @NonNull Type formalType, @NonNull Type actualType) {
+		TemplateParameterSubstitutionVisitor visitor = createVisitor(actualType, environmentFactory, null, null);
 		visitor.analyzeType(formalType, actualType);
 		return visitor;
 	}
 	
-	public static @NonNull TemplateParameterSubstitutions createBindings(@NonNull MetamodelManager metamodelManager, @Nullable Type sourceType, @Nullable Type sourceTypeValue, @NonNull Operation candidateOperation) {
-		TemplateParameterSubstitutionVisitor visitor = createVisitor(candidateOperation, metamodelManager, sourceType, sourceTypeValue);
+	public static @NonNull TemplateParameterSubstitutions createBindings(@NonNull EnvironmentFactory environmentFactory, @Nullable Type sourceType, @Nullable Type sourceTypeValue, @NonNull Operation candidateOperation) {
+		TemplateParameterSubstitutionVisitor visitor = createVisitor(candidateOperation, environmentFactory, sourceType, sourceTypeValue);
 		visitor.analyzeType(candidateOperation.getOwningClass(), sourceType);
 		for (EObject eObject = candidateOperation; eObject != null; eObject = eObject.eContainer()) {
 			if (eObject instanceof TemplateableElement) {
@@ -96,13 +97,13 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		return TemplateParameterSubstitutions.EMPTY;
 	}
 
-	protected static @NonNull TemplateParameterSubstitutionVisitor createVisitor(@NonNull EObject eObject, @NonNull MetamodelManager metamodelManager, @Nullable Type selfType, @Nullable Type selfTypeValue) {
+	protected static @NonNull TemplateParameterSubstitutionVisitor createVisitor(@NonNull EObject eObject, @NonNull EnvironmentFactory environmentFactory, @Nullable Type selfType, @Nullable Type selfTypeValue) {
 		Resource resource = eObject.eResource();
 		if (resource instanceof ASResource) {
-			return ((ASResource)resource).getASResourceFactory().createTemplateParameterSubstitutionVisitor(metamodelManager, selfType, selfTypeValue);
+			return ((ASResource)resource).getASResourceFactory().createTemplateParameterSubstitutionVisitor(environmentFactory, selfType, selfTypeValue);
 		}
 		else {
-			return new TemplateParameterSubstitutionVisitor(metamodelManager, selfType, selfTypeValue);
+			return new TemplateParameterSubstitutionVisitor(environmentFactory, selfType, selfTypeValue);
 		}
 	}
 
@@ -110,14 +111,14 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	 * Return the specialized form of type analyzing expr to determine the formal to actual parameter mappings under the
 	 * supervision of a metamodelManager and using selfType as the value of OclSelf.
 	 */
-	public static @NonNull Type specializeType(@NonNull Type type, @NonNull CallExp callExp, @NonNull MetamodelManager metamodelManager, @Nullable Type selfType, @Nullable Type selfTypeValue) {
-		TemplateParameterSubstitutionVisitor visitor = createVisitor(callExp, metamodelManager, selfType, selfTypeValue);
+	public static @NonNull Type specializeType(@NonNull Type type, @NonNull CallExp callExp, @NonNull EnvironmentFactory environmentFactory, @Nullable Type selfType, @Nullable Type selfTypeValue) {
+		TemplateParameterSubstitutionVisitor visitor = createVisitor(callExp, environmentFactory, selfType, selfTypeValue);
 		visitor.exclude(callExp);
 		visitor.visit(callExp);
 		return visitor.specializeType(type);
 	}
 
-	private final @NonNull MetamodelManager metamodelManager;
+	private final @NonNull EnvironmentFactory environmentFactory;
 	private final @Nullable Type selfType;
 	private final @Nullable Type selfTypeValue;
 	private @Nullable TypedElement excludedTarget = null;
@@ -127,9 +128,9 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	 */
 	private Element actual;
 	
-	public TemplateParameterSubstitutionVisitor(@NonNull MetamodelManager metamodelManager, @Nullable Type selfType, @Nullable Type selfTypeValue) {
+	public TemplateParameterSubstitutionVisitor(@NonNull EnvironmentFactory environmentFactory, @Nullable Type selfType, @Nullable Type selfTypeValue) {
 		super(new HashMap<Integer, Type>());
-		this.metamodelManager = metamodelManager;
+		this.environmentFactory = environmentFactory;
 		this.selfType = selfType;
 		this.selfTypeValue = selfTypeValue;
 	}
@@ -201,6 +202,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	}
 
 	protected @NonNull TupleType getSpecializedTupleType(@NonNull TupleType type) {
+		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		TupleType specializedTupleType = type;
 		Map<String, Type> resolutions =  null;
 		List<Property> parts = specializedTupleType.getOwnedProperties();
@@ -229,7 +231,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 				partIds.add(tuplePartId);
 			}
 			TupleTypeId tupleTypeId = IdManager.getTupleTypeId(ClassUtil.nonNullModel(type.getName()), partIds);
-			specializedTupleType = metamodelManager.getCompleteModel().getTupleManager().getTupleType(metamodelManager.getIdResolver(), tupleTypeId);
+			specializedTupleType = metamodelManager.getCompleteModel().getTupleManager().getTupleType(metamodelManager.getEnvironmentFactory().getIdResolver(), tupleTypeId);
 			return specializedTupleType;
 		}
 		else {
@@ -261,9 +263,9 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		int index = elementId.getIndex();
 		Type oldType = context.get(index);
 		if (oldType != null) {
-			IdResolver idResolver = metamodelManager.getIdResolver();
+			IdResolver idResolver = environmentFactory.getIdResolver();
 			Type commonType = oldType.getCommonType(idResolver, actualType);
-			Type bestType = metamodelManager.getType(commonType);
+			Type bestType = environmentFactory.getMetamodelManager().getType(commonType);
 			if (bestType != oldType) {
 				context.put(index, bestType);
 			}
@@ -276,6 +278,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	}
 
 	public @NonNull Type specializeType(@NonNull Type type) {
+		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		TemplateParameter asTemplateParameter = type.isTemplateParameter();
 		if (asTemplateParameter != null) {
 			int index = asTemplateParameter.getTemplateParameterId().getIndex();

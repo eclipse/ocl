@@ -68,7 +68,7 @@ public class OCLinEcoreDocument extends BaseDocument
 								checkForErrors(csResource);
 								Map<String,Object> options = new HashMap<String,Object>();
 								options.put(OCLConstants.OCL_DELEGATE_URI, exportDelegateURI);
-								XMLResource ecoreResource = AS2Ecore.createResource(adapter.getMetamodelManager(), asResource, ecoreURI, options);
+								XMLResource ecoreResource = AS2Ecore.createResource(adapter.getMetamodelManager().getEnvironmentFactory(), asResource, ecoreURI, options);
 			//					ResourceSetImpl resourceSet = new ResourceSetImpl();
 			//					XMLResource ecoreResource = (XMLResource) resourceSet.createResource(ecoreURI);
 			//					ecoreResource.getContents().addAll(ecoreContents);
@@ -95,7 +95,7 @@ public class OCLinEcoreDocument extends BaseDocument
 						if (asResource != null) {
 							CS2ASResourceAdapter adapter = ((BaseCSResource)resource).findCS2ASAdapter();
 							if (adapter != null) {
-								List<EObject> umlContents = AS2UML.createResource(adapter.getMetamodelManager(), asResource);
+								List<EObject> umlContents = AS2UML.createResource(adapter.getMetamodelManager().getEnvironmentFactory(), asResource);
 								ResourceSetImpl resourceSet = new ResourceSetImpl();
 				//				URI umlURI = URI.createURI("internal.uml");
 								UMLResource umlResource = (UMLResource) resourceSet.createResource(umlURI);
@@ -126,7 +126,7 @@ public class OCLinEcoreDocument extends BaseDocument
 								Map<String,Object> options = new HashMap<String,Object>();
 								options.put(PivotConstantsInternal.PRIMITIVE_TYPES_URI_PREFIX, "primitives.ecore#//");
 								options.put(OCLConstants.OCL_DELEGATE_URI, exportDelegateURI);
-								XMLResource ecoreResource = AS2Ecore.createResource(adapter.getMetamodelManager(), asResource, ecoreURI, options);
+								XMLResource ecoreResource = AS2Ecore.createResource(adapter.getMetamodelManager().getEnvironmentFactory(), asResource, ecoreURI, options);
 								ecoreResource.save(writer, null);
 								checkForErrors(ecoreResource);
 							}

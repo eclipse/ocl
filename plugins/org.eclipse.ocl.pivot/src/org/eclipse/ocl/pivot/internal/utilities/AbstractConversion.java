@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
@@ -59,14 +60,20 @@ public abstract class AbstractConversion
 		return true;
 	}
 	
+	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 	protected final @NonNull MetamodelManager metamodelManager;
 	protected final @NonNull CompleteEnvironmentInternal completeEnvironment;
 	protected final @NonNull StandardLibraryInternal standardLibrary;
 
-	protected AbstractConversion(@NonNull MetamodelManager metamodelManager) {
-		this.metamodelManager = metamodelManager;
-		this.completeEnvironment = metamodelManager.getCompleteEnvironment();
+	protected AbstractConversion(@NonNull EnvironmentFactoryInternal environmentFactory) {
+		this.environmentFactory = environmentFactory;
+		this.metamodelManager = environmentFactory.getMetamodelManager();
+		this.completeEnvironment = environmentFactory.getCompleteEnvironment();
 		this.standardLibrary = completeEnvironment.getOwnedStandardLibrary();
+	}
+	
+	public @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
+		return environmentFactory;
 	}
 	
 	public @NonNull MetamodelManager getMetamodelManager() {

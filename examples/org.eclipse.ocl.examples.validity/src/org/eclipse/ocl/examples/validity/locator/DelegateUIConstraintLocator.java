@@ -89,7 +89,7 @@ public class DelegateUIConstraintLocator extends DelegateConstraintLocator imple
 		 * Returns its URI.
 		 */
 		protected @NonNull URI createDocument(IProgressMonitor monitor) throws IOException, CoreException {
-			IdResolver idResolver = metamodelManager.getIdResolver();
+			IdResolver idResolver = metamodelManager.getEnvironmentFactory().getIdResolver();
 			org.eclipse.ocl.pivot.Class staticType = idResolver.getStaticTypeOf(contextObject);
 			org.eclipse.ocl.pivot.Class contextType = metamodelManager.getType(staticType);
 //			if (contextType instanceof Metaclass) {

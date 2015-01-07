@@ -15,7 +15,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.manager.TupleTypeManager;
 import org.eclipse.ocl.pivot.values.CollectionTypeParameters;
 import org.eclipse.ocl.pivot.values.IntegerValue;
@@ -36,13 +36,14 @@ public interface CompleteEnvironmentInternal extends CompleteEnvironment
 	@NonNull CompleteClassInternal getCompleteClass(@NonNull Type pivotType);
 	@Override
 	@NonNull CompleteModelInternal getOwnedCompleteModel();
-	@NonNull MetamodelManager getMetamodelManager();
+//	@NonNull MetamodelManager getMetamodelManager();
 //	@Override
 //	@NonNull PivotStandardLibrary getStandardLibrary();
 	@Override
 	@NonNull StandardLibraryInternal getOwnedStandardLibrary();
 	@NonNull TupleTypeManager getTupleManager();
-	@NonNull CompleteEnvironmentInternal init(@NonNull MetamodelManager metamodelManager);
+	@NonNull CompleteEnvironmentInternal init(@NonNull EnvironmentFactoryInternal environmentFactory);
 	boolean isCodeGeneration();
 	void setCodeGeneration(boolean isCodeGeneration);
+	@NonNull EnvironmentFactoryInternal getEnvironmentFactory();
 }

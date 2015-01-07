@@ -21,7 +21,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView.Disambiguator;
 
@@ -35,10 +35,10 @@ public class PartialProperties implements Iterable<Property>
 	private boolean isResolved = false;
 	private @Nullable Property resolution = null;
 	private @Nullable List<Property> partials = null;
-	protected final @NonNull MetamodelManager metamodelManager;
+	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 
-	public PartialProperties(@NonNull MetamodelManager metamodelManager) {
-		this.metamodelManager = metamodelManager;
+	public PartialProperties(@NonNull EnvironmentFactoryInternal environmentFactory) {
+		this.environmentFactory = environmentFactory;
 	}
 
 	public synchronized void didAddProperty(@NonNull Property pivotProperty) {
@@ -100,7 +100,7 @@ public class PartialProperties implements Iterable<Property>
 			if (property != null) {
 				org.eclipse.ocl.pivot.Class owningType = property.getOwningClass();
 				if (owningType != null) {
-					Type domainType = metamodelManager.getPrimaryType(owningType);
+					Type domainType = environmentFactory.getMetamodelManager().getPrimaryType(owningType);
 					if (!primaryProperties.containsKey(domainType)) {
 						primaryProperties.put(domainType, property);	// FIXME something more deterministic than first
 					}
@@ -183,7 +183,7 @@ public class PartialProperties implements Iterable<Property>
 						if (disambiguators != null) {
 							for (Comparator<Object> comparator : disambiguators) {
 								if (comparator instanceof Disambiguator<?>) {
-									verdict = ((Disambiguator<Object>)comparator).compare(metamodelManager, iValue, jValue);
+									verdict = ((Disambiguator<Object>)comparator).compare(environmentFactory, iValue, jValue);
 								}
 								else {
 									verdict = comparator.compare(iValue, jValue);

@@ -15,6 +15,7 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
@@ -27,10 +28,10 @@ public class PackageAttribution extends AbstractAttribution
 	@Override
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		org.eclipse.ocl.pivot.Package targetPackage = (org.eclipse.ocl.pivot.Package)target;
-		MetamodelManager metamodelManager = environmentView.getMetamodelManager();
+		EnvironmentFactory environmentFactory = environmentView.getEnvironmentFactory();
 //		if (targetPackage.getImportedPackage().size() > 0) {
 			Set<org.eclipse.ocl.pivot.Package> allPackages = new HashSet<org.eclipse.ocl.pivot.Package>();
-			gatherAllPackages(metamodelManager, allPackages, targetPackage);
+			gatherAllPackages(environmentFactory, allPackages, targetPackage);
 			for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Package aPackage : allPackages) {
 				environmentView.addAllPackages(aPackage);
 				environmentView.addAllTypes(aPackage);
@@ -43,13 +44,14 @@ public class PackageAttribution extends AbstractAttribution
 		return scopeView.getParent();
 	}
 
-	private void gatherAllPackages(@NonNull MetamodelManager metamodelManager, @NonNull Set<org.eclipse.ocl.pivot.Package> allPackages,
+	private void gatherAllPackages(@NonNull EnvironmentFactory environmentFactory, @NonNull Set<org.eclipse.ocl.pivot.Package> allPackages,
 			@NonNull org.eclipse.ocl.pivot.Package targetPackage) {
+		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		org.eclipse.ocl.pivot.Package primaryPackage = metamodelManager.getPrimaryElement(targetPackage);
 		if (allPackages.add(primaryPackage)) {
 			for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Package partialPackage : metamodelManager.getPartialPackages(primaryPackage, false)) {
 				for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Package importedPackage : partialPackage.getImportedPackages()) {
-					gatherAllPackages(metamodelManager, allPackages, importedPackage);
+					gatherAllPackages(environmentFactory, allPackages, importedPackage);
 				}
 			}
 		}

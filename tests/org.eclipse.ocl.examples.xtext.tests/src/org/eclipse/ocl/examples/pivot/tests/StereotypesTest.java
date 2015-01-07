@@ -238,7 +238,6 @@ public class StereotypesTest extends PivotTestSuite
      * Tests M2 navigations using base_XXX and extension_YYY.
      */
     public void test_stereotypeM2Navigation() throws Exception {
-		MetamodelManager metamodelManager = ocl.getMetamodelManager();
     	assertQueryEquals(mm.umlEnglishClass, "EnglishClass", "self.NamedElement::name");
     	assertQueryEquals(mm.umlEnglishClass, "EnglishClass", "self.name");
 //    	assertQueryEquals(mm.asEnglishClass, "EnglishClass", "self.NamedElement::name");	// FIXME fails because wrong NamedElement::name chosen
@@ -254,7 +253,7 @@ public class StereotypesTest extends PivotTestSuite
 //    	assertQueryEquals(mm.englishClass, "EnglishClass$InEnglish", "self.extension_Internationalized.oclType().instanceType.name");
 //    	assertQueryEquals(mm.englishClass, "EnglishClass$InEnglish", "self.extension_Internationalized.oclType().name");
     	assertSemanticErrorQuery(mm.asEnglishClass, "self.extension_InGerman", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Model::EnglishClass", "extension_InGerman");
-    	assertSemanticErrorQuery(metamodelManager.getIdResolver().getStaticTypeOf(mm.umlEnglishClass), "self.extension_Internationalized.extension_InEnglish", PivotMessagesInternal.UnresolvedProperty_ERROR_, "InternationalizedProfile::Internationalized", "extension_InEnglish");
+    	assertSemanticErrorQuery(ocl.getIdResolver().getStaticTypeOf(mm.umlEnglishClass), "self.extension_Internationalized.extension_InEnglish", PivotMessagesInternal.UnresolvedProperty_ERROR_, "InternationalizedProfile::Internationalized", "extension_InEnglish");
     	assertSemanticErrorQuery(/*metamodelManager.getMetaclass(*/mm.asEnglishClass/*)*/, "self.extension_Internationalized.extension_InEnglish", PivotMessagesInternal.UnresolvedProperty_ERROR_, "InternationalizedProfile::Internationalized", "extension_InEnglish");
     	assertQueryEquals(mm.umlEnglishClass, mm.umlEnglishClassInEnglish, "self.extension_Internationalized");
     	assertQueryEquals(mm.asEnglishClass, mm.asEnglishClassInEnglish, "self.extension_Internationalized");

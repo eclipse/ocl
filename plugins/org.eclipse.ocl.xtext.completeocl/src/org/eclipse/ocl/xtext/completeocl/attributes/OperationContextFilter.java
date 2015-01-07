@@ -37,7 +37,7 @@ public class OperationContextFilter implements ScopeFilter
 			return false;
 		}
 		Operation candidateOperation = (Operation) object;
-		MetamodelManager metamodelManager = environmentView.getMetamodelManager();
+		MetamodelManager metamodelManager = environmentView.getEnvironmentFactory().getMetamodelManager();
 //		Type context = metamodelManager.getPrimaryType(candidateOperation.getOwningType());
 //		if (context != metamodelManager.getPrimaryElement(forType)) {
 //			return false;

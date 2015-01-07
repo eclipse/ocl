@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
@@ -31,26 +32,26 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
  */
 public class PivotExecutorManager extends ExecutorManager
 {
-	protected final @NonNull MetamodelManager metamodelManager;
+	protected final @NonNull EnvironmentFactory environmentFactory;
 	protected final @NonNull IdResolver idResolver;
 	protected final @NonNull EObject contextObject;
 	private @Nullable ModelManager modelManager = null;
 
-	public PivotExecutorManager(@NonNull MetamodelManager metamodelManager, @NonNull EObject contextObject) {
-		super(metamodelManager.getCompleteEnvironment());
-		this.metamodelManager = metamodelManager;
-		this.idResolver = metamodelManager.getIdResolver();
+	public PivotExecutorManager(@NonNull EnvironmentFactory environmentFactory, @NonNull EObject contextObject) {
+		super(environmentFactory.getCompleteEnvironment());
+		this.environmentFactory = environmentFactory;
+		this.idResolver = environmentFactory.getIdResolver();
 		this.contextObject = contextObject;
 		idResolver.addRoot(ClassUtil.nonNullEMF(EcoreUtil.getRootContainer(contextObject)));
 	}
 
 	protected @NonNull IdResolver createIdResolver() {
-		return metamodelManager.getIdResolver();
+		return environmentFactory.getIdResolver();
 	}
 
 	@Override
 	public @NonNull Evaluator createNestedEvaluator() {
-		return new PivotExecutorManager(metamodelManager, contextObject);
+		return new PivotExecutorManager(environmentFactory, contextObject);
 	}
 
 	@Override

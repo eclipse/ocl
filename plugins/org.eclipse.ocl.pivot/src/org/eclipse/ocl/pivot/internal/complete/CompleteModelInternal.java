@@ -23,6 +23,7 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.OrphanCompletePackageImpl;
 import org.eclipse.ocl.pivot.internal.PrimitiveCompletePackageImpl;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
@@ -48,6 +49,7 @@ public interface CompleteModelInternal extends CompleteModel
 	@Override
 	@Nullable CompletePackage getCompletePackageByURI(@NonNull String packageURI);
 	@NonNull CompleteURIs getCompleteURIs();
+	@NonNull EnvironmentFactoryInternal getEnvironmentFactory();
 	@NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType,
 			@Nullable TemplateParameterSubstitutions bindings);
 	@NonNull MetamodelManager getMetamodelManager();

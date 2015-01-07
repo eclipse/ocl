@@ -73,7 +73,7 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 	public Id2BoxedDescriptorVisitor(@NonNull JavaCodeGenerator javaCodeGenerator) {
 		this.genModelHelper = javaCodeGenerator.getGenModelHelper();
 		this.metamodelManager = javaCodeGenerator.getEnvironmentFactory().getMetamodelManager();
-		this.idResolver = metamodelManager.getIdResolver();
+		this.idResolver = metamodelManager.getEnvironmentFactory().getIdResolver();
 	}
 
 	protected EClassifier getEClassifier(@NonNull Type type) {

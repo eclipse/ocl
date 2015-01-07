@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Type;
@@ -28,8 +29,8 @@ public class EObjectContext extends AbstractParserContext
 	protected final @Nullable EObject eObject;
 	private /*@LazyNonNull*/ Type classContext = null;
 
-	public EObjectContext(@NonNull MetamodelManager metamodelManager, @Nullable URI uri, @Nullable EObject eObject) {
-		super(metamodelManager, uri);
+	public EObjectContext(@NonNull EnvironmentFactory environmentFactory, @Nullable URI uri, @Nullable EObject eObject) {
+		super(environmentFactory, uri);
 		this.eObject = eObject;
 	}
 
@@ -37,6 +38,7 @@ public class EObjectContext extends AbstractParserContext
 	public @NonNull Type getClassContext() {
 		Type classContext2 = classContext;
 		if (classContext2 == null) {
+			MetamodelManager metamodelManager = getMetamodelManager();
 			try {
 				if (eObject instanceof Type) {
 					classContext2 = metamodelManager.getMetaclass((Type)eObject);

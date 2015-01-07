@@ -193,7 +193,7 @@ public class OCLConsolePage extends Page implements MetamodelManagerListener
 				EnvironmentFactoryInternal environmentFactory = metamodelManager.getEnvironmentFactory();
 				ModelManager modelManager = environmentFactory.createModelManager(contextObject);
 				EvaluationEnvironment evaluationEnvironment = environmentFactory.createEvaluationEnvironment(expressionInOCL, modelManager);
-				Object contextValue = metamodelManager.getIdResolver().boxedValueOf(contextObject);
+				Object contextValue = environmentFactory.getIdResolver().boxedValueOf(contextObject);
 				evaluationEnvironment.add(ClassUtil.nonNullModel(expressionInOCL.getOwnedContext()), contextValue);
 				monitor.worked(2);
 				monitor.subTask(ConsoleMessages.Progress_Evaluating);
@@ -870,12 +870,13 @@ public class OCLConsolePage extends Page implements MetamodelManagerListener
 		    	}
 		    	
 			    MetamodelManager metamodelManager = getMetamodelManager(contextObject);
-				IdResolver idResolver = metamodelManager.getIdResolver();
+				EnvironmentFactoryInternal environmentFactory = metamodelManager.getEnvironmentFactory();
+				IdResolver idResolver = environmentFactory.getIdResolver();
 //				DomainType staticType = idResolver.getStaticTypeOf(selectedObject);
 				org.eclipse.ocl.pivot.Class staticType = idResolver.getStaticTypeOf(contextObject);
 				org.eclipse.ocl.pivot.Class contextType = metamodelManager.getType(staticType);
 //				if (contextType != null) {
-					parserContext = new ClassContext(metamodelManager, null, contextType, contextObject instanceof Type ? (Type)contextObject : null);
+					parserContext = new ClassContext(environmentFactory, null, contextType, contextObject instanceof Type ? (Type)contextObject : null);
 //				}
 //				else {
 //					parserContext = new ModelContext(metamodelManager, null);
@@ -888,7 +889,7 @@ public class OCLConsolePage extends Page implements MetamodelManagerListener
 					}
 					ResourceSet resourceSet = editor.getResourceSet();
 					if (resourceSet != null) {
-						EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, metamodelManager.getEnvironmentFactory());
+						EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, environmentFactory);
 					}
 			        csResource.setParserContext(parserContext);
 			    }

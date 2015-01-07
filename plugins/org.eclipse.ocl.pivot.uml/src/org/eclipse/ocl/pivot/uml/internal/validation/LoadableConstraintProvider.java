@@ -36,6 +36,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Annotation;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -130,8 +131,7 @@ public abstract class LoadableConstraintProvider extends XmlConstraintProvider
 	protected void installDescriptor(@NonNull XmlConstraintDescriptor descriptor, String namespaceIdentifier, @NonNull Set<Category> categories) {
 		String path = descriptor.getParameterValue("path");
 		@SuppressWarnings("null")@NonNull URI uri = URI.createPlatformPluginURI("/" + namespaceIdentifier + "/" + path, true);
-        MetamodelManager metamodelManager = getOCL().getMetamodelManager();
-		load(metamodelManager, uri, categories);
+		load(getOCL().getEnvironmentFactory(), uri, categories);
 	}
 
 	protected boolean installResource(@NonNull Resource asResource, @NonNull Set<Category> categories) {
@@ -151,7 +151,7 @@ public abstract class LoadableConstraintProvider extends XmlConstraintProvider
 		return true;
 	}
 
-	protected abstract boolean load(@NonNull MetamodelManager metamodelManager, @NonNull URI uri, @NonNull Set<Category> categories);
+	protected abstract boolean load(@NonNull EnvironmentFactory environmentFactory, @NonNull URI uri, @NonNull Set<Category> categories);
 
 	@Override
 	public void setInitializationData(IConfigurationElement config, String propertyName, Object data) throws CoreException {

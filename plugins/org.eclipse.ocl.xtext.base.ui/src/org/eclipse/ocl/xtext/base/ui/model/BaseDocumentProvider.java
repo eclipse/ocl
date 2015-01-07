@@ -359,7 +359,7 @@ public abstract class BaseDocumentProvider extends XtextDocumentProvider impleme
 				//		Ecore XMI resource with *.ecore URI, possibly in URIResourceMap as *.ecore
 				//		QVTimperative CS resource with *.ecore URI, in URIResourceMap as *.ecore.oclinecore
 				//
-				csResource.updateFrom(asResource, getMetamodelManager());
+				csResource.updateFrom(asResource, getMetamodelManager().getEnvironmentFactory());
 				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 				try {
 					csResource.save(outputStream, null);

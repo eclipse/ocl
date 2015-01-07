@@ -22,7 +22,6 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.internal.utilities.HTMLBuffer;
@@ -57,8 +56,8 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 		}		
 	}
 	
-	public static String toString(@NonNull MetamodelManager metamodelManager, @Nullable Object context, @NonNull MarkupElement element) throws Exception {
-		MarkupToHTML toString = new MarkupToHTML(metamodelManager, context);
+	public static String toString(@NonNull EnvironmentFactoryInternal environmentFactory, @Nullable Object context, @NonNull MarkupElement element) throws Exception {
+		MarkupToHTML toString = new MarkupToHTML(environmentFactory, context);
 		try {
 			return toString.doSwitch(element).toString();
 		} catch (InvalidMarkupException e) {
@@ -66,13 +65,13 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 		}
 	}
 	
-	private @Nullable OCL ocl = null;
-	private @NonNull MetamodelManager metamodelManager;
+//	private @Nullable OCL ocl = null;
+	private @NonNull EnvironmentFactoryInternal environmentFactory;
 	protected final @Nullable Object context;
 	protected final @NonNull HTMLBuffer s = new HTMLBuffer();
 
-	public MarkupToHTML(@NonNull MetamodelManager metamodelManager, @Nullable Object context) {
-		this.metamodelManager = metamodelManager;
+	public MarkupToHTML(@NonNull EnvironmentFactoryInternal environmentFactory, @Nullable Object context) {
+		this.environmentFactory = environmentFactory;
 		this.context = context;
 	}	
 
@@ -200,10 +199,11 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 		assert elements != null;
 		String oclString = MarkupToString.toString(elements);		
 		try {
-			OCL ocl = getOCL();
+			OCL ocl = OCL.newInstance(environmentFactory);
 			ExpressionInOCL query = createQuery(oclString);
 			Object value = ocl.evaluate(context, query);
 			s.append(String.valueOf(value));
+			ocl.dispose();
 		} catch (ParserException e) {
 			throw new InvalidMarkupException(e);
 		}
@@ -255,22 +255,27 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 
 	protected @NonNull ExpressionInOCL createQuery(@NonNull String oclString) throws ParserException {
 		org.eclipse.ocl.pivot.Class pivotType = null;
-		OCL ocl = getOCL();
-		if (context instanceof EObject) {
-			EClass eClass = ((EObject)context).eClass();
-			String name = eClass.getName();
-			assert name != null;
-			pivotType = metamodelManager.getPivotType(name);
-			if (pivotType == null) {
-				Resource resource = eClass.eResource();
-				if (resource != null) {
-					Ecore2AS ecore2as = Ecore2AS.getAdapter(resource, metamodelManager);
-					pivotType = ecore2as.getCreated(org.eclipse.ocl.pivot.Class.class, eClass);
+		OCL ocl = OCL.newInstance(environmentFactory);
+		try {
+			if (context instanceof EObject) {
+				EClass eClass = ((EObject)context).eClass();
+				String name = eClass.getName();
+				assert name != null;
+				pivotType = environmentFactory.getMetamodelManager().getPivotType(name);
+				if (pivotType == null) {
+					Resource resource = eClass.eResource();
+					if (resource != null) {
+						Ecore2AS ecore2as = Ecore2AS.getAdapter(resource, environmentFactory);
+						pivotType = ecore2as.getCreated(org.eclipse.ocl.pivot.Class.class, eClass);
+					}
 				}
 			}
+			OCLHelper helper = ocl.createOCLHelper(pivotType);
+			return helper.createQuery(oclString);
 		}
-		OCLHelper helper = ocl.createOCLHelper(pivotType);
-		return helper.createQuery(oclString);
+		finally {
+			ocl.dispose();
+		}
 	}
 
 	@Override
@@ -279,15 +284,6 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 		s.append(object.eClass().getName());
 		s.append(">");
 		return s;
-	}
-
-	protected @NonNull OCL getOCL() {
-		OCL ocl2 = ocl;
-		if (ocl2 == null) {
-			EnvironmentFactoryInternal envFactory = metamodelManager.getEnvironmentFactory();
-			ocl2 = ocl = OCL.newInstance(envFactory);
-		}
-		return ocl2;
 	}
 
 	@Override

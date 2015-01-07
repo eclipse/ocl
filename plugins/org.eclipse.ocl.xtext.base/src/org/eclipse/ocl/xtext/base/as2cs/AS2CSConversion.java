@@ -96,7 +96,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 	private @Nullable BaseCSResource csResource = null;;
 	
 	public AS2CSConversion(@NonNull AS2CS converter) {
-		super(converter.getMetamodelManager());
+		super(converter.getEnvironmentFactory());
 		this.converter = converter;
 		this.defaultDeclarationVisitor = converter.createDefaultDeclarationVisitor(this);
 		this.defaultReferenceVisitor = converter.createDefaultReferenceVisitor(this);
@@ -137,7 +137,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 				List<String> aliases = importedNamespaces.get(importedNamespace);
 				if ((aliases == null) || aliases.isEmpty()) {
 					if (aliasAnalysis == null) {
-						aliasAnalysis = AliasAnalysis.getAdapter(csResource, metamodelManager);
+						aliasAnalysis = AliasAnalysis.getAdapter(csResource, metamodelManager.getEnvironmentFactory());
 					}
 					String alias = aliasAnalysis.getAlias(importedNamespace, null);
 					aliases = Collections.singletonList(alias);
@@ -174,7 +174,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 		if (aliasAnalysis != null) {
 			aliasAnalysis.dispose();
 		}
-		aliasAnalysis = AliasAnalysis.getAdapter(csResource, metamodelManager);
+		aliasAnalysis = AliasAnalysis.getAdapter(csResource, metamodelManager.getEnvironmentFactory());
 		for (ImportCS csImport : imports) {
 			Namespace namespace = csImport.getReferredNamespace();
 			String alias = csImport.getName();

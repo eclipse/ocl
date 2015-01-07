@@ -43,6 +43,8 @@ import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.ids.RootPackageId;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
+import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.context.ClassContext;
 import org.eclipse.ocl.pivot.internal.context.ModelContext;
 import org.eclipse.ocl.pivot.internal.context.OperationContext;
@@ -99,6 +101,15 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
     private boolean traceEvaluation;
     private /*@LazyNonNull*/ ProjectManager projectManager;
     private /*@LazyNonNull*/ MetamodelManager metamodelManager;
+	private final @NonNull CompleteEnvironmentInternal completeEnvironment;
+	private final @NonNull StandardLibraryInternal standardLibrary;
+
+	/**
+	 * The known packages.
+	 */
+	private final @NonNull CompleteModelInternal completeModel;
+
+	private /*@LazyNonNull*/ IdResolver idResolver;
     
     /**
      * Count of the number of OCL instances that are using the EnvironmentFactory. auto-disposes on cunbt down to zero.
@@ -123,6 +134,9 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	protected AbstractEnvironmentFactory(@Nullable ProjectManager projectManager) {
 		this.projectManager = projectManager;
 		this.metamodelManager = null;
+		this.completeEnvironment = createCompleteEnvironment();
+		this.standardLibrary = completeEnvironment.getOwnedStandardLibrary();
+		this.completeModel = completeEnvironment.getOwnedCompleteModel();
 	}
 
 	@Override
@@ -132,13 +146,12 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	}
 
 	@Override
-	public @NonNull ResourceSetImpl createASResourceSet(@NonNull MetamodelManager metamodelManager) {
+	public @NonNull ResourceSetImpl createASResourceSet() {
 		ResourceSetImpl asResourceSet = new ResourceSetImpl();
 		StandaloneProjectMap.initializeURIResourceMap(asResourceSet);
 		ASResourceFactoryRegistry.INSTANCE.configureResourceSet(asResourceSet);
 		EPackage.Registry packageRegistry = asResourceSet.getPackageRegistry();
 		packageRegistry.put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
-		asResourceSet.eAdapters().add(metamodelManager);
 		if (projectManager != null) {
 			asResourceSet.eAdapters().add(projectManager);
 		}
@@ -146,9 +159,9 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	}
 
 	@Override
-	public @NonNull CompleteEnvironmentInternal createCompleteEnvironment(@NonNull MetamodelManager metamodelManager) {
+	public @NonNull CompleteEnvironmentInternal createCompleteEnvironment() {
 		CompleteEnvironmentInternal completeEnvironment = (CompleteEnvironmentInternal)PivotFactory.eINSTANCE.createCompleteEnvironment();
-		completeEnvironment.init(metamodelManager);
+		completeEnvironment.init(this);
 		return completeEnvironment;
 	}
 
@@ -174,7 +187,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 		EvaluationEnvironment evaluationEnvironment = createEvaluationEnvironment(expression, modelManager);
 		Variable contextVariable = expression.getOwnedContext();
 		if (contextVariable != null) {
-			IdResolver idResolver = getMetamodelManager().getIdResolver();
+			IdResolver idResolver = getIdResolver();
 			Object value = idResolver.boxedValueOf(context);
 			evaluationEnvironment.add(contextVariable, value);
 		}
@@ -212,14 +225,14 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 			object = ((ObjectValue) object).getObject();
 		}
 		if (object instanceof EObject) {
-			return new PivotModelManager(getMetamodelManager(), (EObject) object);
+			return new PivotModelManager(this, (EObject) object);
 		}
 		return ModelManager.NULL;
 	}
 
 	@Override
-	public  @NonNull PivotIdResolver createIdResolver(@NonNull MetamodelManager metamodelManager) {
-		return new PivotIdResolver(metamodelManager);
+	public  @NonNull PivotIdResolver createIdResolver() {
+		return new PivotIdResolver(this);
 	}
 
 	@Override
@@ -240,36 +253,36 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	public @NonNull ParserContext createParserContext(@Nullable EObject context) {
     	MetamodelManager metamodelManager = getMetamodelManager();
 		if (context instanceof org.eclipse.ocl.pivot.Class) {
-			return new ClassContext(metamodelManager, null, (org.eclipse.ocl.pivot.Class)context, null);
+			return new ClassContext(this, null, (org.eclipse.ocl.pivot.Class)context, null);
         }
         else if (context instanceof Operation) {
-    		return new OperationContext(metamodelManager, null, (Operation)context, null);
+    		return new OperationContext(this, null, (Operation)context, null);
         }
         else if (context instanceof Property) {
-        	return new PropertyContext(metamodelManager, null, (Property)context);
+        	return new PropertyContext(this, null, (Property)context);
         }
         else if (context instanceof EClassifier) {
         	org.eclipse.ocl.pivot.Class contextClass = metamodelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Class.class, context);
-        	return new ClassContext(metamodelManager, null, contextClass, null);
+        	return new ClassContext(this, null, contextClass, null);
         }
         else if (context instanceof EOperation) {
     		Operation asOperation = metamodelManager.getPivotOfEcore(Operation.class, context);
     		if (asOperation != null) {
-    			return new OperationContext(metamodelManager, null, asOperation, null);
+    			return new OperationContext(this, null, asOperation, null);
     		}
         }
         else if (context instanceof EStructuralFeature) {
         	Property asProperty = metamodelManager.getPivotOfEcore(Property.class, context);
     		if (asProperty != null) {
-    			return new PropertyContext(metamodelManager, null, asProperty);
+    			return new PropertyContext(this, null, asProperty);
     		}
         }
-        return new ModelContext(metamodelManager, null);
+        return new ModelContext(this, null);
 	}
 	
 	@Override
 	public @NonNull ImplementationManager createImplementationManager() {
-		return new ImplementationManager(getMetamodelManager());
+		return new ImplementationManager(this);
 	}
 
 	@Override
@@ -285,6 +298,9 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 			if (metamodelManager != null) {
 				metamodelManager.dispose();
 				metamodelManager = null;
+			}
+			if (idResolver != null) {
+				idResolver.dispose();
 			}
 		}
 	}
@@ -322,8 +338,18 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
      */
 	protected @NonNull org.eclipse.ocl.pivot.Class getClassifier(@NonNull Object context) {
 		MetamodelManager metamodelManager = getMetamodelManager();
-		org.eclipse.ocl.pivot.Class dType = metamodelManager.getIdResolver().getStaticTypeOf(context);
+		org.eclipse.ocl.pivot.Class dType = getIdResolver().getStaticTypeOf(context);
 		return metamodelManager.getType(dType);
+	}
+
+	@Override
+	public @NonNull CompleteEnvironmentInternal getCompleteEnvironment() {
+		return completeEnvironment; //completeModel.getCompleteEnvironment();
+	}
+
+	@Override
+	public @NonNull CompleteModelInternal getCompleteModel() {
+		return completeModel;
 	}
 
 	@Override
@@ -337,7 +363,11 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 
 	@Override
 	public @NonNull IdResolver getIdResolver() {
-		return getMetamodelManager().getIdResolver();
+		IdResolver idResolver2 = idResolver;
+		if (idResolver2 == null) {
+			idResolver = idResolver2 = createIdResolver();
+		}
+		return idResolver2;
 	}
 
 	@Override
@@ -411,7 +441,13 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 		}
 		return projectManager2;
 	}
-    /**
+	
+	@Override
+	public @NonNull StandardLibraryInternal getStandardLibrary() {
+		return standardLibrary;
+	}
+
+	/**
      * Queries whether tracing of evaluation is enabled.  Tracing
      * logs the progress of evaluation to the console, which may
      * be of use in diagnosing problems.

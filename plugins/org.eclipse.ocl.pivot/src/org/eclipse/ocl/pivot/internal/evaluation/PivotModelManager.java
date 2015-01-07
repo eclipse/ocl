@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
@@ -27,16 +28,17 @@ public class PivotModelManager extends LazyModelManager
 {	
 	private static final Logger logger = Logger.getLogger(PivotModelManager.class);
 
-	protected final @NonNull MetamodelManager metamodelManager;
+	protected final @NonNull EnvironmentFactory environmentFactory;
 	private boolean generatedErrorMessage = false;
 	
-	public PivotModelManager(@NonNull MetamodelManager metamodelManager, EObject context) {
+	public PivotModelManager(@NonNull EnvironmentFactory environmentFactory, EObject context) {
 		super(context);
-		this.metamodelManager = metamodelManager;
+		this.environmentFactory = environmentFactory;
 	}
 
 	@Override
 	protected boolean isInstance(@NonNull Type requiredType, @NonNull EObject eObject) {
+		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		EClass eClass = eObject.eClass();
 		EPackage ePackage = eClass.getEPackage();
 		Type objectType = null;
@@ -54,6 +56,6 @@ public class PivotModelManager extends LazyModelManager
 				}
 			}
 		}
-	    return (objectType != null) && objectType.conformsTo(metamodelManager.getStandardLibrary(), requiredType);
+	    return (objectType != null) && objectType.conformsTo(environmentFactory.getStandardLibrary(), requiredType);
 	}
 }

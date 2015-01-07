@@ -26,7 +26,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.PivotPackage;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.xtext.base.cs2as.Continuation;
@@ -71,8 +71,8 @@ public class OCLstdlibCS2AS extends EssentialOCLCS2AS
 		return null;
 	}
 
-	public OCLstdlibCS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull MetamodelManager metamodelManager) {
-		super(cs2asResourceMap, metamodelManager);
+	public OCLstdlibCS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull EnvironmentFactoryInternal environmentFactory) {
+		super(cs2asResourceMap, environmentFactory);
 	}
 	
 	public OCLstdlibCS2AS(@NonNull OCLstdlibCS2AS cs2as) {

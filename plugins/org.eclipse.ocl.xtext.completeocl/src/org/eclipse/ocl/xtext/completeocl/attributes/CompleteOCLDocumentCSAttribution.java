@@ -12,10 +12,10 @@ package org.eclipse.ocl.xtext.completeocl.attributes;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Namespace;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.internal.scoping.ScopeView;
 import org.eclipse.ocl.xtext.base.scoping.AbstractRootCSAttribution;
@@ -29,7 +29,7 @@ public class CompleteOCLDocumentCSAttribution extends AbstractRootCSAttribution
 	@Override
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		CompleteOCLDocumentCS targetElement = (CompleteOCLDocumentCS)target;
-		MetamodelManager metamodelManager = environmentView.getMetamodelManager();
+		EnvironmentFactory environmentFactory = environmentView.getEnvironmentFactory();
 		for (ImportCS anImport : targetElement.getOwnedImports()) {
 			Namespace namespace = anImport.getReferredNamespace();
 			if ((namespace != null) && !namespace.eIsProxy()) {
@@ -62,8 +62,8 @@ public class CompleteOCLDocumentCSAttribution extends AbstractRootCSAttribution
 			}
 		}
 		if (!environmentView.hasFinalResult()) {
-			metamodelManager.getStandardLibrary().getOclAnyType();
-			for (Library library : metamodelManager.getLibraries()) {
+			environmentFactory.getStandardLibrary().getOclAnyType();
+			for (Library library : environmentFactory.getMetamodelManager().getLibraries()) {
 				assert library != null;
 				environmentView.addNamedElement(library);
 			}

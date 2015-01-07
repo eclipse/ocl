@@ -102,7 +102,7 @@ public class NavigatingArgCSAttribution extends AbstractAttribution
 						Type type = source.getType();
 						Type elementType;
 						CollectionType collectionType;
-						MetamodelManager metamodelManager = environmentView.getMetamodelManager();
+						MetamodelManager metamodelManager = environmentView.getEnvironmentFactory().getMetamodelManager();
 						if (type instanceof CollectionType) {		// collection->collection-operation(name...
 							collectionType = (CollectionType)type;
 							elementType = collectionType.getElementType();

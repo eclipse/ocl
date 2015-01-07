@@ -14,6 +14,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.Package;
@@ -43,12 +44,12 @@ public class ExpressionInOCLAttribution extends AbstractAttribution
 		}
 		if (contextVariable != null) {
 			Type type = contextVariable.getType();
-			MetamodelManager metamodelManager = environmentView.getMetamodelManager();
+			EnvironmentFactory environmentFactory = environmentView.getEnvironmentFactory();
 			if (type != null) {
 				environmentView.addNamedElement(contextVariable);
 			}
 			else {
-				type = metamodelManager.getStandardLibrary().getOclVoidType();
+				type = environmentFactory.getStandardLibrary().getOclVoidType();
 			}
 			if (!environmentView.hasFinalResult()) {
 				Type userType = /*type instanceof Metaclass<?> ? ((Metaclass<?>)type).getInstanceType() :*/ type;// FIXME is this really right - needed by test_stereotypeM2Navigation for implicit self of an base_xxx
@@ -67,6 +68,7 @@ public class ExpressionInOCLAttribution extends AbstractAttribution
 							environmentView.addAllPackages(contextPackage);
 							if (!environmentView.hasFinalResult()) {
 								environmentView.addElementsOfScope(contextPackage, scopeView);
+								MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 								if (environmentView.accepts(PivotPackage.Literals.TYPE)) {
 									for (Type gType : metamodelManager.getGlobalTypes()) {
 										if (gType != null) {

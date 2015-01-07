@@ -22,10 +22,11 @@ import java.util.Map;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CompleteInheritance;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.FeatureFilter;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.ids.ParametersId;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
@@ -66,7 +67,8 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 			return m2 - m1;
 		}
 
-		public void sort(@NonNull MetamodelManager metamodelManager) {
+		public void sort(@NonNull EnvironmentFactory environmentFactory) {
+			StandardLibrary standardLibrary = environmentFactory.getStandardLibrary();
 			int size = size();
 			keys = new Integer[size];
 			metrics = new Integer[size];
@@ -76,7 +78,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 				int metric = 0;
 				if (operation != null) {
 					org.eclipse.ocl.pivot.Class owningClass = operation.getOwningClass();
-					CompleteInheritance inheritance = owningClass.getInheritance(metamodelManager.getStandardLibrary());
+					CompleteInheritance inheritance = owningClass.getInheritance(standardLibrary);
 					int depth = inheritance.getDepth();
 //					int isRedefinition = (operation instanceof Operation) && (((Operation)operation).getRedefinedOperation().size() > 0) ? 1 : 0;
 					metric = depth;
@@ -131,12 +133,12 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 			assert list != null;
 			if ((list.size() > 1) && !sorted) {
 				// FIXME redefinitions
-				final MetamodelManager metamodelManager = completeClass.getOwningCompletePackage().getCompleteModel().getMetamodelManager();
+				EnvironmentFactory environmentFactory = completeClass.getOwningCompletePackage().getCompleteModel().getEnvironmentFactory();
 				if (nonStaticOperations != null) {
-					nonStaticOperations.sort(metamodelManager);
+					nonStaticOperations.sort(environmentFactory);
 				}
 				if (staticOperations != null) {
-					staticOperations.sort(metamodelManager);
+					staticOperations.sort(environmentFactory);
 				}
 				sorted = true;
 			}

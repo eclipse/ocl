@@ -747,11 +747,10 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
      * Tests the oclType() operator for Tuples.
      */
     @Test public void test_oclType_Tuple() {
-		MetamodelManager metamodelManager = ocl.getMetamodelManager();
-    	StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
+    	StandardLibraryInternal standardLibrary = ocl.getStandardLibrary();
     	TuplePartId partId = IdManager.getTuplePartId(0, "a", TypeId.INTEGER);
     	TupleTypeId tupleId = IdManager.getTupleTypeId("Tuple", partId);
-    	TupleType tupleType = metamodelManager.getIdResolver().getTupleType(tupleId);
+    	TupleType tupleType = ocl.getIdResolver().getTupleType(tupleId);
 //    	Metaclass<?> tupleMetaclass = getMetaclass(tupleType);
 		assertQueryEquals(null, tupleType, "Tuple{a:Integer=3}.oclType()");
     	assertQueryEquals(null, tupleType, "Tuple(a:Integer)");

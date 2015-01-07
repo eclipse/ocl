@@ -147,7 +147,7 @@ public abstract class AbstractEvaluationVisitor
 
 	@Override
 	public @NonNull IdResolver getIdResolver() {
-		return metamodelManager.getIdResolver();
+		return environmentFactory.getIdResolver();
 	}
 
 	@Override
@@ -205,17 +205,17 @@ public abstract class AbstractEvaluationVisitor
 
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value) {
-		return metamodelManager.getIdResolver().getStaticTypeOf(value);
+		return environmentFactory.getIdResolver().getStaticTypeOf(value);
 	}
 
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Object... values) {
-		return metamodelManager.getIdResolver().getStaticTypeOf(value, values);
+		return environmentFactory.getIdResolver().getStaticTypeOf(value, values);
 	}
  
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
-		return metamodelManager.getIdResolver().getStaticTypeOf(value, values);
+		return environmentFactory.getIdResolver().getStaticTypeOf(value, values);
 	}
  
     /**

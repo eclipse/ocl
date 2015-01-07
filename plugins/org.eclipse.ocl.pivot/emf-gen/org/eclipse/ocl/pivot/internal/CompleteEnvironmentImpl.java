@@ -355,7 +355,7 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 		}
 		return eDynamicIsSet(featureID);
 	}
-	protected /*final @NonNull*/ MetamodelManager metamodelManager;
+	protected /*final @NonNull*/ EnvironmentFactoryInternal environmentFactory;
 	protected /*final @NonNull*/ CompleteModelInternal ownedCompleteModel;
 	protected /*final @NonNull*/ StandardLibraryInternal ownedStandardLibrary;
 	protected final @NonNull Map<org.eclipse.ocl.pivot.Class, CompleteClassInternal> class2completeClass = new WeakHashMap<org.eclipse.ocl.pivot.Class, CompleteClassInternal>();
@@ -586,6 +586,7 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 	
 	@Override
 	public @NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		return getCollectionType((CollectionType)metamodelManager.getType(containerType), metamodelManager.getType(elementType), lower, upper);
 	}
 
@@ -654,6 +655,11 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 		return ClassUtil.nonNullState(ownedCompleteModel);
 	}
 
+	@Override
+	public @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
+		return ClassUtil.nonNullState(environmentFactory);
+	}
+
 	public @NonNull LambdaTypeManager getLambdaManager() {
 		LambdaTypeManager lambdaManager2 = lambdaManager;
 		if (lambdaManager2 == null) {
@@ -669,14 +675,15 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 		return lambdaManager.getLambdaType(typeName, contextType, parameterTypes, resultType, bindings);
 	}
 
-	@Override
-	public @NonNull MetamodelManager getMetamodelManager() {
-		assert metamodelManager != null;
-		return metamodelManager;
-	}
+//	@Override
+//	public @NonNull MetamodelManager getMetamodelManager() {
+//		assert metamodelManager != null;
+//		return metamodelManager;
+//	}
 
 	@Override
 	public org.eclipse.ocl.pivot.Package getNestedPackage(@NonNull org.eclipse.ocl.pivot.Package domainPackage, @NonNull String name) {
+		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		CompletePackage completePackage = metamodelManager.getCompletePackage(domainPackage);
 		CompletePackage memberPackage = completePackage.getOwnedCompletePackage(name);
 		return memberPackage != null ? memberPackage.getPivotPackage() : null;
@@ -684,6 +691,7 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 
 	@Override
 	public org.eclipse.ocl.pivot.Class getNestedType(@NonNull org.eclipse.ocl.pivot.Package domainPackage, @NonNull String name) {
+		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		CompletePackage completePackage = metamodelManager.getCompletePackage(domainPackage);
 		return completePackage.getMemberType(name);
 	}
@@ -756,6 +764,7 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 					Type templateArgument = substitutions.get(templateParameter);
 					templateArguments.add(templateArgument != null ? templateArgument : templateParameter);
 				}
+				MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 				return metamodelManager.getLibraryType(unspecializedType, templateArguments);
 			}
 		}
@@ -783,8 +792,8 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 	}
 
 	@Override
-	public @NonNull CompleteEnvironmentInternal init(@NonNull MetamodelManager metamodelManager) {
-		this.metamodelManager = metamodelManager;
+	public @NonNull CompleteEnvironmentInternal init(@NonNull EnvironmentFactoryInternal environmentFactory) {
+		this.environmentFactory = environmentFactory;
 		CompleteModelInternal completeModelInternal = ((CompleteModelInternal)PivotFactory.eINSTANCE.createCompleteModel()).init(this);
 		setOwnedCompleteModel(completeModelInternal);
 		setOwnedStandardLibrary(((StandardLibraryInternal)PivotFactory.eINSTANCE.createStandardLibrary()).init(completeModelInternal));
@@ -800,5 +809,4 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 	public void setCodeGeneration(boolean isCodeGeneration) {
 		this.isCodeGeneration = isCodeGeneration;
 	}
-
 } //CompleteEnvironmentImpl

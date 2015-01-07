@@ -157,7 +157,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 				Type sourceType = source2.getType();
 				Type sourceTypeValue = source2.getTypeValue();
 				Type bodyType = body2.getType();
-				Type specializedBodyType = bodyType != null ? TemplateParameterSubstitutionVisitor.specializeType(bodyType, this, metamodelManager, sourceType, sourceTypeValue) : null;
+				Type specializedBodyType = bodyType != null ? TemplateParameterSubstitutionVisitor.specializeType(bodyType, this, metamodelManager.getEnvironmentFactory(), sourceType, sourceTypeValue) : null;
 				boolean isOk = false;
 				if (bodyType != null) {
 					if ((specializedBodyType != null) && metamodelManager.conformsTo(specializedBodyType, TemplateParameterSubstitutions.EMPTY, oclComparableType, TemplateParameterSubstitutions.EMPTY)) {

@@ -53,7 +53,7 @@ public abstract class PivotStateMachineTestSuite extends PivotTestSuite
 	protected Resource getPivotFromUML(MetamodelManager metamodelManager, Resource umlResource) throws ParserException {
 //		String problem = UML2AS.initialize(metamodelManager.getExternalResourceSet());
 //		assertNull(problem);
-		UML2AS uml2as = UML2AS.getAdapter(umlResource, metamodelManager);
+		UML2AS uml2as = UML2AS.getAdapter(umlResource, metamodelManager.getEnvironmentFactory());
 		Model pivotModel = uml2as.getPivotModel();
 		Resource asResource = pivotModel.eResource();
 		assertNoResourceErrors("Normalisation failed", asResource);

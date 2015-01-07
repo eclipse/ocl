@@ -292,7 +292,7 @@ public class UMLOCLEValidator implements EValidator
 					if (umlResource != null) {
 						OCL ocl = getOCL(context);
 						MetamodelManager metamodelManager = ocl.getMetamodelManager();
-						UML2AS uml2as = UML2AS.getAdapter(umlResource, metamodelManager);
+						UML2AS uml2as = UML2AS.getAdapter(umlResource, ocl.getEnvironmentFactory());
 						uml2as.getPivotModel();
 						Map<EObject, List<org.eclipse.uml2.uml.Element>> umlStereotypeApplication2umlStereotypedElements = UML2ASUtil.computeAppliedStereotypes(umlStereotypeApplications);
 						for (@SuppressWarnings("null")@NonNull EObject umlStereotypeApplication : umlStereotypeApplications) {

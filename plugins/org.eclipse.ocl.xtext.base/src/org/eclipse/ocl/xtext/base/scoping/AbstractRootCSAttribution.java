@@ -27,7 +27,7 @@ public abstract class AbstractRootCSAttribution extends AbstractAttribution impl
 {
 	@Override
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
-		MetamodelManager metamodelManager = environmentView.getMetamodelManager();
+		MetamodelManager metamodelManager = environmentView.getEnvironmentFactory().getMetamodelManager();
 		if (environmentView.accepts(PivotPackage.Literals.TYPE)) {
 			for (Type type : metamodelManager.getGlobalTypes()) {
 				if (type != null) {

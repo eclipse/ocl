@@ -29,6 +29,7 @@ import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnumLiteralExp;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.pivot.LanguageExpression;
@@ -49,7 +50,6 @@ import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.Vertex;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
@@ -63,13 +63,13 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 	private static final Logger logger = Logger.getLogger(UML2ASUseSwitch.class);
 
 	protected final @NonNull UML2AS converter;
-	protected final @NonNull MetamodelManager metamodelManager;
+	protected final @NonNull EnvironmentFactory environmentFactory;
 	protected final @NonNull StandardLibraryInternal standardLibrary;
 	private Set<EClass> doneWarnings = null;
 	
 	public UML2ASUseSwitch(@NonNull UML2AS converter) {
 		this.converter = converter;
-		this.metamodelManager = converter.getMetamodelManager();
+		this.environmentFactory = converter.getEnvironmentFactory();
 		this.standardLibrary = converter.getStandardLibrary();
 	}
 	
@@ -501,7 +501,7 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 				if (pivotElement == null) {
 					Resource eResource = eObject.eResource();
 					if (eResource != null) {
-						UML2AS adapter = UML2AS.findAdapter(eResource, metamodelManager);
+						UML2AS adapter = UML2AS.findAdapter(eResource, environmentFactory);
 						if (adapter != null) {
 							pivotElement = adapter.getCreated(pivotClass,
 								eObject);
@@ -558,7 +558,7 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 					boolean isUnique = umlMultiplicity.isUnique();
 					IntegerValue lowerValue = ValueUtil.integerValueOf(lower);
 					UnlimitedNaturalValue upperValue = upper == -1 ? ValueUtil.UNLIMITED_VALUE : ValueUtil.unlimitedNaturalValueOf(upper);
-					pivotType = metamodelManager.getCollectionType(isOrdered, isUnique, pivotType, lowerValue, upperValue);
+					pivotType = environmentFactory.getMetamodelManager().getCollectionType(isOrdered, isUnique, pivotType, lowerValue, upperValue);
 				}
 			}
 			pivotElement.setType(pivotType);

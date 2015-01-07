@@ -21,6 +21,7 @@ import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Stereotype;
@@ -41,11 +42,13 @@ public class PivotIdResolver extends AbstractIdResolver
 {
 	private static final Logger logger = Logger.getLogger(PivotIdResolver.class);
 
+	protected final @NonNull EnvironmentFactory environmentFactory;
 	protected final @NonNull MetamodelManager metamodelManager;
 	
-	public PivotIdResolver(@NonNull MetamodelManager metamodelManager) {
-		super(metamodelManager.getCompleteEnvironment());
-		this.metamodelManager = metamodelManager;
+	public PivotIdResolver(@NonNull EnvironmentFactory environmentFactory) {
+		super(environmentFactory.getMetamodelManager().getCompleteEnvironment());
+		this.environmentFactory = environmentFactory;
+		this.metamodelManager = environmentFactory.getMetamodelManager();
 	}
 
 	@Override

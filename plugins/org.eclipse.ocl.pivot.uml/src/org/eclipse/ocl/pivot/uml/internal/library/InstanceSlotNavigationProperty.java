@@ -83,7 +83,7 @@ public class InstanceSlotNavigationProperty extends AbstractProperty
 								OCLExpression bodyExpression = query.getOwnedBody();
 								assert bodyExpression != null;
 								Object umlValue = evaluator.evaluate(bodyExpression);
-								return metamodelManager.getIdResolver().boxedValueOf(umlValue);
+								return metamodelManager.getEnvironmentFactory().getIdResolver().boxedValueOf(umlValue);
 							} catch (ParserException e) {
 								throw new InvalidValueException(e, "Parse fail for " + valueSpecification);
 							}

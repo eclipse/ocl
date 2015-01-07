@@ -67,7 +67,7 @@ public class OCLQueryDelegate implements QueryDelegate
 	public OCLQueryDelegate(@NonNull OCLDelegateDomain delegateDomain, @NonNull EClassifier context, @Nullable Map<String, EClassifier> parameters, @NonNull String expression) {
 		this.delegateDomain = delegateDomain;
 		MetamodelManager metamodelManager = delegateDomain.getMetamodelManager();
-		this.parserContext = new EInvocationContext(metamodelManager, null, context, parameters);
+		this.parserContext = new EInvocationContext(metamodelManager.getEnvironmentFactory(), null, context, parameters);
 		this.expression = expression;
 	}
 
@@ -104,7 +104,7 @@ public class OCLQueryDelegate implements QueryDelegate
 			@NonNull ExpressionInOCL nonNullSpecification = specification;
 			OCL ocl = delegateDomain.getOCL();
 			MetamodelManager metamodelManager = ocl.getMetamodelManager();
-			IdResolver idResolver = metamodelManager.getIdResolver();
+			IdResolver idResolver = ocl.getIdResolver();
 			Object targetValue = idResolver.boxedValueOf(target);
 			org.eclipse.ocl.pivot.Class targetType = idResolver.getStaticTypeOf(targetValue);
 			Type requiredType = nonNullSpecification.getOwnedContext().getType();

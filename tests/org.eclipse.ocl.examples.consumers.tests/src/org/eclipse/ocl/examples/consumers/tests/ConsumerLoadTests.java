@@ -27,7 +27,7 @@ public class ConsumerLoadTests extends LoadTests
 
 	public void testLoad_Bug457203_ocl() throws IOException, InterruptedException {
 		UMLStandaloneSetup.init();
-		OCL ocl = OCL.newInstance(new UMLEnvironmentFactory(null, null));
+		OCL ocl = OCL.newInstance(new UMLEnvironmentFactory(null));
 		metamodelManager = ocl.getMetamodelManager();
 		String bug457203 = 
 				"import marte: _'http://www.eclipse.org/papyrus/MARTE/1'\n" + 

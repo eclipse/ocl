@@ -364,7 +364,7 @@ public class XtextTestCase extends PivotTestCase
 
 	protected ASResource doLoadASResourceFromString(@NonNull MetamodelManager metamodelManager, @NonNull String fileName, @NonNull String testFile) throws Exception {
 		URI libraryURI = getProjectFileURI(fileName);
-		ModelContext modelContext = new ModelContext(metamodelManager, libraryURI);
+		ModelContext modelContext = new ModelContext(metamodelManager.getEnvironmentFactory(), libraryURI);
 		BaseCSResource xtextResource = (BaseCSResource) modelContext.createBaseResource(testFile);
 		assertNoResourceErrors("Load failed", xtextResource);
 		CS2ASResourceAdapter adapter = xtextResource.getCS2ASAdapter(null);
@@ -573,7 +573,7 @@ public class XtextTestCase extends PivotTestCase
 			Resource asResource = adapter.getASResource(xtextResource);
 			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
 			assertNoValidationErrors("Pivot validation errors", asResource.getContents().get(0));
-			XMLResource ecoreResource = AS2Ecore.createResource(metamodelManager, asResource, ecoreURI, null);
+			XMLResource ecoreResource = AS2Ecore.createResource(metamodelManager.getEnvironmentFactory(), asResource, ecoreURI, null);
 			assertNoResourceErrors("To Ecore errors", ecoreResource);
 			if (assignIds) {
 				for (TreeIterator<EObject> tit = ecoreResource.getAllContents(); tit.hasNext(); ) {

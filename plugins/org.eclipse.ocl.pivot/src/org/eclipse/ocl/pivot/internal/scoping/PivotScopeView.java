@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 
 /**
@@ -67,15 +67,15 @@ public class PivotScopeView implements ScopeView
 		}
     };
 	
-	protected final @NonNull MetamodelManager metamodelManager;
+	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 	protected final @NonNull Element target;							// AST node in which a lookup is to be performed
 	protected final @Nullable Element child;							// AST node from which a lookup is to be performed
 	protected final boolean isQualified;								// True of the lookup has an explicit namespace qualification
 	private ScopeView parent = null;									// Lazily computed scope view for target's parent
 	private Attribution attribution = null;								// Lazily computed attributes helper for the target CS node
 	
-	protected PivotScopeView(@NonNull MetamodelManager metamodelManager, @NonNull Element target, @Nullable Element child, boolean isQualified) {
-		this.metamodelManager = metamodelManager;
+	protected PivotScopeView(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Element target, @Nullable Element child, boolean isQualified) {
+		this.environmentFactory = environmentFactory;
 		this.target = target;
 		this.child = child;
 		this.isQualified = isQualified;
@@ -109,9 +109,9 @@ public class PivotScopeView implements ScopeView
 		return (child != null) ? child.eContainmentFeature() : null;
 	}
 
-	public @NonNull MetamodelManager getMetamodelManager() {
-		return metamodelManager;
-	}
+//	public @NonNull MetamodelManager getMetamodelManager() {
+//		return metamodelManager;
+//	}
 
 	@Override
 	public @NonNull ScopeView getParent() {
@@ -119,7 +119,7 @@ public class PivotScopeView implements ScopeView
 		if (parent2 == null) {
 			EObject pParent = target.eContainer();
 			if (pParent instanceof Element) {
-				parent2 = new PivotScopeView(metamodelManager, (Element)pParent, target, isQualified);
+				parent2 = new PivotScopeView(environmentFactory, (Element)pParent, target, isQualified);
 			}
 			else {
 				parent2 = NULLSCOPEVIEW;

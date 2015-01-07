@@ -55,13 +55,13 @@ public class UMLEnvironmentFactory extends PivotEnvironmentFactory
 	}
 
 	@Override
-	public  @NonNull UMLIdResolver createIdResolver(@NonNull MetamodelManager metamodelManager) {
-		return new UMLIdResolver(metamodelManager);
+	public  @NonNull UMLIdResolver createIdResolver() {
+		return new UMLIdResolver(this);
 	}
 	
 	@Override
 	public @NonNull ImplementationManager createImplementationManager() {
-		return new UMLImplementationManager(getMetamodelManager());
+		return new UMLImplementationManager(this);
 	}
 
 	@Override

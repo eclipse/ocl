@@ -33,7 +33,6 @@ import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.ProblemAware;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -145,7 +144,7 @@ public class QueryImpl implements Query, ProblemAware
 	public @Nullable Object evaluateBoxed(@Nullable Object boxedValue) {
 		// lazily create the evaluation environment, if not already done by
 		//    the client.  Initialize it with the "self" context variable
-		EvaluationEnvironment myEnv = getEvaluationEnvironment(ocl.getEnvironmentFactory().getMetamodelManager().getIdResolver().unboxedValueOf(boxedValue));
+		EvaluationEnvironment myEnv = getEvaluationEnvironment(ocl.getEnvironmentFactory().getIdResolver().unboxedValueOf(boxedValue));
 		Variable contextVariable = ClassUtil.nonNullState(query.getOwnedContext());
 		myEnv.add(contextVariable, boxedValue);
 //		Variable resultVariable = specification.getResultVariable();
@@ -195,9 +194,7 @@ public class QueryImpl implements Query, ProblemAware
 	@Override
 	public @Nullable Object evaluateEcore(@Nullable Class<?> instanceClass, @Nullable Object ecoreObject) throws EvaluationException {
 		evalProblems = null;
-		EnvironmentFactoryInternal environmentFactory = ocl.getEnvironmentFactory();
-		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
-		IdResolver idResolver = metamodelManager.getIdResolver();
+		IdResolver idResolver = ocl.getIdResolver();
 		Object boxedValue = idResolver.boxedValueOf(ecoreObject);
 		Object boxedResult = evaluateBoxed(boxedValue);
 		return idResolver.ecoreValueOf(instanceClass, boxedResult);
@@ -225,9 +222,7 @@ public class QueryImpl implements Query, ProblemAware
 	@Override
 	public @Nullable Object evaluateUnboxed(@Nullable Object unboxedObject) throws EvaluationException {
 		evalProblems = null;
-		EnvironmentFactoryInternal environmentFactory = ocl.getEnvironmentFactory();
-		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
-		IdResolver idResolver = metamodelManager.getIdResolver();
+		IdResolver idResolver = ocl.getIdResolver();
 		Object boxedValue = idResolver.boxedValueOf(unboxedObject);
 		Object boxedResult = evaluateBoxed(boxedValue);
 		return idResolver.unboxedValueOf(boxedResult);

@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.internal.resource.AbstractASResourceFactory;
 import org.eclipse.ocl.pivot.internal.utilities.AS2XMIid;
@@ -69,8 +69,8 @@ public class CompleteOCLASResourceFactory extends AbstractASResourceFactory
 	}
 
 	@Override
-	public @Nullable Element importFromResource(@NonNull MetamodelManager metamodelManager, @NonNull Resource resource, @Nullable URI uri) {
-		Resource asResource = resource instanceof ASResource ? resource : ((CompleteOCLCSResource)resource).getASResource(metamodelManager);
+	public @Nullable Element importFromResource(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Resource resource, @Nullable URI uri) {
+		Resource asResource = resource instanceof ASResource ? resource : ((CompleteOCLCSResource)resource).getASResource(environmentFactory);
 		List<EObject> contents = asResource.getContents();
 		if (contents.size() <= 0) {
 			return null;

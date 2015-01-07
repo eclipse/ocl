@@ -28,7 +28,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableDeclaration;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.AbstractConversion;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -48,8 +48,8 @@ public abstract class AbstractBase2ASConversion extends AbstractConversion imple
 	 */
 	private HashSet<TypedElement> underspecifiedTypedElements = null;
 
-	protected AbstractBase2ASConversion(@NonNull MetamodelManager metamodelManager) {
-		super(metamodelManager);
+	protected AbstractBase2ASConversion(@NonNull EnvironmentFactoryInternal environmentFactory) {
+		super(environmentFactory);
 	}
 
 	protected void addUnderspecifiedTypedElement(@NonNull TypedElement pivotElement) {

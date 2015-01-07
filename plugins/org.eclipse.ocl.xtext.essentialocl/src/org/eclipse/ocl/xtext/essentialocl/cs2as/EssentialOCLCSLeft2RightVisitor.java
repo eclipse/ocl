@@ -1123,7 +1123,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			sourceType = source.getType();
 			sourceTypeValue = source.getTypeValue();
 		}
-		TemplateParameterSubstitutions templateSubstitutions = TemplateParameterSubstitutionVisitor.createBindings(metamodelManager, sourceType, sourceTypeValue, operation);
+		TemplateParameterSubstitutions templateSubstitutions = TemplateParameterSubstitutionVisitor.createBindings(metamodelManager.getEnvironmentFactory(), sourceType, sourceTypeValue, operation);
 		@SuppressWarnings("unused")		// Should never happen; just for debugging
 		boolean isConformant = true;
 		if (callExp instanceof OperationCallExp) {

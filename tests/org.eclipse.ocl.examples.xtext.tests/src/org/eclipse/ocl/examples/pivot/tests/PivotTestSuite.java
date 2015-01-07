@@ -207,8 +207,7 @@ public abstract class PivotTestSuite extends PivotTestCase
     		@NonNull String expression, /*@NonNull*/ String messageTemplate, Object... bindings) {
 		CSResource resource = null;
         try {
-    		MetamodelManager metamodelManager = ocl.getMetamodelManager();
-    		ParserContext semanticContext = new ClassContext(metamodelManager, null, contextType, null);
+    		ParserContext semanticContext = new ClassContext(ocl.getEnvironmentFactory(), null, contextType, null);
 			resource = semanticContext.createBaseResource(expression);
 			PivotUtil.checkResourceErrors(StringUtil.bind(PivotMessagesInternal.ErrorsInResource, expression), resource);
             fail("Should not have parsed \"" + expression + "\"");
@@ -242,7 +241,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		BaseCSResource csResource = null;
 		try {
-			ParserContext classContext = new ClassContext(metamodelManager, null, contextType, null);
+			ParserContext classContext = new ClassContext(ocl.getEnvironmentFactory(), null, contextType, null);
 			csResource = (BaseCSResource) classContext.createBaseResource(expression);
 			PivotUtil.checkResourceErrors(StringUtil.bind(PivotMessagesInternal.ErrorsInResource, expression), csResource);
 			CS2ASResourceAdapter cs2as = csResource.getCS2ASAdapter(metamodelManager);
@@ -383,9 +382,8 @@ public abstract class PivotTestSuite extends PivotTestCase
 	 * @return the evaluation result
 	 */
 	protected @Nullable Object assertQueryEquals(@Nullable Object context, @Nullable Object expected, @NonNull String expression) {
-		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		try {
-			Object expectedValue = expected instanceof Value ? expected : metamodelManager.getIdResolver().boxedValueOf(expected);
+			Object expectedValue = expected instanceof Value ? expected : ocl.getIdResolver().boxedValueOf(expected);
 //			typeManager.addLockedElement(expectedValue.getType());
 			Object value = evaluate(null, context, expression);
 //			String expectedAsString = String.valueOf(expected);
@@ -727,7 +725,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		BaseCSResource csResource = null;
 		try {
 	   		MetamodelManager metamodelManager = ocl.getMetamodelManager();
-	   		ParserContext classContext = new ClassContext(metamodelManager, null, contextType, null);
+	   		ParserContext classContext = new ClassContext(ocl.getEnvironmentFactory(), null, contextType, null);
 	   		csResource = (BaseCSResource) classContext.createBaseResource(expression);
 			PivotUtil.checkResourceErrors(StringUtil.bind(PivotMessagesInternal.ErrorsInResource, expression), csResource);
 			CS2ASResourceAdapter cs2as = csResource.getCS2ASAdapter(metamodelManager);
@@ -1087,7 +1085,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	protected @Nullable Object evaluate(Object unusedHelper, @Nullable Object context, @NonNull String expression) throws Exception {
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		org.eclipse.ocl.pivot.Class classContext = ocl.getContextType(context);
-		ParserContext parserContext = new ClassContext(metamodelManager, null, classContext, (context instanceof Type) && !(context instanceof ElementExtension) ? (Type)context : null);
+		ParserContext parserContext = new ClassContext(ocl.getEnvironmentFactory(), null, classContext, (context instanceof Type) && !(context instanceof ElementExtension) ? (Type)context : null);
 		ExpressionInOCL query = parserContext.parse(classContext, expression);
 		assertNoValidationErrors(expression, query);
         try {
@@ -1262,9 +1260,8 @@ public abstract class PivotTestSuite extends PivotTestCase
 	
 	@SuppressWarnings("null")
 	public void loadEPackage(@NonNull String alias, /*@NonNull*/ EPackage ePackage) {		
-		MetamodelManager metamodelManager = ocl.getMetamodelManager();
-		Element ecoreElement = Ecore2AS.importFromEcore(metamodelManager, alias, ePackage);
-		metamodelManager.addGlobalNamespace(alias, (Namespace) ecoreElement);
+		Element ecoreElement = Ecore2AS.importFromEcore(ocl.getEnvironmentFactory(), alias, ePackage);
+		ocl.getMetamodelManager().addGlobalNamespace(alias, (Namespace) ecoreElement);
 	}
 	
 	/**

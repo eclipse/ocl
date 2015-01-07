@@ -54,6 +54,6 @@ public class BaseScopeProvider extends AbstractDeclarativeScopeProvider
 		ElementCS csElement = (ElementCS) context;
 		@SuppressWarnings("unused")
 		CS2ASResourceAdapter resourceAdapter = ((BaseCSResource)csResource).getCS2ASAdapter(null);
-		return BaseScopeView.getScopeView(metamodelManager, csElement, reference);
+		return BaseScopeView.getScopeView(metamodelManager.getEnvironmentFactory(), csElement, reference);
 	}
 }

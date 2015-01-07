@@ -189,16 +189,14 @@ public class OCL
 	 * </tt>
 	 */
 	public void as2cs(@NonNull ASResource asResource, @NonNull CSResource csResource) {
-		MetamodelManager metamodelManager = getMetamodelManager();
-		csResource.updateFrom(asResource, metamodelManager);
+		csResource.updateFrom(asResource, getEnvironmentFactory());
 	}
 
 	/**
 	 * Return the Ecore resource counterpart of a asResource, specifying the uri of the resulting Ecore resource.
 	 */
 	public @NonNull Resource as2ecore(@NonNull Resource asResource, @NonNull URI uri) throws IOException {
-		MetamodelManager metamodelManager = getMetamodelManager();
-		Resource ecoreResource = AS2Ecore.createResource(metamodelManager, asResource, uri, null);
+		Resource ecoreResource = AS2Ecore.createResource(getEnvironmentFactory(), asResource, uri, null);
 		return ecoreResource;
 	}
 
@@ -359,8 +357,7 @@ public class OCL
 	 * Return the Pivot resource counterpart of an Xtext csResource.
 	 */
 	public @NonNull Resource cs2as(@NonNull CSResource csResource) {
-		MetamodelManager metamodelManager = getMetamodelManager();
-		Resource asResource = csResource.getASResource(metamodelManager);
+		Resource asResource = csResource.getASResource(getEnvironmentFactory());
 		return asResource;
 	}
 
@@ -382,8 +379,7 @@ public class OCL
 	 * Return the Pivot resource counterpart of an ecoreResource.
 	 */
 	public @NonNull ASResource ecore2as(@NonNull Resource ecoreResource) throws ParserException {
-		MetamodelManager metamodelManager = getMetamodelManager();
-		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager);
+		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, getEnvironmentFactory());
 		Model pivotModel = ecore2as.getPivotModel();
 		ASResource asResource = (ASResource) pivotModel.eResource();
 		return ClassUtil.nonNullModel(asResource);
@@ -428,12 +424,12 @@ public class OCL
 	}
 
 	public @NonNull CompleteEnvironment getCompleteEnvironment() {
-		return environmentFactory.getMetamodelManager().getCompleteEnvironment();
+		return environmentFactory.getCompleteEnvironment();
 	}
 
 	public @NonNull org.eclipse.ocl.pivot.Class getContextType(@Nullable Object contextObject) {
 		MetamodelManager metamodelManager = getMetamodelManager();
-		IdResolver idResolver = metamodelManager.getIdResolver();
+		IdResolver idResolver = getIdResolver();
 		org.eclipse.ocl.pivot.Class staticTypeOf = idResolver.getStaticTypeOf(contextObject);
 		return metamodelManager.getType(staticTypeOf);
 	}

@@ -7,7 +7,6 @@ import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
@@ -64,8 +63,7 @@ public class UMLOCL extends OCL
 	 * @throws ParserException 
 	 */
 	public @NonNull ASResource uml2as(@NonNull Resource umlResource) throws ParserException {
-		MetamodelManager metamodelManager = getMetamodelManager();
-		UML2AS uml2as = UML2AS.getAdapter(umlResource, metamodelManager);
+		UML2AS uml2as = UML2AS.getAdapter(umlResource, getEnvironmentFactory());
 		Model pivotModel = uml2as.getPivotModel();
 		ASResource asResource = (ASResource) pivotModel.eResource();
 		return ClassUtil.nonNullModel(asResource);

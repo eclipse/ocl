@@ -58,6 +58,7 @@ import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.ids.ParametersId;
 import org.eclipse.ocl.pivot.internal.ClassImpl;
 import org.eclipse.ocl.pivot.internal.CompleteClassImpl;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.Orphanage;
 import org.eclipse.ocl.pivot.util.DerivedConstants;
@@ -188,7 +189,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 		Property extensionProperty = null;
 		PartialProperties partialProperties = name2partialProperties2.get(extensionPropertyName);
 		if (partialProperties == null) {
-			partialProperties = new PartialProperties(getMetamodelManager());
+			partialProperties = new PartialProperties(getEnvironmentFactory());
 			name2partialProperties2.put(extensionPropertyName, partialProperties);
 		}
 		for (@SuppressWarnings("null")@NonNull Property partialProperty : partialProperties) {
@@ -300,7 +301,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 			String propertyName = pivotProperty.getName();
 			PartialProperties partials = name2partialProperties2.get(propertyName);
 			if (partials == null) {
-				partials = new PartialProperties(getMetamodelManager());
+				partials = new PartialProperties(getEnvironmentFactory());
 				name2partialProperties2.put(propertyName, partials);
 			}
 			partials.didAddProperty(pivotProperty);
@@ -456,6 +457,10 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 
 	public @NonNull CompleteModelInternal getCompleteModel() {
 		return getCompleteClass().getCompleteModel();
+	}
+
+	public @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
+		return getCompleteClass().getEnvironmentFactory();
 	}
 
 	public @NonNull Iterable<? extends CompleteInheritance> getInitialSuperInheritances() {
@@ -870,8 +875,9 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 			Package pivotPackage = rootCompletePackage.getPivotPackage();
 			if (pivotPackage != null) {
 				MetamodelManager metamodelManager = getMetamodelManager();
-				PackageId metapackageId = metamodelManager.getEnvironmentFactory().getMetapackageId(pivotPackage);
-				org.eclipse.ocl.pivot.Package metapackage = metamodelManager.getIdResolver().getPackage(metapackageId);
+				EnvironmentFactoryInternal environmentFactory = metamodelManager.getEnvironmentFactory();
+				PackageId metapackageId = environmentFactory.getMetapackageId(pivotPackage);
+				org.eclipse.ocl.pivot.Package metapackage = environmentFactory.getIdResolver().getPackage(metapackageId);
 				CompletePackage metaCompletePackage = metamodelManager.getCompletePackage(metapackage);
 				Type metatype = metaCompletePackage.getType(metatypeName);
 				if (metatype != null) {

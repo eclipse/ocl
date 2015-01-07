@@ -130,12 +130,11 @@ public abstract class PivotFruitTestSuite extends PivotTestSuite
 	}
 	
 	protected void initFruitPackage() {
-		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		URI uri = getTestModelURI("model/Fruit.ecore");
 		Resource ecoreResource = resourceSet.getResource(uri, true);
 		fruitEPackage = (EPackage)ecoreResource.getContents().get(0);
 		fruitEFactory = fruitEPackage.getEFactoryInstance();
-		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager);
+		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, ocl.getEnvironmentFactory());
 		fruitPackage = NameUtil.getNameable(ecore2as.getPivotModel().getOwnedPackages(), "fruit");
 		
 		fruit = (EClass) getEClassifier(fruitEPackage, "Fruit");

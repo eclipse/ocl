@@ -20,8 +20,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.validation.model.Category;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.uml.UMLOCL;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.uml2.uml.resource.UMLResource;
@@ -50,8 +50,8 @@ public class UMLProfileConstraintProvider extends LoadableConstraintProvider
 	private static final Logger logger = Logger.getLogger(UMLProfileConstraintProvider.class);
 
 	@Override
-	protected boolean load(@NonNull MetamodelManager metamodelManager, @NonNull URI uri, @NonNull Set<Category> categories) {
-		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
+	protected boolean load(@NonNull EnvironmentFactory environmentFactory, @NonNull URI uri, @NonNull Set<Category> categories) {
+		ResourceSet resourceSet = environmentFactory.getMetamodelManager().getExternalResourceSet();
 		UMLResource umlResource = null;
 		try {
 			umlResource = (UMLResource) resourceSet.getResource(uri, true);

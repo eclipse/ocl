@@ -24,11 +24,11 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.internal.library.StandardLibraryContribution;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.scoping.AbstractAttribution;
@@ -95,8 +95,8 @@ public class LibraryCSAttribution extends AbstractAttribution implements Unresol
 			if (contribution != null) {
 				Resource resource = contribution.getResource();
 				try {
-					MetamodelManager metamodelManager = environmentView.getMetamodelManager();
-					metamodelManager.installResource(resource);
+					EnvironmentFactory environmentFactory = environmentView.getEnvironmentFactory();
+					environmentFactory.getMetamodelManager().installResource(resource);
 					for (EObject root : resource.getContents()) {
 						if (root instanceof Model) {
 							for (Element pkg : ((Model)root).getOwnedPackages()) {
@@ -131,8 +131,8 @@ public class LibraryCSAttribution extends AbstractAttribution implements Unresol
 			}
 			List<EObject> importedElements = new ArrayList<EObject>();
 			ResourceSet csResourceSet = ClassUtil.nonNullState(csResource.getResourceSet());
-			MetamodelManager metamodelManager = environmentView.getMetamodelManager();
-			EnvironmentFactoryResourceSetAdapter.getAdapter(csResourceSet, metamodelManager.getEnvironmentFactory());
+			EnvironmentFactory environmentFactory = environmentView.getEnvironmentFactory();
+			EnvironmentFactoryResourceSetAdapter.getAdapter(csResourceSet, environmentFactory);
 			try {
 				Resource importedResource = csResourceSet.createResource(uri2);
 				AbstractJavaClassScope outerClassScope = AbstractJavaClassScope.findAdapter(csResource);

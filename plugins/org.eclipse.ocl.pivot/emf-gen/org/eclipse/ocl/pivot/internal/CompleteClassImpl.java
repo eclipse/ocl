@@ -433,6 +433,11 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	public @NonNull CompleteModelInternal getCompleteModel() {
 		return getOwningCompletePackage().getCompleteModel();
 	}
+
+	@Override
+	public @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
+		return getCompleteModel().getEnvironmentFactory();
+	}
 	
 	public @NonNull Iterable<Operation> getMemberOperations() {
 		return partialClasses.getOperations();

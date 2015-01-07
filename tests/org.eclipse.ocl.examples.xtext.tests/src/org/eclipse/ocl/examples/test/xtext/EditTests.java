@@ -417,7 +417,7 @@ public class EditTests extends XtextTestCase
 		ecoreResource.load(inputStream, null);
 		assertNoResourceErrors("Ecore reload", ecoreResource);
 		assertNoValidationErrors("Ecore reload", ecoreResource);
-		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager1);
+		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, ocl1.getEnvironmentFactory());
 		ecore2as.update(asResource, ecoreResource.getContents());
 		assertNoResourceErrors("Pivot reload", ecoreResource);
 		assertNoValidationErrors("Pivot reload", ecoreResource);
@@ -660,7 +660,7 @@ public class EditTests extends XtextTestCase
 		URI outputURI = getProjectFileURI("test.oclstdlib");
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		CompleteModelInternal completeModel = metamodelManager.getCompleteModel();
-		ModelContext modelContext = new ModelContext(metamodelManager, outputURI);
+		ModelContext modelContext = new ModelContext(ocl.getEnvironmentFactory(), outputURI);
 		EssentialOCLCSResource xtextResource = (EssentialOCLCSResource) modelContext.createBaseResource(testDocument);
 		Resource asResource = cs2as(ocl, xtextResource, null);
 		assertResourceErrors("Loading input", xtextResource);

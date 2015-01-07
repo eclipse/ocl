@@ -24,9 +24,9 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.internal.compatibility.EMF_2_9;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
@@ -84,8 +84,8 @@ public class ImportCSAttribution extends AbstractAttribution implements Unresolv
 			if (name == null) {
 				return;
 			}
-			MetamodelManager metamodelManager = environmentView.getMetamodelManager();
-			CompletePackage completePackage = metamodelManager.getCompleteModel().getCompletePackageByURI(name);
+			EnvironmentFactory environmentFactory = environmentView.getEnvironmentFactory();
+			CompletePackage completePackage = environmentFactory.getCompleteModel().getCompletePackageByURI(name);
 			if (completePackage != null) {
 				Package pivotPackage = completePackage.getPivotPackage();
 				if (pivotPackage != importedElement) {
@@ -113,7 +113,7 @@ public class ImportCSAttribution extends AbstractAttribution implements Unresolv
 				return;
 			}
 			try {
-				importedElement = metamodelManager.loadResource(uri2, target.getName(), null);				
+				importedElement = environmentFactory.getMetamodelManager().loadResource(uri2, target.getName(), null);				
 				Resource importedResource = importedElement.eResource();
 				if (importedResource != null) {
 					List<Resource.Diagnostic> errors = importedResource.getErrors();

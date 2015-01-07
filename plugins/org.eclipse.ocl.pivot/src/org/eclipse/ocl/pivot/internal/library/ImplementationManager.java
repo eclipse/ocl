@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ElementExtension;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Feature;
 import org.eclipse.ocl.pivot.Operation;
@@ -44,15 +45,17 @@ public class ImplementationManager
 {			
 	private static final Logger logger = Logger.getLogger(ImplementationManager.class);
 
-	protected final @NonNull MetamodelManager metamodelManager;
+	protected final @NonNull EnvironmentFactory environmentFactory;
+	private final @NonNull MetamodelManager metamodelManager;
 
 	/**
 	 * ClassLoaders that may be able to load a library implementation.
 	 */
 	private List<ClassLoader> classLoaders = null;
 	
-	public ImplementationManager(@NonNull MetamodelManager metamodelManager) {
-		this.metamodelManager = metamodelManager;
+	public ImplementationManager(@NonNull EnvironmentFactory environmentFactory) {
+		this.environmentFactory = environmentFactory;
+		this.metamodelManager = environmentFactory.getMetamodelManager();
 	}
 
 	public void addClassLoader(@NonNull ClassLoader classLoader) {

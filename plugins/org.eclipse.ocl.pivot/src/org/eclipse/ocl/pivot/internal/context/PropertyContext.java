@@ -13,8 +13,8 @@ package org.eclipse.ocl.pivot.internal.context;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Property;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
@@ -24,8 +24,8 @@ public class PropertyContext extends ClassContext
 {
 	protected final @NonNull Property property;
 
-	public PropertyContext(@NonNull MetamodelManager metamodelManager, @Nullable URI uri, @NonNull Property property) {
-		super(metamodelManager, uri, ClassUtil.nonNullModel(property.getOwningClass()), null);
+	public PropertyContext(@NonNull EnvironmentFactory environmentFactory, @Nullable URI uri, @NonNull Property property) {
+		super(environmentFactory, uri, ClassUtil.nonNullModel(property.getOwningClass()), null);
 		this.property = property;
 	}
 	

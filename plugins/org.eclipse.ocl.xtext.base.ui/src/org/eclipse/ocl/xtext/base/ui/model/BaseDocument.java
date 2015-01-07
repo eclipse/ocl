@@ -184,7 +184,7 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 					BaseCSResource csResource = (BaseCSResource)resource;
 					CS2ASResourceAdapter csAdapter = csResource.getCS2ASAdapter(null);
 					MetamodelManager metamodelManager = csAdapter.getMetamodelManager();
-					csResource.setParserContext(new EInvocationContext(metamodelManager, resource.getURI(), ecoreContext, ecoreParameters));
+					csResource.setParserContext(new EInvocationContext(metamodelManager.getEnvironmentFactory(), resource.getURI(), ecoreContext, ecoreParameters));
 				}
 				return null;
 			}
@@ -197,7 +197,7 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 	public @Nullable Object setContext(@NonNull BaseCSResource resource, @Nullable EObject eObject) {
 		CS2ASResourceAdapter csAdapter = resource.getCS2ASAdapter(null);
 		MetamodelManager metamodelManager = csAdapter.getMetamodelManager();
-		resource.setParserContext(new EObjectContext(metamodelManager, resource.getURI(), eObject));
+		resource.setParserContext(new EObjectContext(metamodelManager.getEnvironmentFactory(), resource.getURI(), eObject));
 		return null;
 	}
 }

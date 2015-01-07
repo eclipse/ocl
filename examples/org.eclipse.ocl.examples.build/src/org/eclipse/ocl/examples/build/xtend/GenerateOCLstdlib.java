@@ -115,7 +115,7 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 			MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(asResource);
 			String ecoreFile = "/" + projectName + "/model-gen/oclstdlib.ecore";
 			@SuppressWarnings("null")@NonNull URI ecoreURI = URI.createPlatformResourceURI(ecoreFile, true);
-			AS2Ecore converter = new AS2Ecore(metamodelManager, ecoreURI, null);
+			AS2Ecore converter = new AS2Ecore(metamodelManager.getEnvironmentFactory(), ecoreURI, null);
 			XMLResource eResource = converter.convertResource(asResource, ecoreURI);
 			EPackage ePackage = (EPackage) ClassUtil.nonNullState(eResource.getContents().get(0));
 			ePackage.setName("oclstdlib");

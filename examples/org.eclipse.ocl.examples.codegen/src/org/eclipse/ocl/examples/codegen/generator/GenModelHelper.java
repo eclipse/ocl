@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.Property;
@@ -38,6 +39,7 @@ public interface GenModelHelper
 	@Nullable String getEcoreInterfaceClassifierName(@NonNull EClassifier eClassifier);
 	@Nullable String getEcoreInterfaceName(@NonNull org.eclipse.ocl.pivot.Class type);
 	@Nullable String getEcoreClassName(@NonNull org.eclipse.ocl.pivot.Class type);
+	@NonNull EnvironmentFactory getEnvironmentFactory();
 //	@Nullable GenClass getGenClass(@NonNull org.eclipse.ocl.pivot.Class type);
 	@Nullable GenClassifier getGenClassifier(@NonNull org.eclipse.ocl.pivot.Class type);
 	@Nullable GenOperation getGenOperation(@NonNull Operation operation);

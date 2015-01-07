@@ -162,7 +162,7 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 			EPackage ecorePackage = genPackage.getEcorePackage();
 			Resource ecoreResource = ecorePackage.eResource();
 			if (ecoreResource != null) {
-				Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager);
+				Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager.getEnvironmentFactory());
 				if (ecore2as != null) {
 					for (GenClass genClass : genPackage.getGenClasses()) {
 						EClass eClass = genClass.getEcoreClass();
@@ -420,7 +420,7 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 			EPackage ecorePackage = genPackage.getEcorePackage();
 			Resource ecoreResource = ecorePackage.eResource();
 			if (ecoreResource != null) {
-				Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager);
+				Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager.getEnvironmentFactory());
 				if (ecore2as != null) {
 					for (GenClass genClass : genPackage.getGenClasses()) {
 						EClass eClass = genClass.getEcoreClass();

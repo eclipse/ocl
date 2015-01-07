@@ -13,9 +13,9 @@ package org.eclipse.ocl.pivot.internal.context;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 /**
@@ -26,9 +26,9 @@ public class ClassContext extends AbstractParserContext
 	protected final @Nullable org.eclipse.ocl.pivot.Class classContext;
 	protected final @Nullable Type instanceContext;
 	
-	public ClassContext(@NonNull MetamodelManager metamodelManager, @Nullable URI uri, @Nullable org.eclipse.ocl.pivot.Class classContext, @Nullable Type instanceContext) {
-		super(metamodelManager, uri);
- 		this.classContext = classContext != null ? metamodelManager.getPrimaryType(classContext) : null;
+	public ClassContext(@NonNull EnvironmentFactory environmentFactory, @Nullable URI uri, @Nullable org.eclipse.ocl.pivot.Class classContext, @Nullable Type instanceContext) {
+		super(environmentFactory, uri);
+ 		this.classContext = classContext != null ? getMetamodelManager().getPrimaryType(classContext) : null;
 		this.instanceContext = instanceContext;
 	}
 

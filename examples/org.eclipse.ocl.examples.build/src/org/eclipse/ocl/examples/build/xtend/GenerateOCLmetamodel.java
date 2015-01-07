@@ -219,7 +219,7 @@ public abstract class GenerateOCLmetamodel extends GenerateOCLCommonXtend
 				issues.addError(this, ecoreErrorsString, null, null, null);
 				return;
 			}
-			Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager);
+			Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager.getEnvironmentFactory());
 			Model pivotModel = ecore2as.getPivotModel();
 			Resource asResource = pivotModel.eResource();
 			String pivotErrorsString = PivotUtil.formatResourceDiagnostics(ClassUtil.nonNullEMF(asResource.getErrors()), "Converting " + inputURI, "\n");

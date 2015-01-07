@@ -23,15 +23,15 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.AbstractConversion;
 import org.eclipse.ocl.pivot.internal.utilities.External2AS;
 
 public abstract class AbstractEcore2AS extends AbstractConversion implements External2AS, PivotConstantsInternal
 {
-	protected AbstractEcore2AS(@NonNull MetamodelManager metamodelManager) {
-		super(metamodelManager);
+	protected AbstractEcore2AS(@NonNull EnvironmentFactoryInternal environmentFactory) {
+		super(environmentFactory);
 	}
 	
 	public abstract void addGenericType(@NonNull EGenericType eObject);
@@ -75,7 +75,7 @@ public abstract class AbstractEcore2AS extends AbstractConversion implements Ext
 
 	public @NonNull <T extends NamedElement> T refreshNamedElement(@NonNull Class<T> pivotClass, /*@NonNull*/ EClass pivotEClass, @NonNull ENamedElement eNamedElement) {
 		T castElement = refreshElement(pivotClass, pivotEClass, eNamedElement);
-		castElement.setName(metamodelManager.getEnvironmentFactory().getOriginalName(eNamedElement));
+		castElement.setName(environmentFactory.getOriginalName(eNamedElement));
 		return castElement;
 	}
 }

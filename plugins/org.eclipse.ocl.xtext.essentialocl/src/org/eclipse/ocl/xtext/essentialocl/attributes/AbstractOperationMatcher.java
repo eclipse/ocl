@@ -270,7 +270,7 @@ public abstract class AbstractOperationMatcher
 		if (iSize != candidateParameters.size()) {
 			return null;
 		}
-		TemplateParameterSubstitutions bindings = TemplateParameterSubstitutionVisitor.createBindings(metamodelManager, sourceType, sourceTypeValue, candidateOperation);
+		TemplateParameterSubstitutions bindings = TemplateParameterSubstitutionVisitor.createBindings(metamodelManager.getEnvironmentFactory(), sourceType, sourceTypeValue, candidateOperation);
 		for (int i = 0; i < iSize; i++) {
 			Parameter candidateParameter = candidateParameters.get(i);
 			if (candidateParameter != null) {

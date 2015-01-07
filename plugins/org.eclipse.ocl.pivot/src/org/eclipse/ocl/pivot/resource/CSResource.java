@@ -13,7 +13,7 @@ package org.eclipse.ocl.pivot.resource;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.utilities.ParserContext;
 
@@ -28,7 +28,7 @@ public interface CSResource extends Resource
 	 * Return the Abstract Syntax representation of this Concrete Syntax resource
 	 * under the supervision of metamodelManager.
 	 */
-	@NonNull ASResource getASResource(@Nullable MetamodelManager metamodelManager);
+	@NonNull ASResource getASResource(@Nullable EnvironmentFactory environmentFactory);
 
 	@NonNull ASResourceFactory getASResourceFactory();
 	
@@ -46,5 +46,5 @@ public interface CSResource extends Resource
 	 */
 	void setProjectManager(@Nullable ProjectManager projectManager);
 
-	void updateFrom(@NonNull ASResource asResource, @NonNull MetamodelManager metamodelManager);
+	void updateFrom(@NonNull ASResource asResource, @NonNull EnvironmentFactory environmentFactory);
 }

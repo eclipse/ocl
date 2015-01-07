@@ -49,6 +49,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.VariableDeclaration;
 import org.eclipse.ocl.pivot.VariableExp;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
@@ -361,7 +362,7 @@ public class LoadTests extends XtextTestCase
 //			System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
 			assertNoResourceErrors("Save failed", umlResource);
 			umlResource.setURI(inputURI);
-			UML2AS adapter = UML2AS.getAdapter(umlResource, metamodelManager);
+			UML2AS adapter = UML2AS.getAdapter(umlResource, metamodelManager.getEnvironmentFactory());
 			UML2AS.Outer rootAdapter = adapter.getRoot();
 			Model pivotModel = rootAdapter.getPivotModel();
 			List<Resource> allResources = new ArrayList<Resource>();
@@ -369,7 +370,7 @@ public class LoadTests extends XtextTestCase
 			List<Resource> importedResources = rootAdapter.getImportedResources();
 			if (importedResources != null) {
 				for (Resource uResource : importedResources) {
-					UML2AS anAdapter = UML2AS.getAdapter(uResource, metamodelManager);
+					UML2AS anAdapter = UML2AS.getAdapter(uResource, metamodelManager.getEnvironmentFactory());
 					Model asModel = anAdapter.getPivotModel();
 					Resource asResource = asModel.eResource();
 					allResources.add(asResource);
@@ -426,7 +427,7 @@ public class LoadTests extends XtextTestCase
 				EnvironmentFactoryResourceSetAdapter.getAdapter(csResourceSet, metamodelManager.getEnvironmentFactory());
 				BaseCSResource xtextResource = (BaseCSResource) csResourceSet.createResource(xtextURI, OCLinEcoreCSPackage.eCONTENT_TYPE);
 				if (xtextResource != null) {
-					xtextResource.updateFrom(oclResource, metamodelManager);
+					xtextResource.updateFrom(oclResource, metamodelManager.getEnvironmentFactory());
 					xtextResource.save(null);
 				}
 				//
@@ -632,7 +633,7 @@ public class LoadTests extends XtextTestCase
 		URI ecoreURI = getProjectFileURI(ecoreName);
 		Map<String,Object> options = new HashMap<String,Object>();
 		options.put(PivotConstantsInternal.PRIMITIVE_TYPES_URI_PREFIX, "primitives.ecore#//");
-		XMLResource ecoreResource = AS2Ecore.createResource(metamodelManager, asResource, ecoreURI, options);
+		XMLResource ecoreResource = AS2Ecore.createResource(metamodelManager.getEnvironmentFactory(), asResource, ecoreURI, options);
 		ecoreResource.save(null);
 	}	
 
@@ -754,7 +755,7 @@ public class LoadTests extends XtextTestCase
 		URI ecoreURI = getProjectFileURI(ecoreName);
 		Map<String,Object> options = new HashMap<String,Object>();
 		options.put(PivotConstantsInternal.PRIMITIVE_TYPES_URI_PREFIX, "primitives.ecore#//");
-		XMLResource ecoreResource = AS2Ecore.createResource(metamodelManager, asResource, ecoreURI, options);
+		XMLResource ecoreResource = AS2Ecore.createResource(metamodelManager.getEnvironmentFactory(), asResource, ecoreURI, options);
 		ecoreResource.save(null);
 	}
 
@@ -966,7 +967,7 @@ public class LoadTests extends XtextTestCase
 	
 	public void testLoad_Bug441620_completeocl() throws IOException {
 		BaseCSResource csResource = (BaseCSResource) doLoad_Pivot("Bug441620", "ocl");
-		Resource oclResource = csResource.getASResource(metamodelManager);
+		Resource oclResource = csResource.getASResource(metamodelManager.getEnvironmentFactory());
 		Model root = (Model) oclResource.getContents().get(0);
 		org.eclipse.ocl.pivot.Package oclDocPackage = root.getOwnedPackages().get(0);
 		assertEquals("pivot", oclDocPackage.getName());
@@ -985,7 +986,7 @@ public class LoadTests extends XtextTestCase
 	
 	public void testLoad_Bug441620b_completeocl() throws IOException {
 		BaseCSResource csResource = (BaseCSResource) doLoad_Pivot("Bug441620b", "ocl");
-		Resource oclResource = csResource.getASResource(metamodelManager);
+		Resource oclResource = csResource.getASResource(metamodelManager.getEnvironmentFactory());
 		Model root = (Model) oclResource.getContents().get(0);
 		org.eclipse.ocl.pivot.Package oclDocPackage = root.getOwnedPackages().get(0);
 		assertEquals("ocl", oclDocPackage.getName());
@@ -1094,11 +1095,12 @@ public class LoadTests extends XtextTestCase
 		String ecoreFileB = createEcoreString(metamodelManager1, "Bug382230B", oclinecoreFileB, false);
 		String ecoreFileName = "Bug382230.ecore";
 		metamodelManager1.dispose();
-		MetamodelManager metamodelManager2 = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
+		EnvironmentFactoryInternal environmentFactory2 = (EnvironmentFactoryInternal) OCL.createEnvironmentFactory(getProjectMap());
+		MetamodelManager metamodelManager2 = environmentFactory2.getMetamodelManager();
 		URI ecoreURI = URI.createURI(ecoreFileName);
 		XMLResource ecoreResource = (XMLResource) metamodelManager2.getExternalResourceSet().createResource(ecoreURI, null);
 		ecoreResource.load(new URIConverter.ReadableInputStream(ecoreFileA), null);
-		Ecore2AS conversion = Ecore2AS.getAdapter(ecoreResource, metamodelManager2);
+		Ecore2AS conversion = Ecore2AS.getAdapter(ecoreResource, environmentFactory2);
 		Resource asResource = conversion.getPivotModel().eResource();
 		assertEquals(1, asResource.getContents().size());
 		Model pivotModel1 = (Model) asResource.getContents().get(0);
@@ -1160,11 +1162,12 @@ public class LoadTests extends XtextTestCase
 				.replaceAll("XXX", "YYY");
 		String ecoreFileName = "Bug382230.ecore";
 		metamodelManager1.dispose();
-		MetamodelManager metamodelManager2 = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
+		EnvironmentFactoryInternal environmentFactory2 = (EnvironmentFactoryInternal) OCL.createEnvironmentFactory(getProjectMap());
+		MetamodelManager metamodelManager2 = environmentFactory2.getMetamodelManager();
 		URI ecoreURI = URI.createURI(ecoreFileName);
 		XMLResource ecoreResource = (XMLResource) metamodelManager2.getExternalResourceSet().createResource(ecoreURI, null);
 		ecoreResource.load(new URIConverter.ReadableInputStream(ecoreFileXXX), null);
-		Ecore2AS conversion = Ecore2AS.getAdapter(ecoreResource, metamodelManager2);
+		Ecore2AS conversion = Ecore2AS.getAdapter(ecoreResource, environmentFactory2);
 		Resource asResource = conversion.getPivotModel().eResource();
 		assertEquals(1, asResource.getContents().size());
 		Model pivotModelXXX = (Model) asResource.getContents().get(0);
@@ -1240,11 +1243,12 @@ public class LoadTests extends XtextTestCase
 		String ecoreFileXXX = createEcoreString(metamodelManager1, "Bug418412", oclinecoreFileXXX, true);
 		String ecoreFileName = "Bug418412.ecore";
 		metamodelManager1.dispose();
-		MetamodelManager metamodelManager2 = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
+		EnvironmentFactoryInternal environmentFactory2 = (EnvironmentFactoryInternal) OCL.createEnvironmentFactory(getProjectMap());
+		MetamodelManager metamodelManager2 = environmentFactory2.getMetamodelManager();
 		URI ecoreURI = URI.createURI(ecoreFileName);
 		XMLResource ecoreResource = (XMLResource) metamodelManager2.getExternalResourceSet().createResource(ecoreURI, null);
 		ecoreResource.load(new URIConverter.ReadableInputStream(ecoreFileXXX), null);
-		Ecore2AS conversion = Ecore2AS.getAdapter(ecoreResource, metamodelManager2);
+		Ecore2AS conversion = Ecore2AS.getAdapter(ecoreResource, environmentFactory2);
 		ASResource asResource = (ASResource) conversion.getPivotModel().eResource();
 		//
 		//	Save the *.oclas and cache that the xmi:ids

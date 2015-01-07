@@ -15,7 +15,7 @@ import java.io.StringReader;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.xtext.markup.parser.antlr.MarkupParser;
 import org.eclipse.ocl.xtext.markupcs.Markup;
 import org.eclipse.ocl.xtext.markupcs.NewLineElement;
@@ -78,8 +78,8 @@ public class MarkupUtils extends MarkupSwitch<StringBuilder>
 		return lineCount;
 	}
 
-	public static String toHTML(@NonNull MetamodelManager metamodelManager, @NonNull Object context, @NonNull Markup markup) throws Exception {
-		return MarkupToHTML.toString(metamodelManager, context, markup);
+	public static String toHTML(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Object context, @NonNull Markup markup) throws Exception {
+		return MarkupToHTML.toString(environmentFactory, context, markup);
 	}
 }
 

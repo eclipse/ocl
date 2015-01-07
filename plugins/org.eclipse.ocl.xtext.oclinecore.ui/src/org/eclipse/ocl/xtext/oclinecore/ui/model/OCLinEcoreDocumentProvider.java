@@ -46,6 +46,7 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.delegate.DelegateInstaller;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
@@ -101,7 +102,8 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 
 	private Map<IDocument, URI> uriMap = new HashMap<IDocument, URI>();		// Helper for setDocumentContent
 	
-	private MetamodelManager metamodelManager = null;
+	private EnvironmentFactoryInternal environmentFactory = null;
+//	private MetamodelManager metamodelManager = null;
 
 	public static InputStream createResettableInputStream(InputStream inputStream) throws IOException {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -198,12 +200,12 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 	}
 	
 	@SuppressWarnings("null")
-	protected @NonNull MetamodelManager getMetamodelManager() {
-		if (metamodelManager == null) {
-			metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
-			metamodelManager.addListener(this);
+	protected @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
+		if (environmentFactory == null) {
+			environmentFactory = (EnvironmentFactoryInternal) OCL.createEnvironmentFactory(null);
+			environmentFactory.getMetamodelManager().addListener(this);
 		}
-		return metamodelManager;
+		return environmentFactory;
 	}
 
 	@Override
@@ -293,14 +295,16 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 	@Override
 	protected void loadResource(XtextResource resource, String document, String encoding) throws CoreException {
 		assert resource != null;
-		MetamodelManagerResourceAdapter.getAdapter(resource, getMetamodelManager());
+		MetamodelManagerResourceAdapter.getAdapter(resource, getEnvironmentFactory().getMetamodelManager());
 		super.loadResource(resource, document, encoding);
 	}
 
 	@Override
 	public void metamodelManagerDisposed(@NonNull MetamodelManager metamodelManager) {
-		metamodelManager.removeListener(this);
-		this.metamodelManager = null;
+		if (environmentFactory != null) {
+			environmentFactory.getMetamodelManager().removeListener(this);
+			this.environmentFactory = null;
+		}
 	}
 
 	@Override
@@ -320,7 +324,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 			boolean isXML = isXML(inputStream);		
 			String persistAs = PERSIST_AS_OCLINECORE;
 			if (isXML) {
-				ResourceSet resourceSet = getMetamodelManager().getExternalResourceSet();
+				ResourceSet resourceSet = getEnvironmentFactory().getMetamodelManager().getExternalResourceSet();
 				StandaloneProjectMap projectMap = ProjectMap.getAdapter(resourceSet);
 				StandaloneProjectMap.IConflictHandler conflictHandler = StandaloneProjectMap.MapToFirstConflictHandlerWithLog.INSTANCE; //null; 			// FIXME
 				projectMap.configure(resourceSet, StandaloneProjectMap.LoadFirstStrategy.INSTANCE, conflictHandler);
@@ -362,7 +366,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 				if (contents.size() > 0) {
 					EObject xmiRoot = contents.get(0);
 					if (xmiRoot instanceof EPackage) {
-						Ecore2AS ecore2as = Ecore2AS.getAdapter(xmiResource, getMetamodelManager());
+						Ecore2AS ecore2as = Ecore2AS.getAdapter(xmiResource, getEnvironmentFactory());
 						Model pivotModel = ecore2as.getPivotModel();
 						asResource = (ASResource) pivotModel.eResource();
 						if (asResource != null) {
@@ -379,7 +383,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 						persistAs = PERSIST_AS_PIVOT;
 					}
 					else if (xmiRoot instanceof org.eclipse.uml2.uml.Package) {
-						UML2AS uml2as = UML2AS.getAdapter(xmiResource, getMetamodelManager());
+						UML2AS uml2as = UML2AS.getAdapter(xmiResource, getEnvironmentFactory());
 						Model pivotModel = uml2as.getPivotModel();
 						asResource = (ASResource) pivotModel.eResource();
 						persistAs = PERSIST_AS_OCLINECORE;		// FIXME
@@ -405,7 +409,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 				//		Ecore XMI resource with *.ecore URI, possibly in URIResourceMap as *.ecore
 				//		OCLinEcore CS resource with *.ecore URI, in URIResourceMap as *.ecore.oclinecore
 				//
-				csResource.updateFrom(asResource, getMetamodelManager());
+				csResource.updateFrom(asResource, getEnvironmentFactory());
 				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 				try {
 					csResource.save(outputStream, null);

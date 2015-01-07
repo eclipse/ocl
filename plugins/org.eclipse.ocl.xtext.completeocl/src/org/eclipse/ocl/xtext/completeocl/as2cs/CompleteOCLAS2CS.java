@@ -18,7 +18,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.PivotPackage;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.xtext.base.as2cs.AS2CS;
@@ -59,8 +59,8 @@ public class CompleteOCLAS2CS extends EssentialOCLAS2CS
 		}
 	}
 		
-	public CompleteOCLAS2CS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull MetamodelManager metamodelManager) {
-		super(cs2asResourceMap, metamodelManager);
+	public CompleteOCLAS2CS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull EnvironmentFactoryInternal environmentFactory) {
+		super(cs2asResourceMap, environmentFactory);
 		addFactory(Factory.INSTANCE);
 		for (Resource csResource : cs2asResourceMap.keySet()) {
 			assert csResource != null;

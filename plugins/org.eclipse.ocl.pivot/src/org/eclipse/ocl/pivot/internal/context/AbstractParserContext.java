@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Nameable;
 import org.eclipse.ocl.pivot.OCLExpression;
@@ -45,12 +46,12 @@ import org.eclipse.ocl.pivot.utilities.StringUtil;
 
 public abstract class AbstractParserContext /*extends AdapterImpl*/ implements ParserContext
 {
-	protected final @NonNull MetamodelManager metamodelManager;
+	protected final @NonNull EnvironmentFactory environmentFactory;
 	protected final @NonNull URI uri;
 	protected @Nullable Element rootElement = null;
 
-	protected AbstractParserContext(@NonNull MetamodelManager metamodelManager, @Nullable URI uri) {
-		this.metamodelManager = metamodelManager;
+	protected AbstractParserContext(@NonNull EnvironmentFactory environmentFactory, @Nullable URI uri) {
+		this.environmentFactory = environmentFactory;
 		if (uri != null) {
 			this.uri = uri;
 		}
@@ -72,7 +73,7 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 				throw new ParserException("Failed to create Xtext resource for '" + uri + "'" + getDoSetupMessage());
 			}
 			CSResource baseResource = (CSResource)resource;
-			MetamodelManagerResourceAdapter.getAdapter(resource, metamodelManager);
+			MetamodelManagerResourceAdapter.getAdapter(resource, getMetamodelManager());
 			baseResource.setParserContext(this);
 			baseResource.load(inputStream, null);
 			return baseResource;
@@ -111,6 +112,10 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 		return "\n\tMake sure " + doSetup + " has been called.";
 	}
 
+	public @NonNull EnvironmentFactory getEnvironmentFactory() {
+		return environmentFactory;
+	}
+
 	public @Nullable Type getInstanceContext() {
 		return null;
 	}
@@ -137,7 +142,7 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 
 	@Override
 	public @NonNull MetamodelManager getMetamodelManager() {
-		return metamodelManager;
+		return environmentFactory.getMetamodelManager();
 	}
 
 	@Override
@@ -167,7 +172,7 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 		} catch (IOException e) {
 //				throw new ParserException("Failed to load expression", e);
 			@SuppressWarnings("null")@NonNull ExpressionInOCL specification = PivotFactory.eINSTANCE.createExpressionInOCL();
-			OCLExpression invalidValueBody = metamodelManager.createInvalidExpression();
+			OCLExpression invalidValueBody = getMetamodelManager().createInvalidExpression();
 			PivotUtil.setBody(specification, invalidValueBody, null);
 			return specification;
 		} finally {

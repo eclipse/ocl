@@ -472,7 +472,7 @@ public class OCLEvaluationVisitor extends AbstractEvaluationVisitor
 		OCLExpression source = iterateExp.getOwnedSource();
 		Object acceptedValue = source.accept(undecoratedVisitor);
 		CollectionValue sourceValue = ValueUtil.asCollectionValue(acceptedValue);
-		org.eclipse.ocl.pivot.Class dynamicSourceType = metamodelManager.getIdResolver().getClass(sourceValue.getTypeId(), null);
+		org.eclipse.ocl.pivot.Class dynamicSourceType = environmentFactory.getIdResolver().getClass(sourceValue.getTypeId(), null);
 		LibraryIteration implementation = (LibraryIteration) dynamicSourceType.lookupImplementation(standardLibrary, staticIteration);
 /*		Operation dynamicIteration = metamodelManager.getDynamicOperation((org.eclipse.ocl.pivot.Type) dynamicSourceType, staticIteration);
  		if (dynamicIteration == null) {
@@ -547,7 +547,7 @@ public class OCLEvaluationVisitor extends AbstractEvaluationVisitor
 //		} catch (InvalidValueException e) {
 //			return evaluationEnvironment.throwInvalidEvaluation(e);
 //		}
-		org.eclipse.ocl.pivot.Class dynamicSourceType = metamodelManager.getIdResolver().getClass(sourceValue.getTypeId(), null);
+		org.eclipse.ocl.pivot.Class dynamicSourceType = environmentFactory.getIdResolver().getClass(sourceValue.getTypeId(), null);
 		LibraryIteration implementation = (LibraryIteration) dynamicSourceType.lookupImplementation(standardLibrary, staticIteration);
 /*		Operation dynamicIteration = metamodelManager.getDynamicOperation((org.eclipse.ocl.pivot.Type) dynamicSourceType, staticIteration);
  		if (dynamicIteration == null) {
@@ -695,7 +695,7 @@ public class OCLEvaluationVisitor extends AbstractEvaluationVisitor
 				actualOperation = apparentOperation;
 			}
 			else {
-		 		IdResolver idResolver = metamodelManager.getIdResolver();
+		 		IdResolver idResolver = environmentFactory.getIdResolver();
 				org.eclipse.ocl.pivot.Class actualSourceType = idResolver.getStaticTypeOf(sourceValue);
 				if (onlyArgument != null) {
 					org.eclipse.ocl.pivot.Class actualArgType = idResolver.getStaticTypeOf(onlyArgument);
@@ -725,7 +725,7 @@ public class OCLEvaluationVisitor extends AbstractEvaluationVisitor
 				actualOperation = apparentOperation;
 			}
 			else {
-		 		IdResolver idResolver = metamodelManager.getIdResolver();
+		 		IdResolver idResolver = environmentFactory.getIdResolver();
 				org.eclipse.ocl.pivot.Class actualSourceType = idResolver.getStaticTypeOf(sourceValue);
 				actualOperation = actualSourceType.lookupActualOperation(standardLibrary, apparentOperation);
 			}

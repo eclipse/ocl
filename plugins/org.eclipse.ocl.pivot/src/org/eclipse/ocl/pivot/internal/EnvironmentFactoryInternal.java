@@ -26,9 +26,10 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.ids.RootPackageId;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
+import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.library.ImplementationManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.AbstractEnvironmentFactory;
 
 /**
@@ -53,33 +54,39 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 	/**
 	 * Create and initialize the AS ResourceSet used by metamodelManager to contain the AS forms of CS and Ecore/UML resources.
 	 */
-	@NonNull ResourceSetImpl createASResourceSet(@NonNull MetamodelManager metamodelManager);
-	@NonNull CompleteEnvironmentInternal createCompleteEnvironment(@NonNull MetamodelManager metamodelManager);
+	@NonNull ResourceSetImpl createASResourceSet();
+	@NonNull CompleteEnvironmentInternal createCompleteEnvironment();
 
 	/**
 	 * Create and initialize the IdResolver used by metamodelManager to convert Ids to Elements.
 	 */
-	@NonNull IdResolver createIdResolver(@NonNull MetamodelManager metamodelManager);
+	@NonNull IdResolver createIdResolver();
 	
 	
 	@NonNull MetamodelManager createMetamodelManager();
+
+	@Override
+	@NonNull CompleteModelInternal getCompleteModel();
 
 	String getExtensionName(@NonNull Element asStereotypedElement);
 
 	RootPackageId getMetamodelId(@NonNull EPackage ePackage);
 
+	@Override
+	@NonNull CompleteEnvironmentInternal getCompleteEnvironment();
 
 	@NonNull PackageId getMetapackageId(@NonNull org.eclipse.ocl.pivot.Package asPackage);
 
 	@Nullable Element getParseableElement(@NonNull EObject eObject) throws ParserException;
-
-	@NonNull ProjectManager getProjectManager();
 	
 	boolean isStereotype(@NonNull EClass eClass);
 
 	@NonNull ImplementationManager createImplementationManager();
 	
 	String getOriginalName(@NonNull ENamedElement eNamedElement);
+	
+	@Override
+	@NonNull StandardLibraryInternal getStandardLibrary();
 
 	void setEvaluationTracingEnabled(boolean b);
 	

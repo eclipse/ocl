@@ -28,10 +28,10 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.internal.resource.AbstractASResourceFactory;
 import org.eclipse.ocl.pivot.resource.ASResource;
@@ -91,20 +91,20 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 	}
 
 	@Override
-	public @Nullable <T extends Element> T getASElement(@NonNull MetamodelManager metamodelManager,
+	public @Nullable <T extends Element> T getASElement(@NonNull EnvironmentFactoryInternal environmentFactory,
 			@NonNull Class<T> pivotClass, @NonNull EObject eObject) throws ParserException {
 		Resource metamodel = eObject.eResource();
 		if (metamodel == null) {
 			return null;
 		}
-		UML2AS uml2as = UML2AS.getAdapter(metamodel, metamodelManager);
+		UML2AS uml2as = UML2AS.getAdapter(metamodel, environmentFactory);
 		uml2as.getPivotModel();
 		EClass eClass = eObject.eClass();
 		EPackage ePackage = eClass.getEPackage();
 		if (ePackage == EcorePackage.eINSTANCE) {
 			if (eObject instanceof EOperation) {
 				EOperation eOperation = (EOperation)eObject;
-				org.eclipse.uml2.uml.Constraint umlConstraint = getConstraintForEOperation(metamodelManager, eOperation);
+				org.eclipse.uml2.uml.Constraint umlConstraint = getConstraintForEOperation(environmentFactory, eOperation);
 				if (umlConstraint != null) {
 					eObject = umlConstraint;
 				}
@@ -118,7 +118,7 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 		return getInstance();
 	}
 
-	protected org.eclipse.uml2.uml.Constraint getConstraintForEOperation(@NonNull MetamodelManager metamodelManager, EOperation eOperation) {
+	protected org.eclipse.uml2.uml.Constraint getConstraintForEOperation(@NonNull EnvironmentFactory environmentFactory, EOperation eOperation) {
 		if (EcoreUtil.isInvariant(eOperation)) {
 			EClass eContainingClass = eOperation.getEContainingClass();
 			EAnnotation eAnnotation = eContainingClass.getEAnnotation("http://www.eclipse.org/uml2/2.0.0/UML"); // UMLUtil.UML2_UML_PACKAGE_2_0_NS_URI
@@ -127,7 +127,7 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 				if ((eReferences != null) && (eReferences.size() > 0)) {
 					EObject eReference = eReferences.get(0);
 					if (eReference instanceof org.eclipse.uml2.uml.Type) {
-						String operationName = metamodelManager.getEnvironmentFactory().getOriginalName(eOperation);
+						String operationName = ((EnvironmentFactoryInternal) environmentFactory).getOriginalName(eOperation);
 						org.eclipse.uml2.uml.Constraint umlConstraint = ((org.eclipse.uml2.uml.Classifier)eReference).getOwnedRule(operationName);
 						if (umlConstraint != null) {
 							return umlConstraint;
@@ -272,8 +272,8 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 	}
 
 	@Override
-	public @Nullable Element importFromResource(@NonNull MetamodelManager metamodelManager, @NonNull Resource umlResource, @Nullable URI uri) throws ParserException {
-		UML2AS conversion = UML2AS.getAdapter(umlResource, metamodelManager);
+	public @Nullable Element importFromResource(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Resource umlResource, @Nullable URI uri) throws ParserException {
+		UML2AS conversion = UML2AS.getAdapter(umlResource, environmentFactory);
 		conversion.setUMLURI(uri);
 		Model pivotModel = conversion.getPivotModel();
 		String uriFragment = uri != null ? uri.fragment() : null;

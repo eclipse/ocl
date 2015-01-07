@@ -62,7 +62,7 @@ public abstract class CompleteOCLLoader
 	public boolean loadMetamodels() {
 		for (Resource resource : resourceSet.getResources()) {
 			assert resource != null;
-			Ecore2AS ecore2as = Ecore2AS.findAdapter(resource, metamodelManager);
+			Ecore2AS ecore2as = Ecore2AS.findAdapter(resource, metamodelManager.getEnvironmentFactory());
 			if (ecore2as == null) {			// Pivot has its own validation
 				for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
 					EObject eObject = tit.next();
@@ -179,7 +179,7 @@ public abstract class CompleteOCLLoader
 			error("Failed to load '" + oclURI, message);
 			return null;
 		}
-		Resource asResource = xtextResource.getASResource(metamodelManager);
+		Resource asResource = xtextResource.getASResource(metamodelManager.getEnvironmentFactory());
 		errors = asResource.getErrors();
 		assert errors != null;
 		message = PivotUtil.formatResourceDiagnostics(errors, "", "\n");

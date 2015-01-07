@@ -159,7 +159,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 	private boolean hasFailed = false;
 	
 	public CS2ASConversion(@NonNull CS2AS converter, @NonNull IDiagnosticConsumer diagnosticsConsumer, @NonNull Collection<? extends BaseCSResource> csResources) {
-		super(converter.getMetamodelManager());
+		super(converter.getEnvironmentFactory());
 		this.converter = converter;
 		this.diagnosticsConsumer = diagnosticsConsumer;
 		this.csResources = csResources;

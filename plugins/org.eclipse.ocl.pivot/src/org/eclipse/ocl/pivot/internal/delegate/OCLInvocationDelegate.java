@@ -88,8 +88,7 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 	}
 
 	protected Object evaluate(@NonNull OCL ocl, @NonNull ExpressionInOCL query2, InternalEObject target, List<?> arguments) {
-		MetamodelManager metamodelManager = ocl.getMetamodelManager();
-		IdResolver idResolver = metamodelManager.getIdResolver();
+		IdResolver idResolver = ocl.getIdResolver();
 		Query query = ocl.createQuery(query2);
 		EvaluationEnvironment env = query.getEvaluationEnvironment(target);
 		Object object = target;

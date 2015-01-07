@@ -53,6 +53,7 @@ import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.ecore.Ecore2Moniker;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
@@ -71,11 +72,11 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 public class Ecore2AS extends AbstractEcore2AS
 {
-	public static @Nullable Ecore2AS findAdapter(@NonNull Resource resource, @NonNull MetamodelManager metamodelManager) {
+	public static @Nullable Ecore2AS findAdapter(@NonNull Resource resource, @NonNull EnvironmentFactoryInternal environmentFactory) {
 		for (Adapter adapter : resource.eAdapters()) {
 			if (adapter instanceof Ecore2AS) {
 				Ecore2AS ecore2as = (Ecore2AS)adapter;
-				if (ecore2as.getMetamodelManager() == metamodelManager) {
+				if (ecore2as.getEnvironmentFactory() == environmentFactory) {
 					return ecore2as;
 				}
 			}
@@ -83,18 +84,18 @@ public class Ecore2AS extends AbstractEcore2AS
 		return null;
 	}
 
-	public static Ecore2AS getAdapter(@NonNull Resource resource, @Nullable MetamodelManager metamodelManager) {
+	public static Ecore2AS getAdapter(@NonNull Resource resource, @Nullable EnvironmentFactoryInternal environmentFactory) {
 		Ecore2AS adapter;
-		if (metamodelManager == null) {
-			metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+		if (environmentFactory == null) {
+			environmentFactory = (EnvironmentFactoryInternal) OCL.createEnvironmentFactory(null);
 		}
 		else {
-			adapter = findAdapter(resource, metamodelManager);
+			adapter = findAdapter(resource, environmentFactory);
 			if (adapter != null) {
 				return adapter;
 			}
 		}
-		adapter = new Ecore2AS(resource, metamodelManager);
+		adapter = new Ecore2AS(resource, environmentFactory);
 		List<Adapter> eAdapters = resource.eAdapters();
 		eAdapters.add(adapter);
 		return adapter;
@@ -108,8 +109,8 @@ public class Ecore2AS extends AbstractEcore2AS
 	 * 
 	 * @return the Pivot root package
 	 */
-	public static @NonNull Model importFromEcore(@NonNull MetamodelManager metamodelManager, String alias, @NonNull Resource ecoreResource) {
-		Ecore2AS conversion = getAdapter(ecoreResource, metamodelManager);
+	public static @NonNull Model importFromEcore(@NonNull EnvironmentFactoryInternal environmentFactory, String alias, @NonNull Resource ecoreResource) {
+		Ecore2AS conversion = getAdapter(ecoreResource, environmentFactory);
 		return conversion.getPivotModel();
 	}
 
@@ -130,7 +131,7 @@ public class Ecore2AS extends AbstractEcore2AS
 		if (ecoreResource == null) {
 			return null;
 		}
-		Ecore2AS conversion = getAdapter(ecoreResource, metamodelManager);
+		Ecore2AS conversion = getAdapter(ecoreResource, metamodelManager.getEnvironmentFactory());
 		conversion.loadImports(ecoreResource);
 //		if (asMetamodels != null) {
 //			
@@ -172,9 +173,9 @@ public class Ecore2AS extends AbstractEcore2AS
 	 * 
 	 * @return the pivot element
 	 */
-	public static Element importFromEcore(@NonNull MetamodelManager metamodelManager, String alias, @NonNull EObject eObject) {
+	public static Element importFromEcore(@NonNull EnvironmentFactoryInternal environmentFactory, String alias, @NonNull EObject eObject) {
 		Resource ecoreResource = ClassUtil.nonNullEMF(eObject.eResource());
-		Ecore2AS conversion = getAdapter(ecoreResource, metamodelManager);
+		Ecore2AS conversion = getAdapter(ecoreResource, environmentFactory);
 		@SuppressWarnings("unused")
 		Model pivotModel = conversion.getPivotModel();
 		return conversion.newCreateMap.get(eObject);
@@ -225,11 +226,12 @@ public class Ecore2AS extends AbstractEcore2AS
 	 */
 	private Set<EObject> importedEObjects = null;
 	
-	public Ecore2AS(@NonNull Resource ecoreResource, @Nullable MetamodelManager metamodelManager) {
-		super(metamodelManager != null ? metamodelManager : OCL.createEnvironmentFactory(null).getMetamodelManager());
+	public Ecore2AS(@NonNull Resource ecoreResource, @Nullable EnvironmentFactoryInternal environmentFactory) {
+		super(environmentFactory != null ? environmentFactory : (EnvironmentFactoryInternal)OCL.createEnvironmentFactory(null));
 		this.ecoreResource = ecoreResource;
-		this.metamodelManager.addExternalResource(this);
-		this.metamodelManager.addListener(this);
+		MetamodelManager metamodelManager = this.environmentFactory.getMetamodelManager();
+		metamodelManager.addExternalResource(this);
+		metamodelManager.addListener(this);
 	}
 	
 	protected void addCreated(EObject eObject, Element pivotElement) {
@@ -365,7 +367,7 @@ public class Ecore2AS extends AbstractEcore2AS
 		if (element == null) {
 			Resource resource = eObject.eResource();
 			if ((resource != ecoreResource) && (resource != null)) {
-				Ecore2AS converter = getAdapter(resource, metamodelManager);
+				Ecore2AS converter = getAdapter(resource, environmentFactory);
 				if (allConverters.add(converter)) {
 					converter.getPivotModel();
 					for (Map.Entry<EObject, Element> entry : converter.newCreateMap.entrySet()) {
@@ -391,7 +393,7 @@ public class Ecore2AS extends AbstractEcore2AS
 		if (pivotElement == null) {
 			Resource resource = eObject.eResource();
 			if ((resource != ecoreResource) && (resource != null)) {
-				Ecore2AS converter = getAdapter(resource, metamodelManager);
+				Ecore2AS converter = getAdapter(resource, environmentFactory);
 				if (allConverters.add(converter)) {
 					converter.getPivotModel();
 //					allEClassifiers.addAll(converter.allEClassifiers);

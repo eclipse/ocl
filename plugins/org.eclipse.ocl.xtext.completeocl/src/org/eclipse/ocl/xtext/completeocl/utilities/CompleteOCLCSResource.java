@@ -13,7 +13,7 @@ package org.eclipse.ocl.xtext.completeocl.utilities;
 import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.xtext.base.as2cs.AS2CS;
@@ -27,14 +27,14 @@ public class CompleteOCLCSResource extends EssentialOCLCSResource
 {
 	@Override
 	public @NonNull AS2CS createAS2CS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap,
-			@NonNull MetamodelManager metamodelManager) {
-		return new CompleteOCLAS2CS(cs2asResourceMap, metamodelManager);
+			@NonNull EnvironmentFactoryInternal environmentFactory) {
+		return new CompleteOCLAS2CS(cs2asResourceMap, environmentFactory);
 	}
 
 	@Override
 	public @NonNull CS2AS createCS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap,
-			@NonNull MetamodelManager metamodelManager) {
-		return new CompleteOCLCS2AS(cs2asResourceMap, metamodelManager);
+			@NonNull EnvironmentFactoryInternal environmentFactory) {
+		return new CompleteOCLCS2AS(cs2asResourceMap, environmentFactory);
 	}
 
 	@Override

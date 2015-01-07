@@ -31,9 +31,9 @@ import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestCase;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
@@ -177,9 +177,9 @@ public class DocumentationExamples extends PivotTestCase
 		}
 		OCL ocl = OCL.newInstance(resourceSet.getPackageRegistry());
 		try {
-			MetamodelManager metamodelManager = ocl.getMetamodelManager();
+			EnvironmentFactoryInternal environmentFactory = ocl.getEnvironmentFactory();
 	
-			Ecore2AS ecore2as = Ecore2AS.getAdapter(b2Book.eClass().eResource(), metamodelManager);
+			Ecore2AS ecore2as = Ecore2AS.getAdapter(b2Book.eClass().eResource(), environmentFactory);
 			org.eclipse.ocl.pivot.Class bookType = ecore2as.getCreated(org.eclipse.ocl.pivot.Class.class, b2Book.eClass());
 
 		    Object b2Copies = b2Book.eGet(bookCopies);			// Static eGet

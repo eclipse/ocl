@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.SemanticException;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.HTMLBuffer;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.xtext.markup.MarkupStandaloneSetup;
@@ -38,20 +37,19 @@ import org.eclipse.ocl.xtext.markupcs.NewLineElement;
 
 public class MarkupTests extends XtextTestCase
 {	
-	protected MetamodelManager metamodelManager = null;
+	protected OCL ocl = null;
 
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		MarkupStandaloneSetup.doSetup();
 		MarkupPackage.eINSTANCE.eClass();
-		metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
+		ocl = OCL.newInstance(getProjectMap());
 	}
 
 	@Override
 	protected void tearDown() throws Exception {
-		metamodelManager.dispose();
-		metamodelManager = null;
+		ocl.dispose();
 		super.tearDown();
 	}
 
@@ -80,8 +78,8 @@ public class MarkupTests extends XtextTestCase
 	protected void doBadHtmlTest(@NonNull String testString, @NonNull Class<?> exceptionClass) throws Exception {
 		try {
 			Markup markup = doDecode(testString);
-			@SuppressWarnings({"unused", "null"})
-			String testResult = MarkupToHTML.toString(metamodelManager, null, markup);
+			@SuppressWarnings("unused")
+			String testResult = MarkupToHTML.toString(ocl.getEnvironmentFactory(), null, markup);
 			fail(toPrintable(testString) + " expected " + exceptionClass.getName());
 		} catch (Exception e) {
 			assertEquals(toPrintable(testString), exceptionClass, e.getClass());
@@ -91,8 +89,7 @@ public class MarkupTests extends XtextTestCase
 	protected void doHtmlTest(Object context, @NonNull String expected, @NonNull String testString) throws Exception {
 		Markup markup = doDecode(testString);
 		//		System.out.println(MarkupToTree.toString(markup));
-		@SuppressWarnings("null")
-		String testResult = MarkupToHTML.toString(metamodelManager, context, markup);
+		String testResult = MarkupToHTML.toString(ocl.getEnvironmentFactory(), context, markup);
 		assertEquals(toPrintable(testString), expected, testResult);
 	}
 

@@ -29,10 +29,10 @@ import org.eclipse.emf.ecore.xmi.impl.URIHandlerImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.TemplateParameterSubstitutionVisitor;
 import org.eclipse.ocl.pivot.internal.prettyprint.EssentialOCLPrettyPrintVisitor;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintVisitor;
@@ -129,8 +129,8 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 	}
 	
 	@Override
-	public @NonNull TemplateParameterSubstitutionVisitor createTemplateParameterSubstitutionVisitor(@NonNull MetamodelManager metamodelManager, @Nullable Type selfType, @Nullable Type selfTypeValue) {
-		return new TemplateParameterSubstitutionVisitor(metamodelManager, selfType, selfTypeValue);
+	public @NonNull TemplateParameterSubstitutionVisitor createTemplateParameterSubstitutionVisitor(@NonNull EnvironmentFactory environmentFactory, @Nullable Type selfType, @Nullable Type selfTypeValue) {
+		return new TemplateParameterSubstitutionVisitor(environmentFactory, selfType, selfTypeValue);
 	}
 
 	@Override
@@ -150,7 +150,7 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 	}
 
 	@Override
-	public @Nullable <T extends Element> T getASElement(@NonNull MetamodelManager metamodelManager,
+	public @Nullable <T extends Element> T getASElement(@NonNull EnvironmentFactoryInternal environmentFactory,
 			@NonNull Class<T> pivotClass, @NonNull EObject eObject) throws ParserException {
 		throw new UnsupportedOperationException(getClass().getName() + ".getPivotOf");
 	}
@@ -196,7 +196,7 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 	}
 
 	@Override
-	public @Nullable Element importFromResource(@NonNull MetamodelManager metamodelManager,
+	public @Nullable Element importFromResource(@NonNull EnvironmentFactoryInternal environmentFactory,
 			@NonNull Resource resource, @Nullable URI uri) throws ParserException {
 		if (resource instanceof ASResource) {
 			if (uri == null) {

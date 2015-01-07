@@ -364,7 +364,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	@Test public void test_container_navigation() throws InvocationTargetException {
 		initFruitPackage();
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
-		IdResolver idResolver = metamodelManager.getIdResolver();
+		IdResolver idResolver = ocl.getIdResolver();
 		metamodelManager.addGlobalNamespace("fruit", fruitPackage);
 		//
 		//	Simple model: aTree contains redApple
@@ -403,7 +403,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	@Test public void test_nested_names() throws InvocationTargetException {
 		initFruitPackage();
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
-		IdResolver idResolver = metamodelManager.getIdResolver();
+		IdResolver idResolver = ocl.getIdResolver();
 		org.eclipse.ocl.pivot.Class appleType = metamodelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Class.class, apple);
 		//
 		//	Simple model: appleTree contains redApple

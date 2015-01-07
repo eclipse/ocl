@@ -387,7 +387,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	 */
 	private final @NonNull CompleteURIs completeURIs = new CompleteURIs(this);
 	
-	protected /*final @NonNull*/ MetamodelManager metamodelManager;
+	protected /*final @NonNull*/ EnvironmentFactoryInternal environmentFactory;
 	
 	private Orphanage orphanage = null;
 
@@ -544,7 +544,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 
 	@Override
 	public @NonNull MetamodelManager getMetamodelManager() {
-		return ClassUtil.nonNullState(metamodelManager);
+		return environmentFactory.getMetamodelManager();
 	}
 
 	@Override
@@ -563,7 +563,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	public @NonNull Orphanage getOrphanage() {
 		Orphanage orphanage2 = orphanage;
 		if (orphanage2 == null) {
-			orphanage2 = orphanage = metamodelManager.createOrphanage();
+			orphanage2 = orphanage = environmentFactory.getMetamodelManager().createOrphanage();
 			orphanage2.addPackageListener(getOrphanCompletePackage().getPartialPackages());
 		}
 		return orphanage2;
@@ -625,6 +625,11 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.COMPLETE_MODEL__OWNING_COMPLETE_ENVIRONMENT, newOwningCompleteEnvironment, newOwningCompleteEnvironment));
+	}
+
+	@Override
+	public @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
+		return ClassUtil.nonNullState(environmentFactory);
 	}
 
 	/**
@@ -698,7 +703,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	@Override
 	public @NonNull CompleteModelInternal init(@NonNull CompleteEnvironmentInternal completeEnvironment) {
 		this.completeEnvironment = completeEnvironment;
-		this.metamodelManager = completeEnvironment.getMetamodelManager();
+		this.environmentFactory = completeEnvironment.getEnvironmentFactory();
 		partialModels = new PartialModels(this);
 		ownedCompletePackages = new RootCompletePackages(this);
 		return this;
@@ -741,7 +746,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 					}
 				}
 				@NonNull org.eclipse.ocl.pivot.Class unspecializedSuperClass = PivotUtil.getUnspecializedTemplateableElement(superClass);
-				CompleteClassInternal superCompleteClass = metamodelManager.getCompleteClass(unspecializedSuperClass);
+				CompleteClassInternal superCompleteClass = environmentFactory.getMetamodelManager().getCompleteClass(unspecializedSuperClass);
 				org.eclipse.ocl.pivot.Class superPivotClass = superCompleteClass.getPivotClass();
 				if (superPivotClass instanceof CollectionType) {
 					if (superSpecializedTemplateParameterSubstitutions.size() == 1) {

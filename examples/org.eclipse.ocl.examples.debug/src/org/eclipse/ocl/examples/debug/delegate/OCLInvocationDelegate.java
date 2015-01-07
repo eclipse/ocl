@@ -64,7 +64,7 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 		try {
 			OCL ocl = delegateDomain.getOCL();
 			MetamodelManager metamodelManager = ocl.getMetamodelManager();
-			IdResolver idResolver = metamodelManager.getIdResolver();
+			IdResolver idResolver = ocl.getIdResolver();
 			ExpressionInOCL specification2 = specification;
 			if (specification2 == null) {
 				Operation operation2 = operation;

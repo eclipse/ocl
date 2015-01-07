@@ -21,6 +21,7 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.ParserContext;
 
 /**
@@ -109,9 +110,17 @@ public interface EnvironmentFactory extends Adaptable, Customizable
 	 */
 	@NonNull ParserContext createParserContext(@Nullable EObject context);
 
+	@NonNull CompleteEnvironment getCompleteEnvironment();
+
+	@NonNull CompleteModel getCompleteModel();
+
 	@NonNull IdResolver getIdResolver();
 
 	@NonNull MetamodelManager getMetamodelManager();
+
+	@NonNull ProjectManager getProjectManager();
+	
+	@NonNull StandardLibrary getStandardLibrary();
 
 	@NonNull MetamodelManager createMetamodelManager(@NonNull ResourceSet resourceSet);
 }

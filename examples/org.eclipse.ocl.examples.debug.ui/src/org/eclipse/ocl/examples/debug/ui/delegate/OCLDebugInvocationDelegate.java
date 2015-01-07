@@ -23,7 +23,6 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.delegate.OCLInvocationDelegate;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.Query;
@@ -38,8 +37,7 @@ public class OCLDebugInvocationDelegate extends OCLInvocationDelegate
 	}
 
 	protected @Nullable Object evaluate(@NonNull OCL ocl, @NonNull ExpressionInOCL query, InternalEObject target, EList<?> arguments) {
-		MetamodelManager metamodelManager = ocl.getMetamodelManager();
-		IdResolver idResolver = metamodelManager.getIdResolver();
+		IdResolver idResolver = ocl.getIdResolver();
 		Query query2 = ocl.createQuery(query);
 		EvaluationEnvironment env = query2.getEvaluationEnvironment(target);
 		Object object = target;

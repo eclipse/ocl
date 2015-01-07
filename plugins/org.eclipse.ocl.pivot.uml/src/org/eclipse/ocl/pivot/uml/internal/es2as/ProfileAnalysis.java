@@ -18,6 +18,7 @@ import java.util.Set;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CompleteClass;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Profile;
 import org.eclipse.ocl.pivot.Stereotype;
 import org.eclipse.ocl.pivot.Type;
@@ -30,7 +31,7 @@ import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 public class ProfileAnalysis
 {
 	protected final @NonNull UML2AS.Outer converter;
-	protected final @NonNull MetamodelManager metamodelManager;
+	protected final @NonNull EnvironmentFactory environmentFactory;
 
 	/**
 	 * All metatypes that are extended by a TypeExtension.
@@ -68,7 +69,7 @@ public class ProfileAnalysis
 
 	public ProfileAnalysis(@NonNull UML2AS.Outer converter) {
 		this.converter = converter;
-		this.metamodelManager = converter.getMetamodelManager();
+		this.environmentFactory = converter.getEnvironmentFactory();
 	}
 	
 	public void addStereotype(@NonNull Stereotype asStereotype) {
@@ -345,6 +346,7 @@ public class ProfileAnalysis
 	}
 
 	private void computeMetatypeClosure() {
+		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		for (org.eclipse.ocl.pivot.Package metapackage : allExtendedMetapackages) {
 			for (org.eclipse.ocl.pivot.Class subMetatype : metapackage.getOwnedClasses()) {
 				if (subMetatype != null) {
@@ -366,6 +368,7 @@ public class ProfileAnalysis
 	}
 
 	private void computeStereotypeClosure() {
+		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		for (Stereotype subStereotype : allStereotypes) {
 			if (subStereotype != null) {
 				Set<Stereotype> superStereotypeClosure = new HashSet<Stereotype>();

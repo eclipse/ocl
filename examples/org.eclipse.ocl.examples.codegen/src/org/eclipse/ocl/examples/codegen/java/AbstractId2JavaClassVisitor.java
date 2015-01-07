@@ -15,6 +15,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.generator.GenModelHelper;
 import org.eclipse.ocl.examples.codegen.java.types.JavaTypeId;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
@@ -38,7 +39,6 @@ import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.ids.UnspecifiedId;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.values.IntegerRange;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -59,8 +59,8 @@ public abstract class AbstractId2JavaClassVisitor implements IdVisitor<Class<?>>
 	@Override
 	public @NonNull Class<?> visitClassId(@NonNull ClassId id) {
 //		return visiting(id);
-		MetamodelManager metamodelManager = genModelHelper.getMetamodelManager();
-		Type type = metamodelManager.getIdResolver().getType(id, null);
+		EnvironmentFactory environmentFactory = genModelHelper.getEnvironmentFactory();
+		Type type = environmentFactory.getIdResolver().getType(id, null);
 		EClass eClass = (EClass) type.getETarget();
 		if (eClass != null) {
 			try {

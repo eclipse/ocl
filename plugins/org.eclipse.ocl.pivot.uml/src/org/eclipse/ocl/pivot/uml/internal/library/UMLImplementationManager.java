@@ -13,11 +13,11 @@ package org.eclipse.ocl.pivot.uml.internal.library;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.library.ImplementationManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.library.LibraryProperty;
 
 /**
@@ -25,8 +25,8 @@ import org.eclipse.ocl.pivot.library.LibraryProperty;
  */
 public class UMLImplementationManager extends ImplementationManager
 {			
-	public UMLImplementationManager(@NonNull MetamodelManager metamodelManager) {
-		super(metamodelManager);
+	public UMLImplementationManager(@NonNull EnvironmentFactory environmentFactory) {
+		super(environmentFactory);
 	}
 
 	@Override

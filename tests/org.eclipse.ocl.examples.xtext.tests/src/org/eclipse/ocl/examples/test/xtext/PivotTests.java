@@ -290,7 +290,7 @@ public class PivotTests extends XtextTestCase
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " resolveProxies()");
 		assertNoUnresolvedProxies("Unresolved proxies", ecoreResource);
 //		EcoreAliasCreator.createPackageAliases(ecoreResource);
-		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager);
+		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager.getEnvironmentFactory());
 		Model pivotModel = ecore2as.getPivotModel();
 		
 		
@@ -324,7 +324,7 @@ public class PivotTests extends XtextTestCase
 		Resource csResource = csResourceSet.createResource(csURI);
 		Map<BaseCSResource, ASResource> cs2asResourceMap = new HashMap<BaseCSResource, ASResource>();
 //		cs2asResourceMap.put(csResource, asResource);
-		AS2CS as2cs = new OCLinEcoreAS2CS(cs2asResourceMap, metamodelManager);
+		AS2CS as2cs = new OCLinEcoreAS2CS(cs2asResourceMap, metamodelManager.getEnvironmentFactory());
 		as2cs.update();
 		csResource.save(null);
 //		adapter.dispose();

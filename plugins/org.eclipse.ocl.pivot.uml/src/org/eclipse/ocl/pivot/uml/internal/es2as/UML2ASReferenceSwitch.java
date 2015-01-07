@@ -24,16 +24,16 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Profile;
 import org.eclipse.ocl.pivot.ProfileApplication;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Slot;
 import org.eclipse.ocl.pivot.Stereotype;
-import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.StereotypeExtender;
+import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
@@ -48,13 +48,13 @@ public class UML2ASReferenceSwitch extends UMLSwitch<Object>
 	private static final Logger logger = Logger.getLogger(UML2ASReferenceSwitch.class);
 
 	protected final @NonNull UML2AS converter;
-	protected final @NonNull MetamodelManager metamodelManager;
+	protected final @NonNull EnvironmentFactory environmentFactory;
 	protected final @NonNull StandardLibraryInternal standardLibrary;
 	private Set<EClass> doneWarnings = null;
 	
 	public UML2ASReferenceSwitch(@NonNull UML2AS converter) {
 		this.converter = converter;
-		this.metamodelManager = converter.getMetamodelManager();
+		this.environmentFactory = converter.getEnvironmentFactory();
 		this.standardLibrary = converter.getStandardLibrary();
 	}
 
@@ -233,7 +233,7 @@ public class UML2ASReferenceSwitch extends UMLSwitch<Object>
 				if (pivotElement == null) {
 					Resource eResource = eObject.eResource();
 					if (eResource != null) {
-						UML2AS adapter = UML2AS.findAdapter(eResource, metamodelManager);
+						UML2AS adapter = UML2AS.findAdapter(eResource, environmentFactory);
 						if (adapter != null) {
 							pivotElement = adapter.getCreated(pivotClass,
 								eObject);
@@ -309,7 +309,7 @@ public class UML2ASReferenceSwitch extends UMLSwitch<Object>
 					boolean isUnique = umlMultiplicity.isUnique();
 					IntegerValue lowerValue = ValueUtil.integerValueOf(lower);
 					UnlimitedNaturalValue upperValue = upper == -1 ? ValueUtil.UNLIMITED_VALUE : ValueUtil.unlimitedNaturalValueOf(upper);
-					pivotType = metamodelManager.getCollectionType(isOrdered, isUnique, pivotType, lowerValue, upperValue);
+					pivotType = environmentFactory.getMetamodelManager().getCollectionType(isOrdered, isUnique, pivotType, lowerValue, upperValue);
 				}
 			}
 			pivotElement.setType(pivotType);

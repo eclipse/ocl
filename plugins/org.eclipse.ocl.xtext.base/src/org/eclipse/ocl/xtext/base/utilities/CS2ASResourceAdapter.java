@@ -72,7 +72,7 @@ public class CS2ASResourceAdapter extends AbstractMetamodelManagerResourceAdapte
 	public CS2ASResourceAdapter(@NonNull BaseCSResource csResource, @Nullable ASResource asResource, @NonNull MetamodelManager metamodelManager) {
 		super(csResource, metamodelManager);
 		Map<BaseCSResource, ASResource> cs2asResourceMap = computeCS2ASResourceMap(csResource, asResource, metamodelManager);
-		converter = csResource.createCS2AS(cs2asResourceMap, metamodelManager);
+		converter = csResource.createCS2AS(cs2asResourceMap, metamodelManager.getEnvironmentFactory());
 	}
 
 	public @NonNull Map<BaseCSResource, ASResource> computeCS2ASResourceMap(@NonNull BaseCSResource csResource, @Nullable ASResource asResource, @NonNull MetamodelManager metamodelManager) {

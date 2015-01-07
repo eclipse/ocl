@@ -61,6 +61,7 @@ import org.eclipse.ocl.pivot.ids.BuiltInTypeId;
 import org.eclipse.ocl.pivot.ids.LambdaTypeId;
 import org.eclipse.ocl.pivot.ids.ParametersId;
 import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
@@ -614,6 +615,7 @@ public class OCLinEcoreTablesUtils
 	protected final @NonNull CodeGenString s = new CodeGenString();
 	protected final @NonNull GenPackage genPackage;
 	protected final @NonNull MetamodelManager metamodelManager;
+	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 	protected final @NonNull StandardLibraryInternal standardLibrary;
 	protected final @NonNull org.eclipse.ocl.pivot.Package pPackage;
 	protected final @NonNull DeclareParameterTypeVisitor declareParameterTypeVisitor = new DeclareParameterTypeVisitor(s);
@@ -630,7 +632,8 @@ public class OCLinEcoreTablesUtils
 		assert genModelResourceSet != null;
 		EnvironmentFactoryResourceSetAdapter resourceSetAdapter = EnvironmentFactoryResourceSetAdapter.getAdapter(genModelResourceSet, null);
 		this.metamodelManager = resourceSetAdapter.getMetamodelManager();
-		this.standardLibrary = metamodelManager.getStandardLibrary();
+		this.environmentFactory = metamodelManager.getEnvironmentFactory();
+		this.standardLibrary = environmentFactory.getStandardLibrary();
 		this.pPackage = ClassUtil.nonNullModel(getPivotPackage(genPackage));
 		activeClassesSortedByName = getActiveClassesSortedByName(pPackage);
 	}
@@ -905,7 +908,7 @@ public class OCLinEcoreTablesUtils
 		if (ecoreResource == null) {
 			return null;
 		}
-		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager);
+		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, environmentFactory);
 		org.eclipse.ocl.pivot.Package asPackage = ecore2as.getCreated(org.eclipse.ocl.pivot.Package.class, ePackage);
 		if (asPackage == null) {
 			return null;

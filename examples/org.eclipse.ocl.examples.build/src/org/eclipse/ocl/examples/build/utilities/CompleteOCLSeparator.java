@@ -86,7 +86,7 @@ public class CompleteOCLSeparator extends WorkflowComponentWithModelSlot
 		EnvironmentFactoryResourceSetAdapter.getAdapter(csResourceSet, metamodelManager.getEnvironmentFactory());
 		BaseCSResource xtextResource = (BaseCSResource) csResourceSet.createResource(xtextURI, OCLinEcoreCSPackage.eCONTENT_TYPE);
 		if (oclResource != null) {
-			xtextResource.updateFrom(oclResource, metamodelManager);
+			xtextResource.updateFrom(oclResource, metamodelManager.getEnvironmentFactory());
 		}
 		return xtextResource;
 	}

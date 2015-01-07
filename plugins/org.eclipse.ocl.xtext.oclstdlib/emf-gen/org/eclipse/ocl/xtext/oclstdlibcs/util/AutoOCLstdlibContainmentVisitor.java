@@ -46,7 +46,7 @@ public class AutoOCLstdlibContainmentVisitor
     public AutoOCLstdlibContainmentVisitor(@NonNull CS2ASConversion context) {
         super(context);
         this.converter = context.getConverter();
-        this.idResolver = converter.getMetamodelManager().getIdResolver();
+        this.idResolver = converter.getEnvironmentFactory().getIdResolver();
     }
     
     @Override

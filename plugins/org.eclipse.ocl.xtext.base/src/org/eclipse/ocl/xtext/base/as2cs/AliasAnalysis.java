@@ -27,6 +27,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
@@ -62,20 +63,20 @@ public class AliasAnalysis extends AdapterImpl
 		if (metamodelManager == null) {
 			throw new IllegalStateException("No MetamodelManager");
 		}
-		return getAdapter(resource, metamodelManager);
+		return getAdapter(resource, metamodelManager.getEnvironmentFactory());
 	}
 
-	public static @NonNull AliasAnalysis getAdapter(@NonNull Resource resource, @NonNull MetamodelManager metamodelManager) {
+	public static @NonNull AliasAnalysis getAdapter(@NonNull Resource resource, @NonNull EnvironmentFactory environmentFactory) {
 		List<Adapter> eAdapters = resource.eAdapters();
 		for (Adapter adapter : eAdapters) {
 			if (adapter instanceof AliasAnalysis) {
 				AliasAnalysis aliasAnalysis = (AliasAnalysis)adapter;
-				if (aliasAnalysis.metamodelManager == metamodelManager) {
+				if (aliasAnalysis.environmentFactory == environmentFactory) {
 					return aliasAnalysis;
 				}
 			}
 		}
-		AliasAnalysis aliasAnalysis = new AliasAnalysis(resource, metamodelManager);
+		AliasAnalysis aliasAnalysis = new AliasAnalysis(resource, environmentFactory);
 		Set<org.eclipse.ocl.pivot.Package> localPackages = new HashSet<org.eclipse.ocl.pivot.Package>();
 		Set<org.eclipse.ocl.pivot.Package> otherPackages = new HashSet<org.eclipse.ocl.pivot.Package>();
 		aliasAnalysis.computePackages(localPackages, otherPackages);
@@ -83,7 +84,7 @@ public class AliasAnalysis extends AdapterImpl
 		return aliasAnalysis;
 	}
 
-	protected final @NonNull MetamodelManager metamodelManager;
+	protected final @NonNull EnvironmentFactory environmentFactory;
 	
 	/**
 	 * Mapping of all named elements from the name to the name usage,
@@ -97,9 +98,9 @@ public class AliasAnalysis extends AdapterImpl
 	 */
 	private @NonNull Map<CompletePackage, String> allAliases = new HashMap<CompletePackage, String>();
 
-	public AliasAnalysis(@NonNull Resource resource, @NonNull MetamodelManager metamodelManager) {
+	public AliasAnalysis(@NonNull Resource resource, @NonNull EnvironmentFactory environmentFactory) {
 		resource.eAdapters().add(this);
-		this.metamodelManager = metamodelManager;
+		this.environmentFactory = environmentFactory;
 	}
 
 	/**
@@ -107,6 +108,7 @@ public class AliasAnalysis extends AdapterImpl
 	 */
 	private void computeAliases(@NonNull Set<org.eclipse.ocl.pivot.Package> localPackages,
 			@NonNull Set<org.eclipse.ocl.pivot.Package> otherPackages) {		
+		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		for (org.eclipse.ocl.pivot.Package localPackage : localPackages) {
 			if (localPackage != null) {
 				CompletePackage primaryPackage = metamodelManager.getCompletePackage(localPackage);
@@ -167,6 +169,7 @@ public class AliasAnalysis extends AdapterImpl
 	 */
 	private void computePackages(@NonNull Set<org.eclipse.ocl.pivot.Package> localPackages,
 			@NonNull Set<org.eclipse.ocl.pivot.Package> otherPackages) {
+		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		for (TreeIterator<EObject> tit = ((Resource)target).getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
 			if (eObject instanceof ImportCS) {
@@ -247,7 +250,7 @@ public class AliasAnalysis extends AdapterImpl
 			eObject2 = ((Pivotable)eObject2).getPivot();
 		}
 		if (eObject2 instanceof org.eclipse.ocl.pivot.Package) {
-			CompletePackage completePackage = metamodelManager.getCompletePackage((org.eclipse.ocl.pivot.Package)eObject2);
+			CompletePackage completePackage = environmentFactory.getMetamodelManager().getCompletePackage((org.eclipse.ocl.pivot.Package)eObject2);
 			String alias = allAliases.get(completePackage);
 			if (alias != null) {
 				return alias;

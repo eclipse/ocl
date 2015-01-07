@@ -50,11 +50,11 @@ import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceImpl;
 import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompletePackageInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.IllegalLibraryException;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -83,13 +83,13 @@ public class EnvironmentView
 		    throw new UnsupportedOperationException();
 	    }
 	    
-	    public abstract int compare(@NonNull MetamodelManager metamodelManager, @NonNull T o1, @NonNull T o2);
+	    public abstract int compare(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull T o1, @NonNull T o2);
 	}
 	
 	private static final class ImplicitDisambiguator extends Disambiguator<Object>
 	{
 		@Override
-		public int compare(@NonNull MetamodelManager metamodelManager, @NonNull Object match1, @NonNull Object match2) {
+		public int compare(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Object match1, @NonNull Object match2) {
 			boolean match1IsImplicit = (match1 instanceof Property) && ((Property)match1).isImplicit();
 			boolean match2IsImplicit = (match2 instanceof Property) && ((Property)match2).isImplicit();
 			if (!match1IsImplicit) {
@@ -104,7 +104,7 @@ public class EnvironmentView
 	private static final class MetamodelMergeDisambiguator extends Disambiguator<Feature>
 	{
 		@Override
-		public int compare(@NonNull MetamodelManager metamodelManager, @NonNull Feature match1, @NonNull Feature match2) {
+		public int compare(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Feature match1, @NonNull Feature match2) {
 			org.eclipse.ocl.pivot.Package p1 = PivotUtil.getContainingPackage(match1);
 			org.eclipse.ocl.pivot.Package p2 = PivotUtil.getContainingPackage(match2);
 			if (p1 == null) {
@@ -113,7 +113,7 @@ public class EnvironmentView
 			if (p2 == null) {
 				return 0;
 			}
-			CompleteModel completeModel = metamodelManager.getCompleteModel();
+			CompleteModel completeModel = environmentFactory.getCompleteModel();
 			CompletePackage s1 = completeModel.getCompletePackage(p1);
 			CompletePackage s2 = completeModel.getCompletePackage(p2);
 			if (s1 != s2) {
@@ -128,7 +128,7 @@ public class EnvironmentView
 	private static final class OperationDisambiguator extends Disambiguator<Operation>
 	{
 		@Override
-		public int compare(@NonNull MetamodelManager metamodelManager, @NonNull Operation match1, @NonNull Operation match2) {
+		public int compare(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Operation match1, @NonNull Operation match2) {
 			if (isRedefinitionOf(match1, match2)) {
 				return 1;				// match2 inferior			
 			}
@@ -157,9 +157,10 @@ public class EnvironmentView
 	private static final class MergedPackageDisambiguator extends Disambiguator<org.eclipse.ocl.pivot.Package>
 	{
 		@Override
-		public int compare(@NonNull MetamodelManager metamodelManager, @NonNull org.eclipse.ocl.pivot.Package match1, @NonNull org.eclipse.ocl.pivot.Package match2) {
-			CompletePackageInternal completePackage1 = metamodelManager.getCompleteModel().getCompletePackage(match1);
-			CompletePackageInternal completePackage2 = metamodelManager.getCompleteModel().getCompletePackage(match2);
+		public int compare(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull org.eclipse.ocl.pivot.Package match1, @NonNull org.eclipse.ocl.pivot.Package match2) {
+			CompleteModelInternal completeModel = environmentFactory.getCompleteModel();
+			CompletePackageInternal completePackage1 = completeModel.getCompletePackage(match1);
+			CompletePackageInternal completePackage2 = completeModel.getCompletePackage(match2);
 			if (completePackage1 == completePackage2) {
 				return 1;				// match2 inferior			
 			}
@@ -170,7 +171,7 @@ public class EnvironmentView
 	private static final class PropertyDisambiguator extends Disambiguator<Property>
 	{
 		@Override
-		public int compare(@NonNull MetamodelManager metamodelManager, @NonNull Property match1, @NonNull Property match2) {
+		public int compare(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Property match1, @NonNull Property match2) {
 			if (isRedefinitionOf(match1, match2)) {
 				return 1;				// match2 inferior			
 			}
@@ -232,7 +233,7 @@ public class EnvironmentView
 		return disambiguatorMap.get(key);
 	}
 		
-	protected final @NonNull MetamodelManager metamodelManager;
+	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 	protected final @NonNull EStructuralFeature reference;
 	private EClassifier requiredType;
 	private boolean isQualifier;
@@ -244,8 +245,8 @@ public class EnvironmentView
 
 	private List<ScopeFilter> matchers = null;	// Prevailing filters for matching
 
-	public EnvironmentView(@NonNull MetamodelManager metamodelManager, @NonNull EStructuralFeature reference, @Nullable String name) {
-		this.metamodelManager = metamodelManager;
+	public EnvironmentView(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull EStructuralFeature reference, @Nullable String name) {
+		this.environmentFactory = environmentFactory;
 		this.reference = reference;
 		this.requiredType = reference.getEType();
 		this.isQualifier = false;
@@ -301,9 +302,9 @@ public class EnvironmentView
 	public void addAllOperations(@NonNull org.eclipse.ocl.pivot.Class type, @Nullable FeatureFilter featureFilter) {
 		if (accepts(PivotPackage.Literals.ITERATION)		// If ITERATION is acceptable then so too is OPERATION
 				&& (requiredType != PivotPackage.Literals.NAMESPACE)) {			// Don't really want operations when looking for NAMESPACE
-			assert metamodelManager.isTypeServeable(type);
+			assert environmentFactory.getMetamodelManager().isTypeServeable(type);
 			type = PivotUtil.getUnspecializedTemplateableElement(type);
-			CompleteClass completeClass = metamodelManager.getCompleteClass(type);
+			CompleteClass completeClass = environmentFactory.getMetamodelManager().getCompleteClass(type);
 			String name2 = name;
 			if (name2 != null) {
 				for (Operation operation : completeClass.getOperations(featureFilter, name2)) {
@@ -324,7 +325,7 @@ public class EnvironmentView
 
 	public void addAllPackages(@NonNull org.eclipse.ocl.pivot.Package pkge) {
 		if (accepts(PivotPackage.Literals.PACKAGE)) {
-			CompletePackage parentCompletePackage = metamodelManager.getCompletePackage(pkge);
+			CompletePackage parentCompletePackage = environmentFactory.getMetamodelManager().getCompletePackage(pkge);
 			String name2 = name;
 			if (name2 != null) {
 				CompletePackage completePackage = parentCompletePackage.getOwnedCompletePackage(name2);
@@ -355,7 +356,7 @@ public class EnvironmentView
 			else {
 				for (org.eclipse.ocl.pivot.Package pkge : root.getOwnedPackages()) {
 					if (pkge != null) {
-						addNamedElement(metamodelManager.getPrimaryPackage(pkge));
+						addNamedElement(environmentFactory.getMetamodelManager().getPrimaryPackage(pkge));
 					}
 				}
 			}
@@ -405,8 +406,8 @@ public class EnvironmentView
 	public void addAllProperties(@NonNull org.eclipse.ocl.pivot.Class type, @Nullable FeatureFilter featureFilter) {
 		if (accepts(PivotPackage.Literals.PROPERTY)
 			&& (requiredType != PivotPackage.Literals.NAMESPACE)) {			// Don't really want properties when looking for NAMESPACE
-			assert metamodelManager.isTypeServeable(type);
-			CompleteClass completeClass = metamodelManager.getCompleteClass(type);
+			assert environmentFactory.getMetamodelManager().isTypeServeable(type);
+			CompleteClass completeClass = environmentFactory.getMetamodelManager().getCompleteClass(type);
 			String name2 = name;
 			if (name2 != null) {
 				for (Property property : completeClass.getProperties(featureFilter, name2)) {
@@ -427,8 +428,8 @@ public class EnvironmentView
 	
 	public void addAllStates(@NonNull Type type) {
 		if (accepts(PivotPackage.Literals.STATE)) {
-			assert metamodelManager.isTypeServeable(type);
-			CompleteClass completeClass = metamodelManager.getCompleteModel().getCompleteClass(type);
+			assert environmentFactory.getMetamodelManager().isTypeServeable(type);
+			CompleteClass completeClass = environmentFactory.getCompleteModel().getCompleteClass(type);
 			String name2 = name;
 			if (name2 != null) {
 				for (State state : completeClass.getStates(name2)) {
@@ -473,7 +474,7 @@ public class EnvironmentView
 
 	public void addAllTypes(@NonNull org.eclipse.ocl.pivot.Package pkge) {
 		if (accepts(PivotPackage.Literals.CLASS)) {
-			CompletePackage completePackage = metamodelManager.getCompletePackage(pkge);
+			CompletePackage completePackage = environmentFactory.getMetamodelManager().getCompletePackage(pkge);
 			String name2 = name;
 			if (name2 != null) {
 				org.eclipse.ocl.pivot.Class type = completePackage.getMemberType(name2);
@@ -481,7 +482,7 @@ public class EnvironmentView
 					addNamedElement(type);
 				}
 				else {
-					completePackage = metamodelManager.getCompleteModel().getPrimitiveCompletePackage();
+					completePackage = environmentFactory.getCompleteModel().getPrimitiveCompletePackage();
 					type = completePackage.getMemberType(name2);
 					if (type != null) {
 						addNamedElement(type);
@@ -492,7 +493,7 @@ public class EnvironmentView
 				for (CompleteClass completeClass : completePackage.getOwnedCompleteClasses()) {
 					addNamedElement(completeClass.getPivotClass());
 				}
-				completePackage = metamodelManager.getCompleteModel().getPrimitiveCompletePackage();
+				completePackage = environmentFactory.getCompleteModel().getPrimitiveCompletePackage();
 				for (CompleteClass completeClass : completePackage.getOwnedCompleteClasses()) {
 					addNamedElement(completeClass.getPivotClass());
 				}
@@ -549,7 +550,7 @@ public class EnvironmentView
 //			element = ((TypeServer) element).getPrimaryType();		// FIXME lose casts
 //		}
 		else if (element instanceof EObject) {
-			element = metamodelManager.getPrimaryElement((EObject) element);		// FIXME lose casts
+			element = environmentFactory.getMetamodelManager().getPrimaryElement((EObject) element);		// FIXME lose casts
 		}
 		if (element == null) {
 			return;
@@ -656,7 +657,7 @@ public class EnvironmentView
 			@SuppressWarnings("null")
 			@NonNull URI uri = URI.createURI(name).resolve(baseURI);
 			try {
-				Element importedElement = metamodelManager.loadResource(uri, null, null);				
+				Element importedElement = environmentFactory.getMetamodelManager().loadResource(uri, null, null);				
 				if (importedElement != null) {
 					addElement(name, importedElement);
 				}
@@ -698,7 +699,7 @@ public class EnvironmentView
 	}
 
 	public void addRootPackages() {
-		CompleteModelInternal completeModel = metamodelManager.getCompleteModel();
+		CompleteModelInternal completeModel = environmentFactory.getCompleteModel();
 		String name2 = name;
 		if (name2 != null) {
 			CompletePackage rootCompletePackage = completeModel.getOwnedCompletePackage(name2);
@@ -726,7 +727,7 @@ public class EnvironmentView
 	}
 
 	public int computeLookups(@NonNull Element target, @Nullable Element child) {
-		ScopeView pivotScopeView = new PivotScopeView(metamodelManager, target, child, false);
+		ScopeView pivotScopeView = new PivotScopeView(environmentFactory, target, child, false);
 		return computeLookups(pivotScopeView);
 	}
 	
@@ -752,7 +753,7 @@ public class EnvironmentView
 	}
 
 	public void computeQualifiedLookups(@NonNull Element target) {
-		ScopeView parentScopeView = new PivotScopeView(metamodelManager, target, null, true);
+		ScopeView parentScopeView = new PivotScopeView(environmentFactory, target, null, true);
 		addElementsOfScope(target, parentScopeView);
 	}
 
@@ -781,9 +782,13 @@ public class EnvironmentView
 		return result;
 	}
 
-	public @NonNull MetamodelManager getMetamodelManager() {
-		return metamodelManager;
+	public @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
+		return environmentFactory;
 	}
+
+//	public @NonNull MetamodelManager getMetamodelManager() {
+//		return metamodelManager;
+//	}
 
 	public @Nullable String getName() {
 		return name;
@@ -802,7 +807,7 @@ public class EnvironmentView
 	}
 
 	public @NonNull StandardLibraryInternal getStandardLibrary() {
-		return metamodelManager.getStandardLibrary();
+		return environmentFactory.getStandardLibrary();
 	}
 
 	/**
@@ -849,7 +854,7 @@ public class EnvironmentView
 								if (key.isAssignableFrom(iClass) && key.isAssignableFrom(jClass)) {
 									for (Comparator<Object> comparator : disambiguatorMap.get(key)) {
 										if (comparator instanceof Disambiguator<?>) {
-											verdict = ((Disambiguator<Object>)comparator).compare(metamodelManager, iValue, jValue);
+											verdict = ((Disambiguator<Object>)comparator).compare(environmentFactory, iValue, jValue);
 										}
 										else {
 											verdict = comparator.compare(iValue, jValue);

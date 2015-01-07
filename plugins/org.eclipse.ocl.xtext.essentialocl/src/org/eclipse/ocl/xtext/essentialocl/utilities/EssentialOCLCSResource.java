@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Feature;
 import org.eclipse.ocl.pivot.LetExp;
 import org.eclipse.ocl.pivot.LoopExp;
@@ -34,10 +35,11 @@ import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.internal.utilities.IllegalLibraryException;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
@@ -205,8 +207,8 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 
 	@Override
 	public @NonNull CS2AS createCS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap,
-			@NonNull MetamodelManager metamodelManager) {
-		return new EssentialOCLCS2AS(cs2asResourceMap, metamodelManager);
+			@NonNull EnvironmentFactoryInternal environmentFactory) {
+		return new EssentialOCLCS2AS(cs2asResourceMap, environmentFactory);
 	}
 
 	@Override			// FIXME Bug 380232 workaround
@@ -228,8 +230,8 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 
 	@Override
 	public @NonNull AS2CS createAS2CS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap,
-			@NonNull MetamodelManager metamodelManager) {
-		return new EssentialOCLAS2CS(cs2asResourceMap, metamodelManager);
+			@NonNull EnvironmentFactoryInternal environmentFactory) {
+		return new EssentialOCLAS2CS(cs2asResourceMap, environmentFactory);
 	}
 
 	@Override
@@ -323,8 +325,8 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	}
 
 	@Override
-	public final @NonNull ASResource getASResource(@Nullable MetamodelManager metamodelManager) {
-		CS2ASResourceAdapter adapter = getCS2ASAdapter(metamodelManager);
+	public final @NonNull ASResource getASResource(@Nullable EnvironmentFactory environmentFactory) {
+		CS2ASResourceAdapter adapter = getCS2ASAdapter(environmentFactory != null ? environmentFactory.getMetamodelManager() : null);
 		ASResource asResource = adapter.getASResource(this);
 		if (asResource == null) {
 			throw new IllegalStateException("No Pivot Resource created");
@@ -550,10 +552,10 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	}
 
 	@Override
-	public void updateFrom(@NonNull ASResource asResource, @NonNull MetamodelManager metamodelManager) {		
+	public void updateFrom(@NonNull ASResource asResource, @NonNull EnvironmentFactory environmentFactory) {		
 		Map<BaseCSResource, ASResource> cs2asResourceMap = new HashMap<BaseCSResource, ASResource>();
 		cs2asResourceMap.put(this, asResource);
-		AS2CS as2cs = createAS2CS(cs2asResourceMap, metamodelManager);
+		AS2CS as2cs = createAS2CS(cs2asResourceMap, (EnvironmentFactoryInternal) environmentFactory);
 		as2cs.update();
 	}
 }

@@ -29,6 +29,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Profile;
 import org.eclipse.ocl.pivot.ProfileApplication;
@@ -73,7 +74,7 @@ public class ModelAnalysis
 
 	protected final @NonNull UML2AS.Outer converter;
 	protected final @NonNull ProfileAnalysis profileAnalysis;
-	protected final @NonNull MetamodelManager metamodelManager;
+	protected final @NonNull EnvironmentFactory environmentFactory;
 
 	/**
 	 *	Map of all Profiles Applied to each Package, populated initially by the explicit ProfileApplications and expanded to cover the
@@ -113,7 +114,7 @@ public class ModelAnalysis
 	public ModelAnalysis(@NonNull UML2AS.Outer converter, @NonNull ProfileAnalysis profileAnalysis) {
 		this.converter = converter;
 		this.profileAnalysis = profileAnalysis;
-		this.metamodelManager = converter.getMetamodelManager();
+		this.environmentFactory = converter.getEnvironmentFactory();
 	}
 
 	public void addProfile(@NonNull Profile asProfile) {
@@ -168,6 +169,7 @@ public class ModelAnalysis
 	private void computeExplicitElementExtensions(@NonNull Map<Element, Map<Stereotype, ElementExtension>> element2stereotype2extension,
 			@NonNull Map<EObject, List<org.eclipse.uml2.uml.Element>> umlStereotypeApplication2umlStereotypedElements,
 			@NonNull Map<Element, List<EObject>> asElement2umlStereotypeApplications) {
+		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		for (@SuppressWarnings("null")@NonNull Element asStereotypedElement : asElement2umlStereotypeApplications.keySet()) {
 			List<EObject> umlStereotypeApplications = asElement2umlStereotypeApplications.get(asStereotypedElement);
 			Map<Stereotype, ElementExtension> stereotype2extension = element2stereotype2extension.get(asStereotypedElement);
@@ -400,6 +402,7 @@ public class ModelAnalysis
 	}
 
 	private @NonNull Map<Stereotype, ElementExtension> installExtensions(@NonNull Element asElement, @NonNull Set<StereotypeExtender> typeExtensions) {
+		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		Map<Stereotype, ElementExtension> stereotype2extension = new HashMap<Stereotype, ElementExtension>();
 		for (StereotypeExtender typeExtension : typeExtensions) {
 			Stereotype stereotype = typeExtension.getOwningStereotype();

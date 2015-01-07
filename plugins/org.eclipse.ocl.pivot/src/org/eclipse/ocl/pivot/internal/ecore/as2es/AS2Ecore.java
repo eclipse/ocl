@@ -45,9 +45,9 @@ import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.delegate.DelegateInstaller;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.AbstractConversion;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
@@ -190,8 +190,8 @@ public class AS2Ecore extends AbstractConversion
 		return eOperation;
 	}
 
-	public static @NonNull XMLResource createResource(@NonNull MetamodelManager metamodelManager, @NonNull Resource asResource, @NonNull URI ecoreURI, @Nullable Map<String,Object> options) {
-		AS2Ecore converter = new AS2Ecore(metamodelManager, ecoreURI, options);
+	public static @NonNull XMLResource createResource(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Resource asResource, @NonNull URI ecoreURI, @Nullable Map<String,Object> options) {
+		AS2Ecore converter = new AS2Ecore(environmentFactory, ecoreURI, options);
 		return converter.convertResource(asResource, ecoreURI);
 	}
 	
@@ -256,10 +256,10 @@ public class AS2Ecore extends AbstractConversion
 	protected final @NonNull URI ecoreURI;
 	protected final @Nullable String primitiveTypesUriPrefix;
 	
-	public AS2Ecore(@NonNull MetamodelManager metamodelManager, @NonNull URI ecoreURI, @Nullable Map<String,Object> options) {
-		super(metamodelManager);
+	public AS2Ecore(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull URI ecoreURI, @Nullable Map<String,Object> options) {
+		super(environmentFactory);
 		this.options = options != null ? options : new HashMap<String,Object>();
-		this.delegateInstaller = new DelegateInstaller(metamodelManager, options);
+		this.delegateInstaller = new DelegateInstaller(environmentFactory, options);
 		this.pass1 = new AS2EcoreDeclarationVisitor(this);	
 		this.pass2 = new AS2EcoreReferenceVisitor(this);
 		this.ecoreURI = ecoreURI;
@@ -416,7 +416,7 @@ public class AS2Ecore extends AbstractConversion
 	protected void setGenerationInProgress(@NonNull org.eclipse.ocl.pivot.Package asPackage, boolean isGenerating) {
 		String nsUri = asPackage.getURI();
 		if (nsUri != null) {
-			ProjectManager projectManager = metamodelManager.getProjectManager();
+			ProjectManager projectManager = environmentFactory.getProjectManager();
 			@SuppressWarnings("null")@NonNull URI nsURI = URI.createURI(nsUri);
 			StandaloneProjectMap.IPackageDescriptor packageDescriptor = projectManager.getPackageDescriptor(nsURI);
 			if (packageDescriptor != null) {
