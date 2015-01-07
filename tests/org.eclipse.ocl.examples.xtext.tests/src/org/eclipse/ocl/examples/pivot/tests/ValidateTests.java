@@ -230,7 +230,7 @@ public class ValidateTests extends AbstractValidateTests
 		EPackage validatePackage1 = ClassUtil.nonNullState((EPackage) ecoreResource1.getContents().get(0));
 		EPackage validatePackage2 = ClassUtil.nonNullState((EPackage) ecoreResource2.getContents().get(0));
 		URI oclURI = getProjectFileURI("Validate.ocl");
-		CompleteOCLEObjectValidator completeOCLEObjectValidator = new CompleteOCLEObjectValidator(validatePackage1, oclURI, metamodelManager0);
+		CompleteOCLEObjectValidator completeOCLEObjectValidator = new CompleteOCLEObjectValidator(validatePackage1, oclURI, ocl0.getEnvironmentFactory());
 		EValidator.Registry.INSTANCE.put(validatePackage1, completeOCLEObjectValidator);
 		try {
 			EObject testInstance1 = eCreate(validatePackage1, "Level3");

@@ -30,13 +30,13 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.validation.PivotEObjectValidator;
 import org.eclipse.ocl.pivot.resource.CSResource;
-import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 /**
@@ -50,7 +50,7 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 {	
 	private static final Logger logger = Logger.getLogger(CompleteOCLEObjectValidator.class);
 
-	protected final @NonNull MetamodelManager metamodelManager;
+	protected final @NonNull EnvironmentFactory environmentFactory;
 	protected final @NonNull EPackage ePackage;
 	protected final @NonNull URI oclURI;
 	private Ecore2AS ecore2as = null;
@@ -59,19 +59,16 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 	 * Construct a validator to apply the CompleteOCL invariants from oclURI to ePackage
 	 * for the meta-models managed by metamodelManager.
 	 */
-	public CompleteOCLEObjectValidator(@NonNull EPackage ePackage, @NonNull URI oclURI, @Nullable MetamodelManager metamodelManager) {
-		if (metamodelManager == null) {
-			metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
-		}
-		this.metamodelManager = metamodelManager;
+	public CompleteOCLEObjectValidator(@NonNull EPackage ePackage, @NonNull URI oclURI, @NonNull EnvironmentFactory environmentFactory) {
+		this.environmentFactory = environmentFactory;
 		this.ePackage = ePackage;
 		this.oclURI = oclURI;
 		ResourceSet resourceSet = ePackage.eResource().getResourceSet();
 		if (resourceSet != null) {
-			install(resourceSet, metamodelManager);
+			install(resourceSet, environmentFactory.getMetamodelManager());
 		}
 		else {
-			metamodelManager.loadEPackage(ePackage);
+			environmentFactory.getMetamodelManager().loadEPackage(ePackage);
 		}
 	}
 	
@@ -80,8 +77,8 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 		return ePackage;
 	}
 	
-	public MetamodelManager getMetamodelManager() {
-		return metamodelManager;
+	public @NonNull MetamodelManager getMetamodelManager() {
+		return environmentFactory.getMetamodelManager();
 	}
 	
 	/**
@@ -92,9 +89,9 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 		if (ecoreResource == null) {
 			return false;
 		}
-		ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager);
+		ecore2as = Ecore2AS.getAdapter(ecoreResource, environmentFactory.getMetamodelManager());
 		ResourceSet resourceSet = new ResourceSetImpl();
-		EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, metamodelManager.getEnvironmentFactory());
+		EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, environmentFactory);
 		List<Diagnostic> errors = ecoreResource.getErrors();
 		assert errors != null;
 		String message = PivotUtil.formatResourceDiagnostics(errors, "", "\n");
@@ -139,7 +136,7 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 			logger.error("Failed to load '" + oclURI + message);
 			return false;
 		}
-		Resource asResource = xtextResource.getASResource(metamodelManager);
+		Resource asResource = xtextResource.getASResource(environmentFactory.getMetamodelManager());
 		errors = asResource.getErrors();
 		assert errors != null;
 		message = PivotUtil.formatResourceDiagnostics(errors, "", "\n");
@@ -159,7 +156,7 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 			if (eResource != null) {
 				ResourceSet resourceSet = eResource.getResourceSet();
 				if (resourceSet != null) {
-					install(resourceSet, metamodelManager);
+					install(resourceSet, environmentFactory.getMetamodelManager());
 				}
 			}
 		}
