@@ -34,7 +34,7 @@ import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.internal.validation.PivotEObjectValidator;
 import org.eclipse.ocl.pivot.resource.CSResource;
@@ -50,7 +50,7 @@ public abstract class CompleteOCLLoader
 	
 	public CompleteOCLLoader(@NonNull ResourceSet resourceSet) {
 		this.resourceSet = resourceSet;
-		MetamodelManagerResourceSetAdapter adapter = MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, null);	// ?? Shared global MMM
+		EnvironmentFactoryResourceSetAdapter adapter = EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, null);	// ?? Shared global MMM
 		this.metamodelManager = adapter.getMetamodelManager();
 		this.mmPackages = new HashSet<EPackage>();
 	}

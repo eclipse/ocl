@@ -30,12 +30,17 @@ public class OCLVMEnvironmentFactory extends AbstractVMEnvironmentFactory
 
 	@Override
 	public @NonNull IOCLVMEvaluationEnvironment createEvaluationEnvironment(@NonNull NamedElement executableObject, @NonNull ModelManager modelManager) {
-		return new OCLVMRootEvaluationEnvironment(this, (ExpressionInOCL)executableObject, (IVMModelManager)modelManager, getNextEnvironmentId());
+		if (executableObject instanceof ExpressionInOCL) {
+			return new OCLVMRootEvaluationEnvironment(this, (ExpressionInOCL)executableObject, (IVMModelManager)modelManager, getNextEnvironmentId());
+		}
+		else {
+			throw new IllegalArgumentException("Unsupported executableObject " + executableObject.eClass().getName());
+		}
 	}
 
 	@Override
 	public @NonNull IOCLVMEvaluationEnvironment createEvaluationEnvironment(@NonNull EvaluationEnvironment parent, @NonNull NamedElement executableObject) {
-		return new OCLVMNestedEvaluationEnvironment((IOCLVMEvaluationEnvironment) parent, executableObject/*((IOCLVMEvaluationEnvironment) parent).getOperation()*/, getNextEnvironmentId());
+		return new OCLVMNestedEvaluationEnvironment((IOCLVMEvaluationEnvironment) parent, executableObject, getNextEnvironmentId());
 	}
 
 	@Override

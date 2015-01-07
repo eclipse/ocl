@@ -63,7 +63,7 @@ import org.eclipse.ocl.pivot.internal.context.ModelContext;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.internal.values.BagImpl;
@@ -311,7 +311,7 @@ public class XtextTestCase extends PivotTestCase
 		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		metamodelManager.addClassLoader(ClassUtil.nonNullState(getClass().getClassLoader()));
 		try {
-			MetamodelManagerResourceSetAdapter.getAdapter(ClassUtil.nonNullState(resourceSet), metamodelManager);
+			EnvironmentFactoryResourceSetAdapter.getAdapter(ClassUtil.nonNullState(resourceSet), metamodelManager.getEnvironmentFactory());
 			URI libraryURI = getProjectFileURI(fileName);
 			@SuppressWarnings("null")@NonNull BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(libraryURI);
 			@SuppressWarnings("null")@NonNull ClassLoader classLoader = getClass().getClassLoader();
@@ -335,7 +335,7 @@ public class XtextTestCase extends PivotTestCase
 		URI libraryURI = getProjectFileURI(fileName);
 		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		ResourceSet resourceSet = new ResourceSetImpl();
-		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
+		EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, metamodelManager.getEnvironmentFactory());
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(libraryURI);
 		InputStream inputStream = new URIConverter.ReadableInputStream(testFile, "UTF-8");
 		xtextResource.load(inputStream, null);

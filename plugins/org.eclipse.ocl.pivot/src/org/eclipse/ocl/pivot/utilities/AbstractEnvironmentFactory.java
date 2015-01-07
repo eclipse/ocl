@@ -48,6 +48,7 @@ import org.eclipse.ocl.pivot.internal.context.ModelContext;
 import org.eclipse.ocl.pivot.internal.context.OperationContext;
 import org.eclipse.ocl.pivot.internal.context.PropertyContext;
 import org.eclipse.ocl.pivot.internal.evaluation.AbstractCustomizable;
+import org.eclipse.ocl.pivot.internal.evaluation.AbstractEvaluationEnvironment;
 import org.eclipse.ocl.pivot.internal.evaluation.OCLEvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.evaluation.PivotModelManager;
 import org.eclipse.ocl.pivot.internal.evaluation.TracingEvaluationVisitor;
@@ -149,6 +150,16 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 		CompleteEnvironmentInternal completeEnvironment = (CompleteEnvironmentInternal)PivotFactory.eINSTANCE.createCompleteEnvironment();
 		completeEnvironment.init(metamodelManager);
 		return completeEnvironment;
+	}
+
+	@Override
+	public @NonNull EvaluationEnvironment createEvaluationEnvironment(@NonNull NamedElement executableObject, @NonNull ModelManager modelManager) {
+		return new AbstractEvaluationEnvironment(this, executableObject, modelManager);
+	}
+
+	@Override
+	public @NonNull EvaluationEnvironment createEvaluationEnvironment(@NonNull EvaluationEnvironment parent, @NonNull NamedElement executableObject) {
+		return new AbstractEvaluationEnvironment(parent, executableObject);
 	}
 
 	@Override

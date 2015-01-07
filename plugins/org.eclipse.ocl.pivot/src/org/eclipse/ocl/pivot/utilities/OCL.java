@@ -46,7 +46,7 @@ import org.eclipse.ocl.pivot.internal.helper.HelperUtil;
 import org.eclipse.ocl.pivot.internal.helper.OCLHelperImpl;
 import org.eclipse.ocl.pivot.internal.helper.QueryImpl;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.CSResource;
@@ -134,8 +134,7 @@ public class OCL
      */
 	public static @NonNull OCL newInstance(@NonNull ResourceSet resourceSet) {
 		EnvironmentFactory environmentFactory = OCL.createEnvironmentFactory(null);
-		MetamodelManager metamodelManager = environmentFactory.createMetamodelManager(resourceSet);
-		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
+		EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, environmentFactory);
 		return newInstance(environmentFactory);
 	}
 	

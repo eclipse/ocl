@@ -36,7 +36,7 @@ import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerListener;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
@@ -250,7 +250,7 @@ public class OCLDelegateDomain implements DelegateDomain, MetamodelManagerListen
 			MetamodelManager metamodelManager = null;
 			ResourceSet resourceSet = res.getResourceSet();
 			if (resourceSet != null) {
-				MetamodelManagerResourceSetAdapter rsAdapter = MetamodelManagerResourceSetAdapter.findAdapter(resourceSet);
+				EnvironmentFactoryResourceSetAdapter rsAdapter = EnvironmentFactoryResourceSetAdapter.findAdapter(resourceSet);
 				if (rsAdapter != null) {
 					metamodelManager = rsAdapter.getMetamodelManager();
 				}

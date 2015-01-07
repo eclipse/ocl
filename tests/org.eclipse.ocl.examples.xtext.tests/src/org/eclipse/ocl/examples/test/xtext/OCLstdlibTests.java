@@ -43,7 +43,7 @@ import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
@@ -195,7 +195,7 @@ public class OCLstdlibTests extends XtextTestCase
 
 	@Override
 	protected void tearDown() throws Exception {
-		MetamodelManagerResourceSetAdapter adapter = MetamodelManagerResourceSetAdapter.findAdapter(resourceSet);
+		EnvironmentFactoryResourceSetAdapter adapter = EnvironmentFactoryResourceSetAdapter.findAdapter(resourceSet);
 		if (adapter != null) {
 			MetamodelManager metamodelManager = adapter.getMetamodelManager();
 			if (metamodelManager != null) {

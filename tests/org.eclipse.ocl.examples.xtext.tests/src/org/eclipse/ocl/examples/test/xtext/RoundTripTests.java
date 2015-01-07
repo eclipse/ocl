@@ -39,7 +39,7 @@ import org.eclipse.ocl.pivot.internal.delegate.DelegateInstaller;
 import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.resource.ASResource;
@@ -146,7 +146,7 @@ public class RoundTripTests extends XtextTestCase
 			URI outputURI = inputURI.trimFileExtension().appendFileExtension("regenerated.ocl");
 			EnvironmentFactory environmentFactory1 = OCL.createEnvironmentFactory(projectMap);
 			MetamodelManager metamodelManager1 = environmentFactory1.getMetamodelManager();
-			MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager1);
+			EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, environmentFactory1);
 			BaseCSResource xtextResource1 = createXtextFromURI(metamodelManager1, inputURI);
 			ASResource pivotResource1 = createPivotFromXtext(metamodelManager1, xtextResource1, 1);
 			ASResource pivotResource2 = CompleteOCLSplitter.separate(metamodelManager1, pivotResource1);
@@ -258,7 +258,7 @@ public class RoundTripTests extends XtextTestCase
 		URI ecoreURI = getProjectFileURI(ecoreName);
 		URI outputURI = getProjectFileURI(outputName);
 
-		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager1);
+		EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, metamodelManager1.getEnvironmentFactory());
 		BaseCSResource xtextResource1 = createXtextFromURI(metamodelManager1, inputURI);
 		ASResource pivotResource1 = createPivotFromXtext(metamodelManager1, xtextResource1, 1);
 		Resource ecoreResource = createEcoreFromPivot(metamodelManager1, pivotResource1, ecoreURI);

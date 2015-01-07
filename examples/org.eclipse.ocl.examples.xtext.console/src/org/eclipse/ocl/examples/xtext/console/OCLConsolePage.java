@@ -65,7 +65,7 @@ import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.context.ClassContext;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerListener;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -888,7 +888,7 @@ public class OCLConsolePage extends Page implements MetamodelManagerListener
 					}
 					ResourceSet resourceSet = editor.getResourceSet();
 					if (resourceSet != null) {
-						MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
+						EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, metamodelManager.getEnvironmentFactory());
 					}
 			        csResource.setParserContext(parserContext);
 			    }

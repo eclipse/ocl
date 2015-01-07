@@ -76,7 +76,7 @@ import org.eclipse.ocl.pivot.internal.context.ClassContext;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.AbstractMetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.ocl.pivot.library.LibraryUnaryOperation;
@@ -1415,7 +1415,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 			initializeResourceSet();
 		}
 		ocl = createOCL();
-		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, ocl.getMetamodelManager());
+		EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, ocl.getEnvironmentFactory());
 //		debugPrintln("==> Start  " + getName());
 		String repairs = System.getProperty(PLUGIN_ID + ".repairs");
 		if (repairs != null)

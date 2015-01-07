@@ -18,50 +18,50 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
+import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
  * A MetamodelManagerResourceSetAdapter associates a MetamodelManager with a ResourceSet so
  * that Resource creation can re-use a shared MetamodelManager.
  */
-public class MetamodelManagerResourceSetAdapter implements MetamodelManagedAdapter
+public class EnvironmentFactoryResourceSetAdapter implements MetamodelManagedAdapter
 {		
-	public static @Nullable MetamodelManagerResourceSetAdapter findAdapter(@NonNull ResourceSet resourceSet) {
-		return ClassUtil.getAdapter(MetamodelManagerResourceSetAdapter.class, resourceSet);
+	public static @Nullable EnvironmentFactoryResourceSetAdapter findAdapter(@NonNull ResourceSet resourceSet) {
+		return ClassUtil.getAdapter(EnvironmentFactoryResourceSetAdapter.class, resourceSet);
 	}
 	
-	public static @NonNull MetamodelManagerResourceSetAdapter getAdapter(@NonNull ResourceSet resourceSet, @Nullable MetamodelManager metamodelManager) {
+	public static @NonNull EnvironmentFactoryResourceSetAdapter getAdapter(@NonNull ResourceSet resourceSet, @Nullable EnvironmentFactory environmentFactory) {
 		List<Adapter> eAdapters = ClassUtil.nonNullEMF(resourceSet.eAdapters());
-		MetamodelManagerResourceSetAdapter adapter = ClassUtil.getAdapter(MetamodelManagerResourceSetAdapter.class, eAdapters);
+		EnvironmentFactoryResourceSetAdapter adapter = ClassUtil.getAdapter(EnvironmentFactoryResourceSetAdapter.class, eAdapters);
 		if (adapter == null) {
-			if (metamodelManager == null) {
-				EnvironmentFactoryInternal environmentFactory = ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(null);
-				metamodelManager = environmentFactory.getMetamodelManager();
+			if (environmentFactory == null) {
+				environmentFactory = ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(StandaloneProjectMap.findAdapter(resourceSet));
 			}
-			adapter = new MetamodelManagerResourceSetAdapter(resourceSet, metamodelManager);
+			adapter = new EnvironmentFactoryResourceSetAdapter(resourceSet, environmentFactory);
 			eAdapters.add(adapter);
 		}
 		return adapter;
 	}
 	
 	protected final @NonNull ResourceSet resourceSet;
-	protected final @NonNull MetamodelManager metamodelManager;
+	protected final @NonNull EnvironmentFactory environmentFactory;
 	
-	public MetamodelManagerResourceSetAdapter(@NonNull ResourceSet resourceSet, @NonNull MetamodelManager metamodelManager) {
+	public EnvironmentFactoryResourceSetAdapter(@NonNull ResourceSet resourceSet, @NonNull EnvironmentFactory environmentFactory) {
 		this.resourceSet = resourceSet;
-		this.metamodelManager = metamodelManager;
-		metamodelManager.addListener(this);
+		this.environmentFactory = environmentFactory;
+		environmentFactory.getMetamodelManager().addListener(this);
 	}
 
 	public void dispose() {
 		resourceSet.eAdapters().remove(this);
-		metamodelManager.removeListener(this);
+		environmentFactory.getMetamodelManager().removeListener(this);
 	}
 	
 	public @NonNull MetamodelManager getMetamodelManager() {
-		return metamodelManager;
+		return environmentFactory.getMetamodelManager();
 	}
 
 	@Override
@@ -71,12 +71,12 @@ public class MetamodelManagerResourceSetAdapter implements MetamodelManagedAdapt
 
 	@Override
 	public boolean isAdapterForType(Object type) {
-		return type == MetamodelManagerResourceSetAdapter.class;
+		return type == EnvironmentFactoryResourceSetAdapter.class;
 	}	
 
 	@Override
 	public boolean isAdapterFor(@NonNull MetamodelManager metamodelManager) {
-		return this.metamodelManager == metamodelManager;
+		return this.environmentFactory.getMetamodelManager() == metamodelManager;
 	}
 
 	@Override

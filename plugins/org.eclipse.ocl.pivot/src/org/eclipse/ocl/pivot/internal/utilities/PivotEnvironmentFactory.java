@@ -12,13 +12,8 @@
 
 package org.eclipse.ocl.pivot.internal.utilities;
 
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.NamedElement;
-import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
-import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.evaluation.AbstractEvaluationEnvironment;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.AbstractEnvironmentFactory;
 
@@ -36,15 +31,5 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
 	 */
 	public PivotEnvironmentFactory(@Nullable ProjectManager projectManager) {
 		super(projectManager);
-	}
-
-	@Override
-	public @NonNull EvaluationEnvironment createEvaluationEnvironment(@NonNull NamedElement executableObject, @NonNull ModelManager modelManager) {
-		return new AbstractEvaluationEnvironment(this, executableObject, modelManager);
-	}
-
-	@Override
-	public @NonNull EvaluationEnvironment createEvaluationEnvironment(@NonNull EvaluationEnvironment parent, @NonNull NamedElement executableObject) {
-		return new AbstractEvaluationEnvironment(parent, executableObject);
 	}
 }

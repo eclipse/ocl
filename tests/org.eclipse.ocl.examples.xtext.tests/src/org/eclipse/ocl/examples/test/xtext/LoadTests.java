@@ -54,7 +54,7 @@ import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
@@ -138,7 +138,7 @@ public class LoadTests extends XtextTestCase
 		if (metamodelManager == null) {
 			metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		}
-		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
+		EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, metamodelManager.getEnvironmentFactory());
 		Resource xtextResource = null;
 		try {
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
@@ -190,7 +190,7 @@ public class LoadTests extends XtextTestCase
 		if (metamodelManager == null) {
 			metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		}
-		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
+		EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, metamodelManager.getEnvironmentFactory());
 		
 		Resource xtextResource = null;
 		try {
@@ -238,7 +238,7 @@ public class LoadTests extends XtextTestCase
 		if (metamodelManager == null) {
 			metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		}
-		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
+		EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, metamodelManager.getEnvironmentFactory());
 		Resource ecoreResource = null;
 		try {
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
@@ -342,7 +342,7 @@ public class LoadTests extends XtextTestCase
 		if (metamodelManager == null) {
 			metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		}
-		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
+		EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, metamodelManager.getEnvironmentFactory());
 		Resource umlResource = null;
 		try {
 //			System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
@@ -423,7 +423,7 @@ public class LoadTests extends XtextTestCase
 			if (oclResource != null) {
 				URI xtextURI = oclURI;// != null ? URI.createPlatformResourceURI(oclURI, true) : uri.trimFileExtension().appendFileExtension("ocl");
 				ResourceSetImpl csResourceSet = new ResourceSetImpl();
-				MetamodelManagerResourceSetAdapter.getAdapter(csResourceSet, metamodelManager);
+				EnvironmentFactoryResourceSetAdapter.getAdapter(csResourceSet, metamodelManager.getEnvironmentFactory());
 				BaseCSResource xtextResource = (BaseCSResource) csResourceSet.createResource(xtextURI, OCLinEcoreCSPackage.eCONTENT_TYPE);
 				if (xtextResource != null) {
 					xtextResource.updateFrom(oclResource, metamodelManager);
@@ -535,7 +535,7 @@ public class LoadTests extends XtextTestCase
 		if (metamodelManager == null) {
 			metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		}
-		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
+		EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, metamodelManager.getEnvironmentFactory());
 		Resource asResource = null;
 		try {
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
@@ -594,7 +594,7 @@ public class LoadTests extends XtextTestCase
 			}
 			xtextResource = null;
 		}
-		MetamodelManagerResourceSetAdapter adapter = MetamodelManagerResourceSetAdapter.findAdapter(resourceSet);
+		EnvironmentFactoryResourceSetAdapter adapter = EnvironmentFactoryResourceSetAdapter.findAdapter(resourceSet);
 		if (adapter != null) {
 			MetamodelManager metamodelManager = adapter.getMetamodelManager();
 			if (metamodelManager != null) {

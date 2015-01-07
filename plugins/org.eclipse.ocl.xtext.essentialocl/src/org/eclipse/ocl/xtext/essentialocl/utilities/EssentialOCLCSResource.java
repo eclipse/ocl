@@ -37,7 +37,7 @@ import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.internal.utilities.IllegalLibraryException;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
@@ -236,7 +236,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	public @NonNull MetamodelManager createMetamodelManager() {
 		ResourceSet resourceSet = getResourceSet();
 		if (resourceSet != null) {
-			MetamodelManagerResourceSetAdapter resourceSetAdapter = MetamodelManagerResourceSetAdapter.findAdapter(resourceSet);
+			EnvironmentFactoryResourceSetAdapter resourceSetAdapter = EnvironmentFactoryResourceSetAdapter.findAdapter(resourceSet);
 			if (resourceSetAdapter != null) {
 				return resourceSetAdapter.getMetamodelManager();
 			}
@@ -291,7 +291,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 					metamodelManager = createMetamodelManager();
 					ResourceSet csResourceSet = getResourceSet();
 					if (csResourceSet != null) {
-						MetamodelManagerResourceSetAdapter.getAdapter(csResourceSet, metamodelManager);
+						EnvironmentFactoryResourceSetAdapter.getAdapter(csResourceSet, metamodelManager.getEnvironmentFactory());
 					}
 				}
 				ClassLoader classLoader = getClass().getClassLoader();

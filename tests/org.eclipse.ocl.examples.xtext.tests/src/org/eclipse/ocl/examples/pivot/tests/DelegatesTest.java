@@ -85,7 +85,7 @@ import org.eclipse.ocl.pivot.internal.delegate.ValidationDelegate;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.evaluation.OCLEvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
@@ -261,7 +261,7 @@ public class DelegatesTest extends PivotTestCase
 		Resource ecoreResource = initModelWithErrors(resourceSet);
 		OCL ocl = configureMetamodelManagerForDelegate(companyPackage);
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
-		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
+		EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, ocl.getEnvironmentFactory());
 		String message = PivotUtil.formatResourceDiagnostics(ecoreResource.getErrors(), "Model load", "\n\t");
 		if (message != null)
 			fail(message);
@@ -1228,9 +1228,8 @@ public class DelegatesTest extends PivotTestCase
 	public void validateTutorial(@NonNull String ecoreURI, @NonNull String message) {
 		ResourceSet resourceSet = createResourceSet();
 		OCL ocl = OCL.newInstance(resourceSet);
-		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		try {
-			MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
+			EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, ocl.getEnvironmentFactory());
 			URI xmiURI = getTestModelURI("model/Tutorial.xmi");
 			Resource ecoreResource = resourceSet.getResource(getTestModelURI(ecoreURI), true);
 			EPackage ePackage = (EPackage) ecoreResource.getContents().get(0);
@@ -1255,7 +1254,7 @@ public class DelegatesTest extends PivotTestCase
 			validateWithSeverity("ValidationWithMessage", Diagnostic.WARNING, book,  message);
 			unloadResourceSet(resourceSet);
 		} finally {
-			metamodelManager.dispose();
+			ocl.dispose();
 		}
 	}
 	

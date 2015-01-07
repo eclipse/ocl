@@ -33,7 +33,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.validation.PivotEObjectValidator;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.OCL;
@@ -94,7 +94,7 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 		}
 		ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager);
 		ResourceSet resourceSet = new ResourceSetImpl();
-		MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
+		EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, metamodelManager.getEnvironmentFactory());
 		List<Diagnostic> errors = ecoreResource.getErrors();
 		assert errors != null;
 		String message = PivotUtil.formatResourceDiagnostics(errors, "", "\n");

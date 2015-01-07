@@ -44,7 +44,7 @@ import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.delegate.SettingBehavior;
 import org.eclipse.ocl.pivot.internal.delegate.ValidationBehavior;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.resource.OCLASResourceFactory;
 import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.ocl.pivot.internal.validation.EcoreOCLEValidator;
@@ -306,7 +306,7 @@ public class ValidateTests extends AbstractValidateTests
 		ResourceSet resourceSet = createResourceSet();
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
 		OCLDelegateDomain.initialize(resourceSet, PivotConstants.OCL_DELEGATE_URI_PIVOT);			
-		MetamodelManagerResourceSetAdapter adapter = MetamodelManagerResourceSetAdapter.getAdapter(resourceSet, null);
+		EnvironmentFactoryResourceSetAdapter adapter = EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, null);
 		//
 		URI ecoreURI = getTestModelURI("model/OCLinEcoreTutorial.ecore");
 		URI xmiURI = getTestModelURI("model/OCLinEcoreTutorial.xmi");
@@ -430,9 +430,8 @@ public class ValidateTests extends AbstractValidateTests
 		//	Create model
 		//
 		OCL ocl1 = OCL.newInstance(getProjectMap());
-		MetamodelManager metamodelManager1 = ocl1.getMetamodelManager();
 		Resource ecoreResource = doLoadOCLinEcore(ocl1, "Validate");
-		MetamodelManagerResourceSetAdapter.getAdapter(ecoreResource.getResourceSet(), metamodelManager1);
+		EnvironmentFactoryResourceSetAdapter.getAdapter(ecoreResource.getResourceSet(), ocl1.getEnvironmentFactory());
 		EPackage validatePackage = (EPackage) ecoreResource.getContents().get(0);
 		EObject testInstance = eCreate(validatePackage, "Level3");
 		eSet(testInstance, "ref", "ref");
@@ -484,7 +483,7 @@ public class ValidateTests extends AbstractValidateTests
 			checkValidationDiagnostics(testInstance, Diagnostic.WARNING,
 				StringUtil.bind(template, "Level1", "L1", objectLabel));
 		} finally {
-			metamodelManager1.dispose();
+			ocl1.dispose();
 			EValidator.Registry.INSTANCE.remove(validatePackage);
 		}
 	}
