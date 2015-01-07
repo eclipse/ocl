@@ -65,7 +65,7 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 		this.oclURI = oclURI;
 		ResourceSet resourceSet = ePackage.eResource().getResourceSet();
 		if (resourceSet != null) {
-			install(resourceSet, environmentFactory.getMetamodelManager());
+			install(resourceSet, environmentFactory);
 		}
 		else {
 			environmentFactory.getMetamodelManager().loadEPackage(ePackage);
@@ -156,7 +156,7 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 			if (eResource != null) {
 				ResourceSet resourceSet = eResource.getResourceSet();
 				if (resourceSet != null) {
-					install(resourceSet, environmentFactory.getMetamodelManager());
+					install(resourceSet, environmentFactory);
 				}
 			}
 		}

@@ -30,6 +30,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGProperty;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGVariable;
 import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -88,7 +89,7 @@ public class OCLinEcoreCodeGenerator extends JavaCodeGenerator
 	public static void generatePackage(@NonNull GenPackage genPackage,
 			@NonNull Map<String, String> uri2body, @NonNull Map<GenPackage, String> constantsTexts) {
 		MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(ClassUtil.nonNullState(genPackage.eResource()));
-		OCLinEcoreCodeGenerator generator = new OCLinEcoreCodeGenerator(metamodelManager, genPackage);
+		OCLinEcoreCodeGenerator generator = new OCLinEcoreCodeGenerator(metamodelManager.getEnvironmentFactory(), genPackage);
 		generator.generate(uri2body, constantsTexts);
 	}
 
@@ -96,8 +97,8 @@ public class OCLinEcoreCodeGenerator extends JavaCodeGenerator
 	protected final @NonNull CodeGenAnalyzer cgAnalyzer;
 	protected final @NonNull GenPackage genPackage;
 	
-	protected OCLinEcoreCodeGenerator(@NonNull MetamodelManager metamodelManager, @NonNull GenPackage genPackage) {
-		super(metamodelManager);
+	protected OCLinEcoreCodeGenerator(@NonNull EnvironmentFactory environmentFactory, @NonNull GenPackage genPackage) {
+		super(environmentFactory);
 		GenModel genModel = ClassUtil.nonNullModel(genPackage.getGenModel());
 		genModel.reconcile();
 		metamodelManager.addGenModel(genModel);

@@ -46,6 +46,7 @@ import org.eclipse.ocl.examples.codegen.utilities.RereferencingCopier;
 import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.CompleteClass;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.IfExp;
 import org.eclipse.ocl.pivot.LanguageExpression;
@@ -135,7 +136,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 							throw new IllegalStateException("No super-GenPackage found in UsedGenPackages for " + superProjectPrefix);
 						}
 					}
-					AutoCodeGenerator autoCodeGenerator = new LookupCodeGenerator(metamodelManager, asPackage, asSuperPackage, genPackage, // superGenPackage,
+					AutoCodeGenerator autoCodeGenerator = new LookupCodeGenerator(metamodelManager.getEnvironmentFactory(), asPackage, asSuperPackage, genPackage, // superGenPackage,
 							projectPrefix, projectName, visitorPackage, visitorClass, superProjectPrefix, superProjectName, superVisitorClass);
 					autoCodeGenerator.saveSourceFile();
 				}
@@ -173,11 +174,11 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	private @Nullable CGProperty cgIdResolverVariable = null;
 	private @Nullable CGProperty cgChildVariable = null;
 
-	protected LookupCodeGenerator(@NonNull MetamodelManager metamodelManager, @NonNull org.eclipse.ocl.pivot.Package asPackage,
+	protected LookupCodeGenerator(@NonNull EnvironmentFactory environmentFactory, @NonNull org.eclipse.ocl.pivot.Package asPackage,
 			@Nullable org.eclipse.ocl.pivot.Package asSuperPackage, @NonNull GenPackage genPackage,
 			@NonNull String projectPrefix, @NonNull String projectName, @NonNull String visitorPackage, @NonNull String visitorClass,
 			@Nullable String superProjectPrefix, @Nullable String superManualVisitorPackage, @Nullable String superVisitorClass) {
-		super(metamodelManager, asPackage, asSuperPackage, genPackage, projectPrefix, projectName,
+		super(environmentFactory, asPackage, asSuperPackage, genPackage, projectPrefix, projectName,
 			visitorPackage, visitorClass, superProjectPrefix, superManualVisitorPackage, superVisitorClass);
 		this.packageName = getVisitorPackageName(projectName); 
 		this.className = getAutoVisitorClassName(projectPrefix);

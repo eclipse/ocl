@@ -188,7 +188,7 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 
 	@Override
 	public void appendEqualsValue(@NonNull JavaStream js, @NonNull CGValuedElement thisValue, @NonNull CGValuedElement thatValue, boolean notEquals) {
-		MetamodelManager metamodelManager = js.getCodeGenerator().getMetamodelManager();
+		MetamodelManager metamodelManager = js.getCodeGenerator().getEnvironmentFactory().getMetamodelManager();
 		if (isBoxedType(metamodelManager, thisValue) && isBoxedType(metamodelManager, thatValue)) {
 			boolean nullSafe = thisValue.isNonNull() && thatValue.isNonNull();
 			if (!nullSafe) {

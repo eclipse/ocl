@@ -27,11 +27,11 @@ import org.eclipse.ocl.examples.codegen.java.ImportUtils;
 import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
 import org.eclipse.ocl.examples.codegen.java.JavaGlobalContext;
 import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
@@ -41,13 +41,13 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
  */
 public class JUnitCodeGenerator extends JavaCodeGenerator
 {
-	public static @NonNull String generateClassFile(@NonNull MetamodelManager metamodelManager, @NonNull ExpressionInOCL query,
+	public static @NonNull String generateClassFile(@NonNull EnvironmentFactory environmentFactory, @NonNull ExpressionInOCL query,
 			@NonNull String packageName, @NonNull String className) {
-		CompleteEnvironmentInternal completeEnvironment = metamodelManager.getCompleteEnvironment();
+		CompleteEnvironmentInternal completeEnvironment = environmentFactory.getMetamodelManager().getCompleteEnvironment();
 		boolean savedIsCodeGenerator = completeEnvironment.isCodeGeneration();
 		try {
 			completeEnvironment.setCodeGeneration(true);		// Workaround for BUG 452621
-			JUnitCodeGenerator expressionInOCL2Class = new JUnitCodeGenerator(metamodelManager, true);
+			JUnitCodeGenerator expressionInOCL2Class = new JUnitCodeGenerator(environmentFactory, true);
 			return expressionInOCL2Class.generate(query, packageName, className);
 		}
 		finally {
@@ -58,8 +58,8 @@ public class JUnitCodeGenerator extends JavaCodeGenerator
 	protected final @NonNull JavaGlobalContext<JUnitCodeGenerator> globalContext = new JavaGlobalContext<JUnitCodeGenerator>(this);
 	protected final @NonNull CodeGenAnalyzer cgAnalyzer;
 
-	protected JUnitCodeGenerator(@NonNull MetamodelManager metamodelManager, boolean useNullAnnotations) {
-		super(metamodelManager);
+	protected JUnitCodeGenerator(@NonNull EnvironmentFactory environmentFactory, boolean useNullAnnotations) {
+		super(environmentFactory);
 		getOptions().setUseNullAnnotations(useNullAnnotations);
 		cgAnalyzer = new CodeGenAnalyzer(this);
 	}

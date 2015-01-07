@@ -529,9 +529,9 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		return null;
 	}
 
-	protected @NonNull MetamodelManager getMetamodelManager() {
-		return context.getMetamodelManager();
-	}
+//	protected @NonNull MetamodelManager getMetamodelManager() {
+//		return context.getMetamodelManager();
+//	}
 
 	protected @NonNull String getSymbolName(@Nullable Object anObject, @Nullable String... nameHints) {
 		return localContext.getNameManagerContext().getSymbolName(anObject, nameHints);
@@ -576,7 +576,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		if (type instanceof Enumeration) {
 			return false;
 		}
-		MetamodelManager metamodelManager = getMetamodelManager();
+		MetamodelManager metamodelManager = context.getEnvironmentFactory().getMetamodelManager();
 		Type oclTypeType = metamodelManager.getStandardLibrary().getOclTypeType();
 		return metamodelManager.conformsTo(type, TemplateParameterSubstitutions.EMPTY, oclTypeType, TemplateParameterSubstitutions.EMPTY);
 	}
@@ -1003,7 +1003,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		if (nsURI == null) {
 			throw new IllegalStateException("No EPackage NsURI for " + cgConstructorExp + " in CG2JavaVisitor.visitCGEcoreDataTypeConstructorExp()");
 		}
-		GenPackage genPackage = getMetamodelManager().getGenPackage(nsURI);
+		GenPackage genPackage = context.getEnvironmentFactory().getMetamodelManager().getGenPackage(nsURI);
 		if (genPackage == null) {
 			throw new IllegalStateException("No GenPackage for " + cgConstructorExp + " in CG2JavaVisitor.visitCGEcoreDataTypeConstructorExp()");
 		}

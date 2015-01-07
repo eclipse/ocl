@@ -27,23 +27,23 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.common.CodeGenHelper;
 import org.eclipse.ocl.examples.codegen.oclinjunit.JUnitCodeGenerator;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.library.LibraryOperation;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibTables;
 
 public class JavaGenModelCodeGenHelper implements CodeGenHelper
 {	// FIXME Isn't all this functionality available elsewhere?
-	protected final @NonNull MetamodelManager metamodelManager;
+	protected final @NonNull EnvironmentFactory environmentFactory;
 	private @NonNull Map<EPackage, GenPackage> ePackageMap = new HashMap<EPackage, GenPackage>();
 	private @NonNull Map<String, GenPackage> uriMap = new HashMap<String, GenPackage>();
 	private @NonNull Map<EClassifier, GenClassifier> eClassifierMap = new HashMap<EClassifier, GenClassifier>();
 	
-	public JavaGenModelCodeGenHelper(@NonNull GenModel genModel, @NonNull MetamodelManager metamodelManager) throws IOException {
-		this.metamodelManager = metamodelManager;
+	public JavaGenModelCodeGenHelper(@NonNull GenModel genModel, @NonNull EnvironmentFactory environmentFactory) throws IOException {
+		this.environmentFactory = environmentFactory;
 		for (GenPackage genPackage : genModel.getGenPackages()) {
 			assert genPackage != null;
 			install(genPackage);
@@ -105,7 +105,7 @@ public class JavaGenModelCodeGenHelper implements CodeGenHelper
 					return genPackage;
 				}
 			}
-			genPackage = metamodelManager.getGenPackage(nsURI);
+			genPackage = environmentFactory.getMetamodelManager().getGenPackage(nsURI);
 			if (genPackage != null) {
 				install(genPackage);
 				return genPackage;
@@ -142,7 +142,7 @@ public class JavaGenModelCodeGenHelper implements CodeGenHelper
 	public @Nullable LibraryOperation loadClass(@NonNull ExpressionInOCL query, @NonNull File targetFolder,
 			@NonNull String packageName, @NonNull String className, boolean saveSource) throws Exception {
 		String qualifiedName = packageName + "." + className;
-		String javaCodeSource = JUnitCodeGenerator.generateClassFile(metamodelManager, query, packageName, className);
+		String javaCodeSource = JUnitCodeGenerator.generateClassFile(environmentFactory, query, packageName, className);
 		if (saveSource) {
 			String fileName = targetFolder + "/" + qualifiedName.replace('.', '/') + ".java";
 			Writer writer = new FileWriter(fileName);

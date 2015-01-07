@@ -52,7 +52,7 @@ public class Id2JavaExpressionVisitor implements IdVisitor<Object>
 
 	public Id2JavaExpressionVisitor(@NonNull JavaStream js) {
 		this.js = js;
-		this.metamodelManager = js.getCodeGenerator().getMetamodelManager();
+		this.metamodelManager = js.getCodeGenerator().getEnvironmentFactory().getMetamodelManager();
 	}
 
 	@Override

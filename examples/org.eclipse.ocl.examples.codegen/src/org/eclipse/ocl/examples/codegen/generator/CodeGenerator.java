@@ -24,12 +24,12 @@ import org.eclipse.ocl.examples.codegen.cse.CommonSubexpressionEliminator;
 import org.eclipse.ocl.examples.codegen.cse.GlobalPlace;
 import org.eclipse.ocl.examples.codegen.java.types.BoxedDescriptor;
 import org.eclipse.ocl.examples.codegen.java.types.UnboxedDescriptor;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.ids.ElementId;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 
 public interface CodeGenerator
 {
@@ -43,11 +43,11 @@ public interface CodeGenerator
 	@NonNull BoxedDescriptor getBoxedDescriptor(@NonNull ElementId elementId);
 	@Nullable String getConstantsClass();
 	@NonNull String getDefaultIndent();
+	@NonNull EnvironmentFactory getEnvironmentFactory();
 	@NonNull GenModelHelper getGenModelHelper();
 	@NonNull GlobalContext getGlobalContext();
 	@NonNull GlobalPlace getGlobalPlace();
 	@Nullable IterationHelper getIterationHelper(@NonNull Iteration iteration);
-	@NonNull MetamodelManager getMetamodelManager();
 	@NonNull NameManager getNameManager();
 	@NonNull CodeGenOptions getOptions();
 	@NonNull ReferencesVisitor createReferencesVisitor();

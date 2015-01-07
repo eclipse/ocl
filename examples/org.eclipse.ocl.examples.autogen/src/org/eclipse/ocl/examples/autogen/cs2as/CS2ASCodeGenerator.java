@@ -36,6 +36,7 @@ import org.eclipse.ocl.examples.codegen.java.CG2JavaPreVisitor;
 import org.eclipse.ocl.pivot.ConstructorExp;
 import org.eclipse.ocl.pivot.ConstructorPart;
 import org.eclipse.ocl.pivot.DataType;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.OCLExpression;
@@ -94,7 +95,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 					throw new IllegalStateException("No super-GenPackage found in UsedGenPackages for " + superProjectPrefix);
 				}
 			}
-			AutoCodeGenerator autoCodeGenerator = new CS2ASCodeGenerator(metamodelManager, asPackage, asSuperPackage, genPackage, // superGenPackage,
+			AutoCodeGenerator autoCodeGenerator = new CS2ASCodeGenerator(metamodelManager.getEnvironmentFactory(), asPackage, asSuperPackage, genPackage, // superGenPackage,
 					projectPrefix, projectName, visitorPackage, visitorClass, superProjectPrefix, superProjectName, superVisitorClass);
 			autoCodeGenerator.saveSourceFile();
 		}
@@ -102,12 +103,12 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 
 	protected final @NonNull CS2ASGlobalContext globalContext = new CS2ASGlobalContext(this);
 
-	public CS2ASCodeGenerator(@NonNull MetamodelManager metamodelManager,
+	public CS2ASCodeGenerator(@NonNull EnvironmentFactory environmentFactory,
 			@NonNull Package asPackage, Package asSuperPackage, @NonNull GenPackage genPackage,
 			@NonNull String projectPrefix, @NonNull String projectName, @NonNull String visitorPackage,
 			@NonNull String visitorClass, String superProjectPrefix,
 			String superManualVisitorPackage, String superVisitorClass) {
-		super(metamodelManager, asPackage, asSuperPackage, genPackage, projectPrefix,
+		super(environmentFactory, asPackage, asSuperPackage, genPackage, projectPrefix,
 			projectName, visitorPackage, visitorClass, superProjectPrefix,
 			superManualVisitorPackage, superVisitorClass);
 	}

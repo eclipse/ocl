@@ -54,12 +54,12 @@ import org.eclipse.ocl.examples.codegen.java.types.UnboxedDescriptor;
 import org.eclipse.ocl.examples.codegen.utilities.AbstractCGModelResourceFactory;
 import org.eclipse.ocl.examples.codegen.utilities.CGModelResource;
 import org.eclipse.ocl.examples.codegen.utilities.CGModelResourceFactory;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.ids.ElementId;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.library.LibraryIteration;
 import org.eclipse.ocl.pivot.library.iterator.AnyIteration;
 import org.eclipse.ocl.pivot.library.iterator.CollectIteration;
@@ -187,8 +187,8 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 	private /*@LazyNonNull*/ Object annotationReader = null;
 	private /*@LazyNonNull*/ Method annotationReader_getIsNonNull = null;
 	
-	public JavaCodeGenerator(@NonNull MetamodelManager metamodelManager) {
-		super(metamodelManager);
+	public JavaCodeGenerator(@NonNull EnvironmentFactory environmentFactory) {
+		super(environmentFactory);
 	}
 
 	@Override

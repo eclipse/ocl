@@ -58,6 +58,14 @@ public interface EnvironmentFactory extends Adaptable, Customizable
 	 * @return a new nested evaluation environment
 	 */
 	@NonNull EvaluationEnvironment createEvaluationEnvironment(@NonNull EvaluationEnvironment parent, @NonNull NamedElement executableObject);
+
+    /**
+     * Creates a new evaluation visitor, for the evaluation of an OCL expression on a context using an environment and a modelManager.
+     * If environment is null, a root environment is created and used.
+     * If context is null and the expression uses self subsequent evaluations will give invalid as the result.
+     * If modelManager is null, the context object's ResoutceSet is analyzed to create one.
+     */
+	@NonNull EvaluationVisitor createEvaluationVisitor(@Nullable Object context, @NonNull ExpressionInOCL expression, @Nullable ModelManager modelManager);
 	
     /**
      * Creates a new evaluation visitor, for the evaluation of OCL expressions.

@@ -17,6 +17,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.analyzer.AnalysisVisitor;
 import org.eclipse.ocl.examples.codegen.analyzer.NameManager;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.internal.manager.FinalAnalysis;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
@@ -26,6 +27,7 @@ public abstract class AbstractCodeGenerator implements CodeGenerator
 	public static final @NonNull String ORG_ECLIPSE_JDT_ANNOTATION_NON_NULL = "org.eclipse.jdt.annotation.NonNull";
 	public static final @NonNull String ORG_ECLIPSE_JDT_ANNOTATION_NULLABLE = "org.eclipse.jdt.annotation.Nullable";
 
+	protected final @NonNull EnvironmentFactory environmentFactory;
 	protected final @NonNull MetamodelManager metamodelManager;
 	protected final @NonNull NameManager nameManager;
 	protected final @NonNull GenModelHelper genModelHelper;
@@ -34,17 +36,24 @@ public abstract class AbstractCodeGenerator implements CodeGenerator
 	private /*@LazyNonNull*/ List<Exception> problems = null;
 	private @NonNull String defaultIndent = "    ";
 
-	protected AbstractCodeGenerator(@NonNull MetamodelManager metamodelManager) {
-		this.metamodelManager = metamodelManager;
+	protected AbstractCodeGenerator(@NonNull EnvironmentFactory environmentFactory) {
+		this.environmentFactory = environmentFactory;
+		this.metamodelManager = environmentFactory.getMetamodelManager();
 		this.nameManager = createNameManager();
 		this.genModelHelper = createGenModelHelper();
 	}
 
-	protected AbstractCodeGenerator(@NonNull MetamodelManager metamodelManager, @NonNull NameManager nameManager,
+	protected AbstractCodeGenerator(@NonNull EnvironmentFactory environmentFactory, @NonNull NameManager nameManager,
 			@NonNull GenModelHelper genModelHelper) {
-		this.metamodelManager = metamodelManager;
+		this.environmentFactory = environmentFactory;
+		this.metamodelManager = environmentFactory.getMetamodelManager();
 		this.nameManager = nameManager;
 		this.genModelHelper = genModelHelper;
+	}
+
+	@Override
+	public @NonNull EnvironmentFactory getEnvironmentFactory() {
+		return environmentFactory;
 	}
 	
 	@Override
@@ -80,11 +89,6 @@ public abstract class AbstractCodeGenerator implements CodeGenerator
 	}
 
 	@Override
-	public @NonNull MetamodelManager getMetamodelManager() {
-		return metamodelManager;
-	}
-
-	@Override
 	public @NonNull NameManager getNameManager() {
 		return nameManager;
 	}
@@ -100,6 +104,7 @@ public abstract class AbstractCodeGenerator implements CodeGenerator
 
 	@Override
 	public @Nullable Operation isFinal(@NonNull Operation anOperation, @NonNull org.eclipse.ocl.pivot.Class staticType) {
+		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		FinalAnalysis finalAnalysis = metamodelManager.getFinalAnalysis();
 		return finalAnalysis.isFinal(anOperation, metamodelManager.getCompleteClass(staticType));
 	}

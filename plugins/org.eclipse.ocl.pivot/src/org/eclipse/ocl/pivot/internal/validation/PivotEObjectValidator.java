@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.ParserException;
@@ -40,7 +41,6 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
-import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.utilities.ConstraintEvaluator;
@@ -99,16 +99,14 @@ public class PivotEObjectValidator implements EValidator
 			return null;
 		}
 
-		protected final @NonNull MetamodelManager metamodelManager;
-		protected final @NonNull EnvironmentFactoryInternal environmentFactory;
+		protected final @NonNull EnvironmentFactory environmentFactory;
 		
-		public ValidationAdapter(@NonNull MetamodelManager metamodelManager) {
-			this.metamodelManager = metamodelManager;
-			this.environmentFactory = metamodelManager.getEnvironmentFactory();
+		public ValidationAdapter(@NonNull EnvironmentFactory environmentFactory) {
+			this.environmentFactory = environmentFactory;
 		}
 
-		public @NonNull MetamodelManager getMetamodelManager() {
-			return metamodelManager;
+		public @NonNull EnvironmentFactory getEnvironmentFactory() {
+			return environmentFactory;
 		}
 
 		/**
@@ -117,6 +115,7 @@ public class PivotEObjectValidator implements EValidator
 		 */
 		public boolean validate(@NonNull EClassifier eClassifier, @Nullable Object object, @Nullable DiagnosticChain diagnostics, @Nullable Map<Object, Object> context) {
 			boolean allOk = true;
+			MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 			Type type = metamodelManager.getPivotOfEcore(Type.class, eClassifier);
 			if (type != null) {
 				for (Constraint constraint : metamodelManager.getAllInvariants(type)) {
@@ -152,6 +151,7 @@ public class PivotEObjectValidator implements EValidator
 //			if ((specification.getBodyExpression() == null) && (specification.getBody().size() <= 0)) {	// May be null for declations of hand coded Java
 //				return null;
 //			}
+			final MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 			ExpressionInOCL query;
 			try {
 				query = metamodelManager.getQueryOrThrow(specification);
@@ -241,15 +241,15 @@ public class PivotEObjectValidator implements EValidator
 	/**
 	 * Install Complete OCL validation support in resourceSet for metamodelManager.
 	 */
-	public static @NonNull ValidationAdapter install(@NonNull ResourceSet resourceSet, @NonNull MetamodelManager metamodelManager) {
+	public static @NonNull ValidationAdapter install(@NonNull ResourceSet resourceSet, @NonNull EnvironmentFactory environmentFactory) {
 		ValidationAdapter validationAdapter = ValidationAdapter.findAdapter(resourceSet);
 		if (validationAdapter != null) {
-			if (validationAdapter.getMetamodelManager() != metamodelManager) {
-				throw new IllegalArgumentException("Inconsistent metamodelManager");
+			if (validationAdapter.getEnvironmentFactory() != environmentFactory) {
+				throw new IllegalArgumentException("Inconsistent EnvironmentFactory");
 			}
 		}
 		else {
-			validationAdapter = new ValidationAdapter(metamodelManager);
+			validationAdapter = new ValidationAdapter(environmentFactory);
 			resourceSet.eAdapters().add(validationAdapter);
 		}
 		return validationAdapter;

@@ -1132,8 +1132,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 				resourceSet.getPackageRegistry().put(org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.eNS_URI, org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.eINSTANCE);
 				resourceSet.getPackageRegistry().put(org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage.eNS_URI, org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage.eINSTANCE);
 
-				MetamodelManager metamodelManager = ocl.getMetamodelManager();
-				CodeGenHelper genModelHelper = getCodeGenHelper(metamodelManager);
+				CodeGenHelper genModelHelper = getCodeGenHelper(ocl.getEnvironmentFactory());
 
 				File targetFolder = new File("../" + ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS + "/src-gen");
 				targetFolder.mkdir();
@@ -1170,7 +1169,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	}
 
 	@SuppressWarnings("null")
-	public CodeGenHelper getCodeGenHelper(@NonNull MetamodelManager metamodelManager) throws IOException {
+	public CodeGenHelper getCodeGenHelper(@NonNull EnvironmentFactory environmentFactory) throws IOException {
 		URI genModelURI = URI.createPlatformResourceURI(
 				"/org.eclipse.ocl.pivot/model/Pivot.merged.genmodel",
 				true);
@@ -1183,7 +1182,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 			return null;
 		}
 		GenModel genModel = (GenModel) genModelResource.getContents().get(0);
-		return new JavaGenModelCodeGenHelper(genModel, metamodelManager);
+		return new JavaGenModelCodeGenHelper(genModel, environmentFactory);
 //		return new GenModelCodeGenHelper(genModel, metamodelManager);
 	}
 
