@@ -24,7 +24,7 @@
   <setupTask
       xsi:type="git:GitCloneTask"
       id="ocl.git.clone"
-      remoteURI="mdt/org.eclipse.ocl.git">
+      remoteURI="ocl/org.eclipse.ocl.git">
     <annotation
         source="http://www.eclipse.org/oomph/setup/InducedChoices">
       <detail
