@@ -378,6 +378,19 @@ public class SerializeTests extends XtextTestCase
 		doSerialize("Bug425506", "Bug425506", null, true, true);
 	}
 
+	public void testSerialize_Bug457043() throws Exception {
+		String testFile = 
+			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + 
+			"<ecore:EPackage xmi:version=\"2.0\" xmlns:xmi=\"http://www.omg.org/XMI\" xmlns:ecore=\"http://www.eclipse.org/emf/2002/Ecore\"\n" + 
+			"    name=\"bug457043\" nsURI=\"http://bug/457043\" nsPrefix=\"bug\">\n" + 
+			"  <eAnnotations source=\"http://www.eclipse.org/emf/2002/GenModel\">\n" + 
+			"    <details key=\"documentation\"/>\n" + 
+			"  </eAnnotations>\n" + 
+			"</ecore:EPackage>\n";
+		createOCLinEcoreFile("Bug457043.ecore", testFile);
+		doSerialize("Bug457043", "Bug457043", null, true, true);
+	}
+
 	public void testSerialize_Company() throws Exception {
 //		Logger logger = Logger.getLogger(AbstractParseTreeConstructor.class);
 //		logger.setLevel(Level.TRACE);

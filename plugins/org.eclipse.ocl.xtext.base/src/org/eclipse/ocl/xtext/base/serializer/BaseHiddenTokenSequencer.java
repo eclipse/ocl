@@ -42,9 +42,15 @@ public class BaseHiddenTokenSequencer extends HiddenTokenSequencer
 					String commentIndent = getCommentIndent(semanticChild);
 					TerminalRule ml_COMMENTRule = grammarAccess.getML_COMMENTRule();
 					for (Comment comment : ownedComment) {
-						String indentedBody = comment.getBody().replaceAll("\\n", "\n" + commentIndent + " * ");
-						String body = "/*\n" + commentIndent + " * " + indentedBody + "\n" + commentIndent + " */";
-						delegate.acceptComment(ml_COMMENTRule, body, null);
+						String body = comment.getBody();
+						if (body != null) {
+							String indentedBody = body.replaceAll("\\n", "\n" + commentIndent + " * ");
+							String formattedBody = "/*\n" + commentIndent + " * " + indentedBody + "\n" + commentIndent + " */";
+							delegate.acceptComment(ml_COMMENTRule, formattedBody, null);
+						}
+						else {
+							delegate.acceptComment(ml_COMMENTRule, "/**/", null);
+						}
 					}
 				}
 			}

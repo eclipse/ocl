@@ -868,44 +868,52 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 			List<ILeafNode> documentationNodes = CS2AS.getDocumentationNodes(node);
 			List<Comment> ownedComments = pivotElement.getOwnedComments();
 			if (documentationNodes != null) {
-				List<String> documentationStrings = new ArrayList<String>();
-				for (ILeafNode documentationNode : documentationNodes) {
-					String text = documentationNode.getText().replace("\r", "");
-					if (text.startsWith("/*") && text.endsWith("*/")) {
-						StringBuilder s = new StringBuilder();
-						String contentString = text.substring(2, text.length()-2).trim();
-						for (String string : contentString.split("\n")) {
-							String trimmedString = string.trim();
-							if (s.length() > 0) {
-								s.append("\n");
-							}
-							s.append(trimmedString.startsWith("*") ? trimmedString.substring(1).trim() : trimmedString);
-						}
-						documentationStrings.add(s.toString());
-					}
-					else {
-						documentationStrings.add(text.trim());
-					}
-				}
-				int iMax = Math.min(documentationStrings.size(), ownedComments.size());
 				int i = 0;
-				for (; i < iMax; i++) {
-					String string = documentationStrings.get(i);
-					if (string != null) {
-						String trimmedString = string; //trimComments(string);
-						Comment comment = ownedComments.get(i);
-						if (!trimmedString.equals(comment.getBody())) {
-							comment.setBody(trimmedString);
+				if ((documentationNodes.size() == 1) && "/**/".equals(documentationNodes.get(0).getText())) {
+					Comment comment = PivotFactory.eINSTANCE.createComment();
+					comment.setBody(null);
+					ownedComments.add(comment);
+					i = 1;
+				}
+				else {
+					List<String> documentationStrings = new ArrayList<String>();
+					for (ILeafNode documentationNode : documentationNodes) {
+						String text = documentationNode.getText().replace("\r", "");
+						if (text.startsWith("/*") && text.endsWith("*/")) {
+							StringBuilder s = new StringBuilder();
+							String contentString = text.substring(2, text.length()-2).trim();
+							for (String string : contentString.split("\n")) {
+								String trimmedString = string.trim();
+								if (s.length() > 0) {
+									s.append("\n");
+								}
+								s.append(trimmedString.startsWith("*") ? trimmedString.substring(1).trim() : trimmedString);
+							}
+							documentationStrings.add(s.toString());
+						}
+						else {
+							documentationStrings.add(text.trim());
 						}
 					}
-				}
-				for ( ; i < documentationStrings.size(); i++) {
-					String string = documentationStrings.get(i);
-					if (string != null) {
-						String trimmedString = string; //trimComments(string);
-						Comment comment = PivotFactory.eINSTANCE.createComment();
-						comment.setBody(trimmedString);
-						ownedComments.add(comment);
+					int iMax = Math.min(documentationStrings.size(), ownedComments.size());
+					for (; i < iMax; i++) {
+						String string = documentationStrings.get(i);
+						if (string != null) {
+							String trimmedString = string; //trimComments(string);
+							Comment comment = ownedComments.get(i);
+							if (!trimmedString.equals(comment.getBody())) {
+								comment.setBody(trimmedString);
+							}
+						}
+					}
+					for ( ; i < documentationStrings.size(); i++) {
+						String string = documentationStrings.get(i);
+						if (string != null) {
+							String trimmedString = string; //trimComments(string);
+							Comment comment = PivotFactory.eINSTANCE.createComment();
+							comment.setBody(trimmedString);
+							ownedComments.add(comment);
+						}
 					}
 				}
 				while (i < ownedComments.size()) {
