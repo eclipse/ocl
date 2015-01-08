@@ -41,7 +41,6 @@ import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.xtext.basecs.ConstraintCS;
-import org.eclipse.ocl.xtext.basecs.ImportCS;
 import org.eclipse.ocl.xtext.basecs.LibraryCS;
 import org.eclipse.ocl.xtext.basecs.ParameterCS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
@@ -387,22 +386,6 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		contextProperty.setIsResolveProxies(false);
 		ExpressionInOCL pivotSpecification = PivotUtil.getPivot(ExpressionInOCL.class, csElement.getOwnedSpecification());
 		contextProperty.setOwnedExpression(pivotSpecification);
-		return null;
-	}
-
-	@Override
-	public Continuation<?> visitImportCS(@NonNull ImportCS csElement) {
-		super.visitImportCS(csElement);
-		Namespace namespace = csElement.getReferredNamespace();													// Resolve the proxy to perform the import.
-		if ((namespace != null) && !namespace.eIsProxy()) {
-			Import pivotElement = PivotUtil.getPivot(Import.class, csElement);
-			if (pivotElement != null) {
-				Namespace oldNamespace = pivotElement.getImportedNamespace();
-				if (namespace != oldNamespace) {
-					pivotElement.setImportedNamespace(namespace);
-				}
-			}
-		}
 		return null;
 	}
 

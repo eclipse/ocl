@@ -30,6 +30,7 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Import;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.PivotPackage;
@@ -338,7 +339,6 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 
 	@Override
 	public Continuation<?> visitImportCS(@NonNull ImportCS csElement) {
-		@SuppressWarnings("unused")
 		Import pivotElement = refreshNamedElement(Import.class, PivotPackage.Literals.IMPORT, csElement);
 		PathNameCS pathName = csElement.getOwnedPathName();
 		if (pathName != null) {
@@ -346,6 +346,13 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		}
 		if (csElement.isIsAll() && (csElement.getName() != null)) {
 			context.addDiagnostic(csElement, "An all-package import cannot have an associated alias name");
+		}
+		Namespace namespace = csElement.getReferredNamespace();
+		if ((namespace != null) && !namespace.eIsProxy()) {			
+			Namespace oldNamespace = pivotElement.getImportedNamespace();
+			if (namespace != oldNamespace) {
+				pivotElement.setImportedNamespace(namespace);
+			}
 		}
 		return null;								// FIXME: CS2AS.computeRootContainmentFeatures may allow the above now
 	}
