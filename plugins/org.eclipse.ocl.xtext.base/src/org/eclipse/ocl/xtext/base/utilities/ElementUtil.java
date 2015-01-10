@@ -468,6 +468,15 @@ public class ElementUtil
 		return false;
 	}
 
+	public static void setLastPathElement(@NonNull PathNameCS ownedPathName,@NonNull Element asElement) {
+		List<PathElementCS> ownedPathElements = ownedPathName.getOwnedPathElements();
+		int size = ownedPathElements.size();
+		if (size > 0) {
+			PathElementCS pathElementCS = ownedPathElements.get(size-1);
+			pathElementCS.setReferredElement(asElement);
+		}
+	}
+
 	/**
 	 * Assign a sequence of one or more path elements to csPathName that identify element with respect
 	 * to scope.

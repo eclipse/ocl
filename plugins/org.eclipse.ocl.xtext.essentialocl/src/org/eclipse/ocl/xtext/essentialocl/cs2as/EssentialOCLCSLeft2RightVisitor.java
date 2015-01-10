@@ -676,13 +676,16 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	 * Resolve an invocation such as source.name  or source->name
 	 */
 	protected @NonNull OCLExpression resolveExplicitSourceNavigation(@NonNull OCLExpression sourceExp, @NonNull NameExpCS csNameExp) {
-		Element namedElement = context.lookupUndecoratedName(csNameExp, ClassUtil.nonNullState(csNameExp.getOwnedPathName()));
+		PathNameCS ownedPathName = ClassUtil.nonNullState(csNameExp.getOwnedPathName());
+		Element namedElement = context.lookupUndecoratedName(csNameExp, ownedPathName);
 		if ((namedElement instanceof Property) && !namedElement.eIsProxy()) {
 			CallExp callExp = resolvePropertyCallExp(sourceExp, csNameExp, (Property)namedElement);
 			return callExp;
 		}
-		PropertyCallExp expression = refreshPropertyCallExp(csNameExp, sourceExp, standardLibrary.getOclInvalidProperty());
+		Property oclInvalidProperty = standardLibrary.getOclInvalidProperty();
+		PropertyCallExp expression = refreshPropertyCallExp(csNameExp, sourceExp, oclInvalidProperty);
 		context.setType(expression, standardLibrary.getOclInvalidType(), false, null);
+		ElementUtil.setLastPathElement(ownedPathName, oclInvalidProperty);
 		return expression;
 	}
 
@@ -766,7 +769,11 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			sourceExp = createImplicitSourceVariableExp(csNameExp, standardLibrary.getOclAnyType());
 		}
 		OperationCallExp operationCallExp = refreshOperationCallExp(csNameExp, sourceExp);
-		context.setReferredOperation(operationCallExp, standardLibrary.getOclInvalidOperation());
+		Operation oclInvalidOperation = standardLibrary.getOclInvalidOperation();
+		context.setReferredOperation(operationCallExp, oclInvalidOperation);
+		if (csPathName != null) {
+			ElementUtil.setLastPathElement(csPathName, oclInvalidOperation);
+		}
 		context.installPivotUsage(csNameExp, operationCallExp);		
 		context.setType(operationCallExp, standardLibrary.getOclInvalidType(), false, null);
 		return operationCallExp;
@@ -1081,7 +1088,9 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			}
 //			context.addBadExpressionError(csOperator, boundMessage); 
 			context.addDiagnostic(csOperator, boundMessage);
-			context.setReferredOperation(expression, standardLibrary.getOclInvalidOperation());
+			Operation oclInvalidOperation = standardLibrary.getOclInvalidOperation();
+			context.setReferredOperation(expression, oclInvalidOperation);
+//			ElementUtil.setLastPathElement(csPathName, oclInvalidOperation);
 			context.setType(expression, standardLibrary.getOclInvalidType(), false, null);
 		}
 	}
