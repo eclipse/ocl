@@ -37,10 +37,10 @@ import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
-import org.eclipse.ocl.pivot.uml.compatibility.UML_4_2;
 import org.eclipse.ocl.pivot.uml.internal.library.UMLImplementationManager;
 import org.eclipse.ocl.pivot.util.DerivedConstants;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -143,14 +143,14 @@ public class UMLEnvironmentFactory extends PivotEnvironmentFactory
 			}
 			else if (eContainer instanceof EClassifier) {
 				String prefix = ((EClassifier)eContainer).getName() + "_";		// FIXME Bug 405061 workaround
-				String originalName = UML_4_2.UMLUtil.getOriginalName(eNamedElement);
+				String originalName = NameUtil.getOriginalName(eNamedElement);
 				if (originalName.startsWith(prefix)) {
 					originalName = originalName.substring(prefix.length());
 				}
 				return originalName;
 			}
 		}
-		String originalName = UML_4_2.UMLUtil.getOriginalName(eNamedElement);
+		String originalName = NameUtil.getOriginalName(eNamedElement);
 		return originalName;
 	}
 

@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 
+@Deprecated // Moving to QVT base
 public abstract class AbstractTransformation
 {
 	protected final @NonNull Evaluator evaluator;

@@ -13,9 +13,9 @@ import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Stereotype;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.PivotIdResolver;
-import org.eclipse.ocl.pivot.uml.compatibility.UML_4_2.UMLUtil;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2ASUtil;
 import org.eclipse.ocl.pivot.uml.internal.library.UMLElementExtension;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.uml2.uml.UMLPackage;
 
 public class UMLIdResolver extends PivotIdResolver
@@ -126,7 +126,7 @@ public class UMLIdResolver extends PivotIdResolver
 		}
 		else if ((ePackage.eContainer() instanceof EAnnotation) && (ePackage.eContainer().eContainer() instanceof org.eclipse.uml2.uml.Profile)) {
 			org.eclipse.uml2.uml.Profile umlProfile = (org.eclipse.uml2.uml.Profile)ePackage.eContainer().eContainer();
-			String stereotypeName = UMLUtil.getOriginalName(eClassifier);
+			String stereotypeName = NameUtil.getOriginalName(eClassifier);
 			org.eclipse.uml2.uml.Stereotype umlStereotype = umlProfile.getOwnedStereotype(stereotypeName);
 			try {
 				Stereotype stereotype = metamodelManager.getPivotOf(Stereotype.class, umlStereotype);

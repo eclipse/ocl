@@ -193,7 +193,7 @@ public final class IdManager
 
     /**
      * Return the classId for aType.
-      */
+     */
 	public static @NonNull ClassId getClassId(@NonNull org.eclipse.ocl.pivot.Class aType) {
 		String name = aType.getName();
 		assert name != null;
@@ -206,6 +206,17 @@ public final class IdManager
 		else {
 			return getUnspecifiedTypeId(aType);		// FIXME This occurs for underspecified/wildcard types
 		}
+	}
+
+    /**
+     * Return the classId for eClass.
+     */
+	public static @NonNull ClassId getClassId(@NonNull EClass eClass) {
+		EPackage ePackage = ClassUtil.nonNullEMF(eClass.getEPackage());
+		PackageId packageId = IdManager.getPackageId(ePackage);
+		String className = ClassUtil.nonNullEMF(NameUtil.getOriginalName(eClass));
+		ClassId classId = packageId.getClassId(className, eClass.getETypeParameters().size());
+		return classId;
 	}
 
 	/**
@@ -460,12 +471,12 @@ public final class IdManager
      * Return the propertyId for an EStructuralFeature.
      */
 	public static @NonNull PropertyId getPropertyId(@NonNull EStructuralFeature eFeature) {
-		String name = eFeature.getName();
+		String name = NameUtil.getOriginalName(eFeature);
 		assert name != null;
 		EClass parentClass = eFeature.getEContainingClass();
 		assert parentClass != null;
-		TypeId typeId = getTypeId(parentClass);
-		return typeId.getPropertyId(name);
+		ClassId classId = getClassId(parentClass);
+		return classId.getPropertyId(name);
 	}
 
 	/**
@@ -559,7 +570,7 @@ public final class IdManager
      * Return the typeId for an EClassifier.
      */
 	public static @NonNull TypeId getTypeId(@NonNull EClassifier eClassifier) {
-		String name = eClassifier.getName();
+		String name = NameUtil.getOriginalName(eClassifier);
 		assert name != null;
 		EPackage parentPackage = eClassifier.getEPackage();
 		assert parentPackage != null;

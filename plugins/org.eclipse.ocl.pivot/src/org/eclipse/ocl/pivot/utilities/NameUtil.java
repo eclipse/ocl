@@ -20,6 +20,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Nameable;
 import org.eclipse.ocl.pivot.labels.ILabelGenerator;
+import org.eclipse.ocl.pivot.util.DerivedConstants;
 
 public class NameUtil
 {
@@ -109,6 +110,17 @@ public class NameUtil
 			if (ClassUtil.safeEquals(name, element.getName()))
 				return element;
 		return null;				
+	}
+	
+	public static String getOriginalName(@NonNull ENamedElement eNamedElement) {
+	    EAnnotation eAnnotation = eNamedElement.getEAnnotation(DerivedConstants.UML2_UML_PACKAGE_2_0_NS_URI);
+	    if (eAnnotation != null) {
+	    	String originalName = eAnnotation.getDetails().get(DerivedConstants.ANNOTATION_DETAIL__ORIGINAL_NAME);
+	    	if (originalName != null) {
+	    		return originalName;
+	    	}
+	    }
+	    return eNamedElement.getName();
 	}
 
 	public static @NonNull String getSafeName(@Nullable Nameable aNameable) {
