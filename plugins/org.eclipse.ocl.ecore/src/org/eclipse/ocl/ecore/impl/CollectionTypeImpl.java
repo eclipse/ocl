@@ -169,7 +169,7 @@ public class CollectionTypeImpl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected CollectionTypeImpl() {
 		super();
