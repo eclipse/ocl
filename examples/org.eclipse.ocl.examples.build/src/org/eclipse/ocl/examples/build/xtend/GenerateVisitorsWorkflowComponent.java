@@ -169,6 +169,7 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 				throw new IllegalStateException("No '" + genModelURI + "' GenPackage");
 			}
 			GenModel genModel2 = genModel = getGenModel(genModelResource);
+			genModel2.reconcile();
 			registerGenModel(genModel2);
 			copyright = getCopyright(genModelResource);
 			sourceFile = genModelFile;

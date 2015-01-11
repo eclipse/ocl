@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.ids;
 
+import java.util.Comparator;
+
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -33,6 +35,18 @@ import org.eclipse.jdt.annotation.Nullable;
  */
 public interface ElementId
 {
+	public static final class ElementIdComparator implements Comparator<ElementId>
+	{
+		public static final @NonNull ElementIdComparator INSTANCE = new ElementIdComparator();
+		
+		@Override
+		public int compare(ElementId o1, ElementId o2) {
+			String d1 = o1.getDisplayName();
+			String d2 = o2.getDisplayName();
+			return d1.compareTo(d2);
+		}
+	}
+
 	@Nullable <R> R accept(@NonNull IdVisitor<R> visitor);
 	
 	/**

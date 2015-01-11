@@ -1046,7 +1046,9 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 			Resource resource = externalResourceSet.getResource(uri, true);
 			for (EObject eObject : resource.getContents()) {
 				if (eObject instanceof GenModel) {
-					for (GenPackage genPackage : ((GenModel)eObject).getGenPackages()) {
+					GenModel genModel = (GenModel)eObject;
+					genModel.reconcile();
+					for (GenPackage genPackage : genModel.getGenPackages()) {
 						if (genPackage != null) {
 							return genPackage;
 						}

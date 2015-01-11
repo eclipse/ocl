@@ -99,6 +99,7 @@ public class OCLinEcoreCodeGenerator extends JavaCodeGenerator
 	protected OCLinEcoreCodeGenerator(@NonNull MetamodelManager metamodelManager, @NonNull GenPackage genPackage) {
 		super(metamodelManager);
 		GenModel genModel = ClassUtil.nonNullModel(genPackage.getGenModel());
+		genModel.reconcile();
 		metamodelManager.addGenModel(genModel);
 		getOptions().setUseNullAnnotations(OCLinEcoreGenModelGeneratorAdapter.useNullAnnotations(genModel));
 		this.cgAnalyzer = new CodeGenAnalyzer(this);

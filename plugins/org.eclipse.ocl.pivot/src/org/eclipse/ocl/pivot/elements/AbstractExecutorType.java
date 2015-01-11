@@ -63,8 +63,7 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 	}
 
 	@Override
-	@NonNull
-	public TypeId getTypeId() {
+	public @NonNull TypeId getTypeId() {
 		throw new UnsupportedOperationException();
 	}
 
