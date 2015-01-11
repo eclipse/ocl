@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.base.attributes;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +24,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.internal.compatibility.EMF_2_9;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
@@ -33,13 +35,10 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS.UnresolvedProxyMessageProvider;
-import org.eclipse.ocl.xtext.base.cs2as.ValidationDiagnostic;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
 import org.eclipse.ocl.xtext.basecs.ImportCS;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.xtext.nodemodel.INode;
-import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 public class ImportCSAttribution extends AbstractAttribution implements UnresolvedProxyMessageProvider
 {
@@ -88,8 +87,11 @@ public class ImportCSAttribution extends AbstractAttribution implements Unresolv
 			MetamodelManager metamodelManager = environmentView.getMetamodelManager();
 			CompletePackage completePackage = metamodelManager.getCompleteModel().getCompletePackageByURI(name);
 			if (completePackage != null) {
-				importedElement = completePackage.getPivotPackage();
-				throwable = null;
+				Package pivotPackage = completePackage.getPivotPackage();
+				if (pivotPackage != importedElement) {
+					importedElement = pivotPackage;
+					throwable = null;
+				}
 				return;
 			}
 			BaseCSResource csResource = (BaseCSResource) target.eResource();
@@ -114,19 +116,21 @@ public class ImportCSAttribution extends AbstractAttribution implements Unresolv
 				importedElement = metamodelManager.loadResource(uri2, target.getName(), null);				
 				Resource importedResource = importedElement.eResource();
 				if (importedResource != null) {
-					List<Resource.Diagnostic> warnings = importedResource.getWarnings();
-					if (warnings.size() > 0) {
-						INode node = NodeModelUtils.getNode(target);
-						String errorMessage = PivotUtil.formatResourceDiagnostics(warnings, StringUtil.bind(PivotMessagesInternal.WarningsInURI, uri2), "\n\t");
-						Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, errorMessage);
-						csResource.getWarnings().add(resourceDiagnostic);
-					}
 					List<Resource.Diagnostic> errors = importedResource.getErrors();
 					if (errors.size() > 0) {
-						INode node = NodeModelUtils.getNode(target);
+//						INode node = NodeModelUtils.getNode(target);
 						String errorMessage = PivotUtil.formatResourceDiagnostics(errors, StringUtil.bind(PivotMessagesInternal.ErrorsInURI, uri), "\n\t");
-						Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, errorMessage);
-						csResource.getErrors().add(resourceDiagnostic);
+						throw new IOException(errorMessage);
+//						Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, errorMessage);
+//						csResource.getErrors().add(resourceDiagnostic);
+					}
+					List<Resource.Diagnostic> warnings = importedResource.getWarnings();
+					if (warnings.size() > 0) {
+//						INode node = NodeModelUtils.getNode(target);
+						String warningMessage = PivotUtil.formatResourceDiagnostics(warnings, StringUtil.bind(PivotMessagesInternal.WarningsInURI, uri2), "\n\t");
+						throw new IOException(warningMessage);
+//						Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, errorMessage);
+//						csResource.getWarnings().add(resourceDiagnostic);
 					}
 				}
 			} catch (WrappedException e) {
