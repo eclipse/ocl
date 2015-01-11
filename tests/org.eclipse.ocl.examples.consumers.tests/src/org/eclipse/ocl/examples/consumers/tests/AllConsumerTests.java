@@ -40,6 +40,7 @@ public class AllConsumerTests extends TestCase
 		TestSuite result = new TestSuite(testSuiteName);			
 		result.addTestSuite(ConsumerProjectMapTest.class);
 		result.addTestSuite(ConsumerValidateTests.class);
+		result.addTestSuite(ConsumerLoadTests.class);
 		return result;
 	}
 

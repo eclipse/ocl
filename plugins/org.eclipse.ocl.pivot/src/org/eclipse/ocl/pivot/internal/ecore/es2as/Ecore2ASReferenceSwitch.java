@@ -147,7 +147,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 				EAnnotation redefinesAnnotation = eObject2.getEAnnotation(PivotConstantsInternal.REDEFINES_ANNOTATION_SOURCE);
 				if (redefinesAnnotation != null) {
 					for (EObject eReference : redefinesAnnotation.getReferences()) {
-						if (eReference != null) {
+						if ((eReference != null) && checkProxy(eReference)) {
 							NamedElement redefinedConstraint = converter.getCreated(NamedElement.class, eReference);
 							if (redefinedConstraint instanceof Constraint) {
 								pivotElement.getRedefinedConstraints().add((Constraint)redefinedConstraint);
@@ -164,7 +164,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 				EAnnotation redefinesAnnotation = eObject2.getEAnnotation(PivotConstantsInternal.REDEFINES_ANNOTATION_SOURCE);
 				if (redefinesAnnotation != null) {
 					for (EObject eReference : redefinesAnnotation.getReferences()) {
-						if (eReference != null) {
+						if ((eReference != null) && checkProxy(eReference)) {
 							NamedElement redefinedOperation = converter.getCreated(NamedElement.class, eReference);
 							if (redefinedOperation instanceof Operation) {
 								pivotElement.getRedefinedOperations().add((Operation)redefinedOperation);
@@ -299,7 +299,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 			EAnnotation redefinesAnnotation = eObject2.getEAnnotation(PivotConstantsInternal.REDEFINES_ANNOTATION_SOURCE);
 			if (redefinesAnnotation != null) {
 				for (EObject eReference : redefinesAnnotation.getReferences()) {
-					if (eReference != null) {
+					if ((eReference != null) && checkProxy(eReference)) {
 						Property redefinedProperty = converter.getCreated(Property.class, eReference);
 						pivotElement.getRedefinedProperties().add(redefinedProperty);
 					}
@@ -493,6 +493,14 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 		return null;
 	}
 
+	protected boolean checkProxy(@NonNull EObject eReference) {		// BUG 457206 MARTE has unresolveable proxies
+		if (!eReference.eIsProxy()) {
+			return true;
+		}
+		converter.error("Unresolved proxy: " + EcoreUtil.getURI(eReference));
+		return false;
+	}
+
 	public Object doInPackageSwitch(EObject eObject) {
 		int classifierID = eObject.eClass().getClassifierID();
 		return doSwitch(classifierID, eObject);
@@ -501,7 +509,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 	public <T extends Element> void doSwitchAll(Class<T> pivotClass, Collection<T> pivotElements, List<? extends EObject> eObjects) {
 		@SuppressWarnings("null") @NonNull Class<T> pivotClass2 = pivotClass;
 		for (EObject eObject : eObjects) {
-			if (eObject != null) {
+			if ((eObject != null) && checkProxy(eObject)) {
 				T pivotElement = converter.getPivotElement(pivotClass2, eObject);
 				if (pivotElement != null) {
 					pivotElements.add(pivotElement);
