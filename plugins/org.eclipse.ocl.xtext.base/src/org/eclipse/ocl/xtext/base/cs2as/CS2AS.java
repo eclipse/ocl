@@ -530,11 +530,6 @@ public abstract class CS2AS extends AbstractConversion implements MetamodelManag
 		}
 	}
 
-	@Override
-	public boolean isAdapterFor(@NonNull MetamodelManager metamodelManager) {
-		return this.metamodelManager == metamodelManager;
-	}
-
 	public @Nullable Iteration lookupIteration(@NonNull ElementCS csElement, @NonNull PathNameCS csPathName, @Nullable ScopeFilter scopeFilter) {
 		setElementType(csPathName, PivotPackage.Literals.ITERATION, csElement, scopeFilter);
 		Element namedElement = csPathName.getReferredElement();

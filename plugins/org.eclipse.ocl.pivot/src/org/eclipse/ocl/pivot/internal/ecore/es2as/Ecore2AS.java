@@ -548,11 +548,6 @@ public class Ecore2AS extends AbstractEcore2AS
 	}
 
 	@Override
-	public boolean isAdapterFor(@NonNull MetamodelManager metamodelManager) {
-		return this.metamodelManager == metamodelManager;
-	}
-
-	@Override
 	public boolean isAdapterForType(Object type) {
 		return type == Ecore2AS.class;
 	}

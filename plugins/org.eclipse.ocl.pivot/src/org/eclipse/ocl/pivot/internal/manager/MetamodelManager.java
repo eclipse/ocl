@@ -1926,10 +1926,6 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 		}
 	}
 
-	public boolean isAdapterFor(@NonNull MetamodelManager metamodelManager) {
-		return this == metamodelManager;
-	}
-
 	@Override
 	public boolean isAdapterForType(Object type) {
 		return type == MetamodelManager.class;

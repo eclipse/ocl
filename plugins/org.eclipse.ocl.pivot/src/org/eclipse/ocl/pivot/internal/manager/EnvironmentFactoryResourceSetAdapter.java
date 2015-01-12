@@ -24,10 +24,10 @@ import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
- * A MetamodelManagerResourceSetAdapter associates a MetamodelManager with a ResourceSet so
- * that Resource creation can re-use a shared MetamodelManager.
+ * An EnvironmentFactoryResourceSetAdapter associates an EnvironmentFactory with a ResourceSet so
+ * that Resource creation can re-use a shared EnvironmentFactory.
  */
-public class EnvironmentFactoryResourceSetAdapter implements MetamodelManagedAdapter
+public class EnvironmentFactoryResourceSetAdapter implements Adapter.Internal
 {		
 	public static @Nullable EnvironmentFactoryResourceSetAdapter findAdapter(@NonNull ResourceSet resourceSet) {
 		return ClassUtil.getAdapter(EnvironmentFactoryResourceSetAdapter.class, resourceSet);
@@ -52,12 +52,6 @@ public class EnvironmentFactoryResourceSetAdapter implements MetamodelManagedAda
 	public EnvironmentFactoryResourceSetAdapter(@NonNull ResourceSet resourceSet, @NonNull EnvironmentFactory environmentFactory) {
 		this.resourceSet = resourceSet;
 		this.environmentFactory = environmentFactory;
-		environmentFactory.getMetamodelManager().addListener(this);
-	}
-
-	public void dispose() {
-		resourceSet.eAdapters().remove(this);
-		environmentFactory.getMetamodelManager().removeListener(this);
 	}
 	
 	public @NonNull MetamodelManager getMetamodelManager() {
@@ -73,16 +67,6 @@ public class EnvironmentFactoryResourceSetAdapter implements MetamodelManagedAda
 	public boolean isAdapterForType(Object type) {
 		return type == EnvironmentFactoryResourceSetAdapter.class;
 	}	
-
-	@Override
-	public boolean isAdapterFor(@NonNull MetamodelManager metamodelManager) {
-		return this.environmentFactory.getMetamodelManager() == metamodelManager;
-	}
-
-	@Override
-	public void metamodelManagerDisposed(@NonNull MetamodelManager metamodelManager) {
-		dispose();
-	}
 
 	@Override
 	public void notifyChanged(Notification notification) {
