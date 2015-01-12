@@ -244,8 +244,8 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 	/**
 	 * Return the non-null MetamodelManager for which resourceSet is an AS ResourceSet, or null if not an AS ResourceSet.
 	 */
-	public static @Nullable MetamodelManager findAdapter(@NonNull ResourceSet resourceSet) {
-		@SuppressWarnings("null")@NonNull List<Adapter> eAdapters = resourceSet.eAdapters();
+	public static @Nullable MetamodelManager findAdapter(@NonNull ResourceSet asResourceSet) {
+		@SuppressWarnings("null")@NonNull List<Adapter> eAdapters = asResourceSet.eAdapters();
 		return ClassUtil.getAdapter(MetamodelManager.class, eAdapters);
 	}
 

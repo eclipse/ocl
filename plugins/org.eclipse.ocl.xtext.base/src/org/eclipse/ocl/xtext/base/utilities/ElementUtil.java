@@ -44,12 +44,13 @@ import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.resource.ICSI2ASMapping;
 import org.eclipse.ocl.pivot.internal.scoping.Attribution;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.xtext.base.attributes.RootCSAttribution;
-import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.ImportDiagnostic;
 import org.eclipse.ocl.xtext.base.cs2as.LibraryDiagnostic;
 import org.eclipse.ocl.xtext.basecs.BaseCSFactory;
@@ -147,20 +148,25 @@ public class ElementUtil
 		}
 	}
 	
-	public static @Nullable ModelElementCS getCsElement(@NonNull Element obj) {
-		Resource resource = obj.eResource();
-		if (resource == null) {
+	public static @Nullable ModelElementCS getCsElement(@NonNull Element asElement) {
+		Resource asResource = asElement.eResource();
+		if (asResource == null) {
 			return null;
 		}
-		ResourceSet resourceSet = resource.getResourceSet();
-		if (resourceSet == null) {
+		ResourceSet asResourceSet = asResource.getResourceSet();
+		if (asResourceSet == null) {
 			return null;
 		}
-		CS2AS cs2as = CS2AS.findAdapter(resourceSet);
-		if (cs2as == null) {
+		MetamodelManager metamodelManager = MetamodelManager.findAdapter(asResourceSet);
+		if (metamodelManager == null) {
 			return null;
 		}
-		return cs2as.getCSElement(obj);
+		EnvironmentFactoryInternal environmentFactory = metamodelManager.getEnvironmentFactory();
+		ICSI2ASMapping csi2asMapping = environmentFactory.getCSI2ASMapping();
+		if (csi2asMapping == null) {
+			return null;
+		}
+		return ((CSI2ASMapping)csi2asMapping).getCSElement(asElement);
 	}
 
 	// FIXME share with common.ui once promoted from examples

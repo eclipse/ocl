@@ -159,7 +159,6 @@ public class ValidateTests extends AbstractValidateTests
 				"}\n";
 		createOCLinEcoreFile("Bug418552.oclinecore", testDocument);
 		OCL ocl1 = OCL.newInstance(getProjectMap());
-		MetamodelManager metamodelManager1 = ocl1.getMetamodelManager();
 		@NonNull List<Diagnostic> diagnostics = doValidateOCLinEcore(ocl1, "Bug418552",
 			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Property", "CompatibleDefaultExpression", "temp::Tester::total"));
 		Object property = diagnostics.get(0).getData().get(0);
@@ -169,7 +168,7 @@ public class ValidateTests extends AbstractValidateTests
 		assert node != null;
 		assertEquals(7, node.getStartLine());
 		assertEquals(10, node.getEndLine());
-		metamodelManager1.dispose();
+		ocl1.dispose();
 	}
 
 	public void testValidate_Pivot_ecore() throws IOException, InterruptedException {

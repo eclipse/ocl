@@ -17,8 +17,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -39,8 +37,6 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.VariableDeclaration;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagedAdapter;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.internal.scoping.ScopeFilter;
@@ -83,7 +79,7 @@ import org.eclipse.xtext.util.Tuples;
  * and their corresponding Pivot Resources creating a CS2ASConversion
  * to update.
  */
-public abstract class CS2AS extends AbstractConversion implements MetamodelManagedAdapter
+public abstract class CS2AS extends AbstractConversion
 {	
 	public static interface UnresolvedProxyMessageProvider
 	{
@@ -405,8 +401,6 @@ public abstract class CS2AS extends AbstractConversion implements MetamodelManag
 		this.csi2asMapping = CSI2ASMapping.getCSI2ASMapping(environmentFactory);
 		csi2asMapping.add(cs2asResourceMap);
 		this.csResources = ClassUtil.nonNullState(cs2asResourceMap.keySet());
-		metamodelManager.addListener(this);
-		metamodelManager.getASResourceSet().eAdapters().add(this);
 	}
 	
 	protected CS2AS(@NonNull CS2AS aConverter) {
@@ -434,7 +428,6 @@ public abstract class CS2AS extends AbstractConversion implements MetamodelManag
 		csi2asMapping.removeCSResources(csResources);
 		csResources.clear();
 		metamodelManager.getASResourceSet().eAdapters().remove(this);
-		metamodelManager.removeListener(this);
 	}
 
 	public @Nullable ModelElementCS getCSElement(@NonNull Element pivotElement) {
@@ -468,11 +461,6 @@ public abstract class CS2AS extends AbstractConversion implements MetamodelManag
 
 	public Collection<? extends Resource> getPivotResources() {
 		return metamodelManager.getASResourceSet().getResources();//cs2asResourceMap.values();
-	}
-
-	@Override
-	public Notifier getTarget() {
-		return metamodelManager.getASResourceSet();
 	}
 	
 	/**
@@ -517,16 +505,6 @@ public abstract class CS2AS extends AbstractConversion implements MetamodelManag
 		if (oldPivotElement != newPivotElement) {
 			assert !newPivotElement.eIsProxy();
 			csElement.setPivot(newPivotElement);
-		}
-	}
-
-	@Override
-	public boolean isAdapterForType(Object type) {
-		if (type instanceof Class<?>) {
-			return ((Class<?>)type).isAssignableFrom(getClass());
-		}
-		else {
-			return false;
 		}
 	}
 
@@ -608,16 +586,6 @@ public abstract class CS2AS extends AbstractConversion implements MetamodelManag
 		Element namedElement = csPathName.getReferredElement();
 		return namedElement;
 	}
-
-	@Override
-	public void metamodelManagerDisposed(@NonNull MetamodelManager metamodelManager) {
-		dispose();
-	}
-
-	@Override
-	public void notifyChanged(Notification notification) {
-		// Do nothing.
-	}
 	
 	public @NonNull <T extends Element> T refreshModelElement(@NonNull Class<T> pivotClass, @NonNull EClass pivotEClass, @Nullable ModelElementCS csElement) {
 		Element pivotElement = csElement != null ? getPivotElement(csElement) : null;
@@ -640,16 +608,6 @@ public abstract class CS2AS extends AbstractConversion implements MetamodelManag
 		@SuppressWarnings("unchecked")
 		@NonNull T castElement = (T) pivotElement2;
 		return castElement;
-	}
-
-	@Override
-	public void setTarget(Notifier newTarget) {
-		assert newTarget == metamodelManager.getASResourceSet();
-	}
-
-	@Override
-	public void unsetTarget(Notifier oldTarget) {
-		assert oldTarget == metamodelManager.getASResourceSet();
 	}
 	
 	public synchronized void update(@NonNull IDiagnosticConsumer diagnosticsConsumer) {
