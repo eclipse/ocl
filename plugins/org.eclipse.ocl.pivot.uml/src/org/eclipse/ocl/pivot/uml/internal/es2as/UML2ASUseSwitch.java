@@ -50,6 +50,7 @@ import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.Vertex;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
+import org.eclipse.ocl.pivot.internal.utilities.External2AS;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
@@ -501,10 +502,9 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 				if (pivotElement == null) {
 					Resource eResource = eObject.eResource();
 					if (eResource != null) {
-						UML2AS adapter = UML2AS.findAdapter(eResource, environmentFactory);
+						External2AS adapter = UML2AS.findAdapter(eResource, environmentFactory);
 						if (adapter != null) {
-							pivotElement = adapter.getCreated(pivotClass,
-								eObject);
+							pivotElement = adapter.getCreated(pivotClass, eObject);
 						}
 					}
 				}

@@ -19,9 +19,12 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
@@ -30,6 +33,20 @@ import org.eclipse.ocl.pivot.internal.utilities.External2AS;
 
 public abstract class AbstractEcore2AS extends AbstractConversion implements External2AS, PivotConstantsInternal
 {
+	public static @Nullable External2AS findAdapter(@NonNull Resource resource, @NonNull EnvironmentFactory environmentFactory) {
+//		UMLStandaloneSetup.assertInitialized();
+		External2AS es2as = environmentFactory.getMetamodelManager().getES2AS(resource);
+/*		for (Adapter adapter : resource.eAdapters()) {
+			if (adapter instanceof UML2AS) {
+				UML2AS uml2as = (UML2AS)adapter;
+				if (uml2as.getEnvironmentFactory() == environmentFactory) {
+					return uml2as;
+				}
+			}
+		} */
+		return es2as;
+	}
+
 	protected AbstractEcore2AS(@NonNull EnvironmentFactoryInternal environmentFactory) {
 		super(environmentFactory);
 	}

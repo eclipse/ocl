@@ -34,6 +34,7 @@ import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
+import org.eclipse.ocl.pivot.internal.utilities.External2AS;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
@@ -233,10 +234,9 @@ public class UML2ASReferenceSwitch extends UMLSwitch<Object>
 				if (pivotElement == null) {
 					Resource eResource = eObject.eResource();
 					if (eResource != null) {
-						UML2AS adapter = UML2AS.findAdapter(eResource, environmentFactory);
+						External2AS adapter = UML2AS.findAdapter(eResource, environmentFactory);
 						if (adapter != null) {
-							pivotElement = adapter.getCreated(pivotClass,
-								eObject);
+							pivotElement = adapter.getCreated(pivotClass, eObject);
 						}
 					}
 				}

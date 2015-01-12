@@ -11,13 +11,19 @@
 package org.eclipse.ocl.pivot.internal.utilities;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagedAdapter;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.ParserException;
 
-public interface External2AS extends MetamodelManagedAdapter
+public interface External2AS
 {
+	void dispose();
 	@Nullable Resource getResource();
 	@NonNull URI getURI();
+	@Nullable <T extends Element> T getCreated(@NonNull Class<T> requiredClass, @NonNull EObject eObject);
+	@NonNull Model getPivotModel() throws ParserException;
 }

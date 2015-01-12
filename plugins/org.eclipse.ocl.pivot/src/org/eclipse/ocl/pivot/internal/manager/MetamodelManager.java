@@ -323,6 +323,8 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 	 */
 	private @Nullable FinalAnalysis finalAnalysis = null;
 
+	private @Nullable Map<Resource,External2AS> es2ases = null;
+
 	/**
 	 * Construct a MetamodelManager that will use environmentFactory to create its artefacts
 	 * such as an asResourceSet to contain pivot copies of meta-models.
@@ -347,6 +349,15 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 	public void addClassLoader(@NonNull ClassLoader classLoader) {
 		ImplementationManager implementationManager = getImplementationManager();
 		implementationManager.addClassLoader(classLoader);
+	}
+
+	public void addES2AS(@NonNull Resource esResource, @NonNull External2AS es2as) {
+		Map<Resource, External2AS> es2ases2 = es2ases;
+		if (es2ases2 == null){
+			es2ases = es2ases2 = new HashMap<Resource,External2AS>();
+		}
+		External2AS oldES2AS = es2ases2.put(esResource, es2as);
+		assert oldES2AS == null;
 	}
 
 	public void addExternalResource(@NonNull External2AS external2as) {
@@ -693,6 +704,11 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 		globalNamespaces.clear();
 		globalTypes.clear();
 		external2asMap.clear();
+		if (es2ases != null) {
+			for (External2AS es2as : es2ases.values()) {
+				es2as.dispose();
+			}
+		}
 		lockingAnnotation = null;
 		completeModel.dispose();
 		if (precedenceManager != null) {
@@ -1005,6 +1021,10 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 
 	public @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
 		return environmentFactory;
+	}
+
+	public @Nullable External2AS getES2AS(@NonNull Resource esResource) {
+		return es2ases != null ? es2ases.get(esResource) : null;
 	}
 
 	public @NonNull ResourceSet getExternalResourceSet() {
@@ -1507,11 +1527,14 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 		if (metamodel == null) {
 			return null;
 		}
-		Ecore2AS ecore2as = Ecore2AS.getAdapter(metamodel, environmentFactory);
-		if (ecore2as == null) {
+		External2AS es2as = Ecore2AS.findAdapter(metamodel, environmentFactory);
+		if (es2as == null) {
+			es2as = Ecore2AS.getAdapter(metamodel, environmentFactory);
+		}
+		if (es2as == null) {
 			return null;
 		}
-		return ecore2as.getCreated(pivotClass, eObject);
+		return es2as.getCreated(pivotClass, eObject);
 	}
 
 	/**

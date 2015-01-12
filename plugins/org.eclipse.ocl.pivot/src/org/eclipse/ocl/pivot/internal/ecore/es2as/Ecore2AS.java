@@ -19,9 +19,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -72,32 +69,13 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 public class Ecore2AS extends AbstractEcore2AS
 {
-	public static @Nullable Ecore2AS findAdapter(@NonNull Resource resource, @NonNull EnvironmentFactoryInternal environmentFactory) {
-		for (Adapter adapter : resource.eAdapters()) {
-			if (adapter instanceof Ecore2AS) {
-				Ecore2AS ecore2as = (Ecore2AS)adapter;
-				if (ecore2as.getEnvironmentFactory() == environmentFactory) {
-					return ecore2as;
-				}
-			}
+	public static Ecore2AS getAdapter(@NonNull Resource resource, @NonNull EnvironmentFactoryInternal environmentFactory) {
+		Ecore2AS adapter = (Ecore2AS) findAdapter(resource, environmentFactory);
+		if (adapter == null) {
+			adapter = new Ecore2AS(resource, environmentFactory);
+//			List<Adapter> eAdapters = resource.eAdapters();
+//			eAdapters.add(adapter);
 		}
-		return null;
-	}
-
-	public static Ecore2AS getAdapter(@NonNull Resource resource, @Nullable EnvironmentFactoryInternal environmentFactory) {
-		Ecore2AS adapter;
-		if (environmentFactory == null) {
-			environmentFactory = (EnvironmentFactoryInternal) OCL.createEnvironmentFactory(null);
-		}
-		else {
-			adapter = findAdapter(resource, environmentFactory);
-			if (adapter != null) {
-				return adapter;
-			}
-		}
-		adapter = new Ecore2AS(resource, environmentFactory);
-		List<Adapter> eAdapters = resource.eAdapters();
-		eAdapters.add(adapter);
 		return adapter;
 	}
 
@@ -231,7 +209,8 @@ public class Ecore2AS extends AbstractEcore2AS
 		this.ecoreResource = ecoreResource;
 		MetamodelManager metamodelManager = this.environmentFactory.getMetamodelManager();
 		metamodelManager.addExternalResource(this);
-		metamodelManager.addListener(this);
+//		metamodelManager.addListener(this);
+		metamodelManager.addES2AS(ecoreResource, this);
 	}
 	
 	protected void addCreated(EObject eObject, Element pivotElement) {
@@ -281,13 +260,9 @@ public class Ecore2AS extends AbstractEcore2AS
 		return PivotUtilInternal.getASURI(uri);
 	}
 
+	@Override
 	public void dispose() {
 		metamodelManager.removeExternalResource(this);
-		Notifier target = getTarget();
-		if (target != null) {
-			target.eAdapters().remove(this);
-		}
-		metamodelManager.removeListener(this);
 	}
 
 	@Override
@@ -326,6 +301,7 @@ public class Ecore2AS extends AbstractEcore2AS
 		return newCreateMap.get(eObject);
 	}
 
+	@Override
 	public @Nullable <T extends Element> T getCreated(@NonNull Class<T> requiredClass, @NonNull EObject eObject) {
 		return getPivotOfEcore(requiredClass, eObject);
 	}
@@ -417,6 +393,7 @@ public class Ecore2AS extends AbstractEcore2AS
 		return null;
 	}
 	
+	@Override
 	public @NonNull Model getPivotModel() {
 		Model pivotModel2 = pivotModel;
 		if (pivotModel2 == null) {
@@ -442,11 +419,6 @@ public class Ecore2AS extends AbstractEcore2AS
 
 	@Override
 	public @Nullable Resource getResource() {
-		return ecoreResource;
-	}
-
-	@Override
-	public @Nullable Notifier getTarget() {
 		return ecoreResource;
 	}
 
@@ -545,11 +517,6 @@ public class Ecore2AS extends AbstractEcore2AS
 				}
 			}
 		}
-	}
-
-	@Override
-	public boolean isAdapterForType(Object type) {
-		return type == Ecore2AS.class;
 	}
 
 	protected EPackage isLibrary(@NonNull Collection<EObject> ecoreContents) {
@@ -660,14 +627,6 @@ public class Ecore2AS extends AbstractEcore2AS
 			}
 		}
 	}
-
-	@Override
-	public void metamodelManagerDisposed(@NonNull MetamodelManager metamodelManager) {
-		dispose();
-	}
-
-	@Override
-	public void notifyChanged(Notification notification) {}
 
 	@Override
 	public void queueReference(@NonNull EObject eObject) {
@@ -829,18 +788,8 @@ public class Ecore2AS extends AbstractEcore2AS
 	}
 
 	@Override
-	public void setTarget(Notifier newTarget) {
-		assert (newTarget == null) || (newTarget == ecoreResource);
-	}
-
-	@Override
 	public String toString() {
 		return String.valueOf(ecoreResource.getURI());
-	}
-
-	@Override
-	public void unsetTarget(Notifier oldTarget) {
-		assert (oldTarget == ecoreResource);
 	}
 
 	public void update(@NonNull Resource asResource, @NonNull Collection<EObject> ecoreContents) {

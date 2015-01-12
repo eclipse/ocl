@@ -106,7 +106,7 @@ public class PivotUtilInternal //extends PivotUtil
 	public static Type findTypeOf(@NonNull MetamodelManager metamodelManager, @NonNull EClassifier eClass) {
 		Resource resource = eClass.eResource();
 		if (resource != null) {
-			Ecore2AS adapter = Ecore2AS.findAdapter(resource, metamodelManager.getEnvironmentFactory());
+			External2AS adapter = Ecore2AS.findAdapter(resource, metamodelManager.getEnvironmentFactory());
 			if (adapter != null) {
 				Type type = adapter.getCreated(Type.class, eClass);
 				if (type != null) {

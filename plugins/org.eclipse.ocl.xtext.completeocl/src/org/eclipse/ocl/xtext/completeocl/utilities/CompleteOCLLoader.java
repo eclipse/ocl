@@ -35,6 +35,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.utilities.External2AS;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.internal.validation.PivotEObjectValidator;
 import org.eclipse.ocl.pivot.resource.CSResource;
@@ -62,7 +63,7 @@ public abstract class CompleteOCLLoader
 	public boolean loadMetamodels() {
 		for (Resource resource : resourceSet.getResources()) {
 			assert resource != null;
-			Ecore2AS ecore2as = Ecore2AS.findAdapter(resource, metamodelManager.getEnvironmentFactory());
+			External2AS ecore2as = Ecore2AS.findAdapter(resource, metamodelManager.getEnvironmentFactory());
 			if (ecore2as == null) {			// Pivot has its own validation
 				for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
 					EObject eObject = tit.next();

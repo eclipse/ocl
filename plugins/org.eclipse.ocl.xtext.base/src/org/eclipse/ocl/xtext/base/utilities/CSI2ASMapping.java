@@ -32,6 +32,7 @@ import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.resource.ICSI2ASMapping;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.basecs.ElementCS;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;
 
@@ -359,12 +360,25 @@ public class CSI2ASMapping implements ICSI2ASMapping
 	 * The known CSIs binned into hashSize sublists.
 	 */
 	private @Nullable HashedCSIs hashedCSIs = null;
+
+	/**
+	 * Available CS2AS converters.
+	 */
+//	private @Nullable List<CS2AS> cs2ases = null;
 	
 	private CSI2ASMapping() {}
 
 	public void add(Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap) {
 		as2cs = null;
 		this.cs2asResourceMap.putAll(cs2asResourceMap); 
+	}
+
+	public void add(@NonNull CS2AS cs2as) {
+//		List<CS2AS> cs2ases2 = cs2ases;
+//		if (cs2ases2 == null) {
+//			cs2ases = cs2ases2 = new ArrayList<CS2AS>();
+//		}
+//		cs2ases2.add(cs2as); 
 	}
 	
 	public Set<CSI> computeCSIs(Collection<? extends Resource> csResources) {
@@ -404,6 +418,13 @@ public class CSI2ASMapping implements ICSI2ASMapping
 	public void dispose() {
 		csi2as.clear();
 		as2cs = null;
+//		List<CS2AS> cs2ases2 = cs2ases;
+//		if (cs2ases2 != null) {
+//			cs2ases = null;
+//			for (CS2AS cs2as : cs2ases2) {
+//				cs2as.dispose();
+//			}
+//		}
 	}
 
 	/**

@@ -407,6 +407,7 @@ public abstract class CS2AS extends AbstractConversion
 		super(aConverter.getEnvironmentFactory());
 		this.csResources = aConverter.csResources;
 		this.csi2asMapping = CSI2ASMapping.getCSI2ASMapping(environmentFactory);
+		csi2asMapping.add(this);
 	}
 
 	public @NonNull String bind(@NonNull EObject csContext, /*@NonNull*/ String messageTemplate, Object... bindings) {
@@ -427,7 +428,6 @@ public abstract class CS2AS extends AbstractConversion
 	public void dispose() {
 		csi2asMapping.removeCSResources(csResources);
 		csResources.clear();
-		metamodelManager.getASResourceSet().eAdapters().remove(this);
 	}
 
 	public @Nullable ModelElementCS getCSElement(@NonNull Element pivotElement) {

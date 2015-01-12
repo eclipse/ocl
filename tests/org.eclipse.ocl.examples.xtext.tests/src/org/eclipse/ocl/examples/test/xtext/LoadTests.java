@@ -59,6 +59,7 @@ import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapt
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
+import org.eclipse.ocl.pivot.internal.utilities.External2AS;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
@@ -371,7 +372,10 @@ public class LoadTests extends XtextTestCase
 			List<Resource> importedResources = rootAdapter.getImportedResources();
 			if (importedResources != null) {
 				for (Resource uResource : importedResources) {
-					UML2AS anAdapter = UML2AS.getAdapter(uResource, environmentFactory);
+					External2AS anAdapter = UML2AS.findAdapter(uResource, environmentFactory);
+					if (anAdapter == null) {
+						anAdapter = UML2AS.getAdapter(uResource, environmentFactory);
+					}
 					Model asModel = anAdapter.getPivotModel();
 					Resource asResource = asModel.eResource();
 					allResources.add(asResource);

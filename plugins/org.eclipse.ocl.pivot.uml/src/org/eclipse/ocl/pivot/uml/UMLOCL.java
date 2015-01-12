@@ -95,6 +95,7 @@ public class UMLOCL extends OCL
 	 * @throws ParserException 
 	 */
 	public @NonNull ASResource uml2as(@NonNull Resource umlResource) throws ParserException {
+		assert environmentFactory != null;
 		UML2AS uml2as = UML2AS.getAdapter(umlResource, environmentFactory);
 		Model pivotModel = uml2as.getPivotModel();
 		ASResource asResource = (ASResource) pivotModel.eResource();
