@@ -12,6 +12,9 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.utilities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.ENamedElement;
@@ -75,7 +78,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
      * A convenient shared instance of the environment factory, that creates
      * environments using the global package registry.
 	 */
-    private static @Nullable EnvironmentFactory globalRegistryInstance = null;
+    private static @Nullable EnvironmentFactoryInternal globalRegistryInstance = null;
 
 	public static @Nullable EnvironmentFactory basicGetGlobalRegistryInstance() {
 		return globalRegistryInstance;
@@ -86,15 +89,15 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
      */
 	public static void disposeGlobalRegistryInstance() {
 		if (globalRegistryInstance != null) {
-			globalRegistryInstance.getMetamodelManager().dispose();
+			globalRegistryInstance.dispose();
 			globalRegistryInstance = null;
 		}
 	}
 	
-	public static @NonNull EnvironmentFactory getGlobalRegistryInstance() {
-		EnvironmentFactory globalRegistryInstance2 = globalRegistryInstance;
+	public static @NonNull EnvironmentFactoryInternal getGlobalRegistryInstance() {
+		EnvironmentFactoryInternal globalRegistryInstance2 = globalRegistryInstance;
 		if (globalRegistryInstance2 == null) {
-			globalRegistryInstance = globalRegistryInstance2 = OCL.createEnvironmentFactory(null);
+			globalRegistryInstance = globalRegistryInstance2 = OCL.Internal.createEnvironmentFactory(null);
 		}
 		return globalRegistryInstance2;
 	}
@@ -111,11 +114,17 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	private final @NonNull CompleteModelInternal completeModel;
 
 	private /*@LazyNonNull*/ IdResolver idResolver;
+	
+	/**
+	 * EnvironmentFactoryListener instances to be notified of significant state changes; most notably disposal.
+	 */
+	private @Nullable List<Listener> listeners = null;
     
     /**
      * Count of the number of OCL instances that are using the EnvironmentFactory. auto-disposes on cunbt down to zero.
      */
     private int attachCount = 0;;
+//    private List<WeakReference<Object>> attachers = null;;
 	
 	/**
 	 * Initializes me with an <code>EPackage.Registry</code> that the
@@ -141,9 +150,24 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	}
 
 	@Override
+	public void addListener(@NonNull Listener listener) {
+		List<Listener> listeners2 = listeners;
+		if (listeners2 == null) {
+			listeners = listeners2 = new ArrayList<Listener>();
+		}
+		if (!listeners2.contains(listener)) {
+			listeners2.add(listener);
+		}
+	}
+
+	@Override
 	public synchronized void attach(Object object) {
 		assert attachCount >= 0;
 		attachCount++;
+//		if (attachers == null) {
+//			attachers = new ArrayList<WeakReference<Object>>();
+//		}
+//		attachers.add(new WeakReference<Object>(object));
 	}
 
 	@Override
@@ -241,9 +265,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 		return new MetamodelManager(this, null);
 	}
 
-	@Override
-	@NonNull
-	public MetamodelManager createMetamodelManager(@NonNull ResourceSet resourceSet) {
+	public @NonNull MetamodelManager createMetamodelManager(@NonNull ResourceSet resourceSet) {
 		assert metamodelManager == null;
 		metamodelManager = new MetamodelManager(this, resourceSet);
 		assert metamodelManager != null;
@@ -289,12 +311,29 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	@Override
 	public synchronized void detach(Object object) {
 		assert attachCount > 0;
+//		if (attachers != null) {
+//			for (WeakReference<Object> attacher : attachers) {
+//				if (attacher.get() == object) {
+//					attachers.remove(attacher);
+//					break;
+//				}
+//			}
+//		}
 		if (--attachCount <= 0) {
 			dispose();
 		}
 	}
 
-	protected void dispose() {
+	@Override
+	public void dispose() {
+		if (listeners != null) {
+			List<Listener> savedListeners = listeners;
+			listeners = null;
+			for (Listener listener : savedListeners) {
+				listener.environmentFactoryDisposed(this);
+			}
+		}
+		assert attachCount == 0;
 		if (this != basicGetGlobalRegistryInstance()) { // dispose of my environment
 			if (metamodelManager != null) {
 				metamodelManager.dispose();
@@ -483,6 +522,13 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public void removeListener(@NonNull Listener listener) {
+		if (listeners != null) {
+			listeners.remove(listener);
+		}
 	}
 
 	@Override

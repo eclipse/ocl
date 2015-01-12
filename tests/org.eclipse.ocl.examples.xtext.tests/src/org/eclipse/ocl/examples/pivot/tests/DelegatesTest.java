@@ -513,6 +513,7 @@ public class DelegatesTest extends PivotTestCase
 
 		Collection<?> sallyReports = (Collection<?>) execute(delegate, acme, arguments);
 		assertEquals(0, sallyReports.size());
+		ocl.dispose();
 	}
 
 	@SuppressWarnings("null")
@@ -566,6 +567,7 @@ public class DelegatesTest extends PivotTestCase
 		delegate.prepare();
 		executeWithException(delegate, acme, okBindings,
 			PivotMessagesInternal.MismatchedArgumentType_ERROR_, okName, "Integer", "String");
+		ocl.dispose();
 	}
 
 	public void test_allInstances() {

@@ -98,4 +98,6 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 	void attach(Object object);
 	
 	void detach(Object object);
+	
+	void dispose();
 }

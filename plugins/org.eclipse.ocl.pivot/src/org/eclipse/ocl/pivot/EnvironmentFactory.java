@@ -13,7 +13,6 @@
 package org.eclipse.ocl.pivot;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
@@ -43,6 +42,20 @@ import org.eclipse.ocl.pivot.utilities.ParserContext;
  */
 public interface EnvironmentFactory extends Adaptable, Customizable
 {
+	
+	/**
+	 * An EnvironmentFactoryListener reports EnvironmentFactory changes; most notably disposal.
+	 */
+	public interface Listener
+	{
+		/**
+		 * Respond to disposal of the EnvironmentFactory by eliminating all further usage.
+		 */
+		void environmentFactoryDisposed(@NonNull EnvironmentFactory environmentFactory);
+	}
+	
+	void addListener(@NonNull Listener oclDelegateDomain);
+
 	/**
 	 * Creates a new evaluation environment to track the values of variables in
 	 * an OCL expression as it is evaluated.
@@ -122,5 +135,5 @@ public interface EnvironmentFactory extends Adaptable, Customizable
 	
 	@NonNull StandardLibrary getStandardLibrary();
 
-	@NonNull MetamodelManager createMetamodelManager(@NonNull ResourceSet resourceSet);
+	void removeListener(@NonNull Listener oclDelegateDomain);
 }

@@ -34,8 +34,8 @@ import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerListener;
 import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
@@ -46,7 +46,7 @@ import org.eclipse.ocl.pivot.utilities.PivotConstants;
  * An implementation of a delegate domain for an OCL enhanced package. The domain
  * maintains an OCL facade to be shared by all delegates within the package.
  */
-public class OCLDelegateDomain implements DelegateDomain, MetamodelManagerListener
+public class OCLDelegateDomain implements DelegateDomain, EnvironmentFactory.Listener
 {
 	public static class FactoryFactory
 	{
@@ -243,9 +243,14 @@ public class OCLDelegateDomain implements DelegateDomain, MetamodelManagerListen
 		this.ePackage = ePackage;
 	}
 
+	@Override
+	public void environmentFactoryDisposed(@NonNull EnvironmentFactory environmentFactory) {
+		reset();
+	}
+
 	private @NonNull EnvironmentFactory getEnvironmentFactory() {
 		Resource res = ePackage.eResource();
-		EnvironmentFactory envFactory = null;
+		EnvironmentFactoryInternal envFactory = null;
 		if (res != null) {
 			MetamodelManager metamodelManager = null;
 			ResourceSet resourceSet = res.getResourceSet();
@@ -260,7 +265,7 @@ public class OCLDelegateDomain implements DelegateDomain, MetamodelManagerListen
 					envFactory = metamodelManager.getEnvironmentFactory();
 				}
 				else {
-					envFactory = OCL.createEnvironmentFactory(null);
+					envFactory = OCL.Internal.createEnvironmentFactory(null);
 				}
 				DelegateResourceAdapter.getAdapter(res);
 			}
@@ -281,8 +286,9 @@ public class OCLDelegateDomain implements DelegateDomain, MetamodelManagerListen
 		if (ocl2 == null) {
 			// Delegates are an application-independent extension of EMF
 			//  so we must use the neutral/global context see Bug 338501
-			ocl2 = ocl = OCL.newInstance(getEnvironmentFactory());
-			ocl2.getMetamodelManager().addListener(this);
+			EnvironmentFactory environmentFactory = getEnvironmentFactory();
+			ocl2 = ocl = OCL.newInstance(environmentFactory);
+			environmentFactory.addListener(this);
 		}
 		return ocl2;
 	}
@@ -299,11 +305,6 @@ public class OCLDelegateDomain implements DelegateDomain, MetamodelManagerListen
 	@Override
 	public final @NonNull String getURI() {
 		return uri;
-	}
-
-	@Override
-	public void metamodelManagerDisposed(@NonNull MetamodelManager metamodelManager) {
-		reset();
 	}
 
 	@Override
