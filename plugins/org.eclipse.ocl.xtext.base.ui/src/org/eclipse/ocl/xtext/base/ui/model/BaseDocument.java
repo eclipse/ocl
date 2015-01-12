@@ -90,7 +90,7 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 				@Override
 				public MetamodelManager exec(@Nullable XtextResource resource) throws Exception {
 					if (resource != null) {
-						AbstractMetamodelManagerResourceAdapter<?> adapter = MetamodelManagerResourceAdapter.findAdapter(resource);
+						AbstractMetamodelManagerResourceAdapter adapter = MetamodelManagerResourceAdapter.findAdapter(resource);
 						if (adapter != null) {
 							return adapter.getMetamodelManager();
 						}

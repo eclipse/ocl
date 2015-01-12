@@ -31,7 +31,7 @@ import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
  * A CS2ASResourceAdapter enhances the Resource for a Concrete Syntax model
  * to support synchronization with a Pivot model representation.
  */
-public class CS2ASResourceAdapter extends AbstractMetamodelManagerResourceAdapter<BaseCSResource>
+public class CS2ASResourceAdapter extends AbstractMetamodelManagerResourceAdapter
 {
 	public static class TransientASResourceFactory extends AbstractASResourceFactory
 	{

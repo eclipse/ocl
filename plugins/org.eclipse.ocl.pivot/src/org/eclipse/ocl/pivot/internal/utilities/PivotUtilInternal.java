@@ -70,7 +70,7 @@ public class PivotUtilInternal //extends PivotUtil
 			Resource resource = eRoot.eResource();
 			if (resource != null) {
 //				if (eObject instanceof ElementCS) {
-					AbstractMetamodelManagerResourceAdapter<?> adapter = AbstractMetamodelManagerResourceAdapter.findAdapter(resource);
+					AbstractMetamodelManagerResourceAdapter adapter = AbstractMetamodelManagerResourceAdapter.findAdapter(resource);
 					if (adapter != null) {
 						return adapter.getMetamodelManager();
 					}
@@ -84,7 +84,7 @@ public class PivotUtilInternal //extends PivotUtil
 	public static @Nullable MetamodelManager findMetamodelManager(@NonNull Resource resource) {
 		for (Adapter adapter : resource.eAdapters()) {
 			if (adapter instanceof AbstractMetamodelManagerResourceAdapter) {
-				return ((AbstractMetamodelManagerResourceAdapter<?>)adapter).getMetamodelManager();
+				return ((AbstractMetamodelManagerResourceAdapter)adapter).getMetamodelManager();
 			}
 		}
 		ResourceSet resourceSet = resource.getResourceSet();

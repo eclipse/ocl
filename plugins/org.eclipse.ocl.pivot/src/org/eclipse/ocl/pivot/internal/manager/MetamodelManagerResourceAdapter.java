@@ -25,7 +25,7 @@ import org.eclipse.ocl.pivot.utilities.OCL;
  * A MetamodelManagerResourceAdapter enhances the Resource for a Concrete Syntax model
  * to support synchronization with a Pivot model representation.
  */
-public class MetamodelManagerResourceAdapter extends AbstractMetamodelManagerResourceAdapter<Resource>
+public class MetamodelManagerResourceAdapter extends AbstractMetamodelManagerResourceAdapter
 {		
 /*	public static MetamodelManagerResourceAdapter findAdapter(Resource resource) {
 		if (resource == null) {

@@ -24,7 +24,7 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
  * A MetamodelManagerResourceAdapter enhances the Resource for a Concrete Syntax model
  * to support synchronization with a Pivot model representation.
  */
-public abstract class AbstractMetamodelManagerResourceAdapter<T extends Resource> implements MetamodelManagedAdapter
+public abstract class AbstractMetamodelManagerResourceAdapter implements Adapter.Internal
 {		
 	public static void disposeAll(@NonNull Resource resource) {
 		List<Adapter> eAdapters = resource.eAdapters();
@@ -36,26 +36,24 @@ public abstract class AbstractMetamodelManagerResourceAdapter<T extends Resource
 		}
 	}
 
-	public static @Nullable AbstractMetamodelManagerResourceAdapter<?> findAdapter(@NonNull Resource resource) {
+	public static @Nullable AbstractMetamodelManagerResourceAdapter findAdapter(@NonNull Resource resource) {
 		return ClassUtil.getAdapter(AbstractMetamodelManagerResourceAdapter.class, resource);
 	}
 	
 //	public static LiveInstances<MetamodelManagerResourceAdapter> INSTANCES = new LiveInstances(MetamodelManagerResourceAdapter.class);
 	
-	protected final @NonNull T resource;
+	protected final @NonNull Resource resource;
 	protected final @NonNull MetamodelManager metamodelManager;
 	
-	public AbstractMetamodelManagerResourceAdapter(@NonNull T resource, @NonNull MetamodelManager metamodelManager) {
+	public AbstractMetamodelManagerResourceAdapter(@NonNull Resource resource, @NonNull MetamodelManager metamodelManager) {
 		this.resource = resource;
 		this.metamodelManager = metamodelManager;
-		metamodelManager.addListener(this);
 //		INSTANCES.add(this);		
 	}
 
 	public void dispose() {
 //		INSTANCES.remove(this);
 		resource.eAdapters().remove(this);
-		metamodelManager.removeListener(this);
 	}
 	
 	public @NonNull MetamodelManager getMetamodelManager() {
@@ -63,7 +61,7 @@ public abstract class AbstractMetamodelManagerResourceAdapter<T extends Resource
 	}
 
 	@Override
-	public T getTarget() {
+	public Resource getTarget() {
 		return resource;
 	}
 
@@ -71,11 +69,6 @@ public abstract class AbstractMetamodelManagerResourceAdapter<T extends Resource
 	public boolean isAdapterForType(Object type) {
 		return type == AbstractMetamodelManagerResourceAdapter.class;
 	}	
-
-	@Override
-	public void metamodelManagerDisposed(@NonNull MetamodelManager metamodelManager) {
-		dispose();
-	}
 
 	@Override
 	public void notifyChanged(Notification notification) {

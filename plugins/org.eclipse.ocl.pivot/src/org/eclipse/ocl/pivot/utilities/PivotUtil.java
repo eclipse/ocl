@@ -824,7 +824,7 @@ public class PivotUtil
 	 * @throws ParserException if eObject cannot be converted to a Pivot element
 	 */
 	public static boolean setParserContext(@NonNull CSResource csResource, @NonNull EObject eObject, Object... todoParameters) throws ParserException {
-		AbstractMetamodelManagerResourceAdapter<?> adapter = MetamodelManagerResourceAdapter.getAdapter(csResource, null);
+		AbstractMetamodelManagerResourceAdapter adapter = MetamodelManagerResourceAdapter.getAdapter(csResource, null);
 		MetamodelManager metamodelManager = adapter.getMetamodelManager();
 		Element pivotElement = metamodelManager.getEnvironmentFactory().getParseableElement(eObject);
 		if (pivotElement == null) {
