@@ -32,6 +32,7 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
@@ -292,7 +293,7 @@ public class UMLOCLEValidator implements EValidator
 					if (umlResource != null) {
 						OCL ocl = getOCL(context);
 						MetamodelManager metamodelManager = ocl.getMetamodelManager();
-						UML2AS uml2as = UML2AS.getAdapter(umlResource, ocl.getEnvironmentFactory());
+						UML2AS uml2as = UML2AS.getAdapter(umlResource, (EnvironmentFactoryInternal) ocl.getEnvironmentFactory());
 						uml2as.getPivotModel();
 						Map<EObject, List<org.eclipse.uml2.uml.Element>> umlStereotypeApplication2umlStereotypedElements = UML2ASUtil.computeAppliedStereotypes(umlStereotypeApplications);
 						for (@SuppressWarnings("null")@NonNull EObject umlStereotypeApplication : umlStereotypeApplications) {

@@ -27,6 +27,7 @@ import org.eclipse.ocl.pivot.AssociationClass;
 import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
@@ -134,7 +135,7 @@ public abstract class PivotFruitTestSuite extends PivotTestSuite
 		Resource ecoreResource = resourceSet.getResource(uri, true);
 		fruitEPackage = (EPackage)ecoreResource.getContents().get(0);
 		fruitEFactory = fruitEPackage.getEFactoryInstance();
-		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, ocl.getEnvironmentFactory());
+		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, (EnvironmentFactoryInternal) ocl.getEnvironmentFactory());
 		fruitPackage = NameUtil.getNameable(ecore2as.getPivotModel().getOwnedPackages(), "fruit");
 		
 		fruit = (EClass) getEClassifier(fruitEPackage, "Fruit");

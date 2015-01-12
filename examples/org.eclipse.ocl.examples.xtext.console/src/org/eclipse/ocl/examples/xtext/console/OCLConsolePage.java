@@ -63,9 +63,8 @@ import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.context.ClassContext;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerListener;
 import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -124,7 +123,7 @@ import com.google.inject.Injector;
 /**
  * The page implementing the Interactive OCL console.
  */
-public class OCLConsolePage extends Page implements MetamodelManagerListener
+public class OCLConsolePage extends Page //implements MetamodelManagerListener
 {
     public static enum ColorChoices
     {
@@ -329,8 +328,7 @@ public class OCLConsolePage extends Page implements MetamodelManagerListener
 	private EObject contextObject;
 	private ParserContext parserContext;
 	
-//	private final CancelableMetamodelManager metamodelManager;
-	private MetamodelManager nullMetamodelManager = null;
+	private OCL nullOCL = null;
 	private ModelManager modelManager = null;
 	
 //	private Map<TargetMetamodel, IAction> metamodelActions =
@@ -820,22 +818,15 @@ public class OCLConsolePage extends Page implements MetamodelManagerListener
 		if (metamodelManager != null) {
 			return metamodelManager;
 		}
-		MetamodelManager nullMetamodelManager2 = nullMetamodelManager;
-		if (nullMetamodelManager2 == null) {
-			nullMetamodelManager2 = nullMetamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
-			nullMetamodelManager2.addListener(this);
+		OCL nullOCL2 = nullOCL;
+		if (nullOCL2 == null) {
+			nullOCL2 = nullOCL = OCL.newInstance();
 		}
-		return nullMetamodelManager2;
+		return nullOCL2.getMetamodelManager();
 	}
 
 	protected ILaunch internalLaunchDebugger() {
 		return debugAction.launch();
-	}
-
-	@Override
-	public void metamodelManagerDisposed(@NonNull MetamodelManager metamodelManager) {
-		metamodelManager.removeListener(this);
-		reset();
 	}
 
 	protected void refreshSelection(final Object selected) {
@@ -923,9 +914,9 @@ public class OCLConsolePage extends Page implements MetamodelManagerListener
 //			modelManager.dispose();
 			modelManager = null;
 		}
-		if (nullMetamodelManager != null) {
-			nullMetamodelManager.dispose();
-			nullMetamodelManager = null;
+		if (nullOCL != null) {
+			nullOCL.dispose();
+			nullOCL = null;
 		}
 		parserContext = null;
 		contextObject = null;

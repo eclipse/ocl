@@ -37,14 +37,14 @@ import org.eclipse.ocl.xtext.markupcs.NewLineElement;
 
 public class MarkupTests extends XtextTestCase
 {	
-	protected OCL ocl = null;
+	protected OCL.Internal ocl = null;
 
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		MarkupStandaloneSetup.doSetup();
 		MarkupPackage.eINSTANCE.eClass();
-		ocl = OCL.newInstance(getProjectMap());
+		ocl = OCL.Internal.newInstance(getProjectMap());
 	}
 
 	@Override

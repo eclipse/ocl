@@ -372,7 +372,7 @@ public class EditTests extends XtextTestCase
 		//
 		//	Load and instrument test document
 		//
-		OCL ocl1 = OCL.newInstance(getProjectMap());
+		OCL.Internal ocl1 = OCL.Internal.newInstance(getProjectMap());
 		MetamodelManager metamodelManager1 = ocl1.getMetamodelManager();
 		Resource ecoreResource = metamodelManager1.getExternalResourceSet().getResource(ecoreURI, true);
 		assertNoResourceErrors("Ecore load", ecoreResource);

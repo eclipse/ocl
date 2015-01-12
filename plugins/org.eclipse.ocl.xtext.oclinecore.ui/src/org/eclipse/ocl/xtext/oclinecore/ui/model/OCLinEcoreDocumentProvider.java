@@ -50,8 +50,6 @@ import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.delegate.DelegateInstaller;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerListener;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.resource.OCLASResourceFactory;
 import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
@@ -77,7 +75,7 @@ import org.eclipse.xtext.validation.IConcreteSyntaxValidator.InvalidConcreteSynt
  * OCLinEcoreDocumentProvider orchestrates the load and saving of optional XMI content
  * externally while maintaining the serialised human friendly form internally. 
  */
-public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements MetamodelManagerListener
+public class OCLinEcoreDocumentProvider extends XtextDocumentProvider //implements MetamodelManagerListener
 {
 	private static final Logger log = Logger.getLogger(OCLinEcoreDocumentProvider.class);
 	
@@ -102,7 +100,8 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 
 	private Map<IDocument, URI> uriMap = new HashMap<IDocument, URI>();		// Helper for setDocumentContent
 	
-	private EnvironmentFactoryInternal environmentFactory = null;
+	private OCL.Internal ocl = null;
+//	private EnvironmentFactoryInternal environmentFactory = null;
 //	private MetamodelManager metamodelManager = null;
 
 	public static InputStream createResettableInputStream(InputStream inputStream) throws IOException {
@@ -199,13 +198,11 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 		}
 	}
 	
-	@SuppressWarnings("null")
 	protected @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
-		if (environmentFactory == null) {
-			environmentFactory = (EnvironmentFactoryInternal) OCL.createEnvironmentFactory(null);
-			environmentFactory.getMetamodelManager().addListener(this);
+		if (ocl == null) {
+			ocl = OCL.Internal.newInstance();
 		}
-		return environmentFactory;
+		return ocl.getEnvironmentFactory();
 	}
 
 	@Override
@@ -297,14 +294,6 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider implements
 		assert resource != null;
 		MetamodelManagerResourceAdapter.getAdapter(resource, getEnvironmentFactory().getMetamodelManager());
 		super.loadResource(resource, document, encoding);
-	}
-
-	@Override
-	public void metamodelManagerDisposed(@NonNull MetamodelManager metamodelManager) {
-		if (environmentFactory != null) {
-			environmentFactory.getMetamodelManager().removeListener(this);
-			this.environmentFactory = null;
-		}
 	}
 
 	@Override

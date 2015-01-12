@@ -75,8 +75,8 @@ import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.context.ClassContext;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.AbstractMetamodelManagerResourceAdapter;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.ocl.pivot.library.LibraryUnaryOperation;
@@ -965,7 +965,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	}
 
 	protected @NonNull OCL createOCL() {
-		return OCL.newInstance(getProjectMap());
+		return OCL.Internal.newInstance(getProjectMap());
 	}
 
 	protected @NonNull org.eclipse.ocl.pivot.Package createPackage(@NonNull Model parentRoot, @NonNull String name) {
@@ -1260,7 +1260,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	
 	@SuppressWarnings("null")
 	public void loadEPackage(@NonNull String alias, /*@NonNull*/ EPackage ePackage) {		
-		Element ecoreElement = Ecore2AS.importFromEcore(ocl.getEnvironmentFactory(), alias, ePackage);
+		Element ecoreElement = Ecore2AS.importFromEcore((EnvironmentFactoryInternal)ocl.getEnvironmentFactory(), alias, ePackage);
 		ocl.getMetamodelManager().addGlobalNamespace(alias, (Namespace) ecoreElement);
 	}
 	

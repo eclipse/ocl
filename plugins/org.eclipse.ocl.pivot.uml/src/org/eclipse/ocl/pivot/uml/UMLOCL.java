@@ -21,6 +21,38 @@ import org.eclipse.ocl.pivot.utilities.OCL;
  */
 public class UMLOCL extends OCL
 {
+/*	public static class Internal extends UMLOCL
+	{
+		public static @NonNull EnvironmentFactoryInternal createEnvironmentFactory(@Nullable ProjectManager projectManager) {
+			return ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectManager);
+		}
+		
+		public static @NonNull Internal newInstance() {
+			return newInstance(createEnvironmentFactory(null));
+		}
+		
+		public static @NonNull Internal newInstance(@Nullable ProjectManager projectManager) {	
+			return newInstance(createEnvironmentFactory(projectManager));
+		}
+		
+		public static @NonNull Internal newInstance(@NonNull EnvironmentFactoryInternal environmentFactory) {	
+			return new Internal(environmentFactory);
+		}
+		
+		public Internal(@NonNull EnvironmentFactoryInternal environmentFactory) {
+			super(environmentFactory);
+		}
+
+		@Override
+		public @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
+			return getEnvironmentFactoryInternal();
+		}
+
+		@Override
+		public @NonNull StandardLibraryInternal getStandardLibrary() {
+			return getEnvironmentFactoryInternal().getStandardLibrary();
+		}
+	} */
     /**
      * Creates a new <code>OCL</code> using the specified Ecore package registry.
      * This automatically creates an new EnvironmentFactory and MetamodelManager.
@@ -63,7 +95,7 @@ public class UMLOCL extends OCL
 	 * @throws ParserException 
 	 */
 	public @NonNull ASResource uml2as(@NonNull Resource umlResource) throws ParserException {
-		UML2AS uml2as = UML2AS.getAdapter(umlResource, getEnvironmentFactory());
+		UML2AS uml2as = UML2AS.getAdapter(umlResource, getEnvironmentFactoryInternal());
 		Model pivotModel = uml2as.getPivotModel();
 		ASResource asResource = (ASResource) pivotModel.eResource();
 		return ClassUtil.nonNullModel(asResource);

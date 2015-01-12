@@ -45,8 +45,8 @@ import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.helper.HelperUtil;
 import org.eclipse.ocl.pivot.internal.helper.OCLHelperImpl;
 import org.eclipse.ocl.pivot.internal.helper.QueryImpl;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.CSResource;
@@ -66,6 +66,39 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
  */
 public class OCL
 {
+	public static class Internal extends OCL
+	{
+		public static @NonNull EnvironmentFactoryInternal createEnvironmentFactory(@Nullable ProjectManager projectManager) {
+			return ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectManager);
+		}
+		
+		public static @NonNull Internal newInstance() {
+			return newInstance(createEnvironmentFactory(null));
+		}
+		
+		public static @NonNull Internal newInstance(@Nullable ProjectManager projectManager) {	
+			return newInstance(createEnvironmentFactory(projectManager));
+		}
+		
+		public static @NonNull Internal newInstance(@NonNull EnvironmentFactoryInternal environmentFactory) {	
+			return new Internal(environmentFactory);
+		}
+		
+		public Internal(@NonNull EnvironmentFactoryInternal environmentFactory) {
+			super(environmentFactory);
+		}
+
+		@Override
+		public @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
+			return getEnvironmentFactoryInternal();
+		}
+
+		@Override
+		public @NonNull StandardLibraryInternal getStandardLibrary() {
+			return getEnvironmentFactoryInternal().getStandardLibrary();
+		}
+	}
+	
 	public static @NonNull EnvironmentFactory createEnvironmentFactory(@Nullable ProjectManager projectManager) {
 //		OCLstdlib.lazyInstall();
 		return ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectManager);
@@ -142,11 +175,11 @@ public class OCL
      * Creates a new <code>OCL</code> using the specified Ecore environment
      * factory.
      * 
-     * @param envFactory an environment factory for Ecore
+     * @param environmentFactory an environment factory for Ecore
      * @return the new <code>OCL</code>
      */
-	public static @NonNull OCL newInstance(@NonNull EnvironmentFactory envFactory) {	
-		return new OCL((EnvironmentFactoryInternal) envFactory);
+	public static @NonNull OCL newInstance(@NonNull EnvironmentFactory environmentFactory) {	
+		return new OCL((EnvironmentFactoryInternal) environmentFactory);
 	}
 	
 	/**
@@ -196,7 +229,7 @@ public class OCL
 	 * Return the Ecore resource counterpart of a asResource, specifying the uri of the resulting Ecore resource.
 	 */
 	public @NonNull Resource as2ecore(@NonNull Resource asResource, @NonNull URI uri) throws IOException {
-		Resource ecoreResource = AS2Ecore.createResource(getEnvironmentFactory(), asResource, uri, null);
+		Resource ecoreResource = AS2Ecore.createResource(getEnvironmentFactoryInternal(), asResource, uri, null);
 		return ecoreResource;
 	}
 
@@ -379,7 +412,7 @@ public class OCL
 	 * Return the Pivot resource counterpart of an ecoreResource.
 	 */
 	public @NonNull ASResource ecore2as(@NonNull Resource ecoreResource) throws ParserException {
-		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, getEnvironmentFactory());
+		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, getEnvironmentFactoryInternal());
 		Model pivotModel = ecore2as.getPivotModel();
 		ASResource asResource = (ASResource) pivotModel.eResource();
 		return ClassUtil.nonNullModel(asResource);
@@ -435,7 +468,12 @@ public class OCL
 	}
 
 	@SuppressWarnings("null")
-	public @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
+	public @NonNull EnvironmentFactory getEnvironmentFactory() {
+		return environmentFactory;
+	}
+
+	@SuppressWarnings("null")
+	protected @NonNull EnvironmentFactoryInternal getEnvironmentFactoryInternal() {
 		return environmentFactory;
 	}
 	
@@ -525,8 +563,8 @@ public class OCL
 		return getMetamodelManager().getQueryOrThrow(specification);
 	}
 
-	public @NonNull StandardLibraryInternal getStandardLibrary() {
-		return getMetamodelManager().getStandardLibrary();
+	public @NonNull StandardLibrary getStandardLibrary() {
+		return getEnvironmentFactory().getStandardLibrary();
 	}
 
 	/**

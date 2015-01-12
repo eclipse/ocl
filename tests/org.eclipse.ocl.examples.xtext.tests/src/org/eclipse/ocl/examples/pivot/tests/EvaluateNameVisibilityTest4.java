@@ -39,7 +39,6 @@ import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.IdResolver;
-import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
@@ -175,7 +174,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	 * Tests a guarded let if in operator. This gave CG problems.
 	 */
 	@Test public void test_cg_let_implies() {
-		StandardLibraryInternal standardLibrary = ocl.getStandardLibrary();
+		StandardLibrary standardLibrary = ocl.getStandardLibrary();
 		String textQuery = 
 			    "let bodyConstraint : Constraint = null\n" + 
 			    "in bodyConstraint <> null implies\n" +
@@ -187,7 +186,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	}
 	
 	@Test public void test_let_implies_let_implies() {
-		StandardLibraryInternal standardLibrary = ocl.getStandardLibrary();
+		StandardLibrary standardLibrary = ocl.getStandardLibrary();
 		String textQuery = 
 			    "let bodyConstraint : Constraint = oclType().ownedInvariants->any(name = 'body')\n" + 
 			    "in bodyConstraint <> null implies\n" +
@@ -206,7 +205,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	}
 	
 	@Test public void test_cg_implies_calls() throws ParserException {
-		StandardLibraryInternal standardLibrary = ocl.getStandardLibrary();
+		StandardLibrary standardLibrary = ocl.getStandardLibrary();
 		ExpressionInOCL query = ocl.createQuery(standardLibrary.getOclVoidType(), "self->any(true)");
 		String textQuery = 
 			    "name = 'closure' implies\n" +
@@ -215,7 +214,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	}
 	
 	@Test public void test_cg_caught_if() throws ParserException {
-		StandardLibraryInternal standardLibrary = ocl.getStandardLibrary();
+		StandardLibrary standardLibrary = ocl.getStandardLibrary();
 		ExpressionInOCL query = ocl.createQuery(standardLibrary.getOclVoidType(), "self->any(true)");
 		String textQuery = 
 			    "name = 'closure' implies\n" +

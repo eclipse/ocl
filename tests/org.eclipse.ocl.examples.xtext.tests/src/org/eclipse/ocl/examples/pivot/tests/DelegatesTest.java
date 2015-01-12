@@ -58,6 +58,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Operation;
@@ -142,13 +143,14 @@ public class DelegatesTest extends PivotTestCase
 
 	public boolean usedLocalRegistry;
 
-	protected @NonNull OCL configureMetamodelManagerForDelegate(@NonNull EPackage ePackage) {
+	protected @NonNull OCL.Internal configureMetamodelManagerForDelegate(@NonNull EPackage ePackage) {
 		DelegateEPackageAdapter adapter = DelegateEPackageAdapter.getAdapter(ePackage);
 		DelegateDomain delegateDomain = adapter.getDelegateDomain(PivotConstants.OCL_DELEGATE_URI_PIVOT);
 		if (delegateDomain == null) {
 			delegateDomain = adapter.loadDelegateDomain(PivotConstants.OCL_DELEGATE_URI_PIVOT);
 		}
-		return OCL.newInstance(((OCLDelegateDomain)delegateDomain).getOCL().getEnvironmentFactory());
+		EnvironmentFactory environmentFactory = ((OCLDelegateDomain)delegateDomain).getOCL().getEnvironmentFactory();
+		return OCL.Internal.newInstance((EnvironmentFactoryInternal)environmentFactory);
 	}
 	
 	protected @NonNull ResourceSet createResourceSet() {
@@ -259,7 +261,7 @@ public class DelegatesTest extends PivotTestCase
 	protected @NonNull OCL initModelWithErrorsAndOcl(@NonNull ResourceSet resourceSet) {
 		doCompleteOCLSetup();
 		Resource ecoreResource = initModelWithErrors(resourceSet);
-		OCL ocl = configureMetamodelManagerForDelegate(companyPackage);
+		OCL.Internal ocl = configureMetamodelManagerForDelegate(companyPackage);
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		EnvironmentFactoryInternal environmentFactory = ocl.getEnvironmentFactory();
 		EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, environmentFactory);

@@ -144,7 +144,7 @@ public class RoundTripTests extends XtextTestCase
 //			String inputName = stem + ".ocl";
 //			String outputName = stem + ".regenerated.ocl";
 			URI outputURI = inputURI.trimFileExtension().appendFileExtension("regenerated.ocl");
-			EnvironmentFactoryInternal environmentFactory1 = (EnvironmentFactoryInternal) OCL.createEnvironmentFactory(projectMap);
+			EnvironmentFactoryInternal environmentFactory1 = OCL.Internal.createEnvironmentFactory(projectMap);
 			MetamodelManager metamodelManager1 = environmentFactory1.getMetamodelManager();
 			EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, environmentFactory1);
 			BaseCSResource xtextResource1 = createXtextFromURI(environmentFactory1, inputURI);
@@ -155,7 +155,7 @@ public class RoundTripTests extends XtextTestCase
 			metamodelManager1.dispose();
 			metamodelManager1 = null;
 			//
-			EnvironmentFactoryInternal environmentFactory3 = (EnvironmentFactoryInternal) OCL.createEnvironmentFactory(projectMap);
+			EnvironmentFactoryInternal environmentFactory3 = OCL.Internal.createEnvironmentFactory(projectMap);
 			MetamodelManager metamodelManager3 = environmentFactory3.getMetamodelManager();
 			BaseCSResource xtextResource3 = createXtextFromURI(environmentFactory3, outputURI);
 			@SuppressWarnings("unused")
@@ -181,10 +181,10 @@ public class RoundTripTests extends XtextTestCase
 		URI inputURI = getProjectFileURI(inputName);
 		String referenceName = reference + ".ecore";
 		URI referenceURI = getProjectFileURI(referenceName);
-		doRoundTripFromEcore((EnvironmentFactoryInternal) OCL.createEnvironmentFactory(getProjectMap()), inputURI, referenceURI, saveOptions);
+		doRoundTripFromEcore(OCL.Internal.createEnvironmentFactory(getProjectMap()), inputURI, referenceURI, saveOptions);
 	}
 	public void doRoundTripFromEcore(URI inputURI, URI referenceURI, Map<String,Object> saveOptions) throws IOException, InterruptedException, ParserException {
-		doRoundTripFromEcore((EnvironmentFactoryInternal) OCL.createEnvironmentFactory(getProjectMap()), inputURI, referenceURI, saveOptions);
+		doRoundTripFromEcore(OCL.Internal.createEnvironmentFactory(getProjectMap()), inputURI, referenceURI, saveOptions);
 	}
 	protected void doRoundTripFromEcore(@NonNull EnvironmentFactoryInternal environmentFactory, URI inputURI, URI referenceURI, Map<String,Object> saveOptions) throws IOException, InterruptedException, ParserException {
 		String stem = inputURI.trimFileExtension().lastSegment();
@@ -261,14 +261,14 @@ public class RoundTripTests extends XtextTestCase
 		ASResource pivotResource1 = createPivotFromXtext(environmentFactory1, xtextResource1, 1);
 		Resource ecoreResource = createEcoreFromPivot(environmentFactory1, pivotResource1, ecoreURI);
 		//
-		OCL ocl2 = OCL.newInstance(getProjectMap());
+		OCL.Internal ocl2 = OCL.Internal.newInstance(getProjectMap());
 		EnvironmentFactoryInternal environmentFactory2 = ocl2.getEnvironmentFactory();
 		ASResource pivotResource2 = createPivotFromEcore(environmentFactory2, ecoreResource);
 		@SuppressWarnings("unused")
 		BaseCSResource xtextResource2 = createXtextFromPivot(environmentFactory2, pivotResource2, outputURI);
 		ocl2.dispose();
 		//
-		OCL ocl3 = OCL.newInstance(getProjectMap());
+		OCL.Internal ocl3 = OCL.Internal.newInstance(getProjectMap());
 		EnvironmentFactoryInternal environmentFactory3 = ocl3.getEnvironmentFactory();
 		BaseCSResource xtextResource3 = createXtextFromURI(environmentFactory3, outputURI);
 		ASResource pivotResource3 = createPivotFromXtext(environmentFactory3, xtextResource3, 1);
@@ -282,7 +282,7 @@ public class RoundTripTests extends XtextTestCase
 //		Environment.Registry.INSTANCE.registerEnvironment(
 //			OCL.createEnvironmentFactory().createEnvironment());
 		ResourceSet resourceSet = new ResourceSetImpl();
-		assertNull(OCL.initialize(resourceSet));
+		assertNull(OCL.Internal.initialize(resourceSet));
 		resourceSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
 //		assertNull(org.eclipse.ocl.uml.OCL.initialize(null));		
 //		org.eclipse.uml2.uml.Package umlMetamodel = (org.eclipse.uml2.uml.Package) resourceSet.getResource(
@@ -304,7 +304,7 @@ public class RoundTripTests extends XtextTestCase
 		assertNoResourceErrors("UML load", inputResource);
 		assertNoValidationErrors("UML load", inputResource);
 		
-		EnvironmentFactoryInternal environmentFactory = (EnvironmentFactoryInternal) OCL.createEnvironmentFactory(getProjectMap());
+		EnvironmentFactoryInternal environmentFactory = OCL.Internal.createEnvironmentFactory(getProjectMap());
 		UML2AS uml2as = UML2AS.getAdapter(inputResource, environmentFactory);
 		Model pivotModel = uml2as.getPivotModel();
 		Resource asResource = pivotModel.eResource();
@@ -343,7 +343,7 @@ public class RoundTripTests extends XtextTestCase
 				"{\n" +
 				"class A;\n" +
 				"}\n";
-		OCL ocl1 = OCL.newInstance(getProjectMap());
+		OCL.Internal ocl1 = OCL.Internal.newInstance(getProjectMap());
 		createEcoreFile(ocl1.getMetamodelManager(), "Bug350894A", testFileA);
 		ocl1.dispose();
 		String testFileB = 
@@ -358,7 +358,7 @@ public class RoundTripTests extends XtextTestCase
 				"}\n" +
 				"}\n";
 		createOCLinEcoreFile("Bug350894B.oclinecore", testFileB);
-		OCL ocl2 = OCL.newInstance(getProjectMap());
+		OCL.Internal ocl2 = OCL.Internal.newInstance(getProjectMap());
 		doRoundTripFromOCLinEcore(ocl2.getEnvironmentFactory(), "Bug350894B");
 		ocl2.dispose();
 	}
@@ -373,7 +373,7 @@ public class RoundTripTests extends XtextTestCase
 			"	}\n" +
 			"}\n";
 		createOCLinEcoreFile("Bug356243.oclinecore", testFile);
-		OCL ocl = OCL.newInstance(getProjectMap());
+		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap());
 		doRoundTripFromOCLinEcore(ocl.getEnvironmentFactory(), "Bug356243");
 		ocl.dispose();
 	}
@@ -395,7 +395,7 @@ public class RoundTripTests extends XtextTestCase
 			"	}\n" +
 			"}\n";
 		createOCLinEcoreFile("Bug426927.oclinecore", testFile);
-		OCL ocl = OCL.newInstance(getProjectMap());
+		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap());
 		doRoundTripFromOCLinEcore(ocl.getEnvironmentFactory(), "Bug426927");
 		ocl.dispose();
 	}
@@ -422,7 +422,7 @@ public class RoundTripTests extends XtextTestCase
 				"}\n" +
 				"}\n";
 		createOCLinEcoreFile("Aggregates.oclinecore", testFile);
-		OCL ocl = OCL.newInstance(getProjectMap());
+		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap());
 		doRoundTripFromOCLinEcore(ocl.getEnvironmentFactory(), "Aggregates");
 		ocl.dispose();
 	}
@@ -445,7 +445,7 @@ public class RoundTripTests extends XtextTestCase
 				"}\n" +
 				"}\n";
 		createOCLinEcoreFile("Cardinality.oclinecore", testFile);
-		OCL ocl = OCL.newInstance(getProjectMap());
+		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap());
 		doRoundTripFromOCLinEcore(ocl.getEnvironmentFactory(), "Cardinality");
 		ocl.dispose();
 	}
@@ -472,7 +472,7 @@ public class RoundTripTests extends XtextTestCase
 				"}\n" +
 				"}\n";
 		createOCLinEcoreFile("Comments.oclinecore", testFile);
-		OCL ocl = OCL.newInstance(getProjectMap());
+		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap());
 		doRoundTripFromOCLinEcore(ocl.getEnvironmentFactory(), "Comments");
 		ocl.dispose();
 	}
@@ -502,7 +502,7 @@ public class RoundTripTests extends XtextTestCase
 				"}\n" +
 				"}\n";
 		createOCLinEcoreFile("InvariantComments.oclinecore", testFile);
-		OCL ocl = OCL.newInstance(getProjectMap());
+		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap());
 		doRoundTripFromOCLinEcore(ocl.getEnvironmentFactory(), "InvariantComments");
 		ocl.dispose();
 	}
@@ -551,7 +551,7 @@ public class RoundTripTests extends XtextTestCase
 	public void testOCLinEcoreCSTRoundTrip() throws IOException, InterruptedException, ParserException {
 		URI uri = URI.createPlatformResourceURI("/org.eclipse.ocl.xtext.oclinecore/model/OCLinEcoreCS.ecore", true);
 //		String stem = uri.trimFileExtension().lastSegment();
-		EnvironmentFactoryInternal environmentFactory = (EnvironmentFactoryInternal) OCL.createEnvironmentFactory(getProjectMap());
+		EnvironmentFactoryInternal environmentFactory = OCL.Internal.createEnvironmentFactory(getProjectMap());
 		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		StandaloneProjectMap.IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor("org.eclipse.emf.ecore");
 		StandaloneProjectMap.IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(URI.createURI(EcorePackage.eNS_URI));
@@ -602,7 +602,7 @@ public class RoundTripTests extends XtextTestCase
 		options.put(DelegateInstaller.OPTION_BOOLEAN_INVARIANTS, true);
 		options.put(OCLConstants.OCL_DELEGATE_URI, OCLConstants.OCL_DELEGATE_URI);
 		options.put(DelegateInstaller.OPTION_OMIT_SETTING_DELEGATES, true);
-		doRoundTripFromEcore((EnvironmentFactoryInternal) OCL.createEnvironmentFactory(getProjectMap()), uri, uri, options);
+		doRoundTripFromEcore(OCL.Internal.createEnvironmentFactory(getProjectMap()), uri, uri, options);
 	}
 
 	public void testSysMLRoundTrip() throws IOException, InterruptedException {
@@ -615,7 +615,7 @@ public class RoundTripTests extends XtextTestCase
 				"}\n" +
 				"}\n";
 		createOCLinEcoreFile("SysML.oclinecore", testFile);
-		OCL ocl = OCL.newInstance(getProjectMap());
+		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap());
 		doRoundTripFromOCLinEcore(ocl.getEnvironmentFactory(), "SysML");
 		ocl.dispose();
 	}
@@ -627,7 +627,7 @@ public class RoundTripTests extends XtextTestCase
 	public void testTypes_oclinecore() throws IOException, InterruptedException {
 //		BaseScopeProvider.LOOKUP.setState(true);
 //		EssentialOCLLinkingService.DEBUG_RETRY = true;
-		OCL ocl = OCL.newInstance(getProjectMap());
+		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap());
 		doRoundTripFromOCLinEcore(ocl.getEnvironmentFactory(), "Types");
 		ocl.dispose();
 	}

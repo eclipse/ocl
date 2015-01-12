@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestCase;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
@@ -177,9 +178,9 @@ public class DocumentationExamples extends PivotTestCase
 		}
 		OCL ocl = OCL.newInstance(resourceSet.getPackageRegistry());
 		try {
-			EnvironmentFactoryInternal environmentFactory = ocl.getEnvironmentFactory();
+			EnvironmentFactory environmentFactory = ocl.getEnvironmentFactory();
 	
-			Ecore2AS ecore2as = Ecore2AS.getAdapter(b2Book.eClass().eResource(), environmentFactory);
+			Ecore2AS ecore2as = Ecore2AS.getAdapter(b2Book.eClass().eResource(), (EnvironmentFactoryInternal) environmentFactory);
 			org.eclipse.ocl.pivot.Class bookType = ecore2as.getCreated(org.eclipse.ocl.pivot.Class.class, b2Book.eClass());
 
 		    Object b2Copies = b2Book.eGet(bookCopies);			// Static eGet
