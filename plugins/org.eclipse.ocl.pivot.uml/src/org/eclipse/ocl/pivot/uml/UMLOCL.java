@@ -82,12 +82,12 @@ public class UMLOCL extends OCL
      * @param envFactory an environment factory for Ecore
      * @return the new <code>OCL</code>
      */
-	public static @NonNull UMLOCL newInstance(@NonNull EnvironmentFactory envFactory) {	
-		return new UMLOCL((EnvironmentFactoryInternal) envFactory);
+	public static @NonNull UMLOCL newInstance(@NonNull EnvironmentFactory environmentFactory) {	
+		return new UMLOCL((EnvironmentFactoryInternal) environmentFactory);
 	}
 
-	protected UMLOCL(@NonNull EnvironmentFactoryInternal envFactory) {
-		super(envFactory);
+	protected UMLOCL(@NonNull EnvironmentFactoryInternal environmentFactory) {
+		super(environmentFactory);
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class UMLOCL extends OCL
 	 * @throws ParserException 
 	 */
 	public @NonNull ASResource uml2as(@NonNull Resource umlResource) throws ParserException {
-		UML2AS uml2as = UML2AS.getAdapter(umlResource, getEnvironmentFactoryInternal());
+		UML2AS uml2as = UML2AS.getAdapter(umlResource, environmentFactory);
 		Model pivotModel = uml2as.getPivotModel();
 		ASResource asResource = (ASResource) pivotModel.eResource();
 		return ClassUtil.nonNullModel(asResource);

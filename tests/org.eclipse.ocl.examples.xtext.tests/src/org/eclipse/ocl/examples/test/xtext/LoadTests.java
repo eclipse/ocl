@@ -343,7 +343,8 @@ public class LoadTests extends XtextTestCase
 		if (metamodelManager == null) {
 			metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		}
-		EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, metamodelManager.getEnvironmentFactory());
+		EnvironmentFactoryInternal environmentFactory = metamodelManager.getEnvironmentFactory();
+		EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, environmentFactory);
 		Resource umlResource = null;
 		try {
 //			System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
@@ -362,7 +363,7 @@ public class LoadTests extends XtextTestCase
 //			System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
 			assertNoResourceErrors("Save failed", umlResource);
 			umlResource.setURI(inputURI);
-			UML2AS adapter = UML2AS.getAdapter(umlResource, metamodelManager.getEnvironmentFactory());
+			UML2AS adapter = UML2AS.getAdapter(umlResource, environmentFactory);
 			UML2AS.Outer rootAdapter = adapter.getRoot();
 			Model pivotModel = rootAdapter.getPivotModel();
 			List<Resource> allResources = new ArrayList<Resource>();
@@ -370,13 +371,13 @@ public class LoadTests extends XtextTestCase
 			List<Resource> importedResources = rootAdapter.getImportedResources();
 			if (importedResources != null) {
 				for (Resource uResource : importedResources) {
-					UML2AS anAdapter = UML2AS.getAdapter(uResource, metamodelManager.getEnvironmentFactory());
+					UML2AS anAdapter = UML2AS.getAdapter(uResource, environmentFactory);
 					Model asModel = anAdapter.getPivotModel();
 					Resource asResource = asModel.eResource();
 					allResources.add(asResource);
 				}
 			}
-			OCL ocl = OCL.newInstance(metamodelManager.getEnvironmentFactory());
+			OCL ocl = OCL.newInstance(environmentFactory);
 			int exceptions = 0;
 //			int parses = 0;
 			StringBuilder s = new StringBuilder();
@@ -420,14 +421,14 @@ public class LoadTests extends XtextTestCase
 			//
 			//	Split off any embedded OCL to a separate file
 			//		
-			ASResource oclResource = CompleteOCLSplitter.separate(metamodelManager, allResources.get(0));
+			ASResource oclResource = CompleteOCLSplitter.separate(environmentFactory, allResources.get(0));
 			if (oclResource != null) {
 				URI xtextURI = oclURI;// != null ? URI.createPlatformResourceURI(oclURI, true) : uri.trimFileExtension().appendFileExtension("ocl");
 				ResourceSetImpl csResourceSet = new ResourceSetImpl();
-				EnvironmentFactoryResourceSetAdapter.getAdapter(csResourceSet, metamodelManager.getEnvironmentFactory());
+				EnvironmentFactoryResourceSetAdapter.getAdapter(csResourceSet, environmentFactory);
 				BaseCSResource xtextResource = (BaseCSResource) csResourceSet.createResource(xtextURI, OCLinEcoreCSPackage.eCONTENT_TYPE);
 				if (xtextResource != null) {
-					xtextResource.updateFrom(oclResource, metamodelManager.getEnvironmentFactory());
+					xtextResource.updateFrom(oclResource, environmentFactory);
 					xtextResource.save(null);
 				}
 				//

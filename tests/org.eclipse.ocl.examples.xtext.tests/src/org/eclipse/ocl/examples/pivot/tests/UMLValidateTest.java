@@ -37,7 +37,6 @@ import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
-import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.values.IntIntegerValueImpl;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
@@ -120,7 +119,7 @@ public class UMLValidateTest extends AbstractValidateTests
 	@Override
 	protected void tearDown() throws Exception {
 		EValidator.Registry.INSTANCE.remove(null);
-		PivotEnvironmentFactory.disposeGlobalRegistryInstance();
+		OCL.Internal.disposeGlobalEnvironmentFactory();
 //		OCLstdlib.uninstall();
 		super.tearDown();
 	}

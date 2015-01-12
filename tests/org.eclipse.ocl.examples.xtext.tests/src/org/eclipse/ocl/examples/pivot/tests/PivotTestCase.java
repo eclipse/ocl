@@ -65,7 +65,6 @@ import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
-import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
@@ -779,7 +778,7 @@ public class PivotTestCase extends TestCase
 		MarkupStandaloneSetup.doTearDown();
 		OCLinEcoreStandaloneSetup.doTearDown();
 		OCLstdlibStandaloneSetup.doTearDown();
-		PivotEnvironmentFactory.disposeGlobalRegistryInstance();
+		OCL.Internal.disposeGlobalEnvironmentFactory();
 //		OCLstdlib.uninstall(); // should be able to persist
 		if (projectMap != null) {
 			projectMap.dispose();

@@ -68,16 +68,44 @@ public class OCL
 {
 	public static class Internal extends OCL
 	{
-		public static @NonNull EnvironmentFactoryInternal createEnvironmentFactory(@Nullable ProjectManager projectManager) {
-			return ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectManager);
+		/**
+	     * A convenient shared instance of the environment factory, that creates
+	     * environments using the global package registry.
+		 */
+	    private static @Nullable EnvironmentFactory GLOBAL_ENVIRONMENT_FACTORY = null;
+
+		public static @Nullable EnvironmentFactory basicGetGlobalEnvironmentFactory() {
+			return GLOBAL_ENVIRONMENT_FACTORY;
+		}
+
+//		public static @NonNull EnvironmentFactoryInternal createEnvironmentFactory(@Nullable ProjectManager projectManager) {
+//			return ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectManager);
+//		}
+
+	    /**
+	     * Dispose of the global instance; this is intended for leakage detection in tests.
+	     */
+		public static void disposeGlobalEnvironmentFactory() {
+			if (GLOBAL_ENVIRONMENT_FACTORY != null) {
+				((EnvironmentFactoryInternal)GLOBAL_ENVIRONMENT_FACTORY).dispose();
+				GLOBAL_ENVIRONMENT_FACTORY = null;
+			}
+		}
+		
+		public static @NonNull EnvironmentFactory getGlobalEnvironmentFactory() {
+			EnvironmentFactory globalRegistryInstance2 = GLOBAL_ENVIRONMENT_FACTORY;
+			if (globalRegistryInstance2 == null) {
+				GLOBAL_ENVIRONMENT_FACTORY = globalRegistryInstance2 = OCL.Internal.createEnvironmentFactory(null);
+			}
+			return globalRegistryInstance2;
 		}
 		
 		public static @NonNull Internal newInstance() {
-			return newInstance(createEnvironmentFactory(null));
+			return newInstance(ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(null));
 		}
 		
 		public static @NonNull Internal newInstance(@Nullable ProjectManager projectManager) {	
-			return newInstance(createEnvironmentFactory(projectManager));
+			return newInstance(ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectManager));
 		}
 		
 		public static @NonNull Internal newInstance(@NonNull EnvironmentFactoryInternal environmentFactory) {	
@@ -90,12 +118,14 @@ public class OCL
 
 		@Override
 		public @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
-			return getEnvironmentFactoryInternal();
+			assert environmentFactory != null;
+			return environmentFactory;
 		}
 
 		@Override
 		public @NonNull StandardLibraryInternal getStandardLibrary() {
-			return getEnvironmentFactoryInternal().getStandardLibrary();
+			assert environmentFactory != null;
+			return environmentFactory.getStandardLibrary();
 		}
 	}
 	
@@ -179,14 +209,14 @@ public class OCL
      * @return the new <code>OCL</code>
      */
 	public static @NonNull OCL newInstance(@NonNull EnvironmentFactory environmentFactory) {	
-		return new OCL((EnvironmentFactoryInternal) environmentFactory);
+		return new OCL.Internal((EnvironmentFactoryInternal) environmentFactory);
 	}
 	
 	/**
 	 * The EnvironmentFactory that can create objects and which provides the MetamodelManager, CompleteEnvironment and StandardLibrary.
 	 * This is non-null until the OCL is disposed. Any subsequent usage will provoke NPEs.
 	 */
-	private /*@NonNull*/ EnvironmentFactoryInternal environmentFactory;			// Set null once disposed, so NPE is use after dispose
+	protected /*@NonNull*/ EnvironmentFactoryInternal environmentFactory;			// Set null once disposed, so NPE is use after dispose
 	
 	private @Nullable ModelManager modelManager;
 
@@ -229,7 +259,8 @@ public class OCL
 	 * Return the Ecore resource counterpart of a asResource, specifying the uri of the resulting Ecore resource.
 	 */
 	public @NonNull Resource as2ecore(@NonNull Resource asResource, @NonNull URI uri) throws IOException {
-		Resource ecoreResource = AS2Ecore.createResource(getEnvironmentFactoryInternal(), asResource, uri, null);
+		assert environmentFactory != null;
+		Resource ecoreResource = AS2Ecore.createResource(environmentFactory, asResource, uri, null);
 		return ecoreResource;
 	}
 
@@ -412,7 +443,8 @@ public class OCL
 	 * Return the Pivot resource counterpart of an ecoreResource.
 	 */
 	public @NonNull ASResource ecore2as(@NonNull Resource ecoreResource) throws ParserException {
-		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, getEnvironmentFactoryInternal());
+		assert environmentFactory != null;
+		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, environmentFactory);
 		Model pivotModel = ecore2as.getPivotModel();
 		ASResource asResource = (ASResource) pivotModel.eResource();
 		return ClassUtil.nonNullModel(asResource);
@@ -467,13 +499,8 @@ public class OCL
 		return metamodelManager.getType(staticTypeOf);
 	}
 
-	@SuppressWarnings("null")
 	public @NonNull EnvironmentFactory getEnvironmentFactory() {
-		return environmentFactory;
-	}
-
-	@SuppressWarnings("null")
-	protected @NonNull EnvironmentFactoryInternal getEnvironmentFactoryInternal() {
+		assert environmentFactory != null;
 		return environmentFactory;
 	}
 	

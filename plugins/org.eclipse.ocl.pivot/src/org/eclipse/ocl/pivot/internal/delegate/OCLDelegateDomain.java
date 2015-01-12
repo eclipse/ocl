@@ -34,10 +34,8 @@ import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
-import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
@@ -250,7 +248,7 @@ public class OCLDelegateDomain implements DelegateDomain, EnvironmentFactory.Lis
 
 	private @NonNull EnvironmentFactory getEnvironmentFactory() {
 		Resource res = ePackage.eResource();
-		EnvironmentFactoryInternal envFactory = null;
+		EnvironmentFactory envFactory = null;
 		if (res != null) {
 			MetamodelManager metamodelManager = null;
 			ResourceSet resourceSet = res.getResourceSet();
@@ -272,7 +270,7 @@ public class OCLDelegateDomain implements DelegateDomain, EnvironmentFactory.Lis
 		}
 		if (envFactory == null) {
 			// the shared instance uses the static package registry
-			envFactory = PivotEnvironmentFactory.getGlobalRegistryInstance();
+			envFactory = OCL.Internal.getGlobalEnvironmentFactory();
 		}
 		return envFactory;
 	}

@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
@@ -74,34 +73,6 @@ import org.eclipse.ocl.pivot.values.ObjectValue;
  */
 public abstract class AbstractEnvironmentFactory extends AbstractCustomizable implements EnvironmentFactoryInternal
 {
-	/**
-     * A convenient shared instance of the environment factory, that creates
-     * environments using the global package registry.
-	 */
-    private static @Nullable EnvironmentFactoryInternal globalRegistryInstance = null;
-
-	public static @Nullable EnvironmentFactory basicGetGlobalRegistryInstance() {
-		return globalRegistryInstance;
-	}
-
-    /**
-     * Dispose of the global instance; this is intended for leakage detection in tests.
-     */
-	public static void disposeGlobalRegistryInstance() {
-		if (globalRegistryInstance != null) {
-			globalRegistryInstance.dispose();
-			globalRegistryInstance = null;
-		}
-	}
-	
-	public static @NonNull EnvironmentFactoryInternal getGlobalRegistryInstance() {
-		EnvironmentFactoryInternal globalRegistryInstance2 = globalRegistryInstance;
-		if (globalRegistryInstance2 == null) {
-			globalRegistryInstance = globalRegistryInstance2 = OCL.Internal.createEnvironmentFactory(null);
-		}
-		return globalRegistryInstance2;
-	}
-
     private boolean traceEvaluation;
     private /*@LazyNonNull*/ ProjectManager projectManager;
     private /*@LazyNonNull*/ MetamodelManager metamodelManager;
@@ -334,7 +305,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 			}
 		}
 		assert attachCount == 0;
-		if (this != basicGetGlobalRegistryInstance()) { // dispose of my environment
+		if (this != OCL.Internal.basicGetGlobalEnvironmentFactory()) { // dispose of my environment
 			if (metamodelManager != null) {
 				metamodelManager.dispose();
 				metamodelManager = null;

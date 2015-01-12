@@ -36,7 +36,6 @@ import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
-import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.values.BagImpl;
 import org.eclipse.ocl.pivot.uml.internal.validation.UMLOCLEValidator;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
@@ -172,7 +171,7 @@ public abstract class AbstractValidateTests extends PivotTestCase
 
 	@Override
 	protected void tearDown() throws Exception {
-		PivotEnvironmentFactory.disposeGlobalRegistryInstance();
+		OCL.Internal.disposeGlobalEnvironmentFactory();
 		super.tearDown();
 	}
 }

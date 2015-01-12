@@ -26,6 +26,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Annotation;
 import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Model;
@@ -47,7 +48,7 @@ import org.eclipse.ocl.pivot.utilities.NameUtil;
  */
 public class CompleteOCLSplitter
 {
-	public static @Nullable ASResource separate(@NonNull MetamodelManager metamodelManager, @NonNull Resource asResource) {
+	public static @Nullable ASResource separate(@NonNull EnvironmentFactory environmentFactory, @NonNull Resource asResource) {
 		List<Constraint> allConstraints = new ArrayList<Constraint>();
 		List<LanguageExpression> allExpressionInOCLs = new ArrayList<LanguageExpression>();
 		for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {
@@ -79,6 +80,7 @@ public class CompleteOCLSplitter
 		URI oclASuri = PivotUtilInternal.getASURI(oclURI);	// xxx.ocl.ocl.oclas
 		ASResource oclResource = (ASResource) asResource.getResourceSet().createResource(oclASuri, ASResource.COMPLETE_OCL_CONTENT_TYPE);	
 		if (oclResource != null) {
+			MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 			Separator separator = new Separator(metamodelManager, oclResource);
 			for (Constraint constraint : allConstraints) {
 				separator.doSwitch(constraint);
