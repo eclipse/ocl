@@ -402,7 +402,7 @@ public abstract class CS2AS extends AbstractConversion implements MetamodelManag
 
 	public CS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull EnvironmentFactoryInternal environmentFactory) {
 		super(environmentFactory);
-		this.csi2asMapping = CSI2ASMapping.getAdapter(metamodelManager);
+		this.csi2asMapping = CSI2ASMapping.getCSI2ASMapping(environmentFactory);
 		csi2asMapping.add(cs2asResourceMap);
 		this.csResources = ClassUtil.nonNullState(cs2asResourceMap.keySet());
 		metamodelManager.addListener(this);
@@ -412,7 +412,7 @@ public abstract class CS2AS extends AbstractConversion implements MetamodelManag
 	protected CS2AS(@NonNull CS2AS aConverter) {
 		super(aConverter.getEnvironmentFactory());
 		this.csResources = aConverter.csResources;
-		this.csi2asMapping = CSI2ASMapping.getAdapter(metamodelManager);
+		this.csi2asMapping = CSI2ASMapping.getCSI2ASMapping(environmentFactory);
 	}
 
 	public @NonNull String bind(@NonNull EObject csContext, /*@NonNull*/ String messageTemplate, Object... bindings) {

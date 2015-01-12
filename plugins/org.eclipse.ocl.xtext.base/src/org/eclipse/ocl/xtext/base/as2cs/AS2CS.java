@@ -98,7 +98,7 @@ public class AS2CS extends AbstractConversion
 				conversion.update(csResource);
 			}
 		}
-		CSI2ASMapping csi2asMapping = CSI2ASMapping.getAdapter(environmentFactory.getMetamodelManager());
+		CSI2ASMapping csi2asMapping = CSI2ASMapping.getCSI2ASMapping(environmentFactory);
 		csi2asMapping.add(cs2asResourceMap);
 		csi2asMapping.update(/*csResources*/);
 	}

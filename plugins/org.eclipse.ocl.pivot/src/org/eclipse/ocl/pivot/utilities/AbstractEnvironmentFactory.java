@@ -58,6 +58,7 @@ import org.eclipse.ocl.pivot.internal.library.ImplementationManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.PivotIdResolver;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
+import org.eclipse.ocl.pivot.internal.resource.ICSI2ASMapping;
 import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
@@ -103,7 +104,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
     private /*@LazyNonNull*/ MetamodelManager metamodelManager;
 	private final @NonNull CompleteEnvironmentInternal completeEnvironment;
 	private final @NonNull StandardLibraryInternal standardLibrary;
-
+	private @Nullable ICSI2ASMapping csi2asMapping;
 	/**
 	 * The known packages.
 	 */
@@ -302,6 +303,9 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 			if (idResolver != null) {
 				idResolver.dispose();
 			}
+			if (csi2asMapping != null) {
+				csi2asMapping.dispose();
+			}
 		}
 	}
 
@@ -350,6 +354,11 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	@Override
 	public @NonNull CompleteModelInternal getCompleteModel() {
 		return completeModel;
+	}
+
+	@Override
+	public @Nullable ICSI2ASMapping getCSI2ASMapping() {
+		return csi2asMapping;
 	}
 
 	@Override
@@ -475,7 +484,12 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 		}
 		return false;
 	}
-    
+
+	@Override
+	public void setCSI2ASMapping(ICSI2ASMapping csi2asMapping) {
+		this.csi2asMapping = csi2asMapping;
+	}
+	
     /**
      * Sets whether tracing of evaluation is enabled.  Tracing logs
      * the progress of parsing to the console, which may be of use in diagnosing

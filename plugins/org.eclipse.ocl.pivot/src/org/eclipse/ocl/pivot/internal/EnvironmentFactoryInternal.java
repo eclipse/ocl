@@ -30,6 +30,7 @@ import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.library.ImplementationManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.resource.ICSI2ASMapping;
 import org.eclipse.ocl.pivot.utilities.AbstractEnvironmentFactory;
 
 /**
@@ -68,6 +69,8 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 	@Override
 	@NonNull CompleteModelInternal getCompleteModel();
 
+	@Nullable ICSI2ASMapping getCSI2ASMapping();
+
 	String getExtensionName(@NonNull Element asStereotypedElement);
 
 	RootPackageId getMetamodelId(@NonNull EPackage ePackage);
@@ -87,6 +90,8 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 	
 	@Override
 	@NonNull StandardLibraryInternal getStandardLibrary();
+
+	void setCSI2ASMapping(ICSI2ASMapping csi2asMapping);
 
 	void setEvaluationTracingEnabled(boolean b);
 	

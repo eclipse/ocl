@@ -20,8 +20,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -30,8 +28,8 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Nameable;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerListener;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
+import org.eclipse.ocl.pivot.internal.resource.ICSI2ASMapping;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.xtext.basecs.ElementCS;
@@ -39,28 +37,28 @@ import org.eclipse.ocl.xtext.basecs.ModelElementCS;
 
 /**
  * The CSI2ASMapping maintains the mapping between CS elements or rather their CSIs
- * that remain stable after recreation and the Pivot elements. This mapping may be used
+ * that remain stable after recreation and the AS elements. This mapping may be used
  * repeatedly while editing (CS2AS conversions) to associate changing CS elements with
  * stable Pivot elements.
  * The mapping is also created during a AS2CS conversion to allow subsequent CS2AS
- * conversions to reuse the original Pivot elements.  
+ * conversions to reuse the original AS elements.  
  */
-public class CSI2ASMapping extends AdapterImpl implements MetamodelManagerListener
+public class CSI2ASMapping implements ICSI2ASMapping
 {
-	public static @NonNull CSI2ASMapping getAdapter(@NonNull MetamodelManager metamodelManager) {
-		List<Adapter> eAdapters = metamodelManager.getASResourceSet().eAdapters();
-		for (Adapter adapter : eAdapters) {
-			if (adapter instanceof CSI2ASMapping) {
-				return (CSI2ASMapping) adapter;
-			}
+	/**
+	 * Create/reuse the CSI2ASMapping owned by the environmentFactory on behalf of CS-aware consumers.
+	 */
+	public static @NonNull CSI2ASMapping getCSI2ASMapping(@NonNull EnvironmentFactoryInternal environmentFactory) {
+		ICSI2ASMapping csi2asMapping = environmentFactory.getCSI2ASMapping();
+		if (csi2asMapping == null) {
+			csi2asMapping = new CSI2ASMapping();
+			environmentFactory.setCSI2ASMapping(csi2asMapping);
 		}
-		CSI2ASMapping adapter = new CSI2ASMapping();
-		eAdapters.add(adapter);
-		return adapter;
+		return (CSI2ASMapping) csi2asMapping;
 	}
 	
 	/**
-	 * An AbstractCSI defines the priovate interface for a CSI and the shared support for a hashCode and toString.
+	 * An AbstractCSI defines the private interface for a CSI and the shared support for a hashCode and toString.
 	 */
 	private abstract static class AbstractCSI implements CSI
 	{
@@ -368,11 +366,6 @@ public class CSI2ASMapping extends AdapterImpl implements MetamodelManagerListen
 		as2cs = null;
 		this.cs2asResourceMap.putAll(cs2asResourceMap); 
 	}
-
-	public void clear() {
-		csi2as.clear();
-		as2cs = null;
-	}
 	
 	public Set<CSI> computeCSIs(Collection<? extends Resource> csResources) {
 		Set<CSI> map = new HashSet<CSI>();
@@ -405,6 +398,12 @@ public class CSI2ASMapping extends AdapterImpl implements MetamodelManagerListen
 			}
 		}
 		return map;
+	}
+
+	@Override
+	public void dispose() {
+		csi2as.clear();
+		as2cs = null;
 	}
 
 	/**
@@ -475,16 +474,6 @@ public class CSI2ASMapping extends AdapterImpl implements MetamodelManagerListen
 
 	public Map<CSI, Element> getMapping() {
 		return csi2as;
-	}
-
-	@Override
-	public boolean isAdapterForType(Object type) {
-		return type == CSI2ASMapping.class;
-	}
-
-	@Override
-	public void metamodelManagerDisposed(@NonNull MetamodelManager metamodelManager) {
-		clear();
 	}
 
 	/**
