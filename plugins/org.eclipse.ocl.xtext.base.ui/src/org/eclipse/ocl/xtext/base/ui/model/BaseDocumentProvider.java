@@ -44,8 +44,6 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerListener;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.resource.OCLASResourceFactory;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
@@ -67,7 +65,7 @@ import org.eclipse.xtext.validation.IConcreteSyntaxValidator.InvalidConcreteSynt
  * QVTimperativeDocumentProvider orchestrates the load and saving of optional XMI content
  * externally while maintaining the serialised human friendly form internally. 
  */
-public abstract class BaseDocumentProvider extends XtextDocumentProvider implements MetamodelManagerListener
+public abstract class BaseDocumentProvider extends XtextDocumentProvider
 {
 	private static final Logger log = Logger.getLogger(BaseDocumentProvider.class);
 	
@@ -89,7 +87,7 @@ public abstract class BaseDocumentProvider extends XtextDocumentProvider impleme
 
 	private Map<IDocument, URI> uriMap = new HashMap<IDocument, URI>();		// Helper for setDocumentContent
 	
-	private MetamodelManager metamodelManager = null;
+	private OCL ocl = null;
 
 	public static InputStream createResettableInputStream(InputStream inputStream) throws IOException {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -170,12 +168,11 @@ public abstract class BaseDocumentProvider extends XtextDocumentProvider impleme
 	protected abstract @NonNull String getFileExtension();
 	
 	@SuppressWarnings("null")
-	protected @NonNull MetamodelManager getMetamodelManager() {
-		if (metamodelManager == null) {
-			metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
-			metamodelManager.addListener(this);
+	protected @NonNull OCL getOCL() {
+		if (ocl == null) {
+			ocl = OCL.newInstance();
 		}
-		return metamodelManager;
+		return ocl;
 	}
 
 	@Override
@@ -265,14 +262,8 @@ public abstract class BaseDocumentProvider extends XtextDocumentProvider impleme
 	@Override
 	protected void loadResource(XtextResource resource, String document, String encoding) throws CoreException {
 		assert resource != null;
-		MetamodelManagerResourceAdapter.getAdapter(resource, getMetamodelManager());
+		MetamodelManagerResourceAdapter.getAdapter(resource, getOCL().getMetamodelManager());
 		super.loadResource(resource, document, encoding);
-	}
-
-	@Override
-	public void metamodelManagerDisposed(@NonNull MetamodelManager metamodelManager) {
-		metamodelManager.removeListener(this);
-		this.metamodelManager = null;
 	}
 
 	@Override
@@ -292,7 +283,7 @@ public abstract class BaseDocumentProvider extends XtextDocumentProvider impleme
 			boolean isXML = isXML(inputStream);		
 			String persistAs = PERSIST_AS_TEXT;
 			if (isXML) {
-				ResourceSet resourceSet = getMetamodelManager().getExternalResourceSet();
+				ResourceSet resourceSet = getOCL().getMetamodelManager().getExternalResourceSet();
 				StandaloneProjectMap projectMap = StandaloneProjectMap.getAdapter(resourceSet);
 				StandaloneProjectMap.IConflictHandler conflictHandler = StandaloneProjectMap.MapToFirstConflictHandlerWithLog.INSTANCE; //null; 			// FIXME
 				projectMap.configure(resourceSet, StandaloneProjectMap.LoadFirstStrategy.INSTANCE, conflictHandler);
@@ -359,7 +350,7 @@ public abstract class BaseDocumentProvider extends XtextDocumentProvider impleme
 				//		Ecore XMI resource with *.ecore URI, possibly in URIResourceMap as *.ecore
 				//		QVTimperative CS resource with *.ecore URI, in URIResourceMap as *.ecore.oclinecore
 				//
-				csResource.updateFrom(asResource, getMetamodelManager().getEnvironmentFactory());
+				csResource.updateFrom(asResource, getOCL().getEnvironmentFactory());
 				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 				try {
 					csResource.save(outputStream, null);
