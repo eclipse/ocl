@@ -39,7 +39,6 @@ import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ParserContext;
-import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.Pivotable;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
@@ -92,21 +91,8 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 		if (EcorePlugin.IS_ECLIPSE_RUNNING) {
 			return "";
 		}
-		String doSetup = null;
-		String fileExtension = uri.fileExtension();
-		if (PivotConstants.ESSENTIAL_OCL_FILE_EXTENSION.equals(fileExtension)) {
-			doSetup = "EssentialOCLStandaloneSetup.doSetup()";
-		}
-		else if (PivotConstants.OCL_FILE_EXTENSION.equals(fileExtension)) {
-			doSetup = "CompleteOCLStandaloneSetup.doSetup()";
-		}
-		else if (PivotConstants.OCLINECORE_FILE_EXTENSION.equals(fileExtension)) {
-			doSetup = "OCLinEcoreStandaloneSetup.doSetup()";
-		}
-		else if (PivotConstants.OCLSTDLIB_FILE_EXTENSION.equals(fileExtension)) {
-			doSetup = "OCLstdlibStandaloneSetup.doSetup()";
-		}
-		else {
+		String doSetup = environmentFactory.getDoSetupName(uri);
+		if (doSetup == null) {
 			return "";
 		}
 		return "\n\tMake sure " + doSetup + " has been called.";

@@ -15,6 +15,7 @@ package org.eclipse.ocl.pivot.utilities;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.ENamedElement;
@@ -369,6 +370,24 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	@Override
 	public @Nullable ICSI2ASMapping getCSI2ASMapping() {
 		return csi2asMapping;
+	}
+
+	@Override
+	public @Nullable String getDoSetupName(@NonNull URI uri) {
+		String fileExtension = uri.fileExtension();
+		if (PivotConstants.ESSENTIAL_OCL_FILE_EXTENSION.equals(fileExtension)) {
+			return "EssentialOCLStandaloneSetup.doSetup()";
+		}
+		else if (PivotConstants.OCL_FILE_EXTENSION.equals(fileExtension)) {
+			return "CompleteOCLStandaloneSetup.doSetup()";
+		}
+		else if (PivotConstants.OCLINECORE_FILE_EXTENSION.equals(fileExtension)) {
+			return "OCLinEcoreStandaloneSetup.doSetup()";
+		}
+		else if (PivotConstants.OCLSTDLIB_FILE_EXTENSION.equals(fileExtension)) {
+			return "OCLstdlibStandaloneSetup.doSetup()";
+		}
+		return null;
 	}
 
 	@Override

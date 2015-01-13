@@ -12,6 +12,7 @@
 
 package org.eclipse.ocl.pivot;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -136,4 +137,6 @@ public interface EnvironmentFactory extends Adaptable, Customizable
 	@NonNull StandardLibrary getStandardLibrary();
 
 	void removeListener(@NonNull Listener oclDelegateDomain);
+
+	@Nullable String getDoSetupName(@NonNull URI uri);
 }

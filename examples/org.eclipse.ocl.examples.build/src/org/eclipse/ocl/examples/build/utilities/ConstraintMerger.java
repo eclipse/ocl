@@ -38,15 +38,14 @@ import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.library.StandardLibraryContribution;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.manager.Orphanage;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
+import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
-import org.eclipse.ocl.xtext.essentialocl.utilities.EssentialOCLCSResource;
 
 /**
  * Merges a specified <tt>uri</tt> into a designated <tt>modelSlot</tt>.
@@ -107,9 +106,7 @@ public class ConstraintMerger extends AbstractProjectComponent
 //FIXME		diagnoseErrors(asResource);
 //		URI fileURI = URI.createPlatformResourceURI(uri, true);
 		try {
-			EssentialOCLCSResource xtextResource = ClassUtil.nonNullState((EssentialOCLCSResource) metamodelManager.getExternalResourceSet().createResource(inputURI, null));
-			MetamodelManagerResourceAdapter.getAdapter(xtextResource, metamodelManager);
-			xtextResource.load(null);
+			@SuppressWarnings("unused")CSResource csResource = ocl.getCSResource(inputURI);
 			ResourceUtils.checkResourceSet(asResourceSet);
 //			CS2ASResourceAdapter cs2as = CS2ASResourceAdapter.getAdapter(xtextResource, metamodelManager);
 //			Resource oclResource = cs2as.getPivotResource(xtextResource);

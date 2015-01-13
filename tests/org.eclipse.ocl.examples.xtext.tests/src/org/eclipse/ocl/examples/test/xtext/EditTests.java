@@ -27,9 +27,7 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
@@ -41,11 +39,11 @@ import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.internal.context.ModelContext;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.values.CollectionTypeParametersImpl;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
@@ -72,54 +70,66 @@ public class EditTests extends XtextTestCase
 		}
 	}
 
-	protected OCL ocl = null;
-//	protected MetamodelManager metamodelManager = null;
-	
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		ocl = OCL.newInstance(getProjectMap());
+		this.resourceSet = null;		// FIXME lose this field
 	}
 
-	@Override
-	protected void tearDown() throws Exception {
-		ocl.dispose();		
-		ocl = null;		
-		super.tearDown();
-	}
-
-	protected Resource getEcoreFromCS1(OCL ocl1, String testDocument, URI ecoreURI) throws IOException {
-		MetamodelManager metamodelManager1 = ocl1.getMetamodelManager();
-		InputStream inputStream = new URIConverter.ReadableInputStream(testDocument, "UTF-8");
-		URI xtextURI = URI.createURI("test.oclinecore");
-		ResourceSet resourceSet = new ResourceSetImpl();
-		EssentialOCLCSResource xtextResource = (EssentialOCLCSResource) resourceSet.createResource(xtextURI, null);
-		MetamodelManagerResourceAdapter.getAdapter(xtextResource, metamodelManager1);
-		xtextResource.load(inputStream, null);
-		assertNoResourceErrors("Loading Xtext", xtextResource);
-		MetamodelManagerResourceAdapter adapter = MetamodelManagerResourceAdapter.getAdapter(xtextResource, metamodelManager1);
-		Resource asResource = cs2as(ocl1, xtextResource, null);
-		Resource ecoreResource = as2ecore(ocl1, asResource, ecoreURI, true);
-		adapter.dispose();
-		return ecoreResource;
-	}
-
-	protected Resource doRename(EssentialOCLCSResource xtextResource, Resource asResource, String oldString, String newString, String... expectedErrors) throws IOException {
-		String contextMessage = "Renaming '" + oldString + "' to '" + newString + "'";
-//		System.out.println("-----------------" + contextMessage + "----------------");
-		replace(xtextResource, oldString, newString); 
-		assertResourceErrors(contextMessage, xtextResource, expectedErrors);
-		assertNoResourceErrors(contextMessage, asResource);
-		boolean validSave = expectedErrors.length == 0;
-		if (validSave) {
-			assertNoValidationErrors(contextMessage, asResource);
+	private void assertHasComments(@NonNull Resource aResource, @NonNull String[] comments) {
+		Map<String, Integer> expected = new HashMap<String, Integer>();
+		for (String comment : comments) {
+			Integer count = expected.get(comment);
+			count = (count != null) ? (count + 1) : 1;
+			expected.put(comment, count);
 		}
-		Resource ecoreResource = as2ecore(ocl, asResource, null, true);
-		assertNoResourceErrors(contextMessage, ecoreResource);
-		return ecoreResource;
-	}	
+		for (TreeIterator<EObject> tit = aResource.getAllContents(); tit.hasNext(); ) {
+			EObject eObject = tit.next();
+			if (eObject instanceof EModelElement) {
+				EAnnotation eAnnotation = ((EModelElement)eObject).getEAnnotation(PivotConstantsInternal.DOCUMENTATION_ANNOTATION_SOURCE);
+				if (eAnnotation != null) {
+					String comment = eAnnotation.getDetails().get(PivotConstantsInternal.DOCUMENTATION_ANNOTATION_KEY);
+					Integer count = expected.get(comment);
+					assertTrue("Expected comment '" + comment + "' exists", (count != null) && (count > 0));
+					expected.put(comment, count-1);
+				}
+			}
+		}
+		for (String comment : comments) {
+			assertEquals("Expected comment '" + comment + "' extra occurences", 0, expected.get(comment).intValue());
+		}
+	}
 
-	protected void replace(EssentialOCLCSResource xtextResource, String oldString, String newString) {
+	public boolean debugStateRef(WeakReference<Type> sequenceMyType) {
+		DebugRef debugRef = new DebugRef(sequenceMyType.get());
+		return debugRef.object == null;
+	}
+
+	protected Resource doRename(@NonNull OCL ocl, @NonNull CSResource xtextResource, Resource asResource, String oldString, String newString, String... expectedErrors) throws IOException {
+			String contextMessage = "Renaming '" + oldString + "' to '" + newString + "'";
+	//		System.out.println("-----------------" + contextMessage + "----------------");
+			replace(xtextResource, oldString, newString); 
+			assertResourceErrors(contextMessage, xtextResource, expectedErrors);
+			assertNoResourceErrors(contextMessage, asResource);
+			boolean validSave = expectedErrors.length == 0;
+			if (validSave) {
+				assertNoValidationErrors(contextMessage, asResource);
+			}
+			Resource ecoreResource = as2ecore(ocl, asResource, null, true);
+			assertNoResourceErrors(contextMessage, ecoreResource);
+			return ecoreResource;
+		}
+
+	protected @NonNull Resource getEcoreFromCS(@NonNull OCL ocl, @NonNull String testDocument, @NonNull URI ecoreURI) throws IOException {
+		URI xtextURI = URI.createURI("test.oclinecore");
+		CSResource xtextResource = ocl.getCSResource(xtextURI, testDocument);
+		assertNoResourceErrors("Loading Xtext", xtextResource);
+		Resource asResource = cs2as(ocl, xtextResource, null);
+		Resource ecoreResource = as2ecore(ocl, asResource, ecoreURI, true);
+		return ecoreResource;
+	}
+
+	protected void replace(@NonNull CSResource xtextResource, String oldString, String newString) {
 		String xtextContent = xtextResource.getContents().get(0).toString();
 		int index = xtextContent.indexOf(oldString);
 		assert index >= 0;
@@ -127,6 +137,7 @@ public class EditTests extends XtextTestCase
 	}	
 
 	public void testEdit_Paste_operation_394057() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 //		OCLDelegateDomain.initialize(null);
 //		OCLDelegateDomain.initialize(null, OCLConstants.OCL_DELEGATE_URI);
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
@@ -149,15 +160,12 @@ public class EditTests extends XtextTestCase
 			"{\n" +
 			"	body: packages->sortedBy(name)->iterate(p; acc : String = '' | acc + ' ' + p.name);\n" +
 			"}";
-		EssentialOCLCSResource xtextResource;
+		CSResource xtextResource;
 		Resource asResource;
 		{
 			URI ecoreURI1 = getProjectFileURI("test1.ecore");
-			InputStream inputStream = new URIConverter.ReadableInputStream(testDocument, "UTF-8");
 			URI outputURI = getProjectFileURI("test.oclinecore");
-			xtextResource = (EssentialOCLCSResource) resourceSet.createResource(outputURI, null);
-			MetamodelManagerResourceAdapter.getAdapter(xtextResource, ocl.getMetamodelManager());
-			xtextResource.load(inputStream, null);
+			xtextResource = ocl.getCSResource(outputURI, testDocument);
 			asResource = cs2as(ocl, xtextResource, null);
 			@SuppressWarnings("unused") Resource ecoreResource1 = as2ecore(ocl, asResource, ecoreURI1, true);
 		}
@@ -185,9 +193,11 @@ public class EditTests extends XtextTestCase
 			URI ecoreURI3 = getProjectFileURI("test3.ecore");
 			@SuppressWarnings("unused") Resource ecoreResource3 = as2ecore(ocl, asResource, ecoreURI3, true);
 		}
+		ocl.dispose();
 	}	
 
 	public void testEdit_Reclass_ecore_383285() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		String testDocument_class = 
 				"package p1 : p2 = 'p3' {\n" +
 				"    class C : 'java.lang.Object';\n" +
@@ -200,19 +210,14 @@ public class EditTests extends XtextTestCase
 		URI ecoreURI_datatype = getProjectFileURI("test-datatype.ecore");
 		OCL ocl_class = OCL.newInstance(getProjectMap());
 		OCL ocl_datatype = OCL.newInstance(getProjectMap());
-		MetamodelManager metamodelManager_class = ocl_class.getMetamodelManager();
-		MetamodelManager metamodelManager_datatype = ocl_datatype.getMetamodelManager();
-		Resource ecoreResource_class = getEcoreFromCS1(ocl_class, testDocument_class, ecoreURI_class);
-		Resource ecoreResource_datatype = getEcoreFromCS1(ocl_datatype, testDocument_datatype, ecoreURI_datatype);
-		EssentialOCLCSResource xtextResource;
+		Resource ecoreResource_class = getEcoreFromCS(ocl_class, testDocument_class, ecoreURI_class);
+		Resource ecoreResource_datatype = getEcoreFromCS(ocl_datatype, testDocument_datatype, ecoreURI_datatype);
+		CSResource xtextResource;
 		Resource asResource;
 		{
 			URI ecoreURI1 = getProjectFileURI("test1.ecore");
-			InputStream inputStream = new URIConverter.ReadableInputStream(testDocument_class, "UTF-8");
 			URI outputURI = getProjectFileURI("test.oclinecore");
-			xtextResource = (EssentialOCLCSResource) resourceSet.createResource(outputURI, null);
-			MetamodelManagerResourceAdapter.getAdapter(xtextResource, ocl.getMetamodelManager());
-			xtextResource.load(inputStream, null);
+			xtextResource = ocl.getCSResource(outputURI, testDocument_class);
 			asResource = cs2as(ocl, xtextResource, null);
 			Resource ecoreResource1 = as2ecore(ocl, asResource, ecoreURI1, true);
 			assertSameModel(ecoreResource_class, ecoreResource1);
@@ -237,11 +242,13 @@ public class EditTests extends XtextTestCase
 			Resource ecoreResource3 = as2ecore(ocl, asResource, ecoreURI3, true);
 			assertSameModel(ecoreResource_class, ecoreResource3);
 		}
-		metamodelManager_class.dispose();
-		metamodelManager_datatype.dispose();
+		ocl_class.dispose();
+		ocl_datatype.dispose();
+		ocl.dispose();		
 	}	
 
 	public void testEdit_Comments() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		String testDocument_uncommented = 
 				"package p1 : p2 = 'p3' {\n" +
 				"    class C : 'java.lang.Object';\n" +
@@ -266,24 +273,18 @@ public class EditTests extends XtextTestCase
 		OCL ocl_uncommented = OCL.newInstance(getProjectMap());
 		OCL ocl_commented = OCL.newInstance(getProjectMap());
 		OCL ocl_recommented = OCL.newInstance(getProjectMap());
-		MetamodelManager metamodelManager_uncommented = ocl_uncommented.getMetamodelManager();
-		MetamodelManager metamodelManager_commented = ocl_commented.getMetamodelManager();
-		MetamodelManager metamodelManager_recommented = ocl_recommented.getMetamodelManager();
-		Resource ecoreResource_uncommented = getEcoreFromCS1(ocl_uncommented, testDocument_uncommented, ecoreURI_uncommented);
-		Resource ecoreResource_commented = getEcoreFromCS1(ocl_commented, testDocument_commented, ecoreURI_commented);
-		Resource ecoreResource_recommented = getEcoreFromCS1(ocl_recommented, testDocument_recommented, ecoreURI_recommented);
+		Resource ecoreResource_uncommented = getEcoreFromCS(ocl_uncommented, testDocument_uncommented, ecoreURI_uncommented);
+		Resource ecoreResource_commented = getEcoreFromCS(ocl_commented, testDocument_commented, ecoreURI_commented);
+		Resource ecoreResource_recommented = getEcoreFromCS(ocl_recommented, testDocument_recommented, ecoreURI_recommented);
 		assertHasComments(ecoreResource_uncommented, new String[]{});
 		assertHasComments(ecoreResource_commented, new String[]{"a comment"});
 		assertHasComments(ecoreResource_recommented, new String[]{"yet\nanother\ncomment"});
-		EssentialOCLCSResource xtextResource;
+		CSResource xtextResource;
 		Resource asResource;
 		{
 			URI ecoreURI1 = getProjectFileURI("test1.ecore");
-			InputStream inputStream = new URIConverter.ReadableInputStream(testDocument_uncommented, "UTF-8");
 			URI outputURI = getProjectFileURI("test.oclinecore");
-			xtextResource = (EssentialOCLCSResource) resourceSet.createResource(outputURI, null);
-			MetamodelManagerResourceAdapter.getAdapter(xtextResource, ocl.getMetamodelManager());
-			xtextResource.load(inputStream, null);
+			xtextResource = ocl.getCSResource(outputURI, testDocument_uncommented);
 			asResource = cs2as(ocl, xtextResource, null);
 			Resource ecoreResource1 = as2ecore(ocl, asResource, ecoreURI1, true);
 			assertSameModel(ecoreResource_uncommented, ecoreResource1);
@@ -318,36 +319,14 @@ public class EditTests extends XtextTestCase
 			Resource ecoreResource4 = as2ecore(ocl, asResource, ecoreURI4, true);
 			assertSameModel(ecoreResource_uncommented, ecoreResource4);
 		}
-		metamodelManager_uncommented.dispose();
-		metamodelManager_commented.dispose();
-		metamodelManager_recommented.dispose();
+		ocl_uncommented.dispose();
+		ocl_commented.dispose();
+		ocl_recommented.dispose();
+		ocl.dispose();		
 	}	
 
-	private void assertHasComments(@NonNull Resource aResource, @NonNull String[] comments) {
-		Map<String, Integer> expected = new HashMap<String, Integer>();
-		for (String comment : comments) {
-			Integer count = expected.get(comment);
-			count = (count != null) ? (count + 1) : 1;
-			expected.put(comment, count);
-		}
-		for (TreeIterator<EObject> tit = aResource.getAllContents(); tit.hasNext(); ) {
-			EObject eObject = tit.next();
-			if (eObject instanceof EModelElement) {
-				EAnnotation eAnnotation = ((EModelElement)eObject).getEAnnotation(PivotConstantsInternal.DOCUMENTATION_ANNOTATION_SOURCE);
-				if (eAnnotation != null) {
-					String comment = eAnnotation.getDetails().get(PivotConstantsInternal.DOCUMENTATION_ANNOTATION_KEY);
-					Integer count = expected.get(comment);
-					assertTrue("Expected comment '" + comment + "' exists", (count != null) && (count > 0));
-					expected.put(comment, count-1);
-				}
-			}
-		}
-		for (String comment : comments) {
-			assertEquals("Expected comment '" + comment + "' extra occurences", 0, expected.get(comment).intValue());
-		}
-	}
-
 	public void testEdit_Refresh_ecore_382230() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 //		OCLDelegateDomain.initialize(null);
 //		OCLDelegateDomain.initialize(null, OCLConstants.OCL_DELEGATE_URI);
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
@@ -387,8 +366,7 @@ public class EditTests extends XtextTestCase
 			loadPivotContent.add(eObject);
 		}
 		{
-			ResourceSet resourceSet = new ResourceSetImpl();
-			BaseCSResource xtextResource1 = (BaseCSResource) resourceSet.createResource(ecoreURI.appendFileExtension("oclinecore"), OCLinEcoreCSPackage.eCONTENT_TYPE);
+			BaseCSResource xtextResource1 = (BaseCSResource) ocl1.getResourceSet().createResource(ecoreURI.appendFileExtension("oclinecore"), OCLinEcoreCSPackage.eCONTENT_TYPE);
 			xtextResource1.setURI(ecoreURI);
 			ocl1.as2cs(asResource, xtextResource1);
 			assertNoResourceErrors("Xtext load", xtextResource1);
@@ -430,8 +408,7 @@ public class EditTests extends XtextTestCase
 		assertEquals(loadPivotContent.size(), newPivotContent.size());
 		assertEquals(loadPivotContent, newPivotContent);
 		{
-			ResourceSet resourceSet = new ResourceSetImpl();
-			BaseCSResource xtextResource2 = (BaseCSResource) resourceSet.createResource(ecoreURI.appendFileExtension("oclinecore"), OCLinEcoreCSPackage.eCONTENT_TYPE);
+			BaseCSResource xtextResource2 = (BaseCSResource) ocl1.getResourceSet().createResource(ecoreURI.appendFileExtension("oclinecore"), OCLinEcoreCSPackage.eCONTENT_TYPE);
 			xtextResource2.setURI(ecoreURI);
 			ocl1.as2cs(asResource, xtextResource2);
 			assertNoResourceErrors("Xtext load", xtextResource2);
@@ -449,26 +426,24 @@ public class EditTests extends XtextTestCase
 			assertEquals(loadPivotContent, reparsePivotContent);
 		}
 		metamodelManager1.dispose();
+		ocl.dispose();
 	}	
 
 	public void testEdit_Rename_ecore() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		String testDocument = 
 			"module m1 \n" +
 			"package p1 : p2 = 'p3' {\n" +
 			"}\n";
 		URI ecoreURI0 = getProjectFileURI("test0.ecore");
 		OCL ocl1 = OCL.newInstance(getProjectMap());
-		MetamodelManager metamodelManager1 = ocl1.getMetamodelManager();
-		Resource ecoreResource0 = getEcoreFromCS1(ocl1, testDocument, ecoreURI0);
-		EssentialOCLCSResource xtextResource;
+		Resource ecoreResource0 = getEcoreFromCS(ocl1, testDocument, ecoreURI0);
+		CSResource xtextResource;
 		Resource asResource;
 		{
 			URI ecoreURI1 = getProjectFileURI("test1.ecore");
-			InputStream inputStream = new URIConverter.ReadableInputStream(testDocument, "UTF-8");
 			URI outputURI = getProjectFileURI("test.oclinecore");
-			xtextResource = (EssentialOCLCSResource) resourceSet.createResource(outputURI, null);
-			MetamodelManagerResourceAdapter.getAdapter(xtextResource, ocl.getMetamodelManager());
-			xtextResource.load(inputStream, null);
+			xtextResource = ocl.getCSResource(outputURI, testDocument);
 			asResource = cs2as(ocl, xtextResource, null);
 			Resource ecoreResource1 = as2ecore(ocl, asResource, ecoreURI1, true);
 			assertSameModel(ecoreResource0, ecoreResource1);
@@ -504,10 +479,12 @@ public class EditTests extends XtextTestCase
 			((EPackage)ecoreResource0.getContents().get(0)).setName("pkg");
 			assertSameModel(ecoreResource0, ecoreResource4);		
 		}
-		metamodelManager1.dispose();
+		ocl1.dispose();
+		ocl.dispose();
 	}	
 
 	public void testEdit_Rename_Restore_ecore() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		String testDocument = 
 			"package TestPackage : tp = 'TestPackage'\n" +
 			"{\n" +
@@ -524,14 +501,10 @@ public class EditTests extends XtextTestCase
 			"}\n";
 		URI ecoreURI0 = getProjectFileURI("test0.ecore");
 		OCL ocl1 = OCL.newInstance(getProjectMap());
-		MetamodelManager metamodelManager1 = ocl1.getMetamodelManager();
-		Resource ecoreResource0 = getEcoreFromCS1(ocl1, testDocument, ecoreURI0);
+		Resource ecoreResource0 = getEcoreFromCS(ocl1, testDocument, ecoreURI0);
 		URI ecoreURI1 = getProjectFileURI("test1.ecore");
-		InputStream inputStream = new URIConverter.ReadableInputStream(testDocument, "UTF-8");
 		URI outputURI = getProjectFileURI("test.oclinecore");
-		EssentialOCLCSResource xtextResource = (EssentialOCLCSResource) resourceSet.createResource(outputURI, null);
-		MetamodelManagerResourceAdapter adapter = MetamodelManagerResourceAdapter.getAdapter(xtextResource, ocl.getMetamodelManager());
-		xtextResource.load(inputStream, null);
+		CSResource xtextResource = ocl.getCSResource(outputURI, testDocument);
 		Resource asResource = cs2as(ocl, xtextResource, null);
 		{
 			Resource ecoreResource1 = as2ecore(ocl, asResource, ecoreURI1, true);
@@ -541,7 +514,7 @@ public class EditTests extends XtextTestCase
 		//
 		//	Changing "TestClass1" to "Testing" renames a type and breaks the invariant.
 		//
-		doRename(xtextResource, asResource, "TestClass1", "Testing",
+		doRename(ocl, xtextResource, asResource, "TestClass1", "Testing",
 //			ClassUtil.bind(OCLMessages.Unresolved_ERROR_, "Type", pivotTestClass1.getName()),
 			StringUtil.bind(PivotMessagesInternal.UnresolvedType_ERROR_, "", pivotTestClass1.getName()),
 			StringUtil.bind(PivotMessagesInternal.UnresolvedProperty_ERROR_, "OclInvalid", "testProperty1"),
@@ -549,50 +522,51 @@ public class EditTests extends XtextTestCase
 		//
 		//	Changing "Testing" back to "TestClass1" restores the type and the invariant.
 		//
-		assertSameModel(ecoreResource0, doRename(xtextResource, asResource, "Testing", "TestClass1"));
+		assertSameModel(ecoreResource0, doRename(ocl, xtextResource, asResource, "Testing", "TestClass1"));
 		pivotTestClass1 = ocl.getMetamodelManager().getPrimaryType("TestPackage", "TestClass1");
 		//
 		//	Changing "testProperty1" to "tProperty" renames the property and breaks the invariant.
 		//
-		doRename(xtextResource, asResource, "testProperty1", "tProperty",
+		doRename(ocl, xtextResource, asResource, "testProperty1", "tProperty",
 			StringUtil.bind(PivotMessagesInternal.UnresolvedProperty_ERROR_, pivotTestClass1 + "", "testProperty1"));
 		//
 		//	Changing "tProperty" back to "testProperty" restores the property and the invariant.
 		//
-		assertSameModel(ecoreResource0, doRename(xtextResource, asResource, "tProperty", "testProperty1"));
+		assertSameModel(ecoreResource0, doRename(ocl, xtextResource, asResource, "tProperty", "testProperty1"));
 		//
 		//	Changing "testOperation" to "tOperation" renames the operation and breaks the invariant.
 		//
-		doRename(xtextResource, asResource, "testOperation", "tOperation",
+		doRename(ocl, xtextResource, asResource, "testOperation", "tOperation",
 			StringUtil.bind(PivotMessagesInternal.UnresolvedOperationCall_ERROR_, pivotTestClass1 + "", "testOperation", "123456"));
 		//
 		//	Changing "tOperation" back to "testOperation" restores the operation and the invariant.
 		//
-		assertSameModel(ecoreResource0, doRename(xtextResource, asResource, "tOperation", "testOperation"));
+		assertSameModel(ecoreResource0, doRename(ocl, xtextResource, asResource, "tOperation", "testOperation"));
 		//
 		//	Changing "testOperation(i : Integer)" to "testOperation()" mismatches the operation signature and breaks the invariant.
 		//
-		doRename(xtextResource, asResource, "testOperation(i : Integer)", "testOperation()",
+		doRename(ocl, xtextResource, asResource, "testOperation(i : Integer)", "testOperation()",
 			StringUtil.bind(PivotMessagesInternal.UnresolvedOperationCall_ERROR_, pivotTestClass1 + "", "testOperation", "123456"));
 		//
 		//	Changing "testOperation()" back to "testOperation(i : Integer)" restores the operation and the invariant.
 		//
-		assertSameModel(ecoreResource0, doRename(xtextResource, asResource, "testOperation()", "testOperation(i : Integer)"));
+		assertSameModel(ecoreResource0, doRename(ocl, xtextResource, asResource, "testOperation()", "testOperation(i : Integer)"));
 		//
 		//	Changing "testOperation(i : Integer)" to "testOperation(s : String)" mismatches the operation signature and breaks the invariant.
 		//
-		doRename(xtextResource, asResource, "testOperation(i : Integer)", "testOperation(s : String)",
+		doRename(ocl, xtextResource, asResource, "testOperation(i : Integer)", "testOperation(s : String)",
 			StringUtil.bind(PivotMessagesInternal.UnresolvedOperationCall_ERROR_, pivotTestClass1 + "", "testOperation", "Integer"));
 		//
 		//	Changing "testOperation()" back to "testOperation(i : Integer)" restores the operation and the invariant.
 		//
-		assertSameModel(ecoreResource0, doRename(xtextResource, asResource, "testOperation(s : String)", "testOperation(i : Integer)"));
+		assertSameModel(ecoreResource0, doRename(ocl, xtextResource, asResource, "testOperation(s : String)", "testOperation(i : Integer)"));
 		//
-		adapter.dispose();
-		metamodelManager1.dispose();
+		ocl1.dispose();
+		ocl.dispose();
 	}
 
 	public void testEdit_StaleReference_ecore() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		String testDocument = 
 			"package TestPackage : tp = 'TestPackage'\n" +
 			"{\n" +
@@ -609,15 +583,10 @@ public class EditTests extends XtextTestCase
 		URI ecoreURI0 = getProjectFileURI("test0.ecore");
 //		System.out.println("*************load-reference*********************************************************");
 		OCL ocl1 = OCL.newInstance(getProjectMap());
-		MetamodelManager metamodelManager1 = ocl1.getMetamodelManager();
-		Resource ecoreResource0 = getEcoreFromCS1(ocl1, testDocument, ecoreURI0);
+		Resource ecoreResource0 = getEcoreFromCS(ocl1, testDocument, ecoreURI0);
 		URI ecoreURI1 = getProjectFileURI("test1.ecore");
-		InputStream inputStream = new URIConverter.ReadableInputStream(testDocument, "UTF-8");
 		URI outputURI = getProjectFileURI("test.oclinecore");
-		EssentialOCLCSResource xtextResource = (EssentialOCLCSResource) resourceSet.createResource(outputURI, null);
-		MetamodelManagerResourceAdapter adapter = MetamodelManagerResourceAdapter.getAdapter(xtextResource, ocl.getMetamodelManager());
-//		System.out.println("*************load*********************************************************");
-		xtextResource.load(inputStream, null);
+		CSResource xtextResource = ocl.getCSResource(outputURI, testDocument);
 		Resource asResource = cs2as(ocl, xtextResource, null);
 		{
 			Resource ecoreResource1 = as2ecore(ocl, asResource, ecoreURI1, true);
@@ -627,29 +596,30 @@ public class EditTests extends XtextTestCase
 		//
 		//	Changing "TestClass1" to "Testing" renames a type and breaks the referredProperty/referredOperation.
 		//
-		doRename(xtextResource, asResource, "TestClass1", "Testing",
+		doRename(ocl, xtextResource, asResource, "TestClass1", "Testing",
 			StringUtil.bind(PivotMessagesInternal.UnresolvedType_ERROR_, "", pivotTestClass1.getName()));
 		//
 		//	Changing "Testing" back to "TestClass1" restores the type and the referredProperty/referredOperation.
 		//
-		assertSameModel(ecoreResource0, doRename(xtextResource, asResource, "Testing", "TestClass1"));
+		assertSameModel(ecoreResource0, doRename(ocl, xtextResource, asResource, "Testing", "TestClass1"));
 		pivotTestClass1 = ocl.getMetamodelManager().getPrimaryType("TestPackage", "TestClass1");
 		//
 		//	Changing "TestClass1" to "Testing" renames a type and breaks the referredProperty/referredOperation.
 		//
-		doRename(xtextResource, asResource, "TestClass1", "Testing",
+		doRename(ocl, xtextResource, asResource, "TestClass1", "Testing",
 			StringUtil.bind(PivotMessagesInternal.UnresolvedType_ERROR_, "", pivotTestClass1.getName()));
 		//
 		//	Changing "Testing" back to "TestClass1" restores the type and the referredProperty/referredOperation.
 		//
-		assertSameModel(ecoreResource0, doRename(xtextResource, asResource, "Testing", "TestClass1"));
+		assertSameModel(ecoreResource0, doRename(ocl, xtextResource, asResource, "Testing", "TestClass1"));
 		pivotTestClass1 = ocl.getMetamodelManager().getPrimaryType("TestPackage", "TestClass1");
 		//
-		adapter.dispose();
-		metamodelManager1.dispose();
+		ocl1.dispose();
+		ocl.dispose();
 	}
 
 	public void testEdit_StaleSpecialization() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		String testDocument = 
 			"import '" + LibraryConstants.STDLIB_URI + "';\n" + 
 			"library ocl : ocl = '" + LibraryConstants.STDLIB_URI + "' {\n" +
@@ -673,24 +643,21 @@ public class EditTests extends XtextTestCase
 		WeakReference<Type> sequenceMyType = new WeakReference<Type>(completeModel.findCollectionType(sequenceCompleteClass, typeParameters));
 		assertNull(sequenceMyType.get()); 
 		//
-		doRename(xtextResource, asResource, "Boolean", "Sequence(MyType)");
+		doRename(ocl, xtextResource, asResource, "Boolean", "Sequence(MyType)");
 		sequenceMyType = new WeakReference<Type>(completeModel.findCollectionType(sequenceCompleteClass, typeParameters));
 		assertNotNull(sequenceMyType.get()); 
 		//		
-		doRename(xtextResource, asResource, "Sequence(MyType)", "Set(MyType)");
+		doRename(ocl, xtextResource, asResource, "Sequence(MyType)", "Set(MyType)");
 		System.gc();
 		sequenceMyType = new WeakReference<Type>(completeModel.findCollectionType(sequenceCompleteClass, typeParameters));
 		boolean isNull = debugStateRef(sequenceMyType);
 		sequenceMyType = null;
-		assertTrue(isNull); 
-	}
-
-	public boolean debugStateRef(WeakReference<Type> sequenceMyType) {
-		DebugRef debugRef = new DebugRef(sequenceMyType.get());
-		return debugRef.object == null;
+		assertTrue(isNull);
+		ocl.dispose();
 	}
 
 	public void testEdit_Paste_CompleteOCL() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 //		OCLDelegateDomain.initialize(null);
 //		OCLDelegateDomain.initialize(null, OCLConstants.OCL_DELEGATE_URI);
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
@@ -706,15 +673,12 @@ public class EditTests extends XtextTestCase
 		String pasteText = 
 			"context IterateExp\n" +
 			"inv False: true\n";
-		EssentialOCLCSResource xtextResource;
+		CSResource xtextResource;
 		Resource asResource;
 		{
 //			URI ecoreURI1 = getProjectFileURI("test1.ecore");
-			InputStream inputStream = new URIConverter.ReadableInputStream(testDocument, "UTF-8");
 			URI outputURI = getProjectFileURI("test.ocl");
-			xtextResource = (EssentialOCLCSResource) resourceSet.createResource(outputURI, null);
-			MetamodelManagerResourceAdapter.getAdapter(xtextResource, ocl.getMetamodelManager());
-			xtextResource.load(inputStream, null);
+			xtextResource = ocl.getCSResource(outputURI, testDocument);
 			asResource = cs2as(ocl, xtextResource, null);
 			assertNoResourceErrors("Loading", xtextResource);
 			assertNoValidationErrors("Loading", xtextResource);
@@ -746,15 +710,17 @@ public class EditTests extends XtextTestCase
 //			URI ecoreURI3 = getProjectFileURI("test3.ecore");
 //			@SuppressWarnings("unused") Resource ecoreResource3 = as2ecore(ocl, asResource, ecoreURI3, true);
 		}
+		ocl.dispose();
 	}	
 
 	public void testEdit_Paste_OCLstdlib() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		String goodString = "coercion toUnlimitedNatural";
 		String badString = "coer cion toUnlimitedNatural";
 //		OCLDelegateDomain.initialize(null);
 //		OCLDelegateDomain.initialize(null, OCLConstants.OCL_DELEGATE_URI);
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
-		EssentialOCLCSResource xtextResource;
+		CSResource xtextResource;
 		Resource asResource;
 		{
 //			URI ecoreURI1 = getProjectFileURI("test1.ecore");
@@ -762,12 +728,9 @@ public class EditTests extends XtextTestCase
 //			URI outputURI = getProjectFileURI("test.ocl");
 			MetamodelManager metamodelManager = ocl.getMetamodelManager();
 			ProjectManager projectMap = metamodelManager.getProjectManager();
-			projectMap.initializeResourceSet(resourceSet);
+			projectMap.initializeResourceSet(ocl.getResourceSet());
 			URI libURI = URI.createPlatformResourceURI("org.eclipse.ocl.pivot/model/OCL-2.5.oclstdlib", true);
-			xtextResource = (EssentialOCLCSResource) resourceSet.createResource(libURI, null);
-			MetamodelManagerResourceAdapter.getAdapter(xtextResource, metamodelManager);
-//			xtextResource.load(inputStream, null);
-			xtextResource.load(null);
+			xtextResource = ocl.getCSResource(libURI);
 			asResource = cs2as(ocl, xtextResource, null);
 			assertNoResourceErrors("Loading", xtextResource);
 			assertNoValidationErrors("Loading", xtextResource);
@@ -799,5 +762,6 @@ public class EditTests extends XtextTestCase
 //			URI ecoreURI3 = getProjectFileURI("test3.ecore");
 //			@SuppressWarnings("unused") Resource ecoreResource3 = as2ecore(ocl, asResource, ecoreURI3, true);
 		}
+		ocl.dispose();
 	}	
 }

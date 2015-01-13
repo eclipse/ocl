@@ -12,6 +12,7 @@
 package org.eclipse.ocl.pivot.utilities;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
@@ -20,6 +21,8 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIConverter;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -47,6 +50,7 @@ import org.eclipse.ocl.pivot.internal.helper.OCLHelperImpl;
 import org.eclipse.ocl.pivot.internal.helper.QueryImpl;
 import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.CSResource;
@@ -486,6 +490,47 @@ public class OCL
 			environmentFactory = null;
 			environmentFactory2.detach(this);
 		}
+	}
+
+	public @NonNull CSResource getCSResource(@NonNull URI uri) throws IOException {
+		Resource resource = getResourceSet().createResource(uri);
+		if (!(resource instanceof CSResource)) {
+			String doSetup = environmentFactory.getDoSetupName(uri);
+			if (doSetup != null) {
+				throw new IllegalStateException("Use of Xtext parsing of '" + uri + "' requires use of " + doSetup);
+			}
+			else {
+				throw new IllegalStateException("No Xtext parsing support registered for '" + uri + "'");
+			}
+		}
+		CSResource csResource = (CSResource) resource;
+		MetamodelManager metamodelManager = getMetamodelManager();
+		MetamodelManagerResourceAdapter.getAdapter(csResource, metamodelManager);
+		csResource.load(null);
+		return csResource;
+	}
+
+	public @NonNull CSResource getCSResource(@NonNull URI uri, @NonNull InputStream inputStream) throws IOException {
+		Resource resource = new ResourceSetImpl().createResource(uri);
+		if (!(resource instanceof CSResource)) {
+			String doSetup = environmentFactory.getDoSetupName(uri);
+			if (doSetup != null) {
+				throw new IllegalStateException("Use of Xtext parsing of '" + uri + "' requires use of " + doSetup);
+			}
+			else {
+				throw new IllegalStateException("No Xtext parsing support registered for '" + uri + "'");
+			}
+		}
+		CSResource csResource = (CSResource) resource;
+		MetamodelManager metamodelManager = getMetamodelManager();
+		MetamodelManagerResourceAdapter.getAdapter(csResource, metamodelManager);
+		csResource.load(inputStream, null);
+		return csResource;
+	}
+
+	public @NonNull CSResource getCSResource(@NonNull URI uri, @NonNull String testDocument) throws IOException {
+		InputStream inputStream = new URIConverter.ReadableInputStream(testDocument, "UTF-8");
+		return getCSResource(uri, inputStream);
 	}
 
 	public @NonNull CompleteEnvironment getCompleteEnvironment() {

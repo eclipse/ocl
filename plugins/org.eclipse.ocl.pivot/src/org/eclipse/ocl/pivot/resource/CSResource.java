@@ -47,4 +47,6 @@ public interface CSResource extends Resource
 	void setProjectManager(@Nullable ProjectManager projectManager);
 
 	void updateFrom(@NonNull ASResource asResource, @NonNull EnvironmentFactory environmentFactory);
+
+	void update(int index, int length, String newString);
 }

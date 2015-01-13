@@ -37,6 +37,7 @@ import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.values.BagImpl;
+import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.uml.internal.validation.UMLOCLEValidator;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
@@ -104,14 +105,11 @@ public abstract class AbstractValidateTests extends PivotTestCase
 
 	@SuppressWarnings("null")
 	public Resource doLoadOCLinEcore(OCL ocl, String stem) throws IOException {
-		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		String inputName = stem + ".oclinecore";
 		String ecoreName = stem + ".ecore";
 		URI inputURI = getProjectFileURI(inputName);
 		URI ecoreURI = getProjectFileURI(ecoreName);
-		BaseCSResource xtextResource = (BaseCSResource) metamodelManager.getExternalResourceSet().createResource(inputURI);
-		MetamodelManagerResourceAdapter.getAdapter(xtextResource, metamodelManager);
-		xtextResource.load(null);
+		CSResource xtextResource = ocl.getCSResource(inputURI);
 		assertNoResourceErrors("Load failed", xtextResource);
 		Resource asResource = ocl.cs2as(xtextResource);
 		assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
