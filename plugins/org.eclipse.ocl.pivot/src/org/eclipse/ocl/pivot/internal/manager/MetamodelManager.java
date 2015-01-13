@@ -146,7 +146,7 @@ import org.eclipse.osgi.util.NLS;
 
 import com.google.common.collect.Iterables;
 
-public class MetamodelManager implements Adapter.Internal, MetamodelManageable
+public class MetamodelManager implements Adapter.Internal
 {		
 	public class CompleteTypeOperationsIterable extends CompleteElementIterable<org.eclipse.ocl.pivot.Class, Operation>
 	{
@@ -308,11 +308,6 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 	 * Elements protected from garbage collection
 	 */
 	private @Nullable EAnnotation lockingAnnotation = null;
-	
-	/**
-	 * MetamodelManagerListener instances to be notified of significant state changes; most notably disposal.
-	 */
-	private @Nullable List<MetamodelManagerListener> listeners = null;
 
 	private boolean autoLoadASmetamodel = true;
 	
@@ -416,16 +411,6 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 
 	public boolean addGlobalTypes(@NonNull Collection<Type> types) {
 		return globalTypes.addAll(types);
-	}
-
-	public void addListener(@NonNull MetamodelManagerListener listener) {
-		List<MetamodelManagerListener> listeners2 = listeners;
-		if (listeners2 == null) {
-			listeners = listeners2 = new ArrayList<MetamodelManagerListener>();
-		}
-		if (!listeners2.contains(listener)) {
-			listeners2.add(listener);
-		}
 	}
 	
 	public void addLockedElement(@NonNull Object lockedElement) {
@@ -665,13 +650,6 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 	}
 
 	public void dispose() {
-		if (listeners != null) {
-			List<MetamodelManagerListener> savedListeners = listeners;
-			listeners = null;
-			for (MetamodelManagerListener listener : savedListeners) {
-				listener.metamodelManagerDisposed(this);
-			}
-		}
 //		System.out.println("dispose AS " + ClassUtil.debugSimpleName(asResourceSet));
 		asResourceSet.eAdapters().remove(this);
 		List<Resource> asResources = asResourceSet.getResources();
@@ -1258,11 +1236,6 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 
 	public @NonNull Iterable<? extends CompletePackage> getMemberPackages(@NonNull org.eclipse.ocl.pivot.Package pkg) {
 		return getCompletePackage(pkg).getOwnedCompletePackages();
-	}
-
-	@Override
-	public @NonNull MetamodelManager getMetamodelManager() {
-		return this;
 	}
 
 	public @NonNull Iterable<Property> getMemberProperties(@NonNull org.eclipse.ocl.pivot.Class type, boolean selectStatic) {
@@ -2244,12 +2217,6 @@ public class MetamodelManager implements Adapter.Internal, MetamodelManageable
 
 	public void removeExternalResource(@NonNull External2AS external2as) {
 		external2asMap.remove(external2as.getURI());
-	}
-
-	public void removeListener(@NonNull MetamodelManagerListener listener) {
-		if (listeners != null) {
-			listeners.remove(listener);
-		}
 	}
 
 	public void setASmetamodel(org.eclipse.ocl.pivot.Package asPackage) {
