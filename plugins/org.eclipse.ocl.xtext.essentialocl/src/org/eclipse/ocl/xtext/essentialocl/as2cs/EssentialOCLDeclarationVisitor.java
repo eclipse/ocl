@@ -587,8 +587,20 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 			ExpCS csSource = context.visitDeclaration(ExpCS.class, asSource);
 			PrefixExpCS csPrefix = EssentialOCLCSFactory.eINSTANCE.createPrefixExpCS();
 			csPrefix.setName(operationName);
+			ExpCS csResult = csPrefix;
+			InfixExpCS csParent = null;
+			if (csSource instanceof InfixExpCS) {
+				csResult = csSource;
+				csParent = (InfixExpCS) csSource;
+				csSource = csParent.getOwnedLeft();
+				while (csSource instanceof InfixExpCS) {
+					csParent = (InfixExpCS) csSource;
+					csSource = csParent.getOwnedLeft();
+				}
+				csParent.setOwnedLeft(csPrefix);
+			}
 			csPrefix.setOwnedRight(csSource);
-			return csPrefix;
+			return csResult;
 		}
 	}
 
