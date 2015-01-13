@@ -280,7 +280,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	}
 	
 	@Override
-	public final @NonNull CS2ASResourceAdapter getCS2ASAdapter(@Nullable MetamodelManager metamodelManager) {
+	public final @NonNull CS2ASResourceAdapter getCS2ASAdapter(@Nullable ASResource asResource, @Nullable MetamodelManager metamodelManager) {
 		CS2ASResourceAdapter adapter = ClassUtil.getAdapter(CS2ASResourceAdapter.class, this);
 		if (adapter == null) {
 			if (metamodelManager == null) {
@@ -299,10 +299,15 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 			}
 			@SuppressWarnings("null")@NonNull Registry resourceFactoryRegistry = metamodelManager.getASResourceSet().getResourceFactoryRegistry();
 			initializeResourceFactory(resourceFactoryRegistry);
-			adapter = new CS2ASResourceAdapter(this, metamodelManager);
+			adapter = new CS2ASResourceAdapter(this, asResource, metamodelManager);
 			eAdapters().add(adapter);
 		}
 		return adapter;
+	}
+	
+	@Override
+	public final @NonNull CS2ASResourceAdapter getCS2ASAdapter(@Nullable MetamodelManager metamodelManager) {
+		return getCS2ASAdapter(null, metamodelManager);
 	}
 
 	@Override

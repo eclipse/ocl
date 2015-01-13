@@ -70,16 +70,24 @@ public class CompleteOCLASResourceFactory extends AbstractASResourceFactory
 
 	@Override
 	public @Nullable Element importFromResource(@NonNull MetamodelManager metamodelManager, @NonNull Resource resource, @Nullable URI uri) {
-		Resource asResource = ((CompleteOCLCSResource)resource).getASResource(metamodelManager);
+		Resource asResource = resource instanceof ASResource ? resource : ((CompleteOCLCSResource)resource).getASResource(metamodelManager);
 		List<EObject> contents = asResource.getContents();
 		if (contents.size() <= 0) {
 			return null;
 		}
-		if ((uri != null) && (uri.fragment() == null)) {
+		if (uri == null) {
+			return (Element) contents.get(0);
+		}
+		String fragment = uri.fragment();
+		if (fragment == null) {
 			return (Element) contents.get(0);
 		}
 		else {
-			throw new UnsupportedOperationException();	// FIXME
+			EObject eObject = asResource.getEObject(fragment);
+			if (eObject instanceof Element) {
+				return (Element)eObject;
+			}
+			return null;
 		}
 	}
 }

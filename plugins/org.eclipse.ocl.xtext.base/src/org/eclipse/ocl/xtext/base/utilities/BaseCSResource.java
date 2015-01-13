@@ -73,6 +73,7 @@ public interface BaseCSResource extends CSResource
 	 * which if null is also created. 
 	 */
 	@NonNull CS2ASResourceAdapter getCS2ASAdapter(@Nullable MetamodelManager metamodelManager);
+	@NonNull CS2ASResourceAdapter getCS2ASAdapter(@Nullable ASResource asResource, @Nullable MetamodelManager metamodelManager);
 	
 	/**
 	 * Return the name of the editor for use in diagnostics.

@@ -14,9 +14,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.internal.manager.AbstractMetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
@@ -69,30 +69,34 @@ public class CS2ASResourceAdapter extends AbstractMetamodelManagerResourceAdapte
 
 	private final @NonNull CS2AS converter;
 	
-	public CS2ASResourceAdapter(@NonNull BaseCSResource csResource, @NonNull MetamodelManager metamodelManager) {
+	public CS2ASResourceAdapter(@NonNull BaseCSResource csResource, @Nullable ASResource asResource, @NonNull MetamodelManager metamodelManager) {
 		super(csResource, metamodelManager);
-		Map<BaseCSResource, ASResource> cs2asResourceMap = computeCS2ASResourceMap(csResource, metamodelManager);
+		Map<BaseCSResource, ASResource> cs2asResourceMap = computeCS2ASResourceMap(csResource, asResource, metamodelManager);
 		converter = csResource.createCS2AS(cs2asResourceMap, metamodelManager);
 	}
 
-	public @NonNull Map<BaseCSResource, ASResource> computeCS2ASResourceMap(@NonNull BaseCSResource csResource, @NonNull MetamodelManager metamodelManager) {
+	public @NonNull Map<BaseCSResource, ASResource> computeCS2ASResourceMap(@NonNull BaseCSResource csResource, @Nullable ASResource asResource, @NonNull MetamodelManager metamodelManager) {
 		metamodelManager.getProjectMap();					// Ensures ProjectMap is notified of loaded resources
 		final ResourceSet asResourceSet = metamodelManager.getTarget();
 		Map<BaseCSResource,ASResource> cs2asResourceMap = new HashMap<BaseCSResource,ASResource>();
 		URI uri = csResource.getURI();
-		if ((uri != null) && (csResource.getContents().size() > 0) && (asResourceSet != null)) {
-			URI asURI = csResource.getASURI(uri);
-			Resource asResource = null;
-			if (uri.fileExtension().equals(PivotConstants.ESSENTIAL_OCL_FILE_EXTENSION)) {	// FIXME use csResource.getASResource(metamodelManager);
-				asResource = new TransientASResource(asResourceSet, asURI);
+		if ((uri != null) && (asResourceSet != null)) {
+			if (asResource != null) {
+				cs2asResourceMap.put(csResource, asResource);
 			}
-			else {
-				asResource = asResourceSet.getResource(asURI, false);
-				if (asResource == null) {
-					asResource = asResourceSet.createResource(asURI, csResource.getASContentType());
+			else if (csResource.getContents().size() > 0) {
+				URI asURI = csResource.getASURI(uri);
+				if (uri.fileExtension().equals(PivotConstants.ESSENTIAL_OCL_FILE_EXTENSION)) {	// FIXME use csResource.getASResource(metamodelManager);
+					asResource = new TransientASResource(asResourceSet, asURI);
 				}
+				else {
+					asResource = (ASResource) asResourceSet.getResource(asURI, false);
+					if (asResource == null) {
+						asResource = (ASResource) asResourceSet.createResource(asURI, csResource.getASContentType());
+					}
+				}
+				cs2asResourceMap.put(csResource, asResource);
 			}
-			cs2asResourceMap.put(csResource, (ASResource) asResource);
 		}
 		return cs2asResourceMap;
 	}

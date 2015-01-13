@@ -11,7 +11,6 @@
 package org.eclipse.ocl.xtext.completeocl.utilities;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
@@ -22,9 +21,7 @@ import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceImpl;
 import org.eclipse.ocl.pivot.internal.utilities.AS2XMIid;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 
 public class CompleteOCLASResourceImpl extends ASResourceImpl
 {
@@ -54,22 +51,10 @@ public class CompleteOCLASResourceImpl extends ASResourceImpl
 	public void load(Map<?, ?> options) throws IOException {
 		@SuppressWarnings("null")@NonNull URI oclURI = uri.trimFileExtension();
 		MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(this);
-		BaseCSResource csResource = (BaseCSResource) metamodelManager.getExternalResourceSet().getResource(oclURI, true);
-		CS2ASResourceAdapter adapter = null;
-//		try {
-			adapter = csResource.getCS2ASAdapter(metamodelManager);
-			ASResource asResource = adapter.getASResource(csResource);
-			@SuppressWarnings("unused")
-			List<EObject> pivotContents = asResource.getContents();
-//			return asResource;
-//		}
-//		finally {
-//			if (adapter != null) {
-//				adapter.dispose();
-//			}
-//		}
-//		Resource csResource = metamodelManager.getExternalResourceSet().getResource(oclURI, true);
-//		CS2AS.loadFromEcore(this, ecoreURI);
+		BaseCSResource csResource = (BaseCSResource) metamodelManager.getExternalResourceSet().createResource(oclURI);
+		assert csResource != null;
+		csResource.getCS2ASAdapter(this, metamodelManager);
+		csResource.load(null);
 		super.load(options);
 	}
 }
