@@ -130,12 +130,13 @@ public class MonikerTests extends XtextTestCase
 
 	@SuppressWarnings("null")
 	public void doMonikerTestEcore(String stem) throws IOException {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		//
 		//	Load the Ecore resource and check for load failures and proxy resolution
 		//
 		String inputName = stem + ".ecore";
 		URI inputURI = getProjectFileURI(inputName);
-		Resource ecoreResource = resourceSet.getResource(inputURI, true);
+		Resource ecoreResource = ocl.getResourceSet().getResource(inputURI, true);
 		assertNoResourceErrors("Load failed", ecoreResource);
 		assertNoUnresolvedProxies("Unresolved proxies", ecoreResource);
 		//
@@ -157,6 +158,7 @@ public class MonikerTests extends XtextTestCase
 //				System.out.println(eObject.eClass().getName() + " : " + signature);
 			}
 		}
+		ocl.dispose();
 	}
 
 	@SuppressWarnings("null")
@@ -169,7 +171,7 @@ public class MonikerTests extends XtextTestCase
 		String pivotName = stem + PivotConstantsInternal.DOT_OCL_AS_FILE_EXTENSION;
 		URI inputURI = getProjectFileURI(inputName);
 		URI pivotURI = getProjectFileURI(pivotName);
-		BaseCSResource csResource = (BaseCSResource) resourceSet.createResource(inputURI);
+		BaseCSResource csResource = (BaseCSResource) ocl.getResourceSet().createResource(inputURI);
 		csResource.setProjectManager(getProjectMap());
 		JavaClassScope.getAdapter(csResource, getClass().getClassLoader());
 		csResource.load(null);;

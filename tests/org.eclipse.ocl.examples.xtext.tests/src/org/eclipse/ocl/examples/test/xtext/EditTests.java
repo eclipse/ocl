@@ -75,7 +75,6 @@ public class EditTests extends XtextTestCase
 		doCompleteOCLSetup();
 		doOCLstdlibSetup();
 		super.setUp();
-		this.resourceSet = null;		// FIXME lose this field
 	}
 
 	private void assertHasComments(@NonNull Resource aResource, @NonNull String[] comments) {

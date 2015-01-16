@@ -24,6 +24,7 @@ public class UMLStandaloneSetup extends StandaloneSetup
 	private Logger log = Logger.getLogger(getClass());
 
 	public UMLStandaloneSetup() {
+		org.eclipse.ocl.pivot.uml.UMLStandaloneSetup.init();
 	}
 
 	@Override

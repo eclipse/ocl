@@ -52,7 +52,7 @@ public class UML25LoadTests extends LoadTests
 		OCL ocl = createOCL();
 		EPackage.Registry.INSTANCE.put("http://www.omg.org/spec/UML/20120801", UMLPackage.eINSTANCE);
 //		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMLResourceFactoryImpl());
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", XMI2UMLResource.Factory.INSTANCE);
+		ocl.getResourceSet().getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", XMI2UMLResource.Factory.INSTANCE);
 		URI uml_2_5 = URI.createPlatformResourceURI("/UML-2.5/XMI-2.5-Beta/PrimitiveTypes.xmi", true);
 		doLoadUML(ocl, uml_2_5, true, true, true);
 		ocl.dispose();

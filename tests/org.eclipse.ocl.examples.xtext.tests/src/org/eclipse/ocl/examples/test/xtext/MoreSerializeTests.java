@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.test.xtext;
 
+import org.eclipse.ocl.pivot.utilities.OCL;
+
 
 /**
  * Tests that check that an Ecore model can be serialized to OCLinEcore.
@@ -18,11 +20,13 @@ public class MoreSerializeTests extends SerializeTests
 {	
 	// Fails due to bad specialisation templates
 	public void testEcoreSerialize() throws Exception {
-		doSerialize("Ecore");
+		OCL ocl = OCL.newInstance(getProjectMap());
+		doSerialize(ocl, "Ecore");
+		ocl.dispose();
 	}
 
 	//	public void testMarkupSerialize() throws Exception {
-//		doSerialize("Markup");
+//		doSerialize(ocl, "Markup");
 //	}
 
 //	public void test_model_uml_Serialize() throws Exception {
@@ -32,26 +36,36 @@ public class MoreSerializeTests extends SerializeTests
 	// Fails ? because lowerBounds do not propagate from UML2Ecore ?
 	// Fails because no support for redefines
 	public void test_Fruit_uml_Serialize() throws Exception {
-		doSerializeUML("Fruit");
+		OCL ocl = OCL.newInstance(getProjectMap());
+		doSerializeUML(ocl, "Fruit");
+		ocl.dispose();
 	}
 
 	// Fails ?? due to missing specialized features
 	public void testOCLSerialize() throws Exception {
-		doSerialize("OCL");
+		OCL ocl = OCL.newInstance(getProjectMap());
+		doSerialize(ocl, "OCL");
+		ocl.dispose();
 	}
 
 	// Fails due to conflicting ecore package
 	public void testOCLEcoreSerialize() throws Exception {
-		doSerialize("OCLEcore");
+		OCL ocl = OCL.newInstance(getProjectMap());
+		doSerialize(ocl, "OCLEcore");
+		ocl.dispose();
 	}
 
 	// Fails because no support for -2 multiplicity
 	public void testXMLTypeSerialize() throws Exception {
-		doSerialize("XMLType");
+		OCL ocl = OCL.newInstance(getProjectMap());
+		doSerialize(ocl, "XMLType");
+		ocl.dispose();
 	}
 
 	// Fails due to FIXME in BaseDeclarationVisitor.visitProperty; no CS syntax for implicit opposite
 	public void testOCLTestSerialize() throws Exception {
-		doSerialize("OCLTest");
+		OCL ocl = OCL.newInstance(getProjectMap());
+		doSerialize(ocl, "OCLTest");
+		ocl.dispose();
 	}	
 }

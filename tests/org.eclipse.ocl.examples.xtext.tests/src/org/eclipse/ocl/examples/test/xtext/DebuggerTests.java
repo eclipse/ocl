@@ -47,8 +47,8 @@ import org.eclipse.ocl.examples.xtext.tests.TestUtil;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.intro.IIntroManager;
 
@@ -104,6 +104,7 @@ public class DebuggerTests extends XtextTestCase
 	}
 
 	public void testDebugger_Launch() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		closeIntro();
 		enableSwitchToDebugPerspectivePreference();
 		//
@@ -114,12 +115,12 @@ public class DebuggerTests extends XtextTestCase
 		URI xmiURI = URI.createPlatformResourceURI(xmiFile.getFullPath().toString(), true);
 		URI oclURI = URI.createPlatformResourceURI(oclFile.getFullPath().toString(), true);
 		//
-		Resource xmiResource = resourceSet.getResource(xmiURI, true);
+		Resource xmiResource = ocl.getResourceSet().getResource(xmiURI, true);
 		EObject xmiRoot = xmiResource.getContents().get(0);
 		assertNoResourceErrors("Load failed", xmiResource);
 		assertNoUnresolvedProxies("Unresolved proxies", xmiResource);
 		assertNoValidationErrors("Validation errors", xmiRoot);
-		Resource oclResource = resourceSet.getResource(oclURI, true);
+		Resource oclResource = ocl.getResourceSet().getResource(oclURI, true);
 		assertNoResourceErrors("Load failed", oclResource);
 		assertNoUnresolvedProxies("Unresolved proxies", oclResource);
 		assertNoValidationErrors("Validation errors", oclResource.getContents().get(0));
@@ -128,7 +129,7 @@ public class DebuggerTests extends XtextTestCase
 		@SuppressWarnings("unchecked")List<EObject> customers = (List<EObject>) xmiRoot.eGet(ref_RandL_Customer);
 		EObject eObject = customers.get(0);
 		
-		MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(oclResource);
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		org.eclipse.ocl.pivot.Class customerClass = metamodelManager.getPivotOf(org.eclipse.ocl.pivot.Class.class, eObject.eClass());
 		Iterable<Constraint> customerInvariants = metamodelManager.getAllInvariants(customerClass);
 		Constraint constraint = NameUtil.getNameable(customerInvariants, "invariant_sizesAgree");
@@ -138,6 +139,7 @@ public class DebuggerTests extends XtextTestCase
 		TestUtil.flushEvents();
 		ILaunch launch = launchConfiguration.launch(ILaunchManager.DEBUG_MODE, null);
 		waitForLaunchToTerminate(launch);
+		ocl.dispose();
 	}
 
 	protected void waitForLaunchToTerminate(ILaunch launch) throws InterruptedException, DebugException {

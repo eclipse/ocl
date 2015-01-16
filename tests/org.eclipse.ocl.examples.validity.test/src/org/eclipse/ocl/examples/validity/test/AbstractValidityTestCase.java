@@ -203,10 +203,6 @@ public abstract class AbstractValidityTestCase extends TestCase
 
 	public void initTestModels() throws Exception {
 		ResourceSet resourceSet = ocl.getResourceSet(); //new ResourceSetImpl();
-		// initialize all the needed resource factories to create ecore and ocl
-		// resources in the global registry.
-		// Plug the OCL validation mechanism.
-//		OCLDelegateDomain.initialize(resourceSet);
 
 		URI ecoreURI = getTestModelURI(ECORE_MODEL_NAME);
 		URI ecoreURI2 = getTestModelURI(ECORE_MODEL_NAME2);

@@ -548,8 +548,6 @@ public class XtextTestCase extends PivotTestCase
 		return normalizers;
 	}
 	
-	protected ResourceSet resourceSet;
-	
 	@SuppressWarnings("null")
 	public @NonNull String createEcoreString(@NonNull OCL ocl, @NonNull String fileName, @NonNull String fileContent, boolean assignIds) throws IOException {
 		String inputName = fileName + ".oclinecore";
@@ -584,9 +582,15 @@ public class XtextTestCase extends PivotTestCase
 		}
 	}
 
-	@SuppressWarnings("null")
+	@SuppressWarnings("deprecation")
 	protected Resource loadEcore(@NonNull URI inputURI) {
-		Resource ecoreResource = resourceSet.getResource(inputURI, true);
+		ResourceSet resourceSet = new ResourceSetImpl();
+		ProjectMap.initializeURIResourceMap(resourceSet);
+		Map<URI, URI> uriMap = resourceSet.getURIConverter().getURIMap();
+    	if (EMFPlugin.IS_ECLIPSE_RUNNING) {
+    		uriMap.putAll(EcorePlugin.computePlatformURIMap());
+    	}
+		Resource ecoreResource = ClassUtil.nonNullState(resourceSet.getResource(inputURI, true));
 		mapOwnURI(ecoreResource);
 //		List<String> conversionErrors = new ArrayList<String>();
 //		RootPackageCS documentCS = Ecore2OCLinEcore.importFromEcore(resourceSet, null, ecoreResource);
@@ -610,6 +614,7 @@ public class XtextTestCase extends PivotTestCase
 				EPackage rootPackage = (EPackage) root;
 				String nsURI = rootPackage.getNsURI();
 				if (nsURI != null) {
+					ResourceSet resourceSet = resource.getResourceSet();
 					Map<URI, Resource> uriResourceMap = ((ResourceSetImpl)resourceSet).getURIResourceMap();
 					if (uriResourceMap == null) {
 						uriResourceMap = new HashMap<URI, Resource>();
@@ -632,7 +637,7 @@ public class XtextTestCase extends PivotTestCase
 		doCompleteOCLSetup();
 		doOCLinEcoreSetup();
 		doOCLstdlibSetup();
-		resourceSet = new ResourceSetImpl();
+		ResourceSet resourceSet = new ResourceSetImpl();
 		ProjectMap.initializeURIResourceMap(resourceSet);
 		Map<URI, URI> uriMap = resourceSet.getURIConverter().getURIMap();
     	if (EMFPlugin.IS_ECLIPSE_RUNNING) {
@@ -651,13 +656,6 @@ public class XtextTestCase extends PivotTestCase
 
 	@Override
 	protected void tearDown() throws Exception {
-		if (resourceSet != null) {
-			for (Resource resource : resourceSet.getResources()) {
-				resource.unload();
-			}
-			resourceSet.getResources().clear();
-			resourceSet = null;
-		}
 		super.tearDown();
 	}
 }

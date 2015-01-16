@@ -95,6 +95,7 @@ public class RoundTripTests extends XtextTestCase
 		}
 	}
 	public BaseCSResource createXtextFromPivot(@NonNull EnvironmentFactoryInternal environmentFactory, ASResource asResource, URI xtextURI) throws IOException {
+		ResourceSet resourceSet = environmentFactory.getMetamodelManager().getExternalResourceSet();
 		XtextResource xtextResource = (XtextResource) resourceSet.createResource(xtextURI, OCLinEcoreCSPackage.eCONTENT_TYPE);
 		((BaseCSResource) xtextResource).updateFrom(asResource, environmentFactory);
 		xtextResource.save(null);
@@ -103,16 +104,17 @@ public class RoundTripTests extends XtextTestCase
 		return (BaseCSResource) xtextResource;
 	}
 	public BaseCSResource createXtextFromURI(@NonNull EnvironmentFactoryInternal environmentFactory, URI xtextURI) throws IOException {
-		ResourceSet resourceSet2 = environmentFactory.getMetamodelManager().getExternalResourceSet();
+		ResourceSet resourceSet = environmentFactory.getMetamodelManager().getExternalResourceSet();
 //		ProjectMap.initializeURIResourceMap(resourceSet2);
 		ProjectMap.initializeURIResourceMap(null);
 //		UMLUtils.initializeContents(resourceSet2);
-		BaseCSResource xtextResource = (BaseCSResource) resourceSet2.getResource(xtextURI, true);
+		BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(xtextURI, true);
 		assertNoResourceErrors("Load failed", xtextResource);
 		return xtextResource;
 	}
 	
 	public CSResource createCompleteOCLXtextFromPivot(@NonNull EnvironmentFactoryInternal environmentFactory, ASResource asResource, URI xtextURI) throws IOException {
+		ResourceSet resourceSet = environmentFactory.getMetamodelManager().getExternalResourceSet();
 		CSResource xtextResource = (CSResource) resourceSet.createResource(xtextURI, OCLinEcoreCSPackage.eCONTENT_TYPE);
 		xtextResource.updateFrom(asResource, environmentFactory);
 		xtextResource.save(null);
@@ -121,7 +123,8 @@ public class RoundTripTests extends XtextTestCase
 		return xtextResource;
 	}
 	
-	public void doRoundTripFromCompleteOCL(URI inputURI) throws IOException, InterruptedException {
+	public void doRoundTripFromCompleteOCL(@NonNull OCL ocl, URI inputURI) throws IOException, InterruptedException {
+		ResourceSet resourceSet = ocl.getResourceSet();
 		MessageBinder savedMessageBinder = CS2AS.setMessageBinder(CS2AS.MessageBinderWithLineContext.INSTANCE);
 		StandaloneProjectMap projectMap = StandaloneProjectMap.getAdapter(resourceSet);
 		try {
@@ -246,15 +249,15 @@ public class RoundTripTests extends XtextTestCase
 		}
 	}
 	
-	public void doRoundTripFromOCLinEcore(@NonNull EnvironmentFactoryInternal environmentFactory1, String stem) throws IOException, InterruptedException {
+	public void doRoundTripFromOCLinEcore(@NonNull OCL ocl1, String stem) throws IOException, InterruptedException {
 		String inputName = stem + ".oclinecore";
 		String ecoreName = stem + ".ecore";
 		String outputName = stem + ".regenerated.oclinecore";
 		URI inputURI = getProjectFileURI(inputName);
 		URI ecoreURI = getProjectFileURI(ecoreName);
 		URI outputURI = getProjectFileURI(outputName);
-
-		environmentFactory1.adapt(resourceSet);
+		EnvironmentFactoryInternal environmentFactory1 = (EnvironmentFactoryInternal) ocl1.getEnvironmentFactory();
+//		environmentFactory1.adapt(resourceSet);
 		BaseCSResource xtextResource1 = createXtextFromURI(environmentFactory1, inputURI);
 		ASResource pivotResource1 = createPivotFromXtext(environmentFactory1, xtextResource1, 1);
 		Resource ecoreResource = createEcoreFromPivot(environmentFactory1, pivotResource1, ecoreURI);
@@ -359,7 +362,7 @@ public class RoundTripTests extends XtextTestCase
 				"}\n";
 		createOCLinEcoreFile("Bug350894B.oclinecore", testFileB);
 		OCL.Internal ocl2 = OCL.Internal.newInstance(getProjectMap());
-		doRoundTripFromOCLinEcore(ocl2.getEnvironmentFactory(), "Bug350894B");
+		doRoundTripFromOCLinEcore(ocl2, "Bug350894B");
 		ocl2.dispose();
 	}
 
@@ -374,7 +377,7 @@ public class RoundTripTests extends XtextTestCase
 			"}\n";
 		createOCLinEcoreFile("Bug356243.oclinecore", testFile);
 		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap());
-		doRoundTripFromOCLinEcore(ocl.getEnvironmentFactory(), "Bug356243");
+		doRoundTripFromOCLinEcore(ocl, "Bug356243");
 		ocl.dispose();
 	}
 
@@ -396,7 +399,7 @@ public class RoundTripTests extends XtextTestCase
 			"}\n";
 		createOCLinEcoreFile("Bug426927.oclinecore", testFile);
 		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap());
-		doRoundTripFromOCLinEcore(ocl.getEnvironmentFactory(), "Bug426927");
+		doRoundTripFromOCLinEcore(ocl, "Bug426927");
 		ocl.dispose();
 	}
 
@@ -423,7 +426,7 @@ public class RoundTripTests extends XtextTestCase
 				"}\n";
 		createOCLinEcoreFile("Aggregates.oclinecore", testFile);
 		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap());
-		doRoundTripFromOCLinEcore(ocl.getEnvironmentFactory(), "Aggregates");
+		doRoundTripFromOCLinEcore(ocl, "Aggregates");
 		ocl.dispose();
 	}
 
@@ -446,7 +449,7 @@ public class RoundTripTests extends XtextTestCase
 				"}\n";
 		createOCLinEcoreFile("Cardinality.oclinecore", testFile);
 		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap());
-		doRoundTripFromOCLinEcore(ocl.getEnvironmentFactory(), "Cardinality");
+		doRoundTripFromOCLinEcore(ocl, "Cardinality");
 		ocl.dispose();
 	}
 
@@ -473,7 +476,7 @@ public class RoundTripTests extends XtextTestCase
 				"}\n";
 		createOCLinEcoreFile("Comments.oclinecore", testFile);
 		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap());
-		doRoundTripFromOCLinEcore(ocl.getEnvironmentFactory(), "Comments");
+		doRoundTripFromOCLinEcore(ocl, "Comments");
 		ocl.dispose();
 	}
 
@@ -503,7 +506,7 @@ public class RoundTripTests extends XtextTestCase
 				"}\n";
 		createOCLinEcoreFile("InvariantComments.oclinecore", testFile);
 		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap());
-		doRoundTripFromOCLinEcore(ocl.getEnvironmentFactory(), "InvariantComments");
+		doRoundTripFromOCLinEcore(ocl, "InvariantComments");
 		ocl.dispose();
 	}
 
@@ -528,11 +531,13 @@ public class RoundTripTests extends XtextTestCase
 	}
 
 	public void testCompleteOCLRoundTrip_Fruit() throws IOException, InterruptedException {
+		OCL ocl = OCL.newInstance(getProjectMap());
 //		UMLStandaloneSetup.init();
-		Map<URI, URI> uriMap = resourceSet.getURIConverter().getURIMap();
+		Map<URI, URI> uriMap = ocl.getResourceSet().getURIConverter().getURIMap();
 		uriMap.putAll(UML402UMLExtendedMetaData.getURIMap());
 //		EssentialOCLLinkingService.DEBUG_RETRY = true;
-		doRoundTripFromCompleteOCL(getProjectFileURI("Fruit.ocl"));
+		doRoundTripFromCompleteOCL(ocl, getProjectFileURI("Fruit.ocl"));
+		ocl.dispose();
 	}
 
 //	public void testCompleteOCLRoundTrip_Infrastructure() throws IOException, InterruptedException {
@@ -540,12 +545,16 @@ public class RoundTripTests extends XtextTestCase
 //	}
 
 	public void testCompleteOCLRoundTrip_Names() throws IOException, InterruptedException {
-		doRoundTripFromCompleteOCL(getProjectFileURI("Names.ocl"));
+		OCL ocl = OCL.newInstance(getProjectMap());
+		doRoundTripFromCompleteOCL(ocl, getProjectFileURI("Names.ocl"));
+		ocl.dispose();
 	}
 
 	public void testCompleteOCLRoundTrip_UML() throws IOException, InterruptedException {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		URI uml_2_5 = URI.createPlatformResourceURI("UML-2.5/XMI-5-Jan-2012/Semanticed UML.ocl", false);
-		doRoundTripFromCompleteOCL(uml_2_5);
+		doRoundTripFromCompleteOCL(ocl, uml_2_5);
+		ocl.dispose();
 	}
 
 	public void testOCLinEcoreCSTRoundTrip() throws IOException, InterruptedException, ParserException {
@@ -620,7 +629,7 @@ public class RoundTripTests extends XtextTestCase
 				"}\n";
 		createOCLinEcoreFile("SysML.oclinecore", testFile);
 		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap());
-		doRoundTripFromOCLinEcore(ocl.getEnvironmentFactory(), "SysML");
+		doRoundTripFromOCLinEcore(ocl, "SysML");
 		ocl.dispose();
 	}
 
@@ -632,7 +641,7 @@ public class RoundTripTests extends XtextTestCase
 //		BaseScopeProvider.LOOKUP.setState(true);
 //		EssentialOCLLinkingService.DEBUG_RETRY = true;
 		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap());
-		doRoundTripFromOCLinEcore(ocl.getEnvironmentFactory(), "Types");
+		doRoundTripFromOCLinEcore(ocl, "Types");
 		ocl.dispose();
 	}
 

@@ -18,13 +18,15 @@ import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 
 public class TestPrettyPrinter extends XtextTestCase
 {
 	public void testDeclarations() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		URI libraryURI = getProjectFileURI("OCL-2.3.oclstdlib");
-		BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(libraryURI, true);
+		BaseCSResource xtextResource = (BaseCSResource) ocl.getResourceSet().getResource(libraryURI, true);
 		Resource asResource = xtextResource.getASResource();
 		for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
@@ -33,11 +35,13 @@ public class TestPrettyPrinter extends XtextTestCase
 				System.out.println(eObject.eClass().getName() + " : " + s);
 			}
 		}
+		ocl.dispose();
 	}
 	
 	public void testSignatures() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		URI libraryURI = getProjectFileURI("OCL-2.3.oclstdlib");
-		BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(libraryURI, true);
+		BaseCSResource xtextResource = (BaseCSResource) ocl.getResourceSet().getResource(libraryURI, true);
 		Resource asResource = xtextResource.getASResource();
 		for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
@@ -46,5 +50,6 @@ public class TestPrettyPrinter extends XtextTestCase
 				System.out.println(eObject.eClass().getName() + " : " + s);
 			}
 		}
+		ocl.dispose();
 	}
 }

@@ -169,8 +169,6 @@ public class PivotTests extends XtextTestCase
 			}
 		}
 	} */
-	
-	protected MetamodelManager metamodelManager = null;
 
 	@SuppressWarnings("null")
 	public BaseCSResource doLoadOCLstdlib(@NonNull OCL ocl, @NonNull String stem, @NonNull String extension) throws IOException {
@@ -262,7 +260,8 @@ public class PivotTests extends XtextTestCase
 	
 	@SuppressWarnings("null")
 	public void doPivotTestEcore(@NonNull String stem) throws IOException {
-		metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
+		OCL ocl = OCL.newInstance(getProjectMap());
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		ResourceSet asResourceSet = metamodelManager.getASResourceSet();
 //		long startTime = System.currentTimeMillis();
 //		System.out.println("Start at " + startTime);
@@ -279,7 +278,7 @@ public class PivotTests extends XtextTestCase
 		URI csURI = getProjectFileURI(csName);
 //		URI output2URI = getProjectFileURI(output2Name);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
-		Resource ecoreResource = resourceSet.getResource(inputURI, true);
+		Resource ecoreResource = ocl.getResourceSet().getResource(inputURI, true);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " gotResource()");
 		assertNoResourceErrors("Load failed", ecoreResource);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " resolveProxies()");
@@ -322,7 +321,7 @@ public class PivotTests extends XtextTestCase
 		AS2CS as2cs = new OCLinEcoreAS2CS(cs2asResourceMap, metamodelManager.getEnvironmentFactory());
 		as2cs.update();
 		csResource.save(null);
-//		adapter.dispose();
+		ocl.dispose();
 	}
 	
 //	public Damager damagePivot(CS2AS aConverter) {
@@ -335,7 +334,7 @@ public class PivotTests extends XtextTestCase
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("trace", new EcoreResourceFactoryImpl());
+//		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("trace", new EcoreResourceFactoryImpl());
 	}
 
 //	public void testPivot_mini_oclstdlib() throws IOException, InterruptedException {
@@ -348,10 +347,6 @@ public class PivotTests extends XtextTestCase
 
 	@Override
 	protected void tearDown() throws Exception {
-		if (metamodelManager != null) {
-			metamodelManager.dispose();
-			metamodelManager = null;
-		}		
 		super.tearDown();
 	}
 

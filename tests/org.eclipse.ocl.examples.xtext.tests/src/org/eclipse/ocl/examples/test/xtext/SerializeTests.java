@@ -29,6 +29,7 @@ import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
@@ -65,18 +66,18 @@ public class SerializeTests extends XtextTestCase
 		return options;
 	}
 
-	public XtextResource doSerialize(@NonNull String stem) throws Exception {
-		return doSerialize(stem, stem, null, true, true);
+	public XtextResource doSerialize(@NonNull OCL ocl, @NonNull String stem) throws Exception {
+		return doSerialize(ocl, stem, stem, null, true, true);
 	}
-	public XtextResource doSerialize(@NonNull String stem, @NonNull String referenceStem, @Nullable Map<Object, Object> options, boolean doCompare, boolean validateSaved) throws Exception {
+	public XtextResource doSerialize(@NonNull OCL ocl, @NonNull String stem, @NonNull String referenceStem, @Nullable Map<Object, Object> options, boolean doCompare, boolean validateSaved) throws Exception {
 		String inputName = stem + ".ecore";
 		URI inputURI = getProjectFileURI(inputName);
 		String referenceName = referenceStem + ".ecore";
 		URI referenceURI = getProjectFileURI(referenceName);
-		return doSerialize(inputURI, stem, referenceURI, options, doCompare, validateSaved);
+		return doSerialize(ocl, inputURI, stem, referenceURI, options, doCompare, validateSaved);
 	}
 	@SuppressWarnings("null")
-	public XtextResource doSerialize(@NonNull URI inputURI, @NonNull String stem, @NonNull URI referenceURI, @Nullable Map<Object, Object> options, boolean doCompare, boolean validateSaved) throws Exception {
+	public XtextResource doSerialize(@NonNull OCL ocl, @NonNull URI inputURI, @NonNull String stem, @NonNull URI referenceURI, @Nullable Map<Object, Object> options, boolean doCompare, boolean validateSaved) throws Exception {
 		ResourceSetInitializer resourceSetInitializer = options != null ? (ResourceSetInitializer)options.get(ResourceSetInitializer.class) : null;
 		ResourceSet resourceSet = new ResourceSetImpl();
 		getProjectMap().initializeResourceSet(resourceSet);
@@ -154,20 +155,20 @@ public class SerializeTests extends XtextTestCase
 		}
 	}
 	
-	@SuppressWarnings("null")
-	public XtextResource doSerializeUML(String stem) throws Exception {
-		UML2AS.initialize(resourceSet);
+	public XtextResource doSerializeUML(@NonNull OCL ocl, @NonNull String stem) throws Exception {
+//		UML2AS.initialize(ocl.getResourceSet());
 		UMLPackage.eINSTANCE.getClass();
 		//
 		//	Load as Ecore
 		//
 		String inputName = stem + ".uml";
 		URI inputURI = getProjectFileURI(inputName);
-		Resource umlResource = loadUML(inputURI);
+		Resource umlResource = loadUML(ocl, inputURI);
 		//
 		//	Ecore to Pivot
 		//
-		OCL ocl1 = OCL.newInstance(getProjectMap(), resourceSet);
+		OCL ocl1 = OCL.newInstance(getProjectMap()); //, resourceSet);
+		UML2AS.initialize(ocl1.getResourceSet());
 		XtextResource xtextResource = null;
 		try {
 			MetamodelManager metamodelManager1 = ocl1.getMetamodelManager();
@@ -213,23 +214,22 @@ public class SerializeTests extends XtextTestCase
 		return xtextResource;
 	}
 
-	@SuppressWarnings("null")
-	protected Resource getPivotFromUML(MetamodelManager metamodelManager, Resource umlResource) throws ParserException {
+	protected Resource getPivotFromUML(MetamodelManager metamodelManager, @NonNull Resource umlResource) throws ParserException {
 //		String problem = UML2AS.initialize(metamodelManager.getExternalResourceSet());
 //		assertNull(problem);
 		UML2AS uml2as = UML2AS.getAdapter(umlResource, metamodelManager.getEnvironmentFactory());
 		Model pivotModel = uml2as.getPivotModel();
-		Resource asResource = pivotModel.eResource();
+		Resource asResource = ClassUtil.nonNullState(pivotModel.eResource());
 		assertNoResourceErrors("Normalisation failed", asResource);
 		assertNoValidationErrors("Normalisation invalid", asResource);
 		return asResource;
 	}
 
 	@SuppressWarnings("null")
-	protected Resource loadUML(URI inputURI) {
+	protected @NonNull Resource loadUML(@NonNull OCL ocl, @NonNull URI inputURI) {
 //		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
-		assertNull(OCL.initialize(resourceSet));
-		Resource umlResource = resourceSet.getResource(inputURI, true);
+//		assertNull(OCL.initialize(resourceSet));
+		Resource umlResource = ocl.getResourceSet().getResource(inputURI, true);
 		mapOwnURI(umlResource);
 //		List<String> conversionErrors = new ArrayList<String>();
 //		RootPackageCS documentCS = Ecore2OCLinEcore.importFromEcore(resourceSet, null, ecoreResource);
@@ -242,26 +242,37 @@ public class SerializeTests extends XtextTestCase
 	}
 	
 	public void testSerialize_Bug320689() throws Exception {
-		doSerialize("Bug320689");
+		OCL ocl = OCL.newInstance(getProjectMap());
+		doSerialize(ocl, "Bug320689");
+		ocl.dispose();
 	}
 	
 	public void testSerialize_Bug323741() throws Exception {
-		doSerialize("Bug323741");
+		OCL ocl = OCL.newInstance(getProjectMap());
+		doSerialize(ocl, "Bug323741");
+		ocl.dispose();
 	}
 	
 	public void testSerialize_Bug354336() throws Exception {
-		doSerialize("Bug354336", "Bug354336", null, false, true);		// FIXME Model check suppressed because of Bug 354621
+		OCL ocl = OCL.newInstance(getProjectMap());
+		doSerialize(ocl, "Bug354336", "Bug354336", null, false, true);		// FIXME Model check suppressed because of Bug 354621
+		ocl.dispose();
 	}
 	
 	public void testSerialize_Bug362620() throws Exception {
-		doSerialize("Bug362620");
+		OCL ocl = OCL.newInstance(getProjectMap());
+		doSerialize(ocl, "Bug362620");
+		ocl.dispose();
 	}
 	
 	public void testSerialize_Bug376488() throws Exception {
-		doSerialize("Bug376488", "Bug376488", null, true, false);
+		OCL ocl = OCL.newInstance(getProjectMap());
+		doSerialize(ocl, "Bug376488", "Bug376488", null, true, false);
+		ocl.dispose();
 	}
 
 	public void testSerialize_Bug388282() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		String testFile = 
 			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
 			"<ecore:EPackage xmi:version=\"2.0\" xmlns:xmi=\"http://www.omg.org/XMI\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n" +
@@ -277,10 +288,12 @@ public class SerializeTests extends XtextTestCase
 			"</ecore:EPackage>\n" +
 			"\n";
 		createOCLinEcoreFile("Bug388282.ecore", testFile);		// FIXME rename as createTextFile
-		doSerialize("Bug388282");
+		doSerialize(ocl, "Bug388282");
+		ocl.dispose();
 	}
 
 	public void testSerialize_Bug397917() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		String testFile = 
 			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
 			"<ecore:EPackage xmi:version=\"2.0\" xmlns:xmi=\"http://www.omg.org/XMI\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n" +
@@ -301,11 +314,12 @@ public class SerializeTests extends XtextTestCase
 			" </eClassifiers>\n" +
 			"</ecore:EPackage>";
 		createOCLinEcoreFile("Bug397917.ecore", testFile);		// FIXME rename as createTextFile
-		doSerialize("Bug397917");
+		doSerialize(ocl, "Bug397917");
+		ocl.dispose();
 	}
 
-
 	public void testSerialize_Bug404493() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		String testFile = 
 			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
 			"<ecore:EPackage xmi:version=\"2.0\" xmlns:xmi=\"http://www.omg.org/XMI\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n" +
@@ -327,10 +341,12 @@ public class SerializeTests extends XtextTestCase
 			"  </eClassifiers>\n" +
 			"</ecore:EPackage>\n";
 		createOCLinEcoreFile("Bug404493.ecore", testFile);
-		doSerialize("Bug404493", "Bug404493", null, false, true);
+		doSerialize(ocl, "Bug404493", "Bug404493", null, false, true);
+		ocl.dispose();
 	}
 
 	public void testSerialize_Bug425506() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		String testFile = 
 			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + 
 			"<ecore:EPackage xmi:version=\"2.0\" xmlns:xmi=\"http://www.omg.org/XMI\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n" + 
@@ -372,10 +388,12 @@ public class SerializeTests extends XtextTestCase
 			"  </eClassifiers>\n" + 
 			"</ecore:EPackage>\n" ;
 		createOCLinEcoreFile("Bug425506.ecore", testFile);
-		doSerialize("Bug425506", "Bug425506", null, true, true);
+		doSerialize(ocl, "Bug425506", "Bug425506", null, true, true);
+		ocl.dispose();
 	}
 
 	public void testSerialize_Bug457043() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		String testFile = 
 			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + 
 			"<ecore:EPackage xmi:version=\"2.0\" xmlns:xmi=\"http://www.omg.org/XMI\" xmlns:ecore=\"http://www.eclipse.org/emf/2002/Ecore\"\n" + 
@@ -385,10 +403,12 @@ public class SerializeTests extends XtextTestCase
 			"  </eAnnotations>\n" + 
 			"</ecore:EPackage>\n";
 		createOCLinEcoreFile("Bug457043.ecore", testFile);
-		doSerialize("Bug457043", "Bug457043", null, true, true);
+		doSerialize(ocl, "Bug457043", "Bug457043", null, true, true);
+		ocl.dispose();
 	}
 
 	public void testSerialize_Company() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 //		Logger logger = Logger.getLogger(AbstractParseTreeConstructor.class);
 //		logger.setLevel(Level.TRACE);
 //		logger.addAppender(new ConsoleAppender(new SimpleLayout()));
@@ -396,89 +416,117 @@ public class SerializeTests extends XtextTestCase
 //		DocumentAttribution.WORK.setState(true);
 //		CS2ASConversion.CONTINUATION.setState(true);
 //		Abstract2Moniker.TRACE_MONIKERS.setState(true);
-		doSerialize("Company", "Company.reference", null, true, true);
+		doSerialize(ocl, "Company", "Company.reference", null, true, true);
+		ocl.dispose();
 	}
 
 	public void testSerialize_ConstraintMessages() throws Exception {
-		doSerialize("ConstraintMessages", "ConstraintMessages.reference", null, true, true);
+		OCL ocl = OCL.newInstance(getProjectMap());
+		doSerialize(ocl, "ConstraintMessages", "ConstraintMessages.reference", null, true, true);
+		ocl.dispose();
 	}
 
 	public void testSerialize_Ecore() throws Exception {
-		doSerialize("Ecore");
+		OCL ocl = OCL.newInstance(getProjectMap());
+		doSerialize(ocl, "Ecore");
+		ocl.dispose();
 	}
 
 	public void testSerialize_Imports() throws Exception {
-		XtextResource xtextResource = doSerialize("Imports");
+		OCL ocl = OCL.newInstance(getProjectMap());
+		XtextResource xtextResource = doSerialize(ocl, "Imports");
 		RootPackageCS documentCS = (RootPackageCS) xtextResource.getContents().get(0);
 		List<ImportCS> imports = documentCS.getOwnedImports();
 		assertEquals("One import", 1, imports.size());
+		ocl.dispose();
 	}
 
 	public void testSerialize_Keys() throws Exception {
-		doSerialize("Keys");
+		OCL ocl = OCL.newInstance(getProjectMap());
+		doSerialize(ocl, "Keys");
+		ocl.dispose();
 	}
 
 	public void testSerialize_Names() throws Exception {
-		doSerialize("Names");
+		OCL ocl = OCL.newInstance(getProjectMap());
+		doSerialize(ocl, "Names");
+		ocl.dispose();
 	}
 
 /*	
  * Requires support for lower bounds on generic types
  * and better resolution of EAnnotation.references
 	public void testSerialize_OCL() throws Exception {
-		doSerialize("OCL");
+		doSerialize(ocl, "OCL");
 	} */
 
 	public void testSerialize_BaseCST() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		URI uri = URI.createPlatformResourceURI("/org.eclipse.ocl.xtext.base/model/BaseCS.ecore", true);
 		@SuppressWarnings("null")@NonNull String stem = uri.trimFileExtension().lastSegment();
-		doSerialize(uri, stem, uri, null, false, true);		// FIXME URIs don't quite compare
+		doSerialize(ocl, uri, stem, uri, null, false, true);		// FIXME URIs don't quite compare
+		ocl.dispose();
 	}
 
 	public void testSerialize_EssentialOCLCST() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		URI uri = URI.createPlatformResourceURI("/org.eclipse.ocl.xtext.essentialocl/model/EssentialOCLCS.ecore", true);
 		@SuppressWarnings("null")@NonNull String stem = uri.trimFileExtension().lastSegment();
 		Map<Object, Object> options = createLoadedEcoreOptions();
-		doSerialize(uri, stem, uri, options, false, true);		// FIXME URIs don't quite compare
+		doSerialize(ocl, uri, stem, uri, options, false, true);		// FIXME URIs don't quite compare
 	}
 
 	public void testSerialize_OCLinEcoreCST() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		URI uri = URI.createPlatformResourceURI("/org.eclipse.ocl.xtext.oclinecore/model/OCLinEcoreCS.ecore", true);
 		@SuppressWarnings("null")@NonNull String stem = uri.trimFileExtension().lastSegment();
 		Map<Object, Object> options = createLoadedEcoreOptions();
-		doSerialize(uri, stem, uri, options, false, true);		// FIXME URIs don't quite compare
-//		doSerialize("OCLinEcoreCST");
+		doSerialize(ocl, uri, stem, uri, options, false, true);		// FIXME URIs don't quite compare
+//		doSerialize(ocl, "OCLinEcoreCST");
+		ocl.dispose();
 	}
 
 	public void testSerialize_OCLstdlib() throws Exception {
-		doSerialize("OCLstdlib");
+		OCL ocl = OCL.newInstance(getProjectMap());
+		doSerialize(ocl, "OCLstdlib");
+		ocl.dispose();
 	}
 
 	public void testSerialize_OCLCST() throws Exception {
-		doSerialize("OCLCST");
+		OCL ocl = OCL.newInstance(getProjectMap());
+		doSerialize(ocl, "OCLCST");
+		ocl.dispose();
 	}
 
 	/* BUG 377626
 	public void testSerialize_QVT() throws Exception {
-		doSerialize("QVT");
+		doSerialize(ocl, "QVT");
 	} */
 
 	public void testSerialize_RoyalAndLoyal() throws Exception {
-		doSerialize("RoyalAndLoyal");
-	}	
+		OCL ocl = OCL.newInstance(getProjectMap());
+		doSerialize(ocl, "RoyalAndLoyal");
+		ocl.dispose();
+	}
 	
 	public void testSerialize_States() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		Map<Object, Object> options = new HashMap<Object, Object>();
 		options.put("cs2asErrors", 
 			StringUtil.bind(PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "OclInvalid", "substring", "1, 1"));
-		doSerialize("States", "States", options, true, true);
-	}	
+		doSerialize(ocl, "States", "States", options, true, true);
+		ocl.dispose();
+	}
 
 	public void testSerialize_XMLNamespace() throws Exception {
-		doSerialize("XMLNamespace");
-	}	
+		OCL ocl = OCL.newInstance(getProjectMap());
+		doSerialize(ocl, "XMLNamespace");
+		ocl.dispose();
+	}
 
 	public void test_StateMachines_uml_Serialize() throws Exception {
-		doSerializeUML("StateMachines");
+		OCL ocl = OCL.newInstance(getProjectMap());
+		doSerializeUML(ocl, "StateMachines");
+		ocl.dispose();
 	}
 }
