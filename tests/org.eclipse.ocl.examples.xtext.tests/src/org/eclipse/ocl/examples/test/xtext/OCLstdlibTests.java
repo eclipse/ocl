@@ -267,7 +267,7 @@ public class OCLstdlibTests extends XtextTestCase
 		xtextResource.load(null);
 		CS2ASResourceAdapter adapter = xtextResource.findCS2ASAdapter();
 		assertNoResourceErrors("Load failed", xtextResource);
-		Resource fileResource = adapter.getASResource(xtextResource);
+		Resource fileResource = adapter.getASResource();
 		assertNoResourceErrors("File Model", fileResource);
 		assertNoUnresolvedProxies("File Model", fileResource);
 		assertNoValidationErrors("File Model", fileResource);

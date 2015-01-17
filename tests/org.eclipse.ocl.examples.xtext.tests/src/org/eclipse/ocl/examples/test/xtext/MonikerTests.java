@@ -180,7 +180,7 @@ public class MonikerTests extends XtextTestCase
 		//	Get the pivot resource and check for load failures
 		//
 		CS2ASResourceAdapter adapter = csResource.getCS2ASAdapter(null);
-		Resource asResource = adapter.getASResource(csResource);		
+		Resource asResource = adapter.getASResource();		
 		assertNoValidationErrors("Pivot validation problems", asResource);
 		asResource.setURI(pivotURI);
 		asResource.save(null);

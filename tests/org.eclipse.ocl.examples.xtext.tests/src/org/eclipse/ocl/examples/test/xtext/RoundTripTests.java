@@ -86,7 +86,7 @@ public class RoundTripTests extends XtextTestCase
 		CS2ASResourceAdapter adapter = null;
 		try {
 			adapter = xtextResource.getCS2ASAdapter(null);
-			ASResource asResource = adapter.getASResource(xtextResource);
+			ASResource asResource = adapter.getASResource();
 			assertNoResourceErrors("To Pivot errors", xtextResource);
 			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
 			List<EObject> pivotContents = asResource.getContents();
@@ -350,7 +350,7 @@ public class RoundTripTests extends XtextTestCase
 				"class A;\n" +
 				"}\n";
 		OCL.Internal ocl1 = OCL.Internal.newInstance(getProjectMap());
-		createEcoreFile(ocl1.getMetamodelManager(), "Bug350894A", testFileA);
+		createEcoreFile(ocl1, "Bug350894A", testFileA);
 		ocl1.dispose();
 		String testFileB = 
 				"import aa : 'Bug350894A.ecore#/';\n" +

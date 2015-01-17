@@ -147,7 +147,7 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 					if (adapter == null) {
 						return null;
 					}
-					ASResource asResource = adapter.getASResource(csResource);
+					ASResource asResource = adapter.getASResource();
 					checkForErrors(asResource);
 					return asResource;
 				}
@@ -182,9 +182,7 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 			public Object exec(@Nullable XtextResource resource) throws Exception {
 				if (resource instanceof BaseCSResource) {
 					BaseCSResource csResource = (BaseCSResource)resource;
-					CS2ASResourceAdapter csAdapter = csResource.getCS2ASAdapter(null);
-					MetamodelManager metamodelManager = csAdapter.getMetamodelManager();
-					csResource.setParserContext(new EInvocationContext(metamodelManager.getEnvironmentFactory(), resource.getURI(), ecoreContext, ecoreParameters));
+					csResource.setParserContext(new EInvocationContext(csResource.getEnvironmentFactory(), resource.getURI(), ecoreContext, ecoreParameters));
 				}
 				return null;
 			}
@@ -194,10 +192,8 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
         this.parameters = ecoreParameters;
     }
 
-	public @Nullable Object setContext(@NonNull BaseCSResource resource, @Nullable EObject eObject) {
-		CS2ASResourceAdapter csAdapter = resource.getCS2ASAdapter(null);
-		MetamodelManager metamodelManager = csAdapter.getMetamodelManager();
-		resource.setParserContext(new EObjectContext(metamodelManager.getEnvironmentFactory(), resource.getURI(), eObject));
+	public @Nullable Object setContext(@NonNull BaseCSResource csResource, @Nullable EObject eObject) {
+		csResource.setParserContext(new EObjectContext(csResource.getEnvironmentFactory(), csResource.getURI(), eObject));
 		return null;
 	}
 }

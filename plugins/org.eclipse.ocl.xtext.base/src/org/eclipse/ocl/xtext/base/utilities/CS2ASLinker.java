@@ -20,6 +20,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.internal.utilities.IllegalLibraryException;
 import org.eclipse.ocl.pivot.utilities.ParserContext;
+import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.LibraryDiagnostic;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;
 import org.eclipse.xtext.diagnostics.ExceptionDiagnostic;
@@ -72,15 +73,15 @@ public class CS2ASLinker extends LazyLinker
 //				System.out.println("Starting to refreshPivotMappings for " + eResource.getURI());
 				BaseCSResource csResource = (BaseCSResource) eResource;
 				try {
-					CS2ASResourceAdapter resourceAdapter = csResource.getCS2ASAdapter(null);
+					CS2AS cs2as = csResource.getCS2AS();
 					ParserContext parserContext = csResource.getParserContext();
 					if (parserContext != null) {
 						Element rootElement = parserContext.getRootElement();
 						if (rootElement != null) {
-							resourceAdapter.getConverter().installPivotDefinition((ModelElementCS) model, rootElement);
+							cs2as.installPivotDefinition((ModelElementCS) model, rootElement);
 						}
 					}
-					resourceAdapter.refreshPivotMappings(diagnosticsConsumer);
+					cs2as.update(diagnosticsConsumer);
 /*					Resource asResource = resourceAdapter.getPivotResource(csResource);
 					ResourceSet resourceSet = csResource.getResourceSet();
 					if (resourceSet instanceof ResourceSetImpl) {

@@ -62,7 +62,7 @@ public class SaveASHandler extends AbstractHandler
 				@Override
 				public URI exec(@Nullable XtextResource resource) throws Exception {
 					if (resource instanceof BaseCSResource) {
-						Resource asResource = ((BaseCSResource)resource).getASResource(null);
+						Resource asResource = ((BaseCSResource)resource).getASResource();
 						return asResource.getURI();
 					}
 					else {
@@ -102,7 +102,7 @@ public class SaveASHandler extends AbstractHandler
 				@Override
 				public Object exec(@Nullable XtextResource resource) throws Exception {
 					if (resource instanceof BaseCSResource) {
-						Resource asResource = ((BaseCSResource)resource).getASResource(null);
+						Resource asResource = ((BaseCSResource)resource).getASResource();
 						URI oldURI = asResource.getURI();
 						try {
 							asResource.setURI(newURI);

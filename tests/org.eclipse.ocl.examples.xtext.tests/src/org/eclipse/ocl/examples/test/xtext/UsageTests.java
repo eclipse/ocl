@@ -316,14 +316,13 @@ public class UsageTests
 			IProject project = TestUtil.createJavaProject(testProjectName);
 			TestUtil.createManifest(project, testProjectName, null, null, null);
 		}
-		EnvironmentFactory environmentFactory2 = OCL.createEnvironmentFactory(getProjectMap());
-		MetamodelManager metamodelManager2 = environmentFactory2.getMetamodelManager();
+		OCL ocl2 = OCL.newInstance(getProjectMap());
 		if (oclinecoreFile != null) {
-			createEcoreFile(metamodelManager2, testFileStem, oclinecoreFile);
+			createEcoreFile(ocl2, testFileStem, oclinecoreFile);
 		}
 		URI genModelURI = createGenModelFile(testFileStem + ".genmodel", genmodelFile);
 		// System.out.println("Generating Ecore Model using '" + genModelURI + "'");
-		metamodelManager2.dispose();
+		ocl2.dispose();
 		return genModelURI;
 	}
 

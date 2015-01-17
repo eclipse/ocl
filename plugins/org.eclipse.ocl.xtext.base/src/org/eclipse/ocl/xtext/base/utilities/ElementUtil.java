@@ -253,7 +253,7 @@ public class ElementUtil
 	public static @Nullable ExpressionInOCL getFirstQuery(@NonNull MetamodelManager metamodelManager, BaseCSResource csResource) throws ParserException {
 		CS2ASResourceAdapter cs2asAdapter = csResource.findCS2ASAdapter();
 		if (cs2asAdapter != null) {
-			ASResource asResource = cs2asAdapter.getASResource(csResource);
+			ASResource asResource = cs2asAdapter.getASResource();
 			for (EObject eRoot: asResource.getContents()) {
 				if (eRoot instanceof Model) {
 					for (org.eclipse.ocl.pivot.Package asPackage: ((Model)eRoot).getOwnedPackages()) {

@@ -32,9 +32,8 @@ public class CompleteOCLCSResource extends EssentialOCLCSResource
 	}
 
 	@Override
-	public @NonNull CS2AS createCS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap,
-			@NonNull EnvironmentFactoryInternal environmentFactory) {
-		return new CompleteOCLCS2AS(cs2asResourceMap, environmentFactory);
+	public @NonNull CS2AS createCS2AS(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull ASResource asResource) {
+		return new CompleteOCLCS2AS(environmentFactory, this, asResource);
 	}
 
 	@Override

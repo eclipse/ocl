@@ -11,8 +11,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.essentialocl.cs2as;
 
-import java.util.Map;
-
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
@@ -25,8 +23,8 @@ import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
 
 public class EssentialOCLCS2AS extends BaseCS2AS
 {		
-	public EssentialOCLCS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull EnvironmentFactoryInternal environmentFactory) {
-		super(cs2asResourceMap, environmentFactory);
+	public EssentialOCLCS2AS(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull BaseCSResource csResource, @NonNull ASResource asResource) {
+		super(environmentFactory, csResource, asResource);
 	}
 	
 	public EssentialOCLCS2AS(@NonNull EssentialOCLCS2AS cs2as) {

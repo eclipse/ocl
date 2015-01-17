@@ -22,7 +22,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -36,7 +36,7 @@ public abstract class AbstractMainTab extends AbstractLaunchConfigurationTab
 {
 	private static final Logger logger = Logger.getLogger(AbstractMainTab.class);
 
-	protected @Nullable OCL ocl;		// FIXME Add a dispose() when not visible for a long time
+	protected @Nullable OCL.Internal ocl;		// FIXME Add a dispose() when not visible for a long time
 	
 	/**
 	 * Internal flag to suppress redundant recursive updates while initializing controls.
@@ -53,12 +53,12 @@ public abstract class AbstractMainTab extends AbstractLaunchConfigurationTab
 		super.dispose();
 	}
 
-	protected @NonNull MetamodelManager getMetamodelManager() {
-		OCL ocl2 = ocl;
+	protected @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
+		OCL.Internal ocl2 = ocl;
 		if (ocl2 == null) {
-			ocl = ocl2 = OCL.newInstance();
+			ocl = ocl2 = OCL.Internal.newInstance();
 		}
-		return ocl2.getMetamodelManager();
+		return ocl2.getEnvironmentFactory();
 	}
 
 	public @NonNull String getName() {

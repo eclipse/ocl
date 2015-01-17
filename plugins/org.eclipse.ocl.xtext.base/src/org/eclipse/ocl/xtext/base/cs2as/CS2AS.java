@@ -11,7 +11,6 @@
 package org.eclipse.ocl.xtext.base.cs2as;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +24,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -221,10 +219,6 @@ public abstract class CS2AS extends AbstractConversion
 		}
 		return messageBinder.bind(csContext, messageTemplate, errorContext, linkText);
 	}	
-	
-	public static @Nullable CS2AS findAdapter(@NonNull ResourceSet resourceSet) {
-		return ClassUtil.getAdapter(CS2AS.class, resourceSet);
-	}
 
 	public static List<ILeafNode> getDocumentationNodes(@NonNull ICompositeNode node) {
 		List<ILeafNode> documentationNodes = null;
@@ -389,25 +383,32 @@ public abstract class CS2AS extends AbstractConversion
 	/**
 	 * The CS resource mapped by this CS2AS.
 	 */
-	protected final @NonNull Set<? extends BaseCSResource> csResources;
+	protected final @NonNull BaseCSResource csResource;
+	
+	/**
+	 * The AS resource mapped by this CS2AS.
+	 */
+	protected final @NonNull ASResource asResource;
 
 	/**
 	 * CS to Pivot mapping controller for aliases and CSIs.
 	 */
 	protected final @NonNull CSI2ASMapping csi2asMapping;
 
-	public CS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull EnvironmentFactoryInternal environmentFactory) {
+	public CS2AS(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull BaseCSResource csResource, @NonNull ASResource asResource) {
 		super(environmentFactory);
 		this.csi2asMapping = CSI2ASMapping.getCSI2ASMapping(environmentFactory);
-		csi2asMapping.add(cs2asResourceMap);
-		this.csResources = ClassUtil.nonNullState(cs2asResourceMap.keySet());
+		this.csResource = csResource;
+		this.asResource = asResource;
+		csi2asMapping.add(csResource, this);
 	}
 	
 	protected CS2AS(@NonNull CS2AS aConverter) {
 		super(aConverter.getEnvironmentFactory());
-		this.csResources = aConverter.csResources;
+		this.csResource = aConverter.csResource;
+		this.asResource = aConverter.asResource;
 		this.csi2asMapping = CSI2ASMapping.getCSI2ASMapping(environmentFactory);
-		csi2asMapping.add(this);
+//		csi2asMapping.add(this);
 	}
 
 	public @NonNull String bind(@NonNull EObject csContext, /*@NonNull*/ String messageTemplate, Object... bindings) {
@@ -417,8 +418,8 @@ public abstract class CS2AS extends AbstractConversion
 
 	protected abstract @NonNull BaseCSVisitor<Continuation<?>> createContainmentVisitor(@NonNull CS2ASConversion cs2asConversion);
 
-	protected@NonNull  CS2ASConversion createConversion(@NonNull IDiagnosticConsumer diagnosticsConsumer, @NonNull Collection<? extends BaseCSResource> csResources) {
-		return new CS2ASConversion(this, diagnosticsConsumer, csResources);
+	protected@NonNull  CS2ASConversion createConversion(@NonNull IDiagnosticConsumer diagnosticsConsumer, @NonNull BaseCSResource csResource) {
+		return new CS2ASConversion(this, diagnosticsConsumer);
 	}
 
 	protected abstract @NonNull BaseCSVisitor<Element> createLeft2RightVisitor(@NonNull CS2ASConversion cs2asConversion);
@@ -426,16 +427,19 @@ public abstract class CS2AS extends AbstractConversion
 	protected abstract @NonNull BaseCSVisitor<Continuation<?>> createPreOrderVisitor(@NonNull CS2ASConversion converter);
 
 	public void dispose() {
-		csi2asMapping.removeCSResources(csResources);
-		csResources.clear();
+		csi2asMapping.removeCSResource(csResource);
+	}
+
+	public @NonNull ASResource getASResource() {
+		return asResource;
 	}
 
 	public @Nullable ModelElementCS getCSElement(@NonNull Element pivotElement) {
 		return csi2asMapping.getCSElement(pivotElement);
 	}
 
-	public @NonNull Collection<? extends BaseCSResource> getCSResources() {
-		return csResources;
+	public @NonNull BaseCSResource getCSResource() {
+		return csResource;
 	}
 
 	public Element getPivotElement(@NonNull ModelElementCS csElement) {
@@ -455,14 +459,6 @@ public abstract class CS2AS extends AbstractConversion
 		return castElement;
 	}
 
-	public ASResource getPivotResource(@NonNull BaseCSResource csResource) {
-		return csi2asMapping.getASResource(csResource);
-	}
-
-	public Collection<? extends Resource> getPivotResources() {
-		return metamodelManager.getASResourceSet().getResources();//cs2asResourceMap.values();
-	}
-	
 	/**
 	 * Install the mapping from a CS element that defines a pivot element to the defined pivot element. The definition
 	 * is 'owned' by the CS element, so if the CS element vanishes, so does the pivot element.
@@ -613,14 +609,13 @@ public abstract class CS2AS extends AbstractConversion
 	public synchronized void update(@NonNull IDiagnosticConsumer diagnosticsConsumer) {
 //		printDiagnostic("CS2AS.update start", false, 0);
 		@SuppressWarnings("unused") Map<CSI, Element> oldCSI2AS = csi2asMapping.getMapping();
-		@SuppressWarnings("unused") Set<CSI> newCSIs = csi2asMapping.computeCSIs(csResources);
+		@SuppressWarnings("unused") Set<CSI> newCSIs = csi2asMapping.computeCSIs(csResource);
 //		System.out.println("==========================================================================");
-		Collection<? extends BaseCSResource> csResources = getCSResources();
 //		for (Resource csResource : csResources) {
 //			System.out.println("CS " + csResource.getClass().getName() + "@" + csResource.hashCode() + " " + csResource.getURI());
 //		}
-		CS2ASConversion conversion = createConversion(diagnosticsConsumer, csResources);
-		conversion.update();
+		CS2ASConversion conversion = createConversion(diagnosticsConsumer, csResource);
+		conversion.update(csResource);
 //		System.out.println("---------------------------------------------------------------------------");
 //		Collection<? extends Resource> pivotResources = cs2asResourceMap.values();
 //		for (Entry<? extends Resource, ? extends Resource> entry : cs2asResourceMap.entrySet()) {
@@ -635,15 +630,11 @@ public abstract class CS2AS extends AbstractConversion
 //			metamodelManager.kill(deadPivot);
 		} */
 		Map<BaseCSResource, ASResource> cs2asResourceMap = new HashMap<BaseCSResource, ASResource>();
-		for (BaseCSResource csResource : csResources) {
-			if (csResource != null) {
-				ASResource asResource = csi2asMapping.getASResource(csResource);
-				cs2asResourceMap.put(csResource, asResource);
-				AbstractJavaClassScope javaClassScope = AbstractJavaClassScope.findAdapter(csResource);
-				if (javaClassScope != null) {
-					javaClassScope.installContents(csResource);
-				}
-			}
+		ASResource asResource = csi2asMapping.getASResource(csResource);
+		cs2asResourceMap.put(csResource, asResource);
+		AbstractJavaClassScope javaClassScope = AbstractJavaClassScope.findAdapter(csResource);
+		if (javaClassScope != null) {
+			javaClassScope.installContents(csResource);
 		}
 		conversion.garbageCollect(cs2asResourceMap);
 		csi2asMapping.update();

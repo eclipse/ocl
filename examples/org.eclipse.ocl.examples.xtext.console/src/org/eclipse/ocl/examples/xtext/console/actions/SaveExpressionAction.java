@@ -85,7 +85,7 @@ public class SaveExpressionAction extends Action
 						@Override
 						public Object exec(@Nullable XtextResource resource) throws Exception {
 							if (resource instanceof BaseCSResource) {
-								Resource asResource = ((BaseCSResource)resource).getASResource(null);
+								Resource asResource = ((BaseCSResource)resource).getASResource();
 								asResource.setURI(URI.createFileURI(file));
 								asResource.save(saveOptions);
 							}

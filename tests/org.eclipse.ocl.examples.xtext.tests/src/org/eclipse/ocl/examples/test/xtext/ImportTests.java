@@ -71,7 +71,7 @@ public class ImportTests extends XtextTestCase
 
 	protected void createTestImport_OCLinEcore_Bug353793_Files()
 			throws IOException {
-		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
+		OCL ocl = OCL.newInstance(getProjectMap());
 		String testFileA =
 				"package A1 : A2 = 'http://A3'{\n" +
 				"    class A;\n" +
@@ -86,13 +86,13 @@ public class ImportTests extends XtextTestCase
 				"package E1 : E2 = 'http://E3'{\n" +
 				"    class E;\n" +
 				"}\n";
-		createEcoreFile(metamodelManager, "Bug353793E", testFileE);
+		createEcoreFile(ocl, "Bug353793E", testFileE);
 		String testFileF =
 				"package F1 : F2 = 'http://F3'{\n" +
 				"    class F;\n" +
 				"}\n";
-		createEcoreFile(metamodelManager, "Bug353793F", testFileF);
-		metamodelManager.dispose();
+		createEcoreFile(ocl, "Bug353793F", testFileF);
+		ocl.dispose();
 	}	
 
 	protected String getNoSuchFileMessage() {

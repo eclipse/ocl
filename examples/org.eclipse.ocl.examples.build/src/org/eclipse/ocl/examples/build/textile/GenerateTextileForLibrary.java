@@ -113,7 +113,7 @@ public abstract class GenerateTextileForLibrary extends AbstractWorkflowComponen
 				issues.addError(this, message, null, null, null);
 				return;
 			}
-			ASResource asResource = xtextResource.getASResource(null);
+			ASResource asResource = xtextResource.getASResource();
 //			if (asResource == null) {
 //				return;
 //			}

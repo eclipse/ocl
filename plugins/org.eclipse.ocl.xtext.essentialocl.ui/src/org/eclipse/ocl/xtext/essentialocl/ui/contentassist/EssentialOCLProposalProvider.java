@@ -28,12 +28,10 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.utilities.Pivotable;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.basecs.PathElementCS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
 import org.eclipse.ocl.xtext.essentialocl.attributes.NavigationUtil;
-import org.eclipse.ocl.xtext.essentialocl.ui.contentassist.AbstractEssentialOCLProposalProvider;
 import org.eclipse.ocl.xtext.essentialoclcs.ExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.InfixExpCS;
 import org.eclipse.swt.graphics.Image;
@@ -137,8 +135,7 @@ public class EssentialOCLProposalProvider extends AbstractEssentialOCLProposalPr
 				BaseCSResource csResource = (BaseCSResource) eResource;
 				try {
 					ListBasedDiagnosticConsumer diagnosticsConsumer = new ListBasedDiagnosticConsumer();
-					CS2ASResourceAdapter resourceAdapter = csResource.getCS2ASAdapter(null);
-					resourceAdapter.refreshPivotMappings(diagnosticsConsumer);
+					csResource.update(diagnosticsConsumer);
 				}
 				catch (Exception exception) {
 					/* Never let an Exception leak out to abort Xtext */

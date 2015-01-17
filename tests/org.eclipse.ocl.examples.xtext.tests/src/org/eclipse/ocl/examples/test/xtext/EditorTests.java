@@ -41,10 +41,10 @@ import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
+import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
-import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.xtext.base.utilities.PivotDiagnosticConverter;
 import org.eclipse.ocl.xtext.base.utilities.PivotResourceValidator;
@@ -188,7 +188,7 @@ public class EditorTests extends XtextTestCase
 				assertNoResourceErrors("Loaded CS", resource);
 				CS2AS cs2as = ClassUtil.getAdapter(CS2AS.class, resource);		// FIXME Wrong class
 				if (cs2as != null) {
-					Resource asResource = cs2as.getPivotResource((BaseCSResource) resource);
+					ASResource asResource = cs2as.getASResource();
 					assertNoResourceErrors("Loaded pivot", asResource);
 				}
 				return null;
@@ -212,7 +212,7 @@ public class EditorTests extends XtextTestCase
 //				assertNoResourceErrors("Loaded CS", resource);
 				CS2ASResourceAdapter cs2as = ClassUtil.getAdapter(CS2ASResourceAdapter.class, resource);
 				if (cs2as != null) {
-					Resource asResource = cs2as.getASResource((BaseCSResource) resource);
+					Resource asResource = cs2as.getASResource();
 					assertNoResourceErrors(prefix, asResource);
 					for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {
 						EObject eObject = tit.next();

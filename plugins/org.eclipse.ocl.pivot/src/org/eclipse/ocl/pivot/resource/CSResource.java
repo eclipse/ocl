@@ -28,7 +28,9 @@ public interface CSResource extends Resource
 	 * Return the Abstract Syntax representation of this Concrete Syntax resource
 	 * under the supervision of metamodelManager.
 	 */
-	@NonNull ASResource getASResource(@Nullable EnvironmentFactory environmentFactory);
+	@Deprecated
+	@NonNull ASResource getASResource();
+	@NonNull ASResource getASResource(@NonNull EnvironmentFactory environmentFactory);
 
 	@NonNull ASResourceFactory getASResourceFactory();
 	

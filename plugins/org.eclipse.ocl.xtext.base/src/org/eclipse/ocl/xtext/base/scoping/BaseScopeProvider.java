@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
@@ -52,8 +53,9 @@ public class BaseScopeProvider extends AbstractDeclarativeScopeProvider
 			return IScope.NULLSCOPE;
 		}
 		ElementCS csElement = (ElementCS) context;
+		EnvironmentFactoryInternal environmentFactory = metamodelManager.getEnvironmentFactory();
 		@SuppressWarnings("unused")
-		CS2ASResourceAdapter resourceAdapter = ((BaseCSResource)csResource).getCS2ASAdapter(null);
-		return BaseScopeView.getScopeView(metamodelManager.getEnvironmentFactory(), csElement, reference);
+		CS2ASResourceAdapter resourceAdapter = ((BaseCSResource)csResource).getCS2ASAdapter(environmentFactory);
+		return BaseScopeView.getScopeView(environmentFactory, csElement, reference);
 	}
 }

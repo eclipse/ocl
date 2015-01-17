@@ -52,7 +52,7 @@ public abstract class GenerateLaTeXForLibrary extends GenerateLaTeXUtils
 				issues.addError(this, message, null, null, null);
 				return;
 			}
-			ASResource asResource = ((BaseCSResource)xtextResource).getASResource(null);
+			ASResource asResource = ((BaseCSResource)xtextResource).getASResource();
 //			if (asResource == null) {
 //				return;
 //			}

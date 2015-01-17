@@ -79,8 +79,8 @@ import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.Bag;
 import org.eclipse.ocl.pivot.values.Value;
 import org.eclipse.ocl.xtext.base.BaseStandaloneSetup;
+import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 import org.eclipse.ocl.xtext.essentialocl.EssentialOCLStandaloneSetup;
 import org.eclipse.ocl.xtext.essentialocl.utilities.EssentialOCLCSResource;
@@ -630,41 +630,32 @@ public class PivotTestCase extends TestCase
 		resourceSet.eAdapters().clear();
 	}
 	
-	public @NonNull URI createEcoreFile(@NonNull MetamodelManager metamodelManager, @NonNull String fileName, @NonNull String fileContent) throws IOException {
-		return createEcoreFile(metamodelManager, fileName, fileContent, false);
+	public @NonNull URI createEcoreFile(@NonNull OCL ocl, @NonNull String fileName, @NonNull String fileContent) throws IOException {
+		return createEcoreFile(ocl, fileName, fileContent, false);
 	}
 	
-	@SuppressWarnings("null")
-	public @NonNull URI createEcoreFile(@NonNull MetamodelManager metamodelManager, @NonNull String fileName, @NonNull String fileContent, boolean assignIds) throws IOException {
+	public @NonNull URI createEcoreFile(@NonNull OCL ocl, @NonNull String fileName, @NonNull String fileContent, boolean assignIds) throws IOException {
 		String inputName = fileName + ".oclinecore";
 		createOCLinEcoreFile(inputName, fileContent);
 		URI inputURI = getProjectFileURI(inputName);
 		URI ecoreURI = getProjectFileURI(fileName + ".ecore");
-		CS2ASResourceAdapter adapter = null;
-		try {
-			ResourceSet resourceSet2 = metamodelManager.getExternalResourceSet();
-			BaseCSResource xtextResource = ClassUtil.nonNullState((BaseCSResource) resourceSet2.getResource(inputURI, true));
-			assertNoResourceErrors("Load failed", xtextResource);
-			adapter = xtextResource.getCS2ASAdapter(null);
-			Resource asResource = adapter.getASResource(xtextResource);
-			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
-			assertNoValidationErrors("Pivot validation errors", asResource.getContents().get(0));
-			XMLResource ecoreResource = AS2Ecore.createResource(metamodelManager.getEnvironmentFactory(), asResource, ecoreURI, null);
-			assertNoResourceErrors("To Ecore errors", ecoreResource);
-			if (assignIds) {
-				for (TreeIterator<EObject> tit = ecoreResource.getAllContents(); tit.hasNext(); ) {
-					EObject eObject = tit.next();
-					ecoreResource.setID(eObject,  EcoreUtil.generateUUID());
-				}
-			}
-			ecoreResource.save(null);
-			return ecoreURI;
-		}
-		finally {
-			if (adapter != null) {
-				adapter.dispose();
+		ResourceSet resourceSet2 = ocl.getResourceSet();
+		BaseCSResource xtextResource = ClassUtil.nonNullState((BaseCSResource) resourceSet2.getResource(inputURI, true));
+		assertNoResourceErrors("Load failed", xtextResource);
+		CS2AS cs2as = xtextResource.getCS2AS();
+		ASResource asResource = cs2as.getASResource();
+		assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
+		assertNoValidationErrors("Pivot validation errors", ClassUtil.nonNullState(asResource.getContents().get(0)));
+		XMLResource ecoreResource = AS2Ecore.createResource((EnvironmentFactoryInternal) ocl.getEnvironmentFactory(), asResource, ecoreURI, null);
+		assertNoResourceErrors("To Ecore errors", ecoreResource);
+		if (assignIds) {
+			for (TreeIterator<EObject> tit = ecoreResource.getAllContents(); tit.hasNext(); ) {
+				EObject eObject = tit.next();
+				ecoreResource.setID(eObject,  EcoreUtil.generateUUID());
 			}
 		}
+		ecoreResource.save(null);
+		return ecoreURI;
 	}
 	
 	public void createOCLinEcoreFile(String fileName, String fileContent) throws IOException {

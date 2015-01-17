@@ -12,7 +12,6 @@ package org.eclipse.ocl.xtext.base.utilities;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -373,7 +372,9 @@ public class CSI2ASMapping implements ICSI2ASMapping
 		this.cs2asResourceMap.putAll(cs2asResourceMap); 
 	}
 
-	public void add(@NonNull CS2AS cs2as) {
+	public void add(@NonNull BaseCSResource csResource, @NonNull CS2AS cs2as) {
+		as2cs = null;
+		this.cs2asResourceMap.put(csResource, cs2as.getASResource()); 
 //		List<CS2AS> cs2ases2 = cs2ases;
 //		if (cs2ases2 == null) {
 //			cs2ases = cs2ases2 = new ArrayList<CS2AS>();
@@ -381,16 +382,14 @@ public class CSI2ASMapping implements ICSI2ASMapping
 //		cs2ases2.add(cs2as); 
 	}
 	
-	public Set<CSI> computeCSIs(Collection<? extends Resource> csResources) {
+	public Set<CSI> computeCSIs(@NonNull BaseCSResource csResource) {
 		Set<CSI> map = new HashSet<CSI>();
-		for (Resource csResource : csResources) {
-			for (Iterator<EObject> it = csResource.getAllContents(); it.hasNext(); ) {
-				EObject eObject = it.next();
-				if (eObject instanceof ModelElementCS) {
-					ModelElementCS csElement = (ModelElementCS)eObject;
-					CSI csURI = getCSI(csElement);
-					map.add(csURI);
-				}
+		for (Iterator<EObject> it = csResource.getAllContents(); it.hasNext(); ) {
+			EObject eObject = it.next();
+			if (eObject instanceof ModelElementCS) {
+				ModelElementCS csElement = (ModelElementCS)eObject;
+				CSI csURI = getCSI(csElement);
+				map.add(csURI);
 			}
 		}
 		return map;
@@ -508,11 +507,9 @@ public class CSI2ASMapping implements ICSI2ASMapping
 	/**
 	 * Remove the Resource mappings for all csResources. The CSI mappings persist until update() is called.
 	 */
-	public void removeCSResources(@NonNull Set<? extends BaseCSResource> csResources) {
+	public void removeCSResource(@NonNull BaseCSResource csResource) {
 		as2cs = null;
-		for (Resource csResource : csResources) {
-			cs2asResourceMap.remove(csResource); 
-		}
+		cs2asResourceMap.remove(csResource); 
 	}
 
 	/**

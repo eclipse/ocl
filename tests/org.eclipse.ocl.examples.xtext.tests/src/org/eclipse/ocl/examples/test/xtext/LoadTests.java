@@ -655,9 +655,8 @@ public class LoadTests extends XtextTestCase
 		BaseCSResource xtextResource = doLoad_Concrete1(ocl, "Refresh", "oclinecore");
 		Resource asResource = doLoad_Concrete2(xtextResource, "Refresh", "oclinecore");
 		assertNoValidationErrors("First validation", asResource);
-		CS2ASResourceAdapter resourceAdapter = xtextResource.getCS2ASAdapter(null);
 		try {
-			resourceAdapter.refreshPivotMappings(new ListBasedDiagnosticConsumer());
+			xtextResource.update(new ListBasedDiagnosticConsumer());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -713,9 +712,8 @@ public class LoadTests extends XtextTestCase
 		BaseCSResource xtextResource = doLoad_Concrete1(ocl, "Refresh2", "oclinecore");
 		Resource asResource = doLoad_Concrete2(xtextResource, "Refresh2", "oclinecore");
 		assertNoValidationErrors("First validation", asResource);
-		CS2ASResourceAdapter resourceAdapter = xtextResource.getCS2ASAdapter(null);
 		try {
-			resourceAdapter.refreshPivotMappings(new ListBasedDiagnosticConsumer());
+			xtextResource.update(new ListBasedDiagnosticConsumer());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -648,7 +648,6 @@ public class IteratorsTest4 extends PivotTestSuite
     	if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
     		OCLinEcoreStandaloneSetup.doSetup();
     	}
-		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		String nodeModel =
 			"package nodes : nodes = 'http://nodes'{\n" +
 //			"    class Root {\n" +
@@ -659,8 +658,7 @@ public class IteratorsTest4 extends PivotTestSuite
 			"    	property name : String;\n" +
 			"	 }\n" +
 			"}\n";
-		URI uri = createEcoreFile(metamodelManager, "NodeModel", nodeModel);
-//		metamodelManager.dispose();
+		URI uri = createEcoreFile(ocl, "NodeModel", nodeModel);
 		Resource ecoreResource = ocl.getResourceSet().getResource(uri, true);
 		EPackage nodesEPackage = (EPackage) ecoreResource.getContents().get(0);
 //		EClass rootEClass = (EClass) nodesEPackage.getEClassifier("Root");

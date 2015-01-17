@@ -127,7 +127,6 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 	}
 	
 	protected final @NonNull CS2AS converter;
-	protected final @NonNull Collection<? extends BaseCSResource> csResources;
 	
 	/**
 	 * The Visitors
@@ -158,21 +157,14 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 	
 	private boolean hasFailed = false;
 	
-	public CS2ASConversion(@NonNull CS2AS converter, @NonNull IDiagnosticConsumer diagnosticsConsumer, @NonNull Collection<? extends BaseCSResource> csResources) {
+	public CS2ASConversion(@NonNull CS2AS converter, @NonNull IDiagnosticConsumer diagnosticsConsumer) {
 		super(converter.getEnvironmentFactory());
 		this.converter = converter;
 		this.diagnosticsConsumer = diagnosticsConsumer;
-		this.csResources = csResources;
 		this.containmentVisitor = converter.createContainmentVisitor(this);
 		this.left2RightVisitor = converter.createLeft2RightVisitor(this);
 		this.postOrderVisitor = converter.createPostOrderVisitor(this);
 		this.preOrderVisitor = converter.createPreOrderVisitor(this);
-		List<Resource> mappedResources = new ArrayList<Resource>();
-		for (BaseCSResource csResource : csResources) {
-			if (csResource != null) {
-				mappedResources.add(converter.getPivotResource(csResource));
-			}
-		}
 	}
 
 	public @NonNull OCLExpression addBadExpressionError(@NonNull ModelElementCS csElement, @NonNull String boundMessage) {
@@ -210,12 +202,10 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		return converter.bind(csContext, messageTemplate, bindings);
 	}
 
-	public boolean checkForNoErrors(@NonNull Collection<? extends BaseCSResource> csResources) {
-		for (BaseCSResource csResource : csResources) {
-			@SuppressWarnings("null") @NonNull List<Resource.Diagnostic> errors = csResource.getErrors();
-			if (ElementUtil.hasSyntaxError(errors)) {
-				return false;
-			}
+	public boolean checkForNoErrors(@NonNull BaseCSResource csResource) {
+		@SuppressWarnings("null") @NonNull List<Resource.Diagnostic> errors = csResource.getErrors();
+		if (ElementUtil.hasSyntaxError(errors)) {
+			return false;
 		}
 		return true;
 	}
@@ -764,11 +754,9 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 	}
 
 	public void installRootElement(@NonNull BaseCSResource csResource, @NonNull Element pivotElement) {
-		Resource asResource = converter.getPivotResource(csResource);
-		if (asResource != null) {
-			asResource.getContents().add(pivotElement);
-			metamodelManager.installResource(asResource);
-		}
+		Resource asResource = converter.getASResource();
+		asResource.getContents().add(pivotElement);
+		metamodelManager.installResource(asResource);
 	}
 
 	public boolean isInReturnTypeWithUnresolvedParameters(@NonNull ElementCS csElement) {
@@ -1076,16 +1064,14 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		}
 	}
 
-	protected void resetPivotMappings(@NonNull Collection<? extends BaseCSResource> csResources) {
-		for (BaseCSResource csResource : csResources) {
-			for (TreeIterator<EObject> tit = csResource.getAllContents(); tit.hasNext(); ) {
-				EObject eObject = tit.next();
-				if (eObject instanceof Pivotable) {
-					Pivotable pivotable = (Pivotable)eObject;
-//					Element pivot = pivotable.getPivot();
-					pivotable.resetPivot();
-				}				
-			}
+	protected void resetPivotMappings(@NonNull BaseCSResource csResource) {
+		for (TreeIterator<EObject> tit = csResource.getAllContents(); tit.hasNext(); ) {
+			EObject eObject = tit.next();
+			if (eObject instanceof Pivotable) {
+				Pivotable pivotable = (Pivotable)eObject;
+//				Element pivot = pivotable.getPivot();
+				pivotable.resetPivot();
+			}				
 		}
 	}
 
@@ -1260,18 +1246,16 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 	/**
 	 * Sequence the update passes to make the pivot match the CS.
 	 */
-	public boolean update() {
-		resetPivotMappings(csResources);
+	public boolean update(@NonNull BaseCSResource csResource) {
+		resetPivotMappings(csResource);
 		oldPackagesByName = new HashMap<String, org.eclipse.ocl.pivot.Package>();
 		oldPackagesByQualifiedName = new HashMap<String, org.eclipse.ocl.pivot.Package>();
-		for (BaseCSResource csResource : converter.csResources) {
-			ASResource asResource = converter.csi2asMapping.getASResource(csResource);
-			if (asResource != null) {
-				for (EObject eObject : asResource.getContents()) {
-					if (eObject instanceof Model) {
-						List<org.eclipse.ocl.pivot.Package> nestedPackage = ((Model)eObject).getOwnedPackages();
-						gatherOldPackages(nestedPackage);
-					}
+		ASResource asResource = converter.csi2asMapping.getASResource(csResource);
+		if (asResource != null) {
+			for (EObject eObject : asResource.getContents()) {
+				if (eObject instanceof Model) {
+					List<org.eclipse.ocl.pivot.Package> nestedPackage = ((Model)eObject).getOwnedPackages();
+					gatherOldPackages(nestedPackage);
 				}
 			}
 		}
@@ -1286,28 +1270,22 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		//
 		//	The containment pass may only access the pivot elements of immediate children.
 		//
-		for (BaseCSResource csResource : csResources) {
-			for (EObject eObject : csResource.getContents()) {
-				if (eObject instanceof ElementCS) {
-					visitContainment((ElementCS)eObject, continuations);
-				}
+		for (EObject eObject : csResource.getContents()) {
+			if (eObject instanceof ElementCS) {
+				visitContainment((ElementCS)eObject, continuations);
 			}
 		}
 		//
 		//	Put all orphan root pivot elements in their resources.
 		//
-		for (BaseCSResource csResource : csResources) {
-			if (csResource != null) {
-				installRootContents(csResource);
-			}
-		}
+		installRootContents(csResource);
 		//
 		//
 		//
 		while (continuations.size() > 0) {
 			List<BasicContinuation<?>> moreContinuations = progressContinuations(continuations);
 			if (moreContinuations == null) {
-				boolean hasNoErrors = checkForNoErrors(csResources);
+				boolean hasNoErrors = checkForNoErrors(csResource);
 				if (!hasNoErrors) {
 					return false;
 				}
@@ -1319,11 +1297,9 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		//
 		//	Perform the pre-order traversal to resolve specializations and references.
 		//
-		for (BaseCSResource csResource : csResources) {
-			for (EObject eObject : csResource.getContents()) {
-				if (eObject instanceof ElementCS) {
-					visitInPreOrder((ElementCS)eObject, continuations);
-				}
+		for (EObject eObject : csResource.getContents()) {
+			if (eObject instanceof ElementCS) {
+				visitInPreOrder((ElementCS)eObject, continuations);
 			}
 		}
 		//
@@ -1333,7 +1309,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		while (continuations.size() > 0) {
 			List<BasicContinuation<?>> moreContinuations = progressContinuations(continuations);
 			if (moreContinuations == null) {
-				boolean hasNoErrors = checkForNoErrors(csResources);
+				boolean hasNoErrors = checkForNoErrors(csResource);
 				if (!hasNoErrors) {
 					return false;
 				}
@@ -1351,14 +1327,12 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		//	Perform the post-order traversal to create and install the bulk of non-package/class
 		//	elements.
 		//
-		for (BaseCSResource csResource : csResources) {
-			for (EObject eObject : csResource.getContents()) {
-				if (eObject instanceof ElementCS) {
-					visitInPostOrder((ElementCS)eObject, continuations);
-				}
+		for (EObject eObject : csResource.getContents()) {
+			if (eObject instanceof ElementCS) {
+				visitInPostOrder((ElementCS)eObject, continuations);
 			}
 		}
-		boolean hasNoErrors = checkForNoErrors(csResources);
+		boolean hasNoErrors = checkForNoErrors(csResource);
 		if (!hasNoErrors) {
 			return false;
 		}
@@ -1376,13 +1350,9 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		//
 		//	Put all orphan root pivot elements in their resources.
 		//
-		for (BaseCSResource csResource : csResources) {
-			if (csResource != null) {
-				installRootContents(csResource);		// FIXME ExpressionInOCL very late
-			}
-		}
+		installRootContents(csResource);		// FIXME ExpressionInOCL very late
 		//
-		boolean hasNoMoreErrors = checkForNoErrors(csResources);
+		boolean hasNoMoreErrors = checkForNoErrors(csResource);
 		if (!hasNoMoreErrors) {
 			return false;
 		}
@@ -1390,11 +1360,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		//	Prune obsolete packages
 		//
 		Set<org.eclipse.ocl.pivot.Package> newPackages = new HashSet<org.eclipse.ocl.pivot.Package>();
-		for (BaseCSResource csResource : csResources) {
-			if (csResource != null) {
-				gatherNewPackages(newPackages, csResource);
-			}
-		}
+		gatherNewPackages(newPackages, csResource);
 		Set<org.eclipse.ocl.pivot.Package> obsoletePackages = new HashSet<org.eclipse.ocl.pivot.Package>(oldPackagesByQualifiedName.values());
 //		for (org.eclipse.ocl.pivot.Package oldPackage : obsoletePackages) {
 //			System.out.println("Old package @" + Integer.toHexString(oldPackage.hashCode()) + " " + oldPackage.eResource().getURI() + " " + oldPackage.getName());

@@ -71,8 +71,8 @@ public class OCLstdlibCS2AS extends EssentialOCLCS2AS
 		return null;
 	}
 
-	public OCLstdlibCS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap, @NonNull EnvironmentFactoryInternal environmentFactory) {
-		super(cs2asResourceMap, environmentFactory);
+	public OCLstdlibCS2AS(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull BaseCSResource csResource, @NonNull ASResource asResource) {
+		super(environmentFactory, csResource, asResource);
 	}
 	
 	public OCLstdlibCS2AS(@NonNull OCLstdlibCS2AS cs2as) {

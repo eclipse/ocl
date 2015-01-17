@@ -333,16 +333,17 @@ public class XtextTestCase extends PivotTestCase
 	}
 
 	protected void doLoadFromString(@NonNull String fileName, @NonNull String testFile) throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
+		EnvironmentFactoryInternal environmentFactory = (EnvironmentFactoryInternal) ocl.getEnvironmentFactory();
 		URI libraryURI = getProjectFileURI(fileName);
-		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
 		ResourceSet resourceSet = new ResourceSetImpl();
-		EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, metamodelManager.getEnvironmentFactory());
+		EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, environmentFactory);
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(libraryURI);
 		InputStream inputStream = new URIConverter.ReadableInputStream(testFile, "UTF-8");
 		xtextResource.load(inputStream, null);
 		assertNoResourceErrors("Load failed", xtextResource);
-		CS2ASResourceAdapter adapter = xtextResource.getCS2ASAdapter(metamodelManager);
-		Resource asResource = adapter.getASResource(xtextResource);
+		CS2ASResourceAdapter adapter = xtextResource.getCS2ASAdapter(environmentFactory);
+		Resource asResource = adapter.getASResource();
 		assert asResource != null;
 		assertNoResourceErrors("File Model", asResource);
 		assertNoUnresolvedProxies("File Model", asResource);
@@ -356,20 +357,20 @@ public class XtextTestCase extends PivotTestCase
 //			}
 //			adapter2 = null;
 //		}
-		adapter.dispose();
-		metamodelManager.dispose();
-		metamodelManager = null;
+//		adapter.dispose();
+		ocl.dispose();
 		resourceSet = null;
-		adapter = null;
+//		adapter = null;
 	}
 
 	protected ASResource doLoadASResourceFromString(@NonNull OCL ocl, @NonNull String fileName, @NonNull String testFile) throws Exception {
 		URI libraryURI = getProjectFileURI(fileName);
-		ModelContext modelContext = new ModelContext(ocl.getEnvironmentFactory(), libraryURI);
+		EnvironmentFactoryInternal environmentFactory = (EnvironmentFactoryInternal) ocl.getEnvironmentFactory();
+		ModelContext modelContext = new ModelContext(environmentFactory, libraryURI);
 		BaseCSResource xtextResource = (BaseCSResource) modelContext.createBaseResource(testFile);
 		assertNoResourceErrors("Load failed", xtextResource);
-		CS2ASResourceAdapter adapter = xtextResource.getCS2ASAdapter(null);
-		ASResource asResource = adapter.getASResource(xtextResource);
+		CS2ASResourceAdapter adapter = xtextResource.getCS2ASAdapter(environmentFactory);
+		ASResource asResource = adapter.getASResource();
 		assert asResource != null;
 		assertNoResourceErrors("File Model", asResource);
 		assertNoUnresolvedProxies("File Model", asResource);
@@ -571,7 +572,7 @@ public class XtextTestCase extends PivotTestCase
 			BaseCSResource xtextResource = ClassUtil.nonNullState((BaseCSResource) resourceSet2.getResource(inputURI, true));
 			assertNoResourceErrors("Load failed", xtextResource);
 			adapter = xtextResource.getCS2ASAdapter(null);
-			Resource asResource = adapter.getASResource(xtextResource);
+			Resource asResource = adapter.getASResource();
 			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
 			assertNoValidationErrors("Pivot validation errors", asResource.getContents().get(0));
 			XMLResource ecoreResource = AS2Ecore.createResource((EnvironmentFactoryInternal) ocl.getEnvironmentFactory(), asResource, ecoreURI, null);

@@ -126,7 +126,7 @@ class BreakpointLocationVerifier {
 					BaseCSResource csResource = (BaseCSResource)state;
 					CS2ASResourceAdapter cs2asAdapter = csResource.findCS2ASAdapter();
 					if (cs2asAdapter != null) {
-						ASResource asResource = cs2asAdapter.getASResource(csResource);
+						ASResource asResource = cs2asAdapter.getASResource();
 						if ((asResource != null) && (asResource.getContents().size() > 0)) {
 							EObject eObject = asResource.getContents().get(0);
 							if (eObject instanceof Model) {

@@ -44,7 +44,6 @@ import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.basecs.AnnotationCS;
 import org.eclipse.ocl.xtext.basecs.AnnotationElementCS;
@@ -215,13 +214,11 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		Object pivotObject = context.getConverter().getPivotElement(csElement);
 //		Object pivotObject = csElement.getPivot();
 		if (pivotObject == null) {
-			Resource asResource = context.getConverter().getPivotResource((BaseCSResource) csResource);
-			if (asResource != null) {
-				for (EObject oldRoot : asResource.getContents()) {
-					if (oldRoot instanceof Model) {
-						pivotObject = oldRoot;
-						break;
-					}
+			Resource asResource = context.getConverter().getASResource();
+			for (EObject oldRoot : asResource.getContents()) {
+				if (oldRoot instanceof Model) {
+					pivotObject = oldRoot;
+					break;
 				}
 			}
 		}

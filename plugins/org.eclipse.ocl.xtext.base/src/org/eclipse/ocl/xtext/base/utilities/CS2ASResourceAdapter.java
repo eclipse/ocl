@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.manager.AbstractMetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
@@ -25,7 +26,6 @@ import org.eclipse.ocl.pivot.internal.resource.AbstractASResourceFactory;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
-import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
 
 /**
  * A CS2ASResourceAdapter enhances the Resource for a Concrete Syntax model
@@ -69,10 +69,9 @@ public class CS2ASResourceAdapter extends AbstractMetamodelManagerResourceAdapte
 
 	private final @NonNull CS2AS converter;
 	
-	public CS2ASResourceAdapter(@NonNull BaseCSResource csResource, @Nullable ASResource asResource, @NonNull MetamodelManager metamodelManager) {
-		super(csResource, metamodelManager);
-		Map<BaseCSResource, ASResource> cs2asResourceMap = computeCS2ASResourceMap(csResource, asResource, metamodelManager);
-		converter = csResource.createCS2AS(cs2asResourceMap, metamodelManager.getEnvironmentFactory());
+	public CS2ASResourceAdapter(@NonNull BaseCSResource csResource, @NonNull EnvironmentFactoryInternal environmentFactory, @NonNull CS2AS converter) {
+		super(csResource, environmentFactory.getMetamodelManager());
+		this.converter = converter;
 	}
 
 	public @NonNull Map<BaseCSResource, ASResource> computeCS2ASResourceMap(@NonNull BaseCSResource csResource, @Nullable ASResource asResource, @NonNull MetamodelManager metamodelManager) {
@@ -107,11 +106,11 @@ public class CS2ASResourceAdapter extends AbstractMetamodelManagerResourceAdapte
 		converter.dispose();
 	}
 
-	public ASResource getASResource(@NonNull BaseCSResource csResource) {
-		return converter.getPivotResource(csResource);
+	public @NonNull ASResource getASResource() {
+		return converter.getASResource();
 	}
 	
-	public CS2AS getConverter() {
+	public @NonNull CS2AS getConverter() {
 		return converter;
 	}
 
@@ -119,14 +118,4 @@ public class CS2ASResourceAdapter extends AbstractMetamodelManagerResourceAdapte
 	public boolean isAdapterForType(Object type) {
 		return super.isAdapterForType(type) || (type == CS2ASResourceAdapter.class);
 	}	
-	
-	public void refreshPivotMappings(@NonNull IDiagnosticConsumer diagnosticsConsumer) throws Exception {
-		try {
-			converter.update(diagnosticsConsumer);
-		}
-		catch (Exception e) {
-			dispose();
-			throw e;
-		}
-	}
 }

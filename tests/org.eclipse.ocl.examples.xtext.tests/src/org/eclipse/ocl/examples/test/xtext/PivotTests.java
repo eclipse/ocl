@@ -227,7 +227,7 @@ public class PivotTests extends XtextTestCase
 		//	Create Pivot model from CS
 		//
 		CS2ASResourceAdapter adapter = csResource.findCS2ASAdapter();
-		Resource asResource = adapter.getASResource(csResource);
+		Resource asResource = adapter.getASResource();
 		OCLstdlibCS2AS creator = (OCLstdlibCS2AS) adapter.getConverter();
 		//
 		//	Check that Pivot model is ready for damage

@@ -11,8 +11,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.base.cs2as;
 
-import java.util.Map;
-
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
@@ -25,9 +23,8 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
  */
 public class BaseCS2AS extends CS2AS
 {	
-	public BaseCS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap,
-			@NonNull EnvironmentFactoryInternal environmentFactory) {
-		super(cs2asResourceMap, environmentFactory);
+	public BaseCS2AS(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull BaseCSResource csResource, @NonNull ASResource asResource) {
+		super(environmentFactory, csResource, asResource);
 	}
 
 	public BaseCS2AS(@NonNull BaseCS2AS cs2as) {

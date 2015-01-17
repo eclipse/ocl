@@ -34,12 +34,10 @@ public class BaseFragmentProvider extends DefaultFragmentProvider
 		BaseCSResource csResource = (BaseCSResource)resource;
 		CS2ASResourceAdapter converter = csResource.findCS2ASAdapter();
 		if (converter != null) {
-			Resource asResource = converter.getASResource(csResource);
-			if (asResource != null) {
-				eObject = asResource.getEObject(fragment);
-				if (eObject != null) {
-					return eObject;
-				}
+			Resource asResource = converter.getASResource();
+			eObject = asResource.getEObject(fragment);
+			if (eObject != null) {
+				return eObject;
 			}
 		}
 		return null;

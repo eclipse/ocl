@@ -91,7 +91,7 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 				issues.addError(this, message, null, null, null);
 				return;
 			}
-			ASResource asResource = xtextResource.getASResource(null);
+			ASResource asResource = xtextResource.getASResource();
 //			if (asResource == null) {
 //				return;
 //			}

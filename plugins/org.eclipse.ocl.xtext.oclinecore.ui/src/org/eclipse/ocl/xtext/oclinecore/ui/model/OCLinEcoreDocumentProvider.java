@@ -408,7 +408,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider //implemen
 					diagnoseErrors((XtextResource) csResource, e);
 				}
 				csResource.unload();
-				CS2ASResourceAdapter resourceAdapter = ((BaseCSResource)csResource).getCS2ASAdapter(null);
+				CS2ASResourceAdapter resourceAdapter = ((BaseCSResource)csResource).getCS2ASAdapter(getEnvironmentFactory());
 				resourceAdapter.dispose();
 				resourceSet.getResources().remove(csResource);
 				inputStream = new ByteArrayInputStream(outputStream.toByteArray());

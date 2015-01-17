@@ -56,7 +56,7 @@ public class PivotConstraintLocator extends AbstractConstraintLocator
 			}
 			Resource asResource = null;
 			if (resource instanceof CSResource) {
-				asResource = ((CSResource) resource).getASResource(null);
+				asResource = ((CSResource) resource).getASResource();
 			}
 			if (asResource != null) {
 				MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(asResource);

@@ -80,7 +80,7 @@ public class MainTab extends AbstractMainTab implements OCLLaunchConstants
 			@SuppressWarnings("null")@NonNull URI contextURI = URI.createURI(modelName, true);
 			URI elementsURI = contextURI.trimFragment();
 			try {
-				Resource resource = getMetamodelManager().getExternalResourceSet().getResource(elementsURI, true);
+				Resource resource = getEnvironmentFactory().getMetamodelManager().getExternalResourceSet().getResource(elementsURI, true);
 		        if (resource == null) {
 		        	throw new IOException("There was an error loading the model file. ");
 		        }
@@ -125,12 +125,12 @@ public class MainTab extends AbstractMainTab implements OCLLaunchConstants
 			try {
 				Model root = null;
 		        BaseCSResource xtextResource = null;
-		        xtextResource = (BaseCSResource) getMetamodelManager().getExternalResourceSet().getResource(oclURI, true);
+		        xtextResource = (BaseCSResource) getEnvironmentFactory().getMetamodelManager().getExternalResourceSet().getResource(oclURI, true);
 		        if (xtextResource != null) {
 		    		CS2ASResourceAdapter adapter = null;
-	    			adapter = xtextResource.getCS2ASAdapter(null);
+	    			adapter = xtextResource.getCS2ASAdapter(getEnvironmentFactory());
 //	    			adapter.refreshPivotMappings(new ListBasedDiagnosticConsumer());
-	    			ASResource asResource = adapter.getASResource(xtextResource);
+	    			ASResource asResource = adapter.getASResource();
 	    			for (EObject eContent : asResource.getContents()) {
 	    	    		root = (Model)eContent;
 	    				break;
@@ -180,7 +180,7 @@ public class MainTab extends AbstractMainTab implements OCLLaunchConstants
 	@Override
 	public boolean canSave() {
 		assert !initializing;
-		ResourceSet resourceSet = getMetamodelManager().getExternalResourceSet();
+		ResourceSet resourceSet = getEnvironmentFactory().getMetamodelManager().getExternalResourceSet();
 		URIConverter uriConverter = resourceSet.getURIConverter();
 		String oclName = oclPath.getText();
 		URI oclURI = URI.createURI(oclName, true);
@@ -306,12 +306,12 @@ public class MainTab extends AbstractMainTab implements OCLLaunchConstants
 				@SuppressWarnings("null")@NonNull URI oclASURI = constraintURI.trimFragment();
 				URI oclNonASURI = PivotUtilInternal.getNonASURI(oclASURI);
 				oclPath.setText(oclNonASURI.toString());
-				EObject eObject = getMetamodelManager().getASResourceSet().getEObject(constraintURI, true);
+				EObject eObject = getEnvironmentFactory().getMetamodelManager().getASResourceSet().getEObject(constraintURI, true);
 				if (eObject instanceof Constraint) {
 					LanguageExpression specification = ((Constraint) eObject).getOwnedSpecification();
 					if (specification != null) {
 						try {
-							ExpressionInOCL query = getMetamodelManager().getQueryOrThrow(specification);
+							ExpressionInOCL query = getEnvironmentFactory().getMetamodelManager().getQueryOrThrow(specification);
 							String displayString = getDisplayString(query);
 							int index = expressionCombo.indexOf(displayString);
 							expressionCombo.select(index);
@@ -326,7 +326,7 @@ public class MainTab extends AbstractMainTab implements OCLLaunchConstants
 			if (contextUri.length() > 0) {
 				URI contextURI = URI.createURI(contextUri);
 				modelPath.setText(contextURI.trimFragment().toString());
-				EObject eObject = getMetamodelManager().getExternalResourceSet().getEObject(contextURI, true);
+				EObject eObject = getEnvironmentFactory().getMetamodelManager().getExternalResourceSet().getEObject(contextURI, true);
 				if (eObject  != null) {
 					String displayString = LabelUtil.getLabel(eObject);
 					int index = elementCombo.indexOf(displayString);

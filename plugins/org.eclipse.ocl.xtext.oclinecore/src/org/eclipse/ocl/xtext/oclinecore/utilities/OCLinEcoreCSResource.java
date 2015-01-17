@@ -34,9 +34,8 @@ public class OCLinEcoreCSResource extends EssentialOCLCSResource
 	}
 
 	@Override
-	public @NonNull CS2AS createCS2AS(@NonNull Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap,
-			@NonNull EnvironmentFactoryInternal environmentFactory) {
-		return new OCLinEcoreCS2AS(cs2asResourceMap, environmentFactory);
+	public @NonNull CS2AS createCS2AS(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull ASResource asResource) {
+		return new OCLinEcoreCS2AS(environmentFactory, this, asResource);
 	}
 
 	@Override
