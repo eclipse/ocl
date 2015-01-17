@@ -49,6 +49,7 @@ import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.xtext.oclinecore.OCLinEcoreStandaloneSetup;
 import org.eclipse.osgi.util.NLS;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -92,6 +93,11 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		UMLStandaloneSetup.init();
         super.setUp();
     }
+
+	@Override
+	@After public void tearDown() throws Exception {
+		super.tearDown();
+	}
 
 	/**
 	 * Tests the basic name accesses

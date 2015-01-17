@@ -46,6 +46,8 @@ import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.uml2.uml.util.UMLUtil;
+import org.junit.After;
+import org.junit.Before;
 
 /**
  * Tests for stereotype expressions.
@@ -209,7 +211,7 @@ public class StereotypesTest extends PivotTestSuite
 	}
 	
     @Override
-    protected void setUp() throws Exception {
+    @Before public void setUp() throws Exception {
 //		UML2AS.ADD_ELEMENT_EXTENSION.setState(true);
 //		UML2AS.ADD_IMPORTED_RESOURCE.setState(true);
 //		UML2AS.ADD_PROFILE_APPLICATION.setState(true);
@@ -224,6 +226,11 @@ public class StereotypesTest extends PivotTestSuite
     	UMLStandaloneSetup.init();
         super.setUp();
     }
+
+	@Override
+	@After public void tearDown() throws Exception {
+		super.tearDown();
+	}
 
 	/**
      * Tests M1 parsing using base_XXX and extension_YYY.

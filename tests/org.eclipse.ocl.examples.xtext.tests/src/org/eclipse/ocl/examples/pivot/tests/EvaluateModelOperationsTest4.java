@@ -35,6 +35,7 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.Value;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -80,6 +81,11 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 		doOCLinEcoreSetup();
         super.setUp();
     }
+
+	@Override
+	@After public void tearDown() throws Exception {
+		super.tearDown();
+	}
 	
 	@SuppressWarnings("unchecked")
 	public void eAdd(@NonNull EObject eObject, @NonNull String featureName, @Nullable Object value) {

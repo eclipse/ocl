@@ -61,6 +61,7 @@ import org.eclipse.ocl.pivot.values.SequenceValue;
 import org.eclipse.ocl.pivot.values.SetValue;
 import org.eclipse.ocl.pivot.values.Value;
 import org.eclipse.ocl.xtext.oclinecore.OCLinEcoreStandaloneSetup;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -138,6 +139,11 @@ public class IteratorsTest4 extends PivotTestSuite
         super.setUp();
         PivotTables.LIBRARY.getClass();
     }
+
+	@Override
+	@After public void tearDown() throws Exception {
+		super.tearDown();
+	}
 
     /**
      * Tests the generic iterate() iterator.

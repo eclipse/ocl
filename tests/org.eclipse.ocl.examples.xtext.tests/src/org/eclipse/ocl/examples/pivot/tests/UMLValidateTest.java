@@ -55,6 +55,8 @@ import org.eclipse.ocl.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
+import org.junit.After;
+import org.junit.Before;
 
 /**
  * Tests for the OCL delegate implementations.
@@ -106,7 +108,7 @@ public class UMLValidateTest extends AbstractValidateTests
 	// Test framework
 	//
 	@Override
-	protected void setUp() throws Exception {
+	@Before public void setUp() throws Exception {
 		super.setUp();
 		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
 			UMLStandaloneSetup.init();
@@ -118,7 +120,7 @@ public class UMLValidateTest extends AbstractValidateTests
 	}
 
 	@Override
-	protected void tearDown() throws Exception {
+	@After public void tearDown() throws Exception {
 		EValidator.Registry.INSTANCE.remove(null);
 		OCL.Internal.disposeGlobalEnvironmentFactory();
 //		OCLstdlib.uninstall();

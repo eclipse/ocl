@@ -16,6 +16,8 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
+import org.junit.After;
+import org.junit.Before;
 
 /**
  * Tests for OclAny operations.
@@ -61,6 +63,16 @@ public class PrettyPrinterTest extends PivotTestSuite
 	@Override
 	protected @NonNull MyOCL createOCL() {
 		return new MyOCL(getTestPackageName(), getName());
+	}
+
+    @Override
+    @Before public void setUp() throws Exception {
+        super.setUp();
+    }
+
+	@Override
+	@After public void tearDown() throws Exception {
+		super.tearDown();
 	}
 
 	/**

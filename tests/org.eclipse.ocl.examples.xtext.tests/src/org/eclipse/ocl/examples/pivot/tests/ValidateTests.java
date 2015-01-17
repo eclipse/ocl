@@ -65,6 +65,8 @@ import org.eclipse.ocl.xtext.completeocl.validation.CompleteOCLEObjectValidator;
 import org.eclipse.ocl.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
+import org.junit.After;
+import org.junit.Before;
 
 /**
  * Tests that OCL for model validation works.
@@ -93,6 +95,16 @@ public class ValidateTests extends AbstractValidateTests
 		URI ecoreURI = getProjectFileURI(ecoreName);
 		Resource ecoreResource = metamodelManager.getExternalResourceSet().getResource(ecoreURI, true);
 		return ecoreResource;
+	}
+
+    @Override
+    @Before public void setUp() throws Exception {
+        super.setUp();
+    }
+
+	@Override
+	@After public void tearDown() throws Exception {
+		super.tearDown();
 	}
 
 	public void testValidate_Bug366229_oclinecore() throws IOException, InterruptedException {

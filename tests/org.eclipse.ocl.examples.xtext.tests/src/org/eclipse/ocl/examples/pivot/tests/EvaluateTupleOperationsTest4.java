@@ -28,6 +28,8 @@ import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.SetValue;
 import org.eclipse.ocl.pivot.values.TupleValue;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -64,6 +66,16 @@ public class EvaluateTupleOperationsTest4 extends PivotTestSuite
 	@BeforeClass public static void resetCounter() throws Exception {
 		PivotTestSuite.resetCounter();
     }
+
+    @Override
+    @Before public void setUp() throws Exception {
+        super.setUp();
+    }
+
+	@Override
+	@After public void tearDown() throws Exception {
+		super.tearDown();
+	}
 
 	@Test public void testTupleType_Collections() {
 		TestOCL ocl = createOCL();

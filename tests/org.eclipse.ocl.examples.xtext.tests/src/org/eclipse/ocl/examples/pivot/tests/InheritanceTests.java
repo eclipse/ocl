@@ -22,6 +22,8 @@ import org.eclipse.ocl.pivot.SetType;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.junit.After;
+import org.junit.Before;
 
 /**
  * Tests for OclAny operations.
@@ -36,6 +38,16 @@ public class InheritanceTests extends PivotTestSuite
 	@Override
 	protected @NonNull TestOCL createOCL() {
 		return new TestOCL(getTestPackageName(), getName());
+	}
+
+    @Override
+    @Before public void setUp() throws Exception {
+        super.setUp();
+    }
+
+	@Override
+	@After public void tearDown() throws Exception {
+		super.tearDown();
 	}
 
 	public void test_Inheritance_Boolean() {

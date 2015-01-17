@@ -18,6 +18,8 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -55,6 +57,16 @@ public class EvaluateCollectionOperationsTest4 extends PivotTestSuite
 	@BeforeClass public static void resetCounter() throws Exception {
 		PivotTestSuite.resetCounter();
     }
+
+    @Override
+    @Before public void setUp() throws Exception {
+        super.setUp();
+    }
+
+	@Override
+	@After public void tearDown() throws Exception {
+		super.tearDown();
+	}
 
 	@Test public void testCollectionAppend() {
 		TestOCL ocl = createOCL();

@@ -22,6 +22,8 @@ import org.eclipse.ocl.pivot.internal.values.BigIntegerValueImpl;
 import org.eclipse.ocl.pivot.internal.values.IntIntegerValueImpl;
 import org.eclipse.ocl.pivot.internal.values.LongIntegerValueImpl;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -60,6 +62,16 @@ public class EvaluateNumericOperationsTest4 extends PivotTestSuite
 	@BeforeClass public static void resetCounter() throws Exception {
 		PivotTestSuite.resetCounter();
     }
+
+    @Override
+    @Before public void setUp() throws Exception {
+        super.setUp();
+    }
+
+	@Override
+	@After public void tearDown() throws Exception {
+		super.tearDown();
+	}
 
 	@Test public void testIntValue() {
 		TestOCL ocl = createOCL();

@@ -42,6 +42,8 @@ import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.UML2EcoreConverter;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -144,6 +146,16 @@ public class EvaluateUMLTest4 extends PivotTestSuite
 	@BeforeClass public static void resetCounter() throws Exception {
 		PivotTestSuite.resetCounter();
     }
+
+    @Override
+    @Before public void setUp() throws Exception {
+        super.setUp();
+    }
+
+	@Override
+	@After public void tearDown() throws Exception {
+		super.tearDown();
+	}
 	
 	/**
 	 * Tests construction of a type instance with property values
