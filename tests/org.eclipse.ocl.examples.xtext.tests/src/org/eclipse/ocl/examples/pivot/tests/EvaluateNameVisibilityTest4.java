@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.CollectionItem;
@@ -48,7 +49,6 @@ import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.xtext.oclinecore.OCLinEcoreStandaloneSetup;
 import org.eclipse.osgi.util.NLS;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -74,6 +74,11 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	}
 
 	@Override
+	protected @NonNull TestOCL createOCL() {
+		return new TestOCL(getTestPackageName(), getName());
+	}
+
+	@Override
 	protected @NonNull String getTestPackageName() {
 		return "EvaluateNameVisibility";
 	}
@@ -82,98 +87,110 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		PivotTestSuite.resetCounter();
     }
 
-    @Override
+	@Override
     @Before public void setUp() throws Exception {
 		UMLStandaloneSetup.init();
         super.setUp();
     }
 
-	@Override
-	@After public void tearDown() throws Exception {
-		super.tearDown();
-	}
-
 	/**
 	 * Tests the basic name accesses
 	 */
 	@Test public void test_bad_navigation() throws InvocationTargetException {
-		assertSemanticErrorQuery(null, "let a : Type = null in a.Package", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Type", "Package");
-		assertSemanticErrorQuery(null, "let a : Type = null in a.Package()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Type", "Package");
-		assertSemanticErrorQuery(null, "let a : Set(Type) = null in a.Package", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Set(Type)", "Package");
-		assertSemanticErrorQuery(null, "let a : Set(Type) = null in a.Package()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Set(Type)", "Package");
-		assertSemanticErrorQuery(null, "Type.Package", PivotMessagesInternal.UnresolvedStaticProperty_ERROR_, "Type", "Package");
-		assertSemanticErrorQuery(null, "Type.Package()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "Type", "Package", "");
-		assertSemanticErrorQuery(null, "Set(Type).Package", PivotMessagesInternal.UnresolvedStaticProperty_ERROR_, "Set(Type)", "Package");
-		assertSemanticErrorQuery(null, "Set(Type).Package()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "Set(Type)", "Package", "");
-		assertSemanticErrorQuery(null, "let a : Type = null in a->Package", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Set(Type)", "Package");
-		assertSemanticErrorQuery(null, "let a : Type = null in a->Package()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Set(Type)", "Package");
-		assertSemanticErrorQuery(null, "let a : Set(Type) = null in a->Package", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Set(Type)", "Package");
-		assertSemanticErrorQuery(null, "let a : Set(Type) = null in a->Package()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Set(Type)", "Package");
-		assertSemanticErrorQuery(null, "Type->Package", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Set(Class)", "Package");
-		assertSemanticErrorQuery(null, "Type->Package()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Set(Class)", "Package");
-		assertSemanticErrorQuery(null, "Set(Type)->Package", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Set(Class)", "Package");
-		assertSemanticErrorQuery(null, "Set(Type)->Package()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Set(Class)", "Package");
-		assertSemanticErrorQuery(null, "let a : Type = null in a.if", "no viable alternative following input ''if''");
-		assertSemanticErrorQuery(null, "let a : Type = null in a->if", "no viable alternative following input ''if''");
+		TestOCL ocl = createOCL();
+		ocl.assertSemanticErrorQuery(null, "let a : Type = null in a.Package", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Type", "Package");
+		ocl.assertSemanticErrorQuery(null, "let a : Type = null in a.Package()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Type", "Package");
+		ocl.assertSemanticErrorQuery(null, "let a : Set(Type) = null in a.Package", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Set(Type)", "Package");
+		ocl.assertSemanticErrorQuery(null, "let a : Set(Type) = null in a.Package()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Set(Type)", "Package");
+		ocl.assertSemanticErrorQuery(null, "Type.Package", PivotMessagesInternal.UnresolvedStaticProperty_ERROR_, "Type", "Package");
+		ocl.assertSemanticErrorQuery(null, "Type.Package()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "Type", "Package", "");
+		ocl.assertSemanticErrorQuery(null, "Set(Type).Package", PivotMessagesInternal.UnresolvedStaticProperty_ERROR_, "Set(Type)", "Package");
+		ocl.assertSemanticErrorQuery(null, "Set(Type).Package()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "Set(Type)", "Package", "");
+		ocl.assertSemanticErrorQuery(null, "let a : Type = null in a->Package", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Set(Type)", "Package");
+		ocl.assertSemanticErrorQuery(null, "let a : Type = null in a->Package()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Set(Type)", "Package");
+		ocl.assertSemanticErrorQuery(null, "let a : Set(Type) = null in a->Package", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Set(Type)", "Package");
+		ocl.assertSemanticErrorQuery(null, "let a : Set(Type) = null in a->Package()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Set(Type)", "Package");
+		ocl.assertSemanticErrorQuery(null, "Type->Package", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Set(Class)", "Package");
+		ocl.assertSemanticErrorQuery(null, "Type->Package()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Set(Class)", "Package");
+		ocl.assertSemanticErrorQuery(null, "Set(Type)->Package", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Set(Class)", "Package");
+		ocl.assertSemanticErrorQuery(null, "Set(Type)->Package()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Set(Class)", "Package");
+		ocl.assertSemanticErrorQuery(null, "let a : Type = null in a.if", "no viable alternative following input ''if''");
+		ocl.assertSemanticErrorQuery(null, "let a : Type = null in a->if", "no viable alternative following input ''if''");
+        ocl.dispose();
 	}
 
     @Test public void test_implicit_source() {
+		TestOCL ocl = createOCL();
 		StandardLibrary standardLibrary = ocl.getStandardLibrary();
-        assertQueryTrue(standardLibrary.getPackage(), "ownedClasses->select(name = 'Integer') = Set{Integer}");
-        assertQueryTrue(standardLibrary.getPackage(), "let name : String = 'String' in ownedClasses->select(name = 'Integer') = Set{Integer}");
-        assertQueryTrue(-1, "let type : Class = oclType() in type.owningPackage.ownedClasses->select(name = type.name) = Set{Integer}");
-        assertQueryTrue(standardLibrary.getPackage(), "ownedPackages->select(oclIsKindOf(Integer))->isEmpty()");
-        assertQueryTrue(standardLibrary.getPackage(), "ownedPackages->select(oclIsKindOf(Package))->isEmpty()");	// Fails unless implicit Package disambiguated away by argument type expectation
+        ocl.assertQueryTrue(standardLibrary.getPackage(), "ownedClasses->select(name = 'Integer') = Set{Integer}");
+        ocl.assertQueryTrue(standardLibrary.getPackage(), "let name : String = 'String' in ownedClasses->select(name = 'Integer') = Set{Integer}");
+        ocl.assertQueryTrue(-1, "let type : Class = oclType() in type.owningPackage.ownedClasses->select(name = type.name) = Set{Integer}");
+        ocl.assertQueryTrue(standardLibrary.getPackage(), "ownedPackages->select(oclIsKindOf(Integer))->isEmpty()");
+        ocl.assertQueryTrue(standardLibrary.getPackage(), "ownedPackages->select(oclIsKindOf(Package))->isEmpty()");	// Fails unless implicit Package disambiguated away by argument type expectation
+        ocl.dispose();
     }
 
-	@Test public void test_iterator_scope() {
-		assertQueryEquals(null, 6, "Set{1, 2, 3 }->iterate(i : Integer; sum : Integer = 0 | sum + i)");
-		assertQueryInvalid(null, "let s : Set(String) = invalid in Set{'a'}->union(s)");
+    @Test public void test_iterator_scope() {
+		TestOCL ocl = createOCL();
+		ocl.assertQueryEquals(null, 6, "Set{1, 2, 3 }->iterate(i : Integer; sum : Integer = 0 | sum + i)");
+		ocl.assertQueryInvalid(null, "let s : Set(String) = invalid in Set{'a'}->union(s)");
+        ocl.dispose();
 	}
 
 	@Test public void test_compatibility_names() {
-		assertQueryEquals(null, 6, "Set{1, 2, 3 }->_iterate(i : Integer; sum : Integer = 0 | _sum + _i)");
-		assertQueryInvalid(null, "let s : Set(String) = invalid in Set{'a'}->_union(_s)");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryEquals(null, 6, "Set{1, 2, 3 }->_iterate(i : Integer; sum : Integer = 0 | _sum + _i)");
+		ocl.assertQueryInvalid(null, "let s : Set(String) = invalid in Set{'a'}->_union(_s)");
+        ocl.dispose();
 	}
 
 	@Test public void test_self_scope() {
-		ExpressionInOCL query = createQuery(null, "Sequence{1}");
+		TestOCL ocl = createOCL();
+		ExpressionInOCL query = ocl.assertQuery(null, "Sequence{1}");
 		CollectionLiteralExp coll = (CollectionLiteralExp) query.getOwnedBody();
 		CollectionItem item = (CollectionItem) coll.getOwnedParts().get(0);
-		assertQueryTrue(item, "type = ownedItem.type");
-//		assertQueryInvalid(null, "type = item.type");		// A2.2 def'n of invalid = invalid
-		assertQueryInvalid(null, "let item : CollectionItem = null in item.type = item");		// A2.2 def'n of invalid = invalid
-		assertQueryInvalid(null, "let item : CollectionItem = invalid in item.type = item");		// A2.2 def'n of invalid = invalid
+		ocl.assertQueryTrue(item, "type = ownedItem.type");
+//		ocl.assertQueryInvalid(null, "type = item.type");		// A2.2 def'n of invalid = invalid
+		ocl.assertQueryInvalid(null, "let item : CollectionItem = null in item.type = item");		// A2.2 def'n of invalid = invalid
+		ocl.assertQueryInvalid(null, "let item : CollectionItem = invalid in item.type = item");		// A2.2 def'n of invalid = invalid
+		ocl.dispose();
 	}
 
 	@Test public void test_caught_and_uncaught() {
-		initFruitPackage();
+		TestOCL ocl = createOCL();
+		initFruitPackage(ocl);
 		EObject context = fruitEFactory.create(tree);
-		assertQueryTrue(context, "let myName : String = name in myName.oclIsKindOf(String) and myName.oclAsType(String) = myName");
+		ocl.assertQueryTrue(context, "let myName : String = name in myName.oclIsKindOf(String) and myName.oclAsType(String) = myName");
+        ocl.dispose();
 	}
 
 	/**
 	 * Tests nested exists iterators.
 	 */
 	@Test public void test_double_exists_407817() {
+		TestOCL ocl = createOCL();
 		String textQuery = 
 			    "Set{'a','1'}->exists(s | Set{1,2}->exists(i | i.toString() = s.toUpper()))";
-		assertQueryTrue(null, textQuery);
+		ocl.assertQueryTrue(null, textQuery);
+		ocl.dispose();
 	}
 
 	/**
 	 * Tests same names on both if branches. This gave CG problems.
 	 */
 	@Test public void test_double_get() {
-		initFruitPackage();
+		TestOCL ocl = createOCL();
+		initFruitPackage(ocl);
 		EObject context = fruitEFactory.create(tree);
-		assertQueryEquals(context, null, "if true then name else name endif");
+		ocl.assertQueryEquals(context, null, "if true then name else name endif");
+        ocl.dispose();
 	}
 
 	/**
 	 * Tests a guarded let if in operator. This gave CG problems.
 	 */
 	@Test public void test_cg_let_implies() {
+		TestOCL ocl = createOCL();
 		StandardLibrary standardLibrary = ocl.getStandardLibrary();
 		String textQuery = 
 			    "let bodyConstraint : Constraint = null\n" + 
@@ -181,11 +198,13 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 			    "bodyConstraint.ownedSpecification = null";
 		org.eclipse.ocl.pivot.Class testType = standardLibrary.getIntegerType();
 		assert testType.getOwnedInvariants().isEmpty();
-		assertQueryTrue(testType, textQuery);
-//		assertQueryTrue(ValuesUtil.createTypeValue(metamodelManager.getMetaclass(testType)), textQuery);
+		ocl.assertQueryTrue(testType, textQuery);
+//		ocl.assertQueryTrue(ValuesUtil.createTypeValue(metamodelManager.getMetaclass(testType)), textQuery);
+        ocl.dispose();
 	}
 	
 	@Test public void test_let_implies_let_implies() {
+		TestOCL ocl = createOCL();
 		StandardLibrary standardLibrary = ocl.getStandardLibrary();
 		String textQuery = 
 			    "let bodyConstraint : Constraint = oclType().ownedInvariants->any(name = 'body')\n" + 
@@ -197,33 +216,41 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 //	    "CompatibleBody(bodySpecification)";
 		org.eclipse.ocl.pivot.Class testType = standardLibrary.getIntegerType();
 		assert testType.getOwnedInvariants().isEmpty();
-		assertQueryTrue(-1, textQuery);
+		ocl.assertQueryTrue(-1, textQuery);
+        ocl.dispose();
 	}
 	
 	@Test public void test_no_self() throws ParserException {
-		assertSemanticErrorQuery(null, "self->any(true)", "The context of ''self'' is unspecified");
+		TestOCL ocl = createOCL();
+		ocl.assertSemanticErrorQuery(null, "self->any(true)", "The context of ''self'' is unspecified");
+        ocl.dispose();
 	}
 	
 	@Test public void test_cg_implies_calls() throws ParserException {
+		TestOCL ocl = createOCL();
 		StandardLibrary standardLibrary = ocl.getStandardLibrary();
 		ExpressionInOCL query = ocl.createQuery(standardLibrary.getOclVoidType(), "self->any(true)");
 		String textQuery = 
 			    "name = 'closure' implies\n" +
 			    "type.oclAsType(CollectionType).elementType = null";
-		assertQueryTrue(query.getOwnedBody(), textQuery);
+		ocl.assertQueryTrue(query.getOwnedBody(), textQuery);
+        ocl.dispose();
 	}
 	
 	@Test public void test_cg_caught_if() throws ParserException {
+		TestOCL ocl = createOCL();
 		StandardLibrary standardLibrary = ocl.getStandardLibrary();
 		ExpressionInOCL query = ocl.createQuery(standardLibrary.getOclVoidType(), "self->any(true)");
 		String textQuery = 
 			    "name = 'closure' implies\n" +
 			    "if self.ownedSource.type.oclIsKindOf(SequenceType) or self.ownedSource.type.oclIsKindOf(OrderedSetType)"
 			    + "then self.type.oclIsKindOf(OrderedSetType) else self.type.oclIsKindOf(SetType) endif";
-		assertQueryTrue(query.getOwnedBody(), textQuery);
+		ocl.assertQueryTrue(query.getOwnedBody(), textQuery);
+        ocl.dispose();
 	}
 	
 	@Test public void test_cg_loop_source_self_or() throws ParserException, IOException {
+		TestOCL ocl = createOCL();
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
 			OCLinEcoreStandaloneSetup.doSetup();
 		}
@@ -234,13 +261,14 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 				"    invariant True : true;\n" +
 				"  }\n" +
 				"}\n";
-		Resource metamodel = cs2as(getOCL(), metamodelText);
+		Resource metamodel = cs2as(ocl, metamodelText);
 		Model pivotModel = (Model) metamodel.getContents().get(0);
 		org.eclipse.ocl.pivot.Package pivotPackage = pivotModel.getOwnedPackages().get(0);
 		org.eclipse.ocl.pivot.Class pivotType = pivotPackage.getOwnedClasses().get(0);
 		Constraint pivotConstraint = pivotType.getOwnedInvariants().get(0);
 		String textQuery = "context.oclAsType(Class).ownedInvariants->excluding(self)->forAll(name <> self.name or isCallable <> self.isCallable)";
-		assertQueryTrue(pivotConstraint, textQuery);
+		ocl.assertQueryTrue(pivotConstraint, textQuery);
+		ocl.dispose();
 	}
 	
 /*	@Test public void test_cg_derived_operation() throws ParserException, IOException {
@@ -256,7 +284,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 				"    operation derivedDerivedOperation(p : Integer) : Integer { body: 2 * derivedOperation(p);}\n" +
 				"  }\n" +
 				"}\n";
-		Resource metamodel = cs2as(getOCL(), metamodelText);
+		Resource metamodel = cs2as(ocl, metamodelText);
 		Root pivotModel = (Root) metamodel.getContents().get(0);
 		org.eclipse.ocl.pivot.Package pivotPackage = pivotModel.getNestedPackage().get(0);
 		Type pivotType = pivotPackage.getOwnedType().get(0);
@@ -267,6 +295,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	} */
 	
 	@Test public void test_cg_derived_property() throws ParserException, IOException {
+		TestOCL ocl = createOCL();
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
 			OCLinEcoreStandaloneSetup.doSetup();
 //			OCLDelegateDomain.initialize(null);
@@ -280,17 +309,19 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 				"    property derivedDerivedInteger : Integer { derivation: 2 * derivedInteger;}\n" +
 				"  }\n" +
 				"}\n";
-		Resource metamodel = cs2as(getOCL(), metamodelText);
+		Resource metamodel = cs2as(ocl, metamodelText);
 		Model pivotModel = (Model) metamodel.getContents().get(0);
 		org.eclipse.ocl.pivot.Package pivotPackage = pivotModel.getOwnedPackages().get(0);
 		org.eclipse.ocl.pivot.Class pivotType = pivotPackage.getOwnedClasses().get(0);
 		EClass eClass = metamodelManager.getEcoreOfPivot(EClass.class, pivotType);
 		Object testObject = eClass.getEPackage().getEFactoryInstance().create(eClass);
 		String textQuery = "self.derivedDerivedInteger";
-		assertQueryEquals(testObject, 198, textQuery);
+		ocl.assertQueryEquals(testObject, 198, textQuery);
+		ocl.dispose();
 	}
 	
 	@Test public void test_cg_name_occlusion_401692() throws ParserException, IOException {
+		TestOCL ocl = createOCL();
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
 			OCLinEcoreStandaloneSetup.doSetup();
 //			OCLDelegateDomain.initialize(null);
@@ -314,7 +345,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 				"		property as : A[*] { ordered composes };\n" + 
 				"	}\n" + 
 				"}\n";
-		Resource metamodel = cs2as(getOCL(), metamodelText);
+		Resource metamodel = cs2as(ocl, metamodelText);
 		Model pivotModel = (Model) metamodel.getContents().get(0);
 		org.eclipse.ocl.pivot.Package pivotPackage = pivotModel.getOwnedPackages().get(0);
 		org.eclipse.ocl.pivot.Class pivotTypeA = NameUtil.getNameable(pivotPackage.getOwnedClasses(), "A");
@@ -339,11 +370,13 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		as.add(testObjectA1);
 		as.add(testObjectA2);
 		//
-		assertQueryEquals(testObjectB, testObjectA1, "self.findA('d1')");
-		assertQueryEquals(testObjectB, null, "self.findA('e2')");
+		ocl.assertQueryEquals(testObjectB, testObjectA1, "self.findA('d1')");
+		ocl.assertQueryEquals(testObjectB, null, "self.findA('e2')");
+        ocl.dispose();
 	}
 	
 	@Test public void test_cg_tuple_access() throws ParserException, IOException {
+		TestOCL ocl = createOCL();
 //		getHelper().setContext(metamodelManager.getOclVoidType());
 		String textQuery = 
 				"let\n" +
@@ -354,14 +387,16 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 				"  }\n" +
 				"in\n" +
 				"  table->any(range->includes(200000)).size";
-		assertQueryEquals(null, "large", textQuery);
+		ocl.assertQueryEquals(null, "large", textQuery);
+        ocl.dispose();
 	}
 	
 	/**
 	 * Tests the basic name accesses
 	 */
 	@Test public void test_container_navigation() throws InvocationTargetException {
-		initFruitPackage();
+		TestOCL ocl = createOCL();
+		initFruitPackage(ocl);
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		IdResolver idResolver = ocl.getIdResolver();
 		metamodelManager.addGlobalNamespace("fruit", fruitPackage);
@@ -379,28 +414,30 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		//
 		Type pivotTree = metamodelManager.getPivotOfEcore(Type.class, tree);
 		//
-		assertQueryEquals(redApple, color_red, "let aFruit : fruit::Fruit = self in aFruit.color");
-		assertQueryEquals(aTree, idResolver.createOrderedSetOfEach(null, redApple), "let aTree : fruit::Tree = self in aTree.fruits");
-		assertQueryEquals(aTree, idResolver.createOrderedSetOfEach(null, redApple), "self.fruits");
-		assertQueryEquals(aTree, idResolver.createOrderedSetOfEach(null, redApple), "fruits");
-		assertQueryEquals(redApple, aTree, "self.oclContainer()");
-		assertQueryEquals(redApple, aTree, "self.Tree");
+		ocl.assertQueryEquals(redApple, color_red, "let aFruit : fruit::Fruit = self in aFruit.color");
+		ocl.assertQueryEquals(aTree, idResolver.createOrderedSetOfEach(null, redApple), "let aTree : fruit::Tree = self in aTree.fruits");
+		ocl.assertQueryEquals(aTree, idResolver.createOrderedSetOfEach(null, redApple), "self.fruits");
+		ocl.assertQueryEquals(aTree, idResolver.createOrderedSetOfEach(null, redApple), "fruits");
+		ocl.assertQueryEquals(redApple, aTree, "self.oclContainer()");
+		ocl.assertQueryEquals(redApple, aTree, "self.Tree");
 		//
 		//	type/property ambiguity is resolved to type.
 		//
-		assertQueryEquals(redApple, pivotTree, "Tree");
+		ocl.assertQueryEquals(redApple, pivotTree, "Tree");
 		//
 		//	type/property ambiguity is resolved to type.
 		//
-		assertQueryInvalid(redApple, "self.oclAsType(Tree)");
-//		assertQueryEquals(aTree, ValuesUtil.createOrderedSetValue(null, redApple), "self.oclAsType(Tree).fruits");
+		ocl.assertQueryInvalid(redApple, "self.oclAsType(Tree)");
+//		ocl.assertQueryEquals(aTree, ValuesUtil.createOrderedSetValue(null, redApple), "self.oclAsType(Tree).fruits");
+        ocl.dispose();
 	}
 	
 	/**
 	 * Tests the nested name accesses
 	 */
 	@Test public void test_nested_names() throws InvocationTargetException {
-		initFruitPackage();
+		TestOCL ocl = createOCL();
+		initFruitPackage(ocl);
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		IdResolver idResolver = ocl.getIdResolver();
 		org.eclipse.ocl.pivot.Class appleType = metamodelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Class.class, apple);
@@ -416,50 +453,53 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		List<Object> treeFruits = (List<Object>) appleTree.eGet(tree_fruits);
 		treeFruits.add(redApple);
 //		
-		assertQueryEquals(redApple, "RedApple", "self.name");
-		assertQueryEquals(redApple, "RedApple", "self.Fruit::name");
-		assertQueryEquals(redApple, "RedApple", "self.Apple::name");
-		assertValidationErrorQuery(appleType, "self.Tree::name",
+		ocl.assertQueryEquals(redApple, "RedApple", "self.name");
+		ocl.assertQueryEquals(redApple, "RedApple", "self.Fruit::name");
+		ocl.assertQueryEquals(redApple, "RedApple", "self.Apple::name");
+		ocl.assertValidationErrorQuery(appleType, "self.Tree::name",
 			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "PropertyCallExp", "NonStaticSourceTypeIsConformant", "self.name");
-		assertQueryEquals(redApple, redApple, "self.oclAsType(Apple)");
-		assertQueryEquals(redApple, redApple, "self.oclAsType(fruit::Apple)");
-		assertQueryEquals(redApple, idResolver.createSetOfEach(null, redApple), "self->oclAsType(Set(Fruit))");
-		assertQueryEquals(redApple, idResolver.createSetOfEach(null, redApple), "self->oclAsType(Set(fruit::Apple))");
-		assertSemanticErrorQuery(appleType, "self.oclAsType(fruit::fruit::Apple)", PivotMessagesInternal.UnresolvedNamespace_ERROR_, "", "fruit");	// Demonstrates Bug 353985
-		assertSemanticErrorQuery(appleType, "self->oclAsType(Set(fruit::apple::BadApple))", PivotMessagesInternal.UnresolvedType_ERROR_, "", "BadApple");
-		assertSemanticErrorQuery(appleType, "self->oclAsType(Set(fruit::apple::BadApple))", PivotMessagesInternal.UnresolvedType_ERROR_, "", "BadApple");
-		assertSemanticErrorQuery(appleType, "self->oclAsType(Set(fruit::badapple::BadApple))", PivotMessagesInternal.UnresolvedNamespace_ERROR_, "", "badapple");
-		assertSemanticErrorQuery(appleType, "self->oclAsType(Set(badfruit::badapple::BadApple))", PivotMessagesInternal.UnresolvedNamespace_ERROR_, "", "badfruit");
-		assertQueryInvalid(redApple, "self->oclAsType(Set(fruit::apple::EatingApple))");
-		assertQueryInvalid(redApple, "self->oclAsType(Set(fruit::Tree))");		
+		ocl.assertQueryEquals(redApple, redApple, "self.oclAsType(Apple)");
+		ocl.assertQueryEquals(redApple, redApple, "self.oclAsType(fruit::Apple)");
+		ocl.assertQueryEquals(redApple, idResolver.createSetOfEach(null, redApple), "self->oclAsType(Set(Fruit))");
+		ocl.assertQueryEquals(redApple, idResolver.createSetOfEach(null, redApple), "self->oclAsType(Set(fruit::Apple))");
+		ocl.assertSemanticErrorQuery(appleType, "self.oclAsType(fruit::fruit::Apple)", PivotMessagesInternal.UnresolvedNamespace_ERROR_, "", "fruit");	// Demonstrates Bug 353985
+		ocl.assertSemanticErrorQuery(appleType, "self->oclAsType(Set(fruit::apple::BadApple))", PivotMessagesInternal.UnresolvedType_ERROR_, "", "BadApple");
+		ocl.assertSemanticErrorQuery(appleType, "self->oclAsType(Set(fruit::apple::BadApple))", PivotMessagesInternal.UnresolvedType_ERROR_, "", "BadApple");
+		ocl.assertSemanticErrorQuery(appleType, "self->oclAsType(Set(fruit::badapple::BadApple))", PivotMessagesInternal.UnresolvedNamespace_ERROR_, "", "badapple");
+		ocl.assertSemanticErrorQuery(appleType, "self->oclAsType(Set(badfruit::badapple::BadApple))", PivotMessagesInternal.UnresolvedNamespace_ERROR_, "", "badfruit");
+		ocl.assertQueryInvalid(redApple, "self->oclAsType(Set(fruit::apple::EatingApple))");
+		ocl.assertQueryInvalid(redApple, "self->oclAsType(Set(fruit::Tree))");		
 		//
-		assertQueryEquals(redApple, idResolver.createSetOfEach(null, appleTree), "Tree.allInstances()");
-		assertQueryEquals(redApple, idResolver.createSetOfEach(null, appleTree), "fruit::Tree.allInstances()");
-		assertQueryEquals(null, getEmptySetValue(), "fruit::Tree.allInstances()");
+		ocl.assertQueryEquals(redApple, idResolver.createSetOfEach(null, appleTree), "Tree.allInstances()");
+		ocl.assertQueryEquals(redApple, idResolver.createSetOfEach(null, appleTree), "fruit::Tree.allInstances()");
+		ocl.assertQueryEquals(null, ocl.getEmptySetValue(), "fruit::Tree.allInstances()");
 //
 		metamodelManager.addGlobalNamespace("zz", fruitPackage);
-		assertQueryEquals(redApple, idResolver.createSetOfEach(null, appleTree), "zz::Tree.allInstances()");
+		ocl.assertQueryEquals(redApple, idResolver.createSetOfEach(null, appleTree), "zz::Tree.allInstances()");
 //
-		assertQueryEquals(redApple, idResolver.createBagOfEach(null, redApple), "Fruit.allInstances().oclAsType(Apple)");		
-		assertQueryEquals(redApple, idResolver.createSetOfEach(null, redApple), "Fruit.allInstances()->oclAsType(Set(Apple))");		
+		ocl.assertQueryEquals(redApple, idResolver.createBagOfEach(null, redApple), "Fruit.allInstances().oclAsType(Apple)");		
+		ocl.assertQueryEquals(redApple, idResolver.createSetOfEach(null, redApple), "Fruit.allInstances()->oclAsType(Set(Apple))");		
+        ocl.dispose();
 	}
 	
 	/**
 	 * Tests construction of a type instance with property values
 	 */
 	@Test public void test_type_construction() throws InvocationTargetException {
-		initFruitPackage();
+		TestOCL ocl = createOCL();
+		initFruitPackage(ocl);
 		EObject context = fruitEFactory.create(tree);
-		assertQueryEquals(context, null, "Apple{}.name");
-		assertQueryEquals(context, "RedApple", "Apple{name='RedApple',color=Color::red}.name");
-		assertQueryEquals(context, color_red, "Apple{name='RedApple',color=Color::red}.color");
-		assertQueryFalse(context, "Apple{name='RedApple',color=Color::red} = Apple{name='RedApple',color=Color::red}");
-		assertQueryFalse(context, "let thisApple = Apple{name='AnApple',color=Color::red}, thatApple = Apple{name='AnApple',color=Color::red} in thisApple = thatApple");
-		assertQueryTrue(context, "let thisApple = Apple{name='AnApple',color=Color::red}, thatApple = Apple{name='AnApple',color=Color::red} in thisApple.name = thatApple.name");
-		assertQueryTrue(context, "let thisApple = Apple{name='AnApple',color=Color::red}, thatApple = Apple{name='AnApple',color=Color::red} in thisApple.color = thatApple.color");
-		assertQueryTrue(context, "let thisApple = Apple{name='AnApple',color=Color::red}, thatApple = Apple{name='AnApple',color=Color::red} in thisApple.name = thatApple.name and thisApple.color = thatApple.color");
-		assertQueryFalse(context, "let thisApple = Apple{name='ThisApple',color=Color::red}, thatApple = Apple{name='ThatApple',color=Color::red} in thisApple.name = thatApple.name and thisApple.color = thatApple.color");
-		assertQueryFalse(context, "let thisApple = Apple{name='AnApple',color=Color::red}, thatApple = Apple{name='AnApple',color=Color::black} in thisApple.name = thatApple.name and thisApple.color = thatApple.color");
+		ocl.assertQueryEquals(context, null, "Apple{}.name");
+		ocl.assertQueryEquals(context, "RedApple", "Apple{name='RedApple',color=Color::red}.name");
+		ocl.assertQueryEquals(context, color_red, "Apple{name='RedApple',color=Color::red}.color");
+		ocl.assertQueryFalse(context, "Apple{name='RedApple',color=Color::red} = Apple{name='RedApple',color=Color::red}");
+		ocl.assertQueryFalse(context, "let thisApple = Apple{name='AnApple',color=Color::red}, thatApple = Apple{name='AnApple',color=Color::red} in thisApple = thatApple");
+		ocl.assertQueryTrue(context, "let thisApple = Apple{name='AnApple',color=Color::red}, thatApple = Apple{name='AnApple',color=Color::red} in thisApple.name = thatApple.name");
+		ocl.assertQueryTrue(context, "let thisApple = Apple{name='AnApple',color=Color::red}, thatApple = Apple{name='AnApple',color=Color::red} in thisApple.color = thatApple.color");
+		ocl.assertQueryTrue(context, "let thisApple = Apple{name='AnApple',color=Color::red}, thatApple = Apple{name='AnApple',color=Color::red} in thisApple.name = thatApple.name and thisApple.color = thatApple.color");
+		ocl.assertQueryFalse(context, "let thisApple = Apple{name='ThisApple',color=Color::red}, thatApple = Apple{name='ThatApple',color=Color::red} in thisApple.name = thatApple.name and thisApple.color = thatApple.color");
+		ocl.assertQueryFalse(context, "let thisApple = Apple{name='AnApple',color=Color::red}, thatApple = Apple{name='AnApple',color=Color::black} in thisApple.name = thatApple.name and thisApple.color = thatApple.color");
+        ocl.dispose();
 	}
 	
 	/**
@@ -467,18 +507,22 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	 * @throws ParserException 
 	 */
 	@Test public void test_uml_primitives_399378() throws ParserException {
+		TestOCL ocl = createOCL();
+		ResourceSet resourceSet = ocl.getResourceSet();
 		UML2AS.initialize(resourceSet);
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		URI uri = getTestModelURI("model/Fruit.uml");
 		Element element = metamodelManager.loadResource(uri, null, resourceSet);
 		org.eclipse.ocl.pivot.Package fruitPackage = ((Model)element).getOwnedPackages().get(0);
 		org.eclipse.ocl.pivot.Class treeClass = NameUtil.getNameable(fruitPackage.getOwnedClasses(), "Tree");
-		ExpressionInOCL query = createQuery(treeClass, "self.height>20");
+		ExpressionInOCL query = ocl.createQuery(treeClass, "self.height>20");
 		assertNotNull(query);
+        ocl.dispose();
 	}
 	
 	@Test public void test_dynamic_dispatch_411154() throws ParserException, IOException {
 		if (useCodeGen) return;
+		TestOCL ocl = createOCL();
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
 			OCLinEcoreStandaloneSetup.doSetup();
 //			OCLDelegateDomain.initialize(null);
@@ -531,7 +575,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 				"		operation op7() : String { body: 'T4::op7'; }\n" +
 				"	}\n" +
 				"}\n";
-		Resource metamodel = cs2as(getOCL(), metamodelText);
+		Resource metamodel = cs2as(ocl, metamodelText);
 		Model pivotModel = (Model) metamodel.getContents().get(0);
 		org.eclipse.ocl.pivot.Package pivotPackage = pivotModel.getOwnedPackages().get(0);
 		org.eclipse.ocl.pivot.Class pivotTypeDomain = NameUtil.getNameable(pivotPackage.getOwnedClasses(), "Domain");
@@ -583,76 +627,77 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		testObjectDomain.eSet(eReferenceDomain_t2b_2b, testObjectT2b);
 		testObjectDomain.eSet(eReferenceDomain_t3a, testObjectT3a);
 		//
-		assertQueryEquals(testObjectT2a, "T2a::op1", "self.op1()");
-		assertQueryEquals(testObjectT2a, "T2a::op2", "self.op2()");
-		assertSemanticErrorQuery(pivotTypeT2a, "self.op3()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T2a::op3");
-		assertQueryEquals(testObjectT2a, "T2a::op4", "self.op4()");
-		assertQueryEquals(testObjectT2a, "T1::op5", "self.op5()");
-		assertQueryEquals(testObjectT2a, "T2a::op6", "self.op6()");
-		assertQueryEquals(testObjectT2a, "T2a::op7", "self.op7()");
-		assertSemanticErrorQuery(pivotTypeT2a, "self.op8()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T2a::op8");
-		assertQueryEquals(testObjectT2a, "T2a::op9", "self.op9()");
+		ocl.assertQueryEquals(testObjectT2a, "T2a::op1", "self.op1()");
+		ocl.assertQueryEquals(testObjectT2a, "T2a::op2", "self.op2()");
+		ocl.assertSemanticErrorQuery(pivotTypeT2a, "self.op3()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T2a::op3");
+		ocl.assertQueryEquals(testObjectT2a, "T2a::op4", "self.op4()");
+		ocl.assertQueryEquals(testObjectT2a, "T1::op5", "self.op5()");
+		ocl.assertQueryEquals(testObjectT2a, "T2a::op6", "self.op6()");
+		ocl.assertQueryEquals(testObjectT2a, "T2a::op7", "self.op7()");
+		ocl.assertSemanticErrorQuery(pivotTypeT2a, "self.op8()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T2a::op8");
+		ocl.assertQueryEquals(testObjectT2a, "T2a::op9", "self.op9()");
 		//
-		assertQueryEquals(testObjectT3a, "T3a::op1", "self.op1()");
-		assertQueryEquals(testObjectT3a, "T3a::op2", "self.op2()");
-		assertQueryEquals(testObjectT3a, "T3a::op3", "self.op3()");
-		assertQueryEquals(testObjectT3a, "T2a::op4", "self.op4()");
-		assertQueryEquals(testObjectT3a, "T1::op5", "self.op5()");
-		assertQueryEquals(testObjectT3a, "T3a::op6", "self.op6()");
-		assertQueryEquals(testObjectT3a, "T3a::op7", "self.op7()");
-		assertSemanticErrorQuery(pivotTypeT3a, "self.op8()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T3a::op8");
-		assertSemanticErrorQuery(pivotTypeT3a, "self.op9()", "Ambiguous resolution:\n" +
+		ocl.assertQueryEquals(testObjectT3a, "T3a::op1", "self.op1()");
+		ocl.assertQueryEquals(testObjectT3a, "T3a::op2", "self.op2()");
+		ocl.assertQueryEquals(testObjectT3a, "T3a::op3", "self.op3()");
+		ocl.assertQueryEquals(testObjectT3a, "T2a::op4", "self.op4()");
+		ocl.assertQueryEquals(testObjectT3a, "T1::op5", "self.op5()");
+		ocl.assertQueryEquals(testObjectT3a, "T3a::op6", "self.op6()");
+		ocl.assertQueryEquals(testObjectT3a, "T3a::op7", "self.op7()");
+		ocl.assertSemanticErrorQuery(pivotTypeT3a, "self.op8()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T3a::op8");
+		ocl.assertSemanticErrorQuery(pivotTypeT3a, "self.op9()", "Ambiguous resolution:\n" +
 				"\tOperation : Bug411154::T2a::op9() : String\n" +
 				"\tOperation : Bug411154::T2b::op9() : String");
 		//
-		assertQueryEquals(testObjectDomain, "T2a::op1", "t1_2a.op1()");
-		assertSemanticErrorQuery(pivotTypeDomain, "t1_2a.op2()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op2");
-		assertSemanticErrorQuery(pivotTypeDomain, "t1_2a.op3()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op3");
-		assertQueryEquals(testObjectDomain, "T2a::op4", "t1_2a.op4()");
-		assertQueryEquals(testObjectDomain, "T1::op5", "t1_2a.op5()");
+		ocl.assertQueryEquals(testObjectDomain, "T2a::op1", "t1_2a.op1()");
+		ocl.assertSemanticErrorQuery(pivotTypeDomain, "t1_2a.op2()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op2");
+		ocl.assertSemanticErrorQuery(pivotTypeDomain, "t1_2a.op3()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op3");
+		ocl.assertQueryEquals(testObjectDomain, "T2a::op4", "t1_2a.op4()");
+		ocl.assertQueryEquals(testObjectDomain, "T1::op5", "t1_2a.op5()");
 		//
-		assertQueryEquals(testObjectDomain, "T3a::op1", "t1_3a.op1()");
-		assertSemanticErrorQuery(pivotTypeDomain, "t1_3a.op2()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op2");
-		assertSemanticErrorQuery(pivotTypeDomain, "t1_3a.op3()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op3");
-		assertQueryEquals(testObjectDomain, "T2a::op4", "t1_3a.op4()");
-		assertQueryEquals(testObjectDomain, "T1::op5", "t1_3a.op5()");
+		ocl.assertQueryEquals(testObjectDomain, "T3a::op1", "t1_3a.op1()");
+		ocl.assertSemanticErrorQuery(pivotTypeDomain, "t1_3a.op2()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op2");
+		ocl.assertSemanticErrorQuery(pivotTypeDomain, "t1_3a.op3()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op3");
+		ocl.assertQueryEquals(testObjectDomain, "T2a::op4", "t1_3a.op4()");
+		ocl.assertQueryEquals(testObjectDomain, "T1::op5", "t1_3a.op5()");
 		//
-		assertQueryEquals(testObjectDomain, "T2a::op1", "t1_3b.op1()");
-		assertSemanticErrorQuery(pivotTypeDomain, "t1_3b.op2()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op2");
-		assertSemanticErrorQuery(pivotTypeDomain, "t1_3b.op3()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op3");
-		assertQueryEquals(testObjectDomain, "T2a::op4", "t1_3b.op4()");
-		assertQueryEquals(testObjectDomain, "T1::op5", "t1_3b.op5()");
-		assertQueryInvalid(testObjectDomain, "t1_3b.op6()", NLS.bind(PivotMessages.AmbiguousOperation, "Bug411154::T1::op6() : String", "Bug411154::T3b"), InvalidValueException.class);
-		assertSemanticErrorQuery(pivotTypeDomain, "t1_3b.op7()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op7");
+		ocl.assertQueryEquals(testObjectDomain, "T2a::op1", "t1_3b.op1()");
+		ocl.assertSemanticErrorQuery(pivotTypeDomain, "t1_3b.op2()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op2");
+		ocl.assertSemanticErrorQuery(pivotTypeDomain, "t1_3b.op3()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op3");
+		ocl.assertQueryEquals(testObjectDomain, "T2a::op4", "t1_3b.op4()");
+		ocl.assertQueryEquals(testObjectDomain, "T1::op5", "t1_3b.op5()");
+		ocl.assertQueryInvalid(testObjectDomain, "t1_3b.op6()", NLS.bind(PivotMessages.AmbiguousOperation, "Bug411154::T1::op6() : String", "Bug411154::T3b"), InvalidValueException.class);
+		ocl.assertSemanticErrorQuery(pivotTypeDomain, "t1_3b.op7()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op7");
 		//
-		assertQueryEquals(testObjectDomain, "T3a::op1", "t1_4.op1()");
-		assertSemanticErrorQuery(pivotTypeDomain, "t1_4.op2()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op2");
-		assertSemanticErrorQuery(pivotTypeDomain, "t1_4.op3()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op3");
-		assertQueryEquals(testObjectDomain, "T2a::op4", "t1_4.op4()");
-		assertQueryEquals(testObjectDomain, "T1::op5", "t1_4.op5()");
-		assertQueryEquals(testObjectDomain, "T4::op6", "t1_4.op6()");
-		assertSemanticErrorQuery(pivotTypeDomain, "t1_4.op7()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op7");
+		ocl.assertQueryEquals(testObjectDomain, "T3a::op1", "t1_4.op1()");
+		ocl.assertSemanticErrorQuery(pivotTypeDomain, "t1_4.op2()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op2");
+		ocl.assertSemanticErrorQuery(pivotTypeDomain, "t1_4.op3()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op3");
+		ocl.assertQueryEquals(testObjectDomain, "T2a::op4", "t1_4.op4()");
+		ocl.assertQueryEquals(testObjectDomain, "T1::op5", "t1_4.op5()");
+		ocl.assertQueryEquals(testObjectDomain, "T4::op6", "t1_4.op6()");
+		ocl.assertSemanticErrorQuery(pivotTypeDomain, "t1_4.op7()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op7");
 		//
-		assertQueryEquals(testObjectDomain, "T2a::op1", "t2a_2a.op1()");
-		assertQueryEquals(testObjectDomain, "T2a::op2", "t2a_2a.op2()");
-		assertSemanticErrorQuery(pivotTypeDomain, "t2a_2a.op3()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T2a::op3");
-		assertQueryEquals(testObjectDomain, "T2a::op4", "t2a_2a.op4()");
-		assertQueryEquals(testObjectDomain, "T1::op5", "t2a_2a.op5()");
-		assertQueryEquals(testObjectDomain, "T2a::op6", "t2a_2a.op6()");
-		assertQueryEquals(testObjectDomain, "T2a::op7", "t2a_2a.op7()");
+		ocl.assertQueryEquals(testObjectDomain, "T2a::op1", "t2a_2a.op1()");
+		ocl.assertQueryEquals(testObjectDomain, "T2a::op2", "t2a_2a.op2()");
+		ocl.assertSemanticErrorQuery(pivotTypeDomain, "t2a_2a.op3()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T2a::op3");
+		ocl.assertQueryEquals(testObjectDomain, "T2a::op4", "t2a_2a.op4()");
+		ocl.assertQueryEquals(testObjectDomain, "T1::op5", "t2a_2a.op5()");
+		ocl.assertQueryEquals(testObjectDomain, "T2a::op6", "t2a_2a.op6()");
+		ocl.assertQueryEquals(testObjectDomain, "T2a::op7", "t2a_2a.op7()");
 		//
-		assertQueryEquals(testObjectDomain, "T2b::op6", "t2b_2b.op6()");
+		ocl.assertQueryEquals(testObjectDomain, "T2b::op6", "t2b_2b.op6()");
 		//
-		assertQueryEquals(testObjectDomain, "T3a::op1", "t2a_3a.op1()");
-		assertQueryEquals(testObjectDomain, "T3a::op2", "t2a_3a.op2()");
-		assertSemanticErrorQuery(pivotTypeDomain, "t2a_3a.op3()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T2a::op3");
-		assertQueryEquals(testObjectDomain, "T2a::op4", "t2a_3a.op4()");
-		assertQueryEquals(testObjectDomain, "T1::op5", "t2a_3a.op5()");
+		ocl.assertQueryEquals(testObjectDomain, "T3a::op1", "t2a_3a.op1()");
+		ocl.assertQueryEquals(testObjectDomain, "T3a::op2", "t2a_3a.op2()");
+		ocl.assertSemanticErrorQuery(pivotTypeDomain, "t2a_3a.op3()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T2a::op3");
+		ocl.assertQueryEquals(testObjectDomain, "T2a::op4", "t2a_3a.op4()");
+		ocl.assertQueryEquals(testObjectDomain, "T1::op5", "t2a_3a.op5()");
 		//
-		assertQueryEquals(testObjectDomain, "T3a::op1", "t3a.op1()");
-		assertQueryEquals(testObjectDomain, "T3a::op2", "t3a.op2()");
-		assertQueryEquals(testObjectDomain, "T3a::op3", "t3a.op3()");
-		assertQueryEquals(testObjectDomain, "T2a::op4", "t3a.op4()");
-		assertQueryEquals(testObjectDomain, "T1::op5", "t3a.op5()");
+		ocl.assertQueryEquals(testObjectDomain, "T3a::op1", "t3a.op1()");
+		ocl.assertQueryEquals(testObjectDomain, "T3a::op2", "t3a.op2()");
+		ocl.assertQueryEquals(testObjectDomain, "T3a::op3", "t3a.op3()");
+		ocl.assertQueryEquals(testObjectDomain, "T2a::op4", "t3a.op4()");
+		ocl.assertQueryEquals(testObjectDomain, "T1::op5", "t3a.op5()");
+        ocl.dispose();
 	}
 }

@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.test.xtext;
 
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.debug.core.DebugException;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.model.IDebugTarget;
@@ -17,6 +20,7 @@ import org.eclipse.debug.core.model.IProcess;
 import org.eclipse.debug.core.model.IThread;
 import org.eclipse.debug.internal.ui.DebugUIPlugin;
 import org.eclipse.debug.internal.ui.IInternalDebugUIConstants;
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -25,10 +29,10 @@ import org.eclipse.ocl.examples.pivot.tests.PivotTestCase;
 import org.eclipse.ocl.examples.xtext.console.ColorManager;
 import org.eclipse.ocl.examples.xtext.console.OCLConsole;
 import org.eclipse.ocl.examples.xtext.console.OCLConsolePage;
+import org.eclipse.ocl.examples.xtext.tests.TestUtil;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.xtext.base.ui.model.BaseDocument;
 import org.eclipse.swt.graphics.RGB;
-import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.console.ConsolePlugin;
 import org.eclipse.ui.console.IConsole;
@@ -60,7 +64,7 @@ public abstract class AbstractConsoleTests extends PivotTestCase
 		@Override
 		public void close() {
 			super.close();
-			flushEvents();
+			TestUtil.flushEvents();
 			instance = null;
 		}
 
@@ -136,24 +140,17 @@ public abstract class AbstractConsoleTests extends PivotTestCase
 
 	public static void assertConsoleResult(TestConsolePage consolePage, EObject contextObject, String testExpression, String expectedResult) {
 		consolePage.resetDocument();
-		flushEvents();
+		TestUtil.flushEvents();
 		consolePage.refreshSelection(contextObject);
-		flushEvents();
+		TestUtil.flushEvents();
 		BaseDocument editorDocument = consolePage.getEditorDocument();
 //		System.out.println("Set " + testExpression);
 		editorDocument.set(testExpression);
-		flushEvents();			// Let ValidationJob and other activities have a go
+		TestUtil.flushEvents();			// Let ValidationJob and other activities have a go
 		consolePage.evaluate(testExpression);
-		flushEvents();			// FIXME on more than one occasion the previous result was returned (perhaps the new input was not set) (before additional flushEvents added above)
+		TestUtil.flushEvents();			// FIXME on more than one occasion the previous result was returned (perhaps the new input was not set) (before additional flushEvents added above)
 		String string = consolePage.get();
 		assertEquals("<b>Evaluating:\n</b>" + testExpression + "\n<b>Results:\n</b>" + expectedResult, string);
-	}
-
-	public static void flushEvents() {
-		for (int i = 0; i < 10; i++) {
-			IWorkbench workbench = PlatformUI.getWorkbench();
-			while (workbench.getDisplay().readAndDispatch());
-		}
 	}
 
 	public TestConsolePage consolePage;
@@ -163,20 +160,35 @@ public abstract class AbstractConsoleTests extends PivotTestCase
 		introManager.closeIntro(introManager.getIntro());
 	}
 
+	protected void doDelete(@NonNull String testProjectName) throws Exception {
+		if (EMFPlugin.IS_ECLIPSE_RUNNING) {
+			TestUtil.suppressGitPrefixPopUp();
+			IWorkspace workspace = ResourcesPlugin.getWorkspace();
+			IProject project = workspace.getRoot().getProject(testProjectName);
+			project.delete(true, true, null);
+		}
+/*		else {
+			File dir = new File("src-gen/" + testProjectName);
+			if (dir.exists()) {
+				doDeleteDirectory(dir);
+			}
+		} */
+	}
+
 	protected void enableSwitchToDebugPerspectivePreference() {
 		DebugUIPlugin.getDefault().getPreferenceStore().setValue(IInternalDebugUIConstants.PREF_SWITCH_TO_PERSPECTIVE, MessageDialogWithToggle.ALWAYS);
 	}
 	
 	protected @NonNull TestConsolePage openConsole() {
 		closeIntro();
-		flushEvents();
+		TestUtil.flushEvents();
 		TestConsole console = TestConsole.getInstance();
 		IConsoleManager mgr = ConsolePlugin.getDefault().getConsoleManager();
 		mgr.showConsoleView(console);
-		flushEvents();
+		TestUtil.flushEvents();
 		@Nullable TestConsolePage consolePage = console.getPage();
 		for (int i = 0; (consolePage == null) && (i < 100000); i++) {
-			flushEvents();
+			TestUtil.flushEvents();
 			consolePage = console.getPage();
 		}
 		assert consolePage != null;
@@ -185,7 +197,7 @@ public abstract class AbstractConsoleTests extends PivotTestCase
 	
 	@Override
     protected void setUp() throws Exception {
-		suppressGitPrefixPopUp();    		
+		TestUtil.suppressGitPrefixPopUp();    		
         super.setUp();
 		OCLstdlib.install();
 		consolePage = openConsole();
@@ -201,7 +213,7 @@ public abstract class AbstractConsoleTests extends PivotTestCase
 	protected void waitForLaunchToTerminate(@NonNull ILaunch launch) throws InterruptedException, DebugException {
 		while (true) {
 			for (int i = 0; i < 10; i++){
-				flushEvents();
+				TestUtil.flushEvents();
 				Thread.sleep(100);
 			}
 			boolean allDead = true;

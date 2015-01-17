@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
+import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
@@ -29,8 +30,7 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
-import org.junit.After;
-import org.junit.Before;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -42,8 +42,40 @@ import org.junit.runners.Parameterized.Parameters;
  */
 @SuppressWarnings("nls")
 @RunWith(value = Parameterized.class)
-public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
+public class EvaluateOclAnyOperationsTest4 extends PivotTestSuite
 {
+	public static class MyOCL extends TestOCL
+	{
+        // need a metamodel that has a reflexive EReference.
+        // Ecore will do nicely. Create the following structure:
+        // pkg1
+        // pkg1::pkg2
+        // pkg1::pkg2::jim
+        // pkg1::bob
+        // pkg1::pkg3
+        // pkg1::pkg3::pkg4
+        // pkg1::pkg3::pkg5
+        // pkg1::pkg3::pkg5::george
+        @NonNull Model root = createModel();
+        @NonNull org.eclipse.ocl.pivot.Package pkg1 = createPackage(root, "pkg1");
+        @NonNull org.eclipse.ocl.pivot.Package pkg2 = createPackage(pkg1, "pkg2");
+        @NonNull org.eclipse.ocl.pivot.Package jim = createPackage(pkg2, "jim");
+        @NonNull org.eclipse.ocl.pivot.Package bob = createPackage(pkg1, "bob");
+        @NonNull org.eclipse.ocl.pivot.Package pkg3 = createPackage(pkg1, "pkg3");
+        @NonNull org.eclipse.ocl.pivot.Package pkg4 = createPackage(pkg3, "pkg4");
+        @NonNull org.eclipse.ocl.pivot.Package pkg5 = createPackage(pkg3, "pkg5");
+        @NonNull org.eclipse.ocl.pivot.Package george = createPackage(pkg5, "george");
+		
+		public MyOCL(@NonNull String testPackageName, @NonNull String name) {
+			super(testPackageName, name);
+			MetamodelManager metamodelManager = getMetamodelManager();
+//			metamodelManager.addGlobalNamespace(PivotConstants.OCL_NAME, ClassUtil.nonNullState(metamodelManager.getASmetamodel()));
+
+	        metamodelManager.installRoot(ClassUtil.nonNullState(root));
+//	        helper.setContext(ClassUtil.nonNullState(metamodelManager.getPivotType("Package")));
+		}
+	}
+	
 	@Parameters
 	public static Collection<Object[]> data() {
 		Object[][] data = new Object[][]{{false}, {true}};
@@ -55,6 +87,11 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
 	}
 
 	@Override
+	protected @NonNull MyOCL createOCL() {
+		return new MyOCL(getTestPackageName(), getName());
+	}
+
+	@Override
 	protected @NonNull String getTestPackageName() {
 		return "EvaluateOclAnyOperations";
 	}
@@ -63,727 +100,757 @@ public class EvaluateOclAnyOperationsTest4 extends PivotSimpleTestSuite
 		PivotTestSuite.resetCounter();
     }
 
-    @Override
-    @Before public void setUp() throws Exception {
-        super.setUp();
-//        helper.setContext(getMetaclass("OclAny"));
-    }
-
-	@Override
-	@After public void tearDown() throws Exception {
-		super.tearDown();
-	}
-
     @Test public void testEqual() {
-		assertQueryTrue(null, "Boolean = Boolean");
-		assertQueryFalse(null, "Boolean = Integer");
-		assertQueryTrue(null, "OclVoid = OclVoid");
-		assertQueryTrue(null, "OclInvalid = OclInvalid");
-		assertQueryFalse(null, "OclInvalid = OclVoid");
-		assertQueryTrue(null, "Set(String) = Set(String)");
-		assertQueryFalse(null, "Set(String) = Set(Integer)");
-		assertQueryFalse(null, "Set(String) = Sequence(String)");
+		MyOCL ocl = createOCL();
+		ocl.assertQueryTrue(null, "Boolean = Boolean");
+		ocl.assertQueryFalse(null, "Boolean = Integer");
+		ocl.assertQueryTrue(null, "OclVoid = OclVoid");
+		ocl.assertQueryTrue(null, "OclInvalid = OclInvalid");
+		ocl.assertQueryFalse(null, "OclInvalid = OclVoid");
+		ocl.assertQueryTrue(null, "Set(String) = Set(String)");
+		ocl.assertQueryFalse(null, "Set(String) = Set(Integer)");
+		ocl.assertQueryFalse(null, "Set(String) = Sequence(String)");
 		//
-		assertQueryTrue(null, "ocl::CollectionKind::_'Collection' = ocl::CollectionKind::_'Collection'");
-		assertQueryFalse(null, "ocl::CollectionKind::_'Collection' = ocl::CollectionKind::_'Set'");
+		ocl.assertQueryTrue(null, "ocl::CollectionKind::_'Collection' = ocl::CollectionKind::_'Collection'");
+		ocl.assertQueryFalse(null, "ocl::CollectionKind::_'Collection' = ocl::CollectionKind::_'Set'");
     	//
-		loadEPackage("ecore", EcorePackage.eINSTANCE);
-    	assertQueryFalse(null, "ecore::EDate{'2000-01-25'} = ecore::EDate{'2000-01-24'}");
-        assertQueryTrue(null, "ecore::EDate{'2000-01-24'} = ecore::EDate{'2000-01-24'}");
-        assertQueryFalse(null, "ecore::EDate{'2000-01-23'} = ecore::EDate{'2000-01-24'}");
+		ocl.loadEPackage("ecore", EcorePackage.eINSTANCE);
+    	ocl.assertQueryFalse(null, "ecore::EDate{'2000-01-25'} = ecore::EDate{'2000-01-24'}");
+        ocl.assertQueryTrue(null, "ecore::EDate{'2000-01-24'} = ecore::EDate{'2000-01-24'}");
+        ocl.assertQueryFalse(null, "ecore::EDate{'2000-01-23'} = ecore::EDate{'2000-01-24'}");
         //
 	    // invalid
         //
-		assertQueryInvalid(null, "invalid = 3");
-		assertQueryInvalid(null, "3 = invalid");
-		assertQueryInvalid(null, "invalid = 3.0");
-		assertQueryInvalid(null, "3.0 = invalid");
+		ocl.assertQueryInvalid(null, "invalid = 3");
+		ocl.assertQueryInvalid(null, "3 = invalid");
+		ocl.assertQueryInvalid(null, "invalid = 3.0");
+		ocl.assertQueryInvalid(null, "3.0 = invalid");
 
-		assertQueryInvalid(null, "invalid = 'test'");
-		assertQueryInvalid(null, "'test' = invalid");
-		assertQueryInvalid(null, "invalid = true");
-		assertQueryInvalid(null, "false = invalid");
-		assertQueryInvalid(null, "invalid = Sequence{}");
-		assertQueryInvalid(null, "Sequence{} = invalid");
+		ocl.assertQueryInvalid(null, "invalid = 'test'");
+		ocl.assertQueryInvalid(null, "'test' = invalid");
+		ocl.assertQueryInvalid(null, "invalid = true");
+		ocl.assertQueryInvalid(null, "false = invalid");
+		ocl.assertQueryInvalid(null, "invalid = Sequence{}");
+		ocl.assertQueryInvalid(null, "Sequence{} = invalid");
 
-		assertQueryInvalid(null, "invalid = invalid");
+		ocl.assertQueryInvalid(null, "invalid = invalid");
 		//
 		// null
 		//
-		assertQueryFalse(null, "null = 3");
-		assertQueryFalse(null, "3 = null");
-		assertQueryFalse(null, "null = 3.0");
-		assertQueryFalse(null, "3.0 = null");
+		ocl.assertQueryFalse(null, "null = 3");
+		ocl.assertQueryFalse(null, "3 = null");
+		ocl.assertQueryFalse(null, "null = 3.0");
+		ocl.assertQueryFalse(null, "3.0 = null");
 
-		assertQueryFalse(null, "null = 'test'");
-		assertQueryFalse(null, "'test' = null");
-		assertQueryFalse(null, "null = true");
-		assertQueryFalse(null, "false = null");
-		assertQueryFalse(null, "null = Sequence{}");
-		assertQueryFalse(null, "Sequence{} = null");
+		ocl.assertQueryFalse(null, "null = 'test'");
+		ocl.assertQueryFalse(null, "'test' = null");
+		ocl.assertQueryFalse(null, "null = true");
+		ocl.assertQueryFalse(null, "false = null");
+		ocl.assertQueryFalse(null, "null = Sequence{}");
+		ocl.assertQueryFalse(null, "Sequence{} = null");
 
-		assertQueryTrue(null, "null = null");
+		ocl.assertQueryTrue(null, "null = null");
+		ocl.dispose();
 	}
     
     @Test public void testGreaterThan() {
+		MyOCL ocl = createOCL();
     	StandardLibrary standardLibrary = ocl.getStandardLibrary();
-    	loadEPackage("ecore", EcorePackage.eINSTANCE);
-        assertQueryTrue(null, "ecore::EDate{'2000-01-25'} > ecore::EDate{'2000-01-24'}");
-        assertQueryFalse(null, "ecore::EDate{'2000-01-24'} > ecore::EDate{'2000-01-24'}");
-        assertQueryFalse(null, "ecore::EDate{'2000-01-23'} > ecore::EDate{'2000-01-24'}");
+    	ocl.loadEPackage("ecore", EcorePackage.eINSTANCE);
+        ocl.assertQueryTrue(null, "ecore::EDate{'2000-01-25'} > ecore::EDate{'2000-01-24'}");
+        ocl.assertQueryFalse(null, "ecore::EDate{'2000-01-24'} > ecore::EDate{'2000-01-24'}");
+        ocl.assertQueryFalse(null, "ecore::EDate{'2000-01-23'} > ecore::EDate{'2000-01-24'}");
         //
 	    // invalid
         //
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery(null, "invalid > 0", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstantsInternal.GREATER_THAN_OPERATOR, standardLibrary.getIntegerType());
-//		assertQueryInvalid(null, "invalid > 0");
+        ocl.assertSemanticErrorQuery(null, "invalid > 0", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstantsInternal.GREATER_THAN_OPERATOR, standardLibrary.getIntegerType());
+//		ocl.assertQueryInvalid(null, "invalid > 0");
 //		assertSemanticErrorQuery2(null, "0 > invalid", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.GREATER_THAN_OPERATOR);
-		assertQueryInvalid(null, "0 > invalid");
-		assertSemanticErrorQuery(null, "invalid > invalid", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstantsInternal.GREATER_THAN_OPERATOR, standardLibrary.getOclInvalidType());
+		ocl.assertQueryInvalid(null, "0 > invalid");
+		ocl.assertSemanticErrorQuery(null, "invalid > invalid", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstantsInternal.GREATER_THAN_OPERATOR, standardLibrary.getOclInvalidType());
 		//
 		// null
 		//
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery(null, "null > 0", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstantsInternal.GREATER_THAN_OPERATOR, standardLibrary.getIntegerType());
-//		assertQueryInvalid(null, "null > 0");
+		ocl.assertSemanticErrorQuery(null, "null > 0", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstantsInternal.GREATER_THAN_OPERATOR, standardLibrary.getIntegerType());
+//		ocl.assertQueryInvalid(null, "null > 0");
 //		assertSemanticErrorQuery2(null, "0 > null", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.GREATER_THAN_OPERATOR);
-		assertQueryInvalid(null, "0 > null");
-		assertSemanticErrorQuery(null, "null > null", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstantsInternal.GREATER_THAN_OPERATOR, standardLibrary.getOclVoidType());
+		ocl.assertQueryInvalid(null, "0 > null");
+		ocl.assertSemanticErrorQuery(null, "null > null", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstantsInternal.GREATER_THAN_OPERATOR, standardLibrary.getOclVoidType());
+		ocl.dispose();
 	}
     
     @Test public void testGreaterThanOrEqual() {
+		MyOCL ocl = createOCL();
     	StandardLibrary standardLibrary = ocl.getStandardLibrary();
-    	loadEPackage("ecore", EcorePackage.eINSTANCE);
-        assertQueryTrue(null, "ecore::EDate{'2000-01-25'} >= ecore::EDate{'2000-01-24'}");
-        assertQueryTrue(null, "ecore::EDate{'2000-01-24'} >= ecore::EDate{'2000-01-24'}");
-        assertQueryFalse(null, "ecore::EDate{'2000-01-23'} >= ecore::EDate{'2000-01-24'}");
+    	ocl.loadEPackage("ecore", EcorePackage.eINSTANCE);
+        ocl.assertQueryTrue(null, "ecore::EDate{'2000-01-25'} >= ecore::EDate{'2000-01-24'}");
+        ocl.assertQueryTrue(null, "ecore::EDate{'2000-01-24'} >= ecore::EDate{'2000-01-24'}");
+        ocl.assertQueryFalse(null, "ecore::EDate{'2000-01-23'} >= ecore::EDate{'2000-01-24'}");
         //
 	    // invalid
         //
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery(null, "invalid >= 0", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstantsInternal.GREATER_THAN_OR_EQUAL_OPERATOR, standardLibrary.getIntegerType());
-//		assertQueryInvalid(null, "invalid >= 0");
+        ocl.assertSemanticErrorQuery(null, "invalid >= 0", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstantsInternal.GREATER_THAN_OR_EQUAL_OPERATOR, standardLibrary.getIntegerType());
+//		ocl.assertQueryInvalid(null, "invalid >= 0");
 //		assertSemanticErrorQuery2(null, "0 >= invalid", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR);
-		assertQueryInvalid(null, "0 >= invalid");
-		assertSemanticErrorQuery(null, "invalid >= invalid", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstantsInternal.GREATER_THAN_OR_EQUAL_OPERATOR, standardLibrary.getOclInvalidType());
+		ocl.assertQueryInvalid(null, "0 >= invalid");
+		ocl.assertSemanticErrorQuery(null, "invalid >= invalid", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstantsInternal.GREATER_THAN_OR_EQUAL_OPERATOR, standardLibrary.getOclInvalidType());
 		//
 		// null
 		//
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery(null, "null >= 0", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstantsInternal.GREATER_THAN_OR_EQUAL_OPERATOR, standardLibrary.getIntegerType());
-//		assertQueryInvalid(null, "null >= 0");
+		ocl.assertSemanticErrorQuery(null, "null >= 0", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstantsInternal.GREATER_THAN_OR_EQUAL_OPERATOR, standardLibrary.getIntegerType());
+//		ocl.assertQueryInvalid(null, "null >= 0");
 //		assertSemanticErrorQuery2(null, "0 >= null", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR);
-		assertQueryInvalid(null, "0 >= null");
-		assertSemanticErrorQuery(null, "null >= null", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstantsInternal.GREATER_THAN_OR_EQUAL_OPERATOR, standardLibrary.getOclVoidType());
+		ocl.assertQueryInvalid(null, "0 >= null");
+		ocl.assertSemanticErrorQuery(null, "null >= null", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstantsInternal.GREATER_THAN_OR_EQUAL_OPERATOR, standardLibrary.getOclVoidType());
+		ocl.dispose();
 	}
     
     @Test public void testLessThan() {
+		MyOCL ocl = createOCL();
     	StandardLibrary standardLibrary = ocl.getStandardLibrary();
-    	loadEPackage("ecore", EcorePackage.eINSTANCE);
-    	assertQueryFalse(null, "ecore::EDate{'2000-01-25'} < ecore::EDate{'2000-01-24'}");
-    	assertQueryFalse(null, "ecore::EDate{'2000-01-24'} < ecore::EDate{'2000-01-24'}");
-        assertQueryTrue(null, "ecore::EDate{'2000-01-23'} < ecore::EDate{'2000-01-24'}");
+    	ocl.loadEPackage("ecore", EcorePackage.eINSTANCE);
+    	ocl.assertQueryFalse(null, "ecore::EDate{'2000-01-25'} < ecore::EDate{'2000-01-24'}");
+    	ocl.assertQueryFalse(null, "ecore::EDate{'2000-01-24'} < ecore::EDate{'2000-01-24'}");
+        ocl.assertQueryTrue(null, "ecore::EDate{'2000-01-23'} < ecore::EDate{'2000-01-24'}");
         //
 	    // invalid
         //
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery(null, "invalid < 0", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstantsInternal.LESS_THAN_OPERATOR, standardLibrary.getIntegerType());
-//		assertQueryInvalid(null, "invalid < 0");
+        ocl.assertSemanticErrorQuery(null, "invalid < 0", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstantsInternal.LESS_THAN_OPERATOR, standardLibrary.getIntegerType());
+//		ocl.assertQueryInvalid(null, "invalid < 0");
 //		assertSemanticErrorQuery2(null, "0 < invalid", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.LESS_THAN_OPERATOR);
-		assertQueryInvalid(null, "0 < invalid");
-		assertSemanticErrorQuery(null, "invalid < invalid", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstantsInternal.LESS_THAN_OPERATOR, standardLibrary.getOclInvalidType());
+		ocl.assertQueryInvalid(null, "0 < invalid");
+		ocl.assertSemanticErrorQuery(null, "invalid < invalid", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstantsInternal.LESS_THAN_OPERATOR, standardLibrary.getOclInvalidType());
 		//
 		// null
 		//
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery(null, "null < 0", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstantsInternal.LESS_THAN_OPERATOR, standardLibrary.getIntegerType());
-//		assertQueryInvalid(null, "null < 0");
+		ocl.assertSemanticErrorQuery(null, "null < 0", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstantsInternal.LESS_THAN_OPERATOR, standardLibrary.getIntegerType());
+//		ocl.assertQueryInvalid(null, "null < 0");
 //		assertSemanticErrorQuery2(null, "0 < null", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.LESS_THAN_OPERATOR);
-		assertQueryInvalid(null, "0 < null");
-		assertSemanticErrorQuery(null, "null < null", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstantsInternal.LESS_THAN_OPERATOR, standardLibrary.getOclVoidType());
+		ocl.assertQueryInvalid(null, "0 < null");
+		ocl.assertSemanticErrorQuery(null, "null < null", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstantsInternal.LESS_THAN_OPERATOR, standardLibrary.getOclVoidType());
+		ocl.dispose();
 	}
     
     @Test public void testLessThanOrEqual() {
+		MyOCL ocl = createOCL();
     	StandardLibrary standardLibrary = ocl.getStandardLibrary();
-    	loadEPackage("ecore", EcorePackage.eINSTANCE);
-    	assertQueryFalse(null, "ecore::EDate{'2000-01-25'} <= ecore::EDate{'2000-01-24'}");
-        assertQueryTrue(null, "ecore::EDate{'2000-01-24'} <= ecore::EDate{'2000-01-24'}");
-        assertQueryTrue(null, "ecore::EDate{'2000-01-23'} <= ecore::EDate{'2000-01-24'}");
+    	ocl.loadEPackage("ecore", EcorePackage.eINSTANCE);
+    	ocl.assertQueryFalse(null, "ecore::EDate{'2000-01-25'} <= ecore::EDate{'2000-01-24'}");
+        ocl.assertQueryTrue(null, "ecore::EDate{'2000-01-24'} <= ecore::EDate{'2000-01-24'}");
+        ocl.assertQueryTrue(null, "ecore::EDate{'2000-01-23'} <= ecore::EDate{'2000-01-24'}");
         //
 	    // invalid
         //
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery(null, "invalid <= 0", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstantsInternal.LESS_THAN_OR_EQUAL_OPERATOR, standardLibrary.getIntegerType());
-//		assertQueryInvalid(null, "invalid <= 0");
-//		assertSemanticErrorQuery2(null, "0 <= invalid", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR);
-		assertQueryInvalid(null, "0 <= invalid");
-		assertSemanticErrorQuery(null, "invalid <= invalid", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstantsInternal.LESS_THAN_OR_EQUAL_OPERATOR, standardLibrary.getOclInvalidType());
+        ocl.assertSemanticErrorQuery(null, "invalid <= 0", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstantsInternal.LESS_THAN_OR_EQUAL_OPERATOR, standardLibrary.getIntegerType());
+//		ocl.assertQueryInvalid(null, "invalid <= 0");
+//		ocl.assertSemanticErrorQuery2(null, "0 <= invalid", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR);
+		ocl.assertQueryInvalid(null, "0 <= invalid");
+		ocl.assertSemanticErrorQuery(null, "invalid <= invalid", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclInvalidType(), PivotConstantsInternal.LESS_THAN_OR_EQUAL_OPERATOR, standardLibrary.getOclInvalidType());
 		//
 		// null
 		//
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery(null, "null <= 0", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstantsInternal.LESS_THAN_OR_EQUAL_OPERATOR, standardLibrary.getIntegerType());
-//		assertQueryInvalid(null, "null <= 0");
-//		assertSemanticErrorQuery2(null, "0 <= null", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR);
-		assertQueryInvalid(null, "0 <= null");
-		assertSemanticErrorQuery(null, "null <= null", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstantsInternal.LESS_THAN_OR_EQUAL_OPERATOR, standardLibrary.getOclVoidType());
+		ocl.assertSemanticErrorQuery(null, "null <= 0", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstantsInternal.LESS_THAN_OR_EQUAL_OPERATOR, standardLibrary.getIntegerType());
+//		ocl.assertQueryInvalid(null, "null <= 0");
+//		ocl.assertSemanticErrorQuery2(null, "0 <= null", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR);
+		ocl.assertQueryInvalid(null, "0 <= null");
+		ocl.assertSemanticErrorQuery(null, "null <= null", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, standardLibrary.getOclVoidType(), PivotConstantsInternal.LESS_THAN_OR_EQUAL_OPERATOR, standardLibrary.getOclVoidType());
+		ocl.dispose();
 	}
 
 	@Test public void testNotEqual() {
-		assertQueryFalse(null, "Boolean <> Boolean");
-		assertQueryTrue(null, "Boolean <> Integer");
-		assertQueryFalse(null, "OclVoid <> OclVoid");
-		assertQueryFalse(null, "OclInvalid <> OclInvalid");
-		assertQueryTrue(null, "OclInvalid <> OclVoid");
-		assertQueryFalse(null, "Set(String) <> Set(String)");
-		assertQueryTrue(null, "Set(String) <> Set(Integer)");
-		assertQueryTrue(null, "Set(String) <> Sequence(String)");
+		MyOCL ocl = createOCL();
+		ocl.assertQueryFalse(null, "Boolean <> Boolean");
+		ocl.assertQueryTrue(null, "Boolean <> Integer");
+		ocl.assertQueryFalse(null, "OclVoid <> OclVoid");
+		ocl.assertQueryFalse(null, "OclInvalid <> OclInvalid");
+		ocl.assertQueryTrue(null, "OclInvalid <> OclVoid");
+		ocl.assertQueryFalse(null, "Set(String) <> Set(String)");
+		ocl.assertQueryTrue(null, "Set(String) <> Set(Integer)");
+		ocl.assertQueryTrue(null, "Set(String) <> Sequence(String)");
 		//
-		assertQueryFalse(null, "ocl::CollectionKind::_'Collection' <> ocl::CollectionKind::_'Collection'");
-		assertQueryTrue(null, "ocl::CollectionKind::_'Collection' <> ocl::CollectionKind::_'Set'");
+		ocl.assertQueryFalse(null, "ocl::CollectionKind::_'Collection' <> ocl::CollectionKind::_'Collection'");
+		ocl.assertQueryTrue(null, "ocl::CollectionKind::_'Collection' <> ocl::CollectionKind::_'Set'");
 		//
-		loadEPackage("ecore", EcorePackage.eINSTANCE);
-    	assertQueryTrue(null, "ecore::EDate{'2000-01-25'} <> ecore::EDate{'2000-01-24'}");
-    	assertQueryFalse(null, "ecore::EDate{'2000-01-24'} <> ecore::EDate{'2000-01-24'}");
-    	assertQueryTrue(null, "ecore::EDate{'2000-01-23'} <> ecore::EDate{'2000-01-24'}");
+		ocl.loadEPackage("ecore", EcorePackage.eINSTANCE);
+    	ocl.assertQueryTrue(null, "ecore::EDate{'2000-01-25'} <> ecore::EDate{'2000-01-24'}");
+    	ocl.assertQueryFalse(null, "ecore::EDate{'2000-01-24'} <> ecore::EDate{'2000-01-24'}");
+    	ocl.assertQueryTrue(null, "ecore::EDate{'2000-01-23'} <> ecore::EDate{'2000-01-24'}");
         //
 	    // invalid
         //
-        assertQueryInvalid(null, "invalid <> 3");
-		assertQueryInvalid(null, "3 <> invalid");
-		assertQueryInvalid(null, "invalid <> 3.0");
-		assertQueryInvalid(null, "3.0 <> invalid");
+        ocl.assertQueryInvalid(null, "invalid <> 3");
+		ocl.assertQueryInvalid(null, "3 <> invalid");
+		ocl.assertQueryInvalid(null, "invalid <> 3.0");
+		ocl.assertQueryInvalid(null, "3.0 <> invalid");
 
-		assertQueryInvalid(null, "invalid <> 'test'");
-		assertQueryInvalid(null, "'test' <> invalid");
-		assertQueryInvalid(null, "invalid <> true");
-		assertQueryInvalid(null, "false <> invalid");
-		assertQueryInvalid(null, "invalid <> Sequence{}");
-		assertQueryInvalid(null, "Sequence{} <> invalid");
+		ocl.assertQueryInvalid(null, "invalid <> 'test'");
+		ocl.assertQueryInvalid(null, "'test' <> invalid");
+		ocl.assertQueryInvalid(null, "invalid <> true");
+		ocl.assertQueryInvalid(null, "false <> invalid");
+		ocl.assertQueryInvalid(null, "invalid <> Sequence{}");
+		ocl.assertQueryInvalid(null, "Sequence{} <> invalid");
 
-		assertQueryInvalid(null, "invalid <> invalid");
+		ocl.assertQueryInvalid(null, "invalid <> invalid");
 		//
 		// null
 		//
-		assertQueryTrue(null, "null <> 3");
-		assertQueryTrue(null, "3 <> null");
-		assertQueryTrue(null, "null <> 3.0");
-		assertQueryTrue(null, "3.0 <> null");
+		ocl.assertQueryTrue(null, "null <> 3");
+		ocl.assertQueryTrue(null, "3 <> null");
+		ocl.assertQueryTrue(null, "null <> 3.0");
+		ocl.assertQueryTrue(null, "3.0 <> null");
 
-		assertQueryTrue(null, "null <> 'test'");
-		assertQueryTrue(null, "'test' <> null");
-		assertQueryTrue(null, "null <> true");
-		assertQueryTrue(null, "false <> null");
-		assertQueryTrue(null, "null <> Sequence{}");
-		assertQueryTrue(null, "Sequence{} <> null");
+		ocl.assertQueryTrue(null, "null <> 'test'");
+		ocl.assertQueryTrue(null, "'test' <> null");
+		ocl.assertQueryTrue(null, "null <> true");
+		ocl.assertQueryTrue(null, "false <> null");
+		ocl.assertQueryTrue(null, "null <> Sequence{}");
+		ocl.assertQueryTrue(null, "Sequence{} <> null");
 
-		assertQueryFalse(null, "null <> null");
+		ocl.assertQueryFalse(null, "null <> null");
+		ocl.dispose();
 	}
 	
     /**
      * Tests the explicit oclAsSet() operator.
      */
 	@Test public void test_oclAsSet_explicit() {
-		assertQueryResults(null, "Set{true}", "true.oclAsSet()");
-		assertQueryResults(null, "Set{}", "null.oclAsSet()");
-		assertQueryInvalid(null, "invalid.oclAsSet()");
-		assertQueryResults(null, "Set{Set{1..4}}", "Set{1..4}->oclAsSet()");
+		MyOCL ocl = createOCL();
+		ocl.assertQueryResults(null, "Set{true}", "true.oclAsSet()");
+		ocl.assertQueryResults(null, "Set{}", "null.oclAsSet()");
+		ocl.assertQueryInvalid(null, "invalid.oclAsSet()");
+		ocl.assertQueryResults(null, "Set{Set{1..4}}", "Set{1..4}->oclAsSet()");
+		ocl.dispose();
 	}
 	
     /**
      * Tests the implicit oclAsSet() operator.
      */
 	@Test public void test_oclAsSet_implicit() {
+		MyOCL ocl = createOCL();
     	StandardLibrary standardLibrary = ocl.getStandardLibrary();
-		assertQueryResults(null, "Set{true}", "true->select(true)");
-		assertQueryResults(null, "Set{true}", "Set{true}->select(true)");
-		assertQueryResults(null, "Set{}", "null->select(true)");
-		assertQueryResults(null, "Set{}", "Set{}->select(true)");
-		assertQueryResults(null, "Set{null}", "Set{null}->select(true)");
-		assertQueryInvalid(null, "invalid->select(true)");
+		ocl.assertQueryResults(null, "Set{true}", "true->select(true)");
+		ocl.assertQueryResults(null, "Set{true}", "Set{true}->select(true)");
+		ocl.assertQueryResults(null, "Set{}", "null->select(true)");
+		ocl.assertQueryResults(null, "Set{}", "Set{}->select(true)");
+		ocl.assertQueryResults(null, "Set{null}", "Set{null}->select(true)");
+		ocl.assertQueryInvalid(null, "invalid->select(true)");
 		//
-		assertQueryResults(null, "false", "true.oclIsUndefined()");
-		assertQueryResults(null, "false", "true->oclIsUndefined()");	// Set{true}
-		assertQueryResults(null, "true", "null.oclIsUndefined()");
-		assertQueryResults(null, "false", "null->oclIsUndefined()");	// Set{}
-		assertQueryResults(null, "true", "invalid.oclIsUndefined()");
-		assertQueryResults(null, "true", "invalid->oclIsUndefined()");	// invalid
+		ocl.assertQueryResults(null, "false", "true.oclIsUndefined()");
+		ocl.assertQueryResults(null, "false", "true->oclIsUndefined()");	// Set{true}
+		ocl.assertQueryResults(null, "true", "null.oclIsUndefined()");
+		ocl.assertQueryResults(null, "false", "null->oclIsUndefined()");	// Set{}
+		ocl.assertQueryResults(null, "true", "invalid.oclIsUndefined()");
+		ocl.assertQueryResults(null, "true", "invalid->oclIsUndefined()");	// invalid
 		//
-		assertQueryEquals(null, 4, "'1234'.size()");
-		assertQueryEquals(null, 1, "'1234'->size()");
+		ocl.assertQueryEquals(null, 4, "'1234'.size()");
+		ocl.assertQueryEquals(null, 1, "'1234'->size()");
 		//
 		org.eclipse.ocl.pivot.Class booleanType = standardLibrary.getBooleanType();
-		assertQueryEquals(null, booleanType, "true.oclType()");
-		Type collectionType = getCollectionType("Set", booleanType);
-		assertQueryEquals(null, collectionType, "true->oclType()");		// Set{true}
+		ocl.assertQueryEquals(null, booleanType, "true.oclType()");
+		Type collectionType = ocl.getCollectionType("Set", booleanType);
+		ocl.assertQueryEquals(null, collectionType, "true->oclType()");		// Set{true}
+		ocl.dispose();
 	}
 	
     /**
      * Tests the oclAsType() operator.
      */
 	@Test public void test_oclAsType() {
-		assertQueryInvalid(null, "invalid.oclAsType(String)");
-		assertQueryInvalid(null, "invalid.oclAsType(Integer)");
-		assertQueryInvalid(null, "invalid.oclAsType(Class)");
-		assertQueryInvalid(null, "invalid.oclAsType(OclVoid)");
-		assertQueryInvalid(null, "invalid.oclAsType(OclInvalid)");
-		assertQueryInvalid(null, "invalid.oclAsType(Set(String))");
-		assertQueryInvalid(null, "invalid.oclAsType(Tuple(a:String))");
-		assertQueryInvalid(null, "invalid.oclAsType(ocl::Package)");
+		MyOCL ocl = createOCL();
+		ocl.assertQueryInvalid(null, "invalid.oclAsType(String)");
+		ocl.assertQueryInvalid(null, "invalid.oclAsType(Integer)");
+		ocl.assertQueryInvalid(null, "invalid.oclAsType(Class)");
+		ocl.assertQueryInvalid(null, "invalid.oclAsType(OclVoid)");
+		ocl.assertQueryInvalid(null, "invalid.oclAsType(OclInvalid)");
+		ocl.assertQueryInvalid(null, "invalid.oclAsType(Set(String))");
+		ocl.assertQueryInvalid(null, "invalid.oclAsType(Tuple(a:String))");
+		ocl.assertQueryInvalid(null, "invalid.oclAsType(ocl::Package)");
 		//
-		assertQueryNull(null, "let s : String = null.oclAsType(String) in s");
-		assertQueryNull(null, "null.oclAsType(Integer)");
-		assertQueryNull(null, "null.oclAsType(Class)");
-		assertQueryNull(null, "null.oclAsType(OclVoid)");
-		assertQueryInvalid(null, "null.oclAsType(OclInvalid)");
-		assertQueryNull(null, "null.oclAsType(Set(String))");
-		assertQueryNull(null, "null.oclAsType(Tuple(a:String))");
-		assertQueryNull(null, "null.oclAsType(ocl::Package)");
+		ocl.assertQueryNull(null, "let s : String = null.oclAsType(String) in s");
+		ocl.assertQueryNull(null, "null.oclAsType(Integer)");
+		ocl.assertQueryNull(null, "null.oclAsType(Class)");
+		ocl.assertQueryNull(null, "null.oclAsType(OclVoid)");
+		ocl.assertQueryInvalid(null, "null.oclAsType(OclInvalid)");
+		ocl.assertQueryNull(null, "null.oclAsType(Set(String))");
+		ocl.assertQueryNull(null, "null.oclAsType(Tuple(a:String))");
+		ocl.assertQueryNull(null, "null.oclAsType(ocl::Package)");
 		//
-		assertQueryInvalid(null, "true.oclAsType(Integer)");
-		assertQueryInvalid(null, "true.oclAsType(String)");
-		assertQueryTrue(null, "true.oclAsType(Boolean)");
-		assertQueryTrue(null, "true.oclAsType(OclAny)");
-		assertQueryInvalid(null, "true.oclAsType(OclVoid)");
-		assertQueryInvalid(null, "true.oclAsType(OclInvalid)");
+		ocl.assertQueryInvalid(null, "true.oclAsType(Integer)");
+		ocl.assertQueryInvalid(null, "true.oclAsType(String)");
+		ocl.assertQueryTrue(null, "true.oclAsType(Boolean)");
+		ocl.assertQueryTrue(null, "true.oclAsType(OclAny)");
+		ocl.assertQueryInvalid(null, "true.oclAsType(OclVoid)");
+		ocl.assertQueryInvalid(null, "true.oclAsType(OclInvalid)");
 		//
-		assertQueryEquals(null, 3, "3.oclAsType(Integer)");
-		assertQueryEquals(null, 3.0, "3.oclAsType(Real)");
-		assertQueryInvalid(null, "3.0.oclAsType(Integer)");		// Cannot downcast
-		assertQueryEquals(null, 3.0, "3.0.oclAsType(Real)");
-		assertQueryInvalid(null, "3.oclAsType(String)");
-		assertQueryEquals(null, 3, "3.oclAsType(OclAny)");
-		assertQueryInvalid(null, "3.oclAsType(OclVoid)");
-		assertQueryInvalid(null, "3.oclAsType(OclInvalid)");
+		ocl.assertQueryEquals(null, 3, "3.oclAsType(Integer)");
+		ocl.assertQueryEquals(null, 3.0, "3.oclAsType(Real)");
+		ocl.assertQueryInvalid(null, "3.0.oclAsType(Integer)");		// Cannot downcast
+		ocl.assertQueryEquals(null, 3.0, "3.0.oclAsType(Real)");
+		ocl.assertQueryInvalid(null, "3.oclAsType(String)");
+		ocl.assertQueryEquals(null, 3, "3.oclAsType(OclAny)");
+		ocl.assertQueryInvalid(null, "3.oclAsType(OclVoid)");
+		ocl.assertQueryInvalid(null, "3.oclAsType(OclInvalid)");
 		//
-		assertQueryInvalid(null, "3.14.oclAsType(Integer)");
-		assertQueryEquals(null, 3.14, "3.14.oclAsType(Real)");
-		assertQueryInvalid(null, "3.14.oclAsType(String)");
-		assertQueryEquals(null, 3.14, "3.14.oclAsType(OclAny)");
-		assertQueryInvalid(null, "3.14.oclAsType(OclVoid)");
-		assertQueryInvalid(null, "3.14.oclAsType(OclInvalid)");
+		ocl.assertQueryInvalid(null, "3.14.oclAsType(Integer)");
+		ocl.assertQueryEquals(null, 3.14, "3.14.oclAsType(Real)");
+		ocl.assertQueryInvalid(null, "3.14.oclAsType(String)");
+		ocl.assertQueryEquals(null, 3.14, "3.14.oclAsType(OclAny)");
+		ocl.assertQueryInvalid(null, "3.14.oclAsType(OclVoid)");
+		ocl.assertQueryInvalid(null, "3.14.oclAsType(OclInvalid)");
 		//
-		assertQueryInvalid(null, "*.oclAsType(Integer)");
-		assertQueryInvalid(null, "*.oclAsType(Real)");
-		assertQueryUnlimited(null, "*.oclAsType(UnlimitedNatural)");
-		assertQueryInvalid(null, "*.oclAsType(String)");
-		assertQueryUnlimited(null, "*.oclAsType(OclAny)");
-		assertQueryInvalid(null, "*.oclAsType(OclVoid)");
-		assertQueryInvalid(null, "*.oclAsType(OclInvalid)");
+		ocl.assertQueryInvalid(null, "*.oclAsType(Integer)");
+		ocl.assertQueryInvalid(null, "*.oclAsType(Real)");
+		ocl.assertQueryUnlimited(null, "*.oclAsType(UnlimitedNatural)");
+		ocl.assertQueryInvalid(null, "*.oclAsType(String)");
+		ocl.assertQueryUnlimited(null, "*.oclAsType(OclAny)");
+		ocl.assertQueryInvalid(null, "*.oclAsType(OclVoid)");
+		ocl.assertQueryInvalid(null, "*.oclAsType(OclInvalid)");
 		//
-		assertQueryInvalid(null, "Set{1,2}->oclAsType(Set(UnlimitedNatural))");
-		assertQueryResults(null, "Set{1,2}", "Set{1,2}->oclAsType(Set(Integer))");
-		assertQueryResults(null, "Set{1,2}", "Set{1,2}->oclAsType(Collection(Real))");
-		assertQueryInvalid(null, "Set{1,2}->oclAsType(Collection(UnlimitedNatural))");
-		assertQueryInvalid(null, "Set{1.0,2}->oclAsType(Collection(UnlimitedNatural))");
-		assertQueryInvalid(null, "Set{1,2}->oclAsType(Sequence(UnlimitedNatural))");
-		assertQueryInvalid(null, "Set{1,2}.oclAsType(Set(UnlimitedNatural))");		// Cannot cast non-collection (elements) to collection
-		assertQueryResults(null, "Bag{1,2}", "Set{1,2}.oclAsType(Integer)");
-		assertQueryInvalid(null, "Set{1,2}.oclAsType(Set(Integer))");				// Cannot cast non-collection (elements) to collection
-		assertQueryResults(null, "Bag{1,2}", "Set{1,2}.oclAsType(Integer)");
-		assertQueryResults(null, "Set{Set{1,2},Set{3,4}}", "Set{Set{1,2},Set{3,4}}->oclAsType(Set(Set(Integer)))");
-		assertQueryResults(null, "Set{Set{1,2},Set{3,4}}", "Set{Set{1,2},Set{3,4}}->oclAsType(Set(Collection(Integer)))");
-		assertQueryResults(null, "Set{Set{1,2},Set{3,4}}", "Set{Set{1,2},Set{3,4}}->oclAsType(Collection(Set(Integer)))");
-		assertQueryResults(null, "Set{Set{1,2},Set{3,4}}", "Set{Set{1,2},Set{3,4}}->oclAsType(Set(Set(Real)))");
-		assertQueryInvalid(null, "Set{Set{1,2},Set{3,4}}->oclAsType(Set(Sequence(Integer)))");
-		assertQueryInvalid(null, "Set{Set{1,2},Set{3,4}}->oclAsType(Sequence(Set(Integer)))");
+		ocl.assertQueryInvalid(null, "Set{1,2}->oclAsType(Set(UnlimitedNatural))");
+		ocl.assertQueryResults(null, "Set{1,2}", "Set{1,2}->oclAsType(Set(Integer))");
+		ocl.assertQueryResults(null, "Set{1,2}", "Set{1,2}->oclAsType(Collection(Real))");
+		ocl.assertQueryInvalid(null, "Set{1,2}->oclAsType(Collection(UnlimitedNatural))");
+		ocl.assertQueryInvalid(null, "Set{1.0,2}->oclAsType(Collection(UnlimitedNatural))");
+		ocl.assertQueryInvalid(null, "Set{1,2}->oclAsType(Sequence(UnlimitedNatural))");
+		ocl.assertQueryInvalid(null, "Set{1,2}.oclAsType(Set(UnlimitedNatural))");		// Cannot cast non-collection (elements) to collection
+		ocl.assertQueryResults(null, "Bag{1,2}", "Set{1,2}.oclAsType(Integer)");
+		ocl.assertQueryInvalid(null, "Set{1,2}.oclAsType(Set(Integer))");				// Cannot cast non-collection (elements) to collection
+		ocl.assertQueryResults(null, "Bag{1,2}", "Set{1,2}.oclAsType(Integer)");
+		ocl.assertQueryResults(null, "Set{Set{1,2},Set{3,4}}", "Set{Set{1,2},Set{3,4}}->oclAsType(Set(Set(Integer)))");
+		ocl.assertQueryResults(null, "Set{Set{1,2},Set{3,4}}", "Set{Set{1,2},Set{3,4}}->oclAsType(Set(Collection(Integer)))");
+		ocl.assertQueryResults(null, "Set{Set{1,2},Set{3,4}}", "Set{Set{1,2},Set{3,4}}->oclAsType(Collection(Set(Integer)))");
+		ocl.assertQueryResults(null, "Set{Set{1,2},Set{3,4}}", "Set{Set{1,2},Set{3,4}}->oclAsType(Set(Set(Real)))");
+		ocl.assertQueryInvalid(null, "Set{Set{1,2},Set{3,4}}->oclAsType(Set(Sequence(Integer)))");
+		ocl.assertQueryInvalid(null, "Set{Set{1,2},Set{3,4}}->oclAsType(Sequence(Set(Integer)))");
 		//
-		assertSemanticErrorQuery(null, "3.oclAsType(OclAny).abs()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "OclAny", "abs");
-		assertSemanticErrorQuery(null, "let v : OclAny = 3 in v.abs()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "OclAny", "abs");
-		assertQueryEquals(null, 3, "let v : OclAny = 3 in v.oclAsType(Integer).abs()");
-		assertQueryInvalid(null, "Integer.oclAsType(Real)");
+		ocl.assertSemanticErrorQuery(null, "3.oclAsType(OclAny).abs()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "OclAny", "abs");
+		ocl.assertSemanticErrorQuery(null, "let v : OclAny = 3 in v.abs()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "OclAny", "abs");
+		ocl.assertQueryEquals(null, 3, "let v : OclAny = 3 in v.oclAsType(Integer).abs()");
+		ocl.assertQueryInvalid(null, "Integer.oclAsType(Real)");
+		ocl.dispose();
 	}
 
     /**
      * Tests the oclIsInvalid() operator.
      */
     @Test public void test_oclIsInvalid() {
-        assertQueryTrue(null, "invalid.oclIsInvalid()");
-        assertQueryFalse(null, "null.oclIsInvalid()");
-        assertQueryFalse(null, "true.oclIsInvalid()");
-        assertQueryFalse(null, "false.oclIsInvalid()");
-        assertQueryFalse(null, "3.14.oclIsInvalid()");
-        assertQueryFalse(null, "1.oclIsInvalid()");
-        assertQueryFalse(null, "*.oclIsInvalid()");
-        assertQueryFalse(null, "'invalid'.oclIsInvalid()");
-        assertQueryFalse(pkg1, "self.oclIsInvalid()");
-		assertQueryTrue(null, "('123a'.toInteger()).oclIsInvalid()");	// Bug 342561 for old evaluator
-		assertQueryTrue(null, "let a:Integer='123a'.toInteger() in a.oclIsInvalid()");	// Bug 342561 for old evaluator
+		MyOCL ocl = createOCL();
+        ocl.assertQueryTrue(null, "invalid.oclIsInvalid()");
+        ocl.assertQueryFalse(null, "null.oclIsInvalid()");
+        ocl.assertQueryFalse(null, "true.oclIsInvalid()");
+        ocl.assertQueryFalse(null, "false.oclIsInvalid()");
+        ocl.assertQueryFalse(null, "3.14.oclIsInvalid()");
+        ocl.assertQueryFalse(null, "1.oclIsInvalid()");
+        ocl.assertQueryFalse(null, "*.oclIsInvalid()");
+        ocl.assertQueryFalse(null, "'invalid'.oclIsInvalid()");
+        ocl.assertQueryFalse(ocl.pkg1, "self.oclIsInvalid()");
+		ocl.assertQueryTrue(null, "('123a'.toInteger()).oclIsInvalid()");	// Bug 342561 for old evaluator
+		ocl.assertQueryTrue(null, "let a:Integer='123a'.toInteger() in a.oclIsInvalid()");	// Bug 342561 for old evaluator
+		ocl.dispose();
     }
 
     /**
      * Tests the oclIsKindOf() operator.
      */
     @Test public void test_oclIsKindOf() {
-		assertQueryInvalid(null, "invalid.oclIsKindOf(OclInvalid)");
-        assertQueryInvalid(null, "invalid.oclIsKindOf(OclVoid)");
-        assertQueryInvalid(null, "invalid.oclIsKindOf(OclAny)");
-		assertQueryInvalid(null, "invalid.oclIsKindOf(String)");
-		assertQueryInvalid(null, "invalid.oclIsKindOf(Integer)");
-		assertQueryInvalid(null, "invalid.oclIsKindOf(Class)");
-		assertQueryInvalid(null, "invalid.oclIsKindOf(Bag(Boolean))");
-		assertQueryInvalid(null, "invalid.oclIsKindOf(Tuple(a:Integer))");
-        assertQueryInvalid(null, "invalid.oclIsKindOf(ocl::Package)");
+		MyOCL ocl = createOCL();
+		ocl.assertQueryInvalid(null, "invalid.oclIsKindOf(OclInvalid)");
+        ocl.assertQueryInvalid(null, "invalid.oclIsKindOf(OclVoid)");
+        ocl.assertQueryInvalid(null, "invalid.oclIsKindOf(OclAny)");
+		ocl.assertQueryInvalid(null, "invalid.oclIsKindOf(String)");
+		ocl.assertQueryInvalid(null, "invalid.oclIsKindOf(Integer)");
+		ocl.assertQueryInvalid(null, "invalid.oclIsKindOf(Class)");
+		ocl.assertQueryInvalid(null, "invalid.oclIsKindOf(Bag(Boolean))");
+		ocl.assertQueryInvalid(null, "invalid.oclIsKindOf(Tuple(a:Integer))");
+        ocl.assertQueryInvalid(null, "invalid.oclIsKindOf(ocl::Package)");
         //
-        assertQueryFalse(null, "null.oclIsKindOf(OclInvalid)");
-        assertQueryTrue(null, "null.oclIsKindOf(OclVoid)");
-        assertQueryTrue(null, "null.oclIsKindOf(OclAny)");
-		assertQueryTrue(null, "null.oclIsKindOf(String)");
-		assertQueryTrue(null, "null.oclIsKindOf(Integer)");
-		assertQueryTrue(null, "null.oclIsKindOf(Class)");
-		assertQueryTrue(null, "null.oclIsKindOf(Bag(Boolean))");
-		assertQueryTrue(null, "null.oclIsKindOf(Tuple(a:Integer))");
-        assertQueryTrue(null, "null.oclIsKindOf(ocl::Package)");
+        ocl.assertQueryFalse(null, "null.oclIsKindOf(OclInvalid)");
+        ocl.assertQueryTrue(null, "null.oclIsKindOf(OclVoid)");
+        ocl.assertQueryTrue(null, "null.oclIsKindOf(OclAny)");
+		ocl.assertQueryTrue(null, "null.oclIsKindOf(String)");
+		ocl.assertQueryTrue(null, "null.oclIsKindOf(Integer)");
+		ocl.assertQueryTrue(null, "null.oclIsKindOf(Class)");
+		ocl.assertQueryTrue(null, "null.oclIsKindOf(Bag(Boolean))");
+		ocl.assertQueryTrue(null, "null.oclIsKindOf(Tuple(a:Integer))");
+        ocl.assertQueryTrue(null, "null.oclIsKindOf(ocl::Package)");
         //
-        assertQueryFalse(null, "true.oclIsKindOf(OclInvalid)");
-        assertQueryFalse(null, "true.oclIsKindOf(OclVoid)");
-        assertQueryTrue(null, "true.oclIsKindOf(Boolean)");
-        assertQueryFalse(null, "true.oclIsKindOf(Integer)");
-        assertQueryFalse(null, "true.oclIsKindOf(String)");
-        assertQueryTrue(null, "true.oclIsKindOf(OclAny)");
-        assertQueryFalse(null, "true.oclIsKindOf(ocl::Package)");
+        ocl.assertQueryFalse(null, "true.oclIsKindOf(OclInvalid)");
+        ocl.assertQueryFalse(null, "true.oclIsKindOf(OclVoid)");
+        ocl.assertQueryTrue(null, "true.oclIsKindOf(Boolean)");
+        ocl.assertQueryFalse(null, "true.oclIsKindOf(Integer)");
+        ocl.assertQueryFalse(null, "true.oclIsKindOf(String)");
+        ocl.assertQueryTrue(null, "true.oclIsKindOf(OclAny)");
+        ocl.assertQueryFalse(null, "true.oclIsKindOf(ocl::Package)");
         //
-        assertQueryFalse(null, "3.14.oclIsKindOf(OclInvalid)");
-        assertQueryFalse(null, "3.14.oclIsKindOf(OclVoid)");
-        assertQueryFalse(null, "3.14.oclIsKindOf(Boolean)");
-        assertQueryTrue(null, "3.14.oclIsKindOf(Real)");
-        assertQueryFalse(null, "3.14.oclIsKindOf(Integer)");
-        assertQueryFalse(null, "3.14.oclIsKindOf(String)");
-        assertQueryTrue(null, "3.14.oclIsKindOf(OclAny)");
-        assertQueryFalse(null, "3.14.oclIsKindOf(ocl::Package)");
+        ocl.assertQueryFalse(null, "3.14.oclIsKindOf(OclInvalid)");
+        ocl.assertQueryFalse(null, "3.14.oclIsKindOf(OclVoid)");
+        ocl.assertQueryFalse(null, "3.14.oclIsKindOf(Boolean)");
+        ocl.assertQueryTrue(null, "3.14.oclIsKindOf(Real)");
+        ocl.assertQueryFalse(null, "3.14.oclIsKindOf(Integer)");
+        ocl.assertQueryFalse(null, "3.14.oclIsKindOf(String)");
+        ocl.assertQueryTrue(null, "3.14.oclIsKindOf(OclAny)");
+        ocl.assertQueryFalse(null, "3.14.oclIsKindOf(ocl::Package)");
         //
-        assertQueryFalse(null, "1.oclIsKindOf(OclInvalid)");
-        assertQueryFalse(null, "1.oclIsKindOf(OclVoid)");
-        assertQueryFalse(null, "1.oclIsKindOf(Boolean)");
-        assertQueryTrue(null, "1.oclIsKindOf(Real)");
-        assertQueryTrue(null, "1.oclIsKindOf(Integer)");
-        assertQueryTrue(null, "(-1).oclIsKindOf(Integer)");
-        assertQueryTrue(null, "1.oclIsKindOf(Integer)");
-        assertQueryFalse(null, "1.oclIsKindOf(String)");
-        assertQueryTrue(null, "1.oclIsKindOf(OclAny)");
-        assertQueryFalse(null, "1.oclIsKindOf(ocl::Package)");
+        ocl.assertQueryFalse(null, "1.oclIsKindOf(OclInvalid)");
+        ocl.assertQueryFalse(null, "1.oclIsKindOf(OclVoid)");
+        ocl.assertQueryFalse(null, "1.oclIsKindOf(Boolean)");
+        ocl.assertQueryTrue(null, "1.oclIsKindOf(Real)");
+        ocl.assertQueryTrue(null, "1.oclIsKindOf(Integer)");
+        ocl.assertQueryTrue(null, "(-1).oclIsKindOf(Integer)");
+        ocl.assertQueryTrue(null, "1.oclIsKindOf(Integer)");
+        ocl.assertQueryFalse(null, "1.oclIsKindOf(String)");
+        ocl.assertQueryTrue(null, "1.oclIsKindOf(OclAny)");
+        ocl.assertQueryFalse(null, "1.oclIsKindOf(ocl::Package)");
         //
-        assertQueryFalse(null, "*.oclIsKindOf(OclInvalid)");
-        assertQueryFalse(null, "*.oclIsKindOf(OclVoid)");
-        assertQueryFalse(null, "*.oclIsKindOf(Boolean)");
-        assertQueryFalse(null, "*.oclIsKindOf(Real)");
-        assertQueryFalse(null, "*.oclIsKindOf(Integer)");
-        assertQueryTrue(null, "*.oclIsKindOf(UnlimitedNatural)");
-        assertQueryFalse(null, "*.oclIsKindOf(String)");
-        assertQueryTrue(null, "*.oclIsKindOf(OclAny)");
-        assertQueryFalse(null, "*.oclIsKindOf(ocl::Package)");
+        ocl.assertQueryFalse(null, "*.oclIsKindOf(OclInvalid)");
+        ocl.assertQueryFalse(null, "*.oclIsKindOf(OclVoid)");
+        ocl.assertQueryFalse(null, "*.oclIsKindOf(Boolean)");
+        ocl.assertQueryFalse(null, "*.oclIsKindOf(Real)");
+        ocl.assertQueryFalse(null, "*.oclIsKindOf(Integer)");
+        ocl.assertQueryTrue(null, "*.oclIsKindOf(UnlimitedNatural)");
+        ocl.assertQueryFalse(null, "*.oclIsKindOf(String)");
+        ocl.assertQueryTrue(null, "*.oclIsKindOf(OclAny)");
+        ocl.assertQueryFalse(null, "*.oclIsKindOf(ocl::Package)");
         //
-        assertQueryFalse(null, "'invalid'.oclIsKindOf(OclInvalid)");
-        assertQueryFalse(null, "'null'.oclIsKindOf(OclVoid)");
-        assertQueryFalse(null, "'true'.oclIsKindOf(Boolean)");
-        assertQueryFalse(null, "'3.14'.oclIsKindOf(Real)");
-        assertQueryFalse(null, "'1'.oclIsKindOf(Integer)");
-        assertQueryFalse(null, "'*'.oclIsKindOf(UnlimitedNatural)");
-        assertQueryTrue(null, "'string'.oclIsKindOf(String)");
-        assertQueryTrue(null, "'any'.oclIsKindOf(OclAny)");
-        assertQueryFalse(pkg1, "'self'.oclIsKindOf(ocl::Package)");
+        ocl.assertQueryFalse(null, "'invalid'.oclIsKindOf(OclInvalid)");
+        ocl.assertQueryFalse(null, "'null'.oclIsKindOf(OclVoid)");
+        ocl.assertQueryFalse(null, "'true'.oclIsKindOf(Boolean)");
+        ocl.assertQueryFalse(null, "'3.14'.oclIsKindOf(Real)");
+        ocl.assertQueryFalse(null, "'1'.oclIsKindOf(Integer)");
+        ocl.assertQueryFalse(null, "'*'.oclIsKindOf(UnlimitedNatural)");
+        ocl.assertQueryTrue(null, "'string'.oclIsKindOf(String)");
+        ocl.assertQueryTrue(null, "'any'.oclIsKindOf(OclAny)");
+        ocl.assertQueryFalse(ocl.pkg1, "'self'.oclIsKindOf(ocl::Package)");
         //
-        assertQueryFalse(pkg1, "self.oclIsKindOf(OclInvalid)");
-        assertQueryFalse(pkg1, "self.oclIsKindOf(OclVoid)");
-        assertQueryFalse(pkg1, "self.oclIsKindOf(Boolean)");
-        assertQueryFalse(pkg1, "self.oclIsKindOf(Real)");
-        assertQueryFalse(pkg1, "self.oclIsKindOf(Integer)");
-        assertQueryFalse(pkg1, "self.oclIsKindOf(UnlimitedNatural)");
-        assertQueryFalse(pkg1, "self.oclIsKindOf(String)");
-        assertQueryTrue(pkg1, "self.oclIsKindOf(OclAny)");
-        assertQueryTrue(pkg1, "self.oclIsKindOf(ocl::Package)");
+        ocl.assertQueryFalse(ocl.pkg1, "self.oclIsKindOf(OclInvalid)");
+        ocl.assertQueryFalse(ocl.pkg1, "self.oclIsKindOf(OclVoid)");
+        ocl.assertQueryFalse(ocl.pkg1, "self.oclIsKindOf(Boolean)");
+        ocl.assertQueryFalse(ocl.pkg1, "self.oclIsKindOf(Real)");
+        ocl.assertQueryFalse(ocl.pkg1, "self.oclIsKindOf(Integer)");
+        ocl.assertQueryFalse(ocl.pkg1, "self.oclIsKindOf(UnlimitedNatural)");
+        ocl.assertQueryFalse(ocl.pkg1, "self.oclIsKindOf(String)");
+        ocl.assertQueryTrue(ocl.pkg1, "self.oclIsKindOf(OclAny)");
+        ocl.assertQueryTrue(ocl.pkg1, "self.oclIsKindOf(ocl::Package)");
+		ocl.dispose();
     }
 
 	/**
      * Tests the oclIsTypeOf() operator.
      */
     @Test public void test_oclIsTypeOf() {
-        assertQueryInvalid(null, "invalid.oclIsTypeOf(OclInvalid)");
-        assertQueryInvalid(null, "invalid.oclIsTypeOf(OclVoid)");
-        assertQueryInvalid(null, "invalid.oclIsTypeOf(OclAny)");
-		assertQueryInvalid(null, "invalid.oclIsTypeOf(Integer)");
-		assertQueryInvalid(null, "invalid.oclIsTypeOf(String)");
-		assertQueryInvalid(null, "invalid.oclIsTypeOf(Class)");
-		assertQueryInvalid(null, "invalid.oclIsTypeOf(Set(String))");
-        assertQueryInvalid(null, "invalid.oclIsTypeOf(ocl::Package)");
+		MyOCL ocl = createOCL();
+        ocl.assertQueryInvalid(null, "invalid.oclIsTypeOf(OclInvalid)");
+        ocl.assertQueryInvalid(null, "invalid.oclIsTypeOf(OclVoid)");
+        ocl.assertQueryInvalid(null, "invalid.oclIsTypeOf(OclAny)");
+		ocl.assertQueryInvalid(null, "invalid.oclIsTypeOf(Integer)");
+		ocl.assertQueryInvalid(null, "invalid.oclIsTypeOf(String)");
+		ocl.assertQueryInvalid(null, "invalid.oclIsTypeOf(Class)");
+		ocl.assertQueryInvalid(null, "invalid.oclIsTypeOf(Set(String))");
+        ocl.assertQueryInvalid(null, "invalid.oclIsTypeOf(ocl::Package)");
         //
-        assertQueryFalse(null, "null.oclIsTypeOf(OclInvalid)");
-        assertQueryTrue(null, "null.oclIsTypeOf(OclVoid)");
-        assertQueryFalse(null, "null.oclIsTypeOf(OclAny)");
-		assertQueryFalse(null, "null.oclIsTypeOf(Integer)");
-		assertQueryFalse(null, "null.oclIsTypeOf(String)");
-		assertQueryFalse(null, "null.oclIsTypeOf(Class)");
-		assertQueryFalse(null, "null.oclIsTypeOf(Set(String))");
-        assertQueryFalse(null, "null.oclIsTypeOf(ocl::Package)");
+        ocl.assertQueryFalse(null, "null.oclIsTypeOf(OclInvalid)");
+        ocl.assertQueryTrue(null, "null.oclIsTypeOf(OclVoid)");
+        ocl.assertQueryFalse(null, "null.oclIsTypeOf(OclAny)");
+		ocl.assertQueryFalse(null, "null.oclIsTypeOf(Integer)");
+		ocl.assertQueryFalse(null, "null.oclIsTypeOf(String)");
+		ocl.assertQueryFalse(null, "null.oclIsTypeOf(Class)");
+		ocl.assertQueryFalse(null, "null.oclIsTypeOf(Set(String))");
+        ocl.assertQueryFalse(null, "null.oclIsTypeOf(ocl::Package)");
         //
-        assertQueryFalse(null, "true.oclIsTypeOf(OclInvalid)");
-        assertQueryFalse(null, "true.oclIsTypeOf(OclVoid)");
-        assertQueryTrue(null, "true.oclIsTypeOf(Boolean)");
-        assertQueryFalse(null, "true.oclIsTypeOf(String)");
-        assertQueryFalse(null, "true.oclIsTypeOf(OclAny)");
-        assertQueryFalse(null, "true.oclIsTypeOf(ocl::Package)");
+        ocl.assertQueryFalse(null, "true.oclIsTypeOf(OclInvalid)");
+        ocl.assertQueryFalse(null, "true.oclIsTypeOf(OclVoid)");
+        ocl.assertQueryTrue(null, "true.oclIsTypeOf(Boolean)");
+        ocl.assertQueryFalse(null, "true.oclIsTypeOf(String)");
+        ocl.assertQueryFalse(null, "true.oclIsTypeOf(OclAny)");
+        ocl.assertQueryFalse(null, "true.oclIsTypeOf(ocl::Package)");
         //
-        assertQueryFalse(null, "3.14.oclIsTypeOf(OclInvalid)");
-        assertQueryFalse(null, "3.14.oclIsTypeOf(OclVoid)");
-        assertQueryFalse(null, "3.14.oclIsTypeOf(Boolean)");
-        assertQueryTrue(null, "3.14.oclIsTypeOf(Real)");
-        assertQueryFalse(null, "3.14.oclIsTypeOf(Integer)");
-        assertQueryFalse(null, "3.14.oclIsTypeOf(String)");
-        assertQueryFalse(null, "3.14.oclIsTypeOf(OclAny)");
-        assertQueryFalse(null, "3.14.oclIsTypeOf(ocl::Package)");
+        ocl.assertQueryFalse(null, "3.14.oclIsTypeOf(OclInvalid)");
+        ocl.assertQueryFalse(null, "3.14.oclIsTypeOf(OclVoid)");
+        ocl.assertQueryFalse(null, "3.14.oclIsTypeOf(Boolean)");
+        ocl.assertQueryTrue(null, "3.14.oclIsTypeOf(Real)");
+        ocl.assertQueryFalse(null, "3.14.oclIsTypeOf(Integer)");
+        ocl.assertQueryFalse(null, "3.14.oclIsTypeOf(String)");
+        ocl.assertQueryFalse(null, "3.14.oclIsTypeOf(OclAny)");
+        ocl.assertQueryFalse(null, "3.14.oclIsTypeOf(ocl::Package)");
         //
-        assertQueryFalse(null, "1.oclIsTypeOf(OclInvalid)");
-        assertQueryFalse(null, "1.oclIsTypeOf(OclVoid)");
-        assertQueryFalse(null, "1.oclIsTypeOf(Boolean)");
-        assertQueryFalse(null, "1.oclIsTypeOf(Real)");
-        assertQueryTrue(null, "1.oclIsTypeOf(Integer)");
-        assertQueryTrue(null, "(-1).oclIsTypeOf(Integer)");
-        assertQueryFalse(null, "1.oclIsTypeOf(UnlimitedNatural)");
-        assertQueryFalse(null, "1.oclIsTypeOf(String)");
-        assertQueryFalse(null, "1.oclIsTypeOf(OclAny)");
-        assertQueryFalse(null, "1.oclIsTypeOf(ocl::Package)");
+        ocl.assertQueryFalse(null, "1.oclIsTypeOf(OclInvalid)");
+        ocl.assertQueryFalse(null, "1.oclIsTypeOf(OclVoid)");
+        ocl.assertQueryFalse(null, "1.oclIsTypeOf(Boolean)");
+        ocl.assertQueryFalse(null, "1.oclIsTypeOf(Real)");
+        ocl.assertQueryTrue(null, "1.oclIsTypeOf(Integer)");
+        ocl.assertQueryTrue(null, "(-1).oclIsTypeOf(Integer)");
+        ocl.assertQueryFalse(null, "1.oclIsTypeOf(UnlimitedNatural)");
+        ocl.assertQueryFalse(null, "1.oclIsTypeOf(String)");
+        ocl.assertQueryFalse(null, "1.oclIsTypeOf(OclAny)");
+        ocl.assertQueryFalse(null, "1.oclIsTypeOf(ocl::Package)");
         //
-        assertQueryFalse(null, "*.oclIsTypeOf(OclInvalid)");
-        assertQueryFalse(null, "*.oclIsTypeOf(OclVoid)");
-        assertQueryFalse(null, "*.oclIsTypeOf(Boolean)");
-        assertQueryFalse(null, "*.oclIsTypeOf(Real)");
-        assertQueryFalse(null, "*.oclIsTypeOf(Integer)");
-        assertQueryTrue(null, "*.oclIsTypeOf(UnlimitedNatural)");
-        assertQueryFalse(null, "*.oclIsTypeOf(String)");
-        assertQueryFalse(null, "*.oclIsTypeOf(OclAny)");
-        assertQueryFalse(null, "*.oclIsTypeOf(ocl::Package)");
+        ocl.assertQueryFalse(null, "*.oclIsTypeOf(OclInvalid)");
+        ocl.assertQueryFalse(null, "*.oclIsTypeOf(OclVoid)");
+        ocl.assertQueryFalse(null, "*.oclIsTypeOf(Boolean)");
+        ocl.assertQueryFalse(null, "*.oclIsTypeOf(Real)");
+        ocl.assertQueryFalse(null, "*.oclIsTypeOf(Integer)");
+        ocl.assertQueryTrue(null, "*.oclIsTypeOf(UnlimitedNatural)");
+        ocl.assertQueryFalse(null, "*.oclIsTypeOf(String)");
+        ocl.assertQueryFalse(null, "*.oclIsTypeOf(OclAny)");
+        ocl.assertQueryFalse(null, "*.oclIsTypeOf(ocl::Package)");
         //
-        assertQueryFalse(null, "'invalid'.oclIsTypeOf(OclInvalid)");
-        assertQueryFalse(null, "'null'.oclIsTypeOf(OclVoid)");
-        assertQueryFalse(null, "'true'.oclIsTypeOf(Boolean)");
-        assertQueryFalse(null, "'3.14'.oclIsTypeOf(Real)");
-        assertQueryFalse(null, "'1'.oclIsTypeOf(Integer)");
-        assertQueryFalse(null, "'*'.oclIsTypeOf(UnlimitedNatural)");
-        assertQueryTrue(null, "'string'.oclIsTypeOf(String)");
-        assertQueryFalse(null, "'any'.oclIsTypeOf(OclAny)");
-        assertQueryFalse(pkg1, "'self'.oclIsTypeOf(ocl::Package)");
+        ocl.assertQueryFalse(null, "'invalid'.oclIsTypeOf(OclInvalid)");
+        ocl.assertQueryFalse(null, "'null'.oclIsTypeOf(OclVoid)");
+        ocl.assertQueryFalse(null, "'true'.oclIsTypeOf(Boolean)");
+        ocl.assertQueryFalse(null, "'3.14'.oclIsTypeOf(Real)");
+        ocl.assertQueryFalse(null, "'1'.oclIsTypeOf(Integer)");
+        ocl.assertQueryFalse(null, "'*'.oclIsTypeOf(UnlimitedNatural)");
+        ocl.assertQueryTrue(null, "'string'.oclIsTypeOf(String)");
+        ocl.assertQueryFalse(null, "'any'.oclIsTypeOf(OclAny)");
+        ocl.assertQueryFalse(ocl.pkg1, "'self'.oclIsTypeOf(ocl::Package)");
         //
-        assertQueryFalse(pkg1, "self.oclIsTypeOf(OclInvalid)");
-        assertQueryFalse(pkg1, "self.oclIsTypeOf(OclVoid)");
-        assertQueryFalse(pkg1, "self.oclIsTypeOf(Boolean)");
-        assertQueryFalse(pkg1, "self.oclIsTypeOf(Real)");
-        assertQueryFalse(pkg1, "self.oclIsTypeOf(Integer)");
-        assertQueryFalse(pkg1, "self.oclIsTypeOf(UnlimitedNatural)");
-        assertQueryFalse(pkg1, "self.oclIsTypeOf(String)");
-        assertQueryFalse(pkg1, "self.oclIsTypeOf(OclAny)");
-        assertQueryTrue(pkg1, "self.oclIsTypeOf(ocl::Package)");
+        ocl.assertQueryFalse(ocl.pkg1, "self.oclIsTypeOf(OclInvalid)");
+        ocl.assertQueryFalse(ocl.pkg1, "self.oclIsTypeOf(OclVoid)");
+        ocl.assertQueryFalse(ocl.pkg1, "self.oclIsTypeOf(Boolean)");
+        ocl.assertQueryFalse(ocl.pkg1, "self.oclIsTypeOf(Real)");
+        ocl.assertQueryFalse(ocl.pkg1, "self.oclIsTypeOf(Integer)");
+        ocl.assertQueryFalse(ocl.pkg1, "self.oclIsTypeOf(UnlimitedNatural)");
+        ocl.assertQueryFalse(ocl.pkg1, "self.oclIsTypeOf(String)");
+        ocl.assertQueryFalse(ocl.pkg1, "self.oclIsTypeOf(OclAny)");
+        ocl.assertQueryTrue(ocl.pkg1, "self.oclIsTypeOf(ocl::Package)");
+		ocl.dispose();
     }
 
     /**
      * Tests the oclIsUndefined() operator.
      */
     @Test public void test_oclIsUndefined() {
-        assertQueryTrue(null, "invalid.oclIsUndefined()");
-        assertQueryTrue(null, "null.oclIsUndefined()");
-        assertQueryFalse(null, "true.oclIsUndefined()");
-        assertQueryFalse(null, "false.oclIsUndefined()");
-        assertQueryFalse(null, "3.14.oclIsUndefined()");
-        assertQueryFalse(null, "1.oclIsUndefined()");
-        assertQueryFalse(null, "*.oclIsUndefined()");
-        assertQueryFalse(null, "'null'.oclIsUndefined()");
-        assertQueryFalse(pkg1, "self.oclIsUndefined()");
+		MyOCL ocl = createOCL();
+        ocl.assertQueryTrue(null, "invalid.oclIsUndefined()");
+        ocl.assertQueryTrue(null, "null.oclIsUndefined()");
+        ocl.assertQueryFalse(null, "true.oclIsUndefined()");
+        ocl.assertQueryFalse(null, "false.oclIsUndefined()");
+        ocl.assertQueryFalse(null, "3.14.oclIsUndefined()");
+        ocl.assertQueryFalse(null, "1.oclIsUndefined()");
+        ocl.assertQueryFalse(null, "*.oclIsUndefined()");
+        ocl.assertQueryFalse(null, "'null'.oclIsUndefined()");
+        ocl.assertQueryFalse(ocl.pkg1, "self.oclIsUndefined()");
+		ocl.dispose();
     }
 
     /**
      * Tests the oclType() operator for Booleans.
      */
     @Test public void test_oclType_Boolean() {
+		MyOCL ocl = createOCL();
     	StandardLibrary standardLibrary = ocl.getStandardLibrary();
     	org.eclipse.ocl.pivot.Class booleanType = standardLibrary.getBooleanType();
     	org.eclipse.ocl.pivot.Class classType = standardLibrary.getClassType();
-    	assertQueryEquals(null, booleanType, "true.oclType()");
-    	assertQueryEquals(null, "Boolean", "true.oclType().name");
-		assertQueryEquals(null, booleanType, "Boolean");
-    	assertQueryEquals(null, "Boolean", "Boolean.name");
-    	assertQueryEquals(null, classType, "true.oclType().oclType()");
-    	assertQueryEquals(null, "Class", "true.oclType().oclType().name");
-    	assertQueryEquals(null, classType, "Boolean.oclType()");
-    	assertQueryEquals(null, "Class", "Boolean.oclType().name");
-    	assertQueryEquals(null, classType, "true.oclType().oclType().oclType()");
-    	assertQueryEquals(null, "Class", "true.oclType().oclType().oclType().name");
-    	assertQueryResults(null, "Set{false,true}", "Boolean.allInstances()");
-    	assertQueryResults(null, "Set{false,true}", "true.oclType().allInstances()");
-    	assertQueryResults(null, "Set{}", "Boolean.oclType().allInstances()");
-    	assertQueryEquals(null, 1, "true.oclType().ownedOperations->select(name = 'xor')->any(true).ownedParameters->size()");
+    	ocl.assertQueryEquals(null, booleanType, "true.oclType()");
+    	ocl.assertQueryEquals(null, "Boolean", "true.oclType().name");
+		ocl.assertQueryEquals(null, booleanType, "Boolean");
+    	ocl.assertQueryEquals(null, "Boolean", "Boolean.name");
+    	ocl.assertQueryEquals(null, classType, "true.oclType().oclType()");
+    	ocl.assertQueryEquals(null, "Class", "true.oclType().oclType().name");
+    	ocl.assertQueryEquals(null, classType, "Boolean.oclType()");
+    	ocl.assertQueryEquals(null, "Class", "Boolean.oclType().name");
+    	ocl.assertQueryEquals(null, classType, "true.oclType().oclType().oclType()");
+    	ocl.assertQueryEquals(null, "Class", "true.oclType().oclType().oclType().name");
+    	ocl.assertQueryResults(null, "Set{false,true}", "Boolean.allInstances()");
+    	ocl.assertQueryResults(null, "Set{false,true}", "true.oclType().allInstances()");
+    	ocl.assertQueryResults(null, "Set{}", "Boolean.oclType().allInstances()");
+    	ocl.assertQueryEquals(null, 1, "true.oclType().ownedOperations->select(name = 'xor')->any(true).ownedParameters->size()");
+		ocl.dispose();
     }
 
     /**
      * Tests the oclType() operator for Classifiers.
      */
     @Test public void test_oclType_Classifier() {
+		MyOCL ocl = createOCL();
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
     	StandardLibrary standardLibrary = metamodelManager.getStandardLibrary();
     	@SuppressWarnings("null") @NonNull Type packageType = metamodelManager.getPivotType("Package");
-       	assertQueryEquals(pkg1, packageType, "self.oclType()");
-    	assertQueryEquals(pkg1, "Package", "self.oclType().name");
-		assertQueryEquals(null, packageType, "Package");
-    	assertQueryEquals(null, "Package", "Package.name");
-    	assertQueryEquals(null, standardLibrary.getClassType(), "Package.oclType()");
-    	assertQueryResults(null, "Set{}", "Package.allInstances()");
-    	assertQueryEquals(pkg1, 8, "Package.allInstances()->size()");
-       	assertQueryResults(pkg1, "self.oclAsType(Package)->closure(ownedPackages)->including(self)", "Package.allInstances()");
-       	assertQueryEquals(pkg1, 8, "self.oclType().allInstances()->size()");
-       	assertQueryEquals(pkg1, 0, "Package.oclType().allInstances()->size()");
+       	ocl.assertQueryEquals(ocl.pkg1, packageType, "self.oclType()");
+    	ocl.assertQueryEquals(ocl.pkg1, "Package", "self.oclType().name");
+		ocl.assertQueryEquals(null, packageType, "Package");
+    	ocl.assertQueryEquals(null, "Package", "Package.name");
+    	ocl.assertQueryEquals(null, standardLibrary.getClassType(), "Package.oclType()");
+    	ocl.assertQueryResults(null, "Set{}", "Package.allInstances()");
+    	ocl.assertQueryEquals(ocl.pkg1, 8, "Package.allInstances()->size()");
+       	ocl.assertQueryResults(ocl.pkg1, "self.oclAsType(Package)->closure(ownedPackages)->including(self)", "Package.allInstances()");
+       	ocl.assertQueryEquals(ocl.pkg1, 8, "self.oclType().allInstances()->size()");
+       	ocl.assertQueryEquals(ocl.pkg1, 0, "Package.oclType().allInstances()->size()");
+		ocl.dispose();
     }
 
     /**
      * Tests the oclType() operator for Collections.
      */
     @Test public void test_oclType_Collection() {   	
+		MyOCL ocl = createOCL();
     	CompleteEnvironment completeEnvironment = ocl.getCompleteEnvironment();
     	StandardLibrary standardLibrary = ocl.getStandardLibrary();
-    	assertQueryEquals(null, 1, "Set{1}->oclType().ownedOperations->select(name = 'flatten')->size()");
-    	assertQueryEquals(null, completeEnvironment.getSetType(standardLibrary.getOclVoidType(), null, null), "Set{}->oclType()");
-    	assertQueryEquals(null, completeEnvironment.getSetType(standardLibrary.getIntegerType(), null, null), "Set{1}->oclType()");
-    	assertQueryResults(null, "Bag{'Integer'}", "Set{1}.oclType().name");
-    	assertQueryEquals(null, "Set", "Set{1}->oclType().name");
-    	assertSemanticErrorQuery(null, "Set{1}.allInstances()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Set(Integer)", "allInstances");
-    	assertSemanticErrorQuery(null, "Set{1}->allInstances()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Set(Integer)", "allInstances");
-    	assertSemanticErrorQuery(null, "Set{1}.oclType().allInstances()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bag(Class)", "allInstances");
-    	assertSemanticErrorQuery(null, "Set{1}->oclType().allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "Set(Integer)", "allInstances", "");
-    	assertQueryResults(null, "Set{}", "Set.oclType().allInstances()");
-    	assertQueryEquals(null, standardLibrary.getIntegerType(), "Set{1}->oclType().elementType");
+    	ocl.assertQueryEquals(null, 1, "Set{1}->oclType().ownedOperations->select(name = 'flatten')->size()");
+    	ocl.assertQueryEquals(null, completeEnvironment.getSetType(standardLibrary.getOclVoidType(), null, null), "Set{}->oclType()");
+    	ocl.assertQueryEquals(null, completeEnvironment.getSetType(standardLibrary.getIntegerType(), null, null), "Set{1}->oclType()");
+    	ocl.assertQueryResults(null, "Bag{'Integer'}", "Set{1}.oclType().name");
+    	ocl.assertQueryEquals(null, "Set", "Set{1}->oclType().name");
+    	ocl.assertSemanticErrorQuery(null, "Set{1}.allInstances()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Set(Integer)", "allInstances");
+    	ocl.assertSemanticErrorQuery(null, "Set{1}->allInstances()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Set(Integer)", "allInstances");
+    	ocl.assertSemanticErrorQuery(null, "Set{1}.oclType().allInstances()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bag(Class)", "allInstances");
+    	ocl.assertSemanticErrorQuery(null, "Set{1}->oclType().allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "Set(Integer)", "allInstances", "");
+    	ocl.assertQueryResults(null, "Set{}", "Set.oclType().allInstances()");
+    	ocl.assertQueryEquals(null, standardLibrary.getIntegerType(), "Set{1}->oclType().elementType");
+		ocl.dispose();
     }
 
     /**
      * Tests the oclType() operator for Enumerations.
      */
     @Test public void test_oclType_Enumeration() {
+		MyOCL ocl = createOCL();
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
     	StandardLibrary standardLibrary = ocl.getStandardLibrary();
     	@SuppressWarnings("null") @NonNull Type collectionKindType = metamodelManager.getPivotType("CollectionKind");
-//    	assertQueryEquals(null, metamodelManager.getPivotType("EnumerationLiteral"), "CollectionKind::Set.oclType()");
+//    	ocl.assertQueryEquals(null, metamodelManager.getPivotType("EnumerationLiteral"), "CollectionKind::Set.oclType()");
     	// NB this is not EnumerationLiteral: cf. 4.oclType() is Integer not IntegerLiteral.
-    	assertQueryEquals(null, metamodelManager.getPivotType("CollectionKind"), "CollectionKind::Set.oclType()");
-    	assertQueryEquals(null, "CollectionKind", "CollectionKind::Set.oclType().name");
-    	assertQueryEquals(null, collectionKindType, "CollectionKind");
-    	assertQueryEquals(null, "CollectionKind", "CollectionKind.name");
-    	assertQueryEquals(null, standardLibrary.getClassType(), "CollectionKind.oclType()");
-    	assertQueryEquals(null, 5, "CollectionKind.allLiterals->size()");
-    	assertSemanticErrorQuery(null, "CollectionKind.oclType().ownedLiteral", PivotMessagesInternal.UnresolvedStaticProperty_ERROR_, "Class", "ownedLiteral");
-    	assertQueryResults(null, "Set{CollectionKind::Bag,CollectionKind::Collection,CollectionKind::_'OrderedSet',CollectionKind::_'Sequence',CollectionKind::_'Set'}", "CollectionKind.allInstances()");
-    	assertQueryResults(null, "Set{CollectionKind::Bag,CollectionKind::Collection,CollectionKind::OrderedSet,CollectionKind::Sequence,CollectionKind::Set}", "CollectionKind::Set.oclType().allInstances()");
-    	assertQueryResults(null, "Set{}", "CollectionKind.oclType().allInstances()");
+    	ocl.assertQueryEquals(null, metamodelManager.getPivotType("CollectionKind"), "CollectionKind::Set.oclType()");
+    	ocl.assertQueryEquals(null, "CollectionKind", "CollectionKind::Set.oclType().name");
+    	ocl.assertQueryEquals(null, collectionKindType, "CollectionKind");
+    	ocl.assertQueryEquals(null, "CollectionKind", "CollectionKind.name");
+    	ocl.assertQueryEquals(null, standardLibrary.getClassType(), "CollectionKind.oclType()");
+    	ocl.assertQueryEquals(null, 5, "CollectionKind.allLiterals->size()");
+    	ocl.assertSemanticErrorQuery(null, "CollectionKind.oclType().ownedLiteral", PivotMessagesInternal.UnresolvedStaticProperty_ERROR_, "Class", "ownedLiteral");
+    	ocl.assertQueryResults(null, "Set{CollectionKind::Bag,CollectionKind::Collection,CollectionKind::_'OrderedSet',CollectionKind::_'Sequence',CollectionKind::_'Set'}", "CollectionKind.allInstances()");
+    	ocl.assertQueryResults(null, "Set{CollectionKind::Bag,CollectionKind::Collection,CollectionKind::OrderedSet,CollectionKind::Sequence,CollectionKind::Set}", "CollectionKind::Set.oclType().allInstances()");
+    	ocl.assertQueryResults(null, "Set{}", "CollectionKind.oclType().allInstances()");
+		ocl.dispose();
     }
 
     /**
      * Tests the oclType() operator for Numerics.
      */
     @Test public void test_oclType_Numeric() {
+		MyOCL ocl = createOCL();
     	StandardLibrary standardLibrary = ocl.getStandardLibrary();
     	org.eclipse.ocl.pivot.Class integerType = standardLibrary.getIntegerType();
-    	assertQueryEquals(null, standardLibrary.getIntegerType(), "3.oclType()");
-    	assertQueryEquals(null, standardLibrary.getRealType(), "3.0.oclType()");
-    	assertQueryEquals(null, standardLibrary.getUnlimitedNaturalType(), "*.oclType()");
-		assertQueryEquals(null, standardLibrary.getClassType(), "Integer.oclType()");
-    	assertQueryEquals(null, integerType, "Integer");
-    	assertSemanticErrorQuery(null, "Integer.allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "Integer", "allInstances", "");
-    	assertSemanticErrorQuery(null, "3.oclType().allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "Integer", "allInstances", "");
-    	assertQueryResults(null, "Set{}", "Integer.oclType().allInstances()");
-		assertQueryEquals(null, "Integer", "4.oclType().name");
+    	ocl.assertQueryEquals(null, standardLibrary.getIntegerType(), "3.oclType()");
+    	ocl.assertQueryEquals(null, standardLibrary.getRealType(), "3.0.oclType()");
+    	ocl.assertQueryEquals(null, standardLibrary.getUnlimitedNaturalType(), "*.oclType()");
+		ocl.assertQueryEquals(null, standardLibrary.getClassType(), "Integer.oclType()");
+    	ocl.assertQueryEquals(null, integerType, "Integer");
+    	ocl.assertSemanticErrorQuery(null, "Integer.allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "Integer", "allInstances", "");
+    	ocl.assertSemanticErrorQuery(null, "3.oclType().allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "Integer", "allInstances", "");
+    	ocl.assertQueryResults(null, "Set{}", "Integer.oclType().allInstances()");
+		ocl.assertQueryEquals(null, "Integer", "4.oclType().name");
+		ocl.dispose();
      }
 
     /**
      * Tests the oclType() operator for OclAny.
      */
     @Test public void test_oclType_OclAny() {
+		MyOCL ocl = createOCL();
     	StandardLibrary standardLibrary = ocl.getStandardLibrary();
     	org.eclipse.ocl.pivot.Class anyType = standardLibrary.getOclAnyType();
-    	assertQueryEquals(null, standardLibrary.getOclVoidType(), "null.oclAsType(OclAny).oclType()");		// Cast does not change the dynamic type
-//    	assertQueryEquals(null, "OclAny", "null.oclAsType(OclAny).name");
-		assertQueryEquals(null, anyType, "OclAny");
-    	assertQueryEquals(null, "OclAny", "OclAny.name");
-    	assertQueryEquals(null, standardLibrary.getClassType(), "OclAny.oclType()");
-    	assertSemanticErrorQuery(null, "OclAny.allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "OclAny", "allInstances", "");
-    	assertSemanticErrorQuery(null, "null.oclAsType(OclAny).oclType().allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "OclAny", "allInstances", "");
-    	assertQueryResults(null, "Set{}", "OclAny.oclType().allInstances()");
+    	ocl.assertQueryEquals(null, standardLibrary.getOclVoidType(), "null.oclAsType(OclAny).oclType()");		// Cast does not change the dynamic type
+//    	ocl.assertQueryEquals(null, "OclAny", "null.oclAsType(OclAny).name");
+		ocl.assertQueryEquals(null, anyType, "OclAny");
+    	ocl.assertQueryEquals(null, "OclAny", "OclAny.name");
+    	ocl.assertQueryEquals(null, standardLibrary.getClassType(), "OclAny.oclType()");
+    	ocl.assertSemanticErrorQuery(null, "OclAny.allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "OclAny", "allInstances", "");
+    	ocl.assertSemanticErrorQuery(null, "null.oclAsType(OclAny).oclType().allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "OclAny", "allInstances", "");
+    	ocl.assertQueryResults(null, "Set{}", "OclAny.oclType().allInstances()");
+		ocl.dispose();
     }
 
     /**
      * Tests the oclType() operator for OclInvalid.
      */
     @Test public void test_oclType_OclInvalid() {
+		MyOCL ocl = createOCL();
     	StandardLibrary standardLibrary = ocl.getStandardLibrary();
     	org.eclipse.ocl.pivot.Class invalidType = standardLibrary.getOclInvalidType();
-    	assertQueryInvalid(null, "invalid.oclType()");
-    	assertQueryInvalid(null, "invalid.oclType().name");
-		assertQueryEquals(null, invalidType, "OclInvalid");
-    	assertQueryEquals(null, "OclInvalid", "OclInvalid.name");
-    	assertQueryEquals(null, standardLibrary.getClassType(), "OclInvalid.oclType()");
-    	assertQueryInvalid(null, "OclInvalid.allInstances()");
-    	assertQueryInvalid(null, "invalid.oclType().allInstances()");
-    	assertQueryResults(null, "Set{}", "OclInvalid.oclType().allInstances()");
-    	assertQueryInvalid(null, "invalid.oclType().ownedOperations->select(name = '=')->any(true).ownedParameters->size()");
+    	ocl.assertQueryInvalid(null, "invalid.oclType()");
+    	ocl.assertQueryInvalid(null, "invalid.oclType().name");
+		ocl.assertQueryEquals(null, invalidType, "OclInvalid");
+    	ocl.assertQueryEquals(null, "OclInvalid", "OclInvalid.name");
+    	ocl.assertQueryEquals(null, standardLibrary.getClassType(), "OclInvalid.oclType()");
+    	ocl.assertQueryInvalid(null, "OclInvalid.allInstances()");
+    	ocl.assertQueryInvalid(null, "invalid.oclType().allInstances()");
+    	ocl.assertQueryResults(null, "Set{}", "OclInvalid.oclType().allInstances()");
+    	ocl.assertQueryInvalid(null, "invalid.oclType().ownedOperations->select(name = '=')->any(true).ownedParameters->size()");
+		ocl.dispose();
     }
 
     /**
      * Tests the oclType() operator for OclVoid.
      */
     @Test public void test_oclType_OclVoid() {
+		MyOCL ocl = createOCL();
     	StandardLibrary standardLibrary = ocl.getStandardLibrary();
     	org.eclipse.ocl.pivot.Class nullType = standardLibrary.getOclVoidType();
-    	assertQueryEquals(null, nullType, "null.oclType()");
-    	assertQueryEquals(null, "OclVoid", "null.oclType().name");
-		assertQueryEquals(null, nullType, "OclVoid");
-    	assertQueryEquals(null, "OclVoid", "OclVoid.name");
-    	assertQueryEquals(null, standardLibrary.getClassType(), "OclVoid.oclType()");
-    	assertQueryResults(null, "Set{null}", "OclVoid.allInstances()");
-    	assertQueryResults(null, "Set{null}", "null.oclType().allInstances()");
-    	assertQueryResults(null, "Set{}", "OclVoid.oclType().allInstances()");
-    	assertQueryEquals(null, 1, "null.oclType().ownedOperations->select(name = '=')->any(true).ownedParameters->size()");
+    	ocl.assertQueryEquals(null, nullType, "null.oclType()");
+    	ocl.assertQueryEquals(null, "OclVoid", "null.oclType().name");
+		ocl.assertQueryEquals(null, nullType, "OclVoid");
+    	ocl.assertQueryEquals(null, "OclVoid", "OclVoid.name");
+    	ocl.assertQueryEquals(null, standardLibrary.getClassType(), "OclVoid.oclType()");
+    	ocl.assertQueryResults(null, "Set{null}", "OclVoid.allInstances()");
+    	ocl.assertQueryResults(null, "Set{null}", "null.oclType().allInstances()");
+    	ocl.assertQueryResults(null, "Set{}", "OclVoid.oclType().allInstances()");
+    	ocl.assertQueryEquals(null, 1, "null.oclType().ownedOperations->select(name = '=')->any(true).ownedParameters->size()");
+		ocl.dispose();
     }
 
     /**
      * Tests the oclType() operator for Tuples.
      */
     @Test public void test_oclType_Tuple() {
+		MyOCL ocl = createOCL();
     	StandardLibrary standardLibrary = ocl.getStandardLibrary();
     	TuplePartId partId = IdManager.getTuplePartId(0, "a", TypeId.INTEGER);
     	TupleTypeId tupleId = IdManager.getTupleTypeId("Tuple", partId);
     	TupleType tupleType = ocl.getIdResolver().getTupleType(tupleId);
 //    	Metaclass<?> tupleMetaclass = getMetaclass(tupleType);
-		assertQueryEquals(null, tupleType, "Tuple{a:Integer=3}.oclType()");
-    	assertQueryEquals(null, tupleType, "Tuple(a:Integer)");
-		assertQueryEquals(null, standardLibrary.getClassType(), "Tuple(a:Integer).oclType()");
-    	assertSemanticErrorQuery(null, "Tuple(a:Integer).allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "Tuple(a:Integer)", "allInstances", "");
-    	assertSemanticErrorQuery(null, "Tuple{a:Integer=3}.oclType().allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "Tuple(a:Integer)", "allInstances", "");	// FIXME
-    	assertQueryResults(null, "Set{}", "Tuple(a:Integer).oclType().allInstances()");
-		assertQueryEquals(null, "Tuple", "Tuple{a:Integer=3}.oclType().name");
+		ocl.assertQueryEquals(null, tupleType, "Tuple{a:Integer=3}.oclType()");
+    	ocl.assertQueryEquals(null, tupleType, "Tuple(a:Integer)");
+		ocl.assertQueryEquals(null, standardLibrary.getClassType(), "Tuple(a:Integer).oclType()");
+		ocl.assertSemanticErrorQuery(null, "Tuple(a:Integer).allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "Tuple(a:Integer)", "allInstances", "");
+		ocl.assertSemanticErrorQuery(null, "Tuple{a:Integer=3}.oclType().allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "Tuple(a:Integer)", "allInstances", "");	// FIXME
+    	ocl.assertQueryResults(null, "Set{}", "Tuple(a:Integer).oclType().allInstances()");
+		ocl.assertQueryEquals(null, "Tuple", "Tuple{a:Integer=3}.oclType().name");
+		ocl.dispose();
      }
 
     /**
      * Tests the oclType() operator.
      */
     @Test public void test_oclType() {
+		MyOCL ocl = createOCL();
     	StandardLibrary standardLibrary = ocl.getStandardLibrary();
-		assertQueryEquals(null, standardLibrary.getStringType(), "'string'.oclType()");
-		assertQueryEquals(null, standardLibrary.getOclVoidType(), "self.oclType()");
-    	assertQueryEquals(null, standardLibrary.getClassType(), "3.oclType().oclType()");
-    	assertQueryEquals(null, standardLibrary.getClassType(), "3.oclType().oclType().oclType()");
-    	assertQueryEquals(null, standardLibrary.getClassType(), "Boolean.oclType()");
-    	assertQueryEquals(null, "Class", "Boolean.oclType().name");
-    	assertSemanticErrorQuery(null, "3.oclType(OclAny)", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Integer", "oclType", "OclAny");
+		ocl.assertQueryEquals(null, standardLibrary.getStringType(), "'string'.oclType()");
+		ocl.assertQueryEquals(null, standardLibrary.getOclVoidType(), "self.oclType()");
+    	ocl.assertQueryEquals(null, standardLibrary.getClassType(), "3.oclType().oclType()");
+    	ocl.assertQueryEquals(null, standardLibrary.getClassType(), "3.oclType().oclType().oclType()");
+    	ocl.assertQueryEquals(null, standardLibrary.getClassType(), "Boolean.oclType()");
+    	ocl.assertQueryEquals(null, "Class", "Boolean.oclType().name");
+    	ocl.assertSemanticErrorQuery(null, "3.oclType(OclAny)", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Integer", "oclType", "OclAny");
+		ocl.dispose();
     }
 
 //	@Test public void testMetaclassInstanceType() {
-//		assertQueryEquals(null, metamodelManager.getSequenceType(metamodelManager.getIntegerType()), "Sequence(Integer).oclType().instanceType");
+//		ocl.assertQueryEquals(null, metamodelManager.getSequenceType(metamodelManager.getIntegerType()), "Sequence(Integer).oclType().instanceType");
 //	}
     
     @Test public void testToString() {
-    	loadEPackage("ecore", EcorePackage.eINSTANCE);
+		MyOCL ocl = createOCL();
+    	ocl.loadEPackage("ecore", EcorePackage.eINSTANCE);
     	@SuppressWarnings("null") @NonNull String emfString = EcoreFactory.eINSTANCE.createFromString(EcorePackage.Literals.EDATE, "2000-01-24").toString();
-        assertQueryEquals(null, emfString, "ecore::EDate{'2000-01-24'}.toString()");
+        ocl.assertQueryEquals(null, emfString, "ecore::EDate{'2000-01-24'}.toString()");
+		ocl.dispose();
     }
-
-	public @NonNull Type getCollectionType(@NonNull String collectionName, @NonNull Type type) {
-		MetamodelManager metamodelManager = ocl.getMetamodelManager();
-		Type collectionType = metamodelManager.getCollectionType(collectionName, type, null, null);
-		metamodelManager.addLockedElement(collectionType);
-		return collectionType;
-	}
 }

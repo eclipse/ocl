@@ -32,6 +32,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.common.internal.preferences.CommonPreferenceInitializer;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
@@ -65,8 +66,8 @@ public class UMLValidateTest extends AbstractValidateTests
 	{
 		StringBuilder s = new StringBuilder();
 		
-		public LoaderWithLog(@NonNull ResourceSet resourceSet) {
-			super(resourceSet);
+		public LoaderWithLog(@NonNull EnvironmentFactory environmentFactory) {
+			super(environmentFactory);
 		}
 
 		@Override
@@ -190,7 +191,8 @@ public class UMLValidateTest extends AbstractValidateTests
 	}
 
 	public void test_tutorial_umlValidation_436903() {
-		ResourceSet resourceSet = createResourceSet();
+		OCL ocl = OCL.newInstance(getProjectMap());
+		ResourceSet resourceSet = ocl.getResourceSet(); //createResourceSet();
 		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
 			assertNull(UML2AS.initialize(resourceSet));
 		}
@@ -202,7 +204,7 @@ public class UMLValidateTest extends AbstractValidateTests
 		assertNoResourceErrors("Loading", umlResource);
 		assertValidationDiagnostics("Loading", umlResource);
 		URI oclURI = getProjectFileURI("ExtraUMLValidation.ocl");
-		CompleteOCLLoader helper = new CompleteOCLLoader(resourceSet)
+		CompleteOCLLoader helper = new CompleteOCLLoader(ocl.getEnvironmentFactory())
 		{
 			@Override
 			protected boolean error(@NonNull String primaryMessage, @Nullable String detailMessage) {
@@ -235,10 +237,13 @@ public class UMLValidateTest extends AbstractValidateTests
 			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Class", "CamelCaseName", NameUtil.qualifiedNameFor(umlClass1)));
 		//
 		disposeResourceSet(resourceSet);
+		helper.dispose();
+		ocl.dispose();
 	}
 
 	public void test_umlValidation_404882() {
-		ResourceSet resourceSet = createResourceSet();
+		OCL ocl = OCL.newInstance(getProjectMap());
+		ResourceSet resourceSet = ocl.getResourceSet(); //createResourceSet();
 		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
 			assertNull(UML2AS.initialize(resourceSet));
 		}
@@ -250,7 +255,7 @@ public class UMLValidateTest extends AbstractValidateTests
 		assertNoResourceErrors("Loading", umlResource);
 		assertValidationDiagnostics("Loading", umlResource);
 		URI oclURI = getProjectFileURI("Bug404882.ocl");
-		LoaderWithLog helper = new LoaderWithLog(resourceSet);
+		LoaderWithLog helper = new LoaderWithLog(ocl.getEnvironmentFactory());
 		MetamodelManager metamodelManager = helper.getMetamodelManager();
 		ProjectManager projectMap = metamodelManager.getProjectManager();
 		projectMap.configure(metamodelManager.getExternalResourceSet(), StandaloneProjectMap.LoadGeneratedPackageStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
@@ -268,6 +273,8 @@ public class UMLValidateTest extends AbstractValidateTests
 //BUG 437450				assertValidationDiagnostics("Loading", umlResource);
 		//
 		disposeResourceSet(resourceSet);
+		helper.dispose();
+		ocl.dispose();
 	}
 
 	public void test_umlValidation_432920() {

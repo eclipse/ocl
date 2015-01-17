@@ -63,6 +63,21 @@ import org.eclipse.ocl.pivot.utilities.Pivotable;
 public class PivotUtilInternal //extends PivotUtil
 {	
 	private static final Logger logger = Logger.getLogger(PivotUtilInternal.class);
+	public static boolean noDebug = true;
+	private static long startTime = System.currentTimeMillis();
+	
+	public static void debugPrintln(@Nullable Object string) {
+		if (!noDebug) {
+			System.out.printf("%6.3f [%s] %s\n", 0.001 * (System.currentTimeMillis() - startTime), Thread.currentThread().getName(), String.valueOf(string));
+		}		
+	}
+	
+	public static void debugReset() {
+		startTime = System.currentTimeMillis();
+		if (!noDebug) {
+			System.out.println("");
+		}		
+	}
 	
 	public static @Nullable MetamodelManager findMetamodelManager(@NonNull EObject eObject) {
 		EObject eRoot = EcoreUtil.getRootContainer(eObject);

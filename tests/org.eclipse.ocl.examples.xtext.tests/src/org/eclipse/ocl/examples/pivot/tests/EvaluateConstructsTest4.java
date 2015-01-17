@@ -15,11 +15,10 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.pivot.tests.EvaluateUMLTest4.MyOCL;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.osgi.util.NLS;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -44,6 +43,11 @@ public class EvaluateConstructsTest4 extends PivotTestSuite
 	}
 
 	@Override
+	protected @NonNull MyOCL createOCL() {
+		return new MyOCL(getTestPackageName(), getName());
+	}
+
+	@Override
 	protected @NonNull String getTestPackageName() {
 		return "EvaluateConstructs";
 	}
@@ -52,63 +56,59 @@ public class EvaluateConstructsTest4 extends PivotTestSuite
 		PivotTestSuite.resetCounter();
     }
 
-    @Override
-    @Before public void setUp() throws Exception {
-        super.setUp();
-    }
-
-	@Override
-	@After public void tearDown() throws Exception {
-		super.tearDown();
-	}
-
 	@Test public void testConstruct_if() throws Exception {		
-		assertQueryFalse(null, "if true then false else false endif");
-		assertQueryEquals(null, 1, "if true then 1 else 2 endif");
-		assertQueryEquals(null, 2, "if false then 1 else 2 endif");
-		assertQueryEquals(null, 3.0, "if true then 3 else 4.0 endif");
-		assertQueryEquals(null, 4.0, "if false then 3 else 4.0 endif");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryFalse(null, "if true then false else false endif");
+		ocl.assertQueryEquals(null, 1, "if true then 1 else 2 endif");
+		ocl.assertQueryEquals(null, 2, "if false then 1 else 2 endif");
+		ocl.assertQueryEquals(null, 3.0, "if true then 3 else 4.0 endif");
+		ocl.assertQueryEquals(null, 4.0, "if false then 3 else 4.0 endif");
 		//
-		assertValidationErrorQuery(null, "if null then 1 else 2 endif",
+		ocl.assertValidationErrorQuery(null, "if null then 1 else 2 endif",
 			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "IfExp", "ConditionTypeIsBoolean", "if null then 1 else 2 endif");
-		assertQueryInvalid(null, "if null then 1 else 2 endif");
-		assertQueryInvalid(null, "if invalid then 1 else 2 endif");
+		ocl.assertQueryInvalid(null, "if null then 1 else 2 endif");
+		ocl.assertQueryInvalid(null, "if invalid then 1 else 2 endif");
 		//
-		assertQueryEquals(null, 4.5, "if true then 4.5 else null endif");
-		assertQueryEquals(null, "ok", "if false then null else 'ok' endif");
-		assertQueryEquals(null, 4.5, "if true then 4.5 else invalid endif");
-		assertQueryEquals(null, "ok", "if false then invalid else 'ok' endif");
+		ocl.assertQueryEquals(null, 4.5, "if true then 4.5 else null endif");
+		ocl.assertQueryEquals(null, "ok", "if false then null else 'ok' endif");
+		ocl.assertQueryEquals(null, 4.5, "if true then 4.5 else invalid endif");
+		ocl.assertQueryEquals(null, "ok", "if false then invalid else 'ok' endif");
 		//
-		assertQueryTrue(null, "if self.oclIsUndefined() then true else false endif");
-		assertQueryInvalid(null, "if 4 then 4 else 4 endif",
+		ocl.assertQueryTrue(null, "if self.oclIsUndefined() then true else false endif");
+		ocl.assertQueryInvalid(null, "if 4 then 4 else 4 endif",
 			NLS.bind(PivotMessages.TypedValueRequired, "Boolean", "Integer"), null);
-		assertQueryEquals(null, 4, "if 4=4 then 4 else 4 endif");
+		ocl.assertQueryEquals(null, 4, "if 4=4 then 4 else 4 endif");
 		//
-		assertValidQuery(ocl.getStandardLibrary().getOclAnyType(), "let a : Boolean = false in if true then OrderedSet{5} else OrderedSet{} endif->first()+5");
+		ocl.assertValidQuery(ocl.getStandardLibrary().getOclAnyType(), "let a : Boolean = false in if true then OrderedSet{5} else OrderedSet{} endif->first()+5");
+		ocl.dispose();
 	}
 
 	@Test public void testConstruct_let() {		
-		assertQueryEquals(null, 3, "let a : Integer = 1 in a + 2");
-		assertQueryEquals(null, 7, "1 + let a : Integer = 2 in a * 3");
-		assertQueryEquals(null, 4/2+5*3, "4/2 + let a : Integer = 5 in a * 3");
-		assertQueryEquals(null, 4/2+3*5*7, "4/2 + (let a : Integer = 5 in 3 * (let b : Integer = 7 in a * b))");
-		assertSemanticErrorQuery(null, "4/2 + (let a : Integer = 5 in 3) * (let b : Integer = 7 in a * b)",
+		TestOCL ocl = createOCL();
+		ocl.assertQueryEquals(null, 3, "let a : Integer = 1 in a + 2");
+		ocl.assertQueryEquals(null, 7, "1 + let a : Integer = 2 in a * 3");
+		ocl.assertQueryEquals(null, 4/2+5*3, "4/2 + let a : Integer = 5 in a * 3");
+		ocl.assertQueryEquals(null, 4/2+3*5*7, "4/2 + (let a : Integer = 5 in 3 * (let b : Integer = 7 in a * b))");
+		ocl.assertSemanticErrorQuery(null, "4/2 + (let a : Integer = 5 in 3) * (let b : Integer = 7 in a * b)",
 			PivotMessagesInternal.UnresolvedProperty_ERROR_, "", "a");
-		assertQueryEquals(null, 4/2+3*5*7, "4/2 + let a : Integer = 5 in 3 * let b : Integer = 7 in a * b");
-		assertQueryEquals(null, (64.0 / 16) / (8 / 4), "(64 / 16) / (let b : Integer = 0 in 8 / (let c : Integer = 0 in 4 ))");
-		assertQueryEquals(null, (64.0 / 16) / (8 / 4), "64 / 16 / let b : Integer = 0 in 8 / let c : Integer = 0 in 4");
-		assertQueryEquals(null, -5, "-let a : Integer = 5 in a");
+		ocl.assertQueryEquals(null, 4/2+3*5*7, "4/2 + let a : Integer = 5 in 3 * let b : Integer = 7 in a * b");
+		ocl.assertQueryEquals(null, (64.0 / 16) / (8 / 4), "(64 / 16) / (let b : Integer = 0 in 8 / (let c : Integer = 0 in 4 ))");
+		ocl.assertQueryEquals(null, (64.0 / 16) / (8 / 4), "64 / 16 / let b : Integer = 0 in 8 / let c : Integer = 0 in 4");
+		ocl.assertQueryEquals(null, -5, "-let a : Integer = 5 in a");
 		//
-		assertQueryEquals(null, 5 * 7 * 9, "let a : Integer = 5, b : Real = 7, c : UnlimitedNatural = 9 in a * b * c.toInteger()");
+		ocl.assertQueryEquals(null, 5 * 7 * 9, "let a : Integer = 5, b : Real = 7, c : UnlimitedNatural = 9 in a * b * c.toInteger()");
 		//
-		assertQueryNull(null, "let a : Integer = null in a");
+		ocl.assertQueryNull(null, "let a : Integer = null in a");
 		//
-		assertQueryInvalid(null, "let a : Integer = invalid in a");
+		ocl.assertQueryInvalid(null, "let a : Integer = invalid in a");
+		ocl.dispose();
 	}
 
 	@Test public void testConstruct_invalidIndexOf_456057() {		
-		assertQueryInvalid(null, "let s = Sequence{0.0,0.0,0.0}, t = Sequence{1.0,2.0,3.0} in s->collect(r | r + t->at(t->indexOf(r))) ");
-		assertQueryResults(null, "Sequence{1.0,1.0,1.0}", "let s = Sequence{0.0,0.0,0.0} in s->collect(r | r + Sequence{1.0,2.0,3.0}->at(s->indexOf(r)))");
-		assertQueryResults(null, "Sequence{2.0,4.0,6.0}", "let s = Sequence{1.0,2.0,3.0} in s->collect(r | r + Sequence{1.0,2.0,3.0}->at(s->indexOf(r)))");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryInvalid(null, "let s = Sequence{0.0,0.0,0.0}, t = Sequence{1.0,2.0,3.0} in s->collect(r | r + t->at(t->indexOf(r))) ");
+		ocl.assertQueryResults(null, "Sequence{1.0,1.0,1.0}", "let s = Sequence{0.0,0.0,0.0} in s->collect(r | r + Sequence{1.0,2.0,3.0}->at(s->indexOf(r)))");
+		ocl.assertQueryResults(null, "Sequence{2.0,4.0,6.0}", "let s = Sequence{1.0,2.0,3.0} in s->collect(r | r + Sequence{1.0,2.0,3.0}->at(s->indexOf(r)))");
+		ocl.dispose();
 	}
 }

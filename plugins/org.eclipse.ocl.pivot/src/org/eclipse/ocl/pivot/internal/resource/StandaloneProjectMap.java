@@ -58,6 +58,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.internal.compatibility.EMF_2_9;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -2283,16 +2284,15 @@ public class StandaloneProjectMap extends SingletonAdapterImpl implements Projec
 	/**
 	 * Leak debugging aid. Set non-null to diagnose MetamodelManager construction and finalization.
 	 */
-//	public static WeakHashMap<StandaloneProjectMap,Object> liveStandaloneProjectMaps = null;
+	public static WeakHashMap<StandaloneProjectMap,Object> liveStandaloneProjectMaps = null;
 
 	public StandaloneProjectMap() {
 		super();
-//		System.out.println("Create " + getClass().getSimpleName());
-//		if (liveStandaloneProjectMaps != null) {
-//			liveStandaloneProjectMaps.put(this, null);
-//			System.out.println(Thread.currentThread().getName() + " Create " + getClass().getSimpleName()
-//				+ "@" + Integer.toHexString(System.identityHashCode(this)));	
-//		}
+		if (liveStandaloneProjectMaps != null) {
+			liveStandaloneProjectMaps.put(this, null);
+			PivotUtilInternal.debugPrintln("Create " + getClass().getSimpleName()
+				+ "@" + Integer.toHexString(System.identityHashCode(this)));	
+		}
 	}
 
 	/**
@@ -2348,10 +2348,10 @@ public class StandaloneProjectMap extends SingletonAdapterImpl implements Projec
 		return new ProjectDescriptor(this, projectName, locationURI);
 	}
 
-/*	@Override
+	@Override
 	protected void finalize() throws Throwable {
 		if (liveStandaloneProjectMaps != null) {
-			System.out.println("Finalize " + getClass().getSimpleName()
+			PivotUtilInternal.debugPrintln("Finalize " + getClass().getSimpleName()
 				+ "@" + Integer.toHexString(System.identityHashCode(this)));		
 			List<StandaloneProjectMap> keySet = new ArrayList<StandaloneProjectMap>(liveStandaloneProjectMaps.keySet());
 			if (!keySet.isEmpty()) {
@@ -2363,7 +2363,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl implements Projec
 				System.out.println(s);		
 			}
 		}
-	} */
+	}
 
 	/**
 	 * Return the IPackageDescriptor for a given nsURI.

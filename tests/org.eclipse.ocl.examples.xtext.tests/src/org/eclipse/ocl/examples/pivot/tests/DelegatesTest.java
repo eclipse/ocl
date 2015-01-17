@@ -99,11 +99,11 @@ import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
+import org.junit.AfterClass;
 
 import codegen.company.CodegencompanyFactory;
 import codegen.company.CodegencompanyPackage;
 import codegen.company.util.CodegencompanyValidator;
-
 import company.CompanyFactory;
 import company.CompanyPackage;
 import company.util.CompanyValidator;
@@ -112,7 +112,7 @@ import company.util.CompanyValidator;
  * Tests for the OCL delegate implementations.
  */
 @SuppressWarnings("nls")
-public class DelegatesTest extends PivotTestCase
+public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 {
 	protected static final @NonNull String COMPANY_XMI = "/model/Company.xmi";	
 	protected static final @NonNull String NO_REFLECTION_COMPANY_XMI = "/model/NoReflectionCompany.xmi";
@@ -243,6 +243,7 @@ public class DelegatesTest extends PivotTestCase
 		sizeLarge = sizeKind.getEEnumLiteral("large").getInstance();
 
 		employees = new java.util.HashMap<String, EObject>();
+//		MetamodelManagerResourceAdapter.getAdapter(companyPackage.eResource(), metamodelManager);
 	}
 
 	protected Resource initModelWithErrors(@NonNull ResourceSet resourceSet) {
@@ -258,7 +259,7 @@ public class DelegatesTest extends PivotTestCase
 	}
 
 	@SuppressWarnings("null")
-	protected @NonNull OCL initModelWithErrorsAndOcl(@NonNull ResourceSet resourceSet) {
+	protected void initModelWithErrorsAndOcl(@NonNull ResourceSet resourceSet) {
 		doCompleteOCLSetup();
 		Resource ecoreResource = initModelWithErrors(resourceSet);
 		OCL.Internal ocl = configureMetamodelManagerForDelegate(companyPackage);
@@ -286,7 +287,7 @@ public class DelegatesTest extends PivotTestCase
 		for (org.eclipse.ocl.pivot.Package nestedPackage : pivotModel.getOwnedPackages()) {
 			pivotInstaller.installDelegates(metamodelManager.getCompletePackage(nestedPackage));
 		}
-		return ocl;
+		ocl.dispose();
 	}
 
 	protected void initPackageRegistrations(@NonNull ResourceSet resourceSet) {
@@ -328,6 +329,7 @@ public class DelegatesTest extends PivotTestCase
 //		resourceSet.getPackageRegistry().remove(CompanyPackage.eNS_URI);				// In case previous test failed
 		EPackage.Registry.INSTANCE.remove(NoreflectioncompanyPackage.eNS_URI);			// Reference and nullify the side effect of the reference
 //		resourceSet.getPackageRegistry().remove(NoreflectioncompanyPackage.eNS_URI);	// In case previous test failed
+//		PivotUtilInternal.debugPrintln("Done Setup");	
 	}
 
 	@SuppressWarnings("null")
@@ -337,7 +339,7 @@ public class DelegatesTest extends PivotTestCase
 			testResource.unload();
 		}
 		EValidator.Registry.INSTANCE.remove(null);
-		OCL.Internal.disposeGlobalEnvironmentFactory();
+//		OCL.Internal.disposeGlobalEnvironmentFactory();
 		if (EPackage.Registry.INSTANCE.getEFactory(CompanyPackage.eNS_URI) instanceof CompanyFactory) {
 			DelegateEPackageAdapter adapter = DelegateEPackageAdapter.findAdapter(CompanyPackage.eINSTANCE);
 			if (adapter != null) {
@@ -356,9 +358,15 @@ public class DelegatesTest extends PivotTestCase
 				adapter.unloadDelegates();
 			}
 		}
+		autoTearDown();
 		super.tearDown();
 	}
 
+	@AfterClass
+	protected void tearDownClass() throws Exception {
+		OCL.Internal.disposeGlobalEnvironmentFactory();
+	}
+	
 	public void doTest_allInstances(@NonNull ResourceSet resourceSet, @NonNull String modelName) {
 		initModel(resourceSet, modelName);
 		Collection<EObject> amyAllReports = allReports(employee("Amy"));
@@ -383,7 +391,6 @@ public class DelegatesTest extends PivotTestCase
 		EObject employee = create(acme, companyEmployees, employeeClass, null);
 		set(employee, employeeManager, employee("Bob"));
 		validateConstraintWithSeverity("mustHaveName", Diagnostic.WARNING, employee);
-		
 		set(employee, employeeName, "Joe");
 		validateWithoutError(employee);
 
@@ -571,12 +578,14 @@ public class DelegatesTest extends PivotTestCase
 	}
 
 	public void test_allInstances() {
+		OCL.Internal.disposeGlobalEnvironmentFactory();
 		ResourceSet resourceSet = createResourceSet();
 		doTest_allInstances(resourceSet, COMPANY_XMI);
 		assertTrue(usedLocalRegistry);
 	}
 
 	public void test_allInstances_registered() {
+		OCL.Internal.disposeGlobalEnvironmentFactory();
 		ResourceSet resourceSet = createResourceSet();
 		initPackageRegistrations(resourceSet);
 		doTest_allInstances(resourceSet, COMPANY_XMI);
@@ -616,37 +625,40 @@ public class DelegatesTest extends PivotTestCase
 	public void test_attributeDefinedWithoutDerivation() {
 		ResourceSet resourceSet = createResourceSet();
 		initModelWithErrors(resourceSet);
-		OCL ocl = OCL.newInstance(resourceSet);
+		OCL ocl = OCL.newInstance(getProjectMap(), resourceSet);
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		EStructuralFeature eStructuralFeature = getStructuralFeature(badClassClass, "attributeDefinedWithoutDerivation");
 		Property property = metamodelManager.getPivotOfEcore(Property.class, eStructuralFeature);
 		getWithException(badClassInstance, eStructuralFeature.getName(),
 			StringUtil.bind(PivotMessagesInternal.MissingDerivationForSettingDelegate_ERROR_, property));
+		ocl.dispose();
 	}
 
 	public void test_attributeDefinedWithoutDerivationBody() {
 		ResourceSet resourceSet = createResourceSet();
 		initModelWithErrors(resourceSet);
-		OCL ocl = OCL.newInstance(resourceSet);
+		OCL ocl = OCL.newInstance(getProjectMap(), resourceSet);
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		EStructuralFeature eStructuralFeature = getStructuralFeature(badClassClass, "attributeDefinedWithoutDerivationBody");
 		Property property = metamodelManager.getPivotOfEcore(Property.class, eStructuralFeature);
 		getWithException(badClassInstance, eStructuralFeature.getName(),
 			StringUtil.bind(PivotMessagesInternal.MissingSpecificationBody_ERROR_, property, PivotConstantsInternal.DEFAULT_EXPRESSION_ROLE));
+		ocl.dispose();
 	}
 
 	public void test_attributeEvaluatingToInvalid() {
 		ResourceSet resourceSet = createResourceSet();
 		initModelWithErrors(resourceSet);
-		OCL ocl = OCL.newInstance(resourceSet);
+		OCL ocl = OCL.newInstance(getProjectMap(), resourceSet);
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		EStructuralFeature eStructuralFeature = getStructuralFeature(badClassClass, "attributeEvaluatingToInvalid");
 		Property property = metamodelManager.getPivotOfEcore(Property.class, eStructuralFeature);
 		getWithException(badClassInstance, eStructuralFeature.getName(),
 			StringUtil.bind(PivotMessagesInternal.EvaluationResultIsInvalid_ERROR_, property));
+		ocl.dispose();
 	}
 
 	public void test_attributeEvaluatingToNull() {
@@ -729,6 +741,7 @@ public class DelegatesTest extends PivotTestCase
 	}
 
 	public void test_constraintValidation_registered() {
+		OCL.Internal.disposeGlobalEnvironmentFactory();
 		ResourceSet resourceSet = createResourceSet();
 		initPackageRegistrations(resourceSet);
 		doTest_constraintValidation(resourceSet, COMPANY_XMI);
@@ -752,6 +765,7 @@ public class DelegatesTest extends PivotTestCase
 //	}
 
 	public void test_eAttributeDerivation() {
+		OCL.Internal.disposeGlobalEnvironmentFactory();
 		ResourceSet resourceSet = createResourceSet();
 		doTest_eAttributeDerivation(resourceSet, COMPANY_XMI);
 	}
@@ -760,14 +774,17 @@ public class DelegatesTest extends PivotTestCase
 		OCL ocl = OCL.newInstance();
 		initPackageRegistrations(ocl);
 		doTest_eAttributeDerivation(COMPANY_XMI);
+		ocl.dispose();
 	} */
 
 	public void test_eReferenceDerivation() {
+		OCL.Internal.disposeGlobalEnvironmentFactory();
 		ResourceSet resourceSet = createResourceSet();
 		doTest_eReferenceDerivation(resourceSet, COMPANY_XMI);
 	}
 
 	public void test_eReferenceDerivation_registered() {
+		OCL.Internal.disposeGlobalEnvironmentFactory();
 		ResourceSet resourceSet = createResourceSet();
 		initPackageRegistrations(resourceSet);
 		doTest_eReferenceDerivation(resourceSet, COMPANY_XMI);
@@ -813,10 +830,11 @@ public class DelegatesTest extends PivotTestCase
 			directReportsAnn.getDetails().put(SettingBehavior.DERIVATION_CONSTRAINT_KEY, derivationExpression);
 			SettingBehavior.INSTANCE.cacheOCLExpression(directReportsRef, null);
 		}
+		ocl.dispose();
 	} */
 
 /*	public void test_invariantCacheBeingUsed() throws ParserException {
-		OCL ocl = OCL.newInstance();
+		 = OCL.newInstance();
 		initPackageRegistrations(ocl);
 		initModel(COMPANY_XMI);
 		EAnnotation annotation = employeeClass.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
@@ -842,6 +860,7 @@ public class DelegatesTest extends PivotTestCase
 			// restore annotation detail
 			annotation.getDetails().put(constraintName, mustHaveNameConstraint);
 		}
+		ocl.dispose();
 	} */
 	
 /*	public void test_invariantCachingForFirst() {
@@ -866,15 +885,18 @@ public class DelegatesTest extends PivotTestCase
 		OCLExpression cached = ValidationBehavior.INSTANCE.getCachedOCLExpression(employeeClass, "mustHaveNonEmptyName");
 		assertTrue("Expected to find compiled expression in cache",
 			cached != null && !ValidationBehavior.isNoOCLDefinition(cached));
+		ocl.dispose();
 	} */
 	
 	public void test_invariantValidation() {
+		OCL.Internal.disposeGlobalEnvironmentFactory();
 		ResourceSet resourceSet = createResourceSet();
 		doTest_invariantValidation(resourceSet, COMPANY_XMI, false, Diagnostic.WARNING);
 		assertTrue(usedLocalRegistry);
 	}
 
 	public void test_invariantValidation_registered() {
+		OCL.Internal.disposeGlobalEnvironmentFactory();
 		ResourceSet resourceSet = createResourceSet();
 		initPackageRegistrations(resourceSet);
 		doTest_invariantValidation(resourceSet, COMPANY_XMI, true, Diagnostic.ERROR);
@@ -896,42 +918,46 @@ public class DelegatesTest extends PivotTestCase
 		OCL ocl = OCL.newInstance();
 		initPackageRegistrations(ocl);
 		doTest_invariantValidation(NO_REFLECTION_COMPANY_XMI, true);
+		ocl.dispose();
 	} */
 
 	public void test_operationDefinedWithoutBody() throws InvocationTargetException {
 		ResourceSet resourceSet = createResourceSet();
 		initModelWithErrors(resourceSet);
-		OCL ocl = OCL.newInstance(resourceSet);
+		OCL ocl = OCL.newInstance(getProjectMap(), resourceSet);
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		EOperation eOperation = getOperation(badClassClass, "operationDefinedWithoutBody");
 		Operation operation = metamodelManager.getPivotOfEcore(Operation.class, eOperation);
 		invokeWithException(badClassInstance, eOperation.getName(),
 			StringUtil.bind(PivotMessagesInternal.MissingSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(operation), PivotConstantsInternal.BODY_EXPRESSION_ROLE));
+		ocl.dispose();
 	}
 
 	public void test_operationDefinedWithoutBodyBody() throws InvocationTargetException {
 		ResourceSet resourceSet = createResourceSet();
 		initModelWithErrors(resourceSet);
-		OCL ocl = OCL.newInstance(resourceSet);
+		OCL ocl = OCL.newInstance(getProjectMap(), resourceSet);
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		EOperation eOperation = getOperation(badClassClass, "operationDefinedWithoutBodyBody");
 		Operation operation = metamodelManager.getPivotOfEcore(Operation.class, eOperation);
 		invokeWithException(badClassInstance, eOperation.getName(),
 			StringUtil.bind(PivotMessagesInternal.MissingSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(operation), PivotConstantsInternal.BODY_EXPRESSION_ROLE));
+		ocl.dispose();
 	}
 
 	public void test_operationEvaluatingToInvalid() throws InvocationTargetException {
 		ResourceSet resourceSet = createResourceSet();
 		initModelWithErrors(resourceSet);
-		OCL ocl = OCL.newInstance(resourceSet);
+		OCL ocl = OCL.newInstance(getProjectMap(), resourceSet);
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		EOperation eOperation = getOperation(badClassClass, "operationEvaluatingToInvalid");
 		Operation operation = metamodelManager.getPivotOfEcore(Operation.class, eOperation);
 		invokeWithException(badClassInstance, eOperation.getName(),
 			StringUtil.bind(PivotMessagesInternal.EvaluationResultIsInvalid_ERROR_, operation));
+		ocl.dispose();
 	}
 
 	public void test_operationEvaluatingToNull() throws InvocationTargetException {
@@ -956,6 +982,7 @@ public class DelegatesTest extends PivotTestCase
 	}
 
 	public void test_operationInvocation() throws InvocationTargetException {
+		OCL.Internal.disposeGlobalEnvironmentFactory();
 		ResourceSet resourceSet = createResourceSet();
 		doTest_operationInvocation(resourceSet, COMPANY_XMI);
 		assertTrue(usedLocalRegistry);
@@ -966,6 +993,7 @@ public class DelegatesTest extends PivotTestCase
 		initPackageRegistrations(ocl);
 		doTest_operationInvocation(COMPANY_XMI);
 		assertFalse(usedLocalRegistry);
+		ocl.dispose();
 	} */
 
 	public void test_operationParsingToLexicalError() throws InvocationTargetException {
@@ -1000,7 +1028,7 @@ public class DelegatesTest extends PivotTestCase
 	 */
 	public void test_operationDefinedInStdlibBodyRemainsNull() throws ParserException {
 		ResourceSet resourceSet = createResourceSet();
-		OCL ocl = OCL.newInstance(resourceSet);
+		OCL ocl = OCL.newInstance(getProjectMap(), resourceSet);
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		ExpressionInOCL expr = ocl.createQuery(null, "'abc'.oclAsType(String)");
 		OperationCallExp oce = (OperationCallExp) expr.getOwnedBody();
@@ -1020,6 +1048,7 @@ public class DelegatesTest extends PivotTestCase
 		}
 		catch (OCLDelegateException e) {		
 		}
+		ocl.dispose();
 	}
 	
 	/**
@@ -1079,15 +1108,18 @@ public class DelegatesTest extends PivotTestCase
 			System.out.println("Executing " + expression + " " + TIMES
 				+ " times took " + (end - start) + "ms");
 		}
+		ocl.dispose();
 	} */
 
 	public void test_queryExecution() {
+		OCL.Internal.disposeGlobalEnvironmentFactory();
 		ResourceSet resourceSet = createResourceSet();
 		doTest_queryExecution(resourceSet, COMPANY_XMI);
 		assertTrue(usedLocalRegistry);
 	}
 
 	public void test_queryExecution_registered() {
+		OCL.Internal.disposeGlobalEnvironmentFactory();
 		ResourceSet resourceSet = createResourceSet();
 		initPackageRegistrations(resourceSet);
 		doTest_queryExecution(resourceSet, COMPANY_XMI);
@@ -1095,6 +1127,7 @@ public class DelegatesTest extends PivotTestCase
 	}
 
 	public void test_queryExecution_codeGenerated() {
+		OCL.Internal.disposeGlobalEnvironmentFactory();
 		ResourceSet resourceSet = createResourceSet();
 		initCodeGeneratedPackageRegistrations(resourceSet);
 		doTest_queryExecution(resourceSet, COMPANY_XMI);
@@ -1147,6 +1180,7 @@ public class DelegatesTest extends PivotTestCase
 		initModelWithErrors(ocl.getResourceSet());
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		validateConstraintWithError("MissingConstraint", badClassInstance);
+		ocl.dispose();
 	} */
 	
 	/**
@@ -1157,6 +1191,7 @@ public class DelegatesTest extends PivotTestCase
 		initModelWithErrors(ocl.getResourceSet());
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("MissingConstraintBody"), null);
 		validateConstraintWithError("MissingConstraint", badClassInstance);
+		ocl.dispose();
 	} */
 	
 	public void test_validationEvaluatingToInvalid() {
@@ -1225,14 +1260,18 @@ public class DelegatesTest extends PivotTestCase
 	}
 
 	public void test_tutorialValidationMessage() {
+		OCL.Internal.disposeGlobalEnvironmentFactory();
 		validateTutorial("model/Tutorial1.ecore", "There are 3 loans for the 2 copies of b2");
+		OCL.Internal.disposeGlobalEnvironmentFactory();
 		validateTutorial("model/Tutorial2.ecore", "There are 3 loans for the 2 copies of ''b2''");		// Doubled quotes for NLS.bind
+		OCL.Internal.disposeGlobalEnvironmentFactory();
 		validateTutorial("model/Tutorial1.ecore", "There are 3 loans for the 2 copies of b2");
+		OCL.Internal.disposeGlobalEnvironmentFactory();
 	}
 
 	public void validateTutorial(@NonNull String ecoreURI, @NonNull String message) {
 		ResourceSet resourceSet = createResourceSet();
-		OCL ocl = OCL.newInstance(resourceSet);
+		OCL ocl = OCL.newInstance(getProjectMap(), resourceSet);
 		try {
 			EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, ocl.getEnvironmentFactory());
 			URI xmiURI = getTestModelURI("model/Tutorial.xmi");
@@ -1256,7 +1295,7 @@ public class DelegatesTest extends PivotTestCase
 					}
 				}
 			}
-			validateWithSeverity("ValidationWithMessage", Diagnostic.WARNING, book,  message);
+			validateWithSeverity("ValidationWithMessage", Diagnostic.WARNING, book, message);
 			unloadResourceSet(resourceSet);
 		} finally {
 			ocl.dispose();
@@ -1479,7 +1518,6 @@ public class DelegatesTest extends PivotTestCase
 	protected void validateConstraintWithSeverity(String constraintName, int severity, EObject eObject) {
 		Map<Object, Object> validationContext = LabelUtil.createDefaultContext(Diagnostician.INSTANCE);
 		Diagnostic validation = Diagnostician.INSTANCE.validate(eObject, validationContext);
-		assertEquals("Validation of '" + constraintName + "' severity:", severity, validation.getSeverity());
 		List<Diagnostic> diagnostics = validation.getChildren();
 		assertEquals("Validation of '" + constraintName + "' child count:", 1, diagnostics.size());
 		Diagnostic diagnostic = diagnostics.get(0);
@@ -1490,6 +1528,7 @@ public class DelegatesTest extends PivotTestCase
 		String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_,
 			eObject.eClass().getName(), constraintName, objectLabel);
 		assertEquals("Validation of '" + constraintName + "' message:", message, diagnostic.getMessage());
+		assertEquals("Validation of '" + constraintName + "' severity:", severity, validation.getSeverity());
 	}
 
 	protected void validateInvariantWithSeverity(String constraintName, int severity, EObject eObject) {
@@ -1499,7 +1538,6 @@ public class DelegatesTest extends PivotTestCase
 	protected void validateWithSeverity(String constraintName, int severity, EObject eObject, String messageTemplate, Object... bindings) {
 		Map<Object, Object> validationContext = LabelUtil.createDefaultContext(Diagnostician.INSTANCE);
 		Diagnostic validation = Diagnostician.INSTANCE.validate(eObject, validationContext);
-		assertEquals("Validation of '" + constraintName + "' severity:", severity, validation.getSeverity());
 		List<Diagnostic> diagnostics = validation.getChildren();
 		assertEquals("Validation of '" + constraintName + "' child count:", 1, diagnostics.size());
 		Diagnostic diagnostic = diagnostics.get(0);
@@ -1507,6 +1545,7 @@ public class DelegatesTest extends PivotTestCase
 		assertEquals("Validation of '" + constraintName + "' data object:", eObject, diagnostic.getData().get(0));
 		String message = StringUtil.bind(messageTemplate, bindings);
 		assertEquals("Validation of '" + constraintName + "' message:", message, diagnostic.getMessage());
+		assertEquals("Validation of '" + constraintName + "' severity:", severity, validation.getSeverity());
 	}
 
 	protected void validateWithDelegationSeverity(String constraintName, int severity, EObject eObject, String source, Class<? extends Exception> exceptionClass, String messageTemplate, Object... bindings) {

@@ -30,40 +30,42 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.External2AS;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.internal.validation.PivotEObjectValidator;
 import org.eclipse.ocl.pivot.resource.CSResource;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 
 public abstract class CompleteOCLLoader
 {  // FIXME This is a pragmatic re-use. Redesign as part of a coherent API.
-	protected final @NonNull ResourceSet resourceSet;
-	protected final @NonNull MetamodelManager metamodelManager;
+	protected final @NonNull OCL ocl;
 
 	protected final @NonNull Set<EPackage> mmPackages;
 	
-	public CompleteOCLLoader(@NonNull ResourceSet resourceSet) {
-		this.resourceSet = resourceSet;
-		EnvironmentFactoryResourceSetAdapter adapter = EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, null);	// ?? Shared global MMM
-		this.metamodelManager = adapter.getMetamodelManager();
+	public CompleteOCLLoader(@NonNull EnvironmentFactory environmentFactory) {
+		this.ocl = OCL.newInstance(environmentFactory);
 		this.mmPackages = new HashSet<EPackage>();
 	}
 	
+	public void dispose() {
+		ocl.dispose();
+	}
+	
 	public @NonNull MetamodelManager getMetamodelManager() {
-		return metamodelManager;
+		return ocl.getMetamodelManager();
 	}
 	
 	public boolean loadMetamodels() {
-		for (Resource resource : resourceSet.getResources()) {
+		for (Resource resource : ocl.getResourceSet().getResources()) {
 			assert resource != null;
-			External2AS ecore2as = Ecore2AS.findAdapter(resource, metamodelManager.getEnvironmentFactory());
+			External2AS ecore2as = Ecore2AS.findAdapter(resource, ocl.getEnvironmentFactory());
 			if (ecore2as == null) {			// Pivot has its own validation
 				for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
 					EObject eObject = tit.next();
@@ -87,7 +89,7 @@ public abstract class CompleteOCLLoader
 		for (Resource mmResource : mmResources) {
 			assert mmResource != null;
 			try {
-				Element pivotModel = metamodelManager.loadResource(mmResource, null);
+				Element pivotModel = ocl.getMetamodelManager().loadResource(mmResource, null);
 				if (pivotModel != null) {
 					List<org.eclipse.emf.ecore.resource.Resource.Diagnostic> errors = pivotModel.eResource().getErrors();
 					assert errors != null;
@@ -112,7 +114,7 @@ public abstract class CompleteOCLLoader
 		//
 		//	Install validation for all the complemented packages
 		//
-		PivotEObjectValidator.install(resourceSet, metamodelManager.getEnvironmentFactory());
+		PivotEObjectValidator.install(ocl.getResourceSet(), ocl.getEnvironmentFactory());
 		for (EPackage mmPackage : mmPackages) {
 			assert mmPackage != null;
 			PivotEObjectValidator.install(mmPackage);
@@ -130,7 +132,7 @@ public abstract class CompleteOCLLoader
 		for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
 			if (eObject instanceof org.eclipse.ocl.pivot.Package) {
-				org.eclipse.ocl.pivot.Package aPackage = metamodelManager.getPrimaryPackage((org.eclipse.ocl.pivot.Package)eObject);
+				org.eclipse.ocl.pivot.Package aPackage = ocl.getMetamodelManager().getPrimaryPackage((org.eclipse.ocl.pivot.Package)eObject);
 				if (aPackage instanceof PivotObjectImpl) {
 					EObject mmPackage = ((PivotObjectImpl)aPackage).getETarget();
 					if (mmPackage instanceof EPackage) {
@@ -152,6 +154,7 @@ public abstract class CompleteOCLLoader
 	public Resource loadResource(@NonNull URI oclURI) {
 		CSResource xtextResource = null;
 		CompleteOCLStandaloneSetup.init();
+		ResourceSet resourceSet = ocl.getResourceSet();
 		try {
 			xtextResource = (CSResource) resourceSet.getResource(oclURI, true);
 		}
@@ -180,7 +183,7 @@ public abstract class CompleteOCLLoader
 			error("Failed to load '" + oclURI, message);
 			return null;
 		}
-		Resource asResource = xtextResource.getASResource(metamodelManager.getEnvironmentFactory());
+		Resource asResource = xtextResource.getASResource(ocl.getEnvironmentFactory());
 		errors = asResource.getErrors();
 		assert errors != null;
 		message = PivotUtil.formatResourceDiagnostics(errors, "", "\n");

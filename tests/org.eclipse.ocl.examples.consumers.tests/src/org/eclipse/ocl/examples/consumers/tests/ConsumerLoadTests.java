@@ -28,13 +28,12 @@ public class ConsumerLoadTests extends LoadTests
 	public void testLoad_Bug457203_ocl() throws IOException, InterruptedException {
 		UMLStandaloneSetup.init();
 		OCL ocl = OCL.newInstance(new UMLEnvironmentFactory(null));
-		metamodelManager = ocl.getMetamodelManager();
 		String bug457203 = 
 				"import marte: _'http://www.eclipse.org/papyrus/MARTE/1'\n" + 
 				"import sysml: _'http://www.eclipse.org/papyrus/0.7.0/SysML'\n" + 
 				"\n";
 		createOCLinEcoreFile("Bug457203.ocl", bug457203);
-		Resource asResource = doLoad_Concrete("Bug457203", "ocl");
+		Resource asResource = doLoad_Concrete(ocl, "Bug457203", "ocl");
 		assertNoResourceErrors("Save", asResource);
 	}
 }

@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseLogger;
+import org.eclipse.ocl.examples.xtext.tests.TestUtil;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
@@ -74,12 +75,11 @@ import org.eclipse.xtext.validation.CheckMode;
 public class EditorTests extends XtextTestCase
 {	
 	protected FileEditorInput createEcoreFileEditorInput(String projectName, String fileName, String testDocument)throws IOException, CoreException {
-		OCL ocl0 = OCL.newInstance(getProjectMap());
-		MetamodelManager metamodelManager0 = ocl0.getMetamodelManager();
-		String ecoreString = createEcoreString(metamodelManager0, fileName, testDocument, true);
+		OCL ocl = OCL.newInstance(getProjectMap());
+		String ecoreString = createEcoreString(ocl, fileName, testDocument, true);
 		InputStream inputStream = new URIConverter.ReadableInputStream(ecoreString, "UTF-8");
 		FileEditorInput fileEditorInput = createFileEditorInput(projectName, fileName, inputStream);
-		metamodelManager0.dispose();
+		ocl.dispose();
 		return fileEditorInput;
 	}
 
@@ -109,9 +109,9 @@ public class EditorTests extends XtextTestCase
 				return PivotUtilInternal.findMetamodelManager(state);
 			}
 		});
-		flushEvents();
+		TestUtil.flushEvents();
 		editor.close(false);
-		flushEvents();
+		TestUtil.flushEvents();
 		if (metamodelManager != null) {
 			metamodelManager.dispose();
 		}
@@ -202,11 +202,6 @@ public class EditorTests extends XtextTestCase
 		}
 	}	
 
-	protected void flushEvents() {
-		IWorkbench workbench = PlatformUI.getWorkbench();
-		while (workbench.getDisplay().readAndDispatch());
-	}
-
 	protected Set<EObject> indexPivotContent(XtextDocument document, final String prefix) {
 		@SuppressWarnings("unused") String doc = document.get();
 		final Set<EObject> pivotContent = new HashSet<EObject>();
@@ -233,7 +228,7 @@ public class EditorTests extends XtextTestCase
 	
 	@Override
 	protected void setUp() throws Exception {
-		suppressGitPrefixPopUp();    		
+		TestUtil.suppressGitPrefixPopUp();    		
 		super.setUp();
 	}
 
@@ -335,13 +330,13 @@ public class EditorTests extends XtextTestCase
 		}
 		String updatedDocument = s.toString().replace("tuttut", "tut");
 		iFile.setContents(new URIConverter.ReadableInputStream(updatedDocument, "UTF-8"), true, false, null);
-		flushEvents();
+		TestUtil.flushEvents();
 		@SuppressWarnings("unused") String newDoc = document.get();
 		Set<EObject> newPivotContent = indexPivotContent(document, "Loaded pivot");
 		assertEquals(oldPivotContent.size(), newPivotContent.size());
-		flushEvents();
+		TestUtil.flushEvents();
 		assertEquals(oldPivotContent, newPivotContent);
-		flushEvents();
+		TestUtil.flushEvents();
 		doTearDown(editor);
 	}		
 }

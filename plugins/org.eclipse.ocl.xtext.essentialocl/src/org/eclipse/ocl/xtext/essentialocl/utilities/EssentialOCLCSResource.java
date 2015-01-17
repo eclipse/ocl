@@ -128,6 +128,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	
 	public EssentialOCLCSResource() {
 		super();
+//		PivotUtilInternal.debugPrintln("Create " + NameUtil.debugSimpleName(this));	
 	}
 
 	protected void addLibraryError(List<Diagnostic> errors, IllegalLibraryException e) {

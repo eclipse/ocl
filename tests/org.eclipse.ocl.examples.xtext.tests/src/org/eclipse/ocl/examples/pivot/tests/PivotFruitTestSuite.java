@@ -24,13 +24,10 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.AssociationClass;
-import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.uml2.uml.Association;
@@ -103,13 +100,6 @@ public abstract class PivotFruitTestSuite extends PivotTestSuite
 		super(useCodeGen);
 	}
 
-	@Override
-	protected @NonNull MetamodelManager createMetamodelManager() {
-		UMLStandaloneSetup.init();
-		EnvironmentFactory environmentFactory = OCL.createEnvironmentFactory(getProjectMap());
-		return environmentFactory.getMetamodelManager();
-	}
-
 	private EEnumLiteral getELiteral(EEnum eEnum, String name) {
 		return eEnum.getEEnumLiteral(name);
 	}
@@ -130,9 +120,9 @@ public abstract class PivotFruitTestSuite extends PivotTestSuite
 		return ePackage.getEClassifier(name);
 	}
 	
-	protected void initFruitPackage() {
+	protected void initFruitPackage(@NonNull OCL ocl) {
 		URI uri = getTestModelURI("model/Fruit.ecore");
-		Resource ecoreResource = resourceSet.getResource(uri, true);
+		Resource ecoreResource = ocl.getResourceSet().getResource(uri, true);
 		fruitEPackage = (EPackage)ecoreResource.getContents().get(0);
 		fruitEFactory = fruitEPackage.getEFactoryInstance();
 		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, (EnvironmentFactoryInternal) ocl.getEnvironmentFactory());

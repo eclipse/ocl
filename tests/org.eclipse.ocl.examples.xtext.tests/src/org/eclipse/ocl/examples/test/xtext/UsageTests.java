@@ -34,7 +34,6 @@ import javax.tools.ToolProvider;
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspace;
@@ -72,7 +71,9 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreGeneratorAdapterFactory;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestSuite;
+import org.eclipse.ocl.examples.pivot.tests.TestOCL;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
+import org.eclipse.ocl.examples.xtext.tests.TestUtil;
 import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
@@ -166,6 +167,11 @@ public class UsageTests
 		}
 	}
 
+	@Override
+	protected @NonNull TestOCL createOCL() {
+		return new TestOCL(getTestPackageName(), getName());
+	}
+
 	protected void getCompilationUnits(@NonNull List<JavaFileObject> compilationUnits,
 			@NonNull File directory) throws Exception {
 		File[] files = directory.listFiles();
@@ -214,7 +220,7 @@ public class UsageTests
 		super.tearDown();
 	}
 
-	protected @NonNull String createClassPath(@NonNull List<String> projectNames) {
+	public static @NonNull String createClassPath(@NonNull List<String> projectNames) {
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 		String pathSeparator = null;
 		StringBuilder s = new StringBuilder();
@@ -295,49 +301,30 @@ public class UsageTests
 		return string;
 	}
 
-	public void createGenModelFile(String fileName, String fileContent)
-			throws IOException {
+	public @NonNull URI createGenModelFile(String fileName, String fileContent) throws IOException {
 		File file = new File(getProjectFile(), fileName);
 		Writer writer = new FileWriter(file);
 		writer.append(fileContent);
 		writer.close();
-	}
-
-	public void createManifest(@NonNull IProject project, @NonNull String projectName) throws CoreException {
-		IFolder folder = project.getFolder("META-INF");
-		folder.create(true, false, null);
-		IFile file = folder.getFile("MANIFEST.MF");
-		String manifestContents = 
-			"Manifest-Version: 1.0\n" + 
-			"Bundle-ManifestVersion: 2\n" + 
-			"Bundle-Name: " + projectName + "\n" + 
-			"Bundle-SymbolicName: " + projectName + ";singleton:=true\n" + 
-			"Bundle-Version: 0.0.0.qualifier\n" + 
-			"Bundle-Localization: plugin\n";
-		file.create(new ByteArrayInputStream(manifestContents.getBytes()), true, null);
+		return getProjectFileURI(fileName);
 	}
 
 	protected @NonNull URI createModels(@NonNull String testProjectName, @NonNull String testFileStem,
-			@NonNull String oclinecoreFile, @NonNull String genmodelFile)
+			@Nullable String oclinecoreFile, @NonNull String genmodelFile)
 			throws CoreException, IOException {
 		if (EMFPlugin.IS_ECLIPSE_RUNNING) {
-			suppressGitPrefixPopUp();
-			IWorkspace workspace = ResourcesPlugin.getWorkspace();
-			IProject project = workspace.getRoot().getProject(testProjectName);
-			if (!project.exists()) {
-				project.create(null);
-			}
-			project.open(null);
-			createManifest(project, testProjectName);
+			IProject project = TestUtil.createJavaProject(testProjectName);
+			TestUtil.createManifest(project, testProjectName, null, null, null);
 		}
 		EnvironmentFactory environmentFactory2 = OCL.createEnvironmentFactory(getProjectMap());
 		MetamodelManager metamodelManager2 = environmentFactory2.getMetamodelManager();
-		createEcoreFile(metamodelManager2, testFileStem, oclinecoreFile);
-		createGenModelFile(testFileStem + ".genmodel", genmodelFile);
-		URI fileURI = getProjectFileURI(testFileStem + ".genmodel");
-		// System.out.println("Generating Ecore Model using '" + fileURI + "'");
+		if (oclinecoreFile != null) {
+			createEcoreFile(metamodelManager2, testFileStem, oclinecoreFile);
+		}
+		URI genModelURI = createGenModelFile(testFileStem + ".genmodel", genmodelFile);
+		// System.out.println("Generating Ecore Model using '" + genModelURI + "'");
 		metamodelManager2.dispose();
-		return fileURI;
+		return genModelURI;
 	}
 
 	protected boolean doCompile(@NonNull String testProjectName, @NonNull String... extraClasspathProjects) throws Exception {
@@ -426,39 +413,26 @@ public class UsageTests
 		return true;
 	}
 
-	protected void doDelete(@NonNull String testProjectName) throws Exception {
+	public static void doDelete(@NonNull String testProjectName) throws Exception {
 		if (EMFPlugin.IS_ECLIPSE_RUNNING) {
-			suppressGitPrefixPopUp();
-			IWorkspace workspace = ResourcesPlugin.getWorkspace();
-			IProject project = workspace.getRoot().getProject(testProjectName);
-			project.delete(true, true, null);
+			TestUtil.deleteIProject(testProjectName);
 		} else {
 			File dir = new File("src-gen/" + testProjectName);
 			if (dir.exists()) {
-				doDeleteDirectory(dir);
+				TestUtil.deleteDirectory(dir);
 			}
 		}
-	}
-
-	protected void doDeleteDirectory(File dir) throws Exception {
-		File[] listFiles = dir.listFiles();
-		for (File file : listFiles) {
-			if (file.isFile()) {
-				file.delete();
-			} else if (file.isDirectory()) {
-				doDeleteDirectory(file);
-			}
-		}
-		dir.delete();
 	}
 
 	protected void doGenModel(@NonNull String testProjectName, @NonNull URI genmodelURI) throws Exception {
+		OCL ocl = createOCL();
 		if (EMFPlugin.IS_ECLIPSE_RUNNING) {
-			suppressGitPrefixPopUp();
+			TestUtil.suppressGitPrefixPopUp();
 			IWorkspace workspace = ResourcesPlugin.getWorkspace();
 			IProject project = workspace.getRoot().getProject(testProjectName);
 			if (!project.exists()) {
 				project.create(null);
+				project.open(null);
 			}
 		}
 //		MetamodelManager metamodelManager2 = new MetamodelManager();
@@ -467,7 +441,7 @@ public class UsageTests
 		URI fileURI = genmodelURI; //getProjectFileURI(testFileStem + ".genmodel");
 		// System.out.println("Generating Ecore Model using '" + fileURI + "'");
 //		metamodelManager2.dispose();
-		EnvironmentFactory environmentFactory = OCL.createEnvironmentFactory(getProjectMap());
+		EnvironmentFactory environmentFactory = ocl.getEnvironmentFactory();
 		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
 		ProjectManager projectMap = metamodelManager.getProjectManager();
@@ -544,10 +518,11 @@ public class UsageTests
 			String s = PivotUtil.formatDiagnostics(diagnostic, "\n");
 			fail("Generation failure" + s);
 		}
-		metamodelManager.dispose();
+//		metamodelManager.dispose();
 	}
 
 	public void testBug370824() throws Exception {
+		TestOCL ocl = createOCL();
 		String testFileStem = "Bug370824";
 		String testProjectName = "bug370824";
 		String testProjectPath = EMFPlugin.IS_ECLIPSE_RUNNING ? testProjectName : ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS;
@@ -560,11 +535,13 @@ public class UsageTests
 			+ "    }\n"
 			+ "}\n";
 		String genmodelFile = createGenModelContent(testProjectPath, "Bug370824", null);
-		URI fileURI = createModels(testProjectName, testFileStem, oclinecoreFile, genmodelFile);
-		doGenModel(testProjectPath, fileURI);
+		URI genModelURI = createModels(testProjectName, testFileStem, oclinecoreFile, genmodelFile);
+		doGenModel(testProjectPath, genModelURI);
+		ocl.dispose();
 	}
 
 	public void testBug409650() throws Exception {
+		TestOCL ocl = createOCL();
 		String testFileStem = "Bug409650";
 		String testProjectName = "bug409650";
 		String testProjectPath = EMFPlugin.IS_ECLIPSE_RUNNING ? testProjectName : ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS;
@@ -581,8 +558,8 @@ public class UsageTests
 			+ "    }\n" + "}\n";
 		String genmodelFile = createGenModelContent(testProjectPath, "Bug409650", null);
 		doDelete(testProjectName);
-		URI fileURI = createModels(testProjectPath, testFileStem, oclinecoreFile, genmodelFile);
-		doGenModel(testProjectPath, fileURI);
+		URI genModelURI = createModels(testProjectPath, testFileStem, oclinecoreFile, genmodelFile);
+		doGenModel(testProjectPath, genModelURI);
 		doCompile(testProjectName);
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) { // FIXME find out how to get dynamic project onto classpath
 			String qualifiedPackageName = testProjectName + "." + testFileStem + "Package";
@@ -593,17 +570,19 @@ public class UsageTests
 			EFactory eFactory = ePackage.getEFactoryInstance();
 			//
 			EObject eObject = eFactory.create(eClass);
-			assertQueryTrue(eObject, "name = null");
-			assertQueryTrue(eObject, "complement(true) = false");
+			ocl.assertQueryTrue(eObject, "name = null");
+			ocl.assertQueryTrue(eObject, "complement(true) = false");
 			eObject.eSet(eStructuralFeature, "testing");
-			assertQueryFalse(eObject, "name = null");
-			assertQueryTrue(eObject, "name = 'testing'");
-			assertQueryEquals(eObject, "XtestingY", "self.myPrefixedName('X', 'Y')");
-			assertQueryEquals(eObject, eObject, "self.me()");
+			ocl.assertQueryFalse(eObject, "name = null");
+			ocl.assertQueryTrue(eObject, "name = 'testing'");
+			ocl.assertQueryEquals(eObject, "XtestingY", "self.myPrefixedName('X', 'Y')");
+			ocl.assertQueryEquals(eObject, eObject, "self.me()");
 		}
+		ocl.dispose();
 	}
 
 	public void testEcoreTypes412736() throws Exception {
+		TestOCL ocl = createOCL();
 		String testFileStem = "Bug412736";
 		String testProjectName = "bug412736";
 		String testProjectPath = EMFPlugin.IS_ECLIPSE_RUNNING ? testProjectName : ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS;
@@ -652,8 +631,8 @@ public class UsageTests
 			+ "    }\n" + "}\n";
 		String genmodelFile = createGenModelContent(testProjectPath, "Bug412736", null);
 		doDelete(testProjectName);
-		URI fileURI = createModels(testProjectPath, testFileStem, oclinecoreFile, genmodelFile);
-		doGenModel(testProjectPath, fileURI);
+		URI genModelURI = createModels(testProjectPath, testFileStem, oclinecoreFile, genmodelFile);
+		doGenModel(testProjectPath, genModelURI);
 		doCompile(testProjectName);
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) { // FIXME find out how to get dynamic project onto classpath
 			String qualifiedPackageName = testProjectName + "." + testFileStem + "Package";
@@ -662,21 +641,23 @@ public class UsageTests
 			EFactory eFactory = ePackage.getEFactoryInstance();
 			//
 			EObject eObject = eFactory.create(eClass);
-			assertQueryTrue(eObject, "eBigInteger = eBigDecimal");
-			assertQueryTrue(eObject, "eChar = eCharacterObject");
-			assertQueryTrue(eObject, "eBoolean = eBooleanObject");
-			assertQueryTrue(eObject, "eDouble = eDoubleObject");
-			assertQueryTrue(eObject, "eFloat = eFloatObject");
-			assertQueryTrue(eObject, "eInt = eIntegerObject");
-			assertQueryTrue(eObject, "eLong = eLongObject");
-//			assertQueryTrue(eObject, "eNumber = eFloat");				-- waiting for BUG 370087
-			assertQueryTrue(eObject, "eShort = eShortObject");
-			assertQueryTrue(eObject, "eString = 'ABC'");
+			ocl.assertQueryTrue(eObject, "eBigInteger = eBigDecimal");
+			ocl.assertQueryTrue(eObject, "eChar = eCharacterObject");
+			ocl.assertQueryTrue(eObject, "eBoolean = eBooleanObject");
+			ocl.assertQueryTrue(eObject, "eDouble = eDoubleObject");
+			ocl.assertQueryTrue(eObject, "eFloat = eFloatObject");
+			ocl.assertQueryTrue(eObject, "eInt = eIntegerObject");
+			ocl.assertQueryTrue(eObject, "eLong = eLongObject");
+//			ocl.assertQueryTrue(eObject, "eNumber = eFloat");				-- waiting for BUG 370087
+			ocl.assertQueryTrue(eObject, "eShort = eShortObject");
+			ocl.assertQueryTrue(eObject, "eString = 'ABC'");
 		}
+		ocl.dispose();
 	}
 
 	public void testEnumTypes412685() throws Exception {
-		// FIIXME next line compensates an uninstall overenthusiasm
+		TestOCL ocl = createOCL();
+		// FIXME next line compensates an uninstall overenthusiasm
 		EPackage.Registry.INSTANCE.put(OCLstdlibPackage.eNS_URI, OCLstdlibPackage.eINSTANCE);
 		String testFileStem = "Bug412685";
 		String testProjectName = "bug412685";
@@ -699,8 +680,8 @@ public class UsageTests
 			+ "}\n";
 		String genmodelFile = createGenModelContent(testProjectPath, testFileStem, null);
 		doDelete(testProjectName);
-		URI fileURI = createModels(testProjectPath, testFileStem, oclinecoreFile, genmodelFile);
-		doGenModel(testProjectPath, fileURI);
+		URI genModelURI = createModels(testProjectName, testFileStem, oclinecoreFile, genmodelFile);
+		doGenModel(testProjectPath, genModelURI);
 		doCompile(testProjectName);
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) { // FIXME find out how to get dynamic project onto classpath
 			String qualifiedPackageName = testProjectName + "." + testFileStem + "Package";
@@ -709,14 +690,16 @@ public class UsageTests
 			EFactory eFactory = ePackage.getEFactoryInstance();
 			//
 			EObject eObject = eFactory.create(eClass);
-			assertQueryTrue(eObject, "let aWhite : OclAny = opaqueColor(eWhite) in eColor = aWhite");
-			assertQueryTrue(eObject, "let aWhite : OclAny = eWhite.oclAsType(OclAny) in eColor = aWhite");
-			assertQueryTrue(eObject, "eColor = eWhite");
-			assertQueryTrue(eObject, "eColor = Color::WHITE");
+			ocl.assertQueryTrue(eObject, "let aWhite : OclAny = opaqueColor(eWhite) in eColor = aWhite");
+			ocl.assertQueryTrue(eObject, "let aWhite : OclAny = eWhite.oclAsType(OclAny) in eColor = aWhite");
+			ocl.assertQueryTrue(eObject, "eColor = eWhite");
+			ocl.assertQueryTrue(eObject, "eColor = Color::WHITE");
 		}
+		ocl.dispose();
 	}
 
 	public void testCSE() throws Exception {
+		TestOCL ocl = createOCL();
 //		CommonSubexpressionEliminator.CSE_PLACES.setState(true);
 //		CommonSubexpressionEliminator.CSE_PRUNE.setState(true);
 //		CommonSubexpressionEliminator.CSE_PULL_UP.setState(true);
@@ -736,10 +719,10 @@ public class UsageTests
 			+ "}\n";
 		String genmodelFile = createGenModelContent(testProjectPath, testFileStem, null);
 		doDelete(testProjectName);
-		URI fileURI = createModels(testProjectPath, testFileStem, oclinecoreFile, genmodelFile);
-		doGenModel(testProjectPath, fileURI);
-		doCompile(testProjectName);
+		URI genModelURI = createModels(testProjectPath, testFileStem, oclinecoreFile, genmodelFile);
+		doGenModel(testProjectPath, genModelURI);
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) { // FIXME find out how to get dynamic project onto classpath
+			doCompile(testProjectName);
 			String qualifiedPackageName = testProjectName + "." + testFileStem + "Package";
 			EPackage ePackage = doLoadPackage(qualifiedPackageName);
 			EClass eClass = (EClass) ePackage.getEClassifier("CSEs");
@@ -750,11 +733,12 @@ public class UsageTests
 //			org.eclipse.ocl.pivot.Class contextType = helper.getOCL().getMetamodelManager().getType(idResolver.getStaticTypeOf(eObject));
 //			helper.setContext(contextType);
 //			ExpressionInOCL query = helper.createQuery("test(3, 2, 1)");
-//			assertCallCount(query, null, 2);
-//			assertCallCount(query, NumericPlusOperation.INSTANCE, 2);
-			assertQueryEquals(eObject, 6, "test(3, 2, 1)");
-			assertQueryEquals(eObject, -5, "test(3, -8, 1)");
+//			ocl.assertCallCount(query, null, 2);
+//			ocl.assertCallCount(query, NumericPlusOperation.INSTANCE, 2);
+			ocl.assertQueryEquals(eObject, 6, "test(3, 2, 1)");
+			ocl.assertQueryEquals(eObject, -5, "test(3, -8, 1)");
 		}
+		ocl.dispose();
 	}
 
 /*	private void assertCallCount(ExpressionInOCL query, @Nullable LibraryOperation calledOperation, int expectedCount) {
@@ -779,44 +763,58 @@ public class UsageTests
 	} */
 
 	public void testSysML_QUDV() throws Exception {
-//		CommonSubexpressionEliminator.CSE_BUILD.setState(true);
-//		CommonSubexpressionEliminator.CSE_PLACES.setState(true);
-//		CommonSubexpressionEliminator.CSE_PRUNE.setState(true);
-//		CommonSubexpressionEliminator.CSE_PULL_UP.setState(true);
-//		CommonSubexpressionEliminator.CSE_PUSH_UP.setState(true);
-//		CommonSubexpressionEliminator.CSE_REWRITE.setState(true);
-//		String testFileStem = "SysML_ValueTypes_QUDV";
-		String testProjectName = "SysML_ValueTypes_QUDV";
-		String testProjectPath = EMFPlugin.IS_ECLIPSE_RUNNING ? testProjectName : ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS;
-		doDelete(testProjectName);
-		//		MetamodelManager metamodelManager2 = new MetamodelManager();
-//		createEcoreFile(metamodelManager2, "Dummy" + testFileStem, "");
-//		metamodelManager2.dispose();
-		@SuppressWarnings("null")@NonNull URI genModelURI = URI.createPlatformResourceURI("/" + ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS + "/model/SysML_ValueTypes_QUDV.genmodel", true);
-		if (!resourceSet.getURIConverter().exists(genModelURI, null)) {
-			return;
-		}			
-		doGenModel(testProjectPath, genModelURI);
-		doCompile(testProjectName);
-		if (!EMFPlugin.IS_ECLIPSE_RUNNING) { // FIXME find out how to get dynamic project onto classpath
-			String qualifiedPackageName = testProjectName + ".QUDV.QUDVPackage";
-			EPackage ePackage = doLoadPackage(qualifiedPackageName);
-			EClass eClass = (EClass) ePackage.getEClassifier("DerivedQuantityKind");
-			EFactory eFactory = ePackage.getEFactoryInstance();
-			//
-			EObject eObject = eFactory.create(eClass);
-			assertQueryTrue(eObject, "dependsOnQuantityKinds() <> null");
+		TestOCL ocl = createOCL();
+		try {
+	//		CommonSubexpressionEliminator.CSE_BUILD.setState(true);
+	//		CommonSubexpressionEliminator.CSE_PLACES.setState(true);
+	//		CommonSubexpressionEliminator.CSE_PRUNE.setState(true);
+	//		CommonSubexpressionEliminator.CSE_PULL_UP.setState(true);
+	//		CommonSubexpressionEliminator.CSE_PUSH_UP.setState(true);
+	//		CommonSubexpressionEliminator.CSE_REWRITE.setState(true);
+			String testSubProjectName = "SysML_ValueTypes_QUDV";
+			String testProjectPath = /*EMFPlugin.IS_ECLIPSE_RUNNING ? testProjectName :*/ ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS;
+			doDelete(testProjectPath);
+			if (EMFPlugin.IS_ECLIPSE_RUNNING) {
+				@SuppressWarnings("null")@NonNull URI ecoreURI = URI.createPlatformPluginURI("/" + ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS + "/model/SysML_ValueTypes_QUDV.ecore", true);
+				@SuppressWarnings("null")@NonNull URI genModelURI = URI.createPlatformPluginURI("/" + ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS + "/model/SysML_ValueTypes_QUDV.genmodel", true);
+				IProject project = TestUtil.createJavaProject(ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS);
+				TestUtil.createClassPath(project, new String[]{"src-gen"});
+				TestUtil.createManifest(project, testProjectPath,
+					new String[]{"org.eclipse.osgi", "org.eclipse.emf.ecore", "org.eclipse.ocl.pivot"},
+					new String[]{"org.eclipse.ocl.jdt.annotation7"},
+					new String[]{"SysML_ValueTypes_QUDV", "SysML_ValueTypes_QUDV.PrimitiveValueTypes", "SysML_ValueTypes_QUDV.QUDV", "SysML_ValueTypes_QUDV.UnitAndQuantityKind"});
+				TestUtil.copyIFile(ocl, genModelURI, project, "model/SysML_ValueTypes_QUDV.genmodel");
+				TestUtil.copyIFile(ocl, ecoreURI, project, "model/SysML_ValueTypes_QUDV.ecore");
+			}
+			@SuppressWarnings("null")@NonNull URI genModelURI = URI.createPlatformResourceURI("/" + ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS + "/model/SysML_ValueTypes_QUDV.genmodel", true);
+			if (!ocl.getResourceSet().getURIConverter().exists(genModelURI, null)) {
+				return;
+			}			
+			doGenModel(testProjectPath, genModelURI);
+			if (!EMFPlugin.IS_ECLIPSE_RUNNING) { // FIXME find out how to get dynamic project onto classpath
+				doCompile(testSubProjectName);
+				String qualifiedPackageName = testSubProjectName + ".QUDV.QUDVPackage";
+				EPackage ePackage = doLoadPackage(qualifiedPackageName);
+				EClass eClass = (EClass) ePackage.getEClassifier("DerivedQuantityKind");
+				EFactory eFactory = ePackage.getEFactoryInstance();
+				//
+				EObject eObject = eFactory.create(eClass);
+				ocl.assertQueryTrue(eObject, "dependsOnQuantityKinds() <> null");
+			}
+			if (!EMFPlugin.IS_ECLIPSE_RUNNING) { // FIXME find out how to get dynamic project onto classpath
+				String qualifiedPackageName = testSubProjectName + ".PrimitiveValueTypes.PrimitiveValueTypesPackage";
+				EPackage ePackage = doLoadPackage(qualifiedPackageName);
+				EClass eClass = (EClass) ePackage.getEClassifier("Complex");
+				EFactory eFactory = ePackage.getEFactoryInstance();
+				//
+				EObject eObject = eFactory.create(eClass);
+				ocl.assertQueryTrue(eObject, "imaginaryPart = realPart");
+				ocl.assertQueryTrue(eObject, "oclType() <> null");
+				ocl.assertQueryTrue(eObject, "oclType().oclIsKindOf(OclAny)");
+			}
 		}
-		if (!EMFPlugin.IS_ECLIPSE_RUNNING) { // FIXME find out how to get dynamic project onto classpath
-			String qualifiedPackageName = testProjectName + ".PrimitiveValueTypes.PrimitiveValueTypesPackage";
-			EPackage ePackage = doLoadPackage(qualifiedPackageName);
-			EClass eClass = (EClass) ePackage.getEClassifier("Complex");
-			EFactory eFactory = ePackage.getEFactoryInstance();
-			//
-			EObject eObject = eFactory.create(eClass);
-			assertQueryTrue(eObject, "imaginaryPart = realPart");
-			assertQueryTrue(eObject, "oclType() <> null");
-			assertQueryTrue(eObject, "oclType().oclIsKindOf(OclAny)");
+		finally {
+			ocl.dispose();
 		}
 	}
 
@@ -837,13 +835,14 @@ public class UsageTests
 	 * Sample Reflective Ecore Editor.
 	 */
 	public void testOpen_Pivot_oclas() throws Exception {
+		TestOCL ocl = createOCL();
 		if (EMFPlugin.IS_ECLIPSE_RUNNING) {
 			TestCaseAppender.INSTANCE.uninstall();
-			suppressGitPrefixPopUp();
+			TestUtil.suppressGitPrefixPopUp();
 			IWorkbench workbench = PlatformUI.getWorkbench();
 			IIntroManager introManager = workbench.getIntroManager();
 			introManager.closeIntro(introManager.getIntro());
-			flushEvents();
+			TestUtil.flushEvents();
 			
 			String testProjectName = "Open_Pivot";
 			ResourceSet resourceSet1 = new ResourceSetImpl();
@@ -866,7 +865,7 @@ public class UsageTests
 //			java.net.URI uri = new java.net.URI(location.substring(location.indexOf("file:")));
 			IWorkbenchPage activePage = workbench.getActiveWorkbenchWindow().getActivePage();
 			EcoreEditor openEditor = (EcoreEditor) IDE.openEditor(activePage, file, "org.eclipse.emf.ecore.presentation.ReflectiveEditorID", true);
-			flushEvents();
+			TestUtil.flushEvents();
 			ResourceSet resourceSet = openEditor.getEditingDomain().getResourceSet();
 			EList<Resource> resources = resourceSet.getResources();
 			assertEquals(1, resources.size());
@@ -879,16 +878,11 @@ public class UsageTests
 //			}
 			openEditor.dispose();
 		}
-	}
-	
-	private void flushEvents() {
-		for (int i = 0; i < 10; i++) {
-			IWorkbench workbench = PlatformUI.getWorkbench();
-			while (workbench.getDisplay().readAndDispatch());
-		}
+		ocl.dispose();
 	}
 
 	public void testPivotMetamodelImport414855() throws Exception {
+		TestOCL ocl = createOCL();
 		String testFileStem = "Bug414855";
 		String testProjectName = "bug414855";
 		String testProjectPath = EMFPlugin.IS_ECLIPSE_RUNNING ? testProjectName : ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS;
@@ -901,12 +895,14 @@ public class UsageTests
 			+ "}\n";
 		String genmodelFile = createGenModelContent(testProjectPath, testFileStem, "platform:/plugin/org.eclipse.ocl.pivot/model/Pivot.merged.genmodel#//pivot");
 		doDelete(testProjectName);
-		URI fileURI = createModels(testProjectPath, testFileStem, oclinecoreFile, genmodelFile);
-		doGenModel(testProjectPath, fileURI);
-		doCompile(testProjectName);		
+		URI genModelURI = createModels(testProjectPath, testFileStem, oclinecoreFile, genmodelFile);
+		doGenModel(testProjectPath, genModelURI);
+		doCompile(testProjectName);
+		ocl.dispose();
 	}
 	
 	public void testBug415782() throws Exception {
+		TestOCL ocl = createOCL();
 		String testFileStem = "Bug415782";
 		String testProjectName = "bug415782";
 		String testProjectPath = EMFPlugin.IS_ECLIPSE_RUNNING ? testProjectName : ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS;
@@ -927,12 +923,14 @@ public class UsageTests
 			+ "}\n";
 		String genmodelFile = createGenModelContent(testProjectPath, testFileStem, null);
 		doDelete(testProjectName);
-		URI fileURI = createModels(testProjectPath, testFileStem, oclinecoreFile, genmodelFile);
-		doGenModel(testProjectPath, fileURI);
+		URI genModelURI = createModels(testProjectPath, testFileStem, oclinecoreFile, genmodelFile);
+		doGenModel(testProjectPath, genModelURI);
 		doCompile(testProjectName);
+		ocl.dispose();
 	}
 	
 	public void testBug416421() throws Exception {
+		TestOCL ocl = createOCL();
 		String testFileStemA = "Bug416421A";
 		String testProjectNameA = "bug416421A";
 		String testProjectPathA = EMFPlugin.IS_ECLIPSE_RUNNING ? testProjectNameA : ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS;
@@ -966,12 +964,13 @@ public class UsageTests
 		String genmodelFileB = createGenModelContent(testProjectPathB, testFileStemB, "Bug416421A.genmodel#//bug416421A");
 		doDelete(testProjectNameA);
 		doDelete(testProjectNameB);
-		URI fileURIA = createModels(testProjectPathA, testFileStemA, oclinecoreFileA, genmodelFileA);
-		URI fileURIB = createModels(testProjectPathB, testFileStemB, oclinecoreFileB, genmodelFileB);
+		URI genModelURIA = createModels(testProjectPathA, testFileStemA, oclinecoreFileA, genmodelFileA);
+		URI genModelURIB = createModels(testProjectPathB, testFileStemB, oclinecoreFileB, genmodelFileB);
 		// B first demonstrates the demand load of Bug416421A to fix Bug 416421
-		doGenModel(testProjectPathB, fileURIB);
-		doGenModel(testProjectPathA, fileURIA);
+		doGenModel(testProjectPathB, genModelURIB);
+		doGenModel(testProjectPathA, genModelURIA);
 		doCompile(testProjectNameA);
 		doCompile(testProjectNameB, testProjectNameA);
+		ocl.dispose();
 	}
 }

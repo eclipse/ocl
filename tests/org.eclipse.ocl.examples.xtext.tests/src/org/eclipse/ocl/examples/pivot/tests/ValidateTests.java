@@ -302,8 +302,9 @@ public class ValidateTests extends AbstractValidateTests
 	}
 
 	public void testValidate_Validate_completeocl_loadresource() throws IOException, InterruptedException {		
+		OCL ocl = OCL.newInstance(getProjectMap());
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
-		ResourceSet resourceSet = createResourceSet();
+		ResourceSet resourceSet = ocl.getResourceSet(); //createResourceSet();
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
 		OCLDelegateDomain.initialize(resourceSet, PivotConstants.OCL_DELEGATE_URI_PIVOT);			
 		EnvironmentFactoryResourceSetAdapter adapter = EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, null);
@@ -325,7 +326,7 @@ public class ValidateTests extends AbstractValidateTests
 			"The 'AtMostTwoLoans' constraint is violated on 'Library lib::Member m3'",
 			"The 'UniqueLoans' constraint is violated on 'Library lib::Member m3'");
 		//
-		CompleteOCLLoader helper = new CompleteOCLLoader(resourceSet) {
+		CompleteOCLLoader helper = new CompleteOCLLoader(ocl.getEnvironmentFactory()) {
 			@Override
 			protected boolean error(@NonNull String primaryMessage, @Nullable String detailMessage) {
 				TestCase.fail(primaryMessage + "\n\t" + detailMessage);
@@ -343,12 +344,14 @@ public class ValidateTests extends AbstractValidateTests
 			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Book", "ExactlyOneCopy", "Library lib::Book b2"));
 		adapter.getMetamodelManager().dispose();
 		disposeResourceSet(resourceSet);
+		helper.dispose();
+		ocl.dispose();
 	}
 
 	public void testValidate_Validate_completeocl_Bug422583() throws IOException, InterruptedException {
 		UMLStandaloneSetup.init();
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
-		OCL ocl = UMLOCL.newInstance();
+		OCL ocl = UMLOCL.newInstance(getProjectMap());
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		ResourceSet resourceSet = metamodelManager.getExternalResourceSet(); //createResourceSet();
 
@@ -402,7 +405,7 @@ public class ValidateTests extends AbstractValidateTests
 		assert uNamed != null;
 		assertValidationDiagnostics("Without Complete OCL", resource);
 		//
-		CompleteOCLLoader helper = new CompleteOCLLoader(resourceSet) {
+		CompleteOCLLoader helper = new CompleteOCLLoader(ocl.getEnvironmentFactory()) {
 			@Override
 			protected boolean error(@NonNull String primaryMessage, @Nullable String detailMessage) {
 				TestCase.fail(primaryMessage + "\n\t" + detailMessage);
@@ -422,6 +425,7 @@ public class ValidateTests extends AbstractValidateTests
 			ClassUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "NamedElement", "visibility_needs_ownership", objectLabel4)*/);	// FIXME BUG 437450
 //		adapter.getMetamodelManager().dispose();
 //		disposeResourceSet(resourceSet);
+		helper.dispose();
 		ocl.dispose();
 	}
 

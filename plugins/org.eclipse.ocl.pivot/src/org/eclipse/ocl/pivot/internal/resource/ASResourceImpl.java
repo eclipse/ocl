@@ -31,6 +31,7 @@ public class ASResourceImpl extends XMIResourceImpl implements ASResource
 	public ASResourceImpl(@NonNull URI uri, @NonNull ASResourceFactory asResourceFactory) {
 		super(uri);
 		this.asResourceFactory = asResourceFactory;
+//		PivotUtilInternal.debugPrintln("Create " + NameUtil.debugSimpleName(this));	
 	}
 
 	@Override

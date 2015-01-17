@@ -646,7 +646,7 @@ public class ValidateCommand extends StandaloneCommand
 	private boolean processResources(@NonNull String modelFilePath, @NonNull List<String> oclFileNames) {
 		boolean allOk = true;
 
-		CompleteOCLLoader helper = new CompleteOCLLoader(standaloneApplication.getResourceSet()) {
+		CompleteOCLLoader helper = new CompleteOCLLoader(standaloneApplication.getEnvironmentFactory()) {
 			@Override
 			protected boolean error(@NonNull String primaryMessage, @Nullable String detailMessage) {
 				logger.error(primaryMessage + detailMessage);
@@ -689,6 +689,7 @@ public class ValidateCommand extends StandaloneCommand
 		}
 
 		helper.installPackages();
+		helper.dispose();
 		return allOk;
 	}
 

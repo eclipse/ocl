@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.ValidationDelegateRegistryImpl;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.jdt.annotation.NonNull;
@@ -34,7 +33,6 @@ import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
@@ -246,7 +244,7 @@ public class OCLDelegateDomain implements DelegateDomain, EnvironmentFactory.Lis
 		reset();
 	}
 
-	private @NonNull EnvironmentFactory getEnvironmentFactory() {
+/*	private @NonNull EnvironmentFactory getEnvironmentFactory() {
 		Resource res = ePackage.eResource();
 		EnvironmentFactory envFactory = null;
 		if (res != null) {
@@ -273,7 +271,7 @@ public class OCLDelegateDomain implements DelegateDomain, EnvironmentFactory.Lis
 			envFactory = OCL.Internal.getGlobalEnvironmentFactory();
 		}
 		return envFactory;
-	}
+	} */
 
 	public final @NonNull MetamodelManager getMetamodelManager() {
 		return getOCL().getMetamodelManager();
@@ -284,7 +282,8 @@ public class OCLDelegateDomain implements DelegateDomain, EnvironmentFactory.Lis
 		if (ocl2 == null) {
 			// Delegates are an application-independent extension of EMF
 			//  so we must use the neutral/global context see Bug 338501
-			EnvironmentFactory environmentFactory = getEnvironmentFactory();
+//			EnvironmentFactory environmentFactory = getEnvironmentFactory();
+			EnvironmentFactory environmentFactory = OCL.Internal.getGlobalEnvironmentFactory();
 			ocl2 = ocl = OCL.newInstance(environmentFactory);
 			environmentFactory.addListener(this);
 		}
@@ -306,8 +305,10 @@ public class OCLDelegateDomain implements DelegateDomain, EnvironmentFactory.Lis
 	}
 
 	@Override
-	public void reset() {
-		if (ocl != null) {
+	public synchronized void reset() {
+		OCL ocl2 = ocl;
+		if (ocl2 != null) {
+			ocl = null;
 			for (EClassifier eClassifier : ePackage.getEClassifiers()) {
 				List<Adapter> eClassifierAdapters = eClassifier.eAdapters();
 				for (Adapter adapter : eClassifierAdapters) {
@@ -326,8 +327,7 @@ public class OCLDelegateDomain implements DelegateDomain, EnvironmentFactory.Lis
 					}
 				}
 			}
-			ocl.dispose();
-			ocl = null;
+			ocl2.dispose();
 		}
 	}
 

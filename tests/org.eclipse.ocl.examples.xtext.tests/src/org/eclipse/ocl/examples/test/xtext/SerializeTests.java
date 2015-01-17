@@ -168,7 +168,7 @@ public class SerializeTests extends XtextTestCase
 		//
 		//	Ecore to Pivot
 		//
-		OCL ocl1 = OCL.newInstance(resourceSet);
+		OCL ocl1 = OCL.newInstance(getProjectMap(), resourceSet);
 		XtextResource xtextResource = null;
 		try {
 			MetamodelManager metamodelManager1 = ocl1.getMetamodelManager();

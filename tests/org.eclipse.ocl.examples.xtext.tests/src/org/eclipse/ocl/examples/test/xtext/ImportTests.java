@@ -417,6 +417,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_CompleteOCL_Bug450196() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		String moreCompleteOCL =
 				"package ocl\n" +
 				"context _'Integer'\n" +
@@ -428,10 +429,10 @@ public class ImportTests extends XtextTestCase
 				"package ocl\n" +				
 				"endpackage\n";
 		
-		ASResource resource = doLoadASResourceFromString(OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager(), "importer.ocl", testFile);
+		ASResource resource = doLoadASResourceFromString(ocl, "importer.ocl", testFile);
 		Model root = (Model) resource.getContents().get(0);
 		assertEquals(1, root.getOwnedImports().size());
 		assertNotNull(root.getOwnedImports().get(0));
-
+		ocl.dispose();
 	}
 }

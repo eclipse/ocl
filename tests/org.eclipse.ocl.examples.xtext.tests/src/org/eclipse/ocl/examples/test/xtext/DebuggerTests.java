@@ -43,12 +43,12 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jface.dialogs.MessageDialogWithToggle;
 import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
+import org.eclipse.ocl.examples.xtext.tests.TestUtil;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
-import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.intro.IIntroManager;
 
@@ -103,11 +103,6 @@ public class DebuggerTests extends XtextTestCase
 		DebugUIPlugin.getDefault().getPreferenceStore().setValue(IInternalDebugUIConstants.PREF_SWITCH_TO_PERSPECTIVE, MessageDialogWithToggle.ALWAYS);
 	}
 
-	protected void flushEvents() {
-		IWorkbench workbench = PlatformUI.getWorkbench();
-		while (workbench.getDisplay().readAndDispatch());
-	}
-
 	public void testDebugger_Launch() throws Exception {
 		closeIntro();
 		enableSwitchToDebugPerspectivePreference();
@@ -140,7 +135,7 @@ public class DebuggerTests extends XtextTestCase
 
 		ILaunchConfigurationWorkingCopy launchConfiguration = createLaunchConfiguration(iProject, constraint, eObject);
 		launchConfiguration.doSave();
-		flushEvents();
+		TestUtil.flushEvents();
 		ILaunch launch = launchConfiguration.launch(ILaunchManager.DEBUG_MODE, null);
 		waitForLaunchToTerminate(launch);
 	}
@@ -148,7 +143,7 @@ public class DebuggerTests extends XtextTestCase
 	protected void waitForLaunchToTerminate(ILaunch launch) throws InterruptedException, DebugException {
 		while (true) {
 			for (int i = 0; i < 10; i++){
-				flushEvents();
+				TestUtil.flushEvents();
 				Thread.sleep(100);
 			}
 			boolean allDead = true;

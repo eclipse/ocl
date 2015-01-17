@@ -19,7 +19,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.emf.validation.validity.ConstrainingNode;
@@ -45,6 +44,7 @@ import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.validation.PivotEObjectValidator.ValidationAdapter;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 import org.eclipse.ocl.xtext.completeocl.utilities.CompleteOCLCSResource;
@@ -203,7 +203,8 @@ public abstract class AbstractValidityTestCase extends TestCase
 	protected ResultSet resultSet;
 
 	public void initTestModels() throws Exception {
-		resourceSet = new ResourceSetImpl();
+		OCL ocl = OCL.newInstance(getProjectMap());
+		resourceSet = ocl.getResourceSet(); //new ResourceSetImpl();
 		// initialize all the needed resource factories to create ecore and ocl
 		// resources in the global registry.
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
@@ -236,7 +237,7 @@ public abstract class AbstractValidityTestCase extends TestCase
 		ecoreResource2 = resourceSet2.getResource(ecoreURI2, true);
 		ecoreResource3 = resourceSet2.getResource(ecoreURI3, true);
 
-		CompleteOCLLoader helper = new CompleteOCLLoader(resourceSet2)
+		CompleteOCLLoader helper = new CompleteOCLLoader(ocl.getEnvironmentFactory())
 		{
 			@Override
 			protected boolean error(@NonNull String primaryMessage, @Nullable String detailMessage) {
@@ -251,6 +252,8 @@ public abstract class AbstractValidityTestCase extends TestCase
 
 		validationAdapter = ValidationAdapter.findAdapter(resourceSet2);
 		assertNotNull(validationAdapter);
+		helper.dispose();
+		ocl.dispose();
 	}
 
 	protected void initValidityManager(@Nullable ValidityManager validityManager) {

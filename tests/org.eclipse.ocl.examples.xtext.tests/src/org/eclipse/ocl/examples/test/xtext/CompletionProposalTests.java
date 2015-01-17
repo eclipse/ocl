@@ -13,23 +13,16 @@ package org.eclipse.ocl.examples.test.xtext;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.eclipse.core.resources.ICommand;
 import org.eclipse.core.resources.IContainer;
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IProjectDescription;
-import org.eclipse.core.resources.IWorkspace;
-import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
+import org.eclipse.ocl.examples.xtext.tests.TestUtil;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
@@ -152,62 +145,12 @@ public class CompletionProposalTests extends XtextTestCase
 
 	protected XtextContentAssistProcessor contentAssistProcessor = null;
 	protected XtextEditor editor = null;
-	
-	protected @NonNull FileEditorInput createEcoreFileEditorInput(@NonNull IContainer container, @NonNull String fileName, @NonNull String testDocument)throws IOException, CoreException {
-		OCL ocl0 = OCL.newInstance(getProjectMap());
-		MetamodelManager metamodelManager0 = ocl0.getMetamodelManager();
-		String ecoreString = createEcoreString(metamodelManager0, fileName, testDocument, true);
+
+	protected @NonNull FileEditorInput createEcoreFileEditorInput(@NonNull OCL ocl, @NonNull IContainer container, @NonNull String fileName, @NonNull String testDocument)throws IOException, CoreException {
+		String ecoreString = createEcoreString(ocl, fileName, testDocument, true);
 		InputStream inputStream = new URIConverter.ReadableInputStream(ecoreString, "UTF-8");
-		FileEditorInput fileEditorInput = createFileEditorInput(container, fileName, inputStream);
-		metamodelManager0.dispose();
+		FileEditorInput fileEditorInput = TestUtil.createFileEditorInput(container, fileName, inputStream);
 		return fileEditorInput;
-	}
-	
-	protected @NonNull IFile createFile(@NonNull IContainer container, @NonNull String fileName, @NonNull String fileContents) throws IOException, CoreException {
-		InputStream inputStream = new URIConverter.ReadableInputStream(fileContents, "UTF-8");
-		IFile iFile = container.getFile(new Path(fileName));
-		if (iFile.exists()) {
-			iFile.delete(true, null);
-		}
-		iFile.create(inputStream, true, null);
-		return iFile;
-	}
-
-	protected @NonNull FileEditorInput createFileEditorInput(@NonNull IContainer container, @NonNull String fileName, @NonNull InputStream inputStream) throws CoreException {
-		IFile file1 = container.getFile(new Path(fileName));
-		file1.create(inputStream, true, null);
-		return new FileEditorInput(file1) {};	// Ensure classloader is here
-	}
-
-	protected @NonNull IFolder createFolder(@NonNull IContainer container, @NonNull String folderName) throws CoreException {
-		IFolder folder = container.getFolder(new Path(folderName));
-		if (!folder.exists()) {
-			folder.create(true,  false,  null);
-		}
-		return folder;
-	}
-
-	protected @NonNull IProject createProject(@NonNull String projectName) throws CoreException {
-		IWorkspace workspace = ResourcesPlugin.getWorkspace();
-		IWorkspaceRoot root = workspace.getRoot();
-		IProject project = root.getProject(projectName);
-		if (!project.exists()) {
-			project.create(null);
-		}
-		if (!project.isOpen()) {
-			project.open(null);
-		}
-		IProjectDescription description = project.getDescription();
-		ICommand command1 = description.newCommand();
-		command1.setBuilderName("org.eclipse.jdt.core.javabuilder");
-		ICommand command2 = description.newCommand();
-		command2.setBuilderName("org.eclipse.pde.ManifestBuilder");
-		ICommand command3 = description.newCommand();
-		command3.setBuilderName("org.eclipse.pde.SchemaBuilder");
-		description.setBuildSpec(new ICommand[]{command1, command2, command3});
-		description.setNatureIds(new String[]{"org.eclipse.pde.PluginNature", "org.eclipse.jdt.core.javanature"});
-		project.setDescription(description, null);
-		return project;
 	}
 
 	protected void doTearDown(XtextEditor editor) {
@@ -218,9 +161,9 @@ public class CompletionProposalTests extends XtextTestCase
 				return PivotUtilInternal.findMetamodelManager(state);
 			}
 		});
-		flushEvents();
+		TestUtil.flushEvents();
 		editor.close(false);
-		flushEvents();
+		TestUtil.flushEvents();
 		if (metamodelManager != null) {
 			metamodelManager.dispose();
 		}
@@ -245,15 +188,10 @@ public class CompletionProposalTests extends XtextTestCase
 			}
 		}
 	}
-
-	protected void flushEvents() {
-		IWorkbench workbench = PlatformUI.getWorkbench();
-		while (workbench.getDisplay().readAndDispatch());
-	}
 	
 	@Override
 	protected void setUp() throws Exception {
-		suppressGitPrefixPopUp();    		
+		TestUtil.suppressGitPrefixPopUp();    		
 		super.setUp();
 	}
 
@@ -261,8 +199,8 @@ public class CompletionProposalTests extends XtextTestCase
 			throws CoreException, PartInitException, IOException {
 		contentAssistProcessor = injector.getInstance(XtextContentAssistProcessor.class);
 		InputStream inputStream = new URIConverter.ReadableInputStream(initialContent, "UTF-8");
-		IProject project = createProject("CompletionProposalTests");	
-		createFile(createFolder(project, "META-INF"), "MANIFEST.MF",
+		IProject project = TestUtil.createJavaProject("CompletionProposalTests");	
+		TestUtil.createIFile(TestUtil.createFolder(project, "META-INF"), "MANIFEST.MF",
 			"Manifest-Version: 1.0\n"+
 			"Bundle-ManifestVersion: 2\n"+
 			"Bundle-Name: CompletionProposalTests\n"+
@@ -271,7 +209,7 @@ public class CompletionProposalTests extends XtextTestCase
 			"Bundle-RequiredExecutionEnvironment: JavaSE-1.6\n"+
 			"Require-Bundle: org.eclipse.ocl.pivot\n"+
 			"");
-		createFile(project, ".classpath",
+		TestUtil.createIFile(project, ".classpath",
 			"<classpath>\n" + 
 			"			<classpathentry kind=\"con\" path=\"org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6\"/>\n" + 
 			"			<classpathentry kind=\"con\" path=\"org.eclipse.pde.core.requiredPlugins\"/>\n" + 
@@ -279,12 +217,12 @@ public class CompletionProposalTests extends XtextTestCase
 			"			<classpathentry kind=\"output\" path=\"bin\"/>\n" + 
 			"		</classpath>\n"+
 			"");
-		createFile(createFolder(project, "src"), "Test.java",
+		TestUtil.createIFile(TestUtil.createFolder(project, "src"), "Test.java",
 			"import org.eclipse.emf.ecore.provider.*;\n"+
 			"public class Test {}\n"+
 			"");
 		project.build(IncrementalProjectBuilder.FULL_BUILD, null);
-		FileEditorInput fileEditorInput = createFileEditorInput(project, fileName, inputStream);
+		FileEditorInput fileEditorInput = TestUtil.createFileEditorInput(project, fileName, inputStream);
 		IWorkbench workbench = PlatformUI.getWorkbench();
 		IWorkbenchWindow activeWorkbenchWindow = workbench.getActiveWorkbenchWindow();
 		IWorkbenchPage page = activeWorkbenchWindow.getActivePage();

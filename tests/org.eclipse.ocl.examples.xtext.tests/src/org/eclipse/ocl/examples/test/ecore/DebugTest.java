@@ -12,8 +12,6 @@
 package org.eclipse.ocl.examples.test.ecore;
 
 import org.eclipse.ocl.examples.test.generic.GenericDebugTest;
-import org.eclipse.ocl.pivot.Model;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 
 /**
  * The JUnit4 GUI does not support re-running individual tests in isolation.
@@ -22,14 +20,14 @@ import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
  */
 @SuppressWarnings("nls")
 public class DebugTest extends GenericDebugTest {
-	public org.eclipse.ocl.pivot.Package pkg1;
+//	public org.eclipse.ocl.pivot.Package pkg1;
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-		MetamodelManager metamodelManager = ocl.getMetamodelManager();
-        Model root = metamodelManager.createModel(null);
-        pkg1 = createPackage(root, "pkg1");
+//		MetamodelManager metamodelManager = ocl.getMetamodelManager();
+//        Model root = metamodelManager.createModel(null);
+//        pkg1 = createPackage(root, "pkg1");
 //        helper.setContext(getMetaclass("Model"));
     }
 

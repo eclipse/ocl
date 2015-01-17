@@ -58,12 +58,13 @@ import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableExp;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.context.ModelContext;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.internal.values.BagImpl;
@@ -362,9 +363,9 @@ public class XtextTestCase extends PivotTestCase
 		adapter = null;
 	}
 
-	protected ASResource doLoadASResourceFromString(@NonNull MetamodelManager metamodelManager, @NonNull String fileName, @NonNull String testFile) throws Exception {
+	protected ASResource doLoadASResourceFromString(@NonNull OCL ocl, @NonNull String fileName, @NonNull String testFile) throws Exception {
 		URI libraryURI = getProjectFileURI(fileName);
-		ModelContext modelContext = new ModelContext(metamodelManager.getEnvironmentFactory(), libraryURI);
+		ModelContext modelContext = new ModelContext(ocl.getEnvironmentFactory(), libraryURI);
 		BaseCSResource xtextResource = (BaseCSResource) modelContext.createBaseResource(testFile);
 		assertNoResourceErrors("Load failed", xtextResource);
 		CS2ASResourceAdapter adapter = xtextResource.getCS2ASAdapter(null);
@@ -559,21 +560,21 @@ public class XtextTestCase extends PivotTestCase
 	protected ResourceSet resourceSet;
 	
 	@SuppressWarnings("null")
-	public @NonNull String createEcoreString(@NonNull MetamodelManager metamodelManager, @NonNull String fileName, @NonNull String fileContent, boolean assignIds) throws IOException {
+	public @NonNull String createEcoreString(@NonNull OCL ocl, @NonNull String fileName, @NonNull String fileContent, boolean assignIds) throws IOException {
 		String inputName = fileName + ".oclinecore";
 		createOCLinEcoreFile(inputName, fileContent);
 		URI inputURI = getProjectFileURI(inputName);
 		URI ecoreURI = getProjectFileURI(fileName + ".ecore");
 		CS2ASResourceAdapter adapter = null;
 		try {
-			ResourceSet resourceSet2 = metamodelManager.getExternalResourceSet();
+			ResourceSet resourceSet2 = ocl.getResourceSet();
 			BaseCSResource xtextResource = ClassUtil.nonNullState((BaseCSResource) resourceSet2.getResource(inputURI, true));
 			assertNoResourceErrors("Load failed", xtextResource);
 			adapter = xtextResource.getCS2ASAdapter(null);
 			Resource asResource = adapter.getASResource(xtextResource);
 			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
 			assertNoValidationErrors("Pivot validation errors", asResource.getContents().get(0));
-			XMLResource ecoreResource = AS2Ecore.createResource(metamodelManager.getEnvironmentFactory(), asResource, ecoreURI, null);
+			XMLResource ecoreResource = AS2Ecore.createResource((EnvironmentFactoryInternal) ocl.getEnvironmentFactory(), asResource, ecoreURI, null);
 			assertNoResourceErrors("To Ecore errors", ecoreResource);
 			if (assignIds) {
 				for (TreeIterator<EObject> tit = ecoreResource.getAllContents(); tit.hasNext(); ) {

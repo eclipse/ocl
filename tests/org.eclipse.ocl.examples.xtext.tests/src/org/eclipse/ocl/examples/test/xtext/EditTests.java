@@ -72,6 +72,8 @@ public class EditTests extends XtextTestCase
 
 	@Override
 	protected void setUp() throws Exception {
+		doCompleteOCLSetup();
+		doOCLstdlibSetup();
 		super.setUp();
 		this.resourceSet = null;		// FIXME lose this field
 	}

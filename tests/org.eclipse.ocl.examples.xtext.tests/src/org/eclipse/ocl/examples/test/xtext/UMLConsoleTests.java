@@ -67,7 +67,8 @@ public class UMLConsoleTests extends AbstractConsoleTests
 
 	@SuppressWarnings({"unused"})
 	public void testConsole_UML() throws Exception {
-		OCL ocl = OCL.newInstance(getProjectMap());
+		doDelete(PLUGIN_ID);
+		OCL ocl = OCL.newInstance();
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
 

@@ -40,6 +40,7 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.registry.CompleteOCLRegistry;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.xtext.base.ui.utilities.PDEUtils;
 import org.eclipse.ocl.xtext.completeocl.ui.CompleteOCLUiModule;
 import org.eclipse.ocl.xtext.completeocl.ui.messages.CompleteOCLUIMessages;
@@ -278,7 +279,8 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 
 		@Override
 		protected boolean processResources() {
-			CompleteOCLLoader helper = new CompleteOCLLoader(resourceSet) {
+			OCL ocl = OCL.newInstance(null, resourceSet);
+			CompleteOCLLoader helper = new CompleteOCLLoader(ocl.getEnvironmentFactory()) {
 				@Override
 				protected boolean error(@NonNull String primaryMessage, @Nullable String detailMessage) {
 					return ResourceDialog.this.error(primaryMessage, detailMessage);

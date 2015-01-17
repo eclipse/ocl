@@ -18,12 +18,13 @@ import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.emf.validation.validity.export.ValidityExporterRegistry;
 import org.eclipse.ocl.examples.standalone.StandaloneCommand.CommandToken;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 
 /**
@@ -40,7 +41,8 @@ public class StandaloneApplication implements IApplication
 	private static final String ARGS_KEY = "application.args"; //$NON-NLS-1$
 
 	/** The Resource Set */
-	private ResourceSet resourceSet = null;
+	private OCL ocl = null;
+//	private ResourceSet resourceSet = null;
 
 	private final @NonNull StandaloneCommandAnalyzer commandAnalyzer = new StandaloneCommandAnalyzer(this);
 
@@ -55,7 +57,7 @@ public class StandaloneApplication implements IApplication
 	 * resources in the global registry.
 	 */
 	public void doCompleteOCLSetup() {
-		getResourceSet();
+		getOCL();
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
 			CompleteOCLStandaloneSetup.doSetup();
 		}
@@ -91,18 +93,26 @@ public class StandaloneApplication implements IApplication
 		return commandAnalyzer.getCommands();
 	}
 
-	public @NonNull ResourceSet getResourceSet() {
-		if (resourceSet == null) {
-			resourceSet = new ResourceSetImpl();
+	public @NonNull EnvironmentFactory getEnvironmentFactory() {
+		return getOCL().getEnvironmentFactory();
+	}
+
+	public @NonNull OCL getOCL() {
+		if (ocl == null) {
+			ocl = OCL.newInstance();
 		}
-		return resourceSet;
+		return ocl;
+	}
+
+	public @NonNull ResourceSet getResourceSet() {
+		return getOCL().getResourceSet();
 	}
 	
 	/**
 	 * Loads a file and returns The loaded resource.
 	 */
 	public Resource loadModelFile(URI fileUri) {
-		Resource loadedResource = resourceSet.getResource(fileUri, true);
+		Resource loadedResource = ocl.getResourceSet().getResource(fileUri, true);
 		if (!loadedResource.isLoaded()) {
 			return null;
 		}
@@ -145,6 +155,10 @@ public class StandaloneApplication implements IApplication
 	 */
 	@Override
 	public void stop() {
+		if (ocl != null) {
+			ocl.dispose();
+			ocl = null;
+		}
 		// Nothing to do
 	}
 }

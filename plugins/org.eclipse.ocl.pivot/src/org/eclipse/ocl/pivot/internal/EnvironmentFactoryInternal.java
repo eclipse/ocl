@@ -31,6 +31,7 @@ import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.library.ImplementationManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ICSI2ASMapping;
+import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.AbstractEnvironmentFactory;
 
 /**
@@ -100,4 +101,7 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 	void detach(Object object);
 	
 	void dispose();
+	
+	@Nullable ProjectManager basicGetProjectManager();
+	void disposeGlobal();
 }

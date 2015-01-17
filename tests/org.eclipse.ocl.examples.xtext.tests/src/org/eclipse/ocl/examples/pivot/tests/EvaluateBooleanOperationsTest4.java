@@ -15,8 +15,6 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,6 +39,11 @@ public class EvaluateBooleanOperationsTest4 extends PivotTestSuite
 	}
 
 	@Override
+	protected @NonNull TestOCL createOCL() {
+		return new TestOCL(getTestPackageName(), getName());
+	}
+
+	@Override
 	protected @NonNull String getTestPackageName() {
 		return "EvaluateBooleanOperations";
 	}
@@ -49,166 +52,174 @@ public class EvaluateBooleanOperationsTest4 extends PivotTestSuite
 		PivotTestSuite.resetCounter();
     }
 
-    @Override
-    @Before public void setUp() throws Exception {
-        super.setUp();
-    }
-
-	@Override
-	@After public void tearDown() throws Exception {
-		super.tearDown();
-	}
-
 	@Test public void testBoolean() {
-		assertQueryFalse(null, "false");
-		assertQueryTrue(null, "true");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryFalse(null, "false");
+		ocl.assertQueryTrue(null, "true");
 		// invalid
-		assertQueryFalse(null, "let b : Boolean = false in b");
-		assertQueryTrue(null, "let b : Boolean = true in b");
-		assertQueryNull(null, "let b : Boolean = null in b");
-		assertQueryInvalid(null, "let b : Boolean = invalid in b");
+		ocl.assertQueryFalse(null, "let b : Boolean = false in b");
+		ocl.assertQueryTrue(null, "let b : Boolean = true in b");
+		ocl.assertQueryNull(null, "let b : Boolean = null in b");
+		ocl.assertQueryInvalid(null, "let b : Boolean = invalid in b");
+		ocl.dispose();
 	}
 
 	@Test public void testBooleanAnd() {
-		assertQueryFalse(null, "false and false");
-		assertQueryFalse(null, "false and true");
-		assertQueryFalse(null, "true and false");
-		assertQueryTrue(null, "true and true");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryFalse(null, "false and false");
+		ocl.assertQueryFalse(null, "false and true");
+		ocl.assertQueryFalse(null, "true and false");
+		ocl.assertQueryTrue(null, "true and true");
 		// invalid
-		assertQueryFalse(null, "let b : Boolean = invalid in false and b");
-		assertQueryInvalid(null, "let b : Boolean = invalid in true and b");
-		assertQueryFalse(null, "let a : Boolean = invalid in a and false");
-		assertQueryInvalid(null, "let a : Boolean = invalid in a and true");
-		assertQueryInvalid(null, "let a : Boolean = invalid, b : Boolean = invalid in a and b");
+		ocl.assertQueryFalse(null, "let b : Boolean = invalid in false and b");
+		ocl.assertQueryInvalid(null, "let b : Boolean = invalid in true and b");
+		ocl.assertQueryFalse(null, "let a : Boolean = invalid in a and false");
+		ocl.assertQueryInvalid(null, "let a : Boolean = invalid in a and true");
+		ocl.assertQueryInvalid(null, "let a : Boolean = invalid, b : Boolean = invalid in a and b");
 		// null
-		assertQueryFalse(null, "let b : Boolean = null in false and b");
-		assertQueryNull(null, "let b : Boolean = null in true and b");
-		assertQueryNull(null, "let a : Boolean = null, b : Boolean = null in a and b");
-		assertQueryInvalid(null, "let a : Boolean = null, b : Boolean = invalid in a and b");
-		assertQueryInvalid(null, "let a : Boolean = null in a and Sequence{true}->at(0)");
-		assertQueryFalse(null, "let a : Boolean = null in a and false");
-		assertQueryNull(null, "let a : Boolean = null in a and true");
-		assertQueryNull(null, "let a : Boolean = null, b : Boolean = null in a and b");
-		assertQueryInvalid(null, "let a : Boolean = invalid, b : Boolean = null in a and b");
-		assertQueryInvalid(null, "let b : Boolean = null in Sequence{true}->at(0) and b");
+		ocl.assertQueryFalse(null, "let b : Boolean = null in false and b");
+		ocl.assertQueryNull(null, "let b : Boolean = null in true and b");
+		ocl.assertQueryNull(null, "let a : Boolean = null, b : Boolean = null in a and b");
+		ocl.assertQueryInvalid(null, "let a : Boolean = null, b : Boolean = invalid in a and b");
+		ocl.assertQueryInvalid(null, "let a : Boolean = null in a and Sequence{true}->at(0)");
+		ocl.assertQueryFalse(null, "let a : Boolean = null in a and false");
+		ocl.assertQueryNull(null, "let a : Boolean = null in a and true");
+		ocl.assertQueryNull(null, "let a : Boolean = null, b : Boolean = null in a and b");
+		ocl.assertQueryInvalid(null, "let a : Boolean = invalid, b : Boolean = null in a and b");
+		ocl.assertQueryInvalid(null, "let b : Boolean = null in Sequence{true}->at(0) and b");
+		ocl.dispose();
 	}
 
 	@Test public void testBooleanEqual() {
-		assertQueryFalse(null, "true = false");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryFalse(null, "true = false");
 
-		assertQueryTrue(null, "true = true");
-		assertQueryTrue(null, "false = false");
+		ocl.assertQueryTrue(null, "true = true");
+		ocl.assertQueryTrue(null, "false = false");
 		// invalid
-		assertQueryInvalid(null, "let b : Boolean = invalid in b = true");
-		assertQueryInvalid(null, "let b : Boolean = invalid in false = b");
+		ocl.assertQueryInvalid(null, "let b : Boolean = invalid in b = true");
+		ocl.assertQueryInvalid(null, "let b : Boolean = invalid in false = b");
 
-		assertQueryInvalid(null, "let b1 : Boolean = invalid, b2 : Boolean = invalid in b1 = b2");
+		ocl.assertQueryInvalid(null, "let b1 : Boolean = invalid, b2 : Boolean = invalid in b1 = b2");
 		// null
-		assertQueryFalse(null, "let b : Boolean = null in b = true");
-		assertQueryFalse(null, "let b : Boolean = null in false = b");
+		ocl.assertQueryFalse(null, "let b : Boolean = null in b = true");
+		ocl.assertQueryFalse(null, "let b : Boolean = null in false = b");
 
-		assertQueryTrue(null, "let b1 : Boolean = null, b2 : Boolean = null in b1 = b2");
+		ocl.assertQueryTrue(null, "let b1 : Boolean = null, b2 : Boolean = null in b1 = b2");
+		ocl.dispose();
 	}
 
 	@Test public void testBooleanImplies() {
-		assertQueryTrue(null, "false implies false");
-		assertQueryTrue(null, "false implies true");
-		assertQueryFalse(null, "true implies false");
-		assertQueryTrue(null, "true implies true");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryTrue(null, "false implies false");
+		ocl.assertQueryTrue(null, "false implies true");
+		ocl.assertQueryFalse(null, "true implies false");
+		ocl.assertQueryTrue(null, "true implies true");
 		// invalid
-		assertQueryTrue(null, "let b : Boolean = invalid in false implies b");
-		assertQueryInvalid(null, "let b : Boolean = invalid in true implies b");
-		assertQueryInvalid(null, "let a : Boolean = invalid in a implies false");
-		assertQueryTrue(null, "let a : Boolean = invalid in a implies true");
-		assertQueryInvalid(null, "let a : Boolean = invalid, b : Boolean = invalid in a implies b");
+		ocl.assertQueryTrue(null, "let b : Boolean = invalid in false implies b");
+		ocl.assertQueryInvalid(null, "let b : Boolean = invalid in true implies b");
+		ocl.assertQueryInvalid(null, "let a : Boolean = invalid in a implies false");
+		ocl.assertQueryTrue(null, "let a : Boolean = invalid in a implies true");
+		ocl.assertQueryInvalid(null, "let a : Boolean = invalid, b : Boolean = invalid in a implies b");
 		// null
-		assertQueryTrue(null, "let b : Boolean = null in false implies b");
-		assertQueryNull(null, "let b : Boolean = null in true implies b");
-		assertQueryInvalid(null, "let a : Boolean = null, b : Boolean = invalid in a implies b");
-		assertQueryInvalid(null, "let a : Boolean = null in a implies Sequence{true}->at(0)");
-		assertQueryNull(null, "let a : Boolean = null in a implies false");
-		assertQueryTrue(null, "let a : Boolean = null in a implies true");
-		assertQueryNull(null, "let a : Boolean = null, b : Boolean = null in a implies b");
-		assertQueryInvalid(null, "let a : Boolean = invalid, b : Boolean = null in a implies b");
-		assertQueryInvalid(null, "let b : Boolean = null in Sequence{true}->at(0) implies b");
+		ocl.assertQueryTrue(null, "let b : Boolean = null in false implies b");
+		ocl.assertQueryNull(null, "let b : Boolean = null in true implies b");
+		ocl.assertQueryInvalid(null, "let a : Boolean = null, b : Boolean = invalid in a implies b");
+		ocl.assertQueryInvalid(null, "let a : Boolean = null in a implies Sequence{true}->at(0)");
+		ocl.assertQueryNull(null, "let a : Boolean = null in a implies false");
+		ocl.assertQueryTrue(null, "let a : Boolean = null in a implies true");
+		ocl.assertQueryNull(null, "let a : Boolean = null, b : Boolean = null in a implies b");
+		ocl.assertQueryInvalid(null, "let a : Boolean = invalid, b : Boolean = null in a implies b");
+		ocl.assertQueryInvalid(null, "let b : Boolean = null in Sequence{true}->at(0) implies b");
+		ocl.dispose();
 	}
 
 	@Test public void testBooleanNot() {
-		assertQueryTrue(null, "not false");
-		assertQueryFalse(null, "not true");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryTrue(null, "not false");
+		ocl.assertQueryFalse(null, "not true");
 		// invalid
-		assertQueryInvalid(null, "let a : Boolean = invalid in not a");
+		ocl.assertQueryInvalid(null, "let a : Boolean = invalid in not a");
 		// null
-		assertQueryNull(null, "let a : Boolean = null in not a");
+		ocl.assertQueryNull(null, "let a : Boolean = null in not a");
+		ocl.dispose();
 	}
 
 	@Test public void testBooleanNotEqual() {
-		assertQueryTrue(null, "true <> false");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryTrue(null, "true <> false");
 
-		assertQueryFalse(null, "true <> true");
-		assertQueryFalse(null, "false <> false");
+		ocl.assertQueryFalse(null, "true <> true");
+		ocl.assertQueryFalse(null, "false <> false");
 		// invalid
-		assertQueryInvalid(null, "let b : Boolean = invalid in b <> true");
-		assertQueryInvalid(null, "let b : Boolean = invalid in false <> b");
+		ocl.assertQueryInvalid(null, "let b : Boolean = invalid in b <> true");
+		ocl.assertQueryInvalid(null, "let b : Boolean = invalid in false <> b");
 
-		assertQueryInvalid(null, "let b1 : Boolean = invalid, b2 : Boolean = invalid in b1 <> b2");
+		ocl.assertQueryInvalid(null, "let b1 : Boolean = invalid, b2 : Boolean = invalid in b1 <> b2");
 		// null
-		assertQueryTrue(null, "let b : Boolean = null in b <> true");
-		assertQueryTrue(null, "let b : Boolean = null in false <> b");
+		ocl.assertQueryTrue(null, "let b : Boolean = null in b <> true");
+		ocl.assertQueryTrue(null, "let b : Boolean = null in false <> b");
 
-		assertQueryFalse(null, "let b1 : Boolean = null, b2 : Boolean = null in b1 <> b2");
+		ocl.assertQueryFalse(null, "let b1 : Boolean = null, b2 : Boolean = null in b1 <> b2");
+		ocl.dispose();
 	}
 
 	@Test public void testBooleanOr() {
-		assertQueryFalse(null, "false or false");
-		assertQueryTrue(null, "false or true");
-		assertQueryTrue(null, "true or false");
-		assertQueryTrue(null, "true or true");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryFalse(null, "false or false");
+		ocl.assertQueryTrue(null, "false or true");
+		ocl.assertQueryTrue(null, "true or false");
+		ocl.assertQueryTrue(null, "true or true");
 		// invalid
-		assertQueryInvalid(null, "let b : Boolean = invalid in false or b");
-		assertQueryTrue(null, "let b : Boolean = invalid in true or b");
-		assertQueryInvalid(null, "let a : Boolean = invalid in a or false");
-		assertQueryTrue(null, "let a : Boolean = invalid in a or true");
-		assertQueryInvalid(null, "let a : Boolean = invalid, b : Boolean = invalid in a or b");
+		ocl.assertQueryInvalid(null, "let b : Boolean = invalid in false or b");
+		ocl.assertQueryTrue(null, "let b : Boolean = invalid in true or b");
+		ocl.assertQueryInvalid(null, "let a : Boolean = invalid in a or false");
+		ocl.assertQueryTrue(null, "let a : Boolean = invalid in a or true");
+		ocl.assertQueryInvalid(null, "let a : Boolean = invalid, b : Boolean = invalid in a or b");
 		// null
-		assertQueryNull(null, "let b : Boolean = null in false or b");
-		assertQueryTrue(null, "let b : Boolean = null in true or b");
-		assertQueryNull(null, "let a : Boolean = null, b : Boolean = null in a or b");
-		assertQueryInvalid(null, "let a : Boolean = null, b : Boolean = invalid in a or b");
-		assertQueryInvalid(null, "let a : Boolean = null in a or Sequence{true}->at(0)");
-		assertQueryNull(null, "let a : Boolean = null in a or false");
-		assertQueryTrue(null, "let a : Boolean = null in a or true");
-		assertQueryNull(null, "let a : Boolean = null, b : Boolean = null in a or b");
-		assertQueryInvalid(null, "let a : Boolean = invalid, b : Boolean = null in a or b");
-		assertQueryInvalid(null, "let b : Boolean = null in Sequence{true}->at(0) or b");
+		ocl.assertQueryNull(null, "let b : Boolean = null in false or b");
+		ocl.assertQueryTrue(null, "let b : Boolean = null in true or b");
+		ocl.assertQueryNull(null, "let a : Boolean = null, b : Boolean = null in a or b");
+		ocl.assertQueryInvalid(null, "let a : Boolean = null, b : Boolean = invalid in a or b");
+		ocl.assertQueryInvalid(null, "let a : Boolean = null in a or Sequence{true}->at(0)");
+		ocl.assertQueryNull(null, "let a : Boolean = null in a or false");
+		ocl.assertQueryTrue(null, "let a : Boolean = null in a or true");
+		ocl.assertQueryNull(null, "let a : Boolean = null, b : Boolean = null in a or b");
+		ocl.assertQueryInvalid(null, "let a : Boolean = invalid, b : Boolean = null in a or b");
+		ocl.assertQueryInvalid(null, "let b : Boolean = null in Sequence{true}->at(0) or b");
+		ocl.dispose();
 	}
 
 	@Test public void testBooleanToString() {
-		assertQueryEquals(null, "false", "false.toString()");
-		assertQueryEquals(null, "true", "true.toString()");
-		assertQueryEquals(null, "true", "(not false).toString()");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryEquals(null, "false", "false.toString()");
+		ocl.assertQueryEquals(null, "true", "true.toString()");
+		ocl.assertQueryEquals(null, "true", "(not false).toString()");
+		ocl.dispose();
 	}
 
 	@Test public void testBooleanXor() {
-		assertQueryFalse(null, "false xor false");
-		assertQueryTrue(null, "false xor true");
-		assertQueryTrue(null, "true xor false");
-		assertQueryFalse(null, "true xor true");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryFalse(null, "false xor false");
+		ocl.assertQueryTrue(null, "false xor true");
+		ocl.assertQueryTrue(null, "true xor false");
+		ocl.assertQueryFalse(null, "true xor true");
 		// invalid
-		assertQueryInvalid(null, "let b : Boolean = invalid in false xor b");
-		assertQueryInvalid(null, "let b : Boolean = invalid in true xor b");
-		assertQueryInvalid(null, "let a : Boolean = null, b : Boolean = invalid in a xor b");
-		assertQueryInvalid(null, "let a : Boolean = null in a xor Sequence{true}->at(0)");
-		assertQueryInvalid(null, "let a : Boolean = invalid in a xor false");
-		assertQueryInvalid(null, "let a : Boolean = invalid in a xor true");
-		assertQueryInvalid(null, "let a : Boolean = invalid, b : Boolean = null in a xor b");
-		assertQueryInvalid(null, "let a : Boolean = invalid, b : Boolean = null in a xor b");
-		assertQueryInvalid(null, "let b : Boolean = invalid in Sequence{true}->at(0) xor b");
+		ocl.assertQueryInvalid(null, "let b : Boolean = invalid in false xor b");
+		ocl.assertQueryInvalid(null, "let b : Boolean = invalid in true xor b");
+		ocl.assertQueryInvalid(null, "let a : Boolean = null, b : Boolean = invalid in a xor b");
+		ocl.assertQueryInvalid(null, "let a : Boolean = null in a xor Sequence{true}->at(0)");
+		ocl.assertQueryInvalid(null, "let a : Boolean = invalid in a xor false");
+		ocl.assertQueryInvalid(null, "let a : Boolean = invalid in a xor true");
+		ocl.assertQueryInvalid(null, "let a : Boolean = invalid, b : Boolean = null in a xor b");
+		ocl.assertQueryInvalid(null, "let a : Boolean = invalid, b : Boolean = null in a xor b");
+		ocl.assertQueryInvalid(null, "let b : Boolean = invalid in Sequence{true}->at(0) xor b");
 		// xor
-		assertQueryNull(null, "let b : Boolean = null in false xor b");
-		assertQueryNull(null, "let b : Boolean = null in true xor b");
-		assertQueryNull(null, "let b : Boolean = null in true xor b");
-		assertQueryNull(null, "let a : Boolean = null in a xor true");
-		assertQueryNull(null, "let a : Boolean = null, b : Boolean = null in a xor b");
+		ocl.assertQueryNull(null, "let b : Boolean = null in false xor b");
+		ocl.assertQueryNull(null, "let b : Boolean = null in true xor b");
+		ocl.assertQueryNull(null, "let b : Boolean = null in true xor b");
+		ocl.assertQueryNull(null, "let a : Boolean = null in a xor true");
+		ocl.assertQueryNull(null, "let a : Boolean = null, b : Boolean = null in a xor b");
+		ocl.dispose();
 	}
 }

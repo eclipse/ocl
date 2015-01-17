@@ -16,7 +16,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Writer;
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ArrayList;
@@ -55,15 +54,16 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.ecore.xml.namespace.XMLNamespacePackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.ocl.common.OCLConstants;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.evaluation.EvaluationException;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.delegate.ValidationDelegate;
 import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
-import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
@@ -88,11 +88,13 @@ import org.eclipse.ocl.xtext.markup.MarkupStandaloneSetup;
 import org.eclipse.ocl.xtext.oclinecore.OCLinEcoreStandaloneSetup;
 import org.eclipse.ocl.xtext.oclinecorecs.OCLinEcoreCSPackage;
 import org.eclipse.ocl.xtext.oclstdlib.OCLstdlibStandaloneSetup;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.XtextPackage;
 import org.eclipse.xtext.resource.IResourceServiceProvider;
 import org.eclipse.xtext.resource.XtextResource;
-import org.osgi.framework.Bundle;
+import org.junit.Rule;
+import org.junit.rules.TestName;
+
+import com.google.inject.Guice;
 
 /**
  * Tests for OclAny operations.
@@ -101,22 +103,21 @@ import org.osgi.framework.Bundle;
 public class PivotTestCase extends TestCase
 {
 	public static final @NonNull String PLUGIN_ID = "org.eclipse.ocl.examples.xtext.tests";
-	private static ProjectMap projectMap = null;
+//	private static StandaloneProjectMap projectMap = null;
 	private static Writer testLog = null;
 	
-	protected static boolean noDebug = false;
-
 	/*
 	 * The following may be tweaked to assist debugging.
 	 */
 	public static boolean DEBUG_GC = false;			// True performs an enthusuastic resource release and GC at the end of each test 
 	public static boolean DEBUG_ID = false;			// True prints the start and end of each test.
 	{
+//		PivotUtilInternal.noDebug = false;
 //		DEBUG_GC = true; 
 //		DEBUG_ID = true;
 //		MetamodelManager.liveMetamodelManagers = new WeakHashMap<MetamodelManager,Object>();	// Prints the create/finalize of each MetamodelManager
 //		StandaloneProjectMap.liveStandaloneProjectMaps = new WeakHashMap<StandaloneProjectMap,Object>();	// Prints the create/finalize of each StandaloneProjectMap
-//		ResourceSetImpl.liveResourceSets = new WeakHashMap<ResourceSet,Object>();				// Requires edw-debug privater EMF branch
+//		ResourceSetImpl.liveResourceSets = new WeakHashMap<ResourceSet,Object>();				// Requires edw-debug private EMF branch
 	}
 	
 	public static void appendLog(String name, Object context, String testExpression, String parseVerdict, String evaluationVerdict, String evaluationTolerance) {
@@ -301,8 +302,8 @@ public class PivotTestCase extends TestCase
 
 	public static void assertNoValidationErrors(@NonNull String string, @NonNull EObject eObject) {
 		Map<Object, Object> validationContext = LabelUtil.createDefaultContext(Diagnostician.INSTANCE);
-		Resource eResource = ClassUtil.nonNullState(eObject.eResource());
-		PivotUtilInternal.getMetamodelManager(eResource);	// FIXME oclIsKindOf fails because ExecutableStandardLibrary.getMetaclass is bad
+//		Resource eResource = ClassUtil.nonNullState(eObject.eResource());
+//		PivotUtilInternal.getMetamodelManager(eResource);	// FIXME oclIsKindOf fails because ExecutableStandardLibrary.getMetaclass is bad
 		Diagnostic diagnostic = Diagnostician.INSTANCE.validate(eObject, validationContext);
 		List<Diagnostic> children = diagnostic.getChildren();
 		if (children.size() <= 0) {
@@ -388,8 +389,9 @@ public class PivotTestCase extends TestCase
 		return assertDiagnostics(prefix, diagnostics, messages);
 	}
 
-	public static @Nullable ProjectMap basicGetProjectMap() {
-		return projectMap;
+	public static @Nullable StandaloneProjectMap basicGetProjectMap() {
+		EnvironmentFactory globalEnvironmentFactory = OCL.Internal.basicGetGlobalEnvironmentFactory();
+		return globalEnvironmentFactory != null ? (StandaloneProjectMap)globalEnvironmentFactory.getProjectManager() : null; //projectMap;
 	}
 
 	public static void closeTestLog() {
@@ -488,46 +490,60 @@ public class PivotTestCase extends TestCase
 		}
 		return asResource;
 	}
-	
-	public static void debugPrintln(@NonNull String string) {
-		if (!noDebug) {
-			System.out.println(string);
-		}		
-	}
 
+	/**
+	 * Perform the appropriate initialization to support Complete OCL parsing and editing using Xtext.
+	 * NB. This must be called before setUp() creates a GlobalStateMemento if the aggressive DEBUG_GC
+	 * garbage collection is enabled.
+	 */
 	public static void doCompleteOCLSetup() {
     	if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
 			CompleteOCLStandaloneSetup.doSetup();
     	}
     	else {
-//			CompleteOCLStandaloneSetup.init();
+    		Guice.createInjector(new org.eclipse.ocl.xtext.completeocl.CompleteOCLRuntimeModule());
     	}
 	}
 
+	/**
+	 * Perform the appropriate initialization to support Essential OCL parsing and editing using Xtext.
+	 * NB. This must be called before setUp() creates a GlobalStateMemento if the aggressive DEBUG_GC
+	 * garbage collection is enabled.
+	 */
 	public static void doEssentialOCLSetup() {
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
 			EssentialOCLStandaloneSetup.doSetup();
 		}
 		else {
-//			EssentialOCLStandaloneSetup.init();
+    		Guice.createInjector(new org.eclipse.ocl.xtext.essentialocl.EssentialOCLRuntimeModule());
 		}
 	}
 
+	/**
+	 * Perform the appropriate initialization to support OCLinEcore parsing and editing using Xtext.
+	 * NB. This must be called before setUp() creates a GlobalStateMemento if the aggressive DEBUG_GC
+	 * garbage collection is enabled.
+	 */
 	public static void doOCLinEcoreSetup() {
     	if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
     		OCLinEcoreStandaloneSetup.doSetup();
     	}
     	else {
-//    		OCLinEcoreStandaloneSetup.init();
+    		Guice.createInjector(new org.eclipse.ocl.xtext.oclinecore.OCLinEcoreRuntimeModule());
     	}
 	}
 
+	/**
+	 * Perform the appropriate initialization to support OCLstdlib parsing and editing using Xtext.
+	 * NB. This must be called before setUp() creates a GlobalStateMemento if the aggressive DEBUG_GC
+	 * garbage collection is enabled.
+	 */
 	public static void doOCLstdlibSetup() {
     	if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
 			OCLstdlibStandaloneSetup.doSetup();			// FIXME BUG 382058
     	}
     	else {
-//			OCLstdlibStandaloneSetup.init();
+    		Guice.createInjector(new org.eclipse.ocl.xtext.oclstdlib.OCLstdlibRuntimeModule());
     	}
 	}
 
@@ -580,52 +596,33 @@ public class PivotTestCase extends TestCase
 		return s != null ? s.toString() : null;
 	}
 
-	public static @NonNull ProjectMap getProjectMap() {
-		ProjectMap projectMap2 = projectMap;
-		if (projectMap2 == null) {
-			projectMap = projectMap2 = new ProjectMap();
-		}
-		return projectMap2;
+	public static @NonNull StandaloneProjectMap getProjectMap() {
+		EnvironmentFactory globalEnvironmentFactory = OCL.Internal.getGlobalEnvironmentFactory();
+		return (StandaloneProjectMap)globalEnvironmentFactory.getProjectManager();
+//		StandaloneProjectMap projectMap2 = projectMap;
+//		if (projectMap2 == null) {
+//			projectMap = projectMap2 = EcorePlugin.IS_ECLIPSE_RUNNING ? new ProjectMap() : new StandaloneProjectMap();
+//		}
+//		return projectMap2;
 	}
 
 	public static boolean isWindows() {
 		String os = System.getProperty("os.name");
 		return (os != null) && os.startsWith("Windows");
 	}
-
-	private static boolean testedEgitUiBundle = false;
 	
-	/**
-	 * Suppress diagnostics from EGIT
-	 * <p>
-	 * This was originally necessary to eliminate a model PopUp that locked up the tests (Bug 390479).
-	 * <p>
-	 * Now it just suppresses a Console Log entry.
-	 */
-	public static void suppressGitPrefixPopUp() {
-        if (!testedEgitUiBundle) {
-        	testedEgitUiBundle = true;
-        	Bundle egitUiBundle = Platform.getBundle("org.eclipse.egit.ui");
-            if (egitUiBundle != null) {
-				try {
-					Class<?> activatorClass = egitUiBundle.loadClass("org.eclipse.egit.ui.Activator");
-					Class<?> preferencesClass = egitUiBundle.loadClass("org.eclipse.egit.ui.UIPreferences");
-					Field field = preferencesClass.getField("SHOW_GIT_PREFIX_WARNING");
-					String name = (String)field.get(null);
-					Method getDefaultMethod = activatorClass.getMethod("getDefault");
-					AbstractUIPlugin activator = (AbstractUIPlugin) getDefaultMethod.invoke(null);
-					IPreferenceStore store = activator.getPreferenceStore();
-					store.setValue(name, false);
-				}
-				catch (Exception e) {}			// Ignore
-			}
-        }
-	}
-
 	public static void unloadResourceSet(@NonNull ResourceSet resourceSet) {
 		StandaloneProjectMap projectMap = StandaloneProjectMap.findAdapter(resourceSet);
 		if (projectMap != null) {
 			projectMap.unload(resourceSet);
+		}
+		EnvironmentFactoryResourceSetAdapter environmentFactoryAdapter = EnvironmentFactoryResourceSetAdapter.findAdapter(resourceSet);
+		if (environmentFactoryAdapter != null) {
+			EnvironmentFactoryInternal environmentFactory = environmentFactoryAdapter.getMetamodelManager().getEnvironmentFactory();
+			projectMap = (StandaloneProjectMap) environmentFactory.basicGetProjectManager();
+			if (projectMap != null) {
+				projectMap.unload(resourceSet);
+			}
 		}
 		for (Resource resource : resourceSet.getResources()) {
 			resource.unload();
@@ -693,10 +690,23 @@ public class PivotTestCase extends TestCase
 		return getClass().getPackage().getName().replace('.', '/') + "/models";
 	}
 	
+    @Rule public TestName testName = new TestName();
+
+	@Override
+	public @NonNull String getName() {
+		String name = super.getName();
+		if (name != null) {
+			return name;
+		}
+		String methodName = testName.getMethodName();
+		return methodName != null ? methodName : "<unnamed>";
+	}
+	
 	public @NonNull URI getTestModelURI(@NonNull String localFileName) {
-		ProjectMap projectMap = getProjectMap();
-		String urlString = projectMap.getLocation(PLUGIN_ID).toString();
-		TestCase.assertNotNull(urlString);
+		StandaloneProjectMap projectMap = getProjectMap();
+		URI location = projectMap.getLocation(PLUGIN_ID);
+		TestCase.assertNotNull(location);
+		@SuppressWarnings("null")@NonNull String urlString = location.toString();
 		return ClassUtil.nonNullEMF(URI.createURI(urlString + localFileName));
 	}
 
@@ -727,6 +737,7 @@ public class PivotTestCase extends TestCase
 
 	@Override
 	protected void setUp() throws Exception {
+		PivotUtilInternal.debugReset();
 //		EssentialOCLLinkingService.DEBUG_RETRY = true;
 		if (DEBUG_GC) {
 			XMLNamespacePackage.eINSTANCE.getClass();
@@ -734,7 +745,7 @@ public class PivotTestCase extends TestCase
 		}
 		super.setUp();
 		if (DEBUG_ID) {
-			debugPrintln("-----Starting " + getClass().getSimpleName() + "." + getName() + "-----");
+			PivotUtilInternal.debugPrintln("-----Starting " + getClass().getSimpleName() + "." + getName() + "-----");
 		}
 		EcorePackage.eINSTANCE.getClass();						// Workaround Bug 425841
 //		EPackage.Registry.INSTANCE.put(UML302UMLResource.STANDARD_PROFILE_NS_URI, L2Package.eINSTANCE);
@@ -742,6 +753,9 @@ public class PivotTestCase extends TestCase
 
 	@Override
 	protected void tearDown() throws Exception {
+//		if (DEBUG_ID) {
+//			PivotUtilInternal.debugPrintln("==> Done " + getName());
+//		}
 		if (DEBUG_GC) {
 			uninstall();
 			makeCopyOfGlobalState.restoreGlobalState();
@@ -751,7 +765,7 @@ public class PivotTestCase extends TestCase
 //			MetamodelManagerResourceAdapter.INSTANCES.show();
 		}
 		if (DEBUG_ID) {
-			debugPrintln("==> Finish " + getName());
+			PivotUtilInternal.debugPrintln("==> Finish " + getClass().getSimpleName() + "." + getName());
 		}
 		/**
 		 * Reset any PivotEObject.target that may have reverted to proxies when a ProjectMap unloaded,
@@ -780,10 +794,10 @@ public class PivotTestCase extends TestCase
 		OCLstdlibStandaloneSetup.doTearDown();
 		OCL.Internal.disposeGlobalEnvironmentFactory();
 //		OCLstdlib.uninstall(); // should be able to persist
-		if (projectMap != null) {
-			projectMap.dispose();
-			projectMap = null;
-		}
+//		if (projectMap != null) {
+//			projectMap.dispose();
+//			projectMap = null;
+//		}
 	}
 	
 	public static class GlobalStateMemento

@@ -143,6 +143,11 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	}
 
 	@Override
+	public @Nullable ProjectManager basicGetProjectManager() {
+		return projectManager;
+	}
+
+	@Override
 	public @NonNull ResourceSetImpl createASResourceSet() {
 		ResourceSetImpl asResourceSet = new ResourceSetImpl();
 		StandaloneProjectMap.initializeURIResourceMap(asResourceSet);
@@ -306,17 +311,37 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 			}
 		}
 		assert attachCount == 0;
-		if (this != OCL.Internal.basicGetGlobalEnvironmentFactory()) { // dispose of my environment
+		if (this != OCL.Internal.basicGetGlobalEnvironmentFactory()) {
 			if (metamodelManager != null) {
 				metamodelManager.dispose();
 				metamodelManager = null;
 			}
 			if (idResolver != null) {
 				idResolver.dispose();
+				idResolver = null;
 			}
 			if (csi2asMapping != null) {
 				csi2asMapping.dispose();
+				csi2asMapping = null;
 			}
+		}
+	}
+
+	@Override
+	public void disposeGlobal() {
+		assert this == OCL.Internal.basicGetGlobalEnvironmentFactory();
+		dispose();
+		if (metamodelManager != null) {
+			metamodelManager.dispose();
+			metamodelManager = null;
+		}
+		if (idResolver != null) {
+			idResolver.dispose();
+			idResolver = null;
+		}
+		if (csi2asMapping != null) {
+			csi2asMapping.dispose();
+			csi2asMapping = null;
 		}
 	}
 
@@ -475,7 +500,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	public @NonNull ProjectManager getProjectManager() {
 		ProjectManager projectManager2 = projectManager;
 		if (projectManager2 == null) {
-			projectManager = projectManager2 = EcorePlugin.IS_ECLIPSE_RUNNING ? new StandaloneProjectMap() : new ProjectMap();
+			projectManager = projectManager2 = EcorePlugin.IS_ECLIPSE_RUNNING ? new ProjectMap() : new StandaloneProjectMap();
 		}
 		return projectManager2;
 	}

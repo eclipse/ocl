@@ -336,7 +336,7 @@ public class MetamodelManager implements Adapter.Internal
 //		initializePivotResourceSet(asResourceSet);
 		if (liveMetamodelManagers != null) {
 			liveMetamodelManagers.put(this, null);
-			System.out.println(Thread.currentThread().getName() + " Create " + NameUtil.debugSimpleName(this)
+			PivotUtilInternal.debugPrintln("Create " + NameUtil.debugSimpleName(this)
 				+ " " + NameUtil.debugSimpleName(asResourceSet));	
 		}
 	}
@@ -704,7 +704,7 @@ public class MetamodelManager implements Adapter.Internal
 	@Override
 	protected void finalize() throws Throwable {
 		if (liveMetamodelManagers != null) {
-			System.out.println("Finalize " + NameUtil.debugSimpleName(this));		
+			PivotUtilInternal.debugPrintln("Finalize " + NameUtil.debugSimpleName(this));		
 			List<MetamodelManager> keySet = new ArrayList<MetamodelManager>(liveMetamodelManagers.keySet());
 			if (!keySet.isEmpty()) {
 				StringBuilder s = new StringBuilder();
@@ -712,7 +712,7 @@ public class MetamodelManager implements Adapter.Internal
 				for (MetamodelManager metamodelManager : keySet) {
 					s.append(" @" + Integer.toHexString(metamodelManager.hashCode()));		
 				}
-				System.out.println(s);		
+				System.out.println(s.toString());		
 			}
 		}
 	}

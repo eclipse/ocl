@@ -90,8 +90,10 @@ public class OCL
 	     * Dispose of the global instance; this is intended for leakage detection in tests.
 	     */
 		public static void disposeGlobalEnvironmentFactory() {
-			if (GLOBAL_ENVIRONMENT_FACTORY != null) {
-				((EnvironmentFactoryInternal)GLOBAL_ENVIRONMENT_FACTORY).dispose();
+			EnvironmentFactory GLOBAL_ENVIRONMENT_FACTORY2 = GLOBAL_ENVIRONMENT_FACTORY;
+			if (GLOBAL_ENVIRONMENT_FACTORY2 != null) {
+//				PivotUtilInternal.debugPrintln("Dispose Global " + NameUtil.debugSimpleName(GLOBAL_ENVIRONMENT_FACTORY2));	
+				((EnvironmentFactoryInternal)GLOBAL_ENVIRONMENT_FACTORY2).disposeGlobal();
 				GLOBAL_ENVIRONMENT_FACTORY = null;
 			}
 		}
@@ -100,7 +102,11 @@ public class OCL
 			EnvironmentFactory globalRegistryInstance2 = GLOBAL_ENVIRONMENT_FACTORY;
 			if (globalRegistryInstance2 == null) {
 				GLOBAL_ENVIRONMENT_FACTORY = globalRegistryInstance2 = OCL.Internal.createEnvironmentFactory(null);
+//				PivotUtilInternal.debugPrintln("Create Global " + NameUtil.debugSimpleName(GLOBAL_ENVIRONMENT_FACTORY));	
 			}
+//			else {
+//				PivotUtilInternal.debugPrintln("Re-use Global " + NameUtil.debugSimpleName(GLOBAL_ENVIRONMENT_FACTORY));	
+//			}
 			return globalRegistryInstance2;
 		}
 		
@@ -199,8 +205,8 @@ public class OCL
      * Creates a new <code>OCL</code> suitable for the specified resourceSet content.
      * This automatically creates an new EnvironmentFactory and MetamodelManager.
      */
-	public static @NonNull OCL newInstance(@NonNull ResourceSet resourceSet) {
-		EnvironmentFactory environmentFactory = OCL.createEnvironmentFactory(null);
+	public static @NonNull OCL newInstance(@Nullable ProjectManager projectManager, @NonNull ResourceSet resourceSet) {
+		EnvironmentFactory environmentFactory = OCL.createEnvironmentFactory(projectManager);
 		EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, environmentFactory);
 		return newInstance(environmentFactory);
 	}

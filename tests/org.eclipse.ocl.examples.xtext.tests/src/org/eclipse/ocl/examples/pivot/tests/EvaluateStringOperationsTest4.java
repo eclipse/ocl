@@ -20,8 +20,6 @@ import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.osgi.util.NLS;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -46,6 +44,11 @@ public class EvaluateStringOperationsTest4 extends PivotTestSuite
 	}
 
 	@Override
+	protected @NonNull TestOCL createOCL() {
+		return new TestOCL(getTestPackageName(), getName());
+	}
+
+	@Override
 	protected @NonNull String getTestPackageName() {
 		return "EvaluateStringOperations";
 	}
@@ -54,552 +57,612 @@ public class EvaluateStringOperationsTest4 extends PivotTestSuite
 		PivotTestSuite.resetCounter();
     }
 
-    @Override
-    @Before public void setUp() throws Exception {
-        super.setUp();
-    }
-
-	@Override
-	@After public void tearDown() throws Exception {
-		super.tearDown();
-	}
-
 	@Test public void testStringAt() {
-		assertQueryEquals(null, "t", "'test'.at(1)");
-		assertQueryEquals(null, "e", "'test'.at(2)");
-		assertQueryEquals(null, "t", "'test'.at(4)");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryEquals(null, "t", "'test'.at(1)");
+		ocl.assertQueryEquals(null, "e", "'test'.at(2)");
+		ocl.assertQueryEquals(null, "t", "'test'.at(4)");
 		// out of bounds
-		assertQueryInvalid(null, "'test'.at(0)");
-		assertQueryInvalid(null, "'test'.at(5)");
-		assertQueryInvalid(null, "''.at(1)");
+		ocl.assertQueryInvalid(null, "'test'.at(0)");
+		ocl.assertQueryInvalid(null, "'test'.at(5)");
+		ocl.assertQueryInvalid(null, "''.at(1)");
 		// invalid
-		assertQueryInvalid(null, "let s : String = invalid in s.at(1)");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s.at(1)");
 		// null
-		assertQueryInvalid(null, "let s : String = null in s.at(1)");
+		ocl.assertQueryInvalid(null, "let s : String = null in s.at(1)");
+		ocl.dispose();
 	}
 
 	@Test public void testStringCharacters() {
-		assertQueryEquals(null, new String[] {}, "''.characters()");
-		assertQueryEquals(null, new String[] {"a"}, "'a'.characters()");
-		assertQueryEquals(null, new String[] {"a", "\r", "\n", "b"}, "'a\\r\nb'.characters()");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryEquals(null, new String[] {}, "''.characters()");
+		ocl.assertQueryEquals(null, new String[] {"a"}, "'a'.characters()");
+		ocl.assertQueryEquals(null, new String[] {"a", "\r", "\n", "b"}, "'a\\r\nb'.characters()");
 		// invalid
-		assertQueryInvalid(null, "let s : String = invalid in s.characters()");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s.characters()");
 		// null
-		assertQueryInvalid(null, "let s : String = null in s.characters()");
+		ocl.assertQueryInvalid(null, "let s : String = null in s.characters()");
+		ocl.dispose();
 	}
 
 	@Test public void testStringConcat() {
-		assertQueryEquals(null, "concatenationTest", "'concatenation'.concat('Test')");
-		assertQueryEquals(null, "concatenation\n", "'concatenation'.concat('\\n')");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryEquals(null, "concatenationTest", "'concatenation'.concat('Test')");
+		ocl.assertQueryEquals(null, "concatenation\n", "'concatenation'.concat('\\n')");
 		// invalid
-		assertQueryInvalid(null, "let s : String = invalid in 'concatenation'.concat(s)");
-		assertQueryInvalid(null, "let s : String = invalid in s.concat('concatenation')");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in 'concatenation'.concat(s)");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s.concat('concatenation')");
 		// null
-		assertQueryInvalid(null, "let s : String = null in 'concatenation'.concat(s)");
-		assertQueryInvalid(null, "let s : String = null in s.concat('concatenation')");
+		ocl.assertQueryInvalid(null, "let s : String = null in 'concatenation'.concat(s)");
+		ocl.assertQueryInvalid(null, "let s : String = null in s.concat('concatenation')");
+		ocl.dispose();
 	}
 
 	@Test public void testStringEndsWith() {
-		assertQueryFalse(null, "'abcdef'.endsWith('aabcdef')");
-		assertQueryTrue(null, "'abcdef'.endsWith('abcdef')");
-		assertQueryTrue(null, "'abcdef'.endsWith('cdef')");
-		assertQueryTrue(null, "'abcdef'.endsWith('f')");
-		assertQueryTrue(null, "'abcdef'.endsWith('')");
-		assertQueryTrue(null, "''.endsWith('')");
-		assertQueryFalse(null, "''.endsWith('a')");
-		assertQueryTrue(null, "'abcdef'.endsWith('')");
-		assertQueryFalse(null, "'abcdef'.endsWith('bcd')");
-		assertQueryFalse(null, "'abcdef'.endsWith('ab')");
-		assertQueryFalse(null, "'abcdef'.endsWith('a')");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryFalse(null, "'abcdef'.endsWith('aabcdef')");
+		ocl.assertQueryTrue(null, "'abcdef'.endsWith('abcdef')");
+		ocl.assertQueryTrue(null, "'abcdef'.endsWith('cdef')");
+		ocl.assertQueryTrue(null, "'abcdef'.endsWith('f')");
+		ocl.assertQueryTrue(null, "'abcdef'.endsWith('')");
+		ocl.assertQueryTrue(null, "''.endsWith('')");
+		ocl.assertQueryFalse(null, "''.endsWith('a')");
+		ocl.assertQueryTrue(null, "'abcdef'.endsWith('')");
+		ocl.assertQueryFalse(null, "'abcdef'.endsWith('bcd')");
+		ocl.assertQueryFalse(null, "'abcdef'.endsWith('ab')");
+		ocl.assertQueryFalse(null, "'abcdef'.endsWith('a')");
 		// invalid
-		assertQueryInvalid(null, "let s : String = invalid in s.endsWith('')");
-		assertQueryInvalid(null, "let s : String = invalid in ''.endsWith(s)");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s.endsWith('')");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in ''.endsWith(s)");
 		// null
-		assertQueryInvalid(null, "let s : String = null in s.endsWith('')");
-		assertQueryInvalid(null, "let s : String = null in ''.endsWith(s)");
+		ocl.assertQueryInvalid(null, "let s : String = null in s.endsWith('')");
+		ocl.assertQueryInvalid(null, "let s : String = null in ''.endsWith(s)");
+		ocl.dispose();
 	}
 
 	@Test public void testStringEqual() {
-		assertQueryFalse(null, "'test' = 'se'");
-		assertQueryTrue(null, "'test' = 'test'");
-		assertQueryFalse(null, "'tESt' = 'TesT'");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryFalse(null, "'test' = 'se'");
+		ocl.assertQueryTrue(null, "'test' = 'test'");
+		ocl.assertQueryFalse(null, "'tESt' = 'TesT'");
 		// invalid
-		assertQueryInvalid(null, "let s : String = invalid in s = 'se'");
-		assertQueryInvalid(null, "let s : String = invalid in 'test' = s");
-		assertQueryInvalid(null, "let s1 : String = invalid, s2 : String = invalid in s1 = s2");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s = 'se'");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in 'test' = s");
+		ocl.assertQueryInvalid(null, "let s1 : String = invalid, s2 : String = invalid in s1 = s2");
 		// null
-		assertQueryFalse(null, "let s : String = null in s = 'se'");
-		assertQueryFalse(null, "let s : String = null in 'test' = s");
-		assertQueryTrue(null, "let s1 : String = null, s2 : String = null in s1 = s2");
+		ocl.assertQueryFalse(null, "let s : String = null in s = 'se'");
+		ocl.assertQueryFalse(null, "let s : String = null in 'test' = s");
+		ocl.assertQueryTrue(null, "let s1 : String = null, s2 : String = null in s1 = s2");
+		ocl.dispose();
 	}
 
 	@Test public void testStringEqualIgnoresCase() {
-		assertQueryFalse(null, "'test'.equalsIgnoreCase('se')");
-		assertQueryTrue(null, "'test'.equalsIgnoreCase('test')");
-		assertQueryTrue(null, "'Test'.equalsIgnoreCase('tEst')");
-		assertQueryTrue(null, "'tesT'.equalsIgnoreCase('teSt')");
-		assertQueryTrue(null, "'TEST'.equalsIgnoreCase('test')");
-		assertQueryTrue(null, "'test'.equalsIgnoreCase('TEST')");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryFalse(null, "'test'.equalsIgnoreCase('se')");
+		ocl.assertQueryTrue(null, "'test'.equalsIgnoreCase('test')");
+		ocl.assertQueryTrue(null, "'Test'.equalsIgnoreCase('tEst')");
+		ocl.assertQueryTrue(null, "'tesT'.equalsIgnoreCase('teSt')");
+		ocl.assertQueryTrue(null, "'TEST'.equalsIgnoreCase('test')");
+		ocl.assertQueryTrue(null, "'test'.equalsIgnoreCase('TEST')");
+		ocl.dispose();
 	}
 
 	@Test public void testStringGreaterThan() {
+		TestOCL ocl = createOCL();
 		// FIXME Analyzer-extraOperation String::> should not be defined
-		assertQueryFalse(null, "'3' > '4'");
-		assertQueryFalse(null, "'a' > 'b'");
-		assertQueryFalse(null, "'aardvark' > 'aardvarks'");
+		ocl.assertQueryFalse(null, "'3' > '4'");
+		ocl.assertQueryFalse(null, "'a' > 'b'");
+		ocl.assertQueryFalse(null, "'aardvark' > 'aardvarks'");
 
-		assertQueryTrue(null, "'3.2' > '3.1'");
-		assertQueryTrue(null, "'a' > 'A'");
-		assertQueryTrue(null, "'aardvark' > 'aardvarK'");
+		ocl.assertQueryTrue(null, "'3.2' > '3.1'");
+		ocl.assertQueryTrue(null, "'a' > 'A'");
+		ocl.assertQueryTrue(null, "'aardvark' > 'aardvarK'");
 
-		assertQueryFalse(null, "'3' > '3'");
-		assertQueryFalse(null, "'a' > 'a'");
-		assertQueryFalse(null, "'aardvark' > 'aardvark'");
+		ocl.assertQueryFalse(null, "'3' > '3'");
+		ocl.assertQueryFalse(null, "'a' > 'a'");
+		ocl.assertQueryFalse(null, "'aardvark' > 'aardvark'");
 		// invalid
-		assertQueryInvalid(null, "let s : String = invalid in s > 'se'");
-		assertQueryInvalid(null, "let s : String = invalid in 'test' > s");
-		assertQueryInvalid(null, "let s1 : String = invalid, s2 : String = invalid in s1 > s2");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s > 'se'");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in 'test' > s");
+		ocl.assertQueryInvalid(null, "let s1 : String = invalid, s2 : String = invalid in s1 > s2");
 		// null
-		assertQueryInvalid(null, "let s : String = null in s > 'se'");
-		assertQueryInvalid(null, "let s : String = null in 'test' > s");
-		assertQueryInvalid(null, "let s1 : String = null, s2 : String = null in s1 > s2");
+		ocl.assertQueryInvalid(null, "let s : String = null in s > 'se'");
+		ocl.assertQueryInvalid(null, "let s : String = null in 'test' > s");
+		ocl.assertQueryInvalid(null, "let s1 : String = null, s2 : String = null in s1 > s2");
+		ocl.dispose();
 	}
 
 	@Test public void testStringGreaterThanOrEqual() {
+		TestOCL ocl = createOCL();
 		// FIXME Analyzer-extraOperation String::>= should not be defined
-		assertQueryFalse(null, "'3' >= '4'");
-		assertQueryFalse(null, "'a' >= 'b'");
-		assertQueryFalse(null, "'aardvark' >= 'aardvarks'");
+		ocl.assertQueryFalse(null, "'3' >= '4'");
+		ocl.assertQueryFalse(null, "'a' >= 'b'");
+		ocl.assertQueryFalse(null, "'aardvark' >= 'aardvarks'");
 
-		assertQueryTrue(null, "'3.2' >= '3.1'");
-		assertQueryTrue(null, "'a' >= 'A'");
-		assertQueryTrue(null, "'aardvark' >= 'aardvarK'");
+		ocl.assertQueryTrue(null, "'3.2' >= '3.1'");
+		ocl.assertQueryTrue(null, "'a' >= 'A'");
+		ocl.assertQueryTrue(null, "'aardvark' >= 'aardvarK'");
 
-		assertQueryTrue(null, "'3' >= '3'");
-		assertQueryTrue(null, "'a' >= 'a'");
-		assertQueryTrue(null, "'aardvark' >= 'aardvark'");
+		ocl.assertQueryTrue(null, "'3' >= '3'");
+		ocl.assertQueryTrue(null, "'a' >= 'a'");
+		ocl.assertQueryTrue(null, "'aardvark' >= 'aardvark'");
 		// invalid
-		assertQueryInvalid(null, "let s : String = invalid in s >= 'se'");
-		assertQueryInvalid(null, "let s : String = invalid in 'test' >= s");
-		assertQueryInvalid(null, "let s1 : String = invalid, s2 : String = invalid in s1 >= s2");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s >= 'se'");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in 'test' >= s");
+		ocl.assertQueryInvalid(null, "let s1 : String = invalid, s2 : String = invalid in s1 >= s2");
 		// null
-		assertQueryInvalid(null, "let s : String = null in s >= 'se'");
-		assertQueryInvalid(null, "let s : String = null in 'test' >= s");
-		assertQueryInvalid(null, "let s1 : String = null, s2 : String = null in s1 >= s2");
+		ocl.assertQueryInvalid(null, "let s : String = null in s >= 'se'");
+		ocl.assertQueryInvalid(null, "let s : String = null in 'test' >= s");
+		ocl.assertQueryInvalid(null, "let s1 : String = null, s2 : String = null in s1 >= s2");
+		ocl.dispose();
 	}
 
 	@Test public void testStringIndexOf() {
-		assertQueryEquals(null, 1, "'test'.indexOf('t')");
-		assertQueryEquals(null, 1, "'test'.indexOf('te')");
-		assertQueryEquals(null, 2, "'test'.indexOf('es')");
-		assertQueryEquals(null, 3, "'test'.indexOf('st')");
-		assertQueryEquals(null, 5, "'tesla'.indexOf('a')");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryEquals(null, 1, "'test'.indexOf('t')");
+		ocl.assertQueryEquals(null, 1, "'test'.indexOf('te')");
+		ocl.assertQueryEquals(null, 2, "'test'.indexOf('es')");
+		ocl.assertQueryEquals(null, 3, "'test'.indexOf('st')");
+		ocl.assertQueryEquals(null, 5, "'tesla'.indexOf('a')");
 		// out of bounds
-		assertQueryEquals(null, 0, "'test'.indexOf('xyzzy')");
-		assertQueryEquals(null, 0, "'test'.indexOf('est2')");
+		ocl.assertQueryEquals(null, 0, "'test'.indexOf('xyzzy')");
+		ocl.assertQueryEquals(null, 0, "'test'.indexOf('est2')");
 		// empty
-		assertQueryEquals(null, 1, "'test'.indexOf('')");
-		assertQueryEquals(null, 1, "''.indexOf('')");
-		assertQueryEquals(null, 0, "''.indexOf('t')");
+		ocl.assertQueryEquals(null, 1, "'test'.indexOf('')");
+		ocl.assertQueryEquals(null, 1, "''.indexOf('')");
+		ocl.assertQueryEquals(null, 0, "''.indexOf('t')");
 		// invalid
-		assertQueryInvalid(null, "let s : String = invalid in 'test'.indexOf(s)");
-		assertQueryInvalid(null, "let s : String = invalid in s.indexOf('s')");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in 'test'.indexOf(s)");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s.indexOf('s')");
 		// null
-		assertQueryInvalid(null, "let s : String = null in 'test'.indexOf(s)");
-		assertQueryInvalid(null, "let s : String = null in s.indexOf('s')");
+		ocl.assertQueryInvalid(null, "let s : String = null in 'test'.indexOf(s)");
+		ocl.assertQueryInvalid(null, "let s : String = null in s.indexOf('s')");
+		ocl.dispose();
 	}
 
 	@Test public void testStringLastIndexOf() {
-		assertQueryEquals(null, 4, "'test'.lastIndexOf('t')");
-		assertQueryEquals(null, 1, "'test'.lastIndexOf('te')");
-		assertQueryEquals(null, 2, "'test'.lastIndexOf('es')");
-		assertQueryEquals(null, 3, "'test'.lastIndexOf('st')");
-		assertQueryEquals(null, 5, "'tesla'.lastIndexOf('a')");
-		assertQueryEquals(null, 1, "'ates'.lastIndexOf('a')");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryEquals(null, 4, "'test'.lastIndexOf('t')");
+		ocl.assertQueryEquals(null, 1, "'test'.lastIndexOf('te')");
+		ocl.assertQueryEquals(null, 2, "'test'.lastIndexOf('es')");
+		ocl.assertQueryEquals(null, 3, "'test'.lastIndexOf('st')");
+		ocl.assertQueryEquals(null, 5, "'tesla'.lastIndexOf('a')");
+		ocl.assertQueryEquals(null, 1, "'ates'.lastIndexOf('a')");
 		// out of bounds
-		assertQueryEquals(null, 0, "'test'.lastIndexOf('xyzzy')");
-		assertQueryEquals(null, 0, "'test'.lastIndexOf('est2')");
+		ocl.assertQueryEquals(null, 0, "'test'.lastIndexOf('xyzzy')");
+		ocl.assertQueryEquals(null, 0, "'test'.lastIndexOf('est2')");
 		// empty
-		assertQueryEquals(null, 5, "'test'.lastIndexOf('')");
-		assertQueryEquals(null, 1, "''.lastIndexOf('')");
-		assertQueryEquals(null, 0, "''.lastIndexOf('t')");
+		ocl.assertQueryEquals(null, 5, "'test'.lastIndexOf('')");
+		ocl.assertQueryEquals(null, 1, "''.lastIndexOf('')");
+		ocl.assertQueryEquals(null, 0, "''.lastIndexOf('t')");
 		// invalid
-		assertQueryInvalid(null, "let s : String = invalid in 'test'.lastIndexOf(s)");
-		assertQueryInvalid(null, "let s : String = invalid in s.lastIndexOf('s')");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in 'test'.lastIndexOf(s)");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s.lastIndexOf('s')");
 		// null
-		assertQueryInvalid(null, "let s : String = null in 'test'.lastIndexOf(s)");
-		assertQueryInvalid(null, "let s : String = null in s.lastIndexOf('s')");
+		ocl.assertQueryInvalid(null, "let s : String = null in 'test'.lastIndexOf(s)");
+		ocl.assertQueryInvalid(null, "let s : String = null in s.lastIndexOf('s')");
+		ocl.dispose();
 	}
 
 	@Test public void testStringLessThan() {
+		TestOCL ocl = createOCL();
 		// FIXME Analyzer-extraOperation String::< should not be defined
-		assertQueryTrue(null, "'3' < '4'");
-		assertQueryTrue(null, "'a' < 'b'");
-		assertQueryTrue(null, "'aardvark' < 'aardvarks'");
+		ocl.assertQueryTrue(null, "'3' < '4'");
+		ocl.assertQueryTrue(null, "'a' < 'b'");
+		ocl.assertQueryTrue(null, "'aardvark' < 'aardvarks'");
 
-		assertQueryFalse(null, "'3.2' < '3.1'");
-		assertQueryFalse(null, "'a' < 'A'");
-		assertQueryFalse(null, "'aardvark' < 'aardvarK'");
+		ocl.assertQueryFalse(null, "'3.2' < '3.1'");
+		ocl.assertQueryFalse(null, "'a' < 'A'");
+		ocl.assertQueryFalse(null, "'aardvark' < 'aardvarK'");
 
-		assertQueryFalse(null, "'3' < '3'");
-		assertQueryFalse(null, "'a' < 'a'");
-		assertQueryFalse(null, "'aardvark' < 'aardvark'");
+		ocl.assertQueryFalse(null, "'3' < '3'");
+		ocl.assertQueryFalse(null, "'a' < 'a'");
+		ocl.assertQueryFalse(null, "'aardvark' < 'aardvark'");
 		// invalid
-		assertQueryInvalid(null, "let s : String = invalid in s < 'se'");
-		assertQueryInvalid(null, "let s : String = invalid in 'test' < s");
-		assertQueryInvalid(null, "let s1 : String = invalid, s2 : String = invalid in s1 < s2");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s < 'se'");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in 'test' < s");
+		ocl.assertQueryInvalid(null, "let s1 : String = invalid, s2 : String = invalid in s1 < s2");
 		// null
-		assertQueryInvalid(null, "let s : String = null in s < 'se'");
-		assertQueryInvalid(null, "let s : String = null in 'test' < s");
-		assertQueryInvalid(null, "let s1 : String = null, s2 : String = null in s1 < s2");
+		ocl.assertQueryInvalid(null, "let s : String = null in s < 'se'");
+		ocl.assertQueryInvalid(null, "let s : String = null in 'test' < s");
+		ocl.assertQueryInvalid(null, "let s1 : String = null, s2 : String = null in s1 < s2");
+		ocl.dispose();
 	}
 
 	@Test public void testStringLessThanOrEqual() {
+		TestOCL ocl = createOCL();
 		// FIXME Analyzer-extraOperation String::<= should not be defined
-		assertQueryTrue(null, "'3' <= '4'");
-		assertQueryTrue(null, "'a' <= 'b'");
-		assertQueryTrue(null, "'aardvark' <= 'aardvarks'");
+		ocl.assertQueryTrue(null, "'3' <= '4'");
+		ocl.assertQueryTrue(null, "'a' <= 'b'");
+		ocl.assertQueryTrue(null, "'aardvark' <= 'aardvarks'");
 
-		assertQueryFalse(null, "'3.2' <= '3.1'");
-		assertQueryFalse(null, "'a' <= 'A'");
-		assertQueryFalse(null, "'aardvark' <= 'aardvarK'");
+		ocl.assertQueryFalse(null, "'3.2' <= '3.1'");
+		ocl.assertQueryFalse(null, "'a' <= 'A'");
+		ocl.assertQueryFalse(null, "'aardvark' <= 'aardvarK'");
 
-		assertQueryTrue(null, "'3' <= '3'");
-		assertQueryTrue(null, "'a' <= 'a'");
-		assertQueryTrue(null, "'aardvark' <= 'aardvark'");
+		ocl.assertQueryTrue(null, "'3' <= '3'");
+		ocl.assertQueryTrue(null, "'a' <= 'a'");
+		ocl.assertQueryTrue(null, "'aardvark' <= 'aardvark'");
 		// invalid
-		assertQueryInvalid(null, "let s : String = invalid in s <= 'se'");
-		assertQueryInvalid(null, "let s : String = invalid in 'test' <= s");
-		assertQueryInvalid(null, "let s1 : String = invalid, s2 : String = invalid in s1 <= s2");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s <= 'se'");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in 'test' <= s");
+		ocl.assertQueryInvalid(null, "let s1 : String = invalid, s2 : String = invalid in s1 <= s2");
 		// null
-		assertQueryInvalid(null, "let s : String = null in s <= 'se'");
-		assertQueryInvalid(null, "let s : String = null in 'test' <= s");
-		assertQueryInvalid(null, "let s1 : String = null, s2 : String = null in s1 <= s2");
+		ocl.assertQueryInvalid(null, "let s : String = null in s <= 'se'");
+		ocl.assertQueryInvalid(null, "let s : String = null in 'test' <= s");
+		ocl.assertQueryInvalid(null, "let s1 : String = null, s2 : String = null in s1 <= s2");
+		ocl.dispose();
 	}
 
 	@Test public void testStringMatches() {
-		assertQueryTrue(null, "'characters and spaces'.matches('[\\\\w\\\\s]+')");		// *2 for Java, *2 for OCL
-		assertQueryFalse(null, "'characters and 3 digits'.matches('[\\\\p{Alpha}\\\\s]+')");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryTrue(null, "'characters and spaces'.matches('[\\\\w\\\\s]+')");		// *2 for Java, *2 for OCL
+		ocl.assertQueryFalse(null, "'characters and 3 digits'.matches('[\\\\p{Alpha}\\\\s]+')");
 		//
-		assertQueryTrue(null, "''.matches('')");
-		assertQueryTrue(null, "''.matches('')");
-		assertQueryFalse(null, "'a'.matches('')");
-		assertQueryFalse(null, "''.matches('b')");
+		ocl.assertQueryTrue(null, "''.matches('')");
+		ocl.assertQueryTrue(null, "''.matches('')");
+		ocl.assertQueryFalse(null, "'a'.matches('')");
+		ocl.assertQueryFalse(null, "''.matches('b')");
 		//
-		assertQueryInvalid(null, "'repla ce operation'.matches('a[b-')", null, PatternSyntaxException.class);
+		ocl.assertQueryInvalid(null, "'repla ce operation'.matches('a[b-')", null, PatternSyntaxException.class);
 		//
-		assertQueryInvalid(null, "let s : String = null in s.matches('(\\\\w+)\\\\s*')");
-		assertQueryInvalid(null, "'repla ce operation'.matches(null)");
+		ocl.assertQueryInvalid(null, "let s : String = null in s.matches('(\\\\w+)\\\\s*')");
+		ocl.assertQueryInvalid(null, "'repla ce operation'.matches(null)");
 		//
-		assertQueryInvalid(null, "let s : String = invalid in s.matches('(\\\\w+)\\\\s*')");
-		assertQueryInvalid(null, "'repla ce operation'.matches(invalid)");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s.matches('(\\\\w+)\\\\s*')");
+		ocl.assertQueryInvalid(null, "'repla ce operation'.matches(invalid)");
 		// -- visual inspection of println's demonstrates cache re-use; this test just conforms cache still ok once full
-		assertQueryEquals(null, 50, "let seq = Sequence{1..20}, rseq = seq->reverse(), seqs = Sequence{seq,rseq,seq,rseq,seq}->flatten() in seqs->iterate(i; acc : Integer = 0 | if '123456789'.matches('.*' + i.toString() + '.*') then acc + 1 else acc endif)");
+		ocl.assertQueryEquals(null, 50, "let seq = Sequence{1..20}, rseq = seq->reverse(), seqs = Sequence{seq,rseq,seq,rseq,seq}->flatten() in seqs->iterate(i; acc : Integer = 0 | if '123456789'.matches('.*' + i.toString() + '.*') then acc + 1 else acc endif)");
+		ocl.dispose();
 	}
 
 	@Test public void testStringNotEqual() {
-		assertQueryTrue(null, "'test' <> 'se'");
-		assertQueryFalse(null, "'test' <> 'test'");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryTrue(null, "'test' <> 'se'");
+		ocl.assertQueryFalse(null, "'test' <> 'test'");
 		// invalid
-		assertQueryInvalid(null, "let s : String = invalid in s <> 'se'");
-		assertQueryInvalid(null, "let s : String = invalid in 'test' <> s");
-		assertQueryInvalid(null, "let s1 : String = invalid, s2 : String = invalid in s1 <> s2");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s <> 'se'");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in 'test' <> s");
+		ocl.assertQueryInvalid(null, "let s1 : String = invalid, s2 : String = invalid in s1 <> s2");
 		// null
-		assertQueryTrue(null, "let s : String = null in s <> 'se'");
-		assertQueryTrue(null, "let s : String = null in 'test' <> s");
-		assertQueryFalse(null, "let s1 : String = null, s2 : String = null in s1 <> s2");
+		ocl.assertQueryTrue(null, "let s : String = null in s <> 'se'");
+		ocl.assertQueryTrue(null, "let s : String = null in 'test' <> s");
+		ocl.assertQueryFalse(null, "let s1 : String = null, s2 : String = null in s1 <> s2");
+		ocl.dispose();
 	}
 
 	@Test public void testStringOclAsType() {
-		assertQueryInvalid(null, "'test'.oclAsType(Integer)");
-		assertQueryEquals(null, "test", "'test'.oclAsType(String)");
-		assertQueryEquals(null, "test", "'test'.oclAsType(OclAny)");
-		assertQueryInvalid(null, "'test'.oclAsType(OclVoid)");
-		assertQueryInvalid(null, "'test'.oclAsType(OclInvalid)");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryInvalid(null, "'test'.oclAsType(Integer)");
+		ocl.assertQueryEquals(null, "test", "'test'.oclAsType(String)");
+		ocl.assertQueryEquals(null, "test", "'test'.oclAsType(OclAny)");
+		ocl.assertQueryInvalid(null, "'test'.oclAsType(OclVoid)");
+		ocl.assertQueryInvalid(null, "'test'.oclAsType(OclInvalid)");
+		ocl.dispose();
 	}
 
 	@Test public void testStringOclIsInvalid() {
-		assertQueryFalse(null, "'test'.oclIsInvalid()");
-		assertQueryFalse(null, "''.oclIsInvalid()");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryFalse(null, "'test'.oclIsInvalid()");
+		ocl.assertQueryFalse(null, "''.oclIsInvalid()");
+		ocl.dispose();
 	}
 
 	@Test public void testStringOclIsKindOf() {
-		assertQueryFalse(null, "'test'.oclIsKindOf(Integer)");
-		assertQueryTrue(null, "'test'.oclIsKindOf(String)");
-		assertQueryTrue(null, "'test'.oclIsKindOf(OclAny)");
-		assertQueryFalse(null, "'test'.oclIsKindOf(OclVoid)");
-		assertQueryFalse(null, "'test'.oclIsKindOf(OclInvalid)");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryFalse(null, "'test'.oclIsKindOf(Integer)");
+		ocl.assertQueryTrue(null, "'test'.oclIsKindOf(String)");
+		ocl.assertQueryTrue(null, "'test'.oclIsKindOf(OclAny)");
+		ocl.assertQueryFalse(null, "'test'.oclIsKindOf(OclVoid)");
+		ocl.assertQueryFalse(null, "'test'.oclIsKindOf(OclInvalid)");
+		ocl.dispose();
 	}
 
 	@Test public void testStringOclIsTypeOf() {
-		assertQueryFalse(null, "'test'.oclIsTypeOf(Integer)");
-		assertQueryTrue(null, "'test'.oclIsTypeOf(String)");
-		assertQueryFalse(null, "'test'.oclIsTypeOf(OclAny)");
-		assertQueryFalse(null, "'test'.oclIsTypeOf(OclVoid)");
-		assertQueryFalse(null, "'test'.oclIsTypeOf(OclInvalid)");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryFalse(null, "'test'.oclIsTypeOf(Integer)");
+		ocl.assertQueryTrue(null, "'test'.oclIsTypeOf(String)");
+		ocl.assertQueryFalse(null, "'test'.oclIsTypeOf(OclAny)");
+		ocl.assertQueryFalse(null, "'test'.oclIsTypeOf(OclVoid)");
+		ocl.assertQueryFalse(null, "'test'.oclIsTypeOf(OclInvalid)");
+		ocl.dispose();
 	}
 
 	@Test public void testStringOclIsUndefined() {
-		assertQueryFalse(null, "'test'.oclIsUndefined()");
-		assertQueryFalse(null, "''.oclIsUndefined()");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryFalse(null, "'test'.oclIsUndefined()");
+		ocl.assertQueryFalse(null, "''.oclIsUndefined()");
+		ocl.dispose();
 	}
 
 	@Test public void testStringPlus() {
-		assertQueryEquals(null, "concatenationTest", "'concatenation' + 'Test'");
-		assertQueryEquals(null, "concatenation\n", "'concatenation' + '\\n'");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryEquals(null, "concatenationTest", "'concatenation' + 'Test'");
+		ocl.assertQueryEquals(null, "concatenation\n", "'concatenation' + '\\n'");
 		// invalid
-		assertQueryInvalid(null, "let s : String = invalid in 'concatenation' + s");
-		assertQueryInvalid(null, "let s : String = invalid in s + 'concatenation'");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in 'concatenation' + s");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s + 'concatenation'");
 		// null
-		assertQueryInvalid(null, "let s : String = null in 'concatenation' + s");
-		assertQueryInvalid(null, "let s : String = null in s + 'concatenation'");
+		ocl.assertQueryInvalid(null, "let s : String = null in 'concatenation' + s");
+		ocl.assertQueryInvalid(null, "let s : String = null in s + 'concatenation'");
+		ocl.dispose();
 	}
 
 	@Test public void testStringReplaceAll() {
-		assertQueryEquals(null, "rePlaceAll oPeration", "'replaceAll operation'.replaceAll('p', 'P')");
-		assertQueryEquals(null, "ReplaceAllOperation", "'Repla ce All Operation'.replaceAll('(\\\\w+)\\\\s*', '$1')");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryEquals(null, "rePlaceAll oPeration", "'replaceAll operation'.replaceAll('p', 'P')");
+		ocl.assertQueryEquals(null, "ReplaceAllOperation", "'Repla ce All Operation'.replaceAll('(\\\\w+)\\\\s*', '$1')");
 		//
-		assertQueryEquals(null, "xx", "''.replaceAll('', 'xx')");
-		assertQueryEquals(null, "xxrxxexxpxxlxxaxx xxcxxexx xxoxxpxxexxrxxaxxtxxixxoxxnxx", "'repla ce operation'.replaceAll('', 'xx')");
-		assertQueryEquals(null, "", "'repla ce operation'.replaceAll('(\\\\w+)\\\\s*', '')");
-		assertQueryEquals(null, "repla ce operation", "'repla ce operation'.replaceAll('', '')");
+		ocl.assertQueryEquals(null, "xx", "''.replaceAll('', 'xx')");
+		ocl.assertQueryEquals(null, "xxrxxexxpxxlxxaxx xxcxxexx xxoxxpxxexxrxxaxxtxxixxoxxnxx", "'repla ce operation'.replaceAll('', 'xx')");
+		ocl.assertQueryEquals(null, "", "'repla ce operation'.replaceAll('(\\\\w+)\\\\s*', '')");
+		ocl.assertQueryEquals(null, "repla ce operation", "'repla ce operation'.replaceAll('', '')");
 		//
-		assertQueryInvalid(null, "'repla ce operation'.replaceAll('a[b-', '$1')", null, PatternSyntaxException.class);
-		assertQueryInvalid(null, "'repla ce operation'.replaceAll('', '$1')", "No group 1", IndexOutOfBoundsException.class);
+		ocl.assertQueryInvalid(null, "'repla ce operation'.replaceAll('a[b-', '$1')", null, PatternSyntaxException.class);
+		ocl.assertQueryInvalid(null, "'repla ce operation'.replaceAll('', '$1')", "No group 1", IndexOutOfBoundsException.class);
 		//
-		assertQueryInvalid(null, "let s : String = null in s.replaceAll('(\\\\w+)\\\\s*', '$1')");
-		assertQueryInvalid(null, "'repla ce operation'.replaceAll(null, '$1')");
-		assertQueryInvalid(null, "'repla ce operation'.replaceAll('(\\\\w+)\\\\s*', null)");
+		ocl.assertQueryInvalid(null, "let s : String = null in s.replaceAll('(\\\\w+)\\\\s*', '$1')");
+		ocl.assertQueryInvalid(null, "'repla ce operation'.replaceAll(null, '$1')");
+		ocl.assertQueryInvalid(null, "'repla ce operation'.replaceAll('(\\\\w+)\\\\s*', null)");
 		//
-		assertQueryInvalid(null, "let s : String = invalid in s.replaceAll('(\\\\w+)\\\\s*', '$1')");
-		assertQueryInvalid(null, "'repla ce operation'.replaceAll(invalid, '$1')");
-		assertQueryInvalid(null, "'repla ce operation'.replaceAll('(\\\\w+)\\\\s*', invalid)");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s.replaceAll('(\\\\w+)\\\\s*', '$1')");
+		ocl.assertQueryInvalid(null, "'repla ce operation'.replaceAll(invalid, '$1')");
+		ocl.assertQueryInvalid(null, "'repla ce operation'.replaceAll('(\\\\w+)\\\\s*', invalid)");
+		ocl.dispose();
 	}
 
 	@Test public void testStringReplaceFirst() {
-		assertQueryEquals(null, "rePlace operation", "'replace operation'.replaceFirst('p', 'P')");
-		assertQueryEquals(null, "replace operation", "'repla ce operation'.replaceFirst('(\\\\w+)\\\\s*', '$1')");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryEquals(null, "rePlace operation", "'replace operation'.replaceFirst('p', 'P')");
+		ocl.assertQueryEquals(null, "replace operation", "'repla ce operation'.replaceFirst('(\\\\w+)\\\\s*', '$1')");
 		//
-		assertQueryEquals(null, "xx", "''.replaceFirst('', 'xx')");
-		assertQueryEquals(null, "xxrepla ce operation", "'repla ce operation'.replaceFirst('', 'xx')");
-		assertQueryEquals(null, "ce operation", "'repla ce operation'.replaceFirst('(\\\\w+)\\\\s*', '')");
-		assertQueryEquals(null, "repla ce operation", "'repla ce operation'.replaceFirst('', '')");
+		ocl.assertQueryEquals(null, "xx", "''.replaceFirst('', 'xx')");
+		ocl.assertQueryEquals(null, "xxrepla ce operation", "'repla ce operation'.replaceFirst('', 'xx')");
+		ocl.assertQueryEquals(null, "ce operation", "'repla ce operation'.replaceFirst('(\\\\w+)\\\\s*', '')");
+		ocl.assertQueryEquals(null, "repla ce operation", "'repla ce operation'.replaceFirst('', '')");
 		//
-		assertQueryInvalid(null, "'repla ce operation'.replaceFirst('a[b-', '$1')", null, PatternSyntaxException.class);
-		assertQueryInvalid(null, "'repla ce operation'.replaceFirst('', '$1')", "No group 1", IndexOutOfBoundsException.class);
+		ocl.assertQueryInvalid(null, "'repla ce operation'.replaceFirst('a[b-', '$1')", null, PatternSyntaxException.class);
+		ocl.assertQueryInvalid(null, "'repla ce operation'.replaceFirst('', '$1')", "No group 1", IndexOutOfBoundsException.class);
 		//
-		assertQueryInvalid(null, "let s : String = null in s.replaceFirst('(\\\\w+)\\\\s*', '$1')");
-		assertQueryInvalid(null, "'repla ce operation'.replaceFirst(null, '$1')");
-		assertQueryInvalid(null, "'repla ce operation'.replaceFirst('(\\\\w+)\\\\s*', null)");
+		ocl.assertQueryInvalid(null, "let s : String = null in s.replaceFirst('(\\\\w+)\\\\s*', '$1')");
+		ocl.assertQueryInvalid(null, "'repla ce operation'.replaceFirst(null, '$1')");
+		ocl.assertQueryInvalid(null, "'repla ce operation'.replaceFirst('(\\\\w+)\\\\s*', null)");
 		//
-		assertQueryInvalid(null, "let s : String = invalid in s.replaceFirst('(\\\\w+)\\\\s*', '$1')");
-		assertQueryInvalid(null, "'repla ce operation'.replaceFirst(invalid, '$1')");
-		assertQueryInvalid(null, "'repla ce operation'.replaceFirst('(\\\\w+)\\\\s*', invalid)");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s.replaceFirst('(\\\\w+)\\\\s*', '$1')");
+		ocl.assertQueryInvalid(null, "'repla ce operation'.replaceFirst(invalid, '$1')");
+		ocl.assertQueryInvalid(null, "'repla ce operation'.replaceFirst('(\\\\w+)\\\\s*', invalid)");
+		ocl.dispose();
 	}
 
 	@Test public void testStringSize() {
-		assertQueryEquals(null, Integer.valueOf(4), "'test'.size()"); //$NON-NLS-2$
-		assertQueryEquals(null, Integer.valueOf(0), "''.size()"); //$NON-NLS-2$
+		TestOCL ocl = createOCL();
+		ocl.assertQueryEquals(null, Integer.valueOf(4), "'test'.size()"); //$NON-NLS-2$
+		ocl.assertQueryEquals(null, Integer.valueOf(0), "''.size()"); //$NON-NLS-2$
 		// invalid
-		assertQueryInvalid(null, "let s : String = invalid in s.size()"); //$NON-NLS-2$
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s.size()"); //$NON-NLS-2$
 		// null
-		assertQueryInvalid(null, "let s : String = null in s.size()"); //$NON-NLS-2$
+		ocl.assertQueryInvalid(null, "let s : String = null in s.size()"); //$NON-NLS-2$
+		ocl.dispose();
 	}
 
 	@Test public void testStringStartsWith() {
-		assertQueryFalse(null, "'abcdef'.startsWith('abcdefg')");
-		assertQueryTrue(null, "'abcdef'.startsWith('abcdef')");
-		assertQueryTrue(null, "'abcdef'.startsWith('abcd')");
-		assertQueryTrue(null, "'abcdef'.startsWith('a')");
-		assertQueryTrue(null, "'abcdef'.startsWith('')");
-		assertQueryTrue(null, "''.startsWith('')");
-		assertQueryFalse(null, "''.startsWith('a')");
-		assertQueryTrue(null, "'abcdef'.startsWith('')");
-		assertQueryFalse(null, "'abcdef'.startsWith('bcd')");
-		assertQueryFalse(null, "'abcdef'.startsWith('ef')");
-		assertQueryFalse(null, "'abcdef'.startsWith('f')");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryFalse(null, "'abcdef'.startsWith('abcdefg')");
+		ocl.assertQueryTrue(null, "'abcdef'.startsWith('abcdef')");
+		ocl.assertQueryTrue(null, "'abcdef'.startsWith('abcd')");
+		ocl.assertQueryTrue(null, "'abcdef'.startsWith('a')");
+		ocl.assertQueryTrue(null, "'abcdef'.startsWith('')");
+		ocl.assertQueryTrue(null, "''.startsWith('')");
+		ocl.assertQueryFalse(null, "''.startsWith('a')");
+		ocl.assertQueryTrue(null, "'abcdef'.startsWith('')");
+		ocl.assertQueryFalse(null, "'abcdef'.startsWith('bcd')");
+		ocl.assertQueryFalse(null, "'abcdef'.startsWith('ef')");
+		ocl.assertQueryFalse(null, "'abcdef'.startsWith('f')");
 		// invalid
-		assertQueryInvalid(null, "let s : String = invalid in s.startsWith('')");
-		assertQueryInvalid(null, "let s : String = invalid in ''.startsWith(s)");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s.startsWith('')");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in ''.startsWith(s)");
 		// null
-		assertQueryInvalid(null, "let s : String = null in s.startsWith('')");
-		assertQueryInvalid(null, "let s : String = null in ''.startsWith(s)");
+		ocl.assertQueryInvalid(null, "let s : String = null in s.startsWith('')");
+		ocl.assertQueryInvalid(null, "let s : String = null in ''.startsWith(s)");
+		ocl.dispose();
 	}
 
 	@Test public void testStringSubstituteAll() {
-		assertQueryEquals(null, "subsTiTuTeAll operaTion", "'substituteAll operation'.substituteAll('t', 'T')");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryEquals(null, "subsTiTuTeAll operaTion", "'substituteAll operation'.substituteAll('t', 'T')");
 		//
-		assertQueryEquals(null, "xx", "''.replaceAll('', 'xx')");
-		assertQueryEquals(null, "xxrxxexxpxxlxxaxx xxcxxexx xxoxxpxxexxrxxaxxtxxixxoxxnxx", "'repla ce operation'.substituteAll('', 'xx')");
-		assertQueryEquals(null, "repla ce operation", "'repla ce operation'.substituteAll('(\\\\w+)\\\\s*', '')");
-		assertQueryEquals(null, "repla ce operation", "'repla ce operation'.substituteAll('', '')");
+		ocl.assertQueryEquals(null, "xx", "''.replaceAll('', 'xx')");
+		ocl.assertQueryEquals(null, "xxrxxexxpxxlxxaxx xxcxxexx xxoxxpxxexxrxxaxxtxxixxoxxnxx", "'repla ce operation'.substituteAll('', 'xx')");
+		ocl.assertQueryEquals(null, "repla ce operation", "'repla ce operation'.substituteAll('(\\\\w+)\\\\s*', '')");
+		ocl.assertQueryEquals(null, "repla ce operation", "'repla ce operation'.substituteAll('', '')");
 		//
-		assertQueryInvalid(null, "let s : String = null in s.substituteAll('(\\\\w+)\\\\s*', '$1')");
-		assertQueryInvalid(null, "'repla ce operation'.substituteAll(null, '$1')");
-		assertQueryInvalid(null, "'repla ce operation'.substituteAll('(\\\\w+)\\\\s*', null)");
+		ocl.assertQueryInvalid(null, "let s : String = null in s.substituteAll('(\\\\w+)\\\\s*', '$1')");
+		ocl.assertQueryInvalid(null, "'repla ce operation'.substituteAll(null, '$1')");
+		ocl.assertQueryInvalid(null, "'repla ce operation'.substituteAll('(\\\\w+)\\\\s*', null)");
 		//
-		assertQueryInvalid(null, "let s : String = invalid in s.substituteAll('(\\\\w+)\\\\s*', '$1')");
-		assertQueryInvalid(null, "'repla ce operation'.substituteAll(invalid, '$1')");
-		assertQueryInvalid(null, "'repla ce operation'.substituteAll('(\\\\w+)\\\\s*', invalid)");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s.substituteAll('(\\\\w+)\\\\s*', '$1')");
+		ocl.assertQueryInvalid(null, "'repla ce operation'.substituteAll(invalid, '$1')");
+		ocl.assertQueryInvalid(null, "'repla ce operation'.substituteAll('(\\\\w+)\\\\s*', invalid)");
+		ocl.dispose();
 	}
 
 	@Test public void testStringSubstituteFirst() {
-		assertQueryEquals(null, "subsTiTuTeFirst operaTion", "'substiTuTeFirst operaTion'.substituteFirst('t', 'T')");
-		assertQueryEquals(null, "SubstiTuTeFirst operaTion", "'substiTuTeFirst operaTion'.substituteFirst('s', 'S')");
-		assertQueryEquals(null, "substiTuTeFirst operaTioN", "'substiTuTeFirst operaTion'.substituteFirst('n', 'N')");
-		assertQueryEquals(null, "substiTuTeFirst operaTion", "'substiTuTeFirst operaTion'.substituteFirst('n', 'n')");
-		assertQueryEquals(null, "substiTuTeFirst operaTiON", "'substiTuTeFirst operaTion'.substituteFirst('on', 'ON')");
-		assertQueryEquals(null, "a[b-c]d\r\n*", "'a[b-c]d\\\\w*'.substituteFirst('\\\\w', '\r\n')");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryEquals(null, "subsTiTuTeFirst operaTion", "'substiTuTeFirst operaTion'.substituteFirst('t', 'T')");
+		ocl.assertQueryEquals(null, "SubstiTuTeFirst operaTion", "'substiTuTeFirst operaTion'.substituteFirst('s', 'S')");
+		ocl.assertQueryEquals(null, "substiTuTeFirst operaTioN", "'substiTuTeFirst operaTion'.substituteFirst('n', 'N')");
+		ocl.assertQueryEquals(null, "substiTuTeFirst operaTion", "'substiTuTeFirst operaTion'.substituteFirst('n', 'n')");
+		ocl.assertQueryEquals(null, "substiTuTeFirst operaTiON", "'substiTuTeFirst operaTion'.substituteFirst('on', 'ON')");
+		ocl.assertQueryEquals(null, "a[b-c]d\r\n*", "'a[b-c]d\\\\w*'.substituteFirst('\\\\w', '\r\n')");
 		//
-		assertQueryEquals(null, "xx", "''.substituteFirst('', 'xx')");
-		assertQueryEquals(null, "xxrepla ce operation", "'repla ce operation'.substituteFirst('', 'xx')");
-		assertQueryEquals(null, "repla ce operation", "'repla ce operation'.substituteFirst('', '')");
+		ocl.assertQueryEquals(null, "xx", "''.substituteFirst('', 'xx')");
+		ocl.assertQueryEquals(null, "xxrepla ce operation", "'repla ce operation'.substituteFirst('', 'xx')");
+		ocl.assertQueryEquals(null, "repla ce operation", "'repla ce operation'.substituteFirst('', '')");
 		//
-		assertQueryInvalid(null, "'repla ce operation'.substituteFirst('(\\\\w+)\\\\s*', '')",
+		ocl.assertQueryInvalid(null, "'repla ce operation'.substituteFirst('(\\\\w+)\\\\s*', '')",
 			StringUtil.bind(PivotMessages.MissingSubstring, "(\\w+)\\s*", "repla ce operation"), null);
 		//
-		assertQueryInvalid(null, "let s : String = null in s.substituteFirst('(\\\\w+)\\\\s*', '$1')");
-		assertQueryInvalid(null, "'repla ce operation'.substituteFirst(null, '$1')");
-		assertQueryInvalid(null, "'repla ce operation'.substituteFirst('(\\\\w+)\\\\s*', null)");
+		ocl.assertQueryInvalid(null, "let s : String = null in s.substituteFirst('(\\\\w+)\\\\s*', '$1')");
+		ocl.assertQueryInvalid(null, "'repla ce operation'.substituteFirst(null, '$1')");
+		ocl.assertQueryInvalid(null, "'repla ce operation'.substituteFirst('(\\\\w+)\\\\s*', null)");
 		//
-		assertQueryInvalid(null, "let s : String = invalid in s.substituteFirst('(\\\\w+)\\\\s*', '$1')");
-		assertQueryInvalid(null, "'repla ce operation'.substituteFirst(invalid, '$1')");
-		assertQueryInvalid(null, "'repla ce operation'.substituteFirst('(\\\\w+)\\\\s*', invalid)");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s.substituteFirst('(\\\\w+)\\\\s*', '$1')");
+		ocl.assertQueryInvalid(null, "'repla ce operation'.substituteFirst(invalid, '$1')");
+		ocl.assertQueryInvalid(null, "'repla ce operation'.substituteFirst('(\\\\w+)\\\\s*', invalid)");
+		ocl.dispose();
 	}
 
 	@Test public void testStringSubstring() {
-		assertQueryEquals(null, "t", "'test'.substring(1, 1)");
-		assertQueryEquals(null, "es", "'test'.substring(2, 3)");
-		assertQueryEquals(null, "t", "'test'.substring(4, 4)");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryEquals(null, "t", "'test'.substring(1, 1)");
+		ocl.assertQueryEquals(null, "es", "'test'.substring(2, 3)");
+		ocl.assertQueryEquals(null, "t", "'test'.substring(4, 4)");
 		// illegal
-		assertQueryInvalid(null, "'test'.substring(2, 1)");
-		assertQueryInvalid(null, "'test'.substring(3, 1)");
+		ocl.assertQueryInvalid(null, "'test'.substring(2, 1)");
+		ocl.assertQueryInvalid(null, "'test'.substring(3, 1)");
 		// out of bounds
-		assertQueryInvalid(null, "'test'.substring(0, 1)");
-		assertQueryInvalid(null, "'test'.substring(4, 5)");
+		ocl.assertQueryInvalid(null, "'test'.substring(0, 1)");
+		ocl.assertQueryInvalid(null, "'test'.substring(4, 5)");
 		// invalid
-		assertQueryInvalid(null, "let s : String = invalid in s.substring(1, 1)");
-		assertQueryInvalid(null, "let s : String = invalid in s.substring(5, 5)");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s.substring(1, 1)");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s.substring(5, 5)");
 		// null
-		assertQueryInvalid(null, "let s : String = null in s.substring(1, 1)");
-		assertQueryInvalid(null, "let s : String = null in s.substring(5, 5)");
+		ocl.assertQueryInvalid(null, "let s : String = null in s.substring(1, 1)");
+		ocl.assertQueryInvalid(null, "let s : String = null in s.substring(5, 5)");
+		ocl.dispose();
 	}
 
 	@Test public void testStringToBoolean() {
-		assertQueryTrue(null, "'true'.toBoolean()");
-		assertQueryFalse(null, "' true'.toBoolean()");
-		assertQueryFalse(null, "'true '.toBoolean()");
-		assertQueryFalse(null, "'True'.toBoolean()");
-		assertQueryFalse(null, "'false'.toBoolean()");
-		assertQueryFalse(null, "'-4'.toBoolean()");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryTrue(null, "'true'.toBoolean()");
+		ocl.assertQueryFalse(null, "' true'.toBoolean()");
+		ocl.assertQueryFalse(null, "'true '.toBoolean()");
+		ocl.assertQueryFalse(null, "'True'.toBoolean()");
+		ocl.assertQueryFalse(null, "'false'.toBoolean()");
+		ocl.assertQueryFalse(null, "'-4'.toBoolean()");
 		// invalid
-		assertQueryInvalid(null, "let s : String = invalid in s.toBoolean()");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s.toBoolean()");
 		// null
-		assertQueryInvalid(null, "let s : String = null in s.toBoolean()");
+		ocl.assertQueryInvalid(null, "let s : String = null in s.toBoolean()");
+		ocl.dispose();
 	}
 
 	@Test public void testStringToInteger() {
-		assertQueryEquals(null, Integer.valueOf(4), "'4'.toInteger()");
-		assertQueryEquals(null, Integer.valueOf(-4), "'-4'.toInteger()");
-		assertQueryInvalid(null, "'4.0'.toInteger()", NLS.bind(PivotMessages.InvalidInteger, "4.0"), NumberFormatException.class);
+		TestOCL ocl = createOCL();
+		ocl.assertQueryEquals(null, Integer.valueOf(4), "'4'.toInteger()");
+		ocl.assertQueryEquals(null, Integer.valueOf(-4), "'-4'.toInteger()");
+		ocl.assertQueryInvalid(null, "'4.0'.toInteger()", NLS.bind(PivotMessages.InvalidInteger, "4.0"), NumberFormatException.class);
 
-		assertQueryInvalid(null, "'2.4.0'.toInteger()");
-		assertQueryInvalid(null, "'a'.toInteger()");
+		ocl.assertQueryInvalid(null, "'2.4.0'.toInteger()");
+		ocl.assertQueryInvalid(null, "'a'.toInteger()");
 		// invalid
-		assertQueryInvalid(null, "let s : String = invalid in s.toInteger()");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s.toInteger()");
 		// null
-		assertQueryInvalid(null, "let s : String = null in s.toInteger()");
+		ocl.assertQueryInvalid(null, "let s : String = null in s.toInteger()");
+		ocl.dispose();
 	}
 
 	@Test public void testStringToLowerCase() {
+		TestOCL ocl = createOCL();
 //		checkForUTF8Encoding()		
-		assertQueryEquals(null, "4", "'4'.toLowerCase()"); //$NON-NLS-2$
-		assertQueryEquals(null, "mixed", "'MiXeD'.toLowerCase()"); //$NON-NLS-2$
-		assertQueryEquals(null, "upper", "'UPPER'.toLowerCase()"); //$NON-NLS-2$
+		ocl.assertQueryEquals(null, "4", "'4'.toLowerCase()"); //$NON-NLS-2$
+		ocl.assertQueryEquals(null, "mixed", "'MiXeD'.toLowerCase()"); //$NON-NLS-2$
+		ocl.assertQueryEquals(null, "upper", "'UPPER'.toLowerCase()"); //$NON-NLS-2$
 		// Ensures word-final sigma and regular sigmas are converted as needed
 		// TODO re-enable once the Unicode problems on Hudson have been resolved
-//		assertQueryEquals(null, "ὀδυσσεύς", "'ὈΔΥΣΣΕΎΣ'.toLowerCase()");
+//		ocl.assertQueryEquals(null, "ὀδυσσεύς", "'ὈΔΥΣΣΕΎΣ'.toLowerCase()");
 		// invalid
-		assertQueryInvalid(null, "let s : String = invalid in s.toLowerCase()");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s.toLowerCase()");
 		// null
-		assertQueryInvalid(null, "let s : String = null in s.toLowerCase()");
+		ocl.assertQueryInvalid(null, "let s : String = null in s.toLowerCase()");
+		ocl.dispose();
 	}
 
 	@Test public void testStringToReal() {
-		assertQueryEquals(null, 4.0, "'4'.toReal()", 0.0);
-		assertQueryEquals(null, -4.0, "'-4'.toReal()", 0.0);
-		assertQueryEquals(null, 4.0, "'4.0'.toReal()", 0.0);
+		TestOCL ocl = createOCL();
+		ocl.assertQueryEquals(null, 4.0, "'4'.toReal()", 0.0);
+		ocl.assertQueryEquals(null, -4.0, "'-4'.toReal()", 0.0);
+		ocl.assertQueryEquals(null, 4.0, "'4.0'.toReal()", 0.0);
 
-		assertQueryInvalid(null, "'2.4.0'.toReal()", NLS.bind(PivotMessages.InvalidReal, "2.4.0"), NumberFormatException.class);
-		assertQueryInvalid(null, "'a'.toReal()", NLS.bind(PivotMessages.InvalidReal, "a"), NumberFormatException.class);
+		ocl.assertQueryInvalid(null, "'2.4.0'.toReal()", NLS.bind(PivotMessages.InvalidReal, "2.4.0"), NumberFormatException.class);
+		ocl.assertQueryInvalid(null, "'a'.toReal()", NLS.bind(PivotMessages.InvalidReal, "a"), NumberFormatException.class);
 		// invalid
-		assertQueryInvalid(null, "let s : String = invalid in s.toReal()");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s.toReal()");
 		// null
-		assertQueryInvalid(null, "let s : String = null in s.toReal()");
+		ocl.assertQueryInvalid(null, "let s : String = null in s.toReal()");
+		ocl.dispose();
 	}
 
 	@Test public void testStringToString() {
-		assertQueryEquals(null, "4.0", "'4.0'.toString()");
-		assertQueryEquals(null, "4.0\t4", "('4.0' + '\t' + '4').toString()");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryEquals(null, "4.0", "'4.0'.toString()");
+		ocl.assertQueryEquals(null, "4.0\t4", "('4.0' + '\t' + '4').toString()");
+		ocl.dispose();
 	}
 
 	@Test public void testStringToUpperCase() {
+		TestOCL ocl = createOCL();
 //		checkForUTF8Encoding();
-		assertQueryEquals(null, "4", "'4'.toUpperCase()");
-		assertQueryEquals(null, "MIXED", "'MiXeD'.toUpperCase()");
-		assertQueryEquals(null, "LOWER", "'lower'.toUpperCase()");
+		ocl.assertQueryEquals(null, "4", "'4'.toUpperCase()");
+		ocl.assertQueryEquals(null, "MIXED", "'MiXeD'.toUpperCase()");
+		ocl.assertQueryEquals(null, "LOWER", "'lower'.toUpperCase()");
 		
 		// Ensures word-final sigma and regular sigmas are converted as needed
 		// TODO re-enable once the Unicode problems on Hudson have been resolved
-//		assertQueryEquals(null, "ὈΔΥΣΣΕΎΣ", "'ὀδυσσεύς'.toUpperCase()");
+//		ocl.assertQueryEquals(null, "ὈΔΥΣΣΕΎΣ", "'ὀδυσσεύς'.toUpperCase()");
 		
 		// Sharp s should be mapped to a double S upper case
 		// TODO re-enable once the Unicode problems on Hudson have been resolved
-//		assertQueryEquals(null, "SS", "'ß'.toUpperCase()");
+//		ocl.assertQueryEquals(null, "SS", "'ß'.toUpperCase()");
 		// invalid
-		assertQueryInvalid(null, "let s : String = invalid in s.toUpperCase()");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s.toUpperCase()");
 		// null
-		assertQueryInvalid(null, "let s : String = null in s.toUpperCase()");
+		ocl.assertQueryInvalid(null, "let s : String = null in s.toUpperCase()");
+		ocl.dispose();
 	}
 
 	@Test public void testStringTokenize() {
-		assertQueryResults(null, "Sequence{'a','b','c','d'}", "'\na b\tc\fd\r'.tokenize()");
-		assertQueryResults(null, "Sequence{'a','b','c','d'}", "' \t\n\r\fa b\tc\fd \t\n\r\f'.tokenize()");
-		assertQueryResults(null, "Sequence{' ','\t','\n','\r','\f','a',' ','b','\t','c','\f','d',' ','\t','\n','\r','\f'}", "' \t\n\r\fa b\tc\fd \t\n\r\f'.tokenize(' \t\n\r\f', true)");
-		assertQueryResults(null, "Sequence{'\na',' ', 'b\tc\fd\r'}", "'\na b\tc\fd\r'.tokenize(' ', true)");
-		assertQueryResults(null, "Sequence{'\na','b\tc\fd\r'}", "'\na b\tc\fd\r'.tokenize(' ')");
-		assertQueryResults(null, "Sequence{'1','2','3','4'}", "'1.2.3.4'.tokenize('.')");					// BUG 422296
-		assertQueryResults(null, "Sequence{}", "''.tokenize(' ', true)");
-		assertQueryResults(null, "Sequence{' \t\n\r\f'}", "' \t\n\r\f'.tokenize('', true)");
-		assertQueryResults(null, "Sequence{}", "''.tokenize('', true)");
-		assertQueryResults(null, "Sequence{}", "''.tokenize(' \t\n\r\f', true)");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryResults(null, "Sequence{'a','b','c','d'}", "'\na b\tc\fd\r'.tokenize()");
+		ocl.assertQueryResults(null, "Sequence{'a','b','c','d'}", "' \t\n\r\fa b\tc\fd \t\n\r\f'.tokenize()");
+		ocl.assertQueryResults(null, "Sequence{' ','\t','\n','\r','\f','a',' ','b','\t','c','\f','d',' ','\t','\n','\r','\f'}", "' \t\n\r\fa b\tc\fd \t\n\r\f'.tokenize(' \t\n\r\f', true)");
+		ocl.assertQueryResults(null, "Sequence{'\na',' ', 'b\tc\fd\r'}", "'\na b\tc\fd\r'.tokenize(' ', true)");
+		ocl.assertQueryResults(null, "Sequence{'\na','b\tc\fd\r'}", "'\na b\tc\fd\r'.tokenize(' ')");
+		ocl.assertQueryResults(null, "Sequence{'1','2','3','4'}", "'1.2.3.4'.tokenize('.')");					// BUG 422296
+		ocl.assertQueryResults(null, "Sequence{}", "''.tokenize(' ', true)");
+		ocl.assertQueryResults(null, "Sequence{' \t\n\r\f'}", "' \t\n\r\f'.tokenize('', true)");
+		ocl.assertQueryResults(null, "Sequence{}", "''.tokenize('', true)");
+		ocl.assertQueryResults(null, "Sequence{}", "''.tokenize(' \t\n\r\f', true)");
 		// invalid
-		assertQueryInvalid(null, "let s : String = invalid in s.tokenize()");
-		assertQueryInvalid(null, "let s : String = invalid in s.tokenize('')");
-		assertQueryInvalid(null, "let s : String = invalid in s.tokenize('',true)");
-		assertQueryInvalid(null, "let s : String = invalid in ''.tokenize(s)");
-		assertQueryInvalid(null, "let s : String = invalid in ''.tokenize(s,true)");
-		assertQueryInvalid(null, "let b : Boolean = invalid in ''.tokenize('',b)");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s.tokenize()");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s.tokenize('')");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s.tokenize('',true)");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in ''.tokenize(s)");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in ''.tokenize(s,true)");
+		ocl.assertQueryInvalid(null, "let b : Boolean = invalid in ''.tokenize('',b)");
 		// null
-		assertQueryInvalid(null, "let s : String = null in s.tokenize()");
-		assertQueryInvalid(null, "let s : String = null in s.tokenize('')");
-		assertQueryInvalid(null, "let s : String = null in s.tokenize('',true)");
-		assertQueryInvalid(null, "let s : String = null in ''.tokenize(s)");
-		assertQueryInvalid(null, "let s : String = null in ''.tokenize(s,true)");
-		assertQueryInvalid(null, "let b : Boolean = null in ''.tokenize('',b)");
+		ocl.assertQueryInvalid(null, "let s : String = null in s.tokenize()");
+		ocl.assertQueryInvalid(null, "let s : String = null in s.tokenize('')");
+		ocl.assertQueryInvalid(null, "let s : String = null in s.tokenize('',true)");
+		ocl.assertQueryInvalid(null, "let s : String = null in ''.tokenize(s)");
+		ocl.assertQueryInvalid(null, "let s : String = null in ''.tokenize(s,true)");
+		ocl.assertQueryInvalid(null, "let b : Boolean = null in ''.tokenize('',b)");
 		//
-		assertSemanticErrorQuery(null, "''.tokenize('',false,null)", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "String", "tokenize", "'',false,null");
+		ocl.assertSemanticErrorQuery(null, "''.tokenize('',false,null)", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "String", "tokenize", "'',false,null");
+		ocl.dispose();
 	}
 
 	@Test public void testStringTrim() {
-		assertQueryEquals(null, "ab", "'ab'.trim()");
-		assertQueryEquals(null, "a", "'a'.trim()");
-		assertQueryEquals(null, "", "''.trim()");
-		assertQueryEquals(null, "a \t\n\r\fb", "'\na \t\n\r\fb\n'.trim()");
-		assertQueryEquals(null, "", "' \t\n\r\f \t\n\r\f'.trim()");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryEquals(null, "ab", "'ab'.trim()");
+		ocl.assertQueryEquals(null, "a", "'a'.trim()");
+		ocl.assertQueryEquals(null, "", "''.trim()");
+		ocl.assertQueryEquals(null, "a \t\n\r\fb", "'\na \t\n\r\fb\n'.trim()");
+		ocl.assertQueryEquals(null, "", "' \t\n\r\f \t\n\r\f'.trim()");
 		// invalid
-		assertQueryInvalid(null, "let s : String = invalid in s.trim()");
+		ocl.assertQueryInvalid(null, "let s : String = invalid in s.trim()");
 		// null
-		assertQueryInvalid(null, "let s : String = null in s.trim()");
+		ocl.assertQueryInvalid(null, "let s : String = null in s.trim()");
+		ocl.dispose();
 	}
 }

@@ -28,8 +28,6 @@ import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.SetValue;
 import org.eclipse.ocl.pivot.values.TupleValue;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -54,6 +52,11 @@ public class EvaluateTupleOperationsTest4 extends PivotTestSuite
 	}
 
 	@Override
+	protected @NonNull TestOCL createOCL() {
+		return new TestOCL(getTestPackageName(), getName());
+	}
+
+	@Override
 	protected @NonNull String getTestPackageName() {
 		return "EvaluateTupleOperations";
 	}
@@ -62,17 +65,8 @@ public class EvaluateTupleOperationsTest4 extends PivotTestSuite
 		PivotTestSuite.resetCounter();
     }
 
-    @Override
-    @Before public void setUp() throws Exception {
-        super.setUp();
-    }
-
-	@Override
-	@After public void tearDown() throws Exception {
-		super.tearDown();
-	}
-
 	@Test public void testTupleType_Collections() {
+		TestOCL ocl = createOCL();
 		TuplePartId aTuplePartId = IdManager.getTuplePartId(0, "a", TypeId.INTEGER);
 		@SuppressWarnings("null") TupleTypeId aTupleTypeId = IdManager.getTupleTypeId("Tuple", Collections.singletonList(aTuplePartId));
 		Map<TuplePartId, Object> aValues = new HashMap<TuplePartId, Object>();
@@ -85,57 +79,66 @@ public class EvaluateTupleOperationsTest4 extends PivotTestSuite
 		TupleValue bValue = ValueUtil.createTupleValue(bTupleTypeId, bValues);
 		CollectionTypeId collectionTypeId = TypeId.SET.getSpecializedId(TypeId.OCL_ANY);
 		SetValue setValue = ValueUtil.createSetOfEach(collectionTypeId,  aValue, bValue);
-		assertQueryEquals(null, setValue, "Set{Tuple{a = 3}, Tuple{b = 4}, Tuple{a = 3}}");						// BUG 4404404
-		assertValidationErrorQuery(null, "let s : Set(Tuple(a:Integer)) = Set{Tuple{a = 3}, Tuple{b = 4}} in s",
+		ocl.assertQueryEquals(null, setValue, "Set{Tuple{a = 3}, Tuple{b = 4}, Tuple{a = 3}}");						// BUG 4404404
+		ocl.assertValidationErrorQuery(null, "let s : Set(Tuple(a:Integer)) = Set{Tuple{a = 3}, Tuple{b = 4}} in s",
 			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Variable", "CompatibleInitialiserType",
 			"s : Set(Tuple(a:Integer)) = Set{Tuple{a : Integer = 3}, Tuple{b : Integer = 4}}");
-		assertQueryEquals(null, setValue, "let s : Set(OclAny) = Set{Tuple{a = 3}, Tuple{b = 4}} in s");
+		ocl.assertQueryEquals(null, setValue, "let s : Set(OclAny) = Set{Tuple{a = 3}, Tuple{b = 4}} in s");
+		ocl.dispose();
 	}
 
 	@Test public void testTupleType_Conformance() {
-		assertSemanticErrorQuery(null, "let s : Sequence(OclAny) = Sequence{Tuple{a = 3}, Tuple{b = 4}} in s->first().a", PivotMessagesInternal.UnresolvedProperty_ERROR_, "OclAny", "a");
-		assertQueryEquals(null, 3, "let s : Sequence(OclAny) = Sequence{Tuple{a = 3}, Tuple{b = 4}} in s->first().oclAsType(Tuple(a:Integer)).a");
-// BUG 440453		assertQueryEquals(null, 3, "let s : Sequence(OclAny) = Sequence{Tuple{a = 3}, Tuple{b = 4}} in s->first().oclAsType(Tuple(b:UnlimitedNatural)).b");
+		TestOCL ocl = createOCL();
+		ocl.assertSemanticErrorQuery(null, "let s : Sequence(OclAny) = Sequence{Tuple{a = 3}, Tuple{b = 4}} in s->first().a", PivotMessagesInternal.UnresolvedProperty_ERROR_, "OclAny", "a");
+		ocl.assertQueryEquals(null, 3, "let s : Sequence(OclAny) = Sequence{Tuple{a = 3}, Tuple{b = 4}} in s->first().oclAsType(Tuple(a:Integer)).a");
+// BUG 440453		ocl.assertQueryEquals(null, 3, "let s : Sequence(OclAny) = Sequence{Tuple{a = 3}, Tuple{b = 4}} in s->first().oclAsType(Tuple(b:UnlimitedNatural)).b");
 //
+		ocl.dispose();
 	}
 
 	@Test public void testTupleType_Equals() {
-		assertQueryTrue(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.b = Tuple{b = 3, a = Tuple{a = '3', b = Tuple{a = 3.1}}}.a");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryTrue(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.b = Tuple{b = 3, a = Tuple{a = '3', b = Tuple{a = 3.1}}}.a");
 //
-		assertQueryTrue(null, "Tuple{a = 3, b = '4'} = Tuple{a = 3, b = '4'}");
-		assertQueryTrue(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}} = Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}");
-		assertQueryTrue(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.b = Tuple{b = 3, a = Tuple{a = '3', b = Tuple{a = 3.1}}}.a");
-		assertQueryTrue(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.b.b = Tuple{b = 3, a = Tuple{b = '3', a = Tuple{a = 3.1}}}.a.a");
-		assertQueryTrue(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.b.b.a = Tuple{b = 3, a = Tuple{b = '3', a = Tuple{a = 3.1}}}.a.a.a");
+		ocl.assertQueryTrue(null, "Tuple{a = 3, b = '4'} = Tuple{a = 3, b = '4'}");
+		ocl.assertQueryTrue(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}} = Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}");
+		ocl.assertQueryTrue(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.b = Tuple{b = 3, a = Tuple{a = '3', b = Tuple{a = 3.1}}}.a");
+		ocl.assertQueryTrue(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.b.b = Tuple{b = 3, a = Tuple{b = '3', a = Tuple{a = 3.1}}}.a.a");
+		ocl.assertQueryTrue(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.b.b.a = Tuple{b = 3, a = Tuple{b = '3', a = Tuple{a = 3.1}}}.a.a.a");
 		//
-		assertQueryFalse(null, "Tuple{a = 3, b = '4'} = Tuple{b = 3, a = '4'}");
-		assertQueryFalse(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}} = Tuple{a = 3, b = Tuple{a = '3', b = Tuple{b = 3.1}}}");
-		assertQueryFalse(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}} = Tuple{a = 3, b = Tuple{a = '3', b = Tuple{b = 3.2}}}");
-		assertQueryFalse(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}} = Tuple{a = 3, b = Tuple{a = '3', b = Tuple{b = '3.1'}}}");
+		ocl.assertQueryFalse(null, "Tuple{a = 3, b = '4'} = Tuple{b = 3, a = '4'}");
+		ocl.assertQueryFalse(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}} = Tuple{a = 3, b = Tuple{a = '3', b = Tuple{b = 3.1}}}");
+		ocl.assertQueryFalse(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}} = Tuple{a = 3, b = Tuple{a = '3', b = Tuple{b = 3.2}}}");
+		ocl.assertQueryFalse(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}} = Tuple{a = 3, b = Tuple{a = '3', b = Tuple{b = '3.1'}}}");
+		ocl.dispose();
 	}
 
 	@Test public void testTupleType_NotEquals() {
-		assertQueryFalse(null, "Tuple{a = 3, b = '4'} <> Tuple{a = 3, b = '4'}");
-		assertQueryFalse(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}} <> Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}");
-		assertQueryFalse(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.b <> Tuple{b = 3, a = Tuple{a = '3', b = Tuple{a = 3.1}}}.a");
-		assertQueryFalse(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.b.b <> Tuple{b = 3, a = Tuple{b = '3', a = Tuple{a = 3.1}}}.a.a");
-		assertQueryFalse(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.b.b.a <> Tuple{b = 3, a = Tuple{b = '3', a = Tuple{a = 3.1}}}.a.a.a");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryFalse(null, "Tuple{a = 3, b = '4'} <> Tuple{a = 3, b = '4'}");
+		ocl.assertQueryFalse(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}} <> Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}");
+		ocl.assertQueryFalse(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.b <> Tuple{b = 3, a = Tuple{a = '3', b = Tuple{a = 3.1}}}.a");
+		ocl.assertQueryFalse(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.b.b <> Tuple{b = 3, a = Tuple{b = '3', a = Tuple{a = 3.1}}}.a.a");
+		ocl.assertQueryFalse(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.b.b.a <> Tuple{b = 3, a = Tuple{b = '3', a = Tuple{a = 3.1}}}.a.a.a");
 		//
-		assertQueryTrue(null, "Tuple{a = 3, b = '4'} <> Tuple{b = 3, a = '4'}");
-		assertQueryTrue(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}} <> Tuple{a = 3, b = Tuple{a = '3', b = Tuple{b = 3.1}}}");
-		assertQueryTrue(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}} <> Tuple{a = 3, b = Tuple{a = '3', b = Tuple{b = 3.2}}}");
-		assertQueryTrue(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}} <> Tuple{a = 3, b = Tuple{a = '3', b = Tuple{b = '3.1'}}}");
+		ocl.assertQueryTrue(null, "Tuple{a = 3, b = '4'} <> Tuple{b = 3, a = '4'}");
+		ocl.assertQueryTrue(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}} <> Tuple{a = 3, b = Tuple{a = '3', b = Tuple{b = 3.1}}}");
+		ocl.assertQueryTrue(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}} <> Tuple{a = 3, b = Tuple{a = '3', b = Tuple{b = 3.2}}}");
+		ocl.assertQueryTrue(null, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}} <> Tuple{a = 3, b = Tuple{a = '3', b = Tuple{b = '3.1'}}}");
+		ocl.dispose();
 	}
 
 	@Test public void testTupleType_Parts() {
-//		assertSemanticErrorQuery2(null, "let s : Sequence(OclAny) = Sequence{Tuple{a = 3}, Tuple{b = 4}} in s->first().a", OCLMessages.UnresolvedProperty_ERROR_, "a", "OclAny");
-		assertQueryEquals(null, 3, "Tuple{a = 3, b = '4'}.a");
-		assertQueryEquals(null, 3, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.a");
-		assertQueryEquals(null, "3", "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.b.a");
-		assertQueryEquals(null, 3.1, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.b.b.a");
-		assertSemanticErrorQuery(null, "Tuple{}.a", "no viable alternative at ''{''");
-		assertSemanticErrorQuery(null, "Tuple{a = 3, b = '4'}.c", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Tuple(a:Integer,b:String)", "c");
-// FIXME Duplicate parts warning		assertQueryEquals(null, 3, "Tuple{a = 1, a = 1}.a");
+		TestOCL ocl = createOCL();
+//		ocl.assertSemanticErrorQuery2(null, "let s : Sequence(OclAny) = Sequence{Tuple{a = 3}, Tuple{b = 4}} in s->first().a", OCLMessages.UnresolvedProperty_ERROR_, "a", "OclAny");
+		ocl.assertQueryEquals(null, 3, "Tuple{a = 3, b = '4'}.a");
+		ocl.assertQueryEquals(null, 3, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.a");
+		ocl.assertQueryEquals(null, "3", "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.b.a");
+		ocl.assertQueryEquals(null, 3.1, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.b.b.a");
+		ocl.assertSemanticErrorQuery(null, "Tuple{}.a", "no viable alternative at ''{''");
+		ocl.assertSemanticErrorQuery(null, "Tuple{a = 3, b = '4'}.c", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Tuple(a:Integer,b:String)", "c");
+// FIXME Duplicate parts warning		ocl.assertQueryEquals(null, 3, "Tuple{a = 1, a = 1}.a");
+		ocl.dispose();
 	}
 }
 

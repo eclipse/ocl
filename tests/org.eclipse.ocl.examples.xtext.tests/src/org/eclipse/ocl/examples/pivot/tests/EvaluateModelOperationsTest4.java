@@ -35,7 +35,6 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.Value;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -63,6 +62,11 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 	}
 
 	@Override
+	protected @NonNull TestOCL createOCL() {
+		return new TestOCL(getTestPackageName(), getName());
+	}
+
+	@Override
 	protected @NonNull String getTestPackageName() {
 		return "EvaluateModelOperations";
 	}
@@ -73,14 +77,9 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 
     @Override
     @Before public void setUp() throws Exception {
-        super.setUp();
 		doOCLinEcoreSetup();
+        super.setUp();
     }
-
-	@Override
-	@After public void tearDown() throws Exception {
-		super.tearDown();
-	}
 	
 	@SuppressWarnings("unchecked")
 	public void eAdd(@NonNull EObject eObject, @NonNull String featureName, @Nullable Object value) {
@@ -115,6 +114,7 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 	 * Test that Ecore Data Types can be used. Inspired by Bug 358713.
 	 */
 	@Test public void test_ecoreDataTypes() throws IOException {
+		TestOCL ocl = createOCL();
 		String metamodelText =
 			"import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/';\n" +
 			"package pkg : pkg = 'pkg' {\n" +
@@ -140,123 +140,125 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 			"    property anEString : ecore::EString;\n" +
 			"  }\n" +
 			"}\n";
-		Resource metamodel = cs2ecore(getOCL(), metamodelText, null);
+		Resource metamodel = cs2ecore(ocl, metamodelText, null);
 		EPackage ePackage = (EPackage) metamodel.getContents().get(0);
 		EClass eClass = ClassUtil.nonNullState((EClass) ePackage.getEClassifiers().get(0));
 //        helper.setContext(metamodelManager.getIdResolver().getType(eClass));
         EObject eObject = eCreate(eClass);
         //
         eSet(eObject, "anEBigDecimal", BigDecimal.valueOf(0));
-		assertQueryEquals(eObject, 0, "anEBigDecimal");
-		assertQueryEquals(eObject, 1, "anEBigDecimal + 1");
-		assertQueryEquals(eObject, 0, "self.anEBigDecimal");
-		assertQueryEquals(eObject, 1, "self.anEBigDecimal + 1");
+		ocl.assertQueryEquals(eObject, 0, "anEBigDecimal");
+		ocl.assertQueryEquals(eObject, 1, "anEBigDecimal + 1");
+		ocl.assertQueryEquals(eObject, 0, "self.anEBigDecimal");
+		ocl.assertQueryEquals(eObject, 1, "self.anEBigDecimal + 1");
         //
         eSet(eObject, "anEBigInteger", BigInteger.valueOf(0));
-		assertQueryEquals(eObject, 0, "anEBigInteger");
-		assertQueryEquals(eObject, 1, "anEBigInteger + 1");
-		assertQueryEquals(eObject, 0, "self.anEBigInteger");
-		assertQueryEquals(eObject, 1, "self.anEBigInteger + 1");
+		ocl.assertQueryEquals(eObject, 0, "anEBigInteger");
+		ocl.assertQueryEquals(eObject, 1, "anEBigInteger + 1");
+		ocl.assertQueryEquals(eObject, 0, "self.anEBigInteger");
+		ocl.assertQueryEquals(eObject, 1, "self.anEBigInteger + 1");
         //
-		assertQueryEquals(eObject, false, "anEBoolean");
-		assertQueryEquals(eObject, true, "anEBoolean or true");
-		assertQueryEquals(eObject, false, "self.anEBoolean");
-		assertQueryEquals(eObject, true, "self.anEBoolean or true");
+		ocl.assertQueryEquals(eObject, false, "anEBoolean");
+		ocl.assertQueryEquals(eObject, true, "anEBoolean or true");
+		ocl.assertQueryEquals(eObject, false, "self.anEBoolean");
+		ocl.assertQueryEquals(eObject, true, "self.anEBoolean or true");
         //
         eSet(eObject, "anEBooleanObject", false);
-		assertQueryEquals(eObject, false, "anEBooleanObject");
-		assertQueryEquals(eObject, true, "anEBooleanObject or true");
-		assertQueryEquals(eObject, false, "self.anEBooleanObject");
-		assertQueryEquals(eObject, true, "self.anEBooleanObject or true");
+		ocl.assertQueryEquals(eObject, false, "anEBooleanObject");
+		ocl.assertQueryEquals(eObject, true, "anEBooleanObject or true");
+		ocl.assertQueryEquals(eObject, false, "self.anEBooleanObject");
+		ocl.assertQueryEquals(eObject, true, "self.anEBooleanObject or true");
         //
-		assertQueryEquals(eObject, 0, "anEByte");
-		assertQueryEquals(eObject, 1, "anEByte + 1");
-		assertQueryEquals(eObject, 0, "self.anEByte");
-		assertQueryEquals(eObject, 1, "self.anEByte + 1");
+		ocl.assertQueryEquals(eObject, 0, "anEByte");
+		ocl.assertQueryEquals(eObject, 1, "anEByte + 1");
+		ocl.assertQueryEquals(eObject, 0, "self.anEByte");
+		ocl.assertQueryEquals(eObject, 1, "self.anEByte + 1");
         //
         eSet(eObject, "anEByteObject", (byte)0);
-		assertQueryEquals(eObject, 0, "anEByteObject");
-		assertQueryEquals(eObject, 1, "anEByteObject + 1");
-		assertQueryEquals(eObject, 0, "self.anEByteObject");
-		assertQueryEquals(eObject, 1, "self.anEByteObject + 1");
+		ocl.assertQueryEquals(eObject, 0, "anEByteObject");
+		ocl.assertQueryEquals(eObject, 1, "anEByteObject + 1");
+		ocl.assertQueryEquals(eObject, 0, "self.anEByteObject");
+		ocl.assertQueryEquals(eObject, 1, "self.anEByteObject + 1");
         //
-		assertQueryEquals(eObject, 0, "anEChar");
-		assertQueryEquals(eObject, 1, "anEChar + 1");
-		assertQueryEquals(eObject, 0, "self.anEChar");
-		assertQueryEquals(eObject, 1, "self.anEChar + 1");
+		ocl.assertQueryEquals(eObject, 0, "anEChar");
+		ocl.assertQueryEquals(eObject, 1, "anEChar + 1");
+		ocl.assertQueryEquals(eObject, 0, "self.anEChar");
+		ocl.assertQueryEquals(eObject, 1, "self.anEChar + 1");
         //
 	    eSet(eObject, "anECharacterObject", (char)0);
-		assertQueryEquals(eObject, 0, "anECharacterObject");
-		assertQueryEquals(eObject, 1, "anECharacterObject + 1");
-		assertQueryEquals(eObject, 0, "self.anECharacterObject");
-		assertQueryEquals(eObject, 1, "self.anECharacterObject + 1");
+		ocl.assertQueryEquals(eObject, 0, "anECharacterObject");
+		ocl.assertQueryEquals(eObject, 1, "anECharacterObject + 1");
+		ocl.assertQueryEquals(eObject, 0, "self.anECharacterObject");
+		ocl.assertQueryEquals(eObject, 1, "self.anECharacterObject + 1");
         //
-		assertQueryEquals(eObject, 0, "anEDouble");
-		assertQueryEquals(eObject, 1, "anEDouble + 1");
-		assertQueryEquals(eObject, 0, "self.anEDouble");
-		assertQueryEquals(eObject, 1, "self.anEDouble + 1");
+		ocl.assertQueryEquals(eObject, 0, "anEDouble");
+		ocl.assertQueryEquals(eObject, 1, "anEDouble + 1");
+		ocl.assertQueryEquals(eObject, 0, "self.anEDouble");
+		ocl.assertQueryEquals(eObject, 1, "self.anEDouble + 1");
         //
         eSet(eObject, "anEDoubleObject", (double)0);
-		assertQueryEquals(eObject, 0, "anEDoubleObject");
-		assertQueryEquals(eObject, 1, "anEDoubleObject + 1");
-		assertQueryEquals(eObject, 0, "self.anEDoubleObject");
-		assertQueryEquals(eObject, 1, "self.anEDoubleObject + 1");
+		ocl.assertQueryEquals(eObject, 0, "anEDoubleObject");
+		ocl.assertQueryEquals(eObject, 1, "anEDoubleObject + 1");
+		ocl.assertQueryEquals(eObject, 0, "self.anEDoubleObject");
+		ocl.assertQueryEquals(eObject, 1, "self.anEDoubleObject + 1");
         //
-		assertQueryEquals(eObject, 0, "anEFloat");
-		assertQueryEquals(eObject, 1, "anEFloat + 1");
-		assertQueryEquals(eObject, 0, "self.anEFloat");
-		assertQueryEquals(eObject, 1, "self.anEFloat + 1");
+		ocl.assertQueryEquals(eObject, 0, "anEFloat");
+		ocl.assertQueryEquals(eObject, 1, "anEFloat + 1");
+		ocl.assertQueryEquals(eObject, 0, "self.anEFloat");
+		ocl.assertQueryEquals(eObject, 1, "self.anEFloat + 1");
         //
         eSet(eObject, "anEFloatObject", (float)0);
-		assertQueryEquals(eObject, 0, "anEFloatObject");
-		assertQueryEquals(eObject, 1, "anEFloatObject + 1");
-		assertQueryEquals(eObject, 0, "self.anEFloatObject");
-		assertQueryEquals(eObject, 1, "self.anEFloatObject + 1");
+		ocl.assertQueryEquals(eObject, 0, "anEFloatObject");
+		ocl.assertQueryEquals(eObject, 1, "anEFloatObject + 1");
+		ocl.assertQueryEquals(eObject, 0, "self.anEFloatObject");
+		ocl.assertQueryEquals(eObject, 1, "self.anEFloatObject + 1");
         //
-		assertQueryEquals(eObject, 0, "anEInt");
-		assertQueryEquals(eObject, 1, "anEInt + 1");
-		assertQueryEquals(eObject, 0, "self.anEInt");
-		assertQueryEquals(eObject, 1, "self.anEInt + 1");
+		ocl.assertQueryEquals(eObject, 0, "anEInt");
+		ocl.assertQueryEquals(eObject, 1, "anEInt + 1");
+		ocl.assertQueryEquals(eObject, 0, "self.anEInt");
+		ocl.assertQueryEquals(eObject, 1, "self.anEInt + 1");
         //
         eSet(eObject, "anEIntegerObject", 0);
-		assertQueryEquals(eObject, 0, "anEIntegerObject");
-		assertQueryEquals(eObject, 1, "anEIntegerObject + 1");
-		assertQueryEquals(eObject, 0, "self.anEIntegerObject");
-		assertQueryEquals(eObject, 1, "self.anEIntegerObject + 1");
+		ocl.assertQueryEquals(eObject, 0, "anEIntegerObject");
+		ocl.assertQueryEquals(eObject, 1, "anEIntegerObject + 1");
+		ocl.assertQueryEquals(eObject, 0, "self.anEIntegerObject");
+		ocl.assertQueryEquals(eObject, 1, "self.anEIntegerObject + 1");
         //
-		assertQueryEquals(eObject, 0, "anELong");
-		assertQueryEquals(eObject, 1, "anELong + 1");
-		assertQueryEquals(eObject, 0, "self.anELong");
-		assertQueryEquals(eObject, 1, "self.anELong + 1");
+		ocl.assertQueryEquals(eObject, 0, "anELong");
+		ocl.assertQueryEquals(eObject, 1, "anELong + 1");
+		ocl.assertQueryEquals(eObject, 0, "self.anELong");
+		ocl.assertQueryEquals(eObject, 1, "self.anELong + 1");
         //
         eSet(eObject, "anELongObject", (long)0);
-		assertQueryEquals(eObject, 0, "anELongObject");
-		assertQueryEquals(eObject, 1, "anELongObject + 1");
-		assertQueryEquals(eObject, 0, "self.anELongObject");
-		assertQueryEquals(eObject, 1, "self.anELongObject + 1");
+		ocl.assertQueryEquals(eObject, 0, "anELongObject");
+		ocl.assertQueryEquals(eObject, 1, "anELongObject + 1");
+		ocl.assertQueryEquals(eObject, 0, "self.anELongObject");
+		ocl.assertQueryEquals(eObject, 1, "self.anELongObject + 1");
         //
-		assertQueryEquals(eObject, 0, "anEShort");
-		assertQueryEquals(eObject, 1, "anEShort + 1");
-		assertQueryEquals(eObject, 0, "self.anEShort");
-		assertQueryEquals(eObject, 1, "self.anEShort + 1");
+		ocl.assertQueryEquals(eObject, 0, "anEShort");
+		ocl.assertQueryEquals(eObject, 1, "anEShort + 1");
+		ocl.assertQueryEquals(eObject, 0, "self.anEShort");
+		ocl.assertQueryEquals(eObject, 1, "self.anEShort + 1");
         //
         eSet(eObject, "anEShortObject", (short)0);
-		assertQueryEquals(eObject, 0, "anEShortObject");
-		assertQueryEquals(eObject, 1, "anEShortObject + 1");
-		assertQueryEquals(eObject, 0, "self.anEShortObject");
-		assertQueryEquals(eObject, 1, "self.anEShortObject + 1");
+		ocl.assertQueryEquals(eObject, 0, "anEShortObject");
+		ocl.assertQueryEquals(eObject, 1, "anEShortObject + 1");
+		ocl.assertQueryEquals(eObject, 0, "self.anEShortObject");
+		ocl.assertQueryEquals(eObject, 1, "self.anEShortObject + 1");
         //
         eSet(eObject, "anEString", "");
-		assertQueryEquals(eObject, "", "anEString");
-		assertQueryEquals(eObject, "1", "anEString + '1'");
-		assertQueryEquals(eObject, "", "self.anEString");
-		assertQueryEquals(eObject, "1", "self.anEString + '1'");
+		ocl.assertQueryEquals(eObject, "", "anEString");
+		ocl.assertQueryEquals(eObject, "1", "anEString + '1'");
+		ocl.assertQueryEquals(eObject, "", "self.anEString");
+		ocl.assertQueryEquals(eObject, "1", "self.anEString + '1'");
+		ocl.dispose();
 	}
 
 	/**
 	 * Test implicit collect and oclAsSet() therein. Inspired by Bug 351512.
 	 */
 	@Test public void test_oclAsSet_351512() throws IOException {
+		TestOCL ocl = createOCL();
 		IdResolver idResolver = ocl.getIdResolver();
 		String metamodelText =
 			"import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/';\n" +
@@ -272,7 +274,7 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 			"    attribute name : String;\n" +
 			"  }\n" +
 			"}\n";
-		Resource metamodel = cs2ecore(getOCL(), metamodelText, null);
+		Resource metamodel = cs2ecore(ocl, metamodelText, null);
 		EPackage ePackage = (EPackage) metamodel.getContents().get(0);
 		EClass aClass = ClassUtil.nonNullState((EClass) ePackage.getEClassifier("A"));
 		EClass bClass = (EClass) ePackage.getEClassifier("B");
@@ -296,22 +298,24 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 		Value orderedSet_b1_b2 = idResolver.createOrderedSetOfEach(TypeId.ORDERED_SET.getSpecializedId(TypeId.OCL_ANY), b1_value, b2_value);
 		Value sequence_c1_c2 = idResolver.createSequenceOfEach(TypeId.SEQUENCE.getSpecializedId(TypeId.OCL_ANY), c1_value, c2_value);
 		//
-		assertQueryEquals(a, orderedSet_b1_b2, "bs");
-		assertQueryEquals(a, sequence_c1_c2, "bs.c");
-		assertQueryEquals(a, sequence_c1_c2, "bs.c.oclAsSet()");
-		assertQueryResults(a, "Sequence{'c1','c2'}", "bs.c.name");
-		assertQueryResults(a, "Sequence{'c1','c2'}", "self.bs.c.name");
-        assertQueryResults(a, "Sequence{'c1','c2'}", "bs.c.oclAsSet().name");
-        assertQueryResults(a, "Sequence{'c1','c2'}", "bs.c.oclAsSet()->collect(name)");	// Test for Bug 351512
-        assertQueryResults(a, "Sequence{'c1','c2'}", "bs.c->collect(oclAsSet()).name");
-        assertQueryResults(a, "Sequence{'c1','c2'}", "bs.c->collect(j : C | j.oclAsSet()).name");
-        assertQueryResults(a, "Sequence{'c1','c2'}", "bs->collect(i : B | i.c)->collect(j : C | j.oclAsSet())->collect(k : C | k.name)");
+		ocl.assertQueryEquals(a, orderedSet_b1_b2, "bs");
+		ocl.assertQueryEquals(a, sequence_c1_c2, "bs.c");
+		ocl.assertQueryEquals(a, sequence_c1_c2, "bs.c.oclAsSet()");
+		ocl.assertQueryResults(a, "Sequence{'c1','c2'}", "bs.c.name");
+		ocl.assertQueryResults(a, "Sequence{'c1','c2'}", "self.bs.c.name");
+        ocl.assertQueryResults(a, "Sequence{'c1','c2'}", "bs.c.oclAsSet().name");
+        ocl.assertQueryResults(a, "Sequence{'c1','c2'}", "bs.c.oclAsSet()->collect(name)");	// Test for Bug 351512
+        ocl.assertQueryResults(a, "Sequence{'c1','c2'}", "bs.c->collect(oclAsSet()).name");
+        ocl.assertQueryResults(a, "Sequence{'c1','c2'}", "bs.c->collect(j : C | j.oclAsSet()).name");
+        ocl.assertQueryResults(a, "Sequence{'c1','c2'}", "bs->collect(i : B | i.c)->collect(j : C | j.oclAsSet())->collect(k : C | k.name)");
+		ocl.dispose();
 	}
 
 	/**
 	 * Test container/containment navigation.
 	 */
 	@Test public void test_containment_navigation() throws IOException {
+		TestOCL ocl = createOCL();
 		IdResolver idResolver = ocl.getIdResolver();
 		String metamodelText =
 			"package containment : pfx = 'http://containment'\n" +
@@ -365,65 +369,69 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 		OrderedSetValue kids1 = idResolver.createOrderedSetOfEach(TypeId.ORDERED_SET.getSpecializedId(children1Type.getTypeId()), children1);
 		OrderedSetValue kids2 = idResolver.createOrderedSetOfEach(TypeId.ORDERED_SET.getSpecializedId(children2Type.getTypeId()), children2);
 		//
-		assertSemanticErrorQuery(parentType, "parent", PivotMessagesInternal.UnresolvedProperty_ERROR_, "", "parent");
-		assertSemanticErrorQuery(parentType, "self.parent", PivotMessagesInternal.UnresolvedProperty_ERROR_, parentType, "parent");
-		assertQueryEquals(parent, parentType, "Parent");
-		assertSemanticErrorQuery(parentType, "self.Parent", PivotMessagesInternal.UnresolvedProperty_ERROR_, parentType, "Parent");
-		assertQueryEquals(parent, child1, "child1");
-		assertQueryEquals(parent, child1, "self.child1");
-		assertQueryEquals(parent, child1Type, "Child1");
-		assertSemanticErrorQuery(parentType, "self.Child1", PivotMessagesInternal.UnresolvedProperty_ERROR_, parentType, "Child1");
-		assertQueryEquals(parent, child2, "child2");
-		assertQueryEquals(parent, child2, "self.child2");
-		assertQueryEquals(parent, child2Type, "Child2");
-		assertSemanticErrorQuery(parentType, "self.Child2", PivotMessagesInternal.UnresolvedProperty_ERROR_, parentType, "Child2");
-		assertQueryEquals(parent, kids1, "children1");
-		assertQueryEquals(parent, kids1, "self.children1");
-		assertQueryEquals(parent, children1Type, "Children1");
-		assertSemanticErrorQuery(parentType, "self.Children1", PivotMessagesInternal.UnresolvedProperty_ERROR_, parentType, "Children1");
-		assertQueryEquals(parent, kids2, "children2");
-		assertQueryEquals(parent, kids2, "self.children2");
-		assertQueryEquals(parent, children2Type, "Children2");
-		assertSemanticErrorQuery(parentType, "self.Children2", PivotMessagesInternal.UnresolvedProperty_ERROR_, parentType, "Children2");
+		ocl.assertSemanticErrorQuery(parentType, "parent", PivotMessagesInternal.UnresolvedProperty_ERROR_, "", "parent");
+		ocl.assertSemanticErrorQuery(parentType, "self.parent", PivotMessagesInternal.UnresolvedProperty_ERROR_, parentType, "parent");
+		ocl.assertQueryEquals(parent, parentType, "Parent");
+		ocl.assertSemanticErrorQuery(parentType, "self.Parent", PivotMessagesInternal.UnresolvedProperty_ERROR_, parentType, "Parent");
+		ocl.assertQueryEquals(parent, child1, "child1");
+		ocl.assertQueryEquals(parent, child1, "self.child1");
+		ocl.assertQueryEquals(parent, child1Type, "Child1");
+		ocl.assertSemanticErrorQuery(parentType, "self.Child1", PivotMessagesInternal.UnresolvedProperty_ERROR_, parentType, "Child1");
+		ocl.assertQueryEquals(parent, child2, "child2");
+		ocl.assertQueryEquals(parent, child2, "self.child2");
+		ocl.assertQueryEquals(parent, child2Type, "Child2");
+		ocl.assertSemanticErrorQuery(parentType, "self.Child2", PivotMessagesInternal.UnresolvedProperty_ERROR_, parentType, "Child2");
+		ocl.assertQueryEquals(parent, kids1, "children1");
+		ocl.assertQueryEquals(parent, kids1, "self.children1");
+		ocl.assertQueryEquals(parent, children1Type, "Children1");
+		ocl.assertSemanticErrorQuery(parentType, "self.Children1", PivotMessagesInternal.UnresolvedProperty_ERROR_, parentType, "Children1");
+		ocl.assertQueryEquals(parent, kids2, "children2");
+		ocl.assertQueryEquals(parent, kids2, "self.children2");
+		ocl.assertQueryEquals(parent, children2Type, "Children2");
+		ocl.assertSemanticErrorQuery(parentType, "self.Children2", PivotMessagesInternal.UnresolvedProperty_ERROR_, parentType, "Children2");
 		//
-		assertSemanticErrorQuery(child1Type, "parent", PivotMessagesInternal.UnresolvedProperty_ERROR_, "", "parent");
-		assertQueryEquals(child2, parentType, "Parent");
-		assertSemanticErrorQuery(child1Type, "self.parent", PivotMessagesInternal.UnresolvedProperty_ERROR_, child1Type, "parent");
-		assertQueryEquals(child1, parent, "self.Parent");
+		ocl.assertSemanticErrorQuery(child1Type, "parent", PivotMessagesInternal.UnresolvedProperty_ERROR_, "", "parent");
+		ocl.assertQueryEquals(child2, parentType, "Parent");
+		ocl.assertSemanticErrorQuery(child1Type, "self.parent", PivotMessagesInternal.UnresolvedProperty_ERROR_, child1Type, "parent");
+		ocl.assertQueryEquals(child1, parent, "self.Parent");
 		//
-		assertQueryEquals(child2, parent, "parent");
-		assertQueryEquals(child2, parentType, "Parent");
-		assertQueryEquals(child2, parent, "self.parent");
-		assertSemanticErrorQuery(child2Type, "self.Parent", PivotMessagesInternal.UnresolvedProperty_ERROR_, child2Type, "Parent");
+		ocl.assertQueryEquals(child2, parent, "parent");
+		ocl.assertQueryEquals(child2, parentType, "Parent");
+		ocl.assertQueryEquals(child2, parent, "self.parent");
+		ocl.assertSemanticErrorQuery(child2Type, "self.Parent", PivotMessagesInternal.UnresolvedProperty_ERROR_, child2Type, "Parent");
 		//
-		assertSemanticErrorQuery(children1Type, "parent", PivotMessagesInternal.UnresolvedProperty_ERROR_, "", "parent");
-		assertQueryEquals(children1, parentType, "Parent");
-		assertSemanticErrorQuery(children1Type, "self.parent", PivotMessagesInternal.UnresolvedProperty_ERROR_, children1Type, "parent");
-		assertQueryEquals(children1, parent, "self.Parent");
+		ocl.assertSemanticErrorQuery(children1Type, "parent", PivotMessagesInternal.UnresolvedProperty_ERROR_, "", "parent");
+		ocl.assertQueryEquals(children1, parentType, "Parent");
+		ocl.assertSemanticErrorQuery(children1Type, "self.parent", PivotMessagesInternal.UnresolvedProperty_ERROR_, children1Type, "parent");
+		ocl.assertQueryEquals(children1, parent, "self.Parent");
 		//
-		assertQueryEquals(children2, parent, "parent");
-		assertQueryEquals(children2, parentType, "Parent");
-		assertQueryEquals(children2, parent, "self.parent");
-		assertSemanticErrorQuery(children2Type, "self.Parent", PivotMessagesInternal.UnresolvedProperty_ERROR_, children2Type, "Parent");
+		ocl.assertQueryEquals(children2, parent, "parent");
+		ocl.assertQueryEquals(children2, parentType, "Parent");
+		ocl.assertQueryEquals(children2, parent, "self.parent");
+		ocl.assertSemanticErrorQuery(children2Type, "self.Parent", PivotMessagesInternal.UnresolvedProperty_ERROR_, children2Type, "Parent");
 		//
-		assertQueryTrue(parent, "child1 = child1");
+		ocl.assertQueryTrue(parent, "child1 = child1");
 		ocl1.dispose();
+		ocl.dispose();
 	}
 	
 	/**
 	 * Tests that boxed Enumerations are navigable
 	 */
 	@Test public void test_enumeration_navigation() throws InvocationTargetException {
-		assertQueryResults(CompanyPackage.Literals.COMPANY_SIZE_KIND, "Sequence{'small','medium','large'}", "self.eLiterals.name");
+		TestOCL ocl = createOCL();
+		ocl.assertQueryResults(CompanyPackage.Literals.COMPANY_SIZE_KIND, "Sequence{'small','medium','large'}", "self.eLiterals.name");
 		// FIXME the following needs the full UML model to vbe loaded otherwise $uml$ is not a defined root package id.
 //		UML2AS.initialize(resourceSet);
-//		assertQueryResults(UMLPackage.Literals.AGGREGATION_KIND, "Sequence{'none','composite'}", "self.eLiterals.name");
+//		ocl.assertQueryResults(UMLPackage.Literals.AGGREGATION_KIND, "Sequence{'none','composite'}", "self.eLiterals.name");
+		ocl.dispose();
 	}
 
 	/**
 	 * Test multi-container navigation inspired by Bug 394152.
 	 */
 	@Test public void test_multi_container_394152() throws IOException {
+		TestOCL ocl = createOCL();
 		String metamodelText =
 			"package bug394152 : pfx = 'http://bug394152'\n" +
 			"{\n" +
@@ -438,7 +446,7 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 			"		property right#right : Parent[?] { ordered };\n" +
 			"	}\n" +
 			"}\n";
-		Resource metamodel = cs2ecore(getOCL(), metamodelText, null);
+		Resource metamodel = cs2ecore(ocl, metamodelText, null);
 		EPackage ePackage = (EPackage) metamodel.getContents().get(0);
 		EClass parentClass = (EClass) ePackage.getEClassifier("Parent");
 		EClass childClass = ClassUtil.nonNullState((EClass) ePackage.getEClassifier("Child"));
@@ -448,21 +456,24 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
         eAdd(parent, "left", leftChild);
         eAdd(parent, "right", rightChild);
 		//
-		assertQueryEquals(leftChild, parent, "left");
-		assertQueryEquals(leftChild, null, "right");
-		assertQueryEquals(rightChild, null, "left");
-		assertQueryEquals(rightChild, parent, "right");
+		ocl.assertQueryEquals(leftChild, parent, "left");
+		ocl.assertQueryEquals(leftChild, null, "right");
+		ocl.assertQueryEquals(rightChild, null, "left");
+		ocl.assertQueryEquals(rightChild, parent, "right");
+		ocl.dispose();
 	}
 	
 	@Test public void test_unified_types_411441() {
-		assertQueryTrue(null, "let x : Collection(Type) = Set{Integer,Real} in x->forAll(x : Type | x.name.indexOf('e') > 0)");
-		assertQueryTrue(null, "let x : Type[*] = Bag{Integer,Real} in x->forAll(x : Type | x.name.indexOf('e') > 0)");
-		assertValidationErrorQuery(null, "let x : Type[*] = Set{Integer,Real} in x->forAll(x : Type | x.name.indexOf('e') > 0)",
+		TestOCL ocl = createOCL();
+		ocl.assertQueryTrue(null, "let x : Collection(Type) = Set{Integer,Real} in x->forAll(x : Type | x.name.indexOf('e') > 0)");
+		ocl.assertQueryTrue(null, "let x : Type[*] = Bag{Integer,Real} in x->forAll(x : Type | x.name.indexOf('e') > 0)");
+		ocl.assertValidationErrorQuery(null, "let x : Type[*] = Set{Integer,Real} in x->forAll(x : Type | x.name.indexOf('e') > 0)",
 			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Variable", "CompatibleInitialiserType", "x : Bag(Type) = Set{Integer, Real}");
-		assertQueryTrue(null, "let x : Collection(Type[*]) = Set{Bag{Integer,Real},Bag{Boolean}} in x->forAll(x : Type[*] | x->size() > 0)");
-		assertValidationErrorQuery(null, "let x : Collection(Type[*]) = Set{Bag{Integer,Real},Bag{Boolean}} in x->forAll(x : Type | x->size() > 0)",
+		ocl.assertQueryTrue(null, "let x : Collection(Type[*]) = Set{Bag{Integer,Real},Bag{Boolean}} in x->forAll(x : Type[*] | x->size() > 0)");
+		ocl.assertValidationErrorQuery(null, "let x : Collection(Type[*]) = Set{Bag{Integer,Real},Bag{Boolean}} in x->forAll(x : Type | x->size() > 0)",
 			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "IteratorExp", "IteratorTypeIsSourceElementType", "x->forAll(x : Type[?] | x.oclAsSet()->size().>(0))");
-		assertValidationErrorQuery(null, "let x : Collection(Type) = Set{Integer,Real} in x->forAll(x : Type[*] | x->size() > 0)",
+		ocl.assertValidationErrorQuery(null, "let x : Collection(Type) = Set{Integer,Real} in x->forAll(x : Type[*] | x->size() > 0)",
 			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "IteratorExp", "IteratorTypeIsSourceElementType", "x->forAll(x : Bag(Type)[?] | x->size().>(0))");
+		ocl.dispose();
 	}
 }
