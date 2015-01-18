@@ -84,7 +84,7 @@ public final class OCLinEcoreASResourceFactory extends AbstractASResourceFactory
 
 	@Override
 	public @Nullable Element importFromResource(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Resource resource, @Nullable URI uri) {
-		Resource asResource = ((OCLinEcoreCSResource)resource).getASResource(environmentFactory);
+		Resource asResource = ((OCLinEcoreCSResource)resource).getASResource();
 		List<EObject> contents = asResource.getContents();
 		if (contents.size() <= 0) {
 			return null;

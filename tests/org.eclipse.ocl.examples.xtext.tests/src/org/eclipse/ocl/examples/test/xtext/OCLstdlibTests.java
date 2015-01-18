@@ -42,16 +42,14 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
 import org.eclipse.ocl.pivot.model.OCLmetamodel;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.utilities.OCL;
+import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.xtext.oclstdlib.scoping.JavaClassScope;
 
 import com.google.common.collect.Iterables;
@@ -206,6 +204,7 @@ public class OCLstdlibTests extends XtextTestCase
 	}
 	
 	public void testLoadAsString() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		String testFile =
 			"library lib : lib = 'http://mylib'{\n"+
 			"    type OclAny : AnyType {\n"+
@@ -224,7 +223,8 @@ public class OCLstdlibTests extends XtextTestCase
 			"    type String : PrimitiveType conformsTo OclAny {}\n"+
 			"    type UnlimitedNatural : PrimitiveType conformsTo Integer {}\n"+
 			"}\n";		
-		doLoadFromString("string.oclstdlib", testFile);
+		doLoadFromString(ocl, "string.oclstdlib", testFile);
+		ocl.dispose();
 	}
 	
 	public void testImport() throws Exception {
@@ -263,11 +263,11 @@ public class OCLstdlibTests extends XtextTestCase
 		URI libraryURI = URI.createPlatformResourceURI("org.eclipse.ocl.pivot/model/OCL-2.5.oclstdlib", true);
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(libraryURI);
 		JavaClassScope.getAdapter(xtextResource, getClass().getClassLoader());
-		MetamodelManagerResourceAdapter.getAdapter(xtextResource, ocl.getMetamodelManager());
+		ocl.getEnvironmentFactory().adapt(xtextResource);
 		xtextResource.load(null);
-		CS2ASResourceAdapter adapter = xtextResource.findCS2ASAdapter();
+		CS2AS cs2as = xtextResource.findCS2AS();
 		assertNoResourceErrors("Load failed", xtextResource);
-		Resource fileResource = adapter.getASResource();
+		Resource fileResource = cs2as.getASResource();
 		assertNoResourceErrors("File Model", fileResource);
 		assertNoUnresolvedProxies("File Model", fileResource);
 		assertNoValidationErrors("File Model", fileResource);
@@ -358,10 +358,11 @@ public class OCLstdlibTests extends XtextTestCase
 	 * Java implementation.
 	 */
 	public void testOCLstdlib_AS() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		//
 		//	Load OCL stdlib as an AS file.
 		//
-		ResourceSet resourceSet = new ResourceSetImpl();
+		ResourceSet resourceSet = ocl.getResourceSet();
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {			
 			getProjectMap().initializeResourceSet(resourceSet);
 		}
@@ -370,8 +371,8 @@ public class OCLstdlibTests extends XtextTestCase
 		//	Load 'oclstdlib.oclstdlib' as pre-code-generated Java.
 		//
 		Resource javaResource = OCLstdlib.getDefault();
-		Resource asResource = doLoadAS(resourceSet, libraryURI, javaResource, true);
-		PivotUtilInternal.getMetamodelManager(asResource).dispose();
+		@SuppressWarnings("unused")Resource asResource = doLoadAS(resourceSet, libraryURI, javaResource, true);
+		ocl.dispose();
 	}
 	
 	/**

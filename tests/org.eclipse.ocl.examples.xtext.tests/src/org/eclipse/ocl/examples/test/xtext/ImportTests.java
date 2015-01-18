@@ -22,6 +22,7 @@ import org.eclipse.ocl.pivot.internal.values.BagImpl;
 import org.eclipse.ocl.pivot.library.AbstractSimpleUnaryOperation;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
@@ -105,6 +106,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_CompleteOCL_Ecore() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		TestCaseAppender.INSTANCE.uninstall();
 		String testFile =
 			"import 'Names.ecore'\n" +
@@ -112,10 +114,12 @@ public class ImportTests extends XtextTestCase
 			"context Named\n" +
 			"inv Bogus: r.toString() = s.toString()\n" +
 			"endpackage\n";
-		doLoadFromString("string.ocl", testFile);
+		doLoadFromString(ocl, "string.ocl", testFile);
+		ocl.dispose();
 	}
 	
 	public void testImport_CompleteOCL_OCLinEcore() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		TestCaseAppender.INSTANCE.uninstall();
 		String testFile =
 			"import 'Names.oclinecore'\n" +
@@ -123,7 +127,8 @@ public class ImportTests extends XtextTestCase
 			"context Class\n" +
 			"inv Bogus: isAbstract\n" +
 			"endpackage\n";
-		doLoadFromString("string.ocl", testFile);
+		doLoadFromString(ocl, "string.ocl", testFile);
+		ocl.dispose();
 	}
 	
 	public void testImport_CompleteOCL_OCLstdlib() throws Exception {
@@ -167,6 +172,8 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_CompleteOCL_UML() throws Exception {
+		UMLStandaloneSetup.init();
+		OCL ocl = OCL.newInstance(getProjectMap());
 		TestCaseAppender.INSTANCE.uninstall();
 		String testFile =
 			"import 'Names.uml'\n" +
@@ -174,7 +181,8 @@ public class ImportTests extends XtextTestCase
 			"context UNamed\n" +
 			"inv Bogus: r.toString() = s.toString()\n" +
 			"endpackage\n";
-		doLoadFromString("string.ocl", testFile);
+		doLoadFromString(ocl, "string.ocl", testFile);
+		ocl.dispose();
 	}
 	
 	public void testImport_CompleteOCL_NoSuchFile() throws Exception {
@@ -192,6 +200,7 @@ public class ImportTests extends XtextTestCase
 	}
 
 	public void testImport_OCLinEcore_Bug353793_Good() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		createTestImport_OCLinEcore_Bug353793_Files();
 		String testFileGood =
 				"import 'http://www.eclipse.org/emf/2002/Ecore';\n" +
@@ -208,7 +217,8 @@ public class ImportTests extends XtextTestCase
 				"    class FD01 extends F0::F1::F;\n" +
 				"    class GD0 extends G0::F;\n" +
 				"}\n";
-		doLoadFromString("Bug353793good.oclinecore", testFileGood);
+		doLoadFromString(ocl, "Bug353793good.oclinecore", testFileGood);
+		ocl.dispose();
 	}
 
 	public void testImport_OCLinEcore_Bug353793_Bad() throws Exception {
@@ -376,6 +386,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testInclude_CompleteOCL() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		TestCaseAppender.INSTANCE.uninstall();
 		String moreCompleteOCL =
 			"package ocl\n" +
@@ -391,7 +402,8 @@ public class ImportTests extends XtextTestCase
 			"context _'Integer'\n" +
 			"inv CheckIt: isPositive(1) = signum > 0\n" +
 			"endpackage\n";
-		doLoadFromString("string.ocl", testFile);
+		doLoadFromString(ocl, "string.ocl", testFile);
+		ocl.dispose();
 	}
 	
 	public void testInclude_CompleteOCL_UnresolvedOperation() throws Exception {

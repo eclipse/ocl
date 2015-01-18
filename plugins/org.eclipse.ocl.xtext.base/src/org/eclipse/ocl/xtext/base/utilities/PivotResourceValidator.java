@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
+import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.util.CancelIndicator;
@@ -231,9 +232,9 @@ public class PivotResourceValidator extends ResourceValidatorImpl
 			return null;
 		if (resource instanceof BaseCSResource) {
 			BaseCSResource csResource = (BaseCSResource)resource;
-			CS2ASResourceAdapter cs2asAdapter = csResource.findCS2ASAdapter();
-			if (cs2asAdapter != null) {
-				Resource asResource = cs2asAdapter.getASResource();
+			CS2AS cs2as = csResource.findCS2AS();
+			if (cs2as != null) {
+				Resource asResource = cs2as.getASResource();
 				IAcceptor<Issue> acceptor = createAcceptor(result);
 				if (mode.shouldCheck(CheckType.EXPENSIVE)) {
 					performValidation(acceptor, asResource, monitor);

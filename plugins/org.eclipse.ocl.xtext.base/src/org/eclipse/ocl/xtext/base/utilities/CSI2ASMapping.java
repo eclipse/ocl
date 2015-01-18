@@ -46,12 +46,19 @@ import org.eclipse.ocl.xtext.basecs.ModelElementCS;
 public class CSI2ASMapping implements ICSI2ASMapping
 {
 	/**
+	 * Get the CSI2ASMapping owned by the environmentFactory on behalf of CS-aware consumers, or null if none in use.
+	 */
+	public static @Nullable CSI2ASMapping basicGetCSI2ASMapping(@NonNull EnvironmentFactoryInternal environmentFactory) {
+		return (CSI2ASMapping) environmentFactory.getCSI2ASMapping();
+	}
+	
+	/**
 	 * Create/reuse the CSI2ASMapping owned by the environmentFactory on behalf of CS-aware consumers.
 	 */
 	public static @NonNull CSI2ASMapping getCSI2ASMapping(@NonNull EnvironmentFactoryInternal environmentFactory) {
 		ICSI2ASMapping csi2asMapping = environmentFactory.getCSI2ASMapping();
 		if (csi2asMapping == null) {
-			csi2asMapping = new CSI2ASMapping();
+			csi2asMapping = new CSI2ASMapping(environmentFactory);
 			environmentFactory.setCSI2ASMapping(csi2asMapping);
 		}
 		return (CSI2ASMapping) csi2asMapping;
@@ -338,10 +345,14 @@ public class CSI2ASMapping implements ICSI2ASMapping
 		}
 	}
 	
+	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
+	
 	/**
 	 * Mapping of each CS resource to its corresponding pivot Resource.
 	 */
 	protected final @NonNull Map<BaseCSResource, ASResource> cs2asResourceMap = new HashMap<BaseCSResource, ASResource>();
+
+	protected final @NonNull Map<BaseCSResource, CS2AS> cs2as2as = new HashMap<BaseCSResource, CS2AS>();
 
 	/**
 	 * The map from CS element (identified by URI) to pivot element at the end of the last update. This map enables
@@ -365,7 +376,9 @@ public class CSI2ASMapping implements ICSI2ASMapping
 	 */
 //	private @Nullable List<CS2AS> cs2ases = null;
 	
-	private CSI2ASMapping() {}
+	private CSI2ASMapping(@NonNull EnvironmentFactoryInternal environmentFactory) {
+		this.environmentFactory = environmentFactory;
+	}
 
 	public void add(Map<? extends BaseCSResource, ? extends ASResource> cs2asResourceMap) {
 		as2cs = null;
@@ -375,6 +388,7 @@ public class CSI2ASMapping implements ICSI2ASMapping
 	public void add(@NonNull BaseCSResource csResource, @NonNull CS2AS cs2as) {
 		as2cs = null;
 		this.cs2asResourceMap.put(csResource, cs2as.getASResource()); 
+		this.cs2as2as.put(csResource, cs2as); 
 //		List<CS2AS> cs2ases2 = cs2ases;
 //		if (cs2ases2 == null) {
 //			cs2ases = cs2ases2 = new ArrayList<CS2AS>();
@@ -441,6 +455,10 @@ public class CSI2ASMapping implements ICSI2ASMapping
 		return cs2asResourceMap.get(csResource);
 	}
 
+	public @Nullable CS2AS getCS2AS(@NonNull BaseCSResource csResource) {
+		return cs2as2as.get(csResource);
+	}
+
 	/**
 	 * Get the Concrete Syntax Identifier for a CS element. This is a form of URI. It is significantly compacted to
 	 * save on memory.
@@ -491,6 +509,10 @@ public class CSI2ASMapping implements ICSI2ASMapping
 		}
 		return as2cs.get(pivotElement);
 	}
+	
+	public @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
+		return environmentFactory;
+	}
 
 	public Map<CSI, Element> getMapping() {
 		return csi2as;
@@ -510,6 +532,7 @@ public class CSI2ASMapping implements ICSI2ASMapping
 	public void removeCSResource(@NonNull BaseCSResource csResource) {
 		as2cs = null;
 		cs2asResourceMap.remove(csResource); 
+		cs2as2as.remove(csResource);
 	}
 
 	/**

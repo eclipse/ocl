@@ -25,7 +25,6 @@ import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.resource.ASResource;
@@ -117,7 +116,7 @@ public class SerializeTests extends XtextTestCase
 				resourceSetInitializer.initializeResourceSet(metamodelManager2.getExternalResourceSet());
 			}
 			BaseCSResource xtextResource2 = (BaseCSResource) resourceSet.createResource(outputURI);
-			MetamodelManagerResourceAdapter.getAdapter(xtextResource2, metamodelManager2);
+			ocl2.getEnvironmentFactory().adapt(xtextResource2);
 			xtextResource2.load(null);
 			Object cs2asErrors = options != null ? options.get("cs2asErrors") : null;
 			if (cs2asErrors != null) {

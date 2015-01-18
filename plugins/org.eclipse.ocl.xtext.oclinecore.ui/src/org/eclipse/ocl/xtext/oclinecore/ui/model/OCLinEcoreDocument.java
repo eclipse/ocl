@@ -28,9 +28,9 @@ import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
 import org.eclipse.ocl.pivot.uml.internal.as2es.AS2UML;
+import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.ui.model.BaseDocument;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.model.DocumentTokenSource;
@@ -62,13 +62,13 @@ public class OCLinEcoreDocument extends BaseDocument
 					if (resource != null) {
 						XMLResource asResource = getPivotResource();
 						if (asResource != null) {
-							CS2ASResourceAdapter adapter = ((BaseCSResource)resource).findCS2ASAdapter();
-							if (adapter != null) {
-								Resource csResource = adapter.getTarget();
+							CS2AS cs2as = ((BaseCSResource)resource).findCS2AS();
+							if (cs2as != null) {
+								Resource csResource = cs2as.getCSResource();
 								checkForErrors(csResource);
 								Map<String,Object> options = new HashMap<String,Object>();
 								options.put(OCLConstants.OCL_DELEGATE_URI, exportDelegateURI);
-								XMLResource ecoreResource = AS2Ecore.createResource(adapter.getMetamodelManager().getEnvironmentFactory(), asResource, ecoreURI, options);
+								XMLResource ecoreResource = AS2Ecore.createResource(cs2as.getEnvironmentFactory(), asResource, ecoreURI, options);
 			//					ResourceSetImpl resourceSet = new ResourceSetImpl();
 			//					XMLResource ecoreResource = (XMLResource) resourceSet.createResource(ecoreURI);
 			//					ecoreResource.getContents().addAll(ecoreContents);
@@ -93,9 +93,9 @@ public class OCLinEcoreDocument extends BaseDocument
 					if (resource != null) {
 						XMLResource asResource = getPivotResource();
 						if (asResource != null) {
-							CS2ASResourceAdapter adapter = ((BaseCSResource)resource).findCS2ASAdapter();
-							if (adapter != null) {
-								List<EObject> umlContents = AS2UML.createResource(adapter.getMetamodelManager().getEnvironmentFactory(), asResource);
+							CS2AS cs2as = ((BaseCSResource)resource).findCS2AS();
+							if (cs2as != null) {
+								List<EObject> umlContents = AS2UML.createResource(cs2as.getEnvironmentFactory(), asResource);
 								ResourceSetImpl resourceSet = new ResourceSetImpl();
 				//				URI umlURI = URI.createURI("internal.uml");
 								UMLResource umlResource = (UMLResource) resourceSet.createResource(umlURI);
@@ -121,12 +121,12 @@ public class OCLinEcoreDocument extends BaseDocument
 					if (resource != null) {
 						XMLResource asResource = getPivotResource();
 						if (asResource != null) {
-							CS2ASResourceAdapter adapter = ((BaseCSResource)resource).findCS2ASAdapter();
-							if (adapter != null) {
+							CS2AS cs2as = ((BaseCSResource)resource).findCS2AS();
+							if (cs2as != null) {
 								Map<String,Object> options = new HashMap<String,Object>();
 								options.put(PivotConstantsInternal.PRIMITIVE_TYPES_URI_PREFIX, "primitives.ecore#//");
 								options.put(OCLConstants.OCL_DELEGATE_URI, exportDelegateURI);
-								XMLResource ecoreResource = AS2Ecore.createResource(adapter.getMetamodelManager().getEnvironmentFactory(), asResource, ecoreURI, options);
+								XMLResource ecoreResource = AS2Ecore.createResource(cs2as.getEnvironmentFactory(), asResource, ecoreURI, options);
 								ecoreResource.save(writer, null);
 								checkForErrors(ecoreResource);
 							}

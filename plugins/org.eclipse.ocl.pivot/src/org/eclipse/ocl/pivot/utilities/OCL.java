@@ -13,7 +13,10 @@ package org.eclipse.ocl.pivot.utilities;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -48,10 +51,10 @@ import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.helper.HelperUtil;
 import org.eclipse.ocl.pivot.internal.helper.OCLHelperImpl;
 import org.eclipse.ocl.pivot.internal.helper.QueryImpl;
-import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
+import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.AbstractProjectManager;
 import org.eclipse.ocl.pivot.resource.CSResource;
@@ -142,11 +145,30 @@ public class OCL
 		}
 	}
 	
+	public static @NonNull EnvironmentFactoryAdapter adapt(@NonNull Notifier notifier) {
+		List<Adapter> eAdapters = ClassUtil.nonNullEMF(notifier.eAdapters());
+		EnvironmentFactoryAdapter adapter = ClassUtil.getAdapter(EnvironmentFactoryAdapter.class, eAdapters);
+		if (adapter == null) {
+			StandaloneProjectMap projectMap = null;
+			if (notifier instanceof ResourceSet) {
+				projectMap = StandaloneProjectMap.findAdapter((ResourceSet) notifier);
+			}
+			EnvironmentFactoryInternal environmentFactory = ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectMap);
+			adapter = new EnvironmentFactoryAdapter(environmentFactory, notifier);
+			eAdapters.add(adapter);
+		}
+		return adapter;
+	}
+
 	public static @NonNull EnvironmentFactory createEnvironmentFactory(@Nullable ProjectManager projectManager) {
 //		OCLstdlib.lazyInstall();
 		return ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectManager);
 	}
 	
+	public static @Nullable EnvironmentFactoryAdapter find(@NonNull Notifier notifier) {
+		return ClassUtil.getAdapter(EnvironmentFactoryAdapter.class, notifier);
+	}
+
 	/**
 	 * Initialize registries to support OCL and Ecore usage. This method is
 	 * intended for initialization of standalone behaviors for which plugin extension
@@ -210,7 +232,7 @@ public class OCL
      */
 	public static @NonNull OCL newInstance(@Nullable ProjectManager projectManager, @NonNull ResourceSet resourceSet) {
 		EnvironmentFactory environmentFactory = OCL.createEnvironmentFactory(projectManager);
-		EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, environmentFactory);
+		environmentFactory.adapt(resourceSet);
 		return newInstance(environmentFactory);
 	}
 	
@@ -434,7 +456,7 @@ public class OCL
 	 * Return the Pivot resource counterpart of an Xtext csResource.
 	 */
 	public @NonNull Resource cs2as(@NonNull CSResource csResource) {
-		Resource asResource = csResource.getASResource(getEnvironmentFactory());
+		Resource asResource = csResource.getASResource();
 		return asResource;
 	}
 
@@ -513,8 +535,7 @@ public class OCL
 			}
 		}
 		CSResource csResource = (CSResource) resource;
-		MetamodelManager metamodelManager = getMetamodelManager();
-		MetamodelManagerResourceAdapter.getAdapter(csResource, metamodelManager);
+		getEnvironmentFactory().adapt(csResource);
 		csResource.load(null);
 		return csResource;
 	}
@@ -531,8 +552,7 @@ public class OCL
 			}
 		}
 		CSResource csResource = (CSResource) resource;
-		MetamodelManager metamodelManager = getMetamodelManager();
-		MetamodelManagerResourceAdapter.getAdapter(csResource, metamodelManager);
+		getEnvironmentFactory().adapt(csResource);
 		csResource.load(inputStream, null);
 		return csResource;
 	}

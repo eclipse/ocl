@@ -42,7 +42,6 @@ import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -127,10 +126,7 @@ public class MainTab extends AbstractMainTab implements OCLLaunchConstants
 		        BaseCSResource xtextResource = null;
 		        xtextResource = (BaseCSResource) getEnvironmentFactory().getMetamodelManager().getExternalResourceSet().getResource(oclURI, true);
 		        if (xtextResource != null) {
-		    		CS2ASResourceAdapter adapter = null;
-	    			adapter = xtextResource.getCS2ASAdapter(getEnvironmentFactory());
-//	    			adapter.refreshPivotMappings(new ListBasedDiagnosticConsumer());
-	    			ASResource asResource = adapter.getASResource();
+	    			ASResource asResource = xtextResource.getASResource();
 	    			for (EObject eContent : asResource.getContents()) {
 	    	    		root = (Model)eContent;
 	    				break;

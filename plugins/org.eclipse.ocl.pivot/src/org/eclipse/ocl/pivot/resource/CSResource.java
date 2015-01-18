@@ -25,12 +25,9 @@ import org.eclipse.ocl.pivot.utilities.ParserContext;
 public interface CSResource extends Resource
 {
 	/**
-	 * Return the Abstract Syntax representation of this Concrete Syntax resource
-	 * under the supervision of metamodelManager.
+	 * Return the Abstract Syntax representation of this Concrete Syntax resource.
 	 */
-	@Deprecated
 	@NonNull ASResource getASResource();
-	@NonNull ASResource getASResource(@NonNull EnvironmentFactory environmentFactory);
 
 	@NonNull ASResourceFactory getASResourceFactory();
 	

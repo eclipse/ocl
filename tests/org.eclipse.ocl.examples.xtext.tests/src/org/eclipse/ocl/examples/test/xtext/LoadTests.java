@@ -53,9 +53,7 @@ import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
@@ -69,7 +67,6 @@ import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.Unlimited;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.xtext.completeocl.as2cs.CompleteOCLSplitter;
 import org.eclipse.ocl.xtext.essentialocl.EssentialOCLStandaloneSetup;
 import org.eclipse.ocl.xtext.oclinecorecs.OCLinEcoreCSPackage;
@@ -145,8 +142,7 @@ public class LoadTests extends XtextTestCase
 //		}
 		finally {
 			if (xtextResource instanceof BaseCSResource) {
-				CS2ASResourceAdapter adapter = ((BaseCSResource)xtextResource).getCS2ASAdapter(null);
-				adapter.dispose();
+				((BaseCSResource)xtextResource).dispose();
 			}
 		}
 		Resource xmiResource = ocl.getResourceSet().createResource(outputURI);
@@ -188,8 +184,7 @@ public class LoadTests extends XtextTestCase
 		}
 		finally {
 			if (xtextResource instanceof BaseCSResource) {
-				CS2ASResourceAdapter adapter = ((BaseCSResource)xtextResource).getCS2ASAdapter(null);
-				adapter.dispose();
+				((BaseCSResource)xtextResource).dispose();
 			}
 		}
 		Resource xmiResource = resourceSet.createResource(outputURI);
@@ -267,7 +262,7 @@ public class LoadTests extends XtextTestCase
 			if (validateCompleteOCL) {
 				reloadCS.load(null);
 				assertNoResourceErrors("Load failed", reloadCS);
-				Resource reloadAS = reloadCS.getASResource(null);
+				Resource reloadAS = reloadCS.getASResource();
 				assertNoUnresolvedProxies("Unresolved proxies", reloadAS);
 				assertNoValidationErrors("Reloading", reloadAS);
 			}
@@ -398,7 +393,7 @@ public class LoadTests extends XtextTestCase
 			if (oclResource != null) {
 				URI xtextURI = oclURI;// != null ? URI.createPlatformResourceURI(oclURI, true) : uri.trimFileExtension().appendFileExtension("ocl");
 				ResourceSet csResourceSet = ocl.getResourceSet();
-				EnvironmentFactoryResourceSetAdapter.getAdapter(csResourceSet, environmentFactory);
+				environmentFactory.adapt(csResourceSet);
 				BaseCSResource xtextResource = (BaseCSResource) csResourceSet.createResource(xtextURI, OCLinEcoreCSPackage.eCONTENT_TYPE);
 				if (xtextResource != null) {
 					xtextResource.updateFrom(oclResource, environmentFactory);
@@ -410,7 +405,7 @@ public class LoadTests extends XtextTestCase
 				OCL ocl2 = OCL.newInstance(getProjectMap());
 				ResourceSet resourceSet2 = ocl2.getResourceSet();
 				BaseCSResource reloadCS = (BaseCSResource) resourceSet2.createResource(oclURI);
-				MetamodelManagerResourceAdapter.getAdapter(reloadCS, ocl2.getMetamodelManager());
+				ocl2.getEnvironmentFactory().adapt(reloadCS);
 				loadCallBacks.validateCompleteOCL(ocl2, reloadCS);
 				ocl2.dispose();
 			}
@@ -478,7 +473,7 @@ public class LoadTests extends XtextTestCase
 		BaseCSResource xtextResource = (BaseCSResource) ocl.getResourceSet().createResource(inputURI);
 		xtextResource.setProjectManager(getProjectMap());
 		JavaClassScope.getAdapter(xtextResource,  getClass().getClassLoader());
-		MetamodelManagerResourceAdapter.getAdapter(xtextResource, ocl.getMetamodelManager());
+		ocl.getEnvironmentFactory().adapt(xtextResource);
 		xtextResource.load(null);
 		assertNoResourceErrors("Load failed", xtextResource);
 		return xtextResource;
@@ -492,7 +487,7 @@ public class LoadTests extends XtextTestCase
 		URI cstURI = getProjectFileURI(cstName);
 		URI pivotURI = getProjectFileURI(pivotName);
 		URI savedURI = getProjectFileURI(savedName);
-		Resource asResource = xtextResource.getASResource(null);
+		Resource asResource = xtextResource.getASResource();
 		assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validate()");
 //FIXME		assertNoValidationErrors("Validation errors", xtextResource.getContents().get(0));
@@ -980,7 +975,7 @@ public class LoadTests extends XtextTestCase
 	public void testLoad_Bug441620_completeocl() throws IOException {
 		OCL ocl = OCL.newInstance(getProjectMap());
 		BaseCSResource csResource = (BaseCSResource) doLoad_Pivot(ocl, "Bug441620", "ocl");
-		Resource oclResource = csResource.getASResource(ocl.getEnvironmentFactory());
+		Resource oclResource = csResource.getASResource();
 		Model root = (Model) oclResource.getContents().get(0);
 		org.eclipse.ocl.pivot.Package oclDocPackage = root.getOwnedPackages().get(0);
 		assertEquals("pivot", oclDocPackage.getName());
@@ -1002,7 +997,7 @@ public class LoadTests extends XtextTestCase
 	public void testLoad_Bug441620b_completeocl() throws IOException {
 		OCL ocl = OCL.newInstance(getProjectMap());
 		BaseCSResource csResource = (BaseCSResource) doLoad_Pivot(ocl, "Bug441620b", "ocl");
-		Resource oclResource = csResource.getASResource(ocl.getEnvironmentFactory());
+		Resource oclResource = csResource.getASResource();
 		Model root = (Model) oclResource.getContents().get(0);
 		org.eclipse.ocl.pivot.Package oclDocPackage = root.getOwnedPackages().get(0);
 		assertEquals("ocl", oclDocPackage.getName());

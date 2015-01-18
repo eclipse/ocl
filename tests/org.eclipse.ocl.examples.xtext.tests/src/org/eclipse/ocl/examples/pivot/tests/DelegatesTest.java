@@ -86,7 +86,6 @@ import org.eclipse.ocl.pivot.internal.delegate.SettingBehavior;
 import org.eclipse.ocl.pivot.internal.delegate.ValidationDelegate;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.evaluation.OCLEvaluationVisitor;
-import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
@@ -104,6 +103,7 @@ import org.junit.AfterClass;
 import codegen.company.CodegencompanyFactory;
 import codegen.company.CodegencompanyPackage;
 import codegen.company.util.CodegencompanyValidator;
+
 import company.CompanyFactory;
 import company.CompanyPackage;
 import company.util.CompanyValidator;
@@ -265,7 +265,7 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 		OCL.Internal ocl = configureMetamodelManagerForDelegate(companyPackage);
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		EnvironmentFactoryInternal environmentFactory = ocl.getEnvironmentFactory();
-		EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, environmentFactory);
+		environmentFactory.adapt(resourceSet);
 		String message = PivotUtil.formatResourceDiagnostics(ecoreResource.getErrors(), "Model load", "\n\t");
 		if (message != null)
 			fail(message);
@@ -279,7 +279,7 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 		message = PivotUtil.formatResourceDiagnostics(xtextResource.getErrors(), "OCL load", "\n\t");
 		if (message != null)
 			fail(message);
-		Resource asResource = xtextResource.getASResource(environmentFactory);
+		Resource asResource = xtextResource.getASResource();
 		message = PivotUtil.formatResourceDiagnostics(asResource.getErrors(), "Pivot OCL load", "\n\t");
 		if (message != null)
 			fail(message);
@@ -1273,7 +1273,7 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 		ResourceSet resourceSet = createResourceSet();
 		OCL ocl = OCL.newInstance(getProjectMap(), resourceSet);
 		try {
-			EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, ocl.getEnvironmentFactory());
+			ocl.getEnvironmentFactory().adapt(resourceSet);
 			URI xmiURI = getTestModelURI("model/Tutorial.xmi");
 			Resource ecoreResource = resourceSet.getResource(getTestModelURI(ecoreURI), true);
 			EPackage ePackage = (EPackage) ecoreResource.getContents().get(0);

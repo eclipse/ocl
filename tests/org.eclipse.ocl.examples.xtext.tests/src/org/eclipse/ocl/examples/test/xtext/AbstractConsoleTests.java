@@ -30,9 +30,12 @@ import org.eclipse.ocl.examples.xtext.console.ColorManager;
 import org.eclipse.ocl.examples.xtext.console.OCLConsole;
 import org.eclipse.ocl.examples.xtext.console.OCLConsolePage;
 import org.eclipse.ocl.examples.xtext.tests.TestUtil;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.xtext.base.ui.model.BaseDocument;
 import org.eclipse.swt.graphics.RGB;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.console.ConsolePlugin;
 import org.eclipse.ui.console.IConsole;
@@ -82,6 +85,7 @@ public abstract class AbstractConsoleTests extends PivotTestCase
 	public static class TestConsolePage extends OCLConsolePage
 	{
 		private StringBuilder s = new StringBuilder();
+		private OCL ocl = null;
 		
 		public TestConsolePage(TestConsole testConsole) {
 			super(testConsole);
@@ -114,12 +118,34 @@ public abstract class AbstractConsoleTests extends PivotTestCase
 		}
 
 		@Override
+		protected @Nullable EnvironmentFactoryAdapter createEditor(Composite s1) {
+			EnvironmentFactoryAdapter environmentFactoryResourceSetAdapter = super.createEditor(s1);
+			if (environmentFactoryResourceSetAdapter != null) {
+				ocl = OCL.newInstance(environmentFactoryResourceSetAdapter.getEnvironmentFactory());
+			}
+			return environmentFactoryResourceSetAdapter;
+		}
+
+		@Override
+		public void dispose() {
+			if (ocl != null) {
+				ocl.dispose();
+				ocl = null;
+			}
+			super.dispose();
+		}
+
+		@Override
 		public boolean evaluate(String expression) {
 			return super.evaluate(expression);
 		}
 
 		public String get() {
 			return s.toString();
+		}
+
+		public OCL getOCL() {
+			return ocl;
 		}
 
 		public ILaunch launchDebugger() {

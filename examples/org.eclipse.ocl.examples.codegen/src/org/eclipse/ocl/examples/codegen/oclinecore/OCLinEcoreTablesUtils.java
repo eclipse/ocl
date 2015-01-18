@@ -66,7 +66,7 @@ import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.library.executor.ExecutorLambdaType;
@@ -76,6 +76,7 @@ import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.xtext.util.Strings;
 
@@ -630,7 +631,7 @@ public class OCLinEcoreTablesUtils
 		Resource genModelResource = genPackage.eResource();
 		ResourceSet genModelResourceSet = genModelResource.getResourceSet();
 		assert genModelResourceSet != null;
-		EnvironmentFactoryResourceSetAdapter resourceSetAdapter = EnvironmentFactoryResourceSetAdapter.getAdapter(genModelResourceSet, null);
+		EnvironmentFactoryAdapter resourceSetAdapter = OCL.adapt(genModelResourceSet);
 		this.metamodelManager = resourceSetAdapter.getMetamodelManager();
 		this.environmentFactory = metamodelManager.getEnvironmentFactory();
 		this.standardLibrary = environmentFactory.getStandardLibrary();

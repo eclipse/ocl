@@ -32,9 +32,8 @@ import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.AbstractMetamodelManagerResourceAdapter;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -72,7 +71,7 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 				throw new ParserException("Failed to create Xtext resource for '" + uri + "'" + getDoSetupMessage());
 			}
 			CSResource baseResource = (CSResource)resource;
-			MetamodelManagerResourceAdapter.getAdapter(resource, getMetamodelManager());
+			getEnvironmentFactory().adapt(resource);
 			baseResource.setParserContext(this);
 			baseResource.load(inputStream, null);
 			return baseResource;
@@ -168,7 +167,7 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 				if (resourceSet != null) {
 					resourceSet.getResources().remove(resource);
 				}
-				AbstractMetamodelManagerResourceAdapter.disposeAll(resource);
+				EnvironmentFactoryAdapter.disposeAll(resource);
 			}
 		}
 	}

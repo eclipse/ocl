@@ -1012,7 +1012,7 @@ public class MetamodelManager implements Adapter.Internal
 			ProjectManager projectManager = getProjectManager();
 			projectManager.initializeResourceSet(externalResourceSet2);			
 			externalResourceSet2.getResourceFactoryRegistry().getExtensionToFactoryMap().put("emof", new EMOFResourceFactoryImpl()); //$NON-NLS-1$
-			EnvironmentFactoryResourceSetAdapter.getAdapter(externalResourceSet2, environmentFactory);
+			environmentFactory.adapt(externalResourceSet2);
 			ASResourceFactoryRegistry.INSTANCE.configureResourceSet(externalResourceSet2);
 		}
 		return externalResourceSet2;

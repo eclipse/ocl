@@ -22,7 +22,6 @@ import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
@@ -85,7 +84,7 @@ public class CompleteOCLSeparator extends WorkflowComponentWithModelSlot
 		ASResource oclResource = CompleteOCLSplitter.separate(environmentFactory, asResource);
 		URI xtextURI = oclURI != null ? URI.createPlatformResourceURI(oclURI, true) : uri.trimFileExtension().appendFileExtension("ocl");
 		ResourceSetImpl csResourceSet = new ResourceSetImpl();
-		EnvironmentFactoryResourceSetAdapter.getAdapter(csResourceSet, environmentFactory);
+		environmentFactory.adapt(csResourceSet);
 		BaseCSResource xtextResource = (BaseCSResource) csResourceSet.createResource(xtextURI, OCLinEcoreCSPackage.eCONTENT_TYPE);
 		if (oclResource != null) {
 			xtextResource.updateFrom(oclResource, environmentFactory);

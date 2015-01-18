@@ -48,15 +48,14 @@ import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.AbstractMetamodelManagerResourceAdapter;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
-import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.manager.PivotExecutorManager;
 import org.eclipse.ocl.pivot.internal.scoping.Attribution;
 import org.eclipse.ocl.pivot.internal.scoping.NullAttribution;
 import org.eclipse.ocl.pivot.library.ecore.EcoreExecutorManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.Pivotable;
 
@@ -85,7 +84,7 @@ public class PivotUtilInternal //extends PivotUtil
 			Resource resource = eRoot.eResource();
 			if (resource != null) {
 //				if (eObject instanceof ElementCS) {
-					AbstractMetamodelManagerResourceAdapter adapter = AbstractMetamodelManagerResourceAdapter.findAdapter(resource);
+				EnvironmentFactoryAdapter adapter = OCL.find(resource);
 					if (adapter != null) {
 						return adapter.getMetamodelManager();
 					}
@@ -98,8 +97,8 @@ public class PivotUtilInternal //extends PivotUtil
 
 	public static @Nullable MetamodelManager findMetamodelManager(@NonNull Resource resource) {
 		for (Adapter adapter : resource.eAdapters()) {
-			if (adapter instanceof AbstractMetamodelManagerResourceAdapter) {
-				return ((AbstractMetamodelManagerResourceAdapter)adapter).getMetamodelManager();
+			if (adapter instanceof EnvironmentFactoryAdapter) {
+				return ((EnvironmentFactoryAdapter)adapter).getMetamodelManager();
 			}
 		}
 		ResourceSet resourceSet = resource.getResourceSet();
@@ -111,7 +110,7 @@ public class PivotUtilInternal //extends PivotUtil
 		if (metamodelManager != null) {
 			return metamodelManager;
 		}
-		EnvironmentFactoryResourceSetAdapter adapter = EnvironmentFactoryResourceSetAdapter.findAdapter(resourceSet);
+		EnvironmentFactoryAdapter adapter = OCL.find(resourceSet);
 		if (adapter != null) {
 			return adapter.getMetamodelManager();
 		}
@@ -219,16 +218,7 @@ public class PivotUtilInternal //extends PivotUtil
 	}
 
 	public static @NonNull MetamodelManager getMetamodelManager(@NonNull Resource resource) {
-		MetamodelManager metamodelManager = findMetamodelManager(resource);
-		if (metamodelManager == null) {
-			MetamodelManagerResourceAdapter adapter = MetamodelManagerResourceAdapter.getAdapter(resource, null);
-			metamodelManager = adapter.getMetamodelManager();
-			assert metamodelManager != null;
-			ResourceSet resourceSet = resource.getResourceSet();
-			if ((resourceSet != null) && (findMetamodelManager(resourceSet) == null)) {
-				EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, metamodelManager.getEnvironmentFactory());
-			}
-		}
+		MetamodelManager metamodelManager = ClassUtil.nonNullState(findMetamodelManager(resource));
 		return metamodelManager;
 	}
 

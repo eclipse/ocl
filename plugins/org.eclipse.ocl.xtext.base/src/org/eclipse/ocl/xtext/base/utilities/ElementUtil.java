@@ -51,6 +51,7 @@ import org.eclipse.ocl.pivot.internal.scoping.Attribution;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.xtext.base.attributes.RootCSAttribution;
+import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.ImportDiagnostic;
 import org.eclipse.ocl.xtext.base.cs2as.LibraryDiagnostic;
 import org.eclipse.ocl.xtext.basecs.BaseCSFactory;
@@ -251,9 +252,9 @@ public class ElementUtil
 	 * @throws ParserException 
 	 */
 	public static @Nullable ExpressionInOCL getFirstQuery(@NonNull MetamodelManager metamodelManager, BaseCSResource csResource) throws ParserException {
-		CS2ASResourceAdapter cs2asAdapter = csResource.findCS2ASAdapter();
-		if (cs2asAdapter != null) {
-			ASResource asResource = cs2asAdapter.getASResource();
+		CS2AS cs2as = csResource.findCS2AS();
+		if (cs2as != null) {
+			ASResource asResource = cs2as.getASResource();
 			for (EObject eRoot: asResource.getContents()) {
 				if (eRoot instanceof Model) {
 					for (org.eclipse.ocl.pivot.Package asPackage: ((Model)eRoot).getOwnedPackages()) {

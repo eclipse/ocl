@@ -50,7 +50,6 @@ import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.delegate.DelegateInstaller;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.resource.OCLASResourceFactory;
 import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
@@ -60,7 +59,6 @@ import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.xtext.oclinecore.ui.OCLinEcoreUiModule;
 import org.eclipse.ocl.xtext.oclinecore.ui.OCLinEcoreUiPluginHelper;
 import org.eclipse.ocl.xtext.oclinecorecs.OCLinEcoreCSPackage;
@@ -292,7 +290,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider //implemen
 	@Override
 	protected void loadResource(XtextResource resource, String document, String encoding) throws CoreException {
 		assert resource != null;
-		MetamodelManagerResourceAdapter.getAdapter(resource, getEnvironmentFactory().getMetamodelManager());
+		getEnvironmentFactory().adapt(resource);
 		super.loadResource(resource, document, encoding);
 	}
 
@@ -408,8 +406,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider //implemen
 					diagnoseErrors((XtextResource) csResource, e);
 				}
 				csResource.unload();
-				CS2ASResourceAdapter resourceAdapter = ((BaseCSResource)csResource).getCS2ASAdapter(getEnvironmentFactory());
-				resourceAdapter.dispose();
+				((BaseCSResource)csResource).dispose();
 				resourceSet.getResources().remove(csResource);
 				inputStream = new ByteArrayInputStream(outputStream.toByteArray());
 			}

@@ -13,7 +13,6 @@ package org.eclipse.ocl.xtext.base.cs2as;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.xtext.resource.DefaultFragmentProvider;
 
 public class BaseFragmentProvider extends DefaultFragmentProvider
@@ -32,9 +31,9 @@ public class BaseFragmentProvider extends DefaultFragmentProvider
 			return eObject;
 		}
 		BaseCSResource csResource = (BaseCSResource)resource;
-		CS2ASResourceAdapter converter = csResource.findCS2ASAdapter();
-		if (converter != null) {
-			Resource asResource = converter.getASResource();
+		CS2AS cs2as = csResource.findCS2AS();
+		if (cs2as != null) {
+			Resource asResource = cs2as.getASResource();
 			eObject = asResource.getEObject(fragment);
 			if (eObject != null) {
 				return eObject;

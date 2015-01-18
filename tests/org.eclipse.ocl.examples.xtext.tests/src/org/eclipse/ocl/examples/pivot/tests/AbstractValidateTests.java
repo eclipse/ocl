@@ -33,7 +33,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.values.BagImpl;
@@ -131,7 +130,7 @@ public abstract class AbstractValidateTests extends PivotTestCase
 		String inputName = stem + ".oclinecore";
 		URI inputURI = getProjectFileURI(inputName);
 		BaseCSResource xtextResource = (BaseCSResource) metamodelManager.getExternalResourceSet().createResource(inputURI);
-		MetamodelManagerResourceAdapter.getAdapter(xtextResource, metamodelManager);
+		ocl.getEnvironmentFactory().adapt(xtextResource);
 		xtextResource.load(null);
 		assertNoResourceErrors("Load failed", xtextResource);
 		Resource asResource = ocl.cs2as(xtextResource);

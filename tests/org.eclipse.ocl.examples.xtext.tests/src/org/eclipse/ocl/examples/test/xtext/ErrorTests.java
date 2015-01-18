@@ -19,8 +19,6 @@ import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.values.BagImpl;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -39,7 +37,7 @@ public class ErrorTests extends XtextTestCase
 	 * Test a bad operation for bad iterate arguments. Inspired by Bug 352386.
 	 */
 	public void test_BadIterate() throws IOException {
-		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
+		OCL ocl = OCL.newInstance(getProjectMap());
 		String metamodelText =
 			"package test : tst = 'http://test'\n" +
 			"{\n" +
@@ -53,19 +51,19 @@ public class ErrorTests extends XtextTestCase
 		URI xtextURI = URI.createURI("test.oclinecore");
 		ResourceSet resourceSet = new ResourceSetImpl();
 		EssentialOCLCSResource xtextResource = ClassUtil.nonNullState((EssentialOCLCSResource) resourceSet.createResource(xtextURI, null));
-		MetamodelManagerResourceAdapter.getAdapter(xtextResource, metamodelManager);
+		ocl.getEnvironmentFactory().adapt(xtextResource);
 		xtextResource.load(inputStream, null);
 		assertResourceErrors("Loading Xtext", xtextResource,
 			StringUtil.bind(PivotMessagesInternal.UnresolvedIterationCall_ERROR_, "Set(test::Test)", "iterate", "w, h; acc : String = ''| true"));
         //
-		metamodelManager.dispose();
+		ocl.dispose();
 	}
 	
 	/**
 	 * Test a bad operation for bad iterate arguments. Inspired by Bug 352386.
 	 */
 	public void test_BadProperty() throws IOException {
-		MetamodelManager metamodelManager = OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
+		OCL ocl = OCL.newInstance(getProjectMap());
 		String metamodelText =
 			"package test : tst = 'http://test'\n" +
 			"{\n" +
@@ -78,12 +76,12 @@ public class ErrorTests extends XtextTestCase
 		URI xtextURI = URI.createURI("test.oclinecore");
 		ResourceSet resourceSet = new ResourceSetImpl();
 		EssentialOCLCSResource xtextResource = ClassUtil.nonNullState((EssentialOCLCSResource) resourceSet.createResource(xtextURI, null));
-		MetamodelManagerResourceAdapter.getAdapter(xtextResource, metamodelManager);
+		ocl.getEnvironmentFactory().adapt(xtextResource);
 		xtextResource.load(inputStream, null);
 		assertResourceErrors("Loading Xtext", xtextResource,
 			StringUtil.bind(PivotMessagesInternal.UnresolvedStaticProperty_ERROR_, "test::Test", "allInstances"));
         //
-		metamodelManager.dispose();
+		ocl.dispose();
 	}
 	
 	public void testBadEOF_419683() throws Exception {

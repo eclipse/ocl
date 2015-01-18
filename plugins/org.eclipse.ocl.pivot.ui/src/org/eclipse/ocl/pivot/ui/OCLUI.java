@@ -1,15 +1,7 @@
 package org.eclipse.ocl.pivot.ui;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.ExpressionInOCL;
-import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.resource.CSResource;
-import org.eclipse.ocl.pivot.utilities.OCL;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLRuntimeModule;
 import org.eclipse.ocl.xtext.completeocl.ui.CompleteOCLUiModule;
 import org.eclipse.ocl.xtext.completeocl.utilities.CompleteOCLPlugin;
@@ -23,7 +15,6 @@ import org.eclipse.ocl.xtext.oclstdlib.OCLstdlibRuntimeModule;
 import org.eclipse.ocl.xtext.oclstdlib.ui.OCLstdlibUiModule;
 import org.eclipse.ocl.xtext.oclstdlib.utilities.OCLstdlibPlugin;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.eclipse.xtext.resource.XtextResource;
 
 import com.google.inject.Module;
 
@@ -81,7 +72,7 @@ public class OCLUI
 	 *
 	 * @param contextObject
 	 * @return the metamodelManager
-	 */
+	 *
 	protected MetamodelManager getMetamodelManager(EObject contextObject) {
 		MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(contextObject);
 		if (metamodelManager != null) {
@@ -91,11 +82,11 @@ public class OCLUI
 			metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
 		}
 		return metamodelManager;
-	}
+	} */
 
 	/**
 	 * Evaluate an oclExpression using selfObject as the OCL self object. Returns a boxed value.
-	 */
+	 *
 	public static Object evaluate(@Nullable EObject selfObject, @NonNull String oclExpression) throws Exception {
 		MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(selfObject);
 		if (metamodelManager == null) {
@@ -107,14 +98,14 @@ public class OCLUI
 		org.eclipse.ocl.pivot.Class selfType = ocl.getContextType(selfObject);
 		ExpressionInOCL createQuery = ocl.createQuery(selfType, oclExpression);
 		return ocl.evaluate(selfObject, createQuery);
-	}
+	} */
 	
 	/**
 	 * Configure a csResource to use eObject as its OCL self context.
-	 */
+	 *
 	public static void setParserContext(@NonNull XtextResource csResource, EObject eObject) throws Exception {
 		if (csResource instanceof CSResource) {
 			PivotUtil.setParserContext((CSResource) csResource, eObject);
 		}
-	}
+	} */
 }

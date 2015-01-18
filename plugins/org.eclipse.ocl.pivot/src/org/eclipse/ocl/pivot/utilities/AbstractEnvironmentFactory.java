@@ -15,6 +15,8 @@ package org.eclipse.ocl.pivot.utilities;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -29,6 +31,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
@@ -58,6 +61,7 @@ import org.eclipse.ocl.pivot.internal.evaluation.OCLEvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.evaluation.PivotModelManager;
 import org.eclipse.ocl.pivot.internal.evaluation.TracingEvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.library.ImplementationManager;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.PivotIdResolver;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
@@ -119,6 +123,27 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 		this.completeEnvironment = createCompleteEnvironment();
 		this.standardLibrary = completeEnvironment.getOwnedStandardLibrary();
 		this.completeModel = completeEnvironment.getOwnedCompleteModel();
+	}
+	
+	@Override
+	public @NonNull EnvironmentFactoryAdapter adapt(@NonNull Notifier notifier) {
+		List<Adapter> eAdapters = ClassUtil.nonNullEMF(notifier.eAdapters());
+		EnvironmentFactoryAdapter adapter = ClassUtil.getAdapter(EnvironmentFactoryAdapter.class, eAdapters);
+		if (adapter == null) {
+			adapter = new EnvironmentFactoryAdapter(this, notifier);
+			eAdapters.add(adapter);
+		}
+		return adapter;
+	}
+	
+	public static @NonNull EnvironmentFactoryAdapter getAdapter4(@NonNull Notifier notifier, @NonNull EnvironmentFactory environmentFactory) {
+		List<Adapter> eAdapters = ClassUtil.nonNullEMF(notifier.eAdapters());
+		EnvironmentFactoryAdapter adapter = ClassUtil.getAdapter(EnvironmentFactoryAdapter.class, eAdapters);
+		if (adapter == null) {
+			adapter = new EnvironmentFactoryAdapter((EnvironmentFactoryInternal) environmentFactory, notifier);
+			eAdapters.add(adapter);
+		}
+		return adapter;
 	}
 
 	@Override

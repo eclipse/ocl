@@ -18,8 +18,8 @@ import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
+import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.xtext.basecs.ElementCS;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
@@ -33,29 +33,27 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
  */
 public class BaseScopeProvider extends AbstractDeclarativeScopeProvider
 {
-	public static final @NonNull TracingOption LOOKUP = new TracingOption(
-		"org.eclipse.ocl.xtext.base", "lookup"); //$NON-NLS-1$//$NON-NLS-2$
+	public static final @NonNull TracingOption LOOKUP = new TracingOption("org.eclipse.ocl.xtext.base", "lookup"); //$NON-NLS-1$//$NON-NLS-2$
 
 	@Override
 	public IScope getScope(EObject context, EReference reference) {
-		if (context == null) {
-			return IScope.NULLSCOPE;
-		}
 		if (reference == null) {
 			return IScope.NULLSCOPE;
 		}
+		if (!(context instanceof ElementCS)) {
+			return IScope.NULLSCOPE;
+		}
 		Resource csResource = context.eResource();
-		if (csResource == null) {
+		if (!(csResource instanceof BaseCSResource)) {
 			return IScope.NULLSCOPE;
 		}
 		MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(csResource);
 		if (metamodelManager == null) {
 			return IScope.NULLSCOPE;
 		}
-		ElementCS csElement = (ElementCS) context;
-		EnvironmentFactoryInternal environmentFactory = metamodelManager.getEnvironmentFactory();
-		@SuppressWarnings("unused")
-		CS2ASResourceAdapter resourceAdapter = ((BaseCSResource)csResource).getCS2ASAdapter(environmentFactory);
-		return BaseScopeView.getScopeView(environmentFactory, csElement, reference);
+		CS2AS cs2as = ((BaseCSResource)csResource).getCS2AS();
+		EnvironmentFactoryInternal environmentFactory = cs2as.getEnvironmentFactory();
+		assert metamodelManager == environmentFactory.getMetamodelManager();
+		return BaseScopeView.getScopeView(environmentFactory, (ElementCS) context, reference);
 	}
 }

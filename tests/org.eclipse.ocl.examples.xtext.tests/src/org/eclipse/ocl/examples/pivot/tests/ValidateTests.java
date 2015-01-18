@@ -43,7 +43,7 @@ import org.eclipse.ocl.pivot.internal.delegate.InvocationBehavior;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.delegate.SettingBehavior;
 import org.eclipse.ocl.pivot.internal.delegate.ValidationBehavior;
-import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.OCLASResourceFactory;
 import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
@@ -319,7 +319,7 @@ public class ValidateTests extends AbstractValidateTests
 		ResourceSet resourceSet = ocl.getResourceSet(); //createResourceSet();
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
 		OCLDelegateDomain.initialize(resourceSet, PivotConstants.OCL_DELEGATE_URI_PIVOT);			
-		EnvironmentFactoryResourceSetAdapter adapter = EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, null);
+		EnvironmentFactoryAdapter adapter = OCL.adapt(resourceSet);
 		//
 		URI ecoreURI = getTestModelURI("model/OCLinEcoreTutorial.ecore");
 		URI xmiURI = getTestModelURI("model/OCLinEcoreTutorial.xmi");
@@ -448,7 +448,7 @@ public class ValidateTests extends AbstractValidateTests
 		//
 		OCL ocl1 = OCL.newInstance(getProjectMap());
 		Resource ecoreResource = doLoadOCLinEcore(ocl1, "Validate");
-		EnvironmentFactoryResourceSetAdapter.getAdapter(ecoreResource.getResourceSet(), ocl1.getEnvironmentFactory());
+		ocl1.getEnvironmentFactory().adapt(ecoreResource.getResourceSet());
 		EPackage validatePackage = (EPackage) ecoreResource.getContents().get(0);
 		EObject testInstance = eCreate(validatePackage, "Level3");
 		eSet(testInstance, "ref", "ref");

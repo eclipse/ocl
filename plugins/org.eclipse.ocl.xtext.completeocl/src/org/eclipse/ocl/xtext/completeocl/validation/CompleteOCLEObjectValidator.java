@@ -34,7 +34,6 @@ import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.validation.PivotEObjectValidator;
 import org.eclipse.ocl.pivot.resource.CSResource;
@@ -92,7 +91,7 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 		}
 		ecore2as = Ecore2AS.getAdapter(ecoreResource, environmentFactory);
 		ResourceSet resourceSet = new ResourceSetImpl();
-		EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, environmentFactory);
+		environmentFactory.adapt(resourceSet);
 		List<Diagnostic> errors = ecoreResource.getErrors();
 		assert errors != null;
 		String message = PivotUtil.formatResourceDiagnostics(errors, "", "\n");
@@ -137,7 +136,7 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 			logger.error("Failed to load '" + oclURI + message);
 			return false;
 		}
-		Resource asResource = xtextResource.getASResource(environmentFactory);
+		Resource asResource = xtextResource.getASResource();
 		errors = asResource.getErrors();
 		assert errors != null;
 		message = PivotUtil.formatResourceDiagnostics(errors, "", "\n");

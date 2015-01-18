@@ -36,7 +36,7 @@ public class EcoreConsoleTests extends AbstractConsoleTests
 
 	public void testConsole_OCLinEcoreTutorial() throws Exception {
 		doDelete(PLUGIN_ID);
-		OCL ocl = OCL.newInstance();
+		OCL ocl = consolePage.getOCL();
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
 		URI testModelURI = getTestModelURI("model/OCLinEcoreTutorialForPivot.xmi");
@@ -102,6 +102,6 @@ public class EcoreConsoleTests extends AbstractConsoleTests
 			"ecore::EClass::eStructuralFeatures\n" + 
 			"ecore::EClass::eSuperTypes\n" + 
 			"ecore::EClass::interface\n");
-		ocl.dispose();
+//		ocl.dispose();
 	}
 }

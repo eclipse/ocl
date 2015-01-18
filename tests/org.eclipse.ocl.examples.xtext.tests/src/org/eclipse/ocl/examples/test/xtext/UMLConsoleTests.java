@@ -24,7 +24,7 @@ import org.eclipse.ocl.pivot.utilities.OCL;
 public class UMLConsoleTests extends AbstractConsoleTests
 {	
 	public void testConsole_Bug419556() throws Exception {
-		OCL ocl = OCL.newInstance(getProjectMap());
+		OCL ocl = consolePage.getOCL();
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
 
@@ -40,11 +40,11 @@ public class UMLConsoleTests extends AbstractConsoleTests
 		assertConsoleResult(consolePage, attribute1, "self.extension_Stereotype2", "<error>null\n</error>");
 		//
 		consolePage.cancelValidation();
-		ocl.dispose();
+//		ocl.dispose();
 	}
 
 	public void testConsole_Bug437715() throws Exception {
-		OCL ocl = OCL.newInstance(getProjectMap());
+		OCL ocl = consolePage.getOCL();
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
 
@@ -62,13 +62,13 @@ public class UMLConsoleTests extends AbstractConsoleTests
 //		assertConsoleResult(consolePage, attribute1, "self.extension_Stereotype2", "<error>null\n</error>");
 		//
 		consolePage.cancelValidation();
-		ocl.dispose();
+//		ocl.dispose();
 	}
 
 	@SuppressWarnings({"unused"})
 	public void testConsole_UML() throws Exception {
 		doDelete(PLUGIN_ID);
-		OCL ocl = OCL.newInstance();
+		OCL ocl = consolePage.getOCL();
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
 
@@ -102,6 +102,6 @@ public class UMLConsoleTests extends AbstractConsoleTests
 		assertConsoleResult(consolePage, asEnglishClass, "ocl::Class.allInstances()->sortedBy(name)", "Model::EnglishClass\nEnglishClass$InEnglish\nModel::FrenchClass\nFrenchClass$InFrench\nModel::GermanClass\nGermanClass$InGerman\nModel::LanguageClass\nModel::PlainClass\nString\n");
 		//
 		consolePage.cancelValidation();
-		ocl.dispose();
+//		ocl.dispose();
 	}
 }

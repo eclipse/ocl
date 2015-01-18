@@ -69,10 +69,11 @@ import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.uml2.codegen.ecore.genmodel.util.UML2GenModelUtil;
@@ -269,9 +270,8 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 				if (resourceSet == null) {
 					throw new NullPointerException("No ResourceSet for genmodel");
 				}
-				MetamodelManager metamodelManager = MetamodelManager.findAdapter(resourceSet);
-				EnvironmentFactoryResourceSetAdapter adapter = EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, metamodelManager != null ? metamodelManager.getEnvironmentFactory() : null);
-				metamodelManager = adapter.getMetamodelManager();
+				EnvironmentFactoryAdapter adapter = OCL.adapt(resourceSet);
+				MetamodelManager metamodelManager = adapter.getMetamodelManager();
 				convertConstraintsToOperations(metamodelManager, genModel);
 			    Map<String, String> results = createFeatureBodies(genModel);			
 				installJavaBodies(metamodelManager, genModel, results);

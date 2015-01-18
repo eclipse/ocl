@@ -45,7 +45,6 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.resource.ASSaver;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
@@ -213,7 +212,7 @@ public abstract class GenerateOCLmetamodel extends GenerateOCLCommonXtend
 		    }
 			NameQueries.setMetamodelManager(metamodelManager);
 			Resource ecoreResource = ClassUtil.nonNullState(asResourceSet.getResource(inputURI, true));
-			MetamodelManagerResourceAdapter.getAdapter(ecoreResource, metamodelManager);
+			ocl.getEnvironmentFactory().adapt(ecoreResource);
 			String ecoreErrorsString = PivotUtil.formatResourceDiagnostics(ClassUtil.nonNullEMF(ecoreResource.getErrors()), "Loading " + inputURI, "\n");
 			if (ecoreErrorsString != null) {
 				issues.addError(this, ecoreErrorsString, null, null, null);

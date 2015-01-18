@@ -56,9 +56,16 @@ public interface BaseCSResource extends CSResource
 	@NonNull MetamodelManager createMetamodelManager();
 
 	/**
-	 * Return the CS2AS adapter for this resource, or null if none installed.
+	 * Dispose of this CSResource and its conversion facilities. This frees up resources after conversion to AS but loses the
+	 * required source visibility for debugging.
 	 */
-	@Nullable CS2ASResourceAdapter findCS2ASAdapter();
+	void dispose();
+
+	/**
+	 * Return the CS2AS adapter for this resource, or null if none in use.
+	 */
+
+	@Nullable CS2AS findCS2AS();
 
 	/**
 	 * Return the eContentType to be used when creating an AS resource.
@@ -77,8 +84,7 @@ public interface BaseCSResource extends CSResource
 	 * If no CS2AS adapter installed, one is created and installed using the provided metamodelManager,
 	 * which if null is also created. 
 	 */
-	@NonNull CS2ASResourceAdapter getCS2ASAdapter(@NonNull EnvironmentFactoryInternal environmentFactory);
-	@NonNull CS2ASResourceAdapter getCS2ASAdapter(@Nullable ASResource asResource, @NonNull EnvironmentFactoryInternal environmentFactory);
+	@NonNull CS2AS getCS2AS(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull ASResource asResource);
 	
 	/**
 	 * Return the name of the editor for use in diagnostics.
@@ -98,4 +104,5 @@ public interface BaseCSResource extends CSResource
 	@NonNull URI resolve(@NonNull URI uri);
 
 	void update(@NonNull IDiagnosticConsumer diagnosticsConsumer);
+
 }

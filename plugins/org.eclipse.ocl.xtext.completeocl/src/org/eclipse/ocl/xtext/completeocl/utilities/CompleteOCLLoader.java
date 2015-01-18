@@ -183,7 +183,7 @@ public abstract class CompleteOCLLoader
 			error("Failed to load '" + oclURI, message);
 			return null;
 		}
-		Resource asResource = xtextResource.getASResource(ocl.getEnvironmentFactory());
+		Resource asResource = xtextResource.getASResource();
 		errors = asResource.getErrors();
 		assert errors != null;
 		message = PivotUtil.formatResourceDiagnostics(errors, "", "\n");

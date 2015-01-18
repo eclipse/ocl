@@ -70,7 +70,7 @@ public class CompleteOCLASResourceFactory extends AbstractASResourceFactory
 
 	@Override
 	public @Nullable Element importFromResource(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Resource resource, @Nullable URI uri) {
-		Resource asResource = resource instanceof ASResource ? resource : ((CompleteOCLCSResource)resource).getASResource(environmentFactory);
+		Resource asResource = resource instanceof ASResource ? resource : ((CompleteOCLCSResource)resource).getASResource();
 		List<EObject> contents = asResource.getContents();
 		if (contents.size() <= 0) {
 			return null;

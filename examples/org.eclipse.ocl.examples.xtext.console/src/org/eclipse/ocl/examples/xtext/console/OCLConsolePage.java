@@ -63,7 +63,7 @@ import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.context.ClassContext;
-import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.CSResource;
@@ -80,7 +80,6 @@ import org.eclipse.ocl.pivot.values.Value;
 import org.eclipse.ocl.xtext.base.ui.model.BaseDocument;
 import org.eclipse.ocl.xtext.base.ui.utilities.BaseUIUtil;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.xtext.essentialocl.utilities.EssentialOCLCSResource;
 import org.eclipse.ocl.xtext.essentialocl.utilities.EssentialOCLPlugin;
 import org.eclipse.osgi.util.NLS;
@@ -613,8 +612,7 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 	    return ret;
 	}
 
-    private void createEditor(Composite s1) {
-		
+    protected @Nullable EnvironmentFactoryAdapter createEditor(Composite s1) {
 		Composite client = s1; //new Composite(s1, SWT.NULL);
 		Injector injector = XtextConsolePlugin.getInstance().getInjector(EssentialOCLPlugin.LANGUAGE_ID);
 		Composite editorComposite = client; //new Composite(client, SWT.NULL);
@@ -656,6 +654,9 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
 		data.heightHint= convertHeightInCharsToPixels(1);
 		editorComposite.setLayoutData(data);
+		
+		ResourceSet resourceSet = editor.getResourceSet();
+		return resourceSet != null ? OCL.find(resourceSet) : null;
 	}
 	
 	/**
@@ -854,10 +855,7 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 	            	contextObject = null;
 	            }
 		    	if (resource instanceof BaseCSResource) {
-		    		CS2ASResourceAdapter cs2asAdapter = ((BaseCSResource)resource).findCS2ASAdapter();
-		    		if (cs2asAdapter != null) {
-		    			cs2asAdapter.dispose();
-		    		}
+		    		((BaseCSResource)resource).dispose();
 		    	}
 		    	
 			    MetamodelManager metamodelManager = getMetamodelManager(contextObject);
@@ -876,11 +874,11 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 			    EssentialOCLCSResource csResource = (EssentialOCLCSResource) resource;
 			    if (csResource != null) {
 					if (contextObject != null) {
-						csResource.getCS2ASAdapter(environmentFactory);
+						csResource.getCS2AS();
 					}
 					ResourceSet resourceSet = editor.getResourceSet();
 					if (resourceSet != null) {
-						EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, environmentFactory);
+						environmentFactory.adapt(resourceSet);
 					}
 			        csResource.setParserContext(parserContext);
 			    }

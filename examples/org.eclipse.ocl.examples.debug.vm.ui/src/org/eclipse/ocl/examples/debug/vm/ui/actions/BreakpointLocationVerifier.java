@@ -31,8 +31,8 @@ import org.eclipse.ocl.examples.debug.vm.utils.LineNumberProvider;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.texteditor.IDocumentProvider;
@@ -124,9 +124,9 @@ class BreakpointLocationVerifier {
 			public Model exec(@Nullable XtextResource state) throws Exception {
 				if (state instanceof BaseCSResource) {
 					BaseCSResource csResource = (BaseCSResource)state;
-					CS2ASResourceAdapter cs2asAdapter = csResource.findCS2ASAdapter();
-					if (cs2asAdapter != null) {
-						ASResource asResource = cs2asAdapter.getASResource();
+					CS2AS cs2as = csResource.findCS2AS();
+					if (cs2as != null) {
+						ASResource asResource = cs2as.getASResource();
 						if ((asResource != null) && (asResource.getContents().size() > 0)) {
 							EObject eObject = asResource.getContents().get(0);
 							if (eObject instanceof Model) {

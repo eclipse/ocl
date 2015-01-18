@@ -29,7 +29,6 @@ import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.internal.library.StandardLibraryContribution;
-import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
@@ -132,7 +131,7 @@ public class LibraryCSAttribution extends AbstractAttribution implements Unresol
 			List<EObject> importedElements = new ArrayList<EObject>();
 			ResourceSet csResourceSet = ClassUtil.nonNullState(csResource.getResourceSet());
 			EnvironmentFactory environmentFactory = environmentView.getEnvironmentFactory();
-			EnvironmentFactoryResourceSetAdapter.getAdapter(csResourceSet, environmentFactory);
+			environmentFactory.adapt(csResourceSet);
 			try {
 				Resource importedResource = csResourceSet.createResource(uri2);
 				AbstractJavaClassScope outerClassScope = AbstractJavaClassScope.findAdapter(csResource);

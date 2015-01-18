@@ -30,9 +30,10 @@ import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreTables;
-import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 /**
@@ -67,7 +68,7 @@ public class Model2tablesGenerator extends AbstractWorkflowComponent
 		log.info("Loading Gen Model '" + genModelURI);
 		ResourceSet resourceSet = getResourceSet();
 		if (genOCLstdlib) {
-			final EnvironmentFactoryResourceSetAdapter adapter = EnvironmentFactoryResourceSetAdapter.findAdapter(resourceSet);
+			final EnvironmentFactoryAdapter adapter = OCL.find(resourceSet);
 			if (adapter != null) {
 				adapter.getMetamodelManager().setLibraryLoadInProgress(true);
 			}

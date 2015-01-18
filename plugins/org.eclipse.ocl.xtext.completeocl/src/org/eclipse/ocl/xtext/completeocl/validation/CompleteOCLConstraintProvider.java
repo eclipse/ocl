@@ -105,7 +105,7 @@ public class CompleteOCLConstraintProvider extends LoadableConstraintProvider
 			logger.error("Failed to load '" + uri + message);
 			return false;
 		}
-		Resource asResource = xtextResource.getASResource(environmentFactory);
+		Resource asResource = xtextResource.getASResource();
 		return installResource(asResource, categories);
 	}
 }

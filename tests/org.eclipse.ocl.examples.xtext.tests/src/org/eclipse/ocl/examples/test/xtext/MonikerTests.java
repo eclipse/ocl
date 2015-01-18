@@ -22,9 +22,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.ecore.Ecore2Moniker;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.xtext.oclstdlib.scoping.JavaClassScope;
 
 /**
@@ -162,6 +161,7 @@ public class MonikerTests extends XtextTestCase
 
 	@SuppressWarnings("null")
 	public void doMonikerTestOCLstdlib(String stem) throws IOException {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		//
 		//	Load the CS resource and check for load failures
 		//
@@ -179,8 +179,7 @@ public class MonikerTests extends XtextTestCase
 		//
 		//	Get the pivot resource and check for load failures
 		//
-		CS2ASResourceAdapter adapter = csResource.getCS2ASAdapter(null);
-		Resource asResource = adapter.getASResource();		
+		Resource asResource = csResource.getASResource();		
 		assertNoValidationErrors("Pivot validation problems", asResource);
 		asResource.setURI(pivotURI);
 		asResource.save(null);
@@ -190,7 +189,7 @@ public class MonikerTests extends XtextTestCase
 //		Map<String, MonikeredElementCS> csMonikerMap = checkCSMonikers(csResource);
 //		checkCShasPivots(csResource, csMonikerMap);
 //		checkCSandPivotMonikers(csMonikerMap);
-		MetamodelManager metamodelManager = adapter.getMetamodelManager();
+//		MetamodelManager metamodelManager = adapter.getMetamodelManager();
 //		Map<String, MonikeredElement> pivotMonikerMap = checkPivotMonikers(metamodelManager.getPivotResourceSet());
 /*		{
 			StringBuilder s = null;
@@ -227,8 +226,7 @@ public class MonikerTests extends XtextTestCase
 			}
 		} */
 //		assertEquals(csMonikerMap.size(), pivotMonikerMap.size());
-		adapter.dispose();
-		metamodelManager.dispose();
+		ocl.dispose();
 	}
 
 	public void testMoniker_Ecore_ecore() throws IOException, InterruptedException {

@@ -44,7 +44,6 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.resource.OCLASResourceFactory;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.resource.ASResource;
@@ -260,7 +259,7 @@ public abstract class BaseDocumentProvider extends XtextDocumentProvider
 	@Override
 	protected void loadResource(XtextResource resource, String document, String encoding) throws CoreException {
 		assert resource != null;
-		MetamodelManagerResourceAdapter.getAdapter(resource, getOCL().getMetamodelManager());
+		getOCL().getEnvironmentFactory().adapt(resource);
 		super.loadResource(resource, document, encoding);
 	}
 

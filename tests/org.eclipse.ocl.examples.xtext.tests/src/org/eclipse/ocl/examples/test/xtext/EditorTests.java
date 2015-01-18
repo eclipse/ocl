@@ -45,7 +45,7 @@ import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
-import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
+import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.PivotDiagnosticConverter;
 import org.eclipse.ocl.xtext.base.utilities.PivotResourceValidator;
 import org.eclipse.ocl.xtext.completeocl.ui.CompleteOCLUiModule;
@@ -210,7 +210,7 @@ public class EditorTests extends XtextTestCase
 			@Override
 			public Object exec(@Nullable XtextResource resource) throws Exception {
 //				assertNoResourceErrors("Loaded CS", resource);
-				CS2ASResourceAdapter cs2as = ClassUtil.getAdapter(CS2ASResourceAdapter.class, resource);
+				CS2AS cs2as = ((BaseCSResource)resource).getCS2AS();
 				if (cs2as != null) {
 					Resource asResource = cs2as.getASResource();
 					assertNoResourceErrors(prefix, asResource);

@@ -27,16 +27,16 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.internal.context.EInvocationContext;
 import org.eclipse.ocl.pivot.internal.context.EObjectContext;
-import org.eclipse.ocl.pivot.internal.manager.AbstractMetamodelManagerResourceAdapter;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.scoping.Attribution;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.xtext.base.attributes.RootCSAttribution;
+import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.ui.BaseUiModule;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.basecs.ElementCS;
 import org.eclipse.xtext.resource.XtextResource;
@@ -90,7 +90,7 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 				@Override
 				public MetamodelManager exec(@Nullable XtextResource resource) throws Exception {
 					if (resource != null) {
-						AbstractMetamodelManagerResourceAdapter adapter = MetamodelManagerResourceAdapter.findAdapter(resource);
+						EnvironmentFactoryAdapter adapter = OCL.find(resource);
 						if (adapter != null) {
 							return adapter.getMetamodelManager();
 						}
@@ -143,11 +143,11 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 						return null;
 					}
 					BaseCSResource csResource = (BaseCSResource)resource;
-					CS2ASResourceAdapter adapter = csResource.findCS2ASAdapter();
-					if (adapter == null) {
+					CS2AS cs2as = csResource.findCS2AS();
+					if (cs2as  == null) {
 						return null;
 					}
-					ASResource asResource = adapter.getASResource();
+					ASResource asResource = cs2as.getASResource();
 					checkForErrors(asResource);
 					return asResource;
 				}

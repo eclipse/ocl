@@ -79,9 +79,8 @@ import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.internal.PackageImpl;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
-import org.eclipse.ocl.pivot.internal.manager.AbstractMetamodelManagerResourceAdapter;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
@@ -824,7 +823,7 @@ public class PivotUtil
 	 * @throws ParserException if eObject cannot be converted to a Pivot element
 	 */
 	public static boolean setParserContext(@NonNull CSResource csResource, @NonNull EObject eObject, Object... todoParameters) throws ParserException {
-		AbstractMetamodelManagerResourceAdapter adapter = MetamodelManagerResourceAdapter.getAdapter(csResource, null);
+		EnvironmentFactoryAdapter adapter = ClassUtil.nonNullState(OCL.adapt(csResource));
 		MetamodelManager metamodelManager = adapter.getMetamodelManager();
 		Element pivotElement = metamodelManager.getEnvironmentFactory().getParseableElement(eObject);
 		if (pivotElement == null) {

@@ -54,7 +54,7 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.context.ClassContext;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.AbstractMetamodelManagerResourceAdapter;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
@@ -74,7 +74,6 @@ import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.RealValue;
 import org.eclipse.ocl.pivot.values.Value;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.xtext.diagnostics.ExceptionDiagnostic;
 
 public class TestOCL extends OCL
@@ -123,7 +122,7 @@ public class TestOCL extends OCL
         	TestCase.fail(e.getMessage());
 		} finally {
 			if (resource != null) {
-				AbstractMetamodelManagerResourceAdapter.disposeAll(resource);
+				EnvironmentFactoryAdapter.disposeAll(resource);
 			}
 		}	   
     }
@@ -141,10 +140,8 @@ public class TestOCL extends OCL
 			ParserContext classContext = new ClassContext(getEnvironmentFactory(), null, contextType, null);
 			csResource = (BaseCSResource) classContext.createBaseResource(expression);
 			PivotUtil.checkResourceErrors(StringUtil.bind(PivotMessagesInternal.ErrorsInResource, expression), csResource);
-			CS2ASResourceAdapter cs2as = csResource.getCS2ASAdapter((EnvironmentFactoryInternal) getEnvironmentFactory());
-			Resource asResource = cs2as.getASResource();
+			Resource asResource = csResource.getASResource();
 			PivotTestSuite.assertNoValidationErrors("Validating", asResource);
-			
 			TestCase.fail("Should not have parsed \"" + expression + "\"");
 		} catch (ParserException e) {
 			TestCase.assertEquals("Exception for \"" + expression + "\"", exception, e.getClass());
@@ -156,9 +153,9 @@ public class TestOCL extends OCL
 			TestCase.fail(e.getMessage());
 		} finally {
 			if (csResource != null) {
-				AbstractMetamodelManagerResourceAdapter.disposeAll(csResource);
+				EnvironmentFactoryAdapter.disposeAll(csResource);
 			}
-		}	   
+		}
 	}
 	
 	/**
@@ -571,15 +568,14 @@ public class TestOCL extends OCL
 	 * resolved by bindings.
 	 * @throws IOException 
 	 */
-   public void assertValidationErrorQuery(@Nullable org.eclipse.ocl.pivot.Class contextType, @NonNull String expression,
+    public void assertValidationErrorQuery(@Nullable org.eclipse.ocl.pivot.Class contextType, @NonNull String expression,
 		   String messageTemplate, Object... bindings) {
 		BaseCSResource csResource = null;
 		try {
 	   		ParserContext classContext = new ClassContext(getEnvironmentFactory(), null, contextType, null);
 	   		csResource = (BaseCSResource) classContext.createBaseResource(expression);
 			PivotUtil.checkResourceErrors(StringUtil.bind(PivotMessagesInternal.ErrorsInResource, expression), csResource);
-			CS2ASResourceAdapter cs2as = csResource.getCS2ASAdapter((EnvironmentFactoryInternal) getEnvironmentFactory());
-			Resource asResource = ClassUtil.nonNullState(cs2as.getASResource());
+			Resource asResource = csResource.getASResource();
 	       	String expectedMessage = StringUtil.bind(messageTemplate, bindings);
 			PivotTestSuite.assertValidationDiagnostics("Validating", asResource, new String[] {expectedMessage});
 			PivotTestSuite.appendLog(testName, contextType, expression, expectedMessage, null, null);
@@ -587,12 +583,12 @@ public class TestOCL extends OCL
 			TestCase.fail(e.getMessage());
 		} finally {
 			if (csResource != null) {
-				AbstractMetamodelManagerResourceAdapter.disposeAll(csResource);
+				EnvironmentFactoryAdapter.disposeAll(csResource);
 			}
-		}	   
+		}
 	}
-   
-   public boolean check(Object context, @NonNull String expression) throws ParserException {
+
+    public boolean check(Object context, @NonNull String expression) throws ParserException {
 		MetamodelManager metamodelManager = getMetamodelManager();
 		org.eclipse.ocl.pivot.Class contextType = getContextType(context);
 		ExpressionInOCL constraint = createInvariant(contextType, expression);
@@ -607,7 +603,7 @@ public class TestOCL extends OCL
 		}
 	}
 
-   public void createDocument(String text) {
+    public void createDocument(String text) {
 		throw new UnsupportedOperationException();
 //		try {
 //			ocl.parse(new OCLInput(text));

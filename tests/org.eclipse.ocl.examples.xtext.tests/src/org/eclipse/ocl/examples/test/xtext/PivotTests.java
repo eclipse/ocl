@@ -26,7 +26,6 @@ import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.xtext.base.as2cs.AS2CS;
@@ -34,7 +33,6 @@ import org.eclipse.ocl.xtext.base.cs2as.BaseCS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.services.BaseLinkingService;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.xtext.oclinecore.as2cs.OCLinEcoreAS2CS;
 import org.eclipse.ocl.xtext.oclstdlib.cs2as.OCLstdlibCS2AS;
 import org.eclipse.ocl.xtext.oclstdlib.scoping.JavaClassScope;
@@ -175,9 +173,8 @@ public class PivotTests extends XtextTestCase
 	protected MetamodelManager metamodelManager = null;
 
 	@SuppressWarnings("null")
-	public BaseCSResource doLoadOCLstdlib(@NonNull String stem, @NonNull String extension) throws IOException {
-		resourceSet = new ResourceSetImpl();
-		MetamodelManager metamodelManager =  OCL.createEnvironmentFactory(getProjectMap()).getMetamodelManager();
+	public BaseCSResource doLoadOCLstdlib(@NonNull OCL ocl, @NonNull String stem, @NonNull String extension) throws IOException {
+		ResourceSet resourceSet = ocl.getResourceSet();
 //		CS2ASResourceSetAdapter.getAdapter(resourceSet, metamodelManager);
 //		long startTime = System.currentTimeMillis();
 //		System.out.println("Start at " + startTime);
@@ -190,7 +187,7 @@ public class PivotTests extends XtextTestCase
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(inputURI);
 		JavaClassScope.getAdapter(xtextResource, getClass().getClassLoader());
-		MetamodelManagerResourceAdapter.getAdapter(xtextResource, metamodelManager);
+		ocl.getEnvironmentFactory().adapt(xtextResource);
 		xtextResource.load(null);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " gotResource()");
 		assertNoResourceErrors("Load failed", xtextResource);
@@ -219,16 +216,16 @@ public class PivotTests extends XtextTestCase
 	}
 
 	@SuppressWarnings("null")
-	protected void doPivotTestOCLstdlib(@NonNull String stem) throws IOException {
+	protected void doPivotTestOCLstdlib(@NonNull OCL ocl, @NonNull String stem) throws IOException {
 		String pivotName = stem + PivotConstantsInternal.DOT_OCL_AS_FILE_EXTENSION;
 		URI pivotURI = getProjectFileURI(pivotName);
-		BaseCSResource csResource = doLoadOCLstdlib(stem, "oclstdlib");
+		BaseCSResource csResource = doLoadOCLstdlib(ocl, stem, "oclstdlib");
 		//
 		//	Create Pivot model from CS
 		//
-		CS2ASResourceAdapter adapter = csResource.findCS2ASAdapter();
-		Resource asResource = adapter.getASResource();
-		OCLstdlibCS2AS creator = (OCLstdlibCS2AS) adapter.getConverter();
+		CS2AS cs2as = csResource.findCS2AS();
+		Resource asResource = cs2as.getASResource();
+		OCLstdlibCS2AS creator = (OCLstdlibCS2AS) cs2as;
 		//
 		//	Check that Pivot model is ready for damage
 		//
@@ -260,9 +257,7 @@ public class PivotTests extends XtextTestCase
 //		damager.assertSameContents();
 		//
 		assertPivotIsValid(pivotURI);
-		MetamodelManager metamodelManager = adapter.getMetamodelManager();
-		adapter.dispose();
-		metamodelManager.dispose();
+		ocl.dispose();
 	}
 	
 	@SuppressWarnings("null")
@@ -361,8 +356,10 @@ public class PivotTests extends XtextTestCase
 	}
 
 	public void testPivot_oclstdlib_oclstdlib() throws IOException, InterruptedException {
+		OCL ocl = OCL.newInstance(getProjectMap());
 		BaseLinkingService.DEBUG_RETRY.setState(true);
-		doPivotTestOCLstdlib("oclstdlib");
+		doPivotTestOCLstdlib(ocl, "oclstdlib");
+		ocl.dispose();
 	}
 
 //	public void testPivot_temp_oclstdlib() throws IOException, InterruptedException {

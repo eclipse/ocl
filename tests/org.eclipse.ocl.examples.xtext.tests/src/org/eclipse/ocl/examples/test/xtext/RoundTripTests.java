@@ -38,7 +38,6 @@ import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.delegate.DelegateInstaller;
 import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
@@ -52,7 +51,6 @@ import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS.MessageBinder;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
 import org.eclipse.ocl.xtext.completeocl.as2cs.CompleteOCLSplitter;
 import org.eclipse.ocl.xtext.oclinecorecs.OCLinEcoreCSPackage;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -83,10 +81,8 @@ public class RoundTripTests extends XtextTestCase
 		return asResource;
 	}
 	public ASResource createPivotFromXtext(@NonNull EnvironmentFactoryInternal environmentFactory, BaseCSResource xtextResource, int expectedContentCount) throws IOException {
-		CS2ASResourceAdapter adapter = null;
 		try {
-			adapter = xtextResource.getCS2ASAdapter(null);
-			ASResource asResource = adapter.getASResource();
+			ASResource asResource = xtextResource.getASResource();
 			assertNoResourceErrors("To Pivot errors", xtextResource);
 			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
 			List<EObject> pivotContents = asResource.getContents();
@@ -95,9 +91,7 @@ public class RoundTripTests extends XtextTestCase
 			return asResource;
 		}
 		finally {
-			if (adapter != null) {
-				adapter.dispose();
-			}
+			xtextResource.dispose();
 		}
 	}
 	public BaseCSResource createXtextFromPivot(@NonNull EnvironmentFactoryInternal environmentFactory, ASResource asResource, URI xtextURI) throws IOException {
@@ -146,7 +140,7 @@ public class RoundTripTests extends XtextTestCase
 			URI outputURI = inputURI.trimFileExtension().appendFileExtension("regenerated.ocl");
 			OCL.Internal ocl1 = OCL.Internal.newInstance(getProjectMap());
 			EnvironmentFactoryInternal environmentFactory1 = ocl1.getEnvironmentFactory();
-			EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, environmentFactory1);
+			environmentFactory1.adapt(resourceSet);
 			BaseCSResource xtextResource1 = createXtextFromURI(environmentFactory1, inputURI);
 			ASResource pivotResource1 = createPivotFromXtext(environmentFactory1, xtextResource1, 1);
 			ASResource pivotResource2 = CompleteOCLSplitter.separate(environmentFactory1, pivotResource1);
@@ -260,7 +254,7 @@ public class RoundTripTests extends XtextTestCase
 		URI ecoreURI = getProjectFileURI(ecoreName);
 		URI outputURI = getProjectFileURI(outputName);
 
-		EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, environmentFactory1);
+		environmentFactory1.adapt(resourceSet);
 		BaseCSResource xtextResource1 = createXtextFromURI(environmentFactory1, inputURI);
 		ASResource pivotResource1 = createPivotFromXtext(environmentFactory1, xtextResource1, 1);
 		Resource ecoreResource = createEcoreFromPivot(environmentFactory1, pivotResource1, ecoreURI);

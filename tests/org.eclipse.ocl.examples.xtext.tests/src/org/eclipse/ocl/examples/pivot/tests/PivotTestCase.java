@@ -61,9 +61,7 @@ import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.delegate.ValidationDelegate;
 import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
-import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
@@ -455,12 +453,11 @@ public class PivotTestCase extends TestCase
 	}
 	
 	public static @NonNull Resource cs2ecore(@NonNull OCL ocl, @NonNull String testDocument, @Nullable URI ecoreURI) throws IOException {
-		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		InputStream inputStream = new URIConverter.ReadableInputStream(testDocument, "UTF-8");
 		URI xtextURI = URI.createURI("test.oclinecore");
 		ResourceSet resourceSet = new ResourceSetImpl();
 		EssentialOCLCSResource xtextResource = ClassUtil.nonNullState((EssentialOCLCSResource) resourceSet.createResource(xtextURI, null));
-		MetamodelManagerResourceAdapter.getAdapter(xtextResource, metamodelManager);
+		ocl.getEnvironmentFactory().adapt(xtextResource);
 		xtextResource.load(inputStream, null);
 		assertNoResourceErrors("Loading Xtext", xtextResource);
 		Resource asResource = cs2as(ocl, xtextResource, null);
@@ -469,12 +466,11 @@ public class PivotTestCase extends TestCase
 	}
 	
 	public static @NonNull Resource cs2as(@NonNull OCL ocl, @NonNull String testDocument) throws IOException {
-		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		InputStream inputStream = new URIConverter.ReadableInputStream(testDocument, "UTF-8");
 		URI xtextURI = URI.createURI("test.oclinecore");
 		ResourceSet resourceSet = new ResourceSetImpl();
 		EssentialOCLCSResource xtextResource = ClassUtil.nonNullState((EssentialOCLCSResource) resourceSet.createResource(xtextURI, null));
-		MetamodelManagerResourceAdapter.getAdapter(xtextResource, metamodelManager);
+		ocl.getEnvironmentFactory().adapt(xtextResource);
 		xtextResource.load(inputStream, null);
 		assertNoResourceErrors("Loading Xtext", xtextResource);
 		Resource asResource = cs2as(ocl, xtextResource, null);
@@ -616,7 +612,7 @@ public class PivotTestCase extends TestCase
 		if (projectMap != null) {
 			projectMap.unload(resourceSet);
 		}
-		EnvironmentFactoryResourceSetAdapter environmentFactoryAdapter = EnvironmentFactoryResourceSetAdapter.findAdapter(resourceSet);
+		EnvironmentFactoryAdapter environmentFactoryAdapter = OCL.find(resourceSet);
 		if (environmentFactoryAdapter != null) {
 			EnvironmentFactoryInternal environmentFactory = environmentFactoryAdapter.getMetamodelManager().getEnvironmentFactory();
 			projectMap = (StandaloneProjectMap) environmentFactory.basicGetProjectManager();

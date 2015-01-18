@@ -29,7 +29,8 @@ import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryAdapter;
+import org.eclipse.ocl.pivot.utilities.OCL;
 
 import com.google.common.base.Objects;
 
@@ -136,6 +137,7 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 
 	@Override
 	protected void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor, Issues issues) {
+		OCL ocl = OCL.newInstance();
 		if (!isDefined(visitablePackageName)) {
 			visitablePackageName = visitorPackageName;
 		}
@@ -170,13 +172,14 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 			}
 			GenModel genModel2 = genModel = getGenModel(genModelResource);
 			genModel2.reconcile();
-			registerGenModel(genModel2);
+			registerGenModel(ocl, genModel2);
 			copyright = getCopyright(genModelResource);
 			sourceFile = genModelFile;
 			generateVisitors(genPackage);
 //		} catch (IOException e) {
 //			throw new RuntimeException("Problems running " + getClass().getSimpleName(), e);
 //		}
+		ocl.dispose();
 	}
 
 	protected boolean isDerived() {
@@ -193,9 +196,9 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 	}
 
 	
-	private void registerGenModel(@NonNull GenModel genModel) {
+	private void registerGenModel(@NonNull OCL ocl, @NonNull GenModel genModel) {
 		@SuppressWarnings("null")@NonNull ResourceSet resourceSet2 = resourceSet;
-		EnvironmentFactoryResourceSetAdapter adapter = EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet2, null); // We prepare the mManager for the whole resourceSet
+		EnvironmentFactoryAdapter adapter = OCL.adapt(resourceSet2); // We prepare the mManager for the whole resourceSet
 		MetamodelManager metamodelManager = adapter.getMetamodelManager();
 		metamodelManager.addGenModel(genModel);
 		for (@SuppressWarnings("null")@NonNull GenPackage usedGenPackage : genModel.getUsedGenPackages()) {

@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -38,9 +39,11 @@ import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryResourceSetAdapter;
+import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
+import org.eclipse.ocl.pivot.internal.resource.ASResourceImpl;
+import org.eclipse.ocl.pivot.internal.resource.AbstractASResourceFactory;
 import org.eclipse.ocl.pivot.internal.utilities.IllegalLibraryException;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
@@ -54,8 +57,7 @@ import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.ImportDiagnostic;
 import org.eclipse.ocl.xtext.base.cs2as.LibraryDiagnostic;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter;
-import org.eclipse.ocl.xtext.base.utilities.CS2ASResourceAdapter.TransientASResource;
+import org.eclipse.ocl.xtext.base.utilities.CSI2ASMapping;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.basecs.ElementCS;
 import org.eclipse.ocl.xtext.basecs.PathElementCS;
@@ -116,6 +118,40 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 		@Override
 		protected INode getNode() {
 			return error;
+		}
+	}
+
+	public static class TransientASResourceFactory extends AbstractASResourceFactory
+	{
+		public static @NonNull TransientASResourceFactory INSTANCE = new TransientASResourceFactory();
+		
+		public TransientASResourceFactory() {
+			super("transient");
+		}
+
+		@Override
+		public @NonNull ASResourceFactory getASResourceFactory() {
+			return INSTANCE;
+		}
+	}
+
+	/**
+	 * A TransientASResource acts as the ASResource while parsing the body of an ExpressionInOCL. It enables
+	 * the parsing to behave as if it has a Resource within a ResourceSet without disturbing the REsourceSet
+	 * which may provoke Bug 451268.
+	 */
+	public static class TransientASResource extends ASResourceImpl
+	{
+		protected final @NonNull ResourceSet asResourceSet;
+
+		public TransientASResource(@NonNull ResourceSet asResourceSet, @NonNull URI asURI) {
+			super(asURI, TransientASResourceFactory.INSTANCE);
+			this.asResourceSet = asResourceSet;
+		}
+		
+		@Override
+		public @NonNull ResourceSet getResourceSet() {
+			return asResourceSet;
 		}
 	}
 
@@ -255,12 +291,21 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	public @NonNull MetamodelManager createMetamodelManager() {
 		ResourceSet resourceSet = getResourceSet();
 		if (resourceSet != null) {
-			EnvironmentFactoryResourceSetAdapter resourceSetAdapter = EnvironmentFactoryResourceSetAdapter.findAdapter(resourceSet);
+			EnvironmentFactoryAdapter resourceSetAdapter = OCL.find(resourceSet);
 			if (resourceSetAdapter != null) {
 				return resourceSetAdapter.getMetamodelManager();
 			}
 		}
 		return OCL.createEnvironmentFactory(projectMap).getMetamodelManager();
+	}
+
+	@Override
+	public void dispose() {
+		CS2AS cs2as = findCS2AS();
+		if (cs2as != null) {
+			cs2as.dispose();
+		}
+//		unload();
 	}
 
 	@Override
@@ -291,8 +336,33 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	}
 	
 	@Override
-	public final @Nullable CS2ASResourceAdapter findCS2ASAdapter() {
-		return ClassUtil.getAdapter(CS2ASResourceAdapter.class, this);
+	public final @Nullable CS2AS findCS2AS() {
+		EnvironmentFactoryInternal environmentFactory = null;
+		for (Adapter adapter : eAdapters()) {
+			if (adapter instanceof EnvironmentFactoryAdapter) {
+				environmentFactory = ((EnvironmentFactoryAdapter)adapter).getEnvironmentFactory();
+				break;
+			}
+		}
+		if (environmentFactory == null) {
+			ResourceSet resourceSet = getResourceSet();
+			if (resourceSet != null) {
+				for (Adapter adapter : resourceSet.eAdapters()) {
+					if (adapter instanceof EnvironmentFactoryAdapter) {
+						environmentFactory = ((EnvironmentFactoryAdapter)adapter).getEnvironmentFactory();
+						break;
+					}
+				}
+			}
+		}
+		if (environmentFactory == null) {
+			return null;
+		}
+		CSI2ASMapping csi2asMapping = CSI2ASMapping.basicGetCSI2ASMapping(environmentFactory);
+		if (csi2asMapping == null) {
+			return null;
+		}
+		return csi2asMapping.getCS2AS(this);
 	}
 	
 	@Override
@@ -301,117 +371,9 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	}
 
 	@Override
-	public @NonNull CS2AS getCS2AS() {
-		CS2ASResourceAdapter resourceAdapter = getCS2ASAdapter();
-		return resourceAdapter.getConverter();
-	}
-	
-/*	public final @NonNull CS2ASResourceAdapter getCS2ASAdapter(@Nullable ASResource asResource) {
-		CS2ASResourceAdapter adapter = ClassUtil.getAdapter(CS2ASResourceAdapter.class, this);
-		if (adapter == null) {
-			MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(this);					
-			if (metamodelManager == null) {
-				metamodelManager = createMetamodelManager();
-				ResourceSet csResourceSet = getResourceSet();
-				if (csResourceSet != null) {
-					EnvironmentFactoryResourceSetAdapter.getAdapter(csResourceSet, metamodelManager.getEnvironmentFactory());
-				}
-			}
-			ClassLoader classLoader = getClass().getClassLoader();
-			if (classLoader != null) {
-				metamodelManager.addClassLoader(classLoader);
-			}
-			@SuppressWarnings("null")@NonNull Registry resourceFactoryRegistry = metamodelManager.getASResourceSet().getResourceFactoryRegistry();
-			initializeResourceFactory(resourceFactoryRegistry);
-			EnvironmentFactoryInternal environmentFactory = metamodelManager.getEnvironmentFactory();
-			adapter = getPseudoAdapter(asResource, environmentFactory);
-		}
-		return adapter;
-	} */
-	
-	@Override
-	public final @NonNull CS2ASResourceAdapter getCS2ASAdapter(@Nullable ASResource asResource, @NonNull EnvironmentFactoryInternal environmentFactory) {
-		CS2ASResourceAdapter adapter = ClassUtil.getAdapter(CS2ASResourceAdapter.class, this);
-		if (adapter == null) {
-			@SuppressWarnings("null")@NonNull Registry resourceFactoryRegistry = environmentFactory.getMetamodelManager().getASResourceSet().getResourceFactoryRegistry();
-			initializeResourceFactory(resourceFactoryRegistry);
-			if (asResource == null) {
-				final ResourceSet asResourceSet = environmentFactory.getMetamodelManager().getASResourceSet();
-				asResource = createASResource(asResourceSet);
-			}
-			adapter = getPseudoAdapter(asResource, environmentFactory);
-		}
-		return adapter;
-	}
-	
-	@Override
-	public final @NonNull CS2ASResourceAdapter getCS2ASAdapter(@NonNull EnvironmentFactoryInternal environmentFactory) {
-		return getCS2ASAdapter(null, environmentFactory);
-	}
-	
-	private @NonNull CS2ASResourceAdapter getCS2ASAdapter() {
-		MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(this);					
-		if (metamodelManager == null) {
-			metamodelManager = createMetamodelManager();
-//			ResourceSet csResourceSet = getResourceSet();
-//			if (csResourceSet != null) {
-//				EnvironmentFactoryResourceSetAdapter.getAdapter(csResourceSet, metamodelManager.getEnvironmentFactory());
-//			}
-		}
-		EnvironmentFactoryInternal environmentFactory = metamodelManager.getEnvironmentFactory();
-		ResourceSet csResourceSet = getResourceSet();
-		if (csResourceSet != null) {
-			EnvironmentFactoryResourceSetAdapter.getAdapter(csResourceSet, environmentFactory);
-		}
-		ClassLoader classLoader = getClass().getClassLoader();
-		if (classLoader != null) {
-			metamodelManager.addClassLoader(classLoader);
-		}
-		ResourceSet asResourceSet = metamodelManager.getASResourceSet();
-		@SuppressWarnings("null")@NonNull Registry resourceFactoryRegistry = asResourceSet.getResourceFactoryRegistry();
-		initializeResourceFactory(resourceFactoryRegistry);
-		ASResource asResource = createASResource(asResourceSet);
-		CS2ASResourceAdapter adapter = getPseudoAdapter(asResource, environmentFactory);
-		return adapter;
-	}
-
-	private @NonNull CS2ASResourceAdapter getPseudoAdapter(@NonNull ASResource asResource, @NonNull EnvironmentFactoryInternal environmentFactory) {
-		environmentFactory.getProjectManager();					// Ensures ProjectMap is notified of loaded resources
-		CS2AS converter = createCS2AS(environmentFactory, asResource);
-		CS2ASResourceAdapter adapter = new CS2ASResourceAdapter(this, environmentFactory, converter);
-		eAdapters().add(adapter);
-/*		boolean gotIt = false;
-		for (Adapter adapter : eAdapters()) {
-			if (adapter instanceof MetamodelManagerResourceAdapter) {
-				gotIt = true;
-			}
-		}
-		if (adapter == null) {
-			
-		} */
-		return adapter;
-	}
-
-	@Override
-	public @NonNull String getEditorName() {
-		return "Essential OCL";
-	}
-
-	@Override
-	public final @Nullable ParserContext getParserContext() {
-		return parserContext;
-	}
-
-	@Override
 	public final @NonNull ASResource getASResource() {
-		CS2ASResourceAdapter adapter = getCS2ASAdapter();
-		ASResource asResource = adapter.getASResource();
-		return asResource;
-	}
-	@Override
-	public final @NonNull ASResource getASResource(@NonNull EnvironmentFactory environmentFactory) {
-		CS2ASResourceAdapter adapter = getCS2ASAdapter((EnvironmentFactoryInternal) environmentFactory);
-		ASResource asResource = adapter.getASResource();
+		CS2AS cs2as = getCS2AS();
+		ASResource asResource = cs2as.getASResource();
 		return asResource;
 	}
 
@@ -427,10 +389,69 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	}
 
 	@Override
+	public @NonNull CS2AS getCS2AS() {
+		CS2AS cs2as = findCS2AS();
+		if (cs2as != null) {
+			return cs2as;
+		}
+		MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(this);					
+		if (metamodelManager == null) {
+			metamodelManager = createMetamodelManager();
+		}
+		EnvironmentFactoryInternal environmentFactory = metamodelManager.getEnvironmentFactory();
+		ResourceSet csResourceSet = getResourceSet();
+		if (csResourceSet != null) {
+			environmentFactory.adapt(csResourceSet);
+		}
+		ClassLoader classLoader = getClass().getClassLoader();
+		if (classLoader != null) {
+			metamodelManager.addClassLoader(classLoader);
+		}
+		ResourceSet asResourceSet = metamodelManager.getASResourceSet();
+		@SuppressWarnings("null")@NonNull Registry resourceFactoryRegistry = asResourceSet.getResourceFactoryRegistry();
+		initializeResourceFactory(resourceFactoryRegistry);
+		ASResource asResource = createASResource(asResourceSet);
+		environmentFactory.getProjectManager();					// Ensures ProjectMap is notified of loaded resources
+		cs2as = createCS2AS(environmentFactory, asResource);
+		return cs2as;
+	}
+	
+	@Override
+	public final @NonNull CS2AS getCS2AS(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull ASResource asResource) {
+		@SuppressWarnings("null")@NonNull Registry resourceFactoryRegistry = environmentFactory.getMetamodelManager().getASResourceSet().getResourceFactoryRegistry();
+		initializeResourceFactory(resourceFactoryRegistry);
+		environmentFactory.getProjectManager();					// Ensures ProjectMap is notified of loaded resources
+		CS2AS cs2as = findCS2AS();
+		assert cs2as == null;
+//		if (cs2as == null) {
+			cs2as = createCS2AS(environmentFactory, asResource);
+//		}
+		return cs2as;
+	}
+
+/*	private @NonNull CS2AS getPseudoAdapter(@NonNull ASResource asResource, @NonNull EnvironmentFactoryInternal environmentFactory) {
+		environmentFactory.getProjectManager();					// Ensures ProjectMap is notified of loaded resources
+		CS2AS cs2as = findCS2AS();
+		if (cs2as == null) {
+			cs2as = createCS2AS(environmentFactory, asResource);
+		}
+		return cs2as;
+	} */
+
+	@Override
+	public @NonNull String getEditorName() {
+		return "Essential OCL";
+	}
+
+	@Override
+	public final @Nullable ParserContext getParserContext() {
+		return parserContext;
+	}
+
+	@Override
 	public @NonNull EnvironmentFactory getEnvironmentFactory() {
-		CS2ASResourceAdapter csAdapter = getCS2ASAdapter();
-		MetamodelManager metamodelManager = csAdapter.getMetamodelManager();
-		return metamodelManager.getEnvironmentFactory();
+		CS2AS csAdapter = getCS2AS();
+		return csAdapter.getEnvironmentFactory();
 	}
 
 	@Override

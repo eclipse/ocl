@@ -53,7 +53,7 @@ public class CompleteOCLASResourceImpl extends ASResourceImpl
 		MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(this);
 		BaseCSResource csResource = (BaseCSResource) metamodelManager.getExternalResourceSet().createResource(oclURI);
 		assert csResource != null;
-		csResource.getCS2ASAdapter(this, metamodelManager.getEnvironmentFactory());
+		csResource.getCS2AS(metamodelManager.getEnvironmentFactory(), this);
 		csResource.load(null);
 		super.load(options);
 	}

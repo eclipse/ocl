@@ -26,6 +26,7 @@ public class ConsoleTests extends AbstractConsoleTests
 	}
 
 	public void zztestConsole_debugger() throws Exception {
+//		OCL ocl = consolePage.getOCL();
 //		VMVirtualMachine.LOCATION.setState(true);
 //		VMVirtualMachine.PRE_VISIT.setState(true);
 //		VMVirtualMachine.POST_VISIT.setState(true);
@@ -42,5 +43,6 @@ public class ConsoleTests extends AbstractConsoleTests
 		IThread vmThread = debugTarget.getThreads()[0];
 		vmThread.stepInto();
 		waitForLaunchToTerminate(launch);
+//		ocl.dispose();
 	}
 }
