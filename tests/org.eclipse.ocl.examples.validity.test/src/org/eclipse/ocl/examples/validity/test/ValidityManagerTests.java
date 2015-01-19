@@ -111,14 +111,15 @@ public class ValidityManagerTests extends AbstractValidityTestCase
 
 	@Test
 	public void testValidityManagerSetInput() {
+		int resourcesCount = 7;	// Loaded(3 *.ecore, 2 *.ocl), Synthesized(2 *.ocl.ecore) 
 		validityManager.getModel().getResources().clear();
 		assertEquals((Integer) 0, (Integer) validityManager.getModel().getResources().size());
 		EObject eObject = ecoreResource2.getContents().get(0);
 		validityManager.setInput(eObject);
-		assertEquals((Integer) 5, (Integer) validityManager.getModel().getResources().size());
+		assertEquals((Integer) resourcesCount, (Integer) validityManager.getModel().getResources().size());
 		validityManager.getModel().getResources().clear();
 		assertEquals((Integer) 0, (Integer) validityManager.getModel().getResources().size());
 		validityManager.setInput(ecoreResource);
-		assertEquals((Integer) 5, (Integer) validityManager.getModel().getResources().size());
+		assertEquals((Integer) resourcesCount, (Integer) validityManager.getModel().getResources().size());
 	}
 }
