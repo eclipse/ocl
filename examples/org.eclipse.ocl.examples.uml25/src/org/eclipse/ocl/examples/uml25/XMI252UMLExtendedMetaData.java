@@ -23,7 +23,7 @@ public class XMI252UMLExtendedMetaData extends XMI2UMLExtendedMetaData
 	@Override
 	public EPackage getPackage(String namespace) {
 		if (namespace != null) {
-			if (XMI252UMLResourceFactoryImpl.UML_METAMODEL_2_5_NS_URI.equals(namespace)) {
+			if (XMI252UMLResourceFactoryImpl.MYUML_METAMODEL_2_5_NS_URI.equals(namespace)) {
 				return UMLPackage.eINSTANCE;
 			}
 			else if ("http://www.omg.org/spec/MOF/20131001".equals(namespace)) {

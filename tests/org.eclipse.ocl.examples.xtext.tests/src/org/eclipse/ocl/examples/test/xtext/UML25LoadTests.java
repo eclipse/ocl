@@ -14,7 +14,11 @@ import java.io.IOException;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.uml25.XMI252UMLResourceFactoryImpl;
 import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.XMI2UMLResource;
@@ -24,8 +28,16 @@ import org.eclipse.uml2.uml.resource.XMI2UMLResource;
  */
 @SuppressWarnings("null")
 public class UML25LoadTests extends LoadTests
-{		
-//	public void testLoad_UML_ecore() throws IOException, InterruptedException {
+{
+	public @NonNull OCL createOCL() {
+		UMLStandaloneSetup.init();
+		OCL ocl = OCL.newInstance(getProjectMap());
+		ResourceSet resourceSet = ocl.getMetamodelManager().getExternalResourceSet();
+		XMI252UMLResourceFactoryImpl.install(resourceSet, URI.createPlatformResourceURI("/org.eclipse.ocl.examples.uml25/model/", true));
+		return ocl;
+	}
+
+	//	public void testLoad_UML_ecore() throws IOException, InterruptedException {
 //		doLoadEcore(URI.createPlatformResourceURI("/org.eclipse.uml2.uml/model/UML.ecore", true));
 //	}
 	
@@ -35,7 +47,7 @@ public class UML25LoadTests extends LoadTests
 //	}
 	
 	public void testLoad_UML_2_5_Beta_PrimitiveTypes() throws IOException, InterruptedException, ParserException {
-		OCL ocl = OCL.newInstance(getProjectMap());
+		OCL ocl = createOCL();
 		EPackage.Registry.INSTANCE.put("http://www.omg.org/spec/UML/20120801", UMLPackage.eINSTANCE);
 //		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMLResourceFactoryImpl());
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", XMI2UMLResource.Factory.INSTANCE);
@@ -118,7 +130,7 @@ public class UML25LoadTests extends LoadTests
 	} */
 
 	public void testLoad_UML_2_5_Final_PrimitiveTypes() throws IOException, InterruptedException, ParserException {
-		OCL ocl = OCL.newInstance(getProjectMap());
+		OCL ocl = createOCL();
 		URI uml_2_5 = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.uml25/model/PrimitiveTypes.xmi", true);
 		doLoadUML(ocl, uml_2_5, true, true, true);
 		ocl.dispose();
@@ -140,42 +152,42 @@ public class UML25LoadTests extends LoadTests
 	} */
 	
 	public void testLoad_UML_2_5_Final_DC() throws IOException, InterruptedException, ParserException {
-		OCL ocl = OCL.newInstance(getProjectMap());
+		OCL ocl = createOCL();
 		URI uml_2_5 = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.uml25/model/DC.xmi", true);
 		doLoadUML(ocl, uml_2_5, true, true, true);
 		ocl.dispose();
 	}
 	
 	public void testLoad_UML_2_5_Final_DI() throws IOException, InterruptedException, ParserException {
-		OCL ocl = OCL.newInstance(getProjectMap());
+		OCL ocl = createOCL();
 		URI uml_2_5 = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.uml25/model/DI.xmi", true);
 		doLoadUML(ocl, uml_2_5, true, true, true);
 		ocl.dispose();
 	}
 	
 	public void testLoad_UML_2_5_Final_DG() throws IOException, InterruptedException, ParserException {
-		OCL ocl = OCL.newInstance(getProjectMap());
+		OCL ocl = createOCL();
 		URI uml_2_5 = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.uml25/model/DG.xmi", true);
 		doLoadUML(ocl, uml_2_5, true, true, true);
 		ocl.dispose();
 	}
 	
 	public void testLoad_UML_2_5_Final_UML() throws IOException, InterruptedException, ParserException {
-		OCL ocl = OCL.newInstance(getProjectMap());
+		OCL ocl = createOCL();
 		URI uml_2_5 = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.uml25/model/UML.xmi", true);
 		doLoadUML(ocl, uml_2_5, true, true, false);		// FIXME BUG 419132 eliminate last argument; always true
 		ocl.dispose();
 	}
 	
 	public void testLoad_UML_2_5_Final_UMLDI() throws IOException, InterruptedException, ParserException {
-		OCL ocl = OCL.newInstance(getProjectMap());
+		OCL ocl = createOCL();
 		URI uml_2_5 = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.uml25/model/UMLDI.xmi", true);
 		doLoadUML(ocl, uml_2_5, true, true, false);		// FIXME BUG 419132 eliminate last argument; always true
 		ocl.dispose();
 	}
 	
 	public void testLoad_UML_2_5_Final_StandardProfile() throws IOException, InterruptedException, ParserException {
-		OCL ocl = OCL.newInstance(getProjectMap());
+		OCL ocl = createOCL();
 		URI uml_2_5 = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.uml25/model/StandardProfile.xmi", true);
 		doLoadUML(ocl, uml_2_5, true, true, true);
 		ocl.dispose();

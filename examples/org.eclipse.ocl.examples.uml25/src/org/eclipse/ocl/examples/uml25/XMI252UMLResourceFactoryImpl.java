@@ -38,21 +38,21 @@ import org.eclipse.uml2.uml.resource.XMI2UMLResource;
 @SuppressWarnings("restriction")
 public class XMI252UMLResourceFactoryImpl extends XMI2UMLResourceFactoryImpl implements XMI2UMLResource.Factory
 {
-	private static final String UML_2_5_CONTENT_TYPE_IDENTIFIER = "org.omg.uml_2_5"; //$NON-NLS-1$
-	public static final String UML_METAMODEL_2_5_NS_URI = "http://www.omg.org/spec/UML/20131001";
+	private static final String MYUML_2_5_CONTENT_TYPE_IDENTIFIER = "org.omg.myuml_2_5"; //$NON-NLS-1$
+	public static final String MYUML_METAMODEL_2_5_NS_URI = "http://www.omg.org/spec/UML/20131001";
 
-	private static final ContentHandler OMG_2_5_CONTENT_HANDLER = new RootXMLContentHandlerImpl(
-		UML_2_5_CONTENT_TYPE_IDENTIFIER, new String[]{XMI2UMLResource.FILE_EXTENSION},
-		RootXMLContentHandlerImpl.XMI_KIND, UML_METAMODEL_2_5_NS_URI, null);
+	private static final ContentHandler MYOMG_2_5_CONTENT_HANDLER = new RootXMLContentHandlerImpl(
+			MYUML_2_5_CONTENT_TYPE_IDENTIFIER, new String[]{XMI2UMLResource.FILE_EXTENSION},
+		RootXMLContentHandlerImpl.XMI_KIND, MYUML_METAMODEL_2_5_NS_URI, null);
 
 	public static void install(@NonNull ResourceSet resourceSet, @NonNull URI uml25uri) {
 		URIConverter uriConverter = resourceSet.getURIConverter();
 		List<ContentHandler> contentHandlers = uriConverter.getContentHandlers();
-		if (!contentHandlers.contains(OMG_2_5_CONTENT_HANDLER)) {
-			contentHandlers.add(0, OMG_2_5_CONTENT_HANDLER);
+		if (!contentHandlers.contains(MYOMG_2_5_CONTENT_HANDLER)) {
+			contentHandlers.add(0, MYOMG_2_5_CONTENT_HANDLER);
 		}
 		resourceSet.getResourceFactoryRegistry().getContentTypeToFactoryMap().put(
-			UML_2_5_CONTENT_TYPE_IDENTIFIER, new XMI252UMLResourceFactoryImpl());
+				MYUML_2_5_CONTENT_TYPE_IDENTIFIER, new XMI252UMLResourceFactoryImpl());
 		Map<URI, URI> uriMap = uriConverter.getURIMap();
 		uriMap.put(URI.createURI("http://www.omg.org/spec/DD/20131001/"), uml25uri);
 		uriMap.put(URI.createURI("http://www.omg.org/spec/UML/20131001/"), uml25uri);
