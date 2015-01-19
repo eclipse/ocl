@@ -45,6 +45,7 @@ public class ValidityManagerTests extends AbstractValidityTestCase
 
 	@Before
 	public void setUp() throws Exception {
+		super.setUp();
 		initTestModels();
 		Set<Resource> newResources = new HashSet<Resource>();
 		newResources.add(ecoreResource);

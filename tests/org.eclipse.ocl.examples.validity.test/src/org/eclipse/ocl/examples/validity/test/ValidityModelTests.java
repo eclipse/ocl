@@ -116,6 +116,7 @@ public class ValidityModelTests extends AbstractValidityTestCase
 
 	@Before
 	public void setUp() throws Exception {
+		super.setUp();
 		initTestModels();
 		initValidityManager(EMFPlugin.IS_ECLIPSE_RUNNING ? null : new ValidityManager());
 	}

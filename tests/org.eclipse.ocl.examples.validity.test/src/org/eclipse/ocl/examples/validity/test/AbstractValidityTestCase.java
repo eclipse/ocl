@@ -39,7 +39,6 @@ import org.eclipse.ocl.examples.validity.locator.PivotConstraintLocator;
 import org.eclipse.ocl.examples.validity.locator.UMLConstraintLocator;
 import org.eclipse.ocl.examples.validity.test.ecoreTest.EcoreTestPackage;
 import org.eclipse.ocl.examples.validity.test.ecoreTest2.EcoreTest2Package;
-import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.validation.PivotEObjectValidator.ValidationAdapter;
@@ -190,7 +189,7 @@ public abstract class AbstractValidityTestCase extends TestCase
 		return false;
 	}
 
-	protected ResourceSet resourceSet;
+	protected OCL ocl;
 	protected Resource ecoreResource;
 	protected Resource ecoreResource2;
 	protected Resource ecoreResource3;
@@ -203,10 +202,57 @@ public abstract class AbstractValidityTestCase extends TestCase
 	protected ResultSet resultSet;
 
 	public void initTestModels() throws Exception {
-		OCL ocl = OCL.newInstance(getProjectMap());
-		resourceSet = ocl.getResourceSet(); //new ResourceSetImpl();
+		ResourceSet resourceSet = ocl.getResourceSet(); //new ResourceSetImpl();
 		// initialize all the needed resource factories to create ecore and ocl
 		// resources in the global registry.
+		// Plug the OCL validation mechanism.
+//		OCLDelegateDomain.initialize(resourceSet);
+
+		URI ecoreURI = getTestModelURI(ECORE_MODEL_NAME);
+		URI ecoreURI2 = getTestModelURI(ECORE_MODEL_NAME2);
+		URI ecoreURI3 = getTestModelURI(ECORE_MODEL_NAME3);
+		URI oclURI = getTestModelURI(OCL_CONSTRAINTS_MODEL);
+		URI oclURI2 = getTestModelURI(OCL_CONSTRAINTS_MODEL2);
+
+		ecoreResource = resourceSet.getResource(ecoreURI, true);
+		ecoreResource2 = resourceSet.getResource(ecoreURI2, true);
+		ecoreResource3 = resourceSet.getResource(ecoreURI3, true);
+
+		CompleteOCLLoader helper = new CompleteOCLLoader(ocl.getEnvironmentFactory())
+		{
+			@Override
+			protected boolean error(@NonNull String primaryMessage, @Nullable String detailMessage) {
+				return false;
+			}
+		};
+
+		oclResource = helper.loadResource(oclURI);
+		oclResource2 = helper.loadResource(oclURI2);
+		assertTrue(helper.loadMetamodels());
+		helper.installPackages();
+
+		validationAdapter = ValidationAdapter.findAdapter(resourceSet);
+		assertNotNull(validationAdapter);
+		helper.dispose();
+	}
+
+	protected void initValidityManager(@Nullable ValidityManager validityManager) {
+		if (validityManager == null) {
+			validityManager = new IDEValidityManager(new ValidityViewRefreshJob());
+		}
+		this.validityManager = validityManager;
+		validityManager.setInput(ocl.getResourceSet());
+		rootNode = validityManager.getRootNode();
+		validityModel = validityManager.getModel();
+		resultSet = validityModel.createResultSet(new NullProgressMonitor());
+	}
+
+	@Override
+	protected void setUp() throws Exception {
+		if (TEST_PROGRESS.isActive()) {
+			TEST_PROGRESS.println("-----Starting " + getClass().getSimpleName() + "." + getName() + "-----");
+		}
+		super.setUp();
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
 			CompleteOCLStandaloneSetup.doSetup();
 			EcoreTestPackage.eINSTANCE.getClass();
@@ -223,67 +269,20 @@ public abstract class AbstractValidityTestCase extends TestCase
 			ValidityManager.addConstraintLocator(null, EValidatorConstraintLocator.INSTANCE);
 			ValidityManager.addConstraintLocator(null, DelegateConstraintLocator.INSTANCE);
 		}
-		// Plug the OCL validation mechanism.
-		OCLDelegateDomain.initialize(resourceSet);
-
-		URI ecoreURI = getTestModelURI(ECORE_MODEL_NAME);
-		URI ecoreURI2 = getTestModelURI(ECORE_MODEL_NAME2);
-		URI ecoreURI3 = getTestModelURI(ECORE_MODEL_NAME3);
-		URI oclURI = getTestModelURI(OCL_CONSTRAINTS_MODEL);
-		URI oclURI2 = getTestModelURI(OCL_CONSTRAINTS_MODEL2);
-
-		ResourceSet resourceSet2 = ClassUtil.nonNullState(resourceSet);
-		ecoreResource = resourceSet2.getResource(ecoreURI, true);
-		ecoreResource2 = resourceSet2.getResource(ecoreURI2, true);
-		ecoreResource3 = resourceSet2.getResource(ecoreURI3, true);
-
-		CompleteOCLLoader helper = new CompleteOCLLoader(ocl.getEnvironmentFactory())
-		{
-			@Override
-			protected boolean error(@NonNull String primaryMessage, @Nullable String detailMessage) {
-				return false;
-			}
-		};
-
-		oclResource = helper.loadResource(oclURI);
-		oclResource2 = helper.loadResource(oclURI2);
-		assertTrue(helper.loadMetamodels());
-		helper.installPackages();
-
-		validationAdapter = ValidationAdapter.findAdapter(resourceSet2);
-		assertNotNull(validationAdapter);
-		helper.dispose();
-		ocl.dispose();
-	}
-
-	protected void initValidityManager(@Nullable ValidityManager validityManager) {
-		if (validityManager == null) {
-			validityManager = new IDEValidityManager(new ValidityViewRefreshJob());
-		}
-		this.validityManager = validityManager;
-		validityManager.setInput(resourceSet);
-		rootNode = validityManager.getRootNode();
-		validityModel = validityManager.getModel();
-		resultSet = validityModel.createResultSet(new NullProgressMonitor());
-	}
-
-	@Override
-	protected void setUp() throws Exception {
-		if (TEST_PROGRESS.isActive()) {
-			TEST_PROGRESS.println("-----Starting " + getClass().getSimpleName() + "." + getName() + "-----");
-		}
-		super.setUp();
+		ocl = OCL.newInstance(getProjectMap());
 	}
 
 	public void tearDown() throws Exception {
-		if (resourceSet != null) {
+/*		if (resourceSet != null) {
 			for (Resource resource : resourceSet.getResources()) {
 				resource.unload();
 			}
 			resourceSet.getResources().clear();
 			resourceSet = null;
 			TEST_PROGRESS.println("-resourceSet");
-		}
+		} */
+		ocl.dispose();
+		ocl = null;
 		validationAdapter = null;
 		rootNode = null;
 		ecoreResource = null;
