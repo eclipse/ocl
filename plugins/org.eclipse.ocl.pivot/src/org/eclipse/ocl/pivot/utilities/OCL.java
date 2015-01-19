@@ -53,6 +53,7 @@ import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerResourceAdapter;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.resource.AbstractProjectManager;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -70,6 +71,8 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
  */
 public class OCL
 {
+	public static final @NonNull ProjectManager NO_PROJECTS = AbstractProjectManager.NO_PROJECTS;
+
 	public static class Internal extends OCL
 	{
 		/**

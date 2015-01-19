@@ -269,7 +269,7 @@ public abstract class AbstractValidityTestCase extends TestCase
 			ValidityManager.addConstraintLocator(null, EValidatorConstraintLocator.INSTANCE);
 			ValidityManager.addConstraintLocator(null, DelegateConstraintLocator.INSTANCE);
 		}
-		ocl = OCL.newInstance(getProjectMap());
+		ocl = OCL.newInstance(OCL.NO_PROJECTS);
 	}
 
 	public void tearDown() throws Exception {
