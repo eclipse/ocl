@@ -40,6 +40,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityModel;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
@@ -282,24 +283,25 @@ public class UMLConstraintLocator extends AbstractPivotConstraintLocator
 		if (umlConstraint == null) {
 			return;
 		}
-		MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(umlConstraint);
-		if (metamodelManager == null) {
+		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.findEnvironmentFactory(umlConstraint);
+		if (environmentFactory == null) {
 			Resource eResource = umlConstraint.eResource();
 			if (eResource == null) {
 				return;
 			}
-			metamodelManager = PivotUtilInternal.getMetamodelManager(eResource);
+			environmentFactory = PivotUtilInternal.getEnvironmentFactory(eResource);
 		}
+		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		Severity severity = Severity.UNKNOWN;
 		try {
-			final org.eclipse.ocl.pivot.Constraint pivotConstraint = metamodelManager.getPivotOf(org.eclipse.ocl.pivot.Constraint.class, umlConstraint);
+			final org.eclipse.ocl.pivot.Constraint pivotConstraint = metamodelManager.getASOf(org.eclipse.ocl.pivot.Constraint.class, umlConstraint);
 			if (pivotConstraint == null) {
 				throw new ParserException("Failed to create pivot Constraint");
 			}
 			ResourceSet resourceSet = contextObject.eResource().getResourceSet();
 			if (resourceSet != null) {
 				ExpressionInOCL query = getQuery(metamodelManager, pivotConstraint);
-				EvaluationVisitor evaluationVisitor = createEvaluationVisitor(metamodelManager, query, contextObject, monitor);
+				EvaluationVisitor evaluationVisitor = createEvaluationVisitor(environmentFactory, query, contextObject, monitor);
 				ConstraintEvaluator<Diagnostic> constraintEvaluator = new AbstractConstraintLocator(metamodelManager, query, contextObject)
 				{
 					@Override

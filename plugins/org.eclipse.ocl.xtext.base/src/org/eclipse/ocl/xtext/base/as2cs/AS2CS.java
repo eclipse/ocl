@@ -73,6 +73,15 @@ public class AS2CS extends AbstractConversion
 		return new BaseReferenceVisitor(conversion);
 	}
 
+	public @Nullable Resource getASResource(@NonNull Resource csResource) {
+		return cs2asResourceMap.get(csResource);
+	}
+
+	public @NonNull Collection<? extends Resource> getASResources() {
+		@SuppressWarnings("null") @NonNull Collection<? extends Resource> values = cs2asResourceMap.values();
+		return values;
+	}
+
 	public @NonNull Collection<? extends BaseCSResource> getCSResources() {
 		@SuppressWarnings("null") @NonNull Set<? extends BaseCSResource> keySet = cs2asResourceMap.keySet();
 		return keySet;
@@ -82,15 +91,6 @@ public class AS2CS extends AbstractConversion
 		return factoryMap.get(eClass);
 	}
 
-	public @Nullable Resource getPivotResource(@NonNull Resource csResource) {
-		return cs2asResourceMap.get(csResource);
-	}
-
-	public @NonNull Collection<? extends Resource> getPivotResources() {
-		@SuppressWarnings("null") @NonNull Collection<? extends Resource> values = cs2asResourceMap.values();
-		return values;
-	}
-	
 	public void update() {
 		AS2CSConversion conversion = new AS2CSConversion(this);
 		for (BaseCSResource csResource : getCSResources()) {

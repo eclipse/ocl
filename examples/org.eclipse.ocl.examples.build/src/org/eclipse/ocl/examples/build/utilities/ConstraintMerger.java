@@ -99,7 +99,7 @@ public class ConstraintMerger extends AbstractProjectComponent
 			}
 		}
 		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager.getEnvironmentFactory());
-		Model pivotModel = ecore2as.getPivotModel();
+		Model pivotModel = ecore2as.getASModel();
 //		metamodelManager.setPivotMetamodel(pivotModel.getNestedPackage().get(0));
 //		metamodelManager.setLibraryLoadInProgress(false);
 		Resource asResource = ClassUtil.nonNullState(pivotModel.eResource());

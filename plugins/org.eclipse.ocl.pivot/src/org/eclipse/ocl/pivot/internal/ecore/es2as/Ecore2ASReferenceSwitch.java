@@ -350,7 +350,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 											if (ePackage != null) {
 												EClassifier eClassifier = NameUtil.getENamedElement(ePackage.getEClassifiers(), path[iSize-1]);
 												if (eClassifier != null) {
-													newType = converter.getPivotType(eClassifier);
+													newType = converter.getASType(eClassifier);
 													changedType = true;
 												}
 											}
@@ -456,7 +456,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 			Type pivotType;
 			EGenericType eType = eObject2.getEGenericType();
 			if (eType != null) {
-				pivotType = converter.getPivotType(eType);
+				pivotType = converter.getASType(eType);
 				int lower = eObject.getLowerBound();
 				int upper = eObject.getUpperBound();
 				if (upper == 1) {
@@ -510,7 +510,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 		@SuppressWarnings("null") @NonNull Class<T> pivotClass2 = pivotClass;
 		for (EObject eObject : eObjects) {
 			if ((eObject != null) && checkProxy(eObject)) {
-				T pivotElement = converter.getPivotElement(pivotClass2, eObject);
+				T pivotElement = converter.getASElement(pivotClass2, eObject);
 				if (pivotElement != null) {
 					pivotElements.add(pivotElement);
 				}

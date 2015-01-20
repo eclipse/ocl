@@ -153,13 +153,13 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 				PrettyPrintOptions.Global prettyPrintOptions = PrettyPrinter.createOptions(null); //metamodelManager.getPrimaryElement(namespace));
 				@SuppressWarnings("null")@NonNull ArrayList<String> newArrayList = Lists.newArrayList("body", "context", "def", "endpackage", "inv", "package", "post", "inv");
 				prettyPrintOptions.addReservedNames(newArrayList);	// FIXME use grammar
-				prettyPrintOptions.setMetamodelManager(metamodelManager);
+				prettyPrintOptions.setEnvironmentFactory(metamodelManager.getEnvironmentFactory());
 				prettyPrintOptions.setLinelength(80);
 				Resource resource = object.eResource();
 				AliasAnalysis adapter = resource != null ? AliasAnalysis.getAdapter(resource) : null;
 				if (adapter != null) {
 					for (@SuppressWarnings("null")@NonNull CompletePackage aliased : adapter.getAliases()) {
-						org.eclipse.ocl.pivot.Package primary = aliased.getPivotPackage();
+						org.eclipse.ocl.pivot.Package primary = aliased.getPrimaryPackage();
 						if (primary != null) {
 							String alias = adapter.getAlias(primary, null);
 							if (alias != null) {

@@ -24,17 +24,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.EValidatorRegistryImpl;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
-import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.values.BagImpl;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.uml.internal.validation.UMLOCLEValidator;
@@ -83,23 +78,15 @@ public abstract class AbstractValidateTests extends PivotTestCase
 		}
 	}	
 
-	@SuppressWarnings("deprecation")
-	protected @NonNull ResourceSet createResourceSet() {
-		ResourceSet resourceSet = new ResourceSetImpl();
-		ProjectMap.initializeURIResourceMap(resourceSet);
-		Map<URI, URI> uriMap = resourceSet.getURIConverter().getURIMap();
-    	if (EMFPlugin.IS_ECLIPSE_RUNNING) {
-    		uriMap.putAll(EcorePlugin.computePlatformURIMap());
-    	}
-    	return resourceSet;
-	}
-
-	protected void disposeResourceSet(@NonNull ResourceSet resourceSet) {
-		StandaloneProjectMap.dispose(resourceSet);
-		for (Resource aResource : resourceSet.getResources()) {
-			aResource.unload();
-		}
-		resourceSet.getResources().clear();
+	protected @NonNull OCL createOCL() {
+		OCL ocl = OCL.newInstance(OCL.NO_PROJECTS);
+//		ResourceSet resourceSet = ocl.getResourceSet();
+//		ProjectMap.initializeURIResourceMap(resourceSet);
+//		Map<URI, URI> uriMap = resourceSet.getURIConverter().getURIMap();
+//    	if (EMFPlugin.IS_ECLIPSE_RUNNING) {
+//    		uriMap.putAll(EcorePlugin.computePlatformURIMap());
+//    	}
+		return ocl;
 	}
 
 	@SuppressWarnings("null")

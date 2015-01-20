@@ -77,9 +77,8 @@ public abstract class AbstractPivotConstraintLocator extends AbstractConstraintL
 		}
 	}
 
-	protected @NonNull EvaluationVisitor createEvaluationVisitor(@NonNull MetamodelManager metamodelManager,
+	protected @NonNull EvaluationVisitor createEvaluationVisitor(@NonNull EnvironmentFactoryInternal environmentFactory,
 			@NonNull ExpressionInOCL query, @Nullable Object contextObject, @Nullable Monitor monitor) {
-		EnvironmentFactoryInternal environmentFactory = metamodelManager.getEnvironmentFactory();
 		EvaluationVisitor evaluationVisitor = environmentFactory.createEvaluationVisitor(contextObject, query, null);
 		evaluationVisitor.setMonitor(monitor);
 		return evaluationVisitor;

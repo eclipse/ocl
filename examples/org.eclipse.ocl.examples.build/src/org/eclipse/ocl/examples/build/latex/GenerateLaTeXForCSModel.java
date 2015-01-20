@@ -92,7 +92,7 @@ public abstract class GenerateLaTeXForCSModel extends GenerateLaTeXUtils
 					return;
 				}
 				Ecore2AS adapter = Ecore2AS.getAdapter(eResource, metamodelManager.getEnvironmentFactory());
-				Model asModel = adapter.getPivotModel();
+				Model asModel = adapter.getASModel();
 				asPackage = asModel.getOwnedPackages().get(0);
 			}
 

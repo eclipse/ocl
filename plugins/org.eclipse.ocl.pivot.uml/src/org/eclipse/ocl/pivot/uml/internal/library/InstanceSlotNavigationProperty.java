@@ -75,7 +75,7 @@ public class InstanceSlotNavigationProperty extends AbstractProperty
 						if (valueSpecification instanceof OpaqueExpression) {
 							try {
 								MetamodelManager metamodelManager = ((OCLEvaluationVisitor)evaluator).getMetamodelManager();
-								ExpressionInOCL specification = metamodelManager.getPivotOf(ExpressionInOCL.class, valueSpecification);
+								ExpressionInOCL specification = metamodelManager.getASOf(ExpressionInOCL.class, valueSpecification);
 								if (specification == null) {
 									throw new InvalidValueException("Missing spec for " + specification);
 								}

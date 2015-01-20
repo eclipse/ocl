@@ -89,7 +89,7 @@ public class Ecore2AS extends AbstractEcore2AS
 	 */
 	public static @NonNull Model importFromEcore(@NonNull EnvironmentFactoryInternal environmentFactory, String alias, @NonNull Resource ecoreResource) {
 		Ecore2AS conversion = getAdapter(ecoreResource, environmentFactory);
-		return conversion.getPivotModel();
+		return conversion.getASModel();
 	}
 
 	public static boolean isEcore(@NonNull Resource resource) {
@@ -103,17 +103,18 @@ public class Ecore2AS extends AbstractEcore2AS
 	}
 
 	public static Ecore2AS loadFromEcore(@NonNull ASResource ecoreASResource, @NonNull URI ecoreURI) {
-		MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(ecoreASResource);
-		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
+		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(ecoreASResource);
+		ResourceSet resourceSet = environmentFactory.getResourceSet();
 		Resource ecoreResource = resourceSet.getResource(ecoreURI, true);
 		if (ecoreResource == null) {
 			return null;
 		}
-		Ecore2AS conversion = getAdapter(ecoreResource, metamodelManager.getEnvironmentFactory());
+		Ecore2AS conversion = getAdapter(ecoreResource, environmentFactory);
 		conversion.loadImports(ecoreResource);
 //		if (asMetamodels != null) {
 //			
 //		}
+		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		conversion.pivotModel = metamodelManager.createModel(ecoreASResource.getURI().toString());
 //		conversion.installImports();
 		conversion.update(ecoreASResource, ClassUtil.nonNullEMF(ecoreResource.getContents()));
@@ -155,7 +156,7 @@ public class Ecore2AS extends AbstractEcore2AS
 		Resource ecoreResource = ClassUtil.nonNullEMF(eObject.eResource());
 		Ecore2AS conversion = getAdapter(ecoreResource, environmentFactory);
 		@SuppressWarnings("unused")
-		Model pivotModel = conversion.getPivotModel();
+		Model pivotModel = conversion.getASModel();
 		return conversion.newCreateMap.get(eObject);
 	}
 
@@ -273,6 +274,104 @@ public class Ecore2AS extends AbstractEcore2AS
 		errors.add(new XMIException(message));
 	}
 
+	public <T extends Element> T getASElement(@NonNull Class<T> requiredClass, @NonNull EObject eObject) {
+		if (pivotModel == null) {
+			getASModel();
+		}
+		Element element = newCreateMap.get(eObject);
+		if (element == null) {
+			Resource resource = eObject.eResource();
+			if ((resource != ecoreResource) && (resource != null)) {
+				Ecore2AS converter = getAdapter(resource, environmentFactory);
+				if (allConverters.add(converter)) {
+					converter.getASModel();
+					for (Map.Entry<EObject, Element> entry : converter.newCreateMap.entrySet()) {
+						newCreateMap.put(entry.getKey(), entry.getValue());
+					}
+				}
+			}
+			element = newCreateMap.get(eObject);
+		}
+		if (element == null) {
+			error("Unresolved " + eObject);
+		}
+		else if (!requiredClass.isAssignableFrom(element.getClass())) {
+			throw new ClassCastException(element.getClass().getName() + " is not assignable to " + requiredClass.getName());
+		}
+		@SuppressWarnings("unchecked")
+		T castElement = (T) element;
+		return castElement;
+	}
+
+	@Override
+	public @NonNull Model getASModel() {
+		Model pivotModel2 = pivotModel;
+		if (pivotModel2 == null) {
+			loadImports(ecoreResource);
+			pivotModel2 = pivotModel = importObjects(ClassUtil.nonNullEMF(ecoreResource.getContents()), createPivotURI());
+			@SuppressWarnings("null") @NonNull Resource asResource = pivotModel2.eResource();
+			AliasAdapter ecoreAdapter = AliasAdapter.findAdapter(ecoreResource);
+			if (ecoreAdapter != null) {
+				Map<EObject, String> ecoreAliasMap = ecoreAdapter.getAliasMap();
+				AliasAdapter pivotAdapter = AliasAdapter.getAdapter(asResource);
+				Map<EObject, String> pivotAliasMap = pivotAdapter.getAliasMap();
+				for (EObject eObject : ecoreAliasMap.keySet()) {
+					String alias = ecoreAliasMap.get(eObject);
+					Element element = newCreateMap.get(eObject);
+					pivotAliasMap.put(element, alias);
+				}
+			}
+			metamodelManager.installResource(asResource);
+			installImports();
+		}
+		return pivotModel2;
+	}
+
+	public @Nullable <T extends Element> T getASOfEcore(@NonNull Class<T> requiredClass, @NonNull EObject eObject) {
+		if (pivotModel == null) {
+			getASModel();
+		}
+		Element element = newCreateMap.get(eObject);
+		if (element == null) {
+			return null;
+		}
+		if (!requiredClass.isAssignableFrom(element.getClass())) {
+			throw new ClassCastException(element.getClass().getName() + " is not assignable to " + requiredClass.getName());
+		}
+		@SuppressWarnings("unchecked")
+		T castElement = (T) element;
+		return castElement;
+	}
+
+	public Type getASType(@NonNull EObject eObject) {
+			Element pivotElement = newCreateMap.get(eObject);
+			if (pivotElement == null) {
+				Resource resource = eObject.eResource();
+				if ((resource != ecoreResource) && (resource != null)) {
+					Ecore2AS converter = getAdapter(resource, environmentFactory);
+					if (allConverters.add(converter)) {
+						converter.getASModel();
+	//					allEClassifiers.addAll(converter.allEClassifiers);
+	//					allNames.addAll(converter.allNames);
+						for (Map.Entry<EObject, Element> entry : converter.newCreateMap.entrySet()) {
+							newCreateMap.put(entry.getKey(), entry.getValue());
+						}
+					}
+				}
+				pivotElement = newCreateMap.get(eObject);
+			}
+			if (pivotElement == null) {
+				error("Unresolved " + eObject);
+			}
+			else if (!(pivotElement instanceof Type)) {
+				error("Incompatible " + eObject);
+			}
+			else {
+				return (Type) pivotElement;
+			}
+			return null;
+		}
+
 	/**
 	 * Return the baseURI of ecoreResource against which its imports should be resolved.
 	 */
@@ -303,7 +402,7 @@ public class Ecore2AS extends AbstractEcore2AS
 
 	@Override
 	public @Nullable <T extends Element> T getCreated(@NonNull Class<T> requiredClass, @NonNull EObject eObject) {
-		return getPivotOfEcore(requiredClass, eObject);
+		return getASOfEcore(requiredClass, eObject);
 	}
 
 	public @NonNull Map<EClassifier, Type> getEcore2ASMap() {
@@ -317,104 +416,6 @@ public class Ecore2AS extends AbstractEcore2AS
 
 	public @Nullable Resource getEcoreResource() {
 		return ecoreResource;
-	}
-
-	public @Nullable <T extends Element> T getPivotOfEcore(@NonNull Class<T> requiredClass, @NonNull EObject eObject) {
-		if (pivotModel == null) {
-			getPivotModel();
-		}
-		Element element = newCreateMap.get(eObject);
-		if (element == null) {
-			return null;
-		}
-		if (!requiredClass.isAssignableFrom(element.getClass())) {
-			throw new ClassCastException(element.getClass().getName() + " is not assignable to " + requiredClass.getName());
-		}
-		@SuppressWarnings("unchecked")
-		T castElement = (T) element;
-		return castElement;
-	}
-	
-	public <T extends Element> T getPivotElement(@NonNull Class<T> requiredClass, @NonNull EObject eObject) {
-		if (pivotModel == null) {
-			getPivotModel();
-		}
-		Element element = newCreateMap.get(eObject);
-		if (element == null) {
-			Resource resource = eObject.eResource();
-			if ((resource != ecoreResource) && (resource != null)) {
-				Ecore2AS converter = getAdapter(resource, environmentFactory);
-				if (allConverters.add(converter)) {
-					converter.getPivotModel();
-					for (Map.Entry<EObject, Element> entry : converter.newCreateMap.entrySet()) {
-						newCreateMap.put(entry.getKey(), entry.getValue());
-					}
-				}
-			}
-			element = newCreateMap.get(eObject);
-		}
-		if (element == null) {
-			error("Unresolved " + eObject);
-		}
-		else if (!requiredClass.isAssignableFrom(element.getClass())) {
-			throw new ClassCastException(element.getClass().getName() + " is not assignable to " + requiredClass.getName());
-		}
-		@SuppressWarnings("unchecked")
-		T castElement = (T) element;
-		return castElement;
-	}
-	
-	public Type getPivotType(@NonNull EObject eObject) {
-		Element pivotElement = newCreateMap.get(eObject);
-		if (pivotElement == null) {
-			Resource resource = eObject.eResource();
-			if ((resource != ecoreResource) && (resource != null)) {
-				Ecore2AS converter = getAdapter(resource, environmentFactory);
-				if (allConverters.add(converter)) {
-					converter.getPivotModel();
-//					allEClassifiers.addAll(converter.allEClassifiers);
-//					allNames.addAll(converter.allNames);
-					for (Map.Entry<EObject, Element> entry : converter.newCreateMap.entrySet()) {
-						newCreateMap.put(entry.getKey(), entry.getValue());
-					}
-				}
-			}
-			pivotElement = newCreateMap.get(eObject);
-		}
-		if (pivotElement == null) {
-			error("Unresolved " + eObject);
-		}
-		else if (!(pivotElement instanceof Type)) {
-			error("Incompatible " + eObject);
-		}
-		else {
-			return (Type) pivotElement;
-		}
-		return null;
-	}
-	
-	@Override
-	public @NonNull Model getPivotModel() {
-		Model pivotModel2 = pivotModel;
-		if (pivotModel2 == null) {
-			loadImports(ecoreResource);
-			pivotModel2 = pivotModel = importObjects(ClassUtil.nonNullEMF(ecoreResource.getContents()), createPivotURI());
-			@SuppressWarnings("null") @NonNull Resource asResource = pivotModel2.eResource();
-			AliasAdapter ecoreAdapter = AliasAdapter.findAdapter(ecoreResource);
-			if (ecoreAdapter != null) {
-				Map<EObject, String> ecoreAliasMap = ecoreAdapter.getAliasMap();
-				AliasAdapter pivotAdapter = AliasAdapter.getAdapter(asResource);
-				Map<EObject, String> pivotAliasMap = pivotAdapter.getAliasMap();
-				for (EObject eObject : ecoreAliasMap.keySet()) {
-					String alias = ecoreAliasMap.get(eObject);
-					Element element = newCreateMap.get(eObject);
-					pivotAliasMap.put(element, alias);
-				}
-			}
-			metamodelManager.installResource(asResource);
-			installImports();
-		}
-		return pivotModel2;
 	}
 
 	@Override
@@ -682,7 +683,7 @@ public class Ecore2AS extends AbstractEcore2AS
 	protected Type resolveDataType(@NonNull EDataType eClassifier) {
 		Type pivotType = getEcore2ASMap().get(eClassifier);
 		if (pivotType == null) {
-			pivotType = getPivotType(eClassifier);
+			pivotType = getASType(eClassifier);
 		}
 		return pivotType;
 	}
@@ -693,7 +694,7 @@ public class Ecore2AS extends AbstractEcore2AS
 		EClassifier eClassifier = eGenericType.getEClassifier();
 		List<ETypeParameter> eTypeParameters = eClassifier.getETypeParameters();
 		assert eTypeParameters.size() == eTypeArguments.size();
-		Type unspecializedPivotType = getPivotType(eClassifier);
+		Type unspecializedPivotType = getASType(eClassifier);
 		if (unspecializedPivotType == null) {
 			return null;
 		}
@@ -710,7 +711,7 @@ public class Ecore2AS extends AbstractEcore2AS
 	}
 
 	protected Type resolveSimpleType(@NonNull EClassifier eClassifier) {
-		return getPivotType(eClassifier);
+		return getASType(eClassifier);
 	}
 
 	protected Type resolveType(@NonNull Map<String, Type> resolvedSpecializations, @NonNull EGenericType eGenericType) {

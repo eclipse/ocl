@@ -60,7 +60,7 @@ public class OCLinEcoreDocument extends BaseDocument
 				@Override
 				public Object exec(@Nullable XtextResource resource) throws Exception {
 					if (resource != null) {
-						XMLResource asResource = getPivotResource();
+						XMLResource asResource = getASResource();
 						if (asResource != null) {
 							CS2AS cs2as = ((BaseCSResource)resource).findCS2AS();
 							if (cs2as != null) {
@@ -91,7 +91,7 @@ public class OCLinEcoreDocument extends BaseDocument
 				@Override
 				public Object exec(@Nullable XtextResource resource) throws Exception {
 					if (resource != null) {
-						XMLResource asResource = getPivotResource();
+						XMLResource asResource = getASResource();
 						if (asResource != null) {
 							CS2AS cs2as = ((BaseCSResource)resource).findCS2AS();
 							if (cs2as != null) {
@@ -119,7 +119,7 @@ public class OCLinEcoreDocument extends BaseDocument
 				@Override
 				public Object exec(@Nullable XtextResource resource) throws Exception {
 					if (resource != null) {
-						XMLResource asResource = getPivotResource();
+						XMLResource asResource = getASResource();
 						if (asResource != null) {
 							CS2AS cs2as = ((BaseCSResource)resource).findCS2AS();
 							if (cs2as != null) {

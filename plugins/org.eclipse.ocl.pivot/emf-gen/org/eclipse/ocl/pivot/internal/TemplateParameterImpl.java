@@ -558,7 +558,8 @@ public class TemplateParameterImpl
 	public @NonNull Type specializeIn(@NonNull CallExp expr, @Nullable Type selfType) {
 		Resource eResource = ((EObject) expr).eResource();
 		if ((eResource != null) && (selfType != null)) {
-			MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(eResource);
+			EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(eResource);
+			MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 			return metamodelManager.specializeType(this, expr, selfType, null);
 		}
 		return this;

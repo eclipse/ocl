@@ -79,7 +79,7 @@ public class MainTab extends AbstractMainTab implements OCLLaunchConstants
 			@SuppressWarnings("null")@NonNull URI contextURI = URI.createURI(modelName, true);
 			URI elementsURI = contextURI.trimFragment();
 			try {
-				Resource resource = getEnvironmentFactory().getMetamodelManager().getExternalResourceSet().getResource(elementsURI, true);
+				Resource resource = getEnvironmentFactory().getResourceSet().getResource(elementsURI, true);
 		        if (resource == null) {
 		        	throw new IOException("There was an error loading the model file. ");
 		        }
@@ -124,7 +124,7 @@ public class MainTab extends AbstractMainTab implements OCLLaunchConstants
 			try {
 				Model root = null;
 		        BaseCSResource xtextResource = null;
-		        xtextResource = (BaseCSResource) getEnvironmentFactory().getMetamodelManager().getExternalResourceSet().getResource(oclURI, true);
+		        xtextResource = (BaseCSResource) getEnvironmentFactory().getResourceSet().getResource(oclURI, true);
 		        if (xtextResource != null) {
 	    			ASResource asResource = xtextResource.getASResource();
 	    			for (EObject eContent : asResource.getContents()) {
@@ -176,7 +176,7 @@ public class MainTab extends AbstractMainTab implements OCLLaunchConstants
 	@Override
 	public boolean canSave() {
 		assert !initializing;
-		ResourceSet resourceSet = getEnvironmentFactory().getMetamodelManager().getExternalResourceSet();
+		ResourceSet resourceSet = getEnvironmentFactory().getResourceSet();
 		URIConverter uriConverter = resourceSet.getURIConverter();
 		String oclName = oclPath.getText();
 		URI oclURI = URI.createURI(oclName, true);
@@ -322,7 +322,7 @@ public class MainTab extends AbstractMainTab implements OCLLaunchConstants
 			if (contextUri.length() > 0) {
 				URI contextURI = URI.createURI(contextUri);
 				modelPath.setText(contextURI.trimFragment().toString());
-				EObject eObject = getEnvironmentFactory().getMetamodelManager().getExternalResourceSet().getEObject(contextURI, true);
+				EObject eObject = getEnvironmentFactory().getResourceSet().getEObject(contextURI, true);
 				if (eObject  != null) {
 					String displayString = LabelUtil.getLabel(eObject);
 					int index = elementCombo.indexOf(displayString);

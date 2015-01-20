@@ -142,7 +142,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 		pivotElement.setName(((org.eclipse.uml2.uml.Type)umlBehavior).getName());
 		doSwitchAll(pivotElement.getOwnedAnnotations(), ((org.eclipse.uml2.uml.Element)umlBehavior).getOwnedElements(), null);
 		EClass umlMetaClass = umlBehavior.eClass();
-		Type metaType = metamodelManager.getPivotOfEcore(Type.class, umlMetaClass);
+		Type metaType = metamodelManager.getASOfEcore(Type.class, umlMetaClass);
 		pivotElement.setMetaType(metaType);
 		return pivotElement;
 	}
@@ -923,7 +923,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 		converter.setOriginalMapping(pivotElement, umlObject);
 		doSwitchAll(pivotElement.getOwnedAnnotations(), ((org.eclipse.uml2.uml.Element)umlObject).getOwnedElements(), null);
 		EClass umlMetaClass = umlObject.eClass();
-		Type metaType = metamodelManager.getPivotOfEcore(Type.class, umlMetaClass);
+		Type metaType = metamodelManager.getASOfEcore(Type.class, umlMetaClass);
 		pivotElement.setMetaType(metaType);
 		if (umlObject instanceof org.eclipse.uml2.uml.Slot) {
 			converter.queueUse(umlObject);

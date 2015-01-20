@@ -672,10 +672,10 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	public @Nullable org.eclipse.ocl.pivot.Package getRootPackage(@NonNull String completeURIorName) {
 		CompletePackage completePackage = completeURIs.getCompletePackage(completeURIorName);
 		if (completePackage != null) {
-			return completePackage.getPivotPackage();
+			return completePackage.getPrimaryPackage();
 		}
 		completePackage = getOwnedCompletePackage(completeURIorName);
-		return completePackage != null ? completePackage.getPivotPackage() : null;
+		return completePackage != null ? completePackage.getPrimaryPackage() : null;
 	}
 	
 	@Override
@@ -746,7 +746,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 				}
 				@NonNull org.eclipse.ocl.pivot.Class unspecializedSuperClass = PivotUtil.getUnspecializedTemplateableElement(superClass);
 				CompleteClassInternal superCompleteClass = environmentFactory.getMetamodelManager().getCompleteClass(unspecializedSuperClass);
-				org.eclipse.ocl.pivot.Class superPivotClass = superCompleteClass.getPivotClass();
+				org.eclipse.ocl.pivot.Class superPivotClass = superCompleteClass.getPrimaryClass();
 				if (superPivotClass instanceof CollectionType) {
 					if (superSpecializedTemplateParameterSubstitutions.size() == 1) {
 						Type templateArgument = superSpecializedTemplateParameterSubstitutions.get(0).getActual();

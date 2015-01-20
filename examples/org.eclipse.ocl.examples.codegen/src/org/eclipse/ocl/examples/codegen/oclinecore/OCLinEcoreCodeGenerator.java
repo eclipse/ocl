@@ -17,6 +17,7 @@ import java.util.Set;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.analyzer.AS2CGVisitor;
@@ -31,7 +32,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGVariable;
 import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
 import org.eclipse.ocl.pivot.EnvironmentFactory;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
@@ -88,8 +89,9 @@ public class OCLinEcoreCodeGenerator extends JavaCodeGenerator
 
 	public static void generatePackage(@NonNull GenPackage genPackage,
 			@NonNull Map<String, String> uri2body, @NonNull Map<GenPackage, String> constantsTexts) {
-		MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(ClassUtil.nonNullState(genPackage.eResource()));
-		OCLinEcoreCodeGenerator generator = new OCLinEcoreCodeGenerator(metamodelManager.getEnvironmentFactory(), genPackage);
+		Resource genResource = ClassUtil.nonNullState(genPackage.eResource());
+		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(genResource);
+		OCLinEcoreCodeGenerator generator = new OCLinEcoreCodeGenerator(environmentFactory, genPackage);
 		generator.generate(uri2body, constantsTexts);
 	}
 
@@ -120,7 +122,7 @@ public class OCLinEcoreCodeGenerator extends JavaCodeGenerator
 
 	protected void generate(@NonNull Map<String, String> uri2body, @NonNull Map<GenPackage, String> constantsTexts) {
 		EPackage ecorePackage = genPackage.getEcorePackage();
-		org.eclipse.ocl.pivot.Package asPackage = metamodelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Package.class, ecorePackage);
+		org.eclipse.ocl.pivot.Package asPackage = metamodelManager.getASOfEcore(org.eclipse.ocl.pivot.Package.class, ecorePackage);
 		assert asPackage != null;
 		AS2CGVisitor as2cgVisitor = new OCLinEcoreAS2CGVisitor(cgAnalyzer, globalContext);
 		CGPackage cgPackage = (CGPackage) ClassUtil.nonNullState(asPackage.accept(as2cgVisitor));

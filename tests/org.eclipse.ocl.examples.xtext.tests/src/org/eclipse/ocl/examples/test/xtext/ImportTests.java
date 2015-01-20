@@ -18,7 +18,6 @@ import org.eclipse.ocl.examples.pivot.tests.TestOCL;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.Model;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.values.BagImpl;
 import org.eclipse.ocl.pivot.library.AbstractSimpleUnaryOperation;
@@ -47,8 +46,6 @@ public class ImportTests extends XtextTestCase
 		}
 	}
 	
-	protected MetamodelManager metamodelManager = null;
-	
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -58,17 +55,6 @@ public class ImportTests extends XtextTestCase
 
 	@Override
 	protected void tearDown() throws Exception {
-//		MetamodelManagerResourceSetAdapter adapter = MetamodelManagerResourceSetAdapter.findAdapter(resourceSet);
-//		if (adapter != null) {
-//			MetamodelManager metamodelManager = adapter.getMetamodelManager();
-//			if (metamodelManager != null) {
-//				metamodelManager.dispose();
-//			}
-//		}
-		if (metamodelManager != null) {
-			metamodelManager.dispose();
-			metamodelManager = null;
-		}
 		super.tearDown();
 	}
 

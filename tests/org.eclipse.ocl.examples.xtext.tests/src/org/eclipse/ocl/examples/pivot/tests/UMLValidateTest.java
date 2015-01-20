@@ -158,7 +158,8 @@ public class UMLValidateTest extends AbstractValidateTests
 
 	public void test_tutorial_umlValidation_with_lpg_408990() {
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(OCLConstants.OCL_DELEGATE_URI_LPG);
-		ResourceSet resourceSet = createResourceSet();
+		OCL ocl = createOCL();
+		ResourceSet resourceSet = ocl.getResourceSet();
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
 		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
 			assertNull(UML2AS.initialize(resourceSet));
@@ -168,12 +169,14 @@ public class UMLValidateTest extends AbstractValidateTests
 		assertNoResourceErrors("Loading", umlResource);
 		String label = NameUtil.qualifiedNameFor(umlResource.getContents().get(1));
 		assertValidationDiagnostics("Loading", umlResource, StringUtil.bind(VIOLATED_TEMPLATE, "Stereotype1::IntegerConstraint", label));
-		disposeResourceSet(resourceSet);
+//		disposeResourceSet(resourceSet);
+		ocl.dispose();
 	}
 
 	public void test_tutorial_umlValidation_with_pivot_408990() {
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
-		ResourceSet resourceSet = createResourceSet();
+		OCL ocl = createOCL();
+		ResourceSet resourceSet = ocl.getResourceSet();
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
 		OCLDelegateDomain.initialize(resourceSet, PivotConstants.OCL_DELEGATE_URI_PIVOT);			
 		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
@@ -189,7 +192,8 @@ public class UMLValidateTest extends AbstractValidateTests
 		assert (umlClass1 != null) && (umlStereotype1 != null);
 		String label = NameUtil.qualifiedNameFor(getStereotypeApplication(umlClass1, umlStereotype1));
 		assertValidationDiagnostics("Loading", umlResource, StringUtil.bind(VIOLATED_TEMPLATE, "Stereotype1::IntegerConstraint", label));
-		disposeResourceSet(resourceSet);
+//		disposeResourceSet(resourceSet);
+		ocl.dispose();
 	}
 
 	public void test_tutorial_umlValidation_436903() {
@@ -238,7 +242,7 @@ public class UMLValidateTest extends AbstractValidateTests
 		assertDiagnostics("Loading", diagnostics,
 			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Class", "CamelCaseName", NameUtil.qualifiedNameFor(umlClass1)));
 		//
-		disposeResourceSet(resourceSet);
+//		disposeResourceSet(resourceSet);
 		helper.dispose();
 		ocl.dispose();
 	}
@@ -274,7 +278,7 @@ public class UMLValidateTest extends AbstractValidateTests
 		helper.installPackages();
 //BUG 437450				assertValidationDiagnostics("Loading", umlResource);
 		//
-		disposeResourceSet(resourceSet);
+//		disposeResourceSet(resourceSet);
 		helper.dispose();
 		ocl.dispose();
 	}
@@ -282,7 +286,8 @@ public class UMLValidateTest extends AbstractValidateTests
 	public void test_umlValidation_432920() {
 		resetRegistries();
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
-		ResourceSet resourceSet = createResourceSet();
+		OCL ocl = createOCL();
+		ResourceSet resourceSet = ocl.getResourceSet();
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
 		OCLDelegateDomain.initialize(resourceSet, PivotConstants.OCL_DELEGATE_URI_PIVOT);			
 		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
@@ -320,13 +325,15 @@ public class UMLValidateTest extends AbstractValidateTests
 			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "MyPropertyExtension", "Constraint1", string5),
 			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "MyPropertyExtension", "Constraint2", string2),
 			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "MyPropertyExtension", "Constraint2", string4));
-		disposeResourceSet(resourceSet);
+//		disposeResourceSet(resourceSet);
+		ocl.dispose();
 	}
 	
 	public void test_umlValidation_434433() {
 		resetRegistries();
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
-		ResourceSet resourceSet = createResourceSet();
+		OCL ocl = createOCL();
+		ResourceSet resourceSet = ocl.getResourceSet();
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
 		OCLDelegateDomain.initialize(resourceSet, PivotConstants.OCL_DELEGATE_URI_PIVOT);			
 		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
@@ -346,7 +353,8 @@ public class UMLValidateTest extends AbstractValidateTests
 		String label = NameUtil.qualifiedNameFor(getStereotypeApplication(umlClass1, umlStereotype1));
 		assertValidationDiagnostics("Loading", umlResource, validationContext,
 			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Stereotype1", "Constraint3", label));
-		disposeResourceSet(resourceSet);
+//		disposeResourceSet(resourceSet);
+		ocl.dispose();
 	}
 	
 	public void test_umlValidation_Bug434356() {
@@ -354,7 +362,8 @@ public class UMLValidateTest extends AbstractValidateTests
 //		UML2AS.TYPE_EXTENSIONS.setState(true);
 		resetRegistries();
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
-		ResourceSet resourceSet = createResourceSet();
+		OCL ocl = createOCL();
+		ResourceSet resourceSet = ocl.getResourceSet();
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
 		OCLDelegateDomain.initialize(resourceSet, PivotConstants.OCL_DELEGATE_URI_PIVOT);			
 		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
@@ -374,7 +383,8 @@ public class UMLValidateTest extends AbstractValidateTests
 		String label = NameUtil.qualifiedNameFor(getStereotypeApplication(umlRealization1, umlStereotype1));
 		assertValidationDiagnostics("Loading", umlResource, validationContext,
 			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "ParentRealization", "In case of a ParentRealization relationship, the supplier should be a child of the client", label));
-		disposeResourceSet(resourceSet);
+//		disposeResourceSet(resourceSet);
+		ocl.dispose();
 	}
 	
 	public void test_umlValidation_Bug436945() throws IOException {   // This is org.eclipse.ocl.doc/doc/models/1710-m1.uml
@@ -390,7 +400,7 @@ public class UMLValidateTest extends AbstractValidateTests
 //		OCLDelegateDomain.initializePivotOnlyDiagnosticianResourceSet(resourceSet);
 //		URI uri = getProjectFileURI("Bug436945.uml");
 //		Resource umlResource = ClassUtil.nonNullState(resourceSet.getResource(uri, true));
-		OCL ocl = UMLOCL.newInstance();
+		OCL ocl = createOCL();
 		@SuppressWarnings("null")@NonNull Resource umlResource = doLoadUML(ocl, "Bug436945");
 		assertNoResourceErrors("Loading", umlResource);
 		Map<Object, Object> validationContext = LabelUtil.createDefaultContext(Diagnostician.INSTANCE);
@@ -406,8 +416,8 @@ public class UMLValidateTest extends AbstractValidateTests
 //			ClassUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, book.getName(), constraint.getName(), ClassUtil.getLabel(confusingBook),
 //				"Failed to evaluate " + asPrice),
 //			ClassUtil.bind(OCLMessages.ParsingError, ClassUtil.getLabel(opaqueExpression), "No containing namespace for 3 + 0.4"));
-//		ocl.dispose();
-		ocl = null;		// UMLOCLEValidator.WeakOCLReference will dispose.
+		ocl.dispose();
+		ocl = null;		// UMLOCLEValidator.WeakOCLReference will dispose too in due course.
 	}
 	
 	public void test_umlValidation_Bug448470() throws IOException { // formerly Bug 447557
@@ -416,10 +426,10 @@ public class UMLValidateTest extends AbstractValidateTests
 		if (EcorePlugin.IS_ECLIPSE_RUNNING) {
 			new CommonPreferenceInitializer().initializeDefaultPreferences();
 		}
-		ResourceSet resourceSet = createResourceSet();
+		OCL ocl = createOCL();
+		ResourceSet resourceSet = ocl.getResourceSet();
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
 		OCLDelegateDomain.initializePivotOnlyDiagnosticianResourceSet(resourceSet);
-		OCL ocl = UMLOCL.newInstance();
 		@SuppressWarnings("null")@NonNull Resource umlResource = doLoadUML(ocl, "Bug448470");
 		assertNoResourceErrors("Loading", umlResource);
 		Map<Object, Object> validationContext = LabelUtil.createDefaultContext(Diagnostician.INSTANCE);
@@ -443,10 +453,10 @@ public class UMLValidateTest extends AbstractValidateTests
 		if (EcorePlugin.IS_ECLIPSE_RUNNING) {
 			new CommonPreferenceInitializer().initializeDefaultPreferences();
 		}
-		ResourceSet resourceSet = createResourceSet();
+		OCL ocl = createOCL();
+		ResourceSet resourceSet = ocl.getResourceSet();
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
 		OCLDelegateDomain.initializePivotOnlyDiagnosticianResourceSet(resourceSet);
-		OCL ocl = UMLOCL.newInstance();
 		@SuppressWarnings("null")@NonNull Resource umlResource = doLoadUML(ocl, "Bug452621");
 		assertNoResourceErrors("Loading", umlResource);
 		Map<Object, Object> validationContext = LabelUtil.createDefaultContext(Diagnostician.INSTANCE);

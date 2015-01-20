@@ -38,8 +38,6 @@ import org.eclipse.ocl.examples.xtext.tests.TestCaseLogger;
 import org.eclipse.ocl.examples.xtext.tests.TestUtil;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -102,19 +100,9 @@ public class EditorTests extends XtextTestCase
 	}
 
 	protected void doTearDown(XtextEditor editor) {
-		IXtextDocument document = editor.getDocument();
-		MetamodelManager metamodelManager = document.modify(new IUnitOfWork<MetamodelManager, XtextResource>() {				// Cancel validation
-			@Override
-			public MetamodelManager exec(@Nullable XtextResource state) throws Exception {
-				return PivotUtilInternal.findMetamodelManager(state);
-			}
-		});
 		TestUtil.flushEvents();
 		editor.close(false);
 		TestUtil.flushEvents();
-		if (metamodelManager != null) {
-			metamodelManager.dispose();
-		}
 	}
 
 	public void doTestEditor(String editorId, String testFile, String testContent) throws Exception {

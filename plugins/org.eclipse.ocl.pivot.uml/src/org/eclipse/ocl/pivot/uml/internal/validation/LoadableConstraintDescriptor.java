@@ -179,7 +179,7 @@ public abstract class LoadableConstraintDescriptor<T> extends AbstractConstraint
 			EClass eClass = target.eClass();
 			NamedElement contextElement = null;
 			try {
-				contextElement = metamodelManager.getPivotOf(NamedElement.class, eClass);
+				contextElement = metamodelManager.getASOf(NamedElement.class, eClass);
 			} catch (ParserException e) {
 				logger.error("Failed to convert " + eClass, e);
 			}

@@ -1248,7 +1248,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 
 	protected StateExp resolveStateExp(@NonNull ExpCS csExp, @NonNull State state) {
 		StateExp expression = context.refreshModelElement(StateExp.class, PivotPackage.Literals.STATE_EXP, csExp);
-		context.setType(expression, metamodelManager.getPivotType("State"), true, null);		// FIXME What should this be
+		context.setType(expression, metamodelManager.getASClass("State"), true, null);		// FIXME What should this be
 		expression.setReferredState(state);
 		return expression;
 	}

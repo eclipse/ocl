@@ -59,11 +59,11 @@ public class AliasAnalysis extends AdapterImpl
 	}
 
 	public static @NonNull AliasAnalysis getAdapter(@NonNull Resource resource) {
-		MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(resource);
-		if (metamodelManager == null) {
-			throw new IllegalStateException("No MetamodelManager");
+		EnvironmentFactory environmentFactory = PivotUtilInternal.findEnvironmentFactory(resource);
+		if (environmentFactory == null) {
+			throw new IllegalStateException("No EnvironmentFactory");
 		}
-		return getAdapter(resource, metamodelManager.getEnvironmentFactory());
+		return getAdapter(resource, environmentFactory);
 	}
 
 	public static @NonNull AliasAnalysis getAdapter(@NonNull Resource resource, @NonNull EnvironmentFactory environmentFactory) {

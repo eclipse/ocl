@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CallExp;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.SelfType;
@@ -27,7 +28,6 @@ import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.util.Visitor;
 
@@ -122,9 +122,9 @@ public class SelfTypeImpl extends ClassImpl implements SelfType
 		if (selfType instanceof org.eclipse.ocl.pivot.Class) {
 			TemplateSignature templateSignature = ((TemplateableElement)selfType).getOwnedSignature();
 			if (templateSignature != null) {
-				MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(expr);
-				if (metamodelManager != null) {
-					return metamodelManager.specializeType(selfType, expr, selfType, null); // FIXME is this a no-op
+				EnvironmentFactory environmentFactory = PivotUtilInternal.findEnvironmentFactory(expr);
+				if (environmentFactory != null) {
+					return environmentFactory.getMetamodelManager().specializeType(selfType, expr, selfType, null); // FIXME is this a no-op
 				}
 				else {
 					return this;

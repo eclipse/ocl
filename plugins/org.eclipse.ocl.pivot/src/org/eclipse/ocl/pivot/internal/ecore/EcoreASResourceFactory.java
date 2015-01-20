@@ -60,7 +60,7 @@ public final class EcoreASResourceFactory extends AbstractASResourceFactory
 
 	@Override
 	public @Nullable <T extends Element> T getASElement(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Class<T> pivotClass, @NonNull EObject eObject) {
-		return environmentFactory.getMetamodelManager().getPivotOfEcore(pivotClass, eObject);
+		return environmentFactory.getMetamodelManager().getASOfEcore(pivotClass, eObject);
 	}
 
 	@Override
@@ -88,7 +88,7 @@ public final class EcoreASResourceFactory extends AbstractASResourceFactory
 	public @Nullable Element importFromResource(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Resource ecoreResource, @Nullable URI uri) {
 		Ecore2AS conversion = Ecore2AS.getAdapter(ecoreResource, environmentFactory);
 		conversion.setEcoreURI(uri);
-		Model pivotModel = conversion.getPivotModel();
+		Model pivotModel = conversion.getASModel();
 		String uriFragment = uri != null ? uri.fragment() : null;
 		if (uriFragment == null) {
 			return pivotModel;

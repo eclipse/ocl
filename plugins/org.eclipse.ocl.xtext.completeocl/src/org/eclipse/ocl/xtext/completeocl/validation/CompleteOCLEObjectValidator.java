@@ -99,7 +99,7 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 			logger.error("Failed to load Ecore '" + ecoreResource.getURI() + message);
 			return false;
 		}
-		Model pivotModel = ecore2as.getPivotModel();
+		Model pivotModel = ecore2as.getASModel();
 		errors = pivotModel.eResource().getErrors();
 		assert errors != null;
 		message = PivotUtil.formatResourceDiagnostics(errors, "", "\n");

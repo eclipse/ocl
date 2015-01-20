@@ -335,7 +335,7 @@ public class LoadTests extends XtextTestCase
 			umlResource.setURI(inputURI);
 			UML2AS adapter = UML2AS.getAdapter(umlResource, environmentFactory);
 			UML2AS.Outer rootAdapter = adapter.getRoot();
-			Model pivotModel = rootAdapter.getPivotModel();
+			Model pivotModel = rootAdapter.getASModel();
 			List<Resource> allResources = new ArrayList<Resource>();
 			allResources.add(pivotModel.eResource());
 			List<Resource> importedResources = rootAdapter.getImportedResources();
@@ -345,7 +345,7 @@ public class LoadTests extends XtextTestCase
 					if (anAdapter == null) {
 						anAdapter = UML2AS.getAdapter(uResource, environmentFactory);
 					}
-					Model asModel = anAdapter.getPivotModel();
+					Model asModel = anAdapter.getASModel();
 					Resource asResource = asModel.eResource();
 					allResources.add(asResource);
 				}
@@ -1133,7 +1133,7 @@ public class LoadTests extends XtextTestCase
 		XMLResource ecoreResource = (XMLResource) ocl2.getResourceSet().createResource(ecoreURI, null);
 		ecoreResource.load(new URIConverter.ReadableInputStream(ecoreFileA), null);
 		Ecore2AS conversion = Ecore2AS.getAdapter(ecoreResource, (EnvironmentFactoryInternal) ocl2.getEnvironmentFactory());
-		Resource asResource = conversion.getPivotModel().eResource();
+		Resource asResource = conversion.getASModel().eResource();
 		assertEquals(1, asResource.getContents().size());
 		Model pivotModel1 = (Model) asResource.getContents().get(0);
 		assertEquals(ecoreFileName, pivotModel1.getName());
@@ -1164,7 +1164,7 @@ public class LoadTests extends XtextTestCase
 		List<org.eclipse.ocl.pivot.Package> allPackages = new ArrayList<org.eclipse.ocl.pivot.Package>();
 //		for (org.eclipse.ocl.pivot.Package aPackage : metamodelManager2.getAllPackages()) {
 		for (CompletePackage completePackage : ocl2.getStandardLibrary().getAllCompletePackages()) {
-			org.eclipse.ocl.pivot.Package aPackage = completePackage.getPivotPackage();
+			org.eclipse.ocl.pivot.Package aPackage = completePackage.getPrimaryPackage();
 			if (aPackage instanceof Model) {}
 			else if (aPackage instanceof Library) {}
 			else if (PivotConstantsInternal.ORPHANAGE_NAME.equals(aPackage.getName())) {}
@@ -1199,7 +1199,7 @@ public class LoadTests extends XtextTestCase
 		XMLResource ecoreResource = (XMLResource) ocl2.getResourceSet().createResource(ecoreURI, null);
 		ecoreResource.load(new URIConverter.ReadableInputStream(ecoreFileXXX), null);
 		Ecore2AS conversion = Ecore2AS.getAdapter(ecoreResource, (EnvironmentFactoryInternal) ocl2.getEnvironmentFactory());
-		Resource asResource = conversion.getPivotModel().eResource();
+		Resource asResource = conversion.getASModel().eResource();
 		assertEquals(1, asResource.getContents().size());
 		Model pivotModelXXX = (Model) asResource.getContents().get(0);
 		assertEquals(ecoreFileName, pivotModelXXX.getName());
@@ -1251,7 +1251,7 @@ public class LoadTests extends XtextTestCase
 		List<org.eclipse.ocl.pivot.Package> allPackages = new ArrayList<org.eclipse.ocl.pivot.Package>();
 //		for (org.eclipse.ocl.pivot.Package aPackage : metamodelManager2.getAllPackages()) {
 		for (CompletePackage completePackage : ocl2.getStandardLibrary().getAllCompletePackages()) {
-			org.eclipse.ocl.pivot.Package aPackage = completePackage.getPivotPackage();
+			org.eclipse.ocl.pivot.Package aPackage = completePackage.getPrimaryPackage();
 			if (aPackage instanceof Model) {}
 			else if (aPackage instanceof Library) {}
 			else if (PivotConstantsInternal.ORPHANAGE_NAME.equals(aPackage.getName())) {}
@@ -1279,7 +1279,7 @@ public class LoadTests extends XtextTestCase
 		XMLResource ecoreResource = (XMLResource) ocl2.getResourceSet().createResource(ecoreURI, null);
 		ecoreResource.load(new URIConverter.ReadableInputStream(ecoreFileXXX), null);
 		Ecore2AS conversion = Ecore2AS.getAdapter(ecoreResource, (EnvironmentFactoryInternal) ocl2.getEnvironmentFactory());
-		ASResource asResource = (ASResource) conversion.getPivotModel().eResource();
+		ASResource asResource = (ASResource) conversion.getASModel().eResource();
 		//
 		//	Save the *.oclas and cache that the xmi:ids
 		//

@@ -65,16 +65,16 @@ public class OCLHelperImpl implements OCLHelper
         	contextClass = contextProperty.getOwningClass();
         }
         else if (context instanceof EClassifier) {
-        	contextClass = getMetamodelManager().getPivotOfEcore(org.eclipse.ocl.pivot.Class.class, context);
+        	contextClass = getMetamodelManager().getASOfEcore(org.eclipse.ocl.pivot.Class.class, context);
         }
         else if (context instanceof EOperation) {
-        	contextOperation = getMetamodelManager().getPivotOfEcore(Operation.class, context);
+        	contextOperation = getMetamodelManager().getASOfEcore(Operation.class, context);
         	if (contextOperation != null) {
         		contextClass = contextOperation.getOwningClass();
         	}
         }
         else if (context instanceof EStructuralFeature) {
-        	contextProperty = getMetamodelManager().getPivotOfEcore(Property.class, context);
+        	contextProperty = getMetamodelManager().getASOfEcore(Property.class, context);
         	if (contextProperty != null) {
         		contextClass = contextProperty.getOwningClass();
         	}

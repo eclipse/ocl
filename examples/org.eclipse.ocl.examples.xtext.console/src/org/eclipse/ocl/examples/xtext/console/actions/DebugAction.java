@@ -50,6 +50,7 @@ import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
 import org.eclipse.ocl.examples.xtext.console.OCLConsolePage;
 import org.eclipse.ocl.examples.xtext.console.XtextConsolePlugin;
 import org.eclipse.ocl.examples.xtext.console.messages.ConsoleMessages;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ParserException;
@@ -80,14 +81,14 @@ public final class DebugAction extends Action
     protected static class DebugStarter implements IRunnableWithProgress
 	{
 		protected final @NonNull Shell shell;
-    	protected final @NonNull MetamodelManager metamodelManager;
+    	protected final @NonNull EnvironmentFactory environmentFactory;
     	protected final @Nullable EObject contextObject;
     	protected final @NonNull String expression;
     	private @Nullable ILaunch launch = null;
 
-		public DebugStarter(@NonNull Shell shell, @NonNull MetamodelManager metamodelManager, @Nullable EObject contextObject, @NonNull String expression) {
+		public DebugStarter(@NonNull Shell shell, @NonNull EnvironmentFactory environmentFactory, @Nullable EObject contextObject, @NonNull String expression) {
 			this.shell = shell;
-			this.metamodelManager = metamodelManager;
+			this.environmentFactory = environmentFactory;
 			this.contextObject = contextObject;
 			this.expression = expression;
 		}
@@ -97,9 +98,9 @@ public final class DebugAction extends Action
 		 * Returns its URI.
 		 */
 		protected @NonNull URI createDocument(IProgressMonitor monitor) throws IOException, CoreException {
-			IdResolver idResolver = metamodelManager.getEnvironmentFactory().getIdResolver();
+			IdResolver idResolver = environmentFactory.getIdResolver();
 			org.eclipse.ocl.pivot.Class staticType = idResolver.getStaticTypeOf(contextObject);
-			org.eclipse.ocl.pivot.Class contextType = metamodelManager.getType(staticType);
+			org.eclipse.ocl.pivot.Class contextType = environmentFactory.getMetamodelManager().getType(staticType);
 //			if (contextType instanceof Metaclass) {
 //				contextType = (org.eclipse.ocl.pivot.Class)((Metaclass<?>)contextType).getInstanceType();	// FIXME cast
 //			}
@@ -116,7 +117,7 @@ public final class DebugAction extends Action
 				if (containingRoot == null) {
 					externalURI = contextPackage.getURI();
 				}
-				else if (containingRoot != PivotUtil.getContainingRoot(metamodelManager.getStandardLibrary().getOclAnyType())) {
+				else if (containingRoot != PivotUtil.getContainingRoot(environmentFactory.getStandardLibrary().getOclAnyType())) {
 					externalURI = containingRoot.getExternalURI();
 				}
 				if (externalURI != null) {
@@ -244,7 +245,7 @@ public final class DebugAction extends Action
 				}
 				ExpressionInOCL query;
 				try {
-					query = ElementUtil.getFirstQuery(metamodelManager, csResource);
+					query = ElementUtil.getFirstQuery(environmentFactory.getMetamodelManager(), csResource);
 				} catch (ParserException e) {
 					openError(debug_FailLoad, e);
 					return;
@@ -294,8 +295,8 @@ public final class DebugAction extends Action
 			return null;
 		}
 		IProgressService progressService = PlatformUI.getWorkbench().getProgressService();
-		MetamodelManager metamodelManager = oclConsolePage.getMetamodelManager(contextObject);
-		DebugStarter runnable = new DebugStarter(shell, metamodelManager, contextObject, expression);
+		EnvironmentFactory environmentFactory = oclConsolePage.getEnvironmentFactory(contextObject);
+		DebugStarter runnable = new DebugStarter(shell, environmentFactory, contextObject, expression);
 		try {
 			progressService.run(true, true, runnable);
 		} catch (InvocationTargetException e) {

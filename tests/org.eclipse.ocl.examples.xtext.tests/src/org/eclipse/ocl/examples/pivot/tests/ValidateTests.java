@@ -43,13 +43,11 @@ import org.eclipse.ocl.pivot.internal.delegate.InvocationBehavior;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.delegate.SettingBehavior;
 import org.eclipse.ocl.pivot.internal.delegate.ValidationBehavior;
-import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.OCLASResourceFactory;
 import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.ocl.pivot.internal.validation.EcoreOCLEValidator;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
-import org.eclipse.ocl.pivot.uml.UMLOCL;
 import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -111,8 +109,8 @@ public class ValidateTests extends AbstractValidateTests
 		//
 		//	Create model
 		//
-		OCL ocl1 = OCL.newInstance(getProjectMap());
-		OCL ocl2 = OCL.newInstance(getProjectMap());
+		OCL ocl1 = createOCL();
+		OCL ocl2 = createOCL();
 		MetamodelManager metamodelManager2 = ocl2.getMetamodelManager();
 		Resource ecoreResource = doLoadOCLinEcore(ocl1, "Bug366229");
 		metamodelManager2.getExternalResourceSet().getResources().add(ecoreResource);
@@ -131,7 +129,7 @@ public class ValidateTests extends AbstractValidateTests
 		//
 		//	Create model
 		//
-		OCL ocl = OCL.newInstance(getProjectMap());
+		OCL ocl = createOCL();
 		Resource ecoreResource = doLoadEcore(ocl, "Bug418551");
 		EPackage temp = (EPackage) ecoreResource.getContents().get(0);
 		EClass tester = (EClass) temp.getEClassifier("Tester");
@@ -171,7 +169,7 @@ public class ValidateTests extends AbstractValidateTests
 				"	}\n" +
 				"}\n";
 		createOCLinEcoreFile("Bug418552.oclinecore", testDocument);
-		OCL ocl1 = OCL.newInstance(getProjectMap());
+		OCL ocl1 = createOCL();
 		@NonNull List<Diagnostic> diagnostics = doValidateOCLinEcore(ocl1, "Bug418552",
 			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Property", "CompatibleDefaultExpression", "temp::Tester::total"));
 		Object property = diagnostics.get(0).getData().get(0);
@@ -189,9 +187,8 @@ public class ValidateTests extends AbstractValidateTests
 		//	Create model
 		//
 		OCL ocl = OCL.newInstance(getProjectMap());
-		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		URI ecoreURI = URI.createPlatformResourceURI("/org.eclipse.ocl.pivot/model/Pivot.ecore", true);
-		Resource ecoreResource = metamodelManager.getExternalResourceSet().getResource(ecoreURI, true);
+		Resource ecoreResource = ocl.getResourceSet().getResource(ecoreURI, true);
 		//
 		//	Check EObjectValidator errors
 		//
@@ -231,12 +228,9 @@ public class ValidateTests extends AbstractValidateTests
 		//	1 - the evolving complemented type system under test
 		//	2 - the stable complemented type system under test
 		//
-		OCL ocl0 = OCL.newInstance(getProjectMap());
-		OCL ocl1 = OCL.newInstance(getProjectMap());
-		OCL ocl2 = OCL.newInstance(getProjectMap());
-		MetamodelManager metamodelManager0 = ocl0.getMetamodelManager();
-		MetamodelManager metamodelManager1 = ocl1.getMetamodelManager();
-		MetamodelManager metamodelManager2 = ocl2.getMetamodelManager();
+		OCL ocl0 = createOCL();
+		OCL ocl1 = createOCL();
+		OCL ocl2 = createOCL();
 		Resource ecoreResource1 = doLoadOCLinEcore(ocl1, "Validate");
 		Resource ecoreResource2 = doLoadOCLinEcore(ocl2, "Validate");
 		EPackage validatePackage1 = ClassUtil.nonNullState((EPackage) ecoreResource1.getContents().get(0));
@@ -306,20 +300,19 @@ public class ValidateTests extends AbstractValidateTests
 				StringUtil.bind("The ''{0}'' constraint is violated on ''{1}''", "L2a", "Level3 ok", objectLabel));
 		}
 		finally {
-			metamodelManager0.dispose();
-			metamodelManager1.dispose();
-			metamodelManager2.dispose();
+			ocl0.dispose();
+			ocl1.dispose();
+			ocl2.dispose();
 			EValidator.Registry.INSTANCE.remove(validatePackage1);			
 		}
 	}
 
 	public void testValidate_Validate_completeocl_loadresource() throws IOException, InterruptedException {		
-		OCL ocl = OCL.newInstance(getProjectMap());
+		OCL ocl = createOCL();
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
 		ResourceSet resourceSet = ocl.getResourceSet(); //createResourceSet();
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
 		OCLDelegateDomain.initialize(resourceSet, PivotConstants.OCL_DELEGATE_URI_PIVOT);			
-		EnvironmentFactoryAdapter adapter = OCL.adapt(resourceSet);
 		//
 		URI ecoreURI = getTestModelURI("model/OCLinEcoreTutorial.ecore");
 		URI xmiURI = getTestModelURI("model/OCLinEcoreTutorial.xmi");
@@ -354,8 +347,7 @@ public class ValidateTests extends AbstractValidateTests
 			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Member", "AtMostTwoLoans", "Library lib::Member m3"),
 			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Member", "UniqueLoans", "Library lib::Member m3"),
 			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Book", "ExactlyOneCopy", "Library lib::Book b2"));
-		adapter.getMetamodelManager().dispose();
-		disposeResourceSet(resourceSet);
+//		disposeResourceSet(resourceSet);
 		helper.dispose();
 		ocl.dispose();
 	}
@@ -363,7 +355,7 @@ public class ValidateTests extends AbstractValidateTests
 	public void testValidate_Validate_completeocl_Bug422583() throws IOException, InterruptedException {
 		UMLStandaloneSetup.init();
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
-		OCL ocl = UMLOCL.newInstance(getProjectMap());
+		OCL ocl = createOCL();
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		ResourceSet resourceSet = metamodelManager.getExternalResourceSet(); //createResourceSet();
 
@@ -446,7 +438,7 @@ public class ValidateTests extends AbstractValidateTests
 		//
 		//	Create model
 		//
-		OCL ocl1 = OCL.newInstance(getProjectMap());
+		OCL ocl1 = createOCL();
 		Resource ecoreResource = doLoadOCLinEcore(ocl1, "Validate");
 		ocl1.getEnvironmentFactory().adapt(ecoreResource.getResourceSet());
 		EPackage validatePackage = (EPackage) ecoreResource.getContents().get(0);

@@ -40,6 +40,7 @@ import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
@@ -57,14 +58,14 @@ public class PivotUIConstraintLocator extends PivotConstraintLocator implements 
     protected static class DebugStarter implements IRunnableWithProgress
 	{
 		protected final @NonNull Shell shell;
-    	protected final @NonNull MetamodelManager metamodelManager;
+    	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
     	protected final @Nullable EObject contextObject;
     	protected final @NonNull ExpressionInOCL constraint;
     	private @Nullable ILaunch launch = null;
 
-		public DebugStarter(@NonNull Shell shell, @NonNull MetamodelManager metamodelManager, @Nullable EObject contextObject, @NonNull ExpressionInOCL constraint) {
+		public DebugStarter(@NonNull Shell shell, @NonNull EnvironmentFactoryInternal environmentFactory, @Nullable EObject contextObject, @NonNull ExpressionInOCL constraint) {
 			this.shell = shell;
-			this.metamodelManager = metamodelManager;
+			this.environmentFactory = environmentFactory;
 			this.contextObject = contextObject;
 			this.constraint = constraint;
 		}
@@ -133,7 +134,8 @@ public class PivotUIConstraintLocator extends PivotConstraintLocator implements 
 		if (eResource == null) {
 			return false;
 		}
-		MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(eResource);
+		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(eResource);
+		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		Constraint asConstraint = null;
 		Object constrainingObject = resultConstrainingNode.getParent().getConstrainingObject();
 		if (constrainingObject instanceof Constraint) {
@@ -165,7 +167,7 @@ public class PivotUIConstraintLocator extends PivotConstraintLocator implements 
 		if (shell == null) {
 			return false;
 		}
-		DebugStarter runnable = new DebugStarter(shell, metamodelManager, eObject, query);
+		DebugStarter runnable = new DebugStarter(shell, environmentFactory, eObject, query);
 		runnable.run(monitor);
 		return runnable.getLaunch() != null;
 	}

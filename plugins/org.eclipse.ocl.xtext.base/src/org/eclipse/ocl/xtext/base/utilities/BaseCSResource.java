@@ -20,7 +20,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.xtext.base.as2cs.AS2CS;
@@ -48,12 +47,6 @@ public interface BaseCSResource extends CSResource
 	 * Create the CS2AS converter for the cs2asResourceMap conversions using metamodelManager.
 	 */
 	@NonNull CS2AS createCS2AS(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull ASResource asResource);
-
-	/**
-	 * Return a MetamodelManager for use with this CS resource, unless one can be located
-	 * via a CS2AS adapter.
-	 */
-	@NonNull MetamodelManager createMetamodelManager();
 
 	/**
 	 * Dispose of this CSResource and its conversion facilities. This frees up resources after conversion to AS but loses the

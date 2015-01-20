@@ -487,7 +487,7 @@ public class CompletePackageImpl extends NamedElementImpl implements CompletePac
 			{
 				@Override
 				public org.eclipse.ocl.pivot.Class apply(CompleteClass input) {
-					return input.getPivotClass();
+					return input.getPrimaryClass();
 				}
 			});
 	}
@@ -532,7 +532,7 @@ public class CompletePackageImpl extends NamedElementImpl implements CompletePac
 	@Override
 	public org.eclipse.ocl.pivot.Class getMemberType(String name) {
 		CompleteClass completeClass = name != null ? getOwnedCompleteClass(name) : null;
-		return completeClass != null ? completeClass.getPivotClass() : null;
+		return completeClass != null ? completeClass.getPrimaryClass() : null;
 	}
 
 	@Override
@@ -681,7 +681,7 @@ public class CompletePackageImpl extends NamedElementImpl implements CompletePac
 	}
 
 	@Override
-	public final @NonNull org.eclipse.ocl.pivot.Package getPivotPackage() {
+	public final @NonNull org.eclipse.ocl.pivot.Package getPrimaryPackage() {
 		for (org.eclipse.ocl.pivot.Package partialPackage : getPartialPackages()) {
 			if (partialPackage != null) {
 				return partialPackage;
@@ -707,7 +707,7 @@ public class CompletePackageImpl extends NamedElementImpl implements CompletePac
 	@Override
 	public Type getType(String metatypeName) {
 		CompleteClass completeClass = getOwnedCompleteClass(metatypeName);
-		return completeClass != null ? completeClass.getPivotClass() : null;
+		return completeClass != null ? completeClass.getPrimaryClass() : null;
 	}
 
 	@Override

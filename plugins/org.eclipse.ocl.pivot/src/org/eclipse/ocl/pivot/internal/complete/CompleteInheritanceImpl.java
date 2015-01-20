@@ -62,9 +62,9 @@ public class CompleteInheritanceImpl extends ReflectiveInheritance implements Co
 	protected final @NonNull CompleteClassInternal completeClass;
 
 	public CompleteInheritanceImpl(@NonNull CompleteClassInternal completeClass) {
-		super(ClassUtil.nonNullModel(completeClass.getName()), computeFlags(completeClass.getPivotClass()));
+		super(ClassUtil.nonNullModel(completeClass.getName()), computeFlags(completeClass.getPrimaryClass()));
 		this.completeClass = completeClass;
-		org.eclipse.ocl.pivot.Class pivotClass = completeClass.getPivotClass();
+		org.eclipse.ocl.pivot.Class pivotClass = completeClass.getPrimaryClass();
 		assert !(pivotClass instanceof DataType) || (((DataType)pivotClass).getBehavioralClass() == null);	// DataTypes must use the inheritance of their behavioral class
 	}
 
@@ -83,11 +83,11 @@ public class CompleteInheritanceImpl extends ReflectiveInheritance implements Co
 	}
 	
 	public @NonNull List<? extends Operation> getLocalOperations() {
-		return ClassUtil.nonNullEMF(completeClass.getPivotClass().getOwnedOperations());			// FIXME Use local cache
+		return ClassUtil.nonNullEMF(completeClass.getPrimaryClass().getOwnedOperations());			// FIXME Use local cache
 	}
 
 	public @NonNull List<? extends Property> getLocalProperties() {
-		return ClassUtil.nonNullEMF(completeClass.getPivotClass().getOwnedProperties());			// FIXME Use local cache
+		return ClassUtil.nonNullEMF(completeClass.getPrimaryClass().getOwnedProperties());			// FIXME Use local cache
 	}
 
 	@Override
@@ -102,17 +102,17 @@ public class CompleteInheritanceImpl extends ReflectiveInheritance implements Co
 
 	@Override
 	public @NonNull String getMetaTypeName() {
-		return completeClass.getPivotClass().getMetaTypeName();
+		return completeClass.getPrimaryClass().getMetaTypeName();
 	}
 
 	@Override
 	public @NonNull List<Property> getOwnedProperties() {
-		return ClassUtil.nonNullEMF(completeClass.getPivotClass().getOwnedProperties());			// FIXME Use local cache
+		return ClassUtil.nonNullEMF(completeClass.getPrimaryClass().getOwnedProperties());			// FIXME Use local cache
 	}
 	
 	@Override
 	public @NonNull List<Operation> getOwnedOperations() {
-		return ClassUtil.nonNullEMF(completeClass.getPivotClass().getOwnedOperations());			// FIXME Use local cache
+		return ClassUtil.nonNullEMF(completeClass.getPrimaryClass().getOwnedOperations());			// FIXME Use local cache
 	}
 
 	@Override
@@ -126,12 +126,12 @@ public class CompleteInheritanceImpl extends ReflectiveInheritance implements Co
 	
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getType() {
-		return getCompleteClass().getPivotClass();
+		return getCompleteClass().getPrimaryClass();
 	}
 
 	@Override
 	public final @NonNull TypeId getTypeId() {
-		return completeClass.getPivotClass().getTypeId();
+		return completeClass.getPrimaryClass().getTypeId();
 	}
 
 	@Override
@@ -141,7 +141,7 @@ public class CompleteInheritanceImpl extends ReflectiveInheritance implements Co
 
 	@Override
 	public String toString() {
-		return completeClass.getPivotClass().toString();	
+		return completeClass.getPrimaryClass().toString();	
 	}
 
 	@Override

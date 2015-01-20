@@ -89,7 +89,7 @@ public class CompleteOCLConstraintProvider extends LoadableConstraintProvider
 
 	@Override
 	protected boolean load(@NonNull EnvironmentFactory environmentFactory, @NonNull URI uri, @NonNull Set<Category> categories) {
-		ResourceSet resourceSet = environmentFactory.getMetamodelManager().getExternalResourceSet();
+		ResourceSet resourceSet = environmentFactory.getResourceSet();
 		CSResource xtextResource = null;
 		try {
 			xtextResource = (CSResource) resourceSet.getResource(uri, true);

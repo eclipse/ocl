@@ -717,6 +717,67 @@ public class MetamodelManager implements Adapter.Internal
 		}
 	}
 
+	/**
+	 * Return the pivot model class for className with the Pivot Model.
+	 */
+	public @Nullable org.eclipse.ocl.pivot.Class getASClass(@NonNull String className) {
+		if (asMetamodel == null) {
+			getASmetamodel();
+			if (asMetamodel == null) {
+				return null;
+			}
+		}
+		return NameUtil.getNameable(asMetamodel.getOwnedClasses(), className);
+	}
+
+	public @Nullable <T extends Element> T getASOf(@NonNull Class<T> pivotClass, @Nullable EObject eObject) throws ParserException {
+			if (eObject != null) {
+				Resource eResource = eObject.eResource();
+				ASResourceFactory bestHelper = eResource != null ? ASResourceFactoryRegistry.INSTANCE.getASResourceFactory(eResource) : EcoreASResourceFactory.getInstance();
+	//			ASResourceFactory bestHelper = ASResourceFactoryRegistry.INSTANCE.getResourceFactory(eObject);
+				if (bestHelper != null) {
+					return bestHelper.getASElement(environmentFactory, pivotClass, eObject);
+				}
+			}
+			return null;
+		}
+
+	public @Nullable <T extends Element> T getASOfEcore(@NonNull Class<T> pivotClass, @Nullable EObject eObject) {
+		if (eObject == null) {
+			return null;
+		}
+		Resource metamodel = eObject.eResource();
+		if (metamodel == null) {
+			return null;
+		}
+		External2AS es2as = Ecore2AS.findAdapter(metamodel, environmentFactory);
+		if (es2as == null) {
+			es2as = Ecore2AS.getAdapter(metamodel, environmentFactory);
+		}
+		if (es2as == null) {
+			return null;
+		}
+		return es2as.getCreated(pivotClass, eObject);
+	}
+
+	public @Nullable org.eclipse.ocl.pivot.Package getASmetamodel() {
+		if ((asMetamodel == null) && autoLoadASmetamodel) {
+			org.eclipse.ocl.pivot.Package stdlibPackage = null;
+			standardLibrary.getOclAnyType();				// Load a default library if necessary.
+			if (!asLibraries.isEmpty()) {
+				stdlibPackage = asLibraries.get(0);
+			}
+			if (stdlibPackage != null) {
+				loadASmetamodel(stdlibPackage);
+			}
+		}
+		return asMetamodel;
+	}
+
+	public @NonNull ResourceSet getASResourceSet() {
+		return asResourceSet;
+	}
+
 	public @NonNull Iterable<CompletePackageInternal> getAllCompletePackages() {
 		if (!libraryLoadInProgress && (asMetamodel == null))  {
 			getASmetamodel();
@@ -811,24 +872,6 @@ public class MetamodelManager implements Adapter.Internal
 		return filter;
 	}
 	
-	public @Nullable org.eclipse.ocl.pivot.Package getASmetamodel() {
-		if ((asMetamodel == null) && autoLoadASmetamodel) {
-			org.eclipse.ocl.pivot.Package stdlibPackage = null;
-			standardLibrary.getOclAnyType();				// Load a default library if necessary.
-			if (!asLibraries.isEmpty()) {
-				stdlibPackage = asLibraries.get(0);
-			}
-			if (stdlibPackage != null) {
-				loadASmetamodel(stdlibPackage);
-			}
-		}
-		return asMetamodel;
-	}
-
-	public @NonNull ResourceSet getASResourceSet() {
-		return asResourceSet;
-	}
-
 	public @Nullable ExpressionInOCL getBodyExpression(@NonNull Operation operation) {
 		ExpressionInOCL bodyExpression = null;
 		for (@SuppressWarnings("null")@NonNull Operation domainOperation : getOperationOverloads(operation)) {
@@ -1205,7 +1248,7 @@ public class MetamodelManager implements Adapter.Internal
 			return libraryType;	
 		}
 		CompleteClassInternal libraryCompleteClass = getCompleteClass(libraryType);
-		org.eclipse.ocl.pivot.Class pivotClass = libraryCompleteClass.getPivotClass();
+		org.eclipse.ocl.pivot.Class pivotClass = libraryCompleteClass.getPrimaryClass();
 		if (pivotClass instanceof CollectionType) {
 			assert pivotClass instanceof CollectionType;
 			assert templateArguments.size() == 1;
@@ -1249,18 +1292,18 @@ public class MetamodelManager implements Adapter.Internal
 			CollectionType collectionType = (CollectionType)domainInstanceType;
 			if (collectionType.isOrdered()) {
 				if (collectionType.isUnique()) {
-					metaType = getPivotType(TypeId.ORDERED_SET_TYPE_NAME);
+					metaType = getASClass(TypeId.ORDERED_SET_TYPE_NAME);
 				}
 				else {
-					metaType = getPivotType(TypeId.SEQUENCE_TYPE_NAME);
+					metaType = getASClass(TypeId.SEQUENCE_TYPE_NAME);
 				}
 			}
 			else {
 				if (collectionType.isUnique()) {
-					metaType = getPivotType(TypeId.SET_TYPE_NAME);
+					metaType = getASClass(TypeId.SET_TYPE_NAME);
 				}
 				else {
-					metaType = getPivotType(TypeId.BAG_TYPE_NAME);
+					metaType = getASClass(TypeId.BAG_TYPE_NAME);
 				}
 			}
 
@@ -1328,7 +1371,7 @@ public class MetamodelManager implements Adapter.Internal
 	}
 
 	public @Nullable Type getOclType(@NonNull String typeName) {
-		org.eclipse.ocl.pivot.Class pivotType = getPivotType(typeName);
+		org.eclipse.ocl.pivot.Class pivotType = getASClass(typeName);
 		return pivotType != null ? getInheritance(pivotType).getType() : null;
 	}
 
@@ -1480,49 +1523,6 @@ public class MetamodelManager implements Adapter.Internal
 		return completeClass.getPartialClasses();
 	}
 
-	public @Nullable <T extends Element> T getPivotOf(@NonNull Class<T> pivotClass, @Nullable EObject eObject) throws ParserException {
-		if (eObject != null) {
-			Resource eResource = eObject.eResource();
-			ASResourceFactory bestHelper = eResource != null ? ASResourceFactoryRegistry.INSTANCE.getASResourceFactory(eResource) : EcoreASResourceFactory.getInstance();
-//			ASResourceFactory bestHelper = ASResourceFactoryRegistry.INSTANCE.getResourceFactory(eObject);
-			if (bestHelper != null) {
-				return bestHelper.getASElement(environmentFactory, pivotClass, eObject);
-			}
-		}
-		return null;
-	}
-
-	public @Nullable <T extends Element> T getPivotOfEcore(@NonNull Class<T> pivotClass, @Nullable EObject eObject) {
-		if (eObject == null) {
-			return null;
-		}
-		Resource metamodel = eObject.eResource();
-		if (metamodel == null) {
-			return null;
-		}
-		External2AS es2as = Ecore2AS.findAdapter(metamodel, environmentFactory);
-		if (es2as == null) {
-			es2as = Ecore2AS.getAdapter(metamodel, environmentFactory);
-		}
-		if (es2as == null) {
-			return null;
-		}
-		return es2as.getCreated(pivotClass, eObject);
-	}
-
-	/**
-	 * Return the pivot model class for className with the Pivot Model.
-	 */
-	public @Nullable org.eclipse.ocl.pivot.Class getPivotType(@NonNull String className) {
-		if (asMetamodel == null) {
-			getASmetamodel();
-			if (asMetamodel == null) {
-				return null;
-			}
-		}
-		return NameUtil.getNameable(asMetamodel.getOwnedClasses(), className);
-	}	
-
 	@SuppressWarnings("null")
 	protected @NonNull PrecedenceManager getPrecedenceManager() {
 		if (precedenceManager == null) {
@@ -1595,7 +1595,7 @@ public class MetamodelManager implements Adapter.Internal
 				}
 			}
 		}
-		return completePackage.getPivotPackage();
+		return completePackage.getPrimaryPackage();
 	}
 
 	/**
@@ -1612,7 +1612,7 @@ public class MetamodelManager implements Adapter.Internal
 	} */
 
 	public @NonNull org.eclipse.ocl.pivot.Package getPrimaryPackage(@NonNull org.eclipse.ocl.pivot.Package aPackage) {
-		return ClassUtil.nonNullState(getCompletePackage(aPackage).getPivotPackage());
+		return ClassUtil.nonNullState(getCompletePackage(aPackage).getPrimaryPackage());
 	}
 
 	public @NonNull Property getPrimaryProperty(@NonNull Property pivotProperty) {
@@ -1650,7 +1650,7 @@ public class MetamodelManager implements Adapter.Internal
 		if (/*(type instanceof Type) &&*/ !isTypeServeable(type)) {
 			return type;
 		}
-		return getCompleteClass(type).getPivotClass();
+		return getCompleteClass(type).getPrimaryClass();
 //		TypeTracker typeTracker = packageManager.findTypeTracker(pivotType);
 //		if (typeTracker != null) {
 //			return typeTracker.getPrimaryType();
@@ -1664,7 +1664,7 @@ public class MetamodelManager implements Adapter.Internal
 		if (/*(type instanceof Type) &&*/ !isTypeServeable(type)) {
 			return type;			// FIXME bad cast
 		}
-		return getCompleteClass(type).getPivotClass();
+		return getCompleteClass(type).getPrimaryClass();
 //		TypeTracker typeTracker = packageManager.findTypeTracker(pivotType);
 //		if (typeTracker != null) {
 //			return typeTracker.getPrimaryType();
@@ -1938,7 +1938,7 @@ public class MetamodelManager implements Adapter.Internal
 	}
 
 	public boolean isSuperCompleteClassOf(@NonNull CompleteClass unspecializedFirstType, @NonNull CompleteClass secondType) {
-		CompleteClass unspecializedSecondType = getCompleteClass(PivotUtil.getUnspecializedTemplateableElement(secondType.getPivotClass()));	// FIXME cast
+		CompleteClass unspecializedSecondType = getCompleteClass(PivotUtil.getUnspecializedTemplateableElement(secondType.getPrimaryClass()));	// FIXME cast
 //		org.eclipse.ocl.pivot.Class unspecializedSecondType = PivotUtil.getUnspecializedTemplateableElement(secondType);	// FIXME cast
 		if (unspecializedFirstType == unspecializedSecondType) {
 			return true;
@@ -2065,7 +2065,7 @@ public class MetamodelManager implements Adapter.Internal
 			//
 			EPackage ePackage = packageRegistry.getEPackage(uriString);
 			if (ePackage != null) {
-				return getPivotOf(Element.class, ePackage);
+				return getASOf(Element.class, ePackage);
 			}
 			//
 			//	fragment-less URI may be an OCL Standard Library
@@ -2101,7 +2101,7 @@ public class MetamodelManager implements Adapter.Internal
 				if (eResource instanceof XMLResource) {
 					EObject eObject = ((XMLResource)eResource).getEObject(fragment);
 					if (eObject != null) {
-						Element asElement = getPivotOf(Element.class, eObject);
+						Element asElement = getASOf(Element.class, eObject);
 						if (asElement != null) {
 							return asElement;
 						}

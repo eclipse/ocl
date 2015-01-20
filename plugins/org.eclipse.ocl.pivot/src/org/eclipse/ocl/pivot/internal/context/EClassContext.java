@@ -35,7 +35,7 @@ public class EClassContext extends AbstractParserContext
 	@Override
 	public @Nullable Type getClassContext() {
 		if (classContext == null) {
-			classContext = getMetamodelManager().getPivotOfEcore(Type.class, eClassContext);
+			classContext = getMetamodelManager().getASOfEcore(Type.class, eClassContext);
 		}
 		return classContext;
 	}

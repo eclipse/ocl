@@ -270,7 +270,7 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 		if (message != null)
 			fail(message);
 		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, environmentFactory);
-		Model pivotModel = ecore2as.getPivotModel();
+		Model pivotModel = ecore2as.getASModel();
 		message = PivotUtil.formatResourceDiagnostics(pivotModel.eResource().getErrors(), "Pivot load", "\n\t");
 		if (message != null)
 			fail(message);
@@ -629,7 +629,7 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		EStructuralFeature eStructuralFeature = getStructuralFeature(badClassClass, "attributeDefinedWithoutDerivation");
-		Property property = metamodelManager.getPivotOfEcore(Property.class, eStructuralFeature);
+		Property property = metamodelManager.getASOfEcore(Property.class, eStructuralFeature);
 		getWithException(badClassInstance, eStructuralFeature.getName(),
 			StringUtil.bind(PivotMessagesInternal.MissingDerivationForSettingDelegate_ERROR_, property));
 		ocl.dispose();
@@ -642,7 +642,7 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		EStructuralFeature eStructuralFeature = getStructuralFeature(badClassClass, "attributeDefinedWithoutDerivationBody");
-		Property property = metamodelManager.getPivotOfEcore(Property.class, eStructuralFeature);
+		Property property = metamodelManager.getASOfEcore(Property.class, eStructuralFeature);
 		getWithException(badClassInstance, eStructuralFeature.getName(),
 			StringUtil.bind(PivotMessagesInternal.MissingSpecificationBody_ERROR_, property, PivotConstantsInternal.DEFAULT_EXPRESSION_ROLE));
 		ocl.dispose();
@@ -655,7 +655,7 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		EStructuralFeature eStructuralFeature = getStructuralFeature(badClassClass, "attributeEvaluatingToInvalid");
-		Property property = metamodelManager.getPivotOfEcore(Property.class, eStructuralFeature);
+		Property property = metamodelManager.getASOfEcore(Property.class, eStructuralFeature);
 		getWithException(badClassInstance, eStructuralFeature.getName(),
 			StringUtil.bind(PivotMessagesInternal.EvaluationResultIsInvalid_ERROR_, property));
 		ocl.dispose();
@@ -928,7 +928,7 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		EOperation eOperation = getOperation(badClassClass, "operationDefinedWithoutBody");
-		Operation operation = metamodelManager.getPivotOfEcore(Operation.class, eOperation);
+		Operation operation = metamodelManager.getASOfEcore(Operation.class, eOperation);
 		invokeWithException(badClassInstance, eOperation.getName(),
 			StringUtil.bind(PivotMessagesInternal.MissingSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(operation), PivotConstantsInternal.BODY_EXPRESSION_ROLE));
 		ocl.dispose();
@@ -941,7 +941,7 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		EOperation eOperation = getOperation(badClassClass, "operationDefinedWithoutBodyBody");
-		Operation operation = metamodelManager.getPivotOfEcore(Operation.class, eOperation);
+		Operation operation = metamodelManager.getASOfEcore(Operation.class, eOperation);
 		invokeWithException(badClassInstance, eOperation.getName(),
 			StringUtil.bind(PivotMessagesInternal.MissingSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(operation), PivotConstantsInternal.BODY_EXPRESSION_ROLE));
 		ocl.dispose();
@@ -954,7 +954,7 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		EOperation eOperation = getOperation(badClassClass, "operationEvaluatingToInvalid");
-		Operation operation = metamodelManager.getPivotOfEcore(Operation.class, eOperation);
+		Operation operation = metamodelManager.getASOfEcore(Operation.class, eOperation);
 		invokeWithException(badClassInstance, eOperation.getName(),
 			StringUtil.bind(PivotMessagesInternal.EvaluationResultIsInvalid_ERROR_, operation));
 		ocl.dispose();

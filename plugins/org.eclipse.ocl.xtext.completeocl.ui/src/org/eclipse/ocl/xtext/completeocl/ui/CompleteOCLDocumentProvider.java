@@ -13,13 +13,13 @@ package org.eclipse.ocl.xtext.completeocl.ui;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.text.source.AnnotationModel;
 import org.eclipse.jface.text.source.IAnnotationModel;
+import org.eclipse.ocl.xtext.base.ui.model.BaseDocumentProvider;
 import org.eclipse.ui.IStorageEditorInput;
-import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
 
 /**
  * CompleteOCLDocumentProvider adds Annotation support for XtextReadonlyEditorInputs. 
  */
-public class CompleteOCLDocumentProvider extends XtextDocumentProvider
+public class CompleteOCLDocumentProvider extends BaseDocumentProvider
 {
 	@Override	// BUG 434948#5 add support for annotated ranges so that debug single stepping shows current element as a range
 	protected IAnnotationModel createAnnotationModel(Object element) throws CoreException {

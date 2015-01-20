@@ -21,8 +21,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
 import org.eclipse.ocl.xtext.basecs.PathElementCS;
@@ -370,10 +370,10 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 		Element element = getReferredElementGen();
 		if ((element == null) || ((EObject)element).eIsProxy())
 		{
-			MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(this);
-			if (metamodelManager != null) {
+			EnvironmentFactory environmentFactory = PivotUtilInternal.findEnvironmentFactory(this);
+			if (environmentFactory != null) {
 				if (isType()) {
-					element = metamodelManager.getStandardLibrary().getOclInvalidType();
+					element = environmentFactory.getStandardLibrary().getOclInvalidType();
 				}
 			}
 //			InternalEObject oldElement = (InternalEObject)element;

@@ -62,7 +62,7 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 		private @Nullable /*WeakHash*/Map<CollectionTypeParameters<Type>, WeakReference<CollectionType>> collections = null;
 		
 		protected @NonNull CollectionType createSpecialization(@NonNull CollectionTypeParameters<Type> typeParameters) {
-			org.eclipse.ocl.pivot.Class unspecializedType = getPivotClass();
+			org.eclipse.ocl.pivot.Class unspecializedType = getPrimaryClass();
 			String typeName = unspecializedType.getName();
 			TemplateSignature templateSignature = unspecializedType.getOwnedSignature();
 			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
@@ -99,7 +99,7 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 		
 		@Override
 		public synchronized @Nullable CollectionType findCollectionType(@NonNull CollectionTypeParameters<Type> typeParameters) {
-			TemplateSignature templateSignature = getPivotClass().getOwnedSignature();
+			TemplateSignature templateSignature = getPrimaryClass().getOwnedSignature();
 			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
 			if (templateParameters.size() != 1) {
 				return null;

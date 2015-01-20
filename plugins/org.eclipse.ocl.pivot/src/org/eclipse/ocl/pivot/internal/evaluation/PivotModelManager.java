@@ -44,11 +44,11 @@ public class PivotModelManager extends LazyModelManager
 		Type objectType = null;
 		if (ePackage == PivotPackage.eINSTANCE) {
 			String name = ClassUtil.nonNullEMF(eClass.getName());
-			objectType = metamodelManager.getPivotType(name);
+			objectType = metamodelManager.getASClass(name);
 		}
 		else {
 			try {
-				objectType = metamodelManager.getPivotOf(Type.class,  eClass);
+				objectType = metamodelManager.getASOf(Type.class,  eClass);
 			} catch (ParserException e) {
 				if (!generatedErrorMessage) {
 					generatedErrorMessage = true;

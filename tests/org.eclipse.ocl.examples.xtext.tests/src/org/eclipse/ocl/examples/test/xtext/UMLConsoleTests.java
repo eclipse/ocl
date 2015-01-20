@@ -24,7 +24,7 @@ import org.eclipse.ocl.pivot.utilities.OCL;
 public class UMLConsoleTests extends AbstractConsoleTests
 {	
 	public void testConsole_Bug419556() throws Exception {
-		OCL ocl = consolePage.getOCL();
+		OCL ocl = consolePage.getEditorOCL();
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
 
@@ -44,7 +44,7 @@ public class UMLConsoleTests extends AbstractConsoleTests
 	}
 
 	public void testConsole_Bug437715() throws Exception {
-		OCL ocl = consolePage.getOCL();
+		OCL ocl = consolePage.getEditorOCL();
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
 
@@ -68,9 +68,9 @@ public class UMLConsoleTests extends AbstractConsoleTests
 	@SuppressWarnings({"unused"})
 	public void testConsole_UML() throws Exception {
 		doDelete(PLUGIN_ID);
-		OCL ocl = consolePage.getOCL();
+		OCL ocl = consolePage.getEditorOCL();
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
-		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
+		ResourceSet resourceSet = ocl.getResourceSet();
 
         Resource umlResource = resourceSet.getResource(getTestModelURI("model/InternationalizedClasses.uml"), true);
         Resource umlProfileResource = resourceSet.getResource(getTestModelURI("model/Internationalized.profile.uml"), true);
@@ -83,7 +83,7 @@ public class UMLConsoleTests extends AbstractConsoleTests
         org.eclipse.uml2.uml.Stereotype umlInEnglishStereotype = umlProfile.getOwnedStereotype("InEnglish");
         org.eclipse.uml2.uml.Stereotype umlInFrenchStereotype = umlProfile.getOwnedStereotype("InFrench");
         org.eclipse.uml2.uml.Stereotype umlInGermanStereotype = umlProfile.getOwnedStereotype("InGerman");
-        Type asEnglishClass = metamodelManager.getPivotOf(Type.class, umlEnglishClass);
+        Type asEnglishClass = metamodelManager.getASOf(Type.class, umlEnglishClass);
 //        Type englishClass = ClassUtil.getNamedElement(modelPackage.getOwnedType(), "EnglishClass");
 //        Type frenchClass = ClassUtil.getNamedElement(modelPackage.getOwnedType(), "FrenchClass");
 //        Type germanClass = ClassUtil.getNamedElement(modelPackage.getOwnedType(), "GermanClass");

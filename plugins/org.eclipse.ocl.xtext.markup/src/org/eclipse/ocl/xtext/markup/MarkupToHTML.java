@@ -261,7 +261,7 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 				EClass eClass = ((EObject)context).eClass();
 				String name = eClass.getName();
 				assert name != null;
-				pivotType = environmentFactory.getMetamodelManager().getPivotType(name);
+				pivotType = environmentFactory.getMetamodelManager().getASClass(name);
 				if (pivotType == null) {
 					Resource resource = eClass.eResource();
 					if (resource != null) {

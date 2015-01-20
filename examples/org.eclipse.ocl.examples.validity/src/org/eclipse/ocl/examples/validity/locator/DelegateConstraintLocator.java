@@ -44,6 +44,7 @@ import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
@@ -59,7 +60,7 @@ public class DelegateConstraintLocator extends AbstractPivotConstraintLocator
 		if (constrainingObject instanceof EAnnotation) {
 			EObject eObject = ((EAnnotation) constrainingObject).eContainer();
 			if (eObject instanceof EOperation) {
-				return metamodelManager.getPivotOf(Constraint.class, eObject);
+				return metamodelManager.getASOf(Constraint.class, eObject);
 			}
 		}
 		else if (constrainingObject instanceof EStringToStringMapEntryImpl) {
@@ -68,7 +69,7 @@ public class DelegateConstraintLocator extends AbstractPivotConstraintLocator
 			if (eAnnotation instanceof EAnnotation) {
 				EObject eClassifier = ((EAnnotation)eAnnotation).eContainer();
 				if (eClassifier instanceof EClassifier) {
-					org.eclipse.ocl.pivot.Class asType = metamodelManager.getPivotOf(org.eclipse.ocl.pivot.Class.class, eClassifier);
+					org.eclipse.ocl.pivot.Class asType = metamodelManager.getASOf(org.eclipse.ocl.pivot.Class.class, eClassifier);
 					if (asType != null) {
 						return NameUtil.getNameable(asType.getOwnedInvariants(), eEntry.getKey());
 					}
@@ -178,7 +179,8 @@ public class DelegateConstraintLocator extends AbstractPivotConstraintLocator
 		if (resultConstrainingNode == null) {
 			return;
 		}
-		MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(eResource);
+		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(eResource);
+		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		Constraint asConstraint = null;
 		try {
 			asConstraint = getConstraint(metamodelManager, resultConstrainingNode);
@@ -193,7 +195,7 @@ public class DelegateConstraintLocator extends AbstractPivotConstraintLocator
 			}
 			final Constraint finalConstraint = asConstraint;
 			ExpressionInOCL query = getQuery(metamodelManager, asConstraint);
-			EvaluationVisitor evaluationVisitor = createEvaluationVisitor(metamodelManager, query, constrainedObject, monitor);
+			EvaluationVisitor evaluationVisitor = createEvaluationVisitor(environmentFactory, query, constrainedObject, monitor);
 			ConstraintEvaluator<Diagnostic> constraintEvaluator = new AbstractConstraintLocator(metamodelManager, query, constrainedObject)
 			{
 				@Override

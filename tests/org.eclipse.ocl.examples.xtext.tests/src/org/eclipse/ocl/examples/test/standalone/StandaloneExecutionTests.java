@@ -45,12 +45,14 @@ public class StandaloneExecutionTests extends StandaloneTestCase
 		StandaloneApplication validityApplication = new StandaloneApplication();
 		StandaloneResponse applicationResponse = validityApplication.execute(arguments);
 		assertEquals(StandaloneResponse.FAIL, applicationResponse);
+		validityApplication.stop();
 	}
 
 	private void doOKTest(@NonNull String[] arguments) throws CoreException {
 		StandaloneApplication validityApplication = new StandaloneApplication();
 		StandaloneResponse applicationResponse = validityApplication.execute(arguments);
 		assertEquals(StandaloneResponse.OK, applicationResponse);
+		validityApplication.stop();
 	}
 
 	private @NonNull List<String> checkLogFile(@NonNull String logFileName, int oks, int infos, int warnings, int errors, int fails) throws IOException {

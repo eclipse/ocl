@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.Model;
@@ -453,7 +454,8 @@ public class PrettyPrinter
 					append(parentSeparator);
 					return;
 				}
-	            MetamodelManager metamodelManager = options.getGlobalOptions().getMetamodelManager();
+				EnvironmentFactory environmentFactory = options.getGlobalOptions().getEnvironmentFactory();
+	            MetamodelManager metamodelManager = environmentFactory != null ? environmentFactory.getMetamodelManager() : null;
 	            if ((metamodelManager != null) && (parent instanceof Type)) {
 	            	parent = metamodelManager.getPrimaryType((Type) parent);
 	            }
@@ -493,7 +495,8 @@ public class PrettyPrinter
     public void appendQualifiedType(@NonNull Element element) {
     	Mode savedMode = pushMode(Mode.TYPE);
     	try {
-	        MetamodelManager metamodelManager = options.getGlobalOptions().getMetamodelManager();
+			EnvironmentFactory environmentFactory = options.getGlobalOptions().getEnvironmentFactory();
+            MetamodelManager metamodelManager = environmentFactory != null ? environmentFactory.getMetamodelManager() : null;
 	        Namespace parent = PivotUtil.getNamespace(element.eContainer());
 	        List<PathElement> parentPath = PathElement.getPath(parent, metamodelManager);
 	        int iMax = parentPath.size();

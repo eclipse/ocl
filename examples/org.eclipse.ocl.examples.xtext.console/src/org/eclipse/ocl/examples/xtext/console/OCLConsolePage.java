@@ -52,6 +52,7 @@ import org.eclipse.ocl.examples.xtext.console.actions.SaveExpressionAction;
 import org.eclipse.ocl.examples.xtext.console.messages.ConsoleMessages;
 import org.eclipse.ocl.examples.xtext.console.xtfo.EmbeddedXtextEditor;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Type;
@@ -61,10 +62,8 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
-import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.context.ClassContext;
-import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryAdapter;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -167,7 +166,7 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 			monitor.subTask(ConsoleMessages.Progress_Synchronising);
 			monitor.worked(1);
 //			CS2ASResourceAdapter csAdapter = CS2ASResourceAdapter.getAdapter((BaseCSResource)resource, metamodelManager);
-		    MetamodelManager metamodelManager = getMetamodelManager(contextObject);
+			EnvironmentFactory environmentFactory = getEnvironmentFactory(contextObject);
 //			monitor.subTask(ConsoleMessages.Progress_CST);
 //			try {
 //				csAdapter.refreshPivotMappings();
@@ -188,7 +187,6 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 			if (expressionInOCL != null) {
 	//			monitor.worked(2);
 				monitor.subTask(ConsoleMessages.Progress_Extent);
-				EnvironmentFactoryInternal environmentFactory = metamodelManager.getEnvironmentFactory();
 				ModelManager modelManager = environmentFactory.createModelManager(contextObject);
 				EvaluationEnvironment evaluationEnvironment = environmentFactory.createEvaluationEnvironment(expressionInOCL, modelManager);
 				Object contextValue = environmentFactory.getIdResolver().boxedValueOf(contextObject);
@@ -656,7 +654,7 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 		editorComposite.setLayoutData(data);
 		
 		ResourceSet resourceSet = editor.getResourceSet();
-		return resourceSet != null ? OCL.find(resourceSet) : null;
+		return resourceSet != null ? EnvironmentFactoryAdapter.find(resourceSet) : null;
 	}
 	
 	/**
@@ -664,6 +662,7 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 	 */
 	@Override
     public void dispose() {
+		editor.dispose();
 	    colorManager.dispose();
 	    selectionService.removePostSelectionListener(selectionListener);
 	    reset();	    
@@ -809,21 +808,25 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 	public BaseDocument getEditorDocument() {
 		return (BaseDocument) editor.getDocument();
 	}
+	
+	public OCL getEditorOCL() {
+		return editor.getOCL();
+	}
 
 	public String getLastOCLExpression() {
 		return lastOCLExpression;
 	}
 
-	public @NonNull MetamodelManager getMetamodelManager(@Nullable EObject contextObject) {
-		MetamodelManager metamodelManager = contextObject != null ? PivotUtilInternal.findMetamodelManager(contextObject) : null;
-		if (metamodelManager != null) {
-			return metamodelManager;
+	public @NonNull EnvironmentFactory getEnvironmentFactory(@Nullable EObject contextObject) {
+		EnvironmentFactory environmentFactory = PivotUtilInternal.findEnvironmentFactory(contextObject);
+		if (environmentFactory != null) {
+			return environmentFactory;
 		}
 		OCL nullOCL2 = nullOCL;
 		if (nullOCL2 == null) {
 			nullOCL2 = nullOCL = OCL.newInstance();
 		}
-		return nullOCL2.getMetamodelManager();
+		return nullOCL2.getEnvironmentFactory();
 	}
 
 	protected ILaunch internalLaunchDebugger() {
@@ -858,12 +861,11 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 		    		((BaseCSResource)resource).dispose();
 		    	}
 		    	
-			    MetamodelManager metamodelManager = getMetamodelManager(contextObject);
-				EnvironmentFactoryInternal environmentFactory = metamodelManager.getEnvironmentFactory();
+		    	EnvironmentFactory environmentFactory = getEnvironmentFactory(contextObject);
 				IdResolver idResolver = environmentFactory.getIdResolver();
 //				DomainType staticType = idResolver.getStaticTypeOf(selectedObject);
 				org.eclipse.ocl.pivot.Class staticType = idResolver.getStaticTypeOf(contextObject);
-				org.eclipse.ocl.pivot.Class contextType = metamodelManager.getType(staticType);
+				org.eclipse.ocl.pivot.Class contextType = environmentFactory.getMetamodelManager().getType(staticType);
 //				if (contextType != null) {
 					parserContext = new ClassContext(environmentFactory, null, contextType, contextObject instanceof Type ? (Type)contextObject : null);
 //				}
@@ -890,23 +892,7 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 
 	public void reset() {
 		if (editor != null) {
-			IXtextDocument document = editor.getDocument();
-			MetamodelManager metamodelManager = document.readOnly(new IUnitOfWork<MetamodelManager, XtextResource>() {				// Cancel validation
-				@Override
-				public MetamodelManager exec(@Nullable XtextResource state) throws Exception {
-					if (state == null) {
-						return null;
-					}
-					if (state instanceof CSResource) {
-						((CSResource)state).setParserContext(null);
-					}
-					return PivotUtilInternal.findMetamodelManager(state);
-				}
-			});
 			flushEvents();
-			if (metamodelManager != null) {
-				metamodelManager.dispose();
-			}
 		}
 		if (modelManager != null) {
 //			modelManager.dispose();

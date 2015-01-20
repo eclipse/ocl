@@ -13,14 +13,11 @@ package org.eclipse.ocl.examples.debug.core;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.core.EvaluationContext;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 public class OCLEvaluationContext extends EvaluationContext
@@ -44,7 +41,7 @@ public class OCLEvaluationContext extends EvaluationContext
 		this.contextURI = contextURI;
 	}
 
-	protected @Nullable MetamodelManager findMetamodelManager() {
+/*	protected @Nullable MetamodelManager findMetamodelManager() {
 		ExpressionInOCL expressionObject2 = expressionObject;
 		if (expressionObject2 != null) {
 			Resource eResource = expressionObject2.eResource();
@@ -66,7 +63,7 @@ public class OCLEvaluationContext extends EvaluationContext
 			}
 		}
 		return null;
-	}
+	} */
 
 	public @NonNull URI getConstraintURI() {
 		return constraintURI;

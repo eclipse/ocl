@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
@@ -177,9 +177,9 @@ public class AS2XMIid
 				assignIds((ASResource)resource, options);
 			}
 		}
-		MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(asResourceSet);
-		if (metamodelManager != null) {
-			metamodelManager.assignLibraryIds(this, options);
+		EnvironmentFactory environmentFactory = PivotUtilInternal.findEnvironmentFactory(asResourceSet);
+		if (environmentFactory != null) {
+			environmentFactory.getMetamodelManager().assignLibraryIds(this, options);
 		}
 	}
 

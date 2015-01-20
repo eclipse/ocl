@@ -57,7 +57,7 @@ public class OCLVMRootEvaluationEnvironment extends VMRootEvaluationEnvironment<
 		pcVariable = ClassUtil.nonNullEMF(PivotFactory.eINSTANCE.createVariable());
 		pcVariable.setName("$pc");
 		String typeName = ClassUtil.nonNullEMF(PivotPackage.Literals.OCL_EXPRESSION.getName());
-		pcVariable.setType(environmentFactory.getMetamodelManager().getPivotType(typeName));
+		pcVariable.setType(environmentFactory.getMetamodelManager().getASClass(typeName));
 	}
 
 	@Override

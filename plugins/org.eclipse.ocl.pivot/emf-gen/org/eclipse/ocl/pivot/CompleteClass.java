@@ -80,7 +80,7 @@ public interface CompleteClass extends NamedElement
 	boolean conformsTo(@NonNull Type elementType);
 	boolean conformsTo(@NonNull CompleteClass thatCompleteClass);
 	
-	@NonNull org.eclipse.ocl.pivot.Class getPivotClass();
+	@NonNull org.eclipse.ocl.pivot.Class getPrimaryClass();
 
 	@Nullable CollectionType findCollectionType(@NonNull CollectionTypeParameters<Type> typeParameters);
 	@NonNull CollectionType getCollectionType(@NonNull CollectionTypeParameters<Type> typeParameters);

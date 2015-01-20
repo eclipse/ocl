@@ -53,6 +53,7 @@ import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
@@ -72,14 +73,14 @@ public class UMLUIConstraintLocator extends UMLConstraintLocator implements Cons
     protected static class DebugStarter implements IRunnableWithProgress
 	{
 		protected final @NonNull Shell shell;
-    	protected final @NonNull MetamodelManager metamodelManager;
+    	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
     	protected final @Nullable EObject contextObject;
     	protected final @NonNull String expression;
     	private @Nullable ILaunch launch = null;
 
-		public DebugStarter(@NonNull Shell shell, @NonNull MetamodelManager metamodelManager, @Nullable EObject contextObject, @NonNull String expression) {
+		public DebugStarter(@NonNull Shell shell, @NonNull EnvironmentFactoryInternal environmentFactory, @Nullable EObject contextObject, @NonNull String expression) {
 			this.shell = shell;
-			this.metamodelManager = metamodelManager;
+			this.environmentFactory = environmentFactory;
 			this.contextObject = contextObject;
 			this.expression = expression;
 		}
@@ -89,9 +90,9 @@ public class UMLUIConstraintLocator extends UMLConstraintLocator implements Cons
 		 * Returns its URI.
 		 */
 		protected @NonNull URI createDocument(IProgressMonitor monitor) throws IOException, CoreException {
-			IdResolver idResolver = metamodelManager.getEnvironmentFactory().getIdResolver();
+			IdResolver idResolver = environmentFactory.getIdResolver();
 			org.eclipse.ocl.pivot.Class staticType = idResolver.getStaticTypeOf(contextObject);
-			org.eclipse.ocl.pivot.Class contextType = metamodelManager.getType(staticType);
+			org.eclipse.ocl.pivot.Class contextType = environmentFactory.getMetamodelManager().getType(staticType);
 //			if (contextType instanceof Metaclass) {
 //				contextType = (org.eclipse.ocl.pivot.Class)((Metaclass<?>)contextType).getInstanceType();	// FIXME cast
 //			}
@@ -108,7 +109,7 @@ public class UMLUIConstraintLocator extends UMLConstraintLocator implements Cons
 				if (containingRoot == null) {
 					externalURI = contextPackage.getURI();
 				}
-				else if (containingRoot != PivotUtil.getContainingRoot(metamodelManager.getStandardLibrary().getOclAnyType())) {
+				else if (containingRoot != PivotUtil.getContainingRoot(environmentFactory.getStandardLibrary().getOclAnyType())) {
 					externalURI = containingRoot.getExternalURI();
 					if (PivotUtilInternal.isASURI(externalURI)) {
 						@SuppressWarnings("null")
@@ -227,7 +228,7 @@ public class UMLUIConstraintLocator extends UMLConstraintLocator implements Cons
 				}
 				ExpressionInOCL query;
 				try {
-					query = ElementUtil.getFirstQuery(metamodelManager, csResource);
+					query = ElementUtil.getFirstQuery(environmentFactory.getMetamodelManager(), csResource);
 				} catch (ParserException e) {
 					openError(debug_FailLoad, e);
 					return;
@@ -265,10 +266,11 @@ public class UMLUIConstraintLocator extends UMLConstraintLocator implements Cons
 		if (eResource == null) {
 			return false;
 		}
-		MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(eResource);
+		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(eResource);
+		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		Constraint constraint = null;
 		try {
-			constraint = metamodelManager.getPivotOf(Constraint.class, umlConstraint);
+			constraint = metamodelManager.getASOf(Constraint.class, umlConstraint);
 		} catch (ParserException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -297,7 +299,7 @@ public class UMLUIConstraintLocator extends UMLConstraintLocator implements Cons
 		if (shell == null) {
 			return false;
 		}
-		DebugStarter runnable = new DebugStarter(shell, metamodelManager, eObject, expression);
+		DebugStarter runnable = new DebugStarter(shell, environmentFactory, eObject, expression);
 		
 		
 //		IProgressService progressService = PlatformUI.getWorkbench().getProgressService();

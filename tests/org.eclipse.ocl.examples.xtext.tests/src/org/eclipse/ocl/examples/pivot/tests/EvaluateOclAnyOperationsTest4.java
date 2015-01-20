@@ -686,7 +686,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotTestSuite
 		MyOCL ocl = createOCL();
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
     	StandardLibrary standardLibrary = metamodelManager.getStandardLibrary();
-    	@SuppressWarnings("null") @NonNull Type packageType = metamodelManager.getPivotType("Package");
+    	@SuppressWarnings("null") @NonNull Type packageType = metamodelManager.getASClass("Package");
        	ocl.assertQueryEquals(ocl.pkg1, packageType, "self.oclType()");
     	ocl.assertQueryEquals(ocl.pkg1, "Package", "self.oclType().name");
 		ocl.assertQueryEquals(null, packageType, "Package");
@@ -728,10 +728,10 @@ public class EvaluateOclAnyOperationsTest4 extends PivotTestSuite
 		MyOCL ocl = createOCL();
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
     	StandardLibrary standardLibrary = ocl.getStandardLibrary();
-    	@SuppressWarnings("null") @NonNull Type collectionKindType = metamodelManager.getPivotType("CollectionKind");
+    	@SuppressWarnings("null") @NonNull Type collectionKindType = metamodelManager.getASClass("CollectionKind");
 //    	ocl.assertQueryEquals(null, metamodelManager.getPivotType("EnumerationLiteral"), "CollectionKind::Set.oclType()");
     	// NB this is not EnumerationLiteral: cf. 4.oclType() is Integer not IntegerLiteral.
-    	ocl.assertQueryEquals(null, metamodelManager.getPivotType("CollectionKind"), "CollectionKind::Set.oclType()");
+    	ocl.assertQueryEquals(null, metamodelManager.getASClass("CollectionKind"), "CollectionKind::Set.oclType()");
     	ocl.assertQueryEquals(null, "CollectionKind", "CollectionKind::Set.oclType().name");
     	ocl.assertQueryEquals(null, collectionKindType, "CollectionKind");
     	ocl.assertQueryEquals(null, "CollectionKind", "CollectionKind.name");

@@ -8,17 +8,20 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.pivot.internal.manager;
+package org.eclipse.ocl.pivot.internal.resource;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
- * An EnvironmentFactoryResourceSetAdapter associates an EnvironmentFactory with a ResourceSet so
+ * An EnvironmentFactoryAdapter associates an EnvironmentFactory with a Resource or ResourceSet so
  * that Resource creation can re-use a shared EnvironmentFactory.
  */
 public class EnvironmentFactoryAdapter implements Adapter.Internal
@@ -33,10 +36,14 @@ public class EnvironmentFactoryAdapter implements Adapter.Internal
 		} */
 	}
 
+	public static @Nullable EnvironmentFactoryAdapter find(@NonNull Notifier notifier) {
+		return ClassUtil.getAdapter(EnvironmentFactoryAdapter.class, notifier);
+	}
+
 	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 	protected final @NonNull Notifier notifier;
 	
-	public EnvironmentFactoryAdapter( @NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Notifier notifier) {
+	public EnvironmentFactoryAdapter(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Notifier notifier) {
 		this.environmentFactory = environmentFactory;
 		this.notifier = notifier;
 	}

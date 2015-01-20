@@ -53,7 +53,7 @@ public class EObjectContext extends AbstractParserContext
 //					}
 //				}
 				else if (eObject != null) {
-					classContext2 = metamodelManager.getPivotOf(Type.class, eObject.eClass());
+					classContext2 = metamodelManager.getASOf(Type.class, eObject.eClass());
 				}
 			} catch (ParserException e) {
 				// TODO Auto-generated catch block

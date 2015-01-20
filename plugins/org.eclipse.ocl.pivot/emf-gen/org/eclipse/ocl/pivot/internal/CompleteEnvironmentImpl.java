@@ -685,7 +685,7 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		CompletePackage completePackage = metamodelManager.getCompletePackage(domainPackage);
 		CompletePackage memberPackage = completePackage.getOwnedCompletePackage(name);
-		return memberPackage != null ? memberPackage.getPivotPackage() : null;
+		return memberPackage != null ? memberPackage.getPrimaryPackage() : null;
 	}
 
 	@Override

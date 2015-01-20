@@ -555,7 +555,7 @@ public class EcoreOCLEValidator implements EValidator
 			}
 		}
 		try {
-			NamedElement asNamedElement = metamodelManager.getPivotOf(NamedElement.class, eNamedElement);
+			NamedElement asNamedElement = metamodelManager.getASOf(NamedElement.class, eNamedElement);
 			if (asNamedElement != null) {
 				ParserContext parserContext = metamodelManager.getParserContext(asNamedElement);
 				if (parserContext == null) {

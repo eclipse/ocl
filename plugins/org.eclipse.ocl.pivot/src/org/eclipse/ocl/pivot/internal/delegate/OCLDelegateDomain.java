@@ -295,7 +295,7 @@ public class OCLDelegateDomain implements DelegateDomain, EnvironmentFactory.Lis
 	public <T extends Element> T getPivot(@NonNull Class<T> requiredClass, @NonNull EObject eObject) {
 		MetamodelManager metamodelManager = getOCL().getMetamodelManager();
 		try {
-			return metamodelManager.getPivotOf(requiredClass, eObject);
+			return metamodelManager.getASOf(requiredClass, eObject);
 		} catch (ParserException e) {
 			return null;
 		}

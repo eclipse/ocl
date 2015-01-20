@@ -90,7 +90,7 @@ public class UML2ASUtil
 				org.eclipse.uml2.uml.Type umlType = umlPackage.getOwnedType(umlEClass.getName());
 				if (umlType != null) {
 					try {
-						org.eclipse.ocl.pivot.Class umlAStype = metamodelManager.getPivotOf(org.eclipse.ocl.pivot.Class.class, umlType);
+						org.eclipse.ocl.pivot.Class umlAStype = metamodelManager.getASOf(org.eclipse.ocl.pivot.Class.class, umlType);
 						if (umlAStype != null) {
 							return umlAStype;
 						}

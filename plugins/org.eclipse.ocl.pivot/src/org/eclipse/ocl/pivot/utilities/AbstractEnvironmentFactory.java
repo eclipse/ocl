@@ -61,10 +61,10 @@ import org.eclipse.ocl.pivot.internal.evaluation.OCLEvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.evaluation.PivotModelManager;
 import org.eclipse.ocl.pivot.internal.evaluation.TracingEvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.library.ImplementationManager;
-import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.PivotIdResolver;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
+import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.resource.ICSI2ASMapping;
 import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
@@ -287,17 +287,17 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
         	return new PropertyContext(this, null, (Property)context);
         }
         else if (context instanceof EClassifier) {
-        	org.eclipse.ocl.pivot.Class contextClass = metamodelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Class.class, context);
+        	org.eclipse.ocl.pivot.Class contextClass = metamodelManager.getASOfEcore(org.eclipse.ocl.pivot.Class.class, context);
         	return new ClassContext(this, null, contextClass, null);
         }
         else if (context instanceof EOperation) {
-    		Operation asOperation = metamodelManager.getPivotOfEcore(Operation.class, context);
+    		Operation asOperation = metamodelManager.getASOfEcore(Operation.class, context);
     		if (asOperation != null) {
     			return new OperationContext(this, null, asOperation, null);
     		}
         }
         else if (context instanceof EStructuralFeature) {
-        	Property asProperty = metamodelManager.getPivotOfEcore(Property.class, context);
+        	Property asProperty = metamodelManager.getASOfEcore(Property.class, context);
     		if (asProperty != null) {
     			return new PropertyContext(this, null, asProperty);
     		}
@@ -530,6 +530,11 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 		return projectManager2;
 	}
 	
+	@Override
+	public @NonNull ResourceSet getResourceSet() {
+		return getMetamodelManager().getExternalResourceSet();
+	}
+
 	@Override
 	public @NonNull StandardLibraryInternal getStandardLibrary() {
 		return standardLibrary;

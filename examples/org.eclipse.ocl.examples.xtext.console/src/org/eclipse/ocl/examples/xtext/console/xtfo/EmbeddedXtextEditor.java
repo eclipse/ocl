@@ -54,6 +54,8 @@ import org.eclipse.jface.text.source.projection.ProjectionSupport;
 import org.eclipse.jface.text.source.projection.ProjectionViewer;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.DisposeEvent;
@@ -168,6 +170,8 @@ public class EmbeddedXtextEditor {
 	
 	private IAnnotationAccess fAnnotationAccess;
 	
+	private OCL.Internal ocl;
+	
 	/**
 	 * Creates a new EmbeddedXtextEditor. It must have the SWT.V_SCROLL style at least not to 
 	 * throw NPE when computing overview ruler.
@@ -182,7 +186,9 @@ public class EmbeddedXtextEditor {
 		fAnnotationPreferences = new MarkerAnnotationPreferences();
 		
 		injector.injectMembers(this);
-
+		ocl = OCL.Internal.newInstance();
+		ResourceSet resourceSet = getResourceSet();
+		resourceSet.eAdapters().add(new EnvironmentFactoryAdapter(ocl.getEnvironmentFactory(), resourceSet));
 		createEditor(fControl);
 	}
 	
@@ -672,7 +678,19 @@ public class EmbeddedXtextEditor {
 		return result;
 	}
 
+	public void dispose() {
+		OCL ocl2 = ocl;
+		if (ocl2 != null) {
+			ocl = null;
+			ocl2.dispose();
+		}
+	}
+	
 	public ResourceSet getResourceSet() {
 		return fResourceSetProvider.get(null);
+	}
+
+	public OCL getOCL() {
+		return ocl;
 	}
 }

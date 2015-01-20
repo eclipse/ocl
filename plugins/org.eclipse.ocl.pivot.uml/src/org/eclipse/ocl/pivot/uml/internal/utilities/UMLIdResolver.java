@@ -31,7 +31,7 @@ public class UMLIdResolver extends PivotIdResolver
 		if (unboxedValue instanceof org.eclipse.uml2.uml.EnumerationLiteral) {				// FIXME make extensible
 			org.eclipse.uml2.uml.EnumerationLiteral umlEnumerationLiteral = (org.eclipse.uml2.uml.EnumerationLiteral) unboxedValue;
 			try {
-				EnumerationLiteral asEnumerationLiteral = metamodelManager.getPivotOf(EnumerationLiteral.class, umlEnumerationLiteral);
+				EnumerationLiteral asEnumerationLiteral = metamodelManager.getASOf(EnumerationLiteral.class, umlEnumerationLiteral);
 				if (asEnumerationLiteral != null) {
 					return asEnumerationLiteral.getEnumerationLiteralId();
 				}
@@ -54,7 +54,7 @@ public class UMLIdResolver extends PivotIdResolver
 		else if (value instanceof UMLElementExtension) {
 			org.eclipse.uml2.uml.Stereotype umlStereotype = ((UMLElementExtension)value).getDynamicStereotype();
 			try {
-				Stereotype asStereotype = metamodelManager.getPivotOf(Stereotype.class, umlStereotype);
+				Stereotype asStereotype = metamodelManager.getASOf(Stereotype.class, umlStereotype);
 				return asStereotype != null ? asStereotype : metamodelManager.getStandardLibrary().getOclInvalidType();
 			} catch (ParserException e) {
 				// TODO Auto-generated catch block
@@ -69,9 +69,9 @@ public class UMLIdResolver extends PivotIdResolver
 		if (value instanceof org.eclipse.uml2.uml.Element) {
 			try {				// FIXME Find a more efficient way to ensure Profiles are imported and applied
 				org.eclipse.uml2.uml.Element umlElement = (org.eclipse.uml2.uml.Element)value;
-				metamodelManager.getPivotOf(Element.class, umlElement); // Needed by test_stereotypes_Bug431638
+				metamodelManager.getASOf(Element.class, umlElement); // Needed by test_stereotypes_Bug431638
 				EClass umlEClass = umlElement.eClass();
-				org.eclipse.ocl.pivot.Class umlAStype = metamodelManager.getPivotOf(org.eclipse.ocl.pivot.Class.class, umlEClass);
+				org.eclipse.ocl.pivot.Class umlAStype = metamodelManager.getASOf(org.eclipse.ocl.pivot.Class.class, umlEClass);
 				if (umlAStype != null) {
 					return umlAStype;
 				}
@@ -88,7 +88,7 @@ public class UMLIdResolver extends PivotIdResolver
 		else if (value instanceof UMLElementExtension) {
 			org.eclipse.uml2.uml.Stereotype umlStereotype = ((UMLElementExtension)value).getStaticStereotype();
 			try {
-				Stereotype asStereotype = metamodelManager.getPivotOf(Stereotype.class, umlStereotype);
+				Stereotype asStereotype = metamodelManager.getASOf(Stereotype.class, umlStereotype);
 				return asStereotype != null ? asStereotype : metamodelManager.getStandardLibrary().getOclInvalidType();
 			} catch (ParserException e) {
 				// TODO Auto-generated catch block
@@ -129,7 +129,7 @@ public class UMLIdResolver extends PivotIdResolver
 			String stereotypeName = NameUtil.getOriginalName(eClassifier);
 			org.eclipse.uml2.uml.Stereotype umlStereotype = umlProfile.getOwnedStereotype(stereotypeName);
 			try {
-				Stereotype stereotype = metamodelManager.getPivotOf(Stereotype.class, umlStereotype);
+				Stereotype stereotype = metamodelManager.getASOf(Stereotype.class, umlStereotype);
 				if (stereotype != null) {
 					return stereotype;
 				}

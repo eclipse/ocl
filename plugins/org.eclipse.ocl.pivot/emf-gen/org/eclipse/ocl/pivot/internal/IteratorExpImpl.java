@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -104,7 +105,9 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 			return true;
 		}
 		Diagnostic diagnostic = null;
-		MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(ClassUtil.nonNullState(eResource()));
+		Resource asResource = ClassUtil.nonNullState(eResource());
+		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(asResource);
+		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		Type bodyType = getOwnedBody().getType();
 		if (bodyType instanceof CollectionType) {
 			bodyType = ((CollectionType)bodyType).getElementType();
@@ -137,8 +140,9 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 			return true;
 		}
 		Diagnostic diagnostic = null;
-		MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(ClassUtil.nonNullState(eResource()));
-		StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
+		Resource asResource = ClassUtil.nonNullState(eResource());
+		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(asResource);
+		StandardLibraryInternal standardLibrary = environmentFactory.getStandardLibrary();
 		try {
 			org.eclipse.ocl.pivot.Class oclComparableType = standardLibrary.getOclComparableType();
 			CompleteInheritance comparableInheritance = oclComparableType.getInheritance(standardLibrary);
@@ -156,9 +160,10 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 				Type sourceType = source2.getType();
 				Type sourceTypeValue = source2.getTypeValue();
 				Type bodyType = body2.getType();
-				Type specializedBodyType = bodyType != null ? TemplateParameterSubstitutionVisitor.specializeType(bodyType, this, metamodelManager.getEnvironmentFactory(), sourceType, sourceTypeValue) : null;
+				Type specializedBodyType = bodyType != null ? TemplateParameterSubstitutionVisitor.specializeType(bodyType, this, environmentFactory, sourceType, sourceTypeValue) : null;
 				boolean isOk = false;
 				if (bodyType != null) {
+					MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 					if ((specializedBodyType != null) && metamodelManager.conformsTo(specializedBodyType, TemplateParameterSubstitutions.EMPTY, oclComparableType, TemplateParameterSubstitutions.EMPTY)) {
 						isOk = true;
 					}

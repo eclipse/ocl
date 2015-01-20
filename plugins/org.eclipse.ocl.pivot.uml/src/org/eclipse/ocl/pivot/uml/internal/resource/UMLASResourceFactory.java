@@ -98,7 +98,7 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 			return null;
 		}
 		UML2AS uml2as = UML2AS.getAdapter(metamodel, environmentFactory);
-		uml2as.getPivotModel();
+		uml2as.getASModel();
 		EClass eClass = eObject.eClass();
 		EPackage ePackage = eClass.getEPackage();
 		if (ePackage == EcorePackage.eINSTANCE) {
@@ -275,7 +275,7 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 	public @Nullable Element importFromResource(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Resource umlResource, @Nullable URI uri) throws ParserException {
 		UML2AS conversion = UML2AS.getAdapter(umlResource, environmentFactory);
 		conversion.setUMLURI(uri);
-		Model pivotModel = conversion.getPivotModel();
+		Model pivotModel = conversion.getASModel();
 		String uriFragment = uri != null ? uri.fragment() : null;
 		if (uriFragment == null) {
 			return pivotModel;

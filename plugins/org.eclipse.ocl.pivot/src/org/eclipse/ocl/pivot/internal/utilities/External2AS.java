@@ -22,8 +22,8 @@ import org.eclipse.ocl.pivot.ParserException;
 public interface External2AS
 {
 	void dispose();
+	@NonNull Model getASModel() throws ParserException;
+	@Nullable <T extends Element> T getCreated(@NonNull Class<T> requiredClass, @NonNull EObject eObject);
 	@Nullable Resource getResource();
 	@NonNull URI getURI();
-	@Nullable <T extends Element> T getCreated(@NonNull Class<T> requiredClass, @NonNull EObject eObject);
-	@NonNull Model getPivotModel() throws ParserException;
 }

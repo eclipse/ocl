@@ -27,12 +27,9 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.internal.context.EInvocationContext;
 import org.eclipse.ocl.pivot.internal.context.EObjectContext;
-import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryAdapter;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.scoping.Attribution;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
-import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.xtext.base.attributes.RootCSAttribution;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.ui.BaseUiModule;
@@ -50,13 +47,13 @@ import com.google.inject.Inject;
 
 public class BaseDocument extends XtextDocument implements ConsoleContext
 {
-	@Inject
+	private @Nullable EObject context;
+    private @Nullable Map<String, EClassifier> parameters;
+
+    @Inject
 	public BaseDocument(DocumentTokenSource tokenSource, ITextEditComposer composer) {
 		super(tokenSource, composer);
 	}
-
-	private @Nullable EObject context;
-    private @Nullable Map<String, EClassifier> parameters;
 
 	protected void checkForErrors(Resource resource) throws CoreException {
 		List<Resource.Diagnostic> errors = resource.getErrors();
@@ -83,14 +80,14 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 		}
 	}
 
-	@Override
-	public void disposeInput() {
+/*	@Override
+	public void disposeInput() { -- should happen via BaseDocumentProvider.disconnected
 		MetamodelManager metamodelManager = readOnly(new IUnitOfWork<MetamodelManager, XtextResource>()
 			{
 				@Override
 				public MetamodelManager exec(@Nullable XtextResource resource) throws Exception {
 					if (resource != null) {
-						EnvironmentFactoryAdapter adapter = OCL.find(resource);
+						EnvironmentFactoryAdapter adapter = EnvironmentFactoryAdapter.find(resource);
 						if (adapter != null) {
 							return adapter.getMetamodelManager();
 						}
@@ -102,6 +99,26 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 			metamodelManager.dispose();
 		}
 		super.disposeInput();
+	} */
+
+	public @Nullable ASResource getASResource() throws CoreException {
+		return readOnly(new IUnitOfWork<ASResource, XtextResource>()
+			{
+				@Override
+				public ASResource exec(@Nullable XtextResource resource) throws Exception {
+					if (!(resource instanceof BaseCSResource)) {
+						return null;
+					}
+					BaseCSResource csResource = (BaseCSResource)resource;
+					CS2AS cs2as = csResource.findCS2AS();
+					if (cs2as  == null) {
+						return null;
+					}
+					ASResource asResource = cs2as.getASResource();
+					checkForErrors(asResource);
+					return asResource;
+				}
+			});
 	}
 
 	protected RootCSAttribution getDocumentAttribution() {
@@ -134,26 +151,6 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 		return parameters;
 	}
 
-	public @Nullable ASResource getPivotResource() throws CoreException {
-		return readOnly(new IUnitOfWork<ASResource, XtextResource>()
-			{
-				@Override
-				public ASResource exec(@Nullable XtextResource resource) throws Exception {
-					if (!(resource instanceof BaseCSResource)) {
-						return null;
-					}
-					BaseCSResource csResource = (BaseCSResource)resource;
-					CS2AS cs2as = csResource.findCS2AS();
-					if (cs2as  == null) {
-						return null;
-					}
-					ASResource asResource = cs2as.getASResource();
-					checkForErrors(asResource);
-					return asResource;
-				}
-			});
-	}
-
 	public @Nullable ResourceSet getResourceSet() {
 		return readOnly(new IUnitOfWork<ResourceSet, XtextResource>()
 			{
@@ -168,7 +165,7 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 	 * Write the XMI representation of the Pivot to be saved.
 	 */
 	public void saveAsPivot(@NonNull StringWriter writer) throws CoreException, IOException {
-		XMLResource asResource = getPivotResource();
+		XMLResource asResource = getASResource();
 		if (asResource != null) {
 			asResource.save(writer, null);
 		}

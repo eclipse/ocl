@@ -130,7 +130,7 @@ public class DebuggerTests extends XtextTestCase
 		EObject eObject = customers.get(0);
 		
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
-		org.eclipse.ocl.pivot.Class customerClass = metamodelManager.getPivotOf(org.eclipse.ocl.pivot.Class.class, eObject.eClass());
+		org.eclipse.ocl.pivot.Class customerClass = metamodelManager.getASOf(org.eclipse.ocl.pivot.Class.class, eObject.eClass());
 		Iterable<Constraint> customerInvariants = metamodelManager.getAllInvariants(customerClass);
 		Constraint constraint = NameUtil.getNameable(customerInvariants, "invariant_sizesAgree");
 

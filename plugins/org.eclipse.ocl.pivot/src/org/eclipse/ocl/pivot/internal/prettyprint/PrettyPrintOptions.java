@@ -18,8 +18,8 @@ import java.util.Set;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Namespace;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 
 /**
  * PrettyPrintOptions defines the capability to provide options to the PrettyPrinter
@@ -37,7 +37,7 @@ public abstract class PrettyPrintOptions
 		private final @NonNull Set<String> restrictedNames = new HashSet<String>();
 		private @NonNull Map<Namespace, String> namespace2alias = new HashMap<Namespace, String>();
 		private @Nullable URI baseURI = null;
-		private @Nullable MetamodelManager metamodelManager = null;
+		private @Nullable EnvironmentFactory environmentFactory = null;
 		
 		public Global(@Nullable Namespace scope) {
 			super(scope);
@@ -73,6 +73,11 @@ public abstract class PrettyPrintOptions
 		}
 
 		@Override
+		public @Nullable EnvironmentFactory getEnvironmentFactory() {
+			return environmentFactory;
+		}
+
+		@Override
 		public @NonNull Global getGlobalOptions() {
 			return this;
 		}
@@ -90,11 +95,6 @@ public abstract class PrettyPrintOptions
 		public @NonNull Set<Namespace> getAliasedNamespaces() {
 			@SuppressWarnings("null") @NonNull Set<Namespace> result = namespace2alias.keySet();
 			return result;
-		}
-
-		@Override
-		public @Nullable MetamodelManager getMetamodelManager() {
-			return metamodelManager;
 		}
 		
 		@Override
@@ -115,6 +115,10 @@ public abstract class PrettyPrintOptions
 			this.baseURI = baseURI;
 		}
 
+		public void setEnvironmentFactory(EnvironmentFactory environmentFactory) {
+			this.environmentFactory = environmentFactory;
+		}
+
 		@Override
 		public void setIndentStep(@NonNull String indentStep) {
 			this.indentStep = indentStep;
@@ -123,10 +127,6 @@ public abstract class PrettyPrintOptions
 		@Override
 		public void setLinelength(int linelength) {
 			this.linelength = linelength;
-		}
-
-		public void setMetamodelManager(MetamodelManager metamodelManager) {
-			this.metamodelManager = metamodelManager;
 		}
 	}
 	
@@ -216,6 +216,10 @@ public abstract class PrettyPrintOptions
 		return getGlobalOptions().getBaseURI();
 	}
 
+	public @Nullable EnvironmentFactory getEnvironmentFactory() {
+		return getGlobalOptions().getEnvironmentFactory();
+	}
+
 	public abstract @NonNull Global getGlobalOptions();
 
 	public @NonNull String getIndentStep() {
@@ -224,10 +228,6 @@ public abstract class PrettyPrintOptions
 
 	public int getLinelength() {
 		return getGlobalOptions().getLinelength();
-	}
-
-	public @Nullable MetamodelManager getMetamodelManager() {
-		return getGlobalOptions().getMetamodelManager();
 	}
 
 	public abstract @Nullable Set<String> getReservedNames();

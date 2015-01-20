@@ -27,6 +27,7 @@ import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.ReferringElement;
@@ -34,7 +35,7 @@ import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.VariableDeclaration;
 import org.eclipse.ocl.pivot.VariableExp;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.internal.utilities.HTMLBuffer;
@@ -125,11 +126,11 @@ public class MarkupHoverProvider extends DefaultEObjectHoverProvider
 			return null;
 		}
 		try {
-			MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(resource);
-			if (metamodelManager == null) {
+			EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.findEnvironmentFactory(resource);
+			if (environmentFactory == null) {
 				return null;
 			}
-			return MarkupUtils.toHTML(metamodelManager.getEnvironmentFactory(), o, markup);
+			return MarkupUtils.toHTML(environmentFactory, o, markup);
 		} catch (Exception e) {
 			StringWriter s = new StringWriter();
 			e.printStackTrace(new PrintWriter(s));
@@ -201,9 +202,9 @@ public class MarkupHoverProvider extends DefaultEObjectHoverProvider
 				}				
 			};
 			if (namespace != null) {
-				MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(namespace);
-				if (metamodelManager != null) {
-					prettyPrintOptions.setMetamodelManager(metamodelManager);
+				EnvironmentFactory environmentFactory = PivotUtilInternal.findEnvironmentFactory(namespace);
+				if (environmentFactory != null) {
+					prettyPrintOptions.setEnvironmentFactory(environmentFactory);
 				}
 			}
 			if (pivotElement instanceof CallExp) {

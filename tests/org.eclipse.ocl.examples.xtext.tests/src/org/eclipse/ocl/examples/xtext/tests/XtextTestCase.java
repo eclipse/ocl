@@ -327,10 +327,8 @@ public class XtextTestCase extends PivotTestCase
 	}
 
 	protected void doLoadFromString(@NonNull OCL ocl, @NonNull String fileName, @NonNull String testFile) throws Exception {
-//		EnvironmentFactoryInternal environmentFactory = (EnvironmentFactoryInternal) ocl.getEnvironmentFactory();
 		URI libraryURI = getProjectFileURI(fileName);
-		ResourceSet resourceSet = new ResourceSetImpl();
-//		EnvironmentFactoryResourceSetAdapter.getAdapter(resourceSet, environmentFactory);
+		ResourceSet resourceSet = ocl.getResourceSet();
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(libraryURI);
 		InputStream inputStream = new URIConverter.ReadableInputStream(testFile, "UTF-8");
 		xtextResource.load(inputStream, null);
@@ -340,18 +338,6 @@ public class XtextTestCase extends PivotTestCase
 		assertNoResourceErrors("File Model", asResource);
 		assertNoUnresolvedProxies("File Model", asResource);
 		assertNoValidationErrors("File Model", asResource);
-//		MetamodelManagerResourceSetAdapter adapter2 = MetamodelManagerResourceSetAdapter.findAdapter(resourceSet);
-//		if (adapter2 != null) {
-//			MetamodelManager metamodelManager2 = adapter2.getMetamodelManager();
-//			if (metamodelManager2 != null) {
-//				metamodelManager2.dispose();
-//				metamodelManager2 = null;
-//			}
-//			adapter2 = null;
-//		}
-//		adapter.dispose();
-		resourceSet = null;
-//		adapter = null;
 	}
 
 	protected ASResource doLoadASResourceFromString(@NonNull OCL ocl, @NonNull String fileName, @NonNull String testFile) throws Exception {

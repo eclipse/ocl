@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
@@ -1341,12 +1342,16 @@ public class ClassImpl
 		if (selfType != null) {
 			TemplateSignature templateSignature = getOwnedSignature();
 			if (templateSignature != null) {
-				MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(ClassUtil.nonNullState(callExpr.eResource()));
+				Resource asResource = ClassUtil.nonNullState(callExpr.eResource());
+				EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(asResource);
+				MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 				return metamodelManager.specializeType(this, callExpr, selfType, null);
 			}
 			List<TemplateBinding> templateBindings = getOwnedBindings();
 			if ((templateBindings != null) && !templateBindings.isEmpty()) {
-				MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(ClassUtil.nonNullState(callExpr.eResource()));
+				Resource asResource = ClassUtil.nonNullState(callExpr.eResource());
+				EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(asResource);
+				MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 				return metamodelManager.specializeType(this, callExpr, selfType, null);
 			}
 		}

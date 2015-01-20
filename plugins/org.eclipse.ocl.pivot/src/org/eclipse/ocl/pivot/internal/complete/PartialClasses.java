@@ -216,7 +216,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 	}
 
 	protected @NonNull org.eclipse.ocl.pivot.Class createSpecialization(@NonNull TemplateParameters templateArguments) {
-		org.eclipse.ocl.pivot.Class unspecializedType = getCompleteClass().getPivotClass();
+		org.eclipse.ocl.pivot.Class unspecializedType = getCompleteClass().getPrimaryClass();
 		String typeName = unspecializedType.getName();
 		TemplateSignature templateSignature = unspecializedType.getOwnedSignature();
 		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
@@ -367,7 +367,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 	}
 
 	public synchronized @Nullable Type findSpecializedType(@NonNull TemplateParameters templateArguments) {
-		TemplateSignature templateSignature = getCompleteClass().getPivotClass().getOwnedSignature();
+		TemplateSignature templateSignature = getCompleteClass().getPrimaryClass().getOwnedSignature();
 		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
 		int iMax = templateParameters.size();
 		if (templateArguments.parametersSize() != iMax) {
@@ -438,7 +438,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 		CompleteInheritanceImpl completeInheritance2 = completeInheritance;
 		if (completeInheritance2 == null) {
 			CompleteClassInternal completeClass = getCompleteClass();
-			org.eclipse.ocl.pivot.Class pivotClass = completeClass.getPivotClass();
+			org.eclipse.ocl.pivot.Class pivotClass = completeClass.getPrimaryClass();
 			if (pivotClass instanceof DataType) {
 				org.eclipse.ocl.pivot.Class behavioralClass = ((DataType)pivotClass).getBehavioralClass();
 				if (behavioralClass != null) {
@@ -676,7 +676,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 	}
 
 	public synchronized @NonNull org.eclipse.ocl.pivot.Class getSpecializedType(@NonNull TemplateParameters templateArguments) {
-		TemplateSignature templateSignature = getCompleteClass().getPivotClass().getOwnedSignature();
+		TemplateSignature templateSignature = getCompleteClass().getPrimaryClass().getOwnedSignature();
 		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
 		int iMax = templateParameters.size();
 		if (templateArguments.parametersSize() != iMax) {
@@ -858,7 +858,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 					}
 				}
 			}
-			Class pivotClass = getCompleteClass().getPivotClass();
+			Class pivotClass = getCompleteClass().getPrimaryClass();
 			if (INIT_MEMBER_PROPERTIES.isActive()) {
 				INIT_MEMBER_PROPERTIES.println(this + " for " + pivotClass + " " + NameUtil.debugSimpleName(pivotClass));
 			}
@@ -872,7 +872,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 			}
 			@SuppressWarnings("null")@NonNull String metatypeName = pivotClass.eClass().getName();
 			CompletePackageInternal rootCompletePackage = getCompleteClass().getOwningCompletePackage().getRootCompletePackage();
-			Package pivotPackage = rootCompletePackage.getPivotPackage();
+			Package pivotPackage = rootCompletePackage.getPrimaryPackage();
 			if (pivotPackage != null) {
 				MetamodelManager metamodelManager = getMetamodelManager();
 				EnvironmentFactoryInternal environmentFactory = metamodelManager.getEnvironmentFactory();

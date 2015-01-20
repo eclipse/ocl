@@ -77,7 +77,7 @@ public class EvaluateUMLTest4 extends PivotTestSuite
 //			String problem = UML2AS.initialize(metamodelManager.getExternalResourceSet());
 //			assertNull(problem);
 			UML2AS uml2as = UML2AS.getAdapter(umlResource, metamodelManager.getEnvironmentFactory());
-			Model pivotModel = uml2as.getPivotModel();
+			Model pivotModel = uml2as.getASModel();
 			Resource asResource = pivotModel.eResource();
 			assertNoResourceErrors("Normalisation failed", asResource);
 			assertNoValidationErrors("Normalisation invalid", asResource);
@@ -162,11 +162,12 @@ public class EvaluateUMLTest4 extends PivotTestSuite
 	 * @throws ParserException 
 	 */
 	@Test public void test_oclIsInState() throws InvocationTargetException, ParserException {
+		UMLStandaloneSetup.init();
 		MyOCL ocl = createOCL();
 		ocl.initStateMachinePackage(getTestModelURI("model/StateMachines.uml"));
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		EObject context = ocl.statefulEFactory.create(ocl.c1Class);
-		org.eclipse.ocl.pivot.Class contextType = metamodelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Class.class, ocl.c1Class);
+		org.eclipse.ocl.pivot.Class contextType = metamodelManager.getASOfEcore(org.eclipse.ocl.pivot.Class.class, ocl.c1Class);
 		assert contextType != null;
 		ocl.assertSemanticErrorQuery(contextType, "self.oclIsInState(S2b)", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Model::C1", "S2b");	
 		ocl.assertQueryInvalid(context, "self.oclIsInState(S1a)", "Failed to evaluate OclAny::oclIsInState(OclState) : Boolean", UnsupportedOperationException.class);	

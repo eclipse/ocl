@@ -429,6 +429,9 @@ public class CSI2ASMapping implements ICSI2ASMapping
 
 	@Override
 	public void dispose() {
+		for (BaseCSResource csResource : new ArrayList<BaseCSResource>(cs2as2as.keySet())) {
+			csResource.dispose();
+		}
 		csi2as.clear();
 		as2cs = null;
 //		List<CS2AS> cs2ases2 = cs2ases;

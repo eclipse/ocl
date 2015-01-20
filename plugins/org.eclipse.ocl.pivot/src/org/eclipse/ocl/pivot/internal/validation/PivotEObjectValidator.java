@@ -87,9 +87,9 @@ public class PivotEObjectValidator implements EValidator
 					return (ValidationAdapter)adapter;
 				}
 			}
-			MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(resourceSet);
-			if (metamodelManager != null) {
-				ResourceSet externalResourceSet = metamodelManager.getExternalResourceSet();
+			EnvironmentFactory environmentFactory = PivotUtilInternal.findEnvironmentFactory(resourceSet);
+			if (environmentFactory != null) {
+				ResourceSet externalResourceSet = environmentFactory.getResourceSet();
 				for (Adapter adapter : externalResourceSet.eAdapters()) {
 					if (adapter instanceof ValidationAdapter) {
 						return (ValidationAdapter)adapter;
@@ -116,7 +116,7 @@ public class PivotEObjectValidator implements EValidator
 		public boolean validate(@NonNull EClassifier eClassifier, @Nullable Object object, @Nullable DiagnosticChain diagnostics, @Nullable Map<Object, Object> context) {
 			boolean allOk = true;
 			MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
-			Type type = metamodelManager.getPivotOfEcore(Type.class, eClassifier);
+			Type type = metamodelManager.getASOfEcore(Type.class, eClassifier);
 			if (type != null) {
 				for (Constraint constraint : metamodelManager.getAllInvariants(type)) {
 					if (constraint !=  null) {

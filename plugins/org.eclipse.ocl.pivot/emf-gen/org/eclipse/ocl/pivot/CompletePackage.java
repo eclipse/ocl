@@ -127,7 +127,7 @@ public interface CompletePackage extends NamedElement
 	@NonNull CompleteClass getCompleteClass(@NonNull org.eclipse.ocl.pivot.Class pivotType);
 
 
-	org.eclipse.ocl.pivot.Package getPivotPackage();
+	org.eclipse.ocl.pivot.Package getPrimaryPackage();
 
 	org.eclipse.ocl.pivot.Class getMemberType(String name);
 

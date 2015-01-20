@@ -41,9 +41,7 @@ import org.eclipse.ocl.examples.standalone.StandaloneApplication;
 import org.eclipse.ocl.examples.standalone.StandaloneCommand;
 import org.eclipse.ocl.examples.standalone.StandaloneResponse;
 import org.eclipse.ocl.examples.standalone.messages.StandaloneMessages;
-import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.validation.PivotEObjectValidator.ValidationAdapter;
-import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.xtext.completeocl.utilities.CompleteOCLLoader;
 
 /**
@@ -581,10 +579,6 @@ public class ValidateCommand extends StandaloneCommand
 //				// TODO Auto-generated catch block
 //				e.printStackTrace();
 //			}
-			EnvironmentFactoryAdapter adapter = OCL.find(modelResource.getResourceSet());
-			if (adapter != null) {
-				adapter.getMetamodelManager().dispose();
-			}
 		}
 		return StandaloneResponse.OK;
 	}

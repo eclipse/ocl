@@ -218,7 +218,7 @@ public class SerializeTests extends XtextTestCase
 //		String problem = UML2AS.initialize(metamodelManager.getExternalResourceSet());
 //		assertNull(problem);
 		UML2AS uml2as = UML2AS.getAdapter(umlResource, metamodelManager.getEnvironmentFactory());
-		Model pivotModel = uml2as.getPivotModel();
+		Model pivotModel = uml2as.getASModel();
 		Resource asResource = ClassUtil.nonNullState(pivotModel.eResource());
 		assertNoResourceErrors("Normalisation failed", asResource);
 		assertNoValidationErrors("Normalisation invalid", asResource);

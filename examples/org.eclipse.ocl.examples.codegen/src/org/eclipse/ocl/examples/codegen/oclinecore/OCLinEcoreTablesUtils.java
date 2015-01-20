@@ -66,8 +66,8 @@ import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.library.executor.ExecutorLambdaType;
 import org.eclipse.ocl.pivot.library.executor.ExecutorSpecializedType;
@@ -648,7 +648,7 @@ public class OCLinEcoreTablesUtils
 	protected @NonNull Set<? extends org.eclipse.ocl.pivot.Class> getActiveTypes(@NonNull org.eclipse.ocl.pivot.Package pPackage) {
 		Package oclstdlibPackage = standardLibrary.getBooleanType().getOwningPackage();
 		org.eclipse.ocl.pivot.Package pivotMetamodel = metamodelManager.getASmetamodel();
-		Type elementType = metamodelManager.getPivotType("Element");
+		Type elementType = metamodelManager.getASClass("Element");
 		if (oclstdlibPackage == pPackage) {
 			VoidType oclVoidType = metamodelManager.getStandardLibrary().getOclVoidType();
 			Set<org.eclipse.ocl.pivot.Class> types = new HashSet<org.eclipse.ocl.pivot.Class>();
@@ -723,7 +723,7 @@ public class OCLinEcoreTablesUtils
 		}
 		int myDepth = 0;
 		for (@NonNull CompleteClass superCompleteClass : metamodelManager.getAllSuperCompleteClasses(theClass)) {
-			org.eclipse.ocl.pivot.Class superClass = superCompleteClass.getPivotClass();
+			org.eclipse.ocl.pivot.Class superClass = superCompleteClass.getPrimaryClass();
 			if (superClass != theClass) {
 				superClass = PivotUtil.getUnspecializedTemplateableElement(superClass);
 				int superDepth = getAllSuperClasses(results, superClass);
@@ -758,7 +758,7 @@ public class OCLinEcoreTablesUtils
 		org.eclipse.ocl.pivot.Package pPackage = type.getOwningPackage();
 		assert pPackage != null;
 		Package oclstdlibPackage = standardLibrary.getBooleanType().getOwningPackage();
-		org.eclipse.ocl.pivot.Class elementType = metamodelManager.getPivotType("Element");
+		org.eclipse.ocl.pivot.Class elementType = metamodelManager.getASClass("Element");
 		if ((elementType != null) && (oclstdlibPackage != null)) {
 			VoidType oclVoidType = metamodelManager.getStandardLibrary().getOclVoidType();
 			org.eclipse.ocl.pivot.Package pivotMetamodel = elementType.getOwningPackage();

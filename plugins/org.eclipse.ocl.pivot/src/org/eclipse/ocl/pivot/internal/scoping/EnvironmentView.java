@@ -491,11 +491,11 @@ public class EnvironmentView
 			}
 			else {
 				for (CompleteClass completeClass : completePackage.getOwnedCompleteClasses()) {
-					addNamedElement(completeClass.getPivotClass());
+					addNamedElement(completeClass.getPrimaryClass());
 				}
 				completePackage = environmentFactory.getCompleteModel().getPrimitiveCompletePackage();
 				for (CompleteClass completeClass : completePackage.getOwnedCompleteClasses()) {
-					addNamedElement(completeClass.getPivotClass());
+					addNamedElement(completeClass.getPrimaryClass());
 				}
 			}
 		}
@@ -538,7 +538,7 @@ public class EnvironmentView
 			return;
 		}
 		if (element instanceof CompletePackage) {
-			element = ((CompletePackage)element).getPivotPackage();
+			element = ((CompletePackage)element).getPrimaryPackage();
 		}
 		else if (element instanceof org.eclipse.ocl.pivot.Package) {
 //			element = metamodelManager.getCompletePackage((org.eclipse.ocl.pivot.Package) element).getPivotPackage();
@@ -567,7 +567,7 @@ public class EnvironmentView
 		}
 		else*/ if (element instanceof CompleteInheritanceImpl) {
 			assert false;
-			element = ((CompleteInheritanceImpl) element).getCompleteClass().getPivotClass();		// FIXME lose casts
+			element = ((CompleteInheritanceImpl) element).getCompleteClass().getPrimaryClass();		// FIXME lose casts
 		}
 		if ((requiredType != null) && (name != null)) {
 			if (!requiredType.isInstance(element)) {

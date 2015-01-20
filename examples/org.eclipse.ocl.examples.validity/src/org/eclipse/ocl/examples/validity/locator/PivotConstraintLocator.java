@@ -35,6 +35,7 @@ import org.eclipse.ocl.examples.validity.plugin.OCLValidityPlugin;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Namespace;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.internal.validation.PivotEObjectValidator.ValidationAdapter;
@@ -59,8 +60,9 @@ public class PivotConstraintLocator extends AbstractConstraintLocator
 				asResource = ((CSResource) resource).getASResource();
 			}
 			if (asResource != null) {
-				MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(asResource);
-				if (metamodelManager != null) {
+				EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.findEnvironmentFactory(asResource);
+				if (environmentFactory != null) {
+					MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 					for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {
 						if (monitor.isCanceled()) {
 							return null;

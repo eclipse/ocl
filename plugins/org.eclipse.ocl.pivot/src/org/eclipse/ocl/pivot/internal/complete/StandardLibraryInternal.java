@@ -57,7 +57,7 @@ public interface StandardLibraryInternal extends StandardLibrary
 	@NonNull CollectionType getOrderedCollectionType();
 	@Override
 	@NonNull OrderedSetType getOrderedSetType();
-	@Nullable org.eclipse.ocl.pivot.Class getPivotType(@NonNull String className);
+	@Nullable org.eclipse.ocl.pivot.Class getASClass(@NonNull String className);
 	@Override
 	@NonNull PrimitiveType getRealType();
 	@NonNull org.eclipse.ocl.pivot.Class getRequiredLibraryType(@NonNull String typeName);

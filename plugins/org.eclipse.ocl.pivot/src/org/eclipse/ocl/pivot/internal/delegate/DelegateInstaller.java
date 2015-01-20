@@ -294,7 +294,7 @@ public class DelegateInstaller
 		boolean hasDelegates = false;
 //		for (Type aType : metamodelManager.getLocalClasses(pivotPackage)) {
 		for (CompleteClass completeClass : completePackage.getOwnedCompleteClasses()) {
-			if (installDelegates(completeClass.getPivotClass())) {
+			if (installDelegates(completeClass.getPrimaryClass())) {
 				hasDelegates = true;
 			}
 		}

@@ -56,7 +56,6 @@ import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.AbstractEcore2AS;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.AliasAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.External2AS;
@@ -133,7 +132,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 			return null;
 		}
 		UML2AS conversion = getAdapter(umlResource, environmentFactory);
-		return conversion.getPivotModel();
+		return conversion.getASModel();
 	}
 
 	/**
@@ -154,7 +153,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 		}
 		UML2AS conversion = getAdapter(umlResource, environmentFactory);
 		@SuppressWarnings("unused")
-		Model pivotModel = conversion.getPivotModel();
+		Model pivotModel = conversion.getASModel();
 		return conversion.getCreated(Element.class, eObject);
 	}
 
@@ -234,14 +233,14 @@ public abstract class UML2AS extends AbstractEcore2AS
 	}
 
 	public static UML2AS loadFromUML(@NonNull ASResource umlASResource, @NonNull URI umlURI) {
-		MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(umlASResource);
-		Resource umlResource = metamodelManager.getExternalResourceSet().getResource(umlURI, true);
+		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(umlASResource);
+		Resource umlResource = environmentFactory.getResourceSet().getResource(umlURI, true);
 		if (umlResource == null) {
 			return null;
 		}
-		UML2AS conversion = getAdapter(umlResource, metamodelManager.getEnvironmentFactory());
+		UML2AS conversion = getAdapter(umlResource, environmentFactory);
 		try {
-			conversion.getPivotModel();
+			conversion.getASModel();
 		} catch (ParserException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -329,6 +328,26 @@ public abstract class UML2AS extends AbstractEcore2AS
 		}	
 
 		@Override
+				public @NonNull Model getASModel() throws ParserException {
+					Model pivotModel2 = pivotModel;
+					if (pivotModel2 == null) {
+						pivotModel2 = root.getASModel();
+						Resource asResource = pivotModel.eResource();
+						if (asResource == null) {
+							throw new IllegalStateException("Missing containing resource");
+						}
+		//				installAliases(asResource);
+						metamodelManager.installResource(asResource);
+					}
+					return pivotModel2;
+				}
+
+		@Override
+		public @Nullable Type getASType(@NonNull EObject eObject) {
+			return root.getASType(eObject);
+		}
+
+		@Override
 		public <T extends Element> T getCreated(@NonNull Class<T> requiredClass, @NonNull EObject eObject) {
 			return root.getCreated(requiredClass, eObject);
 		}
@@ -338,26 +357,6 @@ public abstract class UML2AS extends AbstractEcore2AS
 			return root.getDeclarationPass();
 		}
 		
-		@Override
-		public @NonNull Model getPivotModel() throws ParserException {
-			Model pivotModel2 = pivotModel;
-			if (pivotModel2 == null) {
-				pivotModel2 = root.getPivotModel();
-				Resource asResource = pivotModel.eResource();
-				if (asResource == null) {
-					throw new IllegalStateException("Missing containing resource");
-				}
-//				installAliases(asResource);
-				metamodelManager.installResource(asResource);
-			}
-			return pivotModel2;
-		}
-		
-		@Override
-		public @Nullable Type getPivotType(@NonNull EObject eObject) {
-			return root.getPivotType(eObject);
-		}
-
 		@Override
 		public @NonNull Outer getRoot() {
 			return root;
@@ -526,6 +525,104 @@ public abstract class UML2AS extends AbstractEcore2AS
 			errors.add(new XMIException(message));
 		}
 
+		/*		protected org.eclipse.uml2.uml.Property getOtherEnd(@NonNull org.eclipse.uml2.uml.Property umlProperty) {
+					org.eclipse.uml2.uml.Property otherEnd = umlProperty.getOtherEnd();
+					if (otherEnd != null) {
+						return otherEnd;
+					}
+					// Workaround problem whereby UML has three ends two of them duplicates with distinct Class/Association ownership.
+					org.eclipse.uml2.uml.Association association = umlProperty.getAssociation();
+					if (association != null) {
+						List<org.eclipse.uml2.uml.Property> memberEnds = new ArrayList<org.eclipse.uml2.uml.Property>(association.getMemberEnds());
+						memberEnds.remove(umlProperty);
+						for (org.eclipse.uml2.uml.Property aProperty : memberEnds) {
+							if (!aProperty.getName().equals(umlProperty)) {
+								return aProperty;
+							}
+						}
+					}
+					return otherEnd;
+				} */
+		
+				@Override
+				public @NonNull Model getASModel() throws ParserException {
+					Model pivotModel2 = pivotModel;
+					if (pivotModel2 == null) {
+						URI pivotURI = createPivotURI();
+						ASResource asResource = metamodelManager.getResource(pivotURI, ASResource.UML_CONTENT_TYPE);
+						try {
+							pivotModel2 = installDeclarations(asResource);					
+		//					Map<String, Type> resolvedSpecializations = new HashMap<String, Type>();
+		//					for (EGenericType eGenericType : genericTypes) {
+		//						Type pivotType = resolveType(resolvedSpecializations, eGenericType);
+		//						createMap.put(eGenericType, pivotType);
+		//					}
+		//					for (List<TemplateableElement> pivotElements : specializations.values()) {
+		//						for (TemplateableElement pivotElement : pivotElements) {
+		//							metamodelManager.addOrphanType((Type)pivotElement);
+		//						}
+		//					}
+							installImports();
+							installReferencers();
+							modelAnalysis.installStereotypes();
+							installProperties();
+							installUsers();
+						}
+						catch (Exception e) {
+		//					if (errors == null) {
+		//						errors = new ArrayList<Resource.Diagnostic>();
+		//					}
+		//					errors.add(new XMIException("Failed to load '" + pivotURI + "' : " + e.getMessage()));
+							throw new ParserException(e, "Failed to load '" + pivotURI + "' : " + e.getMessage());
+						}
+						if (errors != null) {
+							asResource.getErrors().addAll(errors);
+						}
+						installAliases(asResource);
+						metamodelManager.installResource(asResource);
+						ResourceSet resourceSet = umlResource.getResourceSet();
+						if (resourceSet != null) {
+							metamodelManager.addExternalResources(resourceSet);
+						}
+					}
+					return pivotModel2;
+				}
+
+		@Override
+				public Type getASType(@NonNull EObject eObject) {
+					Element pivotElement = createMap.get(eObject);
+					if (pivotElement == null) {
+						Resource resource = eObject.eResource();
+						if ((resource != umlResource) && (resource != null)) {
+							UML2AS converter = getAdapter(resource, environmentFactory);
+							if (allConverters.add(converter)) {
+								try {
+									converter.getASModel();
+								} catch (ParserException e) {
+									@SuppressWarnings("null") @NonNull String message = e.getMessage();
+									error(message);
+								}
+		//						allEClassifiers.addAll(converter.allEClassifiers);
+		//						allNames.addAll(converter.allNames);
+		//						for (Map.Entry<EModelElement, Element> entry : converter.createMap.entrySet()) {
+		//							createMap.put(entry.getKey(), entry.getValue());
+		//						}
+							}
+						}
+						pivotElement = createMap.get(eObject);
+					}
+					if (pivotElement == null) {
+						error("Unresolved " + eObject);
+					}
+					else if (!(pivotElement instanceof Type)) {
+						error("Incompatible " + eObject);
+					}
+					else {
+						return (Type) pivotElement;
+					}
+					return null;
+				}
+
 		@Override
 		public <T extends Element> T getCreated(@NonNull Class<T> requiredClass, @NonNull EObject eObject) {
 			Element element = createMap.get(eObject);
@@ -568,85 +665,6 @@ public abstract class UML2AS extends AbstractEcore2AS
 			}
 			return otherEnd;
 		} */
-
-		@Override
-		public @NonNull Model getPivotModel() throws ParserException {
-			Model pivotModel2 = pivotModel;
-			if (pivotModel2 == null) {
-				URI pivotURI = createPivotURI();
-				ASResource asResource = metamodelManager.getResource(pivotURI, ASResource.UML_CONTENT_TYPE);
-				try {
-					pivotModel2 = installDeclarations(asResource);					
-//					Map<String, Type> resolvedSpecializations = new HashMap<String, Type>();
-//					for (EGenericType eGenericType : genericTypes) {
-//						Type pivotType = resolveType(resolvedSpecializations, eGenericType);
-//						createMap.put(eGenericType, pivotType);
-//					}
-//					for (List<TemplateableElement> pivotElements : specializations.values()) {
-//						for (TemplateableElement pivotElement : pivotElements) {
-//							metamodelManager.addOrphanType((Type)pivotElement);
-//						}
-//					}
-					installImports();
-					installReferencers();
-					modelAnalysis.installStereotypes();
-					installProperties();
-					installUsers();
-				}
-				catch (Exception e) {
-//					if (errors == null) {
-//						errors = new ArrayList<Resource.Diagnostic>();
-//					}
-//					errors.add(new XMIException("Failed to load '" + pivotURI + "' : " + e.getMessage()));
-					throw new ParserException(e, "Failed to load '" + pivotURI + "' : " + e.getMessage());
-				}
-				if (errors != null) {
-					asResource.getErrors().addAll(errors);
-				}
-				installAliases(asResource);
-				metamodelManager.installResource(asResource);
-				ResourceSet resourceSet = umlResource.getResourceSet();
-				if (resourceSet != null) {
-					metamodelManager.addExternalResources(resourceSet);
-				}
-			}
-			return pivotModel2;
-		}
-		
-		@Override
-		public Type getPivotType(@NonNull EObject eObject) {
-			Element pivotElement = createMap.get(eObject);
-			if (pivotElement == null) {
-				Resource resource = eObject.eResource();
-				if ((resource != umlResource) && (resource != null)) {
-					UML2AS converter = getAdapter(resource, environmentFactory);
-					if (allConverters.add(converter)) {
-						try {
-							converter.getPivotModel();
-						} catch (ParserException e) {
-							@SuppressWarnings("null") @NonNull String message = e.getMessage();
-							error(message);
-						}
-//						allEClassifiers.addAll(converter.allEClassifiers);
-//						allNames.addAll(converter.allNames);
-//						for (Map.Entry<EModelElement, Element> entry : converter.createMap.entrySet()) {
-//							createMap.put(entry.getKey(), entry.getValue());
-//						}
-					}
-				}
-				pivotElement = createMap.get(eObject);
-			}
-			if (pivotElement == null) {
-				error("Unresolved " + eObject);
-			}
-			else if (!(pivotElement instanceof Type)) {
-				error("Incompatible " + eObject);
-			}
-			else {
-				return (Type) pivotElement;
-			}
-			return null;
-		}
 
 		@Override
 		public @NonNull Outer getRoot() {
@@ -874,10 +892,10 @@ public abstract class UML2AS extends AbstractEcore2AS
 	@Override
 	public abstract void error(@NonNull String message);
 	
+	public abstract @Nullable Type getASType(@NonNull EObject eObject);
+
 	public abstract @NonNull UML2ASDeclarationSwitch getDeclarationPass();
 	
-	public abstract @Nullable Type getPivotType(@NonNull EObject eObject);
-
 	@Override
 	public @NonNull Resource getResource() {
 		return umlResource;
@@ -1023,7 +1041,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 		ClassUtil.nonNullState(pivotModel);
 		EClass umlStereotypeEClass = umlStereotypeApplication.eClass();
 		if (!(umlStereotypeApplication instanceof DynamicEObjectImpl)) {					// If stereotyped element has been genmodelled
-			Stereotype asStereotype = metamodelManager.getPivotOfEcore(Stereotype.class, umlStereotypeEClass);
+			Stereotype asStereotype = metamodelManager.getASOfEcore(Stereotype.class, umlStereotypeEClass);
 			return asStereotype;		// then it is already a Type rather than a Stereotype
 		}
 		//

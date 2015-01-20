@@ -51,9 +51,9 @@ import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.helper.HelperUtil;
 import org.eclipse.ocl.pivot.internal.helper.OCLHelperImpl;
 import org.eclipse.ocl.pivot.internal.helper.QueryImpl;
-import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
+import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.AbstractProjectManager;
@@ -82,7 +82,7 @@ public class OCL
 	     * A convenient shared instance of the environment factory, that creates
 	     * environments using the global package registry.
 		 */
-	    private static @Nullable EnvironmentFactory GLOBAL_ENVIRONMENT_FACTORY = null;
+	    private static @Nullable EnvironmentFactoryInternal GLOBAL_ENVIRONMENT_FACTORY = null;
 
 		public static @Nullable EnvironmentFactory basicGetGlobalEnvironmentFactory() {
 			return GLOBAL_ENVIRONMENT_FACTORY;
@@ -104,10 +104,10 @@ public class OCL
 			}
 		}
 		
-		public static @NonNull EnvironmentFactory getGlobalEnvironmentFactory() {
-			EnvironmentFactory globalRegistryInstance2 = GLOBAL_ENVIRONMENT_FACTORY;
+		public static @NonNull EnvironmentFactoryInternal getGlobalEnvironmentFactory() {
+			EnvironmentFactoryInternal globalRegistryInstance2 = GLOBAL_ENVIRONMENT_FACTORY;
 			if (globalRegistryInstance2 == null) {
-				GLOBAL_ENVIRONMENT_FACTORY = globalRegistryInstance2 = OCL.Internal.createEnvironmentFactory(null);
+				GLOBAL_ENVIRONMENT_FACTORY = globalRegistryInstance2 = (EnvironmentFactoryInternal) OCL.Internal.createEnvironmentFactory(null);
 //				PivotUtilInternal.debugPrintln("Create Global " + NameUtil.debugSimpleName(GLOBAL_ENVIRONMENT_FACTORY));	
 			}
 //			else {
@@ -165,10 +165,6 @@ public class OCL
 		return ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectManager);
 	}
 	
-	public static @Nullable EnvironmentFactoryAdapter find(@NonNull Notifier notifier) {
-		return ClassUtil.getAdapter(EnvironmentFactoryAdapter.class, notifier);
-	}
-
 	/**
 	 * Initialize registries to support OCL and Ecore usage. This method is
 	 * intended for initialization of standalone behaviors for which plugin extension
@@ -480,7 +476,7 @@ public class OCL
 	public @NonNull ASResource ecore2as(@NonNull Resource ecoreResource) throws ParserException {
 		assert environmentFactory != null;
 		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, environmentFactory);
-		Model pivotModel = ecore2as.getPivotModel();
+		Model pivotModel = ecore2as.getASModel();
 		ASResource asResource = (ASResource) pivotModel.eResource();
 		return ClassUtil.nonNullModel(asResource);
 	}

@@ -253,7 +253,7 @@ public class UMLOCLEValidator implements EValidator
 	 * Return the OCL context for the validation, caching the created value in the validation context for re-use by
 	 * further validations. The cached reference is weak to ensure that the OCL context is disposed once no longer in use.
 	 */
-	protected OCL getOCL(@NonNull Map<Object, Object> context) {
+	protected @NonNull OCL getOCL(@NonNull Map<Object, Object> context) {
 		OCL ocl = null;
 		Object oclRef = context.get(WeakOCLReference.class);
 		if (oclRef instanceof WeakOCLReference) {
@@ -294,7 +294,7 @@ public class UMLOCLEValidator implements EValidator
 						OCL ocl = getOCL(context);
 						MetamodelManager metamodelManager = ocl.getMetamodelManager();
 						UML2AS uml2as = UML2AS.getAdapter(umlResource, (EnvironmentFactoryInternal) ocl.getEnvironmentFactory());
-						uml2as.getPivotModel();
+						uml2as.getASModel();
 						Map<EObject, List<org.eclipse.uml2.uml.Element>> umlStereotypeApplication2umlStereotypedElements = UML2ASUtil.computeAppliedStereotypes(umlStereotypeApplications);
 						for (@SuppressWarnings("null")@NonNull EObject umlStereotypeApplication : umlStereotypeApplications) {
 							@SuppressWarnings("null")@NonNull List<Element> umlStereotypedElements = umlStereotypeApplication2umlStereotypedElements.get(umlStereotypeApplication);
@@ -489,7 +489,7 @@ public class UMLOCLEValidator implements EValidator
 		ExpressionInOCL asQuery = null;
 		try {
 			MetamodelManager metamodelManager = ocl.getMetamodelManager();
-			org.eclipse.ocl.pivot.ExpressionInOCL asSpecification = metamodelManager.getPivotOf(org.eclipse.ocl.pivot.ExpressionInOCL.class, opaqueElement);
+			org.eclipse.ocl.pivot.ExpressionInOCL asSpecification = metamodelManager.getASOf(org.eclipse.ocl.pivot.ExpressionInOCL.class, opaqueElement);
 			if (asSpecification == null) {
 				if (diagnostics != null) {
 					String objectLabel = LabelUtil.getLabel(opaqueElement);

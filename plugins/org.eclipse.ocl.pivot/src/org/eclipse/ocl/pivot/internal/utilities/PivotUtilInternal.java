@@ -33,6 +33,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Model;
@@ -46,16 +47,16 @@ import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.PivotExecutorManager;
+import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.scoping.Attribution;
 import org.eclipse.ocl.pivot.internal.scoping.NullAttribution;
 import org.eclipse.ocl.pivot.library.ecore.EcoreExecutorManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.Pivotable;
 
@@ -77,44 +78,53 @@ public class PivotUtilInternal //extends PivotUtil
 			System.out.println("");
 		}		
 	}
-	
-	public static @Nullable MetamodelManager findMetamodelManager(@NonNull EObject eObject) {
+
+	public static @Nullable EnvironmentFactoryInternal findEnvironmentFactory(@Nullable EObject eObject) {
+		if (eObject == null) {
+			return null;
+		}
 		EObject eRoot = EcoreUtil.getRootContainer(eObject);
-		if (eRoot != null) {
-			Resource resource = eRoot.eResource();
-			if (resource != null) {
-//				if (eObject instanceof ElementCS) {
-				EnvironmentFactoryAdapter adapter = OCL.find(resource);
-					if (adapter != null) {
-						return adapter.getMetamodelManager();
-					}
-//				}
-				return findMetamodelManager(resource);
+		if (eRoot == null) {
+			return null;
+		}
+		Resource eResource = eRoot.eResource();
+		if (eResource == null) {
+			return null;
+		}
+		return findEnvironmentFactory(eResource);
+	}
+
+	public static @Nullable EnvironmentFactoryInternal findEnvironmentFactory(@NonNull Resource resource) {
+		for (Adapter adapter : resource.eAdapters()) {
+			if (adapter instanceof EnvironmentFactoryAdapter) {
+				return ((EnvironmentFactoryAdapter)adapter).getEnvironmentFactory();
+			}
+		}
+		ResourceSet resourceSet = resource.getResourceSet();
+		if (resourceSet == null) {
+			return null;
+		}
+		return findEnvironmentFactory(resourceSet);
+	}
+
+	public static @Nullable EnvironmentFactoryInternal findEnvironmentFactory(@NonNull ResourceSet resourceSet) {
+		for (Adapter adapter : resourceSet.eAdapters()) {
+			if (adapter instanceof EnvironmentFactoryAdapter) {
+				return ((EnvironmentFactoryAdapter)adapter).getEnvironmentFactory();
+			}
+			else if (adapter instanceof MetamodelManager) {
+				return ((MetamodelManager)adapter).getEnvironmentFactory();
 			}
 		}
 		return null;
 	}
 
 	public static @Nullable MetamodelManager findMetamodelManager(@NonNull Resource resource) {
-		for (Adapter adapter : resource.eAdapters()) {
-			if (adapter instanceof EnvironmentFactoryAdapter) {
-				return ((EnvironmentFactoryAdapter)adapter).getMetamodelManager();
-			}
+		EnvironmentFactoryInternal environmentFactory = findEnvironmentFactory(resource);
+		if (environmentFactory == null) {
+			return null;
 		}
-		ResourceSet resourceSet = resource.getResourceSet();
-		return resourceSet != null ? findMetamodelManager(resourceSet) : null;
-	}
-
-	public static MetamodelManager findMetamodelManager(@NonNull ResourceSet resourceSet) {
-		MetamodelManager metamodelManager = MetamodelManager.findAdapter(resourceSet);
-		if (metamodelManager != null) {
-			return metamodelManager;
-		}
-		EnvironmentFactoryAdapter adapter = OCL.find(resourceSet);
-		if (adapter != null) {
-			return adapter.getMetamodelManager();
-		}
-		return null;
+		return environmentFactory.getMetamodelManager();
 	}
 
 	public static Type findTypeOf(@NonNull MetamodelManager metamodelManager, @NonNull EClassifier eClass) {
@@ -206,20 +216,19 @@ public class PivotUtilInternal //extends PivotUtil
 		return umlBody;
 	}
 
+	public static @NonNull EnvironmentFactoryInternal getEnvironmentFactory(@NonNull Resource resource) {
+		return ClassUtil.nonNullState(findEnvironmentFactory(resource));
+	}
+
 	public static @NonNull Evaluator getEvaluator(@NonNull EObject eObject) {
 		Resource asResource = eObject.eResource();
 		if (asResource != null) {
-			MetamodelManager metamodelManager = findMetamodelManager(asResource);
-			if (metamodelManager != null) {
-				return new PivotExecutorManager(metamodelManager.getEnvironmentFactory(), eObject);
+			EnvironmentFactory environmentFactory = findEnvironmentFactory(asResource);
+			if (environmentFactory != null) {
+				return new PivotExecutorManager(environmentFactory, eObject);
 			}
 		}
 		return new EcoreExecutorManager(eObject, PivotTables.LIBRARY);
-	}
-
-	public static @NonNull MetamodelManager getMetamodelManager(@NonNull Resource resource) {
-		MetamodelManager metamodelManager = ClassUtil.nonNullState(findMetamodelManager(resource));
-		return metamodelManager;
 	}
 
 	@SuppressWarnings("null")

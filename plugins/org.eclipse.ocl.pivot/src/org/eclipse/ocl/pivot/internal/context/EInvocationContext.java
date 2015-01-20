@@ -40,7 +40,7 @@ public class EInvocationContext extends EClassContext
 			parameters = new HashMap<String, Type>();
 			if (eParameters != null) {
 				for (Map.Entry<String, EClassifier> entry : eParameters.entrySet()) {
-					Type type = getMetamodelManager().getPivotOfEcore(Type.class, entry.getValue());
+					Type type = getMetamodelManager().getASOfEcore(Type.class, entry.getValue());
 					parameters.put(entry.getKey(), type);
 				}
 			}

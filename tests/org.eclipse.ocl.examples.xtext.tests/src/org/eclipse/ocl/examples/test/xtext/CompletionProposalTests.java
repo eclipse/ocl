@@ -24,8 +24,6 @@ import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.ocl.examples.xtext.tests.TestUtil;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.xtext.oclinecore.ui.OCLinEcoreUiModule;
@@ -39,13 +37,11 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.part.FileEditorInput;
-import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.contentassist.ConfigurableCompletionProposal;
 import org.eclipse.xtext.ui.editor.contentassist.XtextContentAssistProcessor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.ui.editor.templates.XtextTemplateProposal;
-import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 
 import com.google.inject.Injector;
 
@@ -154,19 +150,9 @@ public class CompletionProposalTests extends XtextTestCase
 	}
 
 	protected void doTearDown(XtextEditor editor) {
-		IXtextDocument document = editor.getDocument();
-		MetamodelManager metamodelManager = document.modify(new IUnitOfWork<MetamodelManager, XtextResource>() {				// Cancel validation
-			@Override
-			public MetamodelManager exec(@Nullable XtextResource state) throws Exception {
-				return PivotUtilInternal.findMetamodelManager(state);
-			}
-		});
 		TestUtil.flushEvents();
 		editor.close(false);
 		TestUtil.flushEvents();
-		if (metamodelManager != null) {
-			metamodelManager.dispose();
-		}
 	}
 
 	public void doTestEditor(@NonNull String testContent, @Nullable IReferenceCompletionProposal[] expectedProposals,

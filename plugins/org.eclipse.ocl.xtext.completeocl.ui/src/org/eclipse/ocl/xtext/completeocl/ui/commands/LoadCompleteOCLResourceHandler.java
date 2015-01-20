@@ -37,7 +37,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.registry.CompleteOCLRegistry;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.OCL;
@@ -379,9 +379,9 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 					if (xtextResource == null) {
 						return null;
 					}
-					MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(xtextResource);
-					if (metamodelManager != null) {
-						return metamodelManager.getExternalResourceSet();
+					EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.findEnvironmentFactory(xtextResource);
+					if (environmentFactory != null) {
+						return environmentFactory.getResourceSet();
 					}
 					else {
 						return xtextResource.getResourceSet();

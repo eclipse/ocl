@@ -88,7 +88,7 @@ public class JavaStream
 				ResourceSet asResourceSet = asResource.getResourceSet();
 				if (asResourceSet != null) {
 					MetamodelManager metamodelManager = MetamodelManager.getAdapter(asResourceSet);
-					createOptions.setMetamodelManager(metamodelManager);
+					createOptions.setEnvironmentFactory(metamodelManager.getEnvironmentFactory());
 				}
 			}
 		}

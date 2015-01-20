@@ -423,7 +423,6 @@ public class EditTests extends XtextTestCase
 			assertEquals(loadPivotContent.size(), reparsePivotContent.size());
 			assertEquals(loadPivotContent, reparsePivotContent);
 		}
-		metamodelManager1.dispose();
 		ocl.dispose();
 	}	
 

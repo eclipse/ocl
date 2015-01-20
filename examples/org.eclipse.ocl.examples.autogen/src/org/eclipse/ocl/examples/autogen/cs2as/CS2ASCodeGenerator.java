@@ -16,6 +16,7 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenClass;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.autogen.analyzer.AutoCG2StringVisitor;
@@ -44,6 +45,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Variable;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -76,8 +78,10 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 //		CommonSubexpressionEliminator.CSE_REWRITE.setState(true);
 	
 		AutoCG2StringVisitor.FACTORY.getClass();
-		MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(ClassUtil.nonNullState(ePackage.eResource()));
-		org.eclipse.ocl.pivot.Package asPackage = metamodelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Package.class, ePackage);
+		Resource eResource = ClassUtil.nonNullState(ePackage.eResource());
+		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(eResource);
+		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+		org.eclipse.ocl.pivot.Package asPackage = metamodelManager.getASOfEcore(org.eclipse.ocl.pivot.Package.class, ePackage);
 		if (asPackage != null) {
 			GenPackage superGenPackage = null;
 			org.eclipse.ocl.pivot.Package asSuperPackage = null;
@@ -87,7 +91,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 					if (name.startsWith(superProjectPrefix)) {
 						superGenPackage = gPackage;
 						EPackage eSuperPackage = gPackage.getEcorePackage();
-						asSuperPackage = metamodelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Package.class, eSuperPackage);
+						asSuperPackage = metamodelManager.getASOfEcore(org.eclipse.ocl.pivot.Package.class, eSuperPackage);
 						break;
 					}
 				}
@@ -95,7 +99,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 					throw new IllegalStateException("No super-GenPackage found in UsedGenPackages for " + superProjectPrefix);
 				}
 			}
-			AutoCodeGenerator autoCodeGenerator = new CS2ASCodeGenerator(metamodelManager.getEnvironmentFactory(), asPackage, asSuperPackage, genPackage, // superGenPackage,
+			AutoCodeGenerator autoCodeGenerator = new CS2ASCodeGenerator(environmentFactory, asPackage, asSuperPackage, genPackage, // superGenPackage,
 					projectPrefix, projectName, visitorPackage, visitorClass, superProjectPrefix, superProjectName, superVisitorClass);
 			autoCodeGenerator.saveSourceFile();
 		}

@@ -414,6 +414,14 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 		resetLibrary();	
 	}
 
+	/**
+	 * Return the pivot model class for className with the Pivot Model.
+	 */
+	@Override
+	public @Nullable org.eclipse.ocl.pivot.Class getASClass(@NonNull String className) {
+		return environmentFactory.getMetamodelManager().getASClass(className);
+	}
+
 	@Override
 	public @NonNull Iterable<? extends CompletePackage> getAllCompletePackages() {
 		return environmentFactory.getMetamodelManager().getAllCompletePackages();
@@ -513,7 +521,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	@Override
 	public Type getMetaType(@NonNull Type instanceType) {
 		if (instanceType instanceof PrimitiveType) {
-			return getPivotType(TypeId.PRIMITIVE_TYPE_NAME);
+			return getASClass(TypeId.PRIMITIVE_TYPE_NAME);
 		}
 //		throw new UnsupportedOperationException();
 		return getMetaclass(instanceType);
@@ -522,7 +530,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	@Override
 	public org.eclipse.ocl.pivot.Package getNsURIPackage(@NonNull String nsURI) {
 		CompletePackage completePackage = completeModel.getCompletePackageByURI(nsURI);
-		return completePackage != null ? completePackage.getPivotPackage() : null;
+		return completePackage != null ? completePackage.getPrimaryPackage() : null;
 	}
 
 	@Override
@@ -698,14 +706,6 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 		}
 		return libraryPackage2;
 	}
-
-	/**
-	 * Return the pivot model class for className with the Pivot Model.
-	 */
-	@Override
-	public @Nullable org.eclipse.ocl.pivot.Class getPivotType(@NonNull String className) {
-		return environmentFactory.getMetamodelManager().getPivotType(className);
-	}	
 
 	@Override
 	public @Nullable Type getPrimitiveType(@NonNull PrimitiveTypeId typeId) {

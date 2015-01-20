@@ -54,7 +54,7 @@ public class ExtensionProperty extends AbstractProperty
 		}
 		else {
 			try {
-				element = ((OCLEvaluationVisitor)evaluator).getMetamodelManager().getPivotOf(Element.class, (EObject)sourceValue);
+				element = ((OCLEvaluationVisitor)evaluator).getMetamodelManager().getASOf(Element.class, (EObject)sourceValue);
 			} catch (ParserException e) {
 				return new InvalidValueException(e, "Failed to parse " + property);
 			}

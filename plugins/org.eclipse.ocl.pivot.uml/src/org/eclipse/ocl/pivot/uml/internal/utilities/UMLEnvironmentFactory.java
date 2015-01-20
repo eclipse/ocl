@@ -160,9 +160,9 @@ public class UMLEnvironmentFactory extends PivotEnvironmentFactory
 			return (Element) eObject;
 		}
 		MetamodelManager metamodelManager = getMetamodelManager();
-		pivotElement = metamodelManager.getPivotOf(Element.class, eObject);
+		pivotElement = metamodelManager.getASOf(Element.class, eObject);
 		if ((eObject instanceof org.eclipse.uml2.uml.Constraint) && (pivotElement instanceof Constraint) && (pivotElement.eContainer() == null)) {
-			pivotElement = metamodelManager.getPivotOf(Element.class, ((org.eclipse.uml2.uml.Constraint)eObject).getSpecification());
+			pivotElement = metamodelManager.getASOf(Element.class, ((org.eclipse.uml2.uml.Constraint)eObject).getSpecification());
 		}
 		return pivotElement;
 	}

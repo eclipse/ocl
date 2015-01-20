@@ -16,7 +16,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceImpl;
 import org.eclipse.ocl.pivot.internal.utilities.AS2XMIid;
@@ -50,10 +50,10 @@ public class CompleteOCLASResourceImpl extends ASResourceImpl
 	@Override
 	public void load(Map<?, ?> options) throws IOException {
 		@SuppressWarnings("null")@NonNull URI oclURI = uri.trimFileExtension();
-		MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(this);
-		BaseCSResource csResource = (BaseCSResource) metamodelManager.getExternalResourceSet().createResource(oclURI);
+		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(this);
+		BaseCSResource csResource = (BaseCSResource) environmentFactory.getResourceSet().createResource(oclURI);
 		assert csResource != null;
-		csResource.getCS2AS(metamodelManager.getEnvironmentFactory(), this);
+		csResource.getCS2AS(environmentFactory, this);
 		csResource.load(null);
 		super.load(options);
 	}

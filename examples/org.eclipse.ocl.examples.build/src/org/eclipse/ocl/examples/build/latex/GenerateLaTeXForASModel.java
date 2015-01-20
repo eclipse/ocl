@@ -53,7 +53,7 @@ public abstract class GenerateLaTeXForASModel extends GenerateLaTeXUtils
 				return;
 			}
 			Ecore2AS adapter = Ecore2AS.getAdapter(eResource, metamodelManager.getEnvironmentFactory());
-			Model asModel = adapter.getPivotModel();
+			Model asModel = adapter.getASModel();
 			org.eclipse.ocl.pivot.Package asPackage = asModel.getOwnedPackages().get(0);
 			String message = PivotUtil.formatResourceDiagnostics(ClassUtil.nonNullEMF(eResource.getErrors()), "OCLstdlib parse failure", "\n");
 			if (message != null) {

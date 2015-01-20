@@ -285,7 +285,7 @@ public class PivotTests extends XtextTestCase
 		assertNoUnresolvedProxies("Unresolved proxies", ecoreResource);
 //		EcoreAliasCreator.createPackageAliases(ecoreResource);
 		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager.getEnvironmentFactory());
-		Model pivotModel = ecore2as.getPivotModel();
+		Model pivotModel = ecore2as.getASModel();
 		
 		
 //		checkPivotMonikers(pivotModel);

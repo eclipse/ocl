@@ -74,7 +74,7 @@ public class RoundTripTests extends XtextTestCase
 	}
 	public ASResource createPivotFromEcore(@NonNull EnvironmentFactoryInternal environmentFactory, Resource ecoreResource) throws IOException {
 		Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, environmentFactory);
-		Model pivotModel = ecore2as.getPivotModel();
+		Model pivotModel = ecore2as.getASModel();
 		ASResource asResource = (ASResource) pivotModel.eResource();
 		assertNoResourceErrors("Ecore2AS failed", asResource);
 		assertNoValidationErrors("Ecore2AS invalid", asResource);
@@ -95,7 +95,7 @@ public class RoundTripTests extends XtextTestCase
 		}
 	}
 	public BaseCSResource createXtextFromPivot(@NonNull EnvironmentFactoryInternal environmentFactory, ASResource asResource, URI xtextURI) throws IOException {
-		ResourceSet resourceSet = environmentFactory.getMetamodelManager().getExternalResourceSet();
+		ResourceSet resourceSet = environmentFactory.getResourceSet();
 		XtextResource xtextResource = (XtextResource) resourceSet.createResource(xtextURI, OCLinEcoreCSPackage.eCONTENT_TYPE);
 		((BaseCSResource) xtextResource).updateFrom(asResource, environmentFactory);
 		xtextResource.save(null);
@@ -104,7 +104,7 @@ public class RoundTripTests extends XtextTestCase
 		return (BaseCSResource) xtextResource;
 	}
 	public BaseCSResource createXtextFromURI(@NonNull EnvironmentFactoryInternal environmentFactory, URI xtextURI) throws IOException {
-		ResourceSet resourceSet = environmentFactory.getMetamodelManager().getExternalResourceSet();
+		ResourceSet resourceSet = environmentFactory.getResourceSet();
 //		ProjectMap.initializeURIResourceMap(resourceSet2);
 		ProjectMap.initializeURIResourceMap(null);
 //		UMLUtils.initializeContents(resourceSet2);
@@ -114,7 +114,7 @@ public class RoundTripTests extends XtextTestCase
 	}
 	
 	public CSResource createCompleteOCLXtextFromPivot(@NonNull EnvironmentFactoryInternal environmentFactory, ASResource asResource, URI xtextURI) throws IOException {
-		ResourceSet resourceSet = environmentFactory.getMetamodelManager().getExternalResourceSet();
+		ResourceSet resourceSet = environmentFactory.getResourceSet();
 		CSResource xtextResource = (CSResource) resourceSet.createResource(xtextURI, OCLinEcoreCSPackage.eCONTENT_TYPE);
 		xtextResource.updateFrom(asResource, environmentFactory);
 		xtextResource.save(null);
@@ -193,59 +193,55 @@ public class RoundTripTests extends XtextTestCase
 		String outputName = stem + ".regenerated.ecore";
 		URI pivotURI = getProjectFileURI(pivotName);
 		URI outputURI = getProjectFileURI(outputName);
-		ResourceSet resourceSet = environmentFactory.getMetamodelManager().getExternalResourceSet();
+		ResourceSet resourceSet = environmentFactory.getResourceSet();
 		Resource inputResource = resourceSet.getResource(inputURI, true);
 		assertNoResourceErrors("Ecore load", inputResource);
 		assertNoValidationErrors("Ecore load", inputResource);
 		
-		try {
-			Ecore2AS ecore2as = Ecore2AS.getAdapter(inputResource, environmentFactory);
-			Model pivotModel = ecore2as.getPivotModel();
-			Resource asResource = pivotModel.eResource();
-			asResource.setURI(pivotURI);
-			assertNoResourceErrors("Ecore2AS failed", asResource);
-			asResource.save(null);
-			assertNoValidationErrors("Ecore2AS invalid", asResource);
-//			int i = 0;
-			for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {
-				EObject eObject = tit.next();
-				if (eObject instanceof ExpressionInOCL) {
-//					System.out.println(++i + ": " + eObject);
-					ExpressionInOCL specification = (ExpressionInOCL) eObject;
-					if ((specification.getOwnedBody() != null) || (specification.getBody() != null)) {
-						environmentFactory.getMetamodelManager().getQueryOrThrow(specification);
-					}
-					tit.prune();
+		Ecore2AS ecore2as = Ecore2AS.getAdapter(inputResource, environmentFactory);
+		Model pivotModel = ecore2as.getASModel();
+		Resource asResource = pivotModel.eResource();
+		asResource.setURI(pivotURI);
+		assertNoResourceErrors("Ecore2AS failed", asResource);
+		asResource.save(null);
+		assertNoValidationErrors("Ecore2AS invalid", asResource);
+//		int i = 0;
+		for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {
+			EObject eObject = tit.next();
+			if (eObject instanceof ExpressionInOCL) {
+//				System.out.println(++i + ": " + eObject);
+				ExpressionInOCL specification = (ExpressionInOCL) eObject;
+				if ((specification.getOwnedBody() != null) || (specification.getBody() != null)) {
+					environmentFactory.getMetamodelManager().getQueryOrThrow(specification);
 				}
+				tit.prune();
 			}
-			Resource outputResource = AS2Ecore.createResource(environmentFactory, asResource, inputURI, saveOptions);
-			assertNoResourceErrors("Ecore2AS failed", outputResource);
-			OutputStream outputStream = resourceSet.getURIConverter().createOutputStream(outputURI);
-			outputResource.save(outputStream, null);
-			outputStream.close();
-			assertNoValidationErrors("Ecore2AS invalid", outputResource);
-			
-	//		RootPackageCS csDocument = null; // FIXME Ecore2OCLinEcore.importFromEcore(resourceSet, null, leftResource);
-	//		assertNoResourceErrors("From Ecore errors", csDocument.eResource());
-	//		List<PackageCS> csObjects = new ArrayList<PackageCS>();
-	//		csObjects.addAll(csDocument.getPackages());
-	//		Resource middleResource = resourceSet.createResource(middleURI);
-	//		middleResource.getContents().addAll(csObjects);
-	//		middleResource.getContents().add(csDocument);
-	//		middleResource.save(null);
-	//		OCLinEcore2Ecore cs2e = new OCLinEcore2Ecore(resourceSet, middleResource, outputURI);
-	//		Resource rightResource = cs2e.exportToEcore();
-	//		assertNoResourceErrors("To Ecore errors", rightResource);
-	//		rightResource.save(null);
-	//		resourceSet.getResources().add(rightResource);
-			if (referenceURI != null) {
-				ResourceSetImpl resourceSet2 = new ResourceSetImpl();
-				StandaloneProjectMap.getAdapter(resourceSet).initializeResourceSet(resourceSet2);
-				Resource referenceResource = resourceSet2.getResource(referenceURI, true);
-				assertSameModel(referenceResource, outputResource);
-			}
-		} finally {
-			environmentFactory.getMetamodelManager().dispose();
+		}
+		Resource outputResource = AS2Ecore.createResource(environmentFactory, asResource, inputURI, saveOptions);
+		assertNoResourceErrors("Ecore2AS failed", outputResource);
+		OutputStream outputStream = resourceSet.getURIConverter().createOutputStream(outputURI);
+		outputResource.save(outputStream, null);
+		outputStream.close();
+		assertNoValidationErrors("Ecore2AS invalid", outputResource);
+		
+//		RootPackageCS csDocument = null; // FIXME Ecore2OCLinEcore.importFromEcore(resourceSet, null, leftResource);
+//		assertNoResourceErrors("From Ecore errors", csDocument.eResource());
+//		List<PackageCS> csObjects = new ArrayList<PackageCS>();
+//		csObjects.addAll(csDocument.getPackages());
+//		Resource middleResource = resourceSet.createResource(middleURI);
+//		middleResource.getContents().addAll(csObjects);
+//		middleResource.getContents().add(csDocument);
+//		middleResource.save(null);
+//		OCLinEcore2Ecore cs2e = new OCLinEcore2Ecore(resourceSet, middleResource, outputURI);
+//		Resource rightResource = cs2e.exportToEcore();
+//		assertNoResourceErrors("To Ecore errors", rightResource);
+//		rightResource.save(null);
+//		resourceSet.getResources().add(rightResource);
+		if (referenceURI != null) {
+			ResourceSetImpl resourceSet2 = new ResourceSetImpl();
+			StandaloneProjectMap.getAdapter(resourceSet).initializeResourceSet(resourceSet2);
+			Resource referenceResource = resourceSet2.getResource(referenceURI, true);
+			assertSameModel(referenceResource, outputResource);
 		}
 	}
 	
@@ -308,7 +304,7 @@ public class RoundTripTests extends XtextTestCase
 		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap());
 		EnvironmentFactoryInternal environmentFactory = ocl.getEnvironmentFactory();
 		UML2AS uml2as = UML2AS.getAdapter(inputResource, environmentFactory);
-		Model pivotModel = uml2as.getPivotModel();
+		Model pivotModel = uml2as.getASModel();
 		Resource asResource = pivotModel.eResource();
 		asResource.setURI(pivotURI);
 		assertNoResourceErrors("UML2AS failed", asResource);

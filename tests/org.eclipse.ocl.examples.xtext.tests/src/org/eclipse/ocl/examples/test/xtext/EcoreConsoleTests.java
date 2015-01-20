@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.OCL;
 
 /**
@@ -36,9 +35,8 @@ public class EcoreConsoleTests extends AbstractConsoleTests
 
 	public void testConsole_OCLinEcoreTutorial() throws Exception {
 		doDelete(PLUGIN_ID);
-		OCL ocl = consolePage.getOCL();
-		MetamodelManager metamodelManager = ocl.getMetamodelManager();
-		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
+		OCL ocl = consolePage.getEditorOCL();
+		ResourceSet resourceSet = ocl.getResourceSet();
 		URI testModelURI = getTestModelURI("model/OCLinEcoreTutorialForPivot.xmi");
 		Resource xmiResource = resourceSet.getResource(testModelURI, true);
 		EObject xmiLibrary = xmiResource.getContents().get(0);

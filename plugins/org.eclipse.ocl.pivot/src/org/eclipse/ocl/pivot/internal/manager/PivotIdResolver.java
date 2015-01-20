@@ -57,7 +57,7 @@ public class PivotIdResolver extends AbstractIdResolver
 		org.eclipse.ocl.pivot.Package asPackage = nsURI2package.get(nsURI);
 		if (asPackage == null) {
 			PackageId packageId = IdManager.getPackageId(ePackage);
-			asPackage = metamodelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Package.class, ePackage);
+			asPackage = metamodelManager.getASOfEcore(org.eclipse.ocl.pivot.Package.class, ePackage);
 			assert asPackage != null;
 			nsURI2package.put(nsURI, asPackage);
 			if (packageId instanceof RootPackageId) {
@@ -113,7 +113,7 @@ public class PivotIdResolver extends AbstractIdResolver
 		}
 		org.eclipse.ocl.pivot.Class pivotType;
 		try {
-			pivotType = metamodelManager.getPivotOf(org.eclipse.ocl.pivot.Class.class, eType);
+			pivotType = metamodelManager.getASOf(org.eclipse.ocl.pivot.Class.class, eType);
 			if (pivotType != null) {
 				return metamodelManager.getPrimaryType(pivotType);
 			}

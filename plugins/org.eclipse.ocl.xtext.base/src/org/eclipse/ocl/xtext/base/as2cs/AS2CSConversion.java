@@ -31,6 +31,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Namespace;
@@ -115,17 +116,18 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 	public void createImports(@NonNull RootCS documentCS, @NonNull Map<Namespace, List<String>> importedNamespaces) {
 		BaseCSResource csResource = (BaseCSResource) ClassUtil.nonNullState(documentCS.eResource());
 		AliasAnalysis.dispose(csResource);			// Force reanalysis
-		MetamodelManager metamodelManager = PivotUtilInternal.findMetamodelManager(csResource);
-		if (metamodelManager == null) {
-			throw new IllegalStateException("No MetamodelManager");
+		EnvironmentFactory environmentFactory = PivotUtilInternal.findEnvironmentFactory(csResource);
+		if (environmentFactory == null) {
+			throw new IllegalStateException("No EnvironmentFactory");
 		}
+		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		AliasAnalysis aliasAnalysis = null;
 		URI csURI = csResource.getURI();
 		List<ImportCS> imports = new ArrayList<ImportCS>();
 		for (Namespace importedNamespace : importedNamespaces.keySet()) {
 			if (importedNamespace != null) {
 				if (importedNamespace instanceof org.eclipse.ocl.pivot.Package){
-					Package pivotPackage = metamodelManager.getCompletePackage((org.eclipse.ocl.pivot.Package)importedNamespace).getPivotPackage();
+					Package pivotPackage = metamodelManager.getCompletePackage((org.eclipse.ocl.pivot.Package)importedNamespace).getPrimaryPackage();
 		//			ModelElementCS csElement = createMap.get(importedPackage);
 		//			if ((csElement != null) && (csElement.eResource() == xtextResource)) {
 		//				continue;		// Don't import defined packages
@@ -137,7 +139,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 				List<String> aliases = importedNamespaces.get(importedNamespace);
 				if ((aliases == null) || aliases.isEmpty()) {
 					if (aliasAnalysis == null) {
-						aliasAnalysis = AliasAnalysis.getAdapter(csResource, metamodelManager.getEnvironmentFactory());
+						aliasAnalysis = AliasAnalysis.getAdapter(csResource, environmentFactory);
 					}
 					String alias = aliasAnalysis.getAlias(importedNamespace, null);
 					aliases = Collections.singletonList(alias);
@@ -558,7 +560,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 		//	separate reference pass is not needed since references are to the pivot model.
 		//
 		importedNamespaces = new HashMap<Namespace, List<String>>();
-		Resource asResource = converter.getPivotResource(csResource);
+		Resource asResource = converter.getASResource(csResource);
 		if (asResource != null) {
 			List<PackageCS> list = visitDeclarations(PackageCS.class, asResource.getContents(), null);
 			refreshList(csResource.getContents(), list);

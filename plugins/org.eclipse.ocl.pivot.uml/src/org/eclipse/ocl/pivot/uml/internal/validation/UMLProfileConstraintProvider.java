@@ -51,7 +51,7 @@ public class UMLProfileConstraintProvider extends LoadableConstraintProvider
 
 	@Override
 	protected boolean load(@NonNull EnvironmentFactory environmentFactory, @NonNull URI uri, @NonNull Set<Category> categories) {
-		ResourceSet resourceSet = environmentFactory.getMetamodelManager().getExternalResourceSet();
+		ResourceSet resourceSet = environmentFactory.getResourceSet();
 		UMLResource umlResource = null;
 		try {
 			umlResource = (UMLResource) resourceSet.getResource(uri, true);

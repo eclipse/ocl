@@ -175,7 +175,7 @@ public class IteratorsTest4 extends PivotTestSuite
 		MyOCL ocl = createOCL();
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		IdResolver idResolver = ocl.getIdResolver();
-    	@SuppressWarnings("null") @NonNull Type packageType = metamodelManager.getPivotType("Package");
+    	@SuppressWarnings("null") @NonNull Type packageType = metamodelManager.getASClass("Package");
 		CollectionTypeId typeId = TypeId.SET.getSpecializedId(packageType.getTypeId());
 		CollectionValue expected = idResolver.createSetOfEach(typeId, ocl.pkg2, ocl.pkg3);
 
@@ -200,7 +200,7 @@ public class IteratorsTest4 extends PivotTestSuite
 		MyOCL ocl = createOCL();
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		IdResolver idResolver = ocl.getIdResolver();
-    	@SuppressWarnings("null") @NonNull Type packageType = metamodelManager.getPivotType("Package");
+    	@SuppressWarnings("null") @NonNull Type packageType = metamodelManager.getASClass("Package");
 		CollectionTypeId typeId = TypeId.SET.getSpecializedId(packageType.getTypeId());
 		CollectionValue expected = idResolver.createSetOfEach(typeId, ocl.pkg2, ocl.pkg3);
 
@@ -353,7 +353,7 @@ public class IteratorsTest4 extends PivotTestSuite
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		IdResolver idResolver = ocl.getIdResolver();
 //    	Abstract2Moniker.TRACE_MONIKERS.setState(true);
-    	@SuppressWarnings("null") @NonNull Type packageType = metamodelManager.getPivotType("Package");
+    	@SuppressWarnings("null") @NonNull Type packageType = metamodelManager.getASClass("Package");
 		CollectionTypeId typeId = TypeId.BAG.getSpecializedId(packageType.getTypeId());
         CollectionValue expected1 = idResolver.createBagOfEach(typeId, "pkg2", "bob", "pkg3");
 
@@ -388,7 +388,7 @@ public class IteratorsTest4 extends PivotTestSuite
 		MyOCL ocl = createOCL();
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
         ocl.assertBadInvariant(SemanticException.class, Diagnostic.ERROR,
-        	metamodelManager.getPivotType("Package"), "ownedPackages.unknownAttribute",
+        	metamodelManager.getASClass("Package"), "ownedPackages.unknownAttribute",
         	PivotMessagesInternal.UnresolvedProperty_ERROR_, "Set(Package)", "unknownAttribute");
 		ocl.dispose();
    }
@@ -402,7 +402,7 @@ public class IteratorsTest4 extends PivotTestSuite
 		MyOCL ocl = createOCL();
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
     	ocl.assertBadInvariant(SemanticException.class, Diagnostic.ERROR,
-    		metamodelManager.getPivotType("Package"), "ownedPackages.unknownOperation(self)",
+    		metamodelManager.getASClass("Package"), "ownedPackages.unknownOperation(self)",
         	PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Set(Package)", "unknownOperation", PivotConstants.SELF_NAME);
 		ocl.dispose();
    }
@@ -440,7 +440,7 @@ public class IteratorsTest4 extends PivotTestSuite
 		MyOCL ocl = createOCL();
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		IdResolver idResolver = ocl.getIdResolver();
-    	@SuppressWarnings("null") @NonNull Type packageType = metamodelManager.getPivotType("Package");
+    	@SuppressWarnings("null") @NonNull Type packageType = metamodelManager.getASClass("Package");
 		CollectionTypeId typeId = TypeId.BAG.getSpecializedId(packageType.getTypeId());
         CollectionValue expected1 = idResolver.createBagOfEach(typeId, "pkg2", "bob", "pkg3");
 
@@ -475,7 +475,7 @@ public class IteratorsTest4 extends PivotTestSuite
 		MyOCL ocl = createOCL();
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		IdResolver idResolver = ocl.getIdResolver();
-    	@SuppressWarnings("null") @NonNull Type packageType = metamodelManager.getPivotType("Package");
+    	@SuppressWarnings("null") @NonNull Type packageType = metamodelManager.getASClass("Package");
 		CollectionTypeId typeId = TypeId.ORDERED_SET.getSpecializedId(packageType.getTypeId());
         OrderedSetValue expectedSet = idResolver.createOrderedSetOfEach(typeId, ocl.bob, ocl.pkg2, ocl.pkg3);
 
@@ -510,7 +510,7 @@ public class IteratorsTest4 extends PivotTestSuite
 		MyOCL ocl = createOCL();
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		IdResolver idResolver = ocl.getIdResolver();
-    	@SuppressWarnings("null") @NonNull Type packageType = metamodelManager.getPivotType("Package");
+    	@SuppressWarnings("null") @NonNull Type packageType = metamodelManager.getASClass("Package");
 		CollectionTypeId typeId = TypeId.SET.getSpecializedId(packageType.getTypeId());
     	CollectionValue expected1 = idResolver.createSetOfEach(typeId, ocl.pkg1, ocl.pkg3, ocl.pkg5, ocl.george); // closure does include sources (george)
         ocl.assertQueryEquals(ocl.george, expected1, "self.oclAsType(Package)->closure(owningPackage)");
@@ -543,7 +543,7 @@ public class IteratorsTest4 extends PivotTestSuite
 		MyOCL ocl = createOCL();
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		IdResolver idResolver = ocl.getIdResolver();
-    	@SuppressWarnings("null") @NonNull org.eclipse.ocl.pivot.Class packageMetaclass = metamodelManager.getPivotType("Package");
+    	@SuppressWarnings("null") @NonNull org.eclipse.ocl.pivot.Class packageMetaclass = metamodelManager.getASClass("Package");
 		CollectionTypeId typeId = TypeId.SET.getSpecializedId(packageMetaclass.getTypeId());
         Property ownedPackages = getAttribute(packageMetaclass, "ownedPackages", packageMetaclass);
         Property owningPackage = getAttribute(packageMetaclass, "owningPackage", packageMetaclass);
@@ -633,8 +633,8 @@ public class IteratorsTest4 extends PivotTestSuite
 		MyOCL ocl = createOCL();
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		IdResolver idResolver = ocl.getIdResolver();
-    	@SuppressWarnings("null") @NonNull org.eclipse.ocl.pivot.Class packageMetaclass = metamodelManager.getPivotType("Package");
-    	@SuppressWarnings("null") @NonNull org.eclipse.ocl.pivot.Class propertyMetaclass = metamodelManager.getPivotType("Property");
+    	@SuppressWarnings("null") @NonNull org.eclipse.ocl.pivot.Class packageMetaclass = metamodelManager.getASClass("Package");
+    	@SuppressWarnings("null") @NonNull org.eclipse.ocl.pivot.Class propertyMetaclass = metamodelManager.getASClass("Property");
 		CollectionTypeId typeId = TypeId.SET.getSpecializedId(packageMetaclass.getTypeId());
         Property owningPackage = getAttribute(packageMetaclass, "owningPackage", packageMetaclass);
         SetValue expected = idResolver.createSetOfEach(typeId, owningPackage, packageMetaclass, packageMetaclass.eContainer(), packageMetaclass.eContainer().eContainer());
@@ -1009,8 +1009,8 @@ public class IteratorsTest4 extends PivotTestSuite
     @Test public void test_sortedByRequiresComparability_192729() {
 		MyOCL ocl = createOCL();
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
-    	org.eclipse.ocl.pivot.Class context = metamodelManager.getPivotType("Package");
-    	org.eclipse.ocl.pivot.Class type = metamodelManager.getPivotType("Class");
+    	org.eclipse.ocl.pivot.Class context = metamodelManager.getASClass("Package");
+    	org.eclipse.ocl.pivot.Class type = metamodelManager.getASClass("Class");
      	ocl.assertValidationErrorQuery(context, "ownedClasses->sortedBy(e | e)",
         	PivotMessagesInternal.UnresolvedOperation_ERROR_, type + "", LibraryConstants.COMPARE_TO);
        

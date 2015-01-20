@@ -87,7 +87,7 @@ public class ImportCSAttribution extends AbstractAttribution implements Unresolv
 			EnvironmentFactory environmentFactory = environmentView.getEnvironmentFactory();
 			CompletePackage completePackage = environmentFactory.getCompleteModel().getCompletePackageByURI(name);
 			if (completePackage != null) {
-				Package pivotPackage = completePackage.getPivotPackage();
+				Package pivotPackage = completePackage.getPrimaryPackage();
 				if (pivotPackage != importedElement) {
 					importedElement = pivotPackage;
 					throwable = null;

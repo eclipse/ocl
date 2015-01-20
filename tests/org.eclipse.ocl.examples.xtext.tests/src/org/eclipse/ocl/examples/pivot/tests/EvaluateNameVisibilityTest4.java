@@ -419,7 +419,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		List<Object> treeFruits = (List<Object>) aTree.eGet(tree_fruits);
 		treeFruits.add(redApple);
 		//
-		Type pivotTree = metamodelManager.getPivotOfEcore(Type.class, tree);
+		Type pivotTree = metamodelManager.getASOfEcore(Type.class, tree);
 		//
 		ocl.assertQueryEquals(redApple, color_red, "let aFruit : fruit::Fruit = self in aFruit.color");
 		ocl.assertQueryEquals(aTree, idResolver.createOrderedSetOfEach(null, redApple), "let aTree : fruit::Tree = self in aTree.fruits");
@@ -447,7 +447,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		initFruitPackage(ocl);
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		IdResolver idResolver = ocl.getIdResolver();
-		org.eclipse.ocl.pivot.Class appleType = metamodelManager.getPivotOfEcore(org.eclipse.ocl.pivot.Class.class, apple);
+		org.eclipse.ocl.pivot.Class appleType = metamodelManager.getASOfEcore(org.eclipse.ocl.pivot.Class.class, apple);
 		//
 		//	Simple model: appleTree contains redApple
 		//

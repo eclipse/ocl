@@ -353,7 +353,7 @@ public class ProfileAnalysis
 					Set<Type> superMetatypeClosure = new HashSet<Type>();
 					metatype2superMetatypeClosure.put(subMetatype, superMetatypeClosure);
 					for (CompleteClass superCompleteClass : metamodelManager.getAllSuperCompleteClasses(subMetatype)) {
-						org.eclipse.ocl.pivot.Class asSuperMetatype = superCompleteClass.getPivotClass();
+						org.eclipse.ocl.pivot.Class asSuperMetatype = superCompleteClass.getPrimaryClass();
 						superMetatypeClosure.add(asSuperMetatype);
 						Set<Type> subMetatypeClosure = metatype2subMetatypeClosure.get(asSuperMetatype);
 						if (subMetatypeClosure == null) {
@@ -375,7 +375,7 @@ public class ProfileAnalysis
 				stereotype2superStereotypeClosure.put(subStereotype, superStereotypeClosure);
 //				for (DomainClass asSuperStereotype : metamodelManager.getAllSuperClasses(subStereotype)) {
 				for (CompleteClass superCompleteClass : metamodelManager.getAllSuperCompleteClasses(subStereotype)) {
-					org.eclipse.ocl.pivot.Class asSuperStereotype = superCompleteClass.getPivotClass();
+					org.eclipse.ocl.pivot.Class asSuperStereotype = superCompleteClass.getPrimaryClass();
 					if (asSuperStereotype instanceof Stereotype) {
 						superStereotypeClosure.add((Stereotype)asSuperStereotype);
 						Set<Stereotype> subStereotypeClosure = stereotype2subStereotypeClosure.get(asSuperStereotype);
