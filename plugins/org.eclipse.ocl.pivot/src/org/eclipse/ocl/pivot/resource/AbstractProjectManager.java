@@ -48,6 +48,10 @@ public class AbstractProjectManager extends AdapterImpl implements ProjectManage
 	}
 
 	@Override
+	public void unload(@NonNull ResourceSet resourceSet) {
+	}
+
+	@Override
 	public void useGeneratedResource(@NonNull Resource resource, @NonNull ResourceSet resourceSet) {
 	}
 }

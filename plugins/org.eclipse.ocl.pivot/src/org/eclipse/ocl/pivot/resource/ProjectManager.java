@@ -472,4 +472,6 @@ public interface ProjectManager extends Adapter
 	void useGeneratedResource(@NonNull Resource resource, @NonNull ResourceSet resourceSet);
 
 	void addResourceDescriptor(@NonNull IResourceDescriptor resourceDescriptor);
+
+	void unload(@NonNull ResourceSet resourceSet);
 }

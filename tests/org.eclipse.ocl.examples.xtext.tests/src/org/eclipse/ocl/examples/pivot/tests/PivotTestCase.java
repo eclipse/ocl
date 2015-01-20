@@ -68,6 +68,7 @@ import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.CSResource;
+import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
@@ -615,9 +616,9 @@ public class PivotTestCase extends TestCase
 		EnvironmentFactoryAdapter environmentFactoryAdapter = OCL.find(resourceSet);
 		if (environmentFactoryAdapter != null) {
 			EnvironmentFactoryInternal environmentFactory = environmentFactoryAdapter.getMetamodelManager().getEnvironmentFactory();
-			projectMap = (StandaloneProjectMap) environmentFactory.basicGetProjectManager();
-			if (projectMap != null) {
-				projectMap.unload(resourceSet);
+			ProjectManager projectManager = environmentFactory.basicGetProjectManager();
+			if (projectManager != null) {
+				projectManager.unload(resourceSet);
 			}
 		}
 		for (Resource resource : resourceSet.getResources()) {
