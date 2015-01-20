@@ -13,12 +13,9 @@ package org.eclipse.ocl.types.operations;
 
 import java.util.Map;
 
-import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.types.TupleType;
-import org.eclipse.ocl.types.util.TypesValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -90,7 +87,7 @@ public class TupleTypeOperations {
 	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
 	 * @param context The cache of context-specific information.
 	 * <!-- end-model-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public static <O, P> boolean checkTupleTypeName(TupleType<O, P> tupleType,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -98,20 +95,6 @@ public class TupleTypeOperations {
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics
-					.add(new BasicDiagnostic(
-						Diagnostic.ERROR,
-						TypesValidator.DIAGNOSTIC_SOURCE,
-						TypesValidator.TUPLE_TYPE__TUPLE_TYPE_NAME,
-						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
-							.getString(
-								"_UI_GenericInvariant_diagnostic", new Object[]{"checkTupleTypeName", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(tupleType, context)}), //$NON-NLS-1$ //$NON-NLS-2$
-						new Object[]{tupleType}));
-			}
-			return false;
-		}
 		return true;
 	}
 
@@ -124,7 +107,7 @@ public class TupleTypeOperations {
 	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
 	 * @param context The cache of context-specific information.
 	 * <!-- end-model-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public static <O, P> boolean checkPartNamesUnique(
 			TupleType<O, P> tupleType, DiagnosticChain diagnostics,
@@ -133,20 +116,6 @@ public class TupleTypeOperations {
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics
-					.add(new BasicDiagnostic(
-						Diagnostic.ERROR,
-						TypesValidator.DIAGNOSTIC_SOURCE,
-						TypesValidator.TUPLE_TYPE__PART_NAMES_UNIQUE,
-						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
-							.getString(
-								"_UI_GenericInvariant_diagnostic", new Object[]{"checkPartNamesUnique", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(tupleType, context)}), //$NON-NLS-1$ //$NON-NLS-2$
-						new Object[]{tupleType}));
-			}
-			return false;
-		}
 		return true;
 	}
 
@@ -159,7 +128,7 @@ public class TupleTypeOperations {
 	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
 	 * @param context The cache of context-specific information.
 	 * <!-- end-model-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public static <O, P> boolean checkFeaturesOnlyProperties(
 			TupleType<O, P> tupleType, DiagnosticChain diagnostics,
@@ -168,20 +137,6 @@ public class TupleTypeOperations {
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics
-					.add(new BasicDiagnostic(
-						Diagnostic.ERROR,
-						TypesValidator.DIAGNOSTIC_SOURCE,
-						TypesValidator.TUPLE_TYPE__FEATURES_ONLY_PROPERTIES,
-						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
-							.getString(
-								"_UI_GenericInvariant_diagnostic", new Object[]{"checkFeaturesOnlyProperties", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(tupleType, context)}), //$NON-NLS-1$ //$NON-NLS-2$
-						new Object[]{tupleType}));
-			}
-			return false;
-		}
 		return true;
 	}
 

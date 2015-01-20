@@ -133,21 +133,6 @@ public class CollectionTypeOperations {
 	public static <C, O> boolean checkNoInvalidValues(
 			CollectionType<C, O> collectionType, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		// This constraint is not implementable in this context.  It is an M1
-		// constraint defined (in error) on an M2 class
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics
-					.add(new BasicDiagnostic(
-						Diagnostic.ERROR,
-						TypesValidator.DIAGNOSTIC_SOURCE,
-						TypesValidator.COLLECTION_TYPE__NO_INVALID_VALUES,
-						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
-							.getString(
-								"_UI_GenericInvariant_diagnostic", new Object[]{"checkNoInvalidValues", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(collectionType, context)}), //$NON-NLS-1$ //$NON-NLS-2$
-						new Object[]{collectionType}));
-			}
-		}
 		return true;
 	}
 

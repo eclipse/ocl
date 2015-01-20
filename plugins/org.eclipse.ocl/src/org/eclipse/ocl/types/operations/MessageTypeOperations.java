@@ -119,7 +119,7 @@ public class MessageTypeOperations {
 	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
 	 * @param context The cache of context-specific information.
 	 * <!-- end-model-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public static <C, O, P> boolean checkOperationParameters(
 			MessageType<C, O, P> messageType, DiagnosticChain diagnostics,
@@ -128,20 +128,6 @@ public class MessageTypeOperations {
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics
-					.add(new BasicDiagnostic(
-						Diagnostic.ERROR,
-						TypesValidator.DIAGNOSTIC_SOURCE,
-						TypesValidator.MESSAGE_TYPE__OPERATION_PARAMETERS,
-						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
-							.getString(
-								"_UI_GenericInvariant_diagnostic", new Object[]{"checkOperationParameters", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(messageType, context)}), //$NON-NLS-1$ //$NON-NLS-2$
-						new Object[]{messageType}));
-			}
-			return false;
-		}
 		return true;
 	}
 
@@ -156,7 +142,7 @@ public class MessageTypeOperations {
 	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
 	 * @param context The cache of context-specific information.
 	 * <!-- end-model-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public static <C, O, P> boolean checkSignalAttributes(
 			MessageType<C, O, P> messageType, DiagnosticChain diagnostics,
@@ -165,20 +151,6 @@ public class MessageTypeOperations {
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics
-					.add(new BasicDiagnostic(
-						Diagnostic.ERROR,
-						TypesValidator.DIAGNOSTIC_SOURCE,
-						TypesValidator.MESSAGE_TYPE__SIGNAL_ATTRIBUTES,
-						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
-							.getString(
-								"_UI_GenericInvariant_diagnostic", new Object[]{"checkSignalAttributes", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(messageType, context)}), //$NON-NLS-1$ //$NON-NLS-2$
-						new Object[]{messageType}));
-			}
-			return false;
-		}
 		return true;
 	}
 
