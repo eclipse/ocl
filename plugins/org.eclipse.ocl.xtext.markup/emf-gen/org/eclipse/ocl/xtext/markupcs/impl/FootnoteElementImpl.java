@@ -18,7 +18,6 @@ import org.eclipse.ocl.xtext.markupcs.MarkupPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Footnote Element</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  *
  * @generated
  */

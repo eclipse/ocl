@@ -29,7 +29,6 @@ import org.eclipse.ocl.pivot.ids.TypeId;
  * An implementation of the model object '<em><b>CG Executor Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>

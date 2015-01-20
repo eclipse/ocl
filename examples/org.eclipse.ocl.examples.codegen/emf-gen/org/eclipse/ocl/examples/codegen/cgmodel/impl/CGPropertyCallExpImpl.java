@@ -18,7 +18,6 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGPropertyCallExp;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>CG Property Call Exp</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  *
  * @generated
  */

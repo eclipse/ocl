@@ -21,7 +21,6 @@ import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>CG Settable Variable</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  *
  * @generated
  */

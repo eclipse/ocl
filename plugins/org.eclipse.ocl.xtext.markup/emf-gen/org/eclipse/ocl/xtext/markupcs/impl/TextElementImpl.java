@@ -23,7 +23,6 @@ import org.eclipse.ocl.xtext.markupcs.TextElement;
  * An implementation of the model object '<em><b>Text Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>

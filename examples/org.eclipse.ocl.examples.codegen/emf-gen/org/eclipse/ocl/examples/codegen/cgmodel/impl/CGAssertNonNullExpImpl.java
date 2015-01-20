@@ -25,7 +25,6 @@ import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>CG Assert Non Null Exp</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  *
  * @generated
  */

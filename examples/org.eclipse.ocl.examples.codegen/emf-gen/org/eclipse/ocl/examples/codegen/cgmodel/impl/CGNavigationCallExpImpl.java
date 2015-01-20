@@ -26,7 +26,6 @@ import org.eclipse.ocl.pivot.Property;
  * An implementation of the model object '<em><b>CG Navigation Call Exp</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>

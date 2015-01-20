@@ -22,7 +22,6 @@ import org.eclipse.ocl.xtext.essentialoclcs.OperationCallExpCS;
  * An implementation of the model object '<em><b>Operation Call Exp CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>

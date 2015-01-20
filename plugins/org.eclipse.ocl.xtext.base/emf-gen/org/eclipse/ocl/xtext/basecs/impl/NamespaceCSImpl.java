@@ -19,7 +19,6 @@ import org.eclipse.ocl.xtext.basecs.NamespaceCS;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Namespace CS</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  *
  * @generated
  */

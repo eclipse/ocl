@@ -22,7 +22,6 @@ import org.eclipse.ocl.pivot.Element;
  * An implementation of the model object '<em><b>CG Named Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>

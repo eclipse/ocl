@@ -22,7 +22,6 @@ import org.eclipse.ocl.xtext.completeoclcs.util.CompleteOCLCSVisitor;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Def Property CS</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  *
  * @generated
  */

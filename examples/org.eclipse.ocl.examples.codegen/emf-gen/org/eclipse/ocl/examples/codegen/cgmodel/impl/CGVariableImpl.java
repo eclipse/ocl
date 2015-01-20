@@ -27,7 +27,6 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGVariable;
  * An implementation of the model object '<em><b>CG Variable</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>

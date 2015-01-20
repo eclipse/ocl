@@ -24,7 +24,6 @@ import org.eclipse.ocl.xtext.basecs.TemplateableElementCS;
  * An implementation of the model object '<em><b>Templateable Element CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>

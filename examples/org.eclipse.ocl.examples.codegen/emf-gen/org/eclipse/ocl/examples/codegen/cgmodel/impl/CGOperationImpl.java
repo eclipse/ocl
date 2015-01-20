@@ -33,7 +33,6 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGOperation;
  * An implementation of the model object '<em><b>CG Operation</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>

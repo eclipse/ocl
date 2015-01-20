@@ -22,7 +22,6 @@ import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Unlimited Natural Literal Exp CS</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  *
  * @generated
  */

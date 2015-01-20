@@ -21,7 +21,6 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Tuple Part CS</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  *
  * @generated
  */

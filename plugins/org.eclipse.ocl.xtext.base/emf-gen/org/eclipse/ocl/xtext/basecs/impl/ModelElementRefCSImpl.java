@@ -28,7 +28,6 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
  * An implementation of the model object '<em><b>Model Element Ref CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>

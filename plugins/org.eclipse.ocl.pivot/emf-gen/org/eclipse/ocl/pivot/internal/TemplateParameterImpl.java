@@ -49,7 +49,6 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
  * An implementation of the model object '<em><b>Template Parameter</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>

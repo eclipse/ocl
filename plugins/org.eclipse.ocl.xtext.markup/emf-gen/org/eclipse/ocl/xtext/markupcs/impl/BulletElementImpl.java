@@ -21,7 +21,6 @@ import org.eclipse.ocl.xtext.markupcs.MarkupPackage;
  * An implementation of the model object '<em><b>Bullet Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>

@@ -23,7 +23,6 @@ import org.eclipse.ocl.pivot.utilities.ValueUtil;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>CG Null</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  *
  * @generated
  */

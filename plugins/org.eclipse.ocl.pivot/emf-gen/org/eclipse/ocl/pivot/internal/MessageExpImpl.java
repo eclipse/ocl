@@ -61,7 +61,6 @@ import org.eclipse.osgi.util.NLS;
  * An implementation of the model object '<em><b>Message Exp</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>

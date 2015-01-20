@@ -29,7 +29,6 @@ import org.eclipse.ocl.xtext.basecs.PackageOwnerCS;
  * An implementation of the model object '<em><b>Package Owner CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>

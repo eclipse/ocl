@@ -41,7 +41,6 @@ import org.eclipse.ocl.xtext.completeoclcs.util.CompleteOCLCSVisitor;
  * An implementation of the model object '<em><b>Classifier Context Decl CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>

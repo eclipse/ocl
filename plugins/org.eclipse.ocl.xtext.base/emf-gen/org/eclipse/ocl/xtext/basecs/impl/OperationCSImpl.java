@@ -41,7 +41,6 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
  * An implementation of the model object '<em><b>Operation CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>

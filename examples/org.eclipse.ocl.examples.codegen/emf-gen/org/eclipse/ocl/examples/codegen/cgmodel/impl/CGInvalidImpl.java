@@ -31,7 +31,6 @@ import org.eclipse.ocl.pivot.utilities.ValueUtil;
  * An implementation of the model object '<em><b>CG Invalid</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>

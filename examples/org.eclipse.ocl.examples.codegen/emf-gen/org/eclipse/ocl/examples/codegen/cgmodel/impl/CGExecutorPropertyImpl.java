@@ -26,7 +26,6 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
  * An implementation of the model object '<em><b>CG Executor Property</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>

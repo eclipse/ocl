@@ -27,7 +27,6 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
  * An implementation of the model object '<em><b>CG Element Id</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>

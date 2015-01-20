@@ -74,7 +74,6 @@ import org.eclipse.osgi.util.NLS;
  * @extends org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>

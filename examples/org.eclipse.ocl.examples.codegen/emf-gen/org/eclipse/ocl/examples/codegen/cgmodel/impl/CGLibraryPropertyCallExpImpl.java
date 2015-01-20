@@ -25,7 +25,6 @@ import org.eclipse.ocl.pivot.library.LibraryProperty;
  * An implementation of the model object '<em><b>CG Library Property Call Exp</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>

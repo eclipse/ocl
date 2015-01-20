@@ -30,7 +30,6 @@ import org.eclipse.ocl.examples.codegen.cse.ControlPlace;
  * An implementation of the model object '<em><b>CG Text Parameter</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>

@@ -27,7 +27,6 @@ import org.eclipse.ocl.examples.codegen.cse.CatchPlace;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>CG Catch Exp</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  *
  * @generated
  */

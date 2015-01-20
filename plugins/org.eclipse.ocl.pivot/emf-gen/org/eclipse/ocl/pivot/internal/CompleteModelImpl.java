@@ -71,7 +71,6 @@ import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
  * @extends org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>

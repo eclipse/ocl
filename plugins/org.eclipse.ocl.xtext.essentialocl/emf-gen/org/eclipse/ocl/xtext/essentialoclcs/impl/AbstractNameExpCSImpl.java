@@ -25,7 +25,6 @@ import org.eclipse.ocl.xtext.essentialoclcs.SquareBracketedClauseCS;
  * An implementation of the model object '<em><b>Abstract Name Exp CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>

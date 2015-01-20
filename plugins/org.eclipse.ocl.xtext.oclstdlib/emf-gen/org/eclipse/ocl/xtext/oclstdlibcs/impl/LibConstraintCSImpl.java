@@ -23,7 +23,6 @@ import org.eclipse.ocl.xtext.oclstdlibcs.util.OCLstdlibCSVisitor;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Lib Constraint CS</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  *
  * @generated
  */

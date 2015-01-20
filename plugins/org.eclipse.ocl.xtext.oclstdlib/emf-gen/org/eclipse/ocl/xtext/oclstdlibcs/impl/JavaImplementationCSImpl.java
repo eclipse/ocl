@@ -24,7 +24,6 @@ import org.eclipse.ocl.xtext.oclstdlibcs.OCLstdlibCSPackage;
  * An implementation of the model object '<em><b>Java Implementation CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>

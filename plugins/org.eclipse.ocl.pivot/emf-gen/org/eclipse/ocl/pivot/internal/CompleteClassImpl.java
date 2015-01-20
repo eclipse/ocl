@@ -56,7 +56,6 @@ import com.google.common.collect.Iterables;
  * @extends org.eclipse.ocl.pivot.internal.complete.CompleteClassInternal
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>

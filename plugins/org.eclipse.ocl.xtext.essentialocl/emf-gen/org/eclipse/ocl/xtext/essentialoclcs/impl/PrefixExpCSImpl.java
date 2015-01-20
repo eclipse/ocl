@@ -23,7 +23,6 @@ import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Unary Expression CS</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  *
  * @generated
  */

@@ -18,7 +18,6 @@ import org.eclipse.ocl.xtext.basecs.ElementRefCS;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Element Ref CS</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  *
  * @generated
  */

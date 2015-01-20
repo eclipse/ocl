@@ -20,7 +20,6 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>CG Constant</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  *
  * @generated
  */
