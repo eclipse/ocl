@@ -168,6 +168,7 @@ public class ConstraintMerger extends AbstractProjectComponent
 //			EcoreUtil.resolveAll(resourceSet);
 //			ResourceUtils.checkResourceSet(resourceSet);
 //			ctx.set(getModelSlot(), resource);
+			ocl.getResourceSet().getResources().remove(ecoreResource2);
 			ocl.dispose();
 		} catch (IOException e) {
 			throw new RuntimeException("Problems running " + getClass().getSimpleName(), e);

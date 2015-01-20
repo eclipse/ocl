@@ -222,7 +222,7 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 				 *	Construct an OCL Standard Library with specified resource URI and library content.
 				 */
 				private «javaClassName»(@NonNull String asURI, @NonNull Model libraryModel) {
-					super(ClassUtil.nonNullState(URI.createURI(asURI)), OCLASResourceFactory.INSTANCE);
+					super(ClassUtil.nonNullState(URI.createURI(asURI)), OCLASResourceFactory.getInstance());
 					assert PivotUtilInternal.isASURI(asURI);
 					getContents().add(libraryModel);
 			//		System.out.println(Thread.currentThread().getName() + " Create " + debugSimpleName(this));		

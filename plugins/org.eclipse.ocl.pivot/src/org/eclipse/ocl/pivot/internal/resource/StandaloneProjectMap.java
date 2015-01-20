@@ -2796,6 +2796,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl implements Projec
 		return s.toString();
 	}
 
+	@Override
 	public void unload(@NonNull ResourceSet resourceSet) {
 		resourceSet.eAdapters().remove(this);
 		if (project2descriptor != null) {

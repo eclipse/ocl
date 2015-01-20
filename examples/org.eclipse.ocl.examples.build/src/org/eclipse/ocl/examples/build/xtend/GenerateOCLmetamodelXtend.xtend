@@ -143,7 +143,7 @@ public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 				}
 			
 				protected OCLmetamodel(@NonNull URI uri) {
-					super(uri, OCLASResourceFactory.INSTANCE);
+					super(uri, OCLASResourceFactory.getInstance());
 				}
 			
 				protected static class LibraryContents extends AbstractContents

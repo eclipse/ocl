@@ -162,16 +162,16 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 
 		log.info("Loading GenModel '" + genModelURI);
 //		try {
-			Resource genModelResource = resourceSet.getResource(genModelURI, true);
+			Resource genModelResource = ocl.getResourceSet().getResource(genModelURI, true);
 			if (genModelResource == null) {
 				throw new IllegalStateException("No '" + genModelURI + "' Resource");
 			}
+			GenModel genModel2 = genModel = getGenModel(genModelResource);
+			genModel2.reconcile();
 			GenPackage genPackage = getGenPackage(genModelResource);
 			if (genPackage == null) {
 				throw new IllegalStateException("No '" + genModelURI + "' GenPackage");
 			}
-			GenModel genModel2 = genModel = getGenModel(genModelResource);
-			genModel2.reconcile();
 			registerGenModel(ocl, genModel2);
 			copyright = getCopyright(genModelResource);
 			sourceFile = genModelFile;

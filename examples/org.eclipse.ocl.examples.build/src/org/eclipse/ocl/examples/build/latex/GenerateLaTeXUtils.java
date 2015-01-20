@@ -46,6 +46,7 @@ import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.xtext.basecs.RootCS;
 import org.eclipse.ocl.xtext.markup.MarkupUtils;
+import org.eclipse.ocl.xtext.markupcs.BulletElement;
 import org.eclipse.ocl.xtext.markupcs.FontElement;
 import org.eclipse.ocl.xtext.markupcs.Markup;
 import org.eclipse.ocl.xtext.markupcs.MarkupElement;
@@ -165,12 +166,40 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		@SuppressWarnings("unused") private final Namespace scope;
 		private final StringBuilder s = new StringBuilder();
 		
+		private enum BulletState { NO_ITEMIZE, IN_ITEM, IN_ITEMIZE };
+		private BulletState bulletState = BulletState.NO_ITEMIZE;
+		
 		public MarkupToLaTeX(Namespace scope) {
 			this.scope = scope;
 		}
 
 		@Override
+		public String caseBulletElement(BulletElement element) {
+			if (bulletState == BulletState.NO_ITEMIZE) {
+				s.append("#\\begin#{itemize#}\n");
+				bulletState = BulletState.IN_ITEMIZE;
+			}
+			s.append("#\\item ");
+			bulletState = BulletState.IN_ITEM;
+			for (MarkupElement subElement : element.getElements()) {
+				doSwitch(subElement);
+			}
+			s.append("\n");
+			bulletState = BulletState.IN_ITEMIZE;
+			return s.toString();
+		}
+
+		protected String endItemize() {
+			if (bulletState == BulletState.IN_ITEMIZE) {
+				s.append("#\\end#{itemize#}\n");
+				bulletState = BulletState.NO_ITEMIZE;
+			}
+			return s.toString();
+		}
+
+		@Override
 		public String caseFontElement(FontElement element) {
+			endItemize();
 			String tag = element.getFont().equals("e") ? "textit" : "textrm";
 			s.append("\\" + tag + "{");
 			for (MarkupElement subElement : element.getElements()) {
@@ -182,6 +211,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 
 		@Override
 		public String caseMarkupElement(MarkupElement element) {
+			endItemize();
 			s.append("$$");
 			s.append(element.eClass().getName());
 			return s.toString();
@@ -195,11 +225,13 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 
 		@Override
 		public String caseNullElement(NullElement object) {
+			endItemize();
 			return s.toString();
 		}
 
 		@Override
 		public String caseOCLCodeElement(OCLCodeElement element) {
+			endItemize();
 			s.append("bc.. \n");
 			for (MarkupElement subElement : element.getElements()) {
 				doSwitch(subElement);
@@ -212,6 +244,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 
 		@Override
 		public String caseOCLTextElement(OCLTextElement element) {
+			endItemize();
 			s.append("#\\oclEmph#{");
 			for (MarkupElement subElement : element.getElements()) {
 				doSwitch(subElement);
@@ -222,6 +255,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 
 		@Override
 		public String caseTextElement(TextElement element) {
+			endItemize();
 			for (String text : element.getText()) {
 				s.append(text);
 			}
@@ -245,11 +279,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		return options;
 	}
 
-	public Markup decode(@NonNull Comment comment, @Nullable Namespace scope) {
-		String body = comment.getBody();
-		if (body == null) {
-			throw new NullPointerException("Missing Comment body");
-		}
+	protected String decode(@NonNull String body, @Nullable Namespace scope) {
 		IParseResult parseResult = MarkupUtils.decode(body);
 		if (parseResult == null) {
 			throw new NullPointerException("Missing ParseResult for \"" + body + "\"");
@@ -261,7 +291,12 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		if (markup == null) {
 			throw new NullPointerException("Missing parsed content for \"" + body + "\"");
 		}
-		return markup;
+		StringBuilder s = new StringBuilder();
+		MarkupToLaTeX markupToLaTeX = new MarkupToLaTeX(scope);
+		for (MarkupElement element : markup.getElements()) {
+			s.append(markupToLaTeX.doSwitch(element));
+		}
+		return markupToLaTeX.endItemize();
 	}
 
 	protected String emitAllTT(String content) {
@@ -383,8 +418,9 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 				s.append(text.trim());
 			}
 		}
-		s.append("\n\n");
-		return s.toString();
+		s.append("\n\n");	
+		@SuppressWarnings("null")@NonNull String body = s.toString();
+		return decode(body, null);
 	}
 	
 	protected String emitEmphasis(@NonNull String name) {
@@ -736,12 +772,11 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 	}
 
 	protected String prettyPrint(@NonNull Comment comment, Namespace scope) {
-		Markup markup = decode(comment, scope);
-		StringBuilder s = new StringBuilder();
-		for (MarkupElement element : markup.getElements()) {
-			s.append(prettyPrint(element, scope));
+		String body = comment.getBody();
+		if (body == null) {
+			throw new NullPointerException("Missing Comment body");
 		}
-		return s.toString();
+		return decode(body, scope);
 	}
 	
 	protected String prettyPrint(@NonNull Constraint constraint, Namespace scope) {
@@ -775,7 +810,9 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		}
 	}
 
-	protected String prettyPrint(MarkupElement element, Namespace scope) {
-		return new MarkupToLaTeX(scope).doSwitch(element);
-	}
+//	protected String prettyPrint(MarkupElement element, Namespace scope) {
+//		MarkupToLaTeX markupToLaTeX = new MarkupToLaTeX(scope);
+//		markupToLaTeX.doSwitch(element);
+//		return markupToLaTeX.endItemize();
+//	}
 }
