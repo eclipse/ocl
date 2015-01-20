@@ -30,6 +30,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.common.CodeGenHelper;
 import org.eclipse.ocl.examples.codegen.dynamic.JavaGenModelCodeGenHelper;
+import org.eclipse.ocl.examples.xtext.tests.NoHttpURIHandlerImpl;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.Enumeration;
@@ -87,6 +88,7 @@ public class TestOCL extends OCL
 	
 	protected TestOCL(@NonNull String testPackageName, @NonNull String testName, @NonNull EnvironmentFactoryInternal environmentFactory) {
 		super(environmentFactory);
+		NoHttpURIHandlerImpl.install(getResourceSet());
 		this.testPackageName = testPackageName;
 		this.testName = testName;
 	}
