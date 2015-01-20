@@ -12,7 +12,9 @@ package org.eclipse.ocl.examples.test.xtext;
 
 import java.io.IOException;
 
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.pivot.tests.TestOCL;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.Model;
@@ -70,9 +72,14 @@ public class ImportTests extends XtextTestCase
 		super.tearDown();
 	}
 
+	protected @NonNull TestOCL createOCL() {
+		TestCaseAppender.INSTANCE.uninstall();
+		return new TestOCL("ImportTests", getName(), OCL.NO_PROJECTS);
+	}
+
 	protected void createTestImport_OCLinEcore_Bug353793_Files()
 			throws IOException {
-		OCL ocl = OCL.newInstance(getProjectMap());
+		OCL ocl = createOCL();
 		String testFileA =
 				"package A1 : A2 = 'http://A3'{\n" +
 				"    class A;\n" +
@@ -106,8 +113,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_CompleteOCL_Ecore() throws Exception {
-		OCL ocl = OCL.newInstance(getProjectMap());
-		TestCaseAppender.INSTANCE.uninstall();
+		OCL ocl = createOCL();
 		String testFile =
 			"import 'Names.ecore'\n" +
 			"package names\n" +
@@ -119,8 +125,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_CompleteOCL_OCLinEcore() throws Exception {
-		OCL ocl = OCL.newInstance(getProjectMap());
-		TestCaseAppender.INSTANCE.uninstall();
+		OCL ocl = createOCL();
 		String testFile =
 			"import 'Names.oclinecore'\n" +
 			"package EMOF\n" +
@@ -132,7 +137,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_CompleteOCL_OCLstdlib() throws Exception {
-		TestCaseAppender.INSTANCE.uninstall();
+		OCL ocl = createOCL();
 		String testFile =
 			"library 'minimal.oclstdlib'\n" +
 			"import 'Names.ecore'\n" +
@@ -145,11 +150,12 @@ public class ImportTests extends XtextTestCase
 		bag.add(StringUtil.bind(PivotMessagesInternal.UnresolvedOperation_ERROR_, "Real", "toString"));
 		// There are no precedences so =(s) rather than =(s.toString())
 		bag.add(StringUtil.bind(PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "OclInvalid", "and", "OclInvalid"));
-		doBadLoadFromString("string.ocl", testFile, bag);
+		doBadLoadFromString(ocl, "string.ocl", testFile, bag);
+		ocl.dispose();
 	}
 	
 	public void testImport_CompleteOCL_custom_OCLstdlib() throws Exception {
-		TestCaseAppender.INSTANCE.uninstall();
+		OCL ocl = createOCL();
 		String customLibrary =
 			"library lib {\n" +
 			"type Real : PrimitiveType {\n" +
@@ -168,13 +174,13 @@ public class ImportTests extends XtextTestCase
 			"endpackage\n";
 		Bag<String> bag = new BagImpl<String>();
 		bag.add(StringUtil.bind(PivotMessagesInternal.UnresolvedOperation_ERROR_, "Real", "toString"));
-		doBadLoadFromString("string.ocl", testFile, bag);
+		doBadLoadFromString(ocl, "string.ocl", testFile, bag);
+		ocl.dispose();
 	}
 	
 	public void testImport_CompleteOCL_UML() throws Exception {
 		UMLStandaloneSetup.init();
-		OCL ocl = OCL.newInstance(getProjectMap());
-		TestCaseAppender.INSTANCE.uninstall();
+		OCL ocl = createOCL();
 		String testFile =
 			"import 'Names.uml'\n" +
 			"package unames\n" +
@@ -186,7 +192,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_CompleteOCL_NoSuchFile() throws Exception {
-		TestCaseAppender.INSTANCE.uninstall();
+		OCL ocl = createOCL();
 		String testFile =
 			"import 'NoSuchFile1'\n" + 
 			"import 'NoSuchFile2.ocl'\n" +
@@ -196,11 +202,12 @@ public class ImportTests extends XtextTestCase
 		bag.add(StringUtil.bind(PivotMessagesInternal.UnresolvedImport_ERROR_, "NoSuchFile1", StringUtil.bind(template2, getProjectFileURI("NoSuchFile1").toFileString())));
 		bag.add(StringUtil.bind(PivotMessagesInternal.UnresolvedImport_ERROR_, "NoSuchFile1", StringUtil.bind(template2, getProjectFileURI("NoSuchFile1").toFileString())));
 		bag.add(StringUtil.bind(PivotMessagesInternal.UnresolvedImport_ERROR_, "NoSuchFile2.ocl", StringUtil.bind(template2, getProjectFileURI("NoSuchFile2.ocl").toFileString())));
-		doBadLoadFromString("string.ocl", testFile, bag);
+		doBadLoadFromString(ocl, "string.ocl", testFile, bag);
+		ocl.dispose();
 	}
 
 	public void testImport_OCLinEcore_Bug353793_Good() throws Exception {
-		OCL ocl = OCL.newInstance(getProjectMap());
+		OCL ocl = createOCL();
 		createTestImport_OCLinEcore_Bug353793_Files();
 		String testFileGood =
 				"import 'http://www.eclipse.org/emf/2002/Ecore';\n" +
@@ -222,6 +229,7 @@ public class ImportTests extends XtextTestCase
 	}
 
 	public void testImport_OCLinEcore_Bug353793_Bad() throws Exception {
+		OCL ocl = createOCL();
 		createTestImport_OCLinEcore_Bug353793_Files();
 		String testFileBad =
 				"import 'http://www.eclipse.org/emf/2002/Ecore';\n" +
@@ -269,11 +277,12 @@ public class ImportTests extends XtextTestCase
 		bag.add(StringUtil.bind(PivotMessagesInternal.UnresolvedNamespace_ERROR_, "", "C1"));
 		// class GD01 extends G0::F1::F;
 		bag.add(StringUtil.bind(PivotMessagesInternal.UnresolvedNamespace_ERROR_, "", "F1"));
-		doBadLoadFromString("Bug353793bad.oclinecore", testFileBad, bag);
+		doBadLoadFromString(ocl, "Bug353793bad.oclinecore", testFileBad, bag);
+		ocl.dispose();
 	}
 	
 	public void testImport_OCLinEcore_Ecore() throws Exception {
-		TestCaseAppender.INSTANCE.uninstall();
+		OCL ocl = createOCL();
 		String testFile =
 			"import 'Names.ecore';\n" +
 			"import nnnn : 'Names.ecore#/';\n" +
@@ -288,11 +297,12 @@ public class ImportTests extends XtextTestCase
 		Bag<String> bag = new BagImpl<String>();
 		bag.add(StringUtil.bind(PivotMessagesInternal.UnresolvedNamespace_ERROR_, "", "xyzzy"));
 		bag.add(StringUtil.bind(PivotMessagesInternal.UnresolvedType_ERROR_, "", "Named"));
-		doBadLoadFromString("string.oclinecore", testFile, bag);
+		doBadLoadFromString(ocl, "string.oclinecore", testFile, bag);
+		ocl.dispose();
 	}
 	
 	public void testImport_OCLinEcore_OCLinEcore() throws Exception {
-		TestCaseAppender.INSTANCE.uninstall();
+		OCL ocl = createOCL();
 		String testFile =
 			"import 'Names.oclinecore';\n" +
 //FIXME			"import nnnn : 'Names.oclinecore#/';\n" +
@@ -308,11 +318,12 @@ public class ImportTests extends XtextTestCase
 //		bag.add(ClassUtil.bind(OCLMessages.UnresolvedNamespace_ERROR_, "xyzzy"));
 //		bag.add(ClassUtil.bind(OCLMessages.UnresolvedType_ERROR_, "Named"));
 //		bag.add(ClassUtil.bind(OCLMessages.UnresolvedType_ERROR_, "Named"));
-		doBadLoadFromString("string.oclinecore", testFile, bag);
+		doBadLoadFromString(ocl, "string.oclinecore", testFile, bag);
+		ocl.dispose();
 	}
 	
 	public void testImport_OCLinEcore_NoSuchFile() throws Exception {
-		TestCaseAppender.INSTANCE.uninstall();
+		OCL ocl = createOCL();
 		String testFile =
 			"import 'NoSuchFile1';\n" + 
 			"import 'NoSuchFile2.ecore';\n" +
@@ -322,11 +333,12 @@ public class ImportTests extends XtextTestCase
 		bag.add(StringUtil.bind(PivotMessagesInternal.UnresolvedImport_ERROR_, "NoSuchFile1", StringUtil.bind(template2, getProjectFileURI("NoSuchFile1").toFileString())));
 		bag.add(StringUtil.bind(PivotMessagesInternal.UnresolvedImport_ERROR_, "NoSuchFile1", StringUtil.bind(template2, getProjectFileURI("NoSuchFile1").toFileString())));
 		bag.add(StringUtil.bind(PivotMessagesInternal.UnresolvedImport_ERROR_, "NoSuchFile2.ecore", StringUtil.bind(template2, getProjectFileURI("NoSuchFile2.ecore").toFileString())));
-		doBadLoadFromString("string.oclinecore", testFile, bag);
+		doBadLoadFromString(ocl, "string.oclinecore", testFile, bag);
+		ocl.dispose();
 	}
 	
 	public void testImport_OCLstdlib_OCLstdlib() throws Exception {
-		TestCaseAppender.INSTANCE.uninstall();
+		OCL ocl = createOCL();
 		String customLibrary =
 			"library ocl {\n" +
 			"type Complex : PrimitiveType {\n" +
@@ -345,11 +357,12 @@ public class ImportTests extends XtextTestCase
 			"}\n";
 		Bag<String> bag = new BagImpl<String>();
 		bag.add(StringUtil.bind(PivotMessagesInternal.UnresolvedType_ERROR_, "", "WhatsThis"));
-		doBadLoadFromString("string.oclstdlib", testFile, bag);
+		doBadLoadFromString(ocl, "string.oclstdlib", testFile, bag);
+		ocl.dispose();
 	}
 	
 	public void testImport_OCLstdlib_NoSuchFile() throws Exception {
-		TestCaseAppender.INSTANCE.uninstall();
+		OCL ocl = createOCL();
 		String testFile =
 			"import '" + LibraryConstants.STDLIB_URI + "';\n" + 
 			"import 'NoSuchFile1';\n" + 
@@ -361,20 +374,22 @@ public class ImportTests extends XtextTestCase
 		bag.add(StringUtil.bind(PivotMessagesInternal.UnresolvedLibrary_ERROR_, "NoSuchFile1", StringUtil.bind(template2, getProjectFileURI("NoSuchFile1").toFileString())));
 		bag.add(StringUtil.bind(PivotMessagesInternal.UnresolvedLibrary_ERROR_, "NoSuchFile1", StringUtil.bind(template2, getProjectFileURI("NoSuchFile1").toFileString())));
 		bag.add(StringUtil.bind(PivotMessagesInternal.UnresolvedLibrary_ERROR_, "NoSuchFile2.oclstdlib", StringUtil.bind(template2, getProjectFileURI("NoSuchFile2.oclstdlib").toFileString())));
-		doBadLoadFromString("string.oclstdlib", testFile, bag);
+		doBadLoadFromString(ocl, "string.oclstdlib", testFile, bag);
+		ocl.dispose();
 	}
 	
 	public void testImport_OCLstdlib_NoURI() throws Exception {
-		TestCaseAppender.INSTANCE.uninstall();
+		OCL ocl = createOCL();
 		String testFile =
 			"library anotherOne{}\n";
 		Bag<String> bag = new BagImpl<String>();
 		bag.add(PivotMessagesInternal.MissingLibraryURI_ERROR_);
-		doBadLoadFromString("string.oclstdlib", testFile, bag);
+		doBadLoadFromString(ocl, "string.oclstdlib", testFile, bag);
+		ocl.dispose();
 	}
 	
 	public void testImport_OCLstdlib_WrongURI() throws Exception {
-		TestCaseAppender.INSTANCE.uninstall();
+		OCL ocl = createOCL();
 		String testFile =
 			"import '" + LibraryConstants.STDLIB_URI + "';\n" + 
 			"library anotherOne : xxx = 'http://www.eclipse.org/ocl/3.1/OCL.oclstdlib'{}\n";		// NB 3.1 rather than 3.1.0
@@ -382,12 +397,12 @@ public class ImportTests extends XtextTestCase
 		bag.add(PivotMessagesInternal.EmptyLibrary_ERROR_);
 		bag.add(StringUtil.bind(PivotMessagesInternal.UnresolvedLibrary_ERROR_, LibraryConstants.STDLIB_URI,
 			StringUtil.bind(PivotMessagesInternal.ImportedLibraryURI_ERROR_, LibraryConstants.STDLIB_URI, "http://www.eclipse.org/ocl/3.1/OCL.oclstdlib")));
-		doBadLoadFromString("string.oclstdlib", testFile, bag);
+		doBadLoadFromString(ocl, "string.oclstdlib", testFile, bag);
+		ocl.dispose();
 	}
 	
 	public void testInclude_CompleteOCL() throws Exception {
-		OCL ocl = OCL.newInstance(getProjectMap());
-		TestCaseAppender.INSTANCE.uninstall();
+		OCL ocl = createOCL();
 		String moreCompleteOCL =
 			"package ocl\n" +
 			"context _'Real'\n" +
@@ -407,7 +422,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testInclude_CompleteOCL_UnresolvedOperation() throws Exception {
-		TestCaseAppender.INSTANCE.uninstall();
+		OCL ocl = createOCL();
 		String moreCompleteOCL =
 			"package ocl\n" +
 			"context _'Real'\n" +
@@ -425,11 +440,12 @@ public class ImportTests extends XtextTestCase
 			"endpackage\n";
 		Bag<String> bag = new BagImpl<String>();
 		bag.add(StringUtil.bind(PivotMessagesInternal.UnresolvedOperation_ERROR_, "Integer", "isNegative"));
-		doBadLoadFromString("string.ocl", testFile, bag);
+		doBadLoadFromString(ocl, "string.ocl", testFile, bag);
+		ocl.dispose();
 	}
 	
 	public void testImport_CompleteOCL_Bug450196() throws Exception {
-		OCL ocl = OCL.newInstance(getProjectMap());
+		OCL ocl = createOCL();
 		String moreCompleteOCL =
 				"package ocl\n" +
 				"context _'Integer'\n" +

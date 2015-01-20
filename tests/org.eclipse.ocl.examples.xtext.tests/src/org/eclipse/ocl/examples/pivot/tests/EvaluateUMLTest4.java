@@ -64,7 +64,7 @@ public class EvaluateUMLTest4 extends PivotTestSuite
     	EClass c1Class;
 		
 		public MyOCL(@NonNull String testPackageName, @NonNull String name) {
-			super(testPackageName, name);
+			super(testPackageName, name, OCL.NO_PROJECTS);
 			MetamodelManager metamodelManager = getMetamodelManager();
 			Package asMetamodel = metamodelManager.getASmetamodel();
 			if (asMetamodel != null) {

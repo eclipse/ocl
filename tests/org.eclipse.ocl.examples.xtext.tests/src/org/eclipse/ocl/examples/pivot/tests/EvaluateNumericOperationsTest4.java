@@ -21,6 +21,7 @@ import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.values.BigIntegerValueImpl;
 import org.eclipse.ocl.pivot.internal.values.IntIntegerValueImpl;
 import org.eclipse.ocl.pivot.internal.values.LongIntegerValueImpl;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.junit.After;
 import org.junit.Before;
@@ -51,7 +52,7 @@ public class EvaluateNumericOperationsTest4 extends PivotTestSuite
 
 	@Override
 	protected @NonNull TestOCL createOCL() {
-		return new TestOCL(getTestPackageName(), getName());
+		return new TestOCL(getTestPackageName(), getName(), OCL.NO_PROJECTS);
 	}
 
 	@Override

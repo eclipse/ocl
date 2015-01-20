@@ -22,6 +22,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.OCL;
 
 /**
  * Tests for usages of model features whose names coincide with "keywords"
@@ -43,7 +44,7 @@ public abstract class GenericKeywordsTest extends PivotTestSuite
 	    org.eclipse.ocl.pivot.Class constraint;
 		
 		public MyOCL(@NonNull String testPackageName, @NonNull String name) {
-			super(testPackageName, name);
+			super(testPackageName, name, OCL.NO_PROJECTS);
 			MetamodelManager metamodelManager = getMetamodelManager();
 			StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
 		

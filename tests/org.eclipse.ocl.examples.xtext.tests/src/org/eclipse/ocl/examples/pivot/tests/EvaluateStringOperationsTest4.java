@@ -18,6 +18,7 @@ import java.util.regex.PatternSyntaxException;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.osgi.util.NLS;
 import org.junit.After;
@@ -47,7 +48,7 @@ public class EvaluateStringOperationsTest4 extends PivotTestSuite
 
 	@Override
 	protected @NonNull TestOCL createOCL() {
-		return new TestOCL(getTestPackageName(), getName());
+		return new TestOCL(getTestPackageName(), getName(), OCL.NO_PROJECTS);
 	}
 
 	@Override

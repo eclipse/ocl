@@ -22,6 +22,7 @@ import org.eclipse.ocl.pivot.SetType;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.junit.After;
 import org.junit.Before;
 
@@ -37,7 +38,7 @@ public class InheritanceTests extends PivotTestSuite
 
 	@Override
 	protected @NonNull TestOCL createOCL() {
-		return new TestOCL(getTestPackageName(), getName());
+		return new TestOCL(getTestPackageName(), getName(), OCL.NO_PROJECTS);
 	}
 
     @Override

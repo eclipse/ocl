@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.pivot.tests.TestOCL;
 import org.eclipse.ocl.examples.uml25.XMI252UMLResourceFactoryImpl;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
@@ -29,9 +30,10 @@ import org.eclipse.uml2.uml.resource.XMI2UMLResource;
 @SuppressWarnings("null")
 public class UML25LoadTests extends LoadTests
 {
-	public @NonNull OCL createOCL() {
+	@Override
+	public @NonNull TestOCL createOCL() {
 		UMLStandaloneSetup.init();
-		OCL ocl = OCL.newInstance(OCL.NO_PROJECTS);
+		TestOCL ocl = new TestOCL("UML25LoadTests", getName(), OCL.NO_PROJECTS);
 		ResourceSet resourceSet = ocl.getMetamodelManager().getExternalResourceSet();
 		XMI252UMLResourceFactoryImpl.install(resourceSet, URI.createPlatformResourceURI("/org.eclipse.ocl.examples.uml25/model/", true));
 		return ocl;

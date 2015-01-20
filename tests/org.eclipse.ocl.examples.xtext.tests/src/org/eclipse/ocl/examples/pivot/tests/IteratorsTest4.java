@@ -50,6 +50,7 @@ import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
@@ -101,7 +102,7 @@ public class IteratorsTest4 extends PivotTestSuite
         @NonNull org.eclipse.ocl.pivot.Package george = createPackage(pkg5, "george");
 		
 		public MyOCL(@NonNull String testPackageName, @NonNull String name) {
-			super(testPackageName, name);
+			super(testPackageName, name, OCL.NO_PROJECTS);
 			MetamodelManager metamodelManager = getMetamodelManager();
 //			metamodelManager.addGlobalNamespace(PivotConstants.OCL_NAME, ClassUtil.nonNullState(metamodelManager.getASmetamodel()));
 

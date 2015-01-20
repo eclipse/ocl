@@ -170,7 +170,7 @@ public class StereotypesTest extends PivotTestSuite
 		InternationalizedModel m = null;
 		
 		public MyOCL(@NonNull String testPackageName, @NonNull String name) throws ParserException {
-			super(testPackageName, name);
+			super(testPackageName, name, OCL.NO_PROJECTS);
 			ResourceSet resourceSet = getResourceSet();
 			ProjectMap.getAdapter(resourceSet);
 			OCL.initialize(resourceSet);

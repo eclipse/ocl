@@ -169,7 +169,7 @@ public class UsageTests
 
 	@Override
 	protected @NonNull TestOCL createOCL() {
-		return new TestOCL(getTestPackageName(), getName());
+		return new TestOCL(getTestPackageName(), getName(), getProjectMap());
 	}
 
 	protected void getCompilationUnits(@NonNull List<JavaFileObject> compilationUnits,

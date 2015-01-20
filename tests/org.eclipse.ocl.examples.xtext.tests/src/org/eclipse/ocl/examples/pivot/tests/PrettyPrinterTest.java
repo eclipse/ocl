@@ -16,6 +16,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.junit.After;
 import org.junit.Before;
 
@@ -28,7 +29,7 @@ public class PrettyPrinterTest extends PivotTestSuite
 	public static class MyOCL extends TestOCL
 	{
 		public MyOCL(@NonNull String testPackageName, @NonNull String name) {
-			super(testPackageName, name);
+			super(testPackageName, name, OCL.NO_PROJECTS);
 		}
 
 		protected @Nullable Object assertPrintResults(@Nullable Object context, @NonNull String expression) {

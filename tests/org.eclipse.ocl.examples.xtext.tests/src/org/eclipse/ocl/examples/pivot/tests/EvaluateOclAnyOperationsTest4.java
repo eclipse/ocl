@@ -31,6 +31,7 @@ import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -69,7 +70,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotTestSuite
         @NonNull org.eclipse.ocl.pivot.Package george = createPackage(pkg5, "george");
 		
 		public MyOCL(@NonNull String testPackageName, @NonNull String name) {
-			super(testPackageName, name);
+			super(testPackageName, name, OCL.NO_PROJECTS);
 			MetamodelManager metamodelManager = getMetamodelManager();
 //			metamodelManager.addGlobalNamespace(PivotConstants.OCL_NAME, ClassUtil.nonNullState(metamodelManager.getASmetamodel()));
 

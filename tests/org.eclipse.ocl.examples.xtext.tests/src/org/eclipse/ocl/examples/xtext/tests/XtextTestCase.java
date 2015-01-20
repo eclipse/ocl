@@ -307,28 +307,22 @@ public class XtextTestCase extends PivotTestCase
 		}
 	}
 
-	protected void doBadLoadFromString(@NonNull String fileName, @NonNull String testFile, @NonNull Bag<String> expectedErrorMessages) throws Exception {
-		OCL ocl = OCL.newInstance(getProjectMap());
+	protected void doBadLoadFromString(@NonNull OCL ocl, @NonNull String fileName, @NonNull String testFile, @NonNull Bag<String> expectedErrorMessages) throws Exception {
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		metamodelManager.addClassLoader(ClassUtil.nonNullState(getClass().getClassLoader()));
-		try {
-			ocl.getEnvironmentFactory().adapt(ClassUtil.nonNullState(resourceSet));
-			URI libraryURI = getProjectFileURI(fileName);
-			@SuppressWarnings("null")@NonNull BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(libraryURI);
-			@SuppressWarnings("null")@NonNull ClassLoader classLoader = getClass().getClassLoader();
-			JavaClassScope.getAdapter(xtextResource, classLoader);
-			InputStream inputStream = new URIConverter.ReadableInputStream(testFile, "UTF-8");
-			xtextResource.load(inputStream, null);
-			Bag<String> actualErrorMessages = new BagImpl<String>();
-			for (Resource.Diagnostic actualError : xtextResource.getErrors()) {
-				actualErrorMessages.add(actualError.getMessage());
-			}
-			String s = formatMessageDifferences(expectedErrorMessages, actualErrorMessages);
-			if (s != null) {
-				fail("Inconsistent load errors (expected/actual) message" + s);
-			}
-		} finally {
-			ocl.dispose();
+		URI libraryURI = getProjectFileURI(fileName);
+		@SuppressWarnings("null")@NonNull BaseCSResource xtextResource = (BaseCSResource) ocl.getResourceSet().createResource(libraryURI);
+		@SuppressWarnings("null")@NonNull ClassLoader classLoader = getClass().getClassLoader();
+		JavaClassScope.getAdapter(xtextResource, classLoader);
+		InputStream inputStream = new URIConverter.ReadableInputStream(testFile, "UTF-8");
+		xtextResource.load(inputStream, null);
+		Bag<String> actualErrorMessages = new BagImpl<String>();
+		for (Resource.Diagnostic actualError : xtextResource.getErrors()) {
+			actualErrorMessages.add(actualError.getMessage());
+		}
+		String s = formatMessageDifferences(expectedErrorMessages, actualErrorMessages);
+		if (s != null) {
+			fail("Inconsistent load errors (expected/actual) message" + s);
 		}
 	}
 

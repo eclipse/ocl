@@ -63,6 +63,7 @@ import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.library.LibraryUnaryOperation;
 import org.eclipse.ocl.pivot.library.ecore.EcoreExecutorManager;
 import org.eclipse.ocl.pivot.resource.CSResource;
+import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.ParserContext;
@@ -82,17 +83,13 @@ public class TestOCL extends OCL
 	protected final @NonNull String testPackageName;
 	protected final @NonNull String testName;
 	
-	public TestOCL(@NonNull String testPackageName, @NonNull String testName) {
-		this(testPackageName, testName, ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(PivotTestSuite.getProjectMap()));
-	}
-	
-	protected TestOCL(@NonNull String testPackageName, @NonNull String testName, @NonNull EnvironmentFactoryInternal environmentFactory) {
-		super(environmentFactory);
+	public TestOCL(@NonNull String testPackageName, @NonNull String testName, @Nullable ProjectManager projectManager) {
+		super(ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectManager));
 		NoHttpURIHandlerImpl.install(getResourceSet());
 		this.testPackageName = testPackageName;
 		this.testName = testName;
 	}
-	
+
 	public void addSupertype(@NonNull org.eclipse.ocl.pivot.Class aClass, @NonNull org.eclipse.ocl.pivot.Class superClass) {
 		aClass.getSuperClasses().add(superClass);
 	}

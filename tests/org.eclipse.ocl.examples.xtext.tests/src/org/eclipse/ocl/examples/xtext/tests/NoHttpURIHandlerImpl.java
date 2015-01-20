@@ -38,11 +38,11 @@ public final class NoHttpURIHandlerImpl extends URIHandlerImpl
 
 	@Override
 	public OutputStream createOutputStream(URI uri, Map<?, ?> options) throws IOException {
-		throw new IOException("http: resolution over network trapped by use of " + getClass().getName());
+		throw new IOException("Resolution of '" + uri + "' over network trapped by use of " + getClass().getName());
 	}
 
 	@Override
 	public InputStream createInputStream(URI uri, Map<?, ?> options) throws IOException {
-		throw new IOException("http: resolution over network trapped by use of " + getClass().getName());
+		throw new IOException("Resolution of '" + uri + "' over network trapped by use of " + getClass().getName());
 	}
 }

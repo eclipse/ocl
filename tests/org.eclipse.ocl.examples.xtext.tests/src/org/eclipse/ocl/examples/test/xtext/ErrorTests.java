@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
@@ -33,11 +34,15 @@ import org.eclipse.ocl.xtext.essentialocl.utilities.EssentialOCLCSResource;
 @SuppressWarnings("nls")
 public class ErrorTests extends XtextTestCase
 {
+	protected @NonNull OCL createOCL() {
+		return OCL.newInstance(OCL.NO_PROJECTS);
+	}
+
 	/**
 	 * Test a bad operation for bad iterate arguments. Inspired by Bug 352386.
 	 */
 	public void test_BadIterate() throws IOException {
-		OCL ocl = OCL.newInstance(getProjectMap());
+		OCL ocl = createOCL();
 		String metamodelText =
 			"package test : tst = 'http://test'\n" +
 			"{\n" +
@@ -63,7 +68,7 @@ public class ErrorTests extends XtextTestCase
 	 * Test a bad operation for bad iterate arguments. Inspired by Bug 352386.
 	 */
 	public void test_BadProperty() throws IOException {
-		OCL ocl = OCL.newInstance(getProjectMap());
+		OCL ocl = createOCL();
 		String metamodelText =
 			"package test : tst = 'http://test'\n" +
 			"{\n" +
@@ -85,6 +90,7 @@ public class ErrorTests extends XtextTestCase
 	}
 	
 	public void testBadEOF_419683() throws Exception {
+		OCL ocl = createOCL();
 		TestCaseAppender.INSTANCE.uninstall();
 		String testFile =
 			"import 'platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore'\n" +
@@ -95,6 +101,7 @@ public class ErrorTests extends XtextTestCase
 		Bag<String> bag = new BagImpl<String>();
 		bag.add("mismatched input 'inv' expecting '('");
 		bag.add("mismatched input '<EOF>' expecting 'endpackage'");
-		doBadLoadFromString("string.ocl", testFile, bag);
+		doBadLoadFromString(ocl, "string.ocl", testFile, bag);
+		ocl.dispose();
 	}
 }
