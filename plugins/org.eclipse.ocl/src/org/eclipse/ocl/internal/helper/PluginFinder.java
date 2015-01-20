@@ -56,21 +56,26 @@ public class PluginFinder // BUG 375640 Stolen from StandaloneProjectMap
 
 	private boolean registerBundle(File f) throws IOException {
 		JarFile jarFile = new JarFile(f);
-		Manifest manifest = jarFile.getManifest();
-		if (manifest != null) {
-			String project = manifest.getMainAttributes().getValue("Bundle-SymbolicName"); //$NON-NLS-1$
-			if (project != null) {
-				int indexOf = project.indexOf(';');
-				if (indexOf > 0) {
-					project = project.substring(0, indexOf);
-				}
-				if (requiredMappings.contains(project)) {
-					resolvedMappings.put(project, "archive:" + f.toURI() + "!/"); //$NON-NLS-1$ //$NON-NLS-2$
-					return true;
+		try {
+			Manifest manifest = jarFile.getManifest();
+			if (manifest != null) {
+				String project = manifest.getMainAttributes().getValue("Bundle-SymbolicName"); //$NON-NLS-1$
+				if (project != null) {
+					int indexOf = project.indexOf(';');
+					if (indexOf > 0) {
+						project = project.substring(0, indexOf);
+					}
+					if (requiredMappings.contains(project)) {
+						resolvedMappings.put(project, "archive:" + f.toURI() + "!/"); //$NON-NLS-1$ //$NON-NLS-2$
+						return true;
+					}
 				}
 			}
+			return false;
 		}
-		return false;
+		finally {
+			jarFile.close();
+		}
 	}
 
 	private boolean registerProject(File file) {

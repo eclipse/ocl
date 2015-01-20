@@ -695,15 +695,15 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
     }
 	
 	protected boolean isClassifier(Object element) {
-		return (uml == null)? null : uml.isClassifier(element);
+		return (uml != null) && uml.isClassifier(element);
 	}
 	
 	protected boolean isOperation(Object element) {
-		return (uml == null)? null : uml.isOperation(element);
+		return (uml != null) && uml.isOperation(element);
 	}
 	
 	protected boolean isProperty(Object element) {
-		return (uml == null)? null : uml.isProperty(element);
+		return (uml != null) && uml.isProperty(element);
 	}
 	
 	protected List<? extends EObject> getConstrainedElements(CT constraint) {
