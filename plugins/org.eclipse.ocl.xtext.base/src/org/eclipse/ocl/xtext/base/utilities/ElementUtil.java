@@ -45,7 +45,7 @@ import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ICSI2ASMapping;
 import org.eclipse.ocl.pivot.internal.scoping.Attribution;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
@@ -158,7 +158,7 @@ public class ElementUtil
 		if (asResourceSet == null) {
 			return null;
 		}
-		MetamodelManager metamodelManager = MetamodelManager.findAdapter(asResourceSet);
+		PivotMetamodelManager metamodelManager = PivotMetamodelManager.findAdapter(asResourceSet);
 		if (metamodelManager == null) {
 			return null;
 		}
@@ -251,7 +251,7 @@ public class ElementUtil
 	 * Extract the first embedded ExpressionInOCL.
 	 * @throws ParserException 
 	 */
-	public static @Nullable ExpressionInOCL getFirstQuery(@NonNull MetamodelManager metamodelManager, BaseCSResource csResource) throws ParserException {
+	public static @Nullable ExpressionInOCL getFirstQuery(@NonNull PivotMetamodelManager metamodelManager, BaseCSResource csResource) throws ParserException {
 		CS2AS cs2as = csResource.findCS2AS();
 		if (cs2as != null) {
 			ASResource asResource = cs2as.getASResource();

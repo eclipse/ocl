@@ -27,7 +27,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TypedElement;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 
 public interface GenModelHelper
 {
@@ -50,7 +50,7 @@ public interface GenModelHelper
 	@NonNull String getGetAccessor(@NonNull EStructuralFeature eStructuralFeature) throws GenModelException;
 	@Nullable String getImplementationClassName(@NonNull EClassifier eClassifier);
 	@NonNull String getLiteralName(@NonNull EClassifier eClassifier);
-	@NonNull MetamodelManager getMetamodelManager();
+	@NonNull PivotMetamodelManager getMetamodelManager();
 	@NonNull String getOperationAccessor(@NonNull Operation anOperation) throws GenModelException;
 	@NonNull Class<?> getOperationInterface(@NonNull List<? extends TypedElement> parameters);
 	@NonNull String getOperationReturnType(@NonNull Operation operation) throws GenModelException;

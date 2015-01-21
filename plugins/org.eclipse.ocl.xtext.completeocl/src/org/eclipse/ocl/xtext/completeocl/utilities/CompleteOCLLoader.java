@@ -34,11 +34,11 @@ import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.External2AS;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.internal.validation.PivotEObjectValidator;
 import org.eclipse.ocl.pivot.resource.CSResource;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
@@ -89,7 +89,7 @@ public abstract class CompleteOCLLoader
 		for (Resource mmResource : mmResources) {
 			assert mmResource != null;
 			try {
-				Element pivotModel = ocl.getMetamodelManager().loadResource(mmResource, null);
+				Element pivotModel = ((MetamodelManager.Internal)ocl.getMetamodelManager()).loadResource(mmResource, null);
 				if (pivotModel != null) {
 					List<org.eclipse.emf.ecore.resource.Resource.Diagnostic> errors = pivotModel.eResource().getErrors();
 					assert errors != null;

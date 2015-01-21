@@ -65,7 +65,7 @@ import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
@@ -288,7 +288,7 @@ public class OCLinEcoreTablesUtils
 		 * Append the encoded name of a type with a suffix if disambiguation acros packages is required.
 		 * @param metamodelManager 
 		 */
-		public void appendUnscopedTypeName(@NonNull MetamodelManager metamodelManager, @NonNull Type theType) {
+		public void appendUnscopedTypeName(@NonNull PivotMetamodelManager metamodelManager, @NonNull Type theType) {
 			s.append(getTypeName(metamodelManager.getPrimaryType(theType)));
 		}
 		
@@ -615,7 +615,7 @@ public class OCLinEcoreTablesUtils
 
 	protected final @NonNull CodeGenString s = new CodeGenString();
 	protected final @NonNull GenPackage genPackage;
-	protected final @NonNull MetamodelManager metamodelManager;
+	protected final @NonNull PivotMetamodelManager metamodelManager;
 	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 	protected final @NonNull StandardLibraryInternal standardLibrary;
 	protected final @NonNull org.eclipse.ocl.pivot.Package pPackage;

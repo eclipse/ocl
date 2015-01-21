@@ -25,8 +25,8 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.xtext.base.as2cs.AS2CS;
 import org.eclipse.ocl.xtext.base.cs2as.BaseCS2AS;
@@ -260,8 +260,8 @@ public class PivotTests extends XtextTestCase
 	
 	@SuppressWarnings("null")
 	public void doPivotTestEcore(@NonNull String stem) throws IOException {
-		OCL ocl = OCL.newInstance(getProjectMap());
-		MetamodelManager metamodelManager = ocl.getMetamodelManager();
+		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap());
+		MetamodelManager.Internal metamodelManager = ocl.getMetamodelManager();
 		ResourceSet asResourceSet = metamodelManager.getASResourceSet();
 //		long startTime = System.currentTimeMillis();
 //		System.out.println("Start at " + startTime);

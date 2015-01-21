@@ -18,11 +18,12 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestSuite;
 import org.eclipse.ocl.examples.pivot.tests.TestOCL;
 import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.OCL;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 /**
  * Tests for usages of model features whose names coincide with "keywords"
@@ -46,11 +47,11 @@ public abstract class GenericKeywordsTest extends PivotTestSuite
 		public MyOCL(@NonNull String testPackageName, @NonNull String name) {
 			super(testPackageName, name, OCL.NO_PROJECTS);
 			MetamodelManager metamodelManager = getMetamodelManager();
-			StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
+			StandardLibrary standardLibrary = metamodelManager.getStandardLibrary();
 		
 		    // create a little test model for a Smalltalk-like collection class that
 		    // defines operations corresponding to OCL iterators
-		    smalltalk = metamodelManager.createPackage(org.eclipse.ocl.pivot.Package.class, ClassUtil.nonNullEMF(PivotPackage.Literals.PACKAGE), "Smalltalk", null, null);
+		    smalltalk = PivotUtil.createPackage(org.eclipse.ocl.pivot.Package.class, ClassUtil.nonNullEMF(PivotPackage.Literals.PACKAGE), "Smalltalk", null, null);
 		    registerPackage(smalltalk, "st", "foo://smalltalk");
 		
 		    org.eclipse.ocl.pivot.Class object = createOwnedClass(smalltalk, "Object", false);
@@ -100,8 +101,8 @@ public abstract class GenericKeywordsTest extends PivotTestSuite
 		
 		    // create some qualified classifier and package names that need
 		    // escaping of one or more segments. Likewise state names
-		    org.eclipse.ocl.pivot.Package nested = createPackage(smalltalk, "runtime");
-		    org.eclipse.ocl.pivot.Package contextPackage = createPackage(nested, "context");
+		    org.eclipse.ocl.pivot.Package nested = PivotUtil.createOwnedPackage(smalltalk, "runtime");
+		    org.eclipse.ocl.pivot.Package contextPackage = PivotUtil.createOwnedPackage(nested, "context");
 		
 		    createOwnedClass(contextPackage, "language", false);
 		    elseClass = createOwnedClass(contextPackage, "else", false);

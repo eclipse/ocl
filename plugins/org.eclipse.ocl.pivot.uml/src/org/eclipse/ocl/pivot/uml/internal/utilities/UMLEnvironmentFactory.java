@@ -31,7 +31,7 @@ import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.ids.RootPackageId;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.library.ImplementationManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
@@ -159,7 +159,7 @@ public class UMLEnvironmentFactory extends PivotEnvironmentFactory
 		if (eObject instanceof Element) {
 			return (Element) eObject;
 		}
-		MetamodelManager metamodelManager = getMetamodelManager();
+		PivotMetamodelManager metamodelManager = getMetamodelManager();
 		pivotElement = metamodelManager.getASOf(Element.class, eObject);
 		if ((eObject instanceof org.eclipse.uml2.uml.Constraint) && (pivotElement instanceof Constraint) && (pivotElement.eContainer() == null)) {
 			pivotElement = metamodelManager.getASOf(Element.class, ((org.eclipse.uml2.uml.Constraint)eObject).getSpecification());

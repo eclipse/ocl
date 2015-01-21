@@ -13,7 +13,7 @@ package org.eclipse.ocl.pivot.internal.complete;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.CompleteClass;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 
 public interface CompleteClassInternal extends CompleteClass
 {
@@ -27,7 +27,7 @@ public interface CompleteClassInternal extends CompleteClass
 	@NonNull CompleteInheritanceImpl getCompleteInheritance();
 	@NonNull CompleteModelInternal getCompleteModel();
 	@NonNull EnvironmentFactoryInternal getEnvironmentFactory();
-	@NonNull MetamodelManager getMetamodelManager();
+	@NonNull PivotMetamodelManager getMetamodelManager();
 	@Override
 	CompletePackageInternal getOwningCompletePackage();
 	@Override

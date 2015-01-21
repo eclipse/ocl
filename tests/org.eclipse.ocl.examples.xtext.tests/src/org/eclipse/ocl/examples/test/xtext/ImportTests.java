@@ -123,7 +123,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_CompleteOCL_OCLstdlib() throws Exception {
-		OCL ocl = createOCL();
+		TestOCL ocl = createOCL();
 		String testFile =
 			"library 'minimal.oclstdlib'\n" +
 			"import 'Names.ecore'\n" +
@@ -141,7 +141,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_CompleteOCL_custom_OCLstdlib() throws Exception {
-		OCL ocl = createOCL();
+		TestOCL ocl = createOCL();
 		String customLibrary =
 			"library lib {\n" +
 			"type Real : PrimitiveType {\n" +
@@ -178,7 +178,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_CompleteOCL_NoSuchFile() throws Exception {
-		OCL ocl = createOCL();
+		TestOCL ocl = createOCL();
 		String testFile =
 			"import 'NoSuchFile1'\n" + 
 			"import 'NoSuchFile2.ocl'\n" +
@@ -215,7 +215,7 @@ public class ImportTests extends XtextTestCase
 	}
 
 	public void testImport_OCLinEcore_Bug353793_Bad() throws Exception {
-		OCL ocl = createOCL();
+		TestOCL ocl = createOCL();
 		createTestImport_OCLinEcore_Bug353793_Files();
 		String testFileBad =
 				"import 'http://www.eclipse.org/emf/2002/Ecore';\n" +
@@ -268,7 +268,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_OCLinEcore_Ecore() throws Exception {
-		OCL ocl = createOCL();
+		TestOCL ocl = createOCL();
 		String testFile =
 			"import 'Names.ecore';\n" +
 			"import nnnn : 'Names.ecore#/';\n" +
@@ -288,7 +288,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_OCLinEcore_OCLinEcore() throws Exception {
-		OCL ocl = createOCL();
+		TestOCL ocl = createOCL();
 		String testFile =
 			"import 'Names.oclinecore';\n" +
 //FIXME			"import nnnn : 'Names.oclinecore#/';\n" +
@@ -309,7 +309,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_OCLinEcore_NoSuchFile() throws Exception {
-		OCL ocl = createOCL();
+		TestOCL ocl = createOCL();
 		String testFile =
 			"import 'NoSuchFile1';\n" + 
 			"import 'NoSuchFile2.ecore';\n" +
@@ -324,7 +324,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_OCLstdlib_OCLstdlib() throws Exception {
-		OCL ocl = createOCL();
+		TestOCL ocl = createOCL();
 		String customLibrary =
 			"library ocl {\n" +
 			"type Complex : PrimitiveType {\n" +
@@ -348,7 +348,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_OCLstdlib_NoSuchFile() throws Exception {
-		OCL ocl = createOCL();
+		TestOCL ocl = createOCL();
 		String testFile =
 			"import '" + LibraryConstants.STDLIB_URI + "';\n" + 
 			"import 'NoSuchFile1';\n" + 
@@ -365,7 +365,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_OCLstdlib_NoURI() throws Exception {
-		OCL ocl = createOCL();
+		TestOCL ocl = createOCL();
 		String testFile =
 			"library anotherOne{}\n";
 		Bag<String> bag = new BagImpl<String>();
@@ -375,7 +375,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_OCLstdlib_WrongURI() throws Exception {
-		OCL ocl = createOCL();
+		TestOCL ocl = createOCL();
 		String testFile =
 			"import '" + LibraryConstants.STDLIB_URI + "';\n" + 
 			"library anotherOne : xxx = 'http://www.eclipse.org/ocl/3.1/OCL.oclstdlib'{}\n";		// NB 3.1 rather than 3.1.0
@@ -408,7 +408,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testInclude_CompleteOCL_UnresolvedOperation() throws Exception {
-		OCL ocl = createOCL();
+		TestOCL ocl = createOCL();
 		String moreCompleteOCL =
 			"package ocl\n" +
 			"context _'Real'\n" +
@@ -431,7 +431,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_CompleteOCL_Bug450196() throws Exception {
-		OCL ocl = createOCL();
+		TestOCL ocl = createOCL();
 		String moreCompleteOCL =
 				"package ocl\n" +
 				"context _'Integer'\n" +

@@ -27,9 +27,10 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.build.utilities.ClasspathURIHandler;
 import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
@@ -55,7 +56,7 @@ public abstract class GenerateLaTeXForCSModel extends GenerateLaTeXUtils
 		folder.mkdirs();
 		OCL ocl = OCL.newInstance();
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
-		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
+		ResourceSet resourceSet = ocl.getResourceSet();
 		EList<URIHandler> uriHandlers = resourceSet.getURIConverter().getURIHandlers();
 		uriHandlers.add(0, new ClasspathURIHandler());
 		try {
@@ -91,7 +92,7 @@ public abstract class GenerateLaTeXForCSModel extends GenerateLaTeXUtils
 					issues.addError(this, "No eResource for + ;" + fileURI + "'", null, null, null);
 					return;
 				}
-				Ecore2AS adapter = Ecore2AS.getAdapter(eResource, metamodelManager.getEnvironmentFactory());
+				Ecore2AS adapter = Ecore2AS.getAdapter(eResource, (EnvironmentFactoryInternal) metamodelManager.getEnvironmentFactory());
 				Model asModel = adapter.getASModel();
 				asPackage = asModel.getOwnedPackages().get(0);
 			}

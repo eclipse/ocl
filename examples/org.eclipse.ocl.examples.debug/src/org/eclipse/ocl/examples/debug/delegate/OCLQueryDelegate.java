@@ -33,7 +33,6 @@ import org.eclipse.ocl.pivot.internal.context.EInvocationContext;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateException;
 import org.eclipse.ocl.pivot.internal.delegate.OCLQueryDelegateFactory;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
@@ -70,8 +69,7 @@ public class OCLQueryDelegate implements QueryDelegate
 	 */
 	public OCLQueryDelegate(@NonNull OCLDelegateDomain delegateDomain, @NonNull EClassifier context, @Nullable Map<String, EClassifier> parameters, @NonNull String expression) {
 		this.delegateDomain = delegateDomain;
-		MetamodelManager metamodelManager = delegateDomain.getMetamodelManager();
-		this.parserContext = new EInvocationContext(metamodelManager.getEnvironmentFactory(), null, context, parameters);
+		this.parserContext = new EInvocationContext(delegateDomain.getOCL().getEnvironmentFactory(), null, context, parameters);
 		this.expression = expression;
 	}
 
@@ -102,12 +100,11 @@ public class OCLQueryDelegate implements QueryDelegate
 			@SuppressWarnings("null")
 			@NonNull ExpressionInOCL nonNullSpecification = specification;
 			OCL ocl = delegateDomain.getOCL();
-			MetamodelManager metamodelManager = ocl.getMetamodelManager();
 			IdResolver idResolver = ocl.getIdResolver();
 			Object targetValue = idResolver.boxedValueOf(target);
 			org.eclipse.ocl.pivot.Class targetType = idResolver.getStaticTypeOf(targetValue);
 			Type requiredType = nonNullSpecification.getOwnedContext().getType();
-			if ((requiredType == null) || !targetType.conformsTo(metamodelManager.getStandardLibrary(), requiredType)) {
+			if ((requiredType == null) || !targetType.conformsTo(ocl.getStandardLibrary(), requiredType)) {
 				String message = StringUtil.bind(PivotMessagesInternal.WrongContextClassifier_ERROR_, targetType, requiredType);
 				throw new OCLDelegateException(new SemanticException(message));
 			}
@@ -130,7 +127,7 @@ public class OCLQueryDelegate implements QueryDelegate
 				Object value = idResolver.boxedValueOf(object);
 				targetType = idResolver.getStaticTypeOf(value);
 				requiredType = ClassUtil.nonNullModel(parameterVariable.getType());
-				if (!targetType.conformsTo(metamodelManager.getStandardLibrary(), requiredType)) {
+				if (!targetType.conformsTo(ocl.getStandardLibrary(), requiredType)) {
 					String message = StringUtil.bind(PivotMessagesInternal.MismatchedArgumentType_ERROR_, name, targetType, requiredType);
 					throw new OCLDelegateException(new SemanticException(message));
 				}

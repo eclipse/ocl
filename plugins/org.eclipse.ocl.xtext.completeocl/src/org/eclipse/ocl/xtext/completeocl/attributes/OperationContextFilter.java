@@ -16,7 +16,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.internal.scoping.ScopeFilter;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -37,7 +37,7 @@ public class OperationContextFilter implements ScopeFilter
 			return false;
 		}
 		Operation candidateOperation = (Operation) object;
-		MetamodelManager metamodelManager = environmentView.getEnvironmentFactory().getMetamodelManager();
+		PivotMetamodelManager metamodelManager = environmentView.getEnvironmentFactory().getMetamodelManager();
 //		Type context = metamodelManager.getPrimaryType(candidateOperation.getOwningType());
 //		if (context != metamodelManager.getPrimaryElement(forType)) {
 //			return false;

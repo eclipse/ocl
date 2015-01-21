@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Namespace;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 
 /**
  * A PathElement represents a segment in a qualified name.
@@ -51,7 +51,7 @@ public class PathElement
         return path;
     }
 	  
-    public static List<PathElement> getPath(EObject element, MetamodelManager metamodelManager) {
+    public static List<PathElement> getPath(EObject element, PivotMetamodelManager metamodelManager) {
         List<PathElement> path = new ArrayList<PathElement>();
         EObject parent = element;
         for (; (parent != null) && !(parent instanceof Namespace); parent = parent.eContainer()) {

@@ -68,7 +68,7 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
@@ -157,7 +157,7 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		}
 	}
 
-	protected void convertConstraintsToOperations(@NonNull MetamodelManager metamodelManager, @NonNull GenModel genModel) {
+	protected void convertConstraintsToOperations(@NonNull PivotMetamodelManager metamodelManager, @NonNull GenModel genModel) {
 		List<GenPackage> genPackages = genModel.getAllGenPackagesWithClassifiers();
 		for (GenPackage genPackage : genPackages) {
 			EPackage ecorePackage = genPackage.getEcorePackage();
@@ -271,7 +271,7 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 					throw new NullPointerException("No ResourceSet for genmodel");
 				}
 				EnvironmentFactoryAdapter adapter = OCL.adapt(resourceSet);
-				MetamodelManager metamodelManager = adapter.getMetamodelManager();
+				PivotMetamodelManager metamodelManager = adapter.getMetamodelManager();
 				convertConstraintsToOperations(metamodelManager, genModel);
 			    Map<String, String> results = createFeatureBodies(genModel);			
 				installJavaBodies(metamodelManager, genModel, results);
@@ -414,7 +414,7 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		return false;
 	}
 
-	protected void installJavaBodies(@NonNull MetamodelManager metamodelManager, @NonNull GenModel genModel, @NonNull Map<String, String> results) {
+	protected void installJavaBodies(@NonNull PivotMetamodelManager metamodelManager, @NonNull GenModel genModel, @NonNull Map<String, String> results) {
 		List<GenPackage> genPackages = genModel.getAllGenPackagesWithClassifiers();
 		for (GenPackage genPackage : genPackages) {
 			EPackage ecorePackage = genPackage.getEcorePackage();

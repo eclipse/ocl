@@ -41,7 +41,7 @@ import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
@@ -90,7 +90,7 @@ import org.eclipse.ocl.xtext.basecs.util.VisitableCS;
 
 public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Continuation<?>, CS2ASConversion>
 {
-	protected final @NonNull MetamodelManager metamodelManager;
+	protected final @NonNull PivotMetamodelManager metamodelManager;
 	protected final @NonNull StandardLibraryInternal standardLibrary;
 
 	public BaseCSContainmentVisitor(@NonNull CS2ASConversion context) {
@@ -174,7 +174,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		}
 		T pivotElement;
 		if (pivotObject == null) {
-			pivotElement = metamodelManager.createPackage(pivotClass, pivotEClass, name, csElement.getNsURI(), getPackageId(csElement));
+			pivotElement = PivotUtil.createPackage(pivotClass, pivotEClass, name, csElement.getNsURI(), getPackageId(csElement));
 		}
 		else {
 			if (!pivotClass.isAssignableFrom(pivotObject.getClass())) {
@@ -226,7 +226,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		String newExternalURI = csURI != null ? csURI.toString() : null;
 		T pivotElement;
 		if (pivotObject == null) {
-			pivotElement = metamodelManager.createModel(pivotClass, pivotEClass, newExternalURI);
+			pivotElement = PivotUtil.createModel(pivotClass, pivotEClass, newExternalURI);
 		}
 		else {
 			if (!pivotClass.isAssignableFrom(pivotObject.getClass())) {
@@ -244,6 +244,14 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		context.refreshComments(pivotElement, csElement);
 		return pivotElement;
 	}
+	public @NonNull <T extends Model> T createModel(@NonNull Class<T> pivotClass, /*@NonNull*/ EClass pivotEClass, String newExternalURI) {
+		assert pivotEClass != null;
+		@SuppressWarnings("unchecked")
+		T pivotElement = (T) pivotEClass.getEPackage().getEFactoryInstance().create(pivotEClass);
+		pivotElement.setExternalURI(newExternalURI);
+		return pivotElement;
+	}
+
 	
 	/**
 	 * Method used to refresh every {@link RootPackageCS} element.

@@ -16,7 +16,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEnvironmentFactory;
 import org.eclipse.ocl.examples.debug.vm.utils.Log;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.utilities.OCL;
 
 public abstract class EvaluationContext
@@ -28,7 +28,7 @@ public abstract class EvaluationContext
 		return log;
 	}
 
-	protected @Nullable MetamodelManager findMetamodelManager() {
+	protected @Nullable PivotMetamodelManager findMetamodelManager() {
 		return null;
 	}
 

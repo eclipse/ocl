@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Model;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
@@ -139,7 +139,7 @@ public class IncludeCSAttribution extends AbstractAttribution implements Unresol
 				return;
 			}
 			try {
-				MetamodelManager metamodelManager = environmentView.getEnvironmentFactory().getMetamodelManager();
+				PivotMetamodelManager metamodelManager = environmentView.getEnvironmentFactory().getMetamodelManager();
 				importedElement = metamodelManager.loadResource(uri2, target.getName(), csResource.getResourceSet());				
 				Resource importedResource = importedElement.eResource();
 				List<Resource.Diagnostic> warnings = importedResource.getWarnings();

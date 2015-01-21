@@ -24,7 +24,7 @@ import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.evaluation.OCLEvaluationVisitor;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.library.AbstractProperty;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -51,7 +51,7 @@ public class ConstrainedProperty extends AbstractProperty
 				throw new InvalidValueException("No defaultExpression for '{0}'", property);
 			}
 			try {
-				MetamodelManager metamodelManager = ((OCLEvaluationVisitor)evaluator).getMetamodelManager();
+				PivotMetamodelManager metamodelManager = ((OCLEvaluationVisitor)evaluator).getMetamodelManager();
 				expression = expression2 = metamodelManager.getQueryOrThrow(defaultSpecification);
 			} catch (ParserException e) {
 				throw new InvalidValueException(e, "Bad defaultExpression for '{0}'", property);

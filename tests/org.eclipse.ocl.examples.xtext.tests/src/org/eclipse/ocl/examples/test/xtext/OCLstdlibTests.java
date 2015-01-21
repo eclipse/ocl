@@ -41,7 +41,7 @@ import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
@@ -240,7 +240,7 @@ public class OCLstdlibTests extends XtextTestCase
 			"    }\n"+
 			"}\n";		
 		Resource asResource = doLoadASResourceFromString(ocl, "string.oclstdlib", testFile);
-		MetamodelManager metamodelManager = MetamodelManager.getAdapter(asResource.getResourceSet());
+		PivotMetamodelManager metamodelManager = PivotMetamodelManager.getAdapter(asResource.getResourceSet());
 		AnyType oclAnyType = metamodelManager.getStandardLibrary().getOclAnyType();
 		Iterable<Operation> ownedOperations = metamodelManager.getAllOperations(oclAnyType, FeatureFilter.SELECT_NON_STATIC);
 		assertEquals(2, Iterables.size(ownedOperations));		// one from OclAny::=

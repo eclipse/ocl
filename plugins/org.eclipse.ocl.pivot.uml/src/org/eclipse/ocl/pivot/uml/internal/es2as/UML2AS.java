@@ -66,6 +66,7 @@ import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
 import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.OpaqueExpression;
@@ -910,7 +911,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 
 	protected @NonNull Model installDeclarations(@NonNull Resource asResource) {
 		URI pivotURI = asResource.getURI();
-		Model pivotModel2 = pivotModel = metamodelManager.createModel(umlURI != null ? umlURI.toString() : pivotURI.toString());
+		Model pivotModel2 = pivotModel = PivotUtil.createModel(umlURI != null ? umlURI.toString() : pivotURI.toString());
 		asResource.getContents().add(pivotModel2);
 		UML2ASDeclarationSwitch declarationPass = getDeclarationPass();
 		List<org.eclipse.ocl.pivot.Package> rootPackages = new ArrayList<org.eclipse.ocl.pivot.Package>();

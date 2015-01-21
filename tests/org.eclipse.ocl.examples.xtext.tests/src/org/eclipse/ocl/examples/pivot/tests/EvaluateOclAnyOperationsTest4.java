@@ -28,10 +28,11 @@ import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.OCL;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -59,19 +60,19 @@ public class EvaluateOclAnyOperationsTest4 extends PivotTestSuite
         // pkg1::pkg3::pkg4
         // pkg1::pkg3::pkg5
         // pkg1::pkg3::pkg5::george
-        @NonNull Model root = createModel();
-        @NonNull org.eclipse.ocl.pivot.Package pkg1 = createPackage(root, "pkg1");
-        @NonNull org.eclipse.ocl.pivot.Package pkg2 = createPackage(pkg1, "pkg2");
-        @NonNull org.eclipse.ocl.pivot.Package jim = createPackage(pkg2, "jim");
-        @NonNull org.eclipse.ocl.pivot.Package bob = createPackage(pkg1, "bob");
-        @NonNull org.eclipse.ocl.pivot.Package pkg3 = createPackage(pkg1, "pkg3");
-        @NonNull org.eclipse.ocl.pivot.Package pkg4 = createPackage(pkg3, "pkg4");
-        @NonNull org.eclipse.ocl.pivot.Package pkg5 = createPackage(pkg3, "pkg5");
-        @NonNull org.eclipse.ocl.pivot.Package george = createPackage(pkg5, "george");
+        @NonNull Model root = PivotUtil.createModel(null);
+        @NonNull org.eclipse.ocl.pivot.Package pkg1 = PivotUtil.createOwnedPackage(root, "pkg1");
+        @NonNull org.eclipse.ocl.pivot.Package pkg2 = PivotUtil.createOwnedPackage(pkg1, "pkg2");
+        @NonNull org.eclipse.ocl.pivot.Package jim = PivotUtil.createOwnedPackage(pkg2, "jim");
+        @NonNull org.eclipse.ocl.pivot.Package bob = PivotUtil.createOwnedPackage(pkg1, "bob");
+        @NonNull org.eclipse.ocl.pivot.Package pkg3 = PivotUtil.createOwnedPackage(pkg1, "pkg3");
+        @NonNull org.eclipse.ocl.pivot.Package pkg4 = PivotUtil.createOwnedPackage(pkg3, "pkg4");
+        @NonNull org.eclipse.ocl.pivot.Package pkg5 = PivotUtil.createOwnedPackage(pkg3, "pkg5");
+        @NonNull org.eclipse.ocl.pivot.Package george = PivotUtil.createOwnedPackage(pkg5, "george");
 		
 		public MyOCL(@NonNull String testPackageName, @NonNull String name) {
 			super(testPackageName, name, OCL.NO_PROJECTS);
-			MetamodelManager metamodelManager = getMetamodelManager();
+			MetamodelManager.Internal metamodelManager = getMetamodelManager();
 //			metamodelManager.addGlobalNamespace(PivotConstants.OCL_NAME, ClassUtil.nonNullState(metamodelManager.getASmetamodel()));
 
 	        metamodelManager.installRoot(ClassUtil.nonNullState(root));

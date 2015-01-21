@@ -19,7 +19,7 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 
 public class OCLVMEnvironmentFactory extends AbstractVMEnvironmentFactory
@@ -48,7 +48,7 @@ public class OCLVMEnvironmentFactory extends AbstractVMEnvironmentFactory
 		return new OCLVMRootEvaluationVisitor((IOCLVMEvaluationEnvironment)evalEnv, getShell());
 	}
 
-	public @NonNull OCLVMModelManager createModelManager(@NonNull MetamodelManager metamodelManager) {
+	public @NonNull OCLVMModelManager createModelManager(@NonNull PivotMetamodelManager metamodelManager) {
 		return new OCLVMModelManager(metamodelManager);
 	}
 }

@@ -43,7 +43,7 @@ import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.ElementId;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.util.Visitable;
@@ -87,7 +87,7 @@ public class JavaStream
 			if (asResource != null) {
 				ResourceSet asResourceSet = asResource.getResourceSet();
 				if (asResourceSet != null) {
-					MetamodelManager metamodelManager = MetamodelManager.getAdapter(asResourceSet);
+					PivotMetamodelManager metamodelManager = PivotMetamodelManager.getAdapter(asResourceSet);
 					createOptions.setEnvironmentFactory(metamodelManager.getEnvironmentFactory());
 				}
 			}

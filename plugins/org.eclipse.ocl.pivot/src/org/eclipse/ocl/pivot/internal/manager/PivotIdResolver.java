@@ -43,7 +43,7 @@ public class PivotIdResolver extends AbstractIdResolver
 	private static final Logger logger = Logger.getLogger(PivotIdResolver.class);
 
 	protected final @NonNull EnvironmentFactory environmentFactory;
-	protected final @NonNull MetamodelManager metamodelManager;
+	protected final @NonNull PivotMetamodelManager metamodelManager;
 	
 	public PivotIdResolver(@NonNull EnvironmentFactory environmentFactory) {
 		super(environmentFactory.getMetamodelManager().getCompleteEnvironment());

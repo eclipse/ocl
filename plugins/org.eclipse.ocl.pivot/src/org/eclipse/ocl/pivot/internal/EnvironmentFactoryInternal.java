@@ -29,7 +29,7 @@ import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.library.ImplementationManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ICSI2ASMapping;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.AbstractEnvironmentFactory;
@@ -65,7 +65,7 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 	@NonNull IdResolver createIdResolver();
 	
 	
-	@NonNull MetamodelManager createMetamodelManager();
+	@NonNull PivotMetamodelManager createMetamodelManager();
 
 	@Override
 	@NonNull CompleteModelInternal getCompleteModel();

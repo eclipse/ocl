@@ -43,7 +43,6 @@ import org.eclipse.ocl.pivot.internal.delegate.InvocationBehavior;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.delegate.SettingBehavior;
 import org.eclipse.ocl.pivot.internal.delegate.ValidationBehavior;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.OCLASResourceFactory;
 import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.ocl.pivot.internal.validation.EcoreOCLEValidator;
@@ -88,10 +87,9 @@ public class ValidateTests extends AbstractValidateTests
 	}
 
 	public Resource doLoadEcore(OCL ocl, String stem) throws IOException {
-		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		String ecoreName = stem + ".ecore";
 		URI ecoreURI = getProjectFileURI(ecoreName);
-		Resource ecoreResource = metamodelManager.getExternalResourceSet().getResource(ecoreURI, true);
+		Resource ecoreResource = ocl.getResourceSet().getResource(ecoreURI, true);
 		return ecoreResource;
 	}
 
@@ -111,9 +109,8 @@ public class ValidateTests extends AbstractValidateTests
 		//
 		OCL ocl1 = createOCL();
 		OCL ocl2 = createOCL();
-		MetamodelManager metamodelManager2 = ocl2.getMetamodelManager();
 		Resource ecoreResource = doLoadOCLinEcore(ocl1, "Bug366229");
-		metamodelManager2.getExternalResourceSet().getResources().add(ecoreResource);
+		ocl2.getResourceSet().getResources().add(ecoreResource);
 		ocl1.dispose();
 		EPackage overloadsPackage = (EPackage) ecoreResource.getContents().get(0);
 		EObject testInstance = eCreate(overloadsPackage, "SubClass");
@@ -356,8 +353,7 @@ public class ValidateTests extends AbstractValidateTests
 		UMLStandaloneSetup.init();
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
 		OCL ocl = createOCL();
-		MetamodelManager metamodelManager = ocl.getMetamodelManager();
-		ResourceSet resourceSet = metamodelManager.getExternalResourceSet(); //createResourceSet();
+		ResourceSet resourceSet = ocl.getResourceSet(); //createResourceSet();
 
 		ProjectMap.initializeURIResourceMap(resourceSet);
 		Map<URI, URI> uriMap = resourceSet.getURIConverter().getURIMap();

@@ -23,7 +23,7 @@ import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.internal.scoping.ScopeView;
@@ -102,7 +102,7 @@ public class NavigatingArgCSAttribution extends AbstractAttribution
 						Type type = source.getType();
 						Type elementType;
 						CollectionType collectionType;
-						MetamodelManager metamodelManager = environmentView.getEnvironmentFactory().getMetamodelManager();
+						PivotMetamodelManager metamodelManager = environmentView.getEnvironmentFactory().getMetamodelManager();
 						if (type instanceof CollectionType) {		// collection->collection-operation(name...
 							collectionType = (CollectionType)type;
 							elementType = collectionType.getElementType();

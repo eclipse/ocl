@@ -33,7 +33,7 @@ import org.eclipse.ocl.pivot.library.LibraryFeature;
 public class FinalAnalysis
 {
 	protected final @NonNull CompleteModelInternal completeModel;
-	protected final @NonNull MetamodelManager metamodelManager;
+	protected final @NonNull PivotMetamodelManager metamodelManager;
 	private final @NonNull Map<CompleteClass, Set<CompleteClass>> superCompleteClass2subCompleteClasses = new HashMap<CompleteClass, Set<CompleteClass>>();
 	private final @NonNull Map<Operation, Set<Operation>> operation2overrides = new HashMap<Operation, Set<Operation>>();
 

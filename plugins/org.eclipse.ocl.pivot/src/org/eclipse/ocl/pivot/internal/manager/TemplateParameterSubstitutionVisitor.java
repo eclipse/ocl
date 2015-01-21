@@ -202,7 +202,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	}
 
 	protected @NonNull TupleType getSpecializedTupleType(@NonNull TupleType type) {
-		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		TupleType specializedTupleType = type;
 		Map<String, Type> resolutions =  null;
 		List<Property> parts = specializedTupleType.getOwnedProperties();
@@ -278,7 +278,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	}
 
 	public @NonNull Type specializeType(@NonNull Type type) {
-		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		TemplateParameter asTemplateParameter = type.isTemplateParameter();
 		if (asTemplateParameter != null) {
 			int index = asTemplateParameter.getTemplateParameterId().getIndex();

@@ -30,7 +30,7 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Namespace;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PathElement;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -108,7 +108,7 @@ public class AliasAnalysis extends AdapterImpl
 	 */
 	private void computeAliases(@NonNull Set<org.eclipse.ocl.pivot.Package> localPackages,
 			@NonNull Set<org.eclipse.ocl.pivot.Package> otherPackages) {		
-		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		for (org.eclipse.ocl.pivot.Package localPackage : localPackages) {
 			if (localPackage != null) {
 				CompletePackage primaryPackage = metamodelManager.getCompletePackage(localPackage);
@@ -169,7 +169,7 @@ public class AliasAnalysis extends AdapterImpl
 	 */
 	private void computePackages(@NonNull Set<org.eclipse.ocl.pivot.Package> localPackages,
 			@NonNull Set<org.eclipse.ocl.pivot.Package> otherPackages) {
-		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		for (TreeIterator<EObject> tit = ((Resource)target).getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
 			if (eObject instanceof ImportCS) {

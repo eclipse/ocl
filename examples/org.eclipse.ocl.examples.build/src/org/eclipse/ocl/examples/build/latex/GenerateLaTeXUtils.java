@@ -40,10 +40,11 @@ import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.Property;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.xtext.basecs.RootCS;
 import org.eclipse.ocl.xtext.markup.MarkupUtils;
 import org.eclipse.ocl.xtext.markupcs.BulletElement;
@@ -594,7 +595,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		return precedences;
 	}
 	
-	protected @Nullable org.eclipse.ocl.pivot.Package getPrimaryPackage(@NonNull MetamodelManager metamodelManager, @Nullable Resource oclResource) {
+	protected @Nullable org.eclipse.ocl.pivot.Package getPrimaryPackage(@NonNull PivotMetamodelManager metamodelManager, @Nullable Resource oclResource) {
 		if (oclResource != null) {
 			for (EObject eContent : oclResource.getContents()) {
 				if (eContent instanceof RootCS) {

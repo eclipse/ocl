@@ -24,7 +24,7 @@ import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.library.ecore.EcoreExecutorPackage;
 import org.eclipse.ocl.pivot.library.executor.ExecutableStandardLibrary;
@@ -93,7 +93,7 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary
 		return environmentFactory.getMetamodelManager().getInheritance(type);
 	}
 
-	public @NonNull MetamodelManager getMetamodelManager() {
+	public @NonNull PivotMetamodelManager getMetamodelManager() {
 		return environmentFactory.getMetamodelManager();
 	}
 
@@ -133,7 +133,7 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary
 		}		
 		org.eclipse.ocl.pivot.Package domainPackage = ((org.eclipse.ocl.pivot.Class)typeType).getOwningPackage();
 		org.eclipse.ocl.pivot.Package pivotPackage = packageMap.get(domainPackage);
-		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		if (pivotPackage == null) {
 			String nsURI = domainPackage.getURI();
 			if (nsURI != null) {

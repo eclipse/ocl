@@ -12,8 +12,7 @@ package org.eclipse.ocl.examples.debug.vm.evaluator;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.NamedElement;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 
 public interface IVMEvaluator
 {

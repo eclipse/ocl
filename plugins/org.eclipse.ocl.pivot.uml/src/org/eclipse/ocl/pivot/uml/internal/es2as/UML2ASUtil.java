@@ -31,7 +31,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 
 /**
@@ -82,7 +82,7 @@ public class UML2ASUtil
 	 * Return the metaType of umlElement using the UML meta namespace identifiable from stereotype applications.
 	 */
 	public static @Nullable org.eclipse.ocl.pivot.Class getMetaType(@NonNull EnvironmentFactory environmentFactory, @NonNull org.eclipse.uml2.uml.Element umlElement) {
-		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		EClass umlEClass = umlElement.eClass();
 		for (org.eclipse.uml2.uml.Stereotype umlStereotype : umlElement.getApplicableStereotypes()) {
 			for (org.eclipse.uml2.uml.Class umlMetaclass : umlStereotype.getAllExtendedMetaclasses()) {

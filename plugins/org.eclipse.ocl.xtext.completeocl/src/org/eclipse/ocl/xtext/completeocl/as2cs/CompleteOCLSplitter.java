@@ -36,7 +36,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.util.PivotSwitch;
@@ -80,7 +80,7 @@ public class CompleteOCLSplitter
 		URI oclASuri = PivotUtilInternal.getASURI(oclURI);	// xxx.ocl.ocl.oclas
 		ASResource oclResource = (ASResource) asResource.getResourceSet().createResource(oclASuri, ASResource.COMPLETE_OCL_CONTENT_TYPE);	
 		if (oclResource != null) {
-			MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+			PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 			Separator separator = new Separator(metamodelManager, oclResource);
 			for (Constraint constraint : allConstraints) {
 				separator.doSwitch(constraint);
@@ -95,11 +95,11 @@ public class CompleteOCLSplitter
 	
 	public static class Separator extends PivotSwitch<EObject>
 	{
-		protected final @NonNull MetamodelManager metamodelManager;
+		protected final @NonNull PivotMetamodelManager metamodelManager;
 		protected final @NonNull Resource separateResource;
 		private final @NonNull Map<NamedElement, NamedElement> map = new HashMap<NamedElement, NamedElement>();
 
-		public Separator(@NonNull MetamodelManager metamodelManager, @NonNull Resource separateResource) {
+		public Separator(@NonNull PivotMetamodelManager metamodelManager, @NonNull Resource separateResource) {
 			this.metamodelManager = metamodelManager;
 			this.separateResource = separateResource;
 		}

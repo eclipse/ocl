@@ -34,8 +34,8 @@ import org.eclipse.ocl.xtext.essentialocl.utilities.EssentialOCLCSResource;
 @SuppressWarnings("nls")
 public class ErrorTests extends XtextTestCase
 {
-	protected @NonNull OCL createOCL() {
-		return OCL.newInstance(OCL.NO_PROJECTS);
+	protected @NonNull OCL.Internal createOCL() {
+		return OCL.Internal.newInstance(OCL.NO_PROJECTS);
 	}
 
 	/**
@@ -90,7 +90,7 @@ public class ErrorTests extends XtextTestCase
 	}
 	
 	public void testBadEOF_419683() throws Exception {
-		OCL ocl = createOCL();
+		OCL.Internal ocl = createOCL();
 		TestCaseAppender.INSTANCE.uninstall();
 		String testFile =
 			"import 'platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore'\n" +

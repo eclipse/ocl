@@ -14,7 +14,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.PrecedenceManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -76,7 +76,7 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 
 		@Override
 		public BasicContinuation<?> execute() {
-			MetamodelManager metamodelManager = context.getMetamodelManager();
+			PivotMetamodelManager metamodelManager = context.getMetamodelManager();
 			TypedRefCS csElementType = csElement.getOwnedType();
 			Type type = null;
 			String name = csElement.getName();
@@ -115,7 +115,7 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 
 		@Override
 		public BasicContinuation<?> execute() {
-			MetamodelManager metamodelManager = context.getMetamodelManager();
+			PivotMetamodelManager metamodelManager = context.getMetamodelManager();
 			String operatorName = csElement.getName();
 			Precedence precedence = operatorName != null ? metamodelManager.getInfixPrecedence(operatorName) : null;
 			csElement.setPrecedence(precedence);
@@ -131,7 +131,7 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 
 		@Override
 		public BasicContinuation<?> execute() {
-			MetamodelManager metamodelManager = context.getMetamodelManager();
+			PivotMetamodelManager metamodelManager = context.getMetamodelManager();
 			String operatorName = csElement.getName();
 			Precedence precedence = operatorName != null ? metamodelManager.getPrefixPrecedence(operatorName) : null;
 			csElement.setPrecedence(precedence);

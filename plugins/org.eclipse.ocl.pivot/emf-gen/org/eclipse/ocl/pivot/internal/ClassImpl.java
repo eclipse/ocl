@@ -61,7 +61,7 @@ import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.complete.ClassListeners;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
@@ -1344,14 +1344,14 @@ public class ClassImpl
 			if (templateSignature != null) {
 				Resource asResource = ClassUtil.nonNullState(callExpr.eResource());
 				EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(asResource);
-				MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+				PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 				return metamodelManager.specializeType(this, callExpr, selfType, null);
 			}
 			List<TemplateBinding> templateBindings = getOwnedBindings();
 			if ((templateBindings != null) && !templateBindings.isEmpty()) {
 				Resource asResource = ClassUtil.nonNullState(callExpr.eResource());
 				EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(asResource);
-				MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+				PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 				return metamodelManager.specializeType(this, callExpr, selfType, null);
 			}
 		}

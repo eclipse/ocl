@@ -77,7 +77,7 @@ import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.delegate.SettingBehavior;
 import org.eclipse.ocl.pivot.internal.ecore.EObjectOperation;
 import org.eclipse.ocl.pivot.internal.ecore.EObjectProperty;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
 import org.eclipse.ocl.pivot.internal.utilities.AliasAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
@@ -102,7 +102,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 	}
 
 	protected final AbstractEcore2AS converter;
-	protected final MetamodelManager metamodelManager;
+	protected final PivotMetamodelManager metamodelManager;
 	protected final EnvironmentFactoryInternal environmentFactory;
 	
 	public Ecore2ASDeclarationSwitch(AbstractEcore2AS converter) {
@@ -272,7 +272,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 		copyDataTypeOrEnum(pivotElement, eObject2);
 		if (!isPrimitive && (instanceClass != null)) {
 			try {
-				MetamodelManager metamodelManager = converter.getMetamodelManager();
+				PivotMetamodelManager metamodelManager = converter.getMetamodelManager();
 		    	StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
 				if (instanceClass == boolean.class) {
 					pivotElement.setBehavioralClass(standardLibrary.getBooleanType());

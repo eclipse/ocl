@@ -16,6 +16,7 @@ import java.util.Map;
 
 
 
+
 //import org.eclipse.core.filesystem.EFS;
 //import org.eclipse.core.filesystem.IFileStore;
 import org.eclipse.core.runtime.CoreException;
@@ -42,7 +43,7 @@ import org.eclipse.ocl.examples.debug.ui.OCLDebugUIPlugin;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.delegate.OCLSettingDelegate;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Display;

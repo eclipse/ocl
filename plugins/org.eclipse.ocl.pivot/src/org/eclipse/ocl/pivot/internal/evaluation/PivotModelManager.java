@@ -20,7 +20,7 @@ import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.library.executor.LazyModelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
@@ -38,7 +38,7 @@ public class PivotModelManager extends LazyModelManager
 
 	@Override
 	protected boolean isInstance(@NonNull Type requiredType, @NonNull EObject eObject) {
-		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		EClass eClass = eObject.eClass();
 		EPackage ePackage = eClass.getEPackage();
 		Type objectType = null;

@@ -53,8 +53,7 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.helper.HelperUtil;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
-
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 
 /**
  * A decorator for evaluation visitors that is installed when evaluation tracing

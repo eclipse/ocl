@@ -26,7 +26,7 @@ import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
@@ -36,10 +36,10 @@ public abstract class AbstractPivotConstraintLocator extends AbstractConstraintL
 {
 	protected static abstract class AbstractConstraintLocator extends ConstraintEvaluator<Diagnostic>
 	{
-		protected final @NonNull MetamodelManager metamodelManager;
+		protected final @NonNull PivotMetamodelManager metamodelManager;
 		protected final @Nullable Object object;
 
-		protected AbstractConstraintLocator(@NonNull MetamodelManager metamodelManager, @NonNull ExpressionInOCL expression, @Nullable Object object) {
+		protected AbstractConstraintLocator(@NonNull PivotMetamodelManager metamodelManager, @NonNull ExpressionInOCL expression, @Nullable Object object) {
 			super(expression);
 			this.metamodelManager = metamodelManager;
 			this.object = object;
@@ -84,7 +84,7 @@ public abstract class AbstractPivotConstraintLocator extends AbstractConstraintL
 		return evaluationVisitor;
 	}
 
-	protected @NonNull ExpressionInOCL getQuery(@NonNull MetamodelManager metamodelManager, @NonNull Constraint constraint) throws ParserException {
+	protected @NonNull ExpressionInOCL getQuery(@NonNull PivotMetamodelManager metamodelManager, @NonNull Constraint constraint) throws ParserException {
 		LanguageExpression specification = constraint.getOwnedSpecification();
 		assert specification != null;
 		return metamodelManager.getQueryOrThrow(specification);

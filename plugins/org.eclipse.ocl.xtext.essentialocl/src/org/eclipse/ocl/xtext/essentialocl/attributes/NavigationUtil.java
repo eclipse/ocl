@@ -20,7 +20,7 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.FeatureFilter;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.Operation;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.xtext.basecs.PathElementCS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
 import org.eclipse.ocl.xtext.essentialoclcs.AbstractNameExpCS;
@@ -63,7 +63,7 @@ public class NavigationUtil
 		}
 	}
 
-	public static boolean isIteration(@NonNull MetamodelManager metamodelManager, @NonNull RoundBracketedClauseCS csRoundBracketedClause, @NonNull CollectionType type) {
+	public static boolean isIteration(@NonNull PivotMetamodelManager metamodelManager, @NonNull RoundBracketedClauseCS csRoundBracketedClause, @NonNull CollectionType type) {
 		for (NavigatingArgCS csArg : csRoundBracketedClause.getOwnedArguments()) {
 			if (csArg.getRole() != NavigationRole.EXPRESSION) {
 				return true;

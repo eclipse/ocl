@@ -21,7 +21,7 @@ import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.internal.scoping.ScopeView;
@@ -68,7 +68,7 @@ public class ExpressionInOCLAttribution extends AbstractAttribution
 							environmentView.addAllPackages(contextPackage);
 							if (!environmentView.hasFinalResult()) {
 								environmentView.addElementsOfScope(contextPackage, scopeView);
-								MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+								PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 								if (environmentView.accepts(PivotPackage.Literals.TYPE)) {
 									for (Type gType : metamodelManager.getGlobalTypes()) {
 										if (gType != null) {

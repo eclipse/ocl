@@ -30,7 +30,7 @@ import org.eclipse.ocl.examples.debug.vm.utils.CompiledUnit;
 import org.eclipse.ocl.examples.debug.vm.utils.ExecutionDiagnostic;
 import org.eclipse.ocl.examples.debug.vm.utils.IVMStackTraceElement;
 import org.eclipse.ocl.pivot.NamedElement;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 
 public class DebuggableRunner
 {	

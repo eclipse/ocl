@@ -61,7 +61,7 @@ import org.eclipse.ocl.pivot.internal.evaluation.OCLEvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.evaluation.PivotModelManager;
 import org.eclipse.ocl.pivot.internal.evaluation.TracingEvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.library.ImplementationManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.PivotIdResolver;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
@@ -80,7 +80,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 {
     private boolean traceEvaluation;
     private /*@LazyNonNull*/ ProjectManager projectManager;
-    private /*@LazyNonNull*/ MetamodelManager metamodelManager;
+    private /*@LazyNonNull*/ PivotMetamodelManager metamodelManager;
 	private final @NonNull CompleteEnvironmentInternal completeEnvironment;
 	private final @NonNull StandardLibraryInternal standardLibrary;
 	private @Nullable ICSI2ASMapping csi2asMapping;
@@ -263,20 +263,20 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	}
 
 	@Override
-	public @NonNull MetamodelManager createMetamodelManager() {
-		return new MetamodelManager(this, null);
+	public @NonNull PivotMetamodelManager createMetamodelManager() {
+		return new PivotMetamodelManager(this, null);
 	}
 
-	public @NonNull MetamodelManager createMetamodelManager(@NonNull ResourceSet resourceSet) {
+	public @NonNull PivotMetamodelManager createMetamodelManager(@NonNull ResourceSet resourceSet) {
 		assert metamodelManager == null;
-		metamodelManager = new MetamodelManager(this, resourceSet);
+		metamodelManager = new PivotMetamodelManager(this, resourceSet);
 		assert metamodelManager != null;
 		return metamodelManager;
 	}
 
 	@Override
 	public @NonNull ParserContext createParserContext(@Nullable EObject context) {
-    	MetamodelManager metamodelManager = getMetamodelManager();
+    	PivotMetamodelManager metamodelManager = getMetamodelManager();
 		if (context instanceof org.eclipse.ocl.pivot.Class) {
 			return new ClassContext(this, null, (org.eclipse.ocl.pivot.Class)context, null);
         }
@@ -402,7 +402,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
      *     context itself if it is a classifier
      */
 	protected @NonNull org.eclipse.ocl.pivot.Class getClassifier(@NonNull Object context) {
-		MetamodelManager metamodelManager = getMetamodelManager();
+		PivotMetamodelManager metamodelManager = getMetamodelManager();
 		org.eclipse.ocl.pivot.Class dType = getIdResolver().getStaticTypeOf(context);
 		return metamodelManager.getType(dType);
 	}
@@ -477,8 +477,8 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	}
 
 	@Override
-	public @NonNull MetamodelManager getMetamodelManager() {
-		MetamodelManager metamodelManager2 = metamodelManager;
+	public @NonNull PivotMetamodelManager getMetamodelManager() {
+		PivotMetamodelManager metamodelManager2 = metamodelManager;
 		if (metamodelManager2 == null) {
 			metamodelManager = metamodelManager2 = createMetamodelManager();
 		}

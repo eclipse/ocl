@@ -16,7 +16,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
@@ -24,7 +24,7 @@ public class PivotQueries
 {
 	public static @NonNull LinkedHashSet<Operation> getOperations(@NonNull org.eclipse.ocl.pivot.Class type) {
 		EnvironmentFactory environmentFactory = ClassUtil.nonNullState(PivotUtilInternal.findEnvironmentFactory(type));
-		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		LinkedHashSet<Operation> operations = new LinkedHashSet<Operation>();
 		for (Operation operation : metamodelManager.getMemberOperations(type, false)) {
 			operations.add(operation);
@@ -37,7 +37,7 @@ public class PivotQueries
 	
 	public static @NonNull LinkedHashSet<Property> getProperties(@NonNull org.eclipse.ocl.pivot.Class type) {
 		EnvironmentFactory environmentFactory = ClassUtil.nonNullState(PivotUtilInternal.findEnvironmentFactory(type));
-		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		LinkedHashSet<Property> properties = new LinkedHashSet<Property>();
 		for (Property property : metamodelManager.getMemberProperties(type, false)) {
 			properties.add(property);

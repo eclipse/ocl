@@ -30,7 +30,7 @@ import org.eclipse.ocl.pivot.Stereotype;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
 import org.eclipse.ocl.pivot.library.LibraryOperation;
 import org.eclipse.ocl.pivot.library.LibraryProperty;
@@ -46,7 +46,7 @@ public class ImplementationManager
 	private static final Logger logger = Logger.getLogger(ImplementationManager.class);
 
 	protected final @NonNull EnvironmentFactory environmentFactory;
-	private final @NonNull MetamodelManager metamodelManager;
+	private final @NonNull PivotMetamodelManager metamodelManager;
 
 	/**
 	 * ClassLoaders that may be able to load a library implementation.

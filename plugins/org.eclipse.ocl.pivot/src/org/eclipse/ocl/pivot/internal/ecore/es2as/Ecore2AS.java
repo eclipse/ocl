@@ -53,7 +53,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.ecore.Ecore2Moniker;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.AliasAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
@@ -63,6 +63,7 @@ import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -114,8 +115,8 @@ public class Ecore2AS extends AbstractEcore2AS
 //		if (asMetamodels != null) {
 //			
 //		}
-		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
-		conversion.pivotModel = metamodelManager.createModel(ecoreASResource.getURI().toString());
+		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+		conversion.pivotModel = PivotUtil.createModel(ecoreASResource.getURI().toString());
 //		conversion.installImports();
 		conversion.update(ecoreASResource, ClassUtil.nonNullEMF(ecoreResource.getContents()));
 		
@@ -208,7 +209,7 @@ public class Ecore2AS extends AbstractEcore2AS
 	public Ecore2AS(@NonNull Resource ecoreResource, @Nullable EnvironmentFactoryInternal environmentFactory) {
 		super(environmentFactory != null ? environmentFactory : (EnvironmentFactoryInternal)OCL.createEnvironmentFactory(null));
 		this.ecoreResource = ecoreResource;
-		MetamodelManager metamodelManager = this.environmentFactory.getMetamodelManager();
+		MetamodelManager.Internal metamodelManager = this.environmentFactory.getMetamodelManager();
 		metamodelManager.addExternalResource(this);
 //		metamodelManager.addListener(this);
 		metamodelManager.addES2AS(ecoreResource, this);
@@ -464,7 +465,7 @@ public class Ecore2AS extends AbstractEcore2AS
 				}
 			}
 			if (pivotModel2 == null) {
-				pivotModel2 = pivotModel = metamodelManager.createModel(uri.toString());
+				pivotModel2 = pivotModel = PivotUtil.createModel(uri.toString());
 			}
 			pivotModel = pivotModel2;
 //			installImports();

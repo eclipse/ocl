@@ -33,7 +33,7 @@ import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
@@ -149,7 +149,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 				ExpSpecificationCS csSpec = context.refreshElement(ExpSpecificationCS.class, EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, specification);
 				csElement.setOwnedSpecification(csSpec);
 				//
-				MetamodelManager metamodelManager = context.getMetamodelManager();
+				PivotMetamodelManager metamodelManager = context.getMetamodelManager();
 				PrettyPrintOptions.Global prettyPrintOptions = PrettyPrinter.createOptions(null); //metamodelManager.getPrimaryElement(namespace));
 				@SuppressWarnings("null")@NonNull ArrayList<String> newArrayList = Lists.newArrayList("body", "context", "def", "endpackage", "inv", "package", "post", "inv");
 				prettyPrintOptions.addReservedNames(newArrayList);	// FIXME use grammar

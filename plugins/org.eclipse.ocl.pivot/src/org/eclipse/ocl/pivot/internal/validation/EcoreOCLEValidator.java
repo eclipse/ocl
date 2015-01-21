@@ -48,10 +48,10 @@ import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.delegate.InvocationBehavior;
 import org.eclipse.ocl.pivot.internal.delegate.SettingBehavior;
 import org.eclipse.ocl.pivot.internal.delegate.ValidationBehavior;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.ParserContext;
@@ -207,11 +207,11 @@ public class EcoreOCLEValidator implements EValidator
 	 * WeakOCLReference maintains the reference to the OCL context within the Diagnostician context and
 	 * disposes of it once the Diagnostician is done.
 	 */
-	protected static final class WeakOCLReference extends WeakReference<OCL>
+	protected static final class WeakOCLReference extends WeakReference<OCL.Internal>
 	{
-		protected final @NonNull OCL ocl;
+		protected final @NonNull OCL.Internal ocl;
 		
-		protected WeakOCLReference(@NonNull OCL ocl) {
+		protected WeakOCLReference(@NonNull OCL.Internal ocl) {
 			super(ocl);
 			this.ocl = ocl;
 		}
@@ -254,14 +254,14 @@ public class EcoreOCLEValidator implements EValidator
 	 * Return the OCL context for the validation, caching the created value in the validation context for re-use by
 	 * further validations. The cached reference is weak to ensure that the OCL context is disposed once no longer in use.
 	 */
-	protected OCL getOCL(@NonNull Map<Object, Object> context) {
-		OCL ocl = null;
+	protected OCL.Internal getOCL(@NonNull Map<Object, Object> context) {
+		OCL.Internal ocl = null;
 		Object oclRef = context.get(WeakOCLReference.class);
 		if (oclRef instanceof WeakOCLReference) {
 			ocl = ((WeakOCLReference)oclRef).get();
 		}
 		if (ocl == null) {
-			ocl = OCL.newInstance();
+			ocl = OCL.Internal.newInstance();
 			context.put(WeakOCLReference.class, new WeakOCLReference(ocl));
 		}
 		return ocl;
@@ -315,8 +315,8 @@ public class EcoreOCLEValidator implements EValidator
 		String constraintsAnnotation = EcoreUtil.getAnnotation(eClassifier, EcorePackage.eNS_URI, "constraints");
 		EAnnotation eAnnotation = OCLCommon.getDelegateAnnotation(eClassifier);
 		if (eAnnotation != null) {
-			OCL ocl = getOCL(context);
-			MetamodelManager metamodelManager = ocl.getMetamodelManager();
+			OCL.Internal ocl = getOCL(context);
+			MetamodelManager.Internal metamodelManager = ocl.getMetamodelManager();
 			StandardLibrary standardLibrary = ocl.getStandardLibrary();
 			EMap<String, String> details = eAnnotation.getDetails();
 			for (String constraintName : details.keySet()) {
@@ -432,8 +432,8 @@ public class EcoreOCLEValidator implements EValidator
 		boolean allOk = true;
 		EAnnotation eAnnotation = OCLCommon.getDelegateAnnotation(eOperation);
 		if (eAnnotation != null) {
-			OCL ocl = getOCL(context);
-			MetamodelManager metamodelManager = ocl.getMetamodelManager();
+			OCL.Internal ocl = getOCL(context);
+			MetamodelManager.Internal metamodelManager = ocl.getMetamodelManager();
 			StandardLibrary standardLibrary = ocl.getStandardLibrary();
 			EMap<String, String> details = eAnnotation.getDetails();
 			Set<String> knownKeys = new HashSet<String>();
@@ -533,15 +533,15 @@ public class EcoreOCLEValidator implements EValidator
 				}
 			}
 			else {
-				OCL ocl = getOCL(context);
-				MetamodelManager metamodelManager = ocl.getMetamodelManager();
+				OCL.Internal ocl = getOCL(context);
+				MetamodelManager.Internal metamodelManager = ocl.getMetamodelManager();
 				allOk = validateExpression(metamodelManager, eStructuralFeature, value, null, null, diagnostics, context);
 			}
 		}
 		return allOk;
 	}
 
-	protected boolean validateExpression(@NonNull MetamodelManager metamodelManager, @NonNull ENamedElement eNamedElement, @Nullable String expression, @Nullable Type requiredType, @Nullable String role, DiagnosticChain diagnostics, @NonNull Map<Object, Object> context) {
+	protected boolean validateExpression(@NonNull MetamodelManager.Internal metamodelManager, @NonNull ENamedElement eNamedElement, @Nullable String expression, @Nullable Type requiredType, @Nullable String role, DiagnosticChain diagnostics, @NonNull Map<Object, Object> context) {
 		if (expression == null) {
 			if (diagnostics != null) {
 				String objectLabel = EObjectValidator.getObjectLabel(eNamedElement, context);

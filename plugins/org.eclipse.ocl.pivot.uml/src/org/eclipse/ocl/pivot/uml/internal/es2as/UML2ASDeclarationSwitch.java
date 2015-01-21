@@ -71,7 +71,7 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.PackageImpl;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2ASDeclarationSwitch;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -85,7 +85,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 
 	protected final Ecore2ASDeclarationSwitch ecoreSwitch;
 	protected final UML2AS converter;
-	protected final MetamodelManager metamodelManager;
+	protected final PivotMetamodelManager metamodelManager;
 	protected final StandardLibraryInternal standardLibrary;
 	
 	public UML2ASDeclarationSwitch(UML2AS converter) {

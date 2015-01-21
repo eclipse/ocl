@@ -51,7 +51,6 @@ import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.helper.HelperUtil;
 import org.eclipse.ocl.pivot.internal.helper.OCLHelperImpl;
 import org.eclipse.ocl.pivot.internal.helper.QueryImpl;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
@@ -115,7 +114,12 @@ public class OCL
 //			}
 			return globalRegistryInstance2;
 		}
-		
+
+		@Override
+		public @NonNull MetamodelManager.Internal getMetamodelManager() {
+			return environmentFactory.getMetamodelManager();
+		}
+	
 		public static @NonNull Internal newInstance() {
 			return newInstance(ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(null));
 		}
@@ -563,7 +567,7 @@ public class OCL
 	}
 
 	public @NonNull org.eclipse.ocl.pivot.Class getContextType(@Nullable Object contextObject) {
-		MetamodelManager metamodelManager = getMetamodelManager();
+		MetamodelManager.Internal metamodelManager = environmentFactory.getMetamodelManager();
 		IdResolver idResolver = getIdResolver();
 		org.eclipse.ocl.pivot.Class staticTypeOf = idResolver.getStaticTypeOf(contextObject);
 		return metamodelManager.getType(staticTypeOf);
@@ -639,7 +643,7 @@ public class OCL
 	}
 
 	public @NonNull ResourceSet getResourceSet() {
-		return getMetamodelManager().getExternalResourceSet();
+		return environmentFactory.getMetamodelManager().getExternalResourceSet();
 	}
 
 	/**
@@ -718,7 +722,7 @@ public class OCL
 	 * return the concrete syntax resource.
 	 */
 	public @Nullable CSResource load(@NonNull URI uri) {
-		ResourceSet externalResourceSet = getMetamodelManager().getExternalResourceSet();
+		ResourceSet externalResourceSet = getResourceSet();
 		return (CSResource) externalResourceSet.getResource(uri, true);
 	}
 

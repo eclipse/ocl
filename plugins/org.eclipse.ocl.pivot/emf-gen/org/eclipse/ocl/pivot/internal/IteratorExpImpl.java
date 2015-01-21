@@ -40,7 +40,7 @@ import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.TemplateParameterSubstitutionVisitor;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
@@ -107,7 +107,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		Diagnostic diagnostic = null;
 		Resource asResource = ClassUtil.nonNullState(eResource());
 		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(asResource);
-		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		Type bodyType = getOwnedBody().getType();
 		if (bodyType instanceof CollectionType) {
 			bodyType = ((CollectionType)bodyType).getElementType();
@@ -163,7 +163,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 				Type specializedBodyType = bodyType != null ? TemplateParameterSubstitutionVisitor.specializeType(bodyType, this, environmentFactory, sourceType, sourceTypeValue) : null;
 				boolean isOk = false;
 				if (bodyType != null) {
-					MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+					PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 					if ((specializedBodyType != null) && metamodelManager.conformsTo(specializedBodyType, TemplateParameterSubstitutions.EMPTY, oclComparableType, TemplateParameterSubstitutions.EMPTY)) {
 						isOk = true;
 					}

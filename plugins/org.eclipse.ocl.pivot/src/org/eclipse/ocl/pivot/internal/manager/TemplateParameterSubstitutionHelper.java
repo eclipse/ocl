@@ -35,7 +35,7 @@ public abstract class TemplateParameterSubstitutionHelper
 {
 	public void resolveUnmodeledTemplateParameterSubstitutions(@NonNull TemplateParameterSubstitutionVisitor templateParameterSubstitutions, @NonNull CallExp callExp) {}
 
-	public @Nullable Type resolveReturnType(@NonNull MetamodelManager metamodelManager, @NonNull CallExp callExp, @Nullable Type returnType) {
+	public @Nullable Type resolveReturnType(@NonNull PivotMetamodelManager metamodelManager, @NonNull CallExp callExp, @Nullable Type returnType) {
 		return returnType;
 	}
 
@@ -55,7 +55,7 @@ public abstract class TemplateParameterSubstitutionHelper
 	private static class CollectionCollectHelper extends TemplateParameterSubstitutionHelper
 	{
 		@Override
-		public @Nullable Type resolveReturnType(@NonNull MetamodelManager metamodelManager, @NonNull CallExp callExp, @Nullable Type returnType) {
+		public @Nullable Type resolveReturnType(@NonNull PivotMetamodelManager metamodelManager, @NonNull CallExp callExp, @Nullable Type returnType) {
 			LoopExp loopExp = (LoopExp)callExp;
 			OCLExpression body = loopExp.getOwnedBody();
 			Type asType = body != null ? body.getType() : null;

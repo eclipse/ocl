@@ -36,7 +36,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TypedElement;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.library.AbstractBinaryOperation;
 import org.eclipse.ocl.pivot.library.AbstractOperation;
 import org.eclipse.ocl.pivot.library.AbstractTernaryOperation;
@@ -131,9 +131,9 @@ public class AbstractGenModelHelper implements GenModelHelper
 		return string;
 	}
 	
-	protected final @NonNull MetamodelManager metamodelManager;
+	protected final @NonNull PivotMetamodelManager metamodelManager;
 
-	public AbstractGenModelHelper(@NonNull MetamodelManager metamodelManager) {
+	public AbstractGenModelHelper(@NonNull PivotMetamodelManager metamodelManager) {
 		this.metamodelManager = metamodelManager;
 	}
 	
@@ -543,7 +543,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	}
 
 	@Override
-	public @NonNull MetamodelManager getMetamodelManager() {
+	public @NonNull PivotMetamodelManager getMetamodelManager() {
 		return metamodelManager;
 	}
 

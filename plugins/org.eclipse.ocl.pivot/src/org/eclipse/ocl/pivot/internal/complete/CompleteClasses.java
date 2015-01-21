@@ -33,7 +33,7 @@ import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.CompleteClassImpl;
 import org.eclipse.ocl.pivot.internal.CompletePackageImpl;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.Orphanage;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
@@ -91,7 +91,7 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 				logger.error("Out of range upper bound", e);
 			}
 			specializedType.setUnspecializedElement(unspecializedType);
-			MetamodelManager metamodelManager = getCompleteModel().getMetamodelManager();
+			PivotMetamodelManager metamodelManager = getCompleteModel().getMetamodelManager();
 			Orphanage orphanage = Orphanage.getOrphanage(metamodelManager.getASResourceSet());
 			specializedType.setOwningPackage(orphanage);
 			return specializedType;

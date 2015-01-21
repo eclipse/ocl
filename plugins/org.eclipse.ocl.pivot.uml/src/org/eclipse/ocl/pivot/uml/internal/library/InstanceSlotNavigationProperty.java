@@ -23,7 +23,7 @@ import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.evaluation.OCLEvaluationVisitor;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.library.AbstractProperty;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -74,7 +74,7 @@ public class InstanceSlotNavigationProperty extends AbstractProperty
 						ValueSpecification valueSpecification = values.get(0);
 						if (valueSpecification instanceof OpaqueExpression) {
 							try {
-								MetamodelManager metamodelManager = ((OCLEvaluationVisitor)evaluator).getMetamodelManager();
+								PivotMetamodelManager metamodelManager = ((OCLEvaluationVisitor)evaluator).getMetamodelManager();
 								ExpressionInOCL specification = metamodelManager.getASOf(ExpressionInOCL.class, valueSpecification);
 								if (specification == null) {
 									throw new InvalidValueException("Missing spec for " + specification);

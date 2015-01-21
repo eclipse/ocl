@@ -55,7 +55,7 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.ids.IdResolver;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -165,7 +165,7 @@ public final class DebugAction extends Action
 		 * @throws IOException 
 		 */
 		protected @Nullable BaseCSResource loadDocument(IProgressMonitor monitor, @NonNull URI documentURI) throws Exception {
-			MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+			PivotMetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
 			ResourceSet externalResourceSet = metamodelManager.getExternalResourceSet();
 			if (contextObject != null) {
 				Resource contextResource = contextObject.eResource();

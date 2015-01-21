@@ -37,14 +37,12 @@ import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
-import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.PivotFactory;
-import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.SemanticException;
@@ -52,10 +50,8 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.context.ClassContext;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
@@ -65,6 +61,7 @@ import org.eclipse.ocl.pivot.library.ecore.EcoreExecutorManager;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.ParserContext;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -78,7 +75,7 @@ import org.eclipse.ocl.pivot.values.Value;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.xtext.diagnostics.ExceptionDiagnostic;
 
-public class TestOCL extends OCL
+public class TestOCL extends OCL.Internal
 {
 	protected final @NonNull String testPackageName;
 	protected final @NonNull String testName;
@@ -615,12 +612,6 @@ public class TestOCL extends OCL
 		special.getSuperClasses().add(general);
 	}
 
-  	public @NonNull Model createModel() {
-  		MetamodelManager metamodelManager = getMetamodelManager();
-  		Model aRoot = metamodelManager.createModel(null);
-  		return aRoot;
-  	}
-
 	public Property createOwnedAttribute(org.eclipse.ocl.pivot.Class aClass, String name, Type type) {
 		Property eAttribute = PivotFactory.eINSTANCE.createProperty();
 		eAttribute.setName(name);
@@ -678,22 +669,6 @@ public class TestOCL extends OCL
 		eReference.setType(type);
 		aClass.getOwnedProperties().add(eReference);
 		return eReference;
-	}
-
-	public @NonNull org.eclipse.ocl.pivot.Package createPackage(@NonNull Model parentRoot, @NonNull String name) {
-		MetamodelManager metamodelManager = getMetamodelManager();
-		@SuppressWarnings("null")
-		org.eclipse.ocl.pivot.Package aPackage = metamodelManager.createPackage(org.eclipse.ocl.pivot.Package.class, PivotPackage.Literals.PACKAGE, name, null, null);
-		parentRoot.getOwnedPackages().add(aPackage);
-		return aPackage;
-	}
-
-	public @NonNull org.eclipse.ocl.pivot.Package createPackage(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name) {
-		MetamodelManager metamodelManager = getMetamodelManager();
-		@SuppressWarnings("null")
-		org.eclipse.ocl.pivot.Package aPackage = metamodelManager.createPackage(org.eclipse.ocl.pivot.Package.class, PivotPackage.Literals.PACKAGE, name, null, null);
-		parentPackage.getOwnedPackages().add(aPackage);
-		return aPackage;
 	}
 
 	public @Nullable Object evaluate(Object unusedHelper, @Nullable Object context, @NonNull String expression) throws Exception {
@@ -786,7 +761,7 @@ public class TestOCL extends OCL
     }
 
 	public @NonNull Type getCollectionType(@NonNull String collectionName, @NonNull Type type) {
-		MetamodelManager metamodelManager = getMetamodelManager();
+		MetamodelManager.Internal metamodelManager = getMetamodelManager();
 		Type collectionType = metamodelManager.getCollectionType(collectionName, type, null, null);
 		metamodelManager.addLockedElement(collectionType);
 		return collectionType;
@@ -820,13 +795,13 @@ public class TestOCL extends OCL
 	}
 
 	public @NonNull org.eclipse.ocl.pivot.Package getUMLMetamodel() {
-		MetamodelManager metamodelManager = getMetamodelManager();
+		MetamodelManager.Internal metamodelManager = getMetamodelManager();
 		return ClassUtil.nonNullState(metamodelManager.getASmetamodel());
 	}
 	
 	@SuppressWarnings("null")
 	public void loadEPackage(@NonNull String alias, /*@NonNull*/ EPackage ePackage) {		
-		Element ecoreElement = Ecore2AS.importFromEcore((EnvironmentFactoryInternal)getEnvironmentFactory(), alias, ePackage);
+		Element ecoreElement = Ecore2AS.importFromEcore(getEnvironmentFactory(), alias, ePackage);
 		getMetamodelManager().addGlobalNamespace(alias, (Namespace) ecoreElement);
 	}
 

@@ -32,7 +32,7 @@ import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.internal.registry.CompleteOCLRegistry;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
@@ -67,7 +67,7 @@ public class DebugDialog extends Dialog
 					Resource eResource = selectedObject.eResource();
 					if (eResource != null) {
 						EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(eResource);
-						MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+						PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 						Element resource = null;
 						try {
 							resource = metamodelManager.loadResource(selectedURI, null, null);

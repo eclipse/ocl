@@ -21,7 +21,7 @@ import org.eclipse.ocl.examples.debug.vm.evaluator.VMModelManager;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
@@ -41,7 +41,7 @@ public class OCLVMModelManager extends VMModelManager
 	 * Instantiates a new OCL Domain Manager. Responsible for creating new
 	 * instances of the middle model and the middle model EFactory.
 	 */
-	public OCLVMModelManager(@NonNull MetamodelManager metamodelManager) {
+	public OCLVMModelManager(@NonNull PivotMetamodelManager metamodelManager) {
 	    super(metamodelManager);
 //	    this.allInstancesTypes = transformationAnalysis.getAllInstancesTypes();
 	}

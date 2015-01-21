@@ -48,7 +48,7 @@ import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.options.OCLinEcoreOptions;
@@ -318,7 +318,7 @@ public class DelegateInstaller
 	 */
 	private boolean installDelegates(@NonNull org.eclipse.ocl.pivot.Class pivotType) {
 		boolean hasDelegates = false;
-		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		Type primaryType = metamodelManager.getPrimaryType(pivotType);
 		EObject eTarget = primaryType.getETarget();
 		if (eTarget instanceof EClassifier) {
@@ -419,7 +419,7 @@ public class DelegateInstaller
 	
 	public void installDelegates(@NonNull EClassifier eClassifier, @NonNull org.eclipse.ocl.pivot.Class pivotType) {
 		StringBuilder s = null;
-		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		for (Constraint pivotConstraint : metamodelManager.getLocalInvariants(pivotType)) {
 			String constraintName = pivotConstraint.getName();
 			if (!pivotConstraint.isCallable() && (constraintName != null)) {

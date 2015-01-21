@@ -18,7 +18,7 @@ import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 /**
@@ -38,7 +38,7 @@ public class EObjectContext extends AbstractParserContext
 	public @NonNull Type getClassContext() {
 		Type classContext2 = classContext;
 		if (classContext2 == null) {
-			MetamodelManager metamodelManager = getMetamodelManager();
+			PivotMetamodelManager metamodelManager = getMetamodelManager();
 			try {
 				if (eObject instanceof Type) {
 					classContext2 = metamodelManager.getMetaclass((Type)eObject);

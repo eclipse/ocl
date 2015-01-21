@@ -23,7 +23,7 @@ import org.eclipse.ocl.pivot.Profile;
 import org.eclipse.ocl.pivot.Stereotype;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.StereotypeExtender;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 
 /**
  * The ProfileAnalysis captures the overall analysis of the UML M2 Profiles and Stereotypes.
@@ -346,7 +346,7 @@ public class ProfileAnalysis
 	}
 
 	private void computeMetatypeClosure() {
-		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		for (org.eclipse.ocl.pivot.Package metapackage : allExtendedMetapackages) {
 			for (org.eclipse.ocl.pivot.Class subMetatype : metapackage.getOwnedClasses()) {
 				if (subMetatype != null) {
@@ -368,7 +368,7 @@ public class ProfileAnalysis
 	}
 
 	private void computeStereotypeClosure() {
-		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		for (Stereotype subStereotype : allStereotypes) {
 			if (subStereotype != null) {
 				Set<Stereotype> superStereotypeClosure = new HashSet<Stereotype>();

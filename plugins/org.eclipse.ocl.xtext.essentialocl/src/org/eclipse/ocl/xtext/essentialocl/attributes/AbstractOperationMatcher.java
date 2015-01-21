@@ -29,7 +29,7 @@ import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.TemplateParameterSubstitutionVisitor;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -85,12 +85,12 @@ public abstract class AbstractOperationMatcher
 		}
 	};
 
-	protected final @NonNull MetamodelManager metamodelManager;
+	protected final @NonNull PivotMetamodelManager metamodelManager;
 	protected final @Nullable Type sourceType;
 	protected final @Nullable Type sourceTypeValue;
 	private @Nullable List<Operation> ambiguities = null;
 
-	protected AbstractOperationMatcher(@NonNull MetamodelManager metamodelManager, @Nullable Type sourceType, @Nullable Type sourceTypeValue) {
+	protected AbstractOperationMatcher(@NonNull PivotMetamodelManager metamodelManager, @Nullable Type sourceType, @Nullable Type sourceTypeValue) {
 		this.metamodelManager = metamodelManager;
 		this.sourceType = sourceType != null ? PivotUtilInternal.getType(sourceType) : null;		// FIXME redundant
 		this.sourceTypeValue = sourceTypeValue;

@@ -16,7 +16,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.EnvironmentFactory;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.internal.scoping.ScopeView;
@@ -46,7 +46,7 @@ public class PackageAttribution extends AbstractAttribution
 
 	private void gatherAllPackages(@NonNull EnvironmentFactory environmentFactory, @NonNull Set<org.eclipse.ocl.pivot.Package> allPackages,
 			@NonNull org.eclipse.ocl.pivot.Package targetPackage) {
-		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		org.eclipse.ocl.pivot.Package primaryPackage = metamodelManager.getPrimaryElement(targetPackage);
 		if (allPackages.add(primaryPackage)) {
 			for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Package partialPackage : metamodelManager.getPartialPackages(primaryPackage, false)) {

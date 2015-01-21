@@ -34,10 +34,10 @@ import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.uml2.uml.util.UMLUtil;
@@ -65,7 +65,7 @@ public class EvaluateUMLTest4 extends PivotTestSuite
 		
 		public MyOCL(@NonNull String testPackageName, @NonNull String name) {
 			super(testPackageName, name, OCL.NO_PROJECTS);
-			MetamodelManager metamodelManager = getMetamodelManager();
+			MetamodelManager.Internal metamodelManager = getMetamodelManager();
 			Package asMetamodel = metamodelManager.getASmetamodel();
 			if (asMetamodel != null) {
 				metamodelManager.addGlobalNamespace(PivotConstantsInternal.OCL_NAME, asMetamodel);
@@ -73,7 +73,7 @@ public class EvaluateUMLTest4 extends PivotTestSuite
 		}
 
 		@SuppressWarnings("null")
-		protected Resource getPivotFromUML(MetamodelManager metamodelManager, Resource umlResource) throws ParserException {
+		protected Resource getPivotFromUML(@NonNull MetamodelManager.Internal metamodelManager, Resource umlResource) throws ParserException {
 //			String problem = UML2AS.initialize(metamodelManager.getExternalResourceSet());
 //			assertNull(problem);
 			UML2AS uml2as = UML2AS.getAdapter(umlResource, metamodelManager.getEnvironmentFactory());
@@ -86,7 +86,7 @@ public class EvaluateUMLTest4 extends PivotTestSuite
 		
 		protected Resource initStateMachinePackage(URI uri) throws ParserException {
 			UMLStandaloneSetup.init();
-			MetamodelManager metamodelManager = getMetamodelManager();
+			MetamodelManager.Internal metamodelManager = getMetamodelManager();
 			ResourceSet resourceSet2 = getResourceSet();
 			assert resourceSet2 != null;
 			UML2AS.initialize(resourceSet2);

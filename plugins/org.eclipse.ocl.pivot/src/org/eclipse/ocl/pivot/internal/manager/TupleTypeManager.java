@@ -112,7 +112,7 @@ public class TupleTypeManager
 	}
 
 	protected final @NonNull CompleteEnvironmentInternal completeEnvironment;
-	protected final @NonNull MetamodelManager metamodelManager;
+	protected final @NonNull PivotMetamodelManager metamodelManager;
 	protected final @NonNull org.eclipse.ocl.pivot.Class oclTupleType;
 	
 	/**

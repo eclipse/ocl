@@ -34,7 +34,7 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.util.Visitor;
@@ -62,7 +62,7 @@ public abstract class AbstractEvaluationVisitor
 	
 	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 	protected final @NonNull EvaluationEnvironment evaluationEnvironment;
-	protected final @NonNull MetamodelManager metamodelManager;	
+	protected final @NonNull PivotMetamodelManager metamodelManager;	
 	protected final @NonNull CompleteEnvironmentInternal completeEnvironment;
 	protected final @NonNull StandardLibraryInternal standardLibrary;
 	protected final @NonNull ModelManager modelManager;
@@ -156,7 +156,7 @@ public abstract class AbstractEvaluationVisitor
 	}
 
 	@Override
-	public @NonNull MetamodelManager getMetamodelManager() {
+	public @NonNull PivotMetamodelManager getMetamodelManager() {
 		return metamodelManager;
 	}
 	

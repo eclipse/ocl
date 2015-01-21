@@ -42,7 +42,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintOptions.Global;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.internal.utilities.PathElement;
@@ -455,7 +455,7 @@ public class PrettyPrinter
 					return;
 				}
 				EnvironmentFactory environmentFactory = options.getGlobalOptions().getEnvironmentFactory();
-	            MetamodelManager metamodelManager = environmentFactory != null ? environmentFactory.getMetamodelManager() : null;
+	            PivotMetamodelManager metamodelManager = environmentFactory != null ? environmentFactory.getMetamodelManager() : null;
 	            if ((metamodelManager != null) && (parent instanceof Type)) {
 	            	parent = metamodelManager.getPrimaryType((Type) parent);
 	            }
@@ -496,7 +496,7 @@ public class PrettyPrinter
     	Mode savedMode = pushMode(Mode.TYPE);
     	try {
 			EnvironmentFactory environmentFactory = options.getGlobalOptions().getEnvironmentFactory();
-            MetamodelManager metamodelManager = environmentFactory != null ? environmentFactory.getMetamodelManager() : null;
+            PivotMetamodelManager metamodelManager = environmentFactory != null ? environmentFactory.getMetamodelManager() : null;
 	        Namespace parent = PivotUtil.getNamespace(element.eContainer());
 	        List<PathElement> parentPath = PathElement.getPath(parent, metamodelManager);
 	        int iMax = parentPath.size();

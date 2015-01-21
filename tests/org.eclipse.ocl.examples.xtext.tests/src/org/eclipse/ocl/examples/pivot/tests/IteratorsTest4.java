@@ -45,13 +45,14 @@ import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.BagValue;
@@ -91,19 +92,19 @@ public class IteratorsTest4 extends PivotTestSuite
         // pkg1::pkg3::pkg4
         // pkg1::pkg3::pkg5
         // pkg1::pkg3::pkg5::george
-        @NonNull Model root = createModel();
-        @NonNull org.eclipse.ocl.pivot.Package pkg1 = createPackage(root, "pkg1");
-        @NonNull org.eclipse.ocl.pivot.Package pkg2 = createPackage(pkg1, "pkg2");
-        @NonNull org.eclipse.ocl.pivot.Package jim = createPackage(pkg2, "jim");
-        @NonNull org.eclipse.ocl.pivot.Package bob = createPackage(pkg1, "bob");
-        @NonNull org.eclipse.ocl.pivot.Package pkg3 = createPackage(pkg1, "pkg3");
-        @NonNull org.eclipse.ocl.pivot.Package pkg4 = createPackage(pkg3, "pkg4");
-        @NonNull org.eclipse.ocl.pivot.Package pkg5 = createPackage(pkg3, "pkg5");
-        @NonNull org.eclipse.ocl.pivot.Package george = createPackage(pkg5, "george");
+        @NonNull Model root = PivotUtil.createModel(null);
+        @NonNull org.eclipse.ocl.pivot.Package pkg1 = PivotUtil.createOwnedPackage(root, "pkg1");
+        @NonNull org.eclipse.ocl.pivot.Package pkg2 = PivotUtil.createOwnedPackage(pkg1, "pkg2");
+        @NonNull org.eclipse.ocl.pivot.Package jim = PivotUtil.createOwnedPackage(pkg2, "jim");
+        @NonNull org.eclipse.ocl.pivot.Package bob = PivotUtil.createOwnedPackage(pkg1, "bob");
+        @NonNull org.eclipse.ocl.pivot.Package pkg3 = PivotUtil.createOwnedPackage(pkg1, "pkg3");
+        @NonNull org.eclipse.ocl.pivot.Package pkg4 = PivotUtil.createOwnedPackage(pkg3, "pkg4");
+        @NonNull org.eclipse.ocl.pivot.Package pkg5 = PivotUtil.createOwnedPackage(pkg3, "pkg5");
+        @NonNull org.eclipse.ocl.pivot.Package george = PivotUtil.createOwnedPackage(pkg5, "george");
 		
 		public MyOCL(@NonNull String testPackageName, @NonNull String name) {
 			super(testPackageName, name, OCL.NO_PROJECTS);
-			MetamodelManager metamodelManager = getMetamodelManager();
+			MetamodelManager.Internal metamodelManager = getMetamodelManager();
 //			metamodelManager.addGlobalNamespace(PivotConstants.OCL_NAME, ClassUtil.nonNullState(metamodelManager.getASmetamodel()));
 
 	        metamodelManager.installRoot(ClassUtil.nonNullState(root));
@@ -558,15 +559,14 @@ public class IteratorsTest4 extends PivotTestSuite
      */
     @Test public void test_closure_operations() {
 		MyOCL ocl = createOCL();
-		MetamodelManager metamodelManager = ocl.getMetamodelManager();
     	Resource fakeResource = new XMIResourceFactoryImpl().createResource(URI.createURI("fake"));
-    	Model fakeRoot = metamodelManager.createModel(null);
-    	org.eclipse.ocl.pivot.Package fakePkg = ocl.createPackage(fakeRoot, "fake");
+    	Model fakeRoot = PivotUtil.createModel(null);
+    	org.eclipse.ocl.pivot.Package fakePkg = PivotUtil.createOwnedPackage(fakeRoot, "fake");
     	fakeResource.getContents().add(fakePkg);
         org.eclipse.ocl.pivot.Class fake = ocl.createOwnedClass(fakePkg, "Fake", false);
-        ocl.createGeneralization(fake, metamodelManager.getStandardLibrary().getOclAnyType());
+        ocl.createGeneralization(fake, ocl.getStandardLibrary().getOclAnyType());
         Operation getFakes = ocl.createOwnedOperation(fake, "getFakes", null, null, fake, true);
-        getFakes.setType(metamodelManager.getCompleteEnvironment().getSetType(fake, null, null));
+        getFakes.setType(ocl.getCompleteEnvironment().getSetType(fake, null, null));
 
         ocl.assertQuery(fake, "self->closure(getFakes())");
 		ocl.dispose();
@@ -591,12 +591,11 @@ public class IteratorsTest4 extends PivotTestSuite
      */
     @Test public void test_closureValidation_typeConformance_154695() {
 		MyOCL ocl = createOCL();
-		MetamodelManager metamodelManager = ocl.getMetamodelManager();
-        StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
-        CompleteEnvironment completeEnvironment = metamodelManager.getCompleteEnvironment();
+        StandardLibraryInternal standardLibrary = ocl.getStandardLibrary();
+        CompleteEnvironment completeEnvironment = ocl.getCompleteEnvironment();
     	Resource fakeResource = new XMIResourceFactoryImpl().createResource(URI.createURI("fake"));
-    	Model fakeRoot = metamodelManager.createModel(null);
-    	org.eclipse.ocl.pivot.Package fakePkg = ocl.createPackage(fakeRoot, "fake");
+    	Model fakeRoot = PivotUtil.createModel(null);
+    	org.eclipse.ocl.pivot.Package fakePkg = PivotUtil.createOwnedPackage(fakeRoot, "fake");
     	fakeResource.getContents().add(fakePkg);
         org.eclipse.ocl.pivot.Class fake = ocl.createOwnedClass(fakePkg, "Fake", false);
 		@SuppressWarnings("unused")

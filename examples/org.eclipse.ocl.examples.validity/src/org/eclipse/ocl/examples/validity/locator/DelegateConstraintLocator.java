@@ -45,7 +45,7 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
@@ -55,7 +55,7 @@ public class DelegateConstraintLocator extends AbstractPivotConstraintLocator
 {
 	public static @NonNull DelegateConstraintLocator INSTANCE = new DelegateConstraintLocator();
 
-	protected @Nullable Constraint getConstraint(@NonNull MetamodelManager metamodelManager, @NonNull ResultConstrainingNode resultConstrainingNode) throws ParserException {
+	protected @Nullable Constraint getConstraint(@NonNull PivotMetamodelManager metamodelManager, @NonNull ResultConstrainingNode resultConstrainingNode) throws ParserException {
 		Object constrainingObject = resultConstrainingNode.getParent().getConstrainingObject();
 		if (constrainingObject instanceof EAnnotation) {
 			EObject eObject = ((EAnnotation) constrainingObject).eContainer();
@@ -180,7 +180,7 @@ public class DelegateConstraintLocator extends AbstractPivotConstraintLocator
 			return;
 		}
 		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(eResource);
-		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		Constraint asConstraint = null;
 		try {
 			asConstraint = getConstraint(metamodelManager, resultConstrainingNode);

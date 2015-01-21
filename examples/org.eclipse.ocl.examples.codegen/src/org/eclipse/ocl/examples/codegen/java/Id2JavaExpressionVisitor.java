@@ -39,7 +39,7 @@ import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.ids.UnspecifiedId;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
@@ -48,7 +48,7 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 public class Id2JavaExpressionVisitor implements IdVisitor<Object>
 {
 	protected final @NonNull JavaStream js;
-	protected final @NonNull MetamodelManager metamodelManager;
+	protected final @NonNull PivotMetamodelManager metamodelManager;
 
 	public Id2JavaExpressionVisitor(@NonNull JavaStream js) {
 		this.js = js;

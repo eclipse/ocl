@@ -25,7 +25,7 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Variable;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 
 /**
  * A OCLVMEvaluator supports loading a transformation as source then loading models, performing a transformation
@@ -33,7 +33,7 @@ import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
  */
 public class OCLVMEvaluator implements IVMEvaluator
 {
-    public static @NonNull EObject loadContext(@NonNull MetamodelManager metamodelManager, @NonNull URI contextURI) throws IOException {
+    public static @NonNull EObject loadContext(@NonNull PivotMetamodelManager metamodelManager, @NonNull URI contextURI) throws IOException {
         EObject eObject = metamodelManager.getExternalResourceSet().getEObject(contextURI, true);
         if (eObject == null) {
             throw new IOException("Nothing loadable as '" + contextURI + "'");
@@ -41,12 +41,12 @@ public class OCLVMEvaluator implements IVMEvaluator
         return eObject;
 	}
     
-    public static @NonNull ExpressionInOCL loadExpression(@NonNull MetamodelManager metamodelManager, @NonNull URI constraintURI, boolean keepDebug) throws IOException, ParserException {
+    public static @NonNull ExpressionInOCL loadExpression(@NonNull PivotMetamodelManager metamodelManager, @NonNull URI constraintURI, boolean keepDebug) throws IOException, ParserException {
         EObject eObject = metamodelManager.getASResourceSet().getEObject(constraintURI, true);
         return loadExpression(metamodelManager, eObject, constraintURI);
 	}
 
-	public static @NonNull ExpressionInOCL loadExpression(@NonNull MetamodelManager metamodelManager, EObject eObject, URI constraintURI) throws IOException, ParserException {
+	public static @NonNull ExpressionInOCL loadExpression(@NonNull PivotMetamodelManager metamodelManager, EObject eObject, URI constraintURI) throws IOException, ParserException {
 		if (eObject == null) {
             throw new IOException("Nothing loadable as '" + constraintURI + "'");
         }
@@ -60,7 +60,7 @@ public class OCLVMEvaluator implements IVMEvaluator
 		return metamodelManager.getQueryOrThrow(specification);
 	}
     
-	protected final @NonNull MetamodelManager metamodelManager;
+	protected final @NonNull PivotMetamodelManager metamodelManager;
 	protected final @NonNull ExpressionInOCL expressionInOCL;
 	protected final @NonNull OCLVMEnvironmentFactory envFactory;
 	protected final @NonNull IVMModelManager modelManager;
@@ -108,7 +108,7 @@ public class OCLVMEvaluator implements IVMEvaluator
 		return envFactory;
 	}
 
-	public final @NonNull MetamodelManager getMetamodelManager() {
+	public final @NonNull PivotMetamodelManager getMetamodelManager() {
 		return metamodelManager;
 	}
 	

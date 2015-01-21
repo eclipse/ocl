@@ -22,7 +22,7 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.ParserContext;
@@ -135,7 +135,7 @@ public interface EnvironmentFactory extends Adaptable, Customizable
 
 	@NonNull IdResolver getIdResolver();
 
-	@NonNull MetamodelManager getMetamodelManager();
+	@NonNull PivotMetamodelManager getMetamodelManager();
 
 	@NonNull ProjectManager getProjectManager();
 	

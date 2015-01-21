@@ -43,7 +43,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.AbstractConversion;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.util.Visitable;
@@ -120,7 +120,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 		if (environmentFactory == null) {
 			throw new IllegalStateException("No EnvironmentFactory");
 		}
-		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		AliasAnalysis aliasAnalysis = null;
 		URI csURI = csResource.getURI();
 		List<ImportCS> imports = new ArrayList<ImportCS>();

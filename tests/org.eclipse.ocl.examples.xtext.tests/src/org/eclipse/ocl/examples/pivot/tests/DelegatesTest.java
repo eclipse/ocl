@@ -86,12 +86,12 @@ import org.eclipse.ocl.pivot.internal.delegate.SettingBehavior;
 import org.eclipse.ocl.pivot.internal.delegate.ValidationDelegate;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.evaluation.OCLEvaluationVisitor;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
@@ -103,7 +103,6 @@ import org.junit.AfterClass;
 import codegen.company.CodegencompanyFactory;
 import codegen.company.CodegencompanyPackage;
 import codegen.company.util.CodegencompanyValidator;
-
 import company.CompanyFactory;
 import company.CompanyPackage;
 import company.util.CompanyValidator;
@@ -263,7 +262,7 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 		doCompleteOCLSetup();
 		Resource ecoreResource = initModelWithErrors(resourceSet);
 		OCL.Internal ocl = configureMetamodelManagerForDelegate(companyPackage);
-		MetamodelManager metamodelManager = ocl.getMetamodelManager();
+		MetamodelManager.Internal metamodelManager = ocl.getMetamodelManager();
 		EnvironmentFactoryInternal environmentFactory = ocl.getEnvironmentFactory();
 		environmentFactory.adapt(resourceSet);
 		String message = PivotUtil.formatResourceDiagnostics(ecoreResource.getErrors(), "Model load", "\n\t");
@@ -470,8 +469,8 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 	@SuppressWarnings("null")
 	public void doTest_queryExecution(@NonNull ResourceSet resourceSet, @NonNull String modelName) {
 		initModel(resourceSet, modelName);
-		OCL ocl = configureMetamodelManagerForDelegate(companyPackage);
-		MetamodelManager metamodelManager = ocl.getMetamodelManager();
+		OCL.Internal ocl = configureMetamodelManagerForDelegate(companyPackage);
+		MetamodelManager.Internal metamodelManager = ocl.getMetamodelManager();
 		QueryDelegate.Factory factory = QueryDelegate.Factory.Registry.INSTANCE
 			.getFactory(PivotConstants.OCL_DELEGATE_URI_PIVOT);
 

@@ -50,13 +50,14 @@ import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.PivotExecutorManager;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.scoping.Attribution;
 import org.eclipse.ocl.pivot.internal.scoping.NullAttribution;
 import org.eclipse.ocl.pivot.library.ecore.EcoreExecutorManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.Pivotable;
 
@@ -112,14 +113,14 @@ public class PivotUtilInternal //extends PivotUtil
 			if (adapter instanceof EnvironmentFactoryAdapter) {
 				return ((EnvironmentFactoryAdapter)adapter).getEnvironmentFactory();
 			}
-			else if (adapter instanceof MetamodelManager) {
-				return ((MetamodelManager)adapter).getEnvironmentFactory();
+			else if (adapter instanceof PivotMetamodelManager) {
+				return ((PivotMetamodelManager)adapter).getEnvironmentFactory();
 			}
 		}
 		return null;
 	}
 
-	public static @Nullable MetamodelManager findMetamodelManager(@NonNull Resource resource) {
+	public static @Nullable PivotMetamodelManager findMetamodelManager(@NonNull Resource resource) {
 		EnvironmentFactoryInternal environmentFactory = findEnvironmentFactory(resource);
 		if (environmentFactory == null) {
 			return null;
@@ -127,7 +128,7 @@ public class PivotUtilInternal //extends PivotUtil
 		return environmentFactory.getMetamodelManager();
 	}
 
-	public static Type findTypeOf(@NonNull MetamodelManager metamodelManager, @NonNull EClassifier eClass) {
+	public static Type findTypeOf(@NonNull MetamodelManager.Internal metamodelManager, @NonNull EClassifier eClass) {
 		Resource resource = eClass.eResource();
 		if (resource != null) {
 			External2AS adapter = Ecore2AS.findAdapter(resource, metamodelManager.getEnvironmentFactory());

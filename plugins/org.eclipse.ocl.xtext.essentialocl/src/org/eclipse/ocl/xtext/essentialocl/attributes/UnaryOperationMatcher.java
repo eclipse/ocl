@@ -15,11 +15,11 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 
 public class UnaryOperationMatcher extends AbstractOperationMatcher
 {
-	public UnaryOperationMatcher(@NonNull MetamodelManager metamodelManager, @Nullable Type sourceType, @Nullable Type sourceTypeValue) {
+	public UnaryOperationMatcher(@NonNull PivotMetamodelManager metamodelManager, @Nullable Type sourceType, @Nullable Type sourceTypeValue) {
 		super(metamodelManager, sourceType, sourceTypeValue);
 	}
 

@@ -37,13 +37,13 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.library.StandardLibraryContribution;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.Orphanage;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 
@@ -84,8 +84,8 @@ public class ConstraintMerger extends AbstractProjectComponent
 //		IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(URI.createURI(pivotNsURI));
 //		packageDescriptor.setUseModel(true, null);				// Hide packages installed by CompleteOCLStandaloneSetup
 			
-		OCL ocl = OCL.newInstance();
-		MetamodelManager metamodelManager = ocl.getMetamodelManager();
+		OCL.Internal ocl = OCL.Internal.newInstance();
+		MetamodelManager.Internal metamodelManager = ocl.getMetamodelManager();
 		ResourceSet asResourceSet = metamodelManager.getASResourceSet();
 //		metamodelManager.setLibraryLoadInProgress(true);
 		metamodelManager.getExternalResourceSet().getResources().add(ecoreResource);		// Don't load another copy
@@ -187,7 +187,7 @@ public class ConstraintMerger extends AbstractProjectComponent
 		if (mergeProperties.size() > 0) {
 			List<Property> primaryProperties = primaryType.getOwnedProperties();
 			for (@SuppressWarnings("null")@NonNull Property mergeProperty : new ArrayList<Property>(mergeProperties)) {
-				Property primaryProperty = metamodelManager.getPrimaryElement(mergeProperty);
+				Property primaryProperty = metamodelManager.getPrimaryProperty(mergeProperty);
 				if (primaryProperty != mergeProperty) {			// If merge needed
 					LanguageExpression pivotDefaultExpression = mergeProperty.getOwnedExpression();
 					LanguageExpression primaryDefaultExpression = primaryProperty.getOwnedExpression();
@@ -205,7 +205,7 @@ public class ConstraintMerger extends AbstractProjectComponent
 		if (mergeOperations.size() > 0) {
 			List<Operation> primaryOperations = primaryType.getOwnedOperations();
 			for (@SuppressWarnings("null")@NonNull Operation mergeOperation : new ArrayList<Operation>(mergeOperations)) {
-				Operation primaryOperation = metamodelManager.getPrimaryElement(mergeOperation);
+				Operation primaryOperation = metamodelManager.getPrimaryOperation(mergeOperation);
 				if (primaryOperation != mergeOperation) {		// If merge needed
 					LanguageExpression pivotBodyExpression = mergeOperation.getBodyExpression();
 					LanguageExpression primaryBodyExpression = primaryOperation.getBodyExpression();

@@ -57,6 +57,7 @@ import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.PivotFactory;
+import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.Property;
@@ -77,9 +78,9 @@ import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.ids.PackageId;
+import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.PackageImpl;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
@@ -303,12 +304,20 @@ public class PivotUtil
 		return asLetExp;
 	}
 
-	public static @NonNull Model createModel(@NonNull String externalURI) {
+	public static @NonNull Model createModel(String externalURI) {
 		Model pivotModel = PivotFactory.eINSTANCE.createModel();
 		pivotModel.setExternalURI(externalURI);
 		return pivotModel;
 	}
 	
+	public static @NonNull <T extends Model> T createModel(@NonNull Class<T> pivotClass, /*@NonNull*/ EClass pivotEClass, String externalURI) {
+		assert pivotEClass != null;
+		@SuppressWarnings("unchecked")
+		T pivotModel = (T) pivotEClass.getEPackage().getEFactoryInstance().create(pivotEClass);
+		pivotModel.setExternalURI(externalURI);
+		return pivotModel;
+	}
+
 	public static @NonNull Operation createOperation(@NonNull String name, @NonNull Type type, @Nullable String implementationClass, @Nullable LibraryFeature implementation) {
 		Operation pivotOperation = PivotFactory.eINSTANCE.createOperation();
 		pivotOperation.setName(name);
@@ -354,7 +363,21 @@ public class PivotUtil
 		return createCollectionType(PivotFactory.eINSTANCE.createOrderedSetType(), unspecializedType, elementType);
 	}
 
-	public static @NonNull Package createPackage(/*@NonNull*/ EPackage ePackage, @Nullable String nsPrefix, @NonNull String nsURI) {
+	public static @NonNull org.eclipse.ocl.pivot.Package createOwnedPackage(@NonNull Model parentRoot, @NonNull String name) {
+		@SuppressWarnings("null")
+		org.eclipse.ocl.pivot.Package aPackage = PivotUtil.createPackage(org.eclipse.ocl.pivot.Package.class, PivotPackage.Literals.PACKAGE, name, null, null);
+		parentRoot.getOwnedPackages().add(aPackage);
+		return aPackage;
+	}
+
+	public static @NonNull org.eclipse.ocl.pivot.Package createOwnedPackage(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name) {
+		@SuppressWarnings("null")
+		org.eclipse.ocl.pivot.Package aPackage = PivotUtil.createPackage(org.eclipse.ocl.pivot.Package.class, PivotPackage.Literals.PACKAGE, name, null, null);
+		parentPackage.getOwnedPackages().add(aPackage);
+		return aPackage;
+	}
+
+	public static @NonNull org.eclipse.ocl.pivot.Package createPackage(/*@NonNull*/ EPackage ePackage, @Nullable String nsPrefix, @NonNull String nsURI) {
 		Package pivotPackage = PivotFactory.eINSTANCE.createPackage();
 		pivotPackage.setName(ePackage.getName());
 		pivotPackage.setNsPrefix(nsPrefix);
@@ -363,7 +386,7 @@ public class PivotUtil
 		return pivotPackage;
 	}
 
-	public static @NonNull Package createPackage(@NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI, @Nullable PackageId packageId) {
+	public static @NonNull org.eclipse.ocl.pivot.Package createPackage(@NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI, @Nullable PackageId packageId) {
 		Package pivotPackage = PivotFactory.eINSTANCE.createPackage();
 		pivotPackage.setName(name);
 		pivotPackage.setNsPrefix(nsPrefix);
@@ -372,6 +395,18 @@ public class PivotUtil
 		}
 		pivotPackage.setURI(nsURI);
 		return pivotPackage;
+	}
+
+	public static @NonNull <T extends org.eclipse.ocl.pivot.Package> T createPackage(@NonNull Class<T> pivotClass,
+			@NonNull EClass pivotEClass, @NonNull String name, @Nullable String nsURI, @Nullable PackageId packageId) {
+		@SuppressWarnings("unchecked")
+		T asPackage = (T) pivotEClass.getEPackage().getEFactoryInstance().create(pivotEClass);
+		asPackage.setName(name);
+		if (packageId != null) {
+			((PackageImpl)asPackage).setPackageId(packageId);
+		}
+		asPackage.setURI(nsURI);
+		return asPackage;
 	}
 
 	public static @NonNull Parameter createParameter(@NonNull String name, @NonNull Type asType, boolean isRequired) {
@@ -824,12 +859,12 @@ public class PivotUtil
 	 */
 	public static boolean setParserContext(@NonNull CSResource csResource, @NonNull EObject eObject, Object... todoParameters) throws ParserException {
 		EnvironmentFactoryAdapter adapter = ClassUtil.nonNullState(OCL.adapt(csResource));
-		MetamodelManager metamodelManager = adapter.getMetamodelManager();
-		Element pivotElement = metamodelManager.getEnvironmentFactory().getParseableElement(eObject);
+		EnvironmentFactoryInternal environmentFactory = adapter.getEnvironmentFactory();
+		Element pivotElement = environmentFactory.getParseableElement(eObject);
 		if (pivotElement == null) {
 			return false;
 		}
-		ParserContext parserContext = metamodelManager.getParserContext(pivotElement, todoParameters);
+		ParserContext parserContext = environmentFactory.getMetamodelManager().getParserContext(pivotElement, todoParameters);
 		if (parserContext == null) {
 			return false;
 		}

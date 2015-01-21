@@ -54,7 +54,6 @@ import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
@@ -62,6 +61,7 @@ import org.eclipse.ocl.pivot.internal.utilities.External2AS;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
@@ -1090,7 +1090,7 @@ public class LoadTests extends XtextTestCase
 	}
 	
 	public void testLoad_StereotypeApplications_uml() throws IOException, InterruptedException, ParserException {
-		OCL ocl = createOCL();
+		OCL.Internal ocl = createOCL();
 //		EPackage.Registry.INSTANCE.put("http://www.omg.org/spec/MOF/20110701", UMLPackage.eINSTANCE);
 //		EPackage.Registry.INSTANCE.put("http://www.omg.org/spec/UML/20120801", UMLPackage.eINSTANCE);
 //		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", XMI2UMLResource.Factory.INSTANCE);
@@ -1101,7 +1101,7 @@ public class LoadTests extends XtextTestCase
 		        for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {
 		            EObject obj = tit.next();
 		            if (obj instanceof Type) {
-		                ocl.getMetamodelManager().getAllInvariants((Type) obj);		// This gives the Bug 422938 CCE
+		                ((MetamodelManager.Internal)ocl.getMetamodelManager()).getAllInvariants((Type) obj);		// This gives the Bug 422938 CCE
 		            }
 		        }
 			}

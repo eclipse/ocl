@@ -38,7 +38,6 @@ import org.eclipse.ocl.pivot.internal.complete.CompleteClassInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.internal.context.ModelContext;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.values.CollectionTypeParametersImpl;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
@@ -46,6 +45,7 @@ import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
@@ -481,7 +481,7 @@ public class EditTests extends XtextTestCase
 	}	
 
 	public void testEdit_Rename_Restore_ecore() throws Exception {
-		OCL ocl = OCL.newInstance(getProjectMap());
+		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap());
 		String testDocument = 
 			"package TestPackage : tp = 'TestPackage'\n" +
 			"{\n" +
@@ -563,7 +563,7 @@ public class EditTests extends XtextTestCase
 	}
 
 	public void testEdit_StaleReference_ecore() throws Exception {
-		OCL ocl = OCL.newInstance(getProjectMap());
+		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap());
 		String testDocument = 
 			"package TestPackage : tp = 'TestPackage'\n" +
 			"{\n" +
@@ -616,7 +616,7 @@ public class EditTests extends XtextTestCase
 	}
 
 	public void testEdit_StaleSpecialization() throws Exception {
-		OCL ocl = OCL.newInstance(getProjectMap());
+		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap());
 		String testDocument = 
 			"import '" + LibraryConstants.STDLIB_URI + "';\n" + 
 			"library ocl : ocl = '" + LibraryConstants.STDLIB_URI + "' {\n" +
@@ -625,7 +625,7 @@ public class EditTests extends XtextTestCase
 			"}\n" +
 			"}\n";
 		URI outputURI = getProjectFileURI("test.oclstdlib");
-		MetamodelManager metamodelManager = ocl.getMetamodelManager();
+		MetamodelManager.Internal metamodelManager = ocl.getMetamodelManager();
 		CompleteModelInternal completeModel = metamodelManager.getCompleteModel();
 		ModelContext modelContext = new ModelContext(ocl.getEnvironmentFactory(), outputURI);
 		EssentialOCLCSResource xtextResource = (EssentialOCLCSResource) modelContext.createBaseResource(testDocument);
@@ -634,7 +634,7 @@ public class EditTests extends XtextTestCase
 		assertNoResourceErrors("Loading input", asResource);
 		//
 		Type myType = ClassUtil.nonNullState(metamodelManager.getPrimaryType(LibraryConstants.STDLIB_URI, "MyType"));
-		SequenceType sequenceType = metamodelManager.getStandardLibrary().getSequenceType();
+		SequenceType sequenceType = ocl.getStandardLibrary().getSequenceType();
 		CollectionTypeParameters<Type> typeParameters = new CollectionTypeParametersImpl<Type>(myType, null, null);
 		CompleteClassInternal sequenceCompleteClass = metamodelManager.getCompleteClass(sequenceType);
 		WeakReference<Type> sequenceMyType = new WeakReference<Type>(completeModel.findCollectionType(sequenceCompleteClass, typeParameters));

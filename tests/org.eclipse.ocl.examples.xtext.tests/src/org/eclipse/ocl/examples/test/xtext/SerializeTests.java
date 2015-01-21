@@ -24,12 +24,12 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ParserException;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
@@ -167,11 +167,11 @@ public class SerializeTests extends XtextTestCase
 		//
 		//	Ecore to Pivot
 		//
-		OCL ocl1 = OCL.newInstance(getProjectMap()); //, resourceSet);
+		OCL.Internal ocl1 = OCL.Internal.newInstance(getProjectMap()); //, resourceSet);
 		UML2AS.initialize(ocl1.getResourceSet());
 		XtextResource xtextResource = null;
 		try {
-			MetamodelManager metamodelManager1 = ocl1.getMetamodelManager();
+			MetamodelManager.Internal metamodelManager1 = ocl1.getMetamodelManager();
 			@SuppressWarnings("unused")
 			Resource asResource = getPivotFromUML(metamodelManager1, umlResource);
 			//
@@ -214,7 +214,7 @@ public class SerializeTests extends XtextTestCase
 		return xtextResource;
 	}
 
-	protected Resource getPivotFromUML(MetamodelManager metamodelManager, @NonNull Resource umlResource) throws ParserException {
+	protected Resource getPivotFromUML(MetamodelManager.Internal metamodelManager, @NonNull Resource umlResource) throws ParserException {
 //		String problem = UML2AS.initialize(metamodelManager.getExternalResourceSet());
 //		assertNull(problem);
 		UML2AS uml2as = UML2AS.getAdapter(umlResource, metamodelManager.getEnvironmentFactory());

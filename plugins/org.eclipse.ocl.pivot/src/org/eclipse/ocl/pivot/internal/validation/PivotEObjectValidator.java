@@ -41,7 +41,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
@@ -115,7 +115,7 @@ public class PivotEObjectValidator implements EValidator
 		 */
 		public boolean validate(@NonNull EClassifier eClassifier, @Nullable Object object, @Nullable DiagnosticChain diagnostics, @Nullable Map<Object, Object> context) {
 			boolean allOk = true;
-			MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+			PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 			Type type = metamodelManager.getASOfEcore(Type.class, eClassifier);
 			if (type != null) {
 				for (Constraint constraint : metamodelManager.getAllInvariants(type)) {
@@ -151,7 +151,7 @@ public class PivotEObjectValidator implements EValidator
 //			if ((specification.getBodyExpression() == null) && (specification.getBody().size() <= 0)) {	// May be null for declations of hand coded Java
 //				return null;
 //			}
-			final MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+			final PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 			ExpressionInOCL query;
 			try {
 				query = metamodelManager.getQueryOrThrow(specification);
