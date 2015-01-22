@@ -28,11 +28,11 @@ import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.SemanticException;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.evaluation.AbstractConstraintEvaluator;
 import org.eclipse.ocl.pivot.evaluation.EvaluationException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
-import org.eclipse.ocl.pivot.internal.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
@@ -47,7 +47,7 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
  */
 public class OCLValidationDelegate implements ValidationDelegate
 {	
-	protected static class CheckingConstraintEvaluator extends ConstraintEvaluator<Boolean>
+	protected static class CheckingConstraintEvaluator extends AbstractConstraintEvaluator<Boolean>
 	{
 		protected final @NonNull EClassifier eClassifier;
 
@@ -252,7 +252,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 
 	protected boolean validateExpressionInOCL(final @NonNull EClassifier eClassifier, final @NonNull Object value, final @Nullable DiagnosticChain diagnostics,
 			final Map<Object, Object> context, String constraintName, final String source, final int code, @NonNull ExpressionInOCL query) {
-		ConstraintEvaluator<Boolean> constraintEvaluator = new CheckingConstraintEvaluator(eClassifier, query)
+		AbstractConstraintEvaluator<Boolean> constraintEvaluator = new CheckingConstraintEvaluator(eClassifier, query)
 		{
 			@Override
 			protected String getObjectLabel() {

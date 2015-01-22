@@ -54,6 +54,7 @@ import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.options.OCLinEcoreOptions;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 public class AS2Ecore extends AbstractConversion
 {
@@ -263,7 +264,7 @@ public class AS2Ecore extends AbstractConversion
 		this.pass1 = new AS2EcoreDeclarationVisitor(this);	
 		this.pass2 = new AS2EcoreReferenceVisitor(this);
 		this.ecoreURI = ecoreURI;
-		this.primitiveTypesUriPrefix = getString(options, PivotConstantsInternal.PRIMITIVE_TYPES_URI_PREFIX);
+		this.primitiveTypesUriPrefix = getString(options, PivotConstants.PRIMITIVE_TYPES_URI_PREFIX);
 	}
 
 	protected @Nullable Object convert(@NonNull Element pivotObject) {

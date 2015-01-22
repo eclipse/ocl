@@ -93,11 +93,11 @@ import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.VoidType;
-import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.basecs.NamedElementCS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
@@ -166,10 +166,10 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 			return;
 		}
 		if (sourceType instanceof CollectionType) {
-			s.append(PivotConstantsInternal.COLLECTION_NAVIGATION_OPERATOR);
+			s.append(PivotConstants.COLLECTION_NAVIGATION_OPERATOR);
 		}
 		else {
-			s.append(PivotConstantsInternal.OBJECT_NAVIGATION_OPERATOR); 
+			s.append(PivotConstants.OBJECT_NAVIGATION_OPERATOR); 
 		}
 		s.append(" ");
 	}

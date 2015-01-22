@@ -393,7 +393,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 	protected @Nullable Set<Operation> getReferencedFinalOperations(@NonNull FinalAnalysis finalAnalysis, @NonNull LanguageExpression specification) {
 		ExpressionInOCL prototype = null;
 		try {
-			prototype = metamodelManager.getQueryOrThrow(specification);
+			prototype = metamodelManager.parseSpecification(specification);
 		}
 		catch (ParserException e) {
 			// FIXME log error
@@ -461,7 +461,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 	protected @Nullable CGValuedElement inlineOperationCall(@NonNull OperationCallExp callExp, @NonNull LanguageExpression specification) {
 		ExpressionInOCL prototype = null;
 		try {
-			prototype = metamodelManager.getQueryOrThrow(specification);
+			prototype = metamodelManager.parseSpecification(specification);
 		}
 		catch (ParserException e) {
 			// FIXME log error
@@ -597,7 +597,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		LanguageExpression specification = element.getOwnedSpecification();
 		if (specification != null) {
 			try {
-				ExpressionInOCL query = metamodelManager.getQueryOrThrow(specification);
+				ExpressionInOCL query = metamodelManager.parseSpecification(specification);
 				Variable contextVariable = query.getOwnedContext();
 				if (contextVariable != null) {
 					CGParameter cgParameter = getParameter(contextVariable);
@@ -917,7 +917,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		LanguageExpression specification = element.getBodyExpression();
 		if (specification != null) {
 			try {
-				ExpressionInOCL query = metamodelManager.getQueryOrThrow(specification);
+				ExpressionInOCL query = metamodelManager.parseSpecification(specification);
 				createParameters(cgOperation, query);
 				cgOperation.setBody(doVisit(CGValuedElement.class, query.getOwnedBody()));
 			} catch (ParserException e) {
@@ -1154,7 +1154,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		LanguageExpression specification = element.getOwnedExpression();
 		if (specification != null) {
 			try {
-				ExpressionInOCL query = metamodelManager.getQueryOrThrow(specification);
+				ExpressionInOCL query = metamodelManager.parseSpecification(specification);
 				Variable contextVariable = query.getOwnedContext();
 				if (contextVariable != null) {
 					getParameter(contextVariable);

@@ -99,13 +99,4 @@ public class OCLUI
 		ExpressionInOCL createQuery = ocl.createQuery(selfType, oclExpression);
 		return ocl.evaluate(selfObject, createQuery);
 	} */
-	
-	/**
-	 * Configure a csResource to use eObject as its OCL self context.
-	 *
-	public static void setParserContext(@NonNull XtextResource csResource, EObject eObject) throws Exception {
-		if (csResource instanceof CSResource) {
-			PivotUtil.setParserContext((CSResource) csResource, eObject);
-		}
-	} */
 }

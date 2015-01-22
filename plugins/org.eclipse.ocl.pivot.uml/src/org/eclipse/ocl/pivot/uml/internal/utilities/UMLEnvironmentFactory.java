@@ -40,6 +40,7 @@ import org.eclipse.ocl.pivot.uml.internal.library.UMLImplementationManager;
 import org.eclipse.ocl.pivot.util.DerivedConstants;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -87,13 +88,13 @@ public class UMLEnvironmentFactory extends PivotEnvironmentFactory
 		}
 		else if (eObject2 instanceof UMLPackage) {
 			@SuppressWarnings("null")@NonNull String nsUri = UMLPackage.eNS_URI;
-			getMetamodelManager().getCompleteModel().addPackageURI2completeURI(nsUri, PivotConstantsInternal.UML_METAMODEL_NAME);
-			metamodel = IdManager.getRootPackageId(PivotConstantsInternal.UML_METAMODEL_NAME);
+			getMetamodelManager().getCompleteModel().addPackageURI2completeURI(nsUri, PivotConstants.UML_METAMODEL_NAME);
+			metamodel = IdManager.getRootPackageId(PivotConstants.UML_METAMODEL_NAME);
 		}
 		else if (eObject2 instanceof TypesPackage) {
 			@SuppressWarnings("null")@NonNull String nsUri = TypesPackage.eNS_URI;
-			getMetamodelManager().getCompleteModel().addPackageURI2completeURI(nsUri, PivotConstantsInternal.TYPES_METAMODEL_NAME);
-			metamodel = IdManager.getRootPackageId(PivotConstantsInternal.TYPES_METAMODEL_NAME);
+			getMetamodelManager().getCompleteModel().addPackageURI2completeURI(nsUri, PivotConstants.TYPES_METAMODEL_NAME);
+			metamodel = IdManager.getRootPackageId(PivotConstants.TYPES_METAMODEL_NAME);
 		}
 		else {
 			String nsURI = eObject2.getNsURI();
@@ -114,10 +115,10 @@ public class UMLEnvironmentFactory extends PivotEnvironmentFactory
 				if (eClass != null) {
 					EPackage ePackage = eClass.getEPackage();
 					if (ePackage instanceof UMLPackage) {
-						return IdManager.getRootPackageId(PivotConstantsInternal.UML_METAMODEL_NAME);
+						return IdManager.getRootPackageId(PivotConstants.UML_METAMODEL_NAME);
 					}
 					else if (ePackage instanceof TypesPackage) {
-						return IdManager.getRootPackageId(PivotConstantsInternal.TYPES_METAMODEL_NAME);
+						return IdManager.getRootPackageId(PivotConstants.TYPES_METAMODEL_NAME);
 					}
 				}
 			}

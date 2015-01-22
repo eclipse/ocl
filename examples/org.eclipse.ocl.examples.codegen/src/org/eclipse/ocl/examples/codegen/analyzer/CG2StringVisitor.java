@@ -78,7 +78,7 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.PropertyCallExp;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 /**
  * Converts an OCL expression to a string for debugging. This is not intended to
@@ -456,8 +456,8 @@ public class CG2StringVisitor extends AbstractExtendingCGModelVisitor<String, Ob
 		Iteration iter = iterationCallExp.getReferredIteration();
 	        Type sourceType = source != null ? iterationCallExp.getOwnedSource().getType() : null;
 			append(sourceType instanceof CollectionType
-					? PivotConstantsInternal.COLLECTION_NAVIGATION_OPERATOR
-					: PivotConstantsInternal.OBJECT_NAVIGATION_OPERATOR);
+					? PivotConstants.COLLECTION_NAVIGATION_OPERATOR
+					: PivotConstants.OBJECT_NAVIGATION_OPERATOR);
 			appendName(iter);
 		append("(");
 		String prefix = "";//$NON-NLS-1$
@@ -534,8 +534,8 @@ public class CG2StringVisitor extends AbstractExtendingCGModelVisitor<String, Ob
 		Operation oper = operationCallExp.getReferredOperation();
 	        Type sourceType = source != null ? operationCallExp.getOwnedSource().getType() : null;
 			append(sourceType instanceof CollectionType
-					? PivotConstantsInternal.COLLECTION_NAVIGATION_OPERATOR
-					: PivotConstantsInternal.OBJECT_NAVIGATION_OPERATOR);
+					? PivotConstants.COLLECTION_NAVIGATION_OPERATOR
+					: PivotConstants.OBJECT_NAVIGATION_OPERATOR);
 			appendName(oper);
 		append("(");
 		String prefix = "";//$NON-NLS-1$
@@ -560,8 +560,8 @@ public class CG2StringVisitor extends AbstractExtendingCGModelVisitor<String, Ob
 		Property property = oppositeProperty.getOpposite();
         Type sourceType = source != null ? propertyCallExp.getOwnedSource().getType() : null;
 		result.append(sourceType instanceof CollectionType
-				? PivotConstantsInternal.COLLECTION_NAVIGATION_OPERATOR
-				: PivotConstantsInternal.OBJECT_NAVIGATION_OPERATOR);
+				? PivotConstants.COLLECTION_NAVIGATION_OPERATOR
+				: PivotConstants.OBJECT_NAVIGATION_OPERATOR);
 		appendName(property);
 /*		appendAtPre(pc);
         List<CGValuedElement> qualifiers = pc.getQualifier();
@@ -595,8 +595,8 @@ public class CG2StringVisitor extends AbstractExtendingCGModelVisitor<String, Ob
 			Property property = propertyCallExp.getReferredProperty();
 	        Type sourceType = source != null ? propertyCallExp.getOwnedSource().getType() : null;
 			result.append(sourceType instanceof CollectionType
-					? PivotConstantsInternal.COLLECTION_NAVIGATION_OPERATOR
-					: PivotConstantsInternal.OBJECT_NAVIGATION_OPERATOR);
+					? PivotConstants.COLLECTION_NAVIGATION_OPERATOR
+					: PivotConstants.OBJECT_NAVIGATION_OPERATOR);
 			appendName(property);
 		}
 		else {

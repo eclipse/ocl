@@ -31,8 +31,8 @@ import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
-import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.util.Visitor;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 /**
  * <!-- begin-user-doc -->
@@ -519,6 +519,6 @@ public class ExpressionInOCLImpl
 
 	@Override
 	public String getLanguage() {
-		return PivotConstantsInternal.OCL_LANGUAGE;
+		return PivotConstants.OCL_LANGUAGE;
 	}
 } //ExpressionInOCLImpl

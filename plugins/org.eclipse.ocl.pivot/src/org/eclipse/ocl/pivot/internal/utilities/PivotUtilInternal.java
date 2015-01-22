@@ -148,9 +148,9 @@ public class PivotUtilInternal //extends PivotUtil
 			logger.error("Unexpected fragment ignored for '" + uri.toString() + "'");
 			uri = uri.trimFragment();
 		}
-		URI asURI = uri.appendFileExtension(PivotConstantsInternal.OCL_AS_FILE_EXTENSION);
+		URI asURI = uri.appendFileExtension(PivotConstants.OCL_AS_FILE_EXTENSION);
 		if (!isASURI(asURI)) {
-			asURI = uri.appendSegment(PivotConstantsInternal.DOT_OCL_AS_FILE_EXTENSION);
+			asURI = uri.appendSegment(PivotConstants.DOT_OCL_AS_FILE_EXTENSION);
 		}
 		assert isASURI(asURI);
 		return asURI;

@@ -13,12 +13,15 @@ package org.eclipse.ocl.pivot.internal.resource;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.XMLSave;
 import org.eclipse.emf.ecore.xmi.impl.XMIHelperImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.resource.ASResource;
 
 public class ASResourceImpl extends XMIResourceImpl implements ASResource
@@ -42,6 +45,19 @@ public class ASResourceImpl extends XMIResourceImpl implements ASResource
 	@Override
 	public @NonNull ASResourceFactory getASResourceFactory() {
 		return asResourceFactory;
+	}
+
+	@Override
+	public @NonNull Model getModel() {
+		EList<EObject> contents = getContents();
+		if (contents.size() <= 0) {
+			throw new IllegalStateException("No Model at root of empty '" + getURI() + "'");
+		}
+		EObject eObject = contents.get(0);
+		if (!(eObject instanceof Model)) {
+			throw new IllegalStateException("Non-Model at root of '" + getURI() + "'");
+		}
+		return (Model)eObject;
 	}
 
 	@Override

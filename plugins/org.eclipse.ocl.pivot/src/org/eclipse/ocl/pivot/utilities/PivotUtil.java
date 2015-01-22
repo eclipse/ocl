@@ -80,7 +80,6 @@ import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.PackageImpl;
-import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
@@ -520,13 +519,13 @@ public class PivotUtil
 		StringBuilder s = new StringBuilder();
 		s.append("Tuple {");
 		if (messageText != null) {
-			s.append("\n\t" + PivotConstantsInternal.MESSAGE_PART_NAME + " : String = " + messageText + ",");
+			s.append("\n\t" + PivotConstants.MESSAGE_PART_NAME + " : String = " + messageText + ",");
 		}
 		if (severity != null) {
-			s.append("\n\t" + PivotConstantsInternal.SEVERITY_PART_NAME + " : Integer = " + severity + ",");
+			s.append("\n\t" + PivotConstants.SEVERITY_PART_NAME + " : Integer = " + severity + ",");
 		}
-		s.append("\n\t" + PivotConstantsInternal.STATUS_PART_NAME + " : Boolean = " + statusText);		// NB parts in alphabetical order
-		s.append("\n}."+ PivotConstantsInternal.STATUS_PART_NAME);
+		s.append("\n\t" + PivotConstants.STATUS_PART_NAME + " : Boolean = " + statusText);		// NB parts in alphabetical order
+		s.append("\n}."+ PivotConstants.STATUS_PART_NAME);
 		@SuppressWarnings("null")@NonNull String string = s.toString();
 		return string;
 	}

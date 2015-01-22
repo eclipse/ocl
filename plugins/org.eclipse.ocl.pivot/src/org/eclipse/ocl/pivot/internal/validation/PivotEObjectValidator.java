@@ -39,11 +39,11 @@ import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
+import org.eclipse.ocl.pivot.evaluation.AbstractConstraintEvaluator;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
-import org.eclipse.ocl.pivot.internal.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -154,7 +154,7 @@ public class PivotEObjectValidator implements EValidator
 			final PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 			ExpressionInOCL query;
 			try {
-				query = metamodelManager.getQueryOrThrow(specification);
+				query = metamodelManager.parseSpecification(specification);
 			} catch (ParserException e) {
 				String message = e.getLocalizedMessage();
 				return new BasicDiagnostic(Diagnostic.ERROR, EObjectValidator.DIAGNOSTIC_SOURCE, 0, message, new Object [] { object });
@@ -182,7 +182,7 @@ public class PivotEObjectValidator implements EValidator
 					evaluationVisitor.setMonitor((Monitor) monitor);
 				}
 			}
-			ConstraintEvaluator<Diagnostic> constraintEvaluator = new ConstraintEvaluator<Diagnostic>(query)
+			AbstractConstraintEvaluator<Diagnostic> constraintEvaluator = new AbstractConstraintEvaluator<Diagnostic>(query)
 			{
 				@Override
 				protected String getObjectLabel() {

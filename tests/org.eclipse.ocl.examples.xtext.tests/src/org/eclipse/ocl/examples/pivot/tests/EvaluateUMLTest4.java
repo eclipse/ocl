@@ -33,7 +33,6 @@ import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
@@ -68,7 +67,7 @@ public class EvaluateUMLTest4 extends PivotTestSuite
 			MetamodelManager.Internal metamodelManager = getMetamodelManager();
 			Package asMetamodel = metamodelManager.getASmetamodel();
 			if (asMetamodel != null) {
-				metamodelManager.addGlobalNamespace(PivotConstantsInternal.OCL_NAME, asMetamodel);
+				metamodelManager.addGlobalNamespace(PivotConstants.OCL_NAME, asMetamodel);
 			}
 		}
 

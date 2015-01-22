@@ -63,7 +63,6 @@ import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
@@ -104,8 +103,8 @@ import org.eclipse.ocl.xtext.essentialoclcs.TupleLiteralPartCS;
 
 public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 {
-	public static final @NonNull TuplePartId TUPLE_MESSAGE_STATUS_0 = IdManager.getTuplePartId(0, PivotConstantsInternal.MESSAGE_PART_NAME, TypeId.STRING);
-	public static final @NonNull TuplePartId TUPLE_MESSAGE_STATUS_1 = IdManager.getTuplePartId(1, PivotConstantsInternal.STATUS_PART_NAME, TypeId.BOOLEAN);
+	public static final @NonNull TuplePartId TUPLE_MESSAGE_STATUS_0 = IdManager.getTuplePartId(0, PivotConstants.MESSAGE_PART_NAME, TypeId.STRING);
+	public static final @NonNull TuplePartId TUPLE_MESSAGE_STATUS_1 = IdManager.getTuplePartId(1, PivotConstants.STATUS_PART_NAME, TypeId.BOOLEAN);
 	public static final @NonNull TupleTypeId TUPLE_MESSAGE_STATUS = IdManager.getTupleTypeId("Tuple", TUPLE_MESSAGE_STATUS_0, TUPLE_MESSAGE_STATUS_1);
 
 	public EssentialOCLDeclarationVisitor(@NonNull AS2CSConversion context) {
@@ -177,7 +176,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		}
 		Type asType = asSource.getType();
 		boolean isCollection = (asType instanceof CollectionType) ^ isConverted;
-		String operationName = isCollection ? PivotConstantsInternal.COLLECTION_NAVIGATION_OPERATOR : PivotConstantsInternal.OBJECT_NAVIGATION_OPERATOR;
+		String operationName = isCollection ? PivotConstants.COLLECTION_NAVIGATION_OPERATOR : PivotConstants.OBJECT_NAVIGATION_OPERATOR;
 		ExpCS csSource = context.visitDeclaration(ExpCS.class, asSource);
 		return createInfixExpCS(csSource, operationName, csArgument);
 	}

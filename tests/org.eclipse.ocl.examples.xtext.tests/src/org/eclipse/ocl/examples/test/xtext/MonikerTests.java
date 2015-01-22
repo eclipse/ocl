@@ -20,9 +20,9 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
-import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.ecore.Ecore2Moniker;
 import org.eclipse.ocl.pivot.utilities.OCL;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.oclstdlib.scoping.JavaClassScope;
 
@@ -168,7 +168,7 @@ public class MonikerTests extends XtextTestCase
 		//	Load the CS resource and check for load failures
 		//
 		String inputName = stem + ".oclstdlib";
-		String pivotName = stem + PivotConstantsInternal.DOT_OCL_AS_FILE_EXTENSION;
+		String pivotName = stem + PivotConstants.DOT_OCL_AS_FILE_EXTENSION;
 		URI inputURI = getProjectFileURI(inputName);
 		URI pivotURI = getProjectFileURI(pivotName);
 		BaseCSResource csResource = (BaseCSResource) ocl.getResourceSet().createResource(inputURI);

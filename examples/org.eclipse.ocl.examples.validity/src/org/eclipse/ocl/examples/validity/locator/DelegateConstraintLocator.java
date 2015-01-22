@@ -43,10 +43,10 @@ import org.eclipse.ocl.examples.validity.plugin.OCLValidityPlugin;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.evaluation.AbstractConstraintEvaluator;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
-import org.eclipse.ocl.pivot.internal.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -196,7 +196,7 @@ public class DelegateConstraintLocator extends AbstractPivotConstraintLocator
 			final Constraint finalConstraint = asConstraint;
 			ExpressionInOCL query = getQuery(metamodelManager, asConstraint);
 			EvaluationVisitor evaluationVisitor = createEvaluationVisitor(environmentFactory, query, constrainedObject, monitor);
-			ConstraintEvaluator<Diagnostic> constraintEvaluator = new AbstractConstraintLocator(metamodelManager, query, constrainedObject)
+			AbstractConstraintEvaluator<Diagnostic> constraintEvaluator = new AbstractConstraintLocator(metamodelManager, query, constrainedObject)
 			{
 				@Override
 				protected String getObjectLabel() {

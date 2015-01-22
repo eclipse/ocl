@@ -152,7 +152,7 @@ public class PivotUIConstraintLocator extends PivotConstraintLocator implements 
 		}
 		ExpressionInOCL query;
 		try {
-			query = metamodelManager.getQueryOrThrow(specification);
+			query = metamodelManager.parseSpecification(specification);
 		} catch (ParserException e) {
 			IStatus status = createStatus(e, PivotMessagesInternal.InvalidSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(asConstraint), PivotConstantsInternal.OWNED_CONSTRAINT_ROLE);
 			throw new CoreException(status);

@@ -41,7 +41,6 @@ import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintOptions.Global;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
@@ -435,7 +434,7 @@ public class PrettyPrinter
 						return;
 	            	}
 	                String name = ((org.eclipse.ocl.pivot.Package)parent).getName();
-	                if (PivotConstantsInternal.ORPHANAGE_NAME.equals(name)) {
+	                if (PivotConstants.ORPHANAGE_NAME.equals(name)) {
 	                    return;
 	                }
 	                if (PivotPackage.eNAME.equals(name)) {
@@ -447,7 +446,7 @@ public class PrettyPrinter
 				}
 				if ((element instanceof Operation) &&
 					(parent instanceof Type) &&
-						PivotConstantsInternal.ORPHANAGE_NAME.equals(((Type)parent).getName())) {
+						PivotConstants.ORPHANAGE_NAME.equals(((Type)parent).getName())) {
 					Operation operation = (Operation)element;
 					append(operation.getOwningClass().getName());
 					appendTemplateBindings(operation);
@@ -525,13 +524,13 @@ public class PrettyPrinter
 					String name = rootPathElement.getName();
 		        	Element rootElement = rootPathElement.getElement();
 					if (rootElement != null) {
-						if (PivotConstantsInternal.ORPHANAGE_NAME.equals(name)) {
+						if (PivotConstants.ORPHANAGE_NAME.equals(name)) {
 			                i++;
 			            }
 			            else if (PivotPackage.eNAME.equals(name)) {
 			                i++;
 			            }
-			            else if (PivotConstantsInternal.OCL_NAME.equals(name)) {
+			            else if (PivotConstants.OCL_NAME.equals(name)) {
 			                i++;
 			            }
 			            else if (rootElement.eContainer() instanceof Model) {

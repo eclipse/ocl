@@ -19,12 +19,11 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
-import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 
-public interface PivotConstantsInternal extends PivotConstants
+public interface PivotConstantsInternal
 {
 	static final @NonNull String PLUGIN_ID = PivotPlugin.PLUGIN_ID;
 	static final @NonNull String PIVOT_ECORE = PLUGIN_ID + "/model/Pivot.ecore";

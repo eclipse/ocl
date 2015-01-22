@@ -79,7 +79,7 @@ public class InstanceSlotNavigationProperty extends AbstractProperty
 								if (specification == null) {
 									throw new InvalidValueException("Missing spec for " + specification);
 								}
-								ExpressionInOCL query = metamodelManager.getQueryOrThrow(specification);
+								ExpressionInOCL query = metamodelManager.parseSpecification(specification);
 								OCLExpression bodyExpression = query.getOwnedBody();
 								assert bodyExpression != null;
 								Object umlValue = evaluator.evaluate(bodyExpression);

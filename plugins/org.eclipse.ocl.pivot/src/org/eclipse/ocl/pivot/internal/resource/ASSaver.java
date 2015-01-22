@@ -28,7 +28,6 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.PivotFactory;
-import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.manager.Orphanage;
 import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
@@ -38,6 +37,7 @@ import org.eclipse.ocl.pivot.utilities.ASSaverLocateVisitor;
 import org.eclipse.ocl.pivot.utilities.ASSaverNormalizeVisitor;
 import org.eclipse.ocl.pivot.utilities.ASSaverResolveVisitor;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 /**
  * ASSaver ensures that all references to synthesized types are terminated
@@ -130,7 +130,7 @@ public class ASSaver
 		org.eclipse.ocl.pivot.Class orphanageClass2 = orphanageClass;
 		if (orphanageClass2 == null) {
 			orphanageClass = orphanageClass2 = PivotFactory.eINSTANCE.createAnyType();		// No superclasses
-			orphanageClass2.setName(PivotConstantsInternal.ORPHANAGE_NAME);
+			orphanageClass2.setName(PivotConstants.ORPHANAGE_NAME);
 			orphanagePackage.getOwnedClasses().add(orphanageClass2);
 		}
 		return orphanageClass2;
@@ -140,9 +140,9 @@ public class ASSaver
 		Package orphanage2 = orphanage;
 		if (orphanage2 == null) {
 			orphanage = orphanage2 = PivotFactory.eINSTANCE.createPackage();
-			orphanage2.setName(PivotConstantsInternal.ORPHANAGE_NAME);
-			orphanage2.setNsPrefix(PivotConstantsInternal.ORPHANAGE_PREFIX);
-			orphanage2.setURI(PivotConstantsInternal.ORPHANAGE_URI);
+			orphanage2.setName(PivotConstants.ORPHANAGE_NAME);
+			orphanage2.setNsPrefix(PivotConstants.ORPHANAGE_PREFIX);
+			orphanage2.setURI(PivotConstants.ORPHANAGE_URI);
 			EList<EObject> contents = resource.getContents();
 			if ((contents.size() > 0) && (contents.get(0) instanceof Model)) {
 				((Model)contents.get(0)).getOwnedPackages().add(orphanage2);
@@ -212,7 +212,7 @@ public class ASSaver
 							if (Orphanage.isTypeOrphanage(asPackage)) {
 								orphanage = orphanage2 = asPackage;
 								for (org.eclipse.ocl.pivot.Class asType : orphanage2.getOwnedClasses()) {
-									if (PivotConstantsInternal.ORPHANAGE_NAME.equals(asType.getName())) {
+									if (PivotConstants.ORPHANAGE_NAME.equals(asType.getName())) {
 										orphanageClass = asType;
 									}
 									else {
@@ -227,7 +227,7 @@ public class ASSaver
 				if ((eRoot instanceof org.eclipse.ocl.pivot.Package) && Orphanage.isTypeOrphanage((org.eclipse.ocl.pivot.Package)eRoot)) {	// FIXME Obsolete
 					orphanage = orphanage2 = (org.eclipse.ocl.pivot.Package)eRoot;
 					for (org.eclipse.ocl.pivot.Class asType : orphanage2.getOwnedClasses()) {
-						if (PivotConstantsInternal.ORPHANAGE_NAME.equals(asType.getName())) {
+						if (PivotConstants.ORPHANAGE_NAME.equals(asType.getName())) {
 							orphanageClass = asType;
 						}
 						else {

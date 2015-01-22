@@ -179,7 +179,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 			Operation astOperation = NameUtil.getNameable(asType.getOwnedOperations(), "ast");			
 			if (astOperation != null) {
 				LanguageExpression specification = ClassUtil.nonNullState(astOperation.getBodyExpression());
-				ExpressionInOCL expressionInOCL = metamodelManager.getQueryOrThrow(specification);
+				ExpressionInOCL expressionInOCL = metamodelManager.parseSpecification(specification);
 				OCLExpression oclExpression = expressionInOCL.getOwnedBody();
 				if (oclExpression instanceof ConstructorExp) {
 					hasCS2ASmappingOperation = true;

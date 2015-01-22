@@ -127,7 +127,7 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 			throw new OCLDelegateException(new SemanticException(PivotMessagesInternal.MissingSpecificationBody_ERROR_, constraint.getContext(), PivotConstantsInternal.BODY_EXPRESSION_ROLE));
 		}
 		try {
-			return metamodelManager.getQueryOrThrow(specification);
+			return metamodelManager.parseSpecification(specification);
 		} catch (ParserException e) {
 			throw new OCLDelegateException(e);
 		}

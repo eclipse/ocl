@@ -15,9 +15,9 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PrimitiveCompletePackage;
-import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteClassInternal;
 import org.eclipse.ocl.pivot.util.Visitor;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,7 +42,7 @@ public class PrimitiveCompletePackageImpl extends CompletePackageImpl implements
 	protected PrimitiveCompletePackageImpl()
 	{
 		super();
-		init("$primitives$", "prim", PivotConstantsInternal.PRIMITIVES_URI);
+		init("$primitives$", "prim", PivotConstants.PRIMITIVES_URI);
 	}
 
 	@Override

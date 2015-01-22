@@ -109,7 +109,7 @@ public class StereotypeProperty extends ConstrainedProperty
 				if (body != null) {
 					try {
 						PivotMetamodelManager metamodelManager = ((OCLEvaluationVisitor)evaluator).getMetamodelManager();
-						ExpressionInOCL expr = metamodelManager.getQueryOrThrow(defaultExpression);
+						ExpressionInOCL expr = metamodelManager.parseSpecification(defaultExpression);
 						OCLExpression bodyExpression = expr.getOwnedBody();
 						if (bodyExpression != null) {
 							boxedValue = evaluator.evaluate(bodyExpression);		// FIXME errors

@@ -23,11 +23,11 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.PivotPackage;
-import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.OCL;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.xtext.base.as2cs.AS2CS;
 import org.eclipse.ocl.xtext.base.cs2as.BaseCS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
@@ -215,7 +215,7 @@ public class PivotTests extends XtextTestCase
 
 	@SuppressWarnings("null")
 	protected void doPivotTestOCLstdlib(@NonNull OCL ocl, @NonNull String stem) throws IOException {
-		String pivotName = stem + PivotConstantsInternal.DOT_OCL_AS_FILE_EXTENSION;
+		String pivotName = stem + PivotConstants.DOT_OCL_AS_FILE_EXTENSION;
 		URI pivotURI = getProjectFileURI(pivotName);
 		BaseCSResource csResource = doLoadOCLstdlib(ocl, stem, "oclstdlib");
 		//

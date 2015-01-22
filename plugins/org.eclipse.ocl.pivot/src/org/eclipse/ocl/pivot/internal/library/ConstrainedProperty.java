@@ -52,7 +52,7 @@ public class ConstrainedProperty extends AbstractProperty
 			}
 			try {
 				PivotMetamodelManager metamodelManager = ((OCLEvaluationVisitor)evaluator).getMetamodelManager();
-				expression = expression2 = metamodelManager.getQueryOrThrow(defaultSpecification);
+				expression = expression2 = metamodelManager.parseSpecification(defaultSpecification);
 			} catch (ParserException e) {
 				throw new InvalidValueException(e, "Bad defaultExpression for '{0}'", property);
 			}

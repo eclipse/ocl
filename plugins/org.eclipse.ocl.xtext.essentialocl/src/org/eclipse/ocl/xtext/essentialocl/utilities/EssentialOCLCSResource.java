@@ -37,7 +37,6 @@ import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
@@ -363,7 +362,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	@Override
 	@SuppressWarnings("null")
 	public @NonNull URI getASURI(@NonNull URI csURI) {
-		return csURI.appendFileExtension(PivotConstantsInternal.OCL_AS_FILE_EXTENSION);
+		return csURI.appendFileExtension(PivotConstants.OCL_AS_FILE_EXTENSION);
 	}
 
 	@Override

@@ -8,7 +8,7 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.pivot.internal.utilities;
+package org.eclipse.ocl.pivot.evaluation;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.jdt.annotation.NonNull;
@@ -21,14 +21,13 @@ import org.eclipse.ocl.pivot.PropertyCallExp;
 import org.eclipse.ocl.pivot.StringLiteralExp;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
@@ -37,24 +36,24 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.TupleValue;
 
 /**
- * ConstraintEvaluator provides an abstract framework for evaluation of a constraint with call backs to handle
+ * AbstractConstraintEvaluator provides an abstract framework for evaluation of a constraint with call backs to handle
  * the alternative success, failure, invalid and exception outcomes and return an appropriate value of T.
  *
  * @param <T> the result type
  */
-public abstract class ConstraintEvaluator<T>
+public abstract class AbstractConstraintEvaluator<T>
 {
 	/**
 	 * Return the expression to be evaluated for a constraintSpecification, which is the constraintSpecification.bodyExpression
 	 * unless that is a status TuplePart PropertyCallExp in which case it is the source of the TuplePart PropertyCallExp enabling the
 	 * evaluation to compute the enriched Tuple of invariant results.
 	 */
-	private static @NonNull OCLExpression getConstraintExpression(@NonNull ExpressionInOCL query) {
+	public static @NonNull OCLExpression getConstraintExpression(@NonNull ExpressionInOCL query) {
 		OCLExpression body = query.getOwnedBody();
 		if (body instanceof PropertyCallExp) {
 			PropertyCallExp propertyCallExp = (PropertyCallExp)body;
 			Property referredProperty = propertyCallExp.getReferredProperty();
-			if ((referredProperty != null) && (referredProperty.getOwningClass() instanceof TupleType) && PivotConstantsInternal.STATUS_PART_NAME.equals(referredProperty.getName())) {
+			if ((referredProperty != null) && (referredProperty.getOwningClass() instanceof TupleType) && PivotConstants.STATUS_PART_NAME.equals(referredProperty.getName())) {
 				body = propertyCallExp.getOwnedSource();
 			}
 		}
@@ -62,14 +61,14 @@ public abstract class ConstraintEvaluator<T>
 	}
 
 	protected final @NonNull ExpressionInOCL query;
-	private final @NonNull OCLExpression body;
+	protected final @NonNull OCLExpression body;
 	
 	/**
 	 * Construct an helper for the evaluation of an expression
 	 */
-	public ConstraintEvaluator(@NonNull ExpressionInOCL query) {
+	public AbstractConstraintEvaluator(@NonNull ExpressionInOCL query) {
 		this.query = query;
-		body = getConstraintExpression(query);
+		this.body = getConstraintExpression(query);
 	}
 	
 	/**
@@ -113,7 +112,7 @@ public abstract class ConstraintEvaluator<T>
 		if (result instanceof TupleValue) {
 			TupleValue tupleValue = (TupleValue)result;
 			TupleTypeId tupleTypeId = tupleValue.getTypeId();
-			TuplePartId messagePartId = tupleTypeId.getPartId(PivotConstantsInternal.MESSAGE_PART_NAME);
+			TuplePartId messagePartId = tupleTypeId.getPartId(PivotConstants.MESSAGE_PART_NAME);
 			if (messagePartId != null) {
 				@SuppressWarnings("null")@NonNull String string = String.valueOf(tupleValue.getValue(messagePartId));
 				return string;
@@ -136,7 +135,7 @@ public abstract class ConstraintEvaluator<T>
 		if (result instanceof TupleValue) {
 			TupleValue tupleValue = (TupleValue)result;
 			TupleTypeId tupleTypeId = tupleValue.getTypeId();
-			TuplePartId severityPartId = tupleTypeId.getPartId(PivotConstantsInternal.SEVERITY_PART_NAME);
+			TuplePartId severityPartId = tupleTypeId.getPartId(PivotConstants.SEVERITY_PART_NAME);
 			if (severityPartId != null) {
 				IntegerValue value = ValueUtil.integerValueOf(tupleValue.getValue(severityPartId));
 				int signum = value.signum();
@@ -151,7 +150,7 @@ public abstract class ConstraintEvaluator<T>
 				}
 			}
 			else {
-				TuplePartId statusPartId = tupleTypeId.getPartId(PivotConstantsInternal.STATUS_PART_NAME);
+				TuplePartId statusPartId = tupleTypeId.getPartId(PivotConstants.STATUS_PART_NAME);
 				if (statusPartId != null) {
 					result = tupleValue.getValue(statusPartId);
 				}
@@ -171,7 +170,7 @@ public abstract class ConstraintEvaluator<T>
 		if (result instanceof TupleValue) {
 			TupleValue tupleValue = (TupleValue)result;
 			TupleTypeId tupleTypeId = tupleValue.getTypeId();
-			TuplePartId statusPartId = tupleTypeId.getPartId(PivotConstantsInternal.STATUS_PART_NAME);
+			TuplePartId statusPartId = tupleTypeId.getPartId(PivotConstants.STATUS_PART_NAME);
 			if (statusPartId == null) {
 				return false;
 			}

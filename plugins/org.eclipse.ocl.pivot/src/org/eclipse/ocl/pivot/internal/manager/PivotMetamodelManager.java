@@ -869,8 +869,15 @@ public class PivotMetamodelManager implements MetamodelManager.Internal, Adapter
 				if (bodyExpression != null) {
 					throw new IllegalStateException("Multiple bodies for " + operation);
 				}
-				else {
-					bodyExpression = getQueryOrError(anExpression);
+				try {
+					bodyExpression = parseSpecification(anExpression);
+				} catch (ParserException e) {
+					String message = e.getMessage();
+					if (message == null) {
+						message = "";
+					}
+					logger.error(message);
+					bodyExpression = PivotUtil.createExpressionInOCLError(message);
 				}
 			}
 		}
@@ -973,8 +980,15 @@ public class PivotMetamodelManager implements MetamodelManager.Internal, Adapter
 				if (defaultExpression != null) {
 					throw new IllegalStateException("Multiple derivations for " + property);
 				}
-				else {
-					defaultExpression = getQueryOrError(anExpression);
+				try {
+					defaultExpression = parseSpecification(anExpression);
+				} catch (ParserException e) {
+					String message = e.getMessage();
+					if (message == null) {
+						message = "";
+					}
+					logger.error(message);
+					defaultExpression = PivotUtil.createExpressionInOCLError(message);
 				}
 			}
 		}
@@ -1124,7 +1138,7 @@ public class PivotMetamodelManager implements MetamodelManager.Internal, Adapter
 					org.eclipse.ocl.pivot.Class owningType = operation.getOwningClass();
 					if (owningType != null) {
 						try {
-							ExpressionInOCL query = getQueryOrThrow(specification);
+							ExpressionInOCL query = parseSpecification(specification);
 							implementation = new ConstrainedOperation(query);
 						} catch (ParserException e) {
 							// TODO Auto-generated catch block
@@ -1171,7 +1185,7 @@ public class PivotMetamodelManager implements MetamodelManager.Internal, Adapter
 					org.eclipse.ocl.pivot.Class owningType = operation.getOwningClass();
 					if (owningType != null) {
 						try {
-							ExpressionInOCL query = getQueryOrThrow(specification);
+							ExpressionInOCL query = parseSpecification(specification);
 							implementation = new ConstrainedOperation(query);
 						} catch (ParserException e) {
 							// TODO Auto-generated catch block
@@ -1723,48 +1737,6 @@ public class PivotMetamodelManager implements MetamodelManager.Internal, Adapter
 //		return ProjectMap.getAdapter(asResourceSet);
 	}
 
-	/**
-	 * Return the compiled query for a specification resolving a String body into a non-null boduExpression.
-	 * Returns a body-less ExpressionInOCL embedding any error if an error arises.
-	 */
-	public @NonNull ExpressionInOCL getQueryOrError(@NonNull LanguageExpression specification) {
-		try {
-			return getQueryOrThrow(specification);
-		} catch (ParserException e) {
-			String message = e.getMessage();
-			if (message == null) {
-				message = "";
-			}
-			logger.error(message);
-			return PivotUtil.createExpressionInOCLError(message);
-		}
-	}
-
-	/**
-	 * Return the compiled query for a specification resolving a String body into a non-null bodyExpression.
-	 * Throws a ParserException if conversion fails.
-	 */
-	@Override
-	public @NonNull ExpressionInOCL getQueryOrThrow(@NonNull LanguageExpression specification) throws ParserException {
-		EObject contextElement = ClassUtil.nonNullState(specification.eContainer());
-		return getQueryOrThrow(contextElement, specification);
-	}
-	public @NonNull ExpressionInOCL getQueryOrThrow(@NonNull EObject contextElement, @NonNull LanguageExpression specification) throws ParserException {
-		if ((specification instanceof ExpressionInOCL) && ((ExpressionInOCL)specification).getOwnedBody() != null) {
-			return (ExpressionInOCL)specification;
-		}
-		String expression = specification.getBody();
-		if (expression == null) {
-			throw new ParserException(PivotMessagesInternal.MissingSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(contextElement), PivotUtilInternal.getSpecificationRole(specification));
-		}
-		ParserContext parserContext = getParserContext(specification);
-		if (parserContext == null) {
-			throw new ParserException(PivotMessagesInternal.UnknownContextType_ERROR_, NameUtil.qualifiedNameFor(contextElement), PivotUtilInternal.getSpecificationRole(specification));
-		}
-		parserContext.setRootElement(specification);
-		return parserContext.parse(contextElement, expression);
-	}
-
 	public @NonNull ASResource getResource(@NonNull URI uri, @Nullable String contentType) {
 		Object asResourceFactory = asResourceSet.getResourceFactoryRegistry().getContentTypeToFactoryMap().get(contentType);
 		if (asResourceFactory == null) {
@@ -2224,6 +2196,32 @@ public class PivotMetamodelManager implements MetamodelManager.Internal, Adapter
 	@Override
 	public void notifyChanged(Notification notification) {}
 
+	/**
+	 * Return the compiled query for a specification resolving a String body into a non-null bodyExpression.
+	 * Throws a ParserException if conversion fails.
+	 */
+	@Override
+	public @NonNull ExpressionInOCL parseSpecification(@NonNull LanguageExpression specification) throws ParserException {
+		EObject contextElement = ClassUtil.nonNullState(specification.eContainer());
+		return parseSpecification(contextElement, specification);
+	}
+	@Override
+	public @NonNull ExpressionInOCL parseSpecification(@NonNull EObject contextElement, @NonNull LanguageExpression specification) throws ParserException {
+		if ((specification instanceof ExpressionInOCL) && ((ExpressionInOCL)specification).getOwnedBody() != null) {
+			return (ExpressionInOCL)specification;
+		}
+		String expression = specification.getBody();
+		if (expression == null) {
+			throw new ParserException(PivotMessagesInternal.MissingSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(contextElement), PivotUtilInternal.getSpecificationRole(specification));
+		}
+		ParserContext parserContext = getParserContext(specification);
+		if (parserContext == null) {
+			throw new ParserException(PivotMessagesInternal.UnknownContextType_ERROR_, NameUtil.qualifiedNameFor(contextElement), PivotUtilInternal.getSpecificationRole(specification));
+		}
+		parserContext.setRootElement(specification);
+		return parserContext.parse(contextElement, expression);
+	}
+
 	public void removeExternalResource(@NonNull External2AS external2as) {
 		external2asMap.remove(external2as.getURI());
 	}
@@ -2232,7 +2230,7 @@ public class PivotMetamodelManager implements MetamodelManager.Internal, Adapter
 		asMetamodel = asPackage;
 		String uri = asMetamodel.getURI();
 		if (uri != null) {
-			completeModel.addPackageURI2completeURI(uri, PivotConstantsInternal.METAMODEL_NAME);
+			completeModel.addPackageURI2completeURI(uri, PivotConstants.METAMODEL_NAME);
 		}
 	}
 
@@ -2253,7 +2251,7 @@ public class PivotMetamodelManager implements MetamodelManager.Internal, Adapter
 			getASmetamodel();
 		}
 		else if (!metaNsURI.equals(asMetamodel.getURI())) {
-			completeModel.addPackageURI2completeURI(metaNsURI, PivotConstantsInternal.METAMODEL_NAME);
+			completeModel.addPackageURI2completeURI(metaNsURI, PivotConstants.METAMODEL_NAME);
 //			throw new IllegalMetamodelException(asMetamodel.getNsURI(), metaNsURI);
 		}
 	}

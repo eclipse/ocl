@@ -403,7 +403,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	 */
 	protected @NonNull Operation createVisitOperationDeclaration(@NonNull Map<Element, Element> reDefinitions, @NonNull Operation envOperation, @NonNull Property asChildProperty) throws ParserException {
 		LanguageExpression envSpecification = ClassUtil.nonNullState(envOperation.getBodyExpression());
-		ExpressionInOCL envExpressionInOCL = metamodelManager.getQueryOrThrow(envSpecification);
+		ExpressionInOCL envExpressionInOCL = metamodelManager.parseSpecification(envSpecification);
 		//
 		org.eclipse.ocl.pivot.Class asType = ClassUtil.nonNullState(envOperation.getOwningClass());
 		Variable asElement = PivotUtil.createVariable(LookupClassContext.ELEMENT_NAME, asType, true, null);
@@ -573,7 +573,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		for (@SuppressWarnings("null")@NonNull Operation envOperation : envOperation2asOperation.keySet()) {
 			@SuppressWarnings("null")@NonNull Operation asOperation = envOperation2asOperation.get(envOperation);
 			LanguageExpression envSpecification = ClassUtil.nonNullState(envOperation.getBodyExpression());
-			ExpressionInOCL envExpressionInOCL = metamodelManager.getQueryOrThrow(envSpecification);
+			ExpressionInOCL envExpressionInOCL = metamodelManager.parseSpecification(envSpecification);
 			Variable asElement = (Variable) reDefinitions.get(envExpressionInOCL.getOwnedContext());
 			OCLExpression asExpression = RereferencingCopier.copy(ClassUtil.nonNullState(envExpressionInOCL.getOwnedBody()), reDefinitions);
 			ExpressionInOCL asExpressionInOCL = PivotUtil.createExpressionInOCL(null, asExpression, asElement);

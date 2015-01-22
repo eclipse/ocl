@@ -57,7 +57,7 @@ public class OCLVMEvaluator implements IVMEvaluator
     	if (specification == null) {
             throw new IOException("Missing OCL expression " + eObject.eClass().getName() + " expected as '" + constraintURI + "'");
     	}
-		return metamodelManager.getQueryOrThrow(specification);
+		return metamodelManager.parseSpecification(specification);
 	}
     
 	protected final @NonNull PivotMetamodelManager metamodelManager;

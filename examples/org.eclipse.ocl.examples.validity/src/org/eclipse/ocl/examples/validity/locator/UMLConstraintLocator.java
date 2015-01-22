@@ -39,10 +39,10 @@ import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityManager;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityModel;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.evaluation.AbstractConstraintEvaluator;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
-import org.eclipse.ocl.pivot.internal.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.uml2.uml.Classifier;
@@ -302,7 +302,7 @@ public class UMLConstraintLocator extends AbstractPivotConstraintLocator
 			if (resourceSet != null) {
 				ExpressionInOCL query = getQuery(metamodelManager, pivotConstraint);
 				EvaluationVisitor evaluationVisitor = createEvaluationVisitor(environmentFactory, query, contextObject, monitor);
-				ConstraintEvaluator<Diagnostic> constraintEvaluator = new AbstractConstraintLocator(metamodelManager, query, contextObject)
+				AbstractConstraintEvaluator<Diagnostic> constraintEvaluator = new AbstractConstraintLocator(metamodelManager, query, contextObject)
 				{
 					@Override
 					protected String getObjectLabel() {

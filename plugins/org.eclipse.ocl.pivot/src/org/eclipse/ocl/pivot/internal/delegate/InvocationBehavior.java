@@ -84,7 +84,7 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 			throw new OCLDelegateException(new SemanticException(PivotMessagesInternal.MissingSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(operation), PivotConstantsInternal.BODY_EXPRESSION_ROLE));
 		}
 		try {
-			return metamodelManager.getQueryOrThrow(specification);
+			return metamodelManager.parseSpecification(specification);
 		} catch (ParserException e) {
 			throw new OCLDelegateException(e);
 		}

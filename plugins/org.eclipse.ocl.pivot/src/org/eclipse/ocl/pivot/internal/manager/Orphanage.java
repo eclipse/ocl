@@ -36,6 +36,7 @@ import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceImpl;
 import org.eclipse.ocl.pivot.internal.resource.OCLASResourceFactory;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
 /**
  * An Orphanage provides a Package that weakly contains elements such as type specializations that
@@ -355,7 +356,7 @@ public class Orphanage extends PackageImpl
 		}
 	}
 
-	public static final @NonNull URI ORPHANAGE_URI = ClassUtil.nonNullEMF(URI.createURI(PivotConstantsInternal.ORPHANAGE_URI));
+	public static final @NonNull URI ORPHANAGE_URI = ClassUtil.nonNullEMF(URI.createURI(PivotConstants.ORPHANAGE_URI));
 	private static Orphanage INSTANCE = null;
 	
 	public static void disposeInstance() {
@@ -389,7 +390,7 @@ public class Orphanage extends PackageImpl
 		if (resourceSet == null) {
 			Orphanage instance2 = INSTANCE;
 			if (instance2 == null) {
-				instance2 = INSTANCE = new Orphanage(PivotConstantsInternal.ORPHANAGE_NAME, PivotConstantsInternal.ORPHANAGE_URI);
+				instance2 = INSTANCE = new Orphanage(PivotConstants.ORPHANAGE_NAME, PivotConstants.ORPHANAGE_URI);
 			}
 			return instance2;
 		}
@@ -400,7 +401,7 @@ public class Orphanage extends PackageImpl
 				}
 			}
 		}
-		Orphanage orphanage = new Orphanage(PivotConstantsInternal.ORPHANAGE_NAME, PivotConstantsInternal.ORPHANAGE_URI);
+		Orphanage orphanage = new Orphanage(PivotConstants.ORPHANAGE_NAME, PivotConstants.ORPHANAGE_URI);
 		Resource orphanageResource = new OrphanResource(ORPHANAGE_URI);
 		orphanageResource.getContents().add(orphanage);
 		resourceSet.getResources().add(orphanageResource);
@@ -416,7 +417,7 @@ public class Orphanage extends PackageImpl
 		}
 		else {
 			String uri = asPackage.getURI();
-			return PivotConstantsInternal.ORPHANAGE_URI.equals(uri) || PivotConstantsInternal.OLD_ORPHANAGE_URI.equals(uri);
+			return PivotConstants.ORPHANAGE_URI.equals(uri) || PivotConstantsInternal.OLD_ORPHANAGE_URI.equals(uri);
 		}
 	}
 	

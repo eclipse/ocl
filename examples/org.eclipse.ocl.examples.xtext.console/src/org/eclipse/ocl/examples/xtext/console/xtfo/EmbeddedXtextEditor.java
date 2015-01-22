@@ -25,6 +25,7 @@ import org.eclipse.core.expressions.Expression;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -54,6 +55,7 @@ import org.eclipse.jface.text.source.projection.ProjectionSupport;
 import org.eclipse.jface.text.source.projection.ProjectionViewer;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.swt.SWT;
@@ -170,7 +172,7 @@ public class EmbeddedXtextEditor {
 	
 	private IAnnotationAccess fAnnotationAccess;
 	
-	private OCL.Internal ocl;
+	private @NonNull OCL.Internal ocl;
 	
 	/**
 	 * Creates a new EmbeddedXtextEditor. It must have the SWT.V_SCROLL style at least not to 
@@ -680,17 +682,21 @@ public class EmbeddedXtextEditor {
 
 	public void dispose() {
 		OCL ocl2 = ocl;
-		if (ocl2 != null) {
-			ocl = null;
+//		if (ocl2 != null) {
+//			ocl = null;
 			ocl2.dispose();
-		}
+//		}
 	}
 	
 	public ResourceSet getResourceSet() {
 		return fResourceSetProvider.get(null);
 	}
 
-	public OCL getOCL() {
+	public @NonNull OCL getOCL() {
 		return ocl;
+	}
+
+	public @NonNull EnvironmentFactory getEnvironmentFactory() {
+		return ocl.getEnvironmentFactory();
 	}
 }

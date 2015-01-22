@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.OCL;
@@ -56,7 +57,7 @@ public class EcoreWithOCLFileNewWizard extends AbstractOCLinEcoreFileNewWizard
 		try {
 			ByteArrayInputStream inputStream = new ByteArrayInputStream(initialContentsAsString.getBytes());
 			csResource.load(inputStream, null);
-			Resource asResource = ocl.cs2as(csResource);
+			ASResource asResource = ocl.cs2as(csResource);
 			Resource eResource = ocl.as2ecore(asResource, ecoreURI);
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 			eResource.save(outputStream, null);

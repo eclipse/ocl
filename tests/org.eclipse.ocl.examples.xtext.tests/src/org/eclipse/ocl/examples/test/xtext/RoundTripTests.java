@@ -34,7 +34,6 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.delegate.DelegateInstaller;
 import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
@@ -48,6 +47,7 @@ import org.eclipse.ocl.pivot.uml.internal.as2es.AS2UML;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS.MessageBinder;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
@@ -212,7 +212,7 @@ public class RoundTripTests extends XtextTestCase
 //				System.out.println(++i + ": " + eObject);
 				ExpressionInOCL specification = (ExpressionInOCL) eObject;
 				if ((specification.getOwnedBody() != null) || (specification.getBody() != null)) {
-					environmentFactory.getMetamodelManager().getQueryOrThrow(specification);
+					environmentFactory.getMetamodelManager().parseSpecification(specification);
 				}
 				tit.prune();
 			}
@@ -292,7 +292,7 @@ public class RoundTripTests extends XtextTestCase
 //			URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI),
 //			true).getContents().get(0);
 		String inputName = stem + ".uml";
-		String pivotName = stem + PivotConstantsInternal.DOT_OCL_AS_FILE_EXTENSION;
+		String pivotName = stem + PivotConstants.DOT_OCL_AS_FILE_EXTENSION;
 		String outputName = stem + ".regenerated.uml";
 		URI inputURI = getProjectFileURI(inputName);
 		URI pivotURI = getProjectFileURI(pivotName);

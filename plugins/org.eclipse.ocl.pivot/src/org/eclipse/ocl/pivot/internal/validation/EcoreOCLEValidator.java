@@ -44,12 +44,12 @@ import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.evaluation.AbstractConstraintEvaluator;
 import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.delegate.InvocationBehavior;
 import org.eclipse.ocl.pivot.internal.delegate.SettingBehavior;
 import org.eclipse.ocl.pivot.internal.delegate.ValidationBehavior;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
-import org.eclipse.ocl.pivot.internal.utilities.ConstraintEvaluator;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
@@ -92,7 +92,7 @@ public class EcoreOCLEValidator implements EValidator
 	 * ConstraintEvaluatorWithoutDiagnostics provides the minimal ConstraintEvaluator support for
 	 * use when no diagnostics are required.
 	 */
-	public static class ConstraintEvaluatorWithoutDiagnostics extends ConstraintEvaluator<Boolean>
+	public static class ConstraintEvaluatorWithoutDiagnostics extends AbstractConstraintEvaluator<Boolean>
 	{
 		public ConstraintEvaluatorWithoutDiagnostics(@NonNull ExpressionInOCL expression) {
 			super(expression);
@@ -133,7 +133,7 @@ public class EcoreOCLEValidator implements EValidator
 	 * ConstraintEvaluatorWithoutDiagnostics provides the richer ConstraintEvaluator support for
 	 * use when diagnostics are required.
 	 */
-	public static class ConstraintEvaluatorWithDiagnostics extends ConstraintEvaluator<Boolean>
+	public static class ConstraintEvaluatorWithDiagnostics extends AbstractConstraintEvaluator<Boolean>
 	{
 		protected final @NonNull EObject eObject;
 		protected final @NonNull DiagnosticChain diagnostics;

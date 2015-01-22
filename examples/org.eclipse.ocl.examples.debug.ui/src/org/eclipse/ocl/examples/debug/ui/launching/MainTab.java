@@ -307,7 +307,7 @@ public class MainTab extends AbstractMainTab implements OCLLaunchConstants
 					LanguageExpression specification = ((Constraint) eObject).getOwnedSpecification();
 					if (specification != null) {
 						try {
-							ExpressionInOCL query = getEnvironmentFactory().getMetamodelManager().getQueryOrThrow(specification);
+							ExpressionInOCL query = getEnvironmentFactory().getMetamodelManager().parseSpecification(specification);
 							String displayString = getDisplayString(query);
 							int index = expressionCombo.indexOf(displayString);
 							expressionCombo.select(index);

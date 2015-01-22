@@ -59,7 +59,6 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.context.ModelContext;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
@@ -72,6 +71,7 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.values.Bag;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;
@@ -463,7 +463,7 @@ public class XtextTestCase extends PivotTestCase
 	
 	protected static boolean isValidPivot(Element pivotElement) {
 		if (pivotElement instanceof org.eclipse.ocl.pivot.Package) {
-			if ((pivotElement.eContainer() == null) && PivotConstantsInternal.ORPHANAGE_NAME.equals(((NamedElement) pivotElement).getName())) {
+			if ((pivotElement.eContainer() == null) && PivotConstants.ORPHANAGE_NAME.equals(((NamedElement) pivotElement).getName())) {
 				return false;
 			}
 		}
@@ -479,8 +479,8 @@ public class XtextTestCase extends PivotTestCase
 		if (pivotElement instanceof Type) {
 			EObject eContainer = pivotElement.eContainer();
 			if ((eContainer instanceof org.eclipse.ocl.pivot.Package) && (eContainer.eContainer() == null)
-					&& PivotConstantsInternal.ORPHANAGE_NAME.equals(((NamedElement) pivotElement).getName())
-					&& PivotConstantsInternal.ORPHANAGE_NAME.equals(((NamedElement) eContainer).getName())) {
+					&& PivotConstants.ORPHANAGE_NAME.equals(((NamedElement) pivotElement).getName())
+					&& PivotConstants.ORPHANAGE_NAME.equals(((NamedElement) eContainer).getName())) {
 				return false;
 			}
 		}

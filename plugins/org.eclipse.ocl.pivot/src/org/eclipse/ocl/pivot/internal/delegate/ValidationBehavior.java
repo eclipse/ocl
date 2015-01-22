@@ -115,7 +115,7 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 			throw new OCLDelegateException(new SemanticException(PivotMessagesInternal.MissingSpecificationBody_ERROR_, constraint, PivotConstantsInternal.OWNED_CONSTRAINT_ROLE));
 		}
 		try {
-			return metamodelManager.getQueryOrThrow(specification);
+			return metamodelManager.parseSpecification(specification);
 		} catch (ParserException e) {
 			throw new OCLDelegateException(e);
 		}

@@ -31,10 +31,10 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.evaluation.AbstractConstraintEvaluator;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
-import org.eclipse.ocl.pivot.internal.utilities.ConstraintEvaluator;
+import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2ASUtil;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
@@ -42,6 +42,7 @@ import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -73,7 +74,7 @@ public class UMLOCLEValidator implements EValidator
 	 * ConstraintEvaluatorWithoutDiagnostics provides the minimal ConstraintEvaluator support for
 	 * use when no diagnostics are required.
 	 */
-	public static class ConstraintEvaluatorWithoutDiagnostics extends ConstraintEvaluator<Boolean>
+	public static class ConstraintEvaluatorWithoutDiagnostics extends AbstractConstraintEvaluator<Boolean>
 	{
 		public ConstraintEvaluatorWithoutDiagnostics(@NonNull ExpressionInOCL expression) {
 			super(expression);
@@ -114,7 +115,7 @@ public class UMLOCLEValidator implements EValidator
 	 * ConstraintEvaluatorWithoutDiagnostics provides the richer ConstraintEvaluator support for
 	 * use when diagnostics are required.
 	 */
-	public static class ConstraintEvaluatorWithDiagnostics extends ConstraintEvaluator<Boolean>
+	public static class ConstraintEvaluatorWithDiagnostics extends AbstractConstraintEvaluator<Boolean>
 	{
 		protected final @NonNull EObject eObject;
 		protected final @NonNull DiagnosticChain diagnostics;
@@ -306,9 +307,9 @@ public class UMLOCLEValidator implements EValidator
 									LanguageExpression specification = constraint.getOwnedSpecification();
 									if (specification != null) {
 										try {
-											ExpressionInOCL query = metamodelManager.getQueryOrThrow(specification);
+											ExpressionInOCL query = metamodelManager.parseSpecification(specification);
 											EvaluationVisitor evaluationVisitor = ocl.createEvaluationVisitor(umlStereotypeApplication, query);
-											ConstraintEvaluator<Boolean> constraintEvaluator;
+											AbstractConstraintEvaluator<Boolean> constraintEvaluator;
 											if (diagnostics != null) {
 												constraintEvaluator = new ConstraintEvaluatorWithDiagnostics(query, umlStereotypeApplication, diagnostics, eObject, mayUseNewLines);
 											}
@@ -354,8 +355,8 @@ public class UMLOCLEValidator implements EValidator
 			EList<String> languages = opaqueExpression.getLanguages();
 			for (int i = 0; i < bodies.size(); i++) {
 				try {
-					String language = i < languages.size() ? languages.get(i) : PivotConstantsInternal.OCL_LANGUAGE;
-					if ((i >= languages.size()) || PivotConstantsInternal.OCL_LANGUAGE.equals(languages.get(i))) {
+					String language = i < languages.size() ? languages.get(i) : PivotConstants.OCL_LANGUAGE;
+					if ((i >= languages.size()) || PivotConstants.OCL_LANGUAGE.equals(languages.get(i))) {
 						String body = bodies.get(i);
 						if (body != null) {
 							if (VALIDATE_INSTANCE.isActive()) {
@@ -448,12 +449,12 @@ public class UMLOCLEValidator implements EValidator
 		boolean allOk = true;
 		if (context != null) {
 			for (int i = 0; i < bodies.size(); i++) {
-				if ((i >= languages.size()) || PivotConstantsInternal.OCL_LANGUAGE.equals(languages.get(i))) {
+				if ((i >= languages.size()) || PivotConstants.OCL_LANGUAGE.equals(languages.get(i))) {
 					try {
 						String body = bodies.get(i);
 						if (body != null) {
 							if (VALIDATE_OPAQUE_ELEMENT.isActive()) {
-								VALIDATE_OPAQUE_ELEMENT.println(PivotConstantsInternal.OCL_LANGUAGE + ": " + body);
+								VALIDATE_OPAQUE_ELEMENT.println(PivotConstants.OCL_LANGUAGE + ": " + body);
 							}
 							if (!validateSyntax(null, body, opaqueElement, diagnostics, context) && (diagnostics == null)) {
 								allOk = false;
@@ -501,7 +502,7 @@ public class UMLOCLEValidator implements EValidator
 				}
 				return false;
 			}
-			asQuery = metamodelManager.getQueryOrThrow(asSpecification);
+			asQuery = metamodelManager.parseSpecification(asSpecification);
 		} catch (ParserException e) {
 			if (diagnostics != null) {
 				String objectLabel = LabelUtil.getLabel(opaqueElement);
@@ -516,7 +517,7 @@ public class UMLOCLEValidator implements EValidator
 		}
 		if (instance != null) {
 			EvaluationVisitor evaluationVisitor = ocl.createEvaluationVisitor(instance, asQuery);
-			ConstraintEvaluator<Boolean> constraintEvaluator;
+			AbstractConstraintEvaluator<Boolean> constraintEvaluator;
 			if (diagnostics != null) {
 				constraintEvaluator = new ConstraintEvaluatorWithDiagnostics(asQuery, instance, diagnostics, instance, mayUseNewLines);
 			}

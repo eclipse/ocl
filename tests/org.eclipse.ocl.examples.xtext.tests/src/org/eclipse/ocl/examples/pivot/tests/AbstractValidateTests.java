@@ -30,6 +30,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.pivot.internal.values.BagImpl;
+import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.uml.internal.validation.UMLOCLEValidator;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
@@ -88,7 +89,6 @@ public abstract class AbstractValidateTests extends PivotTestCase
 		return ocl;
 	}
 
-	@SuppressWarnings("null")
 	public Resource doLoadOCLinEcore(OCL ocl, String stem) throws IOException {
 		String inputName = stem + ".oclinecore";
 		String ecoreName = stem + ".ecore";
@@ -96,9 +96,9 @@ public abstract class AbstractValidateTests extends PivotTestCase
 		URI ecoreURI = getProjectFileURI(ecoreName);
 		CSResource xtextResource = ocl.getCSResource(inputURI);
 		assertNoResourceErrors("Load failed", xtextResource);
-		Resource asResource = ocl.cs2as(xtextResource);
+		ASResource asResource = ocl.cs2as(xtextResource);
 		assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
-		assertNoValidationErrors("Pivot validation errors", asResource.getContents().get(0));
+		assertNoValidationErrors("Pivot validation errors", asResource.getModel());
 		Resource ecoreResource = as2ecore(ocl, asResource, ecoreURI, true);
 		return ecoreResource;
 	}
@@ -109,15 +109,15 @@ public abstract class AbstractValidateTests extends PivotTestCase
 		return ocl.getResourceSet().getResource(umlURI, true);
 	}
 
-	@SuppressWarnings("null")
 	public @NonNull List<Diagnostic> doValidateOCLinEcore(OCL ocl, String stem, String... validationDiagnostics) throws IOException {
 		String inputName = stem + ".oclinecore";
 		URI inputURI = getProjectFileURI(inputName);
 		BaseCSResource xtextResource = (BaseCSResource) ocl.getResourceSet().createResource(inputURI);
+		assert xtextResource != null;
 		ocl.getEnvironmentFactory().adapt(xtextResource);
 		xtextResource.load(null);
 		assertNoResourceErrors("Load failed", xtextResource);
-		Resource asResource = ocl.cs2as(xtextResource);
+		ASResource asResource = ocl.cs2as(xtextResource);
 		assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
 		return assertValidationDiagnostics("Pivot validation errors", asResource, validationDiagnostics);
 	}

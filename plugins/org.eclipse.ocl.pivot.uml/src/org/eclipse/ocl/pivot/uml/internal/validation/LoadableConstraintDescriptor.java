@@ -191,7 +191,7 @@ public abstract class LoadableConstraintDescriptor<T> extends AbstractConstraint
 				return ctx.createFailureStatus(target);
 			}
 			try {
-				query = query2 = metamodelManager.getQueryOrThrow(specification);
+				query = query2 = metamodelManager.parseSpecification(specification);
 			} catch (ParserException e) {
 				return ctx.createFailureStatus(e.getLocalizedMessage());
 			}

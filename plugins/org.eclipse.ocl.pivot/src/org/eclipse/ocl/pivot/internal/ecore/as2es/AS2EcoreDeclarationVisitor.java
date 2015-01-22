@@ -71,6 +71,7 @@ import org.eclipse.ocl.pivot.internal.manager.Orphanage;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
@@ -554,7 +555,7 @@ public class AS2EcoreDeclarationVisitor
 				if (importedNamespace != null) {
 					if (importAnnotation == null) {
 						importAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-						importAnnotation.setSource(PivotConstantsInternal.IMPORT_ANNOTATION_SOURCE);
+						importAnnotation.setSource(PivotConstants.IMPORT_ANNOTATION_SOURCE);
 					}
 					EObject eTarget = importedNamespace.getETarget();
 					if (eTarget != null) {

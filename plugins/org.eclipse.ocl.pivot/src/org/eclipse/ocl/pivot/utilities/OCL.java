@@ -323,7 +323,7 @@ public class OCL
 		}
 		ExpressionInOCL query;
 		try {
-			query = getMetamodelManager().getQueryOrThrow(specification);
+			query = getMetamodelManager().parseSpecification(specification);
 		} catch (ParserException e) {
 //			e.printStackTrace();
 			return false;
@@ -448,15 +448,15 @@ public class OCL
 	 */
 	public Query createQuery(@NonNull Constraint constraint) throws ParserException {
 		LanguageExpression specification = ClassUtil.nonNullState(constraint.getOwnedSpecification());
-		ExpressionInOCL query = getMetamodelManager().getQueryOrThrow(specification);
+		ExpressionInOCL query = getMetamodelManager().parseSpecification(specification);
 		return new QueryImpl(this, query);
 	}
 
 	/**
 	 * Return the Pivot resource counterpart of an Xtext csResource.
 	 */
-	public @NonNull Resource cs2as(@NonNull CSResource csResource) {
-		Resource asResource = csResource.getASResource();
+	public @NonNull ASResource cs2as(@NonNull CSResource csResource) {
+		ASResource asResource = csResource.getASResource();
 		return asResource;
 	}
 
@@ -661,7 +661,7 @@ public class OCL
 				return query;
 			}
 		}
-		return getMetamodelManager().getQueryOrThrow(specification);
+		return getMetamodelManager().parseSpecification(specification);
 	}
 
 	public @NonNull StandardLibrary getStandardLibrary() {
@@ -730,7 +730,7 @@ public class OCL
 	 * Load the Complete OCL document specified by the URI into the external ResourceSet and
 	 * parse the concrete syntax resource returning the resulting abstract syntax resource.
 	 */
-	public @Nullable Resource parse(@NonNull URI uri) {
+	public @Nullable ASResource parse(@NonNull URI uri) {
 		CSResource csResource = load(uri);
 		return csResource != null ? cs2as(csResource) : null;
 	}
@@ -752,7 +752,38 @@ public class OCL
 		traceEvaluation = b;
 		environmentFactory.setEvaluationTracingEnabled(traceEvaluation);
 	}
-
+	
+	/**
+	 * Convert the specification of an OCL expression from textual CS form to parsed executable AS form. The textual form typically
+	 * results from simple construction from source text or a UML OpaqueExpression.
+	 * <p>
+	 * The returned object may be the same object as the specification, but with the more derived type to signify successful conversion
+	 * from textual to executable form. Redundant re-invocation of parseSpecification is harmless.
+	 * <p>
+	 * The specification's container, typically a Constraint or Operation is used as the contextElement to determine self within the expression.
+	 * 
+	 * @throws ParserException if text parsing fails
+	 */
+	public @NonNull ExpressionInOCL parseSpecification(@NonNull LanguageExpression specification) throws ParserException {
+		return getMetamodelManager().parseSpecification(specification);
+	}
+	
+	/**
+	 * Convert the specification of an OCL expression from textual CS form to parsed executable AS form. The textual form typically
+	 * results from simple construction from source text or a UML OpaqueExpression.
+	 * <p>
+	 * The returned object may be the same object as the specification, but with the more derived type to signify successful conversion
+	 * from textual to executable form. Redundant re-invocation of parseSpecification is harmless.
+	 * <p>
+	 * The contextElement, typically a Constraint/Operation/Property or ECLass/EOperation/EStructuralFeature,
+	 * to determine the type of self within the expression.
+	 * 
+	 * @throws ParserException if text parsing fails
+	 */
+	public @NonNull ExpressionInOCL parseSpecification(@NonNull EObject contextElement, @NonNull LanguageExpression specification) throws ParserException {
+		return getMetamodelManager().parseSpecification(specification);
+	}
+	
 	/**
 	 * Assigns a custom extent map to define the extents of classes in
 	 * evaluation of OCL constraints. This is only needed if the default dynamic

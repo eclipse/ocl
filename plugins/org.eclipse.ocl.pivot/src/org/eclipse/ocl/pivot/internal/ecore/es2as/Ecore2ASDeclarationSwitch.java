@@ -83,6 +83,7 @@ import org.eclipse.ocl.pivot.internal.utilities.AliasAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.util.DerivedConstants;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
@@ -93,7 +94,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 	}
 	
 	public static boolean hasImportKey(@Nullable String source, @NonNull EMap<String, String> details) {
-		return PivotConstantsInternal.IMPORT_ANNOTATION_SOURCE.equals(source);
+		return PivotConstants.IMPORT_ANNOTATION_SOURCE.equals(source);
 	}
 	
 	public static boolean isDocumentationKey(@Nullable String source, @Nullable String key) {

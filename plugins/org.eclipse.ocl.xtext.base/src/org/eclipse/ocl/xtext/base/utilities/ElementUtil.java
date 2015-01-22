@@ -262,13 +262,13 @@ public class ElementUtil
 							for (Constraint asConstraint : asType.getOwnedInvariants()) {
 								LanguageExpression specification = asConstraint.getOwnedSpecification();
 								if (specification != null) {
-									return metamodelManager.getQueryOrThrow(specification);
+									return metamodelManager.parseSpecification(specification);
 								}
 							}
 							for (Operation asOperation : asType.getOwnedOperations()) {
 								LanguageExpression specification = asOperation.getBodyExpression();
 								if (specification != null) {
-									return metamodelManager.getQueryOrThrow(specification);
+									return metamodelManager.parseSpecification(specification);
 								}
 							}
 						}

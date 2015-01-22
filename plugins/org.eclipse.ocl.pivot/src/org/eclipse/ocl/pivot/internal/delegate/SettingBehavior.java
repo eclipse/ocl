@@ -62,7 +62,7 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 			throw new OCLDelegateException(new SemanticException(message));
 		}
 		try {
-			return metamodelManager.getQueryOrThrow(specification);
+			return metamodelManager.parseSpecification(specification);
 		} catch (ParserException e) {
 			throw new OCLDelegateException(e);
 		}

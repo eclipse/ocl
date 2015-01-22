@@ -15,6 +15,7 @@ import java.util.Map;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
@@ -73,4 +74,9 @@ public interface ASResource extends XMIResource
 	 * to create further artefacts.
 	 */
 	@NonNull ASResourceFactory getASResourceFactory();
+
+	/**
+	 * Return the Model that provides the sole root content. Throws an IllegalStateException if there is none.
+	 */
+	@NonNull Model getModel();
 }

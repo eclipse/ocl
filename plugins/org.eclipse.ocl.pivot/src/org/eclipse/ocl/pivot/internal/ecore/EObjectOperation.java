@@ -52,7 +52,7 @@ public class EObjectOperation extends AbstractOperation
 			try {
 				EvaluationVisitor evaluationVisitor = (EvaluationVisitor)evaluator;
 				MetamodelManager metamodelManager = evaluationVisitor.getMetamodelManager();
-				metamodelManager.getQueryOrThrow(specification);
+				metamodelManager.parseSpecification(specification);
 			} catch (ParserException e) {
 				throw new InvalidValueException(e, "parse failure", evaluator.getEvaluationEnvironment(), sourceValue, callExp);
 			}
