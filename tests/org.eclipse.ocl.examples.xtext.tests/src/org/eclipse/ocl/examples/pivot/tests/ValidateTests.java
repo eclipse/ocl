@@ -186,14 +186,11 @@ public class ValidateTests extends AbstractValidateTests
 		OCL ocl = OCL.newInstance(getProjectMap());
 		URI ecoreURI = URI.createPlatformResourceURI("/org.eclipse.ocl.pivot/model/Pivot.ecore", true);
 		Resource ecoreResource = ocl.getResourceSet().getResource(ecoreURI, true);
+		assert ecoreResource != null;
 		//
 		//	Check EObjectValidator errors
 		//
-		EPackage pkg = (EPackage) ecoreResource.getContents().get(0);
-		EClass cls = (EClass) pkg.getEClassifier("Element");
-		EOperation op = NameUtil.getENamedElement(cls.getEOperations(), "allOwnedElements");
-		assertEcoreOCLValidationDiagnostics(ocl, "Ecore Load", ecoreResource,
-			StringUtil.bind(EcoreOCLEValidator.INCOMPATIBLE_TYPE_2, "Set(OclElement)", LabelUtil.getLabel(op), "body")); // FIXME BUG 437616 resolve Element/OclElement conflict
+		assertEcoreOCLValidationDiagnostics(ocl, "Ecore Load", ecoreResource);
 		//
 		ocl.dispose();
 	}
