@@ -383,7 +383,7 @@
       <ownedComments body="An element is a constituent of a model."/>
       <ownedOperations xmi:id="o.pivot.Element.allOwnedElements" name="allOwnedElements"
           type="#//@ownedPackages.1/@ownedClasses.142">
-        <bodyExpression xsi:type="pivot:ExpressionInOCL" body="&#xA;--self->closure(oclContents())&#xA;oclContents()&#xA;&#xA;"/>
+        <bodyExpression xsi:type="pivot:ExpressionInOCL" body="&#xA;&#x9;self->closure(oclContents()->selectByKind(Element))&#xA;&#xA;"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.pivot.Element.getValue..pivot.Type..pivot.String"
           isRequired="false" name="getValue" type="#T.pivot.Element">

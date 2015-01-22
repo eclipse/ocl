@@ -9,8 +9,7 @@ inv UniqueName: true -- _'context'.ownedRule->excluding(self)->forAll(name <> se
 
 context Element
 def: allOwnedElements() : Set(Element) =
---self->closure(oclContents())
-oclContents()
+	self->closure(oclContents()->selectByKind(Element))
 
 --FIXME oclContainer() suspect on DomainElements
 --def: owner : Element = oclContainer()

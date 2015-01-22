@@ -453,7 +453,7 @@
     </eAnnotations>
     <eOperations name="allOwnedElements" ordered="false" upperBound="-1" eType="#//Element">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;--self->closure(oclContents())&#xA;oclContents()&#xA;&#xA;"/>
+        <details key="body" value="&#xA;&#x9;self->closure(oclContents()->selectByKind(Element))&#xA;&#xA;"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="getValue" eType="#//Element">

@@ -1611,7 +1611,7 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedParameters.add(parameter = createParameter("name", _String, false));
 			ownedOperations = _Element.getOwnedOperations();
 			ownedOperations.add(operation = op_Element_allOwnedElements);
-			operation.setBodyExpression(createExpressionInOCL(_Set_Element, "--self->closure(oclContents())\noclContents()"));
+			operation.setBodyExpression(createExpressionInOCL(_Set_Element, "self->closure(oclContents()->selectByKind(Element))"));
 			ownedOperations.add(operation = op_Element_getValue);
 			operation.setIsRequired(false);
 			operation.setBodyExpression(createExpressionInOCL(_Element, "null"));
