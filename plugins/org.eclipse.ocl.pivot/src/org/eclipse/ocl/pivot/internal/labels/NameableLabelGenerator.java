@@ -11,8 +11,8 @@
 package org.eclipse.ocl.pivot.internal.labels;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.Nameable;
 import org.eclipse.ocl.pivot.labels.AbstractLabelGenerator;
+import org.eclipse.ocl.pivot.utilities.Nameable;
 
 public final class NameableLabelGenerator extends AbstractLabelGenerator<Nameable>
 {

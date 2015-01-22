@@ -12,8 +12,8 @@ package org.eclipse.ocl.pivot.library.executor;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Enumeration;
-import org.eclipse.ocl.pivot.elements.AbstractExecutorEnumerationLiteral;
 import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
+import org.eclipse.ocl.pivot.internal.elements.AbstractExecutorEnumerationLiteral;
 
 public abstract class ExecutorEnumerationLiteral extends AbstractExecutorEnumerationLiteral
 {

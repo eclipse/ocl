@@ -35,7 +35,7 @@ import org.eclipse.ocl.examples.debug.vm.utils.VMInterruptedExecutionException;
 import org.eclipse.ocl.examples.debug.vm.utils.VMRuntimeException;
 import org.eclipse.ocl.examples.debug.vm.utils.VMStackOverFlowError;
 import org.eclipse.ocl.pivot.NamedElement;
-import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.osgi.util.NLS;
 

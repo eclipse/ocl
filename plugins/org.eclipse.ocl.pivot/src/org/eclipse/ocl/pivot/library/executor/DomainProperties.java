@@ -17,9 +17,9 @@ import java.util.Map;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CompleteInheritance;
-import org.eclipse.ocl.pivot.FeatureFilter;
 import org.eclipse.ocl.pivot.InheritanceFragment;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.utilities.FeatureFilter;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;

@@ -8,7 +8,7 @@
  * Contributors:
  *     Radek Dvorak - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.pivot.internal;
+package org.eclipse.ocl.pivot.internal.utilities;
 
 import org.eclipse.emf.common.util.Diagnostic;
 

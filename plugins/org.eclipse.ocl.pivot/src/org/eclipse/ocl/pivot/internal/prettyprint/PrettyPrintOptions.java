@@ -18,8 +18,8 @@ import java.util.Set;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Namespace;
+import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 
 /**
  * PrettyPrintOptions defines the capability to provide options to the PrettyPrinter

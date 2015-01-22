@@ -13,7 +13,6 @@
 package org.eclipse.ocl.pivot.internal.utilities;
 
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.AbstractEnvironmentFactory;
 

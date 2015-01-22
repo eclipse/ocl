@@ -431,7 +431,7 @@
   <Ecore:EDataType xmi:id="_csPFYMo-Ed-ZL8lMORCEkg" instanceClassName="java.lang.Number" base_PrimitiveType="MDTOCL-MDT_OCL_PrimitiveTypes-Integer"/>
   <Ecore:EDataType xmi:id="_d3XbwMo-Ed-ZL8lMORCEkg" instanceClassName="boolean" base_PrimitiveType="MDTOCL-MDT_OCL_PrimitiveTypes-Boolean"/>
   <Ecore:EClass xmi:id="_eCpH8M9-Ed-OX-Zde0V6vA" instanceClassName="org.eclipse.ocl.pivot.util.Visitable" base_Interface="MDTOCL-MDT_OCL_Visiting-Visitable" className="Visitable"/>
-  <Ecore:EClass xmi:id="_n6SYcN9WEd-5RuvZBdnt0A" instanceClassName="org.eclipse.ocl.pivot.Nameable" base_Interface="MDTOCL-MDT_OCL_Framework-Nameable" className="Nameable"/>
+  <Ecore:EClass xmi:id="_n6SYcN9WEd-5RuvZBdnt0A" instanceClassName="org.eclipse.ocl.pivot.utilities.Nameable" base_Interface="MDTOCL-MDT_OCL_Framework-Nameable" className="Nameable"/>
   <Ecore:EClass xmi:id="_pecS0N9WEd-5RuvZBdnt0A" instanceClassName="org.eclipse.ocl.pivot.utilities.Pivotable" base_Interface="MDTOCL-MDT_OCL_Framework-Pivotable" className="Pivotable"/>
   <Ecore:EAttribute xmi:id="_1hNtAPPiEd-7P5P8zTFtow" isUnsettable="true" base_Property="MDTOCL-MDT_OCL_PrimitiveTypes-BooleanLiteralExp-booleanSymbol"/>
   <Ecore:EDataType xmi:id="_51mtUAFqEeCxa8jNFLJGww" instanceClassName="org.eclipse.ocl.pivot.library.LibraryFeature" base_PrimitiveType="MDTOCL-MDT_OCL_Evaluation-LibraryFeature"/>

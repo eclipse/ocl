@@ -22,6 +22,7 @@ import java.util.Set;
 
 
 
+
 //import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -29,10 +30,10 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.EnvironmentFactory;
-import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
+import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.ParserException;
 
 /**
  * UML2ASUtil provides a variety of helpful routines for dealing with UML midels in conjunction with the Pivot-based OCL.

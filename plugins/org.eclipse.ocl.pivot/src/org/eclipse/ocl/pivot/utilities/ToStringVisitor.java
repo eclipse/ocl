@@ -56,7 +56,6 @@ import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.LetExp;
 import org.eclipse.ocl.pivot.MessageExp;
 import org.eclipse.ocl.pivot.Model;
-import org.eclipse.ocl.pivot.Nameable;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.NavigationCallExp;
 import org.eclipse.ocl.pivot.NullLiteralExp;

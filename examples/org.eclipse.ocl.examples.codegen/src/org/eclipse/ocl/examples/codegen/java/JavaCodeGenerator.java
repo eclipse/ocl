@@ -54,7 +54,6 @@ import org.eclipse.ocl.examples.codegen.java.types.UnboxedDescriptor;
 import org.eclipse.ocl.examples.codegen.utilities.AbstractCGModelResourceFactory;
 import org.eclipse.ocl.examples.codegen.utilities.CGModelResource;
 import org.eclipse.ocl.examples.codegen.utilities.CGModelResourceFactory;
-import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
@@ -72,6 +71,7 @@ import org.eclipse.ocl.pivot.library.iterator.OneIteration;
 import org.eclipse.ocl.pivot.library.iterator.RejectIteration;
 import org.eclipse.ocl.pivot.library.iterator.SelectIteration;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 
 /**
  * OCL2JavaClass supports generation of the content of a JavaClassFile to

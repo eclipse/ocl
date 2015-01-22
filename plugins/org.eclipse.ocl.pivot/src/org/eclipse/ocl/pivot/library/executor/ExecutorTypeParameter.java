@@ -19,9 +19,9 @@ import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.elements.AbstractExecutorType;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TemplateParameterId;
+import org.eclipse.ocl.pivot.internal.elements.AbstractExecutorType;
 
 public class ExecutorTypeParameter extends AbstractExecutorType implements ExecutorTypeArgument, TemplateParameter
 {

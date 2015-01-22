@@ -17,11 +17,11 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Constraint;
-import org.eclipse.ocl.pivot.Nameable;
-import org.eclipse.ocl.pivot.elements.AbstractExecutorPackage;
 import org.eclipse.ocl.pivot.ids.ElementId;
 import org.eclipse.ocl.pivot.ids.PackageId;
+import org.eclipse.ocl.pivot.internal.elements.AbstractExecutorPackage;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.Nameable;
 
 public abstract class ExecutorPackage extends AbstractExecutorPackage
 {

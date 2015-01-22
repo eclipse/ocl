@@ -8,7 +8,7 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.pivot.elements;
+package org.eclipse.ocl.pivot.internal.elements;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;

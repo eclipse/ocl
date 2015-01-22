@@ -8,49 +8,52 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.pivot.elements;
+package org.eclipse.ocl.pivot.internal.elements;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.Operation;
-import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.Class;
+import org.eclipse.ocl.pivot.Feature;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.library.LibraryFeature;
 
-public final class AbstractExecutorParameter extends AbstractExecutorTypedElement implements Parameter
+public class AbstractExecutorFeature extends AbstractExecutorTypedElement implements Feature
 {
-	protected final boolean typeof;
-	
-	public AbstractExecutorParameter(@NonNull String name, @NonNull Type type, boolean typeof) {
-		super(name, type);
-		this.typeof = typeof;
-	}
-	
-	@Override
-	public boolean isTypeof() {
-		return typeof;
+	public AbstractExecutorFeature(@NonNull String name, @NonNull Type executorType) {
+		super(name, executorType);
 	}
 
 	@Override
-	public Type getTypeValue() {
+	public LibraryFeature getImplementation() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void setTypeValue(Type value) {
+	public String getImplementationClass() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void setIsTypeof(boolean value) {
+	public Class getOwningClass() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public Operation getOwningOperation() {
+	public boolean isStatic() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void setOwningOperation(Operation value) {
+	public void setImplementation(LibraryFeature value) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setImplementationClass(String value) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setIsStatic(boolean value) {
 		throw new UnsupportedOperationException();
 	}
 }

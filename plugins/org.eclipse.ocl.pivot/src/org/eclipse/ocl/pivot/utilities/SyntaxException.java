@@ -10,7 +10,7 @@
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
  *******************************************************************************/
 
-package org.eclipse.ocl.pivot;
+package org.eclipse.ocl.pivot.utilities;
 
 import org.eclipse.emf.common.util.Diagnostic;
 

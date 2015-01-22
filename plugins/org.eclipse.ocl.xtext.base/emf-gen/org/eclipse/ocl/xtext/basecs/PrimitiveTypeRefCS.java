@@ -11,7 +11,7 @@
 
 package org.eclipse.ocl.xtext.basecs;
 
-import org.eclipse.ocl.pivot.Nameable;
+import org.eclipse.ocl.pivot.utilities.Nameable;
 
 /**
  * <!-- begin-user-doc -->

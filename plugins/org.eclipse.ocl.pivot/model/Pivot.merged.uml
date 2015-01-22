@@ -1993,7 +1993,8 @@
   <Ecore:EDataType xmi:id="PA.Ppivot.TThrowable" instanceClassName="java.lang.Throwable" base_PrimitiveType="Ppivot.TThrowable"/>
   <Ecore:EClass xmi:id="PA.Ppivot.TMorePivotable" instanceClassName="org.eclipse.ocl.pivot.utilities.MorePivotable" base_Interface="Ppivot.TMorePivotable"
       className="MorePivotable"/>
-  <Ecore:EClass xmi:id="PA.Ppivot.TNameable" instanceClassName="org.eclipse.ocl.pivot.Nameable" base_Interface="Ppivot.TNameable" className="Nameable"/>
+  <Ecore:EClass xmi:id="PA.Ppivot.TNameable" instanceClassName="org.eclipse.ocl.pivot.utilities.Nameable" base_Interface="Ppivot.TNameable"
+      className="Nameable"/>
   <Ecore:EClass xmi:id="PA.Ppivot.TPivotable" instanceClassName="org.eclipse.ocl.pivot.utilities.Pivotable" base_Interface="Ppivot.TPivotable"
       className="Pivotable"/>
   <Ecore:EAttribute xmi:id="PA.Ppivot.TPrecedence.Porder" base_Property="Ppivot.TPrecedence.Porder"/>

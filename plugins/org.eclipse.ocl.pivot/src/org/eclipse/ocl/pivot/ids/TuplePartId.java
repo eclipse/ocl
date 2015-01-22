@@ -11,7 +11,7 @@
 package org.eclipse.ocl.pivot.ids;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.Nameable;
+import org.eclipse.ocl.pivot.utilities.Nameable;
 
 /**
  * A TuplePartId provides a unique identifier for a TuplePart such as first:String.

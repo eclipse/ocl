@@ -17,9 +17,9 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.ParameterTypes;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.elements.AbstractExecutorParameter;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.ParametersId;
+import org.eclipse.ocl.pivot.internal.elements.AbstractExecutorParameter;
 
 /**
  * DomainParameterTypesIterable provides a hashable list of operation

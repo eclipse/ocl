@@ -10,8 +10,8 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.essentialoclcs;
 
-import org.eclipse.ocl.pivot.Nameable;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.utilities.Nameable;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;
 
 /**

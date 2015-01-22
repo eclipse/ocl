@@ -9,13 +9,12 @@
  *   IBM - Initial API and implementation
  *******************************************************************************/
 
-package org.eclipse.ocl.pivot;
+package org.eclipse.ocl.pivot.utilities;
 
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.pivot.messages.StatusCodes;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
-import org.eclipse.ocl.pivot.utilities.StringUtil;
 
 /**
  * Exception indicating a failure to parse or validate OCL constraints.

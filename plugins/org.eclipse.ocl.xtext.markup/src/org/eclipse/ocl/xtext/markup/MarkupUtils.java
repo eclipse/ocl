@@ -15,7 +15,7 @@ import java.io.StringReader;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.xtext.markup.parser.antlr.MarkupParser;
 import org.eclipse.ocl.xtext.markupcs.Markup;
 import org.eclipse.ocl.xtext.markupcs.NewLineElement;

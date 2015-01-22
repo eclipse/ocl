@@ -15,6 +15,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ids.OperationId;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
 import org.eclipse.ocl.pivot.utilities.IndexableIterable;
+import org.eclipse.ocl.pivot.utilities.Nameable;
 
 /**
  * An Inheritance provides access to the transitive inheritance relationships of a type

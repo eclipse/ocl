@@ -786,7 +786,7 @@
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.MorePivotable" instanceClassName="org.eclipse.ocl.pivot.utilities.MorePivotable"
         isAbstract="true" isInterface="true" name="MorePivotable" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclElement"/>
-    <ownedClasses xmi:id="T.pivot.Nameable" instanceClassName="org.eclipse.ocl.pivot.Nameable"
+    <ownedClasses xmi:id="T.pivot.Nameable" instanceClassName="org.eclipse.ocl.pivot.utilities.Nameable"
         isAbstract="true" isInterface="true" name="Nameable" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclElement"/>
     <ownedClasses xmi:id="T.pivot.NamedElement" isAbstract="true" name="NamedElement"
         superClasses="#T.pivot.Element #T.pivot.Nameable">

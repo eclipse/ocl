@@ -12,7 +12,7 @@ package org.eclipse.ocl.pivot.types;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.elements.AbstractExecutorTypedElement;
+import org.eclipse.ocl.pivot.internal.elements.AbstractExecutorTypedElement;
 
 public class AbstractTuplePart extends AbstractExecutorTypedElement
 {

@@ -9,7 +9,7 @@
  *   E.D.Willink - initial API and implementation
  * 	 E.D.Willink (Obeo) - Bug 416287 - tuple-valued constraints
  *******************************************************************************/
-package org.eclipse.ocl.pivot.internal;
+package org.eclipse.ocl.pivot.internal.utilities;
 
 import java.util.HashMap;
 import java.util.Map;

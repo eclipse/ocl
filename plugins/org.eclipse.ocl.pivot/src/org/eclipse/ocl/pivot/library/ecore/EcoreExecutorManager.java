@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.PivotObject;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
@@ -33,6 +32,7 @@ import org.eclipse.ocl.pivot.library.executor.ExecutorManager;
 import org.eclipse.ocl.pivot.library.executor.ExecutorStandardLibrary;
 import org.eclipse.ocl.pivot.library.executor.LazyModelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotObject;
 
 /**
  * An EcoreExecutorManager instance provides the bridge between a conventional EMF execution context

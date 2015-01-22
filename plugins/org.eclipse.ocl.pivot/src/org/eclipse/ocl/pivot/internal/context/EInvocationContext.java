@@ -17,9 +17,9 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 
 /**
  * EInvocationContext supports parsing OCL expressions in the context of a query,

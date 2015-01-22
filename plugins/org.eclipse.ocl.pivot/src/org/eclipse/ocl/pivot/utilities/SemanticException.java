@@ -9,9 +9,8 @@
  *   IBM - Initial API and implementation
  *******************************************************************************/
 
-package org.eclipse.ocl.pivot;
+package org.eclipse.ocl.pivot.utilities;
 
-import org.eclipse.ocl.pivot.utilities.StringUtil;
 
 /**
  * Exception indicating a semantic error in parsing or validating OCL

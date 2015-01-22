@@ -8,7 +8,7 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.pivot.internal;
+package org.eclipse.ocl.pivot.internal.utilities;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,8 +19,8 @@ import java.io.UnsupportedEncodingException;
 import java.nio.CharBuffer;
 import java.nio.charset.Charset;
 
-import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
+import org.eclipse.ocl.pivot.utilities.ParserException;
 
 /**
  * Encapsulation of an OCL document, which may be obtained from a string or from

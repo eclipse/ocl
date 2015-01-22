@@ -13,7 +13,7 @@
 
 package org.eclipse.ocl.pivot.options;
 
-import org.eclipse.ocl.pivot.Customizable;
+import org.eclipse.ocl.pivot.utilities.Customizable;
 
 /**
  * Options applicable to {@link Environment}s to

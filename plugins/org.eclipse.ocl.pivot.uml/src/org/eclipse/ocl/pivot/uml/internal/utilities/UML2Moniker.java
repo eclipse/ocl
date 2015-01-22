@@ -25,8 +25,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.util.EcoreSwitch;
-import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.utilities.AliasAdapter;
+import org.eclipse.ocl.pivot.internal.utilities.PivotConstantsInternal;
 
 /**
  * Ecore2Moniker supports generation of a hierarchically derived moniker for

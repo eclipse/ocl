@@ -13,7 +13,7 @@ package org.eclipse.ocl.examples.debug.vm.evaluator;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.NamedElement;
-import org.eclipse.ocl.pivot.internal.EnvironmentFactoryInternal;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 
 public abstract class VMRootEvaluationEnvironment<T extends NamedElement> extends VMEvaluationEnvironment<T> implements IVMRootEvaluationEnvironment<T>
 {

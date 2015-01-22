@@ -23,9 +23,9 @@ import org.eclipse.ocl.examples.debug.vm.evaluator.IVMModelManager;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
-import org.eclipse.ocl.pivot.ParserException;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
+import org.eclipse.ocl.pivot.utilities.ParserException;
 
 /**
  * A OCLVMEvaluator supports loading a transformation as source then loading models, performing a transformation

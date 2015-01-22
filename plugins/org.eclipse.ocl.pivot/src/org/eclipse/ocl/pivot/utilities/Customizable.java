@@ -9,15 +9,14 @@
  *   IBM - Initial API and implementation
  *******************************************************************************/
 
-package org.eclipse.ocl.pivot;
+package org.eclipse.ocl.pivot.utilities;
 
 import java.util.Collection;
 import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-
-import org.eclipse.ocl.pivot.Option;
+import org.eclipse.ocl.pivot.utilities.Option;
 
 
 /**

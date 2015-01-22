@@ -9,7 +9,7 @@
  *   IBM - Initial API and implementation
  *******************************************************************************/
 
-package org.eclipse.ocl.pivot;
+package org.eclipse.ocl.pivot.utilities;
 
 import java.lang.Class;
 

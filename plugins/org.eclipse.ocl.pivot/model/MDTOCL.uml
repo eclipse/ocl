@@ -506,7 +506,7 @@
   <Ecore:EDataType xmi:id="_CuPkAM-9Ed-OX-Zde0V6vA" instanceClassName="boolean"/>
   <Ecore:EDataType xmi:id="_lESsENK7Ed-VSdZNqJFoJA" instanceClassName="java.lang.Object"/>
   <Ecore:EDataType xmi:id="_9eufINPCEd-Vct1SlsNNwg" instanceClassName="java.lang.Throwable"/>
-  <Ecore:EClass xmi:id="_n6SYcN9WEd-5RuvZBdnt0A" instanceClassName="org.eclipse.ocl.pivot.Nameable" base_Interface="_gp2QsN9WEd-5RuvZBdnt0A" className="Nameable"/>
+  <Ecore:EClass xmi:id="_n6SYcN9WEd-5RuvZBdnt0A" instanceClassName="org.eclipse.ocl.pivot.utilities.Nameable" base_Interface="_gp2QsN9WEd-5RuvZBdnt0A" className="Nameable"/>
   <Ecore:EClass xmi:id="_pecS0N9WEd-5RuvZBdnt0A" instanceClassName="org.eclipse.ocl.pivot.utilities.Pivotable" base_Interface="_h0T4sN9WEd-5RuvZBdnt0A" className="Pivotable"/>
   <Ecore:EClass xmi:id="_KhzAgOfSEd-IXbTaV_5Nsg" instanceClassName="org.eclipse.ocl.pivot.util.Visitor"/>
   <Ecore:EReference xmi:id="_zmnm0O53Ed-sIMHRp27srQ" isTransient="true" isResolveProxies="false"/>

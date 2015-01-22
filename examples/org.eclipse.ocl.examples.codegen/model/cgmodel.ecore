@@ -620,7 +620,7 @@
   <eClassifiers xsi:type="ecore:EDataType" name="LibraryOperation" instanceClassName="org.eclipse.ocl.pivot.library.LibraryOperation"/>
   <eClassifiers xsi:type="ecore:EDataType" name="LibraryProperty" instanceClassName="org.eclipse.ocl.pivot.library.LibraryProperty"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Method" instanceClassName="java.lang.reflect.Method"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Nameable" instanceClassName="org.eclipse.ocl.pivot.Nameable"
+  <eClassifiers xsi:type="ecore:EClass" name="Nameable" instanceClassName="org.eclipse.ocl.pivot.utilities.Nameable"
       abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Number" instanceClassName="java.lang.Number"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Object" instanceClassName="java.lang.Object"/>

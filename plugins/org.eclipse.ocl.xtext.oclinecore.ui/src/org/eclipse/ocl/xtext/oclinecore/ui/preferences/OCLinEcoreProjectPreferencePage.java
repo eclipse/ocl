@@ -13,7 +13,7 @@ package org.eclipse.ocl.xtext.oclinecore.ui.preferences;
 import java.util.List;
 
 import org.eclipse.ocl.common.ui.internal.preferences.AbstractProjectPreferencePage;
-import org.eclipse.ocl.pivot.internal.PivotConstantsInternal;
+import org.eclipse.ocl.pivot.internal.utilities.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.options.OCLinEcoreOptions;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.oclinecore.ui.messages.OCLinEcoreUIMessages;

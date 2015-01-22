@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot;
 
-import org.eclipse.ocl.pivot.Nameable;
+import org.eclipse.ocl.pivot.utilities.Nameable;
 
 
 /**

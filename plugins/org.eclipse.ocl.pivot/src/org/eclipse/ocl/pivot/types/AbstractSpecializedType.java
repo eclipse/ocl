@@ -13,7 +13,7 @@ package org.eclipse.ocl.pivot.types;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.StandardLibrary;
-import org.eclipse.ocl.pivot.elements.AbstractExecutorClass;
+import org.eclipse.ocl.pivot.internal.elements.AbstractExecutorClass;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
 
 public abstract class AbstractSpecializedType extends AbstractExecutorClass

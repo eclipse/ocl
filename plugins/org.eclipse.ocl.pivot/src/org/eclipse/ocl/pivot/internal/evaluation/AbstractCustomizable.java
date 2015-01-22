@@ -17,10 +17,10 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.Adaptable;
-import org.eclipse.ocl.pivot.Customizable;
-import org.eclipse.ocl.pivot.Option;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.pivot.utilities.Adaptable;
+import org.eclipse.ocl.pivot.utilities.Customizable;
+import org.eclipse.ocl.pivot.utilities.Option;
 
 /**
  * A partial implementation of the {@link EvaluationEnvironment} interface,

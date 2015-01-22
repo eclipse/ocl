@@ -17,7 +17,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Model;
-import org.eclipse.ocl.pivot.ParserException;
+import org.eclipse.ocl.pivot.utilities.ParserException;
 
 public interface External2AS
 {

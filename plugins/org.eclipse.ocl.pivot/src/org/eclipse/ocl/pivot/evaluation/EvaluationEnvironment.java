@@ -14,11 +14,11 @@ import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.Adaptable;
-import org.eclipse.ocl.pivot.Customizable;
-import org.eclipse.ocl.pivot.EnvironmentFactory;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.utilities.Adaptable;
+import org.eclipse.ocl.pivot.utilities.Customizable;
+import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 
 /**
  * The evaluation environment keeps track of the current values of variables
