@@ -20,6 +20,8 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.internal.ecore.EcoreASResourceFactory;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
+import org.eclipse.ocl.pivot.internal.utilities.Technology;
+import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
@@ -115,19 +117,7 @@ public class ASResourceFactoryRegistry
 		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {			// This is the unique start point for OCL so
 			PivotStandaloneSetup.doSetup();				//  do the non-UI initialization (guarded in doSetup())
 		}
-		Integer bestPriority = null;
-		ASResourceFactory bestASResourceFactory = null;
-		for (ASResourceFactory asResourceFactory : getExternalResourceFactories()) {
-			Integer priority = asResourceFactory.getPriority();
-			if ((bestPriority == null) || ((priority != null) && (priority > bestPriority))) {
-				bestPriority = priority;
-				bestASResourceFactory = asResourceFactory;
-			}
-		}
-		if (bestASResourceFactory == null) {
-			bestASResourceFactory = EcoreASResourceFactory.getInstance();
-		}
-		return bestASResourceFactory.createEnvironmentFactory(projectManager);
+		return new PivotEnvironmentFactory(projectManager);
 	}
 
 	public @Nullable ASResourceFactoryContribution get(@NonNull String contentType) {
@@ -202,6 +192,25 @@ public class ASResourceFactoryRegistry
 
 	public Iterable<ASResourceFactory> getLoadedResourceFactories() {
 		return Iterables.transform(Iterables.filter(contentType2resourceFactory.values(), LoadedResourcePredicate.INSTANCE), ContributionFunction.INSTANCE);
+	}
+
+	/**
+	 * Determine the getTechnology appropriate to the registered ASResourceFactories.
+	 */
+	public @NonNull Technology getTechnology() {
+		Integer bestPriority = null;
+		ASResourceFactory bestASResourceFactory = null;
+		for (ASResourceFactory asResourceFactory : getExternalResourceFactories()) {
+			Integer priority = asResourceFactory.getPriority();
+			if ((bestPriority == null) || ((priority != null) && (priority > bestPriority))) {
+				bestPriority = priority;
+				bestASResourceFactory = asResourceFactory;
+			}
+		}
+		if (bestASResourceFactory == null) {
+			bestASResourceFactory = EcoreASResourceFactory.getInstance();
+		}
+		return bestASResourceFactory.getTechnology();
 	}
 
 	public synchronized void remove(@Nullable String contentType, @Nullable String extension, @Nullable String resourceClassName) {

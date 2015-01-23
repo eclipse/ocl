@@ -37,9 +37,9 @@ import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
 import org.eclipse.ocl.pivot.internal.utilities.AS2XMIid;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
+import org.eclipse.ocl.pivot.internal.utilities.Technology;
+import org.eclipse.ocl.pivot.internal.utilities.EcoreTechnology;
 import org.eclipse.ocl.pivot.resource.ASResource;
-import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.AS2MonikerVisitor;
 import org.eclipse.ocl.pivot.utilities.AS2XMIidVisitor;
 import org.eclipse.ocl.pivot.utilities.ASSaverLocateVisitor;
@@ -117,11 +117,6 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 	public @NonNull ASSaverResolveVisitor createASSaverResolveVisitor(@NonNull ASSaver saver) {
 		return new ASSaverResolveVisitor(saver);
 	}
-
-	@Override
-	public @NonNull EnvironmentFactoryInternal createEnvironmentFactory(@Nullable ProjectManager projectManager) {
-		return new PivotEnvironmentFactory(projectManager);
-	}
 	
 	@Override
 	public @NonNull PrettyPrintVisitor createPrettyPrintVisitor(@NonNull PrettyPrinter prettyPrinter) {
@@ -193,6 +188,11 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 	@Override
 	public @Nullable String getResourceClassName() {
 		return null;
+	}
+
+	@Override
+	public @NonNull Technology getTechnology() {
+		return EcoreTechnology.INSTANCE;
 	}
 
 	@Override

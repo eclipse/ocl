@@ -32,10 +32,11 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.internal.resource.AbstractASResourceFactory;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
+import org.eclipse.ocl.pivot.internal.utilities.Technology;
 import org.eclipse.ocl.pivot.resource.ASResource;
-import org.eclipse.ocl.pivot.resource.ProjectManager;
+import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
-import org.eclipse.ocl.pivot.uml.internal.utilities.UMLEnvironmentFactory;
+import org.eclipse.ocl.pivot.uml.internal.utilities.UMLEcoreTechnology;
 import org.eclipse.ocl.pivot.uml.internal.validation.UMLOCLEValidator;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.OCL;
@@ -75,11 +76,6 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 		super.configure(resourceSet);
 		OCL.initialize(resourceSet);
 		UMLResourcesUtil.init(resourceSet);
-	}
-
-	@Override
-	public @NonNull EnvironmentFactoryInternal createEnvironmentFactory(@Nullable ProjectManager projectManager) {
-		return new UMLEnvironmentFactory(projectManager);
 	}
 
 	@Override
@@ -237,6 +233,12 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public @NonNull Technology getTechnology() {
+		UMLStandaloneSetup.assertInitialized();
+		return UMLEcoreTechnology.INSTANCE;
 	}
 
 	@Override

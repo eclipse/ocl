@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2014 E.D.Willink and others.
+ * Copyright (c) 2015 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -25,44 +25,73 @@ import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.DynamicElement;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.ids.RootPackageId;
-import org.eclipse.ocl.pivot.internal.library.ImplementationManager;
-import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.internal.utilities.AbstractTechnology;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotConstantsInternal;
-import org.eclipse.ocl.pivot.internal.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
-import org.eclipse.ocl.pivot.resource.ProjectManager;
-import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
-import org.eclipse.ocl.pivot.uml.internal.library.UMLImplementationManager;
+import org.eclipse.ocl.pivot.library.LibraryProperty;
+import org.eclipse.ocl.pivot.uml.internal.library.InstanceSlotNavigationProperty;
+import org.eclipse.ocl.pivot.uml.internal.library.UMLBaseProperty;
+import org.eclipse.ocl.pivot.uml.internal.library.UMLExtensionProperty;
+import org.eclipse.ocl.pivot.uml.internal.library.UMLStereotypeProperty;
 import org.eclipse.ocl.pivot.util.DerivedConstants;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.UMLPackage;
 
-public class UMLEnvironmentFactory extends PivotEnvironmentFactory
+public class UMLEcoreTechnology extends AbstractTechnology
 {
-	/**
-	 * Initializes me with an optional <code>StandaloneProjectMap</code> of accessible resources and
-	 * an optional <code>ModelManager</code> for loaded instances.
-	 */
-	public UMLEnvironmentFactory(@Nullable ProjectManager projectManager) {
-		super(projectManager);
-		UMLStandaloneSetup.assertInitialized();
+	public static final @NonNull UMLEcoreTechnology INSTANCE = new UMLEcoreTechnology();
+
+	protected UMLEcoreTechnology() {}
+
+	@Override
+	public  @NonNull UMLIdResolver createIdResolver(@NonNull EnvironmentFactoryInternal environmentFactory) {
+		return new UMLIdResolver(environmentFactory);
 	}
 
 	@Override
-	public  @NonNull UMLIdResolver createIdResolver() {
-		return new UMLIdResolver(this);
+	public @NonNull LibraryProperty createBasePropertyImplementation(@NonNull Property property) {
+		return new UMLBaseProperty(property);
 	}
-	
+
 	@Override
-	public @NonNull ImplementationManager createImplementationManager() {
-		return new UMLImplementationManager(this);
+	public @NonNull LibraryProperty createExplicitNavigationPropertyImplementation(@Nullable Object sourceValue, @NonNull Property property) {
+		if (sourceValue instanceof org.eclipse.uml2.uml.InstanceSpecification) {
+			EObject eTarget = property.getETarget();
+			if  (eTarget instanceof org.eclipse.uml2.uml.Property) {
+				TypeId typeId = property.getTypeId();
+				CollectionTypeId collectionTypeId;
+				if (typeId instanceof CollectionTypeId) {
+					collectionTypeId = (CollectionTypeId)typeId;
+				}
+				else {
+					collectionTypeId = null;
+				}
+				return new InstanceSlotNavigationProperty((org.eclipse.uml2.uml.Property)eTarget, collectionTypeId);
+			}
+		}
+		return super.createExplicitNavigationPropertyImplementation(sourceValue, property);
+	}
+
+	@Override
+	public @NonNull LibraryProperty createExtensionPropertyImplementation(@NonNull Property property) {
+		return new UMLExtensionProperty(property);
+	}
+
+	@Override
+	public @NonNull LibraryProperty createStereotypePropertyImplementation(@NonNull Property property) {
+		return new UMLStereotypeProperty(property);
 	}
 
 	@Override
@@ -81,24 +110,24 @@ public class UMLEnvironmentFactory extends PivotEnvironmentFactory
 	}
 
 	@Override
-	public RootPackageId getMetamodelId(@NonNull EPackage eObject2) {
+	public RootPackageId getMetamodelId(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull EPackage eObject2) {
 		RootPackageId metamodel = null;
 		if (ClassUtil.basicGetMetamodelAnnotation(eObject2) != null) {
 			metamodel = IdManager.METAMODEL;
 		}
 		else if (eObject2 instanceof UMLPackage) {
 			@SuppressWarnings("null")@NonNull String nsUri = UMLPackage.eNS_URI;
-			getMetamodelManager().getCompleteModel().addPackageURI2completeURI(nsUri, PivotConstants.UML_METAMODEL_NAME);
+			environmentFactory.getMetamodelManager().getCompleteModel().addPackageURI2completeURI(nsUri, PivotConstants.UML_METAMODEL_NAME);
 			metamodel = IdManager.getRootPackageId(PivotConstants.UML_METAMODEL_NAME);
 		}
 		else if (eObject2 instanceof TypesPackage) {
 			@SuppressWarnings("null")@NonNull String nsUri = TypesPackage.eNS_URI;
-			getMetamodelManager().getCompleteModel().addPackageURI2completeURI(nsUri, PivotConstants.TYPES_METAMODEL_NAME);
+			environmentFactory.getMetamodelManager().getCompleteModel().addPackageURI2completeURI(nsUri, PivotConstants.TYPES_METAMODEL_NAME);
 			metamodel = IdManager.getRootPackageId(PivotConstants.TYPES_METAMODEL_NAME);
 		}
 		else {
 			String nsURI = eObject2.getNsURI();
-			String sharedNsURI = getMetamodelManager().getCompleteModel().getCompleteURI(nsURI);
+			String sharedNsURI = environmentFactory.getMetamodelManager().getCompleteModel().getCompleteURI(nsURI);
 			if ((sharedNsURI != null) && !sharedNsURI.equals(nsURI)) {
 				metamodel = IdManager.getRootPackageId(sharedNsURI);
 			}
@@ -107,7 +136,7 @@ public class UMLEnvironmentFactory extends PivotEnvironmentFactory
 	}
 
 	@Override
-	public @NonNull PackageId getMetapackageId(@NonNull org.eclipse.ocl.pivot.Package asPackage) {
+	public @NonNull PackageId getMetapackageId(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull org.eclipse.ocl.pivot.Package asPackage) {
 		if (asPackage instanceof PivotObjectImpl) {
 			EObject eTarget = ((PivotObjectImpl)asPackage).getETarget();
 			if (eTarget != null) {
@@ -123,7 +152,7 @@ public class UMLEnvironmentFactory extends PivotEnvironmentFactory
 				}
 			}
 		}
-		return super.getMetapackageId(asPackage);
+		return IdManager.METAMODEL;
 	}
 
 	@Override
@@ -155,12 +184,12 @@ public class UMLEnvironmentFactory extends PivotEnvironmentFactory
 	}
 
 	@Override
-	public @Nullable Element getParseableElement(@NonNull EObject eObject) throws ParserException {
+	public @Nullable Element getParseableElement(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull EObject eObject) throws ParserException {
 		Element pivotElement;
 		if (eObject instanceof Element) {
 			return (Element) eObject;
 		}
-		PivotMetamodelManager metamodelManager = getMetamodelManager();
+		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		pivotElement = metamodelManager.getASOf(Element.class, eObject);
 		if ((eObject instanceof org.eclipse.uml2.uml.Constraint) && (pivotElement instanceof Constraint) && (pivotElement.eContainer() == null)) {
 			pivotElement = metamodelManager.getASOf(Element.class, ((org.eclipse.uml2.uml.Constraint)eObject).getSpecification());
@@ -169,7 +198,7 @@ public class UMLEnvironmentFactory extends PivotEnvironmentFactory
 	}
 
 	@Override
-	public boolean isStereotype(@NonNull EClass eClass) {
+	public boolean isStereotype(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull EClass eClass) {
 		for (EStructuralFeature eFeature : eClass.getEAllStructuralFeatures()) {
 			EClassifier eType = eFeature.getEType();
 			if (eType != null) {

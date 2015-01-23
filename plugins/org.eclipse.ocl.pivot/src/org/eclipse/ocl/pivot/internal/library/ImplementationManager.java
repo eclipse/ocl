@@ -30,6 +30,7 @@ import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
+import org.eclipse.ocl.pivot.internal.utilities.Technology;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
 import org.eclipse.ocl.pivot.library.LibraryOperation;
 import org.eclipse.ocl.pivot.library.LibraryProperty;
@@ -46,6 +47,7 @@ public class ImplementationManager
 	private static final Logger logger = Logger.getLogger(ImplementationManager.class);
 
 	protected final @NonNull EnvironmentFactory environmentFactory;
+	protected final @NonNull Technology technology;
 	private final @NonNull PivotMetamodelManager metamodelManager;
 
 	/**
@@ -55,6 +57,7 @@ public class ImplementationManager
 	
 	public ImplementationManager(@NonNull EnvironmentFactory environmentFactory) {
 		this.environmentFactory = environmentFactory;
+		this.technology = environmentFactory.getTechnology();
 		this.metamodelManager = environmentFactory.getMetamodelManager();
 	}
 
@@ -63,22 +66,6 @@ public class ImplementationManager
 		if (!classLoaders.contains(classLoader)) {
 			classLoaders.add(classLoader);
 		}
-	}
-
-	protected @NonNull LibraryProperty createBasePropertyImplementation(@NonNull Property property) {
-		return new BaseProperty(property);
-	}
-
-	protected @NonNull LibraryProperty createExplicitNavigationPropertyImplementation(@Nullable Object sourceValue, @NonNull Property property) {
-		return new ExplicitNavigationProperty(property);
-	}
-
-	protected @NonNull LibraryProperty createExtensionPropertyImplementation(@NonNull Property property) {
-		return new ExtensionProperty(property);
-	}
-
-	protected @NonNull LibraryProperty createStereotypePropertyImplementation(@NonNull Property property) {
-		return new StereotypeProperty(property);
 	}
 
 	public @NonNull List<ClassLoader> getClassLoaders() {
@@ -131,7 +118,7 @@ public class ImplementationManager
 		}
 		Type type = property.getType();
 		if ((type instanceof Stereotype) && property.getName().startsWith(DerivedConstants.STEREOTYPE_EXTENSION_PREFIX)) {
-			return createExtensionPropertyImplementation(property);
+			return technology.createExtensionPropertyImplementation(property);
 		}
 //		if (property.getOwningType() instanceof Stereotype) {
 //			return new BaseProperty(property);
@@ -143,7 +130,7 @@ public class ImplementationManager
 		Property opposite = property.getOpposite();
 		if ((opposite != null) && opposite.isComposite()) {
 			if (property.eContainer() instanceof Stereotype) {
-				return createBasePropertyImplementation(property);
+				return technology.createBasePropertyImplementation(property);
 			}
 			if (type != null) {
 				EObject eTarget = opposite.getETarget();
@@ -189,9 +176,9 @@ public class ImplementationManager
 		}
 		if ((property.getOwningClass() instanceof ElementExtension)			// direct access to extension property
 			  || (property.getOwningClass() instanceof Stereotype)) {			// indirect access from a Stereotype operation
-			return createStereotypePropertyImplementation(property);
+			return technology.createStereotypePropertyImplementation(property);
 		}
-		return createExplicitNavigationPropertyImplementation(sourceValue, property);
+		return technology.createExplicitNavigationPropertyImplementation(sourceValue, property);
 	}
 	
 	public void dispose() {

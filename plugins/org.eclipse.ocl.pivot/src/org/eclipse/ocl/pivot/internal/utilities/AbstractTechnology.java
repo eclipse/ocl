@@ -1,0 +1,72 @@
+/*******************************************************************************
+ * Copyright (c) 2015 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *******************************************************************************/
+package org.eclipse.ocl.pivot.internal.utilities;
+
+import org.eclipse.emf.ecore.ENamedElement;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.internal.library.BaseProperty;
+import org.eclipse.ocl.pivot.internal.library.ExplicitNavigationProperty;
+import org.eclipse.ocl.pivot.internal.library.ExtensionProperty;
+import org.eclipse.ocl.pivot.internal.library.StereotypeProperty;
+import org.eclipse.ocl.pivot.library.LibraryProperty;
+import org.eclipse.ocl.pivot.utilities.ParserException;
+
+public abstract class AbstractTechnology implements Technology
+{
+	@Override
+	public @NonNull LibraryProperty createBasePropertyImplementation(@NonNull Property property) {
+		return new BaseProperty(property);
+	}
+
+	@Override
+	public @NonNull LibraryProperty createExplicitNavigationPropertyImplementation(@Nullable Object sourceValue, @NonNull Property property) {
+		return new ExplicitNavigationProperty(property);
+	}
+
+	@Override
+	public @NonNull LibraryProperty createExtensionPropertyImplementation(@NonNull Property property) {
+		return new ExtensionProperty(property);
+	}
+
+	@Override
+	public @NonNull LibraryProperty createStereotypePropertyImplementation(@NonNull Property property) {
+		return new StereotypeProperty(property);
+	}
+
+	@Override
+	public String getExtensionName(@NonNull Element asStereotypedElement) {
+		String name = "????";
+		if (asStereotypedElement instanceof NamedElement) {
+			name = ((NamedElement)asStereotypedElement).getName();
+		}
+		return name;
+	}
+
+	@Override
+	public @Nullable String getOriginalName(@NonNull ENamedElement eNamedElement) {
+		return eNamedElement.getName();
+	}
+
+	@Override
+	public @Nullable Element getParseableElement(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull EObject eObject) throws ParserException {
+		if (eObject instanceof Element) {
+			return (Element) eObject;
+		}
+		else {
+			return null;
+		}
+	}
+}

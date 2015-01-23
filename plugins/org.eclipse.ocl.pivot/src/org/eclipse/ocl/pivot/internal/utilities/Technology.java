@@ -1,0 +1,55 @@
+/*******************************************************************************
+ * Copyright (c) 2015 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *******************************************************************************/
+package org.eclipse.ocl.pivot.internal.utilities;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.ENamedElement;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.ids.PackageId;
+import org.eclipse.ocl.pivot.ids.RootPackageId;
+import org.eclipse.ocl.pivot.library.LibraryProperty;
+import org.eclipse.ocl.pivot.utilities.ParserException;
+
+/**
+ * Technology instances encapsulate behaviour that varies according to the metamodel technologies in use.
+ * At present this means just-Ecore supported by an EcoreTechnology or Ecore-and-UML supported
+ * by a UMLEcoreTechnology.
+ */
+public interface Technology
+{
+	@NonNull LibraryProperty createBasePropertyImplementation(@NonNull Property property);
+
+	@NonNull LibraryProperty createExplicitNavigationPropertyImplementation(@Nullable Object sourceValue, @NonNull Property property);
+
+	@NonNull LibraryProperty createExtensionPropertyImplementation(@NonNull Property property);
+
+	@NonNull IdResolver createIdResolver(@NonNull EnvironmentFactoryInternal environmentFactory);
+
+	@NonNull LibraryProperty createStereotypePropertyImplementation(@NonNull Property property);
+
+	String getExtensionName(@NonNull Element asStereotypedElement);
+
+	RootPackageId getMetamodelId(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull EPackage eObject2);
+
+	@NonNull PackageId getMetapackageId(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull org.eclipse.ocl.pivot.Package asPackage);
+
+	@Nullable String getOriginalName(@NonNull ENamedElement eNamedElement);
+
+	@Nullable Element getParseableElement(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull EObject eObject) throws ParserException;
+
+	boolean isStereotype(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull EClass eClass);
+}

@@ -41,7 +41,6 @@ import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
-import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.ids.RootPackageId;
@@ -59,14 +58,13 @@ import org.eclipse.ocl.pivot.internal.evaluation.PivotModelManager;
 import org.eclipse.ocl.pivot.internal.evaluation.TracingEvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.library.ImplementationManager;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
-import org.eclipse.ocl.pivot.internal.manager.PivotIdResolver;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.resource.ICSI2ASMapping;
 import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
+import org.eclipse.ocl.pivot.internal.utilities.Technology;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.values.ObjectValue;
 
@@ -99,6 +97,8 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
      */
     private int attachCount = 0;;
 //    private List<WeakReference<Object>> attachers = null;;
+    
+    private @NonNull Technology technology = ASResourceFactoryRegistry.INSTANCE.getTechnology();
 	
 	/**
 	 * Initializes me with an <code>EPackage.Registry</code> that the
@@ -237,6 +237,28 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	    return result;
 	}
 
+	@Override
+	public  @NonNull IdResolver createIdResolver() {
+		return technology.createIdResolver(this);
+	}
+
+	@Override
+	public @NonNull ImplementationManager createImplementationManager() {
+		return new ImplementationManager(this);
+	}
+
+	@Override
+	public @NonNull PivotMetamodelManager createMetamodelManager() {
+		return new PivotMetamodelManager(this, null);
+	}
+
+	public @NonNull PivotMetamodelManager createMetamodelManager(@NonNull ResourceSet resourceSet) {
+		assert metamodelManager == null;
+		metamodelManager = new PivotMetamodelManager(this, resourceSet);
+		assert metamodelManager != null;
+		return metamodelManager;
+	}
+
 	protected @NonNull ModelManager createModelManager() {
 		return ModelManager.NULL;
 	}
@@ -253,23 +275,6 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 			return new PivotModelManager(this, (EObject) object);
 		}
 		return ModelManager.NULL;
-	}
-
-	@Override
-	public  @NonNull PivotIdResolver createIdResolver() {
-		return new PivotIdResolver(this);
-	}
-
-	@Override
-	public @NonNull PivotMetamodelManager createMetamodelManager() {
-		return new PivotMetamodelManager(this, null);
-	}
-
-	public @NonNull PivotMetamodelManager createMetamodelManager(@NonNull ResourceSet resourceSet) {
-		assert metamodelManager == null;
-		metamodelManager = new PivotMetamodelManager(this, resourceSet);
-		assert metamodelManager != null;
-		return metamodelManager;
 	}
 
 	@Override
@@ -303,11 +308,6 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
         return new ModelContext(this, null);
 	}
 	
-	@Override
-	public @NonNull ImplementationManager createImplementationManager() {
-		return new ImplementationManager(this);
-	}
-
 	@Override
 	public synchronized void detach(Object object) {
 		assert attachCount > 0;
@@ -440,11 +440,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 
 	@Override
 	public String getExtensionName(@NonNull Element asStereotypedElement) {
-		String name = "????";
-		if (asStereotypedElement instanceof NamedElement) {
-			name = ((NamedElement)asStereotypedElement).getName();
-		}
-		return name;
+		return technology.getExtensionName(asStereotypedElement);
 	}
 
 	@Override
@@ -458,20 +454,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 
 	@Override
 	public RootPackageId getMetamodelId(@NonNull EPackage ePackage) {
-		assert !"http://www.eclipse.org/uml2/5.0.0/UML".equals(ePackage.getNsURI());
-		assert !"http://www.eclipse.org/uml2/5.0.0/Types".equals(ePackage.getNsURI());
-		RootPackageId metamodel = null;
-		if (ClassUtil.basicGetMetamodelAnnotation(ePackage) != null) {
-			metamodel = IdManager.METAMODEL;
-		}
-		else {
-			String nsURI = ePackage.getNsURI();
-			String sharedNsURI = getMetamodelManager().getCompleteModel().getCompleteURI(nsURI);
-			if ((sharedNsURI != null) && !sharedNsURI.equals(nsURI)) {
-				metamodel = IdManager.getRootPackageId(sharedNsURI);
-			}
-		}
-		return metamodel;
+		return technology.getMetamodelId(this, ePackage);
 	}
 
 	@Override
@@ -485,23 +468,12 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 
 	@Override
 	public @NonNull PackageId getMetapackageId(@NonNull org.eclipse.ocl.pivot.Package asPackage) {
-		if (asPackage instanceof PivotObjectImpl) {
-			EObject eTarget = ((PivotObjectImpl)asPackage).getETarget();
-			if (eTarget != null) {
-				EClass eClass = eTarget.eClass();
-				if (eClass != null) {
-					EPackage ePackage = eClass.getEPackage();
-					assert !"http://www.eclipse.org/uml2/5.0.0/UML".equals(ePackage.getNsURI());
-					assert !"http://www.eclipse.org/uml2/5.0.0/Types".equals(ePackage.getNsURI());
-				}
-			}
-		}
-		return IdManager.METAMODEL;
+		return technology.getMetapackageId(this, asPackage);
 	}
 
 	@Override
 	public String getOriginalName(@NonNull ENamedElement eNamedElement) {
-		return eNamedElement.getName();
+		return technology.getOriginalName(eNamedElement);
 	}
 
 	@Override
@@ -511,12 +483,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 
 	@Override
 	public @Nullable Element getParseableElement(@NonNull EObject eObject) throws ParserException {
-		if (eObject instanceof Element) {
-			return (Element) eObject;
-		}
-		else {
-			return null;
-		}
+		return technology.getParseableElement(this, eObject);
 	}
 
 	@Override
@@ -538,6 +505,11 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 		return standardLibrary;
 	}
 
+	@Override
+	public @NonNull Technology getTechnology() {
+		return technology;
+	}
+
 	/**
      * Queries whether tracing of evaluation is enabled.  Tracing
      * logs the progress of evaluation to the console, which may
@@ -557,14 +529,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 
 	@Override
 	public boolean isStereotype(@NonNull EClass eClass) {
-		for (EStructuralFeature eFeature : eClass.getEAllStructuralFeatures()) {
-			EClassifier eType = eFeature.getEType();
-			if (eType != null) {
-				EPackage ePackage = eType.getEPackage();
-				assert !"http://www.eclipse.org/uml2/5.0.0/UML".equals(ePackage.getNsURI());
-			}
-		}
-		return false;
+		return technology.isStereotype(this, eClass);
 	}
 
 	@Override
