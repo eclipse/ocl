@@ -1041,7 +1041,7 @@ public class PivotMetamodelManager implements MetamodelManager.Internal, Adapter
 		}
 		@SuppressWarnings("null")@NonNull ElementExtension asElementExtension = PivotFactory.eINSTANCE.createElementExtension();
 		asElementExtension.setStereotype(asStereotype);
-		String name = environmentFactory.getExtensionName(asStereotypedElement);
+		String name = environmentFactory.getTechnology().getExtensionName(asStereotypedElement);
 		asElementExtension.setName(name + "$" + asStereotype.getName());
 //		asElementExtension.getSuperClass().add(getOclAnyType());
 		extensions.add(asElementExtension);

@@ -438,7 +438,7 @@ public class Ecore2AS extends AbstractEcore2AS
 			List<org.eclipse.ocl.pivot.Class> ownedType = asLibrary.getOwnedClasses();
 //			int prefix = LibraryConstants.ECORE_STDLIB_PREFIX.length();
 			for (@SuppressWarnings("null")@NonNull EClassifier eClassifier : libraryEPackage.getEClassifiers()) {
-				String name = metamodelManager.getEnvironmentFactory().getOriginalName(eClassifier); //.substring(prefix);
+				String name = environmentFactory.getTechnology().getOriginalName(eClassifier); //.substring(prefix);
 				Type asType = NameUtil.getNameable(ownedType, name);
 				newCreateMap.put(eClassifier, asType);
 			}

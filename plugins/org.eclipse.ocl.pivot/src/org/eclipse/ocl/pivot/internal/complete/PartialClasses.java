@@ -874,11 +874,10 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 			CompletePackageInternal rootCompletePackage = getCompleteClass().getOwningCompletePackage().getRootCompletePackage();
 			Package pivotPackage = rootCompletePackage.getPrimaryPackage();
 			if (pivotPackage != null) {
-				PivotMetamodelManager metamodelManager = getMetamodelManager();
-				EnvironmentFactoryInternal environmentFactory = metamodelManager.getEnvironmentFactory();
-				PackageId metapackageId = environmentFactory.getMetapackageId(pivotPackage);
+				EnvironmentFactoryInternal environmentFactory = getEnvironmentFactory();
+				PackageId metapackageId = environmentFactory.getTechnology().getMetapackageId(environmentFactory, pivotPackage);
 				org.eclipse.ocl.pivot.Package metapackage = environmentFactory.getIdResolver().getPackage(metapackageId);
-				CompletePackage metaCompletePackage = metamodelManager.getCompletePackage(metapackage);
+				CompletePackage metaCompletePackage = getMetamodelManager().getCompletePackage(metapackage);
 				Type metatype = metaCompletePackage.getType(metatypeName);
 				if (metatype != null) {
 					CompleteClass metaCompleteClass = getCompleteModel().getCompleteClass(metatype);

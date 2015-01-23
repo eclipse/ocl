@@ -38,7 +38,6 @@ import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
 import org.eclipse.ocl.pivot.uml.internal.utilities.UMLEcoreTechnology;
 import org.eclipse.ocl.pivot.uml.internal.validation.UMLOCLEValidator;
-import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.uml2.uml.Type;
@@ -114,7 +113,7 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 		return getInstance();
 	}
 
-	protected org.eclipse.uml2.uml.Constraint getConstraintForEOperation(@NonNull EnvironmentFactory environmentFactory, EOperation eOperation) {
+	protected org.eclipse.uml2.uml.Constraint getConstraintForEOperation(@NonNull EnvironmentFactoryInternal environmentFactory, EOperation eOperation) {
 		if (EcoreUtil.isInvariant(eOperation)) {
 			EClass eContainingClass = eOperation.getEContainingClass();
 			EAnnotation eAnnotation = eContainingClass.getEAnnotation("http://www.eclipse.org/uml2/2.0.0/UML"); // UMLUtil.UML2_UML_PACKAGE_2_0_NS_URI
@@ -123,7 +122,7 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 				if ((eReferences != null) && (eReferences.size() > 0)) {
 					EObject eReference = eReferences.get(0);
 					if (eReference instanceof org.eclipse.uml2.uml.Type) {
-						String operationName = ((EnvironmentFactoryInternal) environmentFactory).getOriginalName(eOperation);
+						String operationName = environmentFactory.getTechnology().getOriginalName(eOperation);
 						org.eclipse.uml2.uml.Constraint umlConstraint = ((org.eclipse.uml2.uml.Classifier)eReference).getOwnedRule(operationName);
 						if (umlConstraint != null) {
 							return umlConstraint;

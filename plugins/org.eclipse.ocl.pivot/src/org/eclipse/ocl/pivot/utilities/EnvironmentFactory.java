@@ -29,7 +29,6 @@ import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
-import org.eclipse.ocl.pivot.internal.utilities.Technology;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 
 /**
@@ -138,19 +137,17 @@ public interface EnvironmentFactory extends Adaptable, Customizable
 
 	@NonNull CompleteModel getCompleteModel();
 
+	@Nullable String getDoSetupName(@NonNull URI uri);
+
 	@NonNull IdResolver getIdResolver();
 
 	@NonNull PivotMetamodelManager getMetamodelManager();
 
 	@NonNull ProjectManager getProjectManager();
 	
+	@NonNull ResourceSet getResourceSet();
+
 	@NonNull StandardLibrary getStandardLibrary();
 
 	void removeListener(@NonNull Listener oclDelegateDomain);
-
-	@Nullable String getDoSetupName(@NonNull URI uri);
-
-	@NonNull ResourceSet getResourceSet();
-
-	@NonNull Technology getTechnology();
 }

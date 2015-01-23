@@ -12,17 +12,10 @@
 
 package org.eclipse.ocl.pivot.internal.utilities;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.ENamedElement;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ids.IdResolver;
-import org.eclipse.ocl.pivot.ids.PackageId;
-import org.eclipse.ocl.pivot.ids.RootPackageId;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
@@ -32,7 +25,6 @@ import org.eclipse.ocl.pivot.internal.resource.ICSI2ASMapping;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.AbstractEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
-import org.eclipse.ocl.pivot.utilities.ParserException;
 
 /**
  * A factory for creating OCL parser {@link EnvironmentInternal}s.  Clients of the OCL
@@ -53,10 +45,15 @@ import org.eclipse.ocl.pivot.utilities.ParserException;
  */
 public interface EnvironmentFactoryInternal extends EnvironmentFactory
 {
+	void attach(Object object);
+
+	@Nullable ProjectManager basicGetProjectManager();
+
 	/**
 	 * Create and initialize the AS ResourceSet used by metamodelManager to contain the AS forms of CS and Ecore/UML resources.
 	 */
 	@NonNull ResourceSetImpl createASResourceSet();
+	
 	@NonNull CompleteEnvironmentInternal createCompleteEnvironment();
 
 	/**
@@ -65,43 +62,30 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 	@NonNull IdResolver createIdResolver();
 	
 	
+	@NonNull ImplementationManager createImplementationManager();
+
 	@NonNull PivotMetamodelManager createMetamodelManager();
 
-	@Override
-	@NonNull CompleteModelInternal getCompleteModel();
+	void detach(Object object);
+
+	void dispose();
+
+	void disposeGlobal();
 
 	@Nullable ICSI2ASMapping getCSI2ASMapping();
-
-	String getExtensionName(@NonNull Element asStereotypedElement);
-
-	RootPackageId getMetamodelId(@NonNull EPackage ePackage);
 
 	@Override
 	@NonNull CompleteEnvironmentInternal getCompleteEnvironment();
 
-	@NonNull PackageId getMetapackageId(@NonNull org.eclipse.ocl.pivot.Package asPackage);
+	@Override
+	@NonNull CompleteModelInternal getCompleteModel();
 
-	@Nullable Element getParseableElement(@NonNull EObject eObject) throws ParserException;
-	
-	boolean isStereotype(@NonNull EClass eClass);
-
-	@NonNull ImplementationManager createImplementationManager();
-	
-	String getOriginalName(@NonNull ENamedElement eNamedElement);
-	
 	@Override
 	@NonNull StandardLibraryInternal getStandardLibrary();
+
+	@NonNull Technology getTechnology();
 
 	void setCSI2ASMapping(ICSI2ASMapping csi2asMapping);
 
 	void setEvaluationTracingEnabled(boolean b);
-	
-	void attach(Object object);
-	
-	void detach(Object object);
-	
-	void dispose();
-	
-	@Nullable ProjectManager basicGetProjectManager();
-	void disposeGlobal();
 }

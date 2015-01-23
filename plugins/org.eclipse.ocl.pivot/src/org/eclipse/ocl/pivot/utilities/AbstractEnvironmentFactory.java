@@ -18,9 +18,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -30,7 +28,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
@@ -42,8 +39,6 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
-import org.eclipse.ocl.pivot.ids.PackageId;
-import org.eclipse.ocl.pivot.ids.RootPackageId;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
@@ -439,22 +434,12 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	}
 
 	@Override
-	public String getExtensionName(@NonNull Element asStereotypedElement) {
-		return technology.getExtensionName(asStereotypedElement);
-	}
-
-	@Override
 	public @NonNull IdResolver getIdResolver() {
 		IdResolver idResolver2 = idResolver;
 		if (idResolver2 == null) {
 			idResolver = idResolver2 = createIdResolver();
 		}
 		return idResolver2;
-	}
-
-	@Override
-	public RootPackageId getMetamodelId(@NonNull EPackage ePackage) {
-		return technology.getMetamodelId(this, ePackage);
 	}
 
 	@Override
@@ -467,23 +452,8 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	}
 
 	@Override
-	public @NonNull PackageId getMetapackageId(@NonNull org.eclipse.ocl.pivot.Package asPackage) {
-		return technology.getMetapackageId(this, asPackage);
-	}
-
-	@Override
-	public String getOriginalName(@NonNull ENamedElement eNamedElement) {
-		return technology.getOriginalName(eNamedElement);
-	}
-
-	@Override
 	protected @Nullable EnvironmentFactoryInternal getParent() {
 		return null;
-	}
-
-	@Override
-	public @Nullable Element getParseableElement(@NonNull EObject eObject) throws ParserException {
-		return technology.getParseableElement(this, eObject);
 	}
 
 	@Override
@@ -526,11 +496,6 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
     protected boolean isEvaluationTracingEnabled() {
         return traceEvaluation;
     }
-
-	@Override
-	public boolean isStereotype(@NonNull EClass eClass) {
-		return technology.isStereotype(this, eClass);
-	}
 
 	@Override
 	public void removeListener(@NonNull Listener listener) {

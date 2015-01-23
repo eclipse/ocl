@@ -81,6 +81,7 @@ import org.eclipse.ocl.pivot.internal.utilities.AliasAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.internal.utilities.Technology;
 import org.eclipse.ocl.pivot.util.DerivedConstants;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
@@ -102,14 +103,14 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 			&& PivotConstantsInternal.DOCUMENTATION_ANNOTATION_KEY.equals(key);
 	}
 
-	protected final AbstractEcore2AS converter;
-	protected final PivotMetamodelManager metamodelManager;
-	protected final EnvironmentFactoryInternal environmentFactory;
+	protected final @NonNull AbstractEcore2AS converter;
+	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
+	protected final @NonNull Technology technology;
 	
-	public Ecore2ASDeclarationSwitch(AbstractEcore2AS converter) {
+	public Ecore2ASDeclarationSwitch(@NonNull AbstractEcore2AS converter) {
 		this.converter = converter;
-		this.metamodelManager = converter.getMetamodelManager();
-		this.environmentFactory = metamodelManager.getEnvironmentFactory();
+		this.environmentFactory = converter.getEnvironmentFactory();
+		this.technology = environmentFactory.getTechnology();
 	}
 	
 	@Override
@@ -149,14 +150,14 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 	public Object caseEClass(EClass eObject) {
 		@SuppressWarnings("null") @NonNull EClass eObject2 = eObject;
 		org.eclipse.ocl.pivot.Class pivotElement;
-		if (environmentFactory.isStereotype(eObject2)) {
+		if (technology.isStereotype(environmentFactory, eObject2)) {
 			pivotElement = converter.refreshElement(Stereotype.class, PivotPackage.Literals.STEREOTYPE, eObject2);
 		}
 		else {
 			pivotElement = converter.refreshElement(org.eclipse.ocl.pivot.Class.class, PivotPackage.Literals.CLASS, eObject2);
 		}
 		String oldName = pivotElement.getName();
-		String newName = environmentFactory.getOriginalName(eObject2);
+		String newName = technology.getOriginalName(eObject2);
 		boolean nameChange = (oldName != newName) || ((oldName != null) && !oldName.equals(newName));
 		if (nameChange) {
 			org.eclipse.ocl.pivot.Package parentPackage = pivotElement.getOwningPackage();
@@ -227,7 +228,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 	public Object caseEDataType(EDataType eObject) {
 		@SuppressWarnings("null") @NonNull EDataType eObject2 = eObject;
 		Class<?> instanceClass = eObject2.getInstanceClass();
-		String newName = environmentFactory.getOriginalName(eObject2);
+		String newName = technology.getOriginalName(eObject2);
 		boolean isPrimitive = false;
 		if ("Boolean".equals(newName) && ((instanceClass == Boolean.class) || (instanceClass == boolean.class))) {
 			isPrimitive = true;
@@ -341,7 +342,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 			} catch (Exception e) {
 			}
 		}
-		pivotElement.getSuperClasses().add(metamodelManager.getStandardLibrary().getOclAnyType());
+		pivotElement.getSuperClasses().add(environmentFactory.getStandardLibrary().getOclAnyType());
 		return pivotElement;
 	}
 
@@ -350,7 +351,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 		@SuppressWarnings("null") @NonNull EEnum eObject2 = eObject;
 		Enumeration pivotElement = converter.refreshElement(Enumeration.class, PivotPackage.Literals.ENUMERATION, eObject2);
 		String oldName = pivotElement.getName();
-		String newName = environmentFactory.getOriginalName(eObject2);
+		String newName = technology.getOriginalName(eObject2);
 		boolean nameChange = (oldName != newName) || ((oldName != null) && !oldName.equals(newName));
 		if (nameChange) {
 			org.eclipse.ocl.pivot.Package parentPackage = pivotElement.getOwningPackage();
@@ -362,7 +363,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 		copyDataTypeOrEnum(pivotElement, eObject2);
 		doSwitchAll(pivotElement.getOwnedLiterals(), eObject2.getELiterals());
 //		pivotElement.getSuperClass().add(metamodelManager.getOclAnyType());
-		pivotElement.getSuperClasses().add(metamodelManager.getStandardLibrary().getEnumerationType());
+		pivotElement.getSuperClasses().add(environmentFactory.getStandardLibrary().getEnumerationType());
 		return pivotElement;
 	}
 
@@ -416,7 +417,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 		@SuppressWarnings("null") @NonNull EPackage eObject2 = eObject;
 		org.eclipse.ocl.pivot.Package pivotElement = converter.refreshElement(org.eclipse.ocl.pivot.Package.class, PivotPackage.Literals.PACKAGE, eObject2);
 		String oldName = pivotElement.getName();
-		String newName = environmentFactory.getOriginalName(eObject2);
+		String newName = technology.getOriginalName(eObject2);
 //		if (newName == null) {
 //			newName = "anon_" + Integer.toHexString(System.identityHashCode(eObject2));
 //			logger.error("Anonymous package named as '" + newName + "'");
@@ -436,7 +437,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 		}
 		pivotElement.setName(newName);
 		if (eObject2.eIsSet(EcorePackage.Literals.EPACKAGE__NS_URI)) {
-			RootPackageId metamodel = environmentFactory.getMetamodelId(eObject2);
+			RootPackageId metamodel = technology.getMetamodelId(environmentFactory, eObject2);
 			if (metamodel != null) {
 				((PackageImpl)pivotElement).setPackageId(metamodel);
 			}
@@ -515,7 +516,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 		@SuppressWarnings("null") @NonNull ETypeParameter eObject2 = eObject;
 		TemplateParameter pivotElement = converter.refreshNamedElement(TemplateParameter.class, PivotPackage.Literals.TEMPLATE_PARAMETER, eObject2);
 		converter.addMapping(eObject2, pivotElement);
-		String name = environmentFactory.getOriginalName(eObject2);
+		String name = technology.getOriginalName(eObject2);
 		pivotElement.setName(name);
 //		TemplateParameter templateParameter = pivotElement.isTemplateParameter();
 //		if (templateParameter == null) {
@@ -532,7 +533,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 
 	protected @NonNull Constraint convertEOperation2Constraint(@NonNull EOperation eOperation) {
 		Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
-		constraint.setName(environmentFactory.getOriginalName(eOperation));
+		constraint.setName(technology.getOriginalName(eOperation));
 		constraint.setIsCallable(true);
 		String value = null;
 		EAnnotation eAnnotation = OCLCommon.getDelegateAnnotation(eOperation);
@@ -726,7 +727,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 
 	protected void copyNamedElement(@NonNull NamedElement pivotElement, @NonNull ENamedElement eNamedElement) {
 		converter.addMapping(eNamedElement, pivotElement);
-		String name = environmentFactory.getOriginalName(eNamedElement);
+		String name = technology.getOriginalName(eNamedElement);
 		pivotElement.setName(name);
 	}
 
