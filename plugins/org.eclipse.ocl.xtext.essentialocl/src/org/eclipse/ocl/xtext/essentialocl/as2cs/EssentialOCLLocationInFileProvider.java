@@ -83,10 +83,22 @@ public class EssentialOCLLocationInFileProvider extends BaseLocationInFileProvid
 				}
 			}
 			while (csLeftmost instanceof OperatorExpCS) {
-				csLeftmost = ((OperatorExpCS)csLeftmost).getSource();
+				ExpCS csSource = ((OperatorExpCS)csLeftmost).getSource();
+				if (csSource != null) {
+					csLeftmost = csSource;
+				}
+				else {
+					break;
+				}
 			}
 			while (csRightmost instanceof InfixExpCS) {
-				csRightmost = ((InfixExpCS)csRightmost).getArgument();
+				ExpCS csArgument = ((InfixExpCS)csRightmost).getArgument();
+				if (csArgument != null) {
+					csRightmost = csArgument;
+				}
+				else {
+					break;
+				}
 			}
 			ITextRegion leftRegion = super.getTextRegion(csLeftmost, isSignificant);
 			ITextRegion rightRegion = super.getTextRegion(csRightmost, isSignificant);
