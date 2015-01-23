@@ -398,7 +398,7 @@ public class CompletePackageImpl extends NamedElementImpl implements CompletePac
 		if (getOwningCompletePackage() == null) {
 //		if ((this instanceof OrphanCompletePackage) || (this instanceof ParentCompletePackage) || (this instanceof PrimitiveCompletePackage)) {
 			org.eclipse.ocl.pivot.Package parentPackage = pivotPackage.getOwningPackage();
-			assert parentPackage == null;
+//			assert parentPackage == null;
 			String typeBasedNsURI = pivotPackage.getURI();
 			String serverBasedNsURI = getURI();
 			if (typeBasedNsURI == null) {
