@@ -50,6 +50,7 @@ import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.PivotExecutorManager;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
+import org.eclipse.ocl.pivot.internal.resource.OCLAdapter;
 import org.eclipse.ocl.pivot.internal.scoping.Attribution;
 import org.eclipse.ocl.pivot.internal.scoping.NullAttribution;
 import org.eclipse.ocl.pivot.library.ecore.EcoreExecutorManager;
@@ -216,7 +217,17 @@ public class PivotUtilInternal //extends PivotUtil
 	}
 
 	public static @NonNull EnvironmentFactoryInternal getEnvironmentFactory(@NonNull Resource resource) {
-		return ClassUtil.nonNullState(findEnvironmentFactory(resource));
+		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.findEnvironmentFactory(resource);
+		if (environmentFactory == null) {
+			ResourceSet resourceSet = resource.getResourceSet();
+			if (resourceSet != null) {
+				environmentFactory = OCLAdapter.createEnvironmentFactory(null, resourceSet);
+			}
+			else {
+				environmentFactory = OCLAdapter.createEnvironmentFactory(null, resource);
+			}
+		}
+		return environmentFactory;
 	}
 
 	public static @NonNull Evaluator getEvaluator(@NonNull EObject eObject) {

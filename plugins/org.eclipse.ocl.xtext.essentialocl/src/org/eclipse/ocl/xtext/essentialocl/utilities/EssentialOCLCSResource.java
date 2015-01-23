@@ -40,7 +40,6 @@ import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceImpl;
 import org.eclipse.ocl.pivot.internal.resource.AbstractASResourceFactory;
-import org.eclipse.ocl.pivot.internal.resource.OCLAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.IllegalLibraryException;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
@@ -367,10 +366,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 
 	@Override
 	public @NonNull CS2AS getCS2AS() {
-		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.findEnvironmentFactory(this);
-		if (environmentFactory == null) {
-			environmentFactory = OCLAdapter.adapt(projectMap, ClassUtil.nonNullState(getResourceSet()));
-		}
+		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(this);
 		CSI2ASMapping csi2asMapping = CSI2ASMapping.basicGetCSI2ASMapping(environmentFactory);
 		if (csi2asMapping != null) {
 			CS2AS cs2as = csi2asMapping.getCS2AS(this);
