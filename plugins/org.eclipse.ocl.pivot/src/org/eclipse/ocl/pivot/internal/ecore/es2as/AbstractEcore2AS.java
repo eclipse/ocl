@@ -29,11 +29,10 @@ import org.eclipse.ocl.pivot.internal.utilities.AbstractConversion;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.External2AS;
 import org.eclipse.ocl.pivot.internal.utilities.PivotConstantsInternal;
-import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 
 public abstract class AbstractEcore2AS extends AbstractConversion implements External2AS, PivotConstantsInternal
 {
-	public static @Nullable External2AS findAdapter(@NonNull Resource resource, @NonNull EnvironmentFactory environmentFactory) {
+	public static @Nullable External2AS findAdapter(@NonNull Resource resource, @NonNull EnvironmentFactoryInternal environmentFactory) {
 //		UMLStandaloneSetup.assertInitialized();
 		External2AS es2as = environmentFactory.getMetamodelManager().getES2AS(resource);
 /*		for (Adapter adapter : resource.eAdapters()) {

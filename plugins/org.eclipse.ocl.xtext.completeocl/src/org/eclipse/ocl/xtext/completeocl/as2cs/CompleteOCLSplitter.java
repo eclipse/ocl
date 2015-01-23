@@ -36,11 +36,11 @@ import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.util.PivotSwitch;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 
 /**
@@ -48,7 +48,7 @@ import org.eclipse.ocl.pivot.utilities.NameUtil;
  */
 public class CompleteOCLSplitter
 {
-	public static @Nullable ASResource separate(@NonNull EnvironmentFactory environmentFactory, @NonNull Resource asResource) {
+	public static @Nullable ASResource separate(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Resource asResource) {
 		List<Constraint> allConstraints = new ArrayList<Constraint>();
 		List<LanguageExpression> allExpressionInOCLs = new ArrayList<LanguageExpression>();
 		for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {

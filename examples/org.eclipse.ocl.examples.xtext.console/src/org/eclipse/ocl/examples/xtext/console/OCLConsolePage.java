@@ -62,6 +62,7 @@ import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.context.ClassContext;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -325,7 +326,7 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 	private EObject contextObject;
 	private ParserContext parserContext;
 	
-	private OCL nullOCL = null;
+	private OCL.Internal nullOCL = null;
 	private ModelManager modelManager = null;
 	
 //	private Map<TargetMetamodel, IAction> metamodelActions =
@@ -817,14 +818,14 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 		return lastOCLExpression;
 	}
 
-	public @NonNull EnvironmentFactory getEnvironmentFactory(@Nullable EObject contextObject) {
-		EnvironmentFactory environmentFactory = PivotUtilInternal.findEnvironmentFactory(contextObject);
+	public @NonNull EnvironmentFactoryInternal getEnvironmentFactory(@Nullable EObject contextObject) {
+		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.findEnvironmentFactory(contextObject);
 		if (environmentFactory != null) {
 			return environmentFactory;
 		}
-		OCL nullOCL2 = nullOCL;
+		OCL.Internal nullOCL2 = nullOCL;
 		if (nullOCL2 == null) {
-			nullOCL2 = nullOCL = OCL.newInstance();
+			nullOCL2 = nullOCL = OCL.Internal.newInstance();
 		}
 		return nullOCL2.getEnvironmentFactory();
 	}
@@ -861,7 +862,7 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 		    		((BaseCSResource)resource).dispose();
 		    	}
 		    	
-		    	EnvironmentFactory environmentFactory = getEnvironmentFactory(contextObject);
+		    	EnvironmentFactoryInternal environmentFactory = getEnvironmentFactory(contextObject);
 				IdResolver idResolver = environmentFactory.getIdResolver();
 //				DomainType staticType = idResolver.getStaticTypeOf(selectedObject);
 				org.eclipse.ocl.pivot.Class staticType = idResolver.getStaticTypeOf(contextObject);

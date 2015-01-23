@@ -12,6 +12,7 @@
 
 package org.eclipse.ocl.pivot.utilities;
 
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -27,8 +28,6 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
-import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
-import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 
 /**
@@ -62,7 +61,7 @@ public interface EnvironmentFactory extends Adaptable, Customizable
 		void environmentFactoryDisposed(@NonNull EnvironmentFactory environmentFactory);
 	}
 	
-	@NonNull EnvironmentFactoryAdapter adapt(@NonNull Notifier notifier);
+	@NonNull Adapter adapt(@NonNull Notifier notifier);
 	
 	void addListener(@NonNull Listener oclDelegateDomain);
 
@@ -141,7 +140,7 @@ public interface EnvironmentFactory extends Adaptable, Customizable
 
 	@NonNull IdResolver getIdResolver();
 
-	@NonNull PivotMetamodelManager getMetamodelManager();
+	@NonNull MetamodelManager getMetamodelManager();
 
 	@NonNull ProjectManager getProjectManager();
 	

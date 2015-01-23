@@ -34,7 +34,6 @@ import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 
 /**
  * OCLinEcoreCodeGenerator supports generation of the inline OCL-defined content of a Ecore *Impl file.
@@ -99,7 +98,7 @@ public class OCLinEcoreCodeGenerator extends JavaCodeGenerator
 	protected final @NonNull CodeGenAnalyzer cgAnalyzer;
 	protected final @NonNull GenPackage genPackage;
 	
-	protected OCLinEcoreCodeGenerator(@NonNull EnvironmentFactory environmentFactory, @NonNull GenPackage genPackage) {
+	protected OCLinEcoreCodeGenerator(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull GenPackage genPackage) {
 		super(environmentFactory);
 		GenModel genModel = ClassUtil.nonNullModel(genPackage.getGenModel());
 		genModel.reconcile();

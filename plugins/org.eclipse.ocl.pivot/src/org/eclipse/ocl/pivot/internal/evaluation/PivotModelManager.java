@@ -19,19 +19,19 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.library.executor.LazyModelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 
 public class PivotModelManager extends LazyModelManager
 {	
 	private static final Logger logger = Logger.getLogger(PivotModelManager.class);
 
-	protected final @NonNull EnvironmentFactory environmentFactory;
+	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 	private boolean generatedErrorMessage = false;
 	
-	public PivotModelManager(@NonNull EnvironmentFactory environmentFactory, EObject context) {
+	public PivotModelManager(@NonNull EnvironmentFactoryInternal environmentFactory, EObject context) {
 		super(context);
 		this.environmentFactory = environmentFactory;
 	}

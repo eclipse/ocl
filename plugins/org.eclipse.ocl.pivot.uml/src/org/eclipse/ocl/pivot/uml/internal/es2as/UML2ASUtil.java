@@ -17,12 +17,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-
-
-
-
-
-
 //import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -31,7 +25,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
-import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 
@@ -82,7 +76,7 @@ public class UML2ASUtil
 	/**
 	 * Return the metaType of umlElement using the UML meta namespace identifiable from stereotype applications.
 	 */
-	public static @Nullable org.eclipse.ocl.pivot.Class getMetaType(@NonNull EnvironmentFactory environmentFactory, @NonNull org.eclipse.uml2.uml.Element umlElement) {
+	public static @Nullable org.eclipse.ocl.pivot.Class getMetaType(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull org.eclipse.uml2.uml.Element umlElement) {
 		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		EClass umlEClass = umlElement.eClass();
 		for (org.eclipse.uml2.uml.Stereotype umlStereotype : umlElement.getApplicableStereotypes()) {

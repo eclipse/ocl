@@ -32,6 +32,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
@@ -44,12 +45,12 @@ import org.eclipse.ocl.pivot.utilities.StringUtil;
 
 public abstract class AbstractParserContext /*extends AdapterImpl*/ implements ParserContext
 {
-	protected final @NonNull EnvironmentFactory environmentFactory;
+	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 	protected final @NonNull URI uri;
 	protected @Nullable Element rootElement = null;
 
 	protected AbstractParserContext(@NonNull EnvironmentFactory environmentFactory, @Nullable URI uri) {
-		this.environmentFactory = environmentFactory;
+		this.environmentFactory = (EnvironmentFactoryInternal) environmentFactory;
 		if (uri != null) {
 			this.uri = uri;
 		}
@@ -97,7 +98,7 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 		return "\n\tMake sure " + doSetup + " has been called.";
 	}
 
-	public @NonNull EnvironmentFactory getEnvironmentFactory() {
+	public @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
 		return environmentFactory;
 	}
 

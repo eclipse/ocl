@@ -30,8 +30,8 @@ import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.internal.scoping.ScopeView;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS.UnresolvedProxyMessageProvider;
@@ -84,7 +84,7 @@ public class ImportCSAttribution extends AbstractAttribution implements Unresolv
 			if (name == null) {
 				return;
 			}
-			EnvironmentFactory environmentFactory = environmentView.getEnvironmentFactory();
+			EnvironmentFactoryInternal environmentFactory = environmentView.getEnvironmentFactory();
 			CompletePackage completePackage = environmentFactory.getCompleteModel().getCompletePackageByURI(name);
 			if (completePackage != null) {
 				Package pivotPackage = completePackage.getPrimaryPackage();

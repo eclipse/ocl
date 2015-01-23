@@ -42,6 +42,7 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
@@ -99,13 +100,13 @@ public class PivotEObjectValidator implements EValidator
 			return null;
 		}
 
-		protected final @NonNull EnvironmentFactory environmentFactory;
+		protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 		
-		public ValidationAdapter(@NonNull EnvironmentFactory environmentFactory) {
+		public ValidationAdapter(@NonNull EnvironmentFactoryInternal environmentFactory) {
 			this.environmentFactory = environmentFactory;
 		}
 
-		public @NonNull EnvironmentFactory getEnvironmentFactory() {
+		public @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
 			return environmentFactory;
 		}
 
@@ -241,7 +242,7 @@ public class PivotEObjectValidator implements EValidator
 	/**
 	 * Install Complete OCL validation support in resourceSet for metamodelManager.
 	 */
-	public static @NonNull ValidationAdapter install(@NonNull ResourceSet resourceSet, @NonNull EnvironmentFactory environmentFactory) {
+	public static @NonNull ValidationAdapter install(@NonNull ResourceSet resourceSet, @NonNull EnvironmentFactoryInternal environmentFactory) {
 		ValidationAdapter validationAdapter = ValidationAdapter.findAdapter(resourceSet);
 		if (validationAdapter != null) {
 			if (validationAdapter.getEnvironmentFactory() != environmentFactory) {

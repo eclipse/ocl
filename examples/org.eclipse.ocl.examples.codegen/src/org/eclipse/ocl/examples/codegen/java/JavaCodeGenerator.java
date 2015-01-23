@@ -59,6 +59,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.ids.ElementId;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.library.LibraryIteration;
 import org.eclipse.ocl.pivot.library.iterator.AnyIteration;
 import org.eclipse.ocl.pivot.library.iterator.CollectIteration;
@@ -71,7 +72,6 @@ import org.eclipse.ocl.pivot.library.iterator.OneIteration;
 import org.eclipse.ocl.pivot.library.iterator.RejectIteration;
 import org.eclipse.ocl.pivot.library.iterator.SelectIteration;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 
 /**
  * OCL2JavaClass supports generation of the content of a JavaClassFile to
@@ -187,7 +187,7 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 	private /*@LazyNonNull*/ Object annotationReader = null;
 	private /*@LazyNonNull*/ Method annotationReader_getIsNonNull = null;
 	
-	public JavaCodeGenerator(@NonNull EnvironmentFactory environmentFactory) {
+	public JavaCodeGenerator(@NonNull EnvironmentFactoryInternal environmentFactory) {
 		super(environmentFactory);
 	}
 

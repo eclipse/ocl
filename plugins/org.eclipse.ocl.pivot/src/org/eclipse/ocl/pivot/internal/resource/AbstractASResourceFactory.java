@@ -125,7 +125,7 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 	
 	@Override
 	public @NonNull TemplateParameterSubstitutionVisitor createTemplateParameterSubstitutionVisitor(@NonNull EnvironmentFactory environmentFactory, @Nullable Type selfType, @Nullable Type selfTypeValue) {
-		return new TemplateParameterSubstitutionVisitor(environmentFactory, selfType, selfTypeValue);
+		return new TemplateParameterSubstitutionVisitor((EnvironmentFactoryInternal) environmentFactory, selfType, selfTypeValue);
 	}
 
 	@Override

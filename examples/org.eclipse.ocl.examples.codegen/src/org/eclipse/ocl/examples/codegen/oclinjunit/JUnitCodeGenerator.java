@@ -31,8 +31,8 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 
 /**
  * JUnitCodeGenerator supports generation of an ExpressionInOCL for execution in a JUNit test.
@@ -41,7 +41,7 @@ import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
  */
 public class JUnitCodeGenerator extends JavaCodeGenerator
 {
-	public static @NonNull String generateClassFile(@NonNull EnvironmentFactory environmentFactory, @NonNull ExpressionInOCL query,
+	public static @NonNull String generateClassFile(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull ExpressionInOCL query,
 			@NonNull String packageName, @NonNull String className) {
 		CompleteEnvironmentInternal completeEnvironment = environmentFactory.getMetamodelManager().getCompleteEnvironment();
 		boolean savedIsCodeGenerator = completeEnvironment.isCodeGeneration();
@@ -58,7 +58,7 @@ public class JUnitCodeGenerator extends JavaCodeGenerator
 	protected final @NonNull JavaGlobalContext<JUnitCodeGenerator> globalContext = new JavaGlobalContext<JUnitCodeGenerator>(this);
 	protected final @NonNull CodeGenAnalyzer cgAnalyzer;
 
-	protected JUnitCodeGenerator(@NonNull EnvironmentFactory environmentFactory, boolean useNullAnnotations) {
+	protected JUnitCodeGenerator(@NonNull EnvironmentFactoryInternal environmentFactory, boolean useNullAnnotations) {
 		super(environmentFactory);
 		getOptions().setUseNullAnnotations(useNullAnnotations);
 		cgAnalyzer = new CodeGenAnalyzer(this);

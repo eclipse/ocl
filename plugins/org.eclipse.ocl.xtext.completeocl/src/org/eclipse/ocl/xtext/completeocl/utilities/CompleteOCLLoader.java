@@ -32,6 +32,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.External2AS;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.internal.validation.PivotEObjectValidator;
@@ -45,12 +46,12 @@ import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 
 public abstract class CompleteOCLLoader
 {  // FIXME This is a pragmatic re-use. Redesign as part of a coherent API.
-	protected final @NonNull OCL ocl;
+	protected final @NonNull OCL.Internal ocl;
 
 	protected final @NonNull Set<EPackage> mmPackages;
 	
 	public CompleteOCLLoader(@NonNull EnvironmentFactory environmentFactory) {
-		this.ocl = OCL.newInstance(environmentFactory);
+		this.ocl = OCL.Internal.newInstance((EnvironmentFactoryInternal)environmentFactory);
 		this.mmPackages = new HashSet<EPackage>();
 	}
 	
@@ -89,7 +90,7 @@ public abstract class CompleteOCLLoader
 		for (Resource mmResource : mmResources) {
 			assert mmResource != null;
 			try {
-				Element pivotModel = ((MetamodelManager.Internal)ocl.getMetamodelManager()).loadResource(mmResource, null);
+				Element pivotModel = ocl.getMetamodelManager().loadResource(mmResource, null);
 				if (pivotModel != null) {
 					List<org.eclipse.emf.ecore.resource.Resource.Diagnostic> errors = pivotModel.eResource().getErrors();
 					assert errors != null;

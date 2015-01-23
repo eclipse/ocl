@@ -29,7 +29,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.ids.ElementId;
-import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 
 public interface CodeGenerator
 {
@@ -43,7 +43,7 @@ public interface CodeGenerator
 	@NonNull BoxedDescriptor getBoxedDescriptor(@NonNull ElementId elementId);
 	@Nullable String getConstantsClass();
 	@NonNull String getDefaultIndent();
-	@NonNull EnvironmentFactory getEnvironmentFactory();
+	@NonNull EnvironmentFactoryInternal getEnvironmentFactory();
 	@NonNull GenModelHelper getGenModelHelper();
 	@NonNull GlobalContext getGlobalContext();
 	@NonNull GlobalPlace getGlobalPlace();

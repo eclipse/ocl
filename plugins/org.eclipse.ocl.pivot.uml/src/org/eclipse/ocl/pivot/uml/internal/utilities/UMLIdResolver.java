@@ -11,9 +11,9 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.Stereotype;
 import org.eclipse.ocl.pivot.internal.manager.PivotIdResolver;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2ASUtil;
 import org.eclipse.ocl.pivot.uml.internal.library.UMLElementExtension;
-import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -22,7 +22,7 @@ public class UMLIdResolver extends PivotIdResolver
 {
 //	private static final Logger logger = Logger.getLogger(UMLIdResolver.class);
 	
-	public UMLIdResolver(@NonNull EnvironmentFactory environmentFactory) {
+	public UMLIdResolver(@NonNull EnvironmentFactoryInternal environmentFactory) {
 		super(environmentFactory);
 	}
 

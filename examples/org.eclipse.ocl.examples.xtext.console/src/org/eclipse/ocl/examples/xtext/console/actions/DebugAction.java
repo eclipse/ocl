@@ -56,8 +56,9 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -81,12 +82,12 @@ public final class DebugAction extends Action
     protected static class DebugStarter implements IRunnableWithProgress
 	{
 		protected final @NonNull Shell shell;
-    	protected final @NonNull EnvironmentFactory environmentFactory;
+    	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
     	protected final @Nullable EObject contextObject;
     	protected final @NonNull String expression;
     	private @Nullable ILaunch launch = null;
 
-		public DebugStarter(@NonNull Shell shell, @NonNull EnvironmentFactory environmentFactory, @Nullable EObject contextObject, @NonNull String expression) {
+		public DebugStarter(@NonNull Shell shell, @NonNull EnvironmentFactoryInternal environmentFactory, @Nullable EObject contextObject, @NonNull String expression) {
 			this.shell = shell;
 			this.environmentFactory = environmentFactory;
 			this.contextObject = contextObject;
@@ -165,14 +166,14 @@ public final class DebugAction extends Action
 		 * @throws IOException 
 		 */
 		protected @Nullable BaseCSResource loadDocument(IProgressMonitor monitor, @NonNull URI documentURI) throws Exception {
-			PivotMetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+			MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
 			ResourceSet externalResourceSet = metamodelManager.getExternalResourceSet();
 			if (contextObject != null) {
 				Resource contextResource = contextObject.eResource();
 				if (contextResource != null) {
 					ResourceSet contextResourceSet = contextResource.getResourceSet();
 					if (contextResourceSet != null) {
-						metamodelManager.addExternalResources(contextResourceSet);
+						((PivotMetamodelManager)metamodelManager).addExternalResources(contextResourceSet);
 					}
 					else {
 						if (externalResourceSet instanceof ResourceSetImpl) {
@@ -295,7 +296,7 @@ public final class DebugAction extends Action
 			return null;
 		}
 		IProgressService progressService = PlatformUI.getWorkbench().getProgressService();
-		EnvironmentFactory environmentFactory = oclConsolePage.getEnvironmentFactory(contextObject);
+		EnvironmentFactoryInternal environmentFactory = oclConsolePage.getEnvironmentFactory(contextObject);
 		DebugStarter runnable = new DebugStarter(shell, environmentFactory, contextObject, expression);
 		try {
 			progressService.run(true, true, runnable);

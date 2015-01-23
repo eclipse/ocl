@@ -32,6 +32,7 @@ import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.internal.scoping.ScopeView;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.IllegalLibraryException;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
@@ -94,7 +95,7 @@ public class LibraryCSAttribution extends AbstractAttribution implements Unresol
 			if (contribution != null) {
 				Resource resource = contribution.getResource();
 				try {
-					EnvironmentFactory environmentFactory = environmentView.getEnvironmentFactory();
+					EnvironmentFactoryInternal environmentFactory = environmentView.getEnvironmentFactory();
 					environmentFactory.getMetamodelManager().installResource(resource);
 					for (EObject root : resource.getContents()) {
 						if (root instanceof Model) {

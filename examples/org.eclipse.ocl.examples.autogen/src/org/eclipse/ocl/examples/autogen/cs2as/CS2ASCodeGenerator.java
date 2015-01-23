@@ -47,7 +47,6 @@ import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
@@ -107,7 +106,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 
 	protected final @NonNull CS2ASGlobalContext globalContext = new CS2ASGlobalContext(this);
 
-	public CS2ASCodeGenerator(@NonNull EnvironmentFactory environmentFactory,
+	public CS2ASCodeGenerator(@NonNull EnvironmentFactoryInternal environmentFactory,
 			@NonNull Package asPackage, Package asSuperPackage, @NonNull GenPackage genPackage,
 			@NonNull String projectPrefix, @NonNull String projectName, @NonNull String visitorPackage,
 			@NonNull String visitorClass, String superProjectPrefix,

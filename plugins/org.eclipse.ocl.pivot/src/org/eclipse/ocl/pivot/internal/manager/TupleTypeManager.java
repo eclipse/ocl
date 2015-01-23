@@ -35,9 +35,9 @@ import org.eclipse.ocl.pivot.internal.TuplePartImpl;
 import org.eclipse.ocl.pivot.internal.TupleTypeImpl;
 import org.eclipse.ocl.pivot.internal.TypedElementImpl;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.values.TemplateParameterSubstitutions;
 
@@ -50,7 +50,7 @@ public class TupleTypeManager
 	{
 		private final TemplateParameterReferencesVisitor referencesVisitor;
 
-		private TupleIdResolver(@NonNull EnvironmentFactory environmentFactory,
+		private TupleIdResolver(@NonNull EnvironmentFactoryInternal environmentFactory,
 				TemplateParameterReferencesVisitor referencesVisitor) {
 			super(environmentFactory);
 			this.referencesVisitor = referencesVisitor;
@@ -97,7 +97,7 @@ public class TupleTypeManager
 	{
 		protected final @NonNull Map<Integer, TemplateParameter> templateParameters = new HashMap<Integer, TemplateParameter>();
 		
-		public TemplateParameterReferencesVisitor(@NonNull EnvironmentFactory environmentFactory, Collection<? extends Type> partValues) {
+		public TemplateParameterReferencesVisitor(@NonNull EnvironmentFactoryInternal environmentFactory, Collection<? extends Type> partValues) {
 			super(environmentFactory, null, null);
 			for (Type partValue : partValues) {
 				analyzeType(partValue, partValue);
