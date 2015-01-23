@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.debug.evaluator.OCLVMEnvironmentFactory;
 import org.eclipse.ocl.examples.debug.vm.core.EvaluationContext;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -28,6 +29,7 @@ public class OCLEvaluationContext extends EvaluationContext
 	private final @Nullable URI contextURI;
 
 	public OCLEvaluationContext(@NonNull ExpressionInOCL expressionObject, @Nullable EObject contextObject) {
+		super(new OCLVMEnvironmentFactory(null));
 		this.expressionObject = expressionObject;
 		this.contextObject = contextObject;
 		this.constraintURI = ClassUtil.nonNullState(EcoreUtil.getURI(expressionObject));
@@ -35,6 +37,7 @@ public class OCLEvaluationContext extends EvaluationContext
 	}
 
 	public OCLEvaluationContext(@NonNull URI constraintURI, @NonNull URI contextURI) {
+		super(new OCLVMEnvironmentFactory(null));
 		this.expressionObject = null;
 		this.contextObject = null;
 		this.constraintURI = constraintURI;

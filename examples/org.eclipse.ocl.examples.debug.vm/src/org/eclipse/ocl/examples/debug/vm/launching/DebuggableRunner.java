@@ -145,7 +145,7 @@ public class DebuggableRunner
 	}
 	
 	protected @NonNull IVMEnvironmentFactory getEnvFactory() {
-		return executor.getEnvFactory(); 
+		return executor.getEnvironmentFactory(); 
 	}
 	
 	protected @NonNull InternalDebuggableExecutor getExecutor() {

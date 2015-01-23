@@ -16,30 +16,24 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEnvironmentFactory;
 import org.eclipse.ocl.examples.debug.vm.utils.Log;
-import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.utilities.OCL;
 
-public abstract class EvaluationContext
+public abstract class EvaluationContext extends OCL
 {
-	private @Nullable OCL ocl;
 	private @Nullable Log log;
 	
-	public @Nullable Log getLog() {
-		return log;
+	protected EvaluationContext(@NonNull IVMEnvironmentFactory environmentFactory) {
+		super(environmentFactory);
 	}
 
-	protected @Nullable PivotMetamodelManager findMetamodelManager() {
-		return null;
+	public @Nullable Log getLog() {
+		return log;
 	}
 
 	public abstract @NonNull URI getDebuggableURI();
 
 	public @NonNull IVMEnvironmentFactory getEnvironmentFactory() {
-		OCL ocl2 = ocl;
-		if (ocl2 == null) {
-			ocl = ocl2 = OCL.newInstance();
-		}
-		return (IVMEnvironmentFactory) ocl2.getEnvironmentFactory();
+		return (IVMEnvironmentFactory) super.getEnvironmentFactory();
 	}
 
 	public void setLog(@NonNull Log log) {

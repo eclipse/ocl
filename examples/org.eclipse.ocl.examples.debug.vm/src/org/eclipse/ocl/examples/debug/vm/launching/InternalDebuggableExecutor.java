@@ -50,7 +50,7 @@ public abstract class InternalDebuggableExecutor
 				|| severity == Diagnostic.INFO;
 	}
 
-	protected final @NonNull IVMEnvironmentFactory envFactory;
+	protected final @NonNull IVMEnvironmentFactory environmentFactory;
 	protected final @NonNull URI debuggableURI;
 //	private EPackage.Registry fPackageRegistry;
 	private @Nullable CompiledUnit fCompiledUnit;
@@ -66,8 +66,8 @@ public abstract class InternalDebuggableExecutor
 	 * <p>
 	 * No attempt to resolve and load the transformation is done at this step
 	 */
-	public InternalDebuggableExecutor(@NonNull IVMEnvironmentFactory envFactory, @NonNull URI debuggableURI) {
-		this.envFactory = envFactory;
+	protected InternalDebuggableExecutor(@NonNull IVMEnvironmentFactory environmentFactory, @NonNull URI debuggableURI) {
+		this.environmentFactory = environmentFactory;
 		this.debuggableURI = debuggableURI;
 	}
 
@@ -305,8 +305,8 @@ public abstract class InternalDebuggableExecutor
 		return xtextEvaluator2 != null ? xtextEvaluator2.getDebuggable() : null;
 	}
 
-	public @NonNull IVMEnvironmentFactory getEnvFactory() {
-		return envFactory;
+	public @NonNull IVMEnvironmentFactory getEnvironmentFactory() {
+		return environmentFactory;
 	}
 
 	public IVMEvaluator getEvaluator() {
