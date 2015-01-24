@@ -316,7 +316,7 @@ public class UMLOCLEValidator implements EValidator
 											else {
 												constraintEvaluator = new ConstraintEvaluatorWithoutDiagnostics(query);
 											}
-											if (!constraintEvaluator.evaluate(evaluationVisitor) && (diagnostics == null)) {
+											if (!constraintEvaluator.evaluate(evaluationVisitor)) {
 												allOk = false;
 											}
 										} catch (ParserException e) {
