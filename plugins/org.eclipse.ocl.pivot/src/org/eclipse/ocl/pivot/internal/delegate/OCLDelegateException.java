@@ -11,6 +11,7 @@
 package org.eclipse.ocl.pivot.internal.delegate;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.evaluation.EvaluationException;
 
 
 /**
@@ -22,7 +23,16 @@ import org.eclipse.jdt.annotation.NonNull;
  * <p>
  * Code supporting the Classic LPG evaluator must be prepared to handle unwrapped exceptions.
  */
-public class OCLDelegateException extends org.eclipse.ocl.common.internal.delegate.OCLDelegateException {
+public class OCLDelegateException extends org.eclipse.ocl.common.internal.delegate.OCLDelegateException
+{
+	private static String computeMessage(Exception cause) {
+		String message = cause.getLocalizedMessage();
+		Throwable nestedException = cause.getCause();
+		if ((nestedException != null) && !(cause instanceof EvaluationException)) {		// Make caller more regular
+			message = message + "\n - " + nestedException.getLocalizedMessage();
+		}
+		return message; //.replace("\n", " ");
+	}
 
 	/**
 	 * 
@@ -38,6 +48,6 @@ public class OCLDelegateException extends org.eclipse.ocl.common.internal.delega
 	}
 
 	public OCLDelegateException(@NonNull Exception cause) {
-		super(cause);
+		super(computeMessage(cause), cause);
 	}
 }
