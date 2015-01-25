@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.domain.values.impl;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -20,6 +22,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.examples.domain.types.IdResolver;
 import org.eclipse.ocl.examples.domain.values.BagValue;
 import org.eclipse.ocl.examples.domain.values.CollectionValue;
 import org.eclipse.ocl.examples.domain.values.IntegerValue;
@@ -38,7 +41,7 @@ import org.eclipse.ocl.examples.domain.values.ValuesPackage;
 /**
  * @generated NOT
  */
-public abstract class NumberValueImpl extends Number implements Value
+public abstract class NumberValueImpl extends Number implements Value, ValueExtension
 {
 	private static final long serialVersionUID = 1L;
 
@@ -81,6 +84,36 @@ public abstract class NumberValueImpl extends Number implements Value
 	@Deprecated // Use asEcoreObject(@NonNull IdResolver idResolver)
 	public @Nullable Object asEcoreObject() {
 		return asObject();
+	}
+
+	public Object asEcoreObject(@NonNull IdResolver idResolver, @Nullable Class<?> instanceClass) {
+		//
+		//	This partial implementation returns null to signal to the derived invoker to make a type-dependent guess 
+		//
+		if ((instanceClass == Double.class) || (instanceClass == double.class)) {
+			return doubleValue();
+		}
+		else if ((instanceClass == Float.class) || (instanceClass == float.class)) {
+			return floatValue();
+		}
+		else if ((instanceClass == Short.class) || (instanceClass == short.class)) {
+			return shortValue();
+		}
+		else if ((instanceClass == Integer.class) || (instanceClass == int.class)) {
+			return intValue();
+		}
+		else if ((instanceClass == Long.class) || (instanceClass == long.class)) {
+			return longValue();
+		}
+		else if (instanceClass == BigDecimal.class) {
+			return BigDecimal.valueOf(doubleValue());
+		}
+		else if (instanceClass == BigInteger.class) {
+			return BigInteger.valueOf(longValue());
+		}
+		else {					// instanceClass is null, leave derived class to make a best guess
+			return null;
+		}
 	}
 
 	public DomainElement asElement() {

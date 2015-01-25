@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
 import org.eclipse.ocl.examples.domain.values.IntegerValue;
 import org.eclipse.ocl.examples.domain.values.RealValue;
@@ -56,6 +57,16 @@ public class BigIntegerValueImpl extends IntegerValueImpl
 
 	public @NonNull Object asEcoreObject(@NonNull IdResolver idResolver) {
 		return value;
+	}
+
+	@Override
+	public Object asEcoreObject(@NonNull IdResolver idResolver, @Nullable Class<?> instanceClass) {
+		if (instanceClass == BigInteger.class) {
+			return value;
+		}
+		else {
+			return super.asEcoreObject(idResolver, instanceClass);
+		}
 	}
 	
 	@Override

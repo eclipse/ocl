@@ -63,6 +63,11 @@ public class UnlimitedValueImpl extends NumberValueImpl implements UnlimitedValu
 		return Unlimited.INSTANCE;
 	}
 
+	@Override
+	public Object asEcoreObject(@NonNull IdResolver idResolver, @Nullable Class<?> instanceClass) {
+		return -1;
+	}
+
 	public @NonNull Number asNumber() {
 		return Unlimited.INSTANCE;
 //		throw new InvalidValueException(EvaluatorMessages.InvalidOperation, "asNumber", "UnlimitedValue");

@@ -19,6 +19,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.examples.domain.types.IdResolver;
 import org.eclipse.ocl.examples.domain.values.IntegerValue;
 import org.eclipse.ocl.examples.domain.values.RealValue;
 import org.eclipse.ocl.examples.domain.values.UnlimitedValue;
@@ -50,6 +51,12 @@ public abstract class IntegerValueImpl extends NumberValueImpl implements Intege
 		} catch (InvalidValueException e) {
 			throw new InvalidValueException(EvaluatorMessages.InvalidReal, e, null, rightValue);
 		}
+	}
+
+	@Override
+	public Object asEcoreObject(@NonNull IdResolver idResolver, @Nullable Class<?> instanceClass) {
+		Object ecoreValue = super.asEcoreObject(idResolver, instanceClass);
+		return ecoreValue != null ? ecoreValue : intValue();
 	}
 	
 	@Override

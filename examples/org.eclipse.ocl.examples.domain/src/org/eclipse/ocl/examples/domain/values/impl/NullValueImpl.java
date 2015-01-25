@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
@@ -35,7 +36,7 @@ import org.eclipse.ocl.examples.domain.values.ValuesPackage;
  *
  * * @generated NOT
  */
-public class NullValueImpl extends UndefinedValueImpl implements NullValue
+public class NullValueImpl extends UndefinedValueImpl implements NullValue, ValueExtension
 {	
 	private static final long serialVersionUID = 1L;
 
@@ -58,6 +59,10 @@ public class NullValueImpl extends UndefinedValueImpl implements NullValue
 	}
 	
 	public List<Object> asEcoreObject(@NonNull IdResolver idResolver) {
+		return null;
+	}
+	
+	public List<Object> asEcoreObject(@NonNull IdResolver idResolver, @Nullable Class<?> instanceClass) {
 		return null;
 	}
 

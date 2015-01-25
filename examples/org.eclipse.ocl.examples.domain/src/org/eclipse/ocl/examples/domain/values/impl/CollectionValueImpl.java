@@ -45,7 +45,7 @@ import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
 /**
  * @generated NOT
  */
-public abstract class CollectionValueImpl extends ValueImpl implements CollectionValue, Iterable<Object>
+public abstract class CollectionValueImpl extends ValueImpl implements CollectionValue, Iterable<Object>, ValueExtension
 {
 	/**
 	 * Optimized iterator over an Array for use in OCL contents where the array is known to be stable
@@ -246,6 +246,22 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 		for (Object element : elements) {
 			if (element instanceof Value)
 				unboxedValues[i++] = ((Value)element).asEcoreObject(idResolver);
+			else if (element instanceof EnumerationLiteralId) {
+				unboxedValues[i++] = idResolver.unboxedValueOf(element);
+			}
+			else {
+				unboxedValues[i++] = element;
+			}
+		}
+		return new EcoreEList.UnmodifiableEList<Object>(null, null, i, unboxedValues);
+	}
+		
+	public @NonNull List<Object> asEcoreObject(@NonNull IdResolver idResolver, @Nullable Class<?> instanceClass) {
+		Object[] unboxedValues = new Object[elements.size()];
+		int i= 0;
+		for (Object element : elements) {
+			if (element instanceof ValueExtension)
+				unboxedValues[i++] = ((ValueExtension)element).asEcoreObject(idResolver, instanceClass);
 			else if (element instanceof EnumerationLiteralId) {
 				unboxedValues[i++] = idResolver.unboxedValueOf(element);
 			}
