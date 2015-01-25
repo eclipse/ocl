@@ -15,6 +15,7 @@ import org.eclipse.jdt.annotation.Nullable;
 /**
  * IdResolverExtension provides an additional convert-to-Ecore API that cannot be placed directly in IdResolver
  * while maintaining API compatibility in the 5.0.4 maintenance release. This interface will vanish in 6.0.
+ * @since 3.4
  */
 @Deprecated
 public interface IdResolverExtension

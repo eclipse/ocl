@@ -62,6 +62,9 @@ public class NullValueImpl extends UndefinedValueImpl implements NullValue, Valu
 		return null;
 	}
 	
+	/**
+	 * @since 3.4
+	 */
 	public List<Object> asEcoreObject(@NonNull IdResolver idResolver, @Nullable Class<?> instanceClass) {
 		return null;
 	}

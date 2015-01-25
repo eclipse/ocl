@@ -256,6 +256,9 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 		return new EcoreEList.UnmodifiableEList<Object>(null, null, i, unboxedValues);
 	}
 		
+	/**
+	 * @since 3.4
+	 */
 	public @NonNull List<Object> asEcoreObject(@NonNull IdResolver idResolver, @Nullable Class<?> instanceClass) {
 		Object[] unboxedValues = new Object[elements.size()];
 		int i= 0;

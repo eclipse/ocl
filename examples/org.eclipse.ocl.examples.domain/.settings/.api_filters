@@ -7,6 +7,12 @@
                 <message_argument value="3.4.0"/>
             </message_arguments>
         </filter>
+        <filter id="924844039">
+            <message_arguments>
+                <message_argument value="3.4.4"/>
+                <message_argument value="3.4.0"/>
+            </message_arguments>
+        </filter>
     </resource>
     <resource path="src/org/eclipse/ocl/examples/domain/utilities/StandaloneProjectMap.java" type="org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap$AbstractResourceLoadStatus">
         <filter id="388161617">

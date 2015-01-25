@@ -86,6 +86,9 @@ public abstract class NumberValueImpl extends Number implements Value, ValueExte
 		return asObject();
 	}
 
+	/**
+	 * @since 3.4
+	 */
 	public Object asEcoreObject(@NonNull IdResolver idResolver, @Nullable Class<?> instanceClass) {
 		//
 		//	This partial implementation returns null to signal to the derived invoker to make a type-dependent guess 

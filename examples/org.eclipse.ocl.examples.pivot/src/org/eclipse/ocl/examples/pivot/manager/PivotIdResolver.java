@@ -134,10 +134,6 @@ public class PivotIdResolver extends AbstractIdResolver
 		}
 	}
 
-	public void addRoot(@NonNull EObject eObject) {
-		directRoots.add(eObject);
-	}
-
 	@Override
 	public @Nullable Object boxedValueOf(@Nullable Object unboxedValue) {
 		if (unboxedValue instanceof org.eclipse.uml2.uml.EnumerationLiteral) {				// FIXME make extensible

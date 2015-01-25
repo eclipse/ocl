@@ -203,6 +203,10 @@ public abstract class ValuesUtil
 			throw new InvalidValueException(EvaluatorMessages.TypedValueRequired, "NavigableObject", getTypeName(value));
 		}
 	}
+
+	/**
+	 * @since 3.4
+	 */
 	public static @NonNull EObject asNavigableObject2(@Nullable Object value, @NonNull Object navigation, @Nullable DomainEvaluator evaluator) {
 		if (value instanceof Value) {
 			return ((Value)value).asNavigableObject();

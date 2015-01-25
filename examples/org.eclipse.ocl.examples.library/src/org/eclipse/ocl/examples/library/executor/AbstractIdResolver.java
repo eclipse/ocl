@@ -203,6 +203,9 @@ public abstract class AbstractIdResolver implements IdResolver,IdResolverExtensi
 		}
 	}
 
+	/**
+	 * @since 3.4
+	 */
 	public static @Nullable Object ecoreValueOf(@NonNull IdResolver idResolver, @Nullable Class<?> instanceClass, @Nullable Object boxedValue) {
 		if (idResolver instanceof IdResolverExtension) {
 			return ((IdResolverExtension)idResolver).ecoreValueOf(instanceClass, boxedValue);
@@ -508,6 +511,9 @@ public abstract class AbstractIdResolver implements IdResolver,IdResolverExtensi
 		enumerator2enumerationLiteralId = null;
 	}
 	
+	/**
+	 * @since 3.4
+	 */
 	public @Nullable Object ecoreValueOf(@Nullable Class<?> instanceClass, @Nullable Object value) {
 		if (value instanceof ValueExtension) {
 			return ((ValueExtension)value).asEcoreObject(this, instanceClass);
@@ -568,6 +574,9 @@ public abstract class AbstractIdResolver implements IdResolver,IdResolverExtensi
 	}
 
 //	@Override
+	/**
+	 * @since 3.4
+	 */
 	public @NonNull EList<Object> ecoreValuesOfAll(@Nullable Class<?> instanceClass, @NonNull Iterable<Object> values) {	
 		Object[] ecoreValues = new Object[Iterables.size(values)];
 		int i= 0;

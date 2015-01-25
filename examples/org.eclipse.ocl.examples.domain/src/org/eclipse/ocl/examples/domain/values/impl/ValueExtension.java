@@ -17,6 +17,7 @@ import org.eclipse.ocl.examples.domain.types.IdResolver;
 /**
  * ValueExtension provides an additional convert-to-Ecore API that cannot be placed directly in Value
  * while maintaining API compatibility in the 5.0.4 maintenance release. This interface will vanish in 6.0.
+ * @since 3.4
  */
 @Deprecated
 public interface ValueExtension
