@@ -79,6 +79,21 @@ public class OCL
 	     * environments using the global package registry.
 		 */
 	    private static @Nullable EnvironmentFactoryInternal GLOBAL_ENVIRONMENT_FACTORY = null;
+		
+		public static @NonNull EnvironmentFactoryAdapter adapt(@NonNull Notifier notifier) {
+			List<Adapter> eAdapters = ClassUtil.nonNullEMF(notifier.eAdapters());
+			EnvironmentFactoryAdapter adapter = ClassUtil.getAdapter(EnvironmentFactoryAdapter.class, eAdapters);
+			if (adapter == null) {
+				StandaloneProjectMap projectMap = null;
+				if (notifier instanceof ResourceSet) {
+					projectMap = StandaloneProjectMap.findAdapter((ResourceSet) notifier);
+				}
+				EnvironmentFactoryInternal environmentFactory = ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectMap);
+				adapter = new EnvironmentFactoryAdapter(environmentFactory, notifier);
+				eAdapters.add(adapter);
+			}
+			return adapter;
+		}
 
 		public static @Nullable EnvironmentFactory basicGetGlobalEnvironmentFactory() {
 			return GLOBAL_ENVIRONMENT_FACTORY;
@@ -146,19 +161,8 @@ public class OCL
 		}
 	}
 	
-	public static @NonNull EnvironmentFactoryAdapter adapt(@NonNull Notifier notifier) {
-		List<Adapter> eAdapters = ClassUtil.nonNullEMF(notifier.eAdapters());
-		EnvironmentFactoryAdapter adapter = ClassUtil.getAdapter(EnvironmentFactoryAdapter.class, eAdapters);
-		if (adapter == null) {
-			StandaloneProjectMap projectMap = null;
-			if (notifier instanceof ResourceSet) {
-				projectMap = StandaloneProjectMap.findAdapter((ResourceSet) notifier);
-			}
-			EnvironmentFactoryInternal environmentFactory = ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectMap);
-			adapter = new EnvironmentFactoryAdapter(environmentFactory, notifier);
-			eAdapters.add(adapter);
-		}
-		return adapter;
+	public static @NonNull Adapter adapt(@NonNull Notifier notifier) {
+		return Internal.adapt(notifier);
 	}
 
 	public static @NonNull EnvironmentFactory createEnvironmentFactory(@Nullable ProjectManager projectManager) {

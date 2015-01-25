@@ -20,7 +20,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.validation.model.Category;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.uml.UMLOCL;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
+import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -70,7 +73,9 @@ public class UMLProfileConstraintProvider extends LoadableConstraintProvider
 		
 		Resource asResource;
 		try {
-			asResource = ((UMLOCL)getOCL()).uml2as(umlResource);
+			UML2AS uml2as = UML2AS.getAdapter(umlResource, (EnvironmentFactoryInternal)environmentFactory);
+			Model pivotModel = uml2as.getASModel();
+			asResource = ClassUtil.nonNullState(pivotModel.eResource());
 		} catch (ParserException e) {
 			logger.error("Failed to load Pivot from '" + uri + "': ", e);
 			return false;

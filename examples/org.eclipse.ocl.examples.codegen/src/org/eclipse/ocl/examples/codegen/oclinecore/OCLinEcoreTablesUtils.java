@@ -631,7 +631,7 @@ public class OCLinEcoreTablesUtils
 		Resource genModelResource = genPackage.eResource();
 		ResourceSet genModelResourceSet = genModelResource.getResourceSet();
 		assert genModelResourceSet != null;
-		EnvironmentFactoryAdapter resourceSetAdapter = OCL.adapt(genModelResourceSet);
+		EnvironmentFactoryAdapter resourceSetAdapter = OCL.Internal.adapt(genModelResourceSet);
 		this.metamodelManager = resourceSetAdapter.getMetamodelManager();
 		this.environmentFactory = metamodelManager.getEnvironmentFactory();
 		this.standardLibrary = environmentFactory.getStandardLibrary();

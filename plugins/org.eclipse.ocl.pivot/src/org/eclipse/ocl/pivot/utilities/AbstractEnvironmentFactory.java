@@ -128,16 +128,6 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 		}
 		return adapter;
 	}
-	
-	public static @NonNull EnvironmentFactoryAdapter getAdapter4(@NonNull Notifier notifier, @NonNull EnvironmentFactory environmentFactory) {
-		List<Adapter> eAdapters = ClassUtil.nonNullEMF(notifier.eAdapters());
-		EnvironmentFactoryAdapter adapter = ClassUtil.getAdapter(EnvironmentFactoryAdapter.class, eAdapters);
-		if (adapter == null) {
-			adapter = new EnvironmentFactoryAdapter((EnvironmentFactoryInternal) environmentFactory, notifier);
-			eAdapters.add(adapter);
-		}
-		return adapter;
-	}
 
 	@Override
 	public void addListener(@NonNull Listener listener) {

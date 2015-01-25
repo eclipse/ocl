@@ -855,7 +855,7 @@ public class PivotUtil
 	 * @throws ParserException if eObject cannot be converted to a Pivot element
 	 */
 	public static boolean setParserContext(@NonNull CSResource csResource, @NonNull EObject eObject, Object... todoParameters) throws ParserException {
-		EnvironmentFactoryAdapter adapter = ClassUtil.nonNullState(OCL.adapt(csResource));
+		EnvironmentFactoryAdapter adapter = OCL.Internal.adapt(csResource);
 		EnvironmentFactoryInternal environmentFactory = adapter.getEnvironmentFactory();
 		Element pivotElement = environmentFactory.getTechnology().getParseableElement(environmentFactory, eObject);
 		if (pivotElement == null) {

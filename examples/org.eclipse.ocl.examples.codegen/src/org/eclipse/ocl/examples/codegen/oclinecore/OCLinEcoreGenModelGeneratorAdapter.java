@@ -270,7 +270,7 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 				if (resourceSet == null) {
 					throw new NullPointerException("No ResourceSet for genmodel");
 				}
-				EnvironmentFactoryAdapter adapter = OCL.adapt(resourceSet);
+				EnvironmentFactoryAdapter adapter = OCL.Internal.adapt(resourceSet);
 				PivotMetamodelManager metamodelManager = adapter.getMetamodelManager();
 				convertConstraintsToOperations(metamodelManager, genModel);
 			    Map<String, String> results = createFeatureBodies(genModel);			
