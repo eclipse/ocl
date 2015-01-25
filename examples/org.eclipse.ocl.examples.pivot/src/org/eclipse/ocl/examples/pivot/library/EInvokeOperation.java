@@ -17,6 +17,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
@@ -25,7 +27,10 @@ import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.ids.CollectionTypeId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.library.AbstractOperation;
+import org.eclipse.ocl.examples.domain.types.IdResolver;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
+import org.eclipse.ocl.examples.library.executor.AbstractIdResolver;
+import org.eclipse.ocl.examples.library.executor.IdResolverExtension;
 
 /**
  * An EInvokeOperation supports evaluation of an operation call by using eInvoke on the underlying eObject.
@@ -73,10 +78,25 @@ public class EInvokeOperation extends AbstractOperation
 
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue,
 			@NonNull Object... argumentValues) {
-		EObject eObject = asNavigableObject(sourceValue, eOperation);
-		EList<Object> arguments = evaluator.getIdResolver().unboxedValuesOfEach(argumentValues);
+		EObject eObject = asNavigableObject2(sourceValue, eOperation, evaluator);
+		IdResolver idResolver = evaluator.getIdResolver();
+		EList<Object> ecoreArguments;
+		if (idResolver instanceof IdResolverExtension) {
+			EList<EParameter> eParameters = eOperation.getEParameters();
+			Object[] ecoreValues = new Object[argumentValues.length];
+			int iMax = Math.min(argumentValues.length, eParameters.size());
+			for (int i = 0; i < iMax; i++) {
+				Object argumentValue = argumentValues[i];
+				EParameter eParameter = eParameters.get(i);
+				ecoreValues[i] = AbstractIdResolver.ecoreValueOf(idResolver, eParameter.getEType().getInstanceClass(), argumentValue);
+			}
+			ecoreArguments = new EcoreEList.UnmodifiableEList<Object>(null, null, ecoreValues.length, ecoreValues);
+		}
+		else {
+			ecoreArguments = idResolver.unboxedValuesOfEach(argumentValues);
+		}
 		try {
-			Object eResult = eObject.eInvoke(eOperation, arguments);
+			Object eResult = eObject.eInvoke(eOperation, ecoreArguments);
 			return getResultValue(evaluator, returnTypeId, eResult);
 		} catch (InvocationTargetException e) {
 			return createInvalidValue(e);

@@ -18,7 +18,7 @@ import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
 import org.eclipse.ocl.examples.domain.evaluation.DomainException;
 import org.eclipse.ocl.examples.domain.types.IdResolver;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
+import org.eclipse.ocl.examples.library.executor.AbstractIdResolver;
 import org.eclipse.ocl.examples.pivot.EvaluationException;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OCL;
@@ -68,13 +68,7 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 //				String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, property);
 //				throw new OCLDelegateException(message);
 //			}
-			Object unboxedValue = idResolver.unboxedValueOf(result);
-			if (unboxedValue instanceof Number) {
-				return ValuesUtil.getEcoreNumber((Number)unboxedValue, eStructuralFeature.getEType().getInstanceClass());
-			}
-			else {
-				return unboxedValue;
-			}
+			return AbstractIdResolver.ecoreValueOf(idResolver, eStructuralFeature.getEType().getInstanceClass(), result);
 		}
 		catch (DomainException e) {
 			String message = DomainUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, property);

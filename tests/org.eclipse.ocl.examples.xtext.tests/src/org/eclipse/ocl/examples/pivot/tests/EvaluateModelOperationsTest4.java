@@ -12,6 +12,7 @@
 package org.eclipse.ocl.examples.pivot.tests;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Arrays;
@@ -41,6 +42,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
+
+import company.CompanyPackage;
 
 /**
  * Tests for model access operations.
@@ -407,6 +410,16 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 		//
 		assertQueryTrue(parent, "child1 = child1");
 		ocl1.dispose();
+	}
+	
+	/**
+	 * Tests that boxed Enumerations are navigable
+	 */
+	@Test public void test_enumeration_navigation() throws InvocationTargetException {
+		assertQueryResults(CompanyPackage.Literals.COMPANY_SIZE_KIND, "Sequence{'small','medium','large'}", "self.eLiterals.name");
+		// FIXME the following needs the full UML model to vbe loaded otherwise $uml$ is not a defined root package id.
+//		UML2AS.initialize(resourceSet);
+//		assertQueryResults(UMLPackage.Literals.AGGREGATION_KIND, "Sequence{'none','composite'}", "self.eLiterals.name");
 	}
 
 	/**

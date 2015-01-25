@@ -406,15 +406,15 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		EnumerationLiteral enumLiteral = el.getReferredEnumLiteral();
 		assert enumLiteral != null;
 		EnumerationLiteralId enumerationLiteralId = enumLiteral.getEnumerationLiteralId();
-		DomainModelManager modelManager = getModelManager();
-		boolean isUML = (modelManager instanceof PivotModelManager) && ((PivotModelManager)modelManager).isUML();
-		if (isUML) {		// FIXME BUG 448470 UML EnumerationLiterals should consistently unboxed
-			PivotIdResolver idResolver = metaModelManager.getIdResolver();
-			return idResolver.unboxedValueOfUML(enumerationLiteralId);
-		}
-		else {
+//		DomainModelManager modelManager = getModelManager();
+//		boolean isUML = (modelManager instanceof PivotModelManager) && ((PivotModelManager)modelManager).isUML();
+//		if (isUML) {		// FIXME BUG 448470 UML EnumerationLiterals should consistently unboxed
+//			PivotIdResolver idResolver = metaModelManager.getIdResolver();
+//			return idResolver.unboxedValueOfUML(enumerationLiteralId);
+//		}
+//		else {
 			return enumerationLiteralId;
-		}
+//		}
 	}
 
 //	private static int depth = 0;

@@ -88,9 +88,12 @@ import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.impl.BagImpl;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
 import org.eclipse.ocl.examples.domain.values.impl.OrderedSetImpl;
+import org.eclipse.ocl.examples.domain.values.impl.ValueExtension;
 import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
 
-public abstract class AbstractIdResolver implements IdResolver
+import com.google.common.collect.Iterables;
+
+public abstract class AbstractIdResolver implements IdResolver,IdResolverExtension
 {
 	public static final class Id2InstanceVisitor implements IdVisitor<Object>
 	{
@@ -197,6 +200,21 @@ public abstract class AbstractIdResolver implements IdResolver
 
 		public @Nullable Object visitUnspecifiedId(@NonNull UnspecifiedId id) {
 			throw new UnsupportedOperationException();
+		}
+	}
+
+	public static @Nullable Object ecoreValueOf(@NonNull IdResolver idResolver, @Nullable Class<?> instanceClass, @Nullable Object boxedValue) {
+		if (idResolver instanceof IdResolverExtension) {
+			return ((IdResolverExtension)idResolver).ecoreValueOf(instanceClass, boxedValue);
+		}
+		else {
+			Object unboxedValue = idResolver.unboxedValueOf(boxedValue);
+			if (unboxedValue instanceof Number) {
+				return ValuesUtil.getEcoreNumber((Number)unboxedValue, instanceClass);
+			}
+			else {
+				return unboxedValue;
+			}
 		}
 	}
 
@@ -488,6 +506,75 @@ public abstract class AbstractIdResolver implements IdResolver
 		key2type.clear();
 		enumerationLiteral2enumerator = null;
 		enumerator2enumerationLiteralId = null;
+	}
+	
+	public @Nullable Object ecoreValueOf(@Nullable Class<?> instanceClass, @Nullable Object value) {
+		if (value instanceof ValueExtension) {
+			return ((ValueExtension)value).asEcoreObject(this, instanceClass);
+		}
+		else if (value instanceof Value) {
+			return ((Value)value).asObject();
+		}
+		else if (value instanceof Number) {
+			Number number = (Number)value;
+			if ((instanceClass == Double.class) || (instanceClass == double.class)) {
+				return number.doubleValue();
+			}
+			else if ((instanceClass == Float.class) || (instanceClass == float.class)) {
+				return number.floatValue();
+			}
+			else if ((instanceClass == Short.class) || (instanceClass == short.class)) {
+				return number.shortValue();
+			}
+			else if ((instanceClass == Integer.class) || (instanceClass == int.class)) {
+				return number.intValue();
+			}
+			else if ((instanceClass == Long.class) || (instanceClass == long.class)) {
+				return number.longValue();
+			}
+			else if (instanceClass == BigDecimal.class) {
+				return BigDecimal.valueOf(number.doubleValue());
+			}
+			else if (instanceClass == BigInteger.class) {
+				return BigInteger.valueOf(number.longValue());
+			}
+			else {					// instanceClass is null, make a best guess
+				if ((number instanceof BigDecimal) || (number instanceof Double) || (number instanceof Float)) {
+					return number.doubleValue();
+				}
+				else {
+					return number.intValue();
+				}
+			}
+		}
+		else if (value instanceof EnumerationLiteralId) {
+			return unboxedValueOf((EnumerationLiteralId)value);
+		}
+		else if (value instanceof EEnumLiteral) {
+			return ((EEnumLiteral)value).getInstance();
+		}
+		else if (value instanceof Iterable<?>) {
+			if (value instanceof EcoreEList.UnmodifiableEList<?>) {
+				return value;
+			}
+			else {
+				@SuppressWarnings("unchecked") Iterable<Object> values = (Iterable<Object>)value;
+				return ecoreValuesOfAll(instanceClass, values);
+			}
+	}
+		else {
+			return value;
+		}
+	}
+
+//	@Override
+	public @NonNull EList<Object> ecoreValuesOfAll(@Nullable Class<?> instanceClass, @NonNull Iterable<Object> values) {	
+		Object[] ecoreValues = new Object[Iterables.size(values)];
+		int i= 0;
+		for (Object value : values) {
+			ecoreValues[i++] = ecoreValueOf(instanceClass, value);
+		}
+		return new EcoreEList.UnmodifiableEList<Object>(null, null, ecoreValues.length, ecoreValues);
 	}
 
 	public @NonNull DomainType getCollectionType(@NonNull CollectionTypeId typeId) {
