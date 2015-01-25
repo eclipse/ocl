@@ -7,6 +7,12 @@
                 <message_argument value="3.4.0"/>
             </message_arguments>
         </filter>
+        <filter id="924844039">
+            <message_arguments>
+                <message_argument value="3.4.4"/>
+                <message_argument value="3.4.0"/>
+            </message_arguments>
+        </filter>
     </resource>
     <resource path="emf-gen/org/eclipse/ocl/examples/pivot/PivotFactory.java" type="org.eclipse.ocl.examples.pivot.PivotFactory">
         <filter id="403804204">
