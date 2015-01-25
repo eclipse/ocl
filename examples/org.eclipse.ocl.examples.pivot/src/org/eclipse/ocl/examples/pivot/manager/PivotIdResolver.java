@@ -10,24 +10,38 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.pivot.manager;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.EcoreUtil.ExternalCrossReferencer;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.DomainConstants;
 import org.eclipse.ocl.examples.domain.compatibility.UML_4_2.UMLUtil;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
 import org.eclipse.ocl.examples.domain.elements.DomainEnumerationLiteral;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
+import org.eclipse.ocl.examples.domain.elements.DomainRoot;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.ids.EnumerationLiteralId;
+import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.domain.ids.NsURIPackageId;
+import org.eclipse.ocl.examples.domain.ids.PackageId;
+import org.eclipse.ocl.examples.domain.ids.RootPackageId;
 import org.eclipse.ocl.examples.domain.ids.TupleTypeId;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.domain.types.DomainInvalidTypeImpl;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.library.executor.AbstractIdResolver;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
@@ -39,6 +53,7 @@ import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.uml.UML2PivotUtil;
 import org.eclipse.ocl.examples.pivot.uml.UMLElementExtension;
+import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.uml2.uml.UMLPackage;
 
 public class PivotIdResolver extends AbstractIdResolver
@@ -46,15 +61,86 @@ public class PivotIdResolver extends AbstractIdResolver
 	private static final Logger logger = Logger.getLogger(PivotIdResolver.class);
 
 	protected final @NonNull MetaModelManager metaModelManager;
+	private final @NonNull Set<EObject> directRoots = new HashSet<EObject>();
+	private boolean directRootsProcessed = false;
+	private boolean crossReferencedRootsProcessed = false;
+
+	/**
+	 * Mapping from package URI to corresponding Pivot Package. (used to resolve NsURIPackageId).
+	 */
+	private final @NonNull Map<String, DomainPackage> nsURI2package = new HashMap<String, DomainPackage>();
+
+	/**
+	 * Mapping from root package name to corresponding Pivot Package. (used to resolve RootPackageId).
+	 */
+	private final @NonNull Map<String, DomainPackage> roots2package = new HashMap<String, DomainPackage>();
 	
 	public PivotIdResolver(@NonNull MetaModelManager metaModelManager) {
 		super(metaModelManager);
 		this.metaModelManager = metaModelManager;
 	}
 
+	private @NonNull DomainPackage addEPackage(@NonNull EPackage ePackage) {
+		String nsURI = ePackage.getNsURI();
+		DomainPackage asPackage = nsURI2package.get(nsURI);
+		if (asPackage == null) {
+			PackageId packageId = IdManager.getPackageId(ePackage);
+			asPackage = metaModelManager.getPivotOfEcore(org.eclipse.ocl.examples.pivot.Package.class, ePackage);
+			assert asPackage != null;
+			nsURI2package.put(nsURI, asPackage);
+			if (packageId instanceof RootPackageId) {
+				roots2package.put(((RootPackageId)packageId).getName(), asPackage);
+			}
+		}
+		return asPackage;
+	}
+
+	private void addPackage(@NonNull DomainPackage userPackage) {
+		String nsURI = userPackage.getNsURI();
+		if (nsURI != null) {
+			nsURI2package.put(nsURI, userPackage);
+			EPackage ePackage = userPackage.getEPackage();
+			if (ePackage != null) {
+				if (DomainUtil.basicGetMetamodelAnnotation(ePackage) != null) {
+					if (roots2package.get(DomainConstants.METAMODEL_NAME) == null) {
+						roots2package.put(DomainConstants.METAMODEL_NAME, userPackage);
+					}
+				}
+			}
+			else {
+				for (DomainType asType : userPackage.getOwnedType()) {
+					if ("Boolean".equals(asType.getName())) {			// FIXME Check PrimitiveType //$NON-NLS-1$
+						if (roots2package.get(DomainConstants.METAMODEL_NAME) == null) {
+							roots2package.put(DomainConstants.METAMODEL_NAME, userPackage);
+						}
+						break;
+					}
+				}
+			}
+		}
+		else {
+			String name = userPackage.getName();
+			if (name != null) {
+				roots2package.put(name, userPackage);
+			}
+		}
+		addPackages(userPackage.getNestedPackage());
+	}
+
+	private void addPackages(/*@NonNull*/ Iterable<? extends DomainPackage> userPackages) {
+		for (DomainPackage userPackage : userPackages) {
+			assert userPackage != null;
+			addPackage(userPackage);
+		}
+	}
+
+	public void addRoot(@NonNull EObject eObject) {
+		directRoots.add(eObject);
+	}
+
 	@Override
 	public @Nullable Object boxedValueOf(@Nullable Object unboxedValue) {
-/*		if (unboxedValue instanceof org.eclipse.uml2.uml.EnumerationLiteral) {				// FIXME make extensible
+		if (unboxedValue instanceof org.eclipse.uml2.uml.EnumerationLiteral) {				// FIXME make extensible
 			org.eclipse.uml2.uml.EnumerationLiteral umlEnumerationLiteral = (org.eclipse.uml2.uml.EnumerationLiteral) unboxedValue;
 			try {
 				EnumerationLiteral asEnumerationLiteral = metaModelManager.getPivotOf(EnumerationLiteral.class, umlEnumerationLiteral);
@@ -65,7 +151,7 @@ public class PivotIdResolver extends AbstractIdResolver
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} */
+		}
 		return super.boxedValueOf(unboxedValue);
 	}
 
@@ -206,6 +292,79 @@ public class PivotIdResolver extends AbstractIdResolver
 		return (Type)type;
 	}
 
+	private synchronized void processCrossReferencedRoots() {
+		if (crossReferencedRootsProcessed ) {
+			return;
+		}
+		crossReferencedRootsProcessed = true;
+		new ExternalCrossReferencer(directRoots)
+		{
+			private static final long serialVersionUID = 1L;
+			
+			private Set<EObject> moreRoots = new HashSet<EObject>();
+
+			{ findExternalCrossReferences(); }
+
+			@Override
+			protected boolean crossReference(EObject eObject, EReference eReference, EObject crossReferencedEObject) {
+				EObject root = EcoreUtil.getRootContainer(crossReferencedEObject);
+				if (moreRoots.add(root) && !directRoots.contains(root)) {
+					if (root instanceof DomainRoot) {
+						addPackages(((DomainRoot)root).getNestedPackage());
+					}
+					else if (root instanceof DomainPackage) {					// Perhaps this is only needed for a lazy JUnit test
+						addPackage((DomainPackage)root);
+					}
+				}
+				return false;
+			}
+		};
+	}
+
+	private synchronized void processDirectRoots() {
+		if (directRootsProcessed) {
+			return;
+		}
+		directRootsProcessed = true;
+		Set<EPackage> ePackages = new HashSet<EPackage>();
+		for (EObject eObject : directRoots) {
+			if (eObject instanceof DomainRoot) {
+				addPackages(((DomainRoot)eObject).getNestedPackage());
+			}
+//			else if (eObject instanceof DomainPackage) {							// Perhaps this is only needed for a lazy JUnit test
+//				addPackage((DomainPackage)eObject);
+//			}
+			ePackages.add(eObject.eClass().getEPackage());
+		}
+		for (EPackage ePackage : ePackages) {
+			if (ePackage !=null) {
+				addEPackage(ePackage);
+			}
+		}
+	}
+
+	@Override
+	public @Nullable Object unboxedValueOf(@Nullable Object boxedValue) {
+		if (boxedValue instanceof EnumerationLiteralId) {
+			DomainEnumerationLiteral enumerationLiteral = visitEnumerationLiteralId((EnumerationLiteralId)boxedValue);
+			if (enumerationLiteral instanceof PivotObjectImpl) {
+				EObject eTarget = ((PivotObjectImpl)enumerationLiteral).getETarget();
+//				if (eTarget instanceof EEnumLiteral) {				// Ecore unboxes to the Enumerator
+//					return ((EEnumLiteral)eTarget).getInstance();
+//				}
+//				else {												// UML unboxes to UML's EnumerationLiteral
+					return eTarget;
+//				}
+			}
+			else {
+				return enumerationLiteral;
+			}
+		}
+		else {
+			return super.unboxedValueOf(boxedValue);
+		}
+	}
+
 	public @NonNull Object unboxedValueOfUML(@NonNull EnumerationLiteralId enumerationLiteralId) {		// FIXME BUG 448470 UML EnumerationLiterals should consistently unboxed
 		DomainEnumerationLiteral enumerationLiteral = (DomainEnumerationLiteral) enumerationLiteralId.accept(this);
 		if (enumerationLiteral instanceof EnumerationLiteral) {
@@ -218,20 +377,73 @@ public class PivotIdResolver extends AbstractIdResolver
 	}
 
 	@Override
-	public @NonNull DomainPackage visitNsURIPackageId(@NonNull NsURIPackageId id) {
+	public @NonNull synchronized DomainPackage visitNsURIPackageId(@NonNull NsURIPackageId id) {
 		String nsURI = id.getNsURI();
 		DomainPackage nsURIPackage = metaModelManager.getNsURIPackage(nsURI);
-		if (nsURIPackage == null) {
-			metaModelManager.setAutoLoadASMetamodel(true);
-			DomainPackage asMetamodel = metaModelManager.getASMetamodel();
-			if ((asMetamodel != null) && PivotPackage.eNS_URI.equals(nsURI)) {
-				return asMetamodel;
+		if (nsURIPackage != null) {
+			return nsURIPackage;
+		}
+		metaModelManager.setAutoLoadASMetamodel(true);
+		DomainPackage asMetamodel = metaModelManager.getASMetamodel();
+		if ((asMetamodel != null) && PivotPackage.eNS_URI.equals(nsURI)) {
+			return asMetamodel;
+		}
+		nsURIPackage = metaModelManager.getNsURIPackage(nsURI);
+		if (nsURIPackage != null) {
+			return nsURIPackage;
+		}
+		DomainPackage knownPackage = nsURI2package.get(nsURI);
+		if (knownPackage != null) {
+			return knownPackage;
+		}
+		DomainPackage libraryPackage = standardLibrary.getNsURIPackage(nsURI);
+		if (libraryPackage != null) {
+			nsURI2package.put(nsURI, libraryPackage);
+			return libraryPackage;
+		}
+		if (!directRootsProcessed) {
+			processDirectRoots();
+			knownPackage = nsURI2package.get(nsURI);
+			if (knownPackage != null) {
+				return knownPackage;
 			}
-			nsURIPackage = metaModelManager.getNsURIPackage(nsURI);
-			if (nsURIPackage == null) {
+		}
+		if (!crossReferencedRootsProcessed) {
+			processCrossReferencedRoots();
+			knownPackage = nsURI2package.get(nsURI);
+			if (knownPackage != null) {
+				return knownPackage;
+			}
+		}
+		EPackage ePackage = id.getEPackage();
+		if (ePackage != null) {
+			DomainPackage asPackage = addEPackage(ePackage);
+/*			EcoreReflectivePackage ecoreExecutorPackage = new EcoreReflectivePackage(ePackage, this, id);
+//			EList<EClassifier> eClassifiers = ePackage.getEClassifiers();
+//			EcoreReflectiveType[] types = new EcoreReflectiveType[eClassifiers.size()];
+//			for (int i = 0; i < types.length; i++) {
+//				types[i] = new EcoreReflectiveType(eClassifiers.get(i), ecoreExecutorPackage, 0);
+//			}
+//			ecoreExecutorPackage.init((ExecutorStandardLibrary) standardLibrary, types);
+			nsURI2package.put(nsURI, ecoreExecutorPackage); */
+			return asPackage;
+		}
+		throw new UnsupportedOperationException();
+	}
+
+
+	@Override
+	public @NonNull DomainPackage visitRootPackageId(@NonNull RootPackageId id) {
+		String completeURIorName = id.getName();
+		DomainPackage rootPackage = standardLibrary.getRootPackage(completeURIorName);
+		if (rootPackage == null) {
+			Orphanage orphanage = metaModelManager.getOrphanage();
+			rootPackage = DomainUtil.getNamedElement(orphanage.getNestedPackage(), completeURIorName);
+			if (rootPackage == null) {
+//				return super.visitRootPackageId(id);
 				throw new UnsupportedOperationException();
 			}
 		}
-		return nsURIPackage;
+		return rootPackage;
 	}
 }

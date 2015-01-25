@@ -81,6 +81,20 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 		this.directRoots = roots;
 	}
 
+	private @NonNull DomainPackage addEPackage(@NonNull EPackage ePackage) {
+		String nsURI = ePackage.getNsURI();
+		DomainPackage asPackage = nsURI2package.get(nsURI);
+		if (asPackage == null) {
+			PackageId packageId = IdManager.getPackageId(ePackage);
+			asPackage = new EcoreReflectivePackage(ePackage, this, packageId);
+			nsURI2package.put(nsURI, asPackage);
+			if (packageId instanceof RootPackageId) {
+				roots2package.put(((RootPackageId)packageId).getName(), asPackage);
+			}
+		}
+		return asPackage;
+	}
+
 	private void addPackage(@NonNull DomainPackage userPackage) {
 		String nsURI = userPackage.getNsURI();
 		if (nsURI != null) {
@@ -221,14 +235,8 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 			ePackages.add(eObject.eClass().getEPackage());
 		}
 		for (EPackage ePackage : ePackages) {
-			String nsURI = ePackage.getNsURI();
-			if (nsURI2package.get(nsURI) == null) {
-				PackageId packageId = IdManager.getPackageId(ePackage);
-				DomainPackage domainPackage = new EcoreReflectivePackage(ePackage, this, packageId);
-				nsURI2package.put(nsURI, domainPackage);
-				if (packageId instanceof RootPackageId) {
-					roots2package.put(((RootPackageId)packageId).getName(), domainPackage);
-				}
+			if (ePackage != null) {
+				addEPackage(ePackage);
 			}
 		}
 	}
@@ -265,15 +273,16 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 		}
 		EPackage ePackage = id.getEPackage();
 		if (ePackage != null) {
-			EcoreReflectivePackage ecoreExecutorPackage = new EcoreReflectivePackage(ePackage, this, id);
+			DomainPackage asPackage = addEPackage(ePackage);
+/*			EcoreReflectivePackage ecoreExecutorPackage = new EcoreReflectivePackage(ePackage, this, id);
 //			EList<EClassifier> eClassifiers = ePackage.getEClassifiers();
 //			EcoreReflectiveType[] types = new EcoreReflectiveType[eClassifiers.size()];
 //			for (int i = 0; i < types.length; i++) {
 //				types[i] = new EcoreReflectiveType(eClassifiers.get(i), ecoreExecutorPackage, 0);
 //			}
 //			ecoreExecutorPackage.init((ExecutorStandardLibrary) standardLibrary, types);
-			nsURI2package.put(nsURI, ecoreExecutorPackage);
-			return ecoreExecutorPackage;
+			nsURI2package.put(nsURI, ecoreExecutorPackage); */
+			return asPackage;
 		}
 		throw new UnsupportedOperationException();
 	}
