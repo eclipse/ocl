@@ -13,6 +13,7 @@ package org.eclipse.ocl.examples.library.classifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.library.AbstractSimpleUnaryOperation;
 
 /**
@@ -25,6 +26,12 @@ public class ClassifierOclContainerOperation extends AbstractSimpleUnaryOperatio
 	@Override
 	public @Nullable Object evaluate(@Nullable Object sourceVal) {
 		EObject object = asNavigableObject(sourceVal, "oclContainer()"); //$NON-NLS-1$
+		return object.eContainer();
+	}
+
+	@Override
+	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @Nullable Object sourceVal) {
+		EObject object = asNavigableObject2(sourceVal, "oclContainer()", evaluator); //$NON-NLS-1$
 		return object.eContainer();
 	}
 }

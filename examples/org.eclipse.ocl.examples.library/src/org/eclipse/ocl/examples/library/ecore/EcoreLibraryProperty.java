@@ -32,7 +32,7 @@ public class EcoreLibraryProperty extends AbstractProperty
 	}
 
 	public @Nullable Object evaluate(@NonNull DomainEvaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
-		EObject eObject = asNavigableObject(sourceValue, eFeature);
+		EObject eObject = asNavigableObject2(sourceValue, eFeature, evaluator);
 		Object eValue = eObject.eGet(eFeature);
 		return eValue != null ? evaluator.getIdResolver().boxedValueOf(eValue, eFeature, returnTypeId) : null;
 	}
