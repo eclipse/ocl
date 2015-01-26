@@ -55,13 +55,20 @@ public class NestedCompletePackages extends AbstractCompletePackages
 
 	@Override
 	public @NonNull CompletePackageInternal getOwnedCompletePackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
-		String name = partialPackage.getName();
-		CompletePackageInternal completePackage = super.getOwnedCompletePackage(name);
+		CompletePackageInternal completePackage = null;
+		String uri = partialPackage.getURI();
+		if (uri != null) {
+			completePackage = getCompleteModel().getCompletePackageByURI(uri);
+		}
+		if (completePackage == null) {
+			String name = partialPackage.getName();
+			completePackage = super.getOwnedCompletePackage(name);
+		}
 		if (completePackage == null) {
 			completePackage = createCompletePackage(partialPackage);
-			completePackage.getPartialPackages().add(partialPackage);
 			add(completePackage);
 		}
+		completePackage.getPartialPackages().add(partialPackage);
 		return completePackage;
 	}
 

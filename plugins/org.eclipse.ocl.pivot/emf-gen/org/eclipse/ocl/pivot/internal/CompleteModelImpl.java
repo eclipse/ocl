@@ -508,7 +508,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	}
 
 	@Override
-	public @Nullable CompletePackage getCompletePackageByURI(@NonNull String packageURI) {
+	public @Nullable CompletePackageInternal getCompletePackageByURI(@NonNull String packageURI) {
 		return completeURIs.getCompletePackageByURI(packageURI);
 	}
 

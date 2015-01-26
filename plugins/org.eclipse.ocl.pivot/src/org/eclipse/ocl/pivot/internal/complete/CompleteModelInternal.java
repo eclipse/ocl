@@ -17,7 +17,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteModel;
-import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.TupleType;
@@ -25,8 +24,8 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.internal.OrphanCompletePackageImpl;
 import org.eclipse.ocl.pivot.internal.PrimitiveCompletePackageImpl;
-import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.Orphanage;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.TupleTypeManager;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.values.CollectionTypeParameters;
@@ -47,7 +46,7 @@ public interface CompleteModelInternal extends CompleteModel
 	@Override
 	@NonNull CompletePackageInternal getCompletePackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage);
 	@Override
-	@Nullable CompletePackage getCompletePackageByURI(@NonNull String packageURI);
+	@Nullable CompletePackageInternal getCompletePackageByURI(@NonNull String packageURI);
 	@NonNull CompleteURIs getCompleteURIs();
 	@NonNull EnvironmentFactoryInternal getEnvironmentFactory();
 	@NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType,
