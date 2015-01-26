@@ -15,7 +15,6 @@ import java.io.IOException;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.test.xtext.LoadTests;
 import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
-import org.eclipse.ocl.pivot.uml.internal.utilities.UMLEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.OCL;
 
 /**
@@ -27,7 +26,7 @@ public class ConsumerLoadTests extends LoadTests
 
 	public void testLoad_Bug457203_ocl() throws IOException, InterruptedException {
 		UMLStandaloneSetup.init();
-		OCL ocl = OCL.newInstance(new UMLEnvironmentFactory(null));
+		OCL ocl = OCL.newInstance(getProjectMap());
 		String bug457203 = 
 				"import marte: _'http://www.eclipse.org/papyrus/MARTE/1'\n" + 
 				"import sysml: _'http://www.eclipse.org/papyrus/0.7.0/SysML'\n" + 
@@ -35,5 +34,6 @@ public class ConsumerLoadTests extends LoadTests
 		createOCLinEcoreFile("Bug457203.ocl", bug457203);
 		Resource asResource = doLoad_Concrete(ocl, "Bug457203", "ocl");
 		assertNoResourceErrors("Save", asResource);
+		ocl.dispose();
 	}
 }
