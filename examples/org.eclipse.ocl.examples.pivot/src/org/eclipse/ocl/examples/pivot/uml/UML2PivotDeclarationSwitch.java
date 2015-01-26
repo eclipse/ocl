@@ -35,6 +35,7 @@ import org.eclipse.ocl.examples.domain.ids.IdManager;
 import org.eclipse.ocl.examples.domain.ids.TypeId;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.ConnectionPointReference;
+import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.DynamicBehavior;
 import org.eclipse.ocl.examples.pivot.DynamicElement;
@@ -190,6 +191,18 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 		assert umlConnectionPointReference != null;
 		ConnectionPointReference pivotElement = converter.refreshNamedElement(ConnectionPointReference.class, PivotPackage.Literals.CONNECTION_POINT_REFERENCE, umlConnectionPointReference);
 		copyNamedElement(pivotElement, umlConnectionPointReference);
+		return pivotElement;
+	}
+
+	/**
+	 * @since 3.4
+	 */
+	@Override
+	public Constraint caseConstraint(org.eclipse.uml2.uml.Constraint umlConstraint) {
+		assert umlConstraint != null;
+		Constraint pivotElement = converter.refreshNamedElement(Constraint.class, PivotPackage.Literals.CONSTRAINT, umlConstraint);
+		copyNamedElement(pivotElement, umlConstraint);
+		converter.queueUse(umlConstraint);
 		return pivotElement;
 	}
 
@@ -723,6 +736,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 			}
 		}
 		pivotElement.setNsURI(nsURI != null ? nsURI.toString() : null);
+		@Nullable List<org.eclipse.uml2.uml.Constraint> umlConstraints = null;
 		@Nullable List<org.eclipse.uml2.uml.Element> umlOtherElements = null;
 		@Nullable List<org.eclipse.uml2.uml.Package> umlNestedPackages = null;
 		@Nullable List<org.eclipse.uml2.uml.Package> umlImportedPackages = null;
@@ -747,6 +761,12 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 					umlAssociations = new ArrayList<org.eclipse.uml2.uml.Association>();
 				}
 				umlAssociations.add((org.eclipse.uml2.uml.Association)ownedElement);
+			}
+			else if (ownedElement instanceof org.eclipse.uml2.uml.Constraint) {
+				if (umlConstraints == null) {
+					umlConstraints = new ArrayList<org.eclipse.uml2.uml.Constraint>();
+				}
+				umlConstraints.add((org.eclipse.uml2.uml.Constraint)ownedElement);
 			}
 			else if (ownedElement instanceof org.eclipse.uml2.uml.Type) {
 				if (umlTypes == null) {
@@ -803,6 +823,9 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 			for (org.eclipse.uml2.uml.Association umlAssociation : umlAssociations) {
 				doSwitch(umlAssociation);
 			}
+		}
+		if (umlConstraints != null) {
+			doSwitchAll(pivotElement.getOwnedRule(), umlConstraints, null);
 		}
 		if (umlOtherElements != null) {
 			doSwitchAll(pivotElement.getOwnedAnnotation(), umlOtherElements, null);
