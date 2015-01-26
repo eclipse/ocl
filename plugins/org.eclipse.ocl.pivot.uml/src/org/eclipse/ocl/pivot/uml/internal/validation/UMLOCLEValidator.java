@@ -362,7 +362,7 @@ public class UMLOCLEValidator implements EValidator
 							if (VALIDATE_INSTANCE.isActive()) {
 								VALIDATE_INSTANCE.println(language + ": " + body);
 							}
-							if (!validateSyntax(instanceSpecification, body, opaqueExpression, diagnostics, context) && (diagnostics == null)) {
+							if (!validateSyntax2(instanceSpecification, body, opaqueExpression, diagnostics, context) && (diagnostics == null)) {
 								allOk = false;
 								break;
 							}
@@ -456,7 +456,7 @@ public class UMLOCLEValidator implements EValidator
 							if (VALIDATE_OPAQUE_ELEMENT.isActive()) {
 								VALIDATE_OPAQUE_ELEMENT.println(PivotConstants.OCL_LANGUAGE + ": " + body);
 							}
-							if (!validateSyntax(null, body, opaqueElement, diagnostics, context) && (diagnostics == null)) {
+							if (!validateSyntax1(body, opaqueElement, diagnostics, context) && (diagnostics == null)) {
 								allOk = false;
 								break;
 							}
@@ -484,7 +484,40 @@ public class UMLOCLEValidator implements EValidator
 	 * context may be used to pass additional options from a calling context to the validation, and may be used to pass
 	 * cached results between successive validations. Returns true if successful, false otherwise.
 	 */
-	protected boolean validateSyntax(final @Nullable EObject instance, @NonNull String body, @NonNull org.eclipse.uml2.uml.Element opaqueElement, final @Nullable DiagnosticChain diagnostics, @NonNull Map<Object, Object> context) {
+	protected boolean validateSyntax1(@NonNull String body, @NonNull org.eclipse.uml2.uml.Element opaqueElement, final @Nullable DiagnosticChain diagnostics, @NonNull Map<Object, Object> context) {
+		OCL ocl = getOCL(context);
+		try {
+			MetamodelManager metamodelManager = ocl.getMetamodelManager();
+			org.eclipse.ocl.pivot.ExpressionInOCL asSpecification = metamodelManager.getASOf(org.eclipse.ocl.pivot.ExpressionInOCL.class, opaqueElement);
+			if (asSpecification == null) {
+				if (diagnostics != null) {
+					String objectLabel = LabelUtil.getLabel(opaqueElement);
+					String message = StringUtil.bind("No pivot for {0}", objectLabel);
+					if (!mayUseNewLines) {
+						message = message.replace("\n", " ");
+					}
+					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, UMLValidator.DIAGNOSTIC_SOURCE,
+						0, message,  new Object[] { opaqueElement }));
+				}
+				return false;
+			}
+			@SuppressWarnings("unused")
+			ExpressionInOCL asQuery = metamodelManager.parseSpecification(asSpecification);
+		} catch (ParserException e) {
+			if (diagnostics != null) {
+				String objectLabel = LabelUtil.getLabel(opaqueElement);
+				String message = StringUtil.bind(PivotMessagesInternal.ParsingError, objectLabel, e.getMessage());
+				if (!mayUseNewLines) {
+					message = message.replace("\n", " ");
+				}
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, UMLValidator.DIAGNOSTIC_SOURCE,
+					0, message,  new Object[] { opaqueElement }));
+			}
+			return false;
+		}
+		return true;
+	}
+	protected boolean validateSyntax2(@NonNull EObject instance, @NonNull String body, @NonNull org.eclipse.uml2.uml.Element opaqueElement, final @Nullable DiagnosticChain diagnostics, @NonNull Map<Object, Object> context) {
 		OCL ocl = getOCL(context);
 		ExpressionInOCL asQuery = null;
 		try {
@@ -515,19 +548,14 @@ public class UMLOCLEValidator implements EValidator
 			}
 			return false;
 		}
-		if (instance != null) {
-			EvaluationVisitor evaluationVisitor = ocl.createEvaluationVisitor(instance, asQuery);
-			AbstractConstraintEvaluator<Boolean> constraintEvaluator;
-			if (diagnostics != null) {
-				constraintEvaluator = new ConstraintEvaluatorWithDiagnostics(asQuery, instance, diagnostics, instance, mayUseNewLines);
-			}
-			else {
-				constraintEvaluator = new ConstraintEvaluatorWithoutDiagnostics(asQuery);
-			}
-			return constraintEvaluator.evaluate(evaluationVisitor);
+		EvaluationVisitor evaluationVisitor = ocl.createEvaluationVisitor(instance, asQuery);
+		AbstractConstraintEvaluator<Boolean> constraintEvaluator;
+		if (diagnostics != null) {
+			constraintEvaluator = new ConstraintEvaluatorWithDiagnostics(asQuery, instance, diagnostics, instance, mayUseNewLines);
 		}
 		else {
-			return true;
+			constraintEvaluator = new ConstraintEvaluatorWithoutDiagnostics(asQuery);
 		}
+		return constraintEvaluator.evaluate(evaluationVisitor);
 	}
 }

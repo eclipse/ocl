@@ -768,23 +768,7 @@ public class OCL
 	public @NonNull ExpressionInOCL parseSpecification(@NonNull LanguageExpression specification) throws ParserException {
 		return getMetamodelManager().parseSpecification(specification);
 	}
-	
-	/**
-	 * Convert the specification of an OCL expression from textual CS form to parsed executable AS form. The textual form typically
-	 * results from simple construction from source text or a UML OpaqueExpression.
-	 * <p>
-	 * The returned object may be the same object as the specification, but with the more derived type to signify successful conversion
-	 * from textual to executable form. Redundant re-invocation of parseSpecification is harmless.
-	 * <p>
-	 * The contextElement, typically a Constraint/Operation/Property or ECLass/EOperation/EStructuralFeature,
-	 * to determine the type of self within the expression.
-	 * 
-	 * @throws ParserException if text parsing fails
-	 */
-	public @NonNull ExpressionInOCL parseSpecification(@NonNull EObject contextElement, @NonNull LanguageExpression specification) throws ParserException {
-		return getMetamodelManager().parseSpecification(specification);
-	}
-	
+
 	/**
 	 * Assigns a custom extent map to define the extents of classes in
 	 * evaluation of OCL constraints. This is only needed if the default dynamic

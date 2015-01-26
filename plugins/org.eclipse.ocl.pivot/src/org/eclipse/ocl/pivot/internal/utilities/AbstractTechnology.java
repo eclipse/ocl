@@ -27,22 +27,22 @@ import org.eclipse.ocl.pivot.utilities.ParserException;
 public abstract class AbstractTechnology implements Technology
 {
 	@Override
-	public @NonNull LibraryProperty createBasePropertyImplementation(@NonNull Property property) {
+	public @NonNull LibraryProperty createBasePropertyImplementation(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Property property) {
 		return new BaseProperty(property);
 	}
 
 	@Override
-	public @NonNull LibraryProperty createExplicitNavigationPropertyImplementation(@Nullable Object sourceValue, @NonNull Property property) {
+	public @NonNull LibraryProperty createExplicitNavigationPropertyImplementation(@NonNull EnvironmentFactoryInternal environmentFactory, @Nullable Object sourceValue, @NonNull Property property) {
 		return new ExplicitNavigationProperty(property);
 	}
 
 	@Override
-	public @NonNull LibraryProperty createExtensionPropertyImplementation(@NonNull Property property) {
+	public @NonNull LibraryProperty createExtensionPropertyImplementation(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Property property) {
 		return new ExtensionProperty(property);
 	}
 
 	@Override
-	public @NonNull LibraryProperty createStereotypePropertyImplementation(@NonNull Property property) {
+	public @NonNull LibraryProperty createStereotypePropertyImplementation(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Property property) {
 		return new StereotypeProperty(property);
 	}
 

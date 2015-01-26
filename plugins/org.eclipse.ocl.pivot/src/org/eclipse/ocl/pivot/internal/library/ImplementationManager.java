@@ -118,7 +118,7 @@ public class ImplementationManager
 		}
 		Type type = property.getType();
 		if ((type instanceof Stereotype) && property.getName().startsWith(DerivedConstants.STEREOTYPE_EXTENSION_PREFIX)) {
-			return technology.createExtensionPropertyImplementation(property);
+			return technology.createExtensionPropertyImplementation(environmentFactory, property);
 		}
 //		if (property.getOwningType() instanceof Stereotype) {
 //			return new BaseProperty(property);
@@ -130,7 +130,7 @@ public class ImplementationManager
 		Property opposite = property.getOpposite();
 		if ((opposite != null) && opposite.isComposite()) {
 			if (property.eContainer() instanceof Stereotype) {
-				return technology.createBasePropertyImplementation(property);
+				return technology.createBasePropertyImplementation(environmentFactory, property);
 			}
 			if (type != null) {
 				EObject eTarget = opposite.getETarget();
@@ -176,9 +176,9 @@ public class ImplementationManager
 		}
 		if ((property.getOwningClass() instanceof ElementExtension)			// direct access to extension property
 			  || (property.getOwningClass() instanceof Stereotype)) {			// indirect access from a Stereotype operation
-			return technology.createStereotypePropertyImplementation(property);
+			return technology.createStereotypePropertyImplementation(environmentFactory, property);
 		}
-		return technology.createExplicitNavigationPropertyImplementation(sourceValue, property);
+		return technology.createExplicitNavigationPropertyImplementation(environmentFactory, sourceValue, property);
 	}
 	
 	public void dispose() {

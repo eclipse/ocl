@@ -226,6 +226,7 @@ public class EvaluateUMLTest4 extends PivotTestSuite
 	 * Tests construction of a type instance with property values
 	 */
 	@Test public void test_enumerations_Bug455394() throws Exception {
+		UMLStandaloneSetup.init();
 		MyOCL ocl = createOCL();
 		IdResolver idResolver = ocl.getIdResolver();
 		EObject context = doLoadUML(ocl, "Bug455394", "Model.Class1.class2");

@@ -31,15 +31,15 @@ import org.eclipse.ocl.pivot.utilities.ParserException;
  */
 public interface Technology
 {
-	@NonNull LibraryProperty createBasePropertyImplementation(@NonNull Property property);
+	@NonNull LibraryProperty createBasePropertyImplementation(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Property property);
 
-	@NonNull LibraryProperty createExplicitNavigationPropertyImplementation(@Nullable Object sourceValue, @NonNull Property property);
+	@NonNull LibraryProperty createExplicitNavigationPropertyImplementation(@NonNull EnvironmentFactoryInternal environmentFactory, @Nullable Object sourceValue, @NonNull Property property);
 
-	@NonNull LibraryProperty createExtensionPropertyImplementation(@NonNull Property property);
+	@NonNull LibraryProperty createExtensionPropertyImplementation(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Property property);
 
 	@NonNull IdResolver createIdResolver(@NonNull EnvironmentFactoryInternal environmentFactory);
 
-	@NonNull LibraryProperty createStereotypePropertyImplementation(@NonNull Property property);
+	@NonNull LibraryProperty createStereotypePropertyImplementation(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Property property);
 
 	String getExtensionName(@NonNull Element asStereotypedElement);
 

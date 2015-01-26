@@ -147,5 +147,6 @@ public interface MetamodelManager
 	 * 
 	 * @throws ParserException if text parsing fails
 	 */
+	@Deprecated // contextElement is partially ignored in favor of specifucation ancestry
 	@NonNull ExpressionInOCL parseSpecification(@NonNull EObject contextElement, @NonNull LanguageExpression specification) throws ParserException;
 }

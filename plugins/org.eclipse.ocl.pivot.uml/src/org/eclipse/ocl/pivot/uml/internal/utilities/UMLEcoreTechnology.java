@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.DynamicElement;
 import org.eclipse.ocl.pivot.Element;
@@ -31,6 +32,7 @@ import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.ids.RootPackageId;
 import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.internal.utilities.AbstractTechnology;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotConstantsInternal;
@@ -61,36 +63,43 @@ public class UMLEcoreTechnology extends AbstractTechnology
 	}
 
 	@Override
-	public @NonNull LibraryProperty createBasePropertyImplementation(@NonNull Property property) {
+	public @NonNull LibraryProperty createBasePropertyImplementation(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Property property) {
 		return new UMLBaseProperty(property);
 	}
 
 	@Override
-	public @NonNull LibraryProperty createExplicitNavigationPropertyImplementation(@Nullable Object sourceValue, @NonNull Property property) {
+	public @NonNull LibraryProperty createExplicitNavigationPropertyImplementation(@NonNull EnvironmentFactoryInternal environmentFactory, @Nullable Object sourceValue, @NonNull Property property) {
 		if (sourceValue instanceof org.eclipse.uml2.uml.InstanceSpecification) {
-			EObject eTarget = property.getETarget();
-			if  (eTarget instanceof org.eclipse.uml2.uml.Property) {
-				TypeId typeId = property.getTypeId();
-				CollectionTypeId collectionTypeId;
-				if (typeId instanceof CollectionTypeId) {
-					collectionTypeId = (CollectionTypeId)typeId;
+			CompleteModelInternal completeModel = environmentFactory.getCompleteModel();
+			CompletePackage umlCompletePackage = completeModel.getCompletePackageByURI(PivotConstants.UML_METAMODEL_NAME);
+			org.eclipse.ocl.pivot.Class owningClass = property.getOwningClass();
+			org.eclipse.ocl.pivot.Package owningPackage = owningClass != null ? owningClass.getOwningPackage() : null;
+			CompletePackage owningCompletePackage = owningPackage != null ? completeModel.getCompletePackage(owningPackage) : null;
+			if (umlCompletePackage != owningCompletePackage) {	// FIXME see Bug 458326/458394
+				EObject eTarget = property.getETarget();
+				if  (eTarget instanceof org.eclipse.uml2.uml.Property) {
+					TypeId typeId = property.getTypeId();
+					CollectionTypeId collectionTypeId;
+					if (typeId instanceof CollectionTypeId) {
+						collectionTypeId = (CollectionTypeId)typeId;
+					}
+					else {
+						collectionTypeId = null;
+					}
+					return new InstanceSlotNavigationProperty((org.eclipse.uml2.uml.Property)eTarget, collectionTypeId);
 				}
-				else {
-					collectionTypeId = null;
-				}
-				return new InstanceSlotNavigationProperty((org.eclipse.uml2.uml.Property)eTarget, collectionTypeId);
 			}
 		}
-		return super.createExplicitNavigationPropertyImplementation(sourceValue, property);
+		return super.createExplicitNavigationPropertyImplementation(environmentFactory, sourceValue, property);
 	}
 
 	@Override
-	public @NonNull LibraryProperty createExtensionPropertyImplementation(@NonNull Property property) {
+	public @NonNull LibraryProperty createExtensionPropertyImplementation(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Property property) {
 		return new UMLExtensionProperty(property);
 	}
 
 	@Override
-	public @NonNull LibraryProperty createStereotypePropertyImplementation(@NonNull Property property) {
+	public @NonNull LibraryProperty createStereotypePropertyImplementation(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Property property) {
 		return new UMLStereotypeProperty(property);
 	}
 

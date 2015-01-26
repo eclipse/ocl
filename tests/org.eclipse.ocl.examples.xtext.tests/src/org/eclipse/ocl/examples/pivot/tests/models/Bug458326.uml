@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Profile="http:///schemas/Profile/_cgG9cJ_TEeSQaItEmn4FtQ/3" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/Profile/_cgG9cJ_TEeSQaItEmn4FtQ/3 Bug458326Profile.profile.uml#_cgG9cZ_TEeSQaItEmn4FtQ">
+  <uml:Model xmi:id="_jl6X8J_SEeSQaItEmn4FtQ" name="Model">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_jl6X8Z_SEeSQaItEmn4FtQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_m64IoJ_SEeSQaItEmn4FtQ" name="Class1">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_nsmggJ_SEeSQaItEmn4FtQ" name="Attribute1">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_ql6P8J_SEeSQaItEmn4FtQ" name="InstanceSpecification1">
+      <slot xmi:type="uml:Slot" xmi:id="_swxlAJ_SEeSQaItEmn4FtQ" definingFeature="_nsmggJ_SEeSQaItEmn4FtQ">
+        <value xmi:type="uml:LiteralInteger" xmi:id="_ezVu4J_UEeSQaItEmn4FtQ" name="LiteralInteger1"/>
+      </slot>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_l8DI4J_SEeSQaItEmn4FtQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_3JVM4J_VEeSZgY507MDAOw" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_3JVM4Z_VEeSZgY507MDAOw" key="Version" value="0.0.4"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_3JVM4p_VEeSZgY507MDAOw" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_3JVM45_VEeSZgY507MDAOw" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_3JVM5J_VEeSZgY507MDAOw" key="Date" value="2015-01-19"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_3JVM5Z_VEeSZgY507MDAOw" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_G4tXMJ_TEeSQaItEmn4FtQ" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_G4tXMZ_TEeSQaItEmn4FtQ" key="Version" value="0.0.2"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_G4tXMp_TEeSQaItEmn4FtQ" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_G4tXM5_TEeSQaItEmn4FtQ" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_G4tXNJ_TEeSQaItEmn4FtQ" key="Date" value="2015-01-19"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_G4tXNZ_TEeSQaItEmn4FtQ" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_l9QCwJ_SEeSQaItEmn4FtQ" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_l9QCwZ_SEeSQaItEmn4FtQ" key="Version" value="0.0.1"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_l9QCwp_SEeSQaItEmn4FtQ" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_l9QCw5_SEeSQaItEmn4FtQ" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_l9QCxJ_SEeSQaItEmn4FtQ" key="Date" value="2015-01-19"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_l9QCxZ_SEeSQaItEmn4FtQ" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_l9O0oJ_SEeSQaItEmn4FtQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="Bug458326Profile.profile.uml#_cgG9cZ_TEeSQaItEmn4FtQ"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="Bug458326Profile.profile.uml#_VscGsJ_SEeSQaItEmn4FtQ"/>
+    </profileApplication>
+  </uml:Model>
+  <Profile:Stereotype1 xmi:id="_wuDS4J_SEeSQaItEmn4FtQ" base_InstanceSpecification="_ql6P8J_SEeSQaItEmn4FtQ"/>
+</xmi:XMI>
