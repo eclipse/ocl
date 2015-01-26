@@ -65,6 +65,7 @@ import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.LoopExp;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Namespace;
+import org.eclipse.ocl.pivot.NavigationCallExp;
 import org.eclipse.ocl.pivot.NullLiteralExp;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
@@ -1203,11 +1204,15 @@ public class PivotMetamodelManager implements MetamodelManager.Internal, Adapter
 		return implementation;
 	}
 
+	@Deprecated //in use by QVTiAS2CGVisitor
 	public @NonNull LibraryProperty getImplementation(@Nullable Object sourceValue, @NonNull Property property) {
+		return getImplementation(null, sourceValue, property);	// Change dead argument to @NonNull once removed
+	}
+	public @NonNull LibraryProperty getImplementation(@Nullable Element asNavigationExp, @Nullable Object sourceValue, @NonNull Property property) {
 		LibraryProperty implementation = (LibraryProperty) property.getImplementation();
 		if (implementation == null) {
 			ImplementationManager implementationManager = getImplementationManager();
-			implementation = implementationManager.getPropertyImplementation(sourceValue, property);
+			implementation = implementationManager.getPropertyImplementation(asNavigationExp, sourceValue, property);
 			property.setImplementation(implementation);
 		}
 		return implementation;

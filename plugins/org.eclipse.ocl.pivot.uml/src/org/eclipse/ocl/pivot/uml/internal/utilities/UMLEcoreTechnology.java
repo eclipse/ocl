@@ -21,18 +21,17 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.DynamicElement;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.Profile;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.ids.RootPackageId;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.internal.utilities.AbstractTechnology;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotConstantsInternal;
@@ -48,6 +47,7 @@ import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -68,14 +68,11 @@ public class UMLEcoreTechnology extends AbstractTechnology
 	}
 
 	@Override
-	public @NonNull LibraryProperty createExplicitNavigationPropertyImplementation(@NonNull EnvironmentFactoryInternal environmentFactory, @Nullable Object sourceValue, @NonNull Property property) {
+	public @NonNull LibraryProperty createExplicitNavigationPropertyImplementation(@NonNull EnvironmentFactoryInternal environmentFactory,
+			@Nullable Element asNavigationExp, @Nullable Object sourceValue, @NonNull Property property) {
 		if (sourceValue instanceof org.eclipse.uml2.uml.InstanceSpecification) {
-			CompleteModelInternal completeModel = environmentFactory.getCompleteModel();
-			CompletePackage umlCompletePackage = completeModel.getCompletePackageByURI(PivotConstants.UML_METAMODEL_NAME);
-			org.eclipse.ocl.pivot.Class owningClass = property.getOwningClass();
-			org.eclipse.ocl.pivot.Package owningPackage = owningClass != null ? owningClass.getOwningPackage() : null;
-			CompletePackage owningCompletePackage = owningPackage != null ? completeModel.getCompletePackage(owningPackage) : null;
-			if (umlCompletePackage != owningCompletePackage) {	// FIXME see Bug 458326/458394
+			org.eclipse.ocl.pivot.Package owningPackage = PivotUtil.getContainingPackage(asNavigationExp);
+			if (!(owningPackage instanceof Profile)) {	// FIXME see Bug 458326/458394
 				EObject eTarget = property.getETarget();
 				if  (eTarget instanceof org.eclipse.uml2.uml.Property) {
 					TypeId typeId = property.getTypeId();
@@ -90,7 +87,7 @@ public class UMLEcoreTechnology extends AbstractTechnology
 				}
 			}
 		}
-		return super.createExplicitNavigationPropertyImplementation(environmentFactory, sourceValue, property);
+		return super.createExplicitNavigationPropertyImplementation(environmentFactory, asNavigationExp, sourceValue, property);
 	}
 
 	@Override

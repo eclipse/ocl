@@ -152,13 +152,13 @@ public class OCLEvaluationVisitor extends AbstractEvaluationVisitor
 		return value;
 	}
 
-	protected Object evaluatePropertyCallExp(@NonNull NavigationCallExp propertyCallExp, @NonNull Property referredProperty) {
-		OCLExpression source = propertyCallExp.getOwnedSource();
-		Type propertyType = propertyCallExp.getType();
+	protected Object evaluatePropertyCallExp(@NonNull NavigationCallExp navigationCallExp, @NonNull Property referredProperty) {
+		OCLExpression source = navigationCallExp.getOwnedSource();
+		Type propertyType = navigationCallExp.getType();
 		assert propertyType != null;
 		EvaluationVisitor evaluationVisitor = undecoratedVisitor;
 		Object sourceValue = source != null ? evaluationVisitor.evaluate(source) : null;
-		LibraryProperty implementation = metamodelManager.getImplementation(sourceValue, referredProperty);
+		LibraryProperty implementation = metamodelManager.getImplementation(navigationCallExp, sourceValue, referredProperty);
 		try {
 			return implementation.evaluate(this, propertyType.getTypeId(), sourceValue);
 		}
@@ -168,7 +168,7 @@ public class OCLEvaluationVisitor extends AbstractEvaluationVisitor
 		catch (Exception e) {
 			// This is a backstop. Library operations should catch their own exceptions
 			//  and produce a better reason as a result.
-			throw new InvalidValueException(e, "Failed to evaluate '" + referredProperty + "'", sourceValue, propertyCallExp);
+			throw new InvalidValueException(e, "Failed to evaluate '" + referredProperty + "'", sourceValue, navigationCallExp);
 		}
 	}
 

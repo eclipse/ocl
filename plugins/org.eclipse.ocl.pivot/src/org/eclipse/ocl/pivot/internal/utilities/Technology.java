@@ -33,7 +33,8 @@ public interface Technology
 {
 	@NonNull LibraryProperty createBasePropertyImplementation(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Property property);
 
-	@NonNull LibraryProperty createExplicitNavigationPropertyImplementation(@NonNull EnvironmentFactoryInternal environmentFactory, @Nullable Object sourceValue, @NonNull Property property);
+	@NonNull LibraryProperty createExplicitNavigationPropertyImplementation(@NonNull EnvironmentFactoryInternal environmentFactory,
+			@Nullable Element asNavigationExp, @Nullable Object sourceValue, @NonNull Property property);
 
 	@NonNull LibraryProperty createExtensionPropertyImplementation(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Property property);
 

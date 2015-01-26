@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Feature;
@@ -100,7 +101,7 @@ public class ImplementationManager
 		return UnsupportedOperation.INSTANCE;
 	}
 
-	public @NonNull LibraryProperty getPropertyImplementation(@Nullable Object sourceValue, @NonNull Property property) {
+	public @NonNull LibraryProperty getPropertyImplementation(@Nullable Element asNavigationExp, @Nullable Object sourceValue, @NonNull Property property) {
 		LibraryFeature implementation = property.getImplementation();
 		String implementationClassName = property.getImplementationClass();
 		if (implementationClassName != null) {
@@ -178,7 +179,7 @@ public class ImplementationManager
 			  || (property.getOwningClass() instanceof Stereotype)) {			// indirect access from a Stereotype operation
 			return technology.createStereotypePropertyImplementation(environmentFactory, property);
 		}
-		return technology.createExplicitNavigationPropertyImplementation(environmentFactory, sourceValue, property);
+		return technology.createExplicitNavigationPropertyImplementation(environmentFactory, asNavigationExp, sourceValue, property);
 	}
 	
 	public void dispose() {
