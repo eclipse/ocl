@@ -768,6 +768,10 @@ public class OCL
 	public @NonNull ExpressionInOCL parseSpecification(@NonNull LanguageExpression specification) throws ParserException {
 		return getMetamodelManager().parseSpecification(specification);
 	}
+	@Deprecated // contextElement is partially ignored in favor of specifucation ancestry
+	public @NonNull ExpressionInOCL parseSpecification(@NonNull EObject contextElement, @NonNull LanguageExpression specification) throws ParserException {
+		return getMetamodelManager().parseSpecification(contextElement, specification);
+	}
 
 	/**
 	 * Assigns a custom extent map to define the extents of classes in
