@@ -19,6 +19,7 @@ import org.eclipse.ocl.examples.domain.library.LibraryProperty;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.manager.ImplementationManager;
 import org.eclipse.ocl.examples.pivot.manager.ImplementationManager.ExplicitNavigator;
+import org.eclipse.uml2.uml.resource.XMI2UMLResource;
 
 /**
  * ImplementationManager encapsulates the knowledge about known feature implementations.
@@ -31,15 +32,18 @@ public class UMLExplicitNavigator implements ImplementationManager.ExplicitNavig
 		if (sourceValue instanceof org.eclipse.uml2.uml.InstanceSpecification) {
 			EObject eTarget = property.getETarget();
 			if  (eTarget instanceof org.eclipse.uml2.uml.Property) {
-				TypeId typeId = property.getTypeId();
-				CollectionTypeId collectionTypeId;
-				if (typeId instanceof CollectionTypeId) {
-					collectionTypeId = (CollectionTypeId)typeId;
+				org.eclipse.uml2.uml.Package umlPackage = ((org.eclipse.uml2.uml.Property)eTarget).getNearestPackage();
+				if ((umlPackage != null) && !XMI2UMLResource.UML_METAMODEL_NS_URI.equals(umlPackage.getURI())) {
+					TypeId typeId = property.getTypeId();
+					CollectionTypeId collectionTypeId;
+					if (typeId instanceof CollectionTypeId) {
+						collectionTypeId = (CollectionTypeId)typeId;
+					}
+					else {
+						collectionTypeId = null;
+					}
+					return new InstanceSlotNavigationProperty((org.eclipse.uml2.uml.Property)eTarget, collectionTypeId);
 				}
-				else {
-					collectionTypeId = null;
-				}
-				return new InstanceSlotNavigationProperty((org.eclipse.uml2.uml.Property)eTarget, collectionTypeId);
 			}
 		}
 		return null;
