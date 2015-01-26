@@ -309,7 +309,7 @@ public class UMLOCLEValidator implements EValidator
 											else {
 												constraintEvaluator = new ConstraintEvaluatorWithoutDiagnostics(asExpression);
 											}
-											if (!constraintEvaluator.evaluate(evaluationVisitor) && (diagnostics == null)) {
+											if (!constraintEvaluator.evaluate(evaluationVisitor)) {
 												allOk = false;
 											}
 										}
