@@ -32,6 +32,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.ConnectionPointReference;
+import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.DynamicBehavior;
 import org.eclipse.ocl.pivot.DynamicElement;
@@ -59,12 +60,12 @@ import org.eclipse.ocl.pivot.Slot;
 import org.eclipse.ocl.pivot.State;
 import org.eclipse.ocl.pivot.StateMachine;
 import org.eclipse.ocl.pivot.Stereotype;
+import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Transition;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -81,14 +82,15 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 {
-	private static final Logger logger = Logger.getLogger(UML2ASDeclarationSwitch.class);
+	@SuppressWarnings("null")
+	private static final @NonNull Logger logger = Logger.getLogger(UML2ASDeclarationSwitch.class);
 
-	protected final Ecore2ASDeclarationSwitch ecoreSwitch;
-	protected final UML2AS converter;
-	protected final PivotMetamodelManager metamodelManager;
-	protected final StandardLibraryInternal standardLibrary;
+	protected final @NonNull Ecore2ASDeclarationSwitch ecoreSwitch;
+	protected final @NonNull UML2AS converter;
+	protected final @NonNull PivotMetamodelManager metamodelManager;
+	protected final @NonNull StandardLibraryInternal standardLibrary;
 	
-	public UML2ASDeclarationSwitch(UML2AS converter) {
+	public UML2ASDeclarationSwitch(@NonNull UML2AS converter) {
 		this.converter = converter;
 		this.ecoreSwitch = new Ecore2ASDeclarationSwitch(converter);
 		this.metamodelManager = converter.getMetamodelManager();
@@ -195,6 +197,15 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 		assert umlConnectionPointReference != null;
 		ConnectionPointReference pivotElement = converter.refreshNamedElement(ConnectionPointReference.class, PivotPackage.Literals.CONNECTION_POINT_REFERENCE, umlConnectionPointReference);
 		copyNamedElement(pivotElement, umlConnectionPointReference);
+		return pivotElement;
+	}
+
+	@Override
+	public Constraint caseConstraint(org.eclipse.uml2.uml.Constraint umlConstraint) {
+		assert umlConstraint != null;
+		Constraint pivotElement = converter.refreshNamedElement(Constraint.class, PivotPackage.Literals.CONSTRAINT, umlConstraint);
+		copyNamedElement(pivotElement, umlConstraint);
+		converter.queueUse(umlConstraint);
 		return pivotElement;
 	}
 
@@ -751,6 +762,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 			}
 		}
 		pivotElement.setURI(nsURI != null ? nsURI.toString() : null);
+		@Nullable List<org.eclipse.uml2.uml.Constraint> umlConstraints = null;
 		@Nullable List<org.eclipse.uml2.uml.Element> umlOtherElements = null;
 		@Nullable List<org.eclipse.uml2.uml.InstanceSpecification> umlInstanceSpecifications = null;
 		@Nullable List<org.eclipse.uml2.uml.Package> umlNestedPackages = null;
@@ -776,6 +788,12 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 					umlAssociations = new ArrayList<org.eclipse.uml2.uml.Association>();
 				}
 				umlAssociations.add((org.eclipse.uml2.uml.Association)ownedElement);
+			}
+			else if (ownedElement instanceof org.eclipse.uml2.uml.Constraint) {
+				if (umlConstraints == null) {
+					umlConstraints = new ArrayList<org.eclipse.uml2.uml.Constraint>();
+				}
+				umlConstraints.add((org.eclipse.uml2.uml.Constraint)ownedElement);
 			}
 			else if (ownedElement instanceof org.eclipse.uml2.uml.InstanceSpecification) {
 				if (umlInstanceSpecifications == null) {
@@ -844,6 +862,9 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 			for (org.eclipse.uml2.uml.Association umlAssociation : umlAssociations) {
 				doSwitch(umlAssociation);
 			}
+		}
+		if (umlConstraints != null) {
+			doSwitchAll(pivotElement.getOwnedConstraints(), umlConstraints, null);
 		}
 		if (umlOtherElements != null) {
 			doSwitchAll(pivotElement.getOwnedAnnotations(), umlOtherElements, null);
