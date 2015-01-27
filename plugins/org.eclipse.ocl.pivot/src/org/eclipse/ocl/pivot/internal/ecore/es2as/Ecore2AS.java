@@ -59,6 +59,7 @@ import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.resource.BasicProjectManager;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
@@ -207,7 +208,7 @@ public class Ecore2AS extends AbstractEcore2AS
 	private Set<EObject> importedEObjects = null;
 	
 	public Ecore2AS(@NonNull Resource ecoreResource, @Nullable EnvironmentFactoryInternal environmentFactory) {
-		super(environmentFactory != null ? environmentFactory : (EnvironmentFactoryInternal)OCL.createEnvironmentFactory(null));
+		super(environmentFactory != null ? environmentFactory : OCL.Internal.createEnvironmentFactory(BasicProjectManager.createDefaultProjectManager()));
 		this.ecoreResource = ecoreResource;
 		MetamodelManager.Internal metamodelManager = this.environmentFactory.getMetamodelManager();
 		metamodelManager.addExternalResource(this);

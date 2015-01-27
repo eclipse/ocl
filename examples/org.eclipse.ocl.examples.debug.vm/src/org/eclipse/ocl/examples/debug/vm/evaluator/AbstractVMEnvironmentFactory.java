@@ -23,7 +23,7 @@ public abstract class AbstractVMEnvironmentFactory extends AbstractEnvironmentFa
 	private IVMDebuggerShell shell;
 	private long envId = 0;
 	
-	public AbstractVMEnvironmentFactory(@Nullable ProjectManager projectMap) {
+	public AbstractVMEnvironmentFactory(@NonNull ProjectManager projectMap) {
 		super(projectMap);
 	}
 

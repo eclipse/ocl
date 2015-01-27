@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
@@ -56,7 +55,6 @@ import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.resource.ICSI2ASMapping;
-import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.Technology;
@@ -70,7 +68,7 @@ import org.eclipse.ocl.pivot.values.ObjectValue;
 public abstract class AbstractEnvironmentFactory extends AbstractCustomizable implements EnvironmentFactoryInternal
 {
     private boolean traceEvaluation;
-    private /*@LazyNonNull*/ ProjectManager projectManager;
+    private @NonNull ProjectManager projectManager;
     private /*@LazyNonNull*/ PivotMetamodelManager metamodelManager;
 	private final @NonNull CompleteEnvironmentInternal completeEnvironment;
 	private final @NonNull StandardLibraryInternal standardLibrary;
@@ -107,10 +105,10 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 //		this.modelManager = reg != null ? createModelManager(reg) : null;
 //	}
 
-    /**
-	 * Initializes me.
+	/**
+	 * @param projectManager
 	 */
-	protected AbstractEnvironmentFactory(@Nullable ProjectManager projectManager) {
+	protected AbstractEnvironmentFactory(@NonNull ProjectManager projectManager) {
 		this.projectManager = projectManager;
 		this.metamodelManager = null;
 		this.completeEnvironment = createCompleteEnvironment();
@@ -151,20 +149,13 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	}
 
 	@Override
-	public @Nullable ProjectManager basicGetProjectManager() {
-		return projectManager;
-	}
-
-	@Override
 	public @NonNull ResourceSetImpl createASResourceSet() {
 		ResourceSetImpl asResourceSet = new ResourceSetImpl();
 		StandaloneProjectMap.initializeURIResourceMap(asResourceSet);
 		ASResourceFactoryRegistry.INSTANCE.configureResourceSet(asResourceSet);
 		EPackage.Registry packageRegistry = asResourceSet.getPackageRegistry();
 		packageRegistry.put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
-		if (projectManager != null) {
-			asResourceSet.eAdapters().add(projectManager);
-		}
+		asResourceSet.eAdapters().add(projectManager);
 		return asResourceSet;
 	}
 
@@ -448,11 +439,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 
 	@Override
 	public @NonNull ProjectManager getProjectManager() {
-		ProjectManager projectManager2 = projectManager;
-		if (projectManager2 == null) {
-			projectManager = projectManager2 = EcorePlugin.IS_ECLIPSE_RUNNING ? new ProjectMap() : new StandaloneProjectMap();
-		}
-		return projectManager2;
+		return projectManager;
 	}
 	
 	@Override

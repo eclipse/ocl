@@ -49,7 +49,7 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary
 
 	public PivotExecutorStandardLibrary(EcoreExecutorPackage... execPackages) {
 		OCLstdlibTables.PACKAGE.getClass();
-		this.environmentFactory = (EnvironmentFactoryInternal) OCL.createEnvironmentFactory(null);
+		this.environmentFactory = OCL.Internal.createEnvironmentFactory();
 		environmentFactory.getStandardLibrary().setDefaultStandardLibraryURI(LibraryConstants.STDLIB_URI);
 		PivotTables.PACKAGE.getClass();
 	}

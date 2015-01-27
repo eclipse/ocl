@@ -279,7 +279,7 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 
 		@Override
 		protected boolean processResources() {
-			OCL ocl = OCL.newInstance(null, resourceSet);
+			OCL ocl = OCL.newInstance(resourceSet);
 			CompleteOCLLoader helper = new CompleteOCLLoader(ocl.getEnvironmentFactory()) {
 				@Override
 				protected boolean error(@NonNull String primaryMessage, @Nullable String detailMessage) {

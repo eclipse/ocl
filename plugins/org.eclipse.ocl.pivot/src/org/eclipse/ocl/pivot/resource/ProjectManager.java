@@ -25,8 +25,29 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
+/**
+ * Clients might use one of the following implementations
+ * <ul>
+ * 		<li>{@link ProjectManager#NO_PROJECTS} - Lightweight with no external projects contributions</li>
+ *		<li>{@link ProjectManager#GLOBAL_PROJECT_MANAGER} - A shared Heavyweight including classpath analysis</li>
+ *		<li>{@link BasicProjectManager#createDefaultProjectManager()} - Convenient method to create local heavyweight local managers</li>
+ * </ul>
+ *
+ */
 public interface ProjectManager extends Adapter
 {
+	/**
+	 * The NO_PROJECTS instance of ProjectManager contributes no external projects to a user application. 
+	 */
+	public static final @NonNull ProjectManager NO_PROJECTS = new BasicProjectManager();
+	
+	/**
+	 * TODO
+	 */
+	public static final @NonNull ProjectManager GLOBAL_PROJECT_MANAGER = BasicProjectManager.createDefaultProjectManager();
+	
+	
+	
 	/**
 	 * An IConflictHandler configures the handling of conflicting access between generated packages and
 	 * dynamically loaded resources.

@@ -616,10 +616,8 @@ public class PivotTestCase extends TestCase
 		EnvironmentFactoryAdapter environmentFactoryAdapter = EnvironmentFactoryAdapter.find(resourceSet);
 		if (environmentFactoryAdapter != null) {
 			EnvironmentFactoryInternal environmentFactory = environmentFactoryAdapter.getMetamodelManager().getEnvironmentFactory();
-			ProjectManager projectManager = environmentFactory.basicGetProjectManager();
-			if (projectManager != null) {
-				projectManager.unload(resourceSet);
-			}
+			ProjectManager projectManager = environmentFactory.getProjectManager();
+			projectManager.unload(resourceSet);
 		}
 		for (Resource resource : resourceSet.getResources()) {
 			resource.unload();

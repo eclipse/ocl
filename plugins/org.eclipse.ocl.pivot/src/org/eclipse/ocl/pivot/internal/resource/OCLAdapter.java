@@ -21,10 +21,10 @@ import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
+import org.eclipse.ocl.pivot.resource.BasicProjectManager;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.OCL;
 
@@ -37,11 +37,15 @@ import org.eclipse.ocl.pivot.utilities.OCL;
  */
 public class OCLAdapter extends EnvironmentFactoryAdapter implements AdapterFactory, IDisposable
 {
-	public static @NonNull EnvironmentFactoryInternal createEnvironmentFactory(@Nullable ProjectManager projectManager, @NonNull Notifier notifier) {
+	public static @NonNull EnvironmentFactoryInternal createEnvironmentFactory(@NonNull ProjectManager projectManager, @NonNull Notifier notifier) {
 		OCL.Internal ocl = OCL.Internal.newInstance(projectManager);
 		OCLAdapter adapter = new OCLAdapter(ocl, notifier);
 		notifier.eAdapters().add(adapter);
 		return adapter.getEnvironmentFactory();
+	}
+	
+	public static @NonNull EnvironmentFactoryInternal createEnvironmentFactory( @NonNull Notifier notifier) {
+		return createEnvironmentFactory(BasicProjectManager.createDefaultProjectManager(), notifier);
 	}
 	
 	protected OCL ocl;				// Set null once disposed

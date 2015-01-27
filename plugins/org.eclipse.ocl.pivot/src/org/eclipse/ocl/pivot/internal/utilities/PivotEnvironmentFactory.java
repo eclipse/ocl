@@ -12,7 +12,7 @@
 
 package org.eclipse.ocl.pivot.internal.utilities;
 
-import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.AbstractEnvironmentFactory;
 
@@ -28,7 +28,7 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
 	 * Initializes me with an optional <code>StandaloneProjectMap</code> of accessible resources and
 	 * an optional <code>ModelManager</code> for loaded instances.
 	 */
-	public PivotEnvironmentFactory(@Nullable ProjectManager projectManager) {
+	public PivotEnvironmentFactory(@NonNull ProjectManager projectManager) {
 		super(projectManager);
 	}
 }

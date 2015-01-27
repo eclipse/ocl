@@ -166,7 +166,7 @@ public final class DebugAction extends Action
 		 * @throws IOException 
 		 */
 		protected @Nullable BaseCSResource loadDocument(IProgressMonitor monitor, @NonNull URI documentURI) throws Exception {
-			MetamodelManager metamodelManager = OCL.createEnvironmentFactory(null).getMetamodelManager();
+			MetamodelManager metamodelManager = OCL.Internal.createEnvironmentFactory(OCL.NO_PROJECTS).getMetamodelManager();
 			ResourceSet externalResourceSet = metamodelManager.getExternalResourceSet();
 			if (contextObject != null) {
 				Resource contextResource = contextObject.eResource();

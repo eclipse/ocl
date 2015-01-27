@@ -48,11 +48,10 @@ import org.eclipse.ocl.pivot.internal.helper.OCLHelperImpl;
 import org.eclipse.ocl.pivot.internal.helper.QueryImpl;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
-import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.OCLDebugOptions;
 import org.eclipse.ocl.pivot.resource.ASResource;
-import org.eclipse.ocl.pivot.resource.AbstractProjectManager;
+import org.eclipse.ocl.pivot.resource.BasicProjectManager;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -70,7 +69,7 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
  */
 public class OCL
 {
-	public static final @NonNull ProjectManager NO_PROJECTS = AbstractProjectManager.NO_PROJECTS;
+	public static final @NonNull ProjectManager NO_PROJECTS = BasicProjectManager.NO_PROJECTS;
 
 	public static class Internal extends OCL
 	{
@@ -84,9 +83,12 @@ public class OCL
 			List<Adapter> eAdapters = ClassUtil.nonNullEMF(notifier.eAdapters());
 			EnvironmentFactoryAdapter adapter = ClassUtil.getAdapter(EnvironmentFactoryAdapter.class, eAdapters);
 			if (adapter == null) {
-				StandaloneProjectMap projectMap = null;
+				ProjectManager projectMap = null;
 				if (notifier instanceof ResourceSet) {
-					projectMap = StandaloneProjectMap.findAdapter((ResourceSet) notifier);
+					projectMap = BasicProjectManager.findAdapter((ResourceSet) notifier);
+				}
+				if (projectMap == null) {
+					projectMap = BasicProjectManager.createDefaultProjectManager();
 				}
 				EnvironmentFactoryInternal environmentFactory = ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectMap);
 				adapter = new EnvironmentFactoryAdapter(environmentFactory, notifier);
@@ -118,7 +120,7 @@ public class OCL
 		public static @NonNull EnvironmentFactoryInternal getGlobalEnvironmentFactory() {
 			EnvironmentFactoryInternal globalRegistryInstance2 = GLOBAL_ENVIRONMENT_FACTORY;
 			if (globalRegistryInstance2 == null) {
-				GLOBAL_ENVIRONMENT_FACTORY = globalRegistryInstance2 = (EnvironmentFactoryInternal) OCL.Internal.createEnvironmentFactory(null);
+				GLOBAL_ENVIRONMENT_FACTORY = globalRegistryInstance2 = OCL.Internal.createEnvironmentFactory(BasicProjectManager.GLOBAL_PROJECT_MANAGER);
 //				PivotUtilInternal.debugPrintln("Create Global " + NameUtil.debugSimpleName(GLOBAL_ENVIRONMENT_FACTORY));	
 			}
 //			else {
@@ -132,11 +134,19 @@ public class OCL
 			return environmentFactory.getMetamodelManager();
 		}
 	
-		public static @NonNull Internal newInstance() {
-			return newInstance(ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(null));
+		public static @NonNull EnvironmentFactoryInternal createEnvironmentFactory() {
+			return ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(BasicProjectManager.createDefaultProjectManager());
+		}
+		public static @NonNull EnvironmentFactoryInternal createEnvironmentFactory(@NonNull ProjectManager projectManager) {
+//			OCLstdlib.lazyInstall();
+			return ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectManager);
 		}
 		
-		public static @NonNull Internal newInstance(@Nullable ProjectManager projectManager) {	
+		public static @NonNull Internal newInstance() {
+			return newInstance(BasicProjectManager.createDefaultProjectManager());
+		}
+		
+		public static @NonNull Internal newInstance(@NonNull ProjectManager projectManager) {	
 			return newInstance(ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectManager));
 		}
 		
@@ -163,11 +173,6 @@ public class OCL
 	
 	public static @NonNull Adapter adapt(@NonNull Notifier notifier) {
 		return Internal.adapt(notifier);
-	}
-
-	public static @NonNull EnvironmentFactory createEnvironmentFactory(@Nullable ProjectManager projectManager) {
-//		OCLstdlib.lazyInstall();
-		return ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectManager);
 	}
 	
 	/**
@@ -202,7 +207,7 @@ public class OCL
      * @return the new <code>OCL</code>
      */
 	public static @NonNull OCL newInstance() {
-		return newInstance(createEnvironmentFactory(null));
+		return Internal.newInstance();
 	}
 	
     /**
@@ -212,8 +217,36 @@ public class OCL
      * @param reg Ecore package registry
      * @return the new <code>OCL</code>
      */
-	public static @NonNull OCL newInstance(@Nullable ProjectManager projectManager) {	
-		return newInstance(createEnvironmentFactory(projectManager));
+	public static @NonNull OCL newInstance(@NonNull ProjectManager projectManager) {	
+		return Internal.newInstance(projectManager);
+	}
+	
+    /**
+     * Creates a new <code>OCL</code> suitable for the specified resourceSet content.
+     * This automatically creates an new EnvironmentFactory and MetamodelManager.
+     */
+	public static @NonNull OCL newInstance(@NonNull ProjectManager projectManager, @NonNull ResourceSet resourceSet) {
+		OCL ocl = Internal.newInstance(projectManager);
+		ocl.getEnvironmentFactory().adapt(resourceSet);
+		return ocl;
+	}
+	
+	public static @NonNull OCL newInstance(@NonNull ResourceSet resourceSet) {
+		OCL ocl = Internal.newInstance();
+		ocl.getEnvironmentFactory().adapt(resourceSet);
+		return ocl;
+
+	}
+	
+    /**
+     * Creates a new <code>OCL</code> using the specified Ecore environment
+     * factory.
+     * 
+     * @param environmentFactory an environment factory for Ecore
+     * @return the new <code>OCL</code>
+     */
+	public static @NonNull OCL newInstance(@NonNull EnvironmentFactory environmentFactory) {
+		return new OCL.Internal((EnvironmentFactoryInternal) environmentFactory); // FIXME Bad design
 	}
 	
     /**
@@ -224,30 +257,8 @@ public class OCL
      * @return the new <code>OCL</code>
      */
 	public static @NonNull OCL newInstance(@NonNull EPackage.Registry reg) {			// FIXME exploit reg to give narrower MetamodelManager capability
-		return newInstance(createEnvironmentFactory(null));
+		return newInstance();
 	}
-	
-    /**
-     * Creates a new <code>OCL</code> suitable for the specified resourceSet content.
-     * This automatically creates an new EnvironmentFactory and MetamodelManager.
-     */
-	public static @NonNull OCL newInstance(@Nullable ProjectManager projectManager, @NonNull ResourceSet resourceSet) {
-		EnvironmentFactory environmentFactory = OCL.createEnvironmentFactory(projectManager);
-		environmentFactory.adapt(resourceSet);
-		return newInstance(environmentFactory);
-	}
-	
-    /**
-     * Creates a new <code>OCL</code> using the specified Ecore environment
-     * factory.
-     * 
-     * @param environmentFactory an environment factory for Ecore
-     * @return the new <code>OCL</code>
-     */
-	public static @NonNull OCL newInstance(@NonNull EnvironmentFactory environmentFactory) {	
-		return new OCL.Internal((EnvironmentFactoryInternal) environmentFactory);
-	}
-	
 	/**
 	 * The EnvironmentFactory that can create objects and which provides the MetamodelManager, CompleteEnvironment and StandardLibrary.
 	 * This is non-null until the OCL is disposed. Any subsequent usage will provoke NPEs.

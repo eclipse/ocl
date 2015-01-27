@@ -24,7 +24,7 @@ public class UMLOCL extends OCL
      * @return the new <code>OCL</code>
      */
 	public static @NonNull UMLOCL newInstance() {	
-		return newInstance(OCL.createEnvironmentFactory(null));
+		return newInstance();
 	}
 	
     /**
@@ -35,7 +35,7 @@ public class UMLOCL extends OCL
      * @return the new <code>OCL</code>
      */
 	public static @NonNull UMLOCL newInstance(@Nullable ProjectManager projectManager) {	
-		return newInstance(OCL.createEnvironmentFactory(projectManager));
+		return newInstance(projectManager);
 	}
 	
     /**

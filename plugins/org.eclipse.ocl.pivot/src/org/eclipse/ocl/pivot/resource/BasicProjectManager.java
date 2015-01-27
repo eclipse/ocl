@@ -13,22 +13,22 @@ package org.eclipse.ocl.pivot.resource;
 
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
+import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 
 /**
- * AbstractProjectManager provides a default implementation of the ProjectManager API that should be used by
+ * BasicProjectManager provides a default implementation of the ProjectManager API that should be used by
  * all clients. The default provides very lightweight functionality that contributes no external projects
- * to a user application and incurs no classpath analysis ciosts to do so.
+ * to a user application and incurs no classpath analysis costs to do so.
  */
-public class AbstractProjectManager extends AdapterImpl implements ProjectManager
+public class BasicProjectManager extends AdapterImpl implements ProjectManager
 {
-	/**
-	 * The NO_PROJECTS instance of ProjectManager contributes no external projects to a user application. 
-	 */
-	public static final @NonNull ProjectManager NO_PROJECTS = new AbstractProjectManager();
 
 	@Override
 	public void addResourceDescriptor(@NonNull IResourceDescriptor resourceDescriptor) {
@@ -53,5 +53,19 @@ public class AbstractProjectManager extends AdapterImpl implements ProjectManage
 
 	@Override
 	public void useGeneratedResource(@NonNull Resource resource, @NonNull ResourceSet resourceSet) {
+	}
+	
+	
+	public static @NonNull ProjectManager createDefaultProjectManager() { 
+		return EcorePlugin.IS_ECLIPSE_RUNNING ? new ProjectMap() : new StandaloneProjectMap();
+	}
+	
+	/**
+	 * Return any {@link ProjectManager} already installed as an adapter on a
+	 * <tt>resourceSet</tt>. Returns null if there is no such adapter.
+	 */
+	public static @Nullable ProjectManager findAdapter(@NonNull ResourceSet resourceSet) {
+		return (ProjectManager) EcoreUtil.getAdapter(
+			resourceSet.eAdapters(), ProjectManager.class);
 	}
 }

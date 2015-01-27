@@ -221,10 +221,10 @@ public class PivotUtilInternal //extends PivotUtil
 		if (environmentFactory == null) {
 			ResourceSet resourceSet = resource.getResourceSet();
 			if (resourceSet != null) {
-				environmentFactory = OCLAdapter.createEnvironmentFactory(null, resourceSet);
+				environmentFactory = OCLAdapter.createEnvironmentFactory(resourceSet);
 			}
 			else {
-				environmentFactory = OCLAdapter.createEnvironmentFactory(null, resource);
+				environmentFactory = OCLAdapter.createEnvironmentFactory(resource);
 			}
 		}
 		return environmentFactory;

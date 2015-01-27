@@ -113,7 +113,7 @@ public class ASResourceFactoryRegistry
 	/**
 	 * Create a new EnvironmentFactory appropriate to the resources in ResourceSet.
 	 */
-	public @NonNull EnvironmentFactoryInternal createEnvironmentFactory(@Nullable ProjectManager projectManager) {
+	public @NonNull EnvironmentFactoryInternal createEnvironmentFactory(@NonNull ProjectManager projectManager) {
 		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {			// This is the unique start point for OCL so
 			PivotStandaloneSetup.doSetup();				//  do the non-UI initialization (guarded in doSetup())
 		}

@@ -22,7 +22,6 @@ import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.library.ImplementationManager;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ICSI2ASMapping;
-import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.AbstractEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 
@@ -46,8 +45,6 @@ import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 public interface EnvironmentFactoryInternal extends EnvironmentFactory
 {
 	void attach(Object object);
-
-	@Nullable ProjectManager basicGetProjectManager();
 
 	/**
 	 * Create and initialize the AS ResourceSet used by metamodelManager to contain the AS forms of CS and Ecore/UML resources.

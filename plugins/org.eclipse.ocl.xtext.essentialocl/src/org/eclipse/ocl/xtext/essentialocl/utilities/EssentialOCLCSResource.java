@@ -383,7 +383,6 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 		@SuppressWarnings("null")@NonNull Registry resourceFactoryRegistry = asResourceSet.getResourceFactoryRegistry();
 		initializeResourceFactory(resourceFactoryRegistry);
 		ASResource asResource = createASResource(asResourceSet);
-		environmentFactory.getProjectManager();					// Ensures ProjectMap is notified of loaded resources
 		CS2AS cs2as = createCS2AS(environmentFactory, asResource);
 		return cs2as;
 	}
@@ -403,7 +402,6 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	public final @NonNull CS2AS getCS2AS(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull ASResource asResource) {
 		@SuppressWarnings("null")@NonNull Registry resourceFactoryRegistry = environmentFactory.getMetamodelManager().getASResourceSet().getResourceFactoryRegistry();
 		initializeResourceFactory(resourceFactoryRegistry);
-		environmentFactory.getProjectManager();					// Ensures ProjectMap is notified of loaded resources
 		CS2AS cs2as = findCS2AS();
 		assert cs2as == null;
 //		if (cs2as == null) {

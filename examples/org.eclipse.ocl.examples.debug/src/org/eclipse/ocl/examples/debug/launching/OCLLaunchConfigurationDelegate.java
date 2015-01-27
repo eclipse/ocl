@@ -34,6 +34,7 @@ import org.eclipse.ocl.examples.debug.vm.utils.SafeRunner;
 import org.eclipse.ocl.examples.debug.vm.utils.ShallowProcess;
 import org.eclipse.ocl.examples.debug.vm.utils.StreamsProxy;
 import org.eclipse.ocl.examples.debug.vm.utils.VMRuntimeException;
+import org.eclipse.ocl.pivot.utilities.OCL;
 
 public class OCLLaunchConfigurationDelegate extends LaunchConfigurationDelegate implements OCLLaunchConstants
 { 
@@ -55,7 +56,7 @@ public class OCLLaunchConfigurationDelegate extends LaunchConfigurationDelegate 
             ShallowProcess.IRunnable r = new ShallowProcess.IRunnable() {
                 
                 public void run() throws Exception { 
-        			OCLVMEnvironmentFactory envFactory = new OCLVMEnvironmentFactory(null);
+        			OCLVMEnvironmentFactory envFactory = new OCLVMEnvironmentFactory(OCL.NO_PROJECTS);
         			OCLVMEvaluator vmEvaluator = new OCLVMEvaluator(envFactory, oclURI, elementURI);
         			vmEvaluator.execute();
                 }
