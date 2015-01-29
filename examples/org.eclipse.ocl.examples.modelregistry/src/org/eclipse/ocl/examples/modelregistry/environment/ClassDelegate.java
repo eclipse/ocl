@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.modelregistry.environment;
 
-import org.eclipse.ocl.examples.common.utils.ClassUtils;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 
 
@@ -31,7 +31,7 @@ public abstract class ClassDelegate<T> {
 
 	public ClassDelegate(T instance) {
 		this.className = instance.getClass().getName();
-		this.clazz = ClassUtils.getClass(instance);
+		this.clazz = ClassUtil.getClass(instance);
 		this.instance = instance;
 		this.loaded = true;
 	}

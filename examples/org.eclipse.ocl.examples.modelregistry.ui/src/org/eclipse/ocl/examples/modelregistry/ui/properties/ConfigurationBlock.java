@@ -27,7 +27,6 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.jface.window.Window;
-import org.eclipse.ocl.examples.common.utils.ClassUtils;
 import org.eclipse.ocl.examples.modelregistry.environment.FileHandle;
 import org.eclipse.ocl.examples.modelregistry.environment.ModelRegistryEnvironment;
 import org.eclipse.ocl.examples.modelregistry.model.Accessor;
@@ -40,6 +39,7 @@ import org.eclipse.ocl.examples.modelregistry.ui.help.ModelRegistryHelpIds;
 import org.eclipse.ocl.examples.modelregistry.ui.help.ModelRegistryHelper;
 import org.eclipse.ocl.examples.modelregistry.ui.icons.Icons;
 import org.eclipse.ocl.examples.modelregistry.ui.icons.ModelRegistryIcons;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -306,7 +306,7 @@ public class ConfigurationBlock
 		ISelection selection = tableViewer.getSelection();
 		if ((selection == null) || !(selection instanceof IStructuredSelection))
 			return Collections.emptyList();
-		return ClassUtils.asClassUnchecked(((IStructuredSelection)selection).toList(), (List<Registration<?>>)null);
+		return ClassUtil.asClassUnchecked(((IStructuredSelection)selection).toList(), (List<Registration<?>>)null);
 	}
 
 	public boolean isDirty() {
