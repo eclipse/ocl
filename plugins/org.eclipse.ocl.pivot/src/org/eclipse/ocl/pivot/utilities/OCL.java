@@ -174,6 +174,7 @@ public class OCL
 		}
 	}
 	
+	@Deprecated	// Unwanted public API
 	public static @NonNull Adapter adapt(@NonNull Notifier notifier) {
 		return Internal.adapt(notifier);
 	}
@@ -194,6 +195,7 @@ public class OCL
 	 * @return a failure reason, null if successful
 	 * 
 	 */
+	@Deprecated	// Unwanted public API
 	public static String initialize(@Nullable ResourceSet resourceSet) {
 		Resource.Factory.Registry resourceFactoryRegistry = resourceSet != null
 			? resourceSet.getResourceFactoryRegistry()

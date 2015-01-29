@@ -38,7 +38,6 @@ import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
 import org.eclipse.ocl.pivot.uml.internal.utilities.UMLEcoreTechnology;
 import org.eclipse.ocl.pivot.uml.internal.validation.UMLOCLEValidator;
-import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -73,7 +72,6 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 	@Override
 	public void configure(@NonNull ResourceSet resourceSet) {
 		super.configure(resourceSet);
-		OCL.initialize(resourceSet);
 		UMLResourcesUtil.init(resourceSet);
 	}
 

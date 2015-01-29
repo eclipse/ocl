@@ -617,9 +617,6 @@ public class XtextTestCase extends PivotTestCase
 	protected void setUp() throws Exception {
 		super.setUp();
     	TestCaseAppender.INSTANCE.install();
-    	if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
-    		OCL.initialize(null);
-    	}
 		doCompleteOCLSetup();
 		doOCLinEcoreSetup();
 		doOCLstdlibSetup();

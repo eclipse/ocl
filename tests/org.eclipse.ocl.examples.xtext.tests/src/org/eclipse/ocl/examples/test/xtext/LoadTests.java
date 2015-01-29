@@ -1037,8 +1037,6 @@ public class LoadTests extends XtextTestCase
 	public void testLoad_Fruit_ocl() throws IOException, InterruptedException {
 		UMLStandaloneSetup.init();
 		OCL ocl = createOCL();
-		ResourceSet resourceSet = ocl.getResourceSet();
-		assertNull(OCL.initialize(resourceSet));
 		UMLPackage.eINSTANCE.getClass();
 		doLoad(ocl, "Fruit", "ocl");
 		ocl.dispose();

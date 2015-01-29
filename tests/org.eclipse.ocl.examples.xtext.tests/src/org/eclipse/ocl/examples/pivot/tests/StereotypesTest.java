@@ -173,12 +173,11 @@ public class StereotypesTest extends PivotTestSuite
 			super(testPackageName, name, OCL.NO_PROJECTS);
 			ResourceSet resourceSet = getResourceSet();
 			ProjectMap.getAdapter(resourceSet);
-			OCL.initialize(resourceSet);
 			String problem = UML2AS.initialize(resourceSet);
 			assertNull(problem);
 			URI testModelURI = getTestModelURI("model/InternationalizedClasses.uml");
-	        Resource umlResource = resourceSet.getResource(testModelURI, true);
-	        org.eclipse.uml2.uml.Package umlPackage = (org.eclipse.uml2.uml.Package) umlResource.getContents().get(0);
+			Resource umlResource = resourceSet.getResource(testModelURI, true);
+			org.eclipse.uml2.uml.Package umlPackage = (org.eclipse.uml2.uml.Package) umlResource.getContents().get(0);
 			URI testProfileURI = getTestModelURI("model/Internationalized.profile.uml");
 			org.eclipse.uml2.uml.Profile umlProfile = (org.eclipse.uml2.uml.Profile) resourceSet.getResource(testProfileURI, true).getContents().get(0);
 			uml2as(umlResource);				// FIXME BUG 437826 must do full model conversion

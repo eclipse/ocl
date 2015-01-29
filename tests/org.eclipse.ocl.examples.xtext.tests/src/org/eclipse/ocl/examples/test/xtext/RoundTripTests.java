@@ -278,7 +278,6 @@ public class RoundTripTests extends XtextTestCase
 //		Environment.Registry.INSTANCE.registerEnvironment(
 //			OCL.createEnvironmentFactory().createEnvironment());
 		ResourceSet resourceSet = new ResourceSetImpl();
-		assertNull(OCL.Internal.initialize(resourceSet));
 		resourceSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
 //		assertNull(org.eclipse.ocl.uml.OCL.initialize(null));		
 //		org.eclipse.uml2.uml.Package umlMetamodel = (org.eclipse.uml2.uml.Package) resourceSet.getResource(

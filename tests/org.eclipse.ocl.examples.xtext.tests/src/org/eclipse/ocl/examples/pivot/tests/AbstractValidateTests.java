@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -140,9 +139,6 @@ public abstract class AbstractValidateTests extends PivotTestCase
 	protected void setUp() throws Exception {
 		super.setUp();
     	TestCaseAppender.INSTANCE.install();
-    	if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
-    		OCL.initialize(null);
-    	}
 		doCompleteOCLSetup();
 		doOCLinEcoreSetup();
 		doOCLstdlibSetup();
