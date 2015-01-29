@@ -104,6 +104,8 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 	@Override
 	@NonNull CompleteModelInternal getCompleteModel();
 
+	@Nullable String getDoSetupName(@NonNull URI uri);
+
 	@Override
 	@NonNull PivotMetamodelManager getMetamodelManager();
 

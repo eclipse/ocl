@@ -12,9 +12,10 @@
 
 package org.eclipse.ocl.pivot.utilities;
 
+import java.util.Map;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
@@ -28,6 +29,7 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.internal.lookup.Environment;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 
 /**
@@ -135,8 +137,6 @@ public interface EnvironmentFactory extends Adaptable, Customizable
 	@NonNull CompleteEnvironment getCompleteEnvironment();
 
 	@NonNull CompleteModel getCompleteModel();
-
-	@Nullable String getDoSetupName(@NonNull URI uri);
 
 	@NonNull IdResolver getIdResolver();
 
