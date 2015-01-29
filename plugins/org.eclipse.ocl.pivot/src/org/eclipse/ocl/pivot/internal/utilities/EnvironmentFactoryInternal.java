@@ -13,6 +13,7 @@
 package org.eclipse.ocl.pivot.internal.utilities;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -30,6 +31,7 @@ import org.eclipse.ocl.pivot.internal.resource.ICSI2ASMapping;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.AbstractEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
+import org.eclipse.ocl.pivot.utilities.ParserContext;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 
 /**
@@ -89,6 +91,14 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 	@NonNull ImplementationManager createImplementationManager();
 
 	@NonNull PivotMetamodelManager createMetamodelManager();
+
+	/**
+	 * Create a ParserContext that may be used to parse OCL expressions in the given context,
+	 * which may be an EClassifier/EOperation/EStructuralFeature or Type/Operation/Property.
+	 * Returns a ModelContext if no more specfic context can be determined if none can be created.
+	 */
+	@Override
+	@NonNull ParserContext createParserContext(@Nullable EObject context);
 
 	void detach(Object object);
 

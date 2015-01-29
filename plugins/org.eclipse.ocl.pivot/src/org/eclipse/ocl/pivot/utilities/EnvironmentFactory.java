@@ -132,6 +132,7 @@ public interface EnvironmentFactory extends Adaptable, Customizable
 	 * which may be an EClassifier/EOperation/EStructuralFeature or Type/Operation/Property.
 	 * Returns a ModelContext if no more specfic context can be determined if none can be created.
 	 */
+	@Deprecated		// Internal API
 	@NonNull ParserContext createParserContext(@Nullable EObject context);
 
 	@NonNull CompleteEnvironment getCompleteEnvironment();
