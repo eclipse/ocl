@@ -1045,13 +1045,13 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			}
 		}
 		else {
-			LanguageExpression bodyExpression = asOperation.getBodyExpression();
-			if (bodyExpression != null) {
-				CGValuedElement cgOperationCallExp2 = inlineOperationCall(element, bodyExpression);
-				if (cgOperationCallExp2 != null) {
-					return cgOperationCallExp2;
-				}
-			}
+//FIXME BUG 458774			LanguageExpression bodyExpression = asOperation.getBodyExpression();
+//			if (bodyExpression != null) {
+//				CGValuedElement cgOperationCallExp2 = inlineOperationCall(element, bodyExpression);
+//				if (cgOperationCallExp2 != null) {
+//					return cgOperationCallExp2;
+//				}
+//			}
 			CGLibraryOperationCallExp cgLibraryOperationCallExp = CGModelFactory.eINSTANCE.createCGLibraryOperationCallExp();
 			cgLibraryOperationCallExp.setLibraryOperation((LibraryOperation) libraryOperation);
 			cgOperationCallExp = cgLibraryOperationCallExp;
