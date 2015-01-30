@@ -44,14 +44,14 @@ import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.library.logical.BooleanImpliesOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsKindOfOperation;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.util.PivotValidator;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
-import org.eclipse.ocl.pivot.values.InvalidValueException;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * <!-- begin-user-doc -->
@@ -213,7 +213,7 @@ public class CollectionLiteralExpImpl
 		}
 		if (diagnostics != null) {
 		    int severity = Diagnostic.WARNING;
-		    String message = NLS.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"CollectionLiteralExp", "CollectionKindIsConcrete", EObjectValidator.getObjectLabel(this, context)});
+		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"CollectionLiteralExp", "CollectionKindIsConcrete", EObjectValidator.getObjectLabel(this, context)});
 		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.COLLECTION_LITERAL_EXP__COLLECTION_KIND_IS_CONCRETE, message, new Object [] { this }));
 		}
 		return false;
@@ -231,99 +231,42 @@ public class CollectionLiteralExpImpl
 		 * inv SetKindIsSet: kind = CollectionKind::Set implies
 		 *   type.oclIsKindOf(SetType)
 		 */
-		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
+		@Nullable /*@Caught*/ Object CAUGHT_implies;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
+		    @NonNull /*@Caught*/ Object CAUGHT_eq;
 		    try {
 		        final @Nullable /*@Thrown*/ Enumerator kind = this.getKind();
 		        final @Nullable /*@Thrown*/ EnumerationLiteralId BOXED_kind = kind == null ? null : PivotTables.ENUMid_CollectionKind.getEnumerationLiteralId(ClassUtil.nonNullState(kind.getName()));
-		        final /*@Thrown*/ boolean self_71 = BOXED_kind == PivotTables.ELITid_Set;
-		        CAUGHT_self_71 = self_71;
+		        final /*@Thrown*/ boolean eq = BOXED_kind == PivotTables.ELITid_Set;
+		        CAUGHT_eq = eq;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_71 = ValueUtil.createInvalidValue(e);
+		        CAUGHT_eq = ValueUtil.createInvalidValue(e);
 		    }
-		    final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		    @NonNull /*@Caught*/ Object CAUGHT_b;
+		    @NonNull /*@Caught*/ Object CAUGHT_oclIsKindOf;
 		    try {
 		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pivot_c_c_SetType_0 = idResolver.getClass(PivotTables.CLSSid_SetType, null);
 		        final @Nullable /*@Thrown*/ Type type = this.getType();
-		        final /*@Thrown*/ boolean b = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_SetType_0).booleanValue();
-		        CAUGHT_b = b;
+		        final /*@Thrown*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_SetType_0).booleanValue();
+		        CAUGHT_oclIsKindOf = oclIsKindOf;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_b = ValueUtil.createInvalidValue(e);
+		        CAUGHT_oclIsKindOf = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
-		    /*@Thrown*/ boolean symbol_8;
-		    if (symbol_0) {
-		        final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
-		        /*@Thrown*/ boolean symbol_3;
-		        if (symbol_1) {
-		            if (CAUGHT_self_71 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_71;
-		            }
-		            symbol_3 = (Boolean)CAUGHT_self_71;
-		        }
-		        else {
-		            /*@Thrown*/ boolean symbol_2;
-		            if (CAUGHT_b == Boolean.TRUE) {
-		                symbol_2 = ValueUtil.TRUE_VALUE;
-		            }
-		            else {
-		                if (CAUGHT_self_71 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_71;
-		                }
-		                symbol_2 = (Boolean)CAUGHT_self_71;
-		            }
-		            symbol_3 = symbol_2;
-		        }
-		        symbol_8 = symbol_3;
-		    }
-		    else {
-		        if (CAUGHT_self_71 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_71;
-		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
-		        /*@Thrown*/ boolean symbol_7;
-		        if (eq) {
-		            symbol_7 = ValueUtil.TRUE_VALUE;
-		        }
-		        else {
-		            final /*@NonInvalid*/ boolean symbol_4 = CAUGHT_b instanceof InvalidValueException;
-		            /*@Thrown*/ boolean symbol_6;
-		            if (symbol_4) {
-		                if (CAUGHT_b instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_b;
-		                }
-		                symbol_6 = (Boolean)CAUGHT_b;
-		            }
-		            else {
-		                /*@NonInvalid*/ boolean symbol_5;
-		                if (CAUGHT_b == Boolean.TRUE) {
-		                    symbol_5 = ValueUtil.TRUE_VALUE;
-		                }
-		                else {
-		                    symbol_5 = ValueUtil.FALSE_VALUE;
-		                }
-		                symbol_6 = symbol_5;
-		            }
-		            symbol_7 = symbol_6;
-		        }
-		        symbol_8 = symbol_7;
-		    }
-		    CAUGHT_symbol_8 = symbol_8;
+		    final @Nullable /*@Thrown*/ Boolean implies = BooleanImpliesOperation.INSTANCE.evaluate(CAUGHT_eq, CAUGHT_oclIsKindOf);
+		    CAUGHT_implies = implies;
 		}
 		catch (Exception e) {
-		    CAUGHT_symbol_8 = ValueUtil.createInvalidValue(e);
+		    CAUGHT_implies = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_symbol_8 == ValueUtil.TRUE_VALUE) {
+		if (CAUGHT_implies == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {
-		    int severity = Diagnostic.WARNING;
-		    String message = NLS.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"CollectionLiteralExp", "SetKindIsSet", EObjectValidator.getObjectLabel(this, context)});
+		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
+		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"CollectionLiteralExp", "SetKindIsSet", EObjectValidator.getObjectLabel(this, context)});
 		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.COLLECTION_LITERAL_EXP__SET_KIND_IS_SET, message, new Object [] { this }));
 		}
 		return false;
@@ -342,99 +285,42 @@ public class CollectionLiteralExpImpl
 		 * inv OrderedSetKindIsOrderedSet: kind = CollectionKind::OrderedSet implies
 		 *   type.oclIsKindOf(OrderedSetType)
 		 */
-		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
+		@Nullable /*@Caught*/ Object CAUGHT_implies;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
+		    @NonNull /*@Caught*/ Object CAUGHT_eq;
 		    try {
 		        final @Nullable /*@Thrown*/ Enumerator kind = this.getKind();
 		        final @Nullable /*@Thrown*/ EnumerationLiteralId BOXED_kind = kind == null ? null : PivotTables.ENUMid_CollectionKind.getEnumerationLiteralId(ClassUtil.nonNullState(kind.getName()));
-		        final /*@Thrown*/ boolean self_71 = BOXED_kind == PivotTables.ELITid_OrderedSet;
-		        CAUGHT_self_71 = self_71;
+		        final /*@Thrown*/ boolean eq = BOXED_kind == PivotTables.ELITid_OrderedSet;
+		        CAUGHT_eq = eq;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_71 = ValueUtil.createInvalidValue(e);
+		        CAUGHT_eq = ValueUtil.createInvalidValue(e);
 		    }
-		    final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		    @NonNull /*@Caught*/ Object CAUGHT_b;
+		    @NonNull /*@Caught*/ Object CAUGHT_oclIsKindOf;
 		    try {
 		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pivot_c_c_OrderedSetType_0 = idResolver.getClass(PivotTables.CLSSid_OrderedSetType, null);
 		        final @Nullable /*@Thrown*/ Type type = this.getType();
-		        final /*@Thrown*/ boolean b = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_OrderedSetType_0).booleanValue();
-		        CAUGHT_b = b;
+		        final /*@Thrown*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_OrderedSetType_0).booleanValue();
+		        CAUGHT_oclIsKindOf = oclIsKindOf;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_b = ValueUtil.createInvalidValue(e);
+		        CAUGHT_oclIsKindOf = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
-		    /*@Thrown*/ boolean symbol_8;
-		    if (symbol_0) {
-		        final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
-		        /*@Thrown*/ boolean symbol_3;
-		        if (symbol_1) {
-		            if (CAUGHT_self_71 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_71;
-		            }
-		            symbol_3 = (Boolean)CAUGHT_self_71;
-		        }
-		        else {
-		            /*@Thrown*/ boolean symbol_2;
-		            if (CAUGHT_b == Boolean.TRUE) {
-		                symbol_2 = ValueUtil.TRUE_VALUE;
-		            }
-		            else {
-		                if (CAUGHT_self_71 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_71;
-		                }
-		                symbol_2 = (Boolean)CAUGHT_self_71;
-		            }
-		            symbol_3 = symbol_2;
-		        }
-		        symbol_8 = symbol_3;
-		    }
-		    else {
-		        if (CAUGHT_self_71 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_71;
-		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
-		        /*@Thrown*/ boolean symbol_7;
-		        if (eq) {
-		            symbol_7 = ValueUtil.TRUE_VALUE;
-		        }
-		        else {
-		            final /*@NonInvalid*/ boolean symbol_4 = CAUGHT_b instanceof InvalidValueException;
-		            /*@Thrown*/ boolean symbol_6;
-		            if (symbol_4) {
-		                if (CAUGHT_b instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_b;
-		                }
-		                symbol_6 = (Boolean)CAUGHT_b;
-		            }
-		            else {
-		                /*@NonInvalid*/ boolean symbol_5;
-		                if (CAUGHT_b == Boolean.TRUE) {
-		                    symbol_5 = ValueUtil.TRUE_VALUE;
-		                }
-		                else {
-		                    symbol_5 = ValueUtil.FALSE_VALUE;
-		                }
-		                symbol_6 = symbol_5;
-		            }
-		            symbol_7 = symbol_6;
-		        }
-		        symbol_8 = symbol_7;
-		    }
-		    CAUGHT_symbol_8 = symbol_8;
+		    final @Nullable /*@Thrown*/ Boolean implies = BooleanImpliesOperation.INSTANCE.evaluate(CAUGHT_eq, CAUGHT_oclIsKindOf);
+		    CAUGHT_implies = implies;
 		}
 		catch (Exception e) {
-		    CAUGHT_symbol_8 = ValueUtil.createInvalidValue(e);
+		    CAUGHT_implies = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_symbol_8 == ValueUtil.TRUE_VALUE) {
+		if (CAUGHT_implies == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {
-		    int severity = Diagnostic.WARNING;
-		    String message = NLS.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"CollectionLiteralExp", "OrderedSetKindIsOrderedSet", EObjectValidator.getObjectLabel(this, context)});
+		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
+		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"CollectionLiteralExp", "OrderedSetKindIsOrderedSet", EObjectValidator.getObjectLabel(this, context)});
 		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.COLLECTION_LITERAL_EXP__ORDERED_SET_KIND_IS_ORDERED_SET, message, new Object [] { this }));
 		}
 		return false;
@@ -452,99 +338,42 @@ public class CollectionLiteralExpImpl
 		 * inv SequenceKindIsSequence: kind = CollectionKind::Sequence implies
 		 *   type.oclIsKindOf(SequenceType)
 		 */
-		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
+		@Nullable /*@Caught*/ Object CAUGHT_implies;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
+		    @NonNull /*@Caught*/ Object CAUGHT_eq;
 		    try {
 		        final @Nullable /*@Thrown*/ Enumerator kind = this.getKind();
 		        final @Nullable /*@Thrown*/ EnumerationLiteralId BOXED_kind = kind == null ? null : PivotTables.ENUMid_CollectionKind.getEnumerationLiteralId(ClassUtil.nonNullState(kind.getName()));
-		        final /*@Thrown*/ boolean self_71 = BOXED_kind == PivotTables.ELITid_Sequence;
-		        CAUGHT_self_71 = self_71;
+		        final /*@Thrown*/ boolean eq = BOXED_kind == PivotTables.ELITid_Sequence;
+		        CAUGHT_eq = eq;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_71 = ValueUtil.createInvalidValue(e);
+		        CAUGHT_eq = ValueUtil.createInvalidValue(e);
 		    }
-		    final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		    @NonNull /*@Caught*/ Object CAUGHT_b;
+		    @NonNull /*@Caught*/ Object CAUGHT_oclIsKindOf;
 		    try {
 		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pivot_c_c_SequenceType_0 = idResolver.getClass(PivotTables.CLSSid_SequenceType, null);
 		        final @Nullable /*@Thrown*/ Type type = this.getType();
-		        final /*@Thrown*/ boolean b = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_SequenceType_0).booleanValue();
-		        CAUGHT_b = b;
+		        final /*@Thrown*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_SequenceType_0).booleanValue();
+		        CAUGHT_oclIsKindOf = oclIsKindOf;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_b = ValueUtil.createInvalidValue(e);
+		        CAUGHT_oclIsKindOf = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
-		    /*@Thrown*/ boolean symbol_8;
-		    if (symbol_0) {
-		        final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
-		        /*@Thrown*/ boolean symbol_3;
-		        if (symbol_1) {
-		            if (CAUGHT_self_71 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_71;
-		            }
-		            symbol_3 = (Boolean)CAUGHT_self_71;
-		        }
-		        else {
-		            /*@Thrown*/ boolean symbol_2;
-		            if (CAUGHT_b == Boolean.TRUE) {
-		                symbol_2 = ValueUtil.TRUE_VALUE;
-		            }
-		            else {
-		                if (CAUGHT_self_71 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_71;
-		                }
-		                symbol_2 = (Boolean)CAUGHT_self_71;
-		            }
-		            symbol_3 = symbol_2;
-		        }
-		        symbol_8 = symbol_3;
-		    }
-		    else {
-		        if (CAUGHT_self_71 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_71;
-		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
-		        /*@Thrown*/ boolean symbol_7;
-		        if (eq) {
-		            symbol_7 = ValueUtil.TRUE_VALUE;
-		        }
-		        else {
-		            final /*@NonInvalid*/ boolean symbol_4 = CAUGHT_b instanceof InvalidValueException;
-		            /*@Thrown*/ boolean symbol_6;
-		            if (symbol_4) {
-		                if (CAUGHT_b instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_b;
-		                }
-		                symbol_6 = (Boolean)CAUGHT_b;
-		            }
-		            else {
-		                /*@NonInvalid*/ boolean symbol_5;
-		                if (CAUGHT_b == Boolean.TRUE) {
-		                    symbol_5 = ValueUtil.TRUE_VALUE;
-		                }
-		                else {
-		                    symbol_5 = ValueUtil.FALSE_VALUE;
-		                }
-		                symbol_6 = symbol_5;
-		            }
-		            symbol_7 = symbol_6;
-		        }
-		        symbol_8 = symbol_7;
-		    }
-		    CAUGHT_symbol_8 = symbol_8;
+		    final @Nullable /*@Thrown*/ Boolean implies = BooleanImpliesOperation.INSTANCE.evaluate(CAUGHT_eq, CAUGHT_oclIsKindOf);
+		    CAUGHT_implies = implies;
 		}
 		catch (Exception e) {
-		    CAUGHT_symbol_8 = ValueUtil.createInvalidValue(e);
+		    CAUGHT_implies = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_symbol_8 == ValueUtil.TRUE_VALUE) {
+		if (CAUGHT_implies == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {
-		    int severity = Diagnostic.WARNING;
-		    String message = NLS.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"CollectionLiteralExp", "SequenceKindIsSequence", EObjectValidator.getObjectLabel(this, context)});
+		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
+		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"CollectionLiteralExp", "SequenceKindIsSequence", EObjectValidator.getObjectLabel(this, context)});
 		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.COLLECTION_LITERAL_EXP__SEQUENCE_KIND_IS_SEQUENCE, message, new Object [] { this }));
 		}
 		return false;
@@ -562,99 +391,42 @@ public class CollectionLiteralExpImpl
 		 * inv BagKindIsBag: kind = CollectionKind::Bag implies
 		 *   type.oclIsKindOf(BagType)
 		 */
-		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
+		@Nullable /*@Caught*/ Object CAUGHT_implies;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
+		    @NonNull /*@Caught*/ Object CAUGHT_eq;
 		    try {
 		        final @Nullable /*@Thrown*/ Enumerator kind = this.getKind();
 		        final @Nullable /*@Thrown*/ EnumerationLiteralId BOXED_kind = kind == null ? null : PivotTables.ENUMid_CollectionKind.getEnumerationLiteralId(ClassUtil.nonNullState(kind.getName()));
-		        final /*@Thrown*/ boolean self_71 = BOXED_kind == PivotTables.ELITid_Bag;
-		        CAUGHT_self_71 = self_71;
+		        final /*@Thrown*/ boolean eq = BOXED_kind == PivotTables.ELITid_Bag;
+		        CAUGHT_eq = eq;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_71 = ValueUtil.createInvalidValue(e);
+		        CAUGHT_eq = ValueUtil.createInvalidValue(e);
 		    }
-		    final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		    @NonNull /*@Caught*/ Object CAUGHT_b;
+		    @NonNull /*@Caught*/ Object CAUGHT_oclIsKindOf;
 		    try {
 		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pivot_c_c_BagType_0 = idResolver.getClass(PivotTables.CLSSid_BagType, null);
 		        final @Nullable /*@Thrown*/ Type type = this.getType();
-		        final /*@Thrown*/ boolean b = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_BagType_0).booleanValue();
-		        CAUGHT_b = b;
+		        final /*@Thrown*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_BagType_0).booleanValue();
+		        CAUGHT_oclIsKindOf = oclIsKindOf;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_b = ValueUtil.createInvalidValue(e);
+		        CAUGHT_oclIsKindOf = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
-		    /*@Thrown*/ boolean symbol_8;
-		    if (symbol_0) {
-		        final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
-		        /*@Thrown*/ boolean symbol_3;
-		        if (symbol_1) {
-		            if (CAUGHT_self_71 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_71;
-		            }
-		            symbol_3 = (Boolean)CAUGHT_self_71;
-		        }
-		        else {
-		            /*@Thrown*/ boolean symbol_2;
-		            if (CAUGHT_b == Boolean.TRUE) {
-		                symbol_2 = ValueUtil.TRUE_VALUE;
-		            }
-		            else {
-		                if (CAUGHT_self_71 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_71;
-		                }
-		                symbol_2 = (Boolean)CAUGHT_self_71;
-		            }
-		            symbol_3 = symbol_2;
-		        }
-		        symbol_8 = symbol_3;
-		    }
-		    else {
-		        if (CAUGHT_self_71 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_71;
-		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
-		        /*@Thrown*/ boolean symbol_7;
-		        if (eq) {
-		            symbol_7 = ValueUtil.TRUE_VALUE;
-		        }
-		        else {
-		            final /*@NonInvalid*/ boolean symbol_4 = CAUGHT_b instanceof InvalidValueException;
-		            /*@Thrown*/ boolean symbol_6;
-		            if (symbol_4) {
-		                if (CAUGHT_b instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_b;
-		                }
-		                symbol_6 = (Boolean)CAUGHT_b;
-		            }
-		            else {
-		                /*@NonInvalid*/ boolean symbol_5;
-		                if (CAUGHT_b == Boolean.TRUE) {
-		                    symbol_5 = ValueUtil.TRUE_VALUE;
-		                }
-		                else {
-		                    symbol_5 = ValueUtil.FALSE_VALUE;
-		                }
-		                symbol_6 = symbol_5;
-		            }
-		            symbol_7 = symbol_6;
-		        }
-		        symbol_8 = symbol_7;
-		    }
-		    CAUGHT_symbol_8 = symbol_8;
+		    final @Nullable /*@Thrown*/ Boolean implies = BooleanImpliesOperation.INSTANCE.evaluate(CAUGHT_eq, CAUGHT_oclIsKindOf);
+		    CAUGHT_implies = implies;
 		}
 		catch (Exception e) {
-		    CAUGHT_symbol_8 = ValueUtil.createInvalidValue(e);
+		    CAUGHT_implies = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_symbol_8 == ValueUtil.TRUE_VALUE) {
+		if (CAUGHT_implies == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {
-		    int severity = Diagnostic.WARNING;
-		    String message = NLS.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"CollectionLiteralExp", "BagKindIsBag", EObjectValidator.getObjectLabel(this, context)});
+		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
+		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"CollectionLiteralExp", "BagKindIsBag", EObjectValidator.getObjectLabel(this, context)});
 		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.COLLECTION_LITERAL_EXP__BAG_KIND_IS_BAG, message, new Object [] { this }));
 		}
 		return false;

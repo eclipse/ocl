@@ -40,12 +40,14 @@ import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.internal.manager.TemplateSpecialisation;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.classifier.OclTypeConformsToOperation;
+import org.eclipse.ocl.pivot.library.logical.BooleanImpliesOperation;
+import org.eclipse.ocl.pivot.library.logical.BooleanNotOperation;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.util.PivotValidator;
 import org.eclipse.ocl.pivot.util.Visitor;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * <!-- begin-user-doc -->
@@ -490,49 +492,23 @@ public class PropertyCallExpImpl
 		 * inv NonStaticSourceTypeIsConformant: not referredProperty.isStatic implies
 		 *   ownedSource.type.conformsTo(getSpecializedReferredPropertyOwningType())
 		 */
-		@Nullable /*@Caught*/ Object CAUGHT_symbol_12;
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
+		@Nullable /*@Caught*/ Object CAUGHT_implies;
 		try {
-		    @Nullable /*@Caught*/ Object CAUGHT_symbol_2;
+		    @Nullable /*@Caught*/ Object CAUGHT_not;
 		    try {
-		        @Nullable /*@Caught*/ Object CAUGHT_self_71;
-		        try {
-		            final @Nullable /*@Thrown*/ Property referredProperty = this.getReferredProperty();
-		            if (referredProperty == null) {
-		                throw new InvalidValueException("Null source for \'pivot::Feature::isStatic\'");
-		            }
-		            final @Nullable /*@Thrown*/ Boolean self_71 = referredProperty.isStatic();
-		            CAUGHT_self_71 = self_71;
+		        final @Nullable /*@Thrown*/ Property referredProperty = this.getReferredProperty();
+		        if (referredProperty == null) {
+		            throw new InvalidValueException("Null source for \'pivot::Feature::isStatic\'");
 		        }
-		        catch (Exception e) {
-		            CAUGHT_self_71 = ValueUtil.createInvalidValue(e);
-		        }
-		        if (CAUGHT_self_71 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_71;
-		        }
-		        final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
-		        @Nullable /*@Thrown*/ Boolean symbol_2;
-		        if (symbol_0) {
-		            symbol_2 = (Boolean)CAUGHT_self_71;
-		        }
-		        else {
-		            final /*@Thrown*/ boolean eq = CAUGHT_self_71 == null;
-		            @Nullable /*@Thrown*/ Boolean symbol_1;
-		            if (eq) {
-		                symbol_1 = null;
-		            }
-		            else {
-		                final /*@Thrown*/ boolean eq_0 = CAUGHT_self_71 == Boolean.FALSE;
-		                symbol_1 = eq_0;
-		            }
-		            symbol_2 = symbol_1;
-		        }
-		        CAUGHT_symbol_2 = symbol_2;
+		        final @Nullable /*@Thrown*/ Boolean isStatic = referredProperty.isStatic();
+		        final @Nullable /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(isStatic);
+		        CAUGHT_not = not;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_symbol_2 = ValueUtil.createInvalidValue(e);
+		        CAUGHT_not = ValueUtil.createInvalidValue(e);
 		    }
-		    final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		    @NonNull /*@Caught*/ Object CAUGHT_b;
+		    @NonNull /*@Caught*/ Object CAUGHT_conformsTo;
 		    try {
 		        final @Nullable /*@Thrown*/ OCLExpression ownedSource = this.getOwnedSource();
 		        if (ownedSource == null) {
@@ -540,89 +516,24 @@ public class PropertyCallExpImpl
 		        }
 		        final @Nullable /*@Thrown*/ Type type = ownedSource.getType();
 		        final @NonNull /*@Thrown*/ org.eclipse.ocl.pivot.Class getSpecializedReferredPropertyOwningType = this.getSpecializedReferredPropertyOwningType();
-		        final /*@Thrown*/ boolean b = OclTypeConformsToOperation.INSTANCE.evaluate(evaluator, type, getSpecializedReferredPropertyOwningType).booleanValue();
-		        CAUGHT_b = b;
+		        final /*@Thrown*/ boolean conformsTo = OclTypeConformsToOperation.INSTANCE.evaluate(evaluator, type, getSpecializedReferredPropertyOwningType).booleanValue();
+		        CAUGHT_conformsTo = conformsTo;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_b = ValueUtil.createInvalidValue(e);
+		        CAUGHT_conformsTo = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_3 = CAUGHT_symbol_2 instanceof InvalidValueException;
-		    @Nullable /*@Thrown*/ Boolean symbol_12;
-		    if (symbol_3) {
-		        final /*@NonInvalid*/ boolean symbol_4 = CAUGHT_b instanceof InvalidValueException;
-		        @Nullable /*@Thrown*/ Boolean symbol_6;
-		        if (symbol_4) {
-		            if (CAUGHT_symbol_2 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_symbol_2;
-		            }
-		            symbol_6 = (Boolean)CAUGHT_symbol_2;
-		        }
-		        else {
-		            @Nullable /*@Thrown*/ Boolean symbol_5;
-		            if (CAUGHT_b == Boolean.TRUE) {
-		                symbol_5 = ValueUtil.TRUE_VALUE;
-		            }
-		            else {
-		                if (CAUGHT_symbol_2 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_symbol_2;
-		                }
-		                symbol_5 = (Boolean)CAUGHT_symbol_2;
-		            }
-		            symbol_6 = symbol_5;
-		        }
-		        symbol_12 = symbol_6;
-		    }
-		    else {
-		        if (CAUGHT_symbol_2 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_symbol_2;
-		        }
-		        final /*@Thrown*/ boolean eq_1 = CAUGHT_symbol_2 == Boolean.FALSE;
-		        @Nullable /*@Thrown*/ Boolean symbol_11;
-		        if (eq_1) {
-		            symbol_11 = ValueUtil.TRUE_VALUE;
-		        }
-		        else {
-		            final /*@NonInvalid*/ boolean symbol_7 = CAUGHT_b instanceof InvalidValueException;
-		            @Nullable /*@Thrown*/ Boolean symbol_10;
-		            if (symbol_7) {
-		                if (CAUGHT_b instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_b;
-		                }
-		                symbol_10 = (Boolean)CAUGHT_b;
-		            }
-		            else {
-		                @Nullable /*@NonInvalid*/ Boolean symbol_9;
-		                if (CAUGHT_b == Boolean.TRUE) {
-		                    symbol_9 = ValueUtil.TRUE_VALUE;
-		                }
-		                else {
-		                    final /*@Thrown*/ boolean eq_2 = CAUGHT_symbol_2 == null;
-		                    @Nullable /*@NonInvalid*/ Boolean symbol_8;
-		                    if (eq_2) {
-		                        symbol_8 = null;
-		                    }
-		                    else {
-		                        symbol_8 = ValueUtil.FALSE_VALUE;
-		                    }
-		                    symbol_9 = symbol_8;
-		                }
-		                symbol_10 = symbol_9;
-		            }
-		            symbol_11 = symbol_10;
-		        }
-		        symbol_12 = symbol_11;
-		    }
-		    CAUGHT_symbol_12 = symbol_12;
+		    final @Nullable /*@Thrown*/ Boolean implies = BooleanImpliesOperation.INSTANCE.evaluate(CAUGHT_not, CAUGHT_conformsTo);
+		    CAUGHT_implies = implies;
 		}
 		catch (Exception e) {
-		    CAUGHT_symbol_12 = ValueUtil.createInvalidValue(e);
+		    CAUGHT_implies = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_symbol_12 == ValueUtil.TRUE_VALUE) {
+		if (CAUGHT_implies == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {
-		    int severity = CAUGHT_symbol_12 == null ? Diagnostic.ERROR : Diagnostic.WARNING;
-		    String message = NLS.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"PropertyCallExp", "NonStaticSourceTypeIsConformant", EObjectValidator.getObjectLabel(this, context)});
+		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
+		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"PropertyCallExp", "NonStaticSourceTypeIsConformant", EObjectValidator.getObjectLabel(this, context)});
 		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.PROPERTY_CALL_EXP__NON_STATIC_SOURCE_TYPE_IS_CONFORMANT, message, new Object [] { this }));
 		}
 		return false;
@@ -655,7 +566,7 @@ public class PropertyCallExpImpl
 		}
 		if (diagnostics != null) {
 		    int severity = Diagnostic.WARNING;
-		    String message = NLS.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"PropertyCallExp", "CompatibleResultType", EObjectValidator.getObjectLabel(this, context)});
+		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"PropertyCallExp", "CompatibleResultType", EObjectValidator.getObjectLabel(this, context)});
 		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.PROPERTY_CALL_EXP__COMPATIBLE_RESULT_TYPE, message, new Object [] { this }));
 		}
 		return false;

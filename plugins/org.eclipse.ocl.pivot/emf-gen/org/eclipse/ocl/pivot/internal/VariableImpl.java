@@ -39,12 +39,13 @@ import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.classifier.OclTypeConformsToOperation;
+import org.eclipse.ocl.pivot.library.logical.BooleanImpliesOperation;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.util.PivotValidator;
 import org.eclipse.ocl.pivot.util.Visitor;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * <!-- begin-user-doc -->
@@ -226,19 +227,19 @@ public class VariableImpl
 		 * inv CompatibleInitialiserType: ownedInit <> null implies
 		 *   ownedInit.type.conformsTo(type)
 		 */
-		@NonNull /*@Caught*/ Object CAUGHT_symbol_8;
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
+		@Nullable /*@Caught*/ Object CAUGHT_implies;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
+		    @NonNull /*@Caught*/ Object CAUGHT_ne;
 		    try {
 		        final @Nullable /*@Thrown*/ OCLExpression ownedInit = this.getOwnedInit();
-		        final /*@Thrown*/ boolean self_71 = ownedInit != null;
-		        CAUGHT_self_71 = self_71;
+		        final /*@Thrown*/ boolean ne = ownedInit != null;
+		        CAUGHT_ne = ne;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_self_71 = ValueUtil.createInvalidValue(e);
+		        CAUGHT_ne = ValueUtil.createInvalidValue(e);
 		    }
-		    final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		    @NonNull /*@Caught*/ Object CAUGHT_b;
+		    @NonNull /*@Caught*/ Object CAUGHT_conformsTo;
 		    try {
 		        final @Nullable /*@Thrown*/ OCLExpression ownedInit_0 = this.getOwnedInit();
 		        if (ownedInit_0 == null) {
@@ -246,81 +247,24 @@ public class VariableImpl
 		        }
 		        final @Nullable /*@Thrown*/ Type type = ownedInit_0.getType();
 		        final @Nullable /*@Thrown*/ Type type_0 = this.getType();
-		        final /*@Thrown*/ boolean b = OclTypeConformsToOperation.INSTANCE.evaluate(evaluator, type, type_0).booleanValue();
-		        CAUGHT_b = b;
+		        final /*@Thrown*/ boolean conformsTo = OclTypeConformsToOperation.INSTANCE.evaluate(evaluator, type, type_0).booleanValue();
+		        CAUGHT_conformsTo = conformsTo;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_b = ValueUtil.createInvalidValue(e);
+		        CAUGHT_conformsTo = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
-		    /*@Thrown*/ boolean symbol_8;
-		    if (symbol_0) {
-		        final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
-		        /*@Thrown*/ boolean symbol_3;
-		        if (symbol_1) {
-		            if (CAUGHT_self_71 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_71;
-		            }
-		            symbol_3 = (Boolean)CAUGHT_self_71;
-		        }
-		        else {
-		            /*@Thrown*/ boolean symbol_2;
-		            if (CAUGHT_b == Boolean.TRUE) {
-		                symbol_2 = ValueUtil.TRUE_VALUE;
-		            }
-		            else {
-		                if (CAUGHT_self_71 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_71;
-		                }
-		                symbol_2 = (Boolean)CAUGHT_self_71;
-		            }
-		            symbol_3 = symbol_2;
-		        }
-		        symbol_8 = symbol_3;
-		    }
-		    else {
-		        if (CAUGHT_self_71 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_71;
-		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
-		        /*@Thrown*/ boolean symbol_7;
-		        if (eq) {
-		            symbol_7 = ValueUtil.TRUE_VALUE;
-		        }
-		        else {
-		            final /*@NonInvalid*/ boolean symbol_4 = CAUGHT_b instanceof InvalidValueException;
-		            /*@Thrown*/ boolean symbol_6;
-		            if (symbol_4) {
-		                if (CAUGHT_b instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_b;
-		                }
-		                symbol_6 = (Boolean)CAUGHT_b;
-		            }
-		            else {
-		                /*@NonInvalid*/ boolean symbol_5;
-		                if (CAUGHT_b == Boolean.TRUE) {
-		                    symbol_5 = ValueUtil.TRUE_VALUE;
-		                }
-		                else {
-		                    symbol_5 = ValueUtil.FALSE_VALUE;
-		                }
-		                symbol_6 = symbol_5;
-		            }
-		            symbol_7 = symbol_6;
-		        }
-		        symbol_8 = symbol_7;
-		    }
-		    CAUGHT_symbol_8 = symbol_8;
+		    final @Nullable /*@Thrown*/ Boolean implies = BooleanImpliesOperation.INSTANCE.evaluate(CAUGHT_ne, CAUGHT_conformsTo);
+		    CAUGHT_implies = implies;
 		}
 		catch (Exception e) {
-		    CAUGHT_symbol_8 = ValueUtil.createInvalidValue(e);
+		    CAUGHT_implies = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_symbol_8 == ValueUtil.TRUE_VALUE) {
+		if (CAUGHT_implies == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {
-		    int severity = Diagnostic.WARNING;
-		    String message = NLS.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"Variable", "CompatibleInitialiserType", EObjectValidator.getObjectLabel(this, context)});
+		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
+		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"Variable", "CompatibleInitialiserType", EObjectValidator.getObjectLabel(this, context)});
 		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.VARIABLE__COMPATIBLE_INITIALISER_TYPE, message, new Object [] { this }));
 		}
 		return false;

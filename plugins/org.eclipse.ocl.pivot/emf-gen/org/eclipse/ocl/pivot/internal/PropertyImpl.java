@@ -58,6 +58,8 @@ import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
 import org.eclipse.ocl.pivot.library.classifier.ClassifierOclContainerOperation;
 import org.eclipse.ocl.pivot.library.collection.CollectionIncludesOperation;
+import org.eclipse.ocl.pivot.library.logical.BooleanAndOperation;
+import org.eclipse.ocl.pivot.library.logical.BooleanImpliesOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsKindOfOperation;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
@@ -65,11 +67,11 @@ import org.eclipse.ocl.pivot.util.PivotValidator;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.Value;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * <!-- begin-user-doc -->
@@ -1008,19 +1010,19 @@ public class PropertyImpl
 		    CAUGHT_container = ValueUtil.createInvalidValue(e);
 		}
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		@NonNull /*@Caught*/ Object CAUGHT_self_71;
+		@NonNull /*@Caught*/ Object CAUGHT_oclIsKindOf;
 		try {
 		    final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Class_0 = idResolver.getClass(PivotTables.CLSSid_Class, null);
 		    if (CAUGHT_container instanceof InvalidValueException) {
 		        throw (InvalidValueException)CAUGHT_container;
 		    }
-		    final /*@Thrown*/ boolean self_71 = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, CAUGHT_container, TYP_Class_0).booleanValue();
-		    CAUGHT_self_71 = self_71;
+		    final /*@Thrown*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, CAUGHT_container, TYP_Class_0).booleanValue();
+		    CAUGHT_oclIsKindOf = oclIsKindOf;
 		}
 		catch (Exception e) {
-		    CAUGHT_self_71 = ValueUtil.createInvalidValue(e);
+		    CAUGHT_oclIsKindOf = ValueUtil.createInvalidValue(e);
 		}
-		@NonNull /*@Caught*/ Object CAUGHT_b;
+		@NonNull /*@Caught*/ Object CAUGHT_includes;
 		try {
 		    final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Class_1 = idResolver.getClass(PivotTables.CLSSid_Class, null);
 		    if (CAUGHT_container instanceof InvalidValueException) {
@@ -1032,76 +1034,17 @@ public class PropertyImpl
 		    }
 		    final @NonNull /*@Thrown*/ List<Property> ownedProperties = oclAsType.getOwnedProperties();
 		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedProperties = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Property, ownedProperties);
-		    final /*@Thrown*/ boolean b = CollectionIncludesOperation.INSTANCE.evaluate(BOXED_ownedProperties, this).booleanValue();
-		    CAUGHT_b = b;
+		    final /*@Thrown*/ boolean includes = CollectionIncludesOperation.INSTANCE.evaluate(BOXED_ownedProperties, this).booleanValue();
+		    CAUGHT_includes = includes;
 		}
 		catch (Exception e) {
-		    CAUGHT_b = ValueUtil.createInvalidValue(e);
+		    CAUGHT_includes = ValueUtil.createInvalidValue(e);
 		}
-		final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
-		/*@Thrown*/ boolean symbol_8;
-		if (symbol_0) {
-		    final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
-		    /*@Thrown*/ boolean symbol_3;
-		    if (symbol_1) {
-		        if (CAUGHT_self_71 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_self_71;
-		        }
-		        symbol_3 = (Boolean)CAUGHT_self_71;
-		    }
-		    else {
-		        if (CAUGHT_b instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_b;
-		        }
-		        final /*@Thrown*/ boolean eq = CAUGHT_b == Boolean.FALSE;
-		        /*@Thrown*/ boolean symbol_2;
-		        if (eq) {
-		            symbol_2 = ValueUtil.FALSE_VALUE;
-		        }
-		        else {
-		            if (CAUGHT_self_71 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_71;
-		            }
-		            symbol_2 = (Boolean)CAUGHT_self_71;
-		        }
-		        symbol_3 = symbol_2;
-		    }
-		    symbol_8 = symbol_3;
+		final @Nullable /*@Thrown*/ Boolean and = BooleanAndOperation.INSTANCE.evaluate(CAUGHT_oclIsKindOf, CAUGHT_includes);
+		if (and == null) {
+		    throw new InvalidValueException("Null body for \'pivot::Property::isAttribute(pivot::Property) : Boolean\'");
 		}
-		else {
-		    if (CAUGHT_self_71 instanceof InvalidValueException) {
-		        throw (InvalidValueException)CAUGHT_self_71;
-		    }
-		    final /*@Thrown*/ boolean eq_0 = CAUGHT_self_71 == Boolean.FALSE;
-		    /*@Thrown*/ boolean symbol_7;
-		    if (eq_0) {
-		        symbol_7 = ValueUtil.FALSE_VALUE;
-		    }
-		    else {
-		        if (CAUGHT_b instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_b;
-		        }
-		        final /*@NonInvalid*/ boolean symbol_4 = CAUGHT_b instanceof InvalidValueException;
-		        /*@Thrown*/ boolean symbol_6;
-		        if (symbol_4) {
-		            symbol_6 = (Boolean)CAUGHT_b;
-		        }
-		        else {
-		            final /*@Thrown*/ boolean eq_1 = CAUGHT_b == Boolean.FALSE;
-		            /*@NonInvalid*/ boolean symbol_5;
-		            if (eq_1) {
-		                symbol_5 = ValueUtil.FALSE_VALUE;
-		            }
-		            else {
-		                symbol_5 = ValueUtil.TRUE_VALUE;
-		            }
-		            symbol_6 = symbol_5;
-		        }
-		        symbol_7 = symbol_6;
-		    }
-		    symbol_8 = symbol_7;
-		}
-		return symbol_8;
+		return and;
 	}
 
 	/**
@@ -1118,22 +1061,22 @@ public class PropertyImpl
 		 *   ownedExpression.oclAsType(ExpressionInOCL).ownedBody <> null implies
 		 *   CompatibleBody(ownedExpression)
 		 */
-		@NonNull /*@Caught*/ Object CAUGHT_symbol_17;
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
+		@Nullable /*@Caught*/ Object CAUGHT_implies;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_symbol_8;
+		    @Nullable /*@Caught*/ Object CAUGHT_and;
 		    try {
-		        @NonNull /*@Caught*/ Object CAUGHT_self_71;
+		        @NonNull /*@Caught*/ Object CAUGHT_ne;
 		        try {
 		            final @Nullable /*@Thrown*/ LanguageExpression ownedExpression = this.getOwnedExpression();
-		            final /*@Thrown*/ boolean self_71 = ownedExpression != null;
-		            CAUGHT_self_71 = self_71;
+		            final /*@Thrown*/ boolean ne = ownedExpression != null;
+		            CAUGHT_ne = ne;
 		        }
 		        catch (Exception e) {
-		            CAUGHT_self_71 = ValueUtil.createInvalidValue(e);
+		            CAUGHT_ne = ValueUtil.createInvalidValue(e);
 		        }
-		        final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		        final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		        @NonNull /*@Caught*/ Object CAUGHT_b;
+		        @NonNull /*@Caught*/ Object CAUGHT_ne_0;
 		        try {
 		            final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pivot_c_c_ExpressionInOCL_0 = idResolver.getClass(PivotTables.CLSSid_ExpressionInOCL, null);
 		            final @Nullable /*@Thrown*/ LanguageExpression ownedExpression_0 = this.getOwnedExpression();
@@ -1142,158 +1085,39 @@ public class PropertyImpl
 		                throw new InvalidValueException("Null source for \'pivot::ExpressionInOCL::ownedBody\'");
 		            }
 		            final @Nullable /*@Thrown*/ OCLExpression ownedBody = oclAsType.getOwnedBody();
-		            final /*@Thrown*/ boolean b = ownedBody != null;
-		            CAUGHT_b = b;
+		            final /*@Thrown*/ boolean ne_0 = ownedBody != null;
+		            CAUGHT_ne_0 = ne_0;
 		        }
 		        catch (Exception e) {
-		            CAUGHT_b = ValueUtil.createInvalidValue(e);
+		            CAUGHT_ne_0 = ValueUtil.createInvalidValue(e);
 		        }
-		        final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
-		        /*@Thrown*/ boolean symbol_8;
-		        if (symbol_0) {
-		            final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_b instanceof InvalidValueException;
-		            /*@Thrown*/ boolean symbol_3;
-		            if (symbol_1) {
-		                if (CAUGHT_self_71 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_self_71;
-		                }
-		                symbol_3 = (Boolean)CAUGHT_self_71;
-		            }
-		            else {
-		                if (CAUGHT_b instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_b;
-		                }
-		                final /*@Thrown*/ boolean eq = CAUGHT_b == Boolean.FALSE;
-		                /*@Thrown*/ boolean symbol_2;
-		                if (eq) {
-		                    symbol_2 = ValueUtil.FALSE_VALUE;
-		                }
-		                else {
-		                    if (CAUGHT_self_71 instanceof InvalidValueException) {
-		                        throw (InvalidValueException)CAUGHT_self_71;
-		                    }
-		                    symbol_2 = (Boolean)CAUGHT_self_71;
-		                }
-		                symbol_3 = symbol_2;
-		            }
-		            symbol_8 = symbol_3;
-		        }
-		        else {
-		            if (CAUGHT_self_71 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_self_71;
-		            }
-		            final /*@Thrown*/ boolean eq_0 = CAUGHT_self_71 == Boolean.FALSE;
-		            /*@Thrown*/ boolean symbol_7;
-		            if (eq_0) {
-		                symbol_7 = ValueUtil.FALSE_VALUE;
-		            }
-		            else {
-		                if (CAUGHT_b instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_b;
-		                }
-		                final /*@NonInvalid*/ boolean symbol_4 = CAUGHT_b instanceof InvalidValueException;
-		                /*@Thrown*/ boolean symbol_6;
-		                if (symbol_4) {
-		                    symbol_6 = (Boolean)CAUGHT_b;
-		                }
-		                else {
-		                    final /*@Thrown*/ boolean eq_1 = CAUGHT_b == Boolean.FALSE;
-		                    /*@NonInvalid*/ boolean symbol_5;
-		                    if (eq_1) {
-		                        symbol_5 = ValueUtil.FALSE_VALUE;
-		                    }
-		                    else {
-		                        symbol_5 = ValueUtil.TRUE_VALUE;
-		                    }
-		                    symbol_6 = symbol_5;
-		                }
-		                symbol_7 = symbol_6;
-		            }
-		            symbol_8 = symbol_7;
-		        }
-		        CAUGHT_symbol_8 = symbol_8;
+		        final @Nullable /*@Thrown*/ Boolean and = BooleanAndOperation.INSTANCE.evaluate(CAUGHT_ne, CAUGHT_ne_0);
+		        CAUGHT_and = and;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_symbol_8 = ValueUtil.createInvalidValue(e);
+		        CAUGHT_and = ValueUtil.createInvalidValue(e);
 		    }
-		    @NonNull /*@Caught*/ Object CAUGHT_b_0;
+		    @NonNull /*@Caught*/ Object CAUGHT_CompatibleBody;
 		    try {
 		        final @Nullable /*@Thrown*/ LanguageExpression ownedExpression_1 = this.getOwnedExpression();
-		        final /*@Thrown*/ boolean b_0 = this.CompatibleBody((ValueSpecification)ownedExpression_1);
-		        CAUGHT_b_0 = b_0;
+		        final /*@Thrown*/ boolean CompatibleBody = this.CompatibleBody((ValueSpecification)ownedExpression_1);
+		        CAUGHT_CompatibleBody = CompatibleBody;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_b_0 = ValueUtil.createInvalidValue(e);
+		        CAUGHT_CompatibleBody = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean symbol_9 = CAUGHT_symbol_8 instanceof InvalidValueException;
-		    /*@Thrown*/ boolean symbol_17;
-		    if (symbol_9) {
-		        final /*@NonInvalid*/ boolean symbol_10 = CAUGHT_b_0 instanceof InvalidValueException;
-		        /*@Thrown*/ boolean symbol_12;
-		        if (symbol_10) {
-		            if (CAUGHT_symbol_8 instanceof InvalidValueException) {
-		                throw (InvalidValueException)CAUGHT_symbol_8;
-		            }
-		            symbol_12 = (Boolean)CAUGHT_symbol_8;
-		        }
-		        else {
-		            /*@Thrown*/ boolean symbol_11;
-		            if (CAUGHT_b_0 == Boolean.TRUE) {
-		                symbol_11 = ValueUtil.TRUE_VALUE;
-		            }
-		            else {
-		                if (CAUGHT_symbol_8 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_symbol_8;
-		                }
-		                symbol_11 = (Boolean)CAUGHT_symbol_8;
-		            }
-		            symbol_12 = symbol_11;
-		        }
-		        symbol_17 = symbol_12;
-		    }
-		    else {
-		        if (CAUGHT_symbol_8 instanceof InvalidValueException) {
-		            throw (InvalidValueException)CAUGHT_symbol_8;
-		        }
-		        final /*@Thrown*/ boolean eq_2 = CAUGHT_symbol_8 == Boolean.FALSE;
-		        /*@Thrown*/ boolean symbol_16;
-		        if (eq_2) {
-		            symbol_16 = ValueUtil.TRUE_VALUE;
-		        }
-		        else {
-		            final /*@NonInvalid*/ boolean symbol_13 = CAUGHT_b_0 instanceof InvalidValueException;
-		            /*@Thrown*/ boolean symbol_15;
-		            if (symbol_13) {
-		                if (CAUGHT_b_0 instanceof InvalidValueException) {
-		                    throw (InvalidValueException)CAUGHT_b_0;
-		                }
-		                symbol_15 = (Boolean)CAUGHT_b_0;
-		            }
-		            else {
-		                /*@NonInvalid*/ boolean symbol_14;
-		                if (CAUGHT_b_0 == Boolean.TRUE) {
-		                    symbol_14 = ValueUtil.TRUE_VALUE;
-		                }
-		                else {
-		                    symbol_14 = ValueUtil.FALSE_VALUE;
-		                }
-		                symbol_15 = symbol_14;
-		            }
-		            symbol_16 = symbol_15;
-		        }
-		        symbol_17 = symbol_16;
-		    }
-		    CAUGHT_symbol_17 = symbol_17;
+		    final @Nullable /*@Thrown*/ Boolean implies = BooleanImpliesOperation.INSTANCE.evaluate(CAUGHT_and, CAUGHT_CompatibleBody);
+		    CAUGHT_implies = implies;
 		}
 		catch (Exception e) {
-		    CAUGHT_symbol_17 = ValueUtil.createInvalidValue(e);
+		    CAUGHT_implies = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_symbol_17 == ValueUtil.TRUE_VALUE) {
+		if (CAUGHT_implies == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {
-		    int severity = Diagnostic.WARNING;
-		    String message = NLS.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"Property", "CompatibleDefaultExpression", EObjectValidator.getObjectLabel(this, context)});
+		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
+		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"Property", "CompatibleDefaultExpression", EObjectValidator.getObjectLabel(this, context)});
 		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.PROPERTY__COMPATIBLE_DEFAULT_EXPRESSION, message, new Object [] { this }));
 		}
 		return false;

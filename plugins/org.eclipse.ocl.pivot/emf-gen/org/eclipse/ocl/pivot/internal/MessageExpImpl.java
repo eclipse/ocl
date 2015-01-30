@@ -44,17 +44,18 @@ import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation;
+import org.eclipse.ocl.pivot.library.logical.BooleanNotOperation;
 import org.eclipse.ocl.pivot.library.numeric.NumericPlusOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsKindOfOperation;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.util.PivotValidator;
 import org.eclipse.ocl.pivot.util.Visitor;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.SetValue;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * <!-- begin-user-doc -->
@@ -332,7 +333,7 @@ public class MessageExpImpl
 		}
 		if (diagnostics != null) {
 		    int severity = Diagnostic.WARNING;
-		    String message = NLS.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"MessageExp", "OneCallOrOneSend", EObjectValidator.getObjectLabel(this, context)});
+		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"MessageExp", "OneCallOrOneSend", EObjectValidator.getObjectLabel(this, context)});
 		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.MESSAGE_EXP__ONE_CALL_OR_ONE_SEND, message, new Object [] { this }));
 		}
 		return false;
@@ -353,45 +354,27 @@ public class MessageExpImpl
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		@NonNull /*@Caught*/ Object CAUGHT_symbol_1;
+		@Nullable /*@Caught*/ Object CAUGHT_not;
 		try {
-		    @NonNull /*@Caught*/ Object CAUGHT_self_71;
-		    try {
-		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pivot_c_c_CollectionType_0 = idResolver.getClass(PivotTables.CLSSid_CollectionType, null);
-		        final @Nullable /*@Thrown*/ OCLExpression ownedTarget = this.getOwnedTarget();
-		        if (ownedTarget == null) {
-		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
-		        }
-		        final @Nullable /*@Thrown*/ Type type = ownedTarget.getType();
-		        final /*@Thrown*/ boolean self_71 = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_CollectionType_0).booleanValue();
-		        CAUGHT_self_71 = self_71;
+		    final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pivot_c_c_CollectionType_0 = idResolver.getClass(PivotTables.CLSSid_CollectionType, null);
+		    final @Nullable /*@Thrown*/ OCLExpression ownedTarget = this.getOwnedTarget();
+		    if (ownedTarget == null) {
+		        throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		    }
-		    catch (Exception e) {
-		        CAUGHT_self_71 = ValueUtil.createInvalidValue(e);
-		    }
-		    if (CAUGHT_self_71 instanceof InvalidValueException) {
-		        throw (InvalidValueException)CAUGHT_self_71;
-		    }
-		    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_71 instanceof InvalidValueException;
-		    /*@Thrown*/ boolean symbol_1;
-		    if (symbol_0) {
-		        symbol_1 = (Boolean)CAUGHT_self_71;
-		    }
-		    else {
-		        final /*@Thrown*/ boolean eq = CAUGHT_self_71 == Boolean.FALSE;
-		        symbol_1 = eq;
-		    }
-		    CAUGHT_symbol_1 = symbol_1;
+		    final @Nullable /*@Thrown*/ Type type = ownedTarget.getType();
+		    final /*@Thrown*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_pivot_c_c_CollectionType_0).booleanValue();
+		    final @Nullable /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(oclIsKindOf);
+		    CAUGHT_not = not;
 		}
 		catch (Exception e) {
-		    CAUGHT_symbol_1 = ValueUtil.createInvalidValue(e);
+		    CAUGHT_not = ValueUtil.createInvalidValue(e);
 		}
-		if (CAUGHT_symbol_1 == ValueUtil.TRUE_VALUE) {
+		if (CAUGHT_not == ValueUtil.TRUE_VALUE) {
 		    return true;
 		}
 		if (diagnostics != null) {
-		    int severity = Diagnostic.WARNING;
-		    String message = NLS.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"MessageExp", "TargetIsNotACollection", EObjectValidator.getObjectLabel(this, context)});
+		    int severity = CAUGHT_not == null ? Diagnostic.ERROR : Diagnostic.WARNING;
+		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"MessageExp", "TargetIsNotACollection", EObjectValidator.getObjectLabel(this, context)});
 		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.MESSAGE_EXP__TARGET_IS_NOT_ACOLLECTION, message, new Object [] { this }));
 		}
 		return false;

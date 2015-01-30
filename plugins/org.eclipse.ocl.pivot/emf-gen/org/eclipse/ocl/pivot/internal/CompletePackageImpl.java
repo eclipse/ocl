@@ -12,7 +12,6 @@ package org.eclipse.ocl.pivot.internal;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -65,6 +64,7 @@ import com.google.common.collect.Iterables;
  *
  * @generated
  */
+@SuppressWarnings("unused")
 public class CompletePackageImpl extends NamedElementImpl implements CompletePackage, org.eclipse.ocl.pivot.internal.complete.CompletePackageInternal
 {
 
