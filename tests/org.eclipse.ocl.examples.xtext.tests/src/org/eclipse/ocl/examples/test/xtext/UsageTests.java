@@ -972,4 +972,49 @@ public class UsageTests
 		doCompile(testProjectNameB, testProjectNameA);
 		ocl.dispose();
 	}
+	
+	public void testBug458722() throws Exception {
+		TestOCL ocl = createOCL();
+		String testFileStem = "Bug458722";
+		String testProjectName = "bug458722";
+		String testProjectPath = EMFPlugin.IS_ECLIPSE_RUNNING ? testProjectName : ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS;
+		String oclinecoreFile = 
+			  "import ecore : 'http://www.eclipse.org/emf/2002/Ecore';\n" + 
+			  "\n" + 
+			  "package bug458722 : bug458722 = 'http://www.example.com/bug458722/rootPackage/2.0'\n" + 
+			  "{\n" + 
+			  "	package subPackage : subPackage = 'http://www.example.com/bug458722/subPackage/2.0'\n" + 
+			  "	{\n" + 
+			  "		class SubElement\n" + 
+			  "		{\n" + 
+			  "			operation op(tokens : String[*] { ordered !unique }) : Boolean\n" + 
+			  "			{\n" + 
+			  "				body: \n" + 
+			  "				\n" + 
+			  "				if tokens->at(1) = '1'\n" + 
+			  "				then\n" + 
+			  "					op2(tokens)\n" + 
+			  "			    else\n" + 
+			  "			    	true\n" + 
+			  "			    endif;\n" + 
+			  "			}\n" + 
+			  "			operation op2(tokens : String[*] { ordered !unique }) : Boolean\n" + 
+			  "			{\n" + 
+			  "				body: \n" + 
+			  "				true;\n" + 
+			  "			}\n" + 
+			  "		}\n" + 
+			  "	}\n" + 
+			  "	abstract class Element\n" + 
+			  "	{\n" + 
+			  "		attribute name : String = '';\n" + 
+			  "	}\n" + 
+			  "}\n";
+		String genmodelFile = createGenModelContent(testProjectPath, testFileStem, null);
+		doDelete(testProjectName);
+		URI genModelURI = createModels(testProjectPath, testFileStem, oclinecoreFile, genmodelFile);
+		doGenModel(testProjectPath, genModelURI);
+		doCompile(testProjectName);
+		ocl.dispose();
+	}
 }
