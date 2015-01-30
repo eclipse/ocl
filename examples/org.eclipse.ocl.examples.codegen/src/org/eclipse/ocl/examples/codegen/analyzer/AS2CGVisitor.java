@@ -903,13 +903,13 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		} */
 		CGOperationCallExp cgOperationCallExp = null;
 		if (/*(libraryOperation != null) &&*/ !(libraryOperation instanceof EObjectOperation) && !(libraryOperation instanceof EInvokeOperation)) {
-			OpaqueExpression bodyExpression = asOperation.getBodyExpression();
-			if (bodyExpression != null) {
-				CGValuedElement cgOperationCallExp2 = inlineOperationCall(element, bodyExpression);
-				if (cgOperationCallExp2 != null) {
-					return cgOperationCallExp2;
-				}
-			}
+//FIXME Bug 458774			OpaqueExpression bodyExpression = asOperation.getBodyExpression();
+//			if (bodyExpression != null) {
+//				CGValuedElement cgOperationCallExp2 = inlineOperationCall(element, bodyExpression);
+//				if (cgOperationCallExp2 != null) {
+//					return cgOperationCallExp2;
+//				}
+//			}
 			CGLibraryOperationCallExp cgLibraryOperationCallExp = CGModelFactory.eINSTANCE.createCGLibraryOperationCallExp();
 			cgLibraryOperationCallExp.setLibraryOperation(libraryOperation);
 			cgOperationCallExp = cgLibraryOperationCallExp;
