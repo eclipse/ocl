@@ -82,12 +82,12 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 	@Override
 	public @NonNull Type getCommonType(@NonNull IdResolver idResolver, @NonNull Type type) {
 		if (this == type) {
-			return this.getType();
+			return this.getPivotClass();
 		}
 		CompleteInheritance firstInheritance = this;
 		CompleteInheritance secondInheritance = type.getInheritance(idResolver.getStandardLibrary());
 		CompleteInheritance commonInheritance = firstInheritance.getCommonInheritance(secondInheritance);
-		return commonInheritance.getType();
+		return commonInheritance.getPivotClass();
 	}
 
 	public final @NonNull EClassifier getEClassifier() {
@@ -186,13 +186,13 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getType() {
+	public @NonNull org.eclipse.ocl.pivot.Class getPivotClass() {
 		return this;
 	}
 
 	@Override
 	public @NonNull TypeId getTypeId() {
-		return getOwningPackage().getPackageId().getClassId(name, getType().getTypeParameters().parametersSize());			// FIXME DataTypeId alternative
+		return getOwningPackage().getPackageId().getClassId(name, getPivotClass().getTypeParameters().parametersSize());			// FIXME DataTypeId alternative
 	}
 
 	@Override

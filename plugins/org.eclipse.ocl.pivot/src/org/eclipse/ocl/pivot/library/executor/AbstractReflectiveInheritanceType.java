@@ -47,22 +47,22 @@ public abstract class AbstractReflectiveInheritanceType extends ReflectiveInheri
 
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getNormalizedType(@NonNull StandardLibrary standardLibrary) {
-		return getType();
+		return getPivotClass();
 	}
 
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class isClass() {
-		return getType();
+		return getPivotClass();
 	}
 
 	@Override
 	public boolean isEqualTo(@NonNull StandardLibrary standardLibrary, @NonNull Type type) {
-		return getType() == type;
+		return getPivotClass() == type;
 	}
 
 	@Override
 	public boolean isEqualToUnspecializedType(@NonNull StandardLibrary standardLibrary, @NonNull Type type) {
-		return getType() == type;
+		return getPivotClass() == type;
 	}
 
 	@Override

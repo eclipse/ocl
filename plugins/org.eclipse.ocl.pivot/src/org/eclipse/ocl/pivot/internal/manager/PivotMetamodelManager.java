@@ -789,7 +789,7 @@ public class PivotMetamodelManager implements MetamodelManager.Internal, Adapter
 		if (pivotClass == null) {
 			throw new IllegalStateException("Missing owning type");
 		}
-		CompleteClass completeClass = completeModel.getCompleteClass(pivotClass.getType());
+		CompleteClass completeClass = completeModel.getCompleteClass(pivotClass.getPivotClass());
 		Iterable<? extends Property> memberProperties = completeClass.getProperties(pivotProperty);
 		if (memberProperties != null) {
 			return memberProperties;
@@ -893,7 +893,7 @@ public class PivotMetamodelManager implements MetamodelManager.Internal, Adapter
 			CompleteInheritance leftInheritance = leftType.getInheritance(standardLibrary);
 			CompleteInheritance rightInheritance = rightType.getInheritance(standardLibrary);
 			CompleteInheritance commonInheritance = leftInheritance.getCommonInheritance(rightInheritance);
-			org.eclipse.ocl.pivot.Class commonCollectionType = getType(commonInheritance.getType()); 
+			org.eclipse.ocl.pivot.Class commonCollectionType = getPrimaryClass(commonInheritance.getPivotClass()); 
 			Type leftElementType = ClassUtil.nonNullModel(((CollectionType)leftType).getElementType());
 			Type rightElementType = ClassUtil.nonNullModel(((CollectionType)rightType).getElementType());
 			Type commonElementType = getCommonType(leftElementType, leftSubstitutions, rightElementType, rightSubstitutions); 
@@ -908,7 +908,7 @@ public class PivotMetamodelManager implements MetamodelManager.Internal, Adapter
 		CompleteInheritance leftInheritance = leftType.getInheritance(standardLibrary);
 		CompleteInheritance rightInheritance = rightType.getInheritance(standardLibrary);
 		CompleteInheritance commonInheritance = leftInheritance.getCommonInheritance(rightInheritance);
-		return getType(commonInheritance.getType()); 
+		return getPrimaryClass(commonInheritance.getPivotClass()); 
 	}
 
 	@Override
@@ -1187,7 +1187,7 @@ public class PivotMetamodelManager implements MetamodelManager.Internal, Adapter
 	}
 
 	public @NonNull CompleteInheritance getInheritance(@NonNull org.eclipse.ocl.pivot.Class type) {
-		org.eclipse.ocl.pivot.Class type1 = getType(type);
+		org.eclipse.ocl.pivot.Class type1 = getPrimaryClass(type);
 		org.eclipse.ocl.pivot.Class unspecializedType = (org.eclipse.ocl.pivot.Class) type1.getUnspecializedElement();
 		org.eclipse.ocl.pivot.Class theType = unspecializedType != null ? unspecializedType : type1;
 		CompleteInheritanceImpl completeInheritance = getCompleteClass(theType).getCompleteInheritance();
@@ -1342,7 +1342,7 @@ public class PivotMetamodelManager implements MetamodelManager.Internal, Adapter
 
 	public @Nullable Type getOclType(@NonNull String typeName) {
 		org.eclipse.ocl.pivot.Class pivotType = getASClass(typeName);
-		return pivotType != null ? getInheritance(pivotType).getType() : null;
+		return pivotType != null ? getInheritance(pivotType).getPivotClass() : null;
 	}
 
 	public @NonNull Iterable<? extends Operation> getOperationOverloads(@NonNull Operation pivotOperation) {
@@ -1350,7 +1350,7 @@ public class PivotMetamodelManager implements MetamodelManager.Internal, Adapter
 		if (pivotClass == null) {
 			throw new IllegalStateException("Missing owning type");
 		}
-		CompleteClass completeClass = completeModel.getCompleteClass(pivotClass.getType());
+		CompleteClass completeClass = completeModel.getCompleteClass(pivotClass.getPivotClass());
 		Iterable<? extends Operation> operationOverloads = completeClass.getOperationOverloads(pivotOperation);
 		if (operationOverloads != null) {
 			return operationOverloads;
@@ -1539,7 +1539,7 @@ public class PivotMetamodelManager implements MetamodelManager.Internal, Adapter
 	public @NonNull Operation getPrimaryOperation(@NonNull Operation pivotOperation) {
 		CompleteInheritance pivotClass = pivotOperation.getInheritance(standardLibrary);
 		if (pivotClass != null) {					// Null for an EAnnotation element
-			CompleteClass completeClass = completeModel.getCompleteClass(pivotClass.getType());
+			CompleteClass completeClass = completeModel.getCompleteClass(pivotClass.getPivotClass());
 			Operation operation = completeClass.getOperation(pivotOperation);
 			if (operation != null) {
 				return operation;
@@ -1598,7 +1598,7 @@ public class PivotMetamodelManager implements MetamodelManager.Internal, Adapter
 			@NonNull String name = ClassUtil.nonNullModel(pivotProperty.getName());
 			Property opposite = pivotProperty.getOpposite();
 			String oppositeName = opposite != null ? opposite.getName() : null;
-			CompleteClass completeClass = completeModel.getCompleteClass(owningInheritance.getType());
+			CompleteClass completeClass = completeModel.getCompleteClass(owningInheritance.getPivotClass());
 			Iterable<? extends Property> memberProperties = completeClass.getProperties(pivotProperty.isStatic() ? FeatureFilter.SELECT_STATIC : FeatureFilter.SELECT_NON_STATIC, name);
 			Property bestProperty = null;
 			for (Property memberProperty : memberProperties) {
@@ -1620,7 +1620,8 @@ public class PivotMetamodelManager implements MetamodelManager.Internal, Adapter
 		return pivotProperty;
 	}
 
-	public @NonNull org.eclipse.ocl.pivot.Class getPrimaryType(@NonNull org.eclipse.ocl.pivot.Class type) {
+	@Override
+	public @NonNull org.eclipse.ocl.pivot.Class getPrimaryClass(@NonNull org.eclipse.ocl.pivot.Class type) {
 		if (/*(type instanceof Type) &&*/ !isTypeServeable(type)) {
 			return type;
 		}
@@ -1634,6 +1635,7 @@ public class PivotMetamodelManager implements MetamodelManager.Internal, Adapter
 //		}
 	}
 
+	// FIXME ASBH This should probably disappear
 	public @NonNull Type getPrimaryType(@NonNull Type type) {
 		if (/*(type instanceof Type) &&*/ !isTypeServeable(type)) {
 			return type;			// FIXME bad cast
@@ -1727,40 +1729,6 @@ public class PivotMetamodelManager implements MetamodelManager.Internal, Adapter
 	@Override
 	public ResourceSet getTarget() {
 		return asResourceSet;
-	}
-
-	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getType(@NonNull org.eclipse.ocl.pivot.Class dType) {				// FIXME simplify eliminate
-//		if (dType instanceof Type) {
-			return getPrimaryType(dType);
-//		}
-//		CompleteClass completeClass = completeModel.getCompleteClass(dType);
-//		return ClassUtil.nonNullState(completeClass.getPivotClass());
-/*		org.eclipse.ocl.pivot.Package dPackage = dType.getOwningPackage();	// FIXME cast
-		if (dPackage != null) {
-			CompletePackage completePackage = getCompletePackage(dPackage);
-			org.eclipse.ocl.pivot.Class primaryType = completePackage.getMemberType(dType.getName());
-			if (primaryType != null) {
-				return primaryType;
-			}
-		}
-		throw new UnsupportedOperationException();		// FIXME */
-	}
-
-	public @NonNull Type getType(@NonNull Type dType) {				// FIXME simplify eliminate
-		return getPrimaryType(dType);
-/*		if (dType instanceof CompleteInheritanceImpl) {
-			return ((CompleteInheritanceImpl)dType).getCompleteClass().getPivotClass();
-		}
-		org.eclipse.ocl.pivot.Package dPackage = ((org.eclipse.ocl.pivot.Class)dType).getOwningPackage();	// FIXME cast
-		if (dPackage != null) {
-			CompletePackage completePackage = getCompletePackage(dPackage);
-			org.eclipse.ocl.pivot.Class primaryType = completePackage.getMemberType(dType.getName());
-			if (primaryType != null) {
-				return primaryType;
-			}
-		}
-		throw new UnsupportedOperationException();		// FIXME */
 	}
 
 	/**
@@ -1965,7 +1933,7 @@ public class PivotMetamodelManager implements MetamodelManager.Internal, Adapter
 //						completePackage.getMemberTypes();			// FIXME side effect of creating type trackers
 						for (org.eclipse.ocl.pivot.Class type : asLibrary.getOwnedClasses()) {
 							if (type != null) {
-								org.eclipse.ocl.pivot.Class primaryType = getPrimaryType(type);
+								org.eclipse.ocl.pivot.Class primaryType = getPrimaryClass(type);
 								if ((type == primaryType) && PivotUtilInternal.isLibraryType(type)) {
 									standardLibrary.defineLibraryType(primaryType);
 								}

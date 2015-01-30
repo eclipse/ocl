@@ -1133,7 +1133,7 @@ public class ClassImpl
 		StandardLibrary standardLibrary = idResolver.getStandardLibrary();
 		CompleteInheritance thisInheritance = this.getInheritance(standardLibrary);
 		CompleteInheritance thatInheritance = type.getInheritance(standardLibrary);
-		return thisInheritance.getCommonInheritance(thatInheritance).getType();
+		return thisInheritance.getCommonInheritance(thatInheritance).getPivotClass();
 	}
 
 	@Override
@@ -1149,7 +1149,7 @@ public class ClassImpl
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getNormalizedType(@NonNull StandardLibrary standardLibrary) {
 		try {
-			return getInheritance(standardLibrary).getType();
+			return getInheritance(standardLibrary).getPivotClass();
 		}
 		catch (Throwable e) {
 			return this;			// WIP FIXME should never happen

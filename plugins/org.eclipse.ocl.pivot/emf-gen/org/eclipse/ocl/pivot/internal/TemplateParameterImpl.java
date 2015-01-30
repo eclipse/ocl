@@ -500,7 +500,7 @@ public class TemplateParameterImpl
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getNormalizedType(@NonNull StandardLibrary standardLibrary) {
 		try {
-			return getInheritance(standardLibrary).getType();
+			return getInheritance(standardLibrary).getPivotClass();
 		}
 		catch (Throwable e) {
 			return standardLibrary.getOclAnyType();			// WIP FIXME should never happen

@@ -501,7 +501,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 		{
 			@Override
 			public org.eclipse.ocl.pivot.Class apply(InheritanceFragment input) {
-				return input.getBaseInheritance().getType();
+				return input.getBaseInheritance().getPivotClass();
 			}
 		});
 	}

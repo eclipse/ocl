@@ -18,7 +18,7 @@ import org.eclipse.ocl.pivot.utilities.IndexableIterable;
 import org.eclipse.ocl.pivot.utilities.Nameable;
 
 /**
- * An Inheritance provides access to the transitive inheritance relationships of a type
+ * An Inheritance provides access to the transitive inheritance relationships of a class
  * with respect to a particular type regime, noting that the complexities of CompleteOCL allow
  * for different inheritance for different applications.
  * 
@@ -55,6 +55,8 @@ public interface CompleteInheritance extends Nameable
 	@Nullable Operation getMemberOperation(@NonNull OperationId id);
 	@Nullable Property getMemberProperty(@NonNull String name);
 
+	@NonNull org.eclipse.ocl.pivot.Class getPivotClass();
+
 	@NonNull InheritanceFragment getSelfFragment();
 	
 	/**
@@ -62,8 +64,9 @@ public interface CompleteInheritance extends Nameable
 	 */
 	@NonNull IndexableIterable<InheritanceFragment> getSuperFragments(int depth);
 
+	@Deprecated // Use getPivotClass
 	@NonNull org.eclipse.ocl.pivot.Class getType();
-
+	
 	boolean isOclAny();
 	boolean isSubInheritanceOf(@NonNull CompleteInheritance inheritance);
 	boolean isSuperInheritanceOf(@NonNull CompleteInheritance inheritance);

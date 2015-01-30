@@ -98,7 +98,7 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary
 	@Override
 	public Type getOclType(@NonNull String typeName) {
 		ExecutorType type = PivotTables.PACKAGE.getOwnedClass(typeName);
-		return type != null ? type.getType() : null;
+		return type != null ? type.getPivotClass() : null;
 	}
 	
 	@SuppressWarnings("null")

@@ -102,7 +102,7 @@ public class FinalAnalysis
 		StandardLibraryInternal standardLibrary = completeModel.getStandardLibrary();
 		for (Operation override : overrides) {
 			CompleteInheritance overrideInheritance = override.getInheritance(standardLibrary);
-			if ((overrideInheritance != null) && overrideInheritance.getType().conformsTo(standardLibrary, completeClass.getPrimaryClass())) {
+			if ((overrideInheritance != null) && overrideInheritance.getPivotClass().conformsTo(standardLibrary, completeClass.getPrimaryClass())) {
 				if (candidate != null) {
 					return null;
 				}

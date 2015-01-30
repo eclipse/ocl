@@ -42,15 +42,13 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 	}
 
 	@Override
-	@NonNull
-	public Type getCommonType(@NonNull IdResolver idResolver,
+	public @NonNull Type getCommonType(@NonNull IdResolver idResolver,
 			@NonNull Type thatType) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	@NonNull
-	public CompleteInheritance getInheritance(
+	public @NonNull CompleteInheritance getInheritance(
 			@NonNull StandardLibrary standardLibrary) {
 //		return standardLibrary.getInheritance(this);
 		throw new UnsupportedOperationException();
@@ -103,14 +101,12 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 	}
 
 	@Override
-	@NonNull
-	public Iterable<InheritanceFragment> getAllProperSuperFragments() {
+	public @NonNull Iterable<InheritanceFragment> getAllProperSuperFragments() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	@NonNull
-	public Iterable<InheritanceFragment> getAllSuperFragments() {
+	public @NonNull Iterable<InheritanceFragment> getAllSuperFragments() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -120,8 +116,8 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 	}
 
 	@Override
-	@NonNull
-	public Iterable<InheritanceFragment> getFragments() {
+
+	public @NonNull Iterable<InheritanceFragment> getFragments() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -141,32 +137,27 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 	}
 
 	@Override
-	@Nullable
-	public Operation getMemberOperation(@NonNull OperationId id) {
+	public @Nullable Operation getMemberOperation(@NonNull OperationId id) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	@Nullable
-	public Property getMemberProperty(@NonNull String name) {
+	public @Nullable Property getMemberProperty(@NonNull String name) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	@NonNull
-	public InheritanceFragment getSelfFragment() {
+	public @NonNull org.eclipse.ocl.pivot.Class getPivotClass() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	@NonNull
-	public IndexableIterable<InheritanceFragment> getSuperFragments(int depth) {
+	public @NonNull InheritanceFragment getSelfFragment() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	@NonNull
-	public org.eclipse.ocl.pivot.Class getType() {
+	public @NonNull IndexableIterable<InheritanceFragment> getSuperFragments(int depth) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -176,14 +167,12 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 	}
 
 	@Override
-	@Nullable
-	public Class isClass() {
+	public @Nullable Class isClass() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	@Nullable
-	public TemplateParameter isTemplateParameter() {
+	public @Nullable TemplateParameter isTemplateParameter() {
 		throw new UnsupportedOperationException();
 	}
 

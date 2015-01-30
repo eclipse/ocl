@@ -170,7 +170,7 @@ public abstract class TypeImpl
 		StandardLibrary standardLibrary = idResolver.getStandardLibrary();
 		CompleteInheritance thisInheritance = this.getInheritance(standardLibrary);
 		CompleteInheritance thatInheritance = type.getInheritance(standardLibrary);
-		return thisInheritance.getCommonInheritance(thatInheritance).getType();
+		return thisInheritance.getCommonInheritance(thatInheritance).getPivotClass();
 	}
 
 	@Override

@@ -85,8 +85,6 @@ public interface MetamodelManager
 		@Override
 		@NonNull StandardLibraryInternal getStandardLibrary();
 
-		@NonNull org.eclipse.ocl.pivot.Class getType(@NonNull org.eclipse.ocl.pivot.Class dType);
-
 		void installRoot(@NonNull Model pivotModel);
 
 		@Nullable Element loadResource(@NonNull URI uri, String alias, @Nullable ResourceSet resourceSet) throws ParserException;
@@ -109,6 +107,8 @@ public interface MetamodelManager
 	@Deprecated // Use getEnvironmentFactory().getResourceSet()
 	@NonNull ResourceSet getExternalResourceSet();
 
+	@NonNull org.eclipse.ocl.pivot.Class getPrimaryClass(@NonNull org.eclipse.ocl.pivot.Class pivotClass);
+	
 	@NonNull Operation getPrimaryOperation(@NonNull Operation pivotOperation);
 
 	@NonNull org.eclipse.ocl.pivot.Package getPrimaryPackage(@NonNull org.eclipse.ocl.pivot.Package eObject);

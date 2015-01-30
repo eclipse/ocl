@@ -114,6 +114,11 @@ public class CompleteInheritanceImpl extends ReflectiveInheritance implements Co
 	public @NonNull List<Operation> getOwnedOperations() {
 		return ClassUtil.nonNullEMF(completeClass.getPrimaryClass().getOwnedOperations());			// FIXME Use local cache
 	}
+	
+	@Override
+	public @NonNull org.eclipse.ocl.pivot.Class getPivotClass() {
+		return getCompleteClass().getPrimaryClass();
+	}
 
 	@Override
 	public @NonNull List<org.eclipse.ocl.pivot.Class> getSuperClasses() {
@@ -122,11 +127,6 @@ public class CompleteInheritanceImpl extends ReflectiveInheritance implements Co
 			superClasses.add(superClass);
 		}
 		return superClasses;
-	}
-	
-	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getType() {
-		return getCompleteClass().getPrimaryClass();
 	}
 
 	@Override

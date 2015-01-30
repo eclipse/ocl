@@ -185,6 +185,11 @@ public abstract class AbstractInheritance extends AbstractExecutorNamedElement i
 		return null;
 	}
 
+	@Override
+	public @NonNull org.eclipse.ocl.pivot.Class getType() {
+		return getPivotClass();
+	}
+
 	public final boolean isInvalid() {
 		return (flags & OCL_INVALID) != 0;
 	}
@@ -264,7 +269,7 @@ public abstract class AbstractInheritance extends AbstractExecutorNamedElement i
 
 	@Override
 	public @Nullable Operation lookupLocalOperation(@NonNull StandardLibrary standardLibrary, @NonNull String operationName, CompleteInheritance... argumentTypes) {
-		for (Operation localOperation : getType().getOwnedOperations()) {
+		for (Operation localOperation : getPivotClass().getOwnedOperations()) {
 			if (localOperation.getName().equals(operationName)) {
 				ParametersId firstParametersId = localOperation.getParametersId();
 				int iMax = firstParametersId.size();
@@ -272,7 +277,7 @@ public abstract class AbstractInheritance extends AbstractExecutorNamedElement i
 					int i = 0;
 					for (; i < iMax; i++) {
 						TypeId firstParameterId = firstParametersId.get(i);
-						@NonNull Type secondParameterType = argumentTypes[i].getType();
+						@NonNull Type secondParameterType = argumentTypes[i].getPivotClass();
 						if (firstParameterId != secondParameterType.getTypeId()) {
 							break;
 						}

@@ -587,7 +587,7 @@ public class OCL
 		MetamodelManager.Internal metamodelManager = environmentFactory.getMetamodelManager();
 		IdResolver idResolver = getIdResolver();
 		org.eclipse.ocl.pivot.Class staticTypeOf = idResolver.getStaticTypeOf(contextObject);
-		return metamodelManager.getType(staticTypeOf);
+		return metamodelManager.getPrimaryClass(staticTypeOf);
 	}
 
 	public @NonNull EnvironmentFactory getEnvironmentFactory() {

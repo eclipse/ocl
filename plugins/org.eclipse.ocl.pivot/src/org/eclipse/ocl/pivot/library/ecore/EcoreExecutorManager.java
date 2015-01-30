@@ -150,7 +150,7 @@ public class EcoreExecutorManager extends ExecutorManager
 							@Override
 							protected boolean isInstance(@NonNull Type type, @NonNull EObject element) {
 								EClass eClass = ClassUtil.nonNullEMF(element.eClass());
-								Type elementType = idResolver.getInheritance(eClass).getType();
+								Type elementType = idResolver.getInheritance(eClass).getPivotClass();
 								return elementType.conformsTo(standardLibrary, type);
 							}
 							

@@ -239,7 +239,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 			for (TypedElement part : type.getOwnedProperties()) {
 				Type type1 = part.getType();
 				if (type1 != null) {
-					Type type2 = metamodelManager.getType(type1);
+					Type type2 = metamodelManager.getPrimaryType(type1);
 					Type type3 = specializeType(type2);
 					partMap.put(part.getName(), type3);
 				}
@@ -265,7 +265,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		if (oldType != null) {
 			IdResolver idResolver = environmentFactory.getIdResolver();
 			Type commonType = oldType.getCommonType(idResolver, actualType);
-			Type bestType = environmentFactory.getMetamodelManager().getType(commonType);
+			Type bestType = environmentFactory.getMetamodelManager().getPrimaryType(commonType);
 			if (bestType != oldType) {
 				context.put(index, bestType);
 			}

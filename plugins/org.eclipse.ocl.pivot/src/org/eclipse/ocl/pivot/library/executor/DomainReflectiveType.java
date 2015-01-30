@@ -48,12 +48,12 @@ public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 	@Override
 	public @NonNull Type getCommonType(@NonNull IdResolver idResolver, @NonNull Type type) {
 		if (this == type) {
-			return this.getType();
+			return this.getPivotClass();
 		}
 		CompleteInheritance firstInheritance = this;
 		CompleteInheritance secondInheritance = type.getInheritance(idResolver.getStandardLibrary());
 		CompleteInheritance commonInheritance = firstInheritance.getCommonInheritance(secondInheritance);
-		return commonInheritance.getType();
+		return commonInheritance.getPivotClass();
 	}
 
 	@Override
@@ -148,7 +148,7 @@ public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getType() {
+	public @NonNull org.eclipse.ocl.pivot.Class getPivotClass() {
 		return domainClass;
 	}
 

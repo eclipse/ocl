@@ -602,7 +602,7 @@ public class CollectionTypeImpl
 		CompleteInheritance thisInheritance = this.getInheritance(standardLibrary);
 		CompleteInheritance thatInheritance = type.getInheritance(standardLibrary);
 		CompleteInheritance commonInheritance = thisInheritance.getCommonInheritance(thatInheritance);
-		org.eclipse.ocl.pivot.Class commonType = commonInheritance.getType();
+		org.eclipse.ocl.pivot.Class commonType = commonInheritance.getPivotClass();
 		if (type instanceof CollectionType) {
 			Type thisElementType = this.getElementType();
 			Type thatElementType = ClassUtil.nonNullEMF(((CollectionType)type).getElementType());

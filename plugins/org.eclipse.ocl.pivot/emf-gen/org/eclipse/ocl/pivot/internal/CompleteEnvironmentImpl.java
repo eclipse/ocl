@@ -587,7 +587,7 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 	@Override
 	public @NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
-		return getCollectionType((CollectionType)metamodelManager.getType(containerType), metamodelManager.getType(elementType), lower, upper);
+		return getCollectionType((CollectionType)metamodelManager.getPrimaryClass(containerType), metamodelManager.getPrimaryType(elementType), lower, upper);
 	}
 
 	@Override

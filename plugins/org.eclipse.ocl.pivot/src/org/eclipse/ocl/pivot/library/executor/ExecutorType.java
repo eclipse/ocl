@@ -91,12 +91,12 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	@Override
 	public @NonNull Type getCommonType(@NonNull IdResolver idResolver, @NonNull Type type) {
 		if (this == type) {
-			return this.getType();
+			return this.getPivotClass();
 		}
 		CompleteInheritance firstInheritance = this;
 		CompleteInheritance secondInheritance = type.getInheritance(idResolver.getStandardLibrary());
 		CompleteInheritance commonInheritance = firstInheritance.getCommonInheritance(secondInheritance);
-		return commonInheritance.getType();
+		return commonInheritance.getPivotClass();
 	}
 
 	@Override
@@ -179,6 +179,11 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	}
 
 	@Override
+	public @NonNull org.eclipse.ocl.pivot.Class getPivotClass() {
+		return this;
+	}
+
+	@Override
 	public @NonNull ExecutorFragment getSelfFragment() {
 		return ClassUtil.nonNullState(getFragment(fragments.length-1));
 	}
@@ -195,11 +200,6 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	@Override
 	public final @NonNull FragmentIterable getSuperFragments(int depth) {
 		return new FragmentIterable(ClassUtil.nonNullState(fragments), indexes[depth], indexes[depth+1]);
-	}
-
-	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getType() {
-		return this;
 	}
 
 //	public @NonNull TypeId getTypeId() {

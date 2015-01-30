@@ -188,7 +188,7 @@ public class TupleTypeManager
 					List<Property> ownedAttributes = tupleType.getOwnedProperties();
 					for (TuplePartId partId : partIds) {
 						Type partType = idResolver.getType(partId.getTypeId(), tupleType);
-						Type partType2 = metamodelManager.getType(partType);
+						Type partType2 = metamodelManager.getPrimaryType(partType);
 						ownedAttributes.add(new TuplePartImpl(partId, partType2));
 					}
 					tupleType.getSuperClasses().add(oclTupleType);
@@ -206,7 +206,7 @@ public class TupleTypeManager
 		for (TypedElement part : parts) {
 			Type type1 = part.getType();
 			if (type1 != null) {
-				Type type2 = metamodelManager.getType(type1);
+				Type type2 = metamodelManager.getPrimaryType(type1);
 				Type type3 = completeEnvironment.getSpecializedType(type2, usageBindings);
 				partMap.put(part.getName(), type3);
 			}

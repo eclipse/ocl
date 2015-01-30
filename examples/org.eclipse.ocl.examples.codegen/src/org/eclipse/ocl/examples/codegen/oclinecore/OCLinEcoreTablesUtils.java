@@ -697,7 +697,7 @@ public class OCLinEcoreTablesUtils
 	}
 
 	protected @NonNull Iterable<org.eclipse.ocl.pivot.Class> getAllProperSupertypesSortedByName(@NonNull org.eclipse.ocl.pivot.Class pClass) {
-		org.eclipse.ocl.pivot.Class theClass = metamodelManager.getType(pClass);
+		org.eclipse.ocl.pivot.Class theClass = metamodelManager.getPrimaryClass(pClass);
 		Map<org.eclipse.ocl.pivot.Class, Integer> results = new HashMap<org.eclipse.ocl.pivot.Class, Integer>();
 		getAllSuperClasses(results, theClass);
 		List<org.eclipse.ocl.pivot.Class> sortedClasses = new ArrayList<org.eclipse.ocl.pivot.Class>(results.keySet());
@@ -716,7 +716,7 @@ public class OCLinEcoreTablesUtils
 	
 	@SuppressWarnings("null")
 	protected int getAllSuperClasses(@NonNull Map<org.eclipse.ocl.pivot.Class, Integer> results, @NonNull org.eclipse.ocl.pivot.Class aClass) {
-		org.eclipse.ocl.pivot.Class theClass = metamodelManager.getType(aClass);
+		org.eclipse.ocl.pivot.Class theClass = metamodelManager.getPrimaryClass(aClass);
 		Integer depth = results.get(theClass);
 		if (depth != null) {
 			return depth;

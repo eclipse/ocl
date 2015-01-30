@@ -858,7 +858,7 @@ public abstract class AbstractIdResolver implements IdResolver
 			assert eClass != null;
 			org.eclipse.ocl.pivot.Class type = key2type.get(eClass);
 			if (type == null) {
-				type = getInheritance(eClass).getType();
+				type = getInheritance(eClass).getPivotClass();
 				assert type != null;
 				key2type.put(eClass, type);
 			}
@@ -1009,7 +1009,7 @@ public abstract class AbstractIdResolver implements IdResolver
 			assert typeKey != null;
 			org.eclipse.ocl.pivot.Class type = key2type.get(typeKey);
 			if (type == null) {
-				type = getInheritance(typeKey).getType();
+				type = getInheritance(typeKey).getPivotClass();
 				assert type != null;
 				key2type.put(typeKey, type);
 			}

@@ -866,7 +866,7 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 				IdResolver idResolver = environmentFactory.getIdResolver();
 //				DomainType staticType = idResolver.getStaticTypeOf(selectedObject);
 				org.eclipse.ocl.pivot.Class staticType = idResolver.getStaticTypeOf(contextObject);
-				org.eclipse.ocl.pivot.Class contextType = environmentFactory.getMetamodelManager().getType(staticType);
+				org.eclipse.ocl.pivot.Class contextType = environmentFactory.getMetamodelManager().getPrimaryClass(staticType);
 //				if (contextType != null) {
 					parserContext = new ClassContext(environmentFactory, null, contextType, contextObject instanceof Type ? (Type)contextObject : null);
 //				}
