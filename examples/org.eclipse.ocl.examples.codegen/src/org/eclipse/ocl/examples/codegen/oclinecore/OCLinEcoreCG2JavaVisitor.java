@@ -42,7 +42,6 @@ import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * An OCLinEcoreCG2JavaVisitor supports generation of the OCL embedded in an Ecore model
@@ -187,7 +186,7 @@ public class OCLinEcoreCG2JavaVisitor extends CG2JavaVisitor
 					//
 					js.appendClassReference(String.class);
 					js.append(" " + getLocalContext().getMessageName() + " = ");
-					js.appendClassReference(NLS.class);
+					js.appendClassReference(DomainUtil.class);
 					js.append(".bind(");
 					js.appendClassReference(EvaluatorMessages.class);
 					js.append(".ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{\"");
