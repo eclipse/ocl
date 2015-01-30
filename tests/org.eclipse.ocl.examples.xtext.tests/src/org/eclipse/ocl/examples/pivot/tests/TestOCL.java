@@ -52,7 +52,6 @@ import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
-import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.library.LibraryUnaryOperation;
 import org.eclipse.ocl.pivot.library.ecore.EcoreExecutorManager;
@@ -692,7 +691,7 @@ public class TestOCL extends OCL.Internal
 				result = super.evaluate(self, expr);
 			}
 			else {
-				StandaloneProjectMap projectMap = (StandaloneProjectMap) environmentFactory.getProjectManager();
+				ProjectManager projectMap = environmentFactory.getProjectManager();
 				ResourceSet resourceSet = getResourceSet();
 				projectMap.initializeResourceSet(resourceSet);
 				resourceSet.getPackageRegistry().put(org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.eNS_URI, org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.eINSTANCE);

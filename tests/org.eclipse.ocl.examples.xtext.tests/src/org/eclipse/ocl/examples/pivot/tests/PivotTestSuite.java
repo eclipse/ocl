@@ -166,7 +166,7 @@ public abstract class PivotTestSuite extends PivotTestCaseWithAutoTearDown
 	}
 
 	protected @NonNull TestOCL createOCL() throws ParserException {
-		return new TestOCL(getTestPackageName(), getName(), OCL.NO_PROJECTS);
+		return new TestOCL(getTestPackageName(), getName(), useCodeGen ? getProjectMap() : OCL.NO_PROJECTS);
 	}
 	
 	public @NonNull ResourceSet createResourceSet() {
