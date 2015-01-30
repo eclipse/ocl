@@ -332,6 +332,7 @@ public class UsageTests
 		classpathProjects.add("org.eclipse.emf.ecore");
 		classpathProjects.add("org.eclipse.ocl.pivot");
 		classpathProjects.add("org.eclipse.ocl.jdt.annotation7");
+		classpathProjects.add("org.eclipse.osgi");
 		for (String extraClasspathProject : extraClasspathProjects) {
 			classpathProjects.add(extraClasspathProject);
 		}
@@ -1009,6 +1010,90 @@ public class UsageTests
 			  "	{\n" + 
 			  "		attribute name : String = '';\n" + 
 			  "	}\n" + 
+			  "}\n";
+		String genmodelFile = createGenModelContent(testProjectPath, testFileStem, null);
+		doDelete(testProjectName);
+		URI genModelURI = createModels(testProjectPath, testFileStem, oclinecoreFile, genmodelFile);
+		doGenModel(testProjectPath, genModelURI);
+		doCompile(testProjectName);
+		ocl.dispose();
+	}
+	
+	public void testBug458723() throws Exception {
+		TestOCL ocl = createOCL();
+		String testFileStem = "Bug458723";
+		String testProjectName = "bug458723";
+		String testProjectPath = EMFPlugin.IS_ECLIPSE_RUNNING ? testProjectName : ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS;
+		String oclinecoreFile = 
+			  "import ecore : 'http://www.eclipse.org/emf/2002/Ecore';\n" + 
+			  "\n" + 
+			  "package bug458723 : bug458723 = 'http://www.example.com/bug458723/rootPackage/1.0'\n" + 
+			  "{\n" + 
+			  "    package subPackage : subPackage = 'http://www.example.com/bug458723/subPackage/1.0'\n" + 
+			  "    {\n" + 
+			  "        class Element extends bug458723::Element\n" + 
+			  "        {\n" + 
+			  "\n" + 
+			  "            /*\n" + 
+			  "             * Error also occurs with Bag(OclAny) in signature without\n" + 
+			  "{!unique}\n" + 
+			  "             */\n" + 
+			  "            operation op() : ocl::OclAny[*] { !unique }\n" + 
+			  "            {\n" + 
+			  "                body: \n" + 
+			  "                Bag{};\n" + 
+			  "            }\n" + 
+			  "        }\n" + 
+			  "    }\n" + 
+			  "    abstract class Element\n" + 
+			  "    {\n" + 
+			  "        attribute name : String = '';\n" + 
+			  "    }\n" + 
+			  "}\n";
+		String genmodelFile = createGenModelContent(testProjectPath, testFileStem, null);
+		doDelete(testProjectName);
+		URI genModelURI = createModels(testProjectPath, testFileStem, oclinecoreFile, genmodelFile);
+		doGenModel(testProjectPath, genModelURI);
+		doCompile(testProjectName);
+		ocl.dispose();
+	}
+	
+	public void testBug458724() throws Exception {
+		TestOCL ocl = createOCL();
+		String testFileStem = "Bug458724";
+		String testProjectName = "bug458724";
+		String testProjectPath = EMFPlugin.IS_ECLIPSE_RUNNING ? testProjectName : ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS;
+		String oclinecoreFile = 
+			  "import ecore : 'http://www.eclipse.org/emf/2002/Ecore';\n" + 
+			  "\n" + 
+			  "package bug458724 : bug458724 = 'http://www.example.com/bug458724/rootPackage/2.0'\n" + 
+			  "{\n" + 
+			  "    class Element\n" + 
+			  "    {\n" + 
+			  "        attribute name : String = '';\n" + 
+			  "        invariant\n" + 
+			  "        elementNameNotReservedWord: \n" + 
+			  "            let name: String = self.name.toLower() in\n" + 
+			  "            name <> 'reserved_1' and\n" + 
+			  "            name <> 'reserved_2' and\n" + 
+			  "            name <> 'reserved_3' and\n" + 
+			  "            name <> 'reserved_4' and\n" + 
+			  "            name <> 'reserved_5' and\n" + 
+			  "            name <> 'reserved_6' and\n" + 
+			  "            name <> 'reserved_7' and\n" + 
+			  "            name <> 'reserved_8' and\n" + 
+			  "            name <> 'reserved_9' and\n" + 
+			  "            name <> 'reserved_10' and\n" + 
+			  "            name <> 'reserved_11' and\n" + 
+			  "            name <> 'reserved_12' and\n" + 
+			  "            name <> 'reserved_13' and\n" + 
+			  "            name <> 'reserved_14' and\n" + 
+			  "            name <> 'reserved_15' and\n" + 
+			  "            name <> 'reserved_16' and\n" + 
+			  "            name <> 'reserved_17' and\n" + 
+			  "            name <> 'reserved_18' and\n" + 
+			  "            name <> 'reserved_19';\n" + 
+			  "    }\n" + 
 			  "}\n";
 		String genmodelFile = createGenModelContent(testProjectPath, testFileStem, null);
 		doDelete(testProjectName);
