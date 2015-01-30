@@ -154,6 +154,54 @@ The actual constraints are lazily loaded by the first validation run that uses t
             class="codegen.company.CodegencompanyPackage"/>
    </extension>
    
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Bug458772 -->
+      <!--package
+            uri="http://www.example.com/bug458772/rootPackage/2.0"
+            class="bug458772.Bug458772Package"/-->
+      <package
+            uri="dummy-protocol://www.example.com/bug458772/rootPackage/2.0"
+            class="codegen.company.CodegencompanyPackage"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Bug458772 -->
+      <!--package
+            uri="http://www.example.com/bug458772/subPackage/2.0"
+            class="bug458772.subPackage.SubPackagePackage"/-->
+      <package
+            uri="dummy-protocol://www.example.com/bug458772/subPackage/2.0"
+            class="codegen.company.CodegencompanyPackage"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Bug458773 -->
+      <!--package
+            uri="http://www.example.com/bug458773/rootPackage/1.0"
+            class="bug458773.Bug458773Package"/-->
+      <package
+            uri="dummy-protocol://www.example.com/bug458773/rootPackage/1.0"
+            class="codegen.company.CodegencompanyPackage"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Bug458773 -->
+      <!--package
+            uri="http://www.example.com/bug458773/subPackage/1.0"
+            class="bug458773.subPackage.SubPackagePackage"/-->
+      <package
+            uri="dummy-protocol://www.example.com/bug458773/subPackage/1.0"
+            class="codegen.company.CodegencompanyPackage"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Bug458774 -->
+      <!--package
+            uri="http://www.example.com/bug458774/rootPackage/2.0"
+            class="bug458774.Bug458774Package"/-->
+      <package
+            uri="dummy-protocol://www.example.com/bug458774/rootPackage/2.0"
+            class="codegen.company.CodegencompanyPackage"/>
+   </extension>
+   
    <extension point="org.eclipse.ocl.examples.pivot.complete_ocl_registry">
       <document resource="model/ModelWithErrors.ocl">
          <for uri="http://www.eclipse.org/emf/2002/Ecore"/>

@@ -312,6 +312,7 @@ public class UsageTests
 		classpathProjects.add("org.eclipse.ocl.examples.domain");
 		classpathProjects.add("org.eclipse.ocl.examples.library");
 		classpathProjects.add("org.eclipse.ocl.examples.pivot");
+		classpathProjects.add("org.eclipse.osgi");
 		for (String extraClasspathProject : extraClasspathProjects) {
 			classpathProjects.add(extraClasspathProject);
 		}
@@ -882,5 +883,128 @@ public class UsageTests
 		doGenModel(testProjectPathA, fileURIA);
 		doCompile(testProjectNameA);
 		doCompile(testProjectNameB, testProjectNameA);
+	}
+	
+	public void testBug458772() throws Exception {
+		String testFileStem = "Bug458772";
+		String testProjectName = "bug458772";
+		String testProjectPath = EMFPlugin.IS_ECLIPSE_RUNNING ? testProjectName : ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS;
+		String oclinecoreFile = 
+			  "import ecore : 'http://www.eclipse.org/emf/2002/Ecore';\n" + 
+			  "\n" + 
+			  "package bug458772 : bug458772 = 'http://www.example.com/bug458772/rootPackage/2.0'\n" + 
+			  "{\n" + 
+			  "	package subPackage : subPackage = 'http://www.example.com/bug458772/subPackage/2.0'\n" + 
+			  "	{\n" + 
+			  "		class SubElement\n" + 
+			  "		{\n" + 
+			  "			operation op(tokens : String[*] { ordered !unique }) : Boolean\n" + 
+			  "			{\n" + 
+			  "				body: \n" + 
+			  "				\n" + 
+			  "				if tokens->at(1) = '1'\n" + 
+			  "				then\n" + 
+			  "					op2(tokens)\n" + 
+			  "			    else\n" + 
+			  "			    	true\n" + 
+			  "			    endif;\n" + 
+			  "			}\n" + 
+			  "			operation op2(tokens : String[*] { ordered !unique }) : Boolean\n" + 
+			  "			{\n" + 
+			  "				body: \n" + 
+			  "				true;\n" + 
+			  "			}\n" + 
+			  "		}\n" + 
+			  "	}\n" + 
+			  "	abstract class Element\n" + 
+			  "	{\n" + 
+			  "		attribute name : String = '';\n" + 
+			  "	}\n" + 
+			  "}\n";
+		String genmodelFile = createGenModelContent(testProjectPath, testFileStem, null);
+		doDelete(testProjectName);
+		URI genModelURI = createModels(testProjectPath, testFileStem, oclinecoreFile, genmodelFile);
+		doGenModel(testProjectPath, genModelURI);
+		doCompile(testProjectName);
+	}
+	
+	public void testBug458773() throws Exception {
+		String testFileStem = "Bug458773";
+		String testProjectName = "bug458773";
+		String testProjectPath = EMFPlugin.IS_ECLIPSE_RUNNING ? testProjectName : ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS;
+		String oclinecoreFile = 
+			  "import ecore : 'http://www.eclipse.org/emf/2002/Ecore';\n" + 
+			  "\n" + 
+			  "package bug458773 : bug458773 = 'http://www.example.com/bug458773/rootPackage/1.0'\n" + 
+			  "{\n" + 
+			  "    package subPackage : subPackage = 'http://www.example.com/bug458773/subPackage/1.0'\n" + 
+			  "    {\n" + 
+			  "        class Element extends bug458773::Element\n" + 
+			  "        {\n" + 
+			  "\n" + 
+			  "            /*\n" + 
+			  "             * Error also occurs with Bag(OclAny) in signature without\n" + 
+			  "{!unique}\n" + 
+			  "             */\n" + 
+			  "            operation op() : ocl::OclAny[*] { !unique }\n" + 
+			  "            {\n" + 
+			  "                body: \n" + 
+			  "                Bag{};\n" + 
+			  "            }\n" + 
+			  "        }\n" + 
+			  "    }\n" + 
+			  "    abstract class Element\n" + 
+			  "    {\n" + 
+			  "        attribute name : String = '';\n" + 
+			  "    }\n" + 
+			  "}\n";
+		String genmodelFile = createGenModelContent(testProjectPath, testFileStem, null);
+		doDelete(testProjectName);
+		URI genModelURI = createModels(testProjectPath, testFileStem, oclinecoreFile, genmodelFile);
+		doGenModel(testProjectPath, genModelURI);
+		doCompile(testProjectName);
+	}
+	
+	public void testBug458774() throws Exception {
+		String testFileStem = "Bug458774";
+		String testProjectName = "bug458774";
+		String testProjectPath = EMFPlugin.IS_ECLIPSE_RUNNING ? testProjectName : ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS;
+		String oclinecoreFile = 
+			  "import ecore : 'http://www.eclipse.org/emf/2002/Ecore';\n" + 
+			  "\n" + 
+			  "package bug458774 : bug458774 = 'http://www.example.com/bug458774/rootPackage/2.0'\n" + 
+			  "{\n" + 
+			  "    class Element\n" + 
+			  "    {\n" + 
+			  "        attribute name : String = '';\n" + 
+			  "        invariant\n" + 
+			  "        elementNameNotReservedWord: \n" + 
+			  "            let name: String = self.name.toLower() in\n" + 
+			  "            name <> 'reserved_1' and\n" + 
+			  "            name <> 'reserved_2' and\n" + 
+			  "            name <> 'reserved_3' and\n" + 
+			  "            name <> 'reserved_4' and\n" + 
+			  "            name <> 'reserved_5' and\n" + 
+			  "            name <> 'reserved_6' and\n" + 
+			  "            name <> 'reserved_7' and\n" + 
+			  "            name <> 'reserved_8' and\n" + 
+			  "            name <> 'reserved_9' and\n" + 
+			  "            name <> 'reserved_10' and\n" + 
+			  "            name <> 'reserved_11' and\n" + 
+			  "            name <> 'reserved_12' and\n" + 
+			  "            name <> 'reserved_13' and\n" + 
+			  "            name <> 'reserved_14' and\n" + 
+			  "            name <> 'reserved_15' and\n" + 
+			  "            name <> 'reserved_16' and\n" + 
+			  "            name <> 'reserved_17' and\n" + 
+			  "            name <> 'reserved_18' and\n" + 
+			  "            name <> 'reserved_19';\n" + 
+			  "    }\n" + 
+			  "}\n";
+		String genmodelFile = createGenModelContent(testProjectPath, testFileStem, null);
+		doDelete(testProjectName);
+		URI genModelURI = createModels(testProjectPath, testFileStem, oclinecoreFile, genmodelFile);
+		doGenModel(testProjectPath, genModelURI);
+		doCompile(testProjectName);
 	}
 }
