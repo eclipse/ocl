@@ -113,10 +113,14 @@ public class ProjectMap extends StandaloneProjectMap
 		}
 		StandaloneProjectMap adapter = findAdapter(resourceSet);
 		if (adapter == null) {
-			adapter = new ProjectMap();
+			adapter = new ProjectMap(false);
 			adapter.initializeResourceSet(resourceSet);
 		}
 		return adapter;
+	}
+
+	public ProjectMap(boolean isGlobal) {
+		super(isGlobal);
 	}
 
 	@Override

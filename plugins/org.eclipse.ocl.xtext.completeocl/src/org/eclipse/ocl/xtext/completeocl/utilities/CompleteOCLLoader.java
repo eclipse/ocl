@@ -59,6 +59,10 @@ public abstract class CompleteOCLLoader
 		ocl.dispose();
 	}
 	
+	public @NonNull EnvironmentFactory getEnvironmentFactory() {
+		return ocl.getEnvironmentFactory();
+	}
+	
 	public @NonNull MetamodelManager getMetamodelManager() {
 		return ocl.getMetamodelManager();
 	}

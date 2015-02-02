@@ -174,10 +174,9 @@ public class EvaluateUMLTest4 extends PivotTestSuite
 	}
 
 	public EObject doLoadUML(OCL ocl, String stem, String fragment) throws IOException {
-		MetamodelManager metamodelManager = ocl.getMetamodelManager();
 		String umlName = stem + ".uml";
 		URI umlURI = getProjectFileURI(umlName).appendFragment(fragment);
-		return metamodelManager.getExternalResourceSet().getEObject(umlURI, true);
+		return ocl.getResourceSet().getEObject(umlURI, true);
 	}
 	
 	/**

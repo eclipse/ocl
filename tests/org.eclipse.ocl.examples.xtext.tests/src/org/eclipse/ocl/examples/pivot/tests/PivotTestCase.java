@@ -594,8 +594,7 @@ public class PivotTestCase extends TestCase
 	}
 
 	public static @NonNull StandaloneProjectMap getProjectMap() {
-		EnvironmentFactory globalEnvironmentFactory = OCL.Internal.getGlobalEnvironmentFactory();
-		return (StandaloneProjectMap)globalEnvironmentFactory.getProjectManager();
+		return (StandaloneProjectMap)ProjectManager.GLOBAL;
 //		StandaloneProjectMap projectMap2 = projectMap;
 //		if (projectMap2 == null) {
 //			projectMap = projectMap2 = EcorePlugin.IS_ECLIPSE_RUNNING ? new ProjectMap() : new StandaloneProjectMap();

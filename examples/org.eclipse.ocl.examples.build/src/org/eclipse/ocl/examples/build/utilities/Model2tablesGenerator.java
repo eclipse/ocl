@@ -73,7 +73,7 @@ public class Model2tablesGenerator extends AbstractWorkflowComponent
 			}
 		}
 		try {
-			StandaloneProjectMap projectMap = new StandaloneProjectMap();
+			StandaloneProjectMap projectMap = new StandaloneProjectMap(false);
 			projectMap.initializeResourceSet(resourceSet);
 			resourceSet.getPackageRegistry().put(GenModelPackage.eNS_URI, GenModelPackage.eINSTANCE);
 			Resource genModelResource = resourceSet.getResource(genModelURI, true);

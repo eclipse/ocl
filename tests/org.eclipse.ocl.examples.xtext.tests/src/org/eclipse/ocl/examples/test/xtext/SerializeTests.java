@@ -93,9 +93,8 @@ public class SerializeTests extends XtextTestCase
 		OCL ocl1 = OCL.newInstance(getProjectMap());
 		XtextResource xtextResource1 = null;
 		try {
-			MetamodelManager metamodelManager1 = ocl1.getMetamodelManager();
 			if (resourceSetInitializer != null) {
-				resourceSetInitializer.initializeResourceSet(metamodelManager1.getExternalResourceSet());
+				resourceSetInitializer.initializeResourceSet(ocl1.getResourceSet());
 			}
 			ASResource asResource = ocl1.ecore2as(ecoreResource);
 			assertNoResourceErrors("Normalisation failed", asResource);
@@ -112,9 +111,8 @@ public class SerializeTests extends XtextTestCase
 		}
 		OCL ocl2 = OCL.newInstance(getProjectMap());
 		try {
-			MetamodelManager metamodelManager2 = ocl2.getMetamodelManager();
 			if (resourceSetInitializer != null) {
-				resourceSetInitializer.initializeResourceSet(metamodelManager2.getExternalResourceSet());
+				resourceSetInitializer.initializeResourceSet(ocl2.getResourceSet());
 			}
 			BaseCSResource xtextResource2 = (BaseCSResource) resourceSet.createResource(outputURI);
 			ocl2.getEnvironmentFactory().adapt(xtextResource2);

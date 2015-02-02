@@ -66,7 +66,7 @@ public class XMI2UMLResourceReader extends WorkflowComponentWithModelSlot
 			UMLResourcesUtil.init(resourceSet);
 			Resource resource = resourceSet.createResource(fileURI, XMI2UMLResource.UML_CONTENT_TYPE_IDENTIFIER);
 			resource.load(null);
-			new ProjectMap().initializeResourceSet(resourceSet);
+			new ProjectMap(false).initializeResourceSet(resourceSet);
 			EcoreUtil.resolveAll(resourceSet);
 			ResourceUtils.checkResourceSet(resourceSet);
 			@SuppressWarnings("unused")

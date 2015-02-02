@@ -352,8 +352,7 @@ public class EditTests extends XtextTestCase
 		//	Load and instrument test document
 		//
 		OCL.Internal ocl1 = OCL.Internal.newInstance(getProjectMap());
-		MetamodelManager metamodelManager1 = ocl1.getMetamodelManager();
-		Resource ecoreResource = ClassUtil.nonNullEMF(metamodelManager1.getExternalResourceSet().getResource(ecoreURI, true));
+		Resource ecoreResource = ClassUtil.nonNullEMF(ocl1.getResourceSet().getResource(ecoreURI, true));
 		assertNoResourceErrors("Ecore load", ecoreResource);
 		assertNoValidationErrors("Ecore load", ecoreResource);
 		ASResource asResource = ocl1.ecore2as(ecoreResource);
@@ -723,8 +722,7 @@ public class EditTests extends XtextTestCase
 //			URI ecoreURI1 = getProjectFileURI("test1.ecore");
 //			InputStream inputStream = new URIConverter.ReadableInputStream(testDocument, "UTF-8");
 //			URI outputURI = getProjectFileURI("test.ocl");
-			MetamodelManager metamodelManager = ocl.getMetamodelManager();
-			ProjectManager projectMap = metamodelManager.getProjectManager();
+			ProjectManager projectMap = ocl.getProjectManager();
 			projectMap.initializeResourceSet(ocl.getResourceSet());
 			@SuppressWarnings("null")@NonNull URI libURI = URI.createPlatformResourceURI("org.eclipse.ocl.pivot/model/OCL-2.5.oclstdlib", true);
 			xtextResource = ocl.getCSResource(libURI);

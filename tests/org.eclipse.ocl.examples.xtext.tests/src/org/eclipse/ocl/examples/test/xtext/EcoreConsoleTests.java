@@ -20,13 +20,23 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.utilities.OCL;
 
 /**
  * Tests that exercise the Xtext OCL Console using simple Ecore models.
  */
 public class EcoreConsoleTests extends AbstractConsoleTests
-{	
+{
+	public static final @NonNull String ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS = "org.eclipse.ocl.examples.xtext.tests";
+
+	@Override
+	protected void setUp() throws Exception {
+		String testProjectPath = /*EMFPlugin.IS_ECLIPSE_RUNNING ? testProjectName :*/ ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS;
+		doDelete(testProjectPath);
+		super.setUp();
+	}
+
 	public void testConsole_Ecore() throws Exception {
 		assertConsoleResult(consolePage, EcorePackage.Literals.ECLASS, "self.name", "'EClass'\n");
 //		assertConsoleResult(consolePage, EcorePackage.Literals.ECLASS, "self.instanceType.eAttributes.name", "");

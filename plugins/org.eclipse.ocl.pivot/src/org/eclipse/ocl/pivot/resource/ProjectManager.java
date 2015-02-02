@@ -29,7 +29,7 @@ import org.eclipse.jdt.annotation.Nullable;
  * Clients might use one of the following implementations
  * <ul>
  * 		<li>{@link ProjectManager#NO_PROJECTS} - Lightweight with no external projects contributions</li>
- *		<li>{@link ProjectManager#GLOBAL_PROJECT_MANAGER} - A shared Heavyweight including classpath analysis</li>
+ *		<li>{@link ProjectManager#GLOBAL} - A shared Heavyweight including classpath analysis</li>
  *		<li>{@link BasicProjectManager#createDefaultProjectManager()} - Convenient method to create local heavyweight local managers</li>
  * </ul>
  *
@@ -40,14 +40,14 @@ public interface ProjectManager extends Adapter
 	 * The NO_PROJECTS instance of ProjectManager contributes no external projects to a user application. 
 	 */
 	public static final @NonNull ProjectManager NO_PROJECTS = new BasicProjectManager();
-	
+
 	/**
-	 * TODO
+	 * The GLOBAL ProjectManager provides a shared ProjectManager that allows many OCL instances to share
+	 * a single immutable ProjectManager and consequently share the costly classpath analysis to identify
+	 * available projects.
 	 */
-	public static final @NonNull ProjectManager GLOBAL_PROJECT_MANAGER = BasicProjectManager.createDefaultProjectManager();
-	
-	
-	
+	public static final @NonNull ProjectManager GLOBAL = BasicProjectManager.createGlobalProjectManager();
+
 	/**
 	 * An IConflictHandler configures the handling of conflicting access between generated packages and
 	 * dynamically loaded resources.
@@ -489,6 +489,8 @@ public interface ProjectManager extends Adapter
 	IPackageDescriptor getPackageDescriptor(@NonNull URI ecoreURI);
 
 	void initializeResourceSet(@NonNull ResourceSet resourceSet);
+
+	boolean isGlobal();
 
 	void useGeneratedResource(@NonNull Resource resource, @NonNull ResourceSet resourceSet);
 

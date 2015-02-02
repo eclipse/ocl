@@ -156,6 +156,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 		EPackage.Registry packageRegistry = asResourceSet.getPackageRegistry();
 		packageRegistry.put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
 		asResourceSet.eAdapters().add(projectManager);
+		projectManager.initializeResourceSet(asResourceSet);
 		return asResourceSet;
 	}
 
@@ -225,12 +226,12 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 
 	@Override
 	public @NonNull PivotMetamodelManager createMetamodelManager() {
-		return new PivotMetamodelManager(this, null);
+		return new PivotMetamodelManager(this, createASResourceSet(), null);
 	}
 
-	public @NonNull PivotMetamodelManager createMetamodelManager(@NonNull ResourceSet resourceSet) {
+	public @NonNull PivotMetamodelManager createMetamodelManager(@NonNull ResourceSet externalResourceSet) {
 		assert metamodelManager == null;
-		metamodelManager = new PivotMetamodelManager(this, resourceSet);
+		metamodelManager = new PivotMetamodelManager(this, createASResourceSet(), externalResourceSet);
 		assert metamodelManager != null;
 		return metamodelManager;
 	}
@@ -437,6 +438,9 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 		return null;
 	}
 
+	/**
+	 * Return the ProjectMap used to resolve EPackages.
+	 */
 	@Override
 	public @NonNull ProjectManager getProjectManager() {
 		return projectManager;

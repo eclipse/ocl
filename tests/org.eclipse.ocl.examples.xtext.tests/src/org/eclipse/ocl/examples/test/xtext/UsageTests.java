@@ -79,8 +79,6 @@ import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
-import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
@@ -441,10 +439,8 @@ public class UsageTests
 		URI fileURI = genmodelURI; //getProjectFileURI(testFileStem + ".genmodel");
 		// System.out.println("Generating Ecore Model using '" + fileURI + "'");
 //		metamodelManager2.dispose();
-		EnvironmentFactory environmentFactory = ocl.getEnvironmentFactory();
-		MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
-		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
-		ProjectManager projectMap = metamodelManager.getProjectManager();
+		ResourceSet resourceSet = ocl.getResourceSet();
+		ProjectManager projectMap = ocl.getProjectManager();
 		projectMap.configure(resourceSet, StandaloneProjectMap.LoadFirstStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
 		resourceSet.getPackageRegistry().put(org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.eNS_URI,  org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.eINSTANCE);
 		//FIXME this is needed so long as Pivot.merged.genmodel is a UML genmodel

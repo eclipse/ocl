@@ -25,7 +25,7 @@ public class ProjectMapSetup
 	public ProjectMapSetup() {
 		if (projectMap == null) {
 			log.info("Creating project map.");
-			projectMap = new ProjectMap();
+			projectMap = new ProjectMap(false);
 			projectMap.initializeResourceSet(null);
 		}
 		else {

@@ -64,7 +64,7 @@ public abstract class AbstractValidityTestCase extends TestCase
 			TEST_PROJECT_LOCATION = "platform:/plugin/" +PLUGIN_ID;
 		}
 		else {
-			StandaloneProjectMap projectMap = new StandaloneProjectMap();
+			StandaloneProjectMap projectMap = new StandaloneProjectMap(false);
 			StandaloneProjectMap.IProjectDescriptor projectDescriptor = projectMap.getProjectDescriptor(PLUGIN_ID);
 			TEST_PROJECT_LOCATION = projectDescriptor.getLocationURI().toString();
 			if (TEST_PROJECT_LOCATION.endsWith("/")) {
@@ -141,7 +141,7 @@ public abstract class AbstractValidityTestCase extends TestCase
 
 	public static ProjectMap getProjectMap() {
 		if (projectMap == null) {
-			projectMap = new ProjectMap();
+			projectMap = new ProjectMap(false);
 		}
 		return projectMap;
 	}

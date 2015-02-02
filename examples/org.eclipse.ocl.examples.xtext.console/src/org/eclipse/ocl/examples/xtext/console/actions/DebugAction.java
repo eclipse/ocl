@@ -166,13 +166,14 @@ public final class DebugAction extends Action
 		 * @throws IOException 
 		 */
 		protected @Nullable BaseCSResource loadDocument(IProgressMonitor monitor, @NonNull URI documentURI) throws Exception {
-			MetamodelManager metamodelManager = OCL.Internal.createEnvironmentFactory(OCL.NO_PROJECTS).getMetamodelManager();
-			ResourceSet externalResourceSet = metamodelManager.getExternalResourceSet();
+			EnvironmentFactoryInternal environmentFactory = OCL.Internal.createEnvironmentFactory(OCL.NO_PROJECTS);		// FIXME dispose
+			ResourceSet externalResourceSet = environmentFactory.getResourceSet();
 			if (contextObject != null) {
 				Resource contextResource = contextObject.eResource();
 				if (contextResource != null) {
 					ResourceSet contextResourceSet = contextResource.getResourceSet();
 					if (contextResourceSet != null) {
+						MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 						((PivotMetamodelManager)metamodelManager).addExternalResources(contextResourceSet);
 					}
 					else {

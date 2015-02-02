@@ -117,10 +117,15 @@ public class OCL
 			}
 		}
 		
+		/**
+		 * Return the global EnvironmentFactory that may be shared amongst OCL consumers for which Complete OCL
+		 * complements are not possible. Typically this is the OCLDElegateDomains that supported interpreted
+		 * execution of OCL embedded in Ecore.
+		 */
 		public static @NonNull EnvironmentFactoryInternal getGlobalEnvironmentFactory() {
 			EnvironmentFactoryInternal globalRegistryInstance2 = GLOBAL_ENVIRONMENT_FACTORY;
 			if (globalRegistryInstance2 == null) {
-				GLOBAL_ENVIRONMENT_FACTORY = globalRegistryInstance2 = OCL.Internal.createEnvironmentFactory(BasicProjectManager.GLOBAL_PROJECT_MANAGER);
+				GLOBAL_ENVIRONMENT_FACTORY = globalRegistryInstance2 = OCL.Internal.createEnvironmentFactory(ProjectManager.GLOBAL);
 //				PivotUtilInternal.debugPrintln("Create Global " + NameUtil.debugSimpleName(GLOBAL_ENVIRONMENT_FACTORY));	
 			}
 //			else {
@@ -652,6 +657,10 @@ public class OCL
 	 */
 	public @Nullable Diagnostic getProblems() {
 		return problems;
+	}
+
+	public @NonNull ProjectManager getProjectManager() {
+		return environmentFactory.getProjectManager();
 	}
 
 	public @NonNull ResourceSet getResourceSet() {

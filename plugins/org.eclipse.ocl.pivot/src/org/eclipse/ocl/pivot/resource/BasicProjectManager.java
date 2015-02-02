@@ -11,12 +11,12 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.resource;
 
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
@@ -29,6 +29,26 @@ import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
  */
 public class BasicProjectManager extends AdapterImpl implements ProjectManager
 {
+	public static @NonNull ProjectManager createDefaultProjectManager() { 
+		return EcorePlugin.IS_ECLIPSE_RUNNING ? new ProjectMap(false) : new StandaloneProjectMap(false);
+	}
+	
+	public static @NonNull ProjectManager createGlobalProjectManager() { 
+		return EcorePlugin.IS_ECLIPSE_RUNNING ? new ProjectMap(true) : new StandaloneProjectMap(true);
+	}
+	
+	/**
+	 * Return any {@link ProjectManager} already installed as an adapter on a
+	 * <tt>resourceSet</tt>. Returns null if there is no such adapter.
+	 */
+	public static @Nullable ProjectManager findAdapter(@NonNull ResourceSet resourceSet) {
+		for (Adapter adapter : resourceSet.eAdapters()) {
+			if (adapter instanceof ProjectManager) {
+				return (ProjectManager)adapter;
+			}
+		}
+		return null;
+	}
 
 	@Override
 	public void addResourceDescriptor(@NonNull IResourceDescriptor resourceDescriptor) {
@@ -48,24 +68,15 @@ public class BasicProjectManager extends AdapterImpl implements ProjectManager
 	}
 
 	@Override
+	public boolean isGlobal() {
+		return false;
+	}
+
+	@Override
 	public void unload(@NonNull ResourceSet resourceSet) {
 	}
 
 	@Override
 	public void useGeneratedResource(@NonNull Resource resource, @NonNull ResourceSet resourceSet) {
-	}
-	
-	
-	public static @NonNull ProjectManager createDefaultProjectManager() { 
-		return EcorePlugin.IS_ECLIPSE_RUNNING ? new ProjectMap() : new StandaloneProjectMap();
-	}
-	
-	/**
-	 * Return any {@link ProjectManager} already installed as an adapter on a
-	 * <tt>resourceSet</tt>. Returns null if there is no such adapter.
-	 */
-	public static @Nullable ProjectManager findAdapter(@NonNull ResourceSet resourceSet) {
-		return (ProjectManager) EcoreUtil.getAdapter(
-			resourceSet.eAdapters(), ProjectManager.class);
 	}
 }

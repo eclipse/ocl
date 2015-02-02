@@ -25,8 +25,7 @@ public class UMLConsoleTests extends AbstractConsoleTests
 {	
 	public void testConsole_Bug419556() throws Exception {
 		OCL ocl = consolePage.getEditorOCL();
-		MetamodelManager metamodelManager = ocl.getMetamodelManager();
-		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
+		ResourceSet resourceSet = ocl.getResourceSet();
 
 		URI testModelURI = getProjectFileURI("Bug419556.uml");
         Resource umlResource = resourceSet.getResource(testModelURI, true);
@@ -45,8 +44,7 @@ public class UMLConsoleTests extends AbstractConsoleTests
 
 	public void testConsole_Bug437715() throws Exception {
 		OCL ocl = consolePage.getEditorOCL();
-		MetamodelManager metamodelManager = ocl.getMetamodelManager();
-		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
+		ResourceSet resourceSet = ocl.getResourceSet();
 
 		URI testModelURI = getProjectFileURI("Bug437715.uml");
         Resource umlResource = resourceSet.getResource(testModelURI, true);

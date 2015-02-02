@@ -110,6 +110,7 @@ public interface MetamodelManager
 
 	@NonNull EnvironmentFactory getEnvironmentFactory();
 
+	@Deprecated // Use getEnvironmentFactory().getResourceSet()
 	@NonNull ResourceSet getExternalResourceSet();
 
 	@NonNull Operation getPrimaryOperation(@NonNull Operation pivotOperation);
@@ -118,6 +119,7 @@ public interface MetamodelManager
 
 	@NonNull Property getPrimaryProperty(@NonNull Property pivotProperty);
 	
+	@Deprecated // Use getEnvironmentFactory().getProjectManager()
 	@NonNull ProjectManager getProjectManager();
 
 	@NonNull StandardLibrary getStandardLibrary();

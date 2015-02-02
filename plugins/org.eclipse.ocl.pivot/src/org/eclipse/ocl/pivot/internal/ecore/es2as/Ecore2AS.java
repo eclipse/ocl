@@ -383,7 +383,7 @@ public class Ecore2AS extends AbstractEcore2AS
 			return null;
 		}
 		if (ClassUtil.isRegistered(ecoreResource)) {
-			ProjectManager projectManager = metamodelManager.getProjectManager();
+			ProjectManager projectManager = environmentFactory.getProjectManager();
 			StandaloneProjectMap.IPackageDescriptor packageDescriptor = projectManager.getPackageDescriptor(ecoreURI);
 			if (packageDescriptor == null) {
 				return null;

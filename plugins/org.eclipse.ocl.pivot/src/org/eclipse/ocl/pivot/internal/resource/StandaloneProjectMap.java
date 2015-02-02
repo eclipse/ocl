@@ -227,7 +227,7 @@ public class StandaloneProjectMap implements ProjectManager
 	public static final @NonNull TracingOption PROJECT_MAP_GET = new TracingOption(PLUGIN_ID, "projectMap/get");
 	public static final @NonNull TracingOption PROJECT_MAP_INSTALL = new TracingOption(PLUGIN_ID, "projectMap/install");
 	public static final @NonNull TracingOption PROJECT_MAP_RESOLVE = new TracingOption(PLUGIN_ID, "projectMap/resolve");
-	
+
 	{
 //		PROJECT_MAP_ADD_EPACKAGE.setState(true);
 //		PROJECT_MAP_ADD_GEN_MODEL.setState(true);
@@ -2193,7 +2193,7 @@ public class StandaloneProjectMap implements ProjectManager
 	public static @NonNull StandaloneProjectMap getAdapter(@NonNull ResourceSet resourceSet) {
 		StandaloneProjectMap adapter = findAdapter(resourceSet);
 		if (adapter == null) {
-			adapter = new StandaloneProjectMap();
+			adapter = new StandaloneProjectMap(false);
 //			resourceSet.eAdapters().add(adapter);
 			adapter.initializeResourceSet(resourceSet);
 		}
@@ -2274,14 +2274,10 @@ public class StandaloneProjectMap implements ProjectManager
 	 */
 	public static WeakHashMap<StandaloneProjectMap,Object> liveStandaloneProjectMaps = null;
 
-	public StandaloneProjectMap() {
-		super();
-		if (liveStandaloneProjectMaps != null) {
-			liveStandaloneProjectMaps.put(this, null);
-			PivotUtilInternal.debugPrintln("Create " + getClass().getSimpleName()
-				+ "@" + Integer.toHexString(System.identityHashCode(this)));	
-		}
-	}
+	/**
+	 * Whether this is the Global Project Manager
+	 */
+	protected final boolean isGlobal;
 
 	/**
 	 * Exceptions encountered during processing as a map from File to Exception.
@@ -2304,6 +2300,16 @@ public class StandaloneProjectMap implements ProjectManager
 	 * The map of document URI to resource descriptor.
 	 */
 	protected @Nullable Map<URI, IResourceDescriptor> uri2resource = null;
+
+	public StandaloneProjectMap(boolean isGlobal) {
+		super();
+		this.isGlobal = isGlobal;
+		if (liveStandaloneProjectMaps != null) {
+			liveStandaloneProjectMaps.put(this, null);
+			PivotUtilInternal.debugPrintln("Create " + getClass().getSimpleName()
+				+ "@" + Integer.toHexString(System.identityHashCode(this)));	
+		}
+	}
 
 	/**
 	 * Call-back to add a resourceDescriptor.
@@ -2540,7 +2546,10 @@ public class StandaloneProjectMap implements ProjectManager
 		initializeGenModelLocationMap(false);
 		initializePackageRegistry(resourceSet);
 		if (resourceSet != null) {
-			resourceSet.eAdapters().add(this);
+			List<Adapter> eAdapters = resourceSet.eAdapters();
+			if (!eAdapters.contains(this)) {
+				eAdapters.add(this);
+			}
 		}
 	}
 
@@ -2569,6 +2578,11 @@ public class StandaloneProjectMap implements ProjectManager
 	public boolean isAdapterForType(Object type) {
 		return (type instanceof Class<?>)
 			&& ((Class<?>) type).isAssignableFrom(StandaloneProjectMap.class);
+	}
+
+	@Override
+	public boolean isGlobal() {
+		return isGlobal;
 	}
 
 	protected void logException(@NonNull String message, @NonNull Exception e) {

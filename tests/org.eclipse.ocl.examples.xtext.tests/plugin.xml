@@ -171,6 +171,13 @@ The actual constraints are lazily loaded by the first validation run that uses t
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Bug458722 -->
+      <package
+            uri="http://www.example.com/bug458722/rootPackage/2.0"
+            class="bug458722.Bug458722Package"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated Bug458722 NOT -->
       <!--package
             uri="http://www.example.com/bug458722/subPackage/2.0"
@@ -179,4 +186,24 @@ The actual constraints are lazily loaded by the first validation run that uses t
             uri="dummy-protocol://www.example.com/bug458722/subPackage/2.0"
             class="codegen.company.CodegencompanyPackage"/>
    </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Bug458723 -->
+      <package
+            uri="http://www.example.com/bug458723/rootPackage/1.0"
+            class="bug458723.Bug458723Package"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Bug458723 -->
+      <package
+            uri="http://www.example.com/bug458723/subPackage/1.0"
+            class="bug458723.subPackage.SubPackagePackage"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Bug458724 -->
+      <package
+            uri="http://www.example.com/bug458724/rootPackage/2.0"
+            class="bug458724.Bug458724Package"/>
+   </extension>
+
 </plugin>

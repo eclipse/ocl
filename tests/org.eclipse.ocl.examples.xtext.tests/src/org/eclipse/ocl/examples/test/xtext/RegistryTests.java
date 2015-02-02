@@ -52,7 +52,7 @@ public class RegistryTests extends TestCase
 		try {
 			EcorePlugin.ExtensionProcessor.process(null);
 			ResourceSet resourceSet = new ResourceSetImpl();
-			new ProjectMap().initializeResourceSet(resourceSet);
+			new ProjectMap(false).initializeResourceSet(resourceSet);
 			resourceSet.getResource(URI.createPlatformPluginURI("/org.eclipse.emf.ecore/model/Ecore.ecore", true), true);
 			CompleteOCLRegistry registry = CompleteOCLRegistry.INSTANCE;
 			Set<URI> registeredResourceURIs = registry.getResourceURIs(resourceSet);

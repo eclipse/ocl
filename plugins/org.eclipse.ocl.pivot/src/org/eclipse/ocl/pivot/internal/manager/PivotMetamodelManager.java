@@ -125,6 +125,7 @@ import org.eclipse.ocl.pivot.library.UnsupportedOperation;
 import org.eclipse.ocl.pivot.model.OCLmetamodel;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.resource.BasicProjectManager;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -323,11 +324,14 @@ public class PivotMetamodelManager implements MetamodelManager.Internal, Adapter
 	 * Construct a MetamodelManager that will use environmentFactory to create its artefacts
 	 * such as an asResourceSet to contain pivot copies of meta-models.
 	 */
-	public PivotMetamodelManager(@NonNull EnvironmentFactoryInternal environmentFactory, @Nullable ResourceSet resourceSet) {
+	public PivotMetamodelManager(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull ResourceSet asResourceSet, @Nullable ResourceSet externalResourceSet) {
 		this.environmentFactory = environmentFactory;
-		asResourceSet = environmentFactory.createASResourceSet();
-		asResourceSet.eAdapters().add(this);
-		externalResourceSet = resourceSet;
+		this.asResourceSet = asResourceSet;
+		this.externalResourceSet = externalResourceSet;
+		List<Adapter> asResourceSetAdapters = asResourceSet.eAdapters();
+		assert !asResourceSetAdapters.contains(this);
+		asResourceSetAdapters.add(this);
+		assert asResourceSetAdapters.contains(environmentFactory.getProjectManager());
 		completeEnvironment = environmentFactory.getCompleteEnvironment();
 		standardLibrary = environmentFactory.getStandardLibrary();
 		completeModel = environmentFactory.getCompleteModel();
@@ -362,7 +366,7 @@ public class PivotMetamodelManager implements MetamodelManager.Internal, Adapter
 		Resource resource = external2as.getResource();
 		if ((resource != null) && ClassUtil.isRegistered(resource)) {
 			ResourceSet externalResourceSet2 = getExternalResourceSet();
-			getProjectManager().useGeneratedResource(resource, externalResourceSet2);
+			environmentFactory.getProjectManager().useGeneratedResource(resource, externalResourceSet2);
 		}
 		external2asMap.put(uri, external2as);
 	}
@@ -533,7 +537,7 @@ public class PivotMetamodelManager implements MetamodelManager.Internal, Adapter
 	 */
 	public void configureLoadStrategy(@NonNull StandaloneProjectMap.IResourceLoadStrategy packageLoadStrategy, @Nullable StandaloneProjectMap.IConflictHandler conflictHandler) {
 		ResourceSet externalResourceSet = getExternalResourceSet();
-		ProjectManager projectManager = getProjectManager();
+		ProjectManager projectManager = environmentFactory.getProjectManager();
 		projectManager.configure(externalResourceSet, StandaloneProjectMap.LoadFirstStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
 	}
 
@@ -1072,7 +1076,7 @@ public class PivotMetamodelManager implements MetamodelManager.Internal, Adapter
 		ResourceSet externalResourceSet2 = externalResourceSet;
 		if (externalResourceSet2 == null) {
 			externalResourceSet2 = externalResourceSet = new ResourceSetImpl();
-			ProjectManager projectManager = getProjectManager();
+			ProjectManager projectManager = environmentFactory.getProjectManager();
 			projectManager.initializeResourceSet(externalResourceSet2);			
 			externalResourceSet2.getResourceFactoryRegistry().getExtensionToFactoryMap().put("emof", new EMOFResourceFactoryImpl()); //$NON-NLS-1$
 			environmentFactory.adapt(externalResourceSet2);
@@ -1737,18 +1741,11 @@ public class PivotMetamodelManager implements MetamodelManager.Internal, Adapter
 	}
 
 	/**
-	 * Return the ProjectMap used to resolve EPackages for the extertnalResourceSet.
+	 * Return the ProjectMap used to resolve EPackages.
 	 */
 	@Override
 	public @NonNull ProjectManager getProjectManager() {
-		ProjectManager projectManager = StandaloneProjectMap.findAdapter(asResourceSet);
-		if (projectManager == null) {
-			projectManager = environmentFactory.getProjectManager();
-//			adapter = new ProjectMap();
-			projectManager.initializeResourceSet(asResourceSet);
-		}
-		return projectManager;
-//		return ProjectMap.getAdapter(asResourceSet);
+		return environmentFactory.getProjectManager();
 	}
 
 	public @NonNull ASResource getResource(@NonNull URI uri, @Nullable String contentType) {

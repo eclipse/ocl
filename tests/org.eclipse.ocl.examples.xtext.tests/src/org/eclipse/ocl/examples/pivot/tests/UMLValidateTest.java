@@ -43,7 +43,6 @@ import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
-import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.ParserException;
@@ -216,9 +215,9 @@ public class UMLValidateTest extends AbstractValidateTests
 				return false;
 			}
 		};
-		MetamodelManager metamodelManager = helper.getMetamodelManager();
-		ProjectManager projectMap = metamodelManager.getProjectManager();
-		projectMap.configure(metamodelManager.getExternalResourceSet(), StandaloneProjectMap.LoadGeneratedPackageStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
+		EnvironmentFactory environmentFactory = helper.getEnvironmentFactory();
+		ProjectManager projectMap = environmentFactory.getProjectManager();
+		projectMap.configure(environmentFactory.getResourceSet(), StandaloneProjectMap.LoadGeneratedPackageStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
 		@SuppressWarnings("unused")Resource oclResource = helper.loadResource(oclURI);
 		if (!helper.loadMetamodels()) {
 			fail("Failed to loadMetamodels");
@@ -261,9 +260,9 @@ public class UMLValidateTest extends AbstractValidateTests
 		assertValidationDiagnostics("Loading", umlResource);
 		URI oclURI = getProjectFileURI("Bug404882.ocl");
 		LoaderWithLog helper = new LoaderWithLog(ocl.getEnvironmentFactory());
-		MetamodelManager metamodelManager = helper.getMetamodelManager();
-		ProjectManager projectMap = metamodelManager.getProjectManager();
-		projectMap.configure(metamodelManager.getExternalResourceSet(), StandaloneProjectMap.LoadGeneratedPackageStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
+		EnvironmentFactory environmentFactory = helper.getEnvironmentFactory();
+		ProjectManager projectMap = environmentFactory.getProjectManager();
+		projectMap.configure(environmentFactory.getResourceSet(), StandaloneProjectMap.LoadGeneratedPackageStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
 		@SuppressWarnings("unused")Resource oclResource = helper.loadResource(oclURI);
 		if (!helper.loadMetamodels()) {
 			fail("Failed to loadMetamodels :\n" + helper.toString());
