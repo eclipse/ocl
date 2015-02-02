@@ -40,7 +40,6 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.notify.impl.SingletonAdapterImpl;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -213,7 +212,7 @@ import org.xml.sax.helpers.DefaultHandler;
  * one or more IPackageDescriptors for in use IResourceDescriptors and IPackageDescriptors. The
  * IResourceLoadStatus is confugured with an IResourceLoadStrategy and an IConflictHandler.
  */
-public class StandaloneProjectMap extends SingletonAdapterImpl implements ProjectManager
+public class StandaloneProjectMap implements ProjectManager
 {
 	private static final String PLUGIN_ID = PivotPlugin.PLUGIN_ID;
 
@@ -2202,17 +2201,6 @@ public class StandaloneProjectMap extends SingletonAdapterImpl implements Projec
 	}
 
 	/**
-	 * Eliminate all facilities used by the ProjectMap for the resourceSet.
-	 */
-	public static void dispose(@NonNull ResourceSet resourceSet) {
-		StandaloneProjectMap projectMap = findAdapter(resourceSet);
-		if (projectMap != null) {
-			projectMap.unload(resourceSet);
-			projectMap.unsetTarget(resourceSet);
-		}
-	}
-
-	/**
 	 * Return the EPackage.Registry for a resourceSet or the Global
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry#INSTANCE} if resourceSet is null.
 	 */
@@ -2464,6 +2452,11 @@ public class StandaloneProjectMap extends SingletonAdapterImpl implements Projec
 		else {
 			return project2descriptor2.keySet();
 		}
+	}
+
+	@Override
+	public Notifier getTarget() {
+		return null;
 	}
 
 	/**
@@ -2777,6 +2770,9 @@ public class StandaloneProjectMap extends SingletonAdapterImpl implements Projec
 			registerProject(dotProject);
 		return containsProject || dotProject != null;
 	}
+
+	@Override
+	public void setTarget(Notifier newTarget) {}
 
 	@Override
 	public String toString() {

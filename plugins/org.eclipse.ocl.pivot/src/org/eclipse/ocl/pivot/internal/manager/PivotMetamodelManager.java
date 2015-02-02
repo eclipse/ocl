@@ -646,11 +646,21 @@ public class PivotMetamodelManager implements MetamodelManager.Internal, Adapter
 //		asResourceSet.setURIResourceMap(null);
 		asLibraries.clear();	
 		asLibraryResource = null;
-		StandaloneProjectMap.dispose(asResourceSet);
+		StandaloneProjectMap projectMap = StandaloneProjectMap.findAdapter(asResourceSet);
+		if (projectMap != null) {
+			projectMap.unload(asResourceSet);
+			asResourceSet.eAdapters().remove(projectMap);
+		}
+//		StandaloneProjectMap.dispose(asResourceSet);
 		ResourceSet externalResourceSet2 = externalResourceSet;
 		if (externalResourceSet2 != null) {
 //			System.out.println("dispose CS " + ClassUtil.debugSimpleName(externalResourceSet));
-			StandaloneProjectMap.dispose(externalResourceSet2);
+			StandaloneProjectMap projectMap2 = StandaloneProjectMap.findAdapter(externalResourceSet2);
+			if (projectMap2 != null) {
+				projectMap2.unload(externalResourceSet2);
+				externalResourceSet2.eAdapters().remove(projectMap2);
+			}
+//			StandaloneProjectMap.dispose(externalResourceSet2);
 			externalResourceSet2.setPackageRegistry(null);
 			externalResourceSet2.setResourceFactoryRegistry(null);
 			externalResourceSet2.setURIConverter(null);

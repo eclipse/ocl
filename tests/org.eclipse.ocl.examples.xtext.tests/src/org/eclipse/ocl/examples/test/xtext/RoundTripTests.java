@@ -126,7 +126,7 @@ public class RoundTripTests extends XtextTestCase
 	public void doRoundTripFromCompleteOCL(@NonNull OCL ocl, URI inputURI) throws IOException, InterruptedException {
 		ResourceSet resourceSet = ocl.getResourceSet();
 		MessageBinder savedMessageBinder = CS2AS.setMessageBinder(CS2AS.MessageBinderWithLineContext.INSTANCE);
-		StandaloneProjectMap projectMap = StandaloneProjectMap.getAdapter(resourceSet);
+		StandaloneProjectMap projectMap = (StandaloneProjectMap)ocl.getEnvironmentFactory().getProjectManager();
 		try {
 			projectMap.initializeResourceSet(resourceSet);			
 			if (!resourceSet.getURIConverter().exists(inputURI, null)) {
@@ -165,7 +165,6 @@ public class RoundTripTests extends XtextTestCase
 			ocl3.dispose();
 		}
 		finally {
-			projectMap.dispose();
 			CS2AS.setMessageBinder(savedMessageBinder);
 		}
 	}
@@ -527,8 +526,8 @@ public class RoundTripTests extends XtextTestCase
 	}
 
 	public void testCompleteOCLRoundTrip_Fruit() throws IOException, InterruptedException {
+		UMLStandaloneSetup.init();
 		OCL ocl = OCL.newInstance(getProjectMap());
-//		UMLStandaloneSetup.init();
 		Map<URI, URI> uriMap = ocl.getResourceSet().getURIConverter().getURIMap();
 		uriMap.putAll(UML402UMLExtendedMetaData.getURIMap());
 //		EssentialOCLLinkingService.DEBUG_RETRY = true;
