@@ -594,7 +594,7 @@ public class PivotTestCase extends TestCase
 	}
 
 	public static @NonNull StandaloneProjectMap getProjectMap() {
-		return (StandaloneProjectMap)ProjectManager.GLOBAL;
+		return (StandaloneProjectMap)ProjectManager.CLASS_PATH;
 //		StandaloneProjectMap projectMap2 = projectMap;
 //		if (projectMap2 == null) {
 //			projectMap = projectMap2 = EcorePlugin.IS_ECLIPSE_RUNNING ? new ProjectMap() : new StandaloneProjectMap();

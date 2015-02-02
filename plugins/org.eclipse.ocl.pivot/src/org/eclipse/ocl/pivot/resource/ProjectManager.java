@@ -46,7 +46,7 @@ public interface ProjectManager extends Adapter
 	 * a single immutable ProjectManager and consequently share the costly classpath analysis to identify
 	 * available projects.
 	 */
-	public static final @NonNull ProjectManager GLOBAL = BasicProjectManager.createGlobalProjectManager();
+	public static final @NonNull ProjectManager CLASS_PATH = BasicProjectManager.createGlobalProjectManager();
 
 	/**
 	 * An IConflictHandler configures the handling of conflicting access between generated packages and

@@ -12,9 +12,14 @@
 
 package org.eclipse.ocl.pivot.internal.utilities;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
@@ -22,8 +27,10 @@ import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.library.ImplementationManager;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ICSI2ASMapping;
+import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.AbstractEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
+import org.eclipse.ocl.pivot.utilities.ParserException;
 
 /**
  * A factory for creating OCL parser {@link EnvironmentInternal}s.  Clients of the OCL
@@ -44,7 +51,27 @@ import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
  */
 public interface EnvironmentFactoryInternal extends EnvironmentFactory
 {
+	void addExternal2AS(@NonNull External2AS external2as);
+
+	/**
+	 * Add all resources in ResourceSet to the externalResourceSet.
+	 */
+	void addExternalResources(@NonNull ResourceSet resourceSet);
+	
 	void attach(Object object);
+
+	/**
+	 * Configure the PackageRegistry associated with the externalResourceSet to use a load strategy that uses whichever of
+	 * the namespace or platform URI is firtst encounterted and which suppresses diagnostics about subsequent use of the
+	 * other form of URI.
+	 */
+	void configureLoadFirstStrategy();
+
+	/**
+	 * Configure the PackageRegistry associated with the externalResourceSet to use a packageLoadStrategy and conflictHandler when
+	 * resolving namespace ansd platform URIs.
+	 */
+	void configureLoadStrategy(@NonNull ProjectManager.IResourceLoadStrategy packageLoadStrategy, @Nullable ProjectManager.IConflictHandler conflictHandler);
 
 	/**
 	 * Create and initialize the AS ResourceSet used by metamodelManager to contain the AS forms of CS and Ecore/UML resources.
@@ -84,6 +111,13 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 	@NonNull StandardLibraryInternal getStandardLibrary();
 
 	@NonNull Technology getTechnology();
+
+	/**
+	 * Ensure that EPackage has been loaded in the externalResourceSet PackageRegistry.
+	 */
+	EPackage loadEPackage(@NonNull EPackage ePackage);
+
+	@Nullable Element loadResource(@NonNull Resource resource, @Nullable URI uri) throws ParserException;
 
 	void setCSI2ASMapping(ICSI2ASMapping csi2asMapping);
 

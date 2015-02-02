@@ -53,12 +53,11 @@ import org.eclipse.ocl.examples.xtext.console.messages.ConsoleMessages;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.ids.IdResolver;
-import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -166,15 +165,14 @@ public final class DebugAction extends Action
 		 * @throws IOException 
 		 */
 		protected @Nullable BaseCSResource loadDocument(IProgressMonitor monitor, @NonNull URI documentURI) throws Exception {
-			EnvironmentFactoryInternal environmentFactory = OCL.Internal.createEnvironmentFactory(OCL.NO_PROJECTS);		// FIXME dispose
+			EnvironmentFactoryInternal environmentFactory = ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(OCL.NO_PROJECTS, null);		// FIXME dispose
 			ResourceSet externalResourceSet = environmentFactory.getResourceSet();
 			if (contextObject != null) {
 				Resource contextResource = contextObject.eResource();
 				if (contextResource != null) {
 					ResourceSet contextResourceSet = contextResource.getResourceSet();
 					if (contextResourceSet != null) {
-						MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
-						((PivotMetamodelManager)metamodelManager).addExternalResources(contextResourceSet);
+						environmentFactory.addExternalResources(contextResourceSet);
 					}
 					else {
 						if (externalResourceSet instanceof ResourceSetImpl) {

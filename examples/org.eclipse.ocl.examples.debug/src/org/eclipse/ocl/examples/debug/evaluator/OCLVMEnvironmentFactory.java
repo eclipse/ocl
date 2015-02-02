@@ -11,7 +11,9 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.debug.evaluator;
 
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.evaluator.AbstractVMEnvironmentFactory;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMModelManager;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
@@ -23,8 +25,8 @@ import org.eclipse.ocl.pivot.resource.ProjectManager;
 
 public class OCLVMEnvironmentFactory extends AbstractVMEnvironmentFactory
 {
-	public OCLVMEnvironmentFactory(@NonNull ProjectManager projectMap) {
-		super(projectMap);
+	public OCLVMEnvironmentFactory(@NonNull ProjectManager projectMap, @Nullable ResourceSet externalResourceSet) {
+		super(projectMap, externalResourceSet);
 	}
 
 	@Override

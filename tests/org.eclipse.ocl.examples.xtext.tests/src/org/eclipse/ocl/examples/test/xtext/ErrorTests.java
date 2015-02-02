@@ -16,7 +16,6 @@ import java.io.InputStream;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
@@ -35,7 +34,7 @@ import org.eclipse.ocl.xtext.essentialocl.utilities.EssentialOCLCSResource;
 public class ErrorTests extends XtextTestCase
 {
 	protected @NonNull OCL.Internal createOCL() {
-		return OCL.Internal.newInstance(OCL.NO_PROJECTS);
+		return OCL.Internal.newInstance(OCL.NO_PROJECTS, null);
 	}
 
 	/**
@@ -54,7 +53,7 @@ public class ErrorTests extends XtextTestCase
 			"}\n";
 		InputStream inputStream = new URIConverter.ReadableInputStream(metamodelText, "UTF-8");
 		URI xtextURI = URI.createURI("test.oclinecore");
-		ResourceSet resourceSet = new ResourceSetImpl();
+		ResourceSet resourceSet = ocl.getResourceSet();
 		EssentialOCLCSResource xtextResource = ClassUtil.nonNullState((EssentialOCLCSResource) resourceSet.createResource(xtextURI, null));
 		ocl.getEnvironmentFactory().adapt(xtextResource);
 		xtextResource.load(inputStream, null);
@@ -79,7 +78,7 @@ public class ErrorTests extends XtextTestCase
 			"}\n";
 		InputStream inputStream = new URIConverter.ReadableInputStream(metamodelText, "UTF-8");
 		URI xtextURI = URI.createURI("test.oclinecore");
-		ResourceSet resourceSet = new ResourceSetImpl();
+		ResourceSet resourceSet = ocl.getResourceSet();
 		EssentialOCLCSResource xtextResource = ClassUtil.nonNullState((EssentialOCLCSResource) resourceSet.createResource(xtextURI, null));
 		ocl.getEnvironmentFactory().adapt(xtextResource);
 		xtextResource.load(inputStream, null);

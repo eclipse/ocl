@@ -584,7 +584,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 						metamodelManager.installResource(asResource);
 						ResourceSet resourceSet = umlResource.getResourceSet();
 						if (resourceSet != null) {
-							metamodelManager.addExternalResources(resourceSet);
+							environmentFactory.addExternalResources(resourceSet);				// FIXME redundant ?? -- no updates URIResourceMap
 						}
 					}
 					return pivotModel2;
@@ -703,7 +703,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 						}
 					}
 					else if (importedResource != null) {
-						metamodelManager.loadResource(importedResource, null);
+						environmentFactory.loadResource(importedResource, null);
 					}
 				}
 			}
@@ -829,10 +829,9 @@ public abstract class UML2AS extends AbstractEcore2AS
 		}
 		this.umlResource = umlResource;
 //		umlResource.eAdapters().add(this);
-		metamodelManager.addExternalResource(this);
-		metamodelManager.addES2AS(umlResource, this);
+		environmentFactory.addExternal2AS(this);
 //		metamodelManager.addListener(this);
-		CompleteModel completeModel = metamodelManager.getCompleteModel();
+		CompleteModel completeModel = environmentFactory.getCompleteModel();
 		completeModel.addPackageURI2completeURI(ClassUtil.nonNullEMF(UMLPackage.eNS_URI), PivotConstants.UML_METAMODEL_NAME);
 		completeModel.addPackageURI2completeURI(ClassUtil.nonNullEMF(TypesPackage.eNS_URI), PivotConstants.TYPES_METAMODEL_NAME);		// FIXME All known synonyms
 		// FIXME All known synonyms

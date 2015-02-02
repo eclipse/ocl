@@ -165,7 +165,7 @@ public class SerializeTests extends XtextTestCase
 		//
 		//	Ecore to Pivot
 		//
-		OCL.Internal ocl1 = OCL.Internal.newInstance(getProjectMap()); //, resourceSet);
+		OCL.Internal ocl1 = OCL.Internal.newInstance(getProjectMap(), null); //, resourceSet);
 		UML2AS.initialize(ocl1.getResourceSet());
 		XtextResource xtextResource = null;
 		try {

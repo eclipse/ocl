@@ -59,12 +59,9 @@ import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResource;
-import org.eclipse.ocl.pivot.resource.BasicProjectManager;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
-import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -207,13 +204,10 @@ public class Ecore2AS extends AbstractEcore2AS
 	 */
 	private Set<EObject> importedEObjects = null;
 	
-	public Ecore2AS(@NonNull Resource ecoreResource, @Nullable EnvironmentFactoryInternal environmentFactory) {
-		super(environmentFactory != null ? environmentFactory : OCL.Internal.createEnvironmentFactory(BasicProjectManager.createDefaultProjectManager()));
+	public Ecore2AS(@NonNull Resource ecoreResource, @NonNull EnvironmentFactoryInternal environmentFactory) {
+		super(environmentFactory);
 		this.ecoreResource = ecoreResource;
-		MetamodelManager.Internal metamodelManager = this.environmentFactory.getMetamodelManager();
-		metamodelManager.addExternalResource(this);
-//		metamodelManager.addListener(this);
-		metamodelManager.addES2AS(ecoreResource, this);
+		this.environmentFactory.addExternal2AS(this);
 	}
 	
 	protected void addCreated(EObject eObject, Element pivotElement) {

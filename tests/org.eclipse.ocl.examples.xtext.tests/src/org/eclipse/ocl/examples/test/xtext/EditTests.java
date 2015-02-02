@@ -351,7 +351,7 @@ public class EditTests extends XtextTestCase
 		//
 		//	Load and instrument test document
 		//
-		OCL.Internal ocl1 = OCL.Internal.newInstance(getProjectMap());
+		OCL.Internal ocl1 = OCL.Internal.newInstance(getProjectMap(), null);
 		Resource ecoreResource = ClassUtil.nonNullEMF(ocl1.getResourceSet().getResource(ecoreURI, true));
 		assertNoResourceErrors("Ecore load", ecoreResource);
 		assertNoValidationErrors("Ecore load", ecoreResource);
@@ -480,7 +480,7 @@ public class EditTests extends XtextTestCase
 	}	
 
 	public void testEdit_Rename_Restore_ecore() throws Exception {
-		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap());
+		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap(), null);
 		String testDocument = 
 			"package TestPackage : tp = 'TestPackage'\n" +
 			"{\n" +
@@ -562,7 +562,7 @@ public class EditTests extends XtextTestCase
 	}
 
 	public void testEdit_StaleReference_ecore() throws Exception {
-		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap());
+		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap(), null);
 		String testDocument = 
 			"package TestPackage : tp = 'TestPackage'\n" +
 			"{\n" +
@@ -615,7 +615,7 @@ public class EditTests extends XtextTestCase
 	}
 
 	public void testEdit_StaleSpecialization() throws Exception {
-		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap());
+		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap(), null);
 		String testDocument = 
 			"import '" + LibraryConstants.STDLIB_URI + "';\n" + 
 			"library ocl : ocl = '" + LibraryConstants.STDLIB_URI + "' {\n" +

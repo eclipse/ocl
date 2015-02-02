@@ -56,7 +56,7 @@ public class OCLLaunchConfigurationDelegate extends LaunchConfigurationDelegate 
             ShallowProcess.IRunnable r = new ShallowProcess.IRunnable() {
                 
                 public void run() throws Exception { 
-        			OCLVMEnvironmentFactory envFactory = new OCLVMEnvironmentFactory(OCL.NO_PROJECTS);
+        			OCLVMEnvironmentFactory envFactory = new OCLVMEnvironmentFactory(OCL.NO_PROJECTS, null);
         			OCLVMEvaluator vmEvaluator = new OCLVMEvaluator(envFactory, oclURI, elementURI);
         			vmEvaluator.execute();
                 }

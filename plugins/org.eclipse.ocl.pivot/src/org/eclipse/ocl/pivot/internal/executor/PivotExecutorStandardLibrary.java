@@ -24,40 +24,28 @@ import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
+import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.library.ecore.EcoreExecutorPackage;
 import org.eclipse.ocl.pivot.library.executor.ExecutableStandardLibrary;
 import org.eclipse.ocl.pivot.library.executor.ExecutorType;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibTables;
+import org.eclipse.ocl.pivot.resource.BasicProjectManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.OCL;
 
 public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary
 {
-//	public static final PivotExecutorStandardLibrary INSTANCE = new PivotExecutorStandardLibrary(new MetamodelManager(), OCLstdlib.STDLIB_URI);
-
 	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 	private Map<Type, org.eclipse.ocl.pivot.Class> typeMap = null;
 	private Map<org.eclipse.ocl.pivot.Package, org.eclipse.ocl.pivot.Package> packageMap = null;
-	
-//	public PivotExecutorStandardLibrary(EnvironmentFactory environmentFactory, String stdlibURI) {
-//		this.metamodelManager = metamodelManager;
-//		metamodelManager.setDefaultStandardLibraryURI(stdlibURI);
-//		PivotTables.PACKAGE.getClass();
-//	}
 
 	public PivotExecutorStandardLibrary(EcoreExecutorPackage... execPackages) {
 		OCLstdlibTables.PACKAGE.getClass();
-		this.environmentFactory = OCL.Internal.createEnvironmentFactory();
+		this.environmentFactory = ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(BasicProjectManager.createDefaultProjectManager(), null);
 		environmentFactory.getStandardLibrary().setDefaultStandardLibraryURI(LibraryConstants.STDLIB_URI);
 		PivotTables.PACKAGE.getClass();
 	}
-	
-//	@Override
-//	public @NonNull Evaluator createEvaluator(@NonNull EObject contextObject, @Nullable Map<Object, Object> contextMap) {
-//		return new PivotEcoreExecutorManager(contextObject, contextMap, this, getMetamodelManager());
-//	}
 
 	protected @NonNull org.eclipse.ocl.pivot.Package createPackage(@NonNull org.eclipse.ocl.pivot.Package domainPackage) {
 		org.eclipse.ocl.pivot.Package pivotPackage = PivotFactory.eINSTANCE.createPackage();

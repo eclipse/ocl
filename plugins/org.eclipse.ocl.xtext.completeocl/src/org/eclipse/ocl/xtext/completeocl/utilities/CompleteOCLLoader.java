@@ -94,7 +94,7 @@ public abstract class CompleteOCLLoader
 		for (Resource mmResource : mmResources) {
 			assert mmResource != null;
 			try {
-				Element pivotModel = ocl.getMetamodelManager().loadResource(mmResource, null);
+				Element pivotModel = ocl.getEnvironmentFactory().loadResource(mmResource, null);
 				if (pivotModel != null) {
 					List<org.eclipse.emf.ecore.resource.Resource.Diagnostic> errors = pivotModel.eResource().getErrors();
 					assert errors != null;

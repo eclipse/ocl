@@ -104,7 +104,7 @@ public class DebuggerTests extends XtextTestCase
 	}
 
 	public void testDebugger_Launch() throws Exception {
-		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap());
+		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap(), null);
 		closeIntro();
 		enableSwitchToDebugPerspectivePreference();
 		//

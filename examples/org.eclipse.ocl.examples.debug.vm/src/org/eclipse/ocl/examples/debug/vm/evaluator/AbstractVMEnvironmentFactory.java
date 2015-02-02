@@ -11,6 +11,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.debug.vm.evaluator;
 
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.IVMDebuggerShell;
@@ -23,8 +24,8 @@ public abstract class AbstractVMEnvironmentFactory extends AbstractEnvironmentFa
 	private IVMDebuggerShell shell;
 	private long envId = 0;
 	
-	public AbstractVMEnvironmentFactory(@NonNull ProjectManager projectMap) {
-		super(projectMap);
+	public AbstractVMEnvironmentFactory(@NonNull ProjectManager projectMap, @Nullable ResourceSet externalResourceSet) {
+		super(projectMap, externalResourceSet);
 	}
 
 	protected @NonNull IVMDebuggerShell getShell() {

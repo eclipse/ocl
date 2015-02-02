@@ -260,7 +260,7 @@ public class PivotTests extends XtextTestCase
 	
 	@SuppressWarnings("null")
 	public void doPivotTestEcore(@NonNull String stem) throws IOException {
-		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap());
+		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap(), null);
 		MetamodelManager.Internal metamodelManager = ocl.getMetamodelManager();
 		ResourceSet asResourceSet = metamodelManager.getASResourceSet();
 //		long startTime = System.currentTimeMillis();

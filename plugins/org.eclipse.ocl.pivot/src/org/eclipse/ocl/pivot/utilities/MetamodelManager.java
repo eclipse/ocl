@@ -15,7 +15,6 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -47,9 +46,7 @@ public interface MetamodelManager
 	{
 		void addClassLoader(@NonNull ClassLoader classLoader);
 
-		void addES2AS(@NonNull Resource esResource, @NonNull External2AS es2as);
-
-		void addExternalResource(@NonNull External2AS external2as);
+		void addExternal2AS(@NonNull External2AS external2as);
 
 		void addGenModel(@NonNull GenModel genModel);
 
@@ -57,6 +54,7 @@ public interface MetamodelManager
 
 		void addLockedElement(@NonNull Object lockedElement);
 
+		@Deprecated // Use getEnvironmentFactory().configureLoadFirstStrategy()
 		void configureLoadFirstStrategy();
 
 		boolean conformsTo(@NonNull Type firstType, @NonNull TemplateParameterSubstitutions firstSubstitutions,
@@ -92,8 +90,6 @@ public interface MetamodelManager
 		void installRoot(@NonNull Model pivotModel);
 
 		@Nullable Element loadResource(@NonNull URI uri, String alias, @Nullable ResourceSet resourceSet) throws ParserException;
-
-		@Nullable Element loadResource(@NonNull Resource resource, @Nullable URI uri) throws ParserException;
 	}
 
 	@Nullable org.eclipse.ocl.pivot.Class getASClass(@NonNull String className);

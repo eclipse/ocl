@@ -18,8 +18,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.internal.utilities.HTMLBuffer;
@@ -32,30 +32,23 @@ import org.eclipse.ocl.xtext.markup.MarkupToTree;
 import org.eclipse.ocl.xtext.markup.MarkupUtils;
 import org.eclipse.ocl.xtext.markupcs.Markup;
 import org.eclipse.ocl.xtext.markupcs.MarkupElement;
-import org.eclipse.ocl.xtext.markupcs.MarkupPackage;
 import org.eclipse.ocl.xtext.markupcs.NewLineElement;
 
 public class MarkupTests extends XtextTestCase
 {	
-	protected OCL.Internal ocl = null;
-
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		MarkupStandaloneSetup.doSetup();
-		MarkupPackage.eINSTANCE.eClass();
-		ocl = OCL.Internal.newInstance(getProjectMap());
 	}
 
-	@Override
-	protected void tearDown() throws Exception {
-		ocl.dispose();
-		super.tearDown();
+	protected @NonNull OCL.Internal createOCL() {
+		return OCL.Internal.newInstance(OCL.NO_PROJECTS, null);
 	}
 
-	protected @NonNull Markup doDecode(@NonNull String testString) throws IOException {
+	protected @NonNull Markup doDecode(@NonNull OCL ocl, @NonNull String testString) throws IOException {
 		InputStream inputStream = new URIConverter.ReadableInputStream(testString, "UTF-8");
-		ResourceSetImpl resourceSet = new ResourceSetImpl();
+		ResourceSet resourceSet = ocl.getResourceSet();
 		Resource resource = resourceSet.createResource(URI.createURI("string.markupocl"));
 		resource.load(inputStream, null);
 		@SuppressWarnings("null") @NonNull Markup markup = (Markup) resource.getContents().get(0);
@@ -76,25 +69,30 @@ public class MarkupTests extends XtextTestCase
 	}
 
 	protected void doBadHtmlTest(@NonNull String testString, @NonNull Class<?> exceptionClass) throws Exception {
+		OCL.Internal ocl = createOCL();
 		try {
-			Markup markup = doDecode(testString);
+			Markup markup = doDecode(ocl, testString);
 			@SuppressWarnings("unused")
 			String testResult = MarkupToHTML.toString(ocl.getEnvironmentFactory(), null, markup);
 			fail(toPrintable(testString) + " expected " + exceptionClass.getName());
 		} catch (Exception e) {
 			assertEquals(toPrintable(testString), exceptionClass, e.getClass());
+			ocl.dispose();
 		}
 	}
 
 	protected void doHtmlTest(Object context, @NonNull String expected, @NonNull String testString) throws Exception {
-		Markup markup = doDecode(testString);
+		OCL.Internal ocl = createOCL();
+		Markup markup = doDecode(ocl, testString);
 		//		System.out.println(MarkupToTree.toString(markup));
 		String testResult = MarkupToHTML.toString(ocl.getEnvironmentFactory(), context, markup);
 		assertEquals(toPrintable(testString), expected, testResult);
+		ocl.dispose();
 	}
 
 	protected void doNewlineCountTest(int expectedCount, @NonNull String testString) throws IOException {
-		Markup markup = doDecode(testString);		
+		OCL.Internal ocl = createOCL();
+		Markup markup = doDecode(ocl, testString);		
 		List<MarkupElement> elements = markup.getElements();
 		assert elements.size() == 1;
 		NewLineElement newLineElement = (NewLineElement) elements.get(0);
@@ -103,16 +101,19 @@ public class MarkupTests extends XtextTestCase
 		if (expectedCount != actualCount) {
 			assertEquals(toPrintable(testString), expectedCount, actualCount);
 		}
+		ocl.dispose();
 	}
 
 	protected void doStringTest(@NonNull String testString) throws IOException {
-		Markup markup = doDecode(testString);
+		OCL.Internal ocl = createOCL();
+		Markup markup = doDecode(ocl, testString);
 		String testResult = MarkupToString.toString(markup);
 		if (!testString.equals(testResult)) {
 			String context = "Testing '" + toPrintable(testString) + "'\n";
 			System.out.println(context + MarkupToTree.toString(markup));
 			assertEquals(context, testString, testResult);
 		}
+		ocl.dispose();
 	}
 
 	protected String htmlEncode(@NonNull String string) {

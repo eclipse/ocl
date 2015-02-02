@@ -80,7 +80,7 @@ public class TestOCL extends OCL.Internal
 	protected final @NonNull String testName;
 	
 	public TestOCL(@NonNull String testPackageName, @NonNull String testName, @NonNull ProjectManager projectManager) {
-		super(ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectManager));
+		super(ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectManager, null));
 		NoHttpURIHandlerImpl.install(getResourceSet());
 		this.testPackageName = testPackageName;
 		this.testName = testName;

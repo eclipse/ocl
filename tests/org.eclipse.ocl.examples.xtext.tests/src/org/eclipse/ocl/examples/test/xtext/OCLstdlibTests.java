@@ -254,7 +254,7 @@ public class OCLstdlibTests extends XtextTestCase
 	 * FIXME check the library/model version instead.
 	 */
 	public void testOCLstdlib() throws Exception {
-		OCL ocl = OCL.newInstance(getProjectMap());
+		OCL ocl = OCL.newInstance(OCL.CLASS_PATH);
 		//
 		//	Load OCL stdlib as a file.
 		//
@@ -380,7 +380,7 @@ public class OCLstdlibTests extends XtextTestCase
 	 * Java implementation.
 	 */
 	public void testPivot_AS() throws Exception {
-		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap());
+		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap(), null);
 		//
 		//	Load OCL stdlib as an AS file.
 		//

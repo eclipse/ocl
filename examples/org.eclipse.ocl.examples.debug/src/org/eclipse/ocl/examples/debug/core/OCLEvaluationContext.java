@@ -30,7 +30,7 @@ public class OCLEvaluationContext extends EvaluationContext
 	private final @Nullable URI contextURI;
 
 	public OCLEvaluationContext(@NonNull ExpressionInOCL expressionObject, @Nullable EObject contextObject) {
-		super(new OCLVMEnvironmentFactory(OCL.NO_PROJECTS));
+		super(new OCLVMEnvironmentFactory(OCL.NO_PROJECTS, null));
 		this.expressionObject = expressionObject;
 		this.contextObject = contextObject;
 		this.constraintURI = ClassUtil.nonNullState(EcoreUtil.getURI(expressionObject));
@@ -38,7 +38,7 @@ public class OCLEvaluationContext extends EvaluationContext
 	}
 
 	public OCLEvaluationContext(@NonNull URI constraintURI, @NonNull URI contextURI) {
-		super(new OCLVMEnvironmentFactory(OCL.NO_PROJECTS));
+		super(new OCLVMEnvironmentFactory(OCL.NO_PROJECTS, null));
 		this.expressionObject = null;
 		this.contextObject = null;
 		this.constraintURI = constraintURI;

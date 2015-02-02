@@ -70,6 +70,7 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
 public class OCL
 {
 	public static final @NonNull ProjectManager NO_PROJECTS = BasicProjectManager.NO_PROJECTS;
+	public static final @NonNull ProjectManager CLASS_PATH = BasicProjectManager.CLASS_PATH;
 
 	public static class Internal extends OCL
 	{
@@ -90,7 +91,7 @@ public class OCL
 				if (projectMap == null) {
 					projectMap = BasicProjectManager.createDefaultProjectManager();
 				}
-				EnvironmentFactoryInternal environmentFactory = ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectMap);
+				EnvironmentFactoryInternal environmentFactory = ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectMap, null);
 				adapter = new EnvironmentFactoryAdapter(environmentFactory, notifier);
 				eAdapters.add(adapter);
 			}
@@ -125,7 +126,7 @@ public class OCL
 		public static @NonNull EnvironmentFactoryInternal getGlobalEnvironmentFactory() {
 			EnvironmentFactoryInternal globalRegistryInstance2 = GLOBAL_ENVIRONMENT_FACTORY;
 			if (globalRegistryInstance2 == null) {
-				GLOBAL_ENVIRONMENT_FACTORY = globalRegistryInstance2 = OCL.Internal.createEnvironmentFactory(ProjectManager.GLOBAL);
+				GLOBAL_ENVIRONMENT_FACTORY = globalRegistryInstance2 = ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(ProjectManager.CLASS_PATH, null);
 //				PivotUtilInternal.debugPrintln("Create Global " + NameUtil.debugSimpleName(GLOBAL_ENVIRONMENT_FACTORY));	
 			}
 //			else {
@@ -138,21 +139,18 @@ public class OCL
 		public @NonNull MetamodelManager.Internal getMetamodelManager() {
 			return environmentFactory.getMetamodelManager();
 		}
-	
-		public static @NonNull EnvironmentFactoryInternal createEnvironmentFactory() {
-			return ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(BasicProjectManager.createDefaultProjectManager());
-		}
-		public static @NonNull EnvironmentFactoryInternal createEnvironmentFactory(@NonNull ProjectManager projectManager) {
-//			OCLstdlib.lazyInstall();
-			return ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectManager);
-		}
 		
 		public static @NonNull Internal newInstance() {
-			return newInstance(BasicProjectManager.createDefaultProjectManager());
+			return newInstance(BasicProjectManager.createDefaultProjectManager(), null);
 		}
 		
-		public static @NonNull Internal newInstance(@NonNull ProjectManager projectManager) {	
-			return newInstance(ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectManager));
+		public static @NonNull Internal newInstance(@NonNull ProjectManager projectManager, @Nullable ResourceSet externalResourceSet) {	
+			EnvironmentFactoryInternal environmentFactory = ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectManager, externalResourceSet);
+			Internal ocl = newInstance(environmentFactory);
+			if (externalResourceSet != null) {
+				environmentFactory.adapt(externalResourceSet);
+			}
+			return ocl;
 		}
 		
 		public static @NonNull Internal newInstance(@NonNull EnvironmentFactoryInternal environmentFactory) {	
@@ -223,7 +221,7 @@ public class OCL
      * @return the new <code>OCL</code>
      */
 	public static @NonNull OCL newInstance(@NonNull ProjectManager projectManager) {	
-		return Internal.newInstance(projectManager);
+		return Internal.newInstance(projectManager, null);
 	}
 	
     /**
@@ -231,14 +229,14 @@ public class OCL
      * This automatically creates an new EnvironmentFactory and MetamodelManager.
      */
 	public static @NonNull OCL newInstance(@NonNull ProjectManager projectManager, @NonNull ResourceSet resourceSet) {
-		OCL ocl = Internal.newInstance(projectManager);
+		OCL ocl = Internal.newInstance(projectManager, resourceSet);
 		ocl.getEnvironmentFactory().adapt(resourceSet);
 		return ocl;
 	}
 	
 	public static @NonNull OCL newInstance(@NonNull ResourceSet resourceSet) {
-		OCL ocl = Internal.newInstance();
-		ocl.getEnvironmentFactory().adapt(resourceSet);
+		OCL ocl = Internal.newInstance(BasicProjectManager.createDefaultProjectManager(), resourceSet);
+//		ocl.getEnvironmentFactory().adapt(resourceSet);
 		return ocl;
 
 	}

@@ -68,7 +68,7 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 			install(resourceSet, this.environmentFactory);
 		}
 		else {
-			this.environmentFactory.getMetamodelManager().loadEPackage(ePackage);
+			this.environmentFactory.loadEPackage(ePackage);
 		}
 	}
 	
