@@ -10,10 +10,13 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.internal.resource;
 
+import java.util.List;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -26,6 +29,7 @@ import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.resource.BasicProjectManager;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 
 /**
@@ -46,6 +50,23 @@ public class OCLAdapter extends EnvironmentFactoryAdapter implements AdapterFact
 	
 	public static @NonNull EnvironmentFactoryInternal createEnvironmentFactory( @NonNull Notifier notifier) {
 		return createEnvironmentFactory(BasicProjectManager.createDefaultProjectManager(), notifier);
+	}
+
+	public static @NonNull OCLAdapter getAdapter(@NonNull ResourceSet resourceSet) {
+		@SuppressWarnings("null")@NonNull List<Adapter> eAdapters = resourceSet.eAdapters();
+		OCLAdapter oclAdapter = ClassUtil.getAdapter(OCLAdapter.class, eAdapters);
+		if (oclAdapter == null) {
+			EnvironmentFactoryAdapter environmentFactoryAdapter = ClassUtil.getAdapter(EnvironmentFactoryAdapter.class, resourceSet);
+			if (environmentFactoryAdapter != null) {
+				oclAdapter = new OCLAdapter(OCL.Internal.newInstance(environmentFactoryAdapter.getEnvironmentFactory()), resourceSet);
+			}
+			else {
+				OCL.Internal ocl = OCL.Internal.newInstance(BasicProjectManager.createDefaultProjectManager(), resourceSet);
+				oclAdapter = new OCLAdapter(ocl, resourceSet);
+			}
+			eAdapters.add(oclAdapter);
+		}
+		return oclAdapter;
 	}
 	
 	protected OCL ocl;				// Set null once disposed
@@ -94,7 +115,7 @@ public class OCLAdapter extends EnvironmentFactoryAdapter implements AdapterFact
 
 	@Override
 	public boolean isFactoryForType(Object type) {
-		return false;
+		return super.isAdapterForType(type) || (type == OCLAdapter.class);
 	}
 
 	@Override
