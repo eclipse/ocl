@@ -28,12 +28,14 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.CompleteClass;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.evaluation.AbstractConstraintEvaluator;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2ASUtil;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
@@ -228,6 +230,7 @@ public class UMLOCLEValidator implements EValidator
 		}
 	}
 
+	@Deprecated  // Obsolete use SuperCompleteClasses
 	protected static void gatherTypes(@NonNull Set<org.eclipse.ocl.pivot.Type> allTypes, @NonNull Set<org.eclipse.ocl.pivot.Constraint> allConstraints, @NonNull org.eclipse.ocl.pivot.Class newType) {
 		if (allTypes.add(newType)) {
 			allConstraints.addAll(newType.getOwnedInvariants());
@@ -291,24 +294,32 @@ public class UMLOCLEValidator implements EValidator
 				if (umlStereotypeApplications.size() > 0) {
 					Resource umlResource = umlStereotypeApplications.get(0).eClass().eResource();
 					if (umlResource != null) {
-						OCL ocl = getOCL(context);
-						MetamodelManager metamodelManager = ocl.getMetamodelManager();
-						UML2AS uml2as = UML2AS.getAdapter(umlResource, (EnvironmentFactoryInternal) ocl.getEnvironmentFactory());
+						EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.findEnvironmentFactory(umlResource);
+						if (environmentFactory == null) {
+							OCL ocl = getOCL(context);
+							environmentFactory = (EnvironmentFactoryInternal) ocl.getEnvironmentFactory();
+						}
+						MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+						UML2AS uml2as = UML2AS.getAdapter(umlResource, environmentFactory);
 						uml2as.getASModel();
 						Map<EObject, List<org.eclipse.uml2.uml.Element>> umlStereotypeApplication2umlStereotypedElements = UML2ASUtil.computeAppliedStereotypes(umlStereotypeApplications);
 						for (@SuppressWarnings("null")@NonNull EObject umlStereotypeApplication : umlStereotypeApplications) {
 							@SuppressWarnings("null")@NonNull List<Element> umlStereotypedElements = umlStereotypeApplication2umlStereotypedElements.get(umlStereotypeApplication);
 							org.eclipse.ocl.pivot.Stereotype stereotype = uml2as.resolveStereotype(umlStereotypeApplication, umlStereotypedElements);
 							if (stereotype != null) {
-								HashSet<org.eclipse.ocl.pivot.Type> allClassifiers = new HashSet<org.eclipse.ocl.pivot.Type>();
 								HashSet<org.eclipse.ocl.pivot.Constraint> allConstraints = new HashSet<org.eclipse.ocl.pivot.Constraint>();
-								gatherTypes(allClassifiers, allConstraints, stereotype);
+								CompleteClass completeStereotype = environmentFactory.getCompleteModel().getCompleteClass(stereotype);
+								for (CompleteClass completeClass : completeStereotype.getSuperCompleteClasses()) {
+									for (org.eclipse.ocl.pivot.Class partialClass : completeClass.getPartialClasses()) {
+										allConstraints.addAll(partialClass.getOwnedInvariants());
+									}
+								}
 								for (org.eclipse.ocl.pivot.Constraint constraint : allConstraints) {
 									LanguageExpression specification = constraint.getOwnedSpecification();
 									if (specification != null) {
 										try {
 											ExpressionInOCL query = metamodelManager.parseSpecification(specification);
-											EvaluationVisitor evaluationVisitor = ocl.createEvaluationVisitor(umlStereotypeApplication, query);
+											EvaluationVisitor evaluationVisitor = environmentFactory.createEvaluationVisitor(umlStereotypeApplication, query, null);
 											AbstractConstraintEvaluator<Boolean> constraintEvaluator;
 											if (diagnostics != null) {
 												constraintEvaluator = new ConstraintEvaluatorWithDiagnostics(query, umlStereotypeApplication, diagnostics, eObject, mayUseNewLines);
