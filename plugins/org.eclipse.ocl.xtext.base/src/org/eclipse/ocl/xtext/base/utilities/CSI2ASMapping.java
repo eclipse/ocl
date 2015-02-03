@@ -26,12 +26,14 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.internal.resource.ICSI2ASMapping;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.Nameable;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
+import org.eclipse.ocl.xtext.basecs.ConstraintCS;
 import org.eclipse.ocl.xtext.basecs.ElementCS;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;
 
@@ -510,7 +512,17 @@ public class CSI2ASMapping implements ICSI2ASMapping
 		if (as2cs == null) {
 			as2cs = computeAS2CSMap();
 		}
-		return as2cs.get(pivotElement);
+		ModelElementCS modelElementCS = as2cs.get(pivotElement);
+		if ((modelElementCS == null) && (pivotElement instanceof ExpressionInOCL)) {	// ExpressionInOCL may be created later
+			EObject eObject = ((ExpressionInOCL)pivotElement).eContainer();
+			if (eObject instanceof Element) {
+				modelElementCS = as2cs.get(eObject);
+				if (modelElementCS instanceof ConstraintCS) {
+					modelElementCS = ((ConstraintCS)modelElementCS).getOwnedSpecification();
+				}
+			}
+		}
+		return modelElementCS;
 	}
 	
 	public @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
