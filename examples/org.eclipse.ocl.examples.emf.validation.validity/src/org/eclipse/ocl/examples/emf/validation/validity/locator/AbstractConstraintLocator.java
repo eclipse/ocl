@@ -48,6 +48,27 @@ public abstract class AbstractConstraintLocator implements ConstraintLocator, Co
 		if (map == null) {
 			map = new HashMap<EObject, List<LeafConstrainingNode>>();
 		}
+/*		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.findEnvironmentFactory(constrainingType);
+		if (environmentFactory != null) {
+			try {
+				Type asType = environmentFactory.getMetamodelManager().getASOf(Type.class, constrainingType);
+				if (asType != null) {
+					CompleteClass asCompleteClass = environmentFactory.getCompleteEnvironment().getCompleteClass(asType);
+					for (org.eclipse.ocl.pivot.Class asClass : asCompleteClass.getPartialClasses()) {
+						EObject eTarget = asClass.getETarget();
+						if (eTarget != null) {
+							List<LeafConstrainingNode> constraints = map.get(eTarget);
+							if (constraints == null) {
+								constraints = new ArrayList<LeafConstrainingNode>();
+								map.put(eTarget, constraints);
+							}
+							constraints.add(constraint);
+						}
+					}
+					return map;
+				}
+			} catch (ParserException e) {}
+		} */
 		List<LeafConstrainingNode> constraints = map.get(constrainingType);
 		if (constraints == null) {
 			constraints = new ArrayList<LeafConstrainingNode>();

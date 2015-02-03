@@ -32,9 +32,11 @@ import org.eclipse.ocl.examples.emf.validation.validity.locator.AbstractConstrai
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityManager;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityModel;
 import org.eclipse.ocl.examples.validity.plugin.OCLValidityPlugin;
+import org.eclipse.ocl.pivot.CompleteClass;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Namespace;
+import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
@@ -73,7 +75,21 @@ public class PivotConstraintLocator extends AbstractConstraintLocator
 							Namespace constrainedElement = pConstraint.getContext();
 							if (constrainedElement != null) {
 								@SuppressWarnings("null")@NonNull String label = String.valueOf(pConstraint.getName());
-								EModelElement eTarget = metamodelManager.getEcoreOfPivot(EModelElement.class, constrainedElement);
+								EObject eTarget = constrainedElement.getETarget();
+								if (eTarget == null) {
+									if (constrainedElement instanceof Type) {
+										CompleteClass completeClass = metamodelManager.getCompleteClass((Type)constrainedElement);
+										for (org.eclipse.ocl.pivot.Class asClass : completeClass.getPartialClasses()) {
+											eTarget = asClass.getETarget();
+											if (eTarget != null) {
+												break;
+											}
+										}
+									}
+									if (eTarget == null) {
+										eTarget = metamodelManager.getEcoreOfPivot(EModelElement.class, constrainedElement);
+									}
+								}
 								if (eTarget != null) {
 									assert resource != null;
 									map = createLeafConstrainingNode(map, validityModel, eTarget, pConstraint, label);
