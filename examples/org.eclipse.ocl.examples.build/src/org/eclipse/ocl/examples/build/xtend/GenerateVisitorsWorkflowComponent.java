@@ -30,6 +30,7 @@ import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
+import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.utilities.OCL;
 
 import com.google.common.base.Objects;
@@ -198,7 +199,7 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 	
 	private void registerGenModel(@NonNull OCL ocl, @NonNull GenModel genModel) {
 		@SuppressWarnings("null")@NonNull ResourceSet resourceSet2 = resourceSet;
-		EnvironmentFactoryAdapter adapter = OCL.Internal.adapt(resourceSet2); // We prepare the mManager for the whole resourceSet
+		EnvironmentFactoryAdapter adapter = OCLInternal.adapt(resourceSet2); // We prepare the mManager for the whole resourceSet
 		PivotMetamodelManager metamodelManager = adapter.getMetamodelManager();
 		metamodelManager.addGenModel(genModel);
 		for (@SuppressWarnings("null")@NonNull GenPackage usedGenPackage : genModel.getUsedGenPackages()) {

@@ -24,13 +24,13 @@ import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 
 public class NameQueries
 {
 	public static final Logger logger = Logger.getLogger(NameQueries.class);
-	public static @Nullable MetamodelManager.Internal metamodelManager = null;
+	public static @Nullable MetamodelManagerInternal metamodelManager = null;
 
 	private static @NonNull Map<String, Integer> counters = new HashMap<String, Integer>();
 	private static @NonNull Map<Object, String> definedSymbols = new HashMap<Object, String>();
@@ -146,7 +146,7 @@ public class NameQueries
 		definedSymbols = new HashMap<Object, String>();
 	} */
 	
-	public static void setMetamodelManager(@Nullable MetamodelManager.Internal metamodelManager) {
+	public static void setMetamodelManager(@Nullable MetamodelManagerInternal metamodelManager) {
 		NameQueries.metamodelManager = metamodelManager;
 	}
 }

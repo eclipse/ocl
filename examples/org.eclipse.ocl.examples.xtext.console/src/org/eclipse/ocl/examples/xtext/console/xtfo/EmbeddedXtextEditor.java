@@ -56,6 +56,7 @@ import org.eclipse.jface.text.source.projection.ProjectionViewer;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
+import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.swt.SWT;
@@ -172,7 +173,7 @@ public class EmbeddedXtextEditor {
 	
 	private IAnnotationAccess fAnnotationAccess;
 	
-	private @NonNull OCL.Internal ocl;
+	private @NonNull OCLInternal ocl;
 	
 	/**
 	 * Creates a new EmbeddedXtextEditor. It must have the SWT.V_SCROLL style at least not to 
@@ -188,7 +189,7 @@ public class EmbeddedXtextEditor {
 		fAnnotationPreferences = new MarkerAnnotationPreferences();
 		
 		injector.injectMembers(this);
-		ocl = OCL.Internal.newInstance();
+		ocl = OCLInternal.newInstance();
 		ResourceSet resourceSet = getResourceSet();
 		resourceSet.eAdapters().add(new EnvironmentFactoryAdapter(ocl.getEnvironmentFactory(), resourceSet));
 		createEditor(fControl);

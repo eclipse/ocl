@@ -20,6 +20,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
+import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.internal.values.BagImpl;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
@@ -33,8 +34,8 @@ import org.eclipse.ocl.xtext.essentialocl.utilities.EssentialOCLCSResource;
 @SuppressWarnings("nls")
 public class ErrorTests extends XtextTestCase
 {
-	protected @NonNull OCL.Internal createOCL() {
-		return OCL.Internal.newInstance(OCL.NO_PROJECTS, null);
+	protected @NonNull OCLInternal createOCL() {
+		return OCLInternal.newInstance(OCL.NO_PROJECTS, null);
 	}
 
 	/**
@@ -89,7 +90,7 @@ public class ErrorTests extends XtextTestCase
 	}
 	
 	public void testBadEOF_419683() throws Exception {
-		OCL.Internal ocl = createOCL();
+		OCLInternal ocl = createOCL();
 		TestCaseAppender.INSTANCE.uninstall();
 		String testFile =
 			"import 'platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore'\n" +

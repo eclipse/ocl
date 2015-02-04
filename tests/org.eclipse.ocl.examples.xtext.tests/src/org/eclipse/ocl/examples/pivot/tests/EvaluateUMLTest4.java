@@ -32,6 +32,7 @@ import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerInternal;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
@@ -64,7 +65,7 @@ public class EvaluateUMLTest4 extends PivotTestSuite
 		
 		public MyOCL(@NonNull String testPackageName, @NonNull String name) {
 			super(testPackageName, name, OCL.NO_PROJECTS);
-			MetamodelManager.Internal metamodelManager = getMetamodelManager();
+			MetamodelManagerInternal metamodelManager = getMetamodelManager();
 			Package asMetamodel = metamodelManager.getASmetamodel();
 			if (asMetamodel != null) {
 				metamodelManager.addGlobalNamespace(PivotConstants.OCL_NAME, asMetamodel);
@@ -72,7 +73,7 @@ public class EvaluateUMLTest4 extends PivotTestSuite
 		}
 
 		@SuppressWarnings("null")
-		protected Resource getPivotFromUML(@NonNull MetamodelManager.Internal metamodelManager, Resource umlResource) throws ParserException {
+		protected Resource getPivotFromUML(@NonNull MetamodelManagerInternal metamodelManager, Resource umlResource) throws ParserException {
 //			String problem = UML2AS.initialize(metamodelManager.getExternalResourceSet());
 //			assertNull(problem);
 			UML2AS uml2as = UML2AS.getAdapter(umlResource, metamodelManager.getEnvironmentFactory());
@@ -85,7 +86,7 @@ public class EvaluateUMLTest4 extends PivotTestSuite
 		
 		protected Resource initStateMachinePackage(URI uri) throws ParserException {
 			UMLStandaloneSetup.init();
-			MetamodelManager.Internal metamodelManager = getMetamodelManager();
+			MetamodelManagerInternal metamodelManager = getMetamodelManager();
 			ResourceSet resourceSet2 = getResourceSet();
 			assert resourceSet2 != null;
 			UML2AS.initialize(resourceSet2);

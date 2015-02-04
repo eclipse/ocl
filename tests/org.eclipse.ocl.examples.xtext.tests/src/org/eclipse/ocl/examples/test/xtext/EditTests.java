@@ -37,7 +37,9 @@ import org.eclipse.ocl.pivot.internal.complete.CompleteClassInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.internal.context.ModelContext;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerInternal;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
+import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.values.CollectionTypeParametersImpl;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
@@ -45,7 +47,6 @@ import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
@@ -351,7 +352,7 @@ public class EditTests extends XtextTestCase
 		//
 		//	Load and instrument test document
 		//
-		OCL.Internal ocl1 = OCL.Internal.newInstance(getProjectMap(), null);
+		OCLInternal ocl1 = OCLInternal.newInstance(getProjectMap(), null);
 		Resource ecoreResource = ClassUtil.nonNullEMF(ocl1.getResourceSet().getResource(ecoreURI, true));
 		assertNoResourceErrors("Ecore load", ecoreResource);
 		assertNoValidationErrors("Ecore load", ecoreResource);
@@ -480,7 +481,7 @@ public class EditTests extends XtextTestCase
 	}	
 
 	public void testEdit_Rename_Restore_ecore() throws Exception {
-		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap(), null);
+		OCLInternal ocl = OCLInternal.newInstance(getProjectMap(), null);
 		String testDocument = 
 			"package TestPackage : tp = 'TestPackage'\n" +
 			"{\n" +
@@ -562,7 +563,7 @@ public class EditTests extends XtextTestCase
 	}
 
 	public void testEdit_StaleReference_ecore() throws Exception {
-		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap(), null);
+		OCLInternal ocl = OCLInternal.newInstance(getProjectMap(), null);
 		String testDocument = 
 			"package TestPackage : tp = 'TestPackage'\n" +
 			"{\n" +
@@ -615,7 +616,7 @@ public class EditTests extends XtextTestCase
 	}
 
 	public void testEdit_StaleSpecialization() throws Exception {
-		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap(), null);
+		OCLInternal ocl = OCLInternal.newInstance(getProjectMap(), null);
 		String testDocument = 
 			"import '" + LibraryConstants.STDLIB_URI + "';\n" + 
 			"library ocl : ocl = '" + LibraryConstants.STDLIB_URI + "' {\n" +
@@ -624,7 +625,7 @@ public class EditTests extends XtextTestCase
 			"}\n" +
 			"}\n";
 		URI outputURI = getProjectFileURI("test.oclstdlib");
-		MetamodelManager.Internal metamodelManager = ocl.getMetamodelManager();
+		MetamodelManagerInternal metamodelManager = ocl.getMetamodelManager();
 		CompleteModelInternal completeModel = metamodelManager.getCompleteModel();
 		ModelContext modelContext = new ModelContext(ocl.getEnvironmentFactory(), outputURI);
 		EssentialOCLCSResource xtextResource = (EssentialOCLCSResource) modelContext.createBaseResource(testDocument);

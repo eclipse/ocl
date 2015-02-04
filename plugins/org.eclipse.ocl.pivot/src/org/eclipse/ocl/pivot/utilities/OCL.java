@@ -8,12 +8,10 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *******************************************************************************/
-
 package org.eclipse.ocl.pivot.utilities;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -40,16 +38,15 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationHaltedException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
-import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.helper.HelperUtil;
 import org.eclipse.ocl.pivot.internal.helper.OCLHelperImpl;
 import org.eclipse.ocl.pivot.internal.helper.QueryImpl;
-import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
-import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerInternal;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.OCLDebugOptions;
+import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.BasicProjectManager;
 import org.eclipse.ocl.pivot.resource.CSResource;
@@ -69,114 +66,21 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
  */
 public class OCL
 {
+	/**
+	 * A very lightweight ProjectManager that provodes no access to external projects.
+	 */
 	public static final @NonNull ProjectManager NO_PROJECTS = BasicProjectManager.NO_PROJECTS;
+	/**
+	 * A heavyweight shared read-only ProjectManager that provides access to all external projects.
+	 * When running standalone, the available projects are determined by analysis of plugin.xml
+	 * files on the classpath. When running within Eclipse, the Eclipse workspace and extension points
+	 * are used.
+	 */
 	public static final @NonNull ProjectManager CLASS_PATH = BasicProjectManager.CLASS_PATH;
 
-	public static class Internal extends OCL
-	{
-		/**
-	     * A convenient shared instance of the environment factory, that creates
-	     * environments using the global package registry.
-		 */
-	    private static @Nullable EnvironmentFactoryInternal GLOBAL_ENVIRONMENT_FACTORY = null;
-		
-		public static @NonNull EnvironmentFactoryAdapter adapt(@NonNull Notifier notifier) {
-			List<Adapter> eAdapters = ClassUtil.nonNullEMF(notifier.eAdapters());
-			EnvironmentFactoryAdapter adapter = ClassUtil.getAdapter(EnvironmentFactoryAdapter.class, eAdapters);
-			if (adapter == null) {
-				ProjectManager projectMap = null;
-				if (notifier instanceof ResourceSet) {
-					projectMap = BasicProjectManager.findAdapter((ResourceSet) notifier);
-				}
-				if (projectMap == null) {
-					projectMap = BasicProjectManager.createDefaultProjectManager();
-				}
-				EnvironmentFactoryInternal environmentFactory = ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectMap, null);
-				adapter = new EnvironmentFactoryAdapter(environmentFactory, notifier);
-				eAdapters.add(adapter);
-			}
-			return adapter;
-		}
-
-		public static @Nullable EnvironmentFactory basicGetGlobalEnvironmentFactory() {
-			return GLOBAL_ENVIRONMENT_FACTORY;
-		}
-
-//		public static @NonNull EnvironmentFactoryInternal createEnvironmentFactory(@Nullable ProjectManager projectManager) {
-//			return ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectManager);
-//		}
-
-	    /**
-	     * Dispose of the global instance; this is intended for leakage detection in tests.
-	     */
-		public static void disposeGlobalEnvironmentFactory() {
-			EnvironmentFactory GLOBAL_ENVIRONMENT_FACTORY2 = GLOBAL_ENVIRONMENT_FACTORY;
-			if (GLOBAL_ENVIRONMENT_FACTORY2 != null) {
-//				PivotUtilInternal.debugPrintln("Dispose Global " + NameUtil.debugSimpleName(GLOBAL_ENVIRONMENT_FACTORY2));	
-				((EnvironmentFactoryInternal)GLOBAL_ENVIRONMENT_FACTORY2).disposeGlobal();
-				GLOBAL_ENVIRONMENT_FACTORY = null;
-			}
-		}
-		
-		/**
-		 * Return the global EnvironmentFactory that may be shared amongst OCL consumers for which Complete OCL
-		 * complements are not possible. Typically this is the OCLDElegateDomains that supported interpreted
-		 * execution of OCL embedded in Ecore.
-		 */
-		public static @NonNull EnvironmentFactoryInternal getGlobalEnvironmentFactory() {
-			EnvironmentFactoryInternal globalRegistryInstance2 = GLOBAL_ENVIRONMENT_FACTORY;
-			if (globalRegistryInstance2 == null) {
-				GLOBAL_ENVIRONMENT_FACTORY = globalRegistryInstance2 = ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(ProjectManager.CLASS_PATH, null);
-//				PivotUtilInternal.debugPrintln("Create Global " + NameUtil.debugSimpleName(GLOBAL_ENVIRONMENT_FACTORY));	
-			}
-//			else {
-//				PivotUtilInternal.debugPrintln("Re-use Global " + NameUtil.debugSimpleName(GLOBAL_ENVIRONMENT_FACTORY));	
-//			}
-			return globalRegistryInstance2;
-		}
-
-		@Override
-		public @NonNull MetamodelManager.Internal getMetamodelManager() {
-			return environmentFactory.getMetamodelManager();
-		}
-		
-		public static @NonNull Internal newInstance() {
-			return newInstance(BasicProjectManager.createDefaultProjectManager(), null);
-		}
-		
-		public static @NonNull Internal newInstance(@NonNull ProjectManager projectManager, @Nullable ResourceSet externalResourceSet) {	
-			EnvironmentFactoryInternal environmentFactory = ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectManager, externalResourceSet);
-			Internal ocl = newInstance(environmentFactory);
-			if (externalResourceSet != null) {
-				environmentFactory.adapt(externalResourceSet);
-			}
-			return ocl;
-		}
-		
-		public static @NonNull Internal newInstance(@NonNull EnvironmentFactoryInternal environmentFactory) {	
-			return new Internal(environmentFactory);
-		}
-		
-		public Internal(@NonNull EnvironmentFactoryInternal environmentFactory) {
-			super(environmentFactory);
-		}
-
-		@Override
-		public @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
-			assert environmentFactory != null;
-			return environmentFactory;
-		}
-
-		@Override
-		public @NonNull StandardLibraryInternal getStandardLibrary() {
-			assert environmentFactory != null;
-			return environmentFactory.getStandardLibrary();
-		}
-	}
-	
 	@Deprecated	// Unwanted public API
 	public static @NonNull Adapter adapt(@NonNull Notifier notifier) {
-		return Internal.adapt(notifier);
+		return OCLInternal.adapt(notifier);
 	}
 	
 	/**
@@ -206,62 +110,55 @@ public class OCL
 	}
 
     /**
-     * Creates a new <code>OCL</code> with no initial Ecore package registry.
-     * This automatically creates a new EnvironmentFactory and MetamodelManager.
-     * 
-     * @return the new <code>OCL</code>
+     * Creates a new <code>OCL</code> with a new heavyweight ProjectManager and a new
+     * ResourceSet for loaded models.
      */
 	public static @NonNull OCL newInstance() {
-		return Internal.newInstance();
+		return OCLInternal.newInstance();
 	}
 	
     /**
-     * Creates a new <code>OCL</code> using the specified Ecore package registry.
-     * This automatically creates an new EnvironmentFactory and MetamodelManager.
-     * 
-     * @param reg Ecore package registry
-     * @return the new <code>OCL</code>
+     * Creates a new <code>OCL</code> using the specified ProjectManager and a new
+     * ResourceSet for loaded models.
      */
 	public static @NonNull OCL newInstance(@NonNull ProjectManager projectManager) {	
-		return Internal.newInstance(projectManager, null);
+		return OCLInternal.newInstance(projectManager, null);
 	}
 	
     /**
-     * Creates a new <code>OCL</code> suitable for the specified resourceSet content.
-     * This automatically creates an new EnvironmentFactory and MetamodelManager.
+     * Creates a new <code>OCL</code> using the specified ProjectManager and exploiting the
+     * already loaded models and configuration of ResourceSet.
      */
 	public static @NonNull OCL newInstance(@NonNull ProjectManager projectManager, @NonNull ResourceSet resourceSet) {
-		OCL ocl = Internal.newInstance(projectManager, resourceSet);
-		ocl.getEnvironmentFactory().adapt(resourceSet);
+		OCL ocl = OCLInternal.newInstance(projectManager, resourceSet);
+//		ocl.getEnvironmentFactory().adapt(resourceSet);
 		return ocl;
 	}
 	
+    /**
+     * Creates a new <code>OCL</code> with a new heavyweight ProjectManager and exploiting the
+     * already loaded models and configuration of ResourceSet.
+     */
 	public static @NonNull OCL newInstance(@NonNull ResourceSet resourceSet) {
-		OCL ocl = Internal.newInstance(BasicProjectManager.createDefaultProjectManager(), resourceSet);
+		OCL ocl = OCLInternal.newInstance(BasicProjectManager.createDefaultProjectManager(), resourceSet);
 //		ocl.getEnvironmentFactory().adapt(resourceSet);
 		return ocl;
 
 	}
 	
     /**
-     * Creates a new <code>OCL</code> using the specified Ecore environment
+     * Creates a new <code>OCL</code> using the internal configuration of an environment
      * factory.
-     * 
-     * @param environmentFactory an environment factory for Ecore
-     * @return the new <code>OCL</code>
      */
+	@Deprecated // Use environmentFactory.createOCL()
 	public static @NonNull OCL newInstance(@NonNull EnvironmentFactory environmentFactory) {
-		return new OCL.Internal((EnvironmentFactoryInternal) environmentFactory); // FIXME Bad design
+		return environmentFactory.createOCL();
 	}
 	
     /**
      * Creates a new <code>OCL</code> using the specified Ecore package registry.
-     * This automatically creates an new EnvironmentFactory and MetamodelManager.
-     * 
-     * @param reg Ecore package registry
-     * @return the new <code>OCL</code>
      */
-	public static @NonNull OCL newInstance(@NonNull EPackage.Registry reg) {			// FIXME exploit reg to give narrower MetamodelManager capability
+	public static @NonNull OCL newInstance(@NonNull EPackage.Registry ePackageRegistry) {
 		return newInstance();
 	}
 	/**
@@ -272,13 +169,15 @@ public class OCL
 	
 	private @Nullable ModelManager modelManager;
 
+	@Deprecated // Has no functionality
 	private @Nullable Diagnostic problems;
+	@Deprecated // Has no functionality
 	private @Nullable Diagnostic evaluationProblems;	
-
+	@Deprecated // Has no functionality
 	private int parserRepairCount = 0;
-
+	@Deprecated // Has no functionality
 	private boolean traceParsing = HelperUtil.shouldTrace(OCLDebugOptions.PARSING);
-
+	@Deprecated // Has no functionality
 	private boolean traceEvaluation = HelperUtil.shouldTrace(OCLDebugOptions.EVALUATION);
 
 	/**
@@ -529,7 +428,7 @@ public class OCL
 	}
 
 	/**
-	 * If the user neglects to dispose() then detach() the EnvironmentFactory to give it a chance to clean up.
+	 * If the user neglects to dispose(), then detach() the EnvironmentFactory to give it a chance to clean up.
 	 */
 	@Override
 	public synchronized void finalize() {
@@ -584,7 +483,7 @@ public class OCL
 	}
 
 	public @NonNull org.eclipse.ocl.pivot.Class getContextType(@Nullable Object contextObject) {
-		MetamodelManager.Internal metamodelManager = environmentFactory.getMetamodelManager();
+		MetamodelManagerInternal metamodelManager = environmentFactory.getMetamodelManager();
 		IdResolver idResolver = getIdResolver();
 		org.eclipse.ocl.pivot.Class staticTypeOf = idResolver.getStaticTypeOf(contextObject);
 		return metamodelManager.getPrimaryClass(staticTypeOf);
@@ -645,6 +544,7 @@ public class OCL
 	 * 
 	 * @see #setParserRepairCount(int)
 	 */
+	@Deprecated // Has no functionality
 	public int getParserRepairCount() {
 		return parserRepairCount;
 	}
@@ -655,6 +555,7 @@ public class OCL
 	 * 
 	 * @return parsing problems or <code>null</code> if all was OK
 	 */
+	@Deprecated // Has no functionality
 	public @Nullable Diagnostic getProblems() {
 		return problems;
 	}
@@ -702,6 +603,7 @@ public class OCL
 	 * 
 	 * @see #setEvaluationTracingEnabled(boolean)
 	 */
+	@Deprecated // Has no functionality
 	public boolean isEvaluationTracingEnabled() {
 		return traceEvaluation;
 	}
@@ -734,6 +636,7 @@ public class OCL
 	 * 
 	 * @see #setParseTracingEnabled(boolean)
 	 */
+	@Deprecated // Has no functionality
 	public boolean isParseTracingEnabled() {
 		return traceParsing;
 	}
@@ -742,6 +645,7 @@ public class OCL
 	 * Load the Complete OCL document specified by the URI into the external ResourceSet and
 	 * return the concrete syntax resource.
 	 */
+	@Deprecated // Use getCSResource
 	public @Nullable CSResource load(@NonNull URI uri) {
 		ResourceSet externalResourceSet = getResourceSet();
 		return (CSResource) externalResourceSet.getResource(uri, true);
@@ -757,24 +661,6 @@ public class OCL
 	}
 
 	/**
-	 * Sets whether tracing of evaluation is enabled. Tracing logs the progress
-	 * of parsing to the console, which may be of use in diagnosing problems.
-	 * <p>
-	 * In an Eclipse environment, tracing is also enabled by turning on the
-	 * <tt>org.eclipse.ocl/debug/evaluation</tt> debug option.
-	 * </p>
-	 * 
-	 * @param b
-	 *            whether evaluation tracing is enabled
-	 * 
-	 * @see #isEvaluationTracingEnabled()
-	 */
-	public void setEvaluationTracingEnabled(boolean b) {
-		traceEvaluation = b;
-		environmentFactory.setEvaluationTracingEnabled(traceEvaluation);
-	}
-	
-	/**
 	 * Convert the specification of an OCL expression from textual CS form to parsed executable AS form. The textual form typically
 	 * results from simple construction from source text or a UML OpaqueExpression.
 	 * <p>
@@ -788,9 +674,28 @@ public class OCL
 	public @NonNull ExpressionInOCL parseSpecification(@NonNull LanguageExpression specification) throws ParserException {
 		return getMetamodelManager().parseSpecification(specification);
 	}
-	@Deprecated // contextElement is partially ignored in favor of specifucation ancestry
+	@Deprecated // contextElement is partially ignored in favor of specification ancestry
 	public @NonNull ExpressionInOCL parseSpecification(@NonNull EObject contextElement, @NonNull LanguageExpression specification) throws ParserException {
 		return getMetamodelManager().parseSpecification(contextElement, specification);
+	}
+
+	/**
+	 * Sets whether tracing of evaluation is enabled. Tracing logs the progress
+	 * of parsing to the console, which may be of use in diagnosing problems.
+	 * <p>
+	 * In an Eclipse environment, tracing is also enabled by turning on the
+	 * <tt>org.eclipse.ocl/debug/evaluation</tt> debug option.
+	 * </p>
+	 * 
+	 * @param b
+	 *            whether evaluation tracing is enabled
+	 * 
+	 * @see #isEvaluationTracingEnabled()
+	 */
+	@Deprecated // Has no functionality
+	public void setEvaluationTracingEnabled(boolean b) {
+		traceEvaluation = b;
+		environmentFactory.setEvaluationTracingEnabled(traceEvaluation);
 	}
 
 	/**
@@ -827,6 +732,7 @@ public class OCL
 	 * 
 	 * @see #getParserRepairCount()
 	 */
+	@Deprecated // Has no functionality
 	public void setParserRepairCount(int parserRepairCount) {
 		if (parserRepairCount < 0) {
 			throw new IllegalArgumentException("negative repair count"); //$NON-NLS-1$
@@ -847,6 +753,7 @@ public class OCL
 	 * 
 	 * @see #isParseTracingEnabled()
 	 */
+	@Deprecated // Has no functionality
 	public void setParseTracingEnabled(boolean b) {
 		traceParsing = b;
 	}
@@ -864,6 +771,7 @@ public class OCL
 	 * 
 	 * @see #validate(Constraint)
 	 */
+	@Deprecated // Has no functionality
 	public void validate(@NonNull OCLExpression expression) throws SemanticException {
 		throw new UnsupportedOperationException(getClass().getName() + ".validate");
 		// clear out old diagnostics
@@ -898,6 +806,7 @@ public class OCL
 	 * @throws SemanticException
 	 *             on detection of any well-formedness problem in the constraint
 	 */
+	@Deprecated // Has no functionality
 	public void validate(@NonNull Constraint constraint) throws SemanticException {
 		throw new UnsupportedOperationException(getClass().getName() + ".validate");
 		// clear out old diagnostics

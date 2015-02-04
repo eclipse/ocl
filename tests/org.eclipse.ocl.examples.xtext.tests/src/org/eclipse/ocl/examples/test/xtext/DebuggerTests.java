@@ -46,9 +46,9 @@ import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
 import org.eclipse.ocl.examples.xtext.tests.TestUtil;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.Constraint;
-import org.eclipse.ocl.pivot.utilities.MetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerInternal;
+import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
-import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.intro.IIntroManager;
 
@@ -104,7 +104,7 @@ public class DebuggerTests extends XtextTestCase
 	}
 
 	public void testDebugger_Launch() throws Exception {
-		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap(), null);
+		OCLInternal ocl = OCLInternal.newInstance(getProjectMap(), null);
 		closeIntro();
 		enableSwitchToDebugPerspectivePreference();
 		//
@@ -129,7 +129,7 @@ public class DebuggerTests extends XtextTestCase
 		@SuppressWarnings("unchecked")List<EObject> customers = (List<EObject>) xmiRoot.eGet(ref_RandL_Customer);
 		EObject eObject = customers.get(0);
 		
-		MetamodelManager.Internal metamodelManager = ocl.getMetamodelManager();
+		MetamodelManagerInternal metamodelManager = ocl.getMetamodelManager();
 		org.eclipse.ocl.pivot.Class customerClass = metamodelManager.getASOf(org.eclipse.ocl.pivot.Class.class, eObject.eClass());
 		Iterable<Constraint> customerInvariants = metamodelManager.getAllInvariants(customerClass);
 		Constraint constraint = NameUtil.getNameable(customerInvariants, "invariant_sizesAgree");

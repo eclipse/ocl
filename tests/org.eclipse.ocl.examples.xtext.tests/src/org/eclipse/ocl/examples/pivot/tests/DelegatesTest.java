@@ -81,8 +81,10 @@ import org.eclipse.ocl.pivot.internal.delegate.SettingBehavior;
 import org.eclipse.ocl.pivot.internal.delegate.ValidationDelegate;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.evaluation.OCLEvaluationVisitor;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerInternal;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
+import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
@@ -142,14 +144,14 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 
 	public boolean usedLocalRegistry;
 
-	protected @NonNull OCL.Internal configureMetamodelManagerForDelegate(@NonNull EPackage ePackage) {
+	protected @NonNull OCLInternal configureMetamodelManagerForDelegate(@NonNull EPackage ePackage) {
 		DelegateEPackageAdapter adapter = DelegateEPackageAdapter.getAdapter(ePackage);
 		DelegateDomain delegateDomain = adapter.getDelegateDomain(PivotConstants.OCL_DELEGATE_URI_PIVOT);
 		if (delegateDomain == null) {
 			delegateDomain = adapter.loadDelegateDomain(PivotConstants.OCL_DELEGATE_URI_PIVOT);
 		}
 		EnvironmentFactory environmentFactory = ((OCLDelegateDomain)delegateDomain).getOCL().getEnvironmentFactory();
-		return OCL.Internal.newInstance((EnvironmentFactoryInternal)environmentFactory);
+		return OCLInternal.newInstance((EnvironmentFactoryInternal)environmentFactory);
 	}
 	
 	protected @NonNull ResourceSet createResourceSet() {
@@ -261,8 +263,8 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 	protected void initModelWithErrorsAndOcl(@NonNull ResourceSet resourceSet) {
 		doCompleteOCLSetup();
 		Resource ecoreResource = initModelWithErrors(resourceSet);
-		OCL.Internal ocl = configureMetamodelManagerForDelegate(companyPackage);
-		MetamodelManager.Internal metamodelManager = ocl.getMetamodelManager();
+		OCLInternal ocl = configureMetamodelManagerForDelegate(companyPackage);
+		MetamodelManagerInternal metamodelManager = ocl.getMetamodelManager();
 		EnvironmentFactoryInternal environmentFactory = ocl.getEnvironmentFactory();
 		environmentFactory.adapt(resourceSet);
 		String message = PivotUtil.formatResourceDiagnostics(ecoreResource.getErrors(), "Model load", "\n\t");
@@ -363,7 +365,7 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 
 	@AfterClass
 	protected void tearDownClass() throws Exception {
-		OCL.Internal.disposeGlobalEnvironmentFactory();
+		OCLInternal.disposeGlobalEnvironmentFactory();
 	}
 	
 	public void doTest_allInstances(@NonNull ResourceSet resourceSet, @NonNull String modelName) {
@@ -469,8 +471,8 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 	@SuppressWarnings("null")
 	public void doTest_queryExecution(@NonNull ResourceSet resourceSet, @NonNull String modelName) {
 		initModel(resourceSet, modelName);
-		OCL.Internal ocl = configureMetamodelManagerForDelegate(companyPackage);
-		MetamodelManager.Internal metamodelManager = ocl.getMetamodelManager();
+		OCLInternal ocl = configureMetamodelManagerForDelegate(companyPackage);
+		MetamodelManagerInternal metamodelManager = ocl.getMetamodelManager();
 		QueryDelegate.Factory factory = QueryDelegate.Factory.Registry.INSTANCE
 			.getFactory(PivotConstants.OCL_DELEGATE_URI_PIVOT);
 
@@ -577,14 +579,14 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 	}
 
 	public void test_allInstances() {
-		OCL.Internal.disposeGlobalEnvironmentFactory();
+		OCLInternal.disposeGlobalEnvironmentFactory();
 		ResourceSet resourceSet = createResourceSet();
 		doTest_allInstances(resourceSet, COMPANY_XMI);
 		assertTrue(usedLocalRegistry);
 	}
 
 	public void test_allInstances_registered() {
-		OCL.Internal.disposeGlobalEnvironmentFactory();
+		OCLInternal.disposeGlobalEnvironmentFactory();
 		ResourceSet resourceSet = createResourceSet();
 		initPackageRegistrations(resourceSet);
 		doTest_allInstances(resourceSet, COMPANY_XMI);
@@ -740,7 +742,7 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 	}
 
 	public void test_constraintValidation_registered() {
-		OCL.Internal.disposeGlobalEnvironmentFactory();
+		OCLInternal.disposeGlobalEnvironmentFactory();
 		ResourceSet resourceSet = createResourceSet();
 		initPackageRegistrations(resourceSet);
 		doTest_constraintValidation(resourceSet, COMPANY_XMI);
@@ -764,7 +766,7 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 //	}
 
 	public void test_eAttributeDerivation() {
-		OCL.Internal.disposeGlobalEnvironmentFactory();
+		OCLInternal.disposeGlobalEnvironmentFactory();
 		ResourceSet resourceSet = createResourceSet();
 		doTest_eAttributeDerivation(resourceSet, COMPANY_XMI);
 	}
@@ -777,13 +779,13 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 	} */
 
 	public void test_eReferenceDerivation() {
-		OCL.Internal.disposeGlobalEnvironmentFactory();
+		OCLInternal.disposeGlobalEnvironmentFactory();
 		ResourceSet resourceSet = createResourceSet();
 		doTest_eReferenceDerivation(resourceSet, COMPANY_XMI);
 	}
 
 	public void test_eReferenceDerivation_registered() {
-		OCL.Internal.disposeGlobalEnvironmentFactory();
+		OCLInternal.disposeGlobalEnvironmentFactory();
 		ResourceSet resourceSet = createResourceSet();
 		initPackageRegistrations(resourceSet);
 		doTest_eReferenceDerivation(resourceSet, COMPANY_XMI);
@@ -888,14 +890,14 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 	} */
 	
 	public void test_invariantValidation() {
-		OCL.Internal.disposeGlobalEnvironmentFactory();
+		OCLInternal.disposeGlobalEnvironmentFactory();
 		ResourceSet resourceSet = createResourceSet();
 		doTest_invariantValidation(resourceSet, COMPANY_XMI, false, Diagnostic.WARNING);
 		assertTrue(usedLocalRegistry);
 	}
 
 	public void test_invariantValidation_registered() {
-		OCL.Internal.disposeGlobalEnvironmentFactory();
+		OCLInternal.disposeGlobalEnvironmentFactory();
 		ResourceSet resourceSet = createResourceSet();
 		initPackageRegistrations(resourceSet);
 		doTest_invariantValidation(resourceSet, COMPANY_XMI, true, Diagnostic.ERROR);
@@ -981,7 +983,7 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 	}
 
 	public void test_operationInvocation() throws InvocationTargetException {
-		OCL.Internal.disposeGlobalEnvironmentFactory();
+		OCLInternal.disposeGlobalEnvironmentFactory();
 		ResourceSet resourceSet = createResourceSet();
 		doTest_operationInvocation(resourceSet, COMPANY_XMI);
 		assertTrue(usedLocalRegistry);
@@ -1111,14 +1113,14 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 	} */
 
 	public void test_queryExecution() {
-		OCL.Internal.disposeGlobalEnvironmentFactory();
+		OCLInternal.disposeGlobalEnvironmentFactory();
 		ResourceSet resourceSet = createResourceSet();
 		doTest_queryExecution(resourceSet, COMPANY_XMI);
 		assertTrue(usedLocalRegistry);
 	}
 
 	public void test_queryExecution_registered() {
-		OCL.Internal.disposeGlobalEnvironmentFactory();
+		OCLInternal.disposeGlobalEnvironmentFactory();
 		ResourceSet resourceSet = createResourceSet();
 		initPackageRegistrations(resourceSet);
 		doTest_queryExecution(resourceSet, COMPANY_XMI);
@@ -1126,7 +1128,7 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 	}
 
 	public void test_queryExecution_codeGenerated() {
-		OCL.Internal.disposeGlobalEnvironmentFactory();
+		OCLInternal.disposeGlobalEnvironmentFactory();
 		ResourceSet resourceSet = createResourceSet();
 		initCodeGeneratedPackageRegistrations(resourceSet);
 		doTest_queryExecution(resourceSet, COMPANY_XMI);
@@ -1259,13 +1261,13 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 	}
 
 	public void test_tutorialValidationMessage() {
-		OCL.Internal.disposeGlobalEnvironmentFactory();
+		OCLInternal.disposeGlobalEnvironmentFactory();
 		validateTutorial("model/Tutorial1.ecore", "There are 3 loans for the 2 copies of b2");
-		OCL.Internal.disposeGlobalEnvironmentFactory();
+		OCLInternal.disposeGlobalEnvironmentFactory();
 		validateTutorial("model/Tutorial2.ecore", "There are 3 loans for the 2 copies of ''b2''");		// Doubled quotes for NLS.bind
-		OCL.Internal.disposeGlobalEnvironmentFactory();
+		OCLInternal.disposeGlobalEnvironmentFactory();
 		validateTutorial("model/Tutorial1.ecore", "There are 3 loans for the 2 copies of b2");
-		OCL.Internal.disposeGlobalEnvironmentFactory();
+		OCLInternal.disposeGlobalEnvironmentFactory();
 	}
 
 	public void validateTutorial(@NonNull String ecoreURI, @NonNull String message) {

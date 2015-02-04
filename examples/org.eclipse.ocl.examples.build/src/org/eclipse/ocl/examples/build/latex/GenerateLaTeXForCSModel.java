@@ -67,14 +67,14 @@ public abstract class GenerateLaTeXForCSModel extends GenerateLaTeXUtils
 				String cs2asSourceFile = "/" + projectName + "/" + cs2asFile;
 				URI cs2asURI = ClassUtil.nonNullState(URI.createPlatformResourceURI(cs2asSourceFile, true));
 				log.info("Loading Model '" + cs2asURI);
-				Resource oclResource = ocl.load(cs2asURI);
+				Resource oclResource = ocl.getCSResource(cs2asURI);
 				cs2asPackage = getSecondaryPackage(metamodelManager, oclResource);
 			}
 			if ((cs2csFile != null) && (cs2csFile.length() > 0)) {
 				String cs2csSourceFile = "/" + projectName + "/" + cs2csFile;
 				URI cs2csURI = ClassUtil.nonNullState(URI.createPlatformResourceURI(cs2csSourceFile, true));
 				log.info("Loading Model '" + cs2csURI);
-				Resource oclResource = ocl.load(cs2csURI);
+				Resource oclResource = ocl.getCSResource(cs2csURI);
 				cs2csPackage = getSecondaryPackage(metamodelManager, oclResource);
 			}
 			if (cs2asPackage != null) {

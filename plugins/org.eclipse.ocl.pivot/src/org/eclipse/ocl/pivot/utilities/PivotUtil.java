@@ -80,6 +80,7 @@ import org.eclipse.ocl.pivot.internal.PackageImpl;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
+import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
 import org.eclipse.ocl.pivot.resource.CSResource;
@@ -855,7 +856,7 @@ public class PivotUtil
 	 * @throws ParserException if eObject cannot be converted to a Pivot element
 	 */
 	public static boolean setParserContext(@NonNull CSResource csResource, @NonNull EObject eObject, Object... todoParameters) throws ParserException {
-		EnvironmentFactoryAdapter adapter = OCL.Internal.adapt(csResource);
+		EnvironmentFactoryAdapter adapter = OCLInternal.adapt(csResource);
 		EnvironmentFactoryInternal environmentFactory = adapter.getEnvironmentFactory();
 		Element pivotElement = environmentFactory.getTechnology().getParseableElement(environmentFactory, eObject);
 		if (pivotElement == null) {

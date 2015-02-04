@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.internal.utilities.HTMLBuffer;
+import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.SemanticException;
 import org.eclipse.ocl.xtext.markup.MarkupStandaloneSetup;
@@ -42,8 +43,8 @@ public class MarkupTests extends XtextTestCase
 		MarkupStandaloneSetup.doSetup();
 	}
 
-	protected @NonNull OCL.Internal createOCL() {
-		return OCL.Internal.newInstance(OCL.NO_PROJECTS, null);
+	protected @NonNull OCLInternal createOCL() {
+		return OCLInternal.newInstance(OCL.NO_PROJECTS, null);
 	}
 
 	protected @NonNull Markup doDecode(@NonNull OCL ocl, @NonNull String testString) throws IOException {
@@ -69,7 +70,7 @@ public class MarkupTests extends XtextTestCase
 	}
 
 	protected void doBadHtmlTest(@NonNull String testString, @NonNull Class<?> exceptionClass) throws Exception {
-		OCL.Internal ocl = createOCL();
+		OCLInternal ocl = createOCL();
 		try {
 			Markup markup = doDecode(ocl, testString);
 			@SuppressWarnings("unused")
@@ -82,7 +83,7 @@ public class MarkupTests extends XtextTestCase
 	}
 
 	protected void doHtmlTest(Object context, @NonNull String expected, @NonNull String testString) throws Exception {
-		OCL.Internal ocl = createOCL();
+		OCLInternal ocl = createOCL();
 		Markup markup = doDecode(ocl, testString);
 		//		System.out.println(MarkupToTree.toString(markup));
 		String testResult = MarkupToHTML.toString(ocl.getEnvironmentFactory(), context, markup);
@@ -91,7 +92,7 @@ public class MarkupTests extends XtextTestCase
 	}
 
 	protected void doNewlineCountTest(int expectedCount, @NonNull String testString) throws IOException {
-		OCL.Internal ocl = createOCL();
+		OCLInternal ocl = createOCL();
 		Markup markup = doDecode(ocl, testString);		
 		List<MarkupElement> elements = markup.getElements();
 		assert elements.size() == 1;
@@ -105,7 +106,7 @@ public class MarkupTests extends XtextTestCase
 	}
 
 	protected void doStringTest(@NonNull String testString) throws IOException {
-		OCL.Internal ocl = createOCL();
+		OCLInternal ocl = createOCL();
 		Markup markup = doDecode(ocl, testString);
 		String testResult = MarkupToString.toString(markup);
 		if (!testString.equals(testResult)) {

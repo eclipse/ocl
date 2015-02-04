@@ -49,17 +49,18 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.context.ClassContext;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerInternal;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
+import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.library.LibraryUnaryOperation;
 import org.eclipse.ocl.pivot.library.ecore.EcoreExecutorManager;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
-import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.ParserContext;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -74,7 +75,7 @@ import org.eclipse.ocl.pivot.values.Value;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.xtext.diagnostics.ExceptionDiagnostic;
 
-public class TestOCL extends OCL.Internal
+public class TestOCL extends OCLInternal
 {
 	protected final @NonNull String testPackageName;
 	protected final @NonNull String testName;
@@ -760,7 +761,7 @@ public class TestOCL extends OCL.Internal
     }
 
 	public @NonNull Type getCollectionType(@NonNull String collectionName, @NonNull Type type) {
-		MetamodelManager.Internal metamodelManager = getMetamodelManager();
+		MetamodelManagerInternal metamodelManager = getMetamodelManager();
 		Type collectionType = metamodelManager.getCollectionType(collectionName, type, null, null);
 		metamodelManager.addLockedElement(collectionType);
 		return collectionType;
@@ -794,7 +795,7 @@ public class TestOCL extends OCL.Internal
 	}
 
 	public @NonNull org.eclipse.ocl.pivot.Package getUMLMetamodel() {
-		MetamodelManager.Internal metamodelManager = getMetamodelManager();
+		MetamodelManagerInternal metamodelManager = getMetamodelManager();
 		return ClassUtil.nonNullState(metamodelManager.getASmetamodel());
 	}
 	

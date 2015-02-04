@@ -92,6 +92,9 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 
 	@NonNull PivotMetamodelManager createMetamodelManager();
 
+	@Override
+	@NonNull OCLInternal createOCL();
+
 	/**
 	 * Create a ParserContext that may be used to parse OCL expressions in the given context,
 	 * which may be an EClassifier/EOperation/EStructuralFeature or Type/Operation/Property.

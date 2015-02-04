@@ -39,6 +39,7 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerInternal;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
@@ -404,7 +405,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	@Test public void test_container_navigation() throws InvocationTargetException {
 		TestOCL ocl = createOCL();
 		initFruitPackage(ocl);
-		MetamodelManager.Internal metamodelManager = ocl.getMetamodelManager();
+		MetamodelManagerInternal metamodelManager = ocl.getMetamodelManager();
 		IdResolver idResolver = ocl.getIdResolver();
 		metamodelManager.addGlobalNamespace("fruit", fruitPackage);
 		//
@@ -445,7 +446,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	@Test public void test_nested_names() throws InvocationTargetException {
 		TestOCL ocl = createOCL();
 		initFruitPackage(ocl);
-		MetamodelManager.Internal metamodelManager = ocl.getMetamodelManager();
+		MetamodelManagerInternal metamodelManager = ocl.getMetamodelManager();
 		IdResolver idResolver = ocl.getIdResolver();
 		org.eclipse.ocl.pivot.Class appleType = metamodelManager.getASOfEcore(org.eclipse.ocl.pivot.Class.class, apple);
 		//
@@ -517,7 +518,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		TestOCL ocl = createOCL();
 		ResourceSet resourceSet = ocl.getResourceSet();
 		UML2AS.initialize(resourceSet);
-		MetamodelManager.Internal metamodelManager = ocl.getMetamodelManager();
+		MetamodelManagerInternal metamodelManager = ocl.getMetamodelManager();
 		URI uri = getTestModelURI("model/Fruit.uml");
 		Element element = metamodelManager.loadResource(uri, null, resourceSet);
 		org.eclipse.ocl.pivot.Package fruitPackage = ((Model)element).getOwnedPackages().get(0);

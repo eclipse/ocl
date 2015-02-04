@@ -109,7 +109,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(eResource);
 		URI projectResourceURI = URI.createPlatformResourceURI("/" + projectName + "/", true);
 		@SuppressWarnings("null")@NonNull URI nameResoURI = URI.createURI("model/PivotLookup.ocl").resolve(projectResourceURI);
-		OCL ocl = OCL.newInstance(environmentFactory);
+		OCL ocl = environmentFactory.createOCL();
 //		Resource resource = metamodelManager.getResource(nameResoURI, CompleteOCL);
 		Resource resource = ClassUtil.nonNullState(ocl.parse(nameResoURI));
 //		Root root = (Root) resource.getContents().get(0);

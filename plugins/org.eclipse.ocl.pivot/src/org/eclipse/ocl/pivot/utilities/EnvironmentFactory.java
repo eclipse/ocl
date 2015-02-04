@@ -127,6 +127,8 @@ public interface EnvironmentFactory extends Adaptable, Customizable
 	 */
 	@NonNull ModelManager createModelManager(@Nullable Object object);
 
+	@NonNull OCL createOCL();
+
 	/**
 	 * Create a ParserContext that may be used to parse OCL expressions in the given context,
 	 * which may be an EClassifier/EOperation/EStructuralFeature or Type/Operation/Property.

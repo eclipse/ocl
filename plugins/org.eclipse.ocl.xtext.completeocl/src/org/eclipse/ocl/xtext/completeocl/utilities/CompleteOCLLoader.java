@@ -34,24 +34,24 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.External2AS;
+import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.internal.validation.PivotEObjectValidator;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
-import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 
 public abstract class CompleteOCLLoader
 {  // FIXME This is a pragmatic re-use. Redesign as part of a coherent API.
-	protected final @NonNull OCL.Internal ocl;
+	protected final @NonNull OCLInternal ocl;
 
 	protected final @NonNull Set<EPackage> mmPackages;
 	
 	public CompleteOCLLoader(@NonNull EnvironmentFactory environmentFactory) {
-		this.ocl = OCL.Internal.newInstance((EnvironmentFactoryInternal)environmentFactory);
+		this.ocl = OCLInternal.newInstance((EnvironmentFactoryInternal)environmentFactory);
 		this.mmPackages = new HashSet<EPackage>();
 	}
 	

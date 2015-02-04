@@ -127,7 +127,6 @@ import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.FeatureFilter;
-import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.ParserContext;
 import org.eclipse.ocl.pivot.utilities.ParserException;
@@ -143,7 +142,7 @@ import org.eclipse.osgi.util.NLS;
 
 import com.google.common.collect.Iterables;
 
-public class PivotMetamodelManager implements MetamodelManager.Internal, Adapter.Internal
+public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.Internal
 {		
 	public class CompleteTypeOperationsIterable extends CompleteElementIterable<org.eclipse.ocl.pivot.Class, Operation>
 	{

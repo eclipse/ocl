@@ -63,6 +63,7 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.context.ClassContext;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
+import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -326,7 +327,7 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 	private EObject contextObject;
 	private ParserContext parserContext;
 	
-	private OCL.Internal nullOCL = null;
+	private OCLInternal nullOCL = null;
 	private ModelManager modelManager = null;
 	
 //	private Map<TargetMetamodel, IAction> metamodelActions =
@@ -823,9 +824,9 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 		if (environmentFactory != null) {
 			return environmentFactory;
 		}
-		OCL.Internal nullOCL2 = nullOCL;
+		OCLInternal nullOCL2 = nullOCL;
 		if (nullOCL2 == null) {
-			nullOCL2 = nullOCL = OCL.Internal.newInstance();
+			nullOCL2 = nullOCL = OCLInternal.newInstance();
 		}
 		return nullOCL2.getEnvironmentFactory();
 	}

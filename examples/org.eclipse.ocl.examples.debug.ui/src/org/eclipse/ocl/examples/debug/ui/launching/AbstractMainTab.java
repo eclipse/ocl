@@ -23,6 +23,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
+import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -36,7 +37,7 @@ public abstract class AbstractMainTab extends AbstractLaunchConfigurationTab
 {
 	private static final Logger logger = Logger.getLogger(AbstractMainTab.class);
 
-	protected @Nullable OCL.Internal ocl;		// FIXME Add a dispose() when not visible for a long time
+	protected @Nullable OCLInternal ocl;		// FIXME Add a dispose() when not visible for a long time
 	
 	/**
 	 * Internal flag to suppress redundant recursive updates while initializing controls.
@@ -54,9 +55,9 @@ public abstract class AbstractMainTab extends AbstractLaunchConfigurationTab
 	}
 
 	protected @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
-		OCL.Internal ocl2 = ocl;
+		OCLInternal ocl2 = ocl;
 		if (ocl2 == null) {
-			ocl = ocl2 = OCL.Internal.newInstance();
+			ocl = ocl2 = OCLInternal.newInstance();
 		}
 		return ocl2.getEnvironmentFactory();
 	}

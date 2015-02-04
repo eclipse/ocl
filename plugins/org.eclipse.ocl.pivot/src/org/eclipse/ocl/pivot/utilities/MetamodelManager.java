@@ -11,85 +11,21 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.utilities;
 
-import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
-import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CompleteModel;
-import org.eclipse.ocl.pivot.CompletePackage;
-import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
-import org.eclipse.ocl.pivot.Model;
-import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.StandardLibrary;
-import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.complete.CompleteClassInternal;
-import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
-import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.utilities.External2AS;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
-import org.eclipse.ocl.pivot.values.IntegerValue;
-import org.eclipse.ocl.pivot.values.TemplateParameterSubstitutions;
-import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 
 public interface MetamodelManager
 {
-	public static interface Internal extends MetamodelManager
-	{
-		void addClassLoader(@NonNull ClassLoader classLoader);
-
-		void addExternal2AS(@NonNull External2AS external2as);
-
-		void addGenModel(@NonNull GenModel genModel);
-
-		@Nullable Namespace addGlobalNamespace(@NonNull String name, @NonNull Namespace namespace);
-
-		void addLockedElement(@NonNull Object lockedElement);
-
-		@Deprecated // Use getEnvironmentFactory().configureLoadFirstStrategy()
-		void configureLoadFirstStrategy();
-
-		boolean conformsTo(@NonNull Type firstType, @NonNull TemplateParameterSubstitutions firstSubstitutions,
-				@NonNull Type secondType, @NonNull TemplateParameterSubstitutions secondSubstitutions);
-
-		@Nullable org.eclipse.ocl.pivot.Package getASmetamodel();
-		
-		@NonNull Iterable<Constraint> getAllInvariants(@NonNull Type pivotType);
-
-		@NonNull org.eclipse.ocl.pivot.Class getCollectionType(@NonNull String collectionTypeName, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
-
-		@NonNull CompleteClassInternal getCompleteClass(@NonNull Type pivotType);
-		
-		@Override
-		@NonNull CompleteModelInternal getCompleteModel();
-
-		@NonNull CompletePackage getCompletePackage(@NonNull org.eclipse.ocl.pivot.Package asPackage);
-
-		@Override
-		@NonNull EnvironmentFactoryInternal getEnvironmentFactory();
-
-		@Nullable GenPackage getGenPackage(@NonNull String nsURI);
-
-		@Nullable ParserContext getParserContext(@NonNull Element element, Object... todoParameters);
-
-		@Nullable org.eclipse.ocl.pivot.Class getPrimaryType(@NonNull String nsURI, @NonNull String path, String... extraPath);
-
-		@Override
-		@NonNull StandardLibraryInternal getStandardLibrary();
-
-		void installRoot(@NonNull Model pivotModel);
-
-		@Nullable Element loadResource(@NonNull URI uri, String alias, @Nullable ResourceSet resourceSet) throws ParserException;
-	}
-
 	@Nullable org.eclipse.ocl.pivot.Class getASClass(@NonNull String className);
 
 	@Nullable <T extends Element> T getASOf(@NonNull Class<T> pivotClass, @Nullable EObject eObject) throws ParserException;

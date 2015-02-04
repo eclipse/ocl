@@ -31,6 +31,7 @@ import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.common.delegate.VirtualDelegateMapping;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
@@ -285,8 +286,8 @@ public class OCLDelegateDomain implements DelegateDomain, EnvironmentFactory.Lis
 			// Delegates are an application-independent extension of EMF
 			//  so we must use the neutral/global context see Bug 338501
 //			EnvironmentFactory environmentFactory = getEnvironmentFactory();
-			EnvironmentFactory environmentFactory = OCL.Internal.getGlobalEnvironmentFactory();
-			ocl2 = ocl = OCL.newInstance(environmentFactory);
+			EnvironmentFactory environmentFactory = OCLInternal.getGlobalEnvironmentFactory();
+			ocl2 = ocl = environmentFactory.createOCL();
 			environmentFactory.addListener(this);
 		}
 		return ocl2;

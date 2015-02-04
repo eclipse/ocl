@@ -63,6 +63,7 @@ import org.eclipse.ocl.pivot.internal.resource.ICSI2ASMapping;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.External2AS;
+import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.internal.utilities.Technology;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.values.ObjectValue;
@@ -307,6 +308,11 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	}
 
 	@Override
+	public @NonNull OCLInternal createOCL() {
+		return new OCLInternal(this);
+	}
+
+	@Override
 	public @NonNull ParserContext createParserContext(@Nullable EObject context) {
     	PivotMetamodelManager metamodelManager = getMetamodelManager();
 		if (context instanceof org.eclipse.ocl.pivot.Class) {
@@ -363,7 +369,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 			}
 		}
 		assert attachCount == 0;
-		if (this != OCL.Internal.basicGetGlobalEnvironmentFactory()) {
+		if (this != OCLInternal.basicGetGlobalEnvironmentFactory()) {
 			if (metamodelManager != null) {
 				metamodelManager.dispose();
 				metamodelManager = null;
@@ -397,7 +403,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 
 	@Override
 	public void disposeGlobal() {
-		assert this == OCL.Internal.basicGetGlobalEnvironmentFactory();
+		assert this == OCLInternal.basicGetGlobalEnvironmentFactory();
 		dispose();
 		if (metamodelManager != null) {
 			metamodelManager.dispose();

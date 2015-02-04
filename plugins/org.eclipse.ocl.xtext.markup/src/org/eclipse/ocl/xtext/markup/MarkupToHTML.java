@@ -199,7 +199,7 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 		assert elements != null;
 		String oclString = MarkupToString.toString(elements);		
 		try {
-			OCL ocl = OCL.newInstance(environmentFactory);
+			OCL ocl = environmentFactory.createOCL();
 			ExpressionInOCL query = createQuery(oclString);
 			Object value = ocl.evaluate(context, query);
 			s.append(String.valueOf(value));
@@ -255,7 +255,7 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 
 	protected @NonNull ExpressionInOCL createQuery(@NonNull String oclString) throws ParserException {
 		org.eclipse.ocl.pivot.Class pivotType = null;
-		OCL ocl = OCL.newInstance(environmentFactory);
+		OCL ocl = environmentFactory.createOCL();
 		try {
 			if (context instanceof EObject) {
 				EClass eClass = ((EObject)context).eClass();

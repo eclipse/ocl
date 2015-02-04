@@ -44,14 +44,13 @@ import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerInternal;
 import org.eclipse.ocl.pivot.internal.resource.ASSaver;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
-import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
+import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.MetamodelManager;
-import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
@@ -205,8 +204,8 @@ public abstract class GenerateOCLmetamodel extends GenerateOCLCommonXtend
 		OCLstdlib.install();
 		log.info("Loading Pivot Model '" + inputURI);
 		try {
-			OCL.Internal ocl = OCL.Internal.newInstance();
-			MetamodelManager.Internal metamodelManager = ocl.getMetamodelManager();
+			OCLInternal ocl = OCLInternal.newInstance();
+			MetamodelManagerInternal metamodelManager = ocl.getMetamodelManager();
 			ResourceSet asResourceSet = metamodelManager.getASResourceSet();
 		    if (packageDescriptor != null) {
 		    	packageDescriptor.configure(asResourceSet, StandaloneProjectMap.LoadDynamicResourceStrategy.INSTANCE, null);
@@ -219,7 +218,7 @@ public abstract class GenerateOCLmetamodel extends GenerateOCLCommonXtend
 				issues.addError(this, ecoreErrorsString, null, null, null);
 				return;
 			}
-			Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, (EnvironmentFactoryInternal) ocl.getEnvironmentFactory());
+			Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, ocl.getEnvironmentFactory());
 			Model pivotModel = ecore2as.getASModel();
 			Resource asResource = pivotModel.eResource();
 			String pivotErrorsString = PivotUtil.formatResourceDiagnostics(ClassUtil.nonNullEMF(asResource.getErrors()), "Converting " + inputURI, "\n");

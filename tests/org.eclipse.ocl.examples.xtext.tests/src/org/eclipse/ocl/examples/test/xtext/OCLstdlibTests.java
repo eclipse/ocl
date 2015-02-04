@@ -43,6 +43,7 @@ import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
+import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
 import org.eclipse.ocl.pivot.model.OCLmetamodel;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
@@ -380,7 +381,7 @@ public class OCLstdlibTests extends XtextTestCase
 	 * Java implementation.
 	 */
 	public void testPivot_AS() throws Exception {
-		OCL.Internal ocl = OCL.Internal.newInstance(getProjectMap(), null);
+		OCLInternal ocl = OCLInternal.newInstance(getProjectMap(), null);
 		//
 		//	Load OCL stdlib as an AS file.
 		//

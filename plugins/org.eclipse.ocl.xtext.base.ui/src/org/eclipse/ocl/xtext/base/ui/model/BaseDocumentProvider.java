@@ -16,6 +16,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
+import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
@@ -26,7 +27,7 @@ import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
  */
 public class BaseDocumentProvider extends XtextDocumentProvider
 {
-	private @Nullable OCL.Internal ocl;
+	private @Nullable OCLInternal ocl;
 
 	@Override
 	protected void disconnected() {
@@ -42,10 +43,10 @@ public class BaseDocumentProvider extends XtextDocumentProvider
 		return getOCL().getEnvironmentFactory();
 	}
 	
-	protected @NonNull OCL.Internal getOCL() {
-		OCL.Internal ocl2 = ocl;
+	protected @NonNull OCLInternal getOCL() {
+		OCLInternal ocl2 = ocl;
 		if (ocl2 == null) {
-			ocl = ocl2 = OCL.Internal.newInstance();
+			ocl = ocl2 = OCLInternal.newInstance();
 		}
 		return ocl2;
 	}

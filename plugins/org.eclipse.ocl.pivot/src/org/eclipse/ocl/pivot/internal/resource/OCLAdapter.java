@@ -27,6 +27,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
+import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.resource.BasicProjectManager;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -42,7 +43,7 @@ import org.eclipse.ocl.pivot.utilities.OCL;
 public class OCLAdapter extends EnvironmentFactoryAdapter implements AdapterFactory, IDisposable
 {
 	public static @NonNull EnvironmentFactoryInternal createEnvironmentFactory(@NonNull ProjectManager projectManager, @NonNull Notifier notifier) {
-		OCL.Internal ocl = OCL.Internal.newInstance(projectManager, null);
+		OCLInternal ocl = OCLInternal.newInstance(projectManager, null);
 		OCLAdapter adapter = new OCLAdapter(ocl, notifier);
 		notifier.eAdapters().add(adapter);
 		return adapter.getEnvironmentFactory();
@@ -58,10 +59,10 @@ public class OCLAdapter extends EnvironmentFactoryAdapter implements AdapterFact
 		if (oclAdapter == null) {
 			EnvironmentFactoryAdapter environmentFactoryAdapter = ClassUtil.getAdapter(EnvironmentFactoryAdapter.class, resourceSet);
 			if (environmentFactoryAdapter != null) {
-				oclAdapter = new OCLAdapter(OCL.Internal.newInstance(environmentFactoryAdapter.getEnvironmentFactory()), resourceSet);
+				oclAdapter = new OCLAdapter(OCLInternal.newInstance(environmentFactoryAdapter.getEnvironmentFactory()), resourceSet);
 			}
 			else {
-				OCL.Internal ocl = OCL.Internal.newInstance(BasicProjectManager.createDefaultProjectManager(), resourceSet);
+				OCLInternal ocl = OCLInternal.newInstance(BasicProjectManager.createDefaultProjectManager(), resourceSet);
 				oclAdapter = new OCLAdapter(ocl, resourceSet);
 			}
 			eAdapters.add(oclAdapter);
@@ -71,7 +72,7 @@ public class OCLAdapter extends EnvironmentFactoryAdapter implements AdapterFact
 	
 	protected OCL ocl;				// Set null once disposed
 	
-	protected OCLAdapter(@NonNull OCL.Internal ocl, @NonNull Notifier notifier) {
+	protected OCLAdapter(@NonNull OCLInternal ocl, @NonNull Notifier notifier) {
 		super(ocl.getEnvironmentFactory(), notifier);
 		this.ocl = ocl;
 		//

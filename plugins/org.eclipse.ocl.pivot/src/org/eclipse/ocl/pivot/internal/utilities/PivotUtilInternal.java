@@ -47,6 +47,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerInternal;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.PivotExecutorManager;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
@@ -56,7 +57,6 @@ import org.eclipse.ocl.pivot.internal.scoping.NullAttribution;
 import org.eclipse.ocl.pivot.library.ecore.EcoreExecutorManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
-import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.Pivotable;
 
@@ -127,7 +127,7 @@ public class PivotUtilInternal //extends PivotUtil
 		return environmentFactory.getMetamodelManager();
 	}
 
-	public static Type findTypeOf(@NonNull MetamodelManager.Internal metamodelManager, @NonNull EClassifier eClass) {
+	public static Type findTypeOf(@NonNull MetamodelManagerInternal metamodelManager, @NonNull EClassifier eClass) {
 		Resource resource = eClass.eResource();
 		if (resource != null) {
 			External2AS adapter = Ecore2AS.findAdapter(resource, metamodelManager.getEnvironmentFactory());

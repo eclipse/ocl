@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
+import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.internal.values.BagImpl;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.CSResource;
@@ -148,7 +149,7 @@ public abstract class AbstractValidateTests extends PivotTestCase
 
 	@Override
 	protected void tearDown() throws Exception {
-		OCL.Internal.disposeGlobalEnvironmentFactory();
+		OCLInternal.disposeGlobalEnvironmentFactory();
 		super.tearDown();
 	}
 }
