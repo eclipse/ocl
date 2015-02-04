@@ -159,7 +159,9 @@ public class OCL
      * Creates a new <code>OCL</code> using the specified Ecore package registry.
      */
 	public static @NonNull OCL newInstance(@NonNull EPackage.Registry ePackageRegistry) {
-		return newInstance();
+		ResourceSet resourceSet = new ResourceSetImpl();
+		resourceSet.setPackageRegistry(ePackageRegistry);
+		return newInstance(NO_PROJECTS, resourceSet);
 	}
 	/**
 	 * The EnvironmentFactory that can create objects and which provides the MetamodelManager, CompleteEnvironment and StandardLibrary.
