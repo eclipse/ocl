@@ -379,10 +379,12 @@ public class OCL
 	}
 
 	/**
-	 * Disposes any objects that I have created while I have been in use. This
-	 * includes disposing of any {@link #getConstraints() constraints} that I
-	 * have parsed and {@linkplain EnvironmentInternal#dispose() disposing} of
-	 * my environment.
+	 * <p>Disposes any objects that I have created while I have been in use. This
+	 * detaches the {@link OCL} instance from the corresponding environment
+	 * factory which will release its resources once there are no further
+	 * attached OCL clients.</p>
+	 * <p>dispose() should be invoked to release resources promptly. If a call to dispose() is
+	 * omitted, finalize() will detach() when garbage collection of the OCL instance occurs.</p>
 	 */
 	public synchronized void dispose() {
 		EnvironmentFactoryInternal environmentFactory2 = environmentFactory;

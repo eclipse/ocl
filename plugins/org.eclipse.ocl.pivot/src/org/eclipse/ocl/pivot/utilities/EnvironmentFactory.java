@@ -112,6 +112,14 @@ public interface EnvironmentFactory extends Adaptable, Customizable
 	 */
 	@NonNull ModelManager createModelManager(@Nullable Object object);
 
+	/**
+	 * <p>Creates a new {@link OCL} instance attached to this {@link EnvironmentFactory}.</p>
+	 * 
+	 * <p>Clients should call {@link OCL#dispose()} to detach once they have no further use for
+	 * the OCL.</p>
+	 * 
+	 * @return a new {@link OCL} instance attached to this {@link EnvironmentFactory}
+	 */
 	@NonNull OCL createOCL();
 
 	@NonNull CompleteEnvironment getCompleteEnvironment();
