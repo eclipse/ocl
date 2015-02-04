@@ -156,7 +156,11 @@ public class OCL
 	}
 	
     /**
-     * Creates a new <code>OCL</code> using the specified Ecore package registry.
+     * Creates a new <code>OCL</code> instance using the specified Ecore package registry.
+     * 
+     * Note that the returned {@link OCL} instance will use their own clean {@link ResourceSet}
+     * 
+     * @see OCL#getResourceSet()
      */
 	public static @NonNull OCL newInstance(@NonNull EPackage.Registry ePackageRegistry) {
 		ResourceSet resourceSet = new ResourceSetImpl();
