@@ -34,7 +34,7 @@ import org.eclipse.ocl.pivot.utilities.ParserException;
 public class OCLVMEvaluator implements IVMEvaluator
 {
     public static @NonNull EObject loadContext(@NonNull PivotMetamodelManager metamodelManager, @NonNull URI contextURI) throws IOException {
-        EObject eObject = metamodelManager.getExternalResourceSet().getEObject(contextURI, true);
+        EObject eObject = metamodelManager.getEnvironmentFactory().getResourceSet().getEObject(contextURI, true);
         if (eObject == null) {
             throw new IOException("Nothing loadable as '" + contextURI + "'");
         }

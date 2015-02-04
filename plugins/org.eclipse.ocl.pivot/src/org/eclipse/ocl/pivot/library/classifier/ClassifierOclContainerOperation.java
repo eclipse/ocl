@@ -23,12 +23,6 @@ public class ClassifierOclContainerOperation extends AbstractUntypedUnaryOperati
 {
 	public static final @NonNull ClassifierOclContainerOperation INSTANCE = new ClassifierOclContainerOperation();
 
-	@Deprecated
-	public @Nullable Object evaluate(@Nullable Object sourceVal) {
-		EObject object = asNavigableObject(sourceVal, "oclContainer()", null); //$NON-NLS-1$
-		return object.eContainer();
-	}
-
 	@Override
 	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceVal) {
 		EObject object = asNavigableObject(sourceVal, "oclContainer()", evaluator); //$NON-NLS-1$

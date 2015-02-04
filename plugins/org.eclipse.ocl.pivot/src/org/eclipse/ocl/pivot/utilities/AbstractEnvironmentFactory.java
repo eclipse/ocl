@@ -142,7 +142,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	public void addExternal2AS(@NonNull External2AS external2as) {
 		Resource resource = external2as.getResource();
 		if ((resource != null) && ClassUtil.isRegistered(resource)) {
-			ResourceSet externalResourceSet2 = getMetamodelManager().getExternalResourceSet();
+			ResourceSet externalResourceSet2 = getResourceSet();
 			projectManager.useGeneratedResource(resource, externalResourceSet2);
 		}
 		getMetamodelManager().addExternal2AS(external2as);

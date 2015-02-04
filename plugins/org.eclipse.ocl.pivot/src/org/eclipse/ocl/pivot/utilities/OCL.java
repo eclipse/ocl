@@ -13,9 +13,6 @@ package org.eclipse.ocl.pivot.utilities;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
@@ -24,7 +21,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
@@ -34,7 +30,6 @@ import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.StandardLibrary;
-import org.eclipse.ocl.pivot.evaluation.EvaluationHaltedException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
@@ -78,37 +73,6 @@ public class OCL
 	 */
 	public static final @NonNull ProjectManager CLASS_PATH = BasicProjectManager.CLASS_PATH;
 
-	@Deprecated	// Unwanted public API
-	public static @NonNull Adapter adapt(@NonNull Notifier notifier) {
-		return OCLInternal.adapt(notifier);
-	}
-	
-	/**
-	 * Initialize registries to support OCL and Ecore usage. This method is
-	 * intended for initialization of standalone behaviors for which plugin extension
-	 * registrations have not been applied. 
-	 *<p> 
-	 * A null resourceSet may be provided to initialize the global package registry
-	 * and global URI mapping registry.
-	 *<p> 
-	 * A non-null resourceSet may be provided to identify a specific package registry.
-	 *<p>
-	 * This method is used to configure the ResourceSet used to load the OCL Standard Library.
-
-	 * @param resourceSet to be initialized or null for global initialization
-	 * @return a failure reason, null if successful
-	 * 
-	 */
-	@Deprecated	// Unwanted public API
-	public static String initialize(@Nullable ResourceSet resourceSet) {
-		Resource.Factory.Registry resourceFactoryRegistry = resourceSet != null
-			? resourceSet.getResourceFactoryRegistry()
-			: Resource.Factory.Registry.INSTANCE;
-		resourceFactoryRegistry.getExtensionToFactoryMap().put(
-			"ecore", new EcoreResourceFactoryImpl()); //$NON-NLS-1$
-		return null;
-	}
-
     /**
      * Creates a new <code>OCL</code> with a new heavyweight ProjectManager and a new
      * ResourceSet for loaded models.
@@ -147,15 +111,6 @@ public class OCL
 	}
 	
     /**
-     * Creates a new <code>OCL</code> using the internal configuration of an environment
-     * factory.
-     */
-	@Deprecated // Use environmentFactory.createOCL()
-	public static @NonNull OCL newInstance(@NonNull EnvironmentFactory environmentFactory) {
-		return environmentFactory.createOCL();
-	}
-	
-    /**
      * Creates a new <code>OCL</code> instance using the specified Ecore package registry.
      * 
      * Note that the returned {@link OCL} instance will use their own clean {@link ResourceSet}
@@ -175,15 +130,6 @@ public class OCL
 	
 	private @Nullable ModelManager modelManager;
 
-	@Deprecated // Has no functionality
-	private @Nullable Diagnostic problems;
-	@Deprecated // Has no functionality
-	private @Nullable Diagnostic evaluationProblems;	
-	@Deprecated // Has no functionality
-	private int parserRepairCount = 0;
-	@Deprecated // Has no functionality
-	private boolean traceParsing = HelperUtil.shouldTrace(OCLDebugOptions.PARSING);
-	@Deprecated // Has no functionality
 	private boolean traceEvaluation = HelperUtil.shouldTrace(OCLDebugOptions.EVALUATION);
 
 	/**
@@ -424,15 +370,8 @@ public class OCL
 	 * @see #check(Object, ExpressionInOCL)
 	 */
 	public @Nullable Object evaluate(@Nullable Object context, @NonNull ExpressionInOCL expression) {
-		evaluationProblems = null;
 		EvaluationVisitor evaluationVisitor = createEvaluationVisitor(context, expression);
-		try {
-			Object result = expression.accept(evaluationVisitor);
-			return result;
-		} catch (EvaluationHaltedException e) {
-			evaluationProblems = e.getDiagnostic();
-			throw e;
-		}
+		return expression.accept(evaluationVisitor);
 	}
 
 	/**
@@ -501,16 +440,6 @@ public class OCL
 		assert environmentFactory != null;
 		return environmentFactory;
 	}
-	
-	/**
-	 * Obtains problems, if any, occurred during evaluation of the last OCL
-	 * constraint or query expression.
-	 * 
-	 * @return evaluation problems or <code>null</code> if all was OK
-	 */
-	public @Nullable Diagnostic getEvaluationProblems() {
-		return evaluationProblems;
-	}
 
 	public @NonNull IdResolver getIdResolver() {
 		return environmentFactory.getIdResolver();
@@ -535,45 +464,12 @@ public class OCL
 		return ClassUtil.nonNullEMF(getResourceSet().getPackageRegistry());
 	}
 
-	/**
-	 * <p>
-	 * Queries the number of repairs to be made by the parser.
-	 * </p>
-	 * <p>
-	 * The default zero value selects use of the deterministic parser, which
-	 * terminates after one serious syntax error is detected.
-	 * </p>
-	 * <p>
-	 * A non-zero value selects the backtracking parser. The backtracking parser
-	 * may be about three times slower.
-	 * </p>
-	 * 
-	 * @return the number of repairs to be attempted
-	 * 
-	 * @see #setParserRepairCount(int)
-	 */
-	@Deprecated // Has no functionality
-	public int getParserRepairCount() {
-		return parserRepairCount;
-	}
-
-	/**
-	 * Obtains problems, if any, found in parsing the last OCL constraint or
-	 * query expression.
-	 * 
-	 * @return parsing problems or <code>null</code> if all was OK
-	 */
-	@Deprecated // Has no functionality
-	public @Nullable Diagnostic getProblems() {
-		return problems;
-	}
-
 	public @NonNull ProjectManager getProjectManager() {
 		return environmentFactory.getProjectManager();
 	}
 
 	public @NonNull ResourceSet getResourceSet() {
-		return environmentFactory.getMetamodelManager().getExternalResourceSet();
+		return environmentFactory.getResourceSet();
 	}
 
 	/**
@@ -617,39 +513,6 @@ public class OCL
 	}
 
 	/**
-	 * Queries whether a value is the special <tt>invalid</tt> token. This is
-	 * useful for determining whether the result of an expression evaluation is
-	 * valid.
-	 * 
-	 * @param value
-	 *            some OCL value
-	 * @return <code>true</code> if it is the <tt>invalid</tt>;
-	 *         <code>false</code>, otherwise
-	 * 
-	 * @see #evaluate(Object, OCLExpression)
-	 */
-//	public boolean isInvalid(Object value) {
-//		return getEnvironment().getOCLStandardLibrary().getInvalidValue() == value;
-//	}
-
-	/**
-	 * Queries whether tracing of parsingis enabled. Tracing logs the progress
-	 * of parsing to the console, which may be of use in diagnosing problems.
-	 * <p>
-	 * In an Eclipse environment, tracing is also enabled by turning on the
-	 * <tt>org.eclipse.ocl/debug/parsing</tt> debug option.
-	 * </p>
-	 * 
-	 * @return whether parse tracing is enabled
-	 * 
-	 * @see #setParseTracingEnabled(boolean)
-	 */
-	@Deprecated // Has no functionality
-	public boolean isParseTracingEnabled() {
-		return traceParsing;
-	}
-
-	/**
 	 * Load the Complete OCL document specified by the URI into the external ResourceSet and
 	 * return the concrete syntax resource.
 	 */
@@ -682,10 +545,6 @@ public class OCL
 	public @NonNull ExpressionInOCL parseSpecification(@NonNull LanguageExpression specification) throws ParserException {
 		return getMetamodelManager().parseSpecification(specification);
 	}
-	@Deprecated // contextElement is partially ignored in favor of specification ancestry
-	public @NonNull ExpressionInOCL parseSpecification(@NonNull EObject contextElement, @NonNull LanguageExpression specification) throws ParserException {
-		return getMetamodelManager().parseSpecification(contextElement, specification);
-	}
 
 	/**
 	 * Sets whether tracing of evaluation is enabled. Tracing logs the progress
@@ -717,53 +576,6 @@ public class OCL
 	 */
 	public void setModelManager(@Nullable ModelManager modelManager) {
 		this.modelManager = modelManager;
-	}
-
-	/**
-	 * <p>
-	 * Sets the number of repairs to be made by the parser.
-	 * </p>
-	 * <p>
-	 * The default zero value selects use of the deterministic parser, which
-	 * terminates after one serious syntax error is detected.
-	 * </p>
-	 * <p>
-	 * A non-zero value selects the backtracking parser. The backtracking parser
-	 * may be about three times slower.
-	 * </p>
-	 * 
-	 * @param parserRepairCount
-	 *            whether evaluation tracing is enabled
-	 * 
-	 * @throws IllegalArgumentException
-	 *             if the <tt>parserRepairCount</tt> is negative
-	 * 
-	 * @see #getParserRepairCount()
-	 */
-	@Deprecated // Has no functionality
-	public void setParserRepairCount(int parserRepairCount) {
-		if (parserRepairCount < 0) {
-			throw new IllegalArgumentException("negative repair count"); //$NON-NLS-1$
-		}
-
-		this.parserRepairCount = parserRepairCount;
-	}
-
-	/**
-	 * Sets whether tracing of parsing is enabled. Tracing logs the progress of
-	 * parsing to the console, which may be of use in diagnosing problems.
-	 * <p>
-	 * In an Eclipse environment, tracing is also enabled by turning on the
-	 * <tt>org.eclipse.ocl/debug/parsing</tt> debug option.
-	 * </p>
-	 * 
-	 * param b whether parsing tracing is enabled
-	 * 
-	 * @see #isParseTracingEnabled()
-	 */
-	@Deprecated // Has no functionality
-	public void setParseTracingEnabled(boolean b) {
-		traceParsing = b;
 	}
 
 	/**

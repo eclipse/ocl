@@ -123,7 +123,6 @@ import org.eclipse.ocl.pivot.library.UnsupportedOperation;
 import org.eclipse.ocl.pivot.model.OCLmetamodel;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResource;
-import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.FeatureFilter;
@@ -477,17 +476,6 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 			}
 		}
 		return 0;
-	}
-
-	/**
-	 * Configure the PackageRegistry associated with the externalResourceSet to use a load strategy that uses whichever of
-	 * the namespace or platform URI is firtst encounterted and which suppresses diagnostics about subsequent use of the
-	 * other form of URI.
-	 */
-	@Deprecated // Use getEnvironmentFactory().configureLoadFirstStrategy()
-	@Override
-	public void configureLoadFirstStrategy() {
-		environmentFactory.configureLoadFirstStrategy();
 	}
 
 	@Override
@@ -1020,11 +1008,6 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 	public @Nullable External2AS getES2AS(@NonNull Resource esResource) {
 		return es2ases != null ? es2ases.get(esResource) : null;
 	}
-
-	@Override
-	public @NonNull ResourceSet getExternalResourceSet() {
-		return environmentFactory.getResourceSet();
-	}
 	
 	public @NonNull FinalAnalysis getFinalAnalysis() {
 		FinalAnalysis finalAnalysis2 = finalAnalysis;
@@ -1042,7 +1025,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 				return genPackage;
 			}
 		}
-		ResourceSet externalResourceSet = getExternalResourceSet();
+		ResourceSet externalResourceSet = environmentFactory.getResourceSet();
 		URI uri = EMF_2_9.EcorePlugin.getEPackageNsURIToGenModelLocationMap(false).get(nsURI);
 		if (uri != null) {
 			Resource resource = externalResourceSet.getResource(uri, true);
@@ -1683,14 +1666,6 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 		}
 	}
 
-	/**
-	 * Return the ProjectMap used to resolve EPackages.
-	 */
-	@Override
-	public @NonNull ProjectManager getProjectManager() {
-		return environmentFactory.getProjectManager();
-	}
-
 	public @NonNull ASResource getResource(@NonNull URI uri, @Nullable String contentType) {
 		Object asResourceFactory = asResourceSet.getResourceFactoryRegistry().getContentTypeToFactoryMap().get(contentType);
 		if (asResourceFactory == null) {
@@ -1953,7 +1928,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 	public @Nullable Element loadResource(@NonNull URI uri, String alias, @Nullable ResourceSet resourceSet) throws ParserException {
 		// if (EPackage.Registry.INSTANCE.containsKey(resourceOrNsURI))
 		// return EPackage.Registry.INSTANCE.getEPackage(resourceOrNsURI);
-		ResourceSet externalResourceSet = resourceSet != null ? resourceSet : getExternalResourceSet();
+		ResourceSet externalResourceSet = resourceSet != null ? resourceSet : environmentFactory.getResourceSet();
 		EPackage.Registry packageRegistry = externalResourceSet.getPackageRegistry();
 		URI resourceURI = uri.trimFragment();
 		String uriString = resourceURI.toString();
@@ -2101,10 +2076,6 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 	@Override
 	public @NonNull ExpressionInOCL parseSpecification(@NonNull LanguageExpression specification) throws ParserException {
 		EObject contextElement = ClassUtil.nonNullState(specification.eContainer());
-		return parseSpecification(contextElement, specification);
-	}
-	@Override
-	public @NonNull ExpressionInOCL parseSpecification(@NonNull EObject contextElement, @NonNull LanguageExpression specification) throws ParserException {
 		if ((specification instanceof ExpressionInOCL) && ((ExpressionInOCL)specification).getOwnedBody() != null) {
 			return (ExpressionInOCL)specification;
 		}

@@ -276,7 +276,7 @@ public class AS2Ecore extends AbstractConversion
 	}
 
 	public @NonNull XMLResource convertResource(@NonNull Resource asResource, @NonNull URI ecoreURI) {
-		ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
+		ResourceSet resourceSet = environmentFactory.getResourceSet();
 		setGenerationInProgress(asResource, true);
 		try {
 			XMLResource ecoreResource = (XMLResource) resourceSet.createResource(ecoreURI);
@@ -422,7 +422,7 @@ public class AS2Ecore extends AbstractConversion
 			StandaloneProjectMap.IPackageDescriptor packageDescriptor = projectManager.getPackageDescriptor(nsURI);
 			if (packageDescriptor != null) {
 				StandaloneProjectMap.IResourceDescriptor resourceDescriptor = packageDescriptor.getResourceDescriptor();
-				ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
+				ResourceSet resourceSet = environmentFactory.getResourceSet();
 				StandaloneProjectMap.IResourceLoadStatus resourceLoadStatus = resourceDescriptor.getResourceLoadStatus(resourceSet);
 				resourceLoadStatus.setGenerationInProgress(isGenerating);
 			}

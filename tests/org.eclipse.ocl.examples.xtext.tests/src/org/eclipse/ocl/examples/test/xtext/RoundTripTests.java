@@ -35,7 +35,6 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.internal.delegate.DelegateInstaller;
 import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
@@ -557,10 +556,9 @@ public class RoundTripTests extends XtextTestCase
 //		String stem = uri.trimFileExtension().lastSegment();
 		OCLInternal ocl = OCLInternal.newInstance(getProjectMap(), null);
 		EnvironmentFactoryInternal environmentFactory = ocl.getEnvironmentFactory();
-		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		StandaloneProjectMap.IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor("org.eclipse.emf.ecore");
 		StandaloneProjectMap.IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(URI.createURI(EcorePackage.eNS_URI));
-		packageDescriptor.configure(metamodelManager.getExternalResourceSet(), StandaloneProjectMap.LoadGeneratedPackageStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
+		packageDescriptor.configure(environmentFactory.getResourceSet(), StandaloneProjectMap.LoadGeneratedPackageStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
 		doRoundTripFromEcore(environmentFactory, uri, uri, null); //null);				// FIXME Compare is not quite right
 		ocl.dispose();
 	}

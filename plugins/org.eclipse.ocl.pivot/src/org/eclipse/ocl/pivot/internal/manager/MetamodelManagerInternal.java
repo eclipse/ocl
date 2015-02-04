@@ -46,9 +46,6 @@ public interface MetamodelManagerInternal extends MetamodelManager
 
 	void addLockedElement(@NonNull Object lockedElement);
 
-	@Deprecated // Use getEnvironmentFactory().configureLoadFirstStrategy()
-	void configureLoadFirstStrategy();
-
 	boolean conformsTo(@NonNull Type firstType, @NonNull TemplateParameterSubstitutions firstSubstitutions,
 			@NonNull Type secondType, @NonNull TemplateParameterSubstitutions secondSubstitutions);
 

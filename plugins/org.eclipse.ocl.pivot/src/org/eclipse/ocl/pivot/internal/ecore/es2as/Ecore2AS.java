@@ -593,7 +593,7 @@ public class Ecore2AS extends AbstractExternal2AS
 					uri = uri.resolve(baseURI);
 				}
 				assert uri != null;
-				ResourceSet resourceSet = metamodelManager.getExternalResourceSet();
+				ResourceSet resourceSet = environmentFactory.getResourceSet();
 				EObject importedEObject = null;
 				String fragment = uri.fragment();
 				if (fragment == null) {
