@@ -1701,6 +1701,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 	@Override
 	public @NonNull Boolean visitCGNativeOperationCallExp(@NonNull CGNativeOperationCallExp cgOperationCallExp) {
 		Operation pOperation = cgOperationCallExp.getReferredOperation();
+		boolean thisIsSelf = cgOperationCallExp.isThisIsSelf();
 		CGValuedElement source = getExpression(cgOperationCallExp.getSource());
 		List<CGValuedElement> cgArguments = cgOperationCallExp.getArguments();
 		List<Parameter> pParameters = pOperation.getOwnedParameters();
@@ -1718,13 +1719,21 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		js.appendDeclaration(cgOperationCallExp);
 		js.append(" = ");
 //		js.appendClassCast(cgOperationCallExp);
-		js.appendValueName(source);
+		if (thisIsSelf) {
+			js.appendValueName(source);
+		}
+		else {
+			js.append("this");
+		}
 		js.append(".");
 		js.append(cgOperationCallExp.getReferredOperation().getName());
 		js.append("(");
+		if (!thisIsSelf) {
+			js.appendValueName(source);
+		}
 		int iMax = Math.min(pParameters.size(), cgArguments.size());
 		for (int i = 0; i < iMax; i++) {
-			if (i > 0) {
+			if ((i > 0) || !thisIsSelf) {
 				js.append(", ");
 			}
 			CGValuedElement cgArgument = cgArguments.get(i);

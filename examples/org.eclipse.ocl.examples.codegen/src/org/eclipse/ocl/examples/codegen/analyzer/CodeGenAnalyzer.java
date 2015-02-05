@@ -147,6 +147,7 @@ public class CodeGenAnalyzer
 		OperationId operationId = asOperation.getOperationId();
 		CGExecutorOperation cgOperation = CGModelFactory.eINSTANCE.createCGExecutorOperation();
 		CGElementId cgOperationId = getElementId(operationId);
+		cgOperation.setTypeId(getTypeId(asOperation.getTypeId()));
 		cgOperation.setUnderlyingOperationId(cgOperationId);
 		cgOperation.setAst(asOperation);
 		cgOperation.setName(nameManager.getGlobalSymbolName(asOperation));
@@ -162,7 +163,7 @@ public class CodeGenAnalyzer
 		Property asOppositeProperty = ClassUtil.nonNullState(asProperty.getOpposite());
 		if (asOppositeProperty.isComposite()) {
 			cgPropertyId = getElementId(propertyId);
-			cgProperty = CGModelFactory.eINSTANCE.createCGExecutorCompositionProperty();					
+			cgProperty = CGModelFactory.eINSTANCE.createCGExecutorCompositionProperty();
 		}
 		else {
 			cgPropertyId = getElementId(asOppositeProperty.getPropertyId());
