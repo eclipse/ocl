@@ -68,11 +68,11 @@ public class StandaloneExecutionTests extends StandaloneTestCase
 			lines.add(line);
 		}
 		r.close();
-		assertEquals(lines.get(metricsLine + 2), "- Number of Success: " + oks);
-		assertEquals(lines.get(metricsLine + 3), "- Number of Infos: " + infos);
-		assertEquals(lines.get(metricsLine + 4), "- Number of Warnings: " + warnings);
-		assertEquals(lines.get(metricsLine + 5), "- Number of Errors: " + errors);
-		assertEquals(lines.get(metricsLine + 6), "- Number of Failures: " + fails);
+		assertEquals("- Number of Success: " + oks, lines.get(metricsLine + 2));
+		assertEquals("- Number of Infos: " + infos, lines.get(metricsLine + 3));
+		assertEquals("- Number of Warnings: " + warnings, lines.get(metricsLine + 4));
+		assertEquals("- Number of Errors: " + errors, lines.get(metricsLine + 5));
+		assertEquals("- Number of Failures: " + fails, lines.get(metricsLine + 6));
 		return lines;
 	}
 
