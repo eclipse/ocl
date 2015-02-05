@@ -49,6 +49,8 @@ public interface MetamodelManagerInternal extends MetamodelManager
 	boolean conformsTo(@NonNull Type firstType, @NonNull TemplateParameterSubstitutions firstSubstitutions,
 			@NonNull Type secondType, @NonNull TemplateParameterSubstitutions secondSubstitutions);
 
+	@Nullable ParserContext createParserContext(@NonNull Element element, Object... todoParameters);
+
 	@Nullable org.eclipse.ocl.pivot.Package getASmetamodel();
 	
 	@NonNull Iterable<Constraint> getAllInvariants(@NonNull Type pivotType);
@@ -66,8 +68,6 @@ public interface MetamodelManagerInternal extends MetamodelManager
 	@NonNull EnvironmentFactoryInternal getEnvironmentFactory();
 
 	@Nullable GenPackage getGenPackage(@NonNull String nsURI);
-
-	@Nullable ParserContext getParserContext(@NonNull Element element, Object... todoParameters);
 
 	@Nullable org.eclipse.ocl.pivot.Class getPrimaryType(@NonNull String nsURI, @NonNull String path, String... extraPath);
 

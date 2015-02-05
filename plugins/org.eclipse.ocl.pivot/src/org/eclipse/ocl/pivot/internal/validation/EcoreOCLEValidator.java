@@ -557,7 +557,7 @@ public class EcoreOCLEValidator implements EValidator
 		try {
 			NamedElement asNamedElement = metamodelManager.getASOf(NamedElement.class, eNamedElement);
 			if (asNamedElement != null) {
-				ParserContext parserContext = metamodelManager.getParserContext(asNamedElement);
+				ParserContext parserContext = metamodelManager.createParserContext(asNamedElement);
 				if (parserContext == null) {
 					throw new ParserException(PivotMessagesInternal.UnknownContextType_ERROR_, NameUtil.qualifiedNameFor(asNamedElement), PivotConstantsInternal.OWNED_CONSTRAINT_ROLE);
 				}

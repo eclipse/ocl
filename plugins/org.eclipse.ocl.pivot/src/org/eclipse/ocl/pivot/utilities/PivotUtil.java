@@ -862,7 +862,7 @@ public class PivotUtil
 		if (pivotElement == null) {
 			return false;
 		}
-		ParserContext parserContext = environmentFactory.getMetamodelManager().getParserContext(pivotElement, todoParameters);
+		ParserContext parserContext = environmentFactory.getMetamodelManager().createParserContext(pivotElement, todoParameters);
 		if (parserContext == null) {
 			return false;
 		}
