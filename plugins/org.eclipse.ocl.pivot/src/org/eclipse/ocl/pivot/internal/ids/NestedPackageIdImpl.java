@@ -17,7 +17,7 @@ import org.eclipse.ocl.pivot.ids.NestedPackageId;
 import org.eclipse.ocl.pivot.ids.NsURIPackageId;
 import org.eclipse.ocl.pivot.ids.PackageId;
 
-public class NestedPackageIdImpl extends PackageIdImpl implements NestedPackageId
+public class NestedPackageIdImpl extends AbstractPackageIdImpl implements NestedPackageId
 {
 	protected final @NonNull PackageId parent;
 	protected final @NonNull String name;

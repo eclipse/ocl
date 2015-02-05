@@ -20,7 +20,7 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 
-public abstract class EvaluatorIterationManager extends AbstractIterationManager
+public abstract class AbstractEvaluatorIterationManager extends AbstractIterationManager
 {
 	protected static class ValueIterator
 	{
@@ -89,7 +89,7 @@ public abstract class EvaluatorIterationManager extends AbstractIterationManager
 	protected final @Nullable TypedElement accumulatorVariable;
 	private @Nullable Object accumulatorValue;
 
-	public EvaluatorIterationManager(@NonNull Evaluator evaluator, @NonNull OCLExpression body, @NonNull CollectionValue collectionValue,
+	public AbstractEvaluatorIterationManager(@NonNull Evaluator evaluator, @NonNull OCLExpression body, @NonNull CollectionValue collectionValue,
 			@Nullable TypedElement accumulatorVariable, @Nullable Object accumulatorValue) {
 		super(evaluator);
 		this.collectionValue = collectionValue;
@@ -101,7 +101,7 @@ public abstract class EvaluatorIterationManager extends AbstractIterationManager
 		}
 	}
 
-	public EvaluatorIterationManager(@NonNull EvaluatorIterationManager iterationManager, @NonNull CollectionValue collectionValue) {
+	public AbstractEvaluatorIterationManager(@NonNull AbstractEvaluatorIterationManager iterationManager, @NonNull CollectionValue collectionValue) {
 		super(iterationManager.evaluator);
 		this.body = iterationManager.body;
 		this.collectionValue = collectionValue;

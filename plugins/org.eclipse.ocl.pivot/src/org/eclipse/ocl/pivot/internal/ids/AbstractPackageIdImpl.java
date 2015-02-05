@@ -19,7 +19,7 @@ import org.eclipse.ocl.pivot.ids.NestedPackageId;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 
-public abstract class PackageIdImpl extends AbstractElementId implements PackageId
+public abstract class AbstractPackageIdImpl extends AbstractElementId implements PackageId
 {
 	protected final @NonNull Integer hashCode;
 
@@ -44,7 +44,7 @@ public abstract class PackageIdImpl extends AbstractElementId implements Package
 	private @Nullable WeakHashMapOfWeakReference<String, NestedPackageId> packages = null;
 	
 	
-	protected PackageIdImpl(@NonNull Integer hashCode) {
+	protected AbstractPackageIdImpl(@NonNull Integer hashCode) {
 		this.hashCode = hashCode;
 	}
 
@@ -59,7 +59,7 @@ public abstract class PackageIdImpl extends AbstractElementId implements Package
     				{
 						@Override
 						protected @NonNull GeneralizedClassIdImpl newId(@NonNull String name) {
-							return new GeneralizedClassIdImpl(PackageIdImpl.this, templateParameters, name);
+							return new GeneralizedClassIdImpl(AbstractPackageIdImpl.this, templateParameters, name);
 						}
 					};
     	    	}
@@ -79,7 +79,7 @@ public abstract class PackageIdImpl extends AbstractElementId implements Package
     				{
 						@Override
 						protected @NonNull GeneralizedDataTypeIdImpl newId(@NonNull String name) {
-							return new GeneralizedDataTypeIdImpl(PackageIdImpl.this, templateParameters, name);
+							return new GeneralizedDataTypeIdImpl(AbstractPackageIdImpl.this, templateParameters, name);
 						}
 					};
     	    	}
@@ -99,7 +99,7 @@ public abstract class PackageIdImpl extends AbstractElementId implements Package
     				{
 						@Override
 						protected @NonNull EnumerationIdImpl newId(@NonNull String name) {
-							return new EnumerationIdImpl(PackageIdImpl.this, name);
+							return new EnumerationIdImpl(AbstractPackageIdImpl.this, name);
 						}
 					};
     	    	}
@@ -123,7 +123,7 @@ public abstract class PackageIdImpl extends AbstractElementId implements Package
     				{
 						@Override
 						protected @NonNull NestedPackageId newId(@NonNull String name) {
-							return new NestedPackageIdImpl(PackageIdImpl.this, name);
+							return new NestedPackageIdImpl(AbstractPackageIdImpl.this, name);
 						}
 					};
     	    	}

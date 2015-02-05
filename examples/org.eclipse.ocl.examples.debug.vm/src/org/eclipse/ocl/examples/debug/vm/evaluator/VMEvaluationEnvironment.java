@@ -16,10 +16,10 @@ import java.util.Stack;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.NamedElement;
-import org.eclipse.ocl.pivot.internal.evaluation.AbstractEvaluationEnvironment;
+import org.eclipse.ocl.pivot.internal.evaluation.BasicEvaluationEnvironment;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 
-public abstract class VMEvaluationEnvironment<T extends NamedElement> extends AbstractEvaluationEnvironment implements IVMEvaluationEnvironment<T>
+public abstract class VMEvaluationEnvironment<T extends NamedElement> extends BasicEvaluationEnvironment implements IVMEvaluationEnvironment<T>
 {
 	private final @NonNull Stack<StepperEntry> stepperStack = new Stack<StepperEntry>();
 	

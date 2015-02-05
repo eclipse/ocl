@@ -28,7 +28,7 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.osgi.util.NLS;
 
 /**
- * A partial implementation of the {@link EvaluationEnvironment} interface,
+ * Basic implementation of the {@link EvaluationEnvironment} interface,
  * providing some useful common behaviors.  Implementors of metamodel-specific
  * environments are encourage to extend this class rather than implement
  * an evaluation environment "from scratch."
@@ -39,7 +39,7 @@ import org.eclipse.osgi.util.NLS;
  * 
  * @author Christian W. Damus (cdamus)
  */
-public class AbstractEvaluationEnvironment extends AbstractCustomizable implements EvaluationEnvironment
+public class BasicEvaluationEnvironment extends AbstractCustomizable implements EvaluationEnvironment
 {
 	protected final @NonNull EnvironmentFactory environmentFactory;
 	protected final @Nullable EvaluationEnvironment parent;					// parent in environment hierarchy, null at root
@@ -47,14 +47,14 @@ public class AbstractEvaluationEnvironment extends AbstractCustomizable implemen
 	protected final @NonNull ModelManager modelManager;
 	private final @NonNull Map<TypedElement, Object> variableValues = new HashMap<TypedElement, Object>();
     
-    public AbstractEvaluationEnvironment(@NonNull EnvironmentFactory environmentFactory, @NonNull NamedElement executableObject, @NonNull ModelManager modelManager) {
+    public BasicEvaluationEnvironment(@NonNull EnvironmentFactory environmentFactory, @NonNull NamedElement executableObject, @NonNull ModelManager modelManager) {
     	this.environmentFactory = environmentFactory;
     	this.parent = null;
     	this.executableObject = executableObject;
     	this.modelManager = modelManager;
     }
     
-    public AbstractEvaluationEnvironment(@NonNull EvaluationEnvironment parent, @NonNull NamedElement executableObject) {	
+    public BasicEvaluationEnvironment(@NonNull EvaluationEnvironment parent, @NonNull NamedElement executableObject) {	
 		this.environmentFactory = parent.getEnvironmentFactory();
 		this.parent = parent;
     	this.executableObject = executableObject;

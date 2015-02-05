@@ -17,7 +17,7 @@ import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 
-public class EvaluatorMultipleIterationManager extends EvaluatorIterationManager
+public class EvaluatorMultipleIterationManager extends AbstractEvaluatorIterationManager
 {
 	protected final ValueIterator[] iterators;
 	protected boolean hasCurrent;

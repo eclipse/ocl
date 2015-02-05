@@ -17,7 +17,7 @@ import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.IdVisitor;
 import org.eclipse.ocl.pivot.ids.NsURIPackageId;
 
-public class NsURIPackageIdImpl extends PackageIdImpl implements NsURIPackageId
+public class NsURIPackageIdImpl extends AbstractPackageIdImpl implements NsURIPackageId
 {
 	protected final @NonNull String nsURI;
 	protected final @Nullable String nsPrefix;

@@ -16,7 +16,7 @@ import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.IdVisitor;
 import org.eclipse.ocl.pivot.ids.RootPackageId;
 
-public class RootPackageIdImpl extends PackageIdImpl implements RootPackageId
+public class RootPackageIdImpl extends AbstractPackageIdImpl implements RootPackageId
 {
 	protected final @NonNull String name;
 

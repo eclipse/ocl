@@ -18,7 +18,7 @@ import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.IterationManager;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 
-public class EvaluatorSingleIterationManager extends EvaluatorIterationManager
+public class EvaluatorSingleIterationManager extends AbstractEvaluatorIterationManager
 {
 	class Nested extends EvaluatorSingleIterationManager
 	{

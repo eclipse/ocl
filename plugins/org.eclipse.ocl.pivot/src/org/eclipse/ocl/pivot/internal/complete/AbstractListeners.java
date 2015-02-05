@@ -16,7 +16,7 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 
-public class AbstractListeners<L extends AbstractListeners.IAbstractListener>
+public abstract class AbstractListeners<L extends AbstractListeners.IAbstractListener>
 {
 	public static interface IAbstractListener {}
 	
