@@ -33,13 +33,15 @@ public class OCLInternal extends OCL
 		EnvironmentFactoryAdapter adapter = ClassUtil.getAdapter(EnvironmentFactoryAdapter.class, eAdapters);
 		if (adapter == null) {
 			ProjectManager projectMap = null;
+			ResourceSet resourceSet = null;
 			if (notifier instanceof ResourceSet) {
-				projectMap = BasicProjectManager.findAdapter((ResourceSet) notifier);
+				resourceSet = (ResourceSet) notifier;
+				projectMap = BasicProjectManager.findAdapter(resourceSet);
 			}
 			if (projectMap == null) {
 				projectMap = BasicProjectManager.createDefaultProjectManager();
 			}
-			EnvironmentFactoryInternal environmentFactory = ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectMap, null);
+			EnvironmentFactoryInternal environmentFactory = ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectMap, resourceSet);
 			adapter = new EnvironmentFactoryAdapter(environmentFactory, notifier);
 			eAdapters.add(adapter);
 		}
