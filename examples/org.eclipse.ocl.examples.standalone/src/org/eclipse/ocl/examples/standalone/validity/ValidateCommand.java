@@ -515,10 +515,11 @@ public class ValidateCommand extends StandaloneCommand
 	 * @return true if the path is relative, false otherwise.
 	 */
 	private static boolean isRelativePath(IPath path) {
-		try {
+		if (ResourcesPlugin.getPlugin() != null) {
 			IResource resource = ResourcesPlugin.getWorkspace().getRoot().findMember(path);
 			return resource != null && resource.exists();
-		} catch (IllegalStateException exception) {
+		}
+		else {
 			return false;
 		}
 	}
