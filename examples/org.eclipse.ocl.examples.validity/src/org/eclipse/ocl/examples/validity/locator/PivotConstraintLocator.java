@@ -11,6 +11,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.validity.locator;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -29,6 +30,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.LeafConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.Result;
 import org.eclipse.ocl.examples.emf.validation.validity.Severity;
 import org.eclipse.ocl.examples.emf.validation.validity.locator.AbstractConstraintLocator;
+import org.eclipse.ocl.examples.emf.validation.validity.manager.TypeURI;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityManager;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityModel;
 import org.eclipse.ocl.examples.validity.plugin.OCLValidityPlugin;
@@ -42,12 +44,34 @@ import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.internal.validation.PivotEObjectValidator.ValidationAdapter;
 import org.eclipse.ocl.pivot.resource.CSResource;
+import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;
 
 public class PivotConstraintLocator extends AbstractConstraintLocator
 {
 	public static @NonNull PivotConstraintLocator INSTANCE = new PivotConstraintLocator();
+
+	@Override
+	public @NonNull Set<TypeURI> getAllTypes(@NonNull ValidityManager validityManager, @NonNull EObject constrainingObject) {
+		if (constrainingObject instanceof org.eclipse.ocl.pivot.Class) {
+			EnvironmentFactory environmentFactory = PivotUtilInternal.findEnvironmentFactory(constrainingObject);
+			if (environmentFactory != null) {
+				Set<TypeURI> allTypes = new HashSet<TypeURI>();
+				CompleteClass completeClass = environmentFactory.getCompleteModel().getCompleteClass((org.eclipse.ocl.pivot.Class)constrainingObject);
+				for (CompleteClass superCompleteClass : completeClass.getSuperCompleteClasses()) {
+					for (org.eclipse.ocl.pivot.Class partialClass : superCompleteClass.getPartialClasses()) {
+						EObject eTarget = partialClass.getETarget();
+						if (eTarget != null) {
+							allTypes.add(validityManager.getTypeURI(eTarget));
+						}
+					}
+				}
+				return allTypes;
+			}
+		}
+		return super.getAllTypes(validityManager, constrainingObject);
+	}
 
 	@Override
 	public @Nullable Map<EObject, List<LeafConstrainingNode>> getConstraints(@NonNull ValidityModel validityModel,
