@@ -73,7 +73,7 @@ public class UMLEcoreTechnology extends AbstractTechnology
 		if (sourceValue instanceof org.eclipse.uml2.uml.InstanceSpecification) {
 			org.eclipse.ocl.pivot.Package owningPackage = PivotUtil.getContainingPackage(asNavigationExp);
 			if (!(owningPackage instanceof Profile)) {	// FIXME see Bug 458326/458394
-				EObject eTarget = property.getETarget();
+				EObject eTarget = property.getESObject();
 				if  (eTarget instanceof org.eclipse.uml2.uml.Property) {
 					TypeId typeId = property.getTypeId();
 					CollectionTypeId collectionTypeId;
@@ -107,7 +107,7 @@ public class UMLEcoreTechnology extends AbstractTechnology
 			name = ((NamedElement)asStereotypedElement).getName();
 		}
 		else if (asStereotypedElement instanceof DynamicElement) {
-			EObject eObject = ((DynamicElement)asStereotypedElement).getETarget();
+			EObject eObject = ((DynamicElement)asStereotypedElement).getESObject();
 			if (eObject instanceof org.eclipse.uml2.uml.NamedElement) {
 				name = ((org.eclipse.uml2.uml.NamedElement)eObject).getName();
 			}
@@ -144,7 +144,7 @@ public class UMLEcoreTechnology extends AbstractTechnology
 	@Override
 	public @NonNull PackageId getMetapackageId(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull org.eclipse.ocl.pivot.Package asPackage) {
 		if (asPackage instanceof PivotObjectImpl) {
-			EObject eTarget = ((PivotObjectImpl)asPackage).getETarget();
+			EObject eTarget = ((PivotObjectImpl)asPackage).getESObject();
 			if (eTarget != null) {
 				EClass eClass = eTarget.eClass();
 				if (eClass != null) {

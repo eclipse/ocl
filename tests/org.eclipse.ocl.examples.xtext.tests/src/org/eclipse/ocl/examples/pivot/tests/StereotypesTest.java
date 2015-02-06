@@ -322,8 +322,8 @@ public class StereotypesTest extends PivotTestSuite
 //    	ocl.assertQueryEquals(m.englishObject, idResolver.createSetOfEach(null, ((PivotObjectImpl)mm.inEnglishStereotype).getETarget()), "self.oclType().getAppliedStereotypes()");
 //    	ocl.assertQueryEquals(m.englishObject, idResolver.createSetOfEach(null, ((PivotObjectImpl)mm.inEnglishStereotype).getETarget()), "self.getAppliedStereotypes()");
 //M1
-    	ocl.assertQueryEquals(ocl.mm.umlEnglishClass, idResolver.createSetOfEach(null, ((PivotObjectImpl)ocl.mmm.asInEnglishStereotype).getETarget()), "self.getAppliedStereotypes()");
-    	ocl.assertQueryEquals(ocl.mm.umlEnglishClass, ((PivotObjectImpl)ocl.mmm.asInEnglishStereotype).getETarget(), "self.getAppliedStereotype('InternationalizedProfile::InEnglish')");
+    	ocl.assertQueryEquals(ocl.mm.umlEnglishClass, idResolver.createSetOfEach(null, ((PivotObjectImpl)ocl.mmm.asInEnglishStereotype).getESObject()), "self.getAppliedStereotypes()");
+    	ocl.assertQueryEquals(ocl.mm.umlEnglishClass, ((PivotObjectImpl)ocl.mmm.asInEnglishStereotype).getESObject(), "self.getAppliedStereotype('InternationalizedProfile::InEnglish')");
     	ocl.assertQueryEquals(ocl.mm.asEnglishClass, ocl.mm.asEnglishClassInEnglish, "self.extension_Internationalized");
     	ocl.assertQueryEquals(ocl.mm.umlEnglishClass, ocl.mm.umlEnglishClassInEnglish, "self.extension_Internationalized");
     	ocl.assertQueryEquals(ocl.mm.umlEnglishClass, ocl.mm.umlEnglishClassInEnglish, "self.extension_Internationalized.oclAsType(InternationalizedProfile::InEnglish)");

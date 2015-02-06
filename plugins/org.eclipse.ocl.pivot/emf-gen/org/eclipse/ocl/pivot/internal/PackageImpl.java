@@ -629,7 +629,7 @@ public class PackageImpl
 
 	@Override
 	public @Nullable EPackage getEPackage() {
-		EObject eTarget = getETarget();
+		EObject eTarget = getESObject();
 		return eTarget instanceof EPackage ? (EPackage) eTarget : null;
 	}
 

@@ -296,7 +296,7 @@ public class AS2Ecore extends AbstractConversion
 			}
 			for (Element pivotElement : createMap.keySet()) {
 				EObject eObject = createMap.get(pivotElement);
-				((PivotObjectImpl) pivotElement).setTarget(eObject);
+				((PivotObjectImpl) pivotElement).setESObject(eObject);
 			}
 			return ecoreResource;
 		}

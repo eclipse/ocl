@@ -960,7 +960,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 
 	@Override
 	public @Nullable <T extends EObject> T getEcoreOfPivot(@NonNull Class<T> ecoreClass, @NonNull Element element) {
-		EObject eTarget = element.getETarget();
+		EObject eTarget = element.getESObject();
 		if (eTarget != null) {
 			if (!ecoreClass.isAssignableFrom(eTarget.getClass())) {
 				logger.error("Ecore " + eTarget.getClass().getName() + "' element is not a '" + ecoreClass.getName() + "'"); //$NON-NLS-1$
@@ -1103,7 +1103,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 				}
 			}
 			if (implementation == null) {
-				EObject eTarget = operation.getETarget();
+				EObject eTarget = operation.getESObject();
 				if (eTarget != null) {
 					EOperation eOperation = null;
 					if (eTarget instanceof EOperation) {

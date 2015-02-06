@@ -539,8 +539,8 @@ public class PrettyPrinter
 			            }
 			            else {
 			            	URI uri;
-			            	if (rootElement.getETarget() != null) {
-				            	EObject eTarget = rootElement.getETarget();
+			            	if (rootElement.getESObject() != null) {
+				            	EObject eTarget = rootElement.getESObject();
 				            	uri = EcoreUtil.getURI(eTarget);
 				            }
 				            else {

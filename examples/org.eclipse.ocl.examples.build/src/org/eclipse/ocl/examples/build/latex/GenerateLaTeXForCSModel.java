@@ -111,7 +111,7 @@ public abstract class GenerateLaTeXForCSModel extends GenerateLaTeXUtils
 			
 			
 			
-			EObject eObject = asPackage.getETarget();
+			EObject eObject = asPackage.getESObject();
 			Resource eResource = eObject.eResource();
 			if (eResource != null) {
 				String message2 = PivotUtil.formatResourceDiagnostics(ClassUtil.nonNullEMF(eResource.getErrors()), "OCLstdlib parse failure", "\n");

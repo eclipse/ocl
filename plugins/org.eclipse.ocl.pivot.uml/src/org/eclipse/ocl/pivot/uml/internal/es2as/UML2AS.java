@@ -484,7 +484,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 		@Override
 		public void addMapping(@NonNull EObject eObject, @NonNull Element pivotElement) {
 			if (pivotElement instanceof PivotObjectImpl) {
-				((PivotObjectImpl)pivotElement).setTarget(eObject);
+				((PivotObjectImpl)pivotElement).setESObject(eObject);
 			}
 			addCreated(eObject, pivotElement);
 		}
@@ -1195,7 +1195,7 @@ public abstract class UML2AS extends AbstractEcore2AS
 	}
 
 	protected void setOriginalMapping(@NonNull Element pivotElement, @NonNull EObject umlElement) {
-		((PivotObjectImpl)pivotElement).setTarget(umlElement);
+		((PivotObjectImpl)pivotElement).setESObject(umlElement);
 		addCreated(umlElement, pivotElement);
 	}
 

@@ -149,7 +149,7 @@ public class AbstractExecutorElement implements Element
 	}
 
 	@Override
-	public EObject getETarget() {
+	public EObject getESObject() {
 		throw new UnsupportedOperationException();
 	}
 

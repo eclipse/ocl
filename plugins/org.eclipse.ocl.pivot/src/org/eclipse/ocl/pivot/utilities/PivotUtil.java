@@ -187,7 +187,7 @@ public class PivotUtil
 	public static @NonNull org.eclipse.ocl.pivot.Class createClass(/*@NonNull*/ EClass eClass) {
 		org.eclipse.ocl.pivot.Class pivotType = PivotFactory.eINSTANCE.createClass();
 		pivotType.setName(eClass.getName());
-		((PivotObjectImpl)pivotType).setTarget(eClass);
+		((PivotObjectImpl)pivotType).setESObject(eClass);
 		return pivotType;
 	}
 
@@ -213,7 +213,7 @@ public class PivotUtil
 	public static @NonNull DataType createDataType(/*@NonNull*/ EDataType eDataType) {
 		DataType pivotType = PivotFactory.eINSTANCE.createDataType();
 		pivotType.setName(eDataType.getName());
-		((PivotObjectImpl)pivotType).setTarget(eDataType);
+		((PivotObjectImpl)pivotType).setESObject(eDataType);
 		return pivotType;
 	}
 
@@ -226,7 +226,7 @@ public class PivotUtil
 	public static @NonNull Enumeration createEnumeration(/*@NonNull*/ EEnum eEnum) {
 		Enumeration pivotType = PivotFactory.eINSTANCE.createEnumeration();
 		pivotType.setName(eEnum.getName());
-		((PivotObjectImpl)pivotType).setTarget(eEnum);
+		((PivotObjectImpl)pivotType).setESObject(eEnum);
 		return pivotType;
 	}
 	
@@ -239,7 +239,7 @@ public class PivotUtil
 	public static @NonNull EnumerationLiteral createEnumerationLiteral(/*@NonNull*/ EEnumLiteral eEnumLiteral) {
 		EnumerationLiteral pivotEnumerationLiteral = PivotFactory.eINSTANCE.createEnumerationLiteral();
 		pivotEnumerationLiteral.setName(eEnumLiteral.getName());
-		((PivotObjectImpl)pivotEnumerationLiteral).setTarget(eEnumLiteral);
+		((PivotObjectImpl)pivotEnumerationLiteral).setESObject(eEnumLiteral);
 		return pivotEnumerationLiteral;
 	}
 
@@ -331,7 +331,7 @@ public class PivotUtil
 		pivotOperation.setType(type);
 		pivotOperation.setImplementationClass(implementationClass);
 		pivotOperation.setImplementation(implementation);
-		((PivotObjectImpl)pivotOperation).setTarget(eOperation);
+		((PivotObjectImpl)pivotOperation).setESObject(eOperation);
 		return pivotOperation;
 	}
 
@@ -380,7 +380,7 @@ public class PivotUtil
 		pivotPackage.setName(ePackage.getName());
 		pivotPackage.setNsPrefix(nsPrefix);
 		pivotPackage.setURI(nsURI);
-		((PivotObjectImpl)pivotPackage).setTarget(ePackage);
+		((PivotObjectImpl)pivotPackage).setESObject(ePackage);
 		return pivotPackage;
 	}
 
@@ -433,7 +433,7 @@ public class PivotUtil
 		Property pivotProperty = PivotFactory.eINSTANCE.createProperty();
 		pivotProperty.setName(eFeature.getName());
 		pivotProperty.setType(type);
-		((PivotObjectImpl)pivotProperty).setTarget(eFeature);
+		((PivotObjectImpl)pivotProperty).setESObject(eFeature);
 		return pivotProperty;
 	}
 	

@@ -140,7 +140,7 @@ public abstract class TypeImpl
 	}
 
 	public @NonNull EObject createInstance() {
-		EObject eTarget = getETarget();
+		EObject eTarget = getESObject();
 		if (eTarget instanceof EClass) {
 			EClass eClass = (EClass) eTarget;
 			@SuppressWarnings("null")@NonNull EObject element = eClass.getEPackage().getEFactoryInstance().create(eClass);
@@ -151,7 +151,7 @@ public abstract class TypeImpl
 	}
 
 	public @Nullable Object createInstance(@NonNull String value) {
-		EObject eTarget = getETarget();
+		EObject eTarget = getESObject();
 		if (eTarget instanceof EDataType) {
 			EDataType eDataType = (EDataType) eTarget;
 			Object element = eDataType.getEPackage().getEFactoryInstance().createFromString(eDataType, value);

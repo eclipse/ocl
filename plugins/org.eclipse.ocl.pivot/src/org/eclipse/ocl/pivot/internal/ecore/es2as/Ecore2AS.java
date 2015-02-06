@@ -229,7 +229,7 @@ public class Ecore2AS extends AbstractEcore2AS
 	@Override
 	public void addMapping(@NonNull EObject eObject, @NonNull Element pivotElement) {
 		if (pivotElement instanceof PivotObjectImpl) {
-			((PivotObjectImpl)pivotElement).setTarget(eObject);
+			((PivotObjectImpl)pivotElement).setESObject(eObject);
 		}
 		Element pivotElement1 = pivotElement;
 		if (eObject instanceof EDataType) {

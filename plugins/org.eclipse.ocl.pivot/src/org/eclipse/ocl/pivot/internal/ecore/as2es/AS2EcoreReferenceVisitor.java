@@ -285,7 +285,7 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 			if (pivotReference != null) {
 				EObject target = context.getCreated(EObject.class, pivotReference);
 				if ((target == null) && (pivotReference instanceof PivotObjectImpl)) {
-					target = ((PivotObjectImpl)pivotReference).getTarget();
+					target = ((PivotObjectImpl)pivotReference).getESObject();
 				}
 				if (target != null) {
 					eAnnotation.getReferences().add(target);

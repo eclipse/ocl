@@ -320,7 +320,7 @@ public class DelegateInstaller
 		boolean hasDelegates = false;
 		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		Type primaryType = metamodelManager.getPrimaryType(pivotType);
-		EObject eTarget = primaryType.getETarget();
+		EObject eTarget = primaryType.getESObject();
 		if (eTarget instanceof EClassifier) {
 			@NonNull EClassifier eClassifier = (EClassifier)eTarget;
 			removeDelegateAnnotations(eClassifier, null);
@@ -356,25 +356,25 @@ public class DelegateInstaller
 				}
 			}
 			for (Operation anOperation : metamodelManager.getMemberOperations(pivotType, false)) {
-				EOperation eOperation = (EOperation)anOperation.getETarget();
+				EOperation eOperation = (EOperation)anOperation.getESObject();
 				if (eOperation != null) {
 					installDelegate(eOperation);
 				}
 			}
 			for (Operation anOperation : metamodelManager.getMemberOperations(pivotType, true)) {
-				EOperation eOperation = (EOperation)anOperation.getETarget();
+				EOperation eOperation = (EOperation)anOperation.getESObject();
 				if (eOperation != null) {
 					installDelegate(eOperation);
 				}
 			}
 			for (Property aProperty : metamodelManager.getMemberProperties(pivotType, false)) {
-				EStructuralFeature eFeature = (EStructuralFeature)aProperty.getETarget();
+				EStructuralFeature eFeature = (EStructuralFeature)aProperty.getESObject();
 				if (eFeature != null) {
 					installDelegate(eFeature);
 				}
 			}
 			for (Property aProperty : metamodelManager.getMemberProperties(pivotType, true)) {
-				EStructuralFeature eFeature = (EStructuralFeature)aProperty.getETarget();
+				EStructuralFeature eFeature = (EStructuralFeature)aProperty.getESObject();
 				if (eFeature != null) {
 					installDelegate(eFeature);
 				}

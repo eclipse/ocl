@@ -144,7 +144,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 					String alias = aliasAnalysis.getAlias(importedNamespace, null);
 					aliases = Collections.singletonList(alias);
 				}
-				EObject eObject = importedNamespace.getETarget();
+				EObject eObject = importedNamespace.getESObject();
 				String importURI = null;
 				if (eObject instanceof EPackage) {
 					EPackage ePackage = (EPackage)eObject;

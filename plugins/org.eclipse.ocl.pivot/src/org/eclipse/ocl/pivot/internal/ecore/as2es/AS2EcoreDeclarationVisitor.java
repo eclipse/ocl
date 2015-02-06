@@ -557,7 +557,7 @@ public class AS2EcoreDeclarationVisitor
 						importAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 						importAnnotation.setSource(PivotConstants.IMPORT_ANNOTATION_SOURCE);
 					}
-					EObject eTarget = importedNamespace.getETarget();
+					EObject eTarget = importedNamespace.getESObject();
 					if (eTarget != null) {
 						URI uri = null;
 						if ((eTarget instanceof EPackage) && ClassUtil.isRegistered(eTarget.eResource())) {

@@ -732,7 +732,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 	}
 
 	protected @NonNull List<ParserRule> getSortedParserRules(@NonNull org.eclipse.ocl.pivot.Class asClass, @NonNull Grammar grammar) {
-		EClassifier eClassifier = (EClassifier) ((PivotObjectImpl)asClass).getTarget();
+		EClassifier eClassifier = (EClassifier) ((PivotObjectImpl)asClass).getESObject();
 		List<ParserRule> sortedRules = new ArrayList<ParserRule>();
 		for (AbstractRule rule : grammar.getRules()) {
 			if (rule instanceof ParserRule) {

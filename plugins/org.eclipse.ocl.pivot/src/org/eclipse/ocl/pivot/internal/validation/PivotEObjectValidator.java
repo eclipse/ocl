@@ -189,7 +189,7 @@ public class PivotEObjectValidator implements EValidator
 				protected String getObjectLabel() {
 					Type type = PivotUtil.getContainingType(constraint);
 					Type primaryType = type != null ? metamodelManager.getPrimaryType(type) : null;
-					EObject eTarget = primaryType != null ? primaryType.getETarget() : null;
+					EObject eTarget = primaryType != null ? primaryType.getESObject() : null;
 					EClassifier eClassifier = eTarget instanceof EClassifier ?  (EClassifier)eTarget : null;
 					return LabelUtil.getLabel(eClassifier, object, context);
 				}

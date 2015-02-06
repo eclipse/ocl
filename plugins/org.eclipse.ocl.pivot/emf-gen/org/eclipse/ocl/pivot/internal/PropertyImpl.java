@@ -1689,7 +1689,7 @@ public class PropertyImpl
 	@Override
 	public void initValue(@NonNull EObject objectValue, @Nullable Object unboxedValue) {
 		assert ValueUtil.isUnboxed(unboxedValue);
-		EObject eTarget = getETarget();
+		EObject eTarget = getESObject();
 		if (eTarget instanceof EStructuralFeature) {
 			EStructuralFeature eFeature = (EStructuralFeature) eTarget;
 			EObject eObject = ValueUtil.asNavigableObject(objectValue, eFeature, null);

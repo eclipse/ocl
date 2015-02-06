@@ -136,7 +136,7 @@ public class PivotIdResolver extends AbstractIdResolver
 		if (boxedValue instanceof EnumerationLiteralId) {
 			EnumerationLiteral enumerationLiteral = visitEnumerationLiteralId((EnumerationLiteralId)boxedValue);
 			if (enumerationLiteral instanceof PivotObjectImpl) {
-				EObject eTarget = ((PivotObjectImpl)enumerationLiteral).getETarget();
+				EObject eTarget = ((PivotObjectImpl)enumerationLiteral).getESObject();
 //				if (eTarget instanceof EEnumLiteral) {				// Ecore unboxes to the Enumerator
 //					return ((EEnumLiteral)eTarget).getInstance();
 //				}

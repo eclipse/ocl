@@ -139,7 +139,7 @@ public abstract class CompleteOCLLoader
 			if (eObject instanceof org.eclipse.ocl.pivot.Package) {
 				org.eclipse.ocl.pivot.Package aPackage = ocl.getMetamodelManager().getPrimaryPackage((org.eclipse.ocl.pivot.Package)eObject);
 				if (aPackage instanceof PivotObjectImpl) {
-					EObject mmPackage = ((PivotObjectImpl)aPackage).getETarget();
+					EObject mmPackage = ((PivotObjectImpl)aPackage).getESObject();
 					if (mmPackage instanceof EPackage) {
 						mmPackages.add((EPackage)mmPackage);
 					}

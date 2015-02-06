@@ -354,7 +354,7 @@ public class BaseScopeView extends AbstractScope implements IScopeView
 			return null;
 		}
 		if (object instanceof PivotObjectImpl) {
-			EObject target = ((PivotObjectImpl)object).getTarget();
+			EObject target = ((PivotObjectImpl)object).getESObject();
 			if (target != null) {
 				uri = EcoreUtil.getURI(target);
 			}

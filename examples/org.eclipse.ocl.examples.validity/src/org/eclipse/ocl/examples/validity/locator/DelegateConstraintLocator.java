@@ -202,7 +202,7 @@ public class DelegateConstraintLocator extends AbstractPivotConstraintLocator
 				protected String getObjectLabel() {
 					org.eclipse.ocl.pivot.Type type = PivotUtil.getContainingType(finalConstraint);
 					org.eclipse.ocl.pivot.Type primaryType = type != null ? metamodelManager.getPrimaryType(type) : null;
-					EClassifier classifier = primaryType != null ?  (EClassifier)primaryType.getETarget() : null;
+					EClassifier classifier = primaryType != null ?  (EClassifier)primaryType.getESObject() : null;
 					return classifier != null ? classifier.getName() : "??";
 //								return ClassUtil.getLabel(classifier, object, context);
 				}

@@ -61,7 +61,7 @@ public abstract class AbstractId2JavaClassVisitor implements IdVisitor<Class<?>>
 //		return visiting(id);
 		EnvironmentFactory environmentFactory = genModelHelper.getEnvironmentFactory();
 		Type type = environmentFactory.getIdResolver().getType(id, null);
-		EClass eClass = (EClass) type.getETarget();
+		EClass eClass = (EClass) type.getESObject();
 		if (eClass != null) {
 			try {
 				return genModelHelper.getEcoreInterfaceClassifier(eClass);

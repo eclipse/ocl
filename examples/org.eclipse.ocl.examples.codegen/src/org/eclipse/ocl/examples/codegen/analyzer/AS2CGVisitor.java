@@ -621,7 +621,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		CGConstructorExp cgConstructorExp = null;
 		Type type = element.getType();
 		if (type != null) {
-			EObject eTarget = type.getETarget();
+			EObject eTarget = type.getESObject();
 			if (eTarget instanceof EDataType) {
 				CGEcoreDataTypeConstructorExp cgEConstructorExp = CGModelFactory.eINSTANCE.createCGEcoreDataTypeConstructorExp();
 				cgEConstructorExp.setEDataType((EDataType)eTarget);
@@ -902,7 +902,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			cgOperation = cgNativeOperation;
 		}
 		else if (libraryOperation instanceof EObjectOperation) {
-			EOperation eOperation = (EOperation) element.getETarget();
+			EOperation eOperation = (EOperation) element.getESObject();
 			if (eOperation != null) {
 				CGEcoreOperation cgEcoreOperation = CGModelFactory.eINSTANCE.createCGEcoreOperation();
 				cgEcoreOperation.setEOperation(eOperation);
@@ -1016,7 +1016,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			}
 		}
 		else if ((libraryOperation instanceof EObjectOperation) || (libraryOperation instanceof EInvokeOperation)) {
-			EOperation eOperation = (EOperation) asOperation.getETarget();
+			EOperation eOperation = (EOperation) asOperation.getESObject();
 			if (eOperation != null) {
 				try {
 					genModelHelper.getOperationAccessor(asOperation);
@@ -1087,7 +1087,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		LibraryProperty libraryProperty = metamodelManager.getImplementation(element, null, asProperty);
 		CGOppositePropertyCallExp cgPropertyCallExp = null;
 		if (isEcoreProperty(libraryProperty)) {
-			EStructuralFeature eStructuralFeature = (EStructuralFeature) asProperty.getETarget();
+			EStructuralFeature eStructuralFeature = (EStructuralFeature) asProperty.getESObject();
 			if (eStructuralFeature != null) {
 				try {
 					genModelHelper.getGetAccessor(eStructuralFeature);
@@ -1179,7 +1179,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			cgPropertyCallExp = cgNativePropertyCallExp;
 		}
 		else if (isEcoreProperty(libraryProperty)) {
-			EStructuralFeature eStructuralFeature = (EStructuralFeature) asProperty.getETarget();
+			EStructuralFeature eStructuralFeature = (EStructuralFeature) asProperty.getESObject();
 			if (eStructuralFeature != null) {
 				try {
 					genModelHelper.getGetAccessor(eStructuralFeature);

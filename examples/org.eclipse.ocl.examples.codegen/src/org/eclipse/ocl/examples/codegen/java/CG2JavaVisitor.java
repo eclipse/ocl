@@ -324,7 +324,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 				try {
 					CGClass cgClass = CGUtils.getContainingClass(cgIterationCallExp);
 					Element ast = cgClass != null ? cgClass.getAst() : null;
-					EObject eObject = ast != null ? ast.getETarget() : null;
+					EObject eObject = ast != null ? ast.getESObject() : null;
 					if (eObject instanceof EClassifier) {
 						localPrefix = genModelHelper.getImplementationClassName((EClassifier)eObject);
 					}

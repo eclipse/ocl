@@ -108,7 +108,7 @@ public class AS2EcoreTypeRefVisitor
 			if (metamodelManager.isTypeServeable(pivotType)) {
 				for (org.eclipse.ocl.pivot.Class type : metamodelManager.getPartialClasses(pivotType)) {
 					if (type instanceof PivotObjectImpl) {
-						EObject eTarget = ((PivotObjectImpl)type).getETarget();
+						EObject eTarget = ((PivotObjectImpl)type).getESObject();
 						if (eTarget != null) {
 							return eTarget;
 						}
@@ -117,7 +117,7 @@ public class AS2EcoreTypeRefVisitor
 			}
 			else {
 				if (pivotType instanceof PivotObjectImpl) {
-					EObject eTarget = ((PivotObjectImpl)pivotType).getETarget();
+					EObject eTarget = ((PivotObjectImpl)pivotType).getESObject();
 					if (eTarget != null) {
 						return eTarget;
 					}

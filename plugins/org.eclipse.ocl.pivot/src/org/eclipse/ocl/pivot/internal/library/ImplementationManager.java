@@ -134,7 +134,7 @@ public class ImplementationManager
 				return technology.createBasePropertyImplementation(environmentFactory, property);
 			}
 			if (type != null) {
-				EObject eTarget = opposite.getETarget();
+				EObject eTarget = opposite.getESObject();
 				if (eTarget instanceof EReference) {
 					return new CompositionProperty((EReference) eTarget, opposite.getPropertyId());
 				}

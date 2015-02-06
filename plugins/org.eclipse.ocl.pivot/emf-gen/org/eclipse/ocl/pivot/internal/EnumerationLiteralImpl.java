@@ -431,7 +431,7 @@ public class EnumerationLiteralImpl
 
 	@Override
 	public @NonNull Enumerator getEnumerator() {
-		EObject eTarget = getETarget();
+		EObject eTarget = getESObject();
 		if (eTarget instanceof EEnumLiteral) {
 			return ClassUtil.nonNullEMF(((EEnumLiteral) eTarget).getInstance());
 		}

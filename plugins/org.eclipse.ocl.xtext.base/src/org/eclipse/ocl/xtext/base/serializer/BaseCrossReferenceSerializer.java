@@ -190,7 +190,7 @@ public class BaseCrossReferenceSerializer extends CrossReferenceSerializer
 				}
 				else {
 					URI uri;
-					EObject eTarget = element.getETarget();
+					EObject eTarget = element.getESObject();
 					if (eTarget != null) {
 						uri = EcoreUtil.getURI(eTarget);
 					}

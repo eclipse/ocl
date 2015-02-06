@@ -10,11 +10,10 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.utilities;
 
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.EObject;
 
 /**
  * A PivotObject distinguishes the Pivot implementation of the Pivot interfaces from the lighterweight Executor implementation. 
  */
-public interface PivotObject extends EObject, Adapter.Internal, Labelable {
+public interface PivotObject extends EObject, Labelable {
 }

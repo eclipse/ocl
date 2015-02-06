@@ -54,7 +54,7 @@ public class CreateDynamicInstanceHandler extends AbstractHandler
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		if (selectedClass != null) {
-			EObject eTarget = selectedClass.getETarget();
+			EObject eTarget = selectedClass.getESObject();
 			EClass selectedEClass = null;
 			if (eTarget instanceof EClass) {
 				selectedEClass = (EClass) eTarget;

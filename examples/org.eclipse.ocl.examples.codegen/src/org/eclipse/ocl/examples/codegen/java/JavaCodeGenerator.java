@@ -438,7 +438,7 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 	@Override
 	public @Nullable Boolean isNonNull(@NonNull OperationCallExp asOperationCallExp) {
 		Operation asOperation = asOperationCallExp.getReferredOperation();
-		EObject eOperation = asOperation.getETarget();
+		EObject eOperation = asOperation.getESObject();
 		if (!(eOperation instanceof EOperation)) {
 			return null;
 		}
@@ -459,7 +459,7 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 
 	@Override
 	public @Nullable Boolean isNonNull(@NonNull Property asProperty) {
-		EObject eStructuralFeature = asProperty.getETarget();
+		EObject eStructuralFeature = asProperty.getESObject();
 		if (!(eStructuralFeature instanceof EStructuralFeature)) {
 			return null;
 		}

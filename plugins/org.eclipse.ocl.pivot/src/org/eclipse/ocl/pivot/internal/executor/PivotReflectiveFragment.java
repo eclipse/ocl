@@ -33,7 +33,7 @@ public class PivotReflectiveFragment extends ReflectiveFragment
 		for (org.eclipse.ocl.pivot.Class partialClass : completeInheritance.getCompleteClass().getPartialClasses()) {
 			for (Operation localOperation : partialClass.getOwnedOperations()) {
 				if (localOperation.getName().equals(baseOperationName) && (localOperation.getParametersId() == baseParametersId)) {
-					if (localOperation.getETarget() != null) {
+					if (localOperation.getESObject() != null) {
 						return localOperation;
 					}					
 					if (bestOperation == null) {

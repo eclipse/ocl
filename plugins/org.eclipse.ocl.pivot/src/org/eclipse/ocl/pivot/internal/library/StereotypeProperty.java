@@ -53,7 +53,7 @@ public class StereotypeProperty extends ConstrainedProperty
 				Object defaultValue = null;
 				LanguageExpression defaultExpression = null;
 				if (elementExtension.isApplied()) {
-					EObject umlStereotypeApplication = elementExtension.getETarget();
+					EObject umlStereotypeApplication = elementExtension.getESObject();
 					if (umlStereotypeApplication != null) {
 						EClass eClass = umlStereotypeApplication.eClass();
 						EStructuralFeature eStructuralFeature = NameUtil.getENamedElement(eClass.getEAllStructuralFeatures(), propertyName);

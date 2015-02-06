@@ -10,16 +10,15 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.internal.utilities;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.utilities.PivotObject;
 
 public abstract class PivotObjectImpl extends EObjectImpl implements PivotObject
 {
-	private EObject target;
+	private @Nullable EObject esObject;
 
 	@Override
 	protected void eBasicSetContainer(InternalEObject newContainer, int newContainerFeatureID) {
@@ -30,8 +29,13 @@ public abstract class PivotObjectImpl extends EObjectImpl implements PivotObject
 		super.eBasicSetContainer(newContainer, newContainerFeatureID);
 	}
 	
-	public EObject getETarget() {
-		return target;
+	public @Nullable EObject getESObject() {
+		return esObject;
+	}
+	
+	@Deprecated // Use getESObject()
+	public @Nullable EObject getETarget() {
+		return esObject;
 	}
 
 	@Override
@@ -39,34 +43,22 @@ public abstract class PivotObjectImpl extends EObjectImpl implements PivotObject
 		return null;
 	}
 	
-	@Override
-	public EObject getTarget() {
-		return target;
+	@Deprecated // Use getESObject()
+	public @Nullable EObject getTarget() {
+		return esObject;
 	}
 	
 	@Override
 	public String getText() {
 		return toString();
 	}
-
-	@Override
-	public boolean isAdapterForType(Object type) {
-		return type == PivotObjectImpl.class;
+	
+	public void setESObject(@Nullable EObject newTarget) {
+		esObject = newTarget;
 	}
 	
-	@Override
-	public void notifyChanged(Notification notification) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public void setTarget(Notifier newTarget) {
-		target = (EObject) newTarget;
-	}
-
-	@Override
-	public void unsetTarget(Notifier oldTarget) {
-		target = null;
+	@Deprecated // Use setESObject()
+	public void setTarget(@Nullable EObject newTarget) {
+		esObject = newTarget;
 	}
 }

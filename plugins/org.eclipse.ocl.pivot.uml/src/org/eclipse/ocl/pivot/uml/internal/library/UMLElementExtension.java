@@ -31,7 +31,7 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
 public class UMLElementExtension extends DynamicEObjectImpl implements Adapter.Internal
 {
 	public static @Nullable Object /*UMLElementExtension*/ getUMLElementExtension(@NonNull Stereotype staticType, @NonNull org.eclipse.uml2.uml.Element umlElement) {
-		EObject eTarget = staticType.getETarget();
+		EObject eTarget = staticType.getESObject();
 		if (eTarget instanceof org.eclipse.uml2.uml.Stereotype) {
 			org.eclipse.uml2.uml.Stereotype umlDynamicStereotype = null;
 			org.eclipse.uml2.uml.Stereotype umlStaticStereotype = (org.eclipse.uml2.uml.Stereotype)eTarget;

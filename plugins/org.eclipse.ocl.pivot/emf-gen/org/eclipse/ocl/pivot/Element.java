@@ -119,5 +119,5 @@ public interface Element extends EObject, Visitable {
 	 */
 	Element getValue(Type stereotype, String propertyName);
 
-	EObject getETarget();
+	EObject getESObject();
 } // Element
