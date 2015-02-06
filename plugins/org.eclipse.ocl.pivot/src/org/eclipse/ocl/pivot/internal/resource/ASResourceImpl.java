@@ -16,12 +16,14 @@ import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.XMLSave;
 import org.eclipse.emf.ecore.xmi.impl.XMIHelperImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.resource.ASResource;
 
 public class ASResourceImpl extends XMIResourceImpl implements ASResource
@@ -68,6 +70,14 @@ public class ASResourceImpl extends XMIResourceImpl implements ASResource
 			defaultSaveOptions.put("LINE_DELIMITER", "\n");	// XMLResource.OPTION_LINE_DELIMITER
 		}
 		return defaultSaveOptions;
+	}
+
+	@Override
+	protected void unloaded(InternalEObject internalEObject) {
+		if (internalEObject instanceof PivotObjectImpl) {
+			((PivotObjectImpl)internalEObject).setTarget(null);
+		}
+		super.unloaded(internalEObject);
 	}
 
 	@Override
