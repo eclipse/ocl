@@ -24,35 +24,43 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.internal.utilities.AbstractConversion;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.External2AS;
 import org.eclipse.ocl.pivot.internal.utilities.PivotConstantsInternal;
 
-public abstract class AbstractEcore2AS extends AbstractConversion implements External2AS, PivotConstantsInternal
+public abstract class AbstractExternal2AS extends AbstractConversion implements External2AS, PivotConstantsInternal
 {
 	public static @Nullable External2AS findAdapter(@NonNull Resource resource, @NonNull EnvironmentFactoryInternal environmentFactory) {
-//		UMLStandaloneSetup.assertInitialized();
 		External2AS es2as = environmentFactory.getMetamodelManager().getES2AS(resource);
-/*		for (Adapter adapter : resource.eAdapters()) {
-			if (adapter instanceof UML2AS) {
-				UML2AS uml2as = (UML2AS)adapter;
-				if (uml2as.getEnvironmentFactory() == environmentFactory) {
-					return uml2as;
-				}
-			}
-		} */
 		return es2as;
 	}
 
-	protected AbstractEcore2AS(@NonNull EnvironmentFactoryInternal environmentFactory) {
+	protected AbstractExternal2AS(@NonNull EnvironmentFactoryInternal environmentFactory) {
 		super(environmentFactory);
 	}
 	
 	public abstract void addGenericType(@NonNull EGenericType eObject);
 
 	public abstract void addMapping(@NonNull EObject eObject, @NonNull Element pivotElement);
+
+	protected abstract Model basicGetPivotModel();
+
+	@Override
+	public void dispose() {
+/*		Model pivotModel2 = basicGetPivotModel();
+		if (pivotModel2 != null) {
+			Resource asResource = pivotModel2.eResource();
+			if (asResource != null) {
+				asResource.unload();
+			}
+			environmentFactory.getCompleteModel().getPartialModels().remove(pivotModel2);
+			metamodelManager.getASResourceSet().getResources().remove(asResource);
+		} */
+		metamodelManager.removeExternalResource(this);
+	}
 	
 	public abstract void error(@NonNull String message);
 

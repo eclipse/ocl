@@ -52,7 +52,7 @@ import org.eclipse.ocl.pivot.Stereotype;
 import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.IdManager;
-import org.eclipse.ocl.pivot.internal.ecore.es2as.AbstractEcore2AS;
+import org.eclipse.ocl.pivot.internal.ecore.es2as.AbstractExternal2AS;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.AliasAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
@@ -76,7 +76,7 @@ import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
-public abstract class UML2AS extends AbstractEcore2AS
+public abstract class UML2AS extends AbstractExternal2AS
 {
 	public static final @NonNull TracingOption ADD_ELEMENT_EXTENSION = new TracingOption(PivotPlugin.PLUGIN_ID, "uml2as/addElementExtension");
 	public static final @NonNull TracingOption ADD_IMPORTED_RESOURCE = new TracingOption(PivotPlugin.PLUGIN_ID, "uml2as/addImportedResource");
@@ -865,6 +865,11 @@ public abstract class UML2AS extends AbstractEcore2AS
 
 	public abstract void addTypeExtension(@NonNull StereotypeExtender asTypeExtension);
 
+	@Override
+	protected Model basicGetPivotModel() {
+		return pivotModel;
+	}
+
 	public void copyModelElement(@NonNull Element pivotElement, @NonNull org.eclipse.uml2.uml.Element umlElement) {
 		setOriginalMapping(pivotElement, umlElement);
 	}
@@ -883,11 +888,6 @@ public abstract class UML2AS extends AbstractEcore2AS
 			throw new IllegalStateException("Missing resource URI");
 		}
 		return PivotUtilInternal.getASURI(uri);
-	}
-
-	@Override
-	public void dispose() {
-		metamodelManager.removeExternalResource(this);
 	}
 	
 	@Override

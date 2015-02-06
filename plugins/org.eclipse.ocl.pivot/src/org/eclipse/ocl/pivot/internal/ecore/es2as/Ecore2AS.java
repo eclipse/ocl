@@ -66,14 +66,12 @@ import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
-public class Ecore2AS extends AbstractEcore2AS
+public class Ecore2AS extends AbstractExternal2AS
 {
 	public static Ecore2AS getAdapter(@NonNull Resource resource, @NonNull EnvironmentFactoryInternal environmentFactory) {
 		Ecore2AS adapter = (Ecore2AS) findAdapter(resource, environmentFactory);
 		if (adapter == null) {
 			adapter = new Ecore2AS(resource, environmentFactory);
-//			List<Adapter> eAdapters = resource.eAdapters();
-//			eAdapters.add(adapter);
 		}
 		return adapter;
 	}
@@ -249,17 +247,17 @@ public class Ecore2AS extends AbstractEcore2AS
 		addCreated(eObject, pivotElement1);
 	}
 
+	@Override
+	protected Model basicGetPivotModel() {
+		return pivotModel;
+	}
+
 	protected @NonNull URI createPivotURI() {
 		URI uri = ecoreResource.getURI();
 		if (uri == null) {
 			throw new IllegalStateException("Missing resource URI");
 		}
 		return PivotUtilInternal.getASURI(uri);
-	}
-
-	@Override
-	public void dispose() {
-		metamodelManager.removeExternalResource(this);
 	}
 
 	@Override

@@ -103,11 +103,11 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 			&& PivotConstantsInternal.DOCUMENTATION_ANNOTATION_KEY.equals(key);
 	}
 
-	protected final @NonNull AbstractEcore2AS converter;
+	protected final @NonNull AbstractExternal2AS converter;
 	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 	protected final @NonNull Technology technology;
 	
-	public Ecore2ASDeclarationSwitch(@NonNull AbstractEcore2AS converter) {
+	public Ecore2ASDeclarationSwitch(@NonNull AbstractExternal2AS converter) {
 		this.converter = converter;
 		this.environmentFactory = converter.getEnvironmentFactory();
 		this.technology = environmentFactory.getTechnology();
