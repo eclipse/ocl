@@ -16,7 +16,6 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -51,21 +50,7 @@ import org.eclipse.ocl.pivot.resource.ProjectManager;
  */
 public interface EnvironmentFactory extends Adaptable, Customizable
 {
-	
-	/**
-	 * An EnvironmentFactoryListener reports EnvironmentFactory changes; most notably disposal.
-	 */
-	public interface Listener
-	{
-		/**
-		 * Respond to disposal of the EnvironmentFactory by eliminating all further usage.
-		 */
-		void environmentFactoryDisposed(@NonNull EnvironmentFactory environmentFactory);
-	}
-	
 	@NonNull Adapter adapt(@NonNull Notifier notifier);
-	
-	void addListener(@NonNull Listener oclDelegateDomain);
 
 	/**
 	 * Creates a new evaluation environment to track the values of variables in
@@ -129,14 +114,6 @@ public interface EnvironmentFactory extends Adaptable, Customizable
 
 	@NonNull OCL createOCL();
 
-	/**
-	 * Create a ParserContext that may be used to parse OCL expressions in the given context,
-	 * which may be an EClassifier/EOperation/EStructuralFeature or Type/Operation/Property.
-	 * Returns a ModelContext if no more specfic context can be determined if none can be created.
-	 */
-	@Deprecated		// Internal API
-	@NonNull ParserContext createParserContext(@Nullable EObject context);
-
 	@NonNull CompleteEnvironment getCompleteEnvironment();
 
 	@NonNull CompleteModel getCompleteModel();
@@ -150,6 +127,4 @@ public interface EnvironmentFactory extends Adaptable, Customizable
 	@NonNull ResourceSet getResourceSet();
 
 	@NonNull StandardLibrary getStandardLibrary();
-
-	void removeListener(@NonNull Listener oclDelegateDomain);
 }

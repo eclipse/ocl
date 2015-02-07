@@ -61,7 +61,7 @@ import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
+import org.eclipse.ocl.pivot.internal.utilities.GlobalEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
@@ -390,7 +390,7 @@ public class PivotTestCase extends TestCase
 	}
 
 	public static @Nullable StandaloneProjectMap basicGetProjectMap() {
-		EnvironmentFactory globalEnvironmentFactory = OCLInternal.basicGetGlobalEnvironmentFactory();
+		EnvironmentFactory globalEnvironmentFactory = GlobalEnvironmentFactory.basicGetInstance();
 		return globalEnvironmentFactory != null ? (StandaloneProjectMap)globalEnvironmentFactory.getProjectManager() : null; //projectMap;
 	}
 
@@ -778,7 +778,7 @@ public class PivotTestCase extends TestCase
 		MarkupStandaloneSetup.doTearDown();
 		OCLinEcoreStandaloneSetup.doTearDown();
 		OCLstdlibStandaloneSetup.doTearDown();
-		OCLInternal.disposeGlobalEnvironmentFactory();
+		GlobalEnvironmentFactory.disposeInstance();
 //		OCLstdlib.uninstall(); // should be able to persist
 //		if (projectMap != null) {
 //			projectMap.dispose();

@@ -100,14 +100,11 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 	 * which may be an EClassifier/EOperation/EStructuralFeature or Type/Operation/Property.
 	 * Returns a ModelContext if no more specfic context can be determined if none can be created.
 	 */
-	@Override
 	@NonNull ParserContext createParserContext(@Nullable EObject context);
 
 	void detach(Object object);
 
 	void dispose();
-
-	void disposeGlobal();
 
 	@Nullable ICSI2ASMapping getCSI2ASMapping();
 

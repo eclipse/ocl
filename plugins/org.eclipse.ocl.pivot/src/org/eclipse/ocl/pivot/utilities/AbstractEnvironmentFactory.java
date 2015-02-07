@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -63,6 +64,7 @@ import org.eclipse.ocl.pivot.internal.resource.ICSI2ASMapping;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.External2AS;
+import org.eclipse.ocl.pivot.internal.utilities.GlobalEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.internal.utilities.Technology;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
@@ -75,7 +77,7 @@ import org.eclipse.ocl.pivot.values.ObjectValue;
 public abstract class AbstractEnvironmentFactory extends AbstractCustomizable implements EnvironmentFactoryInternal
 {
     private boolean traceEvaluation;
-    private @NonNull ProjectManager projectManager;
+    protected final @NonNull ProjectManager projectManager;
     protected final @NonNull ResourceSet externalResourceSet;
     protected final boolean externalResourceSetWasNull;
     private /*@LazyNonNull*/ PivotMetamodelManager metamodelManager;
@@ -88,17 +90,14 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	private final @NonNull CompleteModelInternal completeModel;
 
 	private /*@LazyNonNull*/ IdResolver idResolver;
-	
-	/**
-	 * EnvironmentFactoryListener instances to be notified of significant state changes; most notably disposal.
-	 */
-	private @Nullable List<Listener> listeners = null;
     
     /**
-     * Count of the number of OCL instances that are using the EnvironmentFactory. auto-disposes on cunbt down to zero.
+     * Count of the number of OCL instances that are using the EnvironmentFactory. auto-disposes on count down to zero.
+     * -ve once disposed.
      */
-    private int attachCount = 0;;
-//    private List<WeakReference<Object>> attachers = null;;
+    private int attachCount = 0;
+
+    //    private List<WeakReference<Object>> attachers = null;;
     
     private @NonNull Technology technology = ASResourceFactoryRegistry.INSTANCE.getTechnology();
 
@@ -106,6 +105,9 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	 * @param projectManager
 	 */
 	protected AbstractEnvironmentFactory(@NonNull ProjectManager projectManager, @Nullable ResourceSet externalResourceSet) {
+		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {			// This is the unique start point for OCL so
+			PivotStandaloneSetup.doSetup();				//  do the non-UI initialization (guarded in doSetup())
+		}
 		this.projectManager = projectManager;
 		if (externalResourceSet != null) {
 			this.externalResourceSetWasNull = false;
@@ -116,9 +118,9 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 			this.externalResourceSet = externalResourceSet = new ResourceSetImpl();
 			projectManager.initializeResourceSet(externalResourceSet);			
 			externalResourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("emof", new EMOFResourceFactoryImpl()); //$NON-NLS-1$
-			adapt(externalResourceSet);
 			ASResourceFactoryRegistry.INSTANCE.configureResourceSet(externalResourceSet);
 		}
+		adapt(externalResourceSet);
 		this.metamodelManager = null;
 		this.completeEnvironment = createCompleteEnvironment();
 		this.standardLibrary = completeEnvironment.getOwnedStandardLibrary();
@@ -174,19 +176,10 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	}
 
 	@Override
-	public void addListener(@NonNull Listener listener) {
-		List<Listener> listeners2 = listeners;
-		if (listeners2 == null) {
-			listeners = listeners2 = new ArrayList<Listener>();
-		}
-		if (!listeners2.contains(listener)) {
-			listeners2.add(listener);
-		}
-	}
-
-	@Override
 	public synchronized void attach(Object object) {
-		assert attachCount >= 0;
+		if (attachCount < 0) {
+			throw new IllegalStateException(getClass().getName() + " disposed");
+		}
 		attachCount++;
 //		if (attachers == null) {
 //			attachers = new ArrayList<WeakReference<Object>>();
@@ -345,7 +338,12 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	
 	@Override
 	public synchronized void detach(Object object) {
-		assert attachCount > 0;
+		if (attachCount < 0) {
+			return;					// Ignore detach after dispose
+		}
+		if (attachCount == 0) {
+			throw new IllegalStateException(getClass().getName() + " not attached");
+		}
 //		if (attachers != null) {
 //			for (WeakReference<Object> attacher : attachers) {
 //				if (attacher.get() == object) {
@@ -361,53 +359,35 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 
 	@Override
 	public void dispose() {
-		if (listeners != null) {
-			List<Listener> savedListeners = listeners;
-			listeners = null;
-			for (Listener listener : savedListeners) {
-				listener.environmentFactoryDisposed(this);
-			}
+		if (attachCount < 0) {
+			throw new IllegalStateException(getClass().getName() + " already disposed");
 		}
-		assert attachCount == 0;
-		if (this != OCLInternal.basicGetGlobalEnvironmentFactory()) {
-			if (metamodelManager != null) {
-				metamodelManager.dispose();
-				metamodelManager = null;
-			}
-			if (externalResourceSetWasNull) {
-//				System.out.println("dispose CS " + ClassUtil.debugSimpleName(externalResourceSet));
-				projectManager.unload(externalResourceSet);
-				externalResourceSet.eAdapters().remove(projectManager);
-//				StandaloneProjectMap.dispose(externalResourceSet2);
-				externalResourceSet.setPackageRegistry(null);
-				externalResourceSet.setResourceFactoryRegistry(null);
-				externalResourceSet.setURIConverter(null);
-				if (externalResourceSet instanceof ResourceSetImpl) {
-					((ResourceSetImpl)externalResourceSet).setURIResourceMap(null);
-				}
-				for (Resource resource : new ArrayList<Resource>(externalResourceSet.getResources())) {
-					resource.unload();
-				}
-//				externalResourceSet = null;
-			}
-			if (idResolver != null) {
-				idResolver.dispose();
-				idResolver = null;
-			}
-			if (csi2asMapping != null) {
-				csi2asMapping.dispose();
-				csi2asMapping = null;
-			}
-		}
+		attachCount = -1;
+		disposeInternal();
 	}
 
-	@Override
-	public void disposeGlobal() {
-		assert this == OCLInternal.basicGetGlobalEnvironmentFactory();
-		dispose();
+	protected void disposeInternal() {
+		assert attachCount == -1;
+		boolean isGlobal = this == GlobalEnvironmentFactory.basicGetInstance();
 		if (metamodelManager != null) {
 			metamodelManager.dispose();
 			metamodelManager = null;
+		}
+		if (externalResourceSetWasNull || isGlobal) {
+//			System.out.println("dispose CS " + ClassUtil.debugSimpleName(externalResourceSet));
+			projectManager.unload(externalResourceSet);
+			externalResourceSet.eAdapters().remove(projectManager);
+//			StandaloneProjectMap.dispose(externalResourceSet2);
+			externalResourceSet.setPackageRegistry(null);
+			externalResourceSet.setResourceFactoryRegistry(null);
+			externalResourceSet.setURIConverter(null);
+			if (externalResourceSet instanceof ResourceSetImpl) {
+				((ResourceSetImpl)externalResourceSet).setURIResourceMap(null);
+			}
+			for (Resource resource : new ArrayList<Resource>(externalResourceSet.getResources())) {
+				resource.unload();
+			}
+//			externalResourceSet = null;
 		}
 		if (idResolver != null) {
 			idResolver.dispose();
@@ -569,13 +549,6 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 		}
 		throw new ParserException("Cannot create pivot from '" + uri + "'");
 //		logger.warn("Cannot convert to pivot for package with URI '" + uri + "'");
-	}
-
-	@Override
-	public void removeListener(@NonNull Listener listener) {
-		if (listeners != null) {
-			listeners.remove(listener);
-		}
 	}
 
 	@Override

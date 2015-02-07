@@ -24,17 +24,10 @@ import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.resource.BasicProjectManager;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.OCL;
 
 public class OCLInternal extends OCL
 {
-	/**
-     * A convenient shared instance of the environment factory, that creates
-     * environments using the global package registry.
-	 */
-    private static @Nullable EnvironmentFactoryInternal GLOBAL_ENVIRONMENT_FACTORY = null;
-	
 	public static @NonNull EnvironmentFactoryAdapter adapt(@NonNull Notifier notifier) {
 		List<Adapter> eAdapters = ClassUtil.nonNullEMF(notifier.eAdapters());
 		EnvironmentFactoryAdapter adapter = ClassUtil.getAdapter(EnvironmentFactoryAdapter.class, eAdapters);
@@ -51,39 +44,6 @@ public class OCLInternal extends OCL
 			eAdapters.add(adapter);
 		}
 		return adapter;
-	}
-
-	public static @Nullable EnvironmentFactory basicGetGlobalEnvironmentFactory() {
-		return GLOBAL_ENVIRONMENT_FACTORY;
-	}
-
-    /**
-     * Dispose of the global instance; this is intended for leakage detection in tests.
-     */
-	public static void disposeGlobalEnvironmentFactory() {
-		EnvironmentFactory GLOBAL_ENVIRONMENT_FACTORY2 = GLOBAL_ENVIRONMENT_FACTORY;
-		if (GLOBAL_ENVIRONMENT_FACTORY2 != null) {
-//			PivotUtilInternal.debugPrintln("Dispose Global " + NameUtil.debugSimpleName(GLOBAL_ENVIRONMENT_FACTORY2));	
-			((EnvironmentFactoryInternal)GLOBAL_ENVIRONMENT_FACTORY2).disposeGlobal();
-			GLOBAL_ENVIRONMENT_FACTORY = null;
-		}
-	}
-
-	/**
-	 * Return the global EnvironmentFactory that may be shared amongst OCL consumers for which Complete OCL
-	 * complements are not possible. Typically this is the OCLDElegateDomains that supported interpreted
-	 * execution of OCL embedded in Ecore.
-	 */
-	public static @NonNull EnvironmentFactoryInternal getGlobalEnvironmentFactory() {
-		EnvironmentFactoryInternal globalRegistryInstance2 = GLOBAL_ENVIRONMENT_FACTORY;
-		if (globalRegistryInstance2 == null) {
-			GLOBAL_ENVIRONMENT_FACTORY = globalRegistryInstance2 = ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(ProjectManager.CLASS_PATH, null);
-//			PivotUtilInternal.debugPrintln("Create Global " + NameUtil.debugSimpleName(GLOBAL_ENVIRONMENT_FACTORY));	
-		}
-//		else {
-//			PivotUtilInternal.debugPrintln("Re-use Global " + NameUtil.debugSimpleName(GLOBAL_ENVIRONMENT_FACTORY));	
-//		}
-		return globalRegistryInstance2;
 	}
 	
 	public static @NonNull OCLInternal newInstance() {

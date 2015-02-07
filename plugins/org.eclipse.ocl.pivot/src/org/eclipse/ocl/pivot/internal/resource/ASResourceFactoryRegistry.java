@@ -13,7 +13,6 @@ package org.eclipse.ocl.pivot.internal.resource;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
@@ -25,7 +24,6 @@ import org.eclipse.ocl.pivot.internal.utilities.Technology;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
-import org.eclipse.ocl.pivot.utilities.PivotStandaloneSetup;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
@@ -114,9 +112,6 @@ public class ASResourceFactoryRegistry
 	 * Create a new EnvironmentFactory appropriate to the resources in ResourceSet.
 	 */
 	public @NonNull EnvironmentFactoryInternal createEnvironmentFactory(@NonNull ProjectManager projectManager, @Nullable ResourceSet externalResourceSet) {
-		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {			// This is the unique start point for OCL so
-			PivotStandaloneSetup.doSetup();				//  do the non-UI initialization (guarded in doSetup())
-		}
 		return new PivotEnvironmentFactory(projectManager, externalResourceSet);
 	}
 

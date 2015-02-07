@@ -2123,6 +2123,15 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 		external2asMap.remove(external2as.getURI());
 	}
 
+	public void removeExternalResource(@NonNull Resource esResource) {
+		if (es2ases != null) {
+			External2AS es2as = es2ases.remove(esResource);
+			if (es2as != null) {
+				es2as.dispose();
+			}
+		}
+	}
+
 	public void setASmetamodel(org.eclipse.ocl.pivot.Package asPackage) {
 		asMetamodel = asPackage;
 		String uri = asMetamodel.getURI();
