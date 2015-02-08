@@ -26,6 +26,7 @@ import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Stereotype;
 import org.eclipse.ocl.pivot.StereotypeExtender;
+import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.util.Visitor;
 
 /**
@@ -449,5 +450,11 @@ public class StereotypeExtenderImpl extends ElementImpl implements StereotypeExt
 	@Override
 	public String toString() {
 		return super.toString();
+	}
+
+	@Override
+	public void unloaded(@NonNull ASResource asResource) {
+		super.unloaded(asResource);
+		setClass_(null);
 	}
 } //TypeExtensionImpl

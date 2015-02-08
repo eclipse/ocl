@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -63,6 +64,7 @@ import org.eclipse.ocl.pivot.library.logical.BooleanImpliesOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsKindOfOperation;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
+import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.util.PivotValidator;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -1697,5 +1699,21 @@ public class PropertyImpl
 			return;
 		}
 		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void unloaded(@NonNull ASResource asResource) {
+		super.unloaded(asResource);
+		Property asOpposite = getOpposite();
+		if (asOpposite != null) {
+			Resource eResource = asOpposite.eResource();
+			if ((eResource != null) && (eResource != asResource)) {
+				asOpposite.setOwningClass(null);
+			}
+			asOpposite.setType(null);
+			asOpposite.setOpposite(null);
+			setOpposite(null);
+		}
+		setType(null);				// Easier to set them all than just the base_xxx ones
 	}
 } //PropertyImpl

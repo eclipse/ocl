@@ -13,7 +13,9 @@ package org.eclipse.ocl.pivot.internal.utilities;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.PivotObject;
 
 public abstract class PivotObjectImpl extends EObjectImpl implements PivotObject
@@ -60,5 +62,9 @@ public abstract class PivotObjectImpl extends EObjectImpl implements PivotObject
 	@Deprecated // Use setESObject()
 	public void setTarget(@Nullable EObject newTarget) {
 		esObject = newTarget;
+	}
+
+	public void unloaded(@NonNull ASResource asResource) {
+		esObject = null;
 	}
 }

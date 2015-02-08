@@ -75,7 +75,7 @@ public class ASResourceImpl extends XMIResourceImpl implements ASResource
 	@Override
 	protected void unloaded(InternalEObject internalEObject) {
 		if (internalEObject instanceof PivotObjectImpl) {
-			((PivotObjectImpl)internalEObject).setTarget(null);
+			((PivotObjectImpl)internalEObject).unloaded(this);
 		}
 		super.unloaded(internalEObject);
 	}
