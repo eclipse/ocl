@@ -50,7 +50,7 @@ public abstract class AbstractExternal2AS extends AbstractConversion implements 
 
 	@Override
 	public void dispose() {
-/*		Model pivotModel2 = basicGetPivotModel();
+		Model pivotModel2 = basicGetPivotModel();
 		if (pivotModel2 != null) {
 			Resource asResource = pivotModel2.eResource();
 			if (asResource != null) {
@@ -58,7 +58,7 @@ public abstract class AbstractExternal2AS extends AbstractConversion implements 
 			}
 			environmentFactory.getCompleteModel().getPartialModels().remove(pivotModel2);
 			metamodelManager.getASResourceSet().getResources().remove(asResource);
-		} */
+		}
 		metamodelManager.removeExternalResource(this);
 	}
 	

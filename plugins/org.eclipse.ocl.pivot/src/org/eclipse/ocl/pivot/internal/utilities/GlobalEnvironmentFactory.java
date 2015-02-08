@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.EMOFResourceFactoryImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.AbstractEnvironmentFactory;
@@ -52,13 +53,24 @@ public class GlobalEnvironmentFactory extends AbstractEnvironmentFactory
 		void environmentFactoryDisposed(@NonNull EnvironmentFactory environmentFactory);
 	}
 	
-	protected class UnloadResourceAdapter extends AdapterImpl
+	protected class UnloadResourceAdapter extends AdapterImpl implements Listener
 	{
+		@Override
+		public void environmentFactoryDisposed(@NonNull EnvironmentFactory environmentFactory) {
+			Notifier target2 = getTarget();
+			if (target2 != null) {
+				target2.eAdapters().remove(this);
+			}
+		}
+		
 		@Override
 		public void unsetTarget(Notifier oldTarget) {
 			assert oldTarget instanceof Resource;
-			getMetamodelManager().removeExternalResource((Resource)oldTarget);
-			ResourceSet externalResourceSet2 = externalResourceSet;
+			PivotMetamodelManager metamodelManager = basicGetMetamodelManager();
+			if (metamodelManager != null) {
+				metamodelManager.removeExternalResource((Resource)oldTarget);
+			}
+			ResourceSet externalResourceSet2 = getResourceSet();
 			if (externalResourceSet2 instanceof ResourceSetImpl) {
 				List<URI> deadKeys = new ArrayList<URI>();
 				Map<URI, Resource> uriResourceMap = ((ResourceSetImpl)externalResourceSet2).getURIResourceMap();
@@ -74,7 +86,6 @@ public class GlobalEnvironmentFactory extends AbstractEnvironmentFactory
 			super.unsetTarget(oldTarget);
 		}
 	}
-	
 
 	private static @Nullable GlobalEnvironmentFactory INSTANCE = null;
 
@@ -137,7 +148,9 @@ public class GlobalEnvironmentFactory extends AbstractEnvironmentFactory
 		super.addExternal2AS(external2as);
 		Resource esResource = external2as.getResource();
 		if (esResource != null) {
-			esResource.eAdapters().add(new UnloadResourceAdapter());
+			UnloadResourceAdapter adapter = new UnloadResourceAdapter();
+			esResource.eAdapters().add(adapter);
+			addListener(adapter);
 		}
 	}
 

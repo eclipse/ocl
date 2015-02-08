@@ -187,6 +187,10 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 //		attachers.add(new WeakReference<Object>(object));
 	}
 
+	protected @Nullable PivotMetamodelManager basicGetMetamodelManager() {
+		return metamodelManager;
+	}
+
 	@Override
 	public void configureLoadFirstStrategy() {
 		configureLoadStrategy(StandaloneProjectMap.LoadFirstStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
@@ -386,7 +390,9 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 			}
 			for (Resource resource : new ArrayList<Resource>(externalResourceSet.getResources())) {
 				resource.unload();
+				resource.eAdapters().clear();
 			}
+			externalResourceSet.eAdapters().clear();
 //			externalResourceSet = null;
 		}
 		if (idResolver != null) {

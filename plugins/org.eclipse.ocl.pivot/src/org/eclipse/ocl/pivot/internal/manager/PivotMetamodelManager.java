@@ -591,6 +591,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 		List<Resource> asResources = asResourceSet.getResources();
 		for (Resource asResource : new ArrayList<Resource>(asResources)) {
 			asResource.unload();
+			asResource.eAdapters().clear();
 		}
 		asResources.clear();
 		asResourceSet.setPackageRegistry(null);
@@ -602,8 +603,8 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 		StandaloneProjectMap projectMap = StandaloneProjectMap.findAdapter(asResourceSet);
 		if (projectMap != null) {
 			projectMap.unload(asResourceSet);
-			asResourceSet.eAdapters().remove(projectMap);
 		}
+		asResourceSet.eAdapters().clear();
 //		StandaloneProjectMap.dispose(asResourceSet);
 /*		ResourceSet externalResourceSet2 = externalResourceSet;
 		if (externalResourceSet2 != null) {
